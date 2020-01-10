@@ -1,5 +1,17 @@
 # NgElementsDemo
 
+This repo demonstrates the ability to create Angular components and export them as WebComponents.
+
+## Steps
+
+- `npm install`
+- `npm run build:prod`
+- `npm run static-server`
+
+And then visit http://127.0.0.1:8080/projects/button/src/demo.html
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.0-rc.8.
 
 ## Development server

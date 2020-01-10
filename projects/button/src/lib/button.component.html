@@ -1,0 +1,7 @@
+<button
+  [disabled]="isDisabled"
+  (mouseover)="customEvent.emit('over')"
+  (mouseout)="customEvent.emit('out')"
+>
+  <slot></slot>
+</button>

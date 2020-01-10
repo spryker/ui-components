@@ -18,13 +18,14 @@ export abstract class CustomElementModule {
 
   private register() {
     const cfr = this.injector.get(ComponentFactoryResolver);
-    const ngElement = createCustomElement(this.component, {
+
+    const customElement = createCustomElement(this.component, {
       injector: this.injector,
     });
 
     customElements.define(
       cfr.resolveComponentFactory(this.component).selector,
-      ngElement,
+      customElement,
     );
   }
 }

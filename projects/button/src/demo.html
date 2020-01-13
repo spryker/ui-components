@@ -12,6 +12,9 @@
     <br />
     <br />
     <spy-button class="toggle">Toggle disabled state</spy-button>
+    <br />
+    <br />
+    <my-spy-button size="sm">This is extended button!</my-spy-button>
 
     <script>
       const btns = document.querySelectorAll('.btn');
@@ -28,6 +31,23 @@
       toggleBtn.addEventListener('click', () =>
         btns.forEach(btn => (btn.disabled = !btn.disabled)),
       );
+    </script>
+
+    <!-- Extension Example -->
+    <script>
+      async function setup() {
+        await customElements.whenDefined('spy-button');
+
+        class MySpyButton extends customElements.get('spy-button') {
+          anotherMethod() {
+            alert('WOW! This is custom another method from WebComponent!');
+            super.anotherMethod();
+          }
+        }
+
+        customElements.define('my-spy-button', MySpyButton);
+      }
+      setup().catch(console.error);
     </script>
 
     <!-- BUILD -->

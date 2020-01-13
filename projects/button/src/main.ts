@@ -2,10 +2,10 @@ import { enableProdMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
+import { CustomElementModule } from './custom-element.module';
 import { environment } from './environments/environment';
 import { ButtonComponent } from './lib/button.component';
 import { ButtonModule } from './lib/button.module';
-import { CustomElementModule } from './lib/custom-element.module';
 
 @NgModule({
   imports: [BrowserModule, ButtonModule],

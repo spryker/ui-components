@@ -9,6 +9,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
+import { CustomElementMethod } from '../custom-element-method';
+
 export interface ButtonComponentInputs {
   size: 'sm' | 'md' | 'lg';
   variant: 'primary' | 'secondary';
@@ -52,5 +54,11 @@ export class ButtonComponent implements ButtonComponentInputs {
       [`size--${this.size}`]: this.size,
       [`variant--${this.variant}`]: this.variant,
     };
+  }
+
+  // Expose public methods to WebComponent
+  @CustomElementMethod()
+  anotherMethod() {
+    alert('Another method from Angular component triggered!');
   }
 }

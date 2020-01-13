@@ -3,7 +3,9 @@
   (mouseover)="customEvent.emit('over')"
   (mouseout)="customEvent.emit('out')"
 >
-  <slot></slot>
+  <slot>
+    <spy-button-slot-ng></spy-button-slot-ng>
+  </slot>
 </button>
 
 <button (click)="anotherMethod()">Trigger internal methods!</button>

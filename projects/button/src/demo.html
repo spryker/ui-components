@@ -15,6 +15,14 @@
     <br />
     <br />
     <my-spy-button size="sm">This is extended button!</my-spy-button>
+    <br />
+    <br />
+    <my-spy-button size="md"></my-spy-button>
+    <br />
+    <my-spy-button size="md">
+      Extending template with parent:
+      <spy-button-slot></spy-button-slot>
+    </my-spy-button>
 
     <script>
       const btns = document.querySelectorAll('.btn');

@@ -8,31 +8,46 @@ import { createCustomElement, NgElementConstructor } from '@angular/elements';
 
 import { getElementMethodsOf } from './custom-element-method';
 
+export interface WebComponentType<T = any> extends Type<T> {
+  selector?: string;
+}
+
 @NgModule({})
 export abstract class CustomElementModule {
-  protected abstract component: Type<any>;
+  protected abstract components: WebComponentType[];
 
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
-    this.register();
+    this.init();
   }
 
-  private register() {
-    const cfr = this.injector.get(ComponentFactoryResolver);
-    const customElementComponent = createCustomElementFor(
-      this.component,
-      this.injector,
-    );
+  private init() {
+    this.components.forEach(component => this.register(component));
+  }
 
+  private register(component: WebComponentType) {
     customElements.define(
-      cfr.resolveComponentFactory(this.component).selector,
-      customElementComponent,
+      this.getComponentName(component),
+      createCustomElementFor(component, this.injector),
     );
+  }
+
+  private getComponentName(component: WebComponentType) {
+    if (component.selector) {
+      return component.selector;
+    }
+
+    return this.injector
+      .get(ComponentFactoryResolver)
+      .resolveComponentFactory(component).selector;
   }
 }
 
-function createCustomElementFor(componentType: Type<any>, injector: Injector) {
+function createCustomElementFor(
+  componentType: WebComponentType,
+  injector: Injector,
+) {
   const customElement = createCustomElement(componentType, { injector });
   const elemMethods = getElementMethodsOf(componentType.prototype);
 

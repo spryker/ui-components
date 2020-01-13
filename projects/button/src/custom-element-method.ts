@@ -16,5 +16,5 @@ export function CustomElementMethod(): MethodDecorator {
 
 /** @internal */
 export function getElementMethodsOf(component: TargetWithKey) {
-  return component[CUSTOM_ELEMENT_METHODS_KEY];
+  return component[CUSTOM_ELEMENT_METHODS_KEY] || [];
 }

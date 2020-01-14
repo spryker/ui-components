@@ -65,6 +65,7 @@ export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
 
   ngOnDestroy(): void {
     this.disposables.forEach(dispose => dispose());
+    this.maybeDestroyComponent();
   }
 
   private onSlotChange() {
@@ -126,6 +127,8 @@ export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
   }
 
   private createComponentIn(element: Element) {
+    this.maybeDestroyComponent(); // Prevent accidental leaks
+
     const compFactory = this.cfr.resolveComponentFactory(RenderTplComponent);
     const compRef = (this.compRef = compFactory.create(this.injector, []));
 

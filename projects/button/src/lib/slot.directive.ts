@@ -14,10 +14,14 @@ import {
   Renderer2,
   TemplateRef,
   ViewContainerRef,
+  Input,
 } from '@angular/core';
 
 import { RenderTplComponent } from './render-tpl.component';
 
+/**
+ * Parent tag name that will be used to insert original template in slot contents
+ */
 export const SLOT_PARENT_TAG = new InjectionToken<string>(
   'SLOT_PARENT_SELECTOR',
   { factory: () => 'spy-parent' },
@@ -27,7 +31,14 @@ export const SLOT_PARENT_TAG = new InjectionToken<string>(
   selector: 'slot[spySlot]',
 })
 export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
-  @ContentChild(TemplateRef) tpl: TemplateRef<any> | undefined;
+  /**
+   * Parent tag name that will be used to insert original template in slot contents
+   *
+   * Global value can be set via {@link SLOT_PARENT_TAG} token
+   */
+  @Input() spySlotParentTag: string;
+
+  @ContentChild(TemplateRef) template: TemplateRef<any> | undefined;
 
   private contentProjected = false;
   private compRef: ComponentRef<RenderTplComponent> | undefined;
@@ -37,8 +48,12 @@ export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
     return this.elemRef.nativeElement;
   }
 
+  private get parentTag() {
+    return this.spySlotParentTag || this.defaultParentTag;
+  }
+
   constructor(
-    @Inject(SLOT_PARENT_TAG) private parentTag: string,
+    @Inject(SLOT_PARENT_TAG) private defaultParentTag: string,
     private elemRef: ElementRef,
     private renderer: Renderer2,
     private vcr: ViewContainerRef,
@@ -116,14 +131,14 @@ export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
       this.createComponentIn(element);
     }
 
-    this.compRef.instance.template = this.tpl;
+    this.compRef.instance.template = this.template;
     this.compRef.changeDetectorRef.detectChanges();
   }
 
   private renderDefaultContent() {
     this.maybeDestroyComponent();
     this.vcr.clear();
-    this.vcr.createEmbeddedView(this.tpl);
+    this.vcr.createEmbeddedView(this.template);
   }
 
   private createComponentIn(element: Element) {

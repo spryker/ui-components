@@ -1,18 +1,19 @@
 import {
+  AfterContentInit,
   ApplicationRef,
   ComponentFactoryResolver,
   ComponentRef,
   ContentChild,
   Directive,
   ElementRef,
+  Inject,
+  InjectionToken,
   Injector,
   OnDestroy,
   OnInit,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
-  InjectionToken,
-  Inject,
 } from '@angular/core';
 
 import { RenderTplComponent } from './render-tpl.component';
@@ -25,7 +26,7 @@ export const SLOT_PARENT_TAG = new InjectionToken<string>(
 @Directive({
   selector: 'slot[spySlot]',
 })
-export class SlotDirective implements OnInit, OnDestroy {
+export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
   @ContentChild(TemplateRef) tpl: TemplateRef<any> | undefined;
 
   private contentProjected = false;
@@ -54,7 +55,11 @@ export class SlotDirective implements OnInit, OnDestroy {
         this.onSlotChange.bind(this),
       ),
     );
+  }
 
+  ngAfterContentInit(): void {
+    // Schedule initial render after potential 'slotchange' event
+    // So we do not render default content unnecessarily
     Promise.resolve().then(() => this.reRenderContent());
   }
 
@@ -106,7 +111,9 @@ export class SlotDirective implements OnInit, OnDestroy {
       return;
     }
 
-    this.createComponentIn(element);
+    if (!this.compRef) {
+      this.createComponentIn(element);
+    }
 
     this.compRef.instance.template = this.tpl;
     this.compRef.changeDetectorRef.detectChanges();
@@ -123,6 +130,7 @@ export class SlotDirective implements OnInit, OnDestroy {
     const compRef = (this.compRef = compFactory.create(this.injector, []));
 
     this.appRef.attachView(compRef.hostView);
+    this.renderer.setProperty(element, 'innerHTML', ''); // Clear old content
     this.renderer.appendChild(element, compRef.location.nativeElement);
   }
 

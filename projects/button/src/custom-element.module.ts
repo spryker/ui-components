@@ -69,14 +69,13 @@ function createCustomElementFor(
 
       const externalMethod = overrideMethod || originalMethod;
 
-      const internalMethod = function(...args: any[]) {
-        console.log('calling external from internal');
-        return externalMethod.apply(this, ...args);
-      };
-
-      ngComponent[method] = internalMethod;
-      proto[method] = originalMethod;
+      ngComponent[method] = externalMethod;
       this[method] = externalMethod;
+
+      // Add original method to prototype only once
+      if (typeof proto[method] !== 'function') {
+        proto[method] = originalMethod;
+      }
     }
   }
 

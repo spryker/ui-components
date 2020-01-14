@@ -75,11 +75,6 @@ export class SlotDirective implements OnInit, OnDestroy {
   }
 
   private reRenderContent() {
-    if (this.compRef) {
-      this.compRef.destroy();
-      this.compRef = undefined;
-    }
-
     if (this.contentProjected) {
       this.renderDefaultContentIn(this.findParentInSlot());
     } else {
@@ -107,22 +102,34 @@ export class SlotDirective implements OnInit, OnDestroy {
 
   private renderDefaultContentIn(element?: Element) {
     if (!element) {
+      this.maybeDestroyComponent();
       return;
     }
 
+    this.createComponentIn(element);
+
+    this.compRef.instance.template = this.tpl;
+    this.compRef.changeDetectorRef.detectChanges();
+  }
+
+  private renderDefaultContent() {
+    this.maybeDestroyComponent();
+    this.vcr.clear();
+    this.vcr.createEmbeddedView(this.tpl);
+  }
+
+  private createComponentIn(element: Element) {
     const compFactory = this.cfr.resolveComponentFactory(RenderTplComponent);
     const compRef = (this.compRef = compFactory.create(this.injector, []));
 
     this.appRef.attachView(compRef.hostView);
-
     this.renderer.appendChild(element, compRef.location.nativeElement);
-
-    compRef.instance.template = this.tpl;
-    compRef.changeDetectorRef.detectChanges();
   }
 
-  private renderDefaultContent() {
-    this.vcr.clear();
-    this.vcr.createEmbeddedView(this.tpl);
+  private maybeDestroyComponent() {
+    if (this.compRef) {
+      this.compRef.destroy();
+      this.compRef = undefined;
+    }
   }
 }

@@ -61,4 +61,8 @@ export class ButtonComponent implements ButtonComponentInputs {
   anotherMethod() {
     alert('Another method from Angular component triggered!');
   }
+
+  customMethod() {
+    alert('Custom method from Angular component triggered!');
+  }
 }

@@ -3,8 +3,8 @@
   (mouseover)="customEvent.emit('over')"
   (mouseout)="customEvent.emit('out')"
 >
-  <slot>
-    <spy-button-slot-ng></spy-button-slot-ng>
+  <slot spySlot>
+    <ng-template>Default text!</ng-template>
   </slot>
 </button>
 

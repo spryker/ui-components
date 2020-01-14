@@ -4,7 +4,6 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { CustomElementModule, WebComponentsDef } from './custom-element.module';
 import { environment } from './environments/environment';
-import { ButtonSlotComponent } from './lib/button-slot.component';
 import { ButtonComponent } from './lib/button.component';
 import { ButtonModule } from './lib/button.module';
 
@@ -14,7 +13,6 @@ import { ButtonModule } from './lib/button.module';
 export class ButtonElementModule extends CustomElementModule {
   protected components: WebComponentsDef = [
     { component: ButtonComponent, exposeAllMethod: true },
-    ButtonSlotComponent,
   ];
 }
 

@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { ButtonSlotComponent } from './button-slot.component';
 import { ButtonComponent } from './button.component';
+import { RenderTplComponent } from './render-tpl.component';
+import { SlotDirective } from './slot.directive';
 
 @NgModule({
   imports: [CommonModule],
-  exports: [ButtonComponent, ButtonSlotComponent],
-  declarations: [ButtonComponent, ButtonSlotComponent],
+  exports: [ButtonComponent],
+  declarations: [ButtonComponent, SlotDirective, RenderTplComponent],
 })
 export class ButtonModule {}

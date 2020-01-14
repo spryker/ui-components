@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { CustomElementMethod } from '../custom-element-method';
+import { CustomElementMethod } from './custom-element';
 
 export interface ButtonComponentInputs {
   size: 'sm' | 'md' | 'lg';

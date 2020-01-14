@@ -1,74 +1,30 @@
-import {
-  ComponentFactoryResolver,
-  Injector,
-  NgModule,
-  Type,
-} from '@angular/core';
+import { Injector } from '@angular/core';
 import { createCustomElement, NgElementConstructor } from '@angular/elements';
 
 import { getElementMethodsOf } from './custom-element-method';
+import {
+  WebComponentDeclaration,
+  WebComponentDef,
+  WebComponentType,
+  WebComponentDefs,
+} from './types';
 
-export interface WebComponentType<T = any> extends Type<T> {
-  selector?: string;
+export function componentDefsToDeclarations(
+  def: WebComponentDefs,
+): WebComponentDeclaration[] {
+  return [
+    ...def.filter(isWebComponentDeclaration),
+    ...def.filter(isWebComponentType).map(
+      component =>
+        ({
+          component,
+          selector: component.selector,
+        } as WebComponentDeclaration),
+    ),
+  ];
 }
 
-export interface WebComponentDeclaration<
-  T extends WebComponentType<any> = any
-> {
-  component: T;
-  selector?: string;
-  exposeAllMethod?: true;
-}
-
-export type WebComponentDef = WebComponentType | WebComponentDeclaration;
-export type WebComponentsDef = WebComponentDef[];
-
-@NgModule({})
-export abstract class CustomElementModule {
-  protected abstract components: WebComponentsDef;
-
-  constructor(private injector: Injector) {}
-
-  ngDoBootstrap() {
-    this.init();
-  }
-
-  private init() {
-    const componentDeclarations = [
-      ...this.components.filter(isWebComponentDeclaration),
-      ...this.components.filter(isWebComponentType).map(
-        component =>
-          ({
-            component,
-            selector: component.selector,
-          } as WebComponentDeclaration),
-      ),
-    ];
-
-    componentDeclarations.forEach(componentDeclaration =>
-      this.register(componentDeclaration),
-    );
-  }
-
-  private register(componentDeclaration: WebComponentDeclaration) {
-    customElements.define(
-      this.getComponentName(componentDeclaration),
-      createCustomElementFor(componentDeclaration, this.injector),
-    );
-  }
-
-  private getComponentName(componentDeclaration: WebComponentDeclaration) {
-    if (componentDeclaration.selector) {
-      return componentDeclaration.selector;
-    }
-
-    return this.injector
-      .get(ComponentFactoryResolver)
-      .resolveComponentFactory(componentDeclaration.component).selector;
-  }
-}
-
-function createCustomElementFor(
+export function createCustomElementFor(
   componentDeclaration: WebComponentDeclaration,
   injector: Injector,
 ) {

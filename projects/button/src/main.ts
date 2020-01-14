@@ -2,16 +2,16 @@ import { enableProdMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { CustomElementModule, WebComponentsDef } from './custom-element.module';
 import { environment } from './environments/environment';
 import { ButtonComponent } from './lib/button.component';
 import { ButtonModule } from './lib/button.module';
+import { CustomElementModule, WebComponentDefs } from './lib/custom-element';
 
 @NgModule({
   imports: [BrowserModule, ButtonModule],
 })
 export class ButtonElementModule extends CustomElementModule {
-  protected components: WebComponentsDef = [
+  protected components: WebComponentDefs = [
     { component: ButtonComponent, exposeAllMethod: true },
   ];
 }

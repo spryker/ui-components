@@ -9,12 +9,12 @@ import {
   Inject,
   InjectionToken,
   Injector,
+  Input,
   OnDestroy,
   OnInit,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
-  Input,
 } from '@angular/core';
 
 import { RenderTplComponent } from './render-tpl.component';
@@ -24,11 +24,10 @@ import { RenderTplComponent } from './render-tpl.component';
  */
 export const SLOT_PARENT_TAG = new InjectionToken<string>(
   'SLOT_PARENT_SELECTOR',
-  { factory: () => 'spy-parent' },
 );
 
 @Directive({
-  selector: 'slot[spySlot]',
+  selector: '[spySlot]',
 })
 export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
   /**
@@ -44,7 +43,7 @@ export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
   private compRef: ComponentRef<RenderTplComponent> | undefined;
   private disposables: (() => void)[] = [];
 
-  private get slotElem(): HTMLSlotElement {
+  private get slotElem() {
     return this.elemRef.nativeElement;
   }
 
@@ -54,7 +53,7 @@ export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
 
   constructor(
     @Inject(SLOT_PARENT_TAG) private defaultParentTag: string,
-    private elemRef: ElementRef,
+    private elemRef: ElementRef<HTMLSlotElement>,
     private renderer: Renderer2,
     private vcr: ViewContainerRef,
     private cfr: ComponentFactoryResolver,
@@ -63,6 +62,10 @@ export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
   ) {}
 
   ngOnInit(): void {
+    if (!this.parentTag) {
+      console.warn(`SlotDirective: Parent tag is not set!`);
+    }
+
     this.disposables.push(
       this.renderer.listen(
         this.elemRef.nativeElement,

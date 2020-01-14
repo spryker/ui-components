@@ -16,6 +16,5 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class RenderTplComponent {
-  @Input()
-  template: TemplateRef<any>;
+  @Input() template: TemplateRef<any>;
 }

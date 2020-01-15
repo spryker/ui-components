@@ -27,7 +27,7 @@ export const SLOT_PARENT_TAG = new InjectionToken<string>(
 );
 
 @Directive({
-  selector: '[spySlot]',
+  selector: 'slot[spySlot]',
 })
 export class SlotDirective implements OnInit, OnDestroy, AfterContentInit {
   /**

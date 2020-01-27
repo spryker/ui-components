@@ -1,72 +1,7 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "button": {
-      "projectType": "library",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/button",
-      "sourceRoot": "projects/button/src",
-      "prefix": "spy",
-      "architect": {
-        "build": {
-          "builder": "ngx-build-plus:browser",
-          "options": {
-            "outputPath": "dist/button",
-            "index": "",
-            "main": "projects/button/src/main.ts",
-            "tsConfig": "projects/button/tsconfig.lib.json",
-            "polyfills": "projects/button/src/polyfills.ts",
-            "aot": true,
-            "assets": [],
-            "styles": ["projects/button/src/styles.scss"],
-            "scripts": [],
-            "singleBundle": true
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/button/src/environments/environment.ts",
-                  "with": "projects/button/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "none",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            }
-          }
-        },
-        "test": {
-          "builder": "ngx-build-plus:karma",
-          "options": {
-            "main": "projects/button/src/test.ts",
-            "tsConfig": "projects/button/tsconfig.spec.json",
-            "karmaConfig": "projects/button/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/button/tsconfig.lib.json",
-              "projects/button/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    }
-  },
-  "defaultProject": "button"
+  "projects": {},
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  }
 }

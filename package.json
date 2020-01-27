@@ -28,9 +28,19 @@
     "help": "nx help"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@angular/animations": "^9.0.0-rc.11",
+    "@angular/common": "^9.0.0-rc.11",
+    "@angular/compiler": "^9.0.0-rc.11",
+    "@angular/core": "^9.0.0-rc.11",
+    "@angular/platform-browser": "^9.0.0-rc.11",
+    "@angular/platform-browser-dynamic": "^9.0.0-rc.11",
+    "core-js": "^3.6.4",
+    "rxjs": "^6.5.4",
+    "zone.js": "^0.10.2"
+  },
   "devDependencies": {
-    "@angular/cli": "next",
+    "@angular/cli": "^9.0.0-rc.10",
     "@nrwl/angular": "^8.11.2",
     "@nrwl/workspace": "^8.11.2",
     "@types/node": "^13.5.0",
@@ -39,6 +49,20 @@
     "prettier": "^1.19.1",
     "ts-node": "^8.6.2",
     "tslint": "^6.0.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "@angular/compiler-cli": "^9.0.0-rc.11",
+    "@angular/language-service": "^9.0.0-rc.11",
+    "@angular-devkit/build-angular": "^0.900.00-rc.10",
+    "codelyzer": "^5.2.1",
+    "jest-preset-angular": "^8.0.0",
+    "@nrwl/jest": "^8.11.2",
+    "jest": "^25.1.0",
+    "@types/jest": "^24.9.1",
+    "ts-jest": "^25.0.0",
+    "protractor": "~5.4.0",
+    "jasmine-core": "^3.5.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "@types/jasmine": "^3.5.1",
+    "@types/jasminewd2": "^2.0.8"
   }
 }

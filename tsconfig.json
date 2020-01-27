@@ -1,21 +1,25 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "noEmitHelpers": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strict": true,
+    "target": "es2015",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2015", "dom"],
+    "rootDir": ".",
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@spryker-ui/core": ["libs/core/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

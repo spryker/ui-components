@@ -1,16 +1,61 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "core": {
+      "projectType": "library",
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/core/tsconfig.lib.json",
+            "project": "libs/core/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/tsconfig.lib.json",
+              "libs/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "tsConfig": "libs/core/tsconfig.spec.json",
+            "setupFile": "libs/core/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
   "schematics": {
     "@nrwl/angular:application": {
+      "style": "scss",
+      "prefix": "spy",
       "unitTestRunner": "jest",
       "e2eTestRunner": "protractor"
     },
     "@nrwl/angular:library": {
+      "style": "scss",
+      "prefix": "spy",
+      "publishable": true,
       "unitTestRunner": "jest"
     }
-  }
+  },
+  "defaultProject": "core"
 }

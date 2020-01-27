@@ -10,5 +10,9 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "core": {
+      "tags": ["core"]
+    }
+  }
 }

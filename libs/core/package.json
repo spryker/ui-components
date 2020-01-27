@@ -1,0 +1,8 @@
+{
+  "name": "@spryker-ui/core",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^9.0.0-rc.11",
+    "@angular/core": "^9.0.0-rc.11"
+  }
+}

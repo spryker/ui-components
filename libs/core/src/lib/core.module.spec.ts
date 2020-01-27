@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { CoreModule } from './core.module';
+import { SpyCoreModule } from './core.module';
 
-describe('CoreModule', () => {
+describe('SpyCoreModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CoreModule]
+      imports: [SpyCoreModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(CoreModule).toBeDefined();
+    expect(SpyCoreModule).toBeDefined();
   });
 });

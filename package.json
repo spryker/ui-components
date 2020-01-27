@@ -58,7 +58,7 @@
     "@angular/language-service": "^9.0.0-rc.11",
     "@angular-devkit/build-angular": "^0.900.00-rc.10",
     "codelyzer": "^5.2.1",
-    "jest-preset-angular": "^8.0.0",
+    "jest-preset-angular": "^7.0.0",
     "@nrwl/jest": "^8.11.2",
     "jest": "^25.1.0",
     "@types/jest": "^24.9.1",

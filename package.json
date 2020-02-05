@@ -72,6 +72,7 @@
     "husky": "^4.2.1",
     "jest": "^25.1.0",
     "jest-preset-angular": "^7.0.0",
+    "lerna": "^3.20.2",
     "less": "^3.10.3",
     "lint-staged": "^10.0.7",
     "ng-packagr": "^9.0.0-rc.8",

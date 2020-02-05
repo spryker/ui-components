@@ -1,10 +1,9 @@
 {
-  "name": "@spryker-ui/core",
+  "name": "@spryker-ui/styles",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^9.0.0-rc.11",
     "@angular/core": "^9.0.0-rc.11",
-    "@spryker-ui/styles": "^0.0.1",
     "ng-zorro-antd": "^9.0.0-beta.0"
   }
 }

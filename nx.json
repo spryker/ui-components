@@ -13,6 +13,9 @@
   "projects": {
     "core": {
       "tags": ["core"]
+    },
+    "styles": {
+      "tags": ["type:meta"]
     }
   }
 }

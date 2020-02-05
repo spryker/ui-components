@@ -26,7 +26,9 @@
     "update:check": "ng update",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "build:themes": "run-s build:theme:*",
+    "build:theme:default": "lessc --js libs/styles/src/lib/themes/default-standalone.less libs/styles/src/lib/themes/default-standalone.css"
   },
   "private": true,
   "dependencies": {
@@ -70,7 +72,9 @@
     "husky": "^4.2.1",
     "jest": "^25.1.0",
     "jest-preset-angular": "^7.0.0",
+    "less": "^3.10.3",
     "ng-packagr": "^9.0.0-rc.8",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "protractor": "~5.4.0",
     "ts-jest": "^25.0.0",

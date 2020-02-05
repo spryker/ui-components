@@ -68,6 +68,44 @@
           "styleext": "scss"
         }
       }
+    },
+    "styles": {
+      "projectType": "library",
+      "root": "libs/styles",
+      "sourceRoot": "libs/styles/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/styles/tsconfig.lib.json",
+            "project": "libs/styles/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/styles/tsconfig.lib.json",
+              "libs/styles/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/styles/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/styles/jest.config.js",
+            "tsConfig": "libs/styles/tsconfig.spec.json",
+            "setupFile": "libs/styles/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

@@ -113,19 +113,19 @@
   },
   "schematics": {
     "@nrwl/angular:application": {
-      "style": "scss",
+      "style": "less",
       "prefix": "spy",
       "unitTestRunner": "jest",
       "e2eTestRunner": "protractor"
     },
     "@nrwl/angular:library": {
-      "style": "scss",
+      "style": "less",
       "prefix": "spy",
       "publishable": true,
       "unitTestRunner": "jest"
     },
     "@schematics/angular:component": {
-      "style": "scss",
+      "style": "less",
       "prefix": "spy",
       "changeDetection": "OnPush"
     },

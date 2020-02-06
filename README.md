@@ -139,6 +139,22 @@ All commit messages should follow [conventional commits specification](https://w
 
 To perform commit you can use a tool that replaces `git commit` command - `npm run ct`/`yarn ct`.
 
+## Code formatting
+
+All project files are formatted via `prettier`.
+
+To perform full project format run:
+
+```bash
+npm run format
+```
+
+To perform format check run:
+
+```bash
+npm run format:check
+```
+
 ## Release process
 
 TBD

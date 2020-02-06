@@ -1,5 +1,150 @@
 # SprykerUi
 
+> UI Components powered by Angular and Ant Design
+
+## Packages
+
+| Name                  | Package Name         |
+| --------------------- | -------------------- |
+| [core](libs/core)     | `@spryker-ui/core`   |
+| [styles](libs/styles) | `@spryker-ui/styles` |
+|                       |                      |
+
+## Component Development
+
+All components should have their own `NgModule` where they are declared and all dependencies imported.
+
+Main development should be done via Storybook.
+
+All component behavior from Tech Specs must be unit tested.
+
+### Commands
+
+#### Build library
+
+```bash
+nx build <my-lib>
+```
+
+#### Test library
+
+```bash
+nx test <my-lib>
+```
+
+#### Lint library
+
+```bash
+nx lint <my-lib>
+```
+
+#### Start Storybook
+
+```bash
+nx run <my-lib>:storybook
+```
+
+#### Build Storybook
+
+```bash
+nx run <my-lib>:build-storybook
+```
+
+## Component Levels
+
+All components are classified according to Atomic Design into the following (form lowest to highest):
+
+1. Atom
+2. Molecule
+3. Organism
+4. Template
+5. Page
+
+_NOTE:_ Components with lower level cannot depend on components with higher level.
+
+For this every component library should have associated ONE level tag:
+
+1. `level:atom`
+2. `level:molecule`
+3. `level:organism`
+4. `level:template`
+5. `level:page`
+
+## Available Tags
+
+- `type:*` Describes types of library
+  - `type:component` Component library
+  - `type:service` Services library
+  - `type:style` Styles library
+  - `type:util` Helper utilities library
+- `level:*` Describes type of component in Atomic Design framework
+  - `level:atom`
+  - `level:molecule`
+  - `level:organism`
+  - `level:template`
+  - `level:page`
+
+## Code generation
+
+### Library
+
+Every new library should be generated via NX CLI with `@nrwl/angular:library` schematic:
+
+_NOTE_: You should assign library tags either during generation command or after in `nx.json` file.
+
+```bash
+nx g @nrwl/angular:library <my-lib> --publishable --tags level:<level>
+```
+
+### Component
+
+Every new component should be generated via NX CLI with `@nrwl/angular:library` schematic:
+
+```bash
+nx g @schematics/angular:component --name=<my-component> --project=<my-lib>
+```
+
+### Storybook Setup
+
+Storybook setup should be added via NX CLI with `@nrwl/storybook:configuration` schematic:
+
+```bash
+nx g @nrwl/storybook:configuration --name=<my-lib> --uiFramework=@storybook/angular
+```
+
+_NOTE:_ Add `import '../../../.storybook/config';` to the generated `libs/<my-lib>/.storybook/config.js` file.
+
+### Library Stories
+
+Generate stories for library module via NX CLI with `@nrwl/angular:stories` schematic:
+
+```bash
+nx g @nrwl/angular:stories --name=<my-lib>
+```
+
+_NOTE_: `NgModule`s of the library should declare components for which stories should be generated.  
+This command can be re-run many times - it will only generate missing stories and keep existing ones untouched.
+
+### Component Stories
+
+Generate stories for components via NX CLI with `@nrwl/angular:stories` schematic:
+
+```bash
+nx g @nrwl/angular:component-story --lib-path libs/<my-lib> --component-path src/lib --component-name <MyComponent> --component-file-name <my.component> --module-file-name <my.module>
+```
+
+## Commits
+
+All commit messages should follow [conventional commits specification](https://www.conventionalcommits.org/en/v1.0.0/#specification).
+
+To perform commit you can use a tool that replaces `git commit` command - `npm run ct`/`yarn ct`.
+
+## Release process
+
+TBD
+
+---
+
 This project was generated using [Nx](https://nx.dev).
 
 <p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>

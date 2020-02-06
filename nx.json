@@ -12,10 +12,10 @@
   },
   "projects": {
     "core": {
-      "tags": ["core"]
+      "tags": ["type:util", "core"]
     },
     "styles": {
-      "tags": ["type:meta"]
+      "tags": ["type:style"]
     }
   }
 }

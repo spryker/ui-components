@@ -111,6 +111,12 @@ When library is generated please do the following:
   ```json
   "rules": {}
   ```
+- In `libs/<lib-name>/ng-package.json`
+  - change `dest` path to point to local dist folder:
+  ```json
+  - "dest": "../../dist/libs/<lib-name>"
+  + "dest": "./dist"
+  ```
 
 ````
 

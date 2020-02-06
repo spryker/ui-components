@@ -5,7 +5,7 @@ module.exports = {
     'callable-types': true,
     'class-name': true,
     deprecation: {
-      severity: 'warn'
+      severity: 'warn',
     },
     forin: true,
     'import-blacklist': [true, 'rxjs/Rx'],
@@ -18,9 +18,9 @@ module.exports = {
           'static-field',
           'instance-field',
           'static-method',
-          'instance-method'
-        ]
-      }
+          'instance-method',
+        ],
+      },
     ],
     'no-arg': true,
     'no-bitwise': true,
@@ -72,30 +72,30 @@ module.exports = {
           { sourceTag: 'type:style', onlyDependOnLibsWithTags: ['type:style'] },
           {
             sourceTag: 'type:service',
-            onlyDependOnLibsWithTags: ['type:util', 'type:service']
+            onlyDependOnLibsWithTags: ['type:util', 'type:service'],
           },
           {
             sourceTag: 'type:component',
             onlyDependOnLibsWithTags: [
               'type:util',
               'type:service',
-              'type:component'
-            ]
+              'type:component',
+            ],
           },
           // type rules END
           // level rules START
           { sourceTag: 'level:atom', onlyDependOnLibsWithTags: ['level:atom'] },
           {
             sourceTag: 'level:molecule',
-            onlyDependOnLibsWithTags: ['level:atom', 'level:molecule']
+            onlyDependOnLibsWithTags: ['level:atom', 'level:molecule'],
           },
           {
             sourceTag: 'level:organism',
             onlyDependOnLibsWithTags: [
               'level:atom',
               'level:molecule',
-              'level:organism'
-            ]
+              'level:organism',
+            ],
           },
           {
             sourceTag: 'level:template',
@@ -103,8 +103,8 @@ module.exports = {
               'level:atom',
               'level:molecule',
               'level:organism',
-              'level:template'
-            ]
+              'level:template',
+            ],
           },
           {
             sourceTag: 'level:page',
@@ -113,15 +113,15 @@ module.exports = {
               'level:molecule',
               'level:organism',
               'level:template',
-              'level:page'
-            ]
+              'level:page',
+            ],
           },
           // level rules END
-          { sourceTag: '*', onlyDependOnLibsWithTags: ['*'] }
-        ]
-      }
-    ]
-  }
+          { sourceTag: '*', onlyDependOnLibsWithTags: ['*'] },
+        ],
+      },
+    ],
+  },
 };
 
 function escapeRegex(str) {

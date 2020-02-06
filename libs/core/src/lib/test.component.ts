@@ -6,6 +6,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
     <input nz-input value="test" />
   `,
   styleUrls: ['./test.component.less', './test.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class TestComponent {}

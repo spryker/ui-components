@@ -4,7 +4,7 @@ import { StylesModule } from './styles.module';
 describe('StylesModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [StylesModule]
+      imports: [StylesModule],
     }).compileComponents();
   }));
 

@@ -130,6 +130,14 @@
       "prefix": "spy",
       "publishable": true,
       "unitTestRunner": "jest"
+    },
+    "@schematics/angular:component": {
+      "style": "scss",
+      "prefix": "spy",
+      "changeDetection": "OnPush"
+    },
+    "@nrwl/storybook:configuration": {
+      "uiFramework": "@storybook/angular"
     }
   },
   "defaultProject": "core"

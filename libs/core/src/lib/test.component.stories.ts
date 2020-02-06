@@ -1,12 +1,15 @@
-import { storiesOf } from '@storybook/angular';
 import { NzInputModule } from 'ng-zorro-antd/input';
 
 import { TestComponent } from './test.component';
 
-storiesOf('TestComponent', module).add('default', () => ({
+export default {
+  title: 'TestComponent'
+};
+
+export const primary = () => ({
   moduleMetadata: {
     imports: [NzInputModule]
   },
   component: TestComponent,
   props: {}
-}));
+});

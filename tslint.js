@@ -48,14 +48,16 @@ module.exports = {
     'unified-signatures': true,
     'variable-name': false,
 
-    'file-header': [
-      true,
-      {
-        match: escapeRegex(require('./config/LICENSE_HEADER')),
-        default: require('./config/LICENSE_HEADER'),
-        'enforce-trailing-newline': true
-      }
-    ],
+    // TODO: Disabled because it fails even with header being present in files
+    // Also there is no header currently defined
+    // 'file-header': [
+    //   true,
+    //   {
+    //     match: escapeRegex(require('./config/LICENSE_HEADER')),
+    //     default: require('./config/LICENSE_HEADER'),
+    //     'enforce-trailing-newline': true
+    //   }
+    // ],
 
     'directive-selector': [true, 'attribute', 'spy', 'camelCase'],
     'component-selector': [true, 'element', 'spy', 'kebab-case'],

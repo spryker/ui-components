@@ -21,7 +21,10 @@
               "libs/core/tsconfig.lib.json",
               "libs/core/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/core/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/core/**"
+            ]
           }
         },
         "test": {
@@ -89,7 +92,10 @@
               "libs/styles/tsconfig.lib.json",
               "libs/styles/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/styles/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/styles/**"
+            ]
           }
         },
         "test": {
@@ -109,7 +115,8 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
   },
   "schematics": {
     "@nrwl/angular:application": {

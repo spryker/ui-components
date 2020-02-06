@@ -96,6 +96,22 @@ _NOTE_: You should assign library tags either during generation command or after
 nx g @nrwl/angular:library <my-lib> --publishable --tags level:<level>
 ```
 
+When library is generated please do the following:
+
+- In `libs/<lib-name>/tslint.json`
+  - adjust path to root config file:
+
+```json
+- "extends": "../../tslint.json",
++ "extends": "../../tslint.js",
+```
+
+- remove all rules:
+
+```json
+"rules": {}
+```
+
 ### Component
 
 Every new component should be generated via NX CLI with `@nrwl/angular:library` schematic:

@@ -8395,7 +8395,7 @@ a.ant-btn-sm {
   z-index: 2;
   color: rgba(0, 0, 0, 0.25);
   font-size: 14px;
-  background: #fff;
+  background: red;
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
@@ -8440,7 +8440,7 @@ a.ant-btn-sm {
   width: 100%;
   height: 22px;
   color: rgba(0, 0, 0, 0.65);
-  background: #fff;
+  background: red;
   border: 0;
   outline: 0;
   cursor: auto;
@@ -9191,7 +9191,7 @@ a.ant-btn-sm {
   color: rgba(0, 0, 0, 0.65);
   font-size: 14px;
   line-height: 1.5;
-  background-color: #fff;
+  background-color: red;
   background-image: none;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
@@ -10358,7 +10358,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   color: rgba(0, 0, 0, 0.65);
   font-size: 14px;
   line-height: 1.5;
-  background-color: #fff;
+  background-color: red;
   background-image: none;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
@@ -10974,7 +10974,7 @@ li.ant-time-picker-panel-select-option-disabled:hover {
   color: rgba(0, 0, 0, 0.65);
   font-size: 14px;
   line-height: 1.5;
-  background-color: #fff;
+  background-color: red;
   background-image: none;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
@@ -11075,7 +11075,7 @@ textarea.ant-time-picker-input {
 }
 .ant-time-picker-clear {
   z-index: 2;
-  background: #fff;
+  background: red;
   opacity: 0;
   pointer-events: none;
 }
@@ -12001,7 +12001,7 @@ textarea.ant-time-picker-input {
   color: rgba(0, 0, 0, 0.65);
   font-size: 14px;
   line-height: 1.5;
-  background-color: #fff;
+  background-color: red;
   background-image: none;
   transition: all 0.3s;
   display: inline-block;
@@ -12790,7 +12790,7 @@ form .ant-input-group-wrapper {
 }
 .has-warning .ant-input,
 .has-warning .ant-input:hover {
-  background-color: #fff;
+  background-color: red;
   border-color: #faad14;
 }
 .has-warning .ant-input:focus {
@@ -12810,7 +12810,7 @@ form .ant-input-group-wrapper {
 }
 .has-warning .ant-input-affix-wrapper .ant-input,
 .has-warning .ant-input-affix-wrapper .ant-input:hover {
-  background-color: #fff;
+  background-color: red;
   border-color: #faad14;
 }
 .has-warning .ant-input-affix-wrapper .ant-input:focus {
@@ -12827,7 +12827,7 @@ form .ant-input-group-wrapper {
 }
 .has-warning .ant-input-group-addon {
   color: #faad14;
-  background-color: #fff;
+  background-color: red;
   border-color: #faad14;
 }
 .has-warning .has-feedback {
@@ -12886,7 +12886,7 @@ form .ant-input-group-wrapper {
 }
 .has-error .ant-input,
 .has-error .ant-input:hover {
-  background-color: #fff;
+  background-color: red;
   border-color: #ff4d4f;
 }
 .has-error .ant-input:focus {
@@ -12906,7 +12906,7 @@ form .ant-input-group-wrapper {
 }
 .has-error .ant-input-affix-wrapper .ant-input,
 .has-error .ant-input-affix-wrapper .ant-input:hover {
-  background-color: #fff;
+  background-color: red;
   border-color: #ff4d4f;
 }
 .has-error .ant-input-affix-wrapper .ant-input:focus {
@@ -12923,7 +12923,7 @@ form .ant-input-group-wrapper {
 }
 .has-error .ant-input-group-addon {
   color: #ff4d4f;
-  background-color: #fff;
+  background-color: red;
   border-color: #ff4d4f;
 }
 .has-error .has-feedback {
@@ -13757,7 +13757,7 @@ form .ant-input-group-wrapper {
   color: rgba(0, 0, 0, 0.65);
   font-size: 14px;
   line-height: 1.5;
-  background-color: #fff;
+  background-color: red;
   background-image: none;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
@@ -14814,7 +14814,7 @@ textarea.ant-pagination-options-quick-jumper input {
   padding: 4px 11px;
   color: rgba(0, 0, 0, 0.65);
   font-size: 14px;
-  background-color: #fff;
+  background-color: red;
   background-image: none;
   border: 1px solid #d9d9d9;
   border-radius: 4px;

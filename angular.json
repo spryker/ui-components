@@ -123,6 +123,11 @@
       "prefix": "spy",
       "publishable": true,
       "unitTestRunner": "jest"
+    },
+    "@schematics/angular:component": {
+      "style": "scss",
+      "prefix": "spy",
+      "changeDetection": "OnPush"
     }
   },
   "defaultProject": "core"

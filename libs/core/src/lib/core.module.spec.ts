@@ -4,7 +4,7 @@ import { SpyCoreModule } from './core.module';
 describe('SpyCoreModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SpyCoreModule]
+      imports: [SpyCoreModule],
     }).compileComponents();
   }));
 

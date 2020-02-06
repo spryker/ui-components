@@ -5,7 +5,7 @@ module.exports = {
     'callable-types': true,
     'class-name': true,
     deprecation: {
-      severity: 'warn'
+      severity: 'warn',
     },
     forin: true,
     'import-blacklist': [true, 'rxjs/Rx'],
@@ -18,9 +18,9 @@ module.exports = {
           'static-field',
           'instance-field',
           'static-method',
-          'instance-method'
-        ]
-      }
+          'instance-method',
+        ],
+      },
     ],
     'no-arg': true,
     'no-bitwise': true,
@@ -67,12 +67,61 @@ module.exports = {
       {
         allow: [],
         depConstraints: [
-          { sourceTag: 'core', onlyDependOnLibsWithTags: ['core'] },
-          { sourceTag: '*', onlyDependOnLibsWithTags: ['*'] }
-        ]
-      }
-    ]
-  }
+          // type rules START
+          { sourceTag: 'type:util', onlyDependOnLibsWithTags: ['type:util'] },
+          { sourceTag: 'type:style', onlyDependOnLibsWithTags: ['type:style'] },
+          {
+            sourceTag: 'type:service',
+            onlyDependOnLibsWithTags: ['type:util', 'type:service'],
+          },
+          {
+            sourceTag: 'type:component',
+            onlyDependOnLibsWithTags: [
+              'type:util',
+              'type:service',
+              'type:component',
+            ],
+          },
+          // type rules END
+          // level rules START
+          { sourceTag: 'level:atom', onlyDependOnLibsWithTags: ['level:atom'] },
+          {
+            sourceTag: 'level:molecule',
+            onlyDependOnLibsWithTags: ['level:atom', 'level:molecule'],
+          },
+          {
+            sourceTag: 'level:organism',
+            onlyDependOnLibsWithTags: [
+              'level:atom',
+              'level:molecule',
+              'level:organism',
+            ],
+          },
+          {
+            sourceTag: 'level:template',
+            onlyDependOnLibsWithTags: [
+              'level:atom',
+              'level:molecule',
+              'level:organism',
+              'level:template',
+            ],
+          },
+          {
+            sourceTag: 'level:page',
+            onlyDependOnLibsWithTags: [
+              'level:atom',
+              'level:molecule',
+              'level:organism',
+              'level:template',
+              'level:page',
+            ],
+          },
+          // level rules END
+          { sourceTag: '*', onlyDependOnLibsWithTags: ['*'] },
+        ],
+      },
+    ],
+  },
 };
 
 function escapeRegex(str) {

@@ -99,18 +99,12 @@ nx g @nrwl/angular:library <my-lib> --publishable --tags level:<level>
 When library is generated please do the following:
 
 - In `libs/<lib-name>/tslint.json`
-  - adjust path to root config file:
+  - remove all rules:
+  ```json
+  "rules": {}
+  ```
 
-```json
-- "extends": "../../tslint.json",
-+ "extends": "../../tslint.js",
-```
-
-- remove all rules:
-
-```json
-"rules": {}
-```
+````
 
 ### Component
 
@@ -118,7 +112,7 @@ Every new component should be generated via NX CLI with `@nrwl/angular:library` 
 
 ```bash
 nx g @schematics/angular:component --name=<my-component> --project=<my-lib>
-```
+````
 
 ### Storybook Setup
 

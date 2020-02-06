@@ -18,6 +18,14 @@ Main development should be done via Storybook.
 
 All component behavior from Tech Specs must be unit tested.
 
+### Component styles
+
+Main component styles should be in `<my-component>.component.less` file.
+
+Optionally component may have theme styles that include Ant Design specific files
+with customized theme from `libs/styles/src/lib/themes/default/theme.less`
+and file should be named `<my-component>.component.theme.less`.
+
 ### Commands
 
 #### Build library

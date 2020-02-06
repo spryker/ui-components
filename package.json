@@ -27,6 +27,9 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
+    "staged": "run-s staged:*",
+    "staged:global": "lint-staged",
+    "staged:libs": "lerna exec --concurrency 1 --stream -- lint-staged --config ../../lint-staged-libs.config.js",
     "build:themes": "run-s build:theme:*",
     "build:theme:default": "lessc --js libs/styles/src/lib/themes/default/standalone.less libs/styles/src/lib/themes/default/standalone.css"
   },
@@ -72,6 +75,7 @@
     "husky": "^4.2.1",
     "jest": "^25.1.0",
     "jest-preset-angular": "^7.0.0",
+    "lerna": "^3.20.2",
     "less": "^3.10.3",
     "lint-staged": "^10.0.7",
     "ng-packagr": "^9.0.0-rc.8",
@@ -103,7 +107,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged",
+      "pre-commit": "npm run staged",
       "pre-push": "run-s format:check affected:test affected:lint"
     }
   }

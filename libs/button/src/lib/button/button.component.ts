@@ -1,9 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'spy-button',
     templateUrl: './button.component.html',
-    styleUrls: ['./button.component.less'],
+    styleUrls: ['./button.component.less', './button.component.styles.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnInit {
 

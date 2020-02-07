@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-
-import { ButtonComponent } from './button.component';
 import { By } from '@angular/platform-browser';
 
+import { ButtonComponent } from './button.component';
 
 describe('ButtonComponent', () => {
     let component: ButtonComponent;
@@ -32,5 +31,17 @@ describe('ButtonComponent', () => {
         const slotElm = fixture.debugElement.query(By.css('slot'));
 
         expect(slotElm.nativeElement).toBeTruthy();
+    });
+
+    it('is variant `critical` bound to nzType input of nz-button with value `danger` by default', () => {
+        const buttonElm = fixture.debugElement.query(By.css('button'));
+
+        expect(buttonElm.nativeElement.getAttribute('ng-reflect-nz-type')).toEqual('danger');
+    });
+
+    it('is size `md` bound to nzSize input of nz-button with value `default` by default', () => {
+        const buttonElm = fixture.debugElement.query(By.css('button'));
+
+        expect(buttonElm.nativeElement.getAttribute('ng-reflect-nz-size')).toEqual('default');
     });
 });

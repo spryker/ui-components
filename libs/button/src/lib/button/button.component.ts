@@ -8,7 +8,7 @@ import {
     EventEmitter,
     OnInit
 } from '@angular/core';
-import { Props, PropsTemplate, TransformedSize, TransformedVariant } from './button.types';
+import { Props, PropsTemplate, TransformedSize, TransformedVariant } from './button.typings';
 import { propsTransformation } from '@spryker-ui/utils';
 
 const propsTemplate: PropsTemplate = {
@@ -31,7 +31,7 @@ const propsTemplate: PropsTemplate = {
 })
 export class ButtonComponent implements OnInit, OnChanges {
     @Input() type: Props['type'] = 'button';
-    @Input() shape: Props['shape'] = 'default';
+    @Input() shape: Props['shape'] = null;
     @Input() size: Props['size'] = 'md';
     @Input() disabled: Props['disabled'] = false;
     @Input() variant: Props['variant'] = 'critical';

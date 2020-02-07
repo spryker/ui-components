@@ -5,7 +5,7 @@ export type TransformedVariant = 'default' | 'danger';
 
 export interface Props {
     type: 'button' | 'submit';
-    shape: 'default' | 'round' | 'circle';
+    shape: 'round' | 'circle' | null;
     size: 'lg' | 'md' | 'sm' | TransformedSize;
     variant: 'primary' | 'secondary' | 'critical' | TransformedVariant;
     disabled: boolean;

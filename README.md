@@ -46,16 +46,32 @@ nx test <my-lib>
 nx lint <my-lib>
 ```
 
-#### Start Storybook
+#### Storybook
+
+Serve:
 
 ```bash
 nx run <my-lib>:storybook
 ```
 
-#### Build Storybook
+Build:
 
 ```bash
 nx run <my-lib>:build-storybook
+```
+
+#### Global Storybook
+
+Serve:
+
+```bash
+nx run storybook:run
+```
+
+Build:
+
+```bash
+nx run storybook:compile
 ```
 
 ## Component Levels

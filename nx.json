@@ -25,6 +25,9 @@
     },
     "storybook": {
       "tags": ["type:meta"]
+    },
+    "storybook": {
+      "tags": ["type:meta"]
     }
   }
 }

@@ -22,6 +22,9 @@
     },
     "utils": {
       "tags": []
+    },
+    "storybook": {
+      "tags": ["type:meta"]
     }
   }
 }

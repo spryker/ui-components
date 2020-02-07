@@ -18,6 +18,14 @@ Main development should be done via Storybook.
 
 All component behavior from Tech Specs must be unit tested.
 
+### Component styles
+
+Main component styles should be in `<my-component>.component.less` file.
+
+Optionally component may have theme styles that include Ant Design specific files
+with customized theme from `libs/styles/src/lib/themes/default/theme.less`
+and file should be named `<my-component>.component.theme.less`.
+
 ### Commands
 
 #### Build library
@@ -38,16 +46,32 @@ nx test <my-lib>
 nx lint <my-lib>
 ```
 
-#### Start Storybook
+#### Storybook
+
+Serve:
 
 ```bash
 nx run <my-lib>:storybook
 ```
 
-#### Build Storybook
+Build:
 
 ```bash
 nx run <my-lib>:build-storybook
+```
+
+#### Global Storybook
+
+Serve:
+
+```bash
+nx run storybook:run
+```
+
+Build:
+
+```bash
+nx run storybook:compile
 ```
 
 ## Component Levels
@@ -77,6 +101,7 @@ For this every component library should have associated ONE level tag:
   - `type:service` Services library
   - `type:style` Styles library
   - `type:util` Helper utilities library
+  - `type:meta` Meta package that does not get deployed to NPM (internal infra)
 - `level:*` Describes type of component in Atomic Design framework
   - `level:atom`
   - `level:molecule`
@@ -96,13 +121,29 @@ _NOTE_: You should assign library tags either during generation command or after
 nx g @nrwl/angular:library <my-lib> --publishable --tags level:<level>
 ```
 
+When library is generated please do the following:
+
+- In `libs/<lib-name>/tslint.json`
+  - remove all rules:
+  ```json
+  "rules": {}
+  ```
+- In `libs/<lib-name>/ng-package.json`
+  - change `dest` path to point to local dist folder:
+  ```json
+  - "dest": "../../dist/libs/<lib-name>"
+  + "dest": "./dist"
+  ```
+
+````
+
 ### Component
 
 Every new component should be generated via NX CLI with `@nrwl/angular:library` schematic:
 
 ```bash
 nx g @schematics/angular:component --name=<my-component> --project=<my-lib>
-```
+````
 
 ### Storybook Setup
 

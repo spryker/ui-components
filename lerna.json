@@ -1,0 +1,12 @@
+{
+  "packages": ["libs/*"],
+  "version": "independent",
+  "npmClient": "npm",
+  "command": {
+    "publish": {
+      "contents": "dist",
+      "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
+      "message": "chore(release): publish"
+    }
+  }
+}

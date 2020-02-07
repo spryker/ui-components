@@ -1,4 +1,4 @@
 {
-  "extends": "../../tslint.js",
+  "extends": "../../tslint.json",
   "rules": {}
 }

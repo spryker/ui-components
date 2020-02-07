@@ -68,6 +68,10 @@ module.exports = {
         allow: [],
         depConstraints: [
           // type rules START
+          {
+            sourceTag: 'type:meta',
+            onlyDependOnLibsWithTags: ['type:meta', 'type:util'],
+          },
           { sourceTag: 'type:util', onlyDependOnLibsWithTags: ['type:util'] },
           { sourceTag: 'type:style', onlyDependOnLibsWithTags: ['type:style'] },
           {

@@ -33,11 +33,11 @@ describe('ButtonComponent', () => {
     expect(slotElm.nativeElement).toBeTruthy();
   });
 
-  it('is variant `critical` bound to nzType input of nz-button with value `danger` by default', () => {
+  it('is variant `primary` bound to nzType input of nz-button with value `primary` by default', () => {
     const buttonElm = fixture.debugElement.query(By.css('button'));
 
     expect(buttonElm.nativeElement.getAttribute('ng-reflect-nz-type')).toEqual(
-      'danger',
+      'primary',
     );
   });
 

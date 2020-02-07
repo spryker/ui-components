@@ -1,56 +1,96 @@
-@import '~ng-zorro-antd/button/style/index.less';
-@import '../../../../styles/src/lib/themes/default/theme.less';
+@import './button.component.theme.less';
 
-@padding-md: 10px;
-@padding-xs: 10px;
+.ant-btn {
+  min-width: 105px;
+  box-shadow: @btn-shadow-default-size transparent;
+  padding: 0 10px;
 
-@btn-font-weight: 500;
-@btn-font-size-lg: @font-size-base;
+  &::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    bottom: -2px;
+    right: -2px;
+    border-radius: inherit;
+    box-shadow: @btn-shadow-default-size transparent;
+    animation: none;
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+  }
 
-@btn-height-base: 42px;
-@btn-height-lg: 48px;
-@btn-height-sm: 38px;
+  &:active {
+    transform: scaleX(0.9);
+  }
 
-@btn-border-width: 1px;
+  &-default {
+    &:hover {
+      border-color: @btn-default-border-hover;
+      box-shadow: @btn-default-shadow-hover;
+    }
 
-@btn-primary-color: @white;
-@btn-primary-bg: @green-base;
+    &:focus,
+    &.mouse-down,
+    &:active {
+      color: @btn-default-color;
+      border-color: @btn-default-border-active;
+    }
 
+    &.mouse-down,
+    &:active {
+      background: @btn-default-bg-active;
+    }
+  }
 
-@btn-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
-@btn-primary-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-@btn-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  &-primary {
+    &:focus,
+    &:hover {
+      color: @btn-primary-color;
+      background: @btn-primary-bg;
+      border-color: @btn-primary-bg;
+    }
 
+    &:hover {
+      box-shadow: @btn-primary-shadow-hover;
+    }
 
+    &:focus::after {
+      box-shadow: @btn-shadow-default-size @btn-primary-bg;
+    }
 
-@btn-default-color: @text-color;
-@btn-default-bg: @component-background;
-@btn-default-border: @border-color-base;
+    &.mouse-down,
+    &:active {
+      color: @btn-primary-color;
+      background: @btn-primary-active-bg;
+      border-color: @btn-primary-active-bg;
+    }
+  }
 
-@btn-danger-color: @white;
-@btn-danger-bg: @error-color;
-@btn-danger-border: @error-color;
+  &-danger {
+    &:hover {
+      background: @btn-danger-bg;
+      border-color: @btn-danger-bg;
+      box-shadow: @btn-danger-shadow-hover;
+    }
 
-@btn-disable-color: @disabled-color;
-@btn-disable-bg: @disabled-bg;
-@btn-disable-border: @border-color-base;
+    &:focus,
+    &.mouse-down,
+    &:active {
+      color: @btn-danger-color;
+      background: @btn-danger-active-bg;
+      border-color: @btn-danger-active-bg;
+    }
 
-@btn-default-ghost-color: @component-background;
-@btn-default-ghost-bg: transparent;
-@btn-default-ghost-border: @component-background;
+    &:focus::after {
+      box-shadow: @btn-shadow-default-size @btn-danger-bg;
+    }
+  }
 
+  &-lg {
+    min-width: 115px;
+  }
 
-
-
-
-@btn-circle-size: @btn-height-base;
-@btn-circle-size-lg: @btn-height-lg;
-@btn-circle-size-sm: @btn-height-sm;
-
-@btn-square-size: @btn-height-base;
-@btn-square-size-lg: @btn-height-lg;
-@btn-square-size-sm: @btn-height-sm;
-
-@btn-group-border: @primary-5;
-
-@btn-link-ghost-color: @component-background;
+  &-sm {
+    min-width: 90px;
+  }
+}

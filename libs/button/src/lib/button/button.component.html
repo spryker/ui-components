@@ -1,1 +1,16 @@
-<button nz-button type="submit" nzSize="large" >Primary</button>
+<button
+  nz-button
+  [type]="type"
+  [nzShape]="shape"
+  [nzType]="variant"
+  [nzSize]="size"
+  [disabled]="disabled"
+  [class.mouse-down]="isMouseDown"
+  (mousedown)="mouseDownHandler($event)"
+  (mouseleave)="mouseLeaveHandler()"
+  (mouseup)="mouseLeaveHandler()"
+  (click)="click.emit($event)"
+>
+  <slot></slot>
+  <ng-content></ng-content>
+</button>

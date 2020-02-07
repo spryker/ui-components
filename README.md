@@ -85,6 +85,7 @@ For this every component library should have associated ONE level tag:
   - `type:service` Services library
   - `type:style` Styles library
   - `type:util` Helper utilities library
+  - `type:meta` Meta package that does not get deployed to NPM (internal infra)
 - `level:*` Describes type of component in Atomic Design framework
   - `level:atom`
   - `level:molecule`

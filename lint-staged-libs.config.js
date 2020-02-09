@@ -1,6 +1,8 @@
+const path = require('path');
+
 const packageName = process.env.LERNA_PACKAGE_NAME;
 const cwd = process.cwd();
-const libName = cwd.split('/').pop();
+const libName = path.basename(cwd);
 
 console.log(`Linting lib ${libName} (${packageName})...`);
 

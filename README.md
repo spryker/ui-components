@@ -134,6 +134,10 @@ When library is generated please do the following:
   - "dest": "../../dist/libs/<lib-name>"
   + "dest": "./dist"
   ```
+  - add `styleIncludePaths` for theme imports:
+  ```json
+  "styleIncludePaths": ["../styles/src/lib"]
+  ```
 
 ````
 

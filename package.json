@@ -30,8 +30,9 @@
     "staged": "run-s staged:*",
     "staged:global": "lint-staged",
     "staged:libs": "lerna exec --concurrency 1 --stream -- lint-staged --config ../../lint-staged-libs.config.js",
+    "compile:less": "lessc --js",
     "build:themes": "run-s build:theme:*",
-    "build:theme:default": "lessc --js libs/styles/src/lib/themes/default/standalone.less libs/styles/src/lib/themes/default/standalone.css"
+    "build:theme:default": "npm run compile:less -- libs/styles/src/lib/themes/default/standalone.less libs/styles/src/lib/themes/default/standalone.css"
   },
   "private": true,
   "dependencies": {

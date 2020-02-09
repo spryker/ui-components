@@ -138,8 +138,11 @@ When library is generated please do the following:
   ```json
   "styleIncludePaths": ["../styles/src/lib"]
   ```
-
-````
+- In `libs/<lib-name>/tsconfig.lib.json`
+  - add `"enableIvy": false` to `angularCompilerOptions`:
+  ```json
+  "enableIvy": false
+  ```
 
 ### Component
 

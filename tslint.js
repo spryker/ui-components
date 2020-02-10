@@ -123,6 +123,7 @@ module.exports = {
           // level rules END
           { sourceTag: '*', onlyDependOnLibsWithTags: ['*'] },
         ],
+        enforceBuildableLibDependency: true,
       },
     ],
   },

@@ -65,13 +65,13 @@ nx run <my-lib>:build-storybook
 Serve:
 
 ```bash
-nx run storybook:run
+nx run storybook:serve
 ```
 
 Build:
 
 ```bash
-nx run storybook:compile
+nx run storybook:build
 ```
 
 ## Component Levels

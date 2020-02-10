@@ -1,0 +1,16 @@
+<nz-form-item>
+  <nz-form-label [nzNoColon]="true" [nzFor]="for" [nzRequired]="false">
+    <ng-content></ng-content>
+  </nz-form-label>
+  <nz-form-control
+    [nzValidateStatus]="currentValidationStatus"
+    [nzErrorTip]="isValidationMessageTemplateRef(error) ? error : errorMessage"
+    [nzWarningTip]="warning"
+    [nzValidatingTip]="hint"
+  >
+    <ng-template #errorMessage>
+      <i nz-icon nzType="info-circle" nzTheme="outline"></i> {{ error }}
+    </ng-template>
+    <ng-content select="[control]"></ng-content>
+  </nz-form-control>
+</nz-form-item>

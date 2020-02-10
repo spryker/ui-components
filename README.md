@@ -150,7 +150,7 @@ Every new component should be generated via NX CLI with `@nrwl/angular:library` 
 
 ```bash
 nx g @schematics/angular:component --name=<my-component> --project=<my-lib>
-````
+```
 
 ### Storybook Setup
 

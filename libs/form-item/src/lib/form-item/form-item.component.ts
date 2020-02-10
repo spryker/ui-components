@@ -20,10 +20,6 @@ export class FormItemComponent implements OnInit {
 	};
 	currentValidationStatus: string = '';
 
-	constructor() {
-
-	}
-
 	ngOnInit() {
 		this.triggerValidationStatus();
 	}

@@ -1,1 +1,56 @@
 @import 'input.component.theme.less';
+
+.ant-input-affix-wrapper {
+  .ant-input-prefix {
+    left: 10px;
+  }
+
+  .ant-input-suffix {
+    right: 10px;
+  }
+
+  .ant-input-prefix,
+  .ant-input-suffix {
+    color: @input-icon-color;
+  }
+
+  &:hover .ant-input-disabled,
+  &:hover .ant-input:read-only {
+    border-color: @input-disabled-border;
+  }
+
+  &:hover .ant-input:focus {
+    border-color: @primary-color;
+  }
+}
+
+.ant-input-group .ant-input:last-child {
+  border-radius: @border-radius-base;
+}
+
+.ant-input {
+  font-weight: 500;
+
+  &:read-only,
+  &-disabled {
+    pointer-events: none;
+    border-color: @input-disabled-border;
+  }
+
+  &:read-only {
+    color: @black;
+    background: @input-disabled-bg;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  .ant-input-affix-wrapper &:not(:first-child) {
+    padding-left: 40px;
+  }
+
+  .ant-input-affix-wrapper &:not(:last-child) {
+    padding-right: 40px;
+  }
+}

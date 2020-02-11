@@ -20,7 +20,9 @@
     "paths": {
       "@spryker-ui/core": ["libs/core/src/index.ts"],
       "@spryker-ui/styles": ["libs/styles/src/index.ts"],
-      "@spryker-ui/input": ["libs/input/src/index.ts"]
+      "@spryker-ui/input": ["libs/input/src/index.ts"],
+      "@spryker-ui/button": ["libs/button/src/index.ts"],
+      "@spryker-ui/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

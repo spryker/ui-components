@@ -17,6 +17,12 @@
     "styles": {
       "tags": ["type:style"]
     },
+    "button": {
+      "tags": ["type:component", "level:atom"]
+    },
+    "utils": {
+      "tags": ["type:util"]
+    },
     "storybook": {
       "tags": ["type:meta"]
     },

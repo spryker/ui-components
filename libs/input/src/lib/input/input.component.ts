@@ -1,4 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, TemplateRef, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  TemplateRef,
+  Output,
+  EventEmitter,
+  OnChanges, SimpleChanges
+} from '@angular/core';
 
 @Component({
   selector: 'spy-input',
@@ -6,18 +15,24 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, TemplateRef, Output,
   styleUrls: ['./input.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements OnInit {
+export class InputComponent implements OnInit, OnChanges {
   @Input() prefix: string | TemplateRef<void> = '';
   @Input() suffix: string | TemplateRef<void> = '';
   @Input() name = '';
-  @Input() value: any = null;
-  @Input() type = '';
+  @Input() value: any = '';
+  @Input() type = 'text';
+  @Input() placeholder = '';
+  @Input() readonly = false;
+  @Input() disabled = false;
   @Input() attrs: Record<string, string> = {};
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
   }
 
 }

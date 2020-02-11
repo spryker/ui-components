@@ -19,6 +19,9 @@
     },
     "storybook": {
       "tags": ["type:meta"]
+    },
+    "web-components": {
+      "tags": ["type:util"]
     }
   }
 }

@@ -36,6 +36,10 @@
       border-color: @btn-default-border-active;
     }
 
+    &:focus {
+      box-shadow: @btn-shadow-default-size transparent;
+    }
+
     &.mouse-down,
     &:active {
       background: @btn-default-bg-active;
@@ -54,8 +58,12 @@
       box-shadow: @btn-primary-shadow-hover;
     }
 
-    &:focus::after {
-      box-shadow: @btn-shadow-default-size @btn-primary-bg;
+    &:focus {
+      box-shadow: @btn-shadow-default-size transparent;
+
+      &::after {
+        box-shadow: @btn-shadow-default-size @btn-primary-bg;
+      }
     }
 
     &.mouse-down,
@@ -81,13 +89,17 @@
       border-color: @btn-danger-active-bg;
     }
 
-    &:focus::after {
-      box-shadow: @btn-shadow-default-size @btn-danger-bg;
+    &:focus {
+      box-shadow: @btn-shadow-default-size transparent;
+
+      &::after {
+        box-shadow: @btn-shadow-default-size @btn-danger-bg;
+      }
     }
   }
 
   &-lg {
-    min-width: 115px;
+    min-width: 114px;
   }
 
   &-sm {

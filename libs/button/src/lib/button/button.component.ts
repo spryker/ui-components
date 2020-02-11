@@ -39,7 +39,7 @@ export class ButtonComponent implements OnInit, OnChanges {
   @Input() shape: Props['shape'] = null;
   @Input() size: Props['size'] = 'md';
   @Input() disabled: Props['disabled'] = false;
-  @Input() variant: Props['variant'] = 'primary';
+  @Input() variant: Props['variant'] = 'secondary';
   @Output() click: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
   private isMouseDown: boolean = false;

@@ -15,7 +15,7 @@ export interface Props {
   disabled: boolean;
 }
 
-const propsTemplate: TemplateIndexSignature = {
+const propsTemplate = {
   size: {
     lg: 'large',
     md: 'default',
@@ -28,7 +28,7 @@ const propsTemplate: TemplateIndexSignature = {
   shape: {
     default: 'null',
   },
-};
+} as const;
 
 @Component({
   selector: 'spy-button',
@@ -44,11 +44,7 @@ export class ButtonComponent implements OnChanges {
   @Input() variant: Props['variant'] = 'primary';
 
   sizeInner = propsTransformation(propsTemplate, this.size, 'size');
-  variantInner = propsTransformation(
-    propsTemplate,
-    this.variant,
-    'variant',
-  );
+  variantInner = propsTransformation(propsTemplate, this.variant, 'variant');
   shapeInner = propsTransformation(propsTemplate, this.shape, 'shape');
 
   ngOnChanges(changes: SimpleChanges) {

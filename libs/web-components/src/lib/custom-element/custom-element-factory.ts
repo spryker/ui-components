@@ -72,24 +72,22 @@ export function createCustomElementForLazy<T extends WebComponentType>(
     componentType = createCustomElement(component, { injector });
     elemMethods = getComponentMethods({ ...componentDeclaration, component });
     LazyCustomElement.prototype = componentType.prototype;
+    return componentType;
   }
 
   class LazyCustomElement extends (HTMLElement as any) {
-    protected __innerType: NgElementConstructor<T> | undefined;
-    protected __innerMethods: string[] = [];
-
     constructor() {
       super();
 
       if (!componentType) {
-        load().then(() => this.__init());
+        load().then(type => this.__init(type));
       } else {
-        this.__init();
+        this.__init(componentType);
       }
     }
 
-    private __init() {
-      componentType!.call(this as any, injector);
+    private __init(type: NgElementConstructor<T>) {
+      type.call(this as any, injector);
       elemMethods.forEach(method => this.__exposeMethod(method.toString()));
     }
 

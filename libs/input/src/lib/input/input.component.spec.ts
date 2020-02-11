@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { InputComponent } from './input.component';
 
@@ -25,10 +25,9 @@ describe('InputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputComponent ],
+      declarations: [InputComponent],
       schemas: [NO_ERRORS_SCHEMA],
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -68,5 +67,4 @@ describe('InputComponent', () => {
     expect(inputGroupElem.properties.nzPrefix).toEqual(mockedData.prefix);
     expect(inputGroupElem.properties.nzSuffix).toEqual(mockedData.suffix);
   });
-
 });

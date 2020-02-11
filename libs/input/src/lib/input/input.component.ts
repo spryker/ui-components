@@ -11,7 +11,7 @@ import {
   selector: 'spy-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent {
   @Input() prefix: string | TemplateRef<void> = '';

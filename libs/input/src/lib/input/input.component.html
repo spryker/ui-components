@@ -1,12 +1,12 @@
 <nz-input-group [nzSuffix]="suffix" [nzPrefix]="prefix">
-	<input
-		nz-input
-		[placeholder]="placeholder"
-		[name]="name"
-		[value]="value"
-		[type]="type"
-		[readonly]="readonly"
-		[disabled]="disabled"
-		(input)="valueChange.emit($event)"
-	/>
+  <input
+    nz-input
+    [placeholder]="placeholder"
+    [name]="name"
+    [value]="value"
+    [type]="type"
+    [readonly]="readonly"
+    [disabled]="disabled"
+    (input)="valueChange.emit($event)"
+  />
 </nz-input-group>

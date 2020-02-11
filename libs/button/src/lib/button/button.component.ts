@@ -4,8 +4,9 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
+  OnInit,
 } from '@angular/core';
-import { TemplateIndexSignature, propsTransformation } from '@spryker-ui/utils';
+import { propsTransformation } from '@spryker-ui/utils';
 
 export interface Props {
   type: 'button' | 'submit';
@@ -36,32 +37,50 @@ const propsTemplate = {
   styleUrls: ['./button.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnChanges {
+export class ButtonComponent implements OnChanges, OnInit {
   @Input() type: Props['type'] = 'button';
   @Input() shape: Props['shape'] = 'default';
   @Input() size: Props['size'] = 'md';
   @Input() disabled: Props['disabled'] = false;
   @Input() variant: Props['variant'] = 'primary';
 
-  sizeInner = propsTransformation(propsTemplate, this.size, 'size');
-  variantInner = propsTransformation(propsTemplate, this.variant, 'variant');
-  shapeInner = propsTransformation(propsTemplate, this.shape, 'shape');
+  sizeInner = '';
+  variantInner = '';
+  shapeInner: string | null = '';
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnInit(): void {
+    this.sizeTransformation();
+    this.variantTransformation();
+    this.shapeTransformation();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     if ('size' in changes) {
-      this.sizeInner = propsTransformation(propsTemplate, this.size, 'size');
+      this.sizeTransformation();
     }
 
     if ('variant' in changes) {
-      this.variantInner = propsTransformation(
-        propsTemplate,
-        this.variant,
-        'variant',
-      );
+      this.variantTransformation();
     }
 
     if ('shape' in changes) {
       this.shapeInner = propsTransformation(propsTemplate, this.shape, 'shape');
     }
+  }
+
+  sizeTransformation(): void {
+    this.sizeInner = propsTransformation(propsTemplate, this.size, 'size');
+  }
+
+  variantTransformation(): void {
+    this.variantInner = propsTransformation(
+      propsTemplate,
+      this.variant,
+      'variant',
+    );
+  }
+
+  shapeTransformation(): void {
+    this.shapeInner = propsTransformation(propsTemplate, this.shape, 'shape');
   }
 }

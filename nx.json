@@ -19,6 +19,9 @@
     },
     "storybook": {
       "tags": ["type:meta"]
+    },
+    "input": {
+      "tags": ["level:atom"]
     }
   }
 }

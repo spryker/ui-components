@@ -4,9 +4,12 @@ export interface TemplateIndexSignature {
   };
 }
 
-export const propsTransformation = (
-  template: TemplateIndexSignature,
-  prop: string,
-  propName: string,
-): string | null =>
-  template?.[propName]?.[prop] || prop === 'null' ? null : prop;
+export const propsTransformation = <
+  T extends TemplateIndexSignature & Object,
+  K extends keyof T,
+  K2 extends keyof T[K]
+>(
+  template: T,
+  prop: K2,
+  propName: K,
+): T[K][K2] | K2 | null => template?.[propName]?.[prop] ?? prop;

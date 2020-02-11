@@ -6,10 +6,6 @@
   [nzType]="variantInner"
   [nzSize]="sizeInner"
   [disabled]="disabled"
-  [class.mouse-down]="isMouseDown"
-  (mousedown)="mouseDownHandler($event)"
-  (mouseleave)="mouseLeaveHandler()"
-  (mouseup)="mouseLeaveHandler()"
 >
   <slot></slot>
   <ng-content></ng-content>

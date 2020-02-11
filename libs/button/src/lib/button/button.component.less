@@ -19,31 +19,24 @@
     opacity: 1;
   }
 
-  &:active {
-    transform: scaleX(0.9);
+  &:hover {
+    border-color: @btn-default-border-hover;
+    box-shadow: @btn-default-shadow-hover;
   }
 
-  &-default {
-    &:hover {
-      border-color: @btn-default-border-hover;
-      box-shadow: @btn-default-shadow-hover;
-    }
+  &:focus,
+  &:active {
+    color: @btn-default-color;
+    border-color: @btn-default-border-active;
+  }
 
-    &:focus,
-    &.mouse-down,
-    &:active {
-      color: @btn-default-color;
-      border-color: @btn-default-border-active;
-    }
+  &:focus {
+    box-shadow: @btn-shadow-default-size transparent;
+  }
 
-    &:focus {
-      box-shadow: @btn-shadow-default-size transparent;
-    }
-
-    &.mouse-down,
-    &:active {
-      background: @btn-default-bg-active;
-    }
+  &:active {
+    transform: scaleX(0.9);
+    background: @btn-default-bg-active;
   }
 
   &-primary {
@@ -66,11 +59,14 @@
       }
     }
 
-    &.mouse-down,
     &:active {
       color: @btn-primary-color;
       background: @btn-primary-active-bg;
       border-color: @btn-primary-active-bg;
+
+      &::after {
+        box-shadow: @btn-shadow-default-size transparent;
+      }
     }
   }
 
@@ -82,7 +78,6 @@
     }
 
     &:focus,
-    &.mouse-down,
     &:active {
       color: @btn-danger-color;
       background: @btn-danger-active-bg;
@@ -95,6 +90,10 @@
       &::after {
         box-shadow: @btn-shadow-default-size @btn-danger-bg;
       }
+    }
+
+    &:active::after {
+      box-shadow: @btn-shadow-default-size transparent;
     }
   }
 

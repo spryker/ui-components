@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { ButtonComponent } from './button.component';
@@ -10,8 +10,9 @@ describe('ButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NzButtonModule],
+      imports: [],
       declarations: [ButtonComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
@@ -36,16 +37,12 @@ describe('ButtonComponent', () => {
   it('is variant `primary` bound to nzType input of nz-button with value `primary` by default', () => {
     const buttonElm = fixture.debugElement.query(By.css('button'));
 
-    expect(buttonElm.nativeElement.getAttribute('ng-reflect-nz-type')).toEqual(
-      'primary',
-    );
+    expect(buttonElm.properties.nzType).toEqual('primary');
   });
 
   it('is size `md` bound to nzSize input of nz-button with value `default` by default', () => {
     const buttonElm = fixture.debugElement.query(By.css('button'));
 
-    expect(buttonElm.nativeElement.getAttribute('ng-reflect-nz-size')).toEqual(
-      'default',
-    );
+    expect(buttonElm.properties.nzSize).toEqual('default');
   });
 });

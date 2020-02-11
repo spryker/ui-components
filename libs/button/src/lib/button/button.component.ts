@@ -5,14 +5,15 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import {
-  Props,
-  TransformedSize,
-  TransformedVariant,
-  TransformedShape,
-} from './button';
-import { TemplateIndexSignature } from '@spryker-ui/utils';
-import { propsTransformation } from '@spryker-ui/utils';
+import { TemplateIndexSignature, propsTransformation } from '@spryker-ui/utils';
+
+export interface Props {
+  type: 'button' | 'submit';
+  shape: 'round' | 'circle' | 'default';
+  size: 'lg' | 'md' | 'sm';
+  variant: 'primary' | 'secondary' | 'critical';
+  disabled: boolean;
+}
 
 const propsTemplate: TemplateIndexSignature = {
   size: {
@@ -42,49 +43,29 @@ export class ButtonComponent implements OnChanges {
   @Input() disabled: Props['disabled'] = false;
   @Input() variant: Props['variant'] = 'primary';
 
-  private isMouseDown: boolean = false;
-  private sizeInner: TransformedSize = <TransformedSize>(
-    propsTransformation(propsTemplate, this.size, 'size')
+  private sizeInner = propsTransformation(propsTemplate, this.size, 'size');
+  private variantInner = propsTransformation(
+    propsTemplate,
+    this.variant,
+    'variant',
   );
-  private variantInner: TransformedVariant = <TransformedVariant>(
-    propsTransformation(propsTemplate, this.variant, 'variant')
-  );
-  private shapeInner: TransformedShape = <TransformedShape>(
-    propsTransformation(propsTemplate, this.shape, 'shape')
-  );
+  private shapeInner = propsTransformation(propsTemplate, this.shape, 'shape');
 
   ngOnChanges(changes: SimpleChanges) {
     if ('size' in changes) {
-      this.sizeInner = <TransformedSize>(
-        propsTransformation(propsTemplate, this.size, 'size')
-      );
+      this.sizeInner = propsTransformation(propsTemplate, this.size, 'size');
     }
 
     if ('variant' in changes) {
-      this.variantInner = <TransformedVariant>(
-        propsTransformation(propsTemplate, this.variant, 'variant')
+      this.variantInner = propsTransformation(
+        propsTemplate,
+        this.variant,
+        'variant',
       );
     }
 
     if ('shape' in changes) {
-      this.shapeInner = <TransformedShape>(
-        propsTransformation(propsTemplate, this.shape, 'shape')
-      );
+      this.shapeInner = propsTransformation(propsTemplate, this.shape, 'shape');
     }
-  }
-
-  private mouseDownHandler(event: MouseEvent): void {
-    const isLeftMouseClick = event.buttons === 1;
-
-    if (!isLeftMouseClick) {
-      return;
-    }
-
-    event.preventDefault();
-    this.isMouseDown = true;
-  }
-
-  private mouseLeaveHandler(): void {
-    this.isMouseDown = false;
   }
 }

@@ -4,7 +4,6 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
-  OnInit,
 } from '@angular/core';
 import { propsTransformation } from '@spryker-ui/utils';
 
@@ -37,50 +36,44 @@ const propsTemplate = {
   styleUrls: ['./button.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnChanges, OnInit {
+export class ButtonComponent implements OnChanges {
   @Input() type: Props['type'] = 'button';
   @Input() shape: Props['shape'] = 'default';
   @Input() size: Props['size'] = 'md';
   @Input() disabled: Props['disabled'] = false;
   @Input() variant: Props['variant'] = 'primary';
 
-  sizeInner = '';
-  variantInner = '';
-  shapeInner: string | null = '';
-
-  ngOnInit(): void {
-    this.sizeTransformation();
-    this.variantTransformation();
-    this.shapeTransformation();
-  }
+  sizeInner = this.sizeTransformation();
+  variantInner = this.variantTransformation();
+  shapeInner = this.shapeTransformation();
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('size' in changes) {
-      this.sizeTransformation();
+      this.sizeInner = this.sizeTransformation();
     }
 
     if ('variant' in changes) {
-      this.variantTransformation();
+      this.variantInner = this.variantTransformation();
     }
 
     if ('shape' in changes) {
-      this.shapeInner = propsTransformation(propsTemplate, this.shape, 'shape');
+      this.shapeInner = this.shapeTransformation();
     }
   }
 
-  sizeTransformation(): void {
-    this.sizeInner = propsTransformation(propsTemplate, this.size, 'size');
+  sizeTransformation() {
+    return propsTransformation(propsTemplate, this.size, 'size');
   }
 
-  variantTransformation(): void {
-    this.variantInner = propsTransformation(
+  variantTransformation() {
+    return propsTransformation(
       propsTemplate,
       this.variant,
       'variant',
     );
   }
 
-  shapeTransformation(): void {
-    this.shapeInner = propsTransformation(propsTemplate, this.shape, 'shape');
+  shapeTransformation() {
+    return propsTransformation(propsTemplate, this.shape, 'shape');
   }
 }

@@ -1,12 +1,10 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
   TemplateRef,
   Output,
   EventEmitter,
-  OnChanges, SimpleChanges
 } from '@angular/core';
 
 @Component({
@@ -15,7 +13,7 @@ import {
   styleUrls: ['./input.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements OnInit, OnChanges {
+export class InputComponent {
   @Input() prefix: string | TemplateRef<void> = '';
   @Input() suffix: string | TemplateRef<void> = '';
   @Input() name = '';
@@ -26,13 +24,4 @@ export class InputComponent implements OnInit, OnChanges {
   @Input() disabled = false;
   @Input() attrs: Record<string, string> = {};
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-  }
-
 }

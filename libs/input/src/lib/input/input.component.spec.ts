@@ -1,12 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NO_ERRORS_SCHEMA, SimpleChange } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 
 import { InputComponent } from './input.component';
 
+const mockedData = {
+  name: 'new Name',
+  value: 'new Value',
+  type: 'email',
+  placeholder: 'new Placeholder',
+  readonly: true,
+  disabled: true,
+  prefix: 'prefix',
+  suffix: 'suffix',
+};
+
+interface InputComponentWithSignature extends InputComponent {
+  [key: string]: any;
+}
+
 describe('InputComponent', () => {
-  let component: InputComponent;
-  let fixture: ComponentFixture<InputComponent>;
+  let component: InputComponentWithSignature;
+  let fixture: ComponentFixture<InputComponentWithSignature>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,6 +34,11 @@ describe('InputComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InputComponent);
     component = fixture.componentInstance;
+
+    Object.entries(mockedData).forEach(([key, value]) => {
+      component[key] = value;
+    });
+
     fixture.detectChanges();
   });
 
@@ -32,32 +52,21 @@ describe('InputComponent', () => {
   });
 
   it('check input data reflection to the internal view', () => {
-
-    const mockedData = {
-      name: 'new Name',
-      value: 'new Value',
-      type: 'email',
-      placeholder: 'new Placeholder',
-      readonly: true,
-      disabled: true
-    };
-
-    component.name = mockedData.name;
-    component.value = mockedData.value;
-    component.type = mockedData.type;
-    component.placeholder = mockedData.placeholder;
-    component.readonly = mockedData.readonly;
-    component.disabled = mockedData.disabled;
-
-    component.ngOnChanges({
-      name: new SimpleChange(mockedData.name, mockedData.name, true)
-    });
-    fixture.detectChanges();
-    fixture.detectChanges();
     const inputElem = fixture.debugElement.query(By.css('input'));
-    console.log(inputElem.properties);
 
     expect(inputElem.properties.name).toEqual(mockedData.name);
+    expect(inputElem.properties.value).toEqual(mockedData.value);
+    expect(inputElem.properties.type).toEqual(mockedData.type);
+    expect(inputElem.properties.placeholder).toEqual(mockedData.placeholder);
+    expect(inputElem.properties.disabled).toEqual(mockedData.disabled);
+    expect(inputElem.properties.readOnly).toEqual(mockedData.readonly);
+  });
+
+  it('input prefix and suffix must be bound to nz-input-group', () => {
+    const inputGroupElem = fixture.debugElement.query(By.css('nz-input-group'));
+
+    expect(inputGroupElem.properties.nzPrefix).toEqual(mockedData.prefix);
+    expect(inputGroupElem.properties.nzSuffix).toEqual(mockedData.suffix);
   });
 
 });

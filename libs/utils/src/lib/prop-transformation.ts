@@ -12,4 +12,8 @@ export const propsTransformation = <
   template: T,
   prop: K2,
   propName: K,
-): T[K][K2] | K2 | null => template?.[propName]?.[prop] ?? prop;
+): T[K][K2] | K2 | null => {
+  const propValue = template?.[propName]?.[prop] ?? prop;
+
+  return propValue === 'null' ? null : propValue;
+};

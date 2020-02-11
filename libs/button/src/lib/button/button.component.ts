@@ -44,7 +44,11 @@ export class ButtonComponent implements OnChanges {
   @Input() variant: Props['variant'] = 'primary';
 
   private sizeInner = propsTransformation(propsTemplate, this.size, 'size');
-  variantInner = propsTransformation(propsTemplate, this.variant, 'variant');
+  private variantInner = propsTransformation(
+    propsTemplate,
+    this.variant,
+    'variant',
+  );
   private shapeInner = propsTransformation(propsTemplate, this.shape, 'shape');
 
   ngOnChanges(changes: SimpleChanges) {

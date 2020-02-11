@@ -1,0 +1,27 @@
+dist: trusty
+language: node_js
+node_js: lts/*
+cache:
+  npm: true
+stages:
+  - test
+  # TODO: Implement release and integrate with CI
+  # - deploy
+jobs:
+  include:
+    - stage: test
+      script:
+        - npm run format:check
+        - npm run lint
+        - npm run build:all
+        - COVERAGE=true npm run test:ci
+    # - stage: release
+    #   script:
+    #     - npm run build
+    #   deploy:
+    #     provider: script
+    #     script: npm run release
+    #     skip_cleanup: true
+    #     on:
+    #       all_branches: true
+    #       condition: $TRAVIS_BRANCH =~ ^(master|next)$

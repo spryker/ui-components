@@ -262,16 +262,11 @@
       "sourceRoot": "libs",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/storybook:build",
           "options": {
-            "tsConfig": ".storybook/global/tsconfig.json"
-          }
-        },
-        "run": {
-          "builder": "@nrwl/storybook:storybook",
-          "options": {
+            "tsConfig": ".storybook/global/tsconfig.json",
             "uiFramework": "@storybook/angular",
-            "port": 4400,
+            "outputPath": "dist/storybook/global",
             "config": {
               "configFolder": ".storybook/global"
             }
@@ -282,11 +277,11 @@
             }
           }
         },
-        "compile": {
-          "builder": "@nrwl/storybook:build",
+        "serve": {
+          "builder": "@nrwl/storybook:storybook",
           "options": {
             "uiFramework": "@storybook/angular",
-            "outputPath": "dist/storybook/global",
+            "port": 4400,
             "config": {
               "configFolder": ".storybook/global"
             }

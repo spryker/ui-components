@@ -65,13 +65,13 @@ nx run <my-lib>:build-storybook
 Serve:
 
 ```bash
-nx run storybook:run
+nx run storybook:serve
 ```
 
 Build:
 
 ```bash
-nx run storybook:compile
+nx run storybook:build
 ```
 
 ## Component Levels
@@ -134,8 +134,15 @@ When library is generated please do the following:
   - "dest": "../../dist/libs/<lib-name>"
   + "dest": "./dist"
   ```
-
-````
+  - add `styleIncludePaths` for theme imports:
+  ```json
+  "styleIncludePaths": ["../styles/src/lib"]
+  ```
+- In `libs/<lib-name>/tsconfig.lib.json`
+  - add `"enableIvy": false` to `angularCompilerOptions`:
+  ```json
+  "enableIvy": false
+  ```
 
 ### Component
 
@@ -143,7 +150,7 @@ Every new component should be generated via NX CLI with `@nrwl/angular:library` 
 
 ```bash
 nx g @schematics/angular:component --name=<my-component> --project=<my-lib>
-````
+```
 
 ### Storybook Setup
 

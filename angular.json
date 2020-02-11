@@ -171,7 +171,7 @@
       },
       "schematics": {
         "@nrwl/angular:component": {
-          "styleext": "scss"
+          "styleext": "less"
         }
       }
     },
@@ -210,49 +210,6 @@
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "less"
-        }
-      }
-    },
-    "storybook": {
-      "projectType": "library",
-      "root": "libs",
-      "sourceRoot": "libs",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": ".storybook/global/tsconfig.json"
-          }
-        },
-        "run": {
-          "builder": "@nrwl/storybook:storybook",
-          "options": {
-            "uiFramework": "@storybook/angular",
-            "port": 4400,
-            "config": {
-              "configFolder": ".storybook/global"
-            }
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
-        },
-        "compile": {
-          "builder": "@nrwl/storybook:build",
-          "options": {
-            "uiFramework": "@storybook/angular",
-            "outputPath": "dist/storybook/global",
-            "config": {
-              "configFolder": ".storybook/global"
-            }
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
         }
       }
     },

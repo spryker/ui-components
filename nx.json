@@ -18,13 +18,10 @@
       "tags": ["type:style"]
     },
     "button": {
-      "tags": ["level:atom"]
+      "tags": ["type:component", "level:atom"]
     },
     "utils": {
-      "tags": []
-    },
-    "storybook": {
-      "tags": ["type:meta"]
+      "tags": ["type:util"]
     },
     "storybook": {
       "tags": ["type:meta"]

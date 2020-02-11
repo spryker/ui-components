@@ -4,21 +4,17 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormItemModule } from '@spryker-ui/form-item';
 
 export default {
-  title: 'FormItemComponent'
-}
+  title: 'FormItemComponent',
+};
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [
-      FormItemModule,
-      NzFormModule,
-      NzInputModule
-    ]
+    imports: [FormItemModule, NzFormModule, NzInputModule],
   },
   template: `
-    <spy-form-item for="input-id">
+    <spy-form-item for="input-id" error="Error Message">
       Label
       <input nz-input="" id="input-id" type="text" control>
     </spy-form-item>
-  `
+  `,
 });

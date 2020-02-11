@@ -1,8 +1,9 @@
+import { NO_ERRORS_SCHEMA, SimpleChange, SimpleChanges } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { FormItemComponent } from './form-item.component';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormItemComponent } from './form-item.component';
+import { MessageTypePipe } from './message-type.pipe';
 
 describe('FormItemModule', () => {
   let component: FormItemComponent;
@@ -10,8 +11,9 @@ describe('FormItemModule', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NzFormModule, BrowserAnimationsModule],
-      declarations: [FormItemComponent]
+      imports: [NoopAnimationsModule],
+      declarations: [FormItemComponent, MessageTypePipe],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
@@ -22,41 +24,50 @@ describe('FormItemModule', () => {
   });
 
   it('template must render as a tree [nz-form-item]=>[nz-form-label,nz-form-control]', () => {
-    const formItemChildren = fixture.debugElement.children;
+    const formItemElem = fixture.debugElement.query(By.css('nz-form-item'));
+    expect(formItemElem).toBeTruthy();
 
-    expect(formItemChildren.length).toEqual(1);
-    expect(formItemChildren[0].name).toEqual('nz-form-item');
-
-    const nzFormItemChildren = formItemChildren[0].children;
-
-    expect(nzFormItemChildren.length).toEqual(2);
-    expect(nzFormItemChildren[0].name).toEqual('nz-form-label');
-    expect(nzFormItemChildren[1].name).toEqual('nz-form-control');
+    const formLabelElem = formItemElem.query(By.css('nz-form-label'));
+    const formControlElem = formItemElem.query(By.css('nz-form-control'));
+    expect(formLabelElem).toBeTruthy();
+    expect(formControlElem).toBeTruthy();
   });
 
   it('input nzNoColon must be set to true on nz-form-label', () => {
     const labelComponent = fixture.debugElement.query(By.css('nz-form-label'));
-
-    expect(Boolean(labelComponent.attributes['ng-reflect-nz-no-colon'])).toEqual(true);
+    fixture.detectChanges();
+    expect(labelComponent.properties.nzNoColon).toBe(true);
   });
 
   it('should show error validation message', () => {
-    component.error = 'Error message!';
-    component.triggerValidationStatus();
+    component.error = 'Error Message';
+
+    component.ngOnChanges({
+      error: new SimpleChange('', 'Error Message', true),
+    });
+
     fixture.detectChanges();
     expect(component.currentValidationStatus).toEqual('error');
   });
 
   it('should show warning validation message', () => {
-    component.warning = 'Warning message!';
-    component.triggerValidationStatus();
+    component.warning = 'Warning Message';
+
+    component.ngOnChanges({
+      warning: new SimpleChange('', 'Warning Message', true),
+    });
+
     fixture.detectChanges();
     expect(component.currentValidationStatus).toEqual('warning');
   });
 
   it('should show hint validation message', () => {
-    component.hint = 'Hint message!';
-    component.triggerValidationStatus();
+    component.hint = 'Hint Message';
+
+    component.ngOnChanges({
+      hint: new SimpleChange('', 'Hint Message', true),
+    });
+
     fixture.detectChanges();
     expect(component.currentValidationStatus).toEqual('validating');
   });

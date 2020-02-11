@@ -1,7 +1,8 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/form-item",
+  "dest": "./dist",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "styleIncludePaths": ["../styles/src/lib"]
 }

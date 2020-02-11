@@ -20,13 +20,6 @@
     "storybook": {
       "tags": ["type:meta"]
     },
-    "test": {
-      "tags": []
-    },
-    "test-e2e": {
-      "tags": [],
-      "implicitDependencies": ["test"]
-    },
     "form-item": {
       "tags": ["level:atom"]
     }

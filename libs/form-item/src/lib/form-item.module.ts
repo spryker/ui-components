@@ -6,6 +6,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
+import { MessageTypePipe } from './form-item/message-type.pipe';
 import { FormItemComponent } from './form-item/form-item.component';
 
 @NgModule({
@@ -14,13 +15,9 @@ import { FormItemComponent } from './form-item/form-item.component';
     NzFormModule,
     NzInputModule,
     NzIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  declarations: [
-    FormItemComponent
-  ],
-  exports: [
-    FormItemComponent
-  ]
+  declarations: [FormItemComponent, MessageTypePipe],
+  exports: [FormItemComponent],
 })
 export class FormItemModule {}

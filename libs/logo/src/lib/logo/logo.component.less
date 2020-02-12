@@ -13,10 +13,10 @@
   background-size: contain;
 
   &--full {
-    background-image: url(@spy-logo-full);
+    background-image: var(--spy-logo-full, url('./images/logo.svg'));
   }
 
   &--icon {
-    background-image: url(@spy-logo-icon);
+    background-image: var(--spy-logo-icon, url('./images/logo_icon.svg'));
   }
 }

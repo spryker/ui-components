@@ -1,4 +1,3 @@
-import { SimpleChange } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -28,9 +27,6 @@ describe('LogoComponent', () => {
     const logoImageModifier = 'full';
 
     component.size = logoImageModifier;
-    component.ngOnChanges({
-      size: new SimpleChange('', logoImageModifier, true),
-    });
     fixture.detectChanges();
     const logoElement = fixture.debugElement.query(
       By.css(`.logo--${logoImageModifier}`),

@@ -14,12 +14,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class LogoComponent implements OnChanges {
+export class LogoComponent {
   @Input() size: 'full' | 'icon' = 'full';
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.size) {
-      this.size = changes.size.currentValue;
-    }
-  }
 }

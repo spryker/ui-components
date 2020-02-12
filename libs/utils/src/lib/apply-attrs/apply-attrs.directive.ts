@@ -16,6 +16,10 @@ export class ApplyAttrsDirective implements OnChanges {
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   updateAttrs(): void {
+    if (!this.applyAttrs) {
+      return;
+    }
+
     const element = this.el.nativeElement;
     const attrArray: [string, string][] = Object.entries(this.applyAttrs);
 
@@ -24,7 +28,28 @@ export class ApplyAttrsDirective implements OnChanges {
     });
   }
 
+  deleteAttrs(prevAttrs: Record<string, string>): void {
+    const element = this.el.nativeElement;
+    const prevAttrsArray = Object.entries(prevAttrs);
+
+    prevAttrsArray.forEach(([key]) => {
+      const shouldUpdateAttr = this.applyAttrs && key in this.applyAttrs;
+
+      if (shouldUpdateAttr) {
+        return;
+      }
+
+      this.renderer.removeAttribute(element, key);
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
+    const { firstChange, previousValue } = changes.applyAttrs;
+
+    if (!firstChange) {
+      this.deleteAttrs(previousValue);
+    }
+
     this.updateAttrs();
   }
 }

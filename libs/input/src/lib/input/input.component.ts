@@ -20,7 +20,7 @@ export class InputComponent {
   @Input() value: any = '';
   @Input() type = 'text';
   @Input() placeholder = '';
-  @Input() readonly = false;
+  @Input() readOnly = false;
   @Input() disabled = false;
   @Input() attrs: Record<string, string> = {};
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();

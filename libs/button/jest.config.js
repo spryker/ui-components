@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'styles',
+  name: 'button',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/libs/styles',
+  coverageDirectory: '../../coverage/libs/button',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

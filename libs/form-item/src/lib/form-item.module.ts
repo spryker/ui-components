@@ -6,7 +6,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-import { MessageTypePipe } from './form-item/message-type.pipe';
+import { OfTypePipe } from '@spryker-ui/utils';
 import { FormItemComponent } from './form-item/form-item.component';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { FormItemComponent } from './form-item/form-item.component';
     NzIconModule,
     BrowserAnimationsModule,
   ],
-  declarations: [FormItemComponent, MessageTypePipe],
+  declarations: [FormItemComponent, OfTypePipe],
   exports: [FormItemComponent],
 })
 export class FormItemModule {}

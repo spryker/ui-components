@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'messageType' })
-export class MessageTypePipe implements PipeTransform {
+@Pipe({ name: 'ofType' })
+export class OfTypePipe implements PipeTransform {
   transform(
     value: any,
     type: string,

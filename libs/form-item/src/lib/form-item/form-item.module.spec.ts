@@ -2,8 +2,8 @@ import { NO_ERRORS_SCHEMA, SimpleChange, SimpleChanges } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { OfTypePipe } from '@spryker-ui/utils';
 import { FormItemComponent } from './form-item.component';
-import { MessageTypePipe } from './message-type.pipe';
 
 describe('FormItemModule', () => {
   let component: FormItemComponent;
@@ -12,7 +12,7 @@ describe('FormItemModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule],
-      declarations: [FormItemComponent, MessageTypePipe],
+      declarations: [FormItemComponent, OfTypePipe],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));

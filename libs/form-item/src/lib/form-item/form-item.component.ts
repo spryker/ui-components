@@ -17,13 +17,6 @@ export class FormItemComponent implements OnInit, OnChanges {
   @Input() error: string | TemplateRef<void> = '';
   @Input() warning: string | TemplateRef<void> = '';
   @Input() hint: string | TemplateRef<void> = '';
-  validationStatuses: {
-    [key: string]: string;
-  } = {
-    error: 'error',
-    warning: 'warning',
-    hint: 'validating',
-  };
   currentValidationStatus: string = '';
 
   ngOnInit() {
@@ -38,19 +31,19 @@ export class FormItemComponent implements OnInit, OnChanges {
 
   updateValidationStatus(): void {
     if (this.error) {
-      this.currentValidationStatus = this.validationStatuses.error;
+      this.currentValidationStatus = 'error';
 
       return;
     }
 
     if (this.warning) {
-      this.currentValidationStatus = this.validationStatuses.warning;
+      this.currentValidationStatus = 'warning';
 
       return;
     }
 
     if (this.hint) {
-      this.currentValidationStatus = this.validationStatuses.hint;
+      this.currentValidationStatus = 'validating';
     }
   }
 }

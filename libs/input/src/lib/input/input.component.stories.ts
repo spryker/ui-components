@@ -1,5 +1,5 @@
-import { NzInputModule } from 'ng-zorro-antd/input';
 import { InputComponent } from './input.component';
+import { InputModule } from '../input.module';
 
 export default {
   title: 'InputComponent',
@@ -7,7 +7,7 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [NzInputModule],
+    imports: [InputModule],
   },
   component: InputComponent,
   props: {},

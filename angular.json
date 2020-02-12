@@ -250,6 +250,44 @@
           }
         }
       }
+    },
+    "web-components": {
+      "projectType": "library",
+      "root": "libs/web-components",
+      "sourceRoot": "libs/web-components/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/web-components/tsconfig.lib.json",
+            "project": "libs/web-components/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/web-components/tsconfig.lib.json",
+              "libs/web-components/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/web-components/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/web-components/jest.config.js",
+            "tsConfig": "libs/web-components/tsconfig.spec.json",
+            "setupFile": "libs/web-components/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "less"
+        }
+      }
     }
   },
   "cli": {

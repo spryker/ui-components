@@ -11,11 +11,14 @@ export const primary = () => ({
     imports: [NzCardModule, CardModule],
   },
   template: `
-    <spy-card title="Card Title" [extra]="extraRef">
-        Card content here
+    <spy-card title="Card Title" [extra]="extraRef" [actions]="[button, button]">
+      Card content here
     </spy-card>
-      <ng-template #extraRef>
-          Some extra
-      </ng-template>
+    <ng-template #extraRef>
+      Some extra
+    </ng-template>
+    <ng-template #button>
+      <button>Button Content</button>
+    </ng-template>
   `,
 });

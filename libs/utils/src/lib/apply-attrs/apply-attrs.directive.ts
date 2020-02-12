@@ -2,7 +2,6 @@ import {
   Directive,
   ElementRef,
   Input,
-  NgModule,
   OnChanges,
   Renderer2,
   SimpleChanges,
@@ -29,9 +28,3 @@ export class ApplyAttrsDirective implements OnChanges {
     this.updateAttrs();
   }
 }
-
-@NgModule({
-  declarations: [ApplyAttrsDirective],
-  exports: [ApplyAttrsDirective],
-})
-export class ApplyAttrsModule {}

@@ -4,6 +4,9 @@
   "npmClient": "npm",
   "command": {
     "publish": {
+      "conventionalCommits": true,
+      "conventionalGraduate": true,
+      "allowBranch": ["master", "next"],
       "contents": "dist",
       "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
       "message": "chore(release): publish"

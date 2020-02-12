@@ -5,8 +5,7 @@ cache:
   npm: true
 stages:
   - test
-  # TODO: Implement release and integrate with CI
-  # - deploy
+  - deploy
 jobs:
   include:
     - stage: test
@@ -15,13 +14,23 @@ jobs:
         - npm run lint
         - COVERAGE=true npm run test:ci
         - npm run build:all || npm run build:all # Double build to ensure dependent libs are built first
-    # - stage: release
-    #   script:
-    #     - npm run build
-    #   deploy:
-    #     provider: script
-    #     script: npm run release
-    #     skip_cleanup: true
-    #     on:
-    #       all_branches: true
-    #       condition: $TRAVIS_BRANCH =~ ^(master|next)$
+    - stage: release
+      script:
+        - npm run build:all
+      deploy:
+        provider: script
+        script: npm run release
+        skip_cleanup: true
+        on:
+          all_branches: true
+          condition: $TRAVIS_BRANCH =~ ^(master)$
+    - stage: release
+      script:
+        - npm run build:all
+      deploy:
+        provider: script
+        script: npm run release:tag
+        skip_cleanup: true
+        on:
+          all_branches: true
+          condition: $TRAVIS_BRANCH =~ ^(next)$

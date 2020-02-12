@@ -66,11 +66,7 @@ export class ButtonComponent implements OnChanges {
   }
 
   variantTransformation() {
-    return propsTransformation(
-      propsTemplate,
-      this.variant,
-      'variant',
-    );
+    return propsTransformation(propsTemplate, this.variant, 'variant');
   }
 
   shapeTransformation() {

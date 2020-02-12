@@ -134,9 +134,12 @@ When library is generated please do the following:
   - "dest": "../../dist/libs/<lib-name>"
   + "dest": "./dist"
   ```
-  - add `styleIncludePaths` for theme imports:
+  - add `styleIncludePaths` to `lib` for theme imports:
   ```json
-  "styleIncludePaths": ["../styles/src/lib"]
+  "lib": {
+    ...
+    "styleIncludePaths": ["../styles/src/lib"]
+  }
   ```
 - In `libs/<lib-name>/tsconfig.lib.json`
   - add `"enableIvy": false` to `angularCompilerOptions`:

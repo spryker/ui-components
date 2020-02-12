@@ -18,11 +18,30 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@spryker-ui/core": ["libs/core/src/index.ts"],
-      "@spryker-ui/styles": ["libs/styles/src/index.ts"],
-      "@spryker-ui/input": ["libs/input/src/index.ts"],
-      "@spryker-ui/button": ["libs/button/src/index.ts"],
-      "@spryker-ui/utils": ["libs/utils/src/index.ts"]
+      "@spryker-ui/core": [
+        "libs/core/dist/index.d.ts",
+        "libs/core/src/index.ts"
+      ],
+      "@spryker-ui/styles": [
+        "libs/styles/dist/index.d.ts",
+        "libs/styles/src/index.ts"
+      ],
+      "@spryker-ui/web-components": [
+        "libs/web-components/dist/index.d.ts",
+        "libs/web-components/src/index.ts"
+      ],
+      "@spryker-ui/button": [
+        "libs/button/dist/index.d.ts",
+        "libs/button/src/index.ts"
+      ],
+      "@spryker-ui/utils": [
+        "libs/utils/dist/index.d.ts",
+        "libs/utils/src/index.ts"
+      ],
+      "@spryker-ui/input": [
+        "libs/input/dist/index.d.ts",
+        "libs/input/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

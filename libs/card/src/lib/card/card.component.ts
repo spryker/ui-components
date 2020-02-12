@@ -4,8 +4,6 @@ import {
   ViewEncapsulation,
   TemplateRef,
   Input,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 
 @Component({
@@ -15,22 +13,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class CardComponent implements OnChanges {
+export class CardComponent {
   @Input() title: string | TemplateRef<void> = '';
   @Input() extra: TemplateRef<void> | undefined;
   @Input() actions: TemplateRef<void>[] | undefined[] = [];
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.title) {
-      this.title = changes.title.currentValue;
-    }
-
-    if (changes.extra) {
-      this.extra = changes.extra.currentValue;
-    }
-
-    if (changes.actions) {
-      this.actions = changes.actions.currentValue;
-    }
-  }
 }

@@ -18,8 +18,18 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@spryker-ui/core": ["libs/core/src/index.ts"],
-      "@spryker-ui/styles": ["libs/styles/src/index.ts"]
+      "@spryker-ui/core": [
+        "libs/core/dist/index.d.ts",
+        "libs/core/src/index.ts"
+      ],
+      "@spryker-ui/styles": [
+        "libs/styles/dist/index.d.ts",
+        "libs/styles/src/index.ts"
+      ],
+      "@spryker-ui/web-components": [
+        "libs/web-components/dist/index.d.ts",
+        "libs/web-components/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

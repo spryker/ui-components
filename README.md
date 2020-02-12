@@ -143,6 +143,16 @@ When library is generated please do the following:
   ```json
   "enableIvy": false
   ```
+- In `tsconfig.json`
+  - add to beginning of `paths[@spryker-ui/<lib-name>]` new path `libs/<lib-name>/dist/index.d.ts`:
+  ```json
+  "paths": {
+    "@spryker-ui/<lib-name>": [
+      + "libs/<lib-name>/dist/index.d.ts",
+      "libs/<lib-name>/src/index.ts"
+    ]
+  }
+  ```
 
 ### Component
 

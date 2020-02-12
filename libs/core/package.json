@@ -5,6 +5,7 @@
     "@angular/common": "^9.0.0-rc.11",
     "@angular/core": "^9.0.0-rc.11",
     "@spryker-ui/styles": "^0.0.1",
+    "@spryker-ui/web-components": "^0.0.1",
     "ng-zorro-antd": "^9.0.0-beta.0"
   }
 }

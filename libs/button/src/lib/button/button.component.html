@@ -1,0 +1,12 @@
+<button
+  nz-button
+  role="button"
+  [type]="type"
+  [nzShape]="shapeInner"
+  [nzType]="variantInner"
+  [nzSize]="sizeInner"
+  [disabled]="disabled"
+>
+  <slot></slot>
+  <ng-content></ng-content>
+</button>

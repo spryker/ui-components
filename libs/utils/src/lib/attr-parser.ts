@@ -2,32 +2,23 @@ import {
   Directive,
   ElementRef,
   Input,
+  NgModule,
   OnChanges,
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
 
 @Directive({
-  selector: '[attrParser]',
+  selector: '[applyAttrs]',
 })
-export class AttrParser implements OnChanges {
-  @Input() attrParser: Record<string, string> | string = {};
+export class ApplyAttrsDirective implements OnChanges {
+  @Input() applyAttrs: Record<string, string> = {};
 
-  constructor(protected el: ElementRef, protected renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  attrCasting(): Record<string, string> {
-    return typeof this.attrParser === 'string'
-      ? JSON.parse(this.attrParser)
-      : this.attrParser;
-  }
-
-  attrSetting(): void {
+  updateAttrs(): void {
     const element = this.el.nativeElement;
-    const attrArray: [string, string][] = Object.entries(this.attrCasting());
-
-    if (!attrArray.length) {
-      return;
-    }
+    const attrArray: [string, string][] = Object.entries(this.applyAttrs);
 
     attrArray.forEach(([key, value]) => {
       this.renderer.setAttribute(element, key, value);
@@ -35,6 +26,12 @@ export class AttrParser implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.attrSetting();
+    this.updateAttrs();
   }
 }
+
+@NgModule({
+  declarations: [ApplyAttrsDirective],
+  exports: [ApplyAttrsDirective],
+})
+export class ApplyAttrsModule {}

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { InputComponent } from './input/input.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { AttrParser } from '@spryker-ui/utils';
+import { ApplyAttrsModule } from '@spryker-ui/utils';
 
 @NgModule({
-  imports: [NzInputModule],
-  declarations: [InputComponent, AttrParser],
+  imports: [NzInputModule, ApplyAttrsModule],
+  declarations: [InputComponent],
   exports: [InputComponent],
 })
 export class InputModule {}

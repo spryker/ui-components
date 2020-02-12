@@ -34,9 +34,7 @@ describe('InputComponent', () => {
     fixture = TestBed.createComponent(InputComponent);
     component = fixture.componentInstance;
 
-    Object.entries(mockedData).forEach(([key, value]) => {
-      component[key] = value;
-    });
+    Object.assign(component, mockedData);
 
     fixture.detectChanges();
   });
@@ -47,7 +45,7 @@ describe('InputComponent', () => {
 
     const inputElem = inputGroupElem.query(By.css('input'));
     expect(inputElem).toBeTruthy();
-    expect(inputElem.nativeElement.hasAttribute('nz-input')).toBeTruthy();
+    expect(inputElem.attributes['nz-input']).toBe('');
   });
 
   it('check input data reflection to the internal view', () => {

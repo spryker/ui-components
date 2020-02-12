@@ -23,7 +23,7 @@ export class AttrParser implements OnChanges {
 
   attrSetting(): void {
     const element = this.el.nativeElement;
-    const attrArray = Object.entries(this.attrCasting());
+    const attrArray: [string, string][] = Object.entries(this.attrCasting());
 
     if (!attrArray.length) {
       return;

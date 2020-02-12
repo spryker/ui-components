@@ -1,0 +1,30 @@
+@import './card.component.theme.less';
+
+:host {
+  width: 100%;
+}
+
+.ant-card {
+  &-head {
+    line-height: @card-head-line-height;
+    font-weight: 600;
+    border-bottom-width: 1px;
+  }
+
+  &-body {
+    padding: @card-body-padding @card-padding-base;
+  }
+
+  &-actions {
+    border-top-width: 1px;
+    border-radius: 0 0 @card-radius @card-radius;
+
+    & > li {
+      box-sizing: border-box;
+
+      &:not(:last-child) {
+        border-right-width: 1px;
+      }
+    }
+  }
+}

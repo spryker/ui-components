@@ -1,0 +1,22 @@
+@import './logo.component.theme.less';
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  background: transparent center center no-repeat;
+  background-size: contain;
+
+  &--full {
+    background-image: url(@spy-logo-full);
+  }
+
+  &--icon {
+    background-image: url(@spy-logo-icon);
+  }
+}

@@ -19,6 +19,9 @@
     },
     "storybook": {
       "tags": ["type:meta"]
+    },
+    "logo": {
+      "tags": ["level:atom"]
     }
   }
 }

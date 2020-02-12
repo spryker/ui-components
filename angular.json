@@ -144,6 +144,79 @@
           }
         }
       }
+    },
+    "logo": {
+      "projectType": "library",
+      "root": "libs/logo",
+      "sourceRoot": "libs/logo/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/logo/tsconfig.lib.json",
+            "project": "libs/logo/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/logo/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/logo/tsconfig.lib.json",
+              "libs/logo/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/logo/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/logo/jest.config.js",
+            "tsConfig": "libs/logo/tsconfig.spec.json",
+            "setupFile": "libs/logo/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/logo/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/logo",
+            "config": {
+              "configFolder": "libs/logo/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "less"
+        }
+      }
     }
   },
   "cli": {

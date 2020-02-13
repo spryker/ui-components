@@ -26,6 +26,9 @@
     "storybook": {
       "tags": ["type:meta"]
     },
+    "input": {
+      "tags": ["level:atom"]
+    },
     "web-components": {
       "tags": ["type:util"]
     }

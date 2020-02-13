@@ -37,6 +37,10 @@
       "@spryker-ui/utils": [
         "libs/utils/dist/index.d.ts",
         "libs/utils/src/index.ts"
+      ],
+      "@spryker-ui/input": [
+        "libs/input/dist/index.d.ts",
+        "libs/input/src/index.ts"
       ]
     }
   },

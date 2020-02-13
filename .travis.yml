@@ -16,8 +16,8 @@ jobs:
         # - npm run build:all || npm run build:all # Double build to ensure dependent libs are built first
       before_deploy:
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-        - git remote add -f origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
-        - git fetch origin $TRAVIS_BRANCH
+        - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+        - git fetch pub $TRAVIS_BRANCH
         - git checkout $TRAVIS_BRANCH
       deploy:
         - provider: script

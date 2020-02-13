@@ -9,6 +9,7 @@ jobs:
   include:
     - stage: test
       script:
+        - echo "Skipping all test steps..."
         # - npm run format:check
         # - npm run lint
         # - COVERAGE=true npm run test:ci

@@ -9,7 +9,7 @@
       "allowBranch": ["master", "next", "infra-publishing"],
       "contents": "dist",
       "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
-      "message": "chore(release): publish"
+      "message": "chore(release): publish [skip ci]"
     }
   }
 }

@@ -6,9 +6,10 @@
 
 .ant-card {
   &-head {
+    font-size: @heading-3-size;
     line-height: @card-head-line-height;
-    font-weight: 600;
-    border-bottom-width: 1px;
+    font-weight: @font-weight-semi-bold;
+    border-bottom-width: @card-border-width;
   }
 
   &-body {
@@ -16,14 +17,14 @@
   }
 
   &-actions {
-    border-top-width: 1px;
+    border-top-width: @card-border-width;
     border-radius: 0 0 @card-radius @card-radius;
 
     & > li {
       box-sizing: border-box;
 
       &:not(:last-child) {
-        border-right-width: 1px;
+        border-right-width: @card-border-width;
       }
     }
   }

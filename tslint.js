@@ -88,38 +88,39 @@ module.exports = {
           },
           // type rules END
           // level rules START
-          { sourceTag: 'level:atom', onlyDependOnLibsWithTags: ['level:atom'] },
-          {
-            sourceTag: 'level:molecule',
-            onlyDependOnLibsWithTags: ['level:atom', 'level:molecule'],
-          },
-          {
-            sourceTag: 'level:organism',
-            onlyDependOnLibsWithTags: [
-              'level:atom',
-              'level:molecule',
-              'level:organism',
-            ],
-          },
-          {
-            sourceTag: 'level:template',
-            onlyDependOnLibsWithTags: [
-              'level:atom',
-              'level:molecule',
-              'level:organism',
-              'level:template',
-            ],
-          },
-          {
-            sourceTag: 'level:page',
-            onlyDependOnLibsWithTags: [
-              'level:atom',
-              'level:molecule',
-              'level:organism',
-              'level:template',
-              'level:page',
-            ],
-          },
+          // TODO: Enable level rules once it's behavior is fixed
+          // { sourceTag: 'level:atom', onlyDependOnLibsWithTags: ['level:atom'] },
+          // {
+          //   sourceTag: 'level:molecule',
+          //   onlyDependOnLibsWithTags: ['level:atom', 'level:molecule'],
+          // },
+          // {
+          //   sourceTag: 'level:organism',
+          //   onlyDependOnLibsWithTags: [
+          //     'level:atom',
+          //     'level:molecule',
+          //     'level:organism',
+          //   ],
+          // },
+          // {
+          //   sourceTag: 'level:template',
+          //   onlyDependOnLibsWithTags: [
+          //     'level:atom',
+          //     'level:molecule',
+          //     'level:organism',
+          //     'level:template',
+          //   ],
+          // },
+          // {
+          //   sourceTag: 'level:page',
+          //   onlyDependOnLibsWithTags: [
+          //     'level:atom',
+          //     'level:molecule',
+          //     'level:organism',
+          //     'level:template',
+          //     'level:page',
+          //   ],
+          // },
           // level rules END
           { sourceTag: '*', onlyDependOnLibsWithTags: ['*'] },
         ],

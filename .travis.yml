@@ -5,7 +5,6 @@ cache:
   npm: true
 stages:
   - test
-  - deploy
 jobs:
   include:
     - stage: test
@@ -14,23 +13,22 @@ jobs:
         - npm run lint
         - COVERAGE=true npm run test:ci
         - npm run build:all || npm run build:all # Double build to ensure dependent libs are built first
-    - stage: release
-      script:
-        - npm run build:all
+      before_deploy:
+        - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+        - git checkout $TRAVIS_BRANCH
       deploy:
-        provider: script
-        script: npm run release
-        skip_cleanup: true
-        on:
-          all_branches: true
-          condition: $TRAVIS_BRANCH =~ ^(master)$
-    - stage: release
-      script:
-        - npm run build:all
-      deploy:
-        provider: script
-        script: npm run release:tag
-        skip_cleanup: true
-        on:
-          all_branches: true
-          condition: $TRAVIS_BRANCH =~ ^(next)$
+        - provider: script
+          script: npm run release
+          skip_cleanup: true
+          on:
+            tags: false
+            all_branches: true
+            condition: $TRAVIS_BRANCH =~ ^(master)$
+        - provider: script
+          script: npm run release:tag
+          skip_cleanup: true
+          on:
+            tags: false
+            all_branches: true
+            condition: $TRAVIS_BRANCH =~ ^(next)$

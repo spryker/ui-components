@@ -42,6 +42,10 @@
         "libs/logo/dist/index.d.ts",
         "libs/logo/src/index.ts"
       ],
+      "@spryker-ui/input": [
+        "libs/input/dist/index.d.ts",
+        "libs/input/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

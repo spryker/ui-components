@@ -29,6 +29,9 @@
     "logo": {
       "tags": ["level:atom"]
     },
+    "input": {
+      "tags": ["level:atom"]
+    },
     "web-components": {
       "tags": ["type:util"]
     }

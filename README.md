@@ -71,7 +71,7 @@ nx run storybook:serve
 Build:
 
 ```bash
-nx run storybook:build
+nx run storybook:compile
 ```
 
 ## Component Levels
@@ -129,11 +129,6 @@ When library is generated please do the following:
   "rules": {}
   ```
 - In `libs/<lib-name>/ng-package.json`
-  - change `dest` path to point to local dist folder:
-  ```json
-  - "dest": "../../dist/libs/<lib-name>"
-  + "dest": "./dist"
-  ```
   - add `styleIncludePaths` to `lib` for theme imports:
   ```json
   "lib": {

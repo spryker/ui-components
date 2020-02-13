@@ -41,8 +41,8 @@
     "build:theme:default": "npm run compile:less -- libs/styles/src/lib/themes/default/standalone.less libs/styles/src/lib/themes/default/standalone.css",
     "clean": "run-s clean:*",
     "clean:dist": "rimraf dist",
-    "release": "lerna publish --yes",
-    "release:tag": "npm run release -- --dist-tag $TRAVIS_BRANCH --preid $TRAVIS_BRANCH",
+    "release": "lerna publish --yes --conventional-graduate",
+    "release:tag": "lerna publish --yes --dist-tag $TRAVIS_BRANCH --preid $TRAVIS_BRANCH",
     "postinstall_noop": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,

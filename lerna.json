@@ -5,7 +5,6 @@
   "command": {
     "publish": {
       "conventionalCommits": true,
-      "conventionalGraduate": true,
       "allowBranch": ["master", "next", "infra-publishing"],
       "contents": "dist",
       "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],

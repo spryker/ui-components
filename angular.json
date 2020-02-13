@@ -69,6 +69,74 @@
         }
       }
     },
+    "form-item": {
+      "projectType": "library",
+      "root": "libs/form-item",
+      "sourceRoot": "libs/form-item/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/button/tsconfig.lib.json",
+            "project": "libs/button/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/form-item/tsconfig.lib.json",
+              "libs/form-item/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/form-item/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/form-item/jest.config.js",
+            "tsConfig": "libs/form-item/tsconfig.spec.json",
+            "setupFile": "libs/form-item/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/form-item/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/form-item",
+            "config": {
+              "configFolder": "libs/form-item/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "less"
+        }
+      }
+    },
     "styles": {
       "projectType": "library",
       "root": "libs/styles",

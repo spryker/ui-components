@@ -1,0 +1,26 @@
+@import './form-item.component.theme.less';
+
+.ant-form-item {
+  &-label {
+    font-size: @form-item-label-font-size;
+    letter-spacing: 0.08px;
+    line-height: @form-item-label-line-height;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  // FIXME(ng-deep):
+  &::ng-deep {
+    .is-validating {
+      .ant-form-explain {
+        color: @geekblue-1;
+      }
+    }
+  }
+}
+
+.anticon-info-circle {
+  font-size: @font-size-lg;
+  line-height: 0.95;
+  vertical-align: middle;
+}

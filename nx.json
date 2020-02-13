@@ -17,14 +17,20 @@
     "styles": {
       "tags": ["type:style"]
     },
-    "button": {
-      "tags": ["type:component", "level:atom"]
-    },
     "utils": {
       "tags": ["type:util"]
     },
     "storybook": {
       "tags": ["type:meta"]
+    },
+    "web-components": {
+      "tags": ["type:util"]
+    },
+    "button": {
+      "tags": ["type:component", "level:atom"]
+    },
+    "logo": {
+      "tags": ["level:atom"]
     },
     "card": {
       "tags": ["level:atom"]
@@ -34,9 +40,6 @@
     },
     "input": {
       "tags": ["level:atom"]
-    },
-    "web-components": {
-      "tags": ["type:util"]
     }
   }
 }

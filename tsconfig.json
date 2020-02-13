@@ -38,6 +38,10 @@
         "dist/libs/utils/index.d.ts",
         "libs/utils/src/index.ts"
       ],
+      "@spryker-ui/logo": [
+        "libs/logo/dist/index.d.ts",
+        "libs/logo/src/index.ts"
+      ],
       "@spryker-ui/form-item": [
         "libs/form-item/dist/index.d.ts",
         "libs/form-item/src/index.ts"

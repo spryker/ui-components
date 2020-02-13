@@ -26,6 +26,9 @@
     "storybook": {
       "tags": ["type:meta"]
     },
+    "card": {
+      "tags": ["level:atom"]
+    },
     "form-item": {
       "tags": ["level:atom"]
     },

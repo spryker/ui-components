@@ -19,32 +19,40 @@
     "baseUrl": ".",
     "paths": {
       "@spryker-ui/core": [
-        "libs/core/dist/index.d.ts",
+        "dist/libs/core/index.d.ts",
         "libs/core/src/index.ts"
       ],
       "@spryker-ui/styles": [
-        "libs/styles/dist/index.d.ts",
+        "dist/libs/styles/index.d.ts",
         "libs/styles/src/index.ts"
       ],
       "@spryker-ui/web-components": [
-        "libs/web-components/dist/index.d.ts",
+        "dist/libs/web-components/index.d.ts",
         "libs/web-components/src/index.ts"
       ],
       "@spryker-ui/button": [
-        "libs/button/dist/index.d.ts",
+        "dist/libs/button/index.d.ts",
         "libs/button/src/index.ts"
       ],
       "@spryker-ui/utils": [
-        "libs/utils/dist/index.d.ts",
+        "dist/libs/utils/index.d.ts",
         "libs/utils/src/index.ts"
       ],
       "@spryker-ui/logo": [
         "libs/logo/dist/index.d.ts",
         "libs/logo/src/index.ts"
       ],
+      "@spryker-ui/form-item": [
+        "libs/form-item/dist/index.d.ts",
+        "libs/form-item/src/index.ts"
+      ],
       "@spryker-ui/input": [
         "libs/input/dist/index.d.ts",
         "libs/input/src/index.ts"
+      ],
+      "@spryker-ui/card": [
+        "libs/card/dist/index.d.ts",
+        "libs/card/src/index.ts"
       ]
     }
   },

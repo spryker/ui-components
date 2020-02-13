@@ -39,7 +39,7 @@
         "libs/utils/src/index.ts"
       ],
       "@spryker-ui/logo": [
-        "libs/logo/dist/index.d.ts",
+        "dist/libs/logo/index.d.ts",
         "libs/logo/src/index.ts"
       ],
       "@spryker-ui/form-item": [

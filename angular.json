@@ -286,10 +286,15 @@
       "root": "libs",
       "sourceRoot": "libs",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/architect:true",
+          "options": {
+            "tsConfig": ".storybook/global/tsconfig.json"
+          }
+        },
         "compile": {
           "builder": "@nrwl/storybook:build",
           "options": {
-            "tsConfig": ".storybook/global/tsconfig.json",
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/global",
             "config": {

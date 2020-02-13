@@ -36,6 +36,8 @@ nx build <my-lib>
 
 #### Test library
 
+_NOTE:_ Before running any tests - make sure to cleanup `dist` folder!
+
 ```bash
 nx test <my-lib>
 ```
@@ -47,6 +49,8 @@ nx lint <my-lib>
 ```
 
 #### Storybook
+
+_NOTE:_ Before running any storybooks - make sure to cleanup `dist` folder!
 
 Serve:
 
@@ -61,6 +65,8 @@ nx run <my-lib>:build-storybook
 ```
 
 #### Global Storybook
+
+_NOTE:_ Before running any storybooks - make sure to cleanup `dist` folder!
 
 Serve:
 

@@ -12,7 +12,6 @@ jobs:
     - stage: test
       script:
         - npm run format:check
-        - npm run init:deps 2>/dev/null # This is required to init NX deps graph
         - npm run lint
         - COVERAGE=true npm run test:ci
         - npm run build:all || npm run build:all # Double build to ensure dependent libs are built first

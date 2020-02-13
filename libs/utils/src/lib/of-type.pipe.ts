@@ -7,7 +7,7 @@ export class OfTypePipe implements PipeTransform {
     type: string,
     trueCallback: T,
     falseCallback?: F,
-  ): T | F {
+  ): T | F | undefined {
     if (typeof value === type) {
       return trueCallback;
     }

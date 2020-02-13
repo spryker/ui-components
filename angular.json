@@ -78,8 +78,8 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/button/tsconfig.lib.json",
-            "project": "libs/button/ng-package.json"
+            "tsConfig": "libs/form-item/tsconfig.lib.json",
+            "project": "libs/form-item/ng-package.json"
           }
         },
         "lint": {

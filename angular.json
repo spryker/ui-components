@@ -286,7 +286,7 @@
       "root": "libs",
       "sourceRoot": "libs",
       "architect": {
-        "build": {
+        "compile": {
           "builder": "@nrwl/storybook:build",
           "options": {
             "tsConfig": ".storybook/global/tsconfig.json",

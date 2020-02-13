@@ -29,6 +29,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
+    "init:deps": "nx print-affected",
     "run:all": "nx run-many --all --target",
     "staged": "run-s staged:*",
     "staged:global": "lint-staged",

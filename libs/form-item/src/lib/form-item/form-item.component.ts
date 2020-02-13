@@ -17,7 +17,7 @@ export class FormItemComponent implements OnInit, OnChanges {
   @Input() error: string | TemplateRef<void> = '';
   @Input() warning: string | TemplateRef<void> = '';
   @Input() hint: string | TemplateRef<void> = '';
-  currentValidationStatus: string = '';
+  currentValidationStatus = '';
 
   ngOnInit() {
     this.updateValidationStatus();

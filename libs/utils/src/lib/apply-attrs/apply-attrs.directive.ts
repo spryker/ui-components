@@ -33,9 +33,9 @@ export class ApplyAttrsDirective implements OnChanges {
     const prevAttrsArray = Object.entries(prevAttrs);
 
     prevAttrsArray.forEach(([key]) => {
-      const shouldUpdateAttr = this.applyAttrs && key in this.applyAttrs;
+      const shouldKeepAttr = this.applyAttrs && key in this.applyAttrs;
 
-      if (shouldUpdateAttr) {
+      if (shouldKeepAttr) {
         return;
       }
 

@@ -179,7 +179,7 @@ describe('InputComponent', () => {
       expect(inputElem.properties.nzSuffix).toBe(mockedSuffix);
     });
 
-    it('should bind suffix to nzSuffix of nz-input-group', () => {
+    it('should bind prefix to nzPrefix of nz-input-group', () => {
       const inputElem = fixture.debugElement.query(By.css('nz-input-group'));
       const mockedPrefix = 'prefix';
 

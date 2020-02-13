@@ -41,6 +41,10 @@
       "@spryker-ui/form-item": [
         "libs/form-item/dist/index.d.ts",
         "libs/form-item/src/index.ts"
+      ],
+      "@spryker-ui/input": [
+        "libs/input/dist/index.d.ts",
+        "libs/input/src/index.ts"
       ]
     }
   },

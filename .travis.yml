@@ -16,6 +16,7 @@ jobs:
       before_deploy:
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+        - git fetch pub $TRAVIS_BRANCH
         - git checkout $TRAVIS_BRANCH
       deploy:
         - provider: script

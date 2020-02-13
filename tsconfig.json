@@ -31,11 +31,11 @@
         "libs/web-components/src/index.ts"
       ],
       "@spryker-ui/button": [
-        "libs/button/dist/index.d.ts",
+        "dist/libs/button/index.d.ts",
         "libs/button/src/index.ts"
       ],
       "@spryker-ui/utils": [
-        "libs/utils/dist/index.d.ts",
+        "dist/libs/utils/index.d.ts",
         "libs/utils/src/index.ts"
       ],
       "@spryker-ui/form-item": [

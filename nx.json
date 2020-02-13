@@ -28,6 +28,9 @@
     },
     "form-item": {
       "tags": ["level:atom"]
+    },
+    "web-components": {
+      "tags": ["type:util"]
     }
   }
 }

@@ -43,15 +43,15 @@
         "libs/logo/src/index.ts"
       ],
       "@spryker-ui/form-item": [
-        "libs/form-item/dist/index.d.ts",
+        "dist/libs/form-item/index.d.ts",
         "libs/form-item/src/index.ts"
       ],
       "@spryker-ui/input": [
-        "libs/input/dist/index.d.ts",
+        "dist/libs/input/index.d.ts",
         "libs/input/src/index.ts"
       ],
       "@spryker-ui/card": [
-        "libs/card/dist/index.d.ts",
+        "dist/libs/card/index.d.ts",
         "libs/card/src/index.ts"
       ]
     }

@@ -28,6 +28,9 @@
     },
     "logo": {
       "tags": ["level:atom"]
+    },
+    "web-components": {
+      "tags": ["type:util"]
     }
   }
 }

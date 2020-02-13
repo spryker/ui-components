@@ -134,14 +134,27 @@ When library is generated please do the following:
   - "dest": "../../dist/libs/<lib-name>"
   + "dest": "./dist"
   ```
-  - add `styleIncludePaths` for theme imports:
+  - add `styleIncludePaths` to `lib` for theme imports:
   ```json
-  "styleIncludePaths": ["../styles/src/lib"]
+  "lib": {
+    ...
+    "styleIncludePaths": ["../styles/src/lib"]
+  }
   ```
 - In `libs/<lib-name>/tsconfig.lib.json`
   - add `"enableIvy": false` to `angularCompilerOptions`:
   ```json
   "enableIvy": false
+  ```
+- In `tsconfig.json`
+  - add to beginning of `paths[@spryker-ui/<lib-name>]` new path `libs/<lib-name>/dist/index.d.ts`:
+  ```json
+  "paths": {
+    "@spryker-ui/<lib-name>": [
+      + "libs/<lib-name>/dist/index.d.ts",
+      "libs/<lib-name>/src/index.ts"
+    ]
+  }
   ```
 
 ### Component

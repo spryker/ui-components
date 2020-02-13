@@ -29,6 +29,9 @@
     "card": {
       "tags": ["level:atom"]
     },
+    "form-item": {
+      "tags": ["level:atom"]
+    },
     "input": {
       "tags": ["level:atom"]
     },

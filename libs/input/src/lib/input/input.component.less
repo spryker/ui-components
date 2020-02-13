@@ -14,13 +14,14 @@
     color: @input-icon-color;
   }
 
-  &:hover .ant-input-disabled,
-  &:hover .ant-input:read-only {
-    border-color: @input-disabled-border;
-  }
-
-  &:hover .ant-input:focus {
-    border-color: @primary-color;
+  &:hover {
+    .ant-input-disabled,
+    .ant-input:read-only {
+      border-color: @input-disabled-border;
+    }
+    .ant-input:focus {
+      border-color: @primary-color;
+    }
   }
 }
 

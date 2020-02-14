@@ -1,5 +1,5 @@
 {
-  "name": "@spryker-ui/web-components",
+  "name": "@spryker/web-components",
   "version": "0.1.0",
   "publishConfig": {
     "access": "public"

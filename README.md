@@ -4,11 +4,11 @@
 
 ## Packages
 
-| Name                  | Package Name         |
-| --------------------- | -------------------- |
-| [core](libs/core)     | `@spryker-ui/core`   |
-| [styles](libs/styles) | `@spryker-ui/styles` |
-|                       |                      |
+| Name                  | Package Name      |
+| --------------------- | ----------------- |
+| [core](libs/core)     | `@spryker/core`   |
+| [styles](libs/styles) | `@spryker/styles` |
+|                       |                   |
 
 ## Component Development
 
@@ -148,10 +148,10 @@ When library is generated please do the following:
   "enableIvy": false
   ```
 - In `tsconfig.json`
-  - add to beginning of `paths[@spryker-ui/<lib-name>]` new path `libs/<lib-name>/dist/index.d.ts`:
+  - add to beginning of `paths[@spryker/<lib-name>]` new path `libs/<lib-name>/dist/index.d.ts`:
   ```json
   "paths": {
-    "@spryker-ui/<lib-name>": [
+    "@spryker/<lib-name>": [
       + "libs/<lib-name>/dist/index.d.ts",
       "libs/<lib-name>/src/index.ts"
     ]
@@ -279,7 +279,7 @@ Run `ng g @nrwl/angular:lib my-lib` to generate a library.
 
 > You can also use any of the plugins above to generate libraries as well.
 
-Libraries are sharable across libraries and applications. They can be imported from `@spryker-ui/mylib`.
+Libraries are sharable across libraries and applications. They can be imported from `@spryker/mylib`.
 
 ## Development server
 

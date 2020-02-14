@@ -1,5 +1,5 @@
 {
-  "name": "@spryker-ui/core",
+  "name": "@spryker/core",
   "version": "0.1.0",
   "publishConfig": {
     "access": "public"
@@ -7,8 +7,8 @@
   "peerDependencies": {
     "@angular/common": "^9.0.0-rc.11",
     "@angular/core": "^9.0.0-rc.11",
-    "@spryker-ui/styles": "^0.0.1",
-    "@spryker-ui/web-components": "^0.0.1",
+    "@spryker/styles": "^0.0.1",
+    "@spryker/web-components": "^0.0.1",
     "ng-zorro-antd": "^9.0.0-beta.0"
   }
 }

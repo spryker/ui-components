@@ -18,15 +18,12 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@spryker-ui/core": [
-        "dist/libs/core/index.d.ts",
-        "libs/core/src/index.ts"
-      ],
-      "@spryker-ui/styles": [
+      "@spryker/core": ["dist/libs/core/index.d.ts", "libs/core/src/index.ts"],
+      "@spryker/styles": [
         "dist/libs/styles/index.d.ts",
         "libs/styles/src/index.ts"
       ],
-      "@spryker-ui/web-components": [
+      "@spryker/web-components": [
         "dist/libs/web-components/index.d.ts",
         "libs/web-components/src/index.ts"
       ]

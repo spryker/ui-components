@@ -1,6 +1,9 @@
 {
   "name": "@spryker-ui/styles",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.0-rc.11",
     "@angular/core": "^9.0.0-rc.11",

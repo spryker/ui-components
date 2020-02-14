@@ -157,6 +157,13 @@ When library is generated please do the following:
     ]
   }
   ```
+- In `libs/<lib-name>/package.json`
+  - add `publishConfig` prop with `access=public` value:
+  ```json
+  "publishConfig": {
+    "access": "public"
+  },
+  ```
 
 ### Component
 

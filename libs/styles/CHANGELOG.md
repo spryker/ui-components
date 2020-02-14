@@ -3,26 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.1.0-next.0](https://github.com/spryker/zed-gui/compare/@spryker/styles@0.0.3...@spryker/styles@0.1.0-next.0) (2020-02-14)
-
-
-### Bug Fixes
-
-* **build:** adjust destination folders for libs ([3501a1e](https://github.com/spryker/zed-gui/commit/3501a1e5eacd1086f28a9c16ee26babeb091da62))
-* **styles:** recompile themes ([6c3a647](https://github.com/spryker/zed-gui/commit/6c3a6470c13f0f6742c62d7a69085f20efea0b1d))
-* **styles:** recompile themes ([22b2790](https://github.com/spryker/zed-gui/commit/22b279027d6011fe6d66d77e7b34a1aa48a978d9))
-
-
-### Features
-
-* **button:** add button implementation ([7a325cb](https://github.com/spryker/zed-gui/commit/7a325cb87a8fcc898a42954299eb24aea2c4a779))
-* **form-item:** form item component ([58cf10c](https://github.com/spryker/zed-gui/commit/58cf10c48961d8f52711eeafe8a1815b40f39995))
-* **input:** add style button ([c4ca0c0](https://github.com/spryker/zed-gui/commit/c4ca0c068b480946a5a447fcf1234a07cc84979a))
-
-
-
-
-
 ## [0.0.3](https://github.com/spryker/zed-gui/compare/@spryker/styles@0.0.2...@spryker/styles@0.0.3) (2020-02-14)
 
 **Note:** Version bump only for package @spryker/styles

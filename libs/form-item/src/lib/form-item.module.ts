@@ -6,7 +6,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-import { OfTypePipeModule } from '@spryker-ui/utils';
+import { OfTypePipeModule } from '@spryker/utils';
 import { FormItemComponent } from './form-item/form-item.component';
 
 @NgModule({

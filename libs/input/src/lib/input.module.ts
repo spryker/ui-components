@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { InputComponent } from './input/input.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { ApplyAttrsModule } from '@spryker-ui/utils';
+import { ApplyAttrsModule } from '@spryker/utils';
 
 @NgModule({
   imports: [NzInputModule, ApplyAttrsModule],

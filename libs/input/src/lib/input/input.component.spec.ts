@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { InputComponent } from './input.component';
-import { ApplyAttrsDirective } from '@spryker-ui/utils';
+import { ApplyAttrsDirective } from '@spryker/utils';
 
 describe('InputComponent', () => {
   @Component({

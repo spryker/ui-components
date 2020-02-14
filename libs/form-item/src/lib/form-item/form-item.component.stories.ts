@@ -1,7 +1,7 @@
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormItemComponent } from './form-item.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { FormItemModule } from '@spryker-ui/form-item';
+import { FormItemModule } from '@spryker/form-item';
 
 export default {
   title: 'FormItemComponent',

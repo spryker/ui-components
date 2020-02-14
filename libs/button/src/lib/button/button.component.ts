@@ -5,7 +5,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { propsTransformation } from '@spryker-ui/utils';
+import { propsTransformation } from '@spryker/utils';
 
 export interface Props {
   type: 'button' | 'submit';

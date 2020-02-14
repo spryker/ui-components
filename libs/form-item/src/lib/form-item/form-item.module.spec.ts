@@ -2,7 +2,7 @@ import { NO_ERRORS_SCHEMA, SimpleChange, SimpleChanges } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { OfTypePipeModule } from '@spryker-ui/utils';
+import { OfTypePipeModule } from '@spryker/utils';
 import { FormItemComponent } from './form-item.component';
 
 describe('FormItemModule', () => {

@@ -1,12 +1,12 @@
 const promisify = require('util').promisify;
 const copyfiles = require('copyfiles');
 const glob = require('fast-glob');
+const copyfilesAsync = promisify(copyfiles);
 
 const VERBOSE = !!process.env.VERBOSE;
 
 const log = console.log;
 const info = VERBOSE ? console.info : () => {};
-const copyfilesAsync = promisify(copyfiles);
 
 /**
  * Copy many files (globs) into destination (glob)
@@ -74,7 +74,7 @@ class InvalidArgsError extends MultiCopyError {
     return 2;
   }
 
-  constructor(args) {
+  constructor(...args) {
     super(`Invalid arguments: ${args.join(', ')}`, InvalidArgsError.code);
   }
 }

@@ -1,16 +1,10 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  TemplateRef,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewEncapsulation, } from '@angular/core';
 
 @Component({
   selector: 'spy-form-item',
   templateUrl: './form-item.component.html',
   styleUrls: ['./form-item.component.less'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FormItemComponent implements OnInit, OnChanges {
   @Input() for: string | undefined;

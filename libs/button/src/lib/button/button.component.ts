@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Input,
   OnChanges,
-  SimpleChanges,
+  SimpleChanges, ViewEncapsulation,
 } from '@angular/core';
 import { propsTransformation } from '@spryker-ui/utils';
 
@@ -34,6 +34,7 @@ const propsTemplate = {
   selector: 'spy-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.less'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent implements OnChanges {

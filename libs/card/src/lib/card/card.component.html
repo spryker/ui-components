@@ -1,8 +1,12 @@
 <nz-card
-  [nzTitle]="title"
+  [nzTitle]="titleTemplate"
   [nzExtra]="extra"
   [nzActions]="actions"
   [nzBordered]="false"
 >
   <ng-content></ng-content>
 </nz-card>
+
+<ng-template #titleTemplate>
+  <div class="text-{{ titlePosition }}">{{ title }}</div>
+</ng-template>

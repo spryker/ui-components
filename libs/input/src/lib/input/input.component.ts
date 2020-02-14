@@ -4,7 +4,8 @@ import {
   Input,
   TemplateRef,
   Output,
-  EventEmitter, ViewEncapsulation,
+  EventEmitter,
+  ViewEncapsulation,
 } from '@angular/core';
 
 @Component({

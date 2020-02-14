@@ -1,4 +1,12 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewEncapsulation, } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  TemplateRef,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'spy-form-item',

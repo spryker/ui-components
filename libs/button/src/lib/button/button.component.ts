@@ -3,7 +3,8 @@ import {
   ChangeDetectionStrategy,
   Input,
   OnChanges,
-  SimpleChanges, ViewEncapsulation,
+  SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 import { propsTransformation } from '@spryker-ui/utils';
 

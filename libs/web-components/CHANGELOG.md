@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2-next.0](https://github.com/spryker/zed-gui/compare/@spryker/web-components@0.1.1...@spryker/web-components@0.1.2-next.0) (2020-02-14)
+
+
+### Reverts
+
+* chore(release): publish ([187313f](https://github.com/spryker/zed-gui/commit/187313f70876d8cdf796b300635df5c9af30e842))
+
+
+
+
+
 ## [0.1.1](https://github.com/spryker/zed-gui/compare/@spryker/web-components@0.1.0...@spryker/web-components@0.1.1) (2020-02-14)
 
 **Note:** Version bump only for package @spryker/web-components

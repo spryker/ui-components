@@ -1,5 +1,5 @@
 {
-  "npmScope": "spryker-ui",
+  "npmScope": "spryker",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": {

@@ -142,11 +142,6 @@ When library is generated please do the following:
     "styleIncludePaths": ["../styles/src/lib"]
   }
   ```
-- In `libs/<lib-name>/tsconfig.lib.json`
-  - add `"enableIvy": false` to `angularCompilerOptions`:
-  ```json
-  "enableIvy": false
-  ```
 - In `tsconfig.json`
   - add to beginning of `paths[@spryker/<lib-name>]` new path `libs/<lib-name>/dist/index.d.ts`:
   ```json
@@ -163,6 +158,11 @@ When library is generated please do the following:
   "publishConfig": {
     "access": "public"
   },
+  ```
+- In `lib/<lib-name>/src/test-setup.ts`
+  - add global setup import:
+  ```ts
+  import '../../../config/test-setup';
   ```
 
 ### Component

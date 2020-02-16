@@ -79,6 +79,7 @@
     "@nrwl/jest": "^9.0.0",
     "@nrwl/storybook": "^9.0.0",
     "@nrwl/workspace": "^9.0.0",
+    "@orchestrator/ngx-testing": "^3.0.0",
     "@storybook/addon-knobs": "^6.0.0-alpha.11",
     "@storybook/angular": "^6.0.0-alpha.11",
     "@types/jasminewd2": "^2.0.8",

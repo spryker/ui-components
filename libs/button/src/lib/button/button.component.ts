@@ -14,7 +14,6 @@ export interface Props {
   size: 'lg' | 'md' | 'sm';
   variant: 'primary' | 'secondary' | 'critical';
   disabled: boolean;
-  block: boolean;
 }
 
 const propsTemplate = {
@@ -45,7 +44,6 @@ export class ButtonComponent implements OnChanges {
   @Input() size: Props['size'] = 'md';
   @Input() disabled: Props['disabled'] = false;
   @Input() variant: Props['variant'] = 'primary';
-  @Input() block: Props['block'] = false;
 
   sizeInner = this.sizeTransformation();
   variantInner = this.variantTransformation();

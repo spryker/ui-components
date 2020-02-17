@@ -5,12 +5,14 @@ import {
   TemplateRef,
   Output,
   EventEmitter,
+  ViewEncapsulation,
 } from '@angular/core';
 
 @Component({
   selector: 'spy-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.less'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent {

@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.2-next.2](https://github.com/spryker/zed-gui/compare/@spryker/web-components@0.1.2-next.1...@spryker/web-components@0.1.2-next.2) (2020-02-17)
-
-
-### Bug Fixes
-
-* **web-components:** disable support for lazy components ([2a78dc6](https://github.com/spryker/zed-gui/commit/2a78dc66a4936cd729a58bc803833b3092fa627a))
-
-
-### Reverts
-
-* Revert "chore(release): publish [skip ci]" ([10b7d67](https://github.com/spryker/zed-gui/commit/10b7d67de5b016f9770e0940d28b0aa2b9d6944d))
-
-
-
-
-
 ## [0.1.2-next.1](https://github.com/spryker/zed-gui/compare/@spryker/web-components@0.1.2-next.0...@spryker/web-components@0.1.2-next.1) (2020-02-16)
 
 **Note:** Version bump only for package @spryker/web-components

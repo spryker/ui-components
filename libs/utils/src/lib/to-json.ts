@@ -1,5 +1,5 @@
-export function ToJson() {
-  return function(target: any, key: string) {
+export const ToJson = () => (
+  (target: any, key: string) => {
     const newKey = '__json-value';
 
     const getter = function(this: any) {
@@ -14,7 +14,7 @@ export function ToJson() {
       get: getter,
       set: setter,
       enumerable: true,
-      configurable: false,
+      configurable: true,
     });
-  };
-}
+  }
+);

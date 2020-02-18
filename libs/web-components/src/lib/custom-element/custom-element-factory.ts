@@ -14,11 +14,15 @@ export function createCustomElementFor<T extends WebComponentType>(
   componentDeclaration: WebComponentDeclaration<T>,
   injector: Injector,
 ): NgElementConstructor<T> {
-  if (isDeclarationLazy(componentDeclaration)) {
-    return createCustomElementForLazy(componentDeclaration, injector);
-  } else {
-    return createCustomElementForStatic(componentDeclaration, injector);
-  }
+  // TODO: Fix detection of lazy components
+  // if (isDeclarationLazy(componentDeclaration)) {
+  //   return createCustomElementForLazy(componentDeclaration, injector);
+  // } else {
+  return createCustomElementForStatic(
+    componentDeclaration as WebComponentDeclarationStatic<T>,
+    injector,
+  );
+  // }
 }
 
 export function createCustomElementForStatic<T extends WebComponentType>(

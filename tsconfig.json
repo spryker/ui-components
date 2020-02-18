@@ -44,7 +44,8 @@
         "dist/libs/input/index.d.ts",
         "libs/input/src/index.ts"
       ],
-      "@spryker/card": ["dist/libs/card/index.d.ts", "libs/card/src/index.ts"]
+      "@spryker/card": ["dist/libs/card/index.d.ts", "libs/card/src/index.ts"],
+      "@spryker/icon": ["dist/libs/icon/index.d.ts", "libs/icon/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

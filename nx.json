@@ -40,6 +40,9 @@
     },
     "input": {
       "tags": ["level:atom"]
+    },
+    "icon": {
+      "tags": ["level:atom", "type:component"]
     }
   }
 }

@@ -12,7 +12,7 @@ describe('LayoutComponent', () => {
   @Component({
     template: `
       <spy-layout>
-        <div class="test-content">Header Content</div>
+        <div class="test-content">Layout Content</div>
       </spy-layout>
     `,
   })

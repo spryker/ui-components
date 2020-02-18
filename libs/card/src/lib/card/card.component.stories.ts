@@ -1,7 +1,7 @@
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { CardComponent } from './card.component';
 import { CardModule } from '../card.module';
-import { ButtonModule } from '@spryker-ui/button';
+import { ButtonModule } from '@spryker/button';
 
 export default {
   title: 'CardComponent',

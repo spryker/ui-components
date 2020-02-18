@@ -7,6 +7,7 @@ import {
   EventEmitter,
   ViewEncapsulation,
 } from '@angular/core';
+import { ToJson } from '@spryker/utils';
 
 @Component({
   selector: 'spy-input',
@@ -24,6 +25,6 @@ export class InputComponent {
   @Input() placeholder = '';
   @Input() readOnly = false;
   @Input() disabled = false;
-  @Input() attrs: Record<string, string> = {};
+  @Input() @ToJson() attrs: Record<string, string> = {};
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 }

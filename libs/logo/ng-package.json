@@ -2,8 +2,8 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/libs/logo",
   "lib": {
+    "cssUrl": "inline",
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../styles/src/lib"]
-  },
-  "assets": ["./src/lib/logo/images/*"]
+  }
 }

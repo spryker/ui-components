@@ -46,7 +46,7 @@
       ],
       "@spryker/card": ["dist/libs/card/index.d.ts", "libs/card/src/index.ts"],
       "@spryker/header": [
-        "libs/header/dist/index.d.ts",
+        "dist/libs/header/index.d.ts",
         "libs/header/src/index.ts"
       ]
     }

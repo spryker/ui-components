@@ -1,3 +1,4 @@
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { IconComponent } from './icon.component';
 
 export default {
@@ -6,7 +7,7 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [],
+    imports: [NzIconModule],
   },
   component: IconComponent,
   props: {},

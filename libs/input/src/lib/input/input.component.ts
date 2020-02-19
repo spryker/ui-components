@@ -5,12 +5,15 @@ import {
   TemplateRef,
   Output,
   EventEmitter,
+  ViewEncapsulation,
 } from '@angular/core';
+import { ToJson } from '@spryker/utils';
 
 @Component({
   selector: 'spy-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.less'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent {
@@ -22,6 +25,6 @@ export class InputComponent {
   @Input() placeholder = '';
   @Input() readOnly = false;
   @Input() disabled = false;
-  @Input() attrs: Record<string, string> = {};
+  @Input() @ToJson() attrs: Record<string, string> = {};
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 }

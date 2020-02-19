@@ -28,10 +28,8 @@ jobs:
             tags: false
             all_branches: true
             condition: '$TRAVIS_BRANCH =~ ^(master)$'
-        - provider: firebase
-          token:
-            secure: $FIREBASE_TOKEN
-          project: 'spy-storybook'
+        - provider: script
+            script: npx firebase deploy --only hosting:storybook --token $FIREBASE_TOKEN
           on:
             tags: false
             all_branches: true
@@ -44,15 +42,9 @@ jobs:
             tags: false
             all_branches: true
             condition: '$TRAVIS_BRANCH =~ ^(next)$'
-        - provider: firebase
-          token:
-            secure: $FIREBASE_TOKEN
-          project: 'spy-storybook-next'
+        - provider: script
+            script: npx firebase deploy --only hosting:storybook-next --token $FIREBASE_TOKEN
           on:
             tags: false
             all_branches: true
             condition: '$TRAVIS_BRANCH =~ ^(next)$'
-env:
-  global:
-    - secure: ip2m6QyCbcZt5wKymOrg7Y5xEy35plDtbF/ALrTmAg4cZeLoQpX44zb2ggEvsXUEUCosozAnwcg/nSuMTPs62ecSMkBxNXRQ+2HHhcgRFPO8k/tCzARFU57HtVM0k0Gc4JOcs0/QoBBmjLl/mXFDJkU/QFmgR+iR4gc3xmXCTyeiPzMdUsBBDZGN3GEY53C0N3yXgGywEhhxl4OI6510f9fYA1Z8xVWPByHsYjADUii2ea9DiIgNNL2/A237oIaWLW7K/PAIIVcpa5BUkJK3AH6IzSdQtCxKVcXNe86rk3z8snjmrhJtedjMHbbHgAqIBISiAaJ1/GcdfUJLY6BpAx35GEU7uzYstyDMKhArYxqZ7PzdHGKQ7ejdp8ix/i6vQ7flaIxU8tQbtjEQn4o3SviuceCwVkfBgDR9r3Zcsc9rbz6YAC73z+DfW7hjaZnmpVe7Os9/JsThjkVijnmmHwt+YYqIRH+6oXjhF3EyFYZYru1a8O9Hm6rTM8/fWkGI0y6G/Z9iX8wgu3+U/ct8aWuvnQI7HL2HhmU627xovt/iCBETlKXc9Af/auVaK+ocIbKHyO+xM7B35ZARtA2TC5u84pGhH22M54lZtT3NzmLOoPVkM2Z47vX2OucD1slQt57d+EXoh+fmxevWuw0nWMn7iCaulpIReFx5gugLWxQ=
-    - secure: jly822r9g0v0+4ieMCUYDagXQYUmB8KbXedF4LjVMZ0m5of42mKZPbL0AlawIIZXUU/5iY4hBmCcLP2jpEyNJZ+1a2bOxBdN40piGc774kNXbXr7kqmOFGJfD4fFQCHfZLA0nZOx9g0jrMVd33VortZvu2Hx7zHjATCfe7lPQWDkpjFc8AGhWJ04d6zbr2xx8znmR902K07lSFrpf/iVScdGG8V1b63BE5mskv3pGA94z1NPa4E4hXZaZcAqH3GmSL3itVmgEi036v/JDdmmtThp0xBKQxzeCchw0CJ4tB/2EexPnWTkkmI1zU0jFq8E4sEUj2oXwDieb/ElWSvk7yrITIbW+/t0awntUAYZACiK2JMeFenVWWrUqWA82T3Xp8HMZzCDfRcZdLNoP9aXzCY+jidU5MANjUI3FTdBySRx6rAIkrJmBHvVFMoj83CMzSY2Yc3/o/XaEBHNkGsqGFP3kX8T6+9JMYT4bmX0qPHJHZDBPMkfogSTTYUfKX9ZnpSO8aw70wyR+cLtAs5SvGncNgEJrAUatiYzvKP+wkKMMSj0jSTpCGw4BJJQFLmZZw2Er6SUGKxSYAEesO8/VS0z3fauxUzg0/S3JJ7id8QR28XBlh2+T0UrUYRE/AtynRJALcvespwylndbm6MYluN175iohZHZuC5BH2i7RQs=

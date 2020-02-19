@@ -14,7 +14,7 @@ jobs:
         - COVERAGE=true npm run test:ci
         - npm run build
       before_deploy:
-        - npx ng run storybook:compile
+        - npm run clean:dist && npx ng run storybook:compile
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
         - git fetch pub $TRAVIS_BRANCH

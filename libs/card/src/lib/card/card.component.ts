@@ -11,7 +11,6 @@ import {
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class CardComponent {
   @Input() title: string | TemplateRef<void> = '';

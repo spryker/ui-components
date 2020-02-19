@@ -3,8 +3,6 @@ import {
   ChangeDetectionStrategy,
   Input,
   ViewEncapsulation,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 
 @Component({

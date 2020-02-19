@@ -48,6 +48,10 @@
       "@spryker/layout": [
         "dist/libs/layout/index.d.ts",
         "libs/layout/src/index.ts"
+      ],
+      "@spryker/header": [
+        "dist/libs/header/index.d.ts",
+        "libs/header/src/index.ts"
       ]
     }
   },

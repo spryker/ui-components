@@ -28,14 +28,6 @@ describe('ButtonComponent', () => {
     expect(buttonElem!.attributes['nz-button']).toBeDefined();
   });
 
-  it('should render <slot> inside <button>', async () => {
-    const host = await createComponent();
-
-    host.detectChanges();
-
-    expect(host.queryCss('slot')).toBeTruthy();
-  });
-
   it('should render projected content inside <button>', async () => {
     const host = await createComponent();
     const buttonElem = host.queryCss('button')!;

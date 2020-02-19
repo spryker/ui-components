@@ -41,6 +41,9 @@
     "input": {
       "tags": ["level:atom"]
     },
+    "layout": {
+      "tags": ["level:atom", "type:component"]
+    },
     "header": {
       "tags": ["level:organism", "type:component"]
     }

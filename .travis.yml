@@ -13,7 +13,7 @@ jobs:
         - npm run lint
         - COVERAGE=true npm run test:ci
         - npm run build
-        # before_deploy scripts
+      before_deploy:
         - npx ng run storybook:compile
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
@@ -29,21 +29,9 @@ jobs:
             all_branches: true
             condition: '$TRAVIS_BRANCH =~ ^(master)$'
         - provider: script
-            script: npx firebase deploy --only hosting:storybook --token $FIREBASE_TOKEN
-          on:
-            tags: false
-            all_branches: true
-            condition: '$TRAVIS_BRANCH =~ ^(master)$'
-        - provider: script
           script: npm run release:tag
           skip_cleanup: true
           keep_history: true
-          on:
-            tags: false
-            all_branches: true
-            condition: '$TRAVIS_BRANCH =~ ^(next)$'
-        - provider: script
-            script: npx firebase deploy --only hosting:storybook-next --token $FIREBASE_TOKEN
           on:
             tags: false
             all_branches: true

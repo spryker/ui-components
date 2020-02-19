@@ -721,6 +721,49 @@
           "styleext": "less"
         }
       }
+    },
+    "navigation": {
+      "projectType": "library",
+      "root": "libs/navigation",
+      "sourceRoot": "libs/navigation/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/navigation/tsconfig.lib.json",
+            "project": "libs/navigation/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/navigation/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/navigation/tsconfig.lib.json",
+              "libs/navigation/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/navigation/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/navigation/jest.config.js",
+            "tsConfig": "libs/navigation/tsconfig.spec.json",
+            "setupFile": "libs/navigation/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "less"
+        }
+      }
     }
   },
   "cli": {

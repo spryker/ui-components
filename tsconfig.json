@@ -52,6 +52,10 @@
       "@spryker/header": [
         "dist/libs/header/index.d.ts",
         "libs/header/src/index.ts"
+      ],
+      "@spryker/navigation": [
+        "dist/libs/navigation/index.d.ts",
+        "libs/navigation/src/index.ts"
       ]
     }
   },

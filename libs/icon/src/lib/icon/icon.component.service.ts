@@ -48,7 +48,7 @@ export class IconService implements AddIcon {
       return svg;
     }
 
-    this.resolvedIcons[name] = new Promise(resolve => resolve(svg()));
+    this.resolvedIcons[name] = svg();
     return await this.resolvedIcons[name];
   }
 
@@ -62,7 +62,7 @@ export class IconService implements AddIcon {
 
   resolveIcon(name: string): Promise<string> {
     if (this.resolvedIcons[name]) {
-      return this.resolvedIcons[name];
+      return this.resolvedIcons[name].then(() => name);
     }
 
     return new Promise(resolve => resolve(name));

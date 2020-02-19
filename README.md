@@ -1,4 +1,4 @@
-# SprykerUi
+# Spryker
 
 > UI Components powered by Angular and Ant Design
 

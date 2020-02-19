@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2-next.2](https://github.com/spryker/zed-gui/compare/@spryker/core@0.1.2-next.1...@spryker/core@0.1.2-next.2) (2020-02-19)
+
+
+### Bug Fixes
+
+* **libs:** whitelist Ant design dependency ([bf106d6](https://github.com/spryker/zed-gui/commit/bf106d61cdeedd5273f041c9b4742f05a6d84585))
+
+
+
+
+
 ## [0.1.2-next.1](https://github.com/spryker/zed-gui/compare/@spryker/core@0.1.2-next.0...@spryker/core@0.1.2-next.1) (2020-02-16)
 
 **Note:** Version bump only for package @spryker/core

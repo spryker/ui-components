@@ -1,0 +1,13 @@
+<nz-sider
+  [nzWidth]="250"
+  [nzCollapsedWidth]="62"
+  [nzCollapsible]="trigger !== null"
+  [nzCollapsed]="collapsed"
+  [nzTrigger]="trigger"
+  [nzReverseArrow]="true"
+  (nzCollapsedChange)="toggle()"
+  nzTheme="light"
+>
+  <slot></slot>
+  <ng-content></ng-content>
+</nz-sider>

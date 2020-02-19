@@ -52,6 +52,10 @@
       "@spryker/header": [
         "dist/libs/header/index.d.ts",
         "libs/header/src/index.ts"
+      ],
+      "@spryker/sidebar": [
+        "dist/libs/sidebar/index.d.ts",
+        "libs/sidebar/src/index.ts"
       ]
     }
   },

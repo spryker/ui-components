@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "spy-ui"
+  },
+  "targets": {
+    "spy-ui": {
+      "hosting": {
+        "storybook": [
+          "spy-storybook"
+        ],
+        "storybook-next": [
+          "spy-storybook-next"
+        ]
+      }
+    }
+  }
+}

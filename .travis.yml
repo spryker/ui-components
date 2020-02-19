@@ -14,6 +14,7 @@ jobs:
         - COVERAGE=true npm run test:ci
         - npm run build
       before_deploy:
+        - npx ng run storybook:compile
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
         - git fetch pub $TRAVIS_BRANCH
@@ -26,7 +27,7 @@ jobs:
           on:
             tags: false
             all_branches: true
-            condition: $TRAVIS_BRANCH =~ ^(master)$
+            condition: '$TRAVIS_BRANCH =~ ^(master)$'
         - provider: script
           script: npm run release:tag
           skip_cleanup: true
@@ -34,4 +35,4 @@ jobs:
           on:
             tags: false
             all_branches: true
-            condition: $TRAVIS_BRANCH =~ ^(next)$
+            condition: '$TRAVIS_BRANCH =~ ^(next)$'

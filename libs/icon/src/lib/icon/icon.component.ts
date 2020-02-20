@@ -22,8 +22,6 @@ export class IconComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.iconsService._init();
-
-    this.isIconResolved = this.iconsService.resolveIcon(this.name);
   }
 
   ngOnChanges(): void {

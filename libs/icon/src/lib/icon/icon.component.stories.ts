@@ -1,7 +1,6 @@
 import { ICONS_TOKEN } from './icon.component.service';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { IconComponent } from './icon.component';
-import { HttpClientModule } from '@angular/common/http';
 
 export default {
   title: 'IconComponent',
@@ -11,13 +10,13 @@ const svgIcon = `<svg viewBox="0 0 576 512"><path fill="currentColor" d="M280.37
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [NzIconModule, HttpClientModule],
+    imports: [NzIconModule],
     providers: [
       {
         provide: ICONS_TOKEN,
         useValue: {
           name: 'home',
-          svg: () => {
+          svg: function() {
             return new Promise(resolve => {
               resolve(svgIcon);
             });

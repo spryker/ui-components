@@ -1,34 +1,40 @@
-<ul nz-menu nzMode="inline">
-	<ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: items }"></ng-container>
+<ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed()">
+  <ng-container
+    *ngTemplateOutlet="menuTpl; context: { $implicit: items }"
+  ></ng-container>
 
-	<ng-template #menuTpl let-items>
-		<ng-container *ngFor="let item of items">
-			<li
-				*ngIf="!item.subItems.length"
-				nz-menu-item
-				[nzPaddingLeft]="0"
-				[nzSelected]="item.isActive"
-			>
-				<a [href]="item.url">
-					<ng-container *ngTemplateOutlet="titleTpl"></ng-container>
-				</a>
-			</li>
+  <ng-template #menuTpl let-items>
+    <ng-container *ngFor="let item of items">
+      <li
+        *ngIf="!item.subItems.length"
+        nz-menu-item
+        [nzPaddingLeft]="0"
+        [nzSelected]="item.isActive"
+      >
+        <a [href]="item.url">
+          <ng-container *ngTemplateOutlet="titleTpl"></ng-container>
+        </a>
+      </li>
 
-			<li
-				*ngIf="item.subItems.length"
-				nz-submenu
-				[nzOpen]="item.isActive"
-				[nzTitle]="titleTpl"
-				[nzPaddingLeft]="0"
-				[nzDisabled]="item.disabled"
-			>
-				<ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: item.subItems }"></ng-container>
-			</li>
+      <li
+        *ngIf="item.subItems.length"
+        nz-submenu
+        [nzOpen]="item.isActive"
+        [nzTitle]="titleTpl"
+        [nzPaddingLeft]="0"
+        [nzDisabled]="item.disabled"
+      >
+        <ul>
+          <ng-container
+            *ngTemplateOutlet="menuTpl; context: { $implicit: item.subItems }"
+          ></ng-container>
+        </ul>
+      </li>
 
-			<ng-template #titleTpl>
-				<spy-icon *ngIf="item.icon" [name]="item.icon"></spy-icon>
-				<span>{{ item.title }}</span>
-			</ng-template>
-		</ng-container>
-	</ng-template>
+      <ng-template #titleTpl>
+        <spy-icon *ngIf="item.icon" [name]="item.icon"></spy-icon>
+        <span class="menu-title-text">{{ item.title }}</span>
+      </ng-template>
+    </ng-container>
+  </ng-template>
 </ul>

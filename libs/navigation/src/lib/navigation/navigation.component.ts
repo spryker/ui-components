@@ -3,9 +3,8 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 export interface NavigationComponent {
@@ -28,23 +27,64 @@ interface NavigationItem {
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
-export class NavigationComponent implements OnInit, NavigationComponent {
-  @Input() collapsed: boolean = false;
+export class NavigationComponent implements NavigationComponent {
+  @Input() collapsed = false;
   @Input() items: NavigationItem[] = [
-    {title: 'Dashboard', url: '', icon: 'dashboard', isActive: false, subItems: [
-        {title: 'Dashboard2', url: '', icon: '', isActive: false, subItems: []}
-      ]},
-    {title: 'Orders', url: '', icon: 'orders', isActive: false, subItems: []},
-    {title: 'Offers', url: '', icon: 'offers', isActive: true, subItems: []},
-    {title: 'Merchant', url: '', icon: 'merchant', isActive: false, subItems: []}
+    {
+      title: 'Dashboard Dashboard Dashboard Dashboard Dashboard',
+      url: '',
+      icon: 'dashboard',
+      isActive: false,
+      subItems: [],
+    },
+    {
+      title: 'Orders Orders Orders Orders Orders Orders Orders',
+      url: '',
+      icon: 'orders',
+      isActive: false,
+      subItems: [
+        {
+          title: 'Dashboard2',
+          url: '',
+          icon: '',
+          isActive: false,
+          subItems: [],
+        },
+        {
+          title: 'Dashboard2',
+          url: '',
+          icon: '',
+          isActive: false,
+          subItems: [],
+        },
+        {
+          title: 'Dashboard2',
+          url: '',
+          icon: '',
+          isActive: false,
+          subItems: [],
+        },
+        {
+          title: 'Dashboard2',
+          url: '',
+          icon: '',
+          isActive: false,
+          subItems: [],
+        },
+      ],
+    },
+    { title: 'Offers', url: '', icon: 'offers', isActive: true, subItems: [] },
+    {
+      title: 'Merchant',
+      url: '',
+      icon: 'merchant',
+      isActive: false,
+      subItems: [],
+    },
   ];
   @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   collapse(): void {
     this.collapsed = true;

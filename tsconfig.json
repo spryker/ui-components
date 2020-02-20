@@ -52,7 +52,8 @@
       "@spryker/header": [
         "dist/libs/header/index.d.ts",
         "libs/header/src/index.ts"
-      ]
+      ],
+      "@spryker/icon": ["dist/libs/icon/index.d.ts", "libs/icon/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

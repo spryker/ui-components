@@ -1,4 +1,4 @@
-# SprykerUi
+# Spryker
 
 > UI Components powered by Angular and Ant Design
 
@@ -226,7 +226,23 @@ npm run format:check
 
 ## Release process
 
-TBD
+Releasing and versioning is done fully automatic using [`lerna`](https://github.com/lerna/lerna).
+
+This is the reason why commits according to conventional changelog is crucial.
+
+All releases are done by merging/pushing to release branches via Travis CI.
+
+During the release:
+
+- git tags are created
+- package versions updated
+- package changelogs updated
+- packages published to NPM registry
+
+These are the release branches (`git branch` => `@npm tag`):
+
+- `master` => `@latest`
+- `next` => `@next`
 
 ---
 

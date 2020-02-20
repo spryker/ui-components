@@ -1,11 +1,27 @@
-<ul nz-menu>
-	<li nz-menu-item>Menu 1</li>
-	<li nz-menu-item>Menu 2</li>
-	<li nz-submenu nzTitle="SubMenu Title">
-		<ul>
-			<li nz-menu-item>SubMenu Item 1</li>
-			<li nz-menu-item>SubMenu Item 2</li>
-			<li nz-menu-item>SubMenu Item 3</li>
-		</ul>
-	</li>
+<ul nz-menu nzMode="inline">
+	<ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: items }"></ng-container>
+	<ng-template #menuTpl let-items>
+		<ng-container *ngFor="let item of items">
+			<li
+				*ngIf="!item.subItems.length"
+				nz-menu-item
+				[nzSelected]="item.isActive"
+			>
+				<spy-icon [name]="item.icon"></spy-icon>
+				<span>{{ item.title }}</span>
+			</li>
+			<li
+				*ngIf="item.subItems.length"
+				nz-submenu
+				[nzOpen]="item.isActive"
+				[nzTitle]="item.title"
+				[nzIcon]="item.icon"
+				[nzDisabled]="item.disabled"
+			>
+				<ul>
+					<ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: item.subItems }"></ng-container>
+				</ul>
+			</li>
+		</ng-container>
+	</ng-template>
 </ul>

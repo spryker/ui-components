@@ -56,7 +56,8 @@
       "@spryker/navigation": [
         "dist/libs/navigation/index.d.ts",
         "libs/navigation/src/index.ts"
-      ]
+      ],
+      "@spryker/icon": ["dist/libs/icon/index.d.ts", "libs/icon/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -49,6 +49,9 @@
     },
     "navigation": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "icon": {
+      "tags": ["level:atom", "type:component"]
     }
   }
 }

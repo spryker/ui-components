@@ -26,5 +26,6 @@ export class InputComponent {
   @Input() readOnly = false;
   @Input() disabled = false;
   @Input() @ToJson() attrs: Record<string, string> = {};
+  @Input() id = '';
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 }

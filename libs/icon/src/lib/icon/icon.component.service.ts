@@ -15,7 +15,9 @@ export interface Icon {
 
 export const ICONS_TOKEN = new InjectionToken<Icon[]>('ICONS_TOKEN', {
   providedIn: 'root',
-  factory: function() { return [] },
+  factory: function() {
+    return [];
+  },
 });
 
 @Injectable({ providedIn: 'root' })

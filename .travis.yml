@@ -12,7 +12,7 @@ jobs:
         - npm run format:check
         - npm run lint
         - COVERAGE=true npm run test:ci
-        - npm run build:all || npm run build:all # Double build to ensure dependent libs are built first
+        - npm run build
       before_deploy:
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git

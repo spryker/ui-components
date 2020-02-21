@@ -47,6 +47,9 @@
     "header": {
       "tags": ["level:organism", "type:component"]
     },
+    "icon": {
+      "tags": ["level:atom", "type:component"]
+    },
     "sidebar": {
       "tags": ["level:molecule", "type:component"]
     }

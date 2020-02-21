@@ -15,7 +15,7 @@ export const primary = () => ({
   template: `
     <spy-form-item for="input-id" error="Error Message">
       Label
-      <spy-input attrs='{"id":"form-id"}' type="text" control></spy-input>
+      <spy-input attrs='' disabled="true" type="text" control></spy-input>
     </spy-form-item>
    <spy-form-item for="input-id" error="Error Message">
       Label

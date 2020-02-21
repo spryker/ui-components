@@ -33,17 +33,21 @@
 .ant-input {
   font-weight: @font-weight-medium;
 
+  .has-error &:read-only,
+  .has-error &-disabled,
   &:read-only,
   &-disabled {
     pointer-events: none;
     border-color: @input-disabled-border;
   }
 
+  .has-error &:read-only,
   &:read-only {
     color: @ink;
     background: @input-disabled-bg;
   }
 
+  .has-error &:focus,
   &:focus {
     box-shadow: none;
   }

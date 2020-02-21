@@ -22,7 +22,7 @@ describe('SidebarComponent', () => {
   })
   class TestComponent {
     @Input() trigger: null | TemplateRef<void> = null;
-    @Input() collapsed: boolean = false;
+    @Input() collapsed = false;
 
     sidebarCollapsed = jest.fn($event => $event);
   }

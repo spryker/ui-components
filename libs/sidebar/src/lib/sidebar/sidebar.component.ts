@@ -19,7 +19,7 @@ export class SidebarComponent {
   @Input() width: null | number = null;
   @Input() collapsedWidth: null | number = null;
   @Input() trigger: null | TemplateRef<void> = null;
-  @Input() collapsed: boolean = false;
+  @Input() collapsed = false;
   @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter<
     boolean
   >();

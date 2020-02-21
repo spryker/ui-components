@@ -27,63 +27,11 @@ interface NavigationItem {
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class NavigationComponent implements NavigationComponent {
-  @Input() collapsed = false;
-  @Input() items: NavigationItem[] = [
-    {
-      title: 'Dashboard Dashboard Dashboard Dashboard Dashboard',
-      url: '',
-      icon: 'dashboard',
-      isActive: false,
-      subItems: [],
-    },
-    {
-      title: 'Orders Orders Orders Orders Orders Orders Orders',
-      url: '',
-      icon: 'orders',
-      isActive: false,
-      subItems: [
-        {
-          title: 'Dashboard2',
-          url: '',
-          icon: '',
-          isActive: false,
-          subItems: [],
-        },
-        {
-          title: 'Dashboard2',
-          url: '',
-          icon: '',
-          isActive: false,
-          subItems: [],
-        },
-        {
-          title: 'Dashboard2',
-          url: '',
-          icon: '',
-          isActive: false,
-          subItems: [],
-        },
-        {
-          title: 'Dashboard2',
-          url: '',
-          icon: '',
-          isActive: false,
-          subItems: [],
-        },
-      ],
-    },
-    { title: 'Offers', url: '', icon: 'offers', isActive: true, subItems: [] },
-    {
-      title: 'Merchant',
-      url: '',
-      icon: 'merchant',
-      isActive: false,
-      subItems: [],
-    },
-  ];
+  @Input() collapsed = true;
+  @Input() items: NavigationItem[] = [];
   @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter();
 
   collapse(): void {

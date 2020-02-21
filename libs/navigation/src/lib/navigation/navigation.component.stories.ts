@@ -10,5 +10,59 @@ export const primary = () => ({
     imports: [NavigationModule],
   },
   component: NavigationComponent,
-  props: {},
+  props: {
+    items: [
+      {
+        title: 'Dashboard Dashboard Dashboard Dashboard Dashboard',
+        url: '',
+        icon: 'dashboard',
+        isActive: false,
+        subItems: [],
+      },
+      {
+        title: 'Orders Orders Orders Orders Orders Orders Orders',
+        url: '',
+        icon: 'orders',
+        isActive: false,
+        subItems: [
+          {
+            title: 'Dashboard2',
+            url: '',
+            icon: '',
+            isActive: false,
+            subItems: [],
+          },
+          {
+            title: 'Dashboard2',
+            url: '',
+            icon: '',
+            isActive: false,
+            subItems: [],
+          },
+          {
+            title: 'Dashboard2',
+            url: '',
+            icon: '',
+            isActive: false,
+            subItems: [],
+          },
+          {
+            title: 'Dashboard2',
+            url: '',
+            icon: '',
+            isActive: false,
+            subItems: [],
+          },
+        ],
+      },
+      { title: 'Offers', url: '', icon: 'offers', isActive: true, subItems: [] },
+      {
+        title: 'Merchant',
+        url: '',
+        icon: 'merchant',
+        isActive: false,
+        subItems: [],
+      },
+    ],
+  },
 });

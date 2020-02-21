@@ -5,14 +5,12 @@
 }
 
 .ant-layout-sider {
-  min-height: 200px;
-
+  min-height: 300px;
   &-collapsed {
     .ant-layout-sider {
       &-trigger {
-        &-inner {
-          box-shadow: 0 -2px 4px 0 @gray;
-          transform: rotate(180deg);
+        &-icon {
+          transform: rotate(0deg);
         }
       }
     }
@@ -22,13 +20,23 @@
     position: absolute;
     right: 0;
     bottom: 30px;
+    width: auto !important;
 
     &-inner {
-      width: @layout-trigger-size-inner;
-      height: @layout-trigger-size-inner;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: @layout-trigger-inner-size;
+      height: @layout-trigger-inner-size;
       border-radius: @layout-trigger-border-radius;
-      box-shadow: 0 2px 4px 0 @gray;
       transform-origin: center center;
+      box-shadow: 0 2px 4px 0 @gray;
+      font-size: @layout-trigger-inner-font-size;
+    }
+
+    &-icon {
+      transform: rotate(180deg);
+      color: @gray-dark;
     }
   }
 }

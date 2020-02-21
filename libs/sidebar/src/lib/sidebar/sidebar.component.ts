@@ -16,8 +16,8 @@ import {
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class SidebarComponent {
-  @Input() width: null | number = null;
-  @Input() collapsedWidth: null | number = null;
+  @Input() width = 200;
+  @Input() collapsedWidth = 64;
   @Input() trigger: null | TemplateRef<void> = null;
   @Input() collapsed = false;
   @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter<

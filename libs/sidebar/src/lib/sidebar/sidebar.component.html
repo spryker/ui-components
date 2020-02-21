@@ -2,7 +2,7 @@
   [nzWidth]="width"
   [nzCollapsedWidth]="collapsedWidth"
   [nzCollapsed]="collapsed"
-  [nzTrigger]="triggerButton"
+  [nzTrigger]="trigger !== null ? trigger : triggerButton"
   [nzReverseArrow]="true"
   (nzCollapsedChange)="toggle()"
   nzCollapsible="true"
@@ -11,5 +11,7 @@
   <ng-content></ng-content>
 </nz-sider>
 <ng-template #triggerButton>
-  <div class="ant-layout-sider-trigger-inner"></div>
+  <div class="ant-layout-sider-trigger-inner">
+    <spy-icon name="arrow" class="ant-layout-sider-trigger-icon"></spy-icon>
+  </div>
 </ng-template>

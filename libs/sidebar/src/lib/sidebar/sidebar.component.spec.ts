@@ -1,41 +1,28 @@
-import { Component, DebugElement, Input, TemplateRef } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { IconModule } from '@spryker/icon';
 import { By } from '@angular/platform-browser';
 
-import { SidebarModule } from '../sidebar.module';
+import { SidebarComponent } from './sidebar.component';
 
 describe('SidebarComponent', () => {
   let triggerButton: DebugElement;
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
-
-  @Component({
-    template: `
-      <spy-sidebar
-        [trigger]="trigger"
-        (collapsedChange)="sidebarCollapsed($event)"
-      >
-        <div>Sidebar content</div>
-      </spy-sidebar>
-      <ng-template #trigger><span><</span></ng-template>
-    `,
-  })
-  class TestComponent {
-    @Input() trigger: null | TemplateRef<void> = null;
-    @Input() collapsed = false;
-
-    sidebarCollapsed = jest.fn($event => $event);
-  }
+  let component: SidebarComponent;
+  let fixture: ComponentFixture<SidebarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SidebarModule],
-      declarations: [TestComponent],
+      imports: [NzLayoutModule, HttpClientModule, IconModule],
+      providers: [],
+      declarations: [SidebarComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
+    fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
@@ -49,22 +36,28 @@ describe('SidebarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create trigger button', () => {
+  it('should render trigger button', () => {
     expect(triggerButton).toBeTruthy();
   });
 
-  it('should trigger sidebar', () => {
-    triggerButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
+  it('should render icon into the button', () => {
+    const iconElement = triggerButton.query(By.css('spy-icon'));
 
-    expect(component.sidebarCollapsed).toHaveBeenCalled();
+    expect(iconElement).toBeTruthy();
   });
 
-  it('should change sidebar collapse status', () => {
+  it('should trigger sidebar', () => {
+    spyOn(component.collapsedChange, 'emit');
     triggerButton.triggerEventHandler('click', null);
     fixture.detectChanges();
 
-    expect(component.sidebarCollapsed.mock.calls.length).toEqual(1);
-    expect(component.sidebarCollapsed.mock.results[0].value).toBeTruthy();
+    expect(component.collapsedChange.emit).toHaveBeenCalledWith(true);
+    expect(component.collapsed).toBeTruthy();
+
+    triggerButton.triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    expect(component.collapsedChange.emit).toHaveBeenCalledWith(false);
+    expect(component.collapsed).toBeFalsy();
   });
 });

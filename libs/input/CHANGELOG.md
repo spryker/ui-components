@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.4...@spryker/input@0.1.0-next.5) (2020-02-21)
+
+
+### Bug Fixes
+
+* **input:** add required attribute fix json attr parser ([1cfe43e](https://github.com/spryker/ui-components/commit/1cfe43e7be2df3496bb006a0376bbca4ae36e042))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/zed-gui/compare/@spryker/input@0.1.0-next.3...@spryker/input@0.1.0-next.4) (2020-02-20)
 
 **Note:** Version bump only for package @spryker/input

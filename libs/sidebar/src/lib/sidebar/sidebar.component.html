@@ -1,13 +1,15 @@
 <nz-sider
-  [nzWidth]="250"
-  [nzCollapsedWidth]="62"
-  [nzCollapsible]="trigger !== null"
+  [nzWidth]="width"
+  [nzCollapsedWidth]="collapsedWidth"
   [nzCollapsed]="collapsed"
-  [nzTrigger]="trigger"
+  [nzTrigger]="triggerButton"
   [nzReverseArrow]="true"
   (nzCollapsedChange)="toggle()"
+  nzCollapsible="true"
   nzTheme="light"
 >
-  <slot></slot>
   <ng-content></ng-content>
 </nz-sider>
+<ng-template #triggerButton>
+  <div class="ant-layout-sider-trigger-inner"></div>
+</ng-template>

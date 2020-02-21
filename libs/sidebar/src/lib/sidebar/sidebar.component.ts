@@ -6,7 +6,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnChanges,
 } from '@angular/core';
 
 @Component({
@@ -17,6 +16,8 @@ import {
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class SidebarComponent {
+  @Input() width: null | number = null;
+  @Input() collapsedWidth: null | number = null;
   @Input() trigger: null | TemplateRef<void> = null;
   @Input() collapsed: boolean = false;
   @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter<
@@ -25,17 +26,13 @@ export class SidebarComponent {
 
   private collapse(): void {
     this.collapsed = true;
-
-    this.collapsedChange.emit(this.isCollapsed());
   }
 
   private expand(): void {
     this.collapsed = false;
-
-    this.collapsedChange.emit(this.isCollapsed());
   }
 
-  private isCollapsed(): boolean {
+  isCollapsed(): boolean {
     return this.collapsed;
   }
 
@@ -46,6 +43,7 @@ export class SidebarComponent {
       this.collapse();
     }
 
+    this.collapsedChange.emit(this.isCollapsed());
     return this.isCollapsed();
   }
 }

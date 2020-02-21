@@ -1,4 +1,3 @@
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { SidebarComponent } from './sidebar.component';
 import { SidebarModule } from '../sidebar.module';
 
@@ -8,10 +7,10 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [SidebarModule, NzLayoutModule],
+    imports: [SidebarModule],
   },
   template: `
-    <spy-sidebar [trigger]="trigger">
+    <spy-sidebar collapsed="false">
        <div>SideBar Content</div> 
     </spy-sidebar>
     <ng-template #trigger><span><</span></ng-template>

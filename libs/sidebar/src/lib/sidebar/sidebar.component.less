@@ -10,8 +10,10 @@
   &-collapsed {
     .ant-layout-sider {
       &-trigger {
-        box-shadow: 0 -2px 4px 0 @gray;
-        transform: rotate(180deg);
+        &-inner {
+          box-shadow: 0 -2px 4px 0 @gray;
+          transform: rotate(180deg);
+        }
       }
     }
   }
@@ -19,9 +21,14 @@
   &-trigger {
     position: absolute;
     right: 0;
-    width: @layout-trigger-width !important;
-    border-radius: @layout-trigger-border-radius;
-    box-shadow: 0 2px 4px 0 @gray;
-    transform-origin: center center;
+    bottom: 30px;
+
+    &-inner {
+      width: @layout-trigger-size-inner;
+      height: @layout-trigger-size-inner;
+      border-radius: @layout-trigger-border-radius;
+      box-shadow: 0 2px 4px 0 @gray;
+      transform-origin: center center;
+    }
   }
 }

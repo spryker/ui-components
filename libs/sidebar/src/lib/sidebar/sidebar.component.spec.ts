@@ -1,10 +1,11 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, DebugElement, Input, TemplateRef } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { SidebarModule } from '../sidebar.module';
 
 describe('SidebarComponent', () => {
+  let triggerButton: DebugElement;
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
@@ -12,7 +13,7 @@ describe('SidebarComponent', () => {
     template: `
       <spy-sidebar
         [trigger]="trigger"
-        (collapsedChange)="siderCollapsed($event)"
+        (collapsedChange)="sidebarCollapsed($event)"
       >
         <div>Sidebar content</div>
       </spy-sidebar>
@@ -23,7 +24,7 @@ describe('SidebarComponent', () => {
     @Input() trigger: null | TemplateRef<void> = null;
     @Input() collapsed: boolean = false;
 
-    siderCollapsed = jest.fn();
+    sidebarCollapsed = jest.fn($event => $event);
   }
 
   beforeEach(async(() => {
@@ -36,23 +37,34 @@ describe('SidebarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
+
+    triggerButton = fixture.debugElement.query(
+      By.css('.ant-layout-sider-trigger'),
+    );
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should trigger sidebar', () => {
-    const triggerButton = fixture.debugElement.query(
-      By.css('.ant-layout-sider-trigger'),
-    );
-
+  it('should create trigger button', () => {
     expect(triggerButton).toBeTruthy();
+  });
 
+  it('should trigger sidebar', () => {
     triggerButton.triggerEventHandler('click', null);
     fixture.detectChanges();
 
-    expect(component.siderCollapsed).toHaveBeenCalled();
+    expect(component.sidebarCollapsed).toHaveBeenCalled();
+  });
+
+  it('should change sidebar collapse status', () => {
+    triggerButton.triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    expect(component.sidebarCollapsed.mock.calls.length).toEqual(1);
+    expect(component.sidebarCollapsed.mock.results[0].value).toBeTruthy();
   });
 });

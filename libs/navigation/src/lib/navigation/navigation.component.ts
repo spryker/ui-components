@@ -3,8 +3,10 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
   ViewEncapsulation,
+  SimpleChanges
 } from '@angular/core';
 
 export interface NavigationComponent {
@@ -27,12 +29,18 @@ interface NavigationItem {
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
-export class NavigationComponent implements NavigationComponent {
-  @Input() collapsed = true;
+export class NavigationComponent implements NavigationComponent, OnChanges {
+  @Input() collapsed = false;
   @Input() items: NavigationItem[] = [];
   @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter();
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('collapsed' in changes) {
+      this.collapsedChange.emit(this.isCollapsed());
+    }
+  }
 
   collapse(): void {
     this.collapsed = true;

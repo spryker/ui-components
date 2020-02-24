@@ -8,10 +8,6 @@ import { NavigationComponent } from './navigation.component';
 const mockedData = [
   {
     title: 'Dashboard Dashboard Dashboard Dashboard Dashboard',
-    url: '',
-    icon: 'dashboard',
-    isActive: false,
-    subItems: [],
   },
   {
     title: 'Orders Orders Orders Orders Orders Orders Orders',
@@ -21,10 +17,6 @@ const mockedData = [
     subItems: [
       {
         title: 'Dashboard2',
-        url: '',
-        icon: '',
-        isActive: false,
-        subItems: [],
       },
       {
         title: 'Dashboard2',

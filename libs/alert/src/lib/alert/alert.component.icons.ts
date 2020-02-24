@@ -12,7 +12,7 @@ export const errorIcon = `
                 <use id="Mask" fill-rule="nonzero" xlink:href="#path-1"/>
                 <g id="Colours-/-Red-/-Base" mask="url(#mask-2)" fill-rule="evenodd">
                     <g transform="translate(-0.045455, -0.045455)" id="Colour-/-Red-/-Base">
-                        <rect x="0" y="0" width="25.0909091" height="25.0909091"/>
+                        <rect x="0" y="0" />
                     </g>
                 </g>
             </g>

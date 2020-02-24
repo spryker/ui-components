@@ -8,5 +8,5 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@a
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class AlertComponent {
-  @Input() type: 'info' | 'error' | 'warning' | 'success' = 'info';
+  @Input() type: 'info' | 'error' | 'warning' | 'success' = 'error';
 }

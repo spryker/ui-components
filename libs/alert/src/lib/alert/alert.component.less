@@ -1,24 +1,45 @@
 @import './alert.component.theme.less';
 
-
-@alert-prefix-cls: ~'@{ant-prefix}-alert';
-
-.spy-alert,
-:host {
-  padding: 40px;
-  display: block;
-  background: red;
-  width: 100%;
-}
-
 .@{alert-prefix-cls} {
   font: @font-weight-medium @font-size-base @font-family;
   border-radius: 0;
   background: @gray-lighter;
   border: none;
 
+  .alert-icon {
+    position: relative;
+    line-height: 0;
+    border-radius: 50%;
+    font-size: @alert-icon-width;
+    margin-right: @alert-icon-margin;
+    z-index: 0;
+
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    &::after {
+      width: 90%;
+      height: 90%;
+      background: @white;
+    }
+
+    &::before {
+      width: @alert-icon-decoration-width;
+      height: @alert-icon-decoration-width;
+      background: @red-light;
+    }
+  }
+
   &&-no-icon {
-    padding: 25px;
+    padding: @alert-inner-padding;
   }
 
   &-success {
@@ -38,6 +59,8 @@
   }
 
   &-message {
+    display: flex;
+    align-items: center;
     color: inherit;
   }
 }

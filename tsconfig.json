@@ -45,6 +45,14 @@
         "libs/input/src/index.ts"
       ],
       "@spryker/card": ["dist/libs/card/index.d.ts", "libs/card/src/index.ts"],
+      "@spryker/layout": [
+        "dist/libs/layout/index.d.ts",
+        "libs/layout/src/index.ts"
+      ],
+      "@spryker/header": [
+        "dist/libs/header/index.d.ts",
+        "libs/header/src/index.ts"
+      ],
       "@spryker/alert": [
         "dist/libs/alert/index.d.ts",
         "libs/alert/src/index.ts"

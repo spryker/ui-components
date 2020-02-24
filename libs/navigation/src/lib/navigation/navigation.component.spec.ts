@@ -194,7 +194,7 @@ describe('NavigationComponent', () => {
 
     beforeEach(() => {
       nvFixture = TestBed.createComponent(NavigationComponent);
-      navComponent = fixture.componentInstance;
+      navComponent = nvFixture.componentInstance;
     });
 
     it('collapse() method should change the collapsed input to true', () => {

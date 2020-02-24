@@ -5,6 +5,13 @@ import {
   Input,
 } from '@angular/core';
 
+enum AlertType {
+  Info = 'info',
+  Error = 'error',
+  Warning = 'warning',
+  Success = 'success'
+}
+
 @Component({
   selector: 'spy-alert',
   templateUrl: './alert.component.html',
@@ -13,5 +20,5 @@ import {
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class AlertComponent {
-  @Input() type: 'info' | 'error' | 'warning' | 'success' = 'error';
+  @Input() type: AlertType = AlertType.Info;
 }

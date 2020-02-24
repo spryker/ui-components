@@ -18,7 +18,7 @@ import {
 export class SidebarComponent {
   @Input() width = 200;
   @Input() collapsedWidth = 64;
-  @Input() trigger: null | TemplateRef<void> = null;
+  @Input() trigger: undefined | TemplateRef<void>;
   @Input() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
 

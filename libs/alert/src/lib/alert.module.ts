@@ -6,16 +6,10 @@ import { AlertComponent } from './alert/alert.component';
 import { IconModule, ICONS_TOKEN } from '@spryker/icon';
 import { errorIcon } from './alert/alert.component.icons';
 
-export function errorIconFactory() {
-  return new Promise(function(resolve) {
-    resolve(errorIcon);
-  });
-}
-
 const icons = [
   {
     name: 'error',
-    svg: errorIconFactory,
+    svg: errorIcon,
   },
 ];
 

@@ -9,7 +9,7 @@ export const primary = () => ({
     imports: [AlertModule],
   },
   template: `
-    <spy-alert>Some message</spy-alert>
+    <spy-alert type="error">Some message</spy-alert>
   `,
   props: {},
 });

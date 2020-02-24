@@ -1,11 +1,8 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { AlertModule } from '../alert.module';
-import { AlertComponent } from './alert.component';
-import { CommonModule } from "@angular/common";
-import { IconModule } from "@spryker/icon";
 
 describe('AlertComponent', () => {
   let component: TestComponent;
@@ -23,9 +20,8 @@ describe('AlertComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, IconModule],
-      declarations: [TestComponent, AlertComponent],
-      schemas: [NO_ERRORS_SCHEMA]
+      imports: [AlertModule],
+      declarations: [TestComponent],
     }).compileComponents();
   }));
 
@@ -40,34 +36,33 @@ describe('AlertComponent', () => {
     expect(alertElem).toBeTruthy();
   });
 
-  it('should render projected content inside <spry-alert> and bind it to `nzMessage`', () => {
+  it('should render projected content inside <nz-alert>', async () => {
     fixture.detectChanges();
 
     const alertElem = fixture.debugElement.query(By.css('nz-alert'));
-    console.log(alertElem.properties);
 
-    // expect(alertElem.properties.nzMessage).toBe('Content');
+    expect(alertElem.nativeElement.textContent).toMatch('Content');
   });
 
   describe('@Input(type)', () => {
-    it('should show icon when `type` is `error`', () => {
-      component.type = 'error';
-      fixture.detectChanges();
-
-      const iconElem = fixture.debugElement.query(
-          By.css('nz-alert spy-icon[name="error"]'),
-      );
-
-      expect(iconElem).toBeTruthy();
-    });
-
     it('should bind to `nzType` of <nz-alert>', () => {
       component.type = 'info';
       fixture.detectChanges();
 
       const alertElem = fixture.debugElement.query(By.css('nz-alert'));
 
-      expect(alertElem.properties.nzType).toBe('info');
+      expect(alertElem.attributes['ng-reflect-nz-type']).toBe('info');
+    });
+
+    it('should show icon when `type` is `error`', () => {
+      component.type = 'error';
+      fixture.detectChanges();
+
+      const iconElem = fixture.debugElement.query(
+        By.css('nz-alert spy-icon[name="error"]'),
+      );
+
+      expect(iconElem).toBeTruthy();
     });
   });
 });

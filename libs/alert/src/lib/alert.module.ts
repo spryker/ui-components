@@ -10,11 +10,9 @@ const icons = [
   {
     name: 'error',
     svg: function() {
-      return new Promise(
-          function (resolve) {
-            resolve(errorIcon);
-          }
-      );
+      return new Promise(function(resolve) {
+        resolve(errorIcon);
+      });
     },
   },
 ];

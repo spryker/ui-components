@@ -2,9 +2,9 @@
   [nzWidth]="width"
   [nzCollapsedWidth]="collapsedWidth"
   [nzCollapsed]="collapsed"
-  [nzTrigger]="trigger !== null ? trigger : triggerButton"
+  [nzTrigger]="trigger || triggerButton"
   [nzReverseArrow]="true"
-  (nzCollapsedChange)="toggle()"
+  (nzCollapsedChange)="toggle($event)"
   nzCollapsible="true"
   nzTheme="light"
 >

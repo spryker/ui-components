@@ -20,15 +20,13 @@ export class SidebarComponent {
   @Input() collapsedWidth = 64;
   @Input() trigger: null | TemplateRef<void> = null;
   @Input() collapsed = false;
-  @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter<
-    boolean
-  >();
+  @Output() collapsedChange = new EventEmitter<boolean>();
 
-  private collapse(): void {
+  collapse(): void {
     this.collapsed = true;
   }
 
-  private expand(): void {
+  expand(): void {
     this.collapsed = false;
   }
 
@@ -36,12 +34,8 @@ export class SidebarComponent {
     return this.collapsed;
   }
 
-  toggle(): boolean {
-    if (this.collapsed) {
-      this.expand();
-    } else {
-      this.collapse();
-    }
+  toggle(isCollapsed: boolean): boolean {
+    this.collapsed = isCollapsed;
 
     this.collapsedChange.emit(this.isCollapsed());
     return this.isCollapsed();

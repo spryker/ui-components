@@ -1,5 +1,5 @@
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { IconModule } from '@spryker/icon';
@@ -14,7 +14,7 @@ describe('SidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NzLayoutModule, HttpClientModule, IconModule],
+      imports: [NzLayoutModule, HttpClientTestingModule, IconModule],
       providers: [],
       declarations: [SidebarComponent],
       schemas: [NO_ERRORS_SCHEMA],

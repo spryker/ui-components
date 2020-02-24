@@ -40,6 +40,9 @@
     },
     "input": {
       "tags": ["level:atom"]
+    },
+    "alert": {
+      "tags": ["level:molecule", "type:component"]
     }
   }
 }

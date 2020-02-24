@@ -1,0 +1,43 @@
+@import './alert.component.theme.less';
+
+
+@alert-prefix-cls: ~'@{ant-prefix}-alert';
+
+.spy-alert,
+:host {
+  padding: 40px;
+  display: block;
+  background: red;
+  width: 100%;
+}
+
+.@{alert-prefix-cls} {
+  font: @font-weight-medium @font-size-base @font-family;
+  border-radius: 0;
+  background: @gray-lighter;
+  border: none;
+
+  &&-no-icon {
+    padding: 25px;
+  }
+
+  &-success {
+    color: @success-color;
+  }
+
+  &-info {
+    color: @info-color;
+  }
+
+  &-warning {
+    color: @warning-color;
+  }
+
+  &-error {
+    color: @error-color;
+  }
+
+  &-message {
+    color: inherit;
+  }
+}

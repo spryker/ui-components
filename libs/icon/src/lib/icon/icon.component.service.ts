@@ -13,11 +13,13 @@ export interface Icon {
   svg: string | SvgPromise;
 }
 
+export function tokenFactory() {
+  return [];
+}
+
 export const ICONS_TOKEN = new InjectionToken<Icon[]>('ICONS_TOKEN', {
   providedIn: 'root',
-  factory: function() {
-    return [];
-  },
+  factory: tokenFactory,
 });
 
 @Injectable({ providedIn: 'root' })

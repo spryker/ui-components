@@ -1,5 +1,11 @@
 import { NO_ERRORS_SCHEMA, ViewEncapsulation } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ICONS_TOKEN, IconService } from './icon.component.service';
 
@@ -51,30 +57,33 @@ describe('IconComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(IconComponent);
     component = fixture.componentInstance;
-    component.name = promiseIcon;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render an icon from promise', () => {
+  it('should render an icon from promise', fakeAsync(() => {
+    component.name = promiseIcon;
+    component.ngOnChanges();
     fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
     const iconComponent = fixture.debugElement.query(By.css(`i`));
 
     expect(iconComponent.properties.nzType).toEqual(promiseIcon);
-  });
+  }));
 
-  it('should render an icon from string', () => {
+  it('should render an icon from string', fakeAsync(() => {
     component.name = stringIcon;
     component.ngOnChanges();
     fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
 
-    setTimeout(() => {
-      const iconComponent = fixture.debugElement.query(By.css(`i`));
+    const iconComponent = fixture.debugElement.query(By.css(`i`));
 
-      expect(iconComponent.properties.nzType).toEqual(stringIcon);
-    }, 0);
-  });
+    expect(iconComponent.properties.nzType).toEqual(stringIcon);
+  }));
 });

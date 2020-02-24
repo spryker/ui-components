@@ -7,6 +7,12 @@ export function ToJson(): PropertyDecorator {
     };
 
     const setter = function(this: any, prop: Record<string, string> | string) {
+      if (!prop) {
+        this[newKey] = undefined;
+
+        return;
+      }
+
       this[newKey] = typeof prop === 'string' ? JSON.parse(prop) : prop;
     };
 

@@ -6,7 +6,7 @@
   <ng-template #menuTpl let-items>
     <ng-container *ngFor="let item of items">
       <li
-        *ngIf="!item.subItems || !item.subItems.length"
+        *ngIf="!item.subItems?.length"
         nz-menu-item
         [nzPaddingLeft]="0"
         [nzSelected]="item.isActive"
@@ -17,7 +17,7 @@
       </li>
 
       <li
-        *ngIf="item.subItems && item.subItems.length"
+        *ngIf="item.subItems?.length"
         nz-submenu
         [nzOpen]="item.isActive"
         [nzTitle]="titleTpl"

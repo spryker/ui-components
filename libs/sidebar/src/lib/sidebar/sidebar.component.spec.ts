@@ -1,13 +1,6 @@
-import {
-  DebugElement,
-  NO_ERRORS_SCHEMA,
-  ViewEncapsulation,
-} from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IconComponent } from '@spryker/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { IconModule } from '@spryker/icon';
 import { By } from '@angular/platform-browser';
 
 import { SidebarComponent } from './sidebar.component';
@@ -19,17 +12,11 @@ describe('SidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NzLayoutModule, HttpClientTestingModule, IconModule],
+      imports: [NzLayoutModule],
       providers: [],
       declarations: [SidebarComponent],
       schemas: [NO_ERRORS_SCHEMA],
-    })
-      .overrideComponent(IconComponent, {
-        set: {
-          encapsulation: ViewEncapsulation.Emulated,
-        },
-      })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -55,13 +42,7 @@ describe('SidebarComponent', () => {
     const iconComponent = triggerButton.query(By.css('spy-icon'));
 
     expect(iconComponent).toBeTruthy();
-  });
-
-  it('should render proper icon', () => {
-    fixture.detectChanges();
-    const iconElement: HTMLElement = triggerButton.query(By.css('i'))
-      .nativeElement;
-    expect(iconElement.classList).toContain('anticon-arrow');
+    expect(iconComponent.attributes.name).toEqual('arrow');
   });
 
   it('should trigger sidebar', () => {

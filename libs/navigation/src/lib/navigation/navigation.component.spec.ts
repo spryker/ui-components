@@ -36,17 +36,12 @@ describe('NavigationComponent', () => {
   @Component({
     selector: 'test',
     template: `
-      <spy-navigation
-        (collapsedChange)="changeSpy()"
-        [items]="items"
-        [collapsed]="collapsed"
-      ></spy-navigation>
+      <spy-navigation [items]="items" [collapsed]="collapsed"></spy-navigation>
     `,
   })
   class TestComponent {
     items: any;
     collapsed: any;
-    changeSpy = jest.fn();
   }
 
   beforeEach(async(() => {

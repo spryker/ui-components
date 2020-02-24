@@ -1,9 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
-  Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { NavigationItem, NavigationComponentMethods } from './navigation';
@@ -18,7 +16,6 @@ import { NavigationItem, NavigationComponentMethods } from './navigation';
 export class NavigationComponent implements NavigationComponentMethods {
   @Input() collapsed = false;
   @Input() items: NavigationItem[] = [];
-  @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter();
 
   collapse(): void {
     this.collapsed = true;

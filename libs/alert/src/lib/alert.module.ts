@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { AlertComponent } from './alert/alert.component';
 import { IconModule, ICONS_TOKEN } from '@spryker/icon';
-import { errorIcon } from './alert/alert.component.icons';
+import errorIcon from './alert/icons/error';
 
 const icons = [
   {

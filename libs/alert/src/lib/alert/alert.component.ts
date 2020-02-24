@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 
-enum AlertType {
+export enum AlertType {
   Info = 'info',
   Error = 'error',
   Warning = 'warning',

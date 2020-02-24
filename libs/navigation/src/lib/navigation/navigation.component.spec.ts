@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, NO_ERRORS_SCHEMA } from "@angular/core";
-import { By } from "@angular/platform-browser";
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { NavigationModule } from '../navigation.module';
 import { NavigationComponent } from './navigation.component';
@@ -36,7 +36,11 @@ describe('NavigationComponent', () => {
   @Component({
     selector: 'test',
     template: `
-        <spy-navigation (collapsedChange)="changeSpy()" [items]="items" [collapsed]="collapsed"></spy-navigation>
+      <spy-navigation
+        (collapsedChange)="changeSpy()"
+        [items]="items"
+        [collapsed]="collapsed"
+      ></spy-navigation>
     `,
   })
   class TestComponent {
@@ -178,75 +182,61 @@ describe('NavigationComponent', () => {
 
       const updatedUlElem = fixture.debugElement.query(By.css('ul[nz-menu]'));
 
-      expect(updatedUlElem.attributes['ng-reflect-nz-inline-collapsed']).toBe('true');
-    });
-  });
-
-  describe('@Output(collapsedChange)', () => {
-    it('should emit every time when the `collapsed` input is changed', () => {
-      component.collapsed = false;
-
-      fixture.detectChanges();
-
-      expect(component.changeSpy).toHaveBeenCalled();
-
-      component.collapsed = true;
-
-      fixture.detectChanges();
-
-      expect(component.changeSpy).toHaveBeenCalled();
+      expect(updatedUlElem.attributes['ng-reflect-nz-inline-collapsed']).toBe(
+        'true',
+      );
     });
   });
 
   describe('Component methods', () => {
-    let component: NavigationComponent;
-    let fixture: ComponentFixture<NavigationComponent>;
+    let navComponent: NavigationComponent;
+    let nvFixture: ComponentFixture<NavigationComponent>;
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(NavigationComponent);
-      component = fixture.componentInstance;
+      nvFixture = TestBed.createComponent(NavigationComponent);
+      navComponent = fixture.componentInstance;
     });
 
     it('collapse() method should change the collapsed input to true', () => {
-      component.collapsed = false;
+      navComponent.collapsed = false;
 
-      fixture.detectChanges();
+      nvFixture.detectChanges();
 
-      component.collapse();
+      navComponent.collapse();
 
-      fixture.detectChanges();
+      nvFixture.detectChanges();
 
-      expect(component.collapsed).toBe(true);
+      expect(navComponent.collapsed).toBe(true);
     });
 
     it('expand() method should change the collapsed input to false', () => {
-      component.collapsed = true;
+      navComponent.collapsed = true;
 
-      fixture.detectChanges();
+      nvFixture.detectChanges();
 
-      component.expand();
+      navComponent.expand();
 
-      fixture.detectChanges();
+      nvFixture.detectChanges();
 
-      expect(component.collapsed).toBe(false);
+      expect(navComponent.collapsed).toBe(false);
     });
 
     it('toggle() method should change the collapsed input to the opposite value', () => {
-      component.collapsed = true;
+      navComponent.collapsed = true;
 
-      fixture.detectChanges();
+      nvFixture.detectChanges();
 
-      component.toggle();
+      navComponent.toggle();
 
-      fixture.detectChanges();
+      nvFixture.detectChanges();
 
-      expect(component.collapsed).toBe(false);
+      expect(navComponent.collapsed).toBe(false);
 
-      component.toggle();
+      navComponent.toggle();
 
-      fixture.detectChanges();
+      nvFixture.detectChanges();
 
-      expect(component.collapsed).toBe(true);
+      expect(navComponent.collapsed).toBe(true);
     });
   });
 });

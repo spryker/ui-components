@@ -3,26 +3,10 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
   ViewEncapsulation,
-  SimpleChanges
 } from '@angular/core';
-
-export interface NavigationComponent {
-  collapse(): void;
-  expand(): void;
-  toggle(): boolean;
-  isCollapsed(): boolean;
-}
-
-interface NavigationItem {
-  title: string;
-  url?: string;
-  icon?: string;
-  isActive?: boolean;
-  subItems?: NavigationItem[];
-}
+import { NavigationItem, NavigationComponentMethods } from './navigation';
 
 @Component({
   selector: 'spy-navigation',
@@ -31,30 +15,27 @@ interface NavigationItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class NavigationComponent implements NavigationComponent, OnChanges {
+export class NavigationComponent implements NavigationComponentMethods {
   @Input() collapsed = false;
   @Input() items: NavigationItem[] = [];
   @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter();
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if ('collapsed' in changes) {
-      this.collapsedChange.emit(this.isCollapsed());
-    }
-  }
-
   collapse(): void {
     this.collapsed = true;
-    this.collapsedChange.emit(this.isCollapsed());
   }
 
   expand(): void {
     this.collapsed = false;
-    this.collapsedChange.emit(this.isCollapsed());
   }
 
   toggle(): boolean {
-    this.collapsed = !this.collapsed;
-    this.collapsedChange.emit(this.isCollapsed());
+    if (this.collapsed) {
+      this.expand();
+
+      return this.isCollapsed();
+    }
+
+    this.collapse();
 
     return this.isCollapsed();
   }

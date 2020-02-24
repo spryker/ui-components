@@ -1,4 +1,4 @@
-<ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed()">
+<ul nz-menu nzMode="inline" [nzInlineCollapsed]="this.collapsed">
   <ng-container
     *ngTemplateOutlet="menuTpl; context: { $implicit: items }"
   ></ng-container>

@@ -35,17 +35,26 @@
 
   &:read-only,
   &-disabled {
-    pointer-events: none;
-    border-color: @input-disabled-border;
+    &,
+    .has-error & {
+      pointer-events: none;
+      border-color: @input-disabled-border;
+    }
   }
 
   &:read-only {
-    color: @ink;
-    background: @input-disabled-bg;
+    &,
+    .has-error & {
+      color: @ink;
+      background: @input-disabled-bg;
+    }
   }
 
   &:focus {
-    box-shadow: none;
+    &,
+    .has-error & {
+      box-shadow: none;
+    }
   }
 
   .ant-input-affix-wrapper &:not(:first-child) {

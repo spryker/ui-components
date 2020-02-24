@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from "@angular/platform-browser";
+import { By } from '@angular/platform-browser';
 
 import { AlertModule } from '../alert.module';
 
@@ -11,8 +11,8 @@ describe('AlertComponent', () => {
   @Component({
     selector: 'text',
     template: `
-        <spy-alert [type]="type">Content</spy-alert>
-    `
+      <spy-alert [type]="type">Content</spy-alert>
+    `,
   })
   class TestComponent {
     type: any;
@@ -21,7 +21,7 @@ describe('AlertComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [AlertModule],
-      declarations: [ TestComponent ]
+      declarations: [TestComponent],
     }).compileComponents();
   }));
 
@@ -58,9 +58,11 @@ describe('AlertComponent', () => {
       component.type = 'error';
       fixture.detectChanges();
 
-      const iconElem = fixture.debugElement.query(By.css('nz-alert spy-icon[name="error"]'));
+      const iconElem = fixture.debugElement.query(
+        By.css('nz-alert spy-icon[name="error"]'),
+      );
 
       expect(iconElem).toBeTruthy();
-    })
+    });
   });
 });

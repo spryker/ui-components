@@ -1,4 +1,9 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'spy-alert',

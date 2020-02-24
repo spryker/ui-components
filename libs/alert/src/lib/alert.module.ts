@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { AlertComponent } from './alert/alert.component';
 import { errorIcon } from './alert/alert.component.icons';
@@ -14,7 +14,7 @@ const icons = [
         resolve(errorIcon);
       });
     },
-  }
+  },
 ];
 
 @NgModule({

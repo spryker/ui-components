@@ -1,25 +1,66 @@
+import { Component } from "@angular/core";
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from "@angular/platform-browser";
 
-import { AlertComponent } from './alert.component';
+import { AlertModule } from '../alert.module';
 
 describe('AlertComponent', () => {
-  let component: AlertComponent;
-  let fixture: ComponentFixture<AlertComponent>;
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
+
+  @Component({
+    selector: 'text',
+    template: `
+        <spy-alert [type]="type">Content</spy-alert>
+    `
+  })
+  class TestComponent {
+    type: any;
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertComponent ]
-    })
-    .compileComponents();
+      imports: [AlertModule],
+      declarations: [ TestComponent ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlertComponent);
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render <nz-alert>', () => {
+    const alertElem = fixture.debugElement.query(By.css('nz-alert'));
+
+    expect(alertElem).toBeTruthy();
+  });
+
+  it('should render projected content inside <nz-alert>', async () => {
+    fixture.detectChanges();
+
+    const alertElem = fixture.debugElement.query(By.css('nz-alert'));
+
+    expect(alertElem.nativeElement.textContent).toMatch('Content');
+  });
+
+  describe('@Input(type)', () => {
+    it('should bind to `nzType` of <nz-alert>', () => {
+      component.type = 'info';
+      fixture.detectChanges();
+
+      const alertElem = fixture.debugElement.query(By.css('nz-alert'));
+
+      expect(alertElem.attributes['ng-reflect-nz-type']).toBe('info');
+    });
+
+    it('should show icon when `type` is `error`', () => {
+      component.type = 'error';
+      fixture.detectChanges();
+
+      const iconElem = fixture.debugElement.query(By.css('nz-alert spy-icon[name="error"]'));
+
+      expect(iconElem).toBeTruthy();
+    })
   });
 });

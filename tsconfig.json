@@ -53,10 +53,18 @@
         "dist/libs/header/index.d.ts",
         "libs/header/src/index.ts"
       ],
+      "@spryker/navigation": [
+        "dist/libs/navigation/index.d.ts",
+        "libs/navigation/src/index.ts"
+      ],
       "@spryker/icon": ["dist/libs/icon/index.d.ts", "libs/icon/src/index.ts"],
       "@spryker/alert": [
         "dist/libs/alert/index.d.ts",
         "libs/alert/src/index.ts"
+      ],
+      "@spryker/sidebar": [
+        "dist/libs/sidebar/index.d.ts",
+        "libs/sidebar/src/index.ts"
       ]
     }
   },

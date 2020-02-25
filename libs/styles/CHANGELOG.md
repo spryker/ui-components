@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.3...@spryker/styles@0.1.0-next.4) (2020-02-25)
+
+
+### Features
+
+* **alert:** add alert implementation ([616e574](https://github.com/spryker/ui-components/commit/616e57424732cc4c50e62f1b72c815b9c465f243))
+
+
+
+
+
 # [0.1.0-next.3](https://github.com/spryker/zed-gui/compare/@spryker/styles@0.1.0-next.2...@spryker/styles@0.1.0-next.3) (2020-02-19)
 
 

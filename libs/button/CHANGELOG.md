@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.3...@spryker/button@0.1.0-next.4) (2020-02-25)
+
+
+### Features
+
+* **alert:** add scaffolding ([c9c0eeb](https://github.com/spryker/ui-components/commit/c9c0eebd57e08a60e0aa2989280b5610ba93f0e6))
+
+
+
+
+
 # [0.1.0-next.3](https://github.com/spryker/zed-gui/compare/@spryker/button@0.1.0-next.2...@spryker/button@0.1.0-next.3) (2020-02-19)
 
 

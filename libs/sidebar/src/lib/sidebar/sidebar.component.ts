@@ -22,7 +22,7 @@ export class SidebarComponent {
   @Input() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
 
-  private toggleCollapse(isCollapsed: boolean): void {
+  updateCollapse(isCollapsed: boolean): void {
     this.collapsed = isCollapsed;
 
     this.collapsedChange.emit(this.isCollapsed());
@@ -37,9 +37,12 @@ export class SidebarComponent {
   }
 
   toggle(): boolean {
-    this.collapsed = !this.collapsed;
+    if (this.collapsed) {
+      this.expand();
+    } else {
+      this.collapse();
+    }
 
-    this.collapsedChange.emit(this.isCollapsed());
     return this.isCollapsed();
   }
 

@@ -61,6 +61,10 @@
       "@spryker/alert": [
         "dist/libs/alert/index.d.ts",
         "libs/alert/src/index.ts"
+      ],
+      "@spryker/sidebar": [
+        "dist/libs/sidebar/index.d.ts",
+        "libs/sidebar/src/index.ts"
       ]
     }
   },

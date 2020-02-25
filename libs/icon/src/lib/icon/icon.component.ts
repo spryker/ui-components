@@ -11,6 +11,7 @@ import { IconService } from './icon.component.service';
 @Component({
   selector: 'spy-icon',
   templateUrl: './icon.component.html',
+  styleUrls: ['./icon.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.ShadowDom,
 })

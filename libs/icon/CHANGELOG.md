@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/icon@0.1.0-next.0...@spryker/icon@0.1.0-next.1) (2020-02-25)
+
+
+### Features
+
+* **sidebar, icon:** sidebar tests, icon styles ([45212c5](https://github.com/spryker/ui-components/commit/45212c504fd99368081e38ed215d777069c16b2e))
+
+
+
+
+
 # 0.1.0-next.0 (2020-02-25)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.4...@spryker/styles@0.1.0-next.5) (2020-02-25)
+
+
+### Bug Fixes
+
+* **styles:** remove compiled styles from git ([f908024](https://github.com/spryker/ui-components/commit/f90802408d32ae8afa231e20134c6c648add8068))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.3...@spryker/styles@0.1.0-next.4) (2020-02-25)
 
 

@@ -28,11 +28,9 @@ export class NavigationComponent implements NavigationComponentMethods {
   toggle(): boolean {
     if (this.collapsed) {
       this.expand();
-
-      return this.isCollapsed();
+    } else {
+      this.collapse();
     }
-
-    this.collapse();
 
     return this.isCollapsed();
   }

@@ -16,7 +16,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent {
-  @Input() width = 250;
+  @Input() width = 200;
   @Input() collapsedWidth = 64;
   @Input() trigger: undefined | TemplateRef<void>;
   @Input() collapsed = false;

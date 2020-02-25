@@ -1,0 +1,12 @@
+<textarea
+  nz-input
+  nzAutosize
+  [rows]="rows"
+  [cols]="cols"
+  [value]="value"
+  [placeholder]="placeholder"
+  [name]="name"
+  [applyAttrs]="attrs"
+  [disabled]="disabled"
+  (input)="valueChange.emit($event)"
+></textarea>

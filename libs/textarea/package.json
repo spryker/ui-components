@@ -1,0 +1,14 @@
+{
+  "name": "@spryker/textarea",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "tslib": "^1.10.0",
+    "@support.spryker.com/styles": "^0.0.1",
+    "@support.spryker.com/utils": "^0.0.1"
+  }
+}

@@ -9,6 +9,6 @@ import {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent {}

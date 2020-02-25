@@ -13,7 +13,7 @@ import {
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent {
   @Input() width = 200;

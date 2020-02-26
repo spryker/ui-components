@@ -65,6 +65,10 @@
       "@spryker/sidebar": [
         "dist/libs/sidebar/index.d.ts",
         "libs/sidebar/src/index.ts"
+      ],
+      "@spryker/toggle": [
+        "libs/toggle/dist/index.d.ts",
+        "libs/toggle/src/index.ts"
       ]
     }
   },

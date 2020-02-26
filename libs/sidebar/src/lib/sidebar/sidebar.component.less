@@ -1,11 +1,9 @@
 @import './sidebar.component.theme.less';
 
-:host {
-  display: flex;
-}
-
-.ant-layout-sider {
+spy-sidebar .ant-layout-sider {
+  display: block;
   min-height: 300px;
+  height: 100%;
 
   &-collapsed {
     .ant-layout-sider {
@@ -38,5 +36,9 @@
       transform: rotate(180deg);
       color: @gray-dark;
     }
+  }
+
+  &-children {
+    overflow-y: auto;
   }
 }

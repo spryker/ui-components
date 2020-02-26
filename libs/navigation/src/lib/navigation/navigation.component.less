@@ -27,15 +27,17 @@
     }
   }
 
-  spy-icon,
+  .menu-title-icon,
   &-item > a {
     transition: color @menu-item-transition-time @ease-in-out;
   }
 
-  spy-icon {
+  .menu-title-icon {
     color: @menu-item-color;
-    padding-right: @menu-item-icon-margin;
+    margin-right: @menu-item-icon-margin;
     font-size: @menu-item-icon-size;
+    width: @menu-item-icon-size;
+    height: @menu-item-icon-size;
     line-height: 0;
   }
 
@@ -46,7 +48,7 @@
   &-submenu-title:hover {
     color: @menu-highlight-color;
 
-    spy-icon {
+    .menu-title-icon {
       color: @gray-darker;
     }
   }
@@ -56,7 +58,7 @@
     background: @menu-item-active-bg;
     color: @menu-highlight-color;
 
-    spy-icon {
+    .menu-title-icon {
       color: @primary-color;
     }
 
@@ -65,7 +67,7 @@
     > a:hover {
       color: @menu-highlight-color;
 
-      spy-icon {
+      .menu-title-icon {
         color: @primary-color;
       }
     }

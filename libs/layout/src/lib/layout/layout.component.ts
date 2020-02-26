@@ -9,6 +9,6 @@ import {
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
 export class LayoutComponent {}

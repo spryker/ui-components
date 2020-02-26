@@ -27,12 +27,12 @@
     }
   }
 
-  spy-icon,
+  .menu-title-icon,
   &-item > a {
     transition: color @menu-item-transition-time @ease-in-out;
   }
 
-  spy-icon {
+  .menu-title-icon {
     color: @menu-item-color;
     margin-right: @menu-item-icon-margin;
     font-size: @menu-item-icon-size;
@@ -48,7 +48,7 @@
   &-submenu-title:hover {
     color: @menu-highlight-color;
 
-    spy-icon {
+    .menu-title-icon {
       color: @gray-darker;
     }
   }
@@ -58,7 +58,7 @@
     background: @menu-item-active-bg;
     color: @menu-highlight-color;
 
-    spy-icon {
+    .menu-title-icon {
       color: @primary-color;
     }
 
@@ -67,7 +67,7 @@
     > a:hover {
       color: @menu-highlight-color;
 
-      spy-icon {
+      .menu-title-icon {
         color: @primary-color;
       }
     }

@@ -23,6 +23,6 @@ export class TextareaComponent {
   @Input() rows = 4;
   @Input() cols = 4;
   @Input() @ToJson() attrs: Record<string, string> = {};
-
+  @Input() spyId = '';
   @Output() valueChange = new EventEmitter<any>();
 }

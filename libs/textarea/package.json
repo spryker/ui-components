@@ -4,11 +4,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "ng-zorro-antd": "^9.0.0-beta.0"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "tslib": "^1.10.0",
-    "@support.spryker.com/styles": "^0.0.1",
-    "@support.spryker.com/utils": "^0.0.1"
+    "@spryker/styles": "^0.0.1",
+    "@spryker/utils": "^0.0.1"
   }
 }

@@ -4,17 +4,15 @@
 @ant-input: ant-input;
 
 .@{ant-input}-affix-wrapper {
-  .ant-input-prefix {
-    left: 10px;
-  }
-
-  .@{ant-input}-suffix {
-    right: 10px;
-  }
-
-  .@{ant-input}-prefix,
-  .@{ant-input}-suffix {
-    color: @input-icon-color;
+  .@{ant-input} {
+    &-prefix {
+      left: 10px;
+      color: @input-icon-color;
+    }
+    &-suffix {
+      right: 10px;
+      color: @input-icon-color;
+    }
   }
 
   &:hover {

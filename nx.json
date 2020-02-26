@@ -58,6 +58,9 @@
     },
     "sidebar": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "collapsible": {
+      "tags": ["level:molecule", "type:component"]
     }
   }
 }

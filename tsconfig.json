@@ -69,6 +69,10 @@
       "@spryker/textarea": [
         "dist/libs/textarea/index.d.ts",
         "libs/textarea/src/index.ts"
+      ],
+      "@spryker/toggle": [
+        "libs/toggle/dist/index.d.ts",
+        "libs/toggle/src/index.ts"
       ]
     }
   },

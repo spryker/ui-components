@@ -65,6 +65,10 @@
       "@spryker/sidebar": [
         "dist/libs/sidebar/index.d.ts",
         "libs/sidebar/src/index.ts"
+      ],
+      "@spryker/textarea": [
+        "dist/libs/textarea/index.d.ts",
+        "libs/textarea/src/index.ts"
       ]
     }
   },

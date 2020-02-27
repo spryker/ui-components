@@ -58,6 +58,9 @@
     },
     "sidebar": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "textarea": {
+      "tags": ["level:atom", "type:component"]
     }
   }
 }

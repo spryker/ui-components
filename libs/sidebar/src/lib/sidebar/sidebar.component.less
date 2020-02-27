@@ -2,7 +2,7 @@
 
 spy-sidebar .@{layout-prefix-cls}-sider {
   display: block;
-  min-height: 300px;
+  min-height: @layout-sidebar-min-height;
   height: 100%;
 
   &-collapsed {
@@ -34,7 +34,7 @@ spy-sidebar .@{layout-prefix-cls}-sider {
     width: auto !important;
     height: auto;
     border-radius: @layout-trigger-border-radius;
-    border: 1px solid @layout-trigger-background;
+    border: @layout-trigger-border-size solid @layout-trigger-background;
     color: @gray-dark;
     transition: border @common-transition-time @common-transition-function,
       background @common-transition-time @common-transition-function,

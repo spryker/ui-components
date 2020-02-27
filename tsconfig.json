@@ -71,7 +71,7 @@
         "libs/textarea/src/index.ts"
       ],
       "@spryker/toggle": [
-        "libs/toggle/dist/index.d.ts",
+        "dist/libs/toggle/index.d.ts",
         "libs/toggle/src/index.ts"
       ]
     }

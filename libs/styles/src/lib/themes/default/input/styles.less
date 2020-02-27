@@ -1,8 +1,6 @@
 @import 'ng-zorro-antd/input/style/index.less';
 @import '../theme.less';
 
-@ant-input: ant-input;
-
 .@{ant-input}-affix-wrapper {
   .@{ant-input} {
     &-prefix {
@@ -55,6 +53,10 @@
     &,
     .has-error & {
       box-shadow: none;
+    }
+
+    &::placeholder {
+      color: transparent;
     }
   }
 

@@ -35,7 +35,7 @@ describe('ToggleComponent', () => {
     component = fixture.componentInstance;
   }));
 
-  it('template must render nz-switch component from Ant Design with input type="disabled"', () => {
+  it('template must render nz-switch component from Ant Design with input type="hidden"', () => {
     const nzSwitchElem = fixture.debugElement.query(By.css('nz-switch'));
     expect(nzSwitchElem).toBeTruthy();
 
@@ -71,7 +71,7 @@ describe('ToggleComponent', () => {
       fixture.detectChanges();
 
       expect(nzSwitchElem.properties.ngModel).toBe(mockedValue);
-      expect(inputElem.properties.value).toBe(mockedValue);
+      expect(inputElem.properties.ngModel).toBe(mockedValue);
     });
 
     it('should bind disabled to nzDisabled of nz-switch', () => {

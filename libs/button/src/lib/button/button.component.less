@@ -4,9 +4,9 @@ spy-button {
   display: inline-block;
 }
 
-.ant-btn {
+.@{btn-prefix-cls} {
   width: 100%;
-  min-width: 106px;
+  min-width: @btn-min-width-base;
   box-shadow: @btn-shadow-default-size transparent;
   padding: 0 10px;
 
@@ -103,10 +103,10 @@ spy-button {
   }
 
   &-lg {
-    min-width: 114px;
+    min-width: @btn-min-width-lg;
   }
 
   &-sm {
-    min-width: 90px;
+    min-width: @btn-min-width-sm;
   }
 }

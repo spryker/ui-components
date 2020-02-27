@@ -14,6 +14,8 @@
 @component-background: @white;
 @border-color-base: @gray;
 @border-color-split: @gray-light;
+@common-transition-time: 0.3s;
+@common-transition-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 
 //Fonts
 @heading-1-size: @heading-1-font-size;
@@ -22,6 +24,8 @@
 @heading-4-size: @heading-4-font-size;
 
 // Form Item
+@form-prefix-cls: ~'@{ant-prefix}-form';
+
 @form-explain-font-size: @font-size-sm;
 @form-item-label-font-size: @font-size-sm;
 @form-item-label-line-height: 1.67;
@@ -34,9 +38,14 @@
 @disabled-bg: @gray-lighter;
 
 // Buttons
+@btn-prefix-cls: ~'@{ant-prefix}-btn';
+
 @btn-font-weight: @font-weight-medium;
 @btn-font-size-lg: @font-size-base;
 
+@btn-min-width-base: 100px;
+@btn-min-width-lg: 108px;
+@btn-min-width-sm: 85px;
 @btn-height-base: 42px;
 @btn-height-lg: 48px;
 @btn-height-sm: 38px;
@@ -69,6 +78,8 @@
 @btn-disable-border: @gray-light;
 
 // Card
+@card-prefix-cls: ~'@{ant-prefix}-card';
+
 @card-background: @white;
 @card-actions-background: @white;
 @card-head-color: @ink;
@@ -122,7 +133,7 @@
 @menu-item-decorator-height: 36px;
 @menu-item-icon-size: 24px;
 @menu-item-icon-margin: 15px;
-@menu-item-transition-time: 0.3s;
+@menu-item-transition-time: @common-transition-time;
 
 // Alert
 @alert-prefix-cls: ~'@{ant-prefix}-alert';
@@ -132,3 +143,30 @@
 @alert-icon-width: 25px;
 @alert-icon-decoration-width: 40px;
 @alert-icon-margin: 22px;
+
+// Header
+@layout-header-height: inherit;
+@layout-header-background: @white;
+@layout-header-padding: 16px 43px 16px 0;
+
+// Layout
+@layout-prefix-cls: ~'@{ant-prefix}-layout';
+
+@layout-body-background: @gray-lighter;
+
+// Sidebar
+@layout-sidebar-min-height: 300px;
+
+@layout-trigger-inner-size: 30px;
+@layout-trigger-inner-font-size: @font-size-sm;
+
+@layout-trigger-height: auto;
+@layout-trigger-width: auto;
+
+@layout-trigger-background: @white;
+@layout-trigger-background-hover: @primary-color;
+
+@layout-trigger-color-light: @gray-dark;
+@layout-trigger-background-light: @layout-trigger-background;
+@layout-trigger-border-radius: 50%;
+@layout-trigger-border-size: 1px;

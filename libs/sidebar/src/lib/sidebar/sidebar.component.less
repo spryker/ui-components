@@ -6,9 +6,23 @@ spy-sidebar .@{layout-prefix-cls}-sider {
   height: 100%;
 
   &-collapsed {
-    .ant-layout-sider {
-      &-trigger-icon {
-        transform: rotate(0deg);
+    .@{layout-prefix-cls}-sider {
+      &-trigger {
+        &:hover {
+          color: @layout-trigger-color-light;
+          background: @layout-trigger-background;
+          border-color: @layout-trigger-background-hover;
+        }
+
+        &:focus {
+          color: @layout-trigger-background;
+          background: @layout-trigger-background-hover;
+          border-color: @layout-trigger-background-hover;
+        }
+
+        &-icon {
+          transform: rotate(0deg);
+        }
       }
     }
   }
@@ -18,7 +32,24 @@ spy-sidebar .@{layout-prefix-cls}-sider {
     right: -15px;
     bottom: 30px;
     width: auto !important;
+    height: auto;
     border-radius: @layout-trigger-border-radius;
+    border: 1px solid @layout-trigger-background;
+    color: @gray-dark;
+    transition: border @common-transition-time @ease-in-out,
+      background @common-transition-time @ease-in-out,
+      color @common-transition-time @ease-in-out;
+    outline: none;
+
+    &:hover {
+      color: @layout-trigger-background;
+      background: @layout-trigger-background-hover;
+      border-color: @layout-trigger-background-hover;
+    }
+
+    &:focus {
+      border-color: @layout-trigger-background-hover;
+    }
 
     &-inner {
       display: flex;
@@ -27,14 +58,13 @@ spy-sidebar .@{layout-prefix-cls}-sider {
       width: @layout-trigger-inner-size;
       height: @layout-trigger-inner-size;
       border-radius: @layout-trigger-border-radius;
-      transform-origin: center center;
       box-shadow: 0 2px 4px 0 @gray;
       font-size: @layout-trigger-inner-font-size;
     }
 
     &-icon {
       transform: rotate(180deg);
-      color: @gray-dark;
+      line-height: 0;
     }
   }
 

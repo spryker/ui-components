@@ -14,6 +14,7 @@
 @component-background: @white;
 @border-color-base: @gray;
 @border-color-split: @gray-light;
+@common-transition-time: 0.3s;
 
 //Fonts
 @heading-1-size: @heading-1-font-size;
@@ -128,7 +129,7 @@
 @menu-item-decorator-height: 36px;
 @menu-item-icon-size: 24px;
 @menu-item-icon-margin: 15px;
-@menu-item-transition-time: 0.3s;
+@menu-item-transition-time: @common-transition-time;
 
 // Alert
 @alert-prefix-cls: ~'@{ant-prefix}-alert';
@@ -157,6 +158,7 @@
 @layout-trigger-width: auto;
 
 @layout-trigger-background: @white;
+@layout-trigger-background-hover: @primary-color;
 
 @layout-trigger-color-light: @gray-dark;
 @layout-trigger-background-light: @layout-trigger-background;

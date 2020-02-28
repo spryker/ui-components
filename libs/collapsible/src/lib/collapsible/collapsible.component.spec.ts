@@ -87,18 +87,18 @@ describe('CollapsibleComponent', () => {
       const collapsibleHeaderElem = fixture.debugElement.query(
         By.css('.ant-collapse-header'),
       );
+      const callback = jest.fn();
 
-      spyOn(component.activeChange, 'emit');
+      component.activeChange.subscribe(callback);
+      collapsibleHeaderElem.triggerEventHandler('click', null);
+
+      fixture.detectChanges();
+      expect(callback).toHaveBeenCalledWith(true);
 
       collapsibleHeaderElem.triggerEventHandler('click', null);
+
       fixture.detectChanges();
-
-      expect(component.activeChange.emit).toHaveBeenCalledWith(true);
-
-      collapsibleHeaderElem.triggerEventHandler('click', null);
-      fixture.detectChanges();
-
-      expect(component.activeChange.emit).toHaveBeenCalledWith(false);
+      expect(callback).toHaveBeenCalledWith(false);
     });
   });
 });

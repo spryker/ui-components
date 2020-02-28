@@ -18,7 +18,7 @@ import { ToJson } from '@spryker/utils';
 })
 export class CheckboxComponent implements OnInit {
   @Input() spyId = '';
-  @Input() checked = true;
+  @Input() checked = false;
   @Input() disabled = false;
   @Input() indeterminate = false;
   @Input() required = false;

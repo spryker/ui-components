@@ -1,3 +1,19 @@
-<label nz-checkbox [(ngModel)]="checked">
+<label
+	nz-checkbox
+	[(ngModel)]="checked"
+	[nzDisabled]="disabled"
+	[nzIndeterminate]="indeterminate"
+	(ngModelChange)="checkedChange.emit($event)"
+>
 	<ng-content></ng-content>
 </label>
+
+<input
+	type="text"
+	[name]="name"
+	[applyAttrs]="attrs"
+	[required]="required"
+	[id]="spyId"
+	[ngModel]="checked && !indeterminate"
+	[disabled]="disabled"
+/>

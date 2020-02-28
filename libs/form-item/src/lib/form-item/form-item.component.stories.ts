@@ -18,7 +18,7 @@ export const primary = () => ({
       Label
       <spy-checkbox control>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.</spy-checkbox>
     </spy-form-item>
-    <spy-form-item for="input-id" error="Error Message">
+    <spy-form-item for="input-id">
       Label
       <spy-checkbox control>Lorem Ipsum</spy-checkbox>
     </spy-form-item>

@@ -88,15 +88,17 @@ describe('CollapsibleComponent', () => {
         By.css('.ant-collapse-header'),
       );
 
-      component.activeChange.subscribe((isActive: boolean) => {
-        component.active = isActive;
-      });
-      collapsibleHeaderElem.triggerEventHandler('click', null);
+      spyOn(component.activeChange, 'emit');
 
-      expect(component.active).toBeTruthy();
       collapsibleHeaderElem.triggerEventHandler('click', null);
+      fixture.detectChanges();
 
-      expect(component.active).toBeFalsy();
+      expect(component.activeChange.emit).toHaveBeenCalledWith(true);
+
+      collapsibleHeaderElem.triggerEventHandler('click', null);
+      fixture.detectChanges();
+
+      expect(component.activeChange.emit).toHaveBeenCalledWith(false);
     });
   });
 });

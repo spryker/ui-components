@@ -122,7 +122,7 @@
 @menu-item-decorator-height: 36px;
 @menu-item-icon-size: 24px;
 @menu-item-icon-margin: 15px;
-@menu-item-transition-time: 0.3s;
+@menu-item-transition-time: @transition-duration;
 
 // Alert
 @alert-prefix-cls: ~'@{ant-prefix}-alert';
@@ -132,3 +132,19 @@
 @alert-icon-width: 25px;
 @alert-icon-decoration-width: 40px;
 @alert-icon-margin: 22px;
+
+// Collapsible
+@component-background: transparent;
+@collapse-panel-border-radius: 4px;
+@collapse-panel-border-width: 1px;
+@collapse-header-plus-width: 12px;
+@collapse-header-plus-boarder: 2px;
+
+@collapse-header-line-height: 15px;
+@collapse-header-icon-size: @collapse-header-line-height;
+
+@collapse-header-padding-y: 10px;
+@collapse-header-padding-x: 18px;
+@collapse-content-padding: 10px 18px;
+
+@collapse-header-icon-transition: @transition-duration;

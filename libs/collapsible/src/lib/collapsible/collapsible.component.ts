@@ -24,14 +24,10 @@ export class CollapsibleComponent {
 
   collapse(): void {
     this.active = false;
-
-    this.activeChange.emit(this.isCollapsed());
   }
 
   expand(): void {
     this.active = true;
-
-    this.activeChange.emit(this.isCollapsed());
   }
 
   toggle(): boolean {

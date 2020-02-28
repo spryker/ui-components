@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.9...@spryker/styles@0.1.0-next.10) (2020-02-28)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.8...@spryker/styles@0.1.0-next.9) (2020-02-27)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.7...@spryker/styles@0.1.0-next.8) (2020-02-27)
+
+
+### Bug Fixes
+
+* **alert, form-item, button components:** style changes ([5840c3f](https://github.com/spryker/ui-components/commit/5840c3f9795377c742a332c3b83f9b83b9bf37b2))
+* **input:** change styles for placeholder in the focus state ([1009f2f](https://github.com/spryker/ui-components/commit/1009f2f42eede8ab4192967067ed571b8969bb61))
+* **input:** remove variable ([439d682](https://github.com/spryker/ui-components/commit/439d6828c2229891c11235b3ded795eea14e6966))
+
+
+
+
+
+# [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.6...@spryker/styles@0.1.0-next.7) (2020-02-27)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.5...@spryker/styles@0.1.0-next.6) (2020-02-27)
+
+
+### Features
+
+* **textarea,input:** textarea component, input styles ([bcb6a85](https://github.com/spryker/ui-components/commit/bcb6a85644109700ab00b7332b84d6bb94f8511c))
+
+
+
+
+
 # [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.4...@spryker/styles@0.1.0-next.5) (2020-02-25)
 
 

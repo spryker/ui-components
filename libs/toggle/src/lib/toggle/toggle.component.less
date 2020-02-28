@@ -1,0 +1,30 @@
+@import './toggle.component.theme.less';
+
+.@{toggle-prefix-cls} {
+  &:hover,
+  &:focus {
+    background-color: @gray-darker;
+  }
+
+  &:focus {
+    box-shadow: @btn-shadow-default-size @gray-darker;
+  }
+
+  &-checked {
+    &:hover,
+    &:focus {
+      background-color: @green-dark;
+    }
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &:disabled {
+    background-color: @gray;
+    &::after {
+      background-color: @gray-darker;
+    }
+  }
+}

@@ -59,6 +59,12 @@
     "sidebar": {
       "tags": ["level:molecule", "type:component"]
     },
+    "textarea": {
+      "tags": ["level:atom", "type:component"]
+    },
+    "toggle": {
+      "tags": ["level:atom", "type:component"]
+    },
     "collapsible": {
       "tags": ["level:molecule", "type:component"]
     }

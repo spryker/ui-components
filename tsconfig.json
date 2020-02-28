@@ -66,6 +66,14 @@
         "dist/libs/sidebar/index.d.ts",
         "libs/sidebar/src/index.ts"
       ],
+      "@spryker/textarea": [
+        "dist/libs/textarea/index.d.ts",
+        "libs/textarea/src/index.ts"
+      ],
+      "@spryker/toggle": [
+        "dist/libs/toggle/index.d.ts",
+        "libs/toggle/src/index.ts"
+      ],
       "@spryker/collapsible": [
         "dist/libs/collapsible/index.d.ts",
         "libs/collapsible/src/index.ts"

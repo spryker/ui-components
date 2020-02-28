@@ -1,6 +1,6 @@
 @import './form-item.component.theme.less';
 
-.ant-form-item {
+.@{form-prefix-cls}-item {
   font-family: @font-family;
 
   &-label {
@@ -9,6 +9,7 @@
     line-height: @form-item-label-line-height;
     font-weight: @font-weight-medium;
     text-transform: uppercase;
+    padding-bottom: @form-item-label-bottom-padding;
   }
 
   // FIXME(ng-deep):

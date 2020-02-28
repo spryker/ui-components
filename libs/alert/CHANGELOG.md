@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/alert@0.1.0-next.0...@spryker/alert@0.1.0-next.1) (2020-02-27)
+
+
+### Bug Fixes
+
+* **alert, form-item, button components:** style changes ([5840c3f](https://github.com/spryker/ui-components/commit/5840c3f9795377c742a332c3b83f9b83b9bf37b2))
+
+
+
+
+
 # 0.1.0-next.0 (2020-02-25)
 
 

@@ -1,0 +1,72 @@
+@import 'ng-zorro-antd/input/style/index.less';
+@import '../theme.less';
+
+.@{ant-input}-affix-wrapper {
+  .@{ant-input} {
+    &-prefix {
+      left: 10px;
+      color: @input-icon-color;
+    }
+    &-suffix {
+      right: 10px;
+      color: @input-icon-color;
+    }
+  }
+
+  &:hover {
+    .@{ant-input}-disabled,
+    .@{ant-input}:read-only {
+      border-color: @input-disabled-border;
+    }
+
+    .@{ant-input}:focus {
+      border-color: @primary-color;
+    }
+  }
+}
+
+.@{ant-input}-group .@{ant-input}:last-child {
+  border-radius: @border-radius-base;
+}
+
+.@{ant-input} {
+  font-weight: @font-weight-medium;
+
+  &:read-only,
+  &-disabled {
+    &,
+    .has-error & {
+      pointer-events: none;
+      border-color: @input-disabled-border;
+    }
+  }
+
+  &:read-only {
+    &,
+    .has-error & {
+      color: @ink;
+      background: @input-disabled-bg;
+    }
+  }
+
+  &:focus {
+    &,
+    .has-error & {
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  .@{ant-input}-affix-wrapper {
+    &:not(:first-child) {
+      padding-left: 40px;
+    }
+
+    &:not(:last-child) {
+      padding-right: 40px;
+    }
+  }
+}

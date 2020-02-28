@@ -13,11 +13,11 @@ import {
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent {
-  @Input() width = 200;
-  @Input() collapsedWidth = 64;
+  @Input() width = 250;
+  @Input() collapsedWidth = 62;
   @Input() trigger: undefined | TemplateRef<void>;
   @Input() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();

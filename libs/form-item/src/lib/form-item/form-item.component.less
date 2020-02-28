@@ -3,6 +3,11 @@
 .@{form-prefix-cls}-item {
   font-family: @font-family;
 
+  &-with-help,
+  & {
+    margin-bottom: @form-item-bottom-margin;
+  }
+
   &-label {
     font-size: @form-item-label-font-size;
     letter-spacing: @letter-spacing-base;
@@ -23,6 +28,10 @@
         color: @gray-dark;
       }
     }
+  }
+
+  &-control {
+    line-height: 1;
   }
 }
 

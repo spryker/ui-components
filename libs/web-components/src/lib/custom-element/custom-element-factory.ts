@@ -17,14 +17,12 @@ export function createCustomElementFor<T>(
 ): NgWebComponent<T> {
   if (isDeclarationLazy(componentDeclaration)) {
     return createCustomElementForLazy(componentDeclaration, injector);
-  } else {
-    return createCustomElementForStatic(
-      componentDeclaration as WebComponentDeclarationStatic<
-        WebComponentType<T>
-      >,
-      injector,
-    );
   }
+
+  return createCustomElementForStatic(
+    componentDeclaration as WebComponentDeclarationStatic<WebComponentType<T>>,
+    injector,
+  );
 }
 
 export function createCustomElementForStatic<T>(

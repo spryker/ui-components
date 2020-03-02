@@ -30,16 +30,16 @@
       "tags": ["type:component", "level:atom"]
     },
     "logo": {
-      "tags": ["level:atom"]
+      "tags": ["level:atom", "type:component"]
     },
     "card": {
-      "tags": ["level:atom"]
+      "tags": ["level:atom", "type:component"]
     },
     "form-item": {
-      "tags": ["level:atom"]
+      "tags": ["level:atom", "type:component"]
     },
     "input": {
-      "tags": ["level:atom"]
+      "tags": ["level:atom", "type:component"]
     },
     "alert": {
       "tags": ["level:molecule", "type:component"]
@@ -66,7 +66,7 @@
       "tags": ["level:atom", "type:component"]
     },
     "checkbox": {
-      "tags": ["level:atom"]
+      "tags": ["level:atom", "type:component"]
     }
   }
 }

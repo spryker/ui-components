@@ -171,10 +171,6 @@ describe('CheckboxComponent', () => {
         By.css('input[type="hidden"]'),
       );
       component.attrs = '{"test":"attr1","test2":"attr2"}';
-      component.attrs = {
-        test: 'attr1',
-        test2: 'attr2',
-      };
       fixture.detectChanges();
 
       expect(inputElem.attributes['test']).toBe('attr1');

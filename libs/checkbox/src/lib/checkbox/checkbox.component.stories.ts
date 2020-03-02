@@ -1,17 +1,15 @@
-
 import { CheckboxModule } from '../checkbox.module';
 
 export default {
-  title: 'CheckboxComponent'
-}
+  title: 'CheckboxComponent',
+};
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [CheckboxModule]
+    imports: [CheckboxModule],
   },
   template: `
     <spy-checkbox>Chackbox label</spy-checkbox>
   `,
-  props: {
-  }
-})
+  props: {},
+});

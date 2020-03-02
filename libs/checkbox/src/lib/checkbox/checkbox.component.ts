@@ -3,9 +3,8 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 
@@ -16,7 +15,7 @@ import { ToJson } from '@spryker/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class CheckboxComponent implements OnInit {
+export class CheckboxComponent {
   @Input() spyId = '';
   @Input() checked = false;
   @Input() disabled = false;
@@ -24,11 +23,6 @@ export class CheckboxComponent implements OnInit {
   @Input() required = false;
   @Input() name = '';
   @Input() @ToJson() attrs: Record<string, string> = {};
+
   @Output() checkedChange: EventEmitter<boolean> = new EventEmitter();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

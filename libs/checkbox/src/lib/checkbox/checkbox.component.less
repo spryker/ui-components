@@ -36,7 +36,7 @@
 .@{checkbox-prefix-cls} {
   align-self: flex-start;
   flex-shrink: 0;
-  top: 0;
+  top: 1px;
   border: @checkbox-border-gap-width solid transparent;
   border-radius: @checkbox-border-radius;
   box-shadow: @checkbox-shadow-default-size transparent;
@@ -74,7 +74,7 @@
   &-disabled {
     .@{checkbox-prefix-cls}-inner {
       background-color: @input-disabled-bg;
-      border-color: @disabled-color !important;
+      border-color: @checkbox-disabled-border-color !important;
     }
 
     &.@{checkbox-prefix-cls}-checked .@{checkbox-prefix-cls}-inner {

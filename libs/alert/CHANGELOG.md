@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/alert@0.1.0-next.1...@spryker/alert@0.1.0-next.2) (2020-03-02)
-
-
-### Bug Fixes
-
-* **alert default margin:** margin-bottom for alert ([3c8d66c](https://github.com/spryker/ui-components/commit/3c8d66c4b753ca76a51b6fa247b992e7135f01c8))
-
-
-### Reverts
-
-* Revert "chore(release): publish [skip ci]" ([db70cac](https://github.com/spryker/ui-components/commit/db70cac617dc4c058df205e3ca740a8855791cf2))
-
-
-
-
-
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/alert@0.1.0-next.0...@spryker/alert@0.1.0-next.1) (2020-02-27)
 
 

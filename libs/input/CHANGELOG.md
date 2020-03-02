@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.7...@spryker/input@0.1.0-next.8) (2020-03-02)
+
+
+### Bug Fixes
+
+* **input:** change input focus placeholder to override default styles ([9b1f5c2](https://github.com/spryker/ui-components/commit/9b1f5c278344ba0e2bb1633b4f4fee70f7a8d07b))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.6...@spryker/input@0.1.0-next.7) (2020-02-27)
 
 

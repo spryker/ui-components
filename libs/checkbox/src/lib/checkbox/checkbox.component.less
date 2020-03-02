@@ -2,9 +2,9 @@
 
 .@{checkbox-prefix-cls}-wrapper {
   display: flex;
-  font: @font-weight-medium @font-size-base @font-family;
+  font: @font-weight-medium @font-size-base / @checkbox-label-line-height
+    @font-family;
   color: @checkbox-label-color;
-  line-height: @checkbox-label-line-height;
   letter-spacing: @letter-spacing-base;
 
   .has-error & .@{checkbox-prefix-cls}-inner {

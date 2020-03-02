@@ -31,7 +31,7 @@ jobs:
             all_branches: true
             condition: '$TRAVIS_BRANCH =~ ^(master)$'
         - provider: script
-          script: npm run release-tag
+          script: npm run release-tag || npx lerna exec -- cat ./dist/package.json && exit 1
           skip_cleanup: true
           keep_history: true
           on:

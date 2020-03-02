@@ -21,10 +21,12 @@
       border-color: @gray-dark;
     }
 
-    .@{checkbox-prefix-cls}-indeterminate .@{checkbox-prefix-cls}-inner,
-    .@{checkbox-prefix-cls}-checked .@{checkbox-prefix-cls}-inner {
-      border-color: @checkbox-checked-hover-color;
-      background: @checkbox-checked-hover-color;
+    .@{checkbox-prefix-cls}-indeterminate,
+    .@{checkbox-prefix-cls}-checked {
+      .@{checkbox-prefix-cls}-inner {
+        border-color: @checkbox-checked-hover-color;
+        background: @checkbox-checked-hover-color;
+      }
     }
 
     .@{checkbox-prefix-cls}-disabled .@{checkbox-prefix-cls}-inner {
@@ -62,13 +64,15 @@
     }
   }
 
-  &-input:checked:focus + &-inner {
-    transform: scale(0.9) translate(-50%, -50%);
-    transform-origin: top left;
-  }
+  &-input {
+    &:checked:focus + .@{checkbox-prefix-cls}-inner {
+      transform: scale(0.9) translate(-50%, -50%);
+      transform-origin: top left;
+    }
 
-  &-input:focus + &-inner {
-    border-color: @checkbox-color;
+    &:focus + .@{checkbox-prefix-cls}-inner {
+      border-color: @checkbox-color;
+    }
   }
 
   &-disabled {

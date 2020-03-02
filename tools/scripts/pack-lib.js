@@ -1,8 +1,7 @@
-const path = require('path');
 const copyfiles = require('copyfiles');
+const { getPackageName } = require('./lerna-util');
 
-const cwd = process.cwd();
-const libName = path.basename(cwd);
+const libName = getPackageName();
 
 const source = `../../dist/libs/${libName}/**/*`;
 const dest = `./dist`;

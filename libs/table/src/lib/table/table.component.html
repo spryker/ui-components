@@ -1,1 +1,20 @@
-<p>table works!</p>
+<nz-table nzFrontPagination="false">
+  <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
+    <tr>
+      <th
+        *ngFor="let th of columns$ | async"
+        [nzShowSort]="th.sortable"
+        [nzSortKey]="th.id"
+      >
+        {{ th.title }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tr of (data$ | async)?.data">
+      <td *ngFor="let td of tr | keyvalue">
+        <div style="background: red">{{ td.value }}</div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

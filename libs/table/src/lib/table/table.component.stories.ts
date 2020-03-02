@@ -1,4 +1,5 @@
 import { TableComponent } from './table.component';
+import { TableModule } from '../table.module';
 
 export default {
   title: 'TableComponent',
@@ -6,7 +7,7 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [],
+    imports: [TableModule],
   },
   component: TableComponent,
   props: {},

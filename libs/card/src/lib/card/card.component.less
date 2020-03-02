@@ -4,6 +4,19 @@
   width: 100%;
 }
 
+spy-card.host-ctx-spy-bg-white,
+spy-card:not([class^='host-ctx-spy-bg']) {
+  .@{card-prefix-cls} {
+    background: @gray-lighter;
+  }
+}
+
+spy-card.host-ctx-spy-bg-gray {
+  .@{card-prefix-cls} {
+    background: @white;
+  }
+}
+
 .@{card-prefix-cls} {
   font-family: @font-family;
 
@@ -29,6 +42,7 @@
   &-actions {
     border-top-width: @card-border-width;
     border-radius: 0 0 @card-radius @card-radius;
+    background: transparent;
 
     & > li {
       box-sizing: border-box;

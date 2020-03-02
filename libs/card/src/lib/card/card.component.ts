@@ -4,7 +4,9 @@ import {
   ViewEncapsulation,
   TemplateRef,
   Input,
+  ElementRef,
 } from '@angular/core';
+import { applyContexts } from '@spryker/utils';
 
 @Component({
   selector: 'spy-card',
@@ -18,4 +20,8 @@ export class CardComponent {
   @Input() extra: TemplateRef<void> | undefined;
   @Input() actions: TemplateRef<void>[] | undefined[] = [];
   @Input() titlePosition: 'left' | 'center' | 'right' = 'left';
+
+  constructor(elemRef: ElementRef) {
+    applyContexts(<HTMLElement>elemRef.nativeElement);
+  }
 }

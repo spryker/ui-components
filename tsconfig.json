@@ -73,6 +73,10 @@
       "@spryker/toggle": [
         "dist/libs/toggle/index.d.ts",
         "libs/toggle/src/index.ts"
+      ],
+      "@spryker/notification": [
+        "dist/libs/notification/index.d.ts",
+        "libs/notification/src/index.ts"
       ]
     }
   },

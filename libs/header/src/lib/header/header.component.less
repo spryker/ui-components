@@ -1,1 +1,14 @@
 @import './header.component.theme.less';
+
+spy-header.host-ctx-spy-bg-white,
+spy-header:not([class^='host-ctx-spy-bg']) {
+  .@{layout-prefix-cls}-header {
+    background: @gray-lighter;
+  }
+}
+
+spy-header.host-ctx-spy-bg-gray {
+  .@{layout-prefix-cls}-header {
+    background: @white;
+  }
+}

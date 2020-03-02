@@ -64,6 +64,9 @@
     },
     "toggle": {
       "tags": ["level:atom", "type:component"]
+    },
+    "notification": {
+      "tags": ["level:molecule", "type:component"]
     }
   }
 }

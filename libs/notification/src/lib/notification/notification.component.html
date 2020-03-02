@@ -1,0 +1,31 @@
+<nz-alert
+  [nzType]="type"
+  [nzMessage]="messageTmpl"
+  [nzCloseable]="closeable"
+  [nzCloseText]="closeable ? closeIconTpl : null"
+  (nzOnClose)="closed.emit($event)"
+></nz-alert>
+
+<ng-template #messageTmpl>
+  <div class="ant-alert-message">
+    <div class="ant-alert__icon">
+      <span class="ant-alert-icon ant-alert-icon--{{ type }}">
+        <span class="ant-alert-icon__inner">
+          <spy-icon [name]="type"></spy-icon>
+        </span>
+      </span>
+    </div>
+    <div class="ant-alert__content">
+      <div class="ant-alert__title">
+        <ng-content select="[title]"></ng-content>
+      </div>
+      <div class="ant-alert__description">
+        <ng-content select="[description]"></ng-content>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #closeIconTpl>
+  <spy-icon name="remove"></spy-icon>
+</ng-template>

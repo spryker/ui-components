@@ -2,9 +2,7 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  ElementRef,
 } from '@angular/core';
-import { applyContexts } from '@spryker/utils';
 
 @Component({
   selector: 'spy-header',
@@ -13,8 +11,4 @@ import { applyContexts } from '@spryker/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class HeaderComponent {
-  constructor(elemRef: ElementRef) {
-    applyContexts(<HTMLElement>elemRef.nativeElement);
-  }
-}
+export class HeaderComponent {}

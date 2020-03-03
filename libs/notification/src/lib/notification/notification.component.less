@@ -59,49 +59,49 @@ spy-notification.host-ctx-spy-bg-gray {
   &-description {
     display: block;
   }
-}
 
-.@{alert-prefix-cls}-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: @alert-icon-wrapper-width;
-  height: @alert-icon-wrapper-width;
-  position: static;
-  line-height: 0;
-  border-radius: 50%;
-  font-size: @alert-icon-width;
-  z-index: 0;
-
-  &--success {
-    background: @green-lighter;
-  }
-
-  &--info {
-    background: @blue-light;
-  }
-
-  &--warning {
-    background: @orange-light;
-  }
-
-  &--error {
-    background: @red-light;
-  }
-
-  &__inner {
-    background: @white;
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: @alert-icon-wrapper-width;
+    height: @alert-icon-wrapper-width;
+    position: static;
+    line-height: 0;
     border-radius: 50%;
+    font-size: @alert-icon-width;
+    z-index: 0;
+
+    &--success {
+      background: @green-lighter;
+    }
+
+    &--info {
+      background: @blue-light;
+    }
+
+    &--warning {
+      background: @orange-light;
+    }
+
+    &--error {
+      background: @red-light;
+    }
+
+    &__inner {
+      background: @white;
+      border-radius: 50%;
+    }
   }
-}
 
-.@{alert-prefix-cls}-close-icon {
-  top: 21px;
-  right: 20px;
-  font-size: @font-size-lg;
-  color: @gray-dark;
+  &-close-icon {
+    top: 21px;
+    right: 20px;
+    font-size: @font-size-lg;
+    color: @gray-dark;
 
-  &:hover {
-    color: @alert-close-hover-color;
+    &:hover {
+      color: @alert-close-hover-color;
+    }
   }
 }

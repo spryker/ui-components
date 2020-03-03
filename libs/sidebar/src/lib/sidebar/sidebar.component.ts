@@ -6,9 +6,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  ElementRef,
 } from '@angular/core';
-import { applyContexts } from '@spryker/utils';
 
 @Component({
   selector: 'spy-sidebar',
@@ -23,10 +21,6 @@ export class SidebarComponent {
   @Input() trigger: undefined | TemplateRef<void>;
   @Input() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
-
-  constructor(elemRef: ElementRef) {
-    applyContexts(<HTMLElement>elemRef.nativeElement);
-  }
 
   updateCollapse(isCollapsed: boolean): void {
     this.collapsed = isCollapsed;

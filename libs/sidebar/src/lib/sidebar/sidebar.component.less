@@ -1,17 +1,5 @@
 @import './sidebar.component.theme.less';
 
-spy-sidebar.host-ctx-spy-bg-white,
-spy-sidebar:not([class^='host-ctx-spy-bg']) {
-  .@{layout-prefix-cls}-sider {
-    background: @gray-lighter;
-  }
-}
-spy-sidebar.host-ctx-spy-bg-gray {
-  .@{layout-prefix-cls}-sider {
-    background: @white;
-  }
-}
-
 spy-sidebar .@{layout-prefix-cls}-sider {
   display: block;
   min-height: @layout-sidebar-min-height;

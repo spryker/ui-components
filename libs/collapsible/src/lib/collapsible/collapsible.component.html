@@ -1,0 +1,22 @@
+<nz-collapse>
+  <nz-collapse-panel
+    [nzHeader]="titleTmpl"
+    [nzActive]="active"
+    [nzDisabled]="disabled"
+    [nzShowArrow]="false"
+    (nzActiveChange)="updateActive($event)"
+  >
+    <ng-content></ng-content>
+  </nz-collapse-panel>
+</nz-collapse>
+
+<ng-template #titleTmpl>
+  <div class="ant-collapse-header-inner">
+    <div *ngIf="titleIcon">
+      <spy-icon [name]="titleIcon" class="ant-collapse-header-icon"></spy-icon>
+    </div>
+    <div>
+      {{ title }}
+    </div>
+  </div>
+</ng-template>

@@ -73,6 +73,10 @@
       "@spryker/toggle": [
         "dist/libs/toggle/index.d.ts",
         "libs/toggle/src/index.ts"
+      ],
+      "@spryker/collapsible": [
+        "dist/libs/collapsible/index.d.ts",
+        "libs/collapsible/src/index.ts"
       ]
     }
   },

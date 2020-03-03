@@ -1,3 +1,4 @@
+import { Component, ViewChild } from '@angular/core';
 import {
   async,
   ComponentFixture,
@@ -6,10 +7,10 @@ import {
   fakeAsync,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { By } from '@angular/platform-browser';
-import { IconModule, ICONS_TOKEN } from '@spryker/icon';
+import { provideIcons } from '@spryker/icon';
 import { NotificationComponent } from './notification.component';
+import { NotificationModule } from '../notification.module';
 import {
   errorIcon,
   successIcon,
@@ -42,29 +43,49 @@ const icons = [
 ];
 
 describe('NotificationComponent', () => {
-  let component: NotificationComponent;
-  let fixture: ComponentFixture<NotificationComponent>;
+  @Component({
+    selector: 'test',
+    template: `
+      <spy-notification
+        [type]="type"
+        [closeable]="closeable"
+        (closed)="changeSpy()"
+      >
+        <span title>
+          <span class="test-title">Title...</span>
+        </span>
+        <span description>
+          <span class="test-description">Description...</span>
+        </span>
+      </spy-notification>
+    `,
+  })
+  class TestComponent {
+    closeable = false;
+    type = 'info';
+    changeSpy = jest.fn();
+    @ViewChild(NotificationComponent) notification!: NotificationComponent;
+  }
+
+  let component: TestComponent;
+  let notificationComponent: NotificationComponent;
+  let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NzAlertModule, IconModule, NoopAnimationsModule],
-      declarations: [NotificationComponent],
-      providers: [
-        {
-          provide: ICONS_TOKEN,
-          useValue: icons,
-        },
-      ],
+      imports: [NotificationModule, NoopAnimationsModule],
+      declarations: [TestComponent],
+      providers: [provideIcons(icons)],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotificationComponent);
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
-    component.closeable = true;
-    component.type = 'error';
 
     fixture.detectChanges();
+
+    notificationComponent = component.notification;
   });
 
   it('should create', () => {
@@ -77,33 +98,109 @@ describe('NotificationComponent', () => {
     expect(alert).toBeTruthy();
   });
 
-  it('should emit event on alert close', fakeAsync(() => {
-    const closeBtn = fixture.debugElement.query(
+  it('should render title with icon in nzMessage', () => {
+    const alertMessage = fixture.debugElement.query(
+      By.css('.ant-alert-message'),
+    );
+
+    expect(alertMessage).toBeTruthy();
+
+    const messageIcon = alertMessage.query(By.css('spy-icon'));
+    const messageTitle = alertMessage.query(By.css('.test-title'));
+
+    expect(messageIcon).toBeTruthy();
+    expect(messageTitle).toBeTruthy();
+  });
+
+  it('should render description in nzDescription', () => {
+    const alertDescription = fixture.debugElement.query(
+      By.css('.ant-alert-description'),
+    );
+
+    expect(alertDescription).toBeTruthy();
+
+    const descriptionContent = alertDescription.query(
+      By.css('.test-description'),
+    );
+
+    expect(descriptionContent).toBeTruthy();
+  });
+
+  it('should render close icon in nzCloseText', () => {
+    component.closeable = true;
+    fixture.detectChanges();
+
+    const closeLink = fixture.debugElement.query(
       By.css('.ant-alert-close-icon'),
     );
-    const callback = jest.fn();
 
-    component.closed.subscribe(callback);
-    closeBtn.triggerEventHandler('click', null);
+    expect(closeLink).toBeTruthy();
 
-    expect(closeBtn).toBeTruthy();
+    const closeIcon = closeLink.query(By.css('spy-icon'));
 
-    fixture.detectChanges();
+    expect(closeIcon).toBeTruthy();
+  });
 
-    tick();
-    expect(callback).toHaveBeenCalled();
-  }));
+  describe('Inputs must be bound to internal nz-alert', () => {
+    it('should bound type to nzType', () => {
+      const type = 'success';
 
-  it('close method should return current closeable', () => {
-    let currentCloseable = component.close();
+      component.type = type;
+      fixture.detectChanges();
 
-    expect(currentCloseable).toBeTruthy();
+      const nzAlert = fixture.debugElement.query(By.css('nz-alert'));
 
-    component.closeable = false;
+      expect(nzAlert.attributes['ng-reflect-nz-type']).toEqual(type);
+    });
 
-    fixture.detectChanges();
-    currentCloseable = component.close();
+    it('should bound closeable to nzCloseable', () => {
+      component.closeable = true;
+      fixture.detectChanges();
 
-    expect(currentCloseable).toBeFalsy();
+      const nzAlert = fixture.debugElement.query(By.css('nz-alert'));
+
+      expect(nzAlert.attributes['ng-reflect-nz-closeable']).toEqual('true');
+    });
+  });
+
+  describe('Closeable functionality', () => {
+    it('should emit closed on alert close', fakeAsync(() => {
+      component.closeable = true;
+      fixture.detectChanges();
+
+      const closeBtn = fixture.debugElement.query(
+        By.css('.ant-alert-close-icon'),
+      );
+      expect(closeBtn).toBeTruthy();
+
+      closeBtn.triggerEventHandler('click', null);
+
+      fixture.detectChanges();
+
+      tick();
+      expect(component.changeSpy).toHaveBeenCalled();
+    }));
+
+    it('close method should return current closeable value and emit closed output', fakeAsync(() => {
+      let currentCloseable = notificationComponent.close();
+
+      expect(currentCloseable).toBeFalsy();
+
+      component.closeable = true;
+
+      fixture.detectChanges();
+      tick();
+
+      expect(component.changeSpy).toHaveBeenCalledTimes(1);
+
+      currentCloseable = notificationComponent.close();
+
+      expect(currentCloseable).toBeTruthy();
+
+      fixture.detectChanges();
+      tick();
+
+      expect(component.changeSpy).toHaveBeenCalledTimes(2);
+    }));
   });
 });

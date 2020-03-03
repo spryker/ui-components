@@ -23,10 +23,12 @@ export class NotificationComponent {
   @Output() closed = new EventEmitter<void>();
 
   constructor(elemRef: ElementRef) {
-    applyContexts(<HTMLElement>elemRef.nativeElement);
+    applyContexts(elemRef.nativeElement);
   }
 
   close(): boolean {
+    this.closed.emit();
+
     return this.closeable;
   }
 }

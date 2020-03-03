@@ -4,6 +4,7 @@ import {
   ViewEncapsulation,
   TemplateRef,
   Input,
+  HostBinding,
 } from '@angular/core';
 
 @Component({
@@ -18,4 +19,5 @@ export class CardComponent {
   @Input() extra: TemplateRef<void> | undefined;
   @Input() actions: TemplateRef<void>[] | undefined[] = [];
   @Input() titlePosition: 'left' | 'center' | 'right' = 'left';
+  @Input() @HostBinding('class') ctxClass = 'ctx-spy-bg-white';
 }

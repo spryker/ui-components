@@ -1,5 +1,13 @@
 @import './sidebar.component.theme.less';
 
+spy-sidebar {
+  &.ctx-spy-bg-gray {
+    .@{layout-prefix-cls}-sider {
+      background: @global-bg-gray;
+    }
+  }
+}
+
 spy-sidebar .@{layout-prefix-cls}-sider {
   display: block;
   min-height: @layout-sidebar-min-height;

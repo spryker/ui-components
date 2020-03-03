@@ -21,8 +21,46 @@ spy-notification.host-ctx-spy-bg-gray {
   border: none;
   border-left: @alert-border-width solid transparent;
 
-  &__icon {
+  &__icon-wrapper {
     padding-right: @alert-icon-padding;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: @alert-icon-wrapper-width;
+    height: @alert-icon-wrapper-width;
+    position: static;
+    line-height: 0;
+    border-radius: 50%;
+    font-size: @alert-icon-width;
+    z-index: 0;
+
+    &--success {
+      color: @green;
+      background: @green-lighter;
+    }
+
+    &--info {
+      color: @blue;
+      background: @blue-light;
+    }
+
+    &--warning {
+      color: @orange;
+      background: @orange-light;
+    }
+
+    &--error {
+      color: @red;
+      background: @red-light;
+    }
+  }
+
+  &__inner {
+    background: @white;
+    border-radius: 50%;
   }
 
   &__title {
@@ -50,48 +88,16 @@ spy-notification.host-ctx-spy-bg-gray {
     border-left-color: @red;
   }
 
-  &-message {
+  &-with-description &-message {
     display: flex;
     padding-right: 20px;
+    margin-bottom: 0;
     color: inherit;
+    font-size: inherit;
   }
 
   &-description {
-    display: block;
-  }
-
-  &-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: @alert-icon-wrapper-width;
-    height: @alert-icon-wrapper-width;
-    position: static;
-    line-height: 0;
-    border-radius: 50%;
-    font-size: @alert-icon-width;
-    z-index: 0;
-
-    &--success {
-      background: @green-lighter;
-    }
-
-    &--info {
-      background: @blue-light;
-    }
-
-    &--warning {
-      background: @orange-light;
-    }
-
-    &--error {
-      background: @red-light;
-    }
-
-    &__inner {
-      background: @white;
-      border-radius: 50%;
-    }
+    padding-left: 53px;
   }
 
   &-close-icon {

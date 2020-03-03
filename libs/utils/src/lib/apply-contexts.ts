@@ -4,8 +4,8 @@ export function applyContexts(hostElem: Element) {
   } = {};
   const ctxs: string[] = [];
 
-  let elem = hostElem;
-  while ((elem = <Element>elem.parentElement)) {
+  let elem: Element | null = hostElem;
+  while ((elem = elem.parentElement)) {
     for (const cls of Array.from(elem.classList)) {
       if (!cls.startsWith('ctx-')) {
         continue;

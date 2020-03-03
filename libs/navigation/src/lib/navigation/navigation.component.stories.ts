@@ -1,6 +1,6 @@
 import { NavigationModule } from '../navigation.module';
 import { NavigationComponent } from './navigation.component';
-import { ICONS_TOKEN } from '@spryker/icon';
+import { provideIcons } from '@spryker/icon';
 
 export default {
   title: 'NavigationComponent',
@@ -130,12 +130,7 @@ const icons = [
 export const primary = () => ({
   moduleMetadata: {
     imports: [NavigationModule],
-    providers: [
-      {
-        provide: ICONS_TOKEN,
-        useValue: icons,
-      },
-    ],
+    providers: [provideIcons(icons)],
   },
   component: NavigationComponent,
   props: {

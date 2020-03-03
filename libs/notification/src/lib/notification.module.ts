@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IconModule, ICONS_TOKEN } from '@spryker/icon';
+import { IconModule, provideIcons } from '@spryker/icon';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NotificationComponent } from './notification/notification.component';
 import {
@@ -38,11 +38,6 @@ const icons = [
   imports: [CommonModule, NzAlertModule, IconModule],
   declarations: [NotificationComponent],
   exports: [NotificationComponent],
-  providers: [
-    {
-      provide: ICONS_TOKEN,
-      useValue: icons,
-    },
-  ],
+  providers: [provideIcons(icons)],
 })
 export class NotificationModule {}

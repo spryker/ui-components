@@ -11,15 +11,5 @@ export const primary = () => ({
     imports: [NzSelectModule, SelectModule],
   },
   component: SelectComponent,
-  props: {
-    options: [
-      { label: 'Lucy', value: 'lucy' },
-      { label: 'Jack', value: 'jack', isDisabled: true },
-      '2',
-      '1',
-    ],
-    search: false,
-    placeholder: 'Select',
-    selectAllTitle: 'Select All',
-  },
+  props: {},
 });

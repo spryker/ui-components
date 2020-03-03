@@ -20,7 +20,7 @@ export class SelectComponent implements OnInit {
   @Input() value: string | string[] = '';
   @Input() search = false;
   @Input() disabled = false;
-  @Input() multiple = true;
+  @Input() multiple = false;
   @Input() placeholder = '';
   @Input() showSelectAll = false;
   @Input() selectAllTitle = '';

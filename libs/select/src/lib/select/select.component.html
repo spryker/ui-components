@@ -1,0 +1,75 @@
+<nz-select
+  [(ngModel)]="value"
+  (ngModelChange)="handleValueChange($event)"
+  [nzShowSearch]="search"
+  [nzDisabled]="disabled"
+  [nzPlaceHolder]="placeholder"
+  [nzMode]="multiple ? 'tags' : 'default'"
+  [nzSuffixIcon]="suffixIcon"
+  nzNotFoundContent="No results found"
+  [nzMenuItemSelectedIcon]="multiSelectOptionIcon"
+  [nzRemoveIcon]="removeIcon"
+>
+  <nz-option
+    *ngIf="showSelectAll"
+    [nzValue]="selectAllTitle"
+    [nzLabel]="selectAllTitle"
+  >
+  </nz-option>
+
+  <nz-option
+    *ngFor="let option of options"
+    [nzValue]="option.value"
+    [nzLabel]="option.label"
+    [nzDisabled]="option.isDisabled"
+    [nzCustomContent]="!multiple"
+  >
+    <ng-container
+      *ngTemplateOutlet="singleSelectOption; context: option"
+    ></ng-container>
+  </nz-option>
+</nz-select>
+
+<select
+  [disabled]="disabled"
+  [name]="name"
+  [(ngModel)]="value"
+  [multiple]="multiple"
+  hidden
+></select>
+
+<ng-template #suffixIcon>
+  <spy-icon class="icon-suffix" name="suffix"></spy-icon>
+</ng-template>
+
+<ng-template #checkIcon>
+  <spy-icon class="icon-check" name="check"></spy-icon>
+</ng-template>
+
+<ng-template #multiSelectCheckedIcon>
+  <spy-icon
+    class="icon-multi-select-checked"
+    name="multiSelectChecked"
+  ></spy-icon>
+</ng-template>
+
+<ng-template #multiSelectUnCheckedIcon>
+  <spy-icon
+    class="icon-multi-select-unchecked"
+    name="multiSelectUnChecked"
+  ></spy-icon>
+</ng-template>
+
+<ng-template #removeIcon>
+  <spy-icon class="icon-remove" name="remove"></spy-icon>
+</ng-template>
+
+<ng-template #singleSelectOption let-optionTitle="label">
+  {{ optionTitle }}
+  <ng-container *ngTemplateOutlet="checkIcon"></ng-container>
+</ng-template>
+
+<ng-template #multiSelectOptionIcon let-optionTitle="label">
+  <ng-container *ngTemplateOutlet="multiSelectCheckedIcon"></ng-container>
+  <ng-container *ngTemplateOutlet="multiSelectUnCheckedIcon"></ng-container>
+</ng-template>

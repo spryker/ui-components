@@ -77,6 +77,10 @@
       "@spryker/collapsible": [
         "dist/libs/collapsible/index.d.ts",
         "libs/collapsible/src/index.ts"
+      ],
+      "@spryker/select": [
+        "dist/libs/select/index.d.ts",
+        "libs/select/src/index.ts"
       ]
     }
   },

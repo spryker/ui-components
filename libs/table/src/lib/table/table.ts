@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { Type, EventEmitter, InjectionToken, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export type TableDataConfig = Record<string, unknown>;
@@ -6,17 +6,16 @@ export type TableDataConfig = Record<string, unknown>;
 export interface TableDataConfiguratorService {
   // {sort: ..., filter: ..., page: page}
   changePage(page: number): void;
+
   // {sort: {key: '', order: 'asc'}}
   // {filter: {id: '', options: ['', ...]}}
   update(criteria: TableDataConfig): void;
+
   // {sort: ..., filter: ..., page: 0}
   reset(): void;
+
   // {page: 0}
   readonly config$: Observable<TableDataConfig>;
-}
-
-export interface TableDataConfiguratorVisitor {
-  applyTableDataConfigurator(service: TableDataConfiguratorService): void;
 }
 
 export interface TableData {
@@ -27,23 +26,6 @@ export interface TableData {
 }
 
 export type TableDataRow = Record<TableColumn['id'], unknown>;
-
-export interface TableComponent extends TableDataConfiguratorVisitor {
-  tableId: string; // From BE or generated
-  config: TableConfig;
-  selectionChange: EventEmitter<TableData>;
-  checkedRows: Record<TableColumn['id'], boolean>;
-  allChecked: boolean;
-  isIndeterminate: boolean;
-  getTableId(): string;
-  toggleCheckedRows(isChecked: boolean): void;
-  updateCheckedRows(): void;
-  updateSorting(event: {
-    nzSortKey: string;
-    value: 'descend' | 'ascend' | null;
-  }): void;
-  updatePagination(page: number): void;
-}
 
 export interface TableColumnTypeRegistry {
   // link; // Extention on project level
@@ -81,4 +63,19 @@ export interface TableConfig {
 
 export interface TableDataFetcherService {
   resolve(dataUrl: string): Observable<TableData>;
+}
+
+export interface TableColumnComponentDeclaration {
+  [name: string]: Type<TableColumnComponent>;
+}
+
+export interface TableColumnComponent<C = any> {
+  config?: C;
+  context: TableColumnContext;
+}
+
+export interface TableColumnContext {
+  value: unknown; // TableData['data'][][TableColumn['id']]
+  row: TableDataRow; // TableData['data'][]
+  id: TableColumn['id'];
 }

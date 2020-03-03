@@ -1,13 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { TableData } from './table';
 import { Observable } from 'rxjs';
+import { TableDataConfiguratorService } from './table.data.configurator.service';
+import { switchMap } from 'rxjs/operators';
 
-@Injectable({ providedIn: 'root' })
+type HttpOptionsParams = {
+  [param: string]: string | ReadonlyArray<string>;
+};
+
+@Injectable()
 export class TableDataFetcherService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private dataConfiguratorService: TableDataConfiguratorService,
+  ) {}
 
   resolve(dataUrl: string): Observable<TableData> {
-    return this.http.get<TableData>(dataUrl);
+    return this.dataConfiguratorService.config$.pipe(
+      switchMap(config => {
+        const params = new HttpParams({
+          fromObject: <HttpOptionsParams>config,
+        });
+
+        return this.http.get<TableData>(dataUrl, { params });
+      }),
+    );
   }
 }

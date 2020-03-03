@@ -54,6 +54,7 @@
     "prerelease-tag:lerna": "npm run pack",
     "release-tag:lerna": "lerna publish --yes --conventional-prerelease --dist-tag $TRAVIS_BRANCH --preid $TRAVIS_BRANCH",
     "release-tag:storybook": "firebase deploy --only hosting:storybook-next --token $FIREBASE_TOKEN",
+    "postversion": "lerna exec --concurrency 1 --stream -- node ../../tools/scripts/update-lib-version.js",
     "postinstall_noop": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,

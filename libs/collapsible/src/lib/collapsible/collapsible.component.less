@@ -1,7 +1,5 @@
 @import './collapsible.component.theme.less';
 
-@collapse-prefix-cls: ~'@{ant-prefix}-collapse';
-
 .@{collapse-prefix-cls} {
   border: none;
 
@@ -38,7 +36,7 @@
     }
 
     &.@{collapse-prefix-cls}-no-arrow {
-      > .@{collapse-prefix-cls}-header {
+      & > .@{collapse-prefix-cls}-header {
         padding-left: @collapse-header-padding-x;
       }
     }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IconModule, provideIcons } from '@spryker/icon';
+import { IconModule, provideIcons, Icon } from '@spryker/icon';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NotificationComponent } from './notification/notification.component';
 import {
@@ -11,7 +11,7 @@ import {
   removeIcon,
 } from './notification/icons';
 
-const icons = [
+const icons: Icon[] = [
   {
     name: 'error',
     svg: errorIcon,

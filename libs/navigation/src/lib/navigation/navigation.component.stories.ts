@@ -1,6 +1,6 @@
 import { NavigationModule } from '../navigation.module';
 import { NavigationComponent } from './navigation.component';
-import { provideIcons } from '@spryker/icon';
+import { provideIcons, Icon } from '@spryker/icon';
 
 export default {
   title: 'NavigationComponent',
@@ -92,10 +92,10 @@ const merchantIcon = `
     </svg>
 `;
 
-const icons = [
+const icons: Icon[] = [
   {
     name: 'dashboard',
-    svg: function() {
+    svg: () => {
       return new Promise(resolve => {
         resolve(dashboardIcon);
       });
@@ -103,7 +103,7 @@ const icons = [
   },
   {
     name: 'orders',
-    svg: function() {
+    svg: () => {
       return new Promise(resolve => {
         resolve(ordersIcon);
       });
@@ -111,7 +111,7 @@ const icons = [
   },
   {
     name: 'offers',
-    svg: function() {
+    svg: () => {
       return new Promise(resolve => {
         resolve(offerIcon);
       });
@@ -119,7 +119,7 @@ const icons = [
   },
   {
     name: 'merchant',
-    svg: function() {
+    svg: () => {
       return new Promise(resolve => {
         resolve(merchantIcon);
       });

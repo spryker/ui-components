@@ -45,10 +45,8 @@ export class IconService implements AddIcon {
       return;
     }
 
-    this.icons.forEach(iconArr => {
-      iconArr.forEach(icon => {
-        this.addIcon(icon.name, icon.svg);
-      });
+    this.icons.flat().forEach(icon => {
+      this.addIcon(icon.name, icon.svg);
     });
 
     this.isInited = true;

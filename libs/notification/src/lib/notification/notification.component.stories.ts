@@ -11,11 +11,9 @@ export const primary = () => ({
     imports: [NotificationModule, NoopAnimationsModule],
   },
   template: `
-    <div class="ctx-spy-bg-gray">
-      <spy-notification type="error" [closeable]="true">
-        <span title>Title...</span>
-        <span description>Description...</span>
-      </spy-notification>
-    </div>
+    <spy-notification type="error" [closeable]="true">
+      <span title>Title...</span>
+      <span description>Description...</span>
+    </spy-notification>
   `,
 });

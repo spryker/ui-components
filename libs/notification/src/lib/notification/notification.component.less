@@ -17,7 +17,6 @@ spy-notification.host-ctx-spy-bg-gray {
   padding: @alert-padding-y @alert-padding-x;
   font: @font-weight-medium @font-size-base @font-family;
   border-radius: @alert-border-radius;
-  background: @white;
   border: none;
   border-left: @alert-border-width solid transparent;
 
@@ -64,7 +63,6 @@ spy-notification.host-ctx-spy-bg-gray {
   }
 
   &__title {
-    padding: 11px 0 7px;
     color: @ink;
   }
 
@@ -90,6 +88,7 @@ spy-notification.host-ctx-spy-bg-gray {
 
   &-with-description &-message {
     display: flex;
+    align-items: center;
     padding-right: 20px;
     margin-bottom: 0;
     color: inherit;

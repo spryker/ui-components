@@ -8,7 +8,7 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { provideIcons } from '@spryker/icon';
+import { provideIcons, Icon } from '@spryker/icon';
 import { NotificationComponent } from './notification.component';
 import { NotificationModule } from '../notification.module';
 import {
@@ -19,7 +19,7 @@ import {
   removeIcon,
 } from './icons';
 
-const icons = [
+const icons: Icon[] = [
   {
     name: 'error',
     svg: errorIcon,

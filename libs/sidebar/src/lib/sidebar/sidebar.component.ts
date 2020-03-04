@@ -6,7 +6,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  HostBinding,
 } from '@angular/core';
 
 @Component({
@@ -22,7 +21,6 @@ export class SidebarComponent {
   @Input() trigger: undefined | TemplateRef<void>;
   @Input() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
-  @Input() @HostBinding('class') ctxClass = 'ctx-spy-bg-white';
 
   updateCollapse(isCollapsed: boolean): void {
     this.collapsed = isCollapsed;

@@ -1,19 +1,42 @@
 <nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
   <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
     <tr>
+      <th *ngIf="config.selectable">
+        <spy-checkbox
+          [(checked)]="allChecked"
+          [indeterminate]="isIndeterminate"
+          (checkedChange)="toggleCheckedRows()"
+        ></spy-checkbox>
+      </th>
       <th
-        *ngFor="let th of columns$ | async"
-        [nzShowSort]="th.sortable"
-        [nzSortKey]="th.id"
+        *ngFor="let column of columns$ | async; trackBy: trackByColumns"
+        [nzShowSort]="column.sortable"
+        [nzSortKey]="column.id"
+        [nzWidth]="column.width"
       >
-        {{ th.title }}
+        {{ column.title }}
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let tr of (data$ | async)?.data">
-      <td *ngFor="let td of tr | keyvalue">
-        <div style="background: red">{{ td.value }}</div>
+    <tr
+      *ngFor="
+        let data of (data$ | async)?.data;
+        trackBy: trackByData;
+        let indexOfElement = index
+      "
+      [class.ant-table-row--selected]="checkedRows[indexOfElement]"
+    >
+      <td *ngIf="config.selectable">
+        <div style="background: red">
+          <spy-checkbox
+            [(checked)]="checkedRows[indexOfElement]"
+            (checkedChange)="updateCheckedRows()"
+          ></spy-checkbox>
+        </div>
+      </td>
+      <td *ngFor="let column of columns$ | async; trackBy: trackByColumns">
+        <div style="background: red">{{ data[column.id] }}</div>
       </td>
     </tr>
   </tbody>

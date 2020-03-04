@@ -69,6 +69,8 @@
     "@angular/platform-browser": "^9.0.1",
     "@angular/platform-browser-dynamic": "^9.0.1",
     "@angular/router": "^9.0.1",
+    "@orchestrator/core": "0.0.1-alpha.0",
+    "@orchestrator/layout": "0.0.1-alpha.0",
     "core-js": "^3.6.4",
     "ng-zorro-antd": "^9.0.0-beta.0",
     "rxjs": "^6.5.4",

@@ -5,6 +5,7 @@ import { TableComponent } from './table/table.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { HttpClientModule } from '@angular/common/http';
 import { TableColumnComponentDeclaration } from './table/table';
+import { LayoutModule } from '@orchestrator/layout';
 
 @NgModule({
   imports: [CommonModule, NzTableModule, HttpClientModule, CheckboxModule],
@@ -15,4 +16,6 @@ export class TableModule {
   static withColumnComponents(
     components: TableColumnComponentDeclaration,
   ): void {}
+
+  static forRoot() {}
 }

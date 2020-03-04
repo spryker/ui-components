@@ -6,15 +6,12 @@ export type TableDataConfig = Record<string, unknown>;
 
 @Injectable()
 export class TableDataConfiguratorService {
-  private internalConfig$: ReplaySubject<TableDataConfig> = new ReplaySubject(
-    1,
-  );
+  private internalConfig$ = new ReplaySubject<TableDataConfig>(1);
 
   readonly config$: Observable<TableDataConfig> = this.internalConfig$.pipe(
     startWith({}),
     pairwise(),
     map(params => ({ ...params[0], ...params[1] })),
-    shareReplay(),
   );
 
   update(criteria: TableDataConfig): void {

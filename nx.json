@@ -67,6 +67,9 @@
     },
     "checkbox": {
       "tags": ["level:atom", "type:component"]
+    },
+    "collapsible": {
+      "tags": ["level:molecule", "type:component"]
     }
   }
 }

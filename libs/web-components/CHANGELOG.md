@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.1.2-next.2...@spryker/web-components@0.2.0-next.0) (2020-03-03)
+
+
+### Bug Fixes
+
+* **web-components:** add `@angular/cdk` lib to peer dependencies ([9194cd1](https://github.com/spryker/ui-components/commit/9194cd14362d4e1380f912cb50b21ba36218377a))
+* **web-components:** unify ng web compoent interface ([4e3f15f](https://github.com/spryker/ui-components/commit/4e3f15f129df683446bc9291f03510c4b8cb2e44))
+
+
+### Features
+
+* **web-components:** add select components directive ([5732ea6](https://github.com/spryker/ui-components/commit/5732ea645d3b49d481fd8c737ac9c48ee4a2376c))
+
+
+
+
+
 ## [0.1.2-next.2](https://github.com/spryker/zed-gui/compare/@spryker/web-components@0.1.2-next.1...@spryker/web-components@0.1.2-next.2) (2020-02-17)
 
 

@@ -77,6 +77,10 @@
       "@spryker/checkbox": [
         "dist/libs/checkbox/index.d.ts",
         "libs/checkbox/src/index.ts"
+      ],
+      "@spryker/collapsible": [
+        "dist/libs/collapsible/index.d.ts",
+        "libs/collapsible/src/index.ts"
       ]
     }
   },

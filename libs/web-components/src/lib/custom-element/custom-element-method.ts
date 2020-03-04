@@ -1,10 +1,10 @@
 const CUSTOM_ELEMENT_METHODS_KEY = Symbol('CUSTOM_ELEMENT_METHODS_KEY');
 
-interface TargetWithKey extends Object {
+interface TargetWithMethods extends Object {
   [CUSTOM_ELEMENT_METHODS_KEY]: string[];
 }
 
-function maybeInitTarget(target: any): asserts target is TargetWithKey {
+function maybeInitTarget(target: any): asserts target is TargetWithMethods {
   if (target && !Array.isArray(target[CUSTOM_ELEMENT_METHODS_KEY])) {
     target[CUSTOM_ELEMENT_METHODS_KEY] = [];
   }
@@ -18,6 +18,6 @@ export function CustomElementMethod(): MethodDecorator {
 }
 
 /** @internal */
-export function getElementMethodsOf(component: TargetWithKey) {
+export function getElementMethodsOf(component: Partial<TargetWithMethods>) {
   return component[CUSTOM_ELEMENT_METHODS_KEY] || [];
 }

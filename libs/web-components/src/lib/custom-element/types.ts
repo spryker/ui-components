@@ -18,6 +18,7 @@ export interface WebComponentDeclarationLazy<T extends WebComponentType>
   extends WebComponentDeclarationBase {
   selector: string;
   component: () => Promise<T>;
+  lazy: true;
 }
 
 export type WebComponentDeclaration<

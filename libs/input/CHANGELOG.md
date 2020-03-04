@@ -11,6 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **input:** change input focus placeholder to override default styles ([9b1f5c2](https://github.com/spryker/ui-components/commit/9b1f5c278344ba0e2bb1633b4f4fee70f7a8d07b))
 
 
+### Reverts
+
+* Revert "chore(release): publish" ([6d291d4](https://github.com/spryker/ui-components/commit/6d291d488a9f7f1bdba98b12b5f13abe232f76e2))
+* Revert "chore(release): publish [skip ci]" ([db70cac](https://github.com/spryker/ui-components/commit/db70cac617dc4c058df205e3ca740a8855791cf2))
+
+
 
 
 

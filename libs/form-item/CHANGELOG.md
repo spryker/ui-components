@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.5...@spryker/form-item@0.1.0-next.6) (2020-03-04)
+
+
+### Features
+
+* **checkbox:** add all properties ([7793ad7](https://github.com/spryker/ui-components/commit/7793ad7cda132a72030bfd0fe60003816e08e27c))
+* **checkbox:** add default styles storybook ([2088736](https://github.com/spryker/ui-components/commit/2088736b80b94ba93fd6fdbd0ee72d175e7c5fd6))
+
+
+
+
+
 # [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.4...@spryker/form-item@0.1.0-next.5) (2020-02-27)
 
 

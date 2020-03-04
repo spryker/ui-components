@@ -7,13 +7,14 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { TableColumn, TableColumns, TableConfig, TableData } from './table';
-import { Observable } from 'rxjs';
+import { merge, Observable, of } from 'rxjs';
 import { ToJson } from '@spryker/utils';
 
 import { HttpClient } from '@angular/common/http';
 import { TableDataFetcherService } from './table.data.fetcher.service';
 import { TableDataConfiguratorService } from './table.data.configurator.service';
 import { TableColumnsResolverService } from './table.columns.resolver.service';
+import { mapTo, startWith } from "rxjs/operators";
 
 interface SortingCriteria {
   sortBy?: string;
@@ -63,6 +64,7 @@ export class TableComponent implements OnInit {
 
   columns$: Observable<TableColumns> = new Observable();
   data$: Observable<TableData> = new Observable();
+  isLoading$: Observable<boolean> = new Observable();
 
   constructor(
     private http: HttpClient,
@@ -79,6 +81,17 @@ export class TableComponent implements OnInit {
       <string | TableColumns>colsOrUrl,
     );
     this.dataConfiguratorService.changePage(0);
+
+    this.isLoading$ = merge(
+      this.dataConfiguratorService.config$.pipe(
+        mapTo(true)
+      ),
+      this.data$.pipe(
+        mapTo(false)
+      ),
+    ).pipe(
+      startWith(false)
+    )
   }
 
   updateSorting(event: { key: string; value: 'descend' | 'ascend' | null }) {

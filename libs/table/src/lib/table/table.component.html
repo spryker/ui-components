@@ -1,4 +1,4 @@
-<nz-table nzFrontPagination="false">
+<nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
   <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
     <tr>
       <th

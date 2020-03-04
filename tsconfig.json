@@ -81,9 +81,12 @@
       "@spryker/collapsible": [
         "dist/libs/collapsible/index.d.ts",
         "libs/collapsible/src/index.ts"
+      ],
+      "@spryker/table": [
+        "dist/libs/table/index.d.ts",
+        "libs/table/src/index.ts"
       ]
-    },
-    "@spryker/table": ["dist/libs/table/index.d.ts", "libs/table/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

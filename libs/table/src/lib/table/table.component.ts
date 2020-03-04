@@ -48,13 +48,17 @@ export interface TableComponent {
   styleUrls: ['./table.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [TableDataFetcherService, TableDataConfiguratorService, TableColumnsResolverService],
+  providers: [
+    TableDataFetcherService,
+    TableDataConfiguratorService,
+    TableColumnsResolverService,
+  ],
 })
 export class TableComponent implements OnInit {
   @Input() @ToJson() config: TableConfig = {
     dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
     colsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
-    cols: []
+    cols: [],
   };
 
   columns$: Observable<TableColumns> = new Observable();
@@ -71,7 +75,9 @@ export class TableComponent implements OnInit {
     const colsOrUrl = this.config.colsUrl || this.config.cols;
 
     this.data$ = this.dataFetcherService.resolve(this.config.dataUrl);
-    this.columns$ = this.columnsResolverService.resolve(<string | TableColumns>colsOrUrl);
+    this.columns$ = this.columnsResolverService.resolve(
+      <string | TableColumns>colsOrUrl,
+    );
     this.dataConfiguratorService.changePage(0);
   }
 

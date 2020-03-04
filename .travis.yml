@@ -19,6 +19,8 @@ jobs:
         - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
         - git fetch pub $TRAVIS_BRANCH
         - git checkout $TRAVIS_BRANCH
+      after_deploy:
+        - npx lerna exec -- cat ./dist/package.json
       deploy:
         - provider: script
           script: npm run release

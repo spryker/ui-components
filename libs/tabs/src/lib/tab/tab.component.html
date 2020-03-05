@@ -4,13 +4,13 @@
 
 <ng-template #titleTpl>
   <div
-    class="ant-tabs-custom-tab"
     [ngClass]="{
+      'ant-tabs-custom-tab': true,
       'ant-tabs-custom-tab-warning': hasWarning
     }"
   >
-    <div *ngIf="hasWarning">
-      Icon
+    <div *ngIf="hasWarning" ngClass="ant-tabs-custom-tab-icon">
+      <spy-icon name="error-icon"></spy-icon>
     </div>
     <div>
       {{ title }}

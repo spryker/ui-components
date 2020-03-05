@@ -18,10 +18,12 @@
     font-weight: @font-weight-medium;
   }
 
+  &-projected-content {
+    display: none;
+  }
+
   &-custom-tab {
     position: relative;
-    display: flex;
-    align-items: center;
     padding: @tabs-vertical-padding @tabs-horizontal-padding;
     transition: all @common-transition-time;
 
@@ -48,7 +50,18 @@
       color: @tabs-active-color;
     }
 
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translate(0, -50%);
+      display: flex;
+      padding-right: 6px;
+      font-size: @font-size-lg;
+    }
+
     &-warning {
+      padding-left: @tabs-horizontal-padding + 13px;
       color: @red;
 
       &:hover {

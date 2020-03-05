@@ -12,7 +12,7 @@
 <span
   [spySelectComponents]="tabReference"
   (spySelectComponentsFound)="componentsFoundTrigger($event)"
-  style="display: none;"
+  ngClass="ant-tabs-projected-content"
 >
   <ng-content></ng-content>
 </span>

@@ -44,7 +44,7 @@ export class TabsComponent implements OnInit, OnDestroy {
   @Input() tab = 0;
   @Input() mode: 'line' | 'card' = 'line';
 
-  @HostBinding('class.tabs--warning') hasWarning: boolean = false;
+  @HostBinding('class.tabs--warning') hasWarning = false;
 
   @Output() tabChange = new EventEmitter<number>();
 
@@ -64,6 +64,10 @@ export class TabsComponent implements OnInit, OnDestroy {
   }
 
   activateTab(index: number): void {
+    if (index < this.tabs$.getValue().length && index >= 0) {
+      return;
+    }
+
     this.tab = index;
 
     this.tabChange.emit(this.currentActiveTab());

@@ -6,16 +6,25 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { HttpClientModule } from '@angular/common/http';
 import { TableColumnComponentDeclaration } from './table/table';
 import { LayoutModule } from '@orchestrator/layout';
+import { OrchestratorCoreModule } from '@orchestrator/core';
+import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
 
 @NgModule({
   imports: [CommonModule, NzTableModule, HttpClientModule, CheckboxModule],
-  declarations: [TableComponent],
-  exports: [TableComponent],
+  declarations: [TableComponent, TableColumnRendererComponent],
+  exports: [TableComponent, TableColumnRendererComponent],
 })
 export class TableModule {
   static withColumnComponents(
     components: TableColumnComponentDeclaration,
-  ): void {}
+  ): void {
+    return @NgModule({
+      providers: [
+        OrchestratorCoreModule.withComponents(components)
+      ]
+    })
+    class ModuleWithProviders {}
+  }
 
   static forRoot() {}
 }

@@ -59,6 +59,8 @@ export class TableComponent implements OnInit {
   data$ = new Observable<TableData>();
   isLoading$ = new Observable<boolean>();
 
+  private data: TableData | undefined = undefined;
+
   constructor(
     private http: HttpClient,
     private dataFetcherService: TableDataFetcherService,
@@ -81,7 +83,10 @@ export class TableComponent implements OnInit {
     const colsOrUrl = this.config.colsUrl || this.config.cols;
 
     this.data$ = this.dataFetcherService.resolve(this.config.dataUrl).pipe(
-      tap(data => this.initCheckedRows(data)),
+      tap(data => {
+        this.initCheckedRows(data);
+        this.data = data;
+      }),
       shareReplay(),
     );
     this.columns$ = this.columnsResolverService
@@ -99,7 +104,7 @@ export class TableComponent implements OnInit {
   }
 
   toggleCheckedRows(): void {
-    this.selectionChange.emit();
+    this.selectionChange.emit(this.data);
 
     this.isIndeterminate = false;
     Object.keys(this.checkedRows).forEach(
@@ -108,7 +113,7 @@ export class TableComponent implements OnInit {
   }
 
   updateCheckedRows(): void {
-    this.selectionChange.emit();
+    this.selectionChange.emit(this.data);
 
     const valuesOfCheckedRows = Object.values(this.checkedRows);
     const isUncheckedExist = valuesOfCheckedRows.some(checkbox => !checkbox);
@@ -152,11 +157,11 @@ export class TableComponent implements OnInit {
     this.dataConfiguratorService.changePage(page);
   }
 
-  trackByColumns(index: number, item: TableColumn) {
+  private trackByColumns(index: number, item: TableColumn) {
     return item.id;
   }
 
-  trackByData(index: number) {
+  private trackByData(index: number) {
     return index;
   }
 }

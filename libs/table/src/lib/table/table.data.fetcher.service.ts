@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { TableDataConfiguratorService } from './table.data.configurator.service';
 import { switchMap } from 'rxjs/operators';
 
-type HttpOptionsParams = {
+interface HttpOptionsParams {
   [param: string]: string | ReadonlyArray<string>;
-};
+}
 
 @Injectable()
 export class TableDataFetcherService {

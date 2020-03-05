@@ -3,65 +3,40 @@ import { CommonModule } from '@angular/common';
 import { SelectComponent } from './select/select.component';
 import { FormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IconModule, ICONS_TOKEN } from '@spryker/icon';
+import { IconModule, provideIcons, Icon } from '@spryker/icon';
 import suffixIcon from './select/images/icon_dropdown_suffix';
 import checkIcon from './select/images/icon_check';
 import multiSelectChecked from './select/images/icon_multi_select_checked';
 import multiSelectUnChecked from './select/images/icon_multi_select_unchecked';
 import removeIcon from './select/images/icon_remove';
 
+const icons: Icon[] = [
+  {
+    name: 'suffix',
+    svg: suffixIcon,
+  },
+  {
+    name: 'check',
+    svg: checkIcon,
+  },
+  {
+    name: 'multiSelectChecked',
+    svg: multiSelectChecked,
+  },
+  {
+    name: 'multiSelectUnChecked',
+    svg: multiSelectUnChecked,
+  },
+  {
+    name: 'remove',
+    svg: removeIcon,
+  },
+];
+
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    NzSelectModule,
-    BrowserAnimationsModule,
-    IconModule,
-  ],
+  imports: [CommonModule, FormsModule, NzSelectModule, IconModule],
   declarations: [SelectComponent],
   exports: [SelectComponent],
-  providers: [
-    {
-      provide: ICONS_TOKEN,
-      useValue: {
-        name: 'suffix',
-        svg: suffixIcon,
-      },
-      multi: true,
-    },
-    {
-      provide: ICONS_TOKEN,
-      useValue: {
-        name: 'check',
-        svg: checkIcon,
-      },
-      multi: true,
-    },
-    {
-      provide: ICONS_TOKEN,
-      useValue: {
-        name: 'multiSelectChecked',
-        svg: multiSelectChecked,
-      },
-      multi: true,
-    },
-    {
-      provide: ICONS_TOKEN,
-      useValue: {
-        name: 'multiSelectUnChecked',
-        svg: multiSelectUnChecked,
-      },
-      multi: true,
-    },
-    {
-      provide: ICONS_TOKEN,
-      useValue: {
-        name: 'remove',
-        svg: removeIcon,
-      },
-      multi: true,
-    },
-  ],
+  providers: [provideIcons(icons)],
 })
 export class SelectModule {}

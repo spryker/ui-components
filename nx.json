@@ -73,6 +73,9 @@
     },
     "select": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "notification": {
+      "tags": ["level:molecule", "type:component"]
     }
   }
 }

@@ -7,7 +7,7 @@ import {
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ICONS_TOKEN, IconService } from './icon.component.service';
+import { provideIcons, IconService } from './icon.component.service';
 
 import { IconComponent } from './icon.component';
 
@@ -25,23 +25,20 @@ describe('IconComponent', () => {
       imports: [],
       providers: [
         IconService,
-        {
-          provide: ICONS_TOKEN,
-          useValue: [
-            {
-              name: promiseIcon,
-              svg: () => {
-                return new Promise(resolve => {
-                  resolve(svgIcon);
-                });
-              },
+        provideIcons([
+          {
+            name: promiseIcon,
+            svg: () => {
+              return new Promise(resolve => {
+                resolve(svgIcon);
+              });
             },
-            {
-              name: stringIcon,
-              svg: svgIcon,
-            },
-          ],
-        },
+          },
+          {
+            name: stringIcon,
+            svg: svgIcon,
+          },
+        ]),
       ],
       declarations: [IconComponent],
       schemas: [NO_ERRORS_SCHEMA],

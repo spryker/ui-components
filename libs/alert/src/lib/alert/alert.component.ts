@@ -17,7 +17,7 @@ export enum AlertType {
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
 export class AlertComponent {
   @Input() type: AlertType = AlertType.Info;

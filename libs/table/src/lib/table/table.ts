@@ -3,6 +3,30 @@ import { Observable } from 'rxjs';
 
 export type TableDataConfig = Record<string, unknown>;
 
+export interface TableRowActionBase {
+  id: TableRowAction;
+  title: string;
+}
+
+export interface TableRowActionRegistry {
+  id: 'id'
+}
+
+export type TableRowAction = keyof TableRowActionRegistry;
+
+export interface TableRowActionHandler {
+  handleAction(actionEvent: TableActionTriggeredEvent): void;
+}
+
+export interface TableRowActionsDeclaration {
+  [type: string]: TableRowActionHandler;
+}
+
+export interface TableActionTriggeredEvent {
+  action: TableRowActionBase;
+  items: TableDataRow[];
+}
+
 export interface TableDataConfiguratorService {
   // {sort: ..., filter: ..., page: page}
   changePage(page: number): void;
@@ -59,6 +83,8 @@ export interface TableConfig {
   dataUrl: string; // => TableData
   cols?: TableColumns;
   selectable?: boolean;
+  rowActions?: TableRowActionBase[];
+  actionTriggered: EventEmitter<TableActionTriggeredEvent>;
 }
 
 export interface TableDataFetcherService {

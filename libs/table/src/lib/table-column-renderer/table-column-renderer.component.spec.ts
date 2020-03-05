@@ -8,9 +8,8 @@ describe('TableColumnRendererComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableColumnRendererComponent ]
-    })
-    .compileComponents();
+      declarations: [TableColumnRendererComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

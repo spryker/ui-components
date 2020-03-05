@@ -16,6 +16,7 @@
       >
         {{ column.title }}
       </th>
+      <th *ngIf="config?.rowActions.length"></th>
     </tr>
   </thead>
   <tbody>
@@ -23,7 +24,7 @@
       *ngFor="
         let data of (data$ | async)?.data;
         trackBy: trackByData;
-        let indexOfElement = index
+        index as indexOfElement
       "
       [class.ant-table-row--selected]="checkedRows[indexOfElement]"
     >
@@ -38,11 +39,13 @@
       <td *ngFor="let column of columns$ | async; trackBy: trackByColumns">
         <div style="background: red">
           <spy-table-column-renderer
-              [config]="column"
-              [data]="data"
+            [config]="column"
+            [data]="data"
           ></spy-table-column-renderer>
-          {{ data[column.id] }}
         </div>
+      </td>
+      <td *ngIf="config?.rowActions.length">
+        DROPDOWN
       </td>
     </tr>
   </tbody>

@@ -1,33 +1,28 @@
-import { Injectable, InjectionToken } from '@angular/core';
-import { TableDataRow } from './table';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { TableRowActionsDeclaration, TableActionTriggeredEvent } from './table';
 
-interface TableRowActionBase {
-  id: TableRowAction;
-  title: string;
-}
-
-interface TableRowActionRegistry {}
-
-type TableRowAction = keyof TableRowActionRegistry;
-
-interface TableRowActionHandler {
-  handleAction(actionEvent: TableActionTriggeredEvent): void;
-}
-
-interface TableRowActionsDeclaration {
-  [type: string]: TableRowActionHandler;
-}
-
-type TableRowActionsToken = InjectionToken<TableRowActionsDeclaration[]>;
-
-interface TableActionTriggeredEvent {
-  action: TableRowActionBase;
-  items: TableDataRow[];
-}
-
-interface TableActionsService {
-  handle(actionEvent: TableActionTriggeredEvent): boolean;
-}
+export const TABLE_ROW_ACTIONS_TOKEN = new InjectionToken<
+  TableRowActionsDeclaration[]
+>('TABLE_ROW_ACTIONS_TOKEN');
 
 @Injectable()
-export class TableActionService {}
+export class TableActionService {
+  constructor(@Inject(TABLE_ROW_ACTIONS_TOKEN) private actionHandlers: any) {
+    this.actionHandlers = this.actionHandlers.reduce(
+      (actions: any, action: any) => {
+        const key = Object.keys(action) && Object.keys(action)[0];
+
+        if (key) {
+          actions[key] = action[key];
+        }
+
+        return actions;
+      },
+      {},
+    );
+  }
+
+  handle(actionEvent: TableActionTriggeredEvent): boolean {
+    return actionEvent.action.id in this.actionHandlers;
+  }
+}

@@ -7,7 +7,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { TableColumn, TableColumns, TableConfig, TableData } from './table';
+import { TableActionTriggeredEvent, TableColumn, TableColumns, TableConfig, TableData } from './table';
 import { merge, Observable } from 'rxjs';
 import { ToJson } from '@spryker/utils';
 
@@ -16,6 +16,10 @@ import { TableDataFetcherService } from './table.data.fetcher.service';
 import { TableDataConfiguratorService } from './table.data.configurator.service';
 import { TableColumnsResolverService } from './table.columns.resolver.service';
 import { mapTo, shareReplay, startWith, tap } from 'rxjs/operators';
+import {
+  TABLE_ROW_ACTIONS_TOKEN,
+  TableActionService,
+} from './table.action.service';
 
 export interface TableComponent {
   tableId: string;
@@ -39,6 +43,8 @@ export interface TableComponent {
     TableDataFetcherService,
     TableDataConfiguratorService,
     TableColumnsResolverService,
+    TableActionService,
+    { provide: TABLE_ROW_ACTIONS_TOKEN, useValue: [{ test: 'test' }] },
   ],
 })
 export class TableComponent implements OnInit {
@@ -47,6 +53,13 @@ export class TableComponent implements OnInit {
     colsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
     cols: [],
     selectable: true,
+    rowActions: [
+      {
+        id: 'id',
+        title: 'titel'
+      }
+    ],
+    actionTriggered: new EventEmitter<TableActionTriggeredEvent>(),
   };
   @Output() selectionChange = new EventEmitter<TableData>();
   @Output() actionTriggered = new EventEmitter<TableData>();
@@ -66,6 +79,7 @@ export class TableComponent implements OnInit {
     private dataFetcherService: TableDataFetcherService,
     private dataConfiguratorService: TableDataConfiguratorService,
     private columnsResolverService: TableColumnsResolverService,
+    private tableActionService: TableActionService,
   ) {}
 
   private initCheckedRows(data: TableData) {

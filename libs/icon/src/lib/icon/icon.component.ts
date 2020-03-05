@@ -13,7 +13,7 @@ import { IconService } from './icon.component.service';
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
 export class IconComponent implements OnInit, OnChanges {
   isIconResolved: Promise<string> | null = null;

@@ -5,6 +5,9 @@ import {
   Output,
   EventEmitter,
   ViewEncapsulation,
+  ViewChild,
+  TemplateRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 
 @Component({
@@ -17,7 +20,23 @@ import {
 export class TabComponent {
   @Input() title = '';
   @Input() disabled = false;
-  @Input() hasWarning = false;
+  private _hasWarning = false;
+  @Input()
+  set hasWarning(value: boolean) {
+    this._hasWarning = value;
+
+    this.hasWarningChange.emit(this._hasWarning);
+    this.cdr.detectChanges();
+  }
+
+  get hasWarning(): boolean {
+    return this._hasWarning;
+  }
 
   @Output() hasWarningChange = new EventEmitter<boolean>();
+
+  @ViewChild('contentTpl') template!: TemplateRef<void>;
+  @ViewChild('titleTpl') titleTemplate!: TemplateRef<void>;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 }

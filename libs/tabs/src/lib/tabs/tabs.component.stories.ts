@@ -1,4 +1,3 @@
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { TabsModule } from '../tabs.module';
 import { TabsComponent } from './tabs.component';
 
@@ -8,13 +7,19 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [TabsModule, NzTabsModule],
+    imports: [TabsModule],
   },
   template: `
     <spy-tabs>
-      <nz-tab nzTitle="Tab 1">
-        Tab Content
-      </nz-tab>
+      <spy-tab title="Test Title 1">
+        Tab Content 1
+      </spy-tab>
+      <spy-tab title="Test Title 2">
+        Tab Content 2
+      </spy-tab>
+      <spy-tab title="Test Title 3" [hasWarning]="true">
+        Tab Content 3
+      </spy-tab>
     </spy-tabs>
   `,
 });

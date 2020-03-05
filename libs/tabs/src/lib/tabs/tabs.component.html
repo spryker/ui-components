@@ -1,11 +1,18 @@
-<nz-tabset>
-  <nz-tab nzTitle="Tab 1">
-    Tab 1
-  </nz-tab>
-  <nz-tab nzTitle="Tab 2">
-    Tab 2
-  </nz-tab>
-  <nz-tab nzTitle="Tab 3">
-    Tab 3
+<nz-tabset [nzSelectedIndex]="tab" [nzType]="mode">
+  <nz-tab
+    *ngFor="let tab of tabs$ | async"
+    [nzTitle]="tab.titleTemplate"
+    [nzDisabled]="tab.disabled"
+    [nzForceRender]="true"
+  >
+    <ng-container *ngTemplateOutlet="tab.template"></ng-container>
   </nz-tab>
 </nz-tabset>
+
+<span
+  [spySelectComponents]="tabReference"
+  (spySelectComponentsFound)="componentsFoundTrigger($event)"
+  style="display: none;"
+>
+  <ng-content></ng-content>
+</span>

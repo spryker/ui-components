@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.8...@spryker/input@0.1.0-next.9) (2020-03-05)
+
+
+### Bug Fixes
+
+* **input:** fix input placeholder, invalid state ([fb42091](https://github.com/spryker/ui-components/commit/fb42091aa4b43f0e6883191e21a956f36ab18da9))
+
+
+
+
+
 # [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.7...@spryker/input@0.1.0-next.8) (2020-03-02)
 
 

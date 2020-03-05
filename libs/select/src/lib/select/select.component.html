@@ -6,27 +6,26 @@
   [nzPlaceHolder]="placeholder"
   [nzMode]="multiple ? 'tags' : 'default'"
   [nzSuffixIcon]="suffixIcon"
-  nzNotFoundContent="No results found"
+  [nzNotFoundContent]="noOptionsText"
   [nzMenuItemSelectedIcon]="multiSelectOptionIcon"
   [nzRemoveIcon]="removeIcon"
 >
   <nz-option
     *ngIf="showSelectAll"
-    [nzValue]="selectAllTitle"
+    [nzValue]="selectAllValue"
     [nzLabel]="selectAllTitle"
   >
   </nz-option>
 
   <nz-option
-    *ngFor="let option of options"
+    *ngFor="let option of mappedOptions"
     [nzValue]="option.value"
     [nzLabel]="option.label"
     [nzDisabled]="option.isDisabled"
     [nzCustomContent]="!multiple"
   >
-    <ng-container
-      *ngTemplateOutlet="singleSelectOption; context: option"
-    ></ng-container>
+    {{ option.label }}
+    <ng-container *ngTemplateOutlet="checkIcon"></ng-container>
   </nz-option>
 </nz-select>
 
@@ -36,40 +35,37 @@
   [(ngModel)]="value"
   [multiple]="multiple"
   hidden
-></select>
+>
+  <option *ngFor="let option of mappedOptions" [value]="option.value">
+    {{ option.label }}
+  </option>
+</select>
 
 <ng-template #suffixIcon>
-  <spy-icon class="icon-suffix" name="suffix"></spy-icon>
+  <spy-icon class="ant-select-arrow__icon" name="suffix"></spy-icon>
 </ng-template>
 
 <ng-template #checkIcon>
-  <spy-icon class="icon-check" name="check"></spy-icon>
-</ng-template>
-
-<ng-template #multiSelectCheckedIcon>
   <spy-icon
-    class="icon-multi-select-checked"
-    name="multiSelectChecked"
-  ></spy-icon>
-</ng-template>
-
-<ng-template #multiSelectUnCheckedIcon>
-  <spy-icon
-    class="icon-multi-select-unchecked"
-    name="multiSelectUnChecked"
+    class="ant-select-dropdown-menu-item__icon--checked"
+    name="check"
   ></spy-icon>
 </ng-template>
 
 <ng-template #removeIcon>
-  <spy-icon class="icon-remove" name="remove"></spy-icon>
-</ng-template>
-
-<ng-template #singleSelectOption let-optionTitle="label">
-  {{ optionTitle }}
-  <ng-container *ngTemplateOutlet="checkIcon"></ng-container>
+  <spy-icon
+    class="ant-select-selection__choice__remove__icon"
+    name="remove"
+  ></spy-icon>
 </ng-template>
 
 <ng-template #multiSelectOptionIcon let-optionTitle="label">
-  <ng-container *ngTemplateOutlet="multiSelectCheckedIcon"></ng-container>
-  <ng-container *ngTemplateOutlet="multiSelectUnCheckedIcon"></ng-container>
+  <spy-icon
+    class="ant-select-dropdown-menu-item__icon--multiChecked"
+    name="multiSelectChecked"
+  ></spy-icon>
+  <spy-icon
+    class="ant-select-dropdown-menu-item__icon--multiUnchecked"
+    name="multiSelectUnChecked"
+  ></spy-icon>
 </ng-template>

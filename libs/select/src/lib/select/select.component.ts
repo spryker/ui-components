@@ -6,7 +6,18 @@ import {
   EventEmitter,
   ViewEncapsulation,
   OnInit,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
+
+type SelectValue = string | number;
+type SelectOption = SelectValue | SelectOptionItem;
+
+interface SelectOptionItem {
+  label: string;
+  value: SelectValue;
+  isDisabled?: boolean;
+}
 
 @Component({
   selector: 'spy-select',
@@ -15,9 +26,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class SelectComponent implements OnInit {
-  @Input() options: any[] = [];
-  @Input() value: string | string[] = '';
+export class SelectComponent implements OnInit, OnChanges {
+  @Input() options: SelectOption[] = [];
+  @Input() value: SelectValue[] = [];
   @Input() search = false;
   @Input() disabled = false;
   @Input() multiple = false;
@@ -25,45 +36,56 @@ export class SelectComponent implements OnInit {
   @Input() showSelectAll = false;
   @Input() selectAllTitle = '';
   @Input() name = '';
-  @Output() valueChange = new EventEmitter<string | string[]>();
-  allValues: string[] = [];
+  @Input() noOptionsText = '';
+  @Output() valueChange = new EventEmitter<SelectValue[]>();
+  allValues: SelectValue[] = [];
+  mappedOptions: SelectOptionItem[] = [];
+  selectAllValue = 'select-all';
 
   ngOnInit() {
-    if (this.multiple && !this.value.length) {
-      this.value = [];
-    }
+    this.mapOptionsArray(this.options);
+  }
 
-    this.options = this.options.map((option: any) => {
-      const mappedOption =
-        typeof option === 'string' || typeof option === 'number'
-          ? { value: option, label: option }
-          : option;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.options.firstChange) return;
 
-      this.allValues.push(mappedOption.value);
-      return mappedOption;
+    this.mapOptionsArray(this.options);
+  }
+
+  mapOptionsArray(options: SelectOption[]): void {
+    options.forEach(option => {
+      const convertedOption: any =
+        typeof option !== 'object' ? { value: option, label: option } : option;
+
+      this.allValues.push(convertedOption.value);
+      this.mappedOptions.push(convertedOption);
     });
   }
 
-  handleValueChange(event: any) {
-    if (this.multiple && event[event.length - 1] === this.selectAllTitle) {
-      this.triggerAvailableSelectAllAction(event);
-      return;
+  handleValueChange(value: SelectValue[]) {
+    if (this.isSelectAllAction(value[value.length - 1])) {
+      value = this.getValueArrayForSelectAllAction(value);
     }
 
-    this.valueChange.emit(event);
+    this.value = value;
+    this.valueChange.emit(value);
   }
 
-  triggerAvailableSelectAllAction(event: any) {
-    event.length - 1 !== this.allValues.length
+  isSelectAllAction(value: SelectValue): boolean {
+    return this.multiple && value === this.selectAllValue;
+  }
+
+  getValueArrayForSelectAllAction(value: SelectValue[]): SelectValue[] {
+    return value.pop() && value.length !== this.allValues.length
       ? this.selectAllOptions()
-      : this.declineAllOptions();
+      : this.deselectAllOptions();
   }
 
-  selectAllOptions(): void {
-    this.value = [...this.allValues];
+  selectAllOptions(): SelectValue[] {
+    return [...this.allValues];
   }
 
-  declineAllOptions(): void {
-    this.value = [];
+  deselectAllOptions(): SelectValue[] {
+    return [];
   }
 }

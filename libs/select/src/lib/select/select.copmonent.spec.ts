@@ -32,6 +32,7 @@ describe('SelectComponent', () => {
     name: any;
     value: any = '';
     disabled: any;
+    mappedOptions: any = [];
     changeSpy = jest.fn();
   }
 
@@ -92,7 +93,7 @@ describe('SelectComponent', () => {
   });
 
   describe('Inputs must be bound to nz-select', () => {
-    it('should bind value to value of nz-select', () => {
+    it('should bind value to ngModel of nz-select', () => {
       const nzSelectElem = fixture.debugElement.query(By.css('nz-select'));
       const mockedValue = 'mockedData';
 
@@ -149,8 +150,8 @@ describe('SelectComponent', () => {
     });
   });
 
-  it('options must be mapped and create each option of the dropdown', () => {
-    const optionsArray = [{ value: '123', label: '123' }];
+  it('options array must be correctly mapped and create each option of the dropdown', () => {
+    const optionsArray = ['123'];
     const expectedValue = '123';
 
     component.options = optionsArray;
@@ -170,5 +171,46 @@ describe('SelectComponent', () => {
     fixture.detectChanges();
 
     expect(component.changeSpy).toHaveBeenCalled();
+  });
+
+  describe('SelectComponent methods', () => {
+    let selectComponent: SelectComponent;
+    let nvFixture: ComponentFixture<SelectComponent>;
+
+    beforeEach(() => {
+      nvFixture = TestBed.createComponent(SelectComponent);
+      selectComponent = nvFixture.componentInstance;
+    });
+
+    it('options array with numbers or strings should be correctly mapped', () => {
+      const optionsArray = [123, '123'];
+      const expectedValue = [
+        { value: 123, label: 123 },
+        { value: '123', label: '123' },
+      ];
+
+      selectComponent.options = optionsArray;
+      nvFixture.detectChanges();
+
+      expect(selectComponent.mappedOptions).toEqual(expectedValue);
+    });
+
+    it('Select All correctly triggers selection of all items', () => {
+      const optionsArray = [123, 234, 345];
+      const expectedValue = [123, 234, 345];
+
+      selectComponent.multiple = true;
+      selectComponent.showSelectAll = true;
+      selectComponent.selectAllTitle = 'Select All';
+      selectComponent.options = optionsArray;
+      nvFixture.detectChanges();
+
+      const nzSelectElem = nvFixture.debugElement.query(By.css('nz-select'));
+
+      nzSelectElem.triggerEventHandler('ngModelChange', ['select-all']);
+      nvFixture.detectChanges();
+
+      expect(selectComponent.value).toEqual(expectedValue);
+    });
   });
 });

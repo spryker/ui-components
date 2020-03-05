@@ -11,7 +11,7 @@ export const primary = () => ({
     imports: [SidebarModule, IconModule],
   },
   template: `
-    <spy-sidebar>
+    <spy-sidebar ctxClass="ctx-spy-bg-gray">
        <div>SideBar Content</div> 
     </spy-sidebar>
   `,

@@ -54,6 +54,14 @@
     .has-error & {
       box-shadow: none;
     }
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  &:invalid {
+    box-shadow: none;
   }
 
   .@{ant-input}-affix-wrapper {

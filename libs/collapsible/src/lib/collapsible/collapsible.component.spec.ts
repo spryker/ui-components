@@ -2,7 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ICONS_TOKEN, IconService } from '@spryker/icon';
+import { provideIcons, IconService } from '@spryker/icon';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { CollapsibleComponent } from './collapsible.component';
 
@@ -29,14 +29,12 @@ describe('CollapsibleComponent', () => {
       declarations: [CollapsibleComponent],
       providers: [
         IconService,
-        {
-          provide: ICONS_TOKEN,
-          useValue: {
+        provideIcons([
+          {
             name: 'arrow',
             svg: arrowIcon,
           },
-          multi: true,
-        },
+        ]),
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

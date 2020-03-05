@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.13...@spryker/styles@0.1.0-next.14) (2020-03-05)
+
+
+### Bug Fixes
+
+* **input:** fix input placeholder, invalid state ([fb42091](https://github.com/spryker/ui-components/commit/fb42091aa4b43f0e6883191e21a956f36ab18da9))
+
+
+### Features
+
+* **notification:** notification component ([697d435](https://github.com/spryker/ui-components/commit/697d4351bf15a4e2e997f2344d83504d863eddd7))
+
+
+
+
+
 # [0.1.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.12...@spryker/styles@0.1.0-next.13) (2020-03-04)
 
 

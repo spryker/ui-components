@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { map, pairwise, shareReplay, startWith } from 'rxjs/operators';
-
-export type TableDataConfig = Record<string, unknown>;
+import { map, pairwise, startWith } from 'rxjs/operators';
+import { TableDataConfig } from './table';
 
 @Injectable()
 export class TableDataConfiguratorService {

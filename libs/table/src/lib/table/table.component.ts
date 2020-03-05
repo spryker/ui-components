@@ -1,37 +1,35 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ContentChildren,
   EventEmitter,
   Input,
   OnInit,
   Output,
+  QueryList,
   ViewEncapsulation,
+  AfterContentInit,
 } from '@angular/core';
-import { TableActionTriggeredEvent, TableColumn, TableColumns, TableConfig, TableData } from './table';
+import {
+  TableActionTriggeredEvent,
+  TableColumn,
+  TableColumns,
+  TableConfig,
+  TableData,
+  TableDataRow,
+  TableRowActionBase,
+  SortingCriteria,
+  TableDataConfig,
+} from './table';
 import { merge, Observable } from 'rxjs';
 import { ToJson } from '@spryker/utils';
-
 import { HttpClient } from '@angular/common/http';
 import { TableDataFetcherService } from './table.data.fetcher.service';
 import { TableDataConfiguratorService } from './table.data.configurator.service';
 import { TableColumnsResolverService } from './table.columns.resolver.service';
 import { mapTo, shareReplay, startWith, tap } from 'rxjs/operators';
-import {
-  TABLE_ROW_ACTIONS_TOKEN,
-  TableActionService,
-} from './table.action.service';
-
-export interface TableComponent {
-  tableId: string;
-
-  selectionChange: EventEmitter<TableData>;
-
-  getTableId(): string;
-
-  toggleCheckedRows(isChecked: boolean): void;
-
-  updateCheckedRows(): void;
-}
+import { TableActionService } from './table.action.service';
+import { ColTplDirective } from './col.tpl.directive';
 
 @Component({
   selector: 'spy-table',
@@ -44,25 +42,20 @@ export interface TableComponent {
     TableDataConfiguratorService,
     TableColumnsResolverService,
     TableActionService,
-    { provide: TABLE_ROW_ACTIONS_TOKEN, useValue: [{ test: 'test' }] },
   ],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, AfterContentInit {
+  @Input() tableId = '';
   @Input() @ToJson() config: TableConfig = {
     dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
     colsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
     cols: [],
     selectable: true,
-    rowActions: [
-      {
-        id: 'id',
-        title: 'titel'
-      }
-    ],
-    actionTriggered: new EventEmitter<TableActionTriggeredEvent>(),
   };
-  @Output() selectionChange = new EventEmitter<TableData>();
-  @Output() actionTriggered = new EventEmitter<TableData>();
+
+  @Output() selectionChange = new EventEmitter<TableDataRow[]>();
+  @Output() actionTriggered = new EventEmitter<TableActionTriggeredEvent>();
+  @ContentChildren(ColTplDirective) slotTemplates?: QueryList<ColTplDirective>;
 
   allChecked = false;
   isIndeterminate = false;
@@ -72,7 +65,12 @@ export class TableComponent implements OnInit {
   data$ = new Observable<TableData>();
   isLoading$ = new Observable<boolean>();
 
-  private data: TableData | undefined = undefined;
+  private rowsData?: TableDataRow[];
+  private templatesObj: any = {};
+
+  // {
+  //   [key: string]: TemplateRef<any>
+  // }
 
   constructor(
     private http: HttpClient,
@@ -82,11 +80,23 @@ export class TableComponent implements OnInit {
     private tableActionService: TableActionService,
   ) {}
 
-  private initCheckedRows(data: TableData) {
-    let lengthOfRows = data.data.length;
+  ngAfterContentInit() {
+    this.templatesObj =
+      this.slotTemplates &&
+      this.slotTemplates.reduce(
+        (templates, template) => ({
+          ...templates,
+          [template.colTpl]: template.template,
+        }),
+        {},
+      );
+  }
 
-    while (lengthOfRows--) {
-      this.checkedRows[lengthOfRows] = false;
+  private initCheckedRows(data: TableData) {
+    let uninitedRowsLength = data.data.length;
+
+    while (uninitedRowsLength--) {
+      this.checkedRows[uninitedRowsLength] = false;
     }
 
     this.allChecked = false;
@@ -99,7 +109,7 @@ export class TableComponent implements OnInit {
     this.data$ = this.dataFetcherService.resolve(this.config.dataUrl).pipe(
       tap(data => {
         this.initCheckedRows(data);
-        this.data = data;
+        this.rowsData = data.data;
       }),
       shareReplay(),
     );
@@ -117,17 +127,24 @@ export class TableComponent implements OnInit {
     ).pipe(startWith(false));
   }
 
+  private selectedRows() {
+    return this.rowsData?.filter((item, index) => this.checkedRows[index]);
+  }
+
   toggleCheckedRows(): void {
-    this.selectionChange.emit(this.data);
+    let unchangedRowsLength = Object.keys(this.checkedRows).length;
+
+    this.selectionChange.emit(this.selectedRows());
 
     this.isIndeterminate = false;
-    Object.keys(this.checkedRows).forEach(
-      key => (this.checkedRows[key] = this.allChecked),
-    );
+
+    while (unchangedRowsLength--) {
+      this.checkedRows[unchangedRowsLength] = this.allChecked;
+    }
   }
 
   updateCheckedRows(): void {
-    this.selectionChange.emit(this.data);
+    this.selectionChange.emit(this.selectedRows());
 
     const valuesOfCheckedRows = Object.values(this.checkedRows);
     const isUncheckedExist = valuesOfCheckedRows.some(checkbox => !checkbox);
@@ -147,15 +164,17 @@ export class TableComponent implements OnInit {
 
   updateSorting(event: { key: string; value: 'descend' | 'ascend' | null }) {
     const { key, value } = event;
-    const sortingData = {
+    const sortingCriteria: SortingCriteria = {
       sortBy: key,
       sortDirection: this.sortingValueTransformation(value),
     };
 
-    this.dataConfiguratorService.update(sortingData);
+    this.dataConfiguratorService.update(<TableDataConfig>sortingCriteria);
   }
 
-  private sortingValueTransformation(value: 'descend' | 'ascend' | null) {
+  private sortingValueTransformation(
+    value: 'descend' | 'ascend' | null,
+  ): SortingCriteria['sortDirection'] {
     if (value === 'descend') {
       return 'desc';
     }
@@ -171,11 +190,30 @@ export class TableComponent implements OnInit {
     this.dataConfiguratorService.changePage(page);
   }
 
+  getTableId(): string {
+    return this.tableId;
+  }
+
   private trackByColumns(index: number, item: TableColumn) {
     return item.id;
   }
 
   private trackByData(index: number) {
     return index;
+  }
+
+  private actionTriggerHandler(
+    action: TableRowActionBase,
+    items: TableDataRow[],
+  ) {
+    const event: TableActionTriggeredEvent = {
+      action,
+      items,
+    };
+    const wasActionHandled = this.tableActionService.handle(event);
+
+    if (!wasActionHandled) {
+      this.actionTriggered.emit(event);
+    }
   }
 }

@@ -1,28 +1,11 @@
 <ng-container *ngIf="template">
-  <ng-container
-    *ngTemplateOutlet="
-      template;
-      context: {
-        $implicit: template.$implicit,
-        id: template.id,
-        row: template.row,
-        value: template.value
-      }
-    "
-  >
-  </ng-container>
+  <ng-container *ngTemplateOutlet="template; context: context"></ng-container>
 </ng-container>
 
 <ng-container *ngIf="!config.type && !template">
   {{ data[config.id] }}
 </ng-container>
 
-<!--<ng-container *ngIf="config.type && !template">-->
-<!--<orc-orchestrator [config]="itemConfig" [context]="{-->
-<!--id: itemConfig.id,-->
-<!--row: itemConfig.row,-->
-<!--value: itemConfig.value-->
-<!--}">-->
-
-<!--</orc-orchestrator>-->
-<!--</ng-container>-->
+<ng-container *ngIf="config.type && !template">
+  <!--<orc-orchestrator [config]="itemConfig" [context]="context"></orc-orchestrator>-->
+</ng-container>

@@ -1,4 +1,4 @@
-import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { TableRowActionsDeclaration, TableActionTriggeredEvent } from './table';
 
 export const TABLE_ROW_ACTIONS_TOKEN = new InjectionToken<
@@ -7,22 +7,31 @@ export const TABLE_ROW_ACTIONS_TOKEN = new InjectionToken<
 
 @Injectable()
 export class TableActionService {
-  constructor(@Inject(TABLE_ROW_ACTIONS_TOKEN) private actionHandlers: any) {
-    this.actionHandlers = this.actionHandlers.reduce(
-      (actions: any, action: any) => {
-        const key = Object.keys(action) && Object.keys(action)[0];
+  private actionHandlersObject: TableRowActionsDeclaration = {};
 
-        if (key) {
-          actions[key] = action[key];
-        }
+  constructor(
+    @Optional()
+    @Inject(TABLE_ROW_ACTIONS_TOKEN)
+    private actionHandlers: TableRowActionsDeclaration[],
+  ) {
+    this.actionHandlerTransformer();
+  }
 
-        return actions;
-      },
+  private actionHandlerTransformer() {
+    this.actionHandlersObject = this.actionHandlers?.reduce(
+      (actions, action) => ({ ...actions, ...action }),
       {},
     );
   }
 
   handle(actionEvent: TableActionTriggeredEvent): boolean {
-    return actionEvent.action.id in this.actionHandlers;
+    const actionHandler = this.actionHandlersObject?.[actionEvent.action.id];
+    if (actionHandler) {
+      actionHandler.handleAction(actionEvent);
+
+      return true;
+    }
+
+    return false;
   }
 }

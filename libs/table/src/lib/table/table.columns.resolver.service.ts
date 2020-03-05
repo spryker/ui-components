@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { TableColumns } from './table';
+import { TableColumns, ColumnsTransformer } from './table';
 import { switchMap } from 'rxjs/operators';
-
-type ColumnsTransformer = (cols: TableColumns) => Observable<TableColumns>;
 
 @Injectable()
 export class TableColumnsResolverService {

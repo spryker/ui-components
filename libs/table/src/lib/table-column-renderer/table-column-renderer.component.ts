@@ -6,23 +6,12 @@ import {
   Input,
   TemplateRef,
 } from '@angular/core';
-import { TableColumn, TableDataRow } from '../table/table';
+import {
+  TableColumn,
+  TableDataRow,
+  TableColumnTplContext,
+} from '../table/table';
 import { OrchestratorConfigItem } from '@orchestrator/core';
-
-interface ColTplDirective {
-  colTpl: TableColumn['id'];
-  templateRef: TemplateRef<TableColumnTplContext>;
-}
-
-interface TableColumnContext {
-  value: unknown;
-  row: TableDataRow;
-  id: TableColumn['id'];
-}
-
-interface TableColumnTplContext extends TableColumnContext {
-  $implicit: TableColumnContext['value'];
-}
 
 @Component({
   selector: 'spy-table-column-renderer',
@@ -31,7 +20,7 @@ interface TableColumnTplContext extends TableColumnContext {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TableColumnRendererComponent {
+export class TableColumnRendererComponent implements OnInit {
   @Input() config: TableColumn = {
     id: '',
     title: '',
@@ -39,12 +28,25 @@ export class TableColumnRendererComponent {
   @Input() data: TableDataRow = {};
   @Input() template?: TemplateRef<TableColumnTplContext>;
 
+  ///// ANY ANY ANY ANY ANY
   private itemConfig: any = {};
-
-  constructor() {}
+  private context: TableColumnTplContext = {
+    $implicit: '',
+    id: '',
+    row: {},
+    value: '',
+  };
 
   ngOnInit(): void {
     this.initItemConfig();
+    console.log(this.data);
+
+    this.context = {
+      $implicit: this.data[this.config.id],
+      id: this.config.id,
+      row: this.data,
+      value: this.data[this.config.id],
+    };
   }
 
   private initItemConfig() {

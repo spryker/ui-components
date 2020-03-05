@@ -16,7 +16,7 @@
       >
         {{ column.title }}
       </th>
-      <th *ngIf="config?.rowActions.length"></th>
+      <th *ngIf="config?.rowActions?.length"></th>
     </tr>
   </thead>
   <tbody>
@@ -29,7 +29,7 @@
       [class.ant-table-row--selected]="checkedRows[indexOfElement]"
     >
       <td *ngIf="config.selectable">
-        <div style="background: red">
+        <div style="background: white">
           <spy-checkbox
             [(checked)]="checkedRows[indexOfElement]"
             (checkedChange)="updateCheckedRows()"
@@ -37,15 +37,23 @@
         </div>
       </td>
       <td *ngFor="let column of columns$ | async; trackBy: trackByColumns">
-        <div style="background: red">
+        <div style="background: white">
           <spy-table-column-renderer
             [config]="column"
             [data]="data"
+            [template]="templatesObj[column.id]"
           ></spy-table-column-renderer>
         </div>
       </td>
-      <td *ngIf="config?.rowActions.length">
-        DROPDOWN
+      <td *ngIf="config?.rowActions?.length">
+        <div style="background: white">
+          DROPDOWN
+          <div *ngFor="let action of config.rowActions">
+            <span (click)="this.actionTriggerHandler(action, [data])"
+              >DROPDOWN ITEM</span
+            >
+          </div>
+        </div>
       </td>
     </tr>
   </tbody>

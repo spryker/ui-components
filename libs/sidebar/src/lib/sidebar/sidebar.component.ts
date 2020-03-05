@@ -21,6 +21,7 @@ export class SidebarComponent {
   @Input() trigger: undefined | TemplateRef<void>;
   @Input() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
+  @Input() ctxBgClass = 'ctx-spy-bg-white';
 
   updateCollapse(isCollapsed: boolean): void {
     this.collapsed = isCollapsed;

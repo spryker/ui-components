@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken, Inject } from '@angular/core';
+import { Injectable, InjectionToken, Inject, Provider } from '@angular/core';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
 export type SvgPromise = () => Promise<string>;
@@ -17,10 +17,18 @@ export function tokenFactory() {
   return [];
 }
 
-export const ICONS_TOKEN = new InjectionToken<Icon[]>('ICONS_TOKEN', {
+export const ICONS_TOKEN = new InjectionToken<Icon[][]>('ICONS_TOKEN', {
   providedIn: 'root',
   factory: tokenFactory,
 });
+
+export function provideIcons(icons: Icon[]): Provider {
+  return {
+    provide: ICONS_TOKEN,
+    useValue: icons,
+    multi: true,
+  };
+}
 
 @Injectable({ providedIn: 'root' })
 export class IconService implements AddIcon {
@@ -28,7 +36,7 @@ export class IconService implements AddIcon {
   isInited = false;
 
   constructor(
-    @Inject(ICONS_TOKEN) private icons: Icon[],
+    @Inject(ICONS_TOKEN) private icons: Icon[][],
     private nzIcon: NzIconService,
   ) {}
 
@@ -37,7 +45,7 @@ export class IconService implements AddIcon {
       return;
     }
 
-    this.icons.forEach((icon: Icon) => {
+    this.icons.flat().forEach((icon: Icon) => {
       this.addIcon(icon.name, icon.svg);
     });
 

@@ -49,7 +49,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() @ToJson() config: TableConfig = {
     dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
     colsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
-    cols: [],
     selectable: true,
   };
 

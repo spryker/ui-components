@@ -15,7 +15,6 @@ describe('TableColumnRendererComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TableColumnRendererComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

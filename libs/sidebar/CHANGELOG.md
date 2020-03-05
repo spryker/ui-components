@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.1.0-next.4...@spryker/sidebar@0.1.0-next.5) (2020-03-05)
+
+
+### Features
+
+* **notification:** notification component ([697d435](https://github.com/spryker/ui-components/commit/697d4351bf15a4e2e997f2344d83504d863eddd7))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.1.0-next.3...@spryker/sidebar@0.1.0-next.4) (2020-02-27)
 
 **Note:** Version bump only for package @spryker/sidebar

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-next.6...@spryker/card@0.1.0-next.7) (2020-03-05)
+
+
+### Features
+
+* **notification:** notification component ([697d435](https://github.com/spryker/ui-components/commit/697d4351bf15a4e2e997f2344d83504d863eddd7))
+
+
+
+
+
 # [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-next.5...@spryker/card@0.1.0-next.6) (2020-02-27)
 
 **Note:** Version bump only for package @spryker/card

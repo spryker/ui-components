@@ -14,7 +14,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2015", "dom"],
+    "lib": ["es2015", "es2019", "dom"],
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
@@ -81,6 +81,10 @@
       "@spryker/collapsible": [
         "dist/libs/collapsible/index.d.ts",
         "libs/collapsible/src/index.ts"
+      ],
+      "@spryker/notification": [
+        "dist/libs/notification/index.d.ts",
+        "libs/notification/src/index.ts"
       ]
     }
   },

@@ -31,7 +31,7 @@ export class SelectComponent implements OnInit, OnChanges {
   @Input() value: SelectValue | SelectValue[] = [];
   @Input() search = false;
   @Input() disabled = false;
-  @Input() multiple = true;
+  @Input() multiple = false;
   @Input() placeholder = '';
   @Input() showSelectAll = false;
   @Input() selectAllTitle = '';
@@ -65,8 +65,8 @@ export class SelectComponent implements OnInit, OnChanges {
     });
   }
 
-  handleValueChange(value: SelectValue | SelectValue[]) {
-    if (typeof value === 'object' && this.isSelectAllAction(value)) {
+  handleValueChange(value: SelectValue | SelectValue[]): void {
+    if (Array.isArray(value) && this.isSelectAllAction(value)) {
       value = this.getValueArrayForSelectAllAction(value);
     }
 
@@ -79,8 +79,6 @@ export class SelectComponent implements OnInit, OnChanges {
   }
 
   getValueArrayForSelectAllAction(value: SelectValue[]): SelectValue[] {
-    return value.pop() && value.length !== this.allValues.length
-      ? [...this.allValues]
-      : [];
+    return value.length <= this.allValues.length ? [...this.allValues] : [];
   }
 }

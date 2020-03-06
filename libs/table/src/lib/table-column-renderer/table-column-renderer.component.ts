@@ -39,7 +39,6 @@ export class TableColumnRendererComponent implements OnInit {
 
   ngOnInit(): void {
     this.initItemConfig();
-    console.log(this.data);
 
     this.context = {
       $implicit: this.data[this.config.id],

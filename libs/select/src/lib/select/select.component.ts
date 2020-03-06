@@ -28,16 +28,16 @@ interface SelectOptionItem {
 })
 export class SelectComponent implements OnInit, OnChanges {
   @Input() options: SelectOption[] = [];
-  @Input() value: SelectValue[] = [];
+  @Input() value: SelectValue | SelectValue[] = [];
   @Input() search = false;
   @Input() disabled = false;
-  @Input() multiple = false;
+  @Input() multiple = true;
   @Input() placeholder = '';
   @Input() showSelectAll = false;
   @Input() selectAllTitle = '';
   @Input() name = '';
   @Input() noOptionsText = '';
-  @Output() valueChange = new EventEmitter<SelectValue[]>();
+  @Output() valueChange = new EventEmitter<SelectValue | SelectValue[]>();
   allValues: SelectValue[] = [];
   mappedOptions: SelectOptionItem[] = [];
   selectAllValue = 'select-all';
@@ -47,13 +47,16 @@ export class SelectComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.options.firstChange) return;
+    if (changes.options?.firstChange) return;
 
     this.mapOptionsArray(this.options);
   }
 
   mapOptionsArray(options: SelectOption[]): void {
-    options.forEach(option => {
+    this.allValues = [];
+    this.mappedOptions = [];
+
+    options.map(option => {
       const convertedOption: any =
         typeof option !== 'object' ? { value: option, label: option } : option;
 
@@ -62,8 +65,8 @@ export class SelectComponent implements OnInit, OnChanges {
     });
   }
 
-  handleValueChange(value: SelectValue[]) {
-    if (this.isSelectAllAction(value[value.length - 1])) {
+  handleValueChange(value: SelectValue | SelectValue[]) {
+    if (typeof value === 'object' && this.isSelectAllAction(value)) {
       value = this.getValueArrayForSelectAllAction(value);
     }
 
@@ -71,21 +74,13 @@ export class SelectComponent implements OnInit, OnChanges {
     this.valueChange.emit(value);
   }
 
-  isSelectAllAction(value: SelectValue): boolean {
-    return this.multiple && value === this.selectAllValue;
+  isSelectAllAction(value: SelectValue[]): boolean {
+    return this.multiple && value[value.length - 1] === this.selectAllValue;
   }
 
   getValueArrayForSelectAllAction(value: SelectValue[]): SelectValue[] {
     return value.pop() && value.length !== this.allValues.length
-      ? this.selectAllOptions()
-      : this.deselectAllOptions();
-  }
-
-  selectAllOptions(): SelectValue[] {
-    return [...this.allValues];
-  }
-
-  deselectAllOptions(): SelectValue[] {
-    return [];
+      ? [...this.allValues]
+      : [];
   }
 }

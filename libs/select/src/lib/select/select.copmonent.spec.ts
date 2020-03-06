@@ -212,5 +212,27 @@ describe('SelectComponent', () => {
 
       expect(selectComponent.value).toEqual(expectedValue);
     });
+
+    it('Select All correctly triggers deselection of all items', () => {
+      const optionsArray = [123, 234, 345];
+      const expectedValue: any[] = [];
+
+      selectComponent.multiple = true;
+      selectComponent.showSelectAll = true;
+      selectComponent.selectAllTitle = 'Select All';
+      selectComponent.options = optionsArray;
+      selectComponent.value = optionsArray;
+      nvFixture.detectChanges();
+
+      const nzSelectElem = nvFixture.debugElement.query(By.css('nz-select'));
+
+      nzSelectElem.triggerEventHandler('ngModelChange', [
+        ...optionsArray,
+        'select-all',
+      ]);
+      nvFixture.detectChanges();
+
+      expect(selectComponent.value).toEqual(expectedValue);
+    });
   });
 });

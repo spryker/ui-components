@@ -4,11 +4,13 @@ import { SelectComponent } from './select/select.component';
 import { FormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { IconModule, provideIcons, Icon } from '@spryker/icon';
-import suffixIcon from './select/images/icon_dropdown_suffix';
-import checkIcon from './select/images/icon_check';
-import multiSelectChecked from './select/images/icon_multi_select_checked';
-import multiSelectUnChecked from './select/images/icon_multi_select_unchecked';
-import removeIcon from './select/images/icon_remove';
+import {
+  suffixIcon,
+  checkIcon,
+  multiSelectChecked,
+  multiSelectUnChecked,
+  removeIcon,
+} from './select/images';
 
 const icons: Icon[] = [
   {

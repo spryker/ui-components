@@ -25,7 +25,10 @@
     [nzCustomContent]="!multiple"
   >
     {{ option.label }}
-    <ng-container *ngTemplateOutlet="checkIcon"></ng-container>
+    <spy-icon
+      class="ant-select-dropdown-menu-item__icon--checked"
+      name="check"
+    ></spy-icon>
   </nz-option>
 </nz-select>
 
@@ -43,13 +46,6 @@
 
 <ng-template #suffixIcon>
   <spy-icon class="ant-select-arrow__icon" name="suffix"></spy-icon>
-</ng-template>
-
-<ng-template #checkIcon>
-  <spy-icon
-    class="ant-select-dropdown-menu-item__icon--checked"
-    name="check"
-  ></spy-icon>
 </ng-template>
 
 <ng-template #removeIcon>

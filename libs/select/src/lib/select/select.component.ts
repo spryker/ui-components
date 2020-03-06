@@ -53,16 +53,13 @@ export class SelectComponent implements OnInit, OnChanges {
   }
 
   mapOptionsArray(options: SelectOption[]): void {
-    this.allValues = [];
-    this.mappedOptions = [];
-
-    options.map(option => {
-      const convertedOption: any =
-        typeof option !== 'object' ? { value: option, label: option } : option;
-
-      this.allValues.push(convertedOption.value);
-      this.mappedOptions.push(convertedOption);
+    this.mappedOptions = options.map((option: any) => {
+      return typeof option !== 'object'
+        ? { value: option, label: option }
+        : option;
     });
+
+    this.allValues = this.mappedOptions.map(option => option.value);
   }
 
   handleValueChange(value: SelectValue | SelectValue[]): void {

@@ -21,3 +21,14 @@
 .icon-settings:before { content: '\e814'; } /* '' */
 .icon-sort:before { content: '\e815'; } /* '' */
 .icon-minus:before { content: '\e816'; } /* '' */
+.icon-profile:before { content: '\e818'; } /* '' */
+.icon-products:before { content: '\e819'; } /* '' */
+.icon-merchant:before { content: '\e81a'; } /* '' */
+.icon-orders:before { content: '\e81b'; } /* '' */
+.icon-dashboard:before { content: '\e81c'; } /* '' */
+.icon-info:before { content: '\e81d'; } /* '' */
+.icon-error:before { content: '\e81e'; } /* '' */
+.icon-warning:before { content: '\e81f'; } /* '' */
+.icon-success:before { content: '\e820'; } /* '' */
+.icon-en:before { content: '\e821'; } /* '' */
+.icon-default:before { content: '\e822'; } /* '' */

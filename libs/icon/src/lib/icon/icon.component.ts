@@ -1,11 +1,14 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
+  ChangeDetectorRef,
+  Component,
   Input,
   OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
+
 import { IconService } from './icon.component.service';
 
 @Component({
@@ -16,16 +19,36 @@ import { IconService } from './icon.component.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class IconComponent implements OnInit, OnChanges {
-  isIconResolved: Promise<string> | null = null;
-  @Input() name = '';
+  @Input() name?: string;
+  @Input() svgName?: string;
 
-  constructor(private iconsService: IconService) {}
+  isSvgResolved: Promise<string | undefined> | null = null;
+
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private iconsService: IconService,
+  ) {}
 
   ngOnInit(): void {
     this.iconsService._init();
+    this.updateSvg();
   }
 
-  ngOnChanges(): void {
-    this.isIconResolved = this.iconsService.resolveIcon(this.name);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.name?.firstChange || !changes.svgName?.firstChange) {
+      this.updateSvg();
+    }
+  }
+
+  private async updateSvg() {
+    if (!this.name && this.svgName) {
+      this.isSvgResolved = this.iconsService.resolveIcon(this.svgName);
+
+      // Re-render manually after icon resolved
+      await this.isSvgResolved;
+      this.cdr.detectChanges();
+    } else {
+      this.isSvgResolved = null;
+    }
   }
 }

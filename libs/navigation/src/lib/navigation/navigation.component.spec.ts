@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NavigationModule } from '../navigation.module';
 import { NavigationComponent } from './navigation.component';
@@ -46,7 +47,7 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NavigationModule],
+      imports: [NoopAnimationsModule, NavigationModule],
       declarations: [TestComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

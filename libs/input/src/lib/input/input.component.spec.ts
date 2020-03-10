@@ -18,8 +18,8 @@ describe('InputComponent', () => {
         [disabled]="disabled"
         [suffix]="suffix"
         [prefix]="prefix"
-        [addBefore]="addBefore"
-        [addAfter]="addAfter"
+        [outerPrefix]="outerPrefix"
+        [outerSuffix]="outerSuffix"
         [attrs]="attrs"
         (valueChange)="changeSpy()"
       ></spy-input>
@@ -34,8 +34,8 @@ describe('InputComponent', () => {
     disabled: any;
     prefix: any;
     suffix: any;
-    addBefore: any;
-    addAfter: any;
+    outerPrefix: any;
+    outerSuffix: any;
     attrs: any;
     changeSpy = jest.fn();
   }
@@ -195,23 +195,23 @@ describe('InputComponent', () => {
     });
   });
 
-  describe('Input addBefore and addAfter must be bound to nz-input-group', () => {
-    it('should bind addBefore to nzAddOnBefore of nz-input-group', () => {
+  describe('Input outerPrefix and outerSuffix must be bound to nz-input-group', () => {
+    it('should bind outerPrefix to nzAddOnBefore of nz-input-group', () => {
       const inputElem = fixture.debugElement.query(By.css('nz-input-group'));
-      const mockedData = 'addBefore';
+      const mockedData = 'outerPrefix';
 
-      component.addBefore = mockedData;
+      component.outerPrefix = mockedData;
 
       fixture.detectChanges();
 
       expect(inputElem.properties.nzAddOnBefore).toBe(mockedData);
     });
 
-    it('should bind addAfter to nzAddOnAfter of nz-input-group', () => {
+    it('should bind outerSuffix to nzAddOnAfter of nz-input-group', () => {
       const inputElem = fixture.debugElement.query(By.css('nz-input-group'));
-      const mockedData = 'addAfter';
+      const mockedData = 'outerSuffix';
 
-      component.addAfter = mockedData;
+      component.outerSuffix = mockedData;
 
       fixture.detectChanges();
 

@@ -19,8 +19,8 @@ import { ToJson } from '@spryker/utils';
 export class InputComponent {
   @Input() prefix: string | TemplateRef<void> = '';
   @Input() suffix: string | TemplateRef<void> = '';
-  @Input() addBefore: string | TemplateRef<void> = '';
-  @Input() addAfter: string | TemplateRef<void> = '';
+  @Input() outerPrefix: string | TemplateRef<void> = '';
+  @Input() outerSuffix: string | TemplateRef<void> = '';
   @Input() name = '';
   @Input() value: any = '';
   @Input() type = 'text';

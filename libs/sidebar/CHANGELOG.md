@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.1.0-next.5...@spryker/sidebar@0.1.0-next.6) (2020-03-10)
+
+
+### Bug Fixes
+
+* **sidebar:** removed unnecessary styles ([570f61f](https://github.com/spryker/ui-components/commit/570f61f04ce1a4fbaa31f33fd2ba0efd1c0839c5))
+
+
+
+
+
 # [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.1.0-next.4...@spryker/sidebar@0.1.0-next.5) (2020-03-05)
 
 

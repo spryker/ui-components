@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.15...@spryker/styles@0.1.0-next.16) (2020-03-10)
+
+
+### Bug Fixes
+
+* **navigation:** added fix for icons in navigation ([36cca0e](https://github.com/spryker/ui-components/commit/36cca0e126f2efbb680b9ef7fdf01ed23b1233ad))
+
+
+
+
+
 # [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.14...@spryker/styles@0.1.0-next.15) (2020-03-07)
 
 

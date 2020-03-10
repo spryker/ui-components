@@ -5,6 +5,7 @@ import {
   ElementRef,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Renderer2,
   SimpleChanges,
@@ -20,10 +21,12 @@ import { IconService } from './icon.component.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IconComponent implements OnInit, OnChanges {
+export class IconComponent implements OnInit, OnChanges, OnDestroy {
   @Input() name?: string;
 
   isIconResolved?: Promise<string | undefined>;
+
+  private destroyed = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -45,6 +48,10 @@ export class IconComponent implements OnInit, OnChanges {
     }
   }
 
+  ngOnDestroy(): void {
+    this.destroyed = true;
+  }
+
   private async updateIcon() {
     if (!this.name) {
       this.isIconResolved = undefined;
@@ -55,7 +62,12 @@ export class IconComponent implements OnInit, OnChanges {
 
     // Re-render manually after icon resolved
     await this.isIconResolved;
-    this.cdr.detectChanges();
+
+    // After await component might have been destroyed
+    // So we have to check before performing CD
+    if (!this.destroyed) {
+      this.cdr.detectChanges();
+    }
   }
 
   private updateHostClass(prevName?: string) {

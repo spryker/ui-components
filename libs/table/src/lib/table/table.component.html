@@ -6,7 +6,10 @@
     {{ (data$ | async)?.total }} results
   </div>
 
-  <div class="ant-table-features-col ant-table-features-col--dynamic"></div>
+  <div class="ant-table-features-col ant-table-features-col--dynamic">
+    <!--<spy-table-features-renderer></spy-table-features-renderer>-->
+    <!--with input features bound to TableComponent.featuresLocation['top'] as CSS flexbox with right items alignment-->
+  </div>
 </div>
 
 <nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
@@ -64,12 +67,22 @@
         <div class="ant-table-column-inner">
           DROPDOWN
           <div *ngFor="let action of config.rowActions">
-            <span (click)="this.actionTriggerHandler(action, [data])"
-              >DROPDOWN ITEM</span
-            >
+            <span (click)="this.actionTriggerHandler(action, [data])">DROPDOWN ITEM</span>
           </div>
         </div>
       </td>
     </tr>
   </tbody>
 </nz-table>
+
+<!--<spy-table-features-renderer></spy-table-features-renderer>-->
+<!--with input features bound to TableComponent.featuresLocation['after-table']-->
+<!--<spy-pagination></spy-pagination>-->
+<!--Trigger updatePagination with event on pageChange output-->
+<!--<spy-table-features-renderer></spy-table-features-renderer>-->
+<!--with input features bound to TableComponent.featuresLocation['bottom']-->
+<span style="display: none">
+  <!--span with SelectComponentsDirective and value bound to TableFeatureComponent style display: none-->
+  <!--When spySelectComponentsFound output emits - store $event on TableComponent.features property-->
+  <ng-content select="[spy-table-feature]"></ng-content>
+</span>

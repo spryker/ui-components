@@ -1,5 +1,6 @@
 import { TableComponent } from './table.component';
 import { TableModule } from '../table.module';
+import { HttpClientModule } from "@angular/common/http";
 
 export default {
   title: 'TableComponent',
@@ -7,7 +8,7 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [TableModule],
+    imports: [TableModule.forRoot(), HttpClientModule],
   },
   component: TableComponent,
   template: `

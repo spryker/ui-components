@@ -9,7 +9,9 @@
     "@angular/core": "^9.0.0",
     "tslib": "^1.10.0",
     "@spryker/styles": "^0.0.1",
-    "@spryker/checkbox": "^0.0.1"
+    "@spryker/checkbox": "^0.0.1",
+    "@orchestrator/core": "^0.2.0",
+    "@orchestrator/layout": "^0.1.0"
   },
   "publishConfig": {
     "access": "public"

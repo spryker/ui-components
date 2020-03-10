@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { CheckboxModule } from '@spryker/checkbox';
 import { TableComponent } from './table/table.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
-import { HttpClientModule } from '@angular/common/http';
 import { TableColumnComponentDeclaration } from './table/table';
 import { LayoutFlatHostModule, LayoutFlatHostComponent } from '@orchestrator/layout';
 import { OrchestratorCoreModule } from '@orchestrator/core';
@@ -18,7 +17,6 @@ const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
   imports: [
     CommonModule,
     NzTableModule,
-    HttpClientModule,
     CheckboxModule,
     OrchestratorCoreModule,
     LayoutFlatHostModule,

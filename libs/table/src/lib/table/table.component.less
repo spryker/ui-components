@@ -89,7 +89,6 @@
           }
 
           .@{table-prefix-cls}-column-sorter-up {
-
           }
 
           .@{table-prefix-cls}-column-sorter-down {
@@ -127,7 +126,8 @@
     &:hover {
       background: none;
 
-      &:not(.@{table-prefix-cls}-expanded-row):not(.@{table-prefix-cls}-row-selected) > td {
+      &:not(.@{table-prefix-cls}-expanded-row):not(.@{table-prefix-cls}-row-selected)
+        > td {
         background: none;
       }
     }
@@ -164,6 +164,10 @@
       padding: 0;
       border-bottom: none;
 
+      &.@{table-prefix-cls}-column-selectable {
+        width: (@table-padding-horizontal * 2) + @checkbox-size;
+      }
+
       .@{table-prefix-cls}-column-inner {
         margin: @table-body-margin-vertical 0;
         padding: @table-body-padding-vertical @table-padding-horizontal;
@@ -175,7 +179,9 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        transition: background @common-transition-time @common-transition-function, border @common-transition-time @common-transition-function;
+        transition: background @common-transition-time
+            @common-transition-function,
+          border @common-transition-time @common-transition-function;
       }
 
       &:first-child .@{table-prefix-cls}-column-inner {

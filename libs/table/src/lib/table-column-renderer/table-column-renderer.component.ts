@@ -28,8 +28,11 @@ export class TableColumnRendererComponent implements OnInit {
   @Input() data: TableDataRow = {};
   @Input() template?: TemplateRef<TableColumnTplContext>;
 
-  ///// ANY ANY ANY ANY ANY
-  private itemConfig: any = {};
+  private itemConfig: OrchestratorConfigItem = {
+    component: '',
+    items: [],
+    config: {},
+  };
   private context: TableColumnTplContext = {
     $implicit: '',
     id: '',
@@ -48,9 +51,9 @@ export class TableColumnRendererComponent implements OnInit {
     };
   }
 
-  private initItemConfig() {
-    this.itemConfig['component'] = this.config?.type;
-    this.itemConfig['config'] = this.config?.typeOptions;
-    this.itemConfig['items'] = this.config?.children;
+  private initItemConfig(): void {
+    this.itemConfig.config = <OrchestratorConfigItem['config']>this.config?.typeOptions;
+    this.itemConfig.items = <OrchestratorConfigItem['items']>this.config?.children;
+    this.itemConfig.component = <OrchestratorConfigItem['component']>this.config?.type;
   }
 }

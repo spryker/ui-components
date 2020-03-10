@@ -9,6 +9,7 @@ import {
   QueryList,
   ViewEncapsulation,
   AfterContentInit,
+  TemplateRef,
 } from '@angular/core';
 import {
   TableActionTriggeredEvent,
@@ -20,6 +21,7 @@ import {
   TableRowActionBase,
   SortingCriteria,
   TableDataConfig,
+  TableColumnTplContext,
 } from './table';
 import { merge, Observable } from 'rxjs';
 import { ToJson } from '@spryker/utils';
@@ -65,11 +67,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   isLoading$ = new Observable<boolean>();
 
   private rowsData?: TableDataRow[];
-  private templatesObj: any = {};
-
-  // {
-  //   [key: string]: TemplateRef<any>
-  // }
+  private templatesObj?: {
+    [key: string]: TemplateRef<TableColumnTplContext>;
+  };
 
   constructor(
     private http: HttpClient,
@@ -80,15 +80,13 @@ export class TableComponent implements OnInit, AfterContentInit {
   ) {}
 
   ngAfterContentInit() {
-    this.templatesObj =
-      this.slotTemplates &&
-      this.slotTemplates.reduce(
-        (templates, template) => ({
-          ...templates,
-          [template.colTpl]: template.template,
-        }),
-        {},
-      );
+    this.templatesObj = this.slotTemplates?.reduce(
+      (templates, template) => ({
+        ...templates,
+        [template.colTpl]: template.template,
+      }),
+      {},
+    );
   }
 
   private initCheckedRows(data: TableData) {

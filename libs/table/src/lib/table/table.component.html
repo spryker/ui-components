@@ -1,6 +1,8 @@
 <div class="ant-table-features">
   <div class="ant-table-features-col ant-table-features-col--static">
-    <ng-container *ngIf="config.selectable">{{ selectedRows()?.length }} selected / </ng-container>
+    <ng-container *ngIf="config.selectable"
+      >{{ selectedRows()?.length }} selected /
+    </ng-container>
     {{ (data$ | async)?.total }} results
   </div>
 
@@ -12,17 +14,17 @@
     <tr>
       <th *ngIf="config.selectable">
         <spy-checkbox
-            [(checked)]="allChecked"
-            [indeterminate]="isIndeterminate"
-            (checkedChange)="toggleCheckedRows()"
+          [(checked)]="allChecked"
+          [indeterminate]="isIndeterminate"
+          (checkedChange)="toggleCheckedRows()"
         ></spy-checkbox>
       </th>
 
       <th
-          *ngFor="let column of columns$ | async; trackBy: trackByColumns"
-          [nzShowSort]="column.sortable"
-          [nzSortKey]="column.id"
-          [nzWidth]="column.width"
+        *ngFor="let column of columns$ | async; trackBy: trackByColumns"
+        [nzShowSort]="column.sortable"
+        [nzSortKey]="column.id"
+        [nzWidth]="column.width"
       >
         {{ column.title }}
       </th>
@@ -32,18 +34,18 @@
 
   <tbody>
     <tr
-        *ngFor="
-          let data of (data$ | async)?.data;
-          trackBy: trackByData;
-          index as indexOfElement
-        "
-        [class.ant-table-row--selected]="checkedRows[indexOfElement]"
+      *ngFor="
+        let data of (data$ | async)?.data;
+        trackBy: trackByData;
+        index as indexOfElement
+      "
+      [class.ant-table-row--selected]="checkedRows[indexOfElement]"
     >
-      <td *ngIf="config.selectable">
+      <td *ngIf="config.selectable" class="ant-table-column-selectable">
         <div class="ant-table-column-inner">
           <spy-checkbox
-              [(checked)]="checkedRows[indexOfElement]"
-              (checkedChange)="updateCheckedRows()"
+            [(checked)]="checkedRows[indexOfElement]"
+            (checkedChange)="updateCheckedRows()"
           ></spy-checkbox>
         </div>
       </td>
@@ -51,9 +53,9 @@
       <td *ngFor="let column of columns$ | async; trackBy: trackByColumns">
         <div class="ant-table-column-inner">
           <spy-table-column-renderer
-              [config]="column"
-              [data]="data"
-              [template]="templatesObj[column.id]"
+            [config]="column"
+            [data]="data"
+            [template]="templatesObj[column.id]"
           ></spy-table-column-renderer>
         </div>
       </td>
@@ -62,9 +64,9 @@
         <div class="ant-table-column-inner">
           DROPDOWN
           <div *ngFor="let action of config.rowActions">
-              <span (click)="this.actionTriggerHandler(action, [data])"
+            <span (click)="this.actionTriggerHandler(action, [data])"
               >DROPDOWN ITEM</span
-              >
+            >
           </div>
         </div>
       </td>

@@ -71,12 +71,12 @@
     "collapsible": {
       "tags": ["level:molecule", "type:component"]
     },
-      "select": {
-          "tags": ["level:molecule", "type:component"]
-      },
-      "notification": {
-          "tags": ["level:molecule", "type:component"]
-      },
+    "select": {
+      "tags": ["level:molecule", "type:component"]
+    },
+    "notification": {
+      "tags": ["level:molecule", "type:component"]
+    },
     "table": {
       "tags": ["level:organism", "type:component"]
     }

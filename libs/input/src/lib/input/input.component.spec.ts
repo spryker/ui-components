@@ -18,6 +18,8 @@ describe('InputComponent', () => {
         [disabled]="disabled"
         [suffix]="suffix"
         [prefix]="prefix"
+        [addBefore]="addBefore"
+        [addAfter]="addAfter"
         [attrs]="attrs"
         (valueChange)="changeSpy()"
       ></spy-input>
@@ -32,6 +34,8 @@ describe('InputComponent', () => {
     disabled: any;
     prefix: any;
     suffix: any;
+    addBefore: any;
+    addAfter: any;
     attrs: any;
     changeSpy = jest.fn();
   }
@@ -188,6 +192,30 @@ describe('InputComponent', () => {
       fixture.detectChanges();
 
       expect(inputElem.properties.nzPrefix).toBe(mockedPrefix);
+    });
+  });
+
+  describe('Input addBefore and addAfter must be bound to nz-input-group', () => {
+    it('should bind addBefore to nzAddOnBefore of nz-input-group', () => {
+      const inputElem = fixture.debugElement.query(By.css('nz-input-group'));
+      const mockedData = 'addBefore';
+
+      component.addBefore = mockedData;
+
+      fixture.detectChanges();
+
+      expect(inputElem.properties.nzAddOnBefore).toBe(mockedData);
+    });
+
+    it('should bind addAfter to nzAddOnAfter of nz-input-group', () => {
+      const inputElem = fixture.debugElement.query(By.css('nz-input-group'));
+      const mockedData = 'addAfter';
+
+      component.addAfter = mockedData;
+
+      fixture.detectChanges();
+
+      expect(inputElem.properties.nzAddOnAfter).toBe(mockedData);
     });
   });
 

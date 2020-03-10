@@ -1,1 +1,11 @@
 @import 'themes/default/input/styles.less';
+
+.@{ant-input} {
+  &-group-addon {
+    &:first-of-type {
+      padding-right: @input-add-before-spacing;
+    }
+    background: @gray-lighter;
+    color: @gray-dark;
+  }
+}

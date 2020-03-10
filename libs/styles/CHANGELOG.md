@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.14...@spryker/styles@0.1.0-next.15) (2020-03-07)
+
+
+### Features
+
+* **select component:** styles,markup,functionality ([211bea0](https://github.com/spryker/ui-components/commit/211bea0b00e583f7861e4ae54a1c1c0c931af1fd))
+
+
+
+
+
+# [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.13...@spryker/styles@0.1.0-next.14) (2020-03-05)
+
+
+### Bug Fixes
+
+* **input:** fix input placeholder, invalid state ([fb42091](https://github.com/spryker/ui-components/commit/fb42091aa4b43f0e6883191e21a956f36ab18da9))
+
+
+### Features
+
+* **notification:** notification component ([697d435](https://github.com/spryker/ui-components/commit/697d4351bf15a4e2e997f2344d83504d863eddd7))
+
+
+
+
+
+# [0.1.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.12...@spryker/styles@0.1.0-next.13) (2020-03-04)
+
+
+### Features
+
+* **checkbox:** add all properties ([7793ad7](https://github.com/spryker/ui-components/commit/7793ad7cda132a72030bfd0fe60003816e08e27c))
+* **checkbox:** add default styles storybook ([2088736](https://github.com/spryker/ui-components/commit/2088736b80b94ba93fd6fdbd0ee72d175e7c5fd6))
+
+
+
+
+
 # [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.11...@spryker/styles@0.1.0-next.12) (2020-03-03)
 
 **Note:** Version bump only for package @spryker/styles

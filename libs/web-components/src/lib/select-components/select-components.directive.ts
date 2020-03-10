@@ -53,7 +53,7 @@ export class SelectComponentsDirective<T = unknown>
   /**
    * Emits every time it performs search of components in DOM
    */
-  @Output() spySelectComponentsFound = new EventEmitter<NgWebComponent<T>[]>();
+  @Output() spySelectComponentsFound = new EventEmitter<T[]>();
 
   private destroyed$ = new Subject<void>();
   private setObserver$ = new ReplaySubject<Observable<any>>();
@@ -99,10 +99,12 @@ export class SelectComponentsDirective<T = unknown>
       await Promise.all(allDefined);
     }
 
-    const components = children.filter(
+    const webComponents = children.filter(
       isNgWebComponentOf(this.spySelectComponents),
     );
 
-    this.spySelectComponentsFound.emit(components);
+    const ngComponent = webComponents.map(c => c.getSuper());
+
+    this.spySelectComponentsFound.emit(ngComponent);
   }
 }

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/icon@0.1.0-next.2...@spryker/icon@0.1.0-next.3) (2020-03-05)
+
+
+### Bug Fixes
+
+* remove shadow dom ([8ee619b](https://github.com/spryker/ui-components/commit/8ee619b31454d8eac7c6b91b0f1d7a08e50677d1))
+
+
+
+
+
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/icon@0.1.0-next.1...@spryker/icon@0.1.0-next.2) (2020-03-05)
+
+**Note:** Version bump only for package @spryker/icon
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/icon@0.1.0-next.0...@spryker/icon@0.1.0-next.1) (2020-02-25)
 
 

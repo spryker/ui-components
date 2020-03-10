@@ -1,4 +1,4 @@
-import { ICONS_TOKEN } from './icon.component.service';
+import { provideIcons } from './icon.component.service';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { IconComponent } from './icon.component';
 
@@ -12,9 +12,8 @@ export const primary = () => ({
   moduleMetadata: {
     imports: [NzIconModule],
     providers: [
-      {
-        provide: ICONS_TOKEN,
-        useValue: {
+      provideIcons([
+        {
           name: 'home',
           svg: function() {
             return new Promise(resolve => {
@@ -22,8 +21,7 @@ export const primary = () => ({
             });
           },
         },
-        multi: true,
-      },
+      ]),
     ],
   },
   component: IconComponent,

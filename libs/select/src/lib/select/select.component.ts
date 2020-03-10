@@ -9,6 +9,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { ToJson } from '@spryker/utils';
 
 type SelectValue = string | number;
 type SelectOption = SelectValue | SelectOptionItem;
@@ -27,7 +28,7 @@ interface SelectOptionItem {
   encapsulation: ViewEncapsulation.None,
 })
 export class SelectComponent implements OnInit, OnChanges {
-  @Input() options: SelectOption[] = [];
+  @Input() @ToJson() options: SelectOption[] = [];
   @Input() value: SelectValue | SelectValue[] = [];
   @Input() search = false;
   @Input() disabled = false;

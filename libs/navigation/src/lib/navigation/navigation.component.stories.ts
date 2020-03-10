@@ -94,10 +94,10 @@ const iconMerchant = `
 `;
 
 const icons: Icon[] = [
-  { name: 'dashboard', svg: iconDashboard },
-  { name: 'orders', svg: iconOrders },
-  { name: 'offers', svg: iconOffer },
-  { name: 'merchant', svg: iconMerchant },
+  { icon: 'dashboard', svg: iconDashboard },
+  { icon: 'orders', svg: iconOrders },
+  { icon: 'offers', svg: iconOffer },
+  { icon: 'merchant', svg: iconMerchant },
 ];
 
 export const primary = () => ({

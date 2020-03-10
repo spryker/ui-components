@@ -1,12 +1,13 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
   Input,
   Output,
-  EventEmitter,
   ViewEncapsulation,
-  ElementRef,
 } from '@angular/core';
+import { IconRemoveModule } from '@spryker/icon/icons';
 import { applyContexts } from '@spryker/utils';
 
 @Component({
@@ -21,6 +22,8 @@ export class NotificationComponent {
   @Input() closeable = false;
 
   @Output() closed = new EventEmitter<void>();
+
+  removeIcon = IconRemoveModule.icon;
 
   constructor(elemRef: ElementRef) {
     applyContexts(elemRef.nativeElement);

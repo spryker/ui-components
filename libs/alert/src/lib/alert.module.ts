@@ -1,22 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { Icon, IconModule, provideIcons } from '@spryker/icon';
+import { IconModule } from '@spryker/icon';
+import { IconErrorModule } from '@spryker/icon/icons';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 import { AlertComponent } from './alert/alert.component';
-import { iconError } from './icons';
-
-const icons: Icon[] = [
-  {
-    name: 'error',
-    svg: iconError,
-  },
-];
 
 @NgModule({
-  imports: [CommonModule, IconModule, NzAlertModule],
+  imports: [CommonModule, NzAlertModule, IconModule, IconErrorModule],
   declarations: [AlertComponent],
   exports: [AlertComponent],
-  providers: [provideIcons(icons)],
 })
 export class AlertModule {}

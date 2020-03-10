@@ -28,11 +28,11 @@ describe('IconComponent', () => {
         IconService,
         provideIcons([
           {
-            name: promiseIcon,
+            icon: promiseIcon,
             svg: () => Promise.resolve(svgIcon),
           },
           {
-            name: stringIcon,
+            icon: stringIcon,
             svg: svgIcon,
           },
         ]),
@@ -42,6 +42,30 @@ describe('IconComponent', () => {
 
   it('should compile', async () => {
     await createComponent();
+  });
+
+  describe('host class `spy-icon-[name]`', () => {
+    it('should add when @Input(name) set', async () => {
+      const host = await createComponent({ name: 'name' }, true);
+
+      expect(host.element.classes['spy-icon-name']).toBeTruthy();
+    });
+
+    it('should update when @Input(name) updated', async () => {
+      const host = await createComponent({ name: 'name' }, true);
+
+      host.setInputs({ name: 'new-name' }, true);
+
+      expect(host.element.classes['spy-icon-new-name']).toBeTruthy();
+    });
+
+    it('should remove old class when @Input(name) updated', async () => {
+      const host = await createComponent({ name: 'name' }, true);
+
+      host.setInputs({ name: 'new-name' }, true);
+
+      expect(host.element.classes['spy-icon-name']).toBeFalsy();
+    });
   });
 
   describe('@Input(name)', () => {

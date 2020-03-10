@@ -9,7 +9,7 @@ export interface AddIcon {
 }
 
 export interface Icon {
-  name: string;
+  icon: string;
   svg: string | SvgPromise;
 }
 
@@ -47,7 +47,7 @@ export class IconService implements AddIcon {
     this.isInited = true;
 
     this.icons.flat().forEach((icon: Icon) => {
-      this.addIcon(icon.name, icon.svg);
+      this.addIcon(icon.icon, icon.svg);
     });
   }
 

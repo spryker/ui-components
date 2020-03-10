@@ -1,14 +1,21 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  Input,
-  Output,
+  Component,
   EventEmitter,
-  ViewEncapsulation,
-  OnInit,
+  Input,
   OnChanges,
+  OnInit,
+  Output,
   SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
+import {
+  IconArrowDownModule,
+  IconCheckboxCheckedModule,
+  IconCheckboxUncheckedModule,
+  IconCheckModule,
+  IconRemoveModule,
+} from '@spryker/icon/icons';
 import { ToJson } from '@spryker/utils';
 
 type SelectValue = string | number;
@@ -39,6 +46,13 @@ export class SelectComponent implements OnInit, OnChanges {
   @Input() name = '';
   @Input() noOptionsText = '';
   @Output() valueChange = new EventEmitter<SelectValue | SelectValue[]>();
+
+  checkIcon = IconCheckModule.icon;
+  arrowDownIcon = IconArrowDownModule.icon;
+  removeIcon = IconRemoveModule.icon;
+  checkboxCheckedIcon = IconCheckboxCheckedModule.icon;
+  checkboxUncheckedIcon = IconCheckboxUncheckedModule.icon;
+
   allValues: SelectValue[] = [];
   mappedOptions: SelectOptionItem[] = [];
   selectAllValue = 'select-all';

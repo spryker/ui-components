@@ -60,7 +60,7 @@ describe('AlertComponent', () => {
       fixture.detectChanges();
 
       const iconElem = fixture.debugElement.query(
-        By.css('nz-alert spy-icon[name="error"]'),
+        By.css('nz-alert spy-icon.spy-icon-error'),
       );
 
       expect(iconElem).toBeTruthy();

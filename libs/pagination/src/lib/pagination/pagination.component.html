@@ -1,0 +1,22 @@
+<nz-pagination
+  [nzTotal]="total"
+  [nzPageIndex]="page"
+  [nzPageSize]="pageSize"
+  [nzHideOnSinglePage]="hideOnSinglePage"
+  (nzPageIndexChange)="pageChange.emit($event)"
+  (nzPageSizeChange)="pageSizeChange.emit($event)"
+  [nzItemRender]="renderItemTemplate"
+>
+</nz-pagination>
+
+<spy-select [value]="pageSize" [options]="pageSizeOptions"></spy-select>
+
+<ng-template #renderItemTemplate let-type let-page="page">
+  <a *ngIf="type === 'pre'">
+    <spy-icon name="arrow" class="ant-pagination-icon"></spy-icon>
+  </a>
+  <a *ngIf="type === 'next'">
+    <spy-icon name="arrow" class="ant-pagination-icon"></spy-icon>
+  </a>
+  <a *ngIf="type === 'page'">{{ page }}</a>
+</ng-template>

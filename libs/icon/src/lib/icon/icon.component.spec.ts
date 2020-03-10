@@ -45,49 +45,36 @@ describe('IconComponent', () => {
   });
 
   describe('@Input(name)', () => {
-    it('should render i.spy-icon-font with class `icon-[name]`', async () => {
-      const host = await createComponent({ name: 'test-icon' }, true);
+    it('should render <i> from promise', async () => {
+      const host = await createComponent({ name: promiseIcon }, true);
 
-      const iconElem = host.queryCss('i.spy-icon-font');
-
-      expect(iconElem).toBeTruthy();
-      expect(
-        iconElem!.nativeElement.classList.contains('icon-test-icon'),
-      ).toBeTruthy();
-    });
-  });
-
-  describe('@Input(svgName)', () => {
-    it('should render i.spy-icon-svg from promise', async () => {
-      const host = await createComponent({ svgName: promiseIcon }, true);
-
-      const iconElem = host.queryCss('i.spy-icon-svg');
+      const iconElem = host.queryCss('i');
 
       expect(iconElem).toBeTruthy();
       expect(iconElem!.properties.nzType).toEqual(promiseIcon);
     });
 
-    it('should render i.spy-icon-svg from string', async () => {
-      const host = await createComponent({ svgName: stringIcon }, true);
+    it('should render <i> from string', async () => {
+      const host = await createComponent({ name: stringIcon }, true);
 
-      const iconComponent = host.queryCss('i.spy-icon-svg');
+      const iconComponent = host.queryCss('i');
 
       expect(iconComponent).toBeTruthy();
       expect(iconComponent!.properties.nzType).toEqual(stringIcon);
     });
 
-    it('should re-render when changed', fakeAsync(async () => {
-      const host = await createComponent({ svgName: promiseIcon }, true);
+    it('should re-render <i> when changed', fakeAsync(async () => {
+      const host = await createComponent({ name: promiseIcon }, true);
 
-      const firstIconElem = host.queryCss('i.spy-icon-svg');
+      const firstIconElem = host.queryCss('i');
 
       expect(firstIconElem).toBeTruthy();
       expect(firstIconElem!.properties.nzType).toEqual(promiseIcon);
 
-      host.setInputs({ svgName: stringIcon }, true);
+      host.setInputs({ name: stringIcon }, true);
       tick();
 
-      const secondIconElem = host.queryCss('i.spy-icon-svg');
+      const secondIconElem = host.queryCss('i');
 
       expect(secondIconElem).toBeTruthy();
       expect(secondIconElem!.properties.nzType).toEqual(stringIcon);

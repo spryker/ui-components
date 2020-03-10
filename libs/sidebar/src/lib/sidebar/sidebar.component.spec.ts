@@ -42,7 +42,7 @@ describe('SidebarComponent', () => {
     const iconComponent = triggerButton.query(By.css('spy-icon'));
 
     expect(iconComponent).toBeTruthy();
-    expect(iconComponent.attributes.name).toEqual('dropdown-arrow');
+    expect(iconComponent.attributes.name).toEqual('arrow');
   });
 
   it('should trigger sidebar', () => {

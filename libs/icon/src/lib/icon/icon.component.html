@@ -1,9 +1,1 @@
-<i *ngIf="name; else svgTpl" class="spy-icon-font icon-{{ name }}"></i>
-<ng-template #svgTpl>
-  <i
-    class="spy-icon-svg"
-    nz-icon
-    *ngIf="isSvgResolved | async as svgIcon"
-    [nzType]="svgIcon"
-  ></i>
-</ng-template>
+<i nz-icon *ngIf="isSvgResolved | async as svgIcon" [nzType]="svgIcon"></i>

@@ -4,18 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { Icon, IconModule, provideIcons } from '@spryker/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 
-import { multiSelectChecked, multiSelectUnChecked } from './select/images';
+import {
+  iconCheck,
+  iconChecked,
+  iconSuffix,
+  iconUnChecked,
+  removeIcon,
+} from './icons';
 import { SelectComponent } from './select/select.component';
 
 const icons: Icon[] = [
-  {
-    name: 'multiSelectChecked',
-    svg: multiSelectChecked,
-  },
-  {
-    name: 'multiSelectUnChecked',
-    svg: multiSelectUnChecked,
-  },
+  { name: 'suffix', svg: iconSuffix },
+  { name: 'check', svg: iconCheck },
+  { name: 'remove', svg: removeIcon },
+  { name: 'multiSelectChecked', svg: iconChecked },
+  { name: 'multiSelectUnChecked', svg: iconUnChecked },
 ];
 
 @NgModule({

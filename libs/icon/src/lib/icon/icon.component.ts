@@ -20,9 +20,8 @@ import { IconService } from './icon.component.service';
 })
 export class IconComponent implements OnInit, OnChanges {
   @Input() name?: string;
-  @Input() svgName?: string;
 
-  isSvgResolved: Promise<string | undefined> | null = null;
+  isSvgResolved?: Promise<string | undefined>;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -35,20 +34,21 @@ export class IconComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.name?.firstChange || !changes.svgName?.firstChange) {
+    if (!changes.name?.firstChange) {
       this.updateSvg();
     }
   }
 
   private async updateSvg() {
-    if (!this.name && this.svgName) {
-      this.isSvgResolved = this.iconsService.resolveIcon(this.svgName);
-
-      // Re-render manually after icon resolved
-      await this.isSvgResolved;
-      this.cdr.detectChanges();
-    } else {
-      this.isSvgResolved = null;
+    if (!this.name) {
+      this.isSvgResolved = undefined;
+      return;
     }
+
+    this.isSvgResolved = this.iconsService.resolveIcon(this.name);
+
+    // Re-render manually after icon resolved
+    await this.isSvgResolved;
+    this.cdr.detectChanges();
   }
 }

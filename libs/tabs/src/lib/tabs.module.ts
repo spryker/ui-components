@@ -14,7 +14,7 @@ import { errorIcon } from './icons';
   providers: [
     provideIcons([
       {
-        name: 'error-icon',
+        name: 'error',
         svg: errorIcon,
       },
     ]),

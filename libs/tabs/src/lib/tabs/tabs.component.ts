@@ -34,9 +34,7 @@ export class TabsComponent implements OnInit, OnDestroy {
       );
     }),
     map((hasWarnings: boolean[]) =>
-      hasWarnings.some((hasWarning: boolean) => {
-        return hasWarning;
-      }),
+      hasWarnings.some((hasWarning: boolean) => hasWarning),
     ),
   );
   destroyed$ = new Subject<void>();
@@ -64,7 +62,7 @@ export class TabsComponent implements OnInit, OnDestroy {
   }
 
   activateTab(index: number): void {
-    if (index < this.tabs$.getValue().length && index >= 0) {
+    if (!this.isTabInRange(index)) {
       return;
     }
 
@@ -74,22 +72,26 @@ export class TabsComponent implements OnInit, OnDestroy {
   }
 
   toNextTab(): number {
-    if (this.tabs$.getValue().length - 1 === this.tab) {
+    const newTab = this.tab + 1;
+
+    if (!this.isTabInRange(newTab)) {
       return this.currentActiveTab();
     }
 
-    this.tab = this.tab + 1;
+    this.tab = newTab;
     this.tabChange.emit(this.currentActiveTab());
 
     return this.currentActiveTab();
   }
 
   toPrevTab(): number {
-    if (this.tab === 0) {
+    const newTab = this.tab - 1;
+
+    if (!this.isTabInRange(newTab)) {
       return this.currentActiveTab();
     }
 
-    this.tab = this.tab - 1;
+    this.tab = newTab;
     this.tabChange.emit(this.currentActiveTab());
 
     return this.currentActiveTab();
@@ -99,7 +101,11 @@ export class TabsComponent implements OnInit, OnDestroy {
     return this.tab;
   }
 
-  componentsFoundTrigger(tabs: TabComponent[]): void {
+  tabsFound(tabs: TabComponent[]): void {
     this.tabs$.next(tabs);
+  }
+
+  private isTabInRange(index: number): boolean {
+    return index < this.tabs$.getValue().length && index >= 0;
   }
 }

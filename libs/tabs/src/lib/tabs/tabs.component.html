@@ -11,8 +11,12 @@
 
 <span
   [spySelectComponents]="tabReference"
-  (spySelectComponentsFound)="componentsFoundTrigger($event)"
+  (spySelectComponentsFound)="tabsFound($event)"
   ngClass="ant-tabs-projected-content"
 >
   <ng-content></ng-content>
 </span>
+
+<button (click)="toNextTab()">Next</button>
+<button (click)="toPrevTab()">Prev</button>
+<button (click)="activateTab(1)">Activate</button>

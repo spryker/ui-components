@@ -1,0 +1,26 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { TabComponent } from './tab.component';
+
+// tslint:disable: no-non-null-assertion
+
+describe('TabComponent', () => {
+  const { testModule, createComponent } = getTestingForComponent(TabComponent, {
+    ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+    projectContent: 'Content',
+  });
+
+  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+
+  describe('component.hasWarningChange', () => {
+    it('should emit hasWarningChange on hasWarningChange', async () => {
+      const host = await createComponent({ hasWarning: false }, true);
+
+      host.component.hasWarning = true;
+      host.detectChanges();
+
+      expect(host.hostComponent.hasWarningChange).toHaveBeenCalledWith(true);
+    });
+  });
+});

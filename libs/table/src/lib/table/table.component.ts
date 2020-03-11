@@ -100,7 +100,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.isIndeterminate = false;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void | never {
     if (!this.config) {
       throw new Error(`TableComponent: No input config found!`);
     }

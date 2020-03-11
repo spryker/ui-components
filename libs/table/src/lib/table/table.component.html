@@ -1,4 +1,4 @@
-<div class="ant-table-features">
+<div class="ant-table-features" *ngIf="config">
   <div class="ant-table-features-col ant-table-features-col--static">
     <ng-container *ngIf="checkedRowsArr.length"
       >{{ checkedRowsArr.length }} selected /
@@ -15,7 +15,7 @@
 <nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
   <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
     <tr>
-      <th *ngIf="config.selectable">
+      <th *ngIf="config?.selectable">
         <spy-checkbox
           [(checked)]="allChecked"
           [indeterminate]="isIndeterminate"
@@ -44,7 +44,7 @@
       "
       [class.ant-table-row--selected]="checkedRows[indexOfElement]"
     >
-      <td *ngIf="config.selectable" class="ant-table-column-selectable">
+      <td *ngIf="config?.selectable" class="ant-table-column-selectable">
         <div class="ant-table-column-inner">
           <spy-checkbox
             [(checked)]="checkedRows[indexOfElement]"

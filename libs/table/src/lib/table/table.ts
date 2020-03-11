@@ -12,7 +12,7 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
 export interface TableColumnTypeDef {
   type: TableColumnType;
   typeOptions: TableColumnTypeOptions;
-  children?: TableColumnTypeDef;
+  children?: TableColumnTypeDef[];
 }
 
 export interface TableColumnTypeOptions {

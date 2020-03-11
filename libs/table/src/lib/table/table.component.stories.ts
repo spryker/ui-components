@@ -3,12 +3,14 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 
 import { TableModule } from '../table.module';
+import { IStory } from '@storybook/angular';
+import { object } from '@storybook/addon-knobs';
 
 export default {
   title: 'TableComponent',
 };
 
-export const primary = () => ({
+export const withFeatures = (): IStory => ({
   moduleMetadata: {
     imports: [TableModule.forRoot(), HttpClientModule],
     providers: [
@@ -28,10 +30,15 @@ export const primary = () => ({
     </spy-table>
   `,
   props: {
-    config: {
-      dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
-      columnsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
-      selectable: true,
-    },
+    config: object(
+      'Config',
+      {
+        dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
+        columnsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
+        selectable: true,
+        fixHeader: '200px',
+      },
+      'Group',
+    ),
   },
 });

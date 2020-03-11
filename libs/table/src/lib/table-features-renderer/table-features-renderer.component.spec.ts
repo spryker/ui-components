@@ -9,7 +9,11 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { TableFeatureComponent, TableFeatureContext } from '../table/table';
+import {
+  TableFeatureComponent,
+  TableFeatureContext,
+  TableComponent as ITableFeatureComponent,
+} from '../table/table';
 import { TableColumnsResolverService } from '../table/table.columns.resolver.service';
 import { TableComponent } from '../table/table.component';
 import { TableDataConfiguratorService } from '../table/table.data.configurator.service';
@@ -21,12 +25,10 @@ class MockTableFeatureComponent implements TableFeatureComponent {
   location = 'mocked-location';
   styles?: Record<string, string> = this.config.styles;
   template?: TemplateRef<TableFeatureContext> = this.config.template;
-  // FIXME(table): Remove `any` once TableComponent class is aligned with Spec interface
-  table?: any;
+  table?: ITableFeatureComponent;
   columnsResolverService?: TableColumnsResolverService;
   dataFetcherService?: TableDataFetcherService;
   dataConfiguratorService?: TableDataConfiguratorService;
-  // FIXME(table): Remove `any` once TableComponent class is aligned with Spec interface
   setTableComponent = jest.fn();
   setColumnsResolverService = jest.fn();
   setDataFetcherService = jest.fn();

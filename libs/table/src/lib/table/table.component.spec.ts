@@ -1,5 +1,6 @@
 // tslint:disable: no-non-null-assertion
-import { TestBed } from '@angular/core/testing';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -97,6 +98,94 @@ describe('TableComponent', () => {
 
       expect(tableHeadElem).toBeTruthy();
       expect(tableHeadElem!.attributes.nzSingleSort).toBe('true');
+    });
+
+    describe('spy-table-features-renderer', () => {
+      let component: TableComponent;
+      let fixture: ComponentFixture<TableComponent>;
+
+      beforeEach(() => {
+        TestBed.overrideComponent(TableComponent, {
+          set: { changeDetection: ChangeDetectionStrategy.Default },
+        });
+
+        fixture = TestBed.createComponent(TableComponent);
+        component = fixture.componentInstance;
+
+        fixture.componentInstance.config = mockConfig;
+        fixture.detectChanges();
+      });
+
+      it('must render in the `ant-table-features-col--dynamic` div with features=`featuresLocation[`top`] value', () => {
+        const mockFeature = 'top feature';
+
+        fixture.componentInstance.featuresLocation = {
+          top: mockFeature,
+        } as any;
+
+        fixture.detectChanges();
+
+        const spyTableFeaturesElem = fixture.debugElement.query(
+          By.css(
+            '.ant-table-features-col--dynamic spy-table-features-renderer',
+          ),
+        );
+
+        expect(spyTableFeaturesElem).toBeTruthy();
+        expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
+      });
+
+      it('must render after `nz-table` with features=`featuresLocation[`after-table`] value', () => {
+        const mockFeature = 'after table feature';
+
+        fixture.componentInstance.featuresLocation = {
+          'after-table': mockFeature,
+        } as any;
+
+        fixture.detectChanges();
+
+        const spyTableFeaturesElem = fixture.debugElement.query(
+          By.css('nz-table + spy-table-features-renderer'),
+        );
+
+        expect(spyTableFeaturesElem).toBeTruthy();
+        expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
+      });
+
+      it('must render as `th` in `thead` with features=`featuresLocation[`header-ext`] value and maxFeatures=`1` attribute', () => {
+        const mockFeature = 'header ext feature';
+
+        fixture.componentInstance.featuresLocation = {
+          'header-ext': mockFeature,
+        } as any;
+
+        fixture.detectChanges();
+
+        const spyTableFeaturesElem = fixture.debugElement.query(
+          By.css('thead th:last-child spy-table-features-renderer'),
+        );
+
+        expect(spyTableFeaturesElem).toBeTruthy();
+        expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
+        expect(spyTableFeaturesElem!.attributes.maxFeatures).toBe('1');
+      });
+
+      xit('must render after `spy-pagination` with features=`featuresLocation[`bottom`] value', () => {
+        const mockFeature = 'bottom feature';
+
+        fixture.componentInstance.featuresLocation = {
+          bottom: mockFeature,
+        } as any;
+
+        fixture.detectChanges();
+
+        const spyTableFeaturesElem = fixture.debugElement.query(
+          By.css('spy-pagination + spy-table-features-renderer'),
+        );
+
+        expect(spyTableFeaturesElem).toBeTruthy();
+        expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
+      });
     });
   });
 

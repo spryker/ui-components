@@ -2,7 +2,11 @@ import { Component, Input, TemplateRef } from '@angular/core';
 import { number } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
-import { TableFeatureComponent, TableFeatureContext } from '../table/table';
+import {
+  TableFeatureComponent,
+  TableFeatureContext,
+  TableComponent as ITableFeatureComponent,
+} from '../table/table';
 import { TableColumnsResolverService } from '../table/table.columns.resolver.service';
 import { TableComponent } from '../table/table.component';
 import { TableDataConfiguratorService } from '../table/table.data.configurator.service';
@@ -17,12 +21,10 @@ class MockTableFeatureComponent implements TableFeatureComponent {
   location = 'mocked-location';
   styles?: Record<string, string>;
   template?: TemplateRef<TableFeatureContext>;
-  // FIXME(table): Remove `any` once TableComponent class is aligned with Spec interface
-  table?: any;
+  table?: ITableFeatureComponent;
   columnsResolverService?: TableColumnsResolverService;
   dataFetcherService?: TableDataFetcherService;
   dataConfiguratorService?: TableDataConfiguratorService;
-  // FIXME(table): Remove `any` once TableComponent class is aligned with Spec interface
   setTableComponent(table: any): void {}
   setColumnsResolverService(service: TableColumnsResolverService): void {}
   setDataFetcherService(service: TableDataFetcherService): void {}

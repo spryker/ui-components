@@ -8,7 +8,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { TableFeatureComponent, TableFeatureContext } from '../table/table';
+import {
+  TableFeatureComponent,
+  TableFeatureContext,
+  TableComponent as ITableFeatureComponent,
+} from '../table/table';
 import { TableColumnsResolverService } from '../table/table.columns.resolver.service';
 import { TableComponent } from '../table/table.component';
 import { TableDataConfiguratorService } from '../table/table.data.configurator.service';
@@ -68,8 +72,9 @@ export class TableFeaturesRendererComponent implements OnChanges {
   }
 
   private initFeature(feature: TableFeatureComponent) {
-    // FIXME(table): Remove `any` once TableComponent class is aligned with Spec interface
-    feature.setTableComponent(this.tableComponent as any);
+    feature.setTableComponent(
+      (this.tableComponent as unknown) as ITableFeatureComponent,
+    );
     feature.setColumnsResolverService(this.columnsResolverService);
     feature.setDataFetcherService(this.dataFetcherService);
     feature.setDataConfiguratorService(this.dataConfiguratorService);

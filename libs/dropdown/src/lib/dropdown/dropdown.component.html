@@ -1,0 +1,43 @@
+<span
+  nz-dropdown
+  [nzDropdownMenu]="menu"
+  [nzPlacement]="placement"
+  [nzDisabled]="disabled"
+  [nzVisible]="visible"
+  (nzVisibleChange)="visibleChange.emit($event)"
+>
+  text<ng-content></ng-content>
+</span>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <ng-container
+      *ngTemplateOutlet="dropdownTpl; context: { $implicit: items }"
+    ></ng-container>
+
+    <ng-template #dropdownTpl let-items>
+      <ng-container *ngFor="let item of items">
+        <li
+          *ngIf="!item.subItems"
+          (click)="actionTriggered.emit(item.action)"
+          nz-menu-item
+        >
+          {{ item.title }}
+        </li>
+        <li
+          *ngIf="item.subItems"
+          (click)="actionTriggered.emit(item.action)"
+          nz-submenu
+        >
+          <ul>
+            <ng-container
+              *ngTemplateOutlet="
+                dropdownTpl;
+                context: { $implicit: item.subItems }
+              "
+            ></ng-container>
+          </ul>
+        </li>
+      </ng-container>
+    </ng-template>
+  </ul>
+</nz-dropdown-menu>

@@ -42,7 +42,7 @@ describe('PaginationComponent', () => {
     component = fixture.componentInstance;
   }));
 
-  it('template must render nz-pagination from Ant Design', () => {
+  it('template must render nz-pagination from Ant Design and spy-select', () => {
     const nzPagElem = fixture.debugElement.query(By.css('nz-pagination'));
     const selectElem = fixture.debugElement.query(By.css('spy-select'));
 

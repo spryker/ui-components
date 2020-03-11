@@ -49,9 +49,12 @@
     margin-top: @pagination-item-container-margin-top;
   }
 
-  &-jump-next {
+  &-jump-next,
+  &-jump-prev {
     background: none !important;
     border: none !important;
+    width: @pagination-jump-next-width !important;
+    min-width: @pagination-jump-next-min-width !important;
   }
 
   &-icon {
@@ -59,13 +62,13 @@
     width: @pagination-icon-arrow-size;
     line-height: @pagination-icon-arrow-line-height;
     color: @gray-dark;
-  }
 
-  &-prev &-icon {
-    transform: scale(-1, 1);
-  }
+    .@{pagination-prefix-cls}-prev & {
+      transform: scale(-1, 1);
+    }
 
-  &-disabled &-icon {
-    color: @gray;
+    .@{pagination-prefix-cls}-disabled & {
+      color: @gray;
+    }
   }
 }

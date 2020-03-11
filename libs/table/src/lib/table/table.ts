@@ -11,7 +11,7 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
 
 export interface TableColumnTypeDef {
   type: TableColumnType;
-  typeOptions: TableColumnTypeOptions;
+  typeOptions?: TableColumnTypeOptions;
   children?: TableColumnTypeDef[];
 }
 
@@ -20,7 +20,7 @@ export interface TableColumnTypeOptions {
 }
 
 export interface TableColumnTypeRegistry {
-  // link; // Extention on project level
+  // link; // Extension on project level
 }
 
 export type TableColumnTypes = keyof TableColumnTypeRegistry;
@@ -148,12 +148,12 @@ export interface TableFeatureContext {
 
 export interface TableFeatureComponent {
   location: string;
-  styles?: string | Record<string, string>;
+  styles?: Record<string, string>;
   template?: TemplateRef<TableFeatureContext>;
-  table: TableComponent;
-  columnsResolverService: TableColumnsResolverService;
-  dataFetcherService: TableDataFetcherService;
-  dataConfiguratorService: TableDataConfiguratorService;
+  table?: TableComponent;
+  columnsResolverService?: TableColumnsResolverService;
+  dataFetcherService?: TableDataFetcherService;
+  dataConfiguratorService?: TableDataConfiguratorService;
 
   setTableComponent(table: TableComponent): void;
   setColumnsResolverService(service: TableColumnsResolverService): void;

@@ -7,6 +7,9 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
   title: string;
   sortable?: true;
   width?: string;
+  multiple?: boolean;
+  hideable?: boolean;
+  searchable?: boolean;
 }
 
 export interface TableColumnTypeDef {

@@ -7,8 +7,7 @@
   </div>
 
   <div class="ant-table-features-col ant-table-features-col--dynamic">
-    <!--<spy-table-features-renderer></spy-table-features-renderer>-->
-    <!--with input features bound to TableComponent.featuresLocation['top'] as CSS flexbox with right items alignment-->
+    <spy-table-features-renderer [features]="featuresLocation['top']"></spy-table-features-renderer>
   </div>
 </div>
 
@@ -37,7 +36,7 @@
       </th>
 
       <th *ngIf="config?.rowActions?.length">
-        <!--Render spy-table-features-renderer with input features bound to TableComponent.featuresLocation['header-ext'] and input maxFeatures bound to 1-->
+        <spy-table-features-renderer [features]="featuresLocation['header-ext']"></spy-table-features-renderer>
       </th>
     </tr>
   </thead>
@@ -84,14 +83,10 @@
   </tbody>
 </nz-table>
 
-<!--<spy-table-features-renderer></spy-table-features-renderer>-->
-<!--with input features bound to TableComponent.featuresLocation['after-table']-->
+<spy-table-features-renderer [features]="featuresLocation['after-table']"></spy-table-features-renderer>
 <!--<spy-pagination></spy-pagination>-->
 <!--Trigger updatePagination with event on pageChange output-->
-<!--<spy-table-features-renderer></spy-table-features-renderer>-->
-<!--with input features bound to TableComponent.featuresLocation['bottom']-->
-<span style="display: none">
-  <!--span with SelectComponentsDirective and value bound to TableFeatureComponent style display: none-->
-  <!--When spySelectComponentsFound output emits - store $event on TableComponent.features property-->
+<spy-table-features-renderer [features]="featuresLocation['bottom']"></spy-table-features-renderer>
+<span style="display: none" [spySelectComponents]="components" (spySelectComponentsFound)="updateFeaturesLocation($event)">
   <ng-content select="[spy-table-feature]"></ng-content>
 </span>

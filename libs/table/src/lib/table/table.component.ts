@@ -22,6 +22,7 @@ import {
   SortingCriteria,
   TableDataConfig,
   TableColumnTplContext,
+  TableFeatureComponent,
 } from './table';
 import { merge, Observable } from 'rxjs';
 import { ToJson } from '@spryker/utils';
@@ -32,6 +33,8 @@ import { TableColumnsResolverService } from './table.columns.resolver.service';
 import { mapTo, shareReplay, startWith, tap } from 'rxjs/operators';
 import { TableActionService } from './table.action.service';
 import { ColTplDirective } from './col.tpl.directive';
+import { TableFeatureDirective } from './table.feature.directive';
+import { TableFeatureComponent as AbstractTableFeatureComponent } from './table.feature.component'
 
 @Component({
   selector: 'spy-table',
@@ -47,13 +50,35 @@ import { ColTplDirective } from './col.tpl.directive';
   ],
 })
 export class TableComponent implements OnInit, AfterContentInit {
-  @Input() @ToJson() config?: TableConfig;
+  @Input() @ToJson() config?: TableConfig = {
+    dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
+    columnsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
+    selectable: true,
+  };
   @Input() tableId?: string;
 
   @Output() selectionChange = new EventEmitter<TableDataRow[]>();
   @Output() actionTriggered = new EventEmitter<TableActionTriggeredEvent>();
   @ContentChildren(ColTplDirective) slotTemplates?: QueryList<ColTplDirective>;
 
+  @ContentChildren(TableFeatureDirective)
+  set featureDirectives(featureDirectives: QueryList<TableFeatureDirective>) {
+    this.features = featureDirectives.map((feature) => feature.component);
+
+    this.updateFeaturesLocation(this.features);
+  }
+
+  updateFeaturesLocation(features: TableFeatureComponent[]): void {
+    this.featuresLocation = features.reduce(
+      (features, feature) => ({
+        ...features,
+        [feature.location]: feature,
+      }),
+      {},
+    );
+  }
+
+  components = AbstractTableFeatureComponent;
   allChecked = false;
   isIndeterminate = false;
   checkedRows: Record<TableColumn['id'], boolean> = {};
@@ -64,6 +89,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   isLoading$ = new Observable<boolean>();
 
   templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
+
+  features: TableFeatureComponent[] = [];
+  featuresLocation: Record<string, TableFeatureComponent[]> = {};
 
   private rowsData: TableDataRow[] = [];
 
@@ -80,7 +108,7 @@ export class TableComponent implements OnInit, AfterContentInit {
       return;
     }
 
-    this.templatesObj = this.slotTemplates?.reduce(
+    this.templatesObj = this.slotTemplates.reduce(
       (templates, template) => ({
         ...templates,
         [template.colTpl]: template.template,

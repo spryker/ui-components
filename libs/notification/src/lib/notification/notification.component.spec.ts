@@ -2,45 +2,15 @@ import { Component, ViewChild } from '@angular/core';
 import {
   async,
   ComponentFixture,
+  fakeAsync,
   TestBed,
   tick,
-  fakeAsync,
 } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { provideIcons, Icon } from '@spryker/icon';
-import { NotificationComponent } from './notification.component';
-import { NotificationModule } from '../notification.module';
-import {
-  errorIcon,
-  successIcon,
-  warningIcon,
-  infoIcon,
-  removeIcon,
-} from './icons';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-const icons: Icon[] = [
-  {
-    name: 'error',
-    svg: errorIcon,
-  },
-  {
-    name: 'success',
-    svg: successIcon,
-  },
-  {
-    name: 'warning',
-    svg: warningIcon,
-  },
-  {
-    name: 'info',
-    svg: infoIcon,
-  },
-  {
-    name: 'remove',
-    svg: removeIcon,
-  },
-];
+import { NotificationModule } from '../notification.module';
+import { NotificationComponent } from './notification.component';
 
 describe('NotificationComponent', () => {
   @Component({
@@ -75,7 +45,6 @@ describe('NotificationComponent', () => {
     TestBed.configureTestingModule({
       imports: [NotificationModule, NoopAnimationsModule],
       declarations: [TestComponent],
-      providers: [provideIcons(icons)],
     }).compileComponents();
   }));
 

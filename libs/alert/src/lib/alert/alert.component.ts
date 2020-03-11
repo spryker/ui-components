@@ -1,9 +1,10 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
+  Component,
   Input,
+  ViewEncapsulation,
 } from '@angular/core';
+import { IconErrorModule } from '@spryker/icon/icons';
 
 export enum AlertType {
   Info = 'info',
@@ -21,4 +22,6 @@ export enum AlertType {
 })
 export class AlertComponent {
   @Input() type: AlertType = AlertType.Info;
+
+  errorIcon = IconErrorModule.icon;
 }

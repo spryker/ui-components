@@ -1,6 +1,6 @@
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NotificationModule } from '../notification.module';
-import { NotificationComponent } from './notification.component';
 
 export default {
   title: 'NotificationComponent',
@@ -8,7 +8,7 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [NotificationModule, NoopAnimationsModule],
+    imports: [NotificationModule, BrowserAnimationsModule],
   },
   template: `
     <spy-notification type="error" [closeable]="true">

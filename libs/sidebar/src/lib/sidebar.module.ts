@@ -1,21 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { NgModule } from '@angular/core';
+import { IconModule } from '@spryker/icon';
+import { IconArrowDownModule } from '@spryker/icon/icons';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { IconModule, provideIcons } from '@spryker/icon';
-import arrowIcon from './sidebar/arrow';
+
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
-  imports: [CommonModule, IconModule, NzLayoutModule],
+  imports: [CommonModule, NzLayoutModule, IconModule, IconArrowDownModule],
   declarations: [SidebarComponent],
   exports: [SidebarComponent],
-  providers: [
-    provideIcons([
-      {
-        name: 'arrow',
-        svg: arrowIcon,
-      },
-    ]),
-  ],
 })
 export class SidebarModule {}

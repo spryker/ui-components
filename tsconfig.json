@@ -58,6 +58,10 @@
         "libs/navigation/src/index.ts"
       ],
       "@spryker/icon": ["dist/libs/icon/index.d.ts", "libs/icon/src/index.ts"],
+      "@spryker/icon/icons": [
+        "dist/libs/icon/icons/index.d.ts",
+        "libs/icon/icons/src/index.ts"
+      ],
       "@spryker/alert": [
         "dist/libs/alert/index.d.ts",
         "libs/alert/src/index.ts"

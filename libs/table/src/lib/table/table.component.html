@@ -7,7 +7,9 @@
   </div>
 
   <div class="ant-table-features-col ant-table-features-col--dynamic">
-    <spy-table-features-renderer [features]="featuresLocation['top']"></spy-table-features-renderer>
+    <spy-table-features-renderer
+      [features]="featuresLocation['top']"
+    ></spy-table-features-renderer>
   </div>
 </div>
 
@@ -35,8 +37,16 @@
         {{ column.title }}
       </th>
 
-      <th *ngIf="config?.rowActions?.length">
-        <spy-table-features-renderer [features]="featuresLocation['header-ext']"></spy-table-features-renderer>
+      <th
+        *ngIf="
+          config?.rowActions?.length ||
+          featuresLocation['header-ext']?.length > 0
+        "
+      >
+        <spy-table-features-renderer
+          [features]="featuresLocation['header-ext']"
+          maxFeatures="1"
+        ></spy-table-features-renderer>
       </th>
     </tr>
   </thead>
@@ -59,7 +69,20 @@
         </div>
       </td>
 
-      <td *ngFor="let column of columns$ | async; trackBy: trackByColumns">
+      <td
+        *ngFor="
+          let column of columns$ | async;
+          trackBy: trackByColumns;
+          let last = last
+        "
+        [colSpan]="
+          !config?.rowActions?.length &&
+          featuresLocation['header-ext']?.length > 0 &&
+          last
+            ? 2
+            : 1
+        "
+      >
         <div class="ant-table-column-inner">
           <spy-table-column-renderer
             [config]="column"
@@ -83,10 +106,18 @@
   </tbody>
 </nz-table>
 
-<spy-table-features-renderer [features]="featuresLocation['after-table']"></spy-table-features-renderer>
+<spy-table-features-renderer
+  [features]="featuresLocation['after-table']"
+></spy-table-features-renderer>
 <!--<spy-pagination></spy-pagination>-->
 <!--Trigger updatePagination with event on pageChange output-->
-<spy-table-features-renderer [features]="featuresLocation['bottom']"></spy-table-features-renderer>
-<span style="display: none" [spySelectComponents]="components" (spySelectComponentsFound)="updateFeaturesLocation($event)">
+<spy-table-features-renderer
+  [features]="featuresLocation['bottom']"
+></spy-table-features-renderer>
+<span
+  style="display: none"
+  [spySelectComponents]="components"
+  (spySelectComponentsFound)="updateFeaturesLocation($event)"
+>
   <ng-content select="[spy-table-feature]"></ng-content>
 </span>

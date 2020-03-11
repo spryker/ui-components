@@ -1,9 +1,12 @@
-import { Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { TableFeatureContext, TableComponent } from './table';
 import { TableColumnsResolverService } from './table.columns.resolver.service';
 import { TableDataFetcherService } from './table.data.fetcher.service';
 import { TableDataConfiguratorService } from './table.data.configurator.service';
 
+@Component({
+  selector: 'selector',
+})
 export abstract class TableFeatureComponent {
   @Input() location = '';
   @Input() styles?: Record<string, string>;

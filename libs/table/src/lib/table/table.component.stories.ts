@@ -30,7 +30,7 @@ export const primary = () => ({
   props: {
     config: {
       dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
-      colsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
+      columnsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
       selectable: true,
     },
   },

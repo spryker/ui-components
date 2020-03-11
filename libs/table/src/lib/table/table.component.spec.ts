@@ -113,7 +113,9 @@ describe('TableComponent', () => {
       it('returned columns$ Observable should match the right data with `columnsUrl key`', async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
 
         expect(columnsRes.request.method).toBe('GET');
 
@@ -131,7 +133,9 @@ describe('TableComponent', () => {
 
       it('returned columns$ Observable should match the right data with `columns` key', async () => {
         const host = await createComponent({ config: mockConfigCols }, true);
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
 
         host.detectChanges();
 
@@ -147,7 +151,9 @@ describe('TableComponent', () => {
       it('returned data$ Observable should match the right data', async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
 
         expect(dataRes.request.method).toBe('GET');
 
@@ -169,7 +175,9 @@ describe('TableComponent', () => {
       it('prop data$ must be mapped into tbody and render spy-table-column-renderer at each td', async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
 
         dataRes.flush(mockData);
         columnsRes.flush(mockCols);
@@ -190,7 +198,9 @@ describe('TableComponent', () => {
       it('prop columns$ must be mapped into thead and create with tr and each th of the table', async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
 
         columnsRes.flush(mockCols);
         host.detectChanges();
@@ -215,7 +225,9 @@ describe('TableComponent', () => {
           { config: mockSelectableConfig },
           true,
         );
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
 
         host.detectChanges();
 
@@ -233,7 +245,9 @@ describe('TableComponent', () => {
         host.component.allChecked = true;
         host.detectChanges();
 
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
         const checkboxElem = host.queryCss(
           'thead tr th:first-child spy-checkbox',
         );
@@ -248,7 +262,9 @@ describe('TableComponent', () => {
         host.component.isIndeterminate = true;
         host.detectChanges();
 
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
         const checkboxElem = host.queryCss(
           'thead tr th:first-child spy-checkbox',
         );
@@ -261,7 +277,9 @@ describe('TableComponent', () => {
           { config: mockSelectableConfig },
           true,
         );
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
 
         dataRes.flush(mockData);
         host.detectChanges();
@@ -278,7 +296,9 @@ describe('TableComponent', () => {
           { config: mockSelectableConfig },
           true,
         );
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
         const mockChecked = true;
 
         dataRes.flush(mockData);
@@ -299,7 +319,9 @@ describe('TableComponent', () => {
           { config: mockSelectableConfig },
           true,
         );
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
         const mockChecked = true;
 
         dataRes.flush(mockData);
@@ -323,7 +345,9 @@ describe('TableComponent', () => {
 
       it('should bind to `nzScroll` input of `nz-table` component', async () => {
         const host = await createComponent({ config: mockHeaderConfig }, true);
-        const dataRes = httpTestingController.expectOne(`${mockedDataUrl}?page=0`);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
 
         host.detectChanges();
 

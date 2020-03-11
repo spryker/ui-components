@@ -120,12 +120,12 @@ describe('TableComponent', () => {
         columnsRes.flush(mockCols);
         host.detectChanges();
 
-        host.component.columns$.subscribe(columns => {
-          expect(columns.length).toBe(mockCols.length);
-          expect(columns[0].id).toBe(mockCols[0].id);
-          expect(columns[0].title).toBe(mockCols[0].title);
-          expect(columns[0].sortable).toBe(mockCols[0].sortable);
-          expect(columns[0].width).toBe(mockCols[0].width);
+        host.component.columns$.subscribe(cols => {
+          expect(cols.length).toBe(mockCols.length);
+          expect(cols[0].id).toBe(mockCols[0].id);
+          expect(cols[0].title).toBe(mockCols[0].title);
+          expect(cols[0].sortable).toBe(mockCols[0].sortable);
+          expect(cols[0].width).toBe(mockCols[0].width);
         });
       });
 
@@ -154,15 +154,15 @@ describe('TableComponent', () => {
         dataRes.flush(mockData);
         host.detectChanges();
 
-        host.component.data$.subscribe(data => {
-          expect(data.data.length).toBe(mockData.data.length);
-          expect(data.total).toBe(mockData.total);
-          expect(data.size).toBe(mockData.size);
-          expect(data.offset).toBe(mockData.size);
-          expect(data.data[0].name).toBe(mockData.data[0].name);
-          expect(data.data[0].sku).toBe(mockData.data[0].sku);
-          expect(data.data[0].id3).toBe(mockData.data[0].id3);
-          expect(data.data[0].sku3).toBe(mockData.data[0].sku3);
+        host.component.data$.subscribe(data_ => {
+          expect(data_.data.length).toBe(mockData.data.length);
+          expect(data_.total).toBe(mockData.total);
+          expect(data_.size).toBe(mockData.size);
+          expect(data_.offset).toBe(mockData.size);
+          expect(data_.data[0].name).toBe(mockData.data[0].name);
+          expect(data_.data[0].sku).toBe(mockData.data[0].sku);
+          expect(data_.data[0].id3).toBe(mockData.data[0].id3);
+          expect(data_.data[0].sku3).toBe(mockData.data[0].sku3);
         });
       });
 

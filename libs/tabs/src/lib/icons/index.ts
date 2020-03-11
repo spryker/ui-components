@@ -1,3 +1,1 @@
-import errorIcon from './error';
-
-export { errorIcon };
+export * from './error';

@@ -25,7 +25,8 @@ describe('TabsComponent', () => {
       ngModule: {
         imports: [],
         declarations: [TabComponent],
-        schemas: [NO_ERRORS_SCHEMA]
+        exports: [TabComponent],
+        schemas: [NO_ERRORS_SCHEMA],
       },
       projectContent: projectedContent,
     },
@@ -80,65 +81,62 @@ describe('TabsComponent', () => {
   });
 
   describe('component.toNextTab', () => {
-    it('should increase tab property', fakeAsync (async () => {
+    it('should increase tab property', async () => {
       const host = await createComponent({ tab: 0, mode: 'line' }, true);
 
-      host.component.tabs$.subscribe(console.log);
+      host.component.toNextTab();
+      host.detectChanges();
 
-      // tick(2000);
-      // host.component.toNextTab();
-      // host.detectChanges();
-      //
-      // expect(host.component.tab).toBe(1);
-    }));
+      expect(host.component.tab).toBe(1);
+    });
 
-    // it('should emit tabChange on toNextTab', async () => {
-    //   const host = await createComponent({ tab: 0 }, false);
-    //
-    //   host.component.toNextTab();
-    //   host.detectChanges();
-    //
-    //   expect(host.hostComponent.tabChange).toHaveBeenCalledWith(1);
-    // });
+    it('should emit tabChange on toNextTab', async () => {
+      const host = await createComponent({ tab: 0 }, true);
+
+      host.component.toNextTab();
+      host.detectChanges();
+
+      expect(host.hostComponent.tabChange).toHaveBeenCalledWith(1);
+    });
   });
 
-  // describe('component.toPrevTab', () => {
-  //   it('should decrease tab property', async () => {
-  //     const host = await createComponent({ tab: 1 }, true);
-  //     host.component.toPrevTab();
-  //
-  //     host.detectChanges();
-  //
-  //     expect(host.component.tab).toBe(0);
-  //   });
-  //
-  //   it('should emit tabChange on toPrevTab', async () => {
-  //     const host = await createComponent({ tab: 1 }, true);
-  //
-  //     host.component.toPrevTab();
-  //     host.detectChanges();
-  //
-  //     expect(host.hostComponent.tabChange).toHaveBeenCalledWith(0);
-  //   });
-  // });
-  //
-  // describe('component.activateTab', () => {
-  //   it('should change tab property with new value', async () => {
-  //     const host = await createComponent({ tab: 0 }, true);
-  //     host.component.activateTab(1);
-  //
-  //     host.detectChanges();
-  //
-  //     expect(host.component.tab).toBe(1);
-  //   });
-  //
-  //   it('should emit tabChange on activateTab', async () => {
-  //     const host = await createComponent({ tab: 0 }, true);
-  //
-  //     host.component.activateTab(1);
-  //     host.detectChanges();
-  //
-  //     expect(host.hostComponent.tabChange).toHaveBeenCalled();
-  //   });
-  // });
+  describe('component.toPrevTab', () => {
+    it('should decrease tab property', async () => {
+      const host = await createComponent({ tab: 1 }, true);
+      host.component.toPrevTab();
+
+      host.detectChanges();
+
+      expect(host.component.tab).toBe(0);
+    });
+
+    it('should emit tabChange on toPrevTab', async () => {
+      const host = await createComponent({ tab: 1 }, true);
+
+      host.component.toPrevTab();
+      host.detectChanges();
+
+      expect(host.hostComponent.tabChange).toHaveBeenCalledWith(0);
+    });
+  });
+
+  describe('component.activateTab', () => {
+    it('should change tab property with new value', async () => {
+      const host = await createComponent({ tab: 0 }, true);
+      host.component.activateTab(1);
+
+      host.detectChanges();
+
+      expect(host.component.tab).toBe(1);
+    });
+
+    it('should emit tabChange on activateTab', async () => {
+      const host = await createComponent({ tab: 0 }, true);
+
+      host.component.activateTab(1);
+      host.detectChanges();
+
+      expect(host.hostComponent.tabChange).toHaveBeenCalled();
+    });
+  });
 });

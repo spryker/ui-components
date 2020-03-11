@@ -8,7 +8,9 @@ import {
   ViewChild,
   TemplateRef,
   ChangeDetectorRef,
+  AfterViewInit,
 } from '@angular/core';
+import { ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-tab',
@@ -19,8 +21,8 @@ import {
 })
 export class TabComponent {
   @Input() title = '';
-  @Input() disabled = false;
-  private _hasWarning = false;
+  @Input() @ToBoolean() disabled = false;
+  @ToBoolean() private _hasWarning = false;
   @Input()
   set hasWarning(value: boolean) {
     this._hasWarning = value;

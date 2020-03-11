@@ -47,12 +47,8 @@ import { ColTplDirective } from './col.tpl.directive';
   ],
 })
 export class TableComponent implements OnInit, AfterContentInit {
-  @Input() tableId = '';
-  @Input() @ToJson() config: TableConfig = {
-    dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
-    colsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
-    selectable: true,
-  };
+  @Input() @ToJson() config?: TableConfig;
+  @Input() tableId?: string;
 
   @Output() selectionChange = new EventEmitter<TableDataRow[]>();
   @Output() actionTriggered = new EventEmitter<TableActionTriggeredEvent>();
@@ -61,15 +57,15 @@ export class TableComponent implements OnInit, AfterContentInit {
   allChecked = false;
   isIndeterminate = false;
   checkedRows: Record<TableColumn['id'], boolean> = {};
+  checkedRowsArr: TableDataRow[] = [];
 
   columns$ = new Observable<TableColumns>();
   data$ = new Observable<TableData>();
   isLoading$ = new Observable<boolean>();
 
-  private rowsData?: TableDataRow[];
-  private templatesObj?: {
-    [key: string]: TemplateRef<TableColumnTplContext>;
-  };
+  templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
+
+  private rowsData: TableDataRow[] = [];
 
   constructor(
     private http: HttpClient,
@@ -80,6 +76,10 @@ export class TableComponent implements OnInit, AfterContentInit {
   ) {}
 
   ngAfterContentInit() {
+    if (!this.slotTemplates) {
+      return;
+    }
+
     this.templatesObj = this.slotTemplates?.reduce(
       (templates, template) => ({
         ...templates,
@@ -101,7 +101,15 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
+    if (!this.config) {
+      throw new Error(`TableComponent: No input config found!`);
+    }
+
     const colsOrUrl = this.config.colsUrl || this.config.cols;
+
+    if (!colsOrUrl) {
+      throw new Error(`TableComponent: No cols data found in input config!`);
+    }
 
     this.data$ = this.dataFetcherService.resolve(this.config.dataUrl).pipe(
       tap(data => {
@@ -111,44 +119,41 @@ export class TableComponent implements OnInit, AfterContentInit {
       shareReplay(),
     );
     this.columns$ = this.columnsResolverService
-      .resolve(<string | TableColumns>colsOrUrl)
+      .resolve(colsOrUrl)
       .pipe(shareReplay());
     this.dataConfiguratorService.changePage(0);
     this.isLoading$ = this.isLoading();
   }
 
-  private isLoading() {
-    return merge(
-      this.dataConfiguratorService.config$.pipe(mapTo(true)),
-      this.data$.pipe(mapTo(false)),
-    ).pipe(startWith(false));
-  }
-
-  private selectedRows() {
-    return this.rowsData?.filter((item, index) => this.checkedRows[index]);
-  }
-
   toggleCheckedRows(): void {
     let unchangedRowsLength = Object.keys(this.checkedRows).length;
-
-    this.selectionChange.emit(this.selectedRows());
 
     this.isIndeterminate = false;
 
     while (unchangedRowsLength--) {
       this.checkedRows[unchangedRowsLength] = this.allChecked;
     }
+
+    this.checkedRowsArr = Object.keys(this.checkedRows)
+      .filter(idx => this.checkedRows[idx])
+      .map(idx => this.rowsData[+idx]);
+
+    this.selectionChange.emit(this.checkedRowsArr);
   }
 
   updateCheckedRows(): void {
-    this.selectionChange.emit(this.selectedRows());
-
     const valuesOfCheckedRows = Object.values(this.checkedRows);
     const isUncheckedExist = valuesOfCheckedRows.some(checkbox => !checkbox);
     const checkedArrayLength = valuesOfCheckedRows.filter(checkbox => checkbox)
       .length;
 
     this.allChecked = !isUncheckedExist;
+
+    this.checkedRowsArr = Object.keys(this.checkedRows)
+      .filter(idx => this.checkedRows[idx])
+      .map(idx => this.rowsData[+idx]);
+
+    this.selectionChange.emit(this.checkedRowsArr);
 
     if (checkedArrayLength) {
       this.isIndeterminate = isUncheckedExist;
@@ -169,6 +174,41 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.dataConfiguratorService.update(<TableDataConfig>sortingCriteria);
   }
 
+  updatePagination(page: number): void {
+    this.dataConfiguratorService.changePage(page);
+  }
+
+  getTableId() {
+    return this.tableId;
+  }
+
+  trackByColumns(index: number, item: TableColumn) {
+    return item.id;
+  }
+
+  trackByData(index: number) {
+    return index;
+  }
+
+  actionTriggerHandler(action: TableRowActionBase, items: TableDataRow[]) {
+    const event: TableActionTriggeredEvent = {
+      action,
+      items,
+    };
+    const wasActionHandled = this.tableActionService.handle(event);
+
+    if (!wasActionHandled) {
+      this.actionTriggered.emit(event);
+    }
+  }
+
+  private isLoading() {
+    return merge(
+      this.dataConfiguratorService.config$.pipe(mapTo(true)),
+      this.data$.pipe(mapTo(false)),
+    ).pipe(startWith(false));
+  }
+
   private sortingValueTransformation(
     value: 'descend' | 'ascend' | null,
   ): SortingCriteria['sortDirection'] {
@@ -181,36 +221,5 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
 
     return undefined;
-  }
-
-  updatePagination(page: number): void {
-    this.dataConfiguratorService.changePage(page);
-  }
-
-  getTableId(): string {
-    return this.tableId;
-  }
-
-  private trackByColumns(index: number, item: TableColumn) {
-    return item.id;
-  }
-
-  private trackByData(index: number) {
-    return index;
-  }
-
-  private actionTriggerHandler(
-    action: TableRowActionBase,
-    items: TableDataRow[],
-  ) {
-    const event: TableActionTriggeredEvent = {
-      action,
-      items,
-    };
-    const wasActionHandled = this.tableActionService.handle(event);
-
-    if (!wasActionHandled) {
-      this.actionTriggered.emit(event);
-    }
   }
 }

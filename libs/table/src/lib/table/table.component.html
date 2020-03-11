@@ -1,7 +1,7 @@
 <div class="ant-table-features">
   <div class="ant-table-features-col ant-table-features-col--static">
-    <ng-container *ngIf="config.selectable"
-      >{{ selectedRows()?.length }} selected /
+    <ng-container *ngIf="checkedRowsArr.length"
+      >{{ checkedRowsArr.length }} selected /
     </ng-container>
     {{ (data$ | async)?.total }} results
   </div>

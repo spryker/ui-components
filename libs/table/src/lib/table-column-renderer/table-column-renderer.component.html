@@ -1,14 +1,15 @@
-<ng-container *ngIf="template">
-  <ng-container *ngTemplateOutlet="template; context: context"></ng-container>
-</ng-container>
+<ng-container
+  *ngIf="template"
+  [ngTemplateOutlet]="template"
+  [ngTemplateOutletContext]="tplContext"
+></ng-container>
 
-<ng-container *ngIf="!config.type && !template">
-  {{ data[config.id] }}
-</ng-container>
-
-<ng-container *ngIf="config.type && !template">
+<ng-template #typeTpl>
   <orc-orchestrator
+    *ngIf="config.type; else defaultTpl"
     [config]="itemConfig"
     [context]="context"
   ></orc-orchestrator>
-</ng-container>
+</ng-template>
+
+<ng-template #defaultTpl>{{ data[config.id] }}</ng-template>

@@ -1,17 +1,19 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
+  Component,
   Input,
+  OnInit,
   TemplateRef,
+  ViewEncapsulation,
 } from '@angular/core';
+import { OrchestratorConfigItem } from '@orchestrator/core';
+
 import {
   TableColumn,
-  TableDataRow,
   TableColumnTplContext,
+  TableColumnTypeDef,
+  TableDataRow,
 } from '../table/table';
-import { OrchestratorConfigItem } from '@orchestrator/core';
 
 @Component({
   selector: 'spy-table-column-renderer',
@@ -21,45 +23,46 @@ import { OrchestratorConfigItem } from '@orchestrator/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class TableColumnRendererComponent implements OnInit {
-  @Input() config: TableColumn = {
-    id: '',
-    title: '',
-  };
-  @Input() data: TableDataRow = {};
+  @Input() config?: TableColumn;
+  @Input() data?: TableDataRow;
   @Input() template?: TemplateRef<TableColumnTplContext>;
 
-  private itemConfig: OrchestratorConfigItem = {
-    component: '',
-    items: [],
-    config: {},
-  };
-  private context: TableColumnTplContext = {
-    $implicit: '',
-    id: '',
-    row: {},
-    value: '',
-  };
+  itemConfig?: OrchestratorConfigItem;
+  tplContext?: TableColumnTplContext;
 
   ngOnInit(): void {
-    this.initItemConfig();
+    this.updateTplContext();
+    this.updateItemConfig();
+  }
 
-    this.context = {
-      $implicit: this.data[this.config.id],
+  private updateTplContext() {
+    if (!this.config) {
+      this.tplContext = undefined;
+      return;
+    }
+
+    this.tplContext = {
+      $implicit: this.data?.[this.config.id],
       id: this.config.id,
-      row: this.data,
-      value: this.data[this.config.id],
+      row: this.data || {},
+      value: this.data?.[this.config.id],
     };
   }
 
-  private initItemConfig(): void {
-    this.itemConfig.config = <OrchestratorConfigItem['config']>(
-      this.config?.typeOptions
-    );
-    this.itemConfig.items = <OrchestratorConfigItem['items']>(
-      this.config?.children
-    );
-    this.itemConfig.component = <OrchestratorConfigItem['component']>(
-      this.config?.type
-    );
+  private updateItemConfig(): void {
+    if (!this.config || !this.config.type) {
+      this.itemConfig = undefined;
+      return;
+    }
+
+    this.itemConfig = this.mapConfig(this.config as TableColumnTypeDef);
+  }
+
+  private mapConfig(config: TableColumnTypeDef): OrchestratorConfigItem {
+    return {
+      component: config.type,
+      config: config.typeOptions,
+      items: config.children?.map(c => this.mapConfig(c)),
+    };
   }
 }

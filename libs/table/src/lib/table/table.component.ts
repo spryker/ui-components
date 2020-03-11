@@ -47,11 +47,7 @@ import { ColTplDirective } from './col.tpl.directive';
   ],
 })
 export class TableComponent implements OnInit, AfterContentInit {
-  @Input() @ToJson() config?: TableConfig = {
-    dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
-    columnsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
-    selectable: true,
-  };
+  @Input() @ToJson() config?: TableConfig;
   @Input() tableId?: string;
 
   @Output() selectionChange = new EventEmitter<TableDataRow[]>();
@@ -60,7 +56,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   allChecked = false;
   isIndeterminate = false;
-  checkedRows: Record<string, boolean> = {};
+  checkedRows: Record<TableColumn['id'], boolean> = {};
   checkedRowsArr: TableDataRow[] = [];
 
   columns$ = new Observable<TableColumns>();

@@ -35,7 +35,10 @@
       >
         {{ column.title }}
       </th>
-      <th *ngIf="config?.rowActions?.length"></th>
+
+      <th *ngIf="config?.rowActions?.length">
+        <!--Render spy-table-features-renderer with input features bound to TableComponent.featuresLocation['header-ext'] and input maxFeatures bound to 1-->
+      </th>
     </tr>
   </thead>
 

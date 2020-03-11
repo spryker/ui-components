@@ -146,11 +146,10 @@ export interface TableFeatureContext {
   location: string;
 }
 
-// It should be abstract class
 export interface TableFeatureComponent {
-  location: string; // @Input - CSV style format
-  styles?: string | Record<string, string>; // @Input
-  template?: TemplateRef<TableFeatureContext>; // @ViewChild
+  location: string;
+  styles?: string | Record<string, string>;
+  template?: TemplateRef<TableFeatureContext>;
   table: TableComponent;
   columnsResolverService: TableColumnsResolverService;
   dataFetcherService: TableDataFetcherService;
@@ -163,9 +162,8 @@ export interface TableFeatureComponent {
   getTemplate(): TemplateRef<TableFeatureContext>;
 }
 
-// With selector `spy-table-feature`
 export interface TableFeatureDirective {
-  component: TableFeatureComponent; // Injected from constructor
+  component: TableFeatureComponent;
 }
 
 export interface HttpOptionsParams {

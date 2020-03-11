@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-next.0...@spryker/web-components@0.2.0-next.1) (2020-03-05)
+
+
+### Bug Fixes
+
+* **web-components:** return ng components from select componetns dir ([5b1bf9d](https://github.com/spryker/ui-components/commit/5b1bf9d0082d54b4ac9cd8510438d8e7873a4fd3))
+
+
+
+
+
 # [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.1.2-next.2...@spryker/web-components@0.2.0-next.0) (2020-03-03)
 
 

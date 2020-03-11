@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.1.0-next.5...@spryker/navigation@0.1.0-next.6) (2020-03-11)
+
+
+### Bug Fixes
+
+* **icon:** use font icons in all libs ([b8f081b](https://github.com/spryker/ui-components/commit/b8f081b273841c7124ac0a833c935963a1bb83fd))
+* **icons:** bring back SVG icons ([31fb4c4](https://github.com/spryker/ui-components/commit/31fb4c40cd899f91f952e310bfb406d9851d3fee))
+* **icons:** update usage of icons via modules ([b0d41b4](https://github.com/spryker/ui-components/commit/b0d41b470a3a5521e1ae3f6cbe6c972a885a1cb4))
+
+
+
+
+
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.1.0-next.4...@spryker/navigation@0.1.0-next.5) (2020-03-10)
+
+
+### Bug Fixes
+
+* **navigation:** fix icon size ([132de1a](https://github.com/spryker/ui-components/commit/132de1aeaa6e7215bc9cfa75c903be519b707daa))
+
+
+
+
+
+# [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.1.0-next.3...@spryker/navigation@0.1.0-next.4) (2020-03-10)
+
+
+### Bug Fixes
+
+* **navigation:** added fix for icons in navigation ([36cca0e](https://github.com/spryker/ui-components/commit/36cca0e126f2efbb680b9ef7fdf01ed23b1233ad))
+
+
+
+
+
 # [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.1.0-next.2...@spryker/navigation@0.1.0-next.3) (2020-02-27)
 
 **Note:** Version bump only for package @spryker/navigation

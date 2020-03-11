@@ -10,7 +10,7 @@ import {
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
 export class LogoComponent {
   @Input() size: 'full' | 'icon' = 'full';

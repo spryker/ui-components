@@ -1,43 +1,29 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IconModule, provideIcons, Icon } from '@spryker/icon';
-import { NzAlertModule } from 'ng-zorro-antd/alert';
-import { NotificationComponent } from './notification/notification.component';
+import { NgModule } from '@angular/core';
+import { IconModule } from '@spryker/icon';
 import {
-  errorIcon,
-  successIcon,
-  warningIcon,
-  infoIcon,
-  removeIcon,
-} from './notification/icons';
+  IconErrorModule,
+  IconInfoModule,
+  IconRemoveModule,
+  IconSuccessModule,
+  IconWarningModule,
+} from '@spryker/icon/icons';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
-const icons: Icon[] = [
-  {
-    name: 'error',
-    svg: errorIcon,
-  },
-  {
-    name: 'success',
-    svg: successIcon,
-  },
-  {
-    name: 'warning',
-    svg: warningIcon,
-  },
-  {
-    name: 'info',
-    svg: infoIcon,
-  },
-  {
-    name: 'remove',
-    svg: removeIcon,
-  },
-];
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
-  imports: [CommonModule, NzAlertModule, IconModule],
+  imports: [
+    CommonModule,
+    NzAlertModule,
+    IconModule,
+    IconErrorModule,
+    IconSuccessModule,
+    IconWarningModule,
+    IconInfoModule,
+    IconRemoveModule,
+  ],
   declarations: [NotificationComponent],
   exports: [NotificationComponent],
-  providers: [provideIcons(icons)],
 })
 export class NotificationModule {}

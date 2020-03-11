@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.16...@spryker/styles@0.1.0-next.17) (2020-03-11)
+
+
+### Features
+
+* **input:** addBefore and addAfter functionality ([f6206b8](https://github.com/spryker/ui-components/commit/f6206b8796a08f63e7a7c56308e6b14b50a13f38))
+
+
+
+
+
+# [0.1.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.15...@spryker/styles@0.1.0-next.16) (2020-03-10)
+
+
+### Bug Fixes
+
+* **navigation:** added fix for icons in navigation ([36cca0e](https://github.com/spryker/ui-components/commit/36cca0e126f2efbb680b9ef7fdf01ed23b1233ad))
+
+
+
+
+
+# [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.14...@spryker/styles@0.1.0-next.15) (2020-03-07)
+
+
+### Features
+
+* **select component:** styles,markup,functionality ([211bea0](https://github.com/spryker/ui-components/commit/211bea0b00e583f7861e4ae54a1c1c0c931af1fd))
+
+
+
+
+
 # [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.13...@spryker/styles@0.1.0-next.14) (2020-03-05)
 
 

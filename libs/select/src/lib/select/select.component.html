@@ -1,0 +1,67 @@
+<nz-select
+  [(ngModel)]="value"
+  (ngModelChange)="handleValueChange($event)"
+  [nzShowSearch]="search"
+  [nzDisabled]="disabled"
+  [nzPlaceHolder]="placeholder"
+  [nzMode]="multiple ? 'tags' : 'default'"
+  [nzSuffixIcon]="suffixIcon"
+  [nzNotFoundContent]="noOptionsText"
+  [nzMenuItemSelectedIcon]="multiSelectOptionIcon"
+  [nzRemoveIcon]="removeIcon"
+>
+  <nz-option
+    *ngIf="showSelectAll"
+    [nzValue]="selectAllValue"
+    [nzLabel]="selectAllTitle"
+  >
+  </nz-option>
+
+  <nz-option
+    *ngFor="let option of mappedOptions"
+    [nzValue]="option.value"
+    [nzLabel]="option.label"
+    [nzDisabled]="option.isDisabled"
+    [nzCustomContent]="!multiple"
+  >
+    {{ option.label }}
+    <spy-icon
+      class="ant-select-dropdown-menu-item__icon--checked"
+      [name]="checkIcon"
+    ></spy-icon>
+  </nz-option>
+</nz-select>
+
+<select
+  [disabled]="disabled"
+  [name]="name"
+  [(ngModel)]="value"
+  [multiple]="multiple"
+  hidden
+>
+  <option *ngFor="let option of mappedOptions" [value]="option.value">
+    {{ option.label }}
+  </option>
+</select>
+
+<ng-template #suffixIcon>
+  <spy-icon class="ant-select-arrow__icon" [name]="arrowDownIcon"></spy-icon>
+</ng-template>
+
+<ng-template #removeIcon>
+  <spy-icon
+    class="ant-select-selection__choice__remove__icon"
+    [name]="removeIcon"
+  ></spy-icon>
+</ng-template>
+
+<ng-template #multiSelectOptionIcon let-optionTitle="label">
+  <spy-icon
+    class="ant-select-dropdown-menu-item__icon--multiChecked"
+    [name]="checkboxCheckedIcon"
+  ></spy-icon>
+  <spy-icon
+    class="ant-select-dropdown-menu-item__icon--multiUnchecked"
+    [name]="checkboxUncheckedIcon"
+  ></spy-icon>
+</ng-template>

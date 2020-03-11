@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.6...@spryker/form-item@0.1.0-next.7) (2020-03-11)
+
+
+### Bug Fixes
+
+* **icon:** use font icons in all libs ([b8f081b](https://github.com/spryker/ui-components/commit/b8f081b273841c7124ac0a833c935963a1bb83fd))
+
+
+
+
+
 # [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.5...@spryker/form-item@0.1.0-next.6) (2020-03-04)
 
 

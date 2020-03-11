@@ -1,6 +1,6 @@
 import { TableComponent } from './table.component';
 import { TableModule } from '../table.module';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 export default {
   title: 'TableComponent',

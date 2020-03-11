@@ -67,7 +67,9 @@
         <div class="ant-table-column-inner">
           DROPDOWN
           <div *ngFor="let action of config.rowActions">
-            <span (click)="this.actionTriggerHandler(action, [data])">DROPDOWN ITEM</span>
+            <span (click)="this.actionTriggerHandler(action, [data])"
+              >DROPDOWN ITEM</span
+            >
           </div>
         </div>
       </td>

@@ -52,8 +52,14 @@ export class TableColumnRendererComponent implements OnInit {
   }
 
   private initItemConfig(): void {
-    this.itemConfig.config = <OrchestratorConfigItem['config']>this.config?.typeOptions;
-    this.itemConfig.items = <OrchestratorConfigItem['items']>this.config?.children;
-    this.itemConfig.component = <OrchestratorConfigItem['component']>this.config?.type;
+    this.itemConfig.config = <OrchestratorConfigItem['config']>(
+      this.config?.typeOptions
+    );
+    this.itemConfig.items = <OrchestratorConfigItem['items']>(
+      this.config?.children
+    );
+    this.itemConfig.component = <OrchestratorConfigItem['component']>(
+      this.config?.type
+    );
   }
 }

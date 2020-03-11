@@ -47,7 +47,11 @@ import { ColTplDirective } from './col.tpl.directive';
   ],
 })
 export class TableComponent implements OnInit, AfterContentInit {
-  @Input() @ToJson() config?: TableConfig;
+  @Input() @ToJson() config?: TableConfig = {
+    dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
+    columnsUrl: 'https://angular-recipe-24caa.firebaseio.com/col.json',
+    selectable: true,
+  };
   @Input() tableId?: string;
 
   @Output() selectionChange = new EventEmitter<TableDataRow[]>();
@@ -56,7 +60,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   allChecked = false;
   isIndeterminate = false;
-  checkedRows: Record<TableColumn['id'], boolean> = {};
+  checkedRows: Record<string, boolean> = {};
   checkedRowsArr: TableDataRow[] = [];
 
   columns$ = new Observable<TableColumns>();
@@ -100,12 +104,12 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.isIndeterminate = false;
   }
 
-  ngOnInit(): void | never {
+  ngOnInit(): void {
     if (!this.config) {
       throw new Error(`TableComponent: No input config found!`);
     }
 
-    const colsOrUrl = this.config.colsUrl || this.config.cols;
+    const colsOrUrl = this.config.columnsUrl || this.config.columns;
 
     if (!colsOrUrl) {
       throw new Error(`TableComponent: No cols data found in input config!`);
@@ -134,11 +138,7 @@ export class TableComponent implements OnInit, AfterContentInit {
       this.checkedRows[unchangedRowsLength] = this.allChecked;
     }
 
-    this.checkedRowsArr = Object.keys(this.checkedRows)
-      .filter(idx => this.checkedRows[idx])
-      .map(idx => this.rowsData[+idx]);
-
-    this.selectionChange.emit(this.checkedRowsArr);
+    this.updateCheckedRowsArr();
   }
 
   updateCheckedRows(): void {
@@ -149,11 +149,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
     this.allChecked = !isUncheckedExist;
 
-    this.checkedRowsArr = Object.keys(this.checkedRows)
-      .filter(idx => this.checkedRows[idx])
-      .map(idx => this.rowsData[+idx]);
-
-    this.selectionChange.emit(this.checkedRowsArr);
+    this.updateCheckedRowsArr();
 
     if (checkedArrayLength) {
       this.isIndeterminate = isUncheckedExist;
@@ -162,6 +158,14 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
 
     this.isIndeterminate = false;
+  }
+
+  updateCheckedRowsArr(): void {
+    this.checkedRowsArr = Object.keys(this.checkedRows)
+      .filter(idx => this.checkedRows[idx])
+      .map(idx => this.rowsData[Number(idx)]);
+
+    this.selectionChange.emit(this.checkedRowsArr);
   }
 
   updateSorting(event: { key: string; value: 'descend' | 'ascend' | null }) {

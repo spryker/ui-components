@@ -82,10 +82,11 @@ export interface TableActionTriggeredEvent {
 }
 
 export interface TableConfig {
-  colsUrl?: string;
+  columnsUrl?: string;
   dataUrl: string;
-  cols?: TableColumns;
+  columns?: TableColumns;
   selectable?: boolean;
+  fixHeader?: string;
   rowActions?: TableRowActionBase[];
 }
 

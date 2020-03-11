@@ -12,7 +12,11 @@
   </div>
 </div>
 
-<nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
+<nz-table
+  nzFrontPagination="false"
+  [nzLoading]="isLoading$ | async"
+  [nzScroll]="{ y: config?.fixHeader }"
+>
   <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
     <tr>
       <th *ngIf="config?.selectable">
@@ -67,9 +71,9 @@
         <div class="ant-table-column-inner">
           DROPDOWN
           <div *ngFor="let action of config.rowActions">
-            <span (click)="this.actionTriggerHandler(action, [data])"
-              >DROPDOWN ITEM</span
-            >
+            <span (click)="this.actionTriggerHandler(action, [data])">{{
+              action.title
+            }}</span>
           </div>
         </div>
       </td>

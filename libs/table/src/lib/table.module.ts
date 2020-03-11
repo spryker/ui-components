@@ -37,9 +37,9 @@ export class TableModule {
     return {
       ngModule: TableModule,
       providers: [
-        <Provider[]>LayoutFlatHostModule.forRoot().providers,
-        <Provider[]>OrchestratorCoreModule.forRoot().providers,
-        OrchestratorCoreModule.registerComponents({
+        ...(LayoutFlatHostModule.forRoot().providers || []),
+        ...(OrchestratorCoreModule.forRoot().providers || []),
+        ...OrchestratorCoreModule.registerComponents({
           'layout-flat': LayoutFlatHostComponent,
         }),
       ],

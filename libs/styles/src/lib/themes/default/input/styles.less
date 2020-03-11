@@ -1,6 +1,23 @@
 @import 'ng-zorro-antd/input/style/index.less';
 @import '../theme.less';
 
+.@{ant-input}-group {
+  .@{ant-input} {
+    &:only-child {
+      border-radius: @border-radius-base;
+    }
+  }
+
+  &-addon {
+    background: @gray-lighter;
+    color: @gray-dark;
+
+    &:first-of-type {
+      padding-right: @input-add-before-spacing;
+    }
+  }
+}
+
 .@{ant-input}-affix-wrapper {
   .@{ant-input} {
     &-prefix {
@@ -23,10 +40,6 @@
       border-color: @primary-color;
     }
   }
-}
-
-.@{ant-input}-group .@{ant-input}:last-child {
-  border-radius: @border-radius-base;
 }
 
 .@{ant-input} {

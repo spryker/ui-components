@@ -27,6 +27,8 @@
 @table-head-checkbox-wrapper-bg: @gray-light;
 
 .@{table-prefix-cls} {
+  padding-bottom: 30px;
+
   &-features {
     display: flex;
     align-items: center;
@@ -233,9 +235,11 @@
     display: none;
   }
 
-  &-empty &-body {
-    overflow-x: inherit !important;
-    overflow-y: inherit !important;
+  &-empty {
+    .@{table-prefix-cls}-body {
+      overflow-x: inherit !important;
+      overflow-y: inherit !important;
+    }
   }
 
   &-body {

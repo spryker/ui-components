@@ -10,6 +10,7 @@
     "tslib": "^1.10.0",
     "@spryker/styles": "^0.0.1-next.0",
     "@spryker/checkbox": "^0.0.1-next.0",
+    "@spryker/pagination": "^0.0.1-next.0",
     "@spryker/web-components": "^0.2.0-next.0",
     "@spryker/utils": "^0.0.1-next.0",
     "@orchestrator/core": "^0.2.0",

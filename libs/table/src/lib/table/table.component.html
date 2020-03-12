@@ -109,11 +109,19 @@
 <spy-table-features-renderer
   [features]="featuresLocation[featureLocation.afterTable]"
 ></spy-table-features-renderer>
-<!--<spy-pagination></spy-pagination>-->
-<!--Trigger updatePagination with event on pageChange output-->
+
+<spy-pagination
+	[pageSizeOptions]="config?.pageSizes || [10, 20, 50]"
+	[total]="(data$ | async)?.total"
+	[pageSize]="(data$ | async)?.size"
+	[page]="(data$ | async)?.offset"
+	(pageChange)="updatePagination($event)"
+></spy-pagination>
+
 <spy-table-features-renderer
   [features]="featuresLocation[featureLocation.bottom]"
 ></spy-table-features-renderer>
+
 <span
   style="display: none"
   [spySelectComponents]="components"

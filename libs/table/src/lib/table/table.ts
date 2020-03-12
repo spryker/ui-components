@@ -98,6 +98,7 @@ export interface TableConfig {
   columns?: TableColumns;
   selectable?: boolean;
   fixHeader?: string;
+  pageSizes?: number[];
   rowActions?: TableRowActionBase[];
 }
 

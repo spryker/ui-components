@@ -13,6 +13,7 @@ import { IStory } from '@storybook/angular';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext } from './table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'TableComponent',
@@ -55,6 +56,7 @@ export const withFeatures = (): IStory => ({
       TableModule.withColumnComponents({
         test: TableColumnTestComponent,
       } as any),
+      BrowserAnimationsModule,
     ],
     declarations: [TableColumnTestComponent],
     providers: [
@@ -91,6 +93,7 @@ export const withFeatures = (): IStory => ({
         ],
         selectable: true,
         fixHeader: '200px',
+        pageSizes: [20, 40, 50]
       },
       'Group',
     ),

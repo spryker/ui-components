@@ -79,6 +79,9 @@
     },
     "table": {
       "tags": ["level:organism", "type:component"]
-    }
+    },
+      "pagination": {
+          "tags": ["level:molecule", "type:component"]
+      }
   }
 }

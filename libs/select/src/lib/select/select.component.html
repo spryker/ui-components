@@ -8,7 +8,7 @@
   [nzSuffixIcon]="suffixIcon"
   [nzNotFoundContent]="noOptionsText"
   [nzMenuItemSelectedIcon]="multiSelectOptionIcon"
-  [nzRemoveIcon]="removeIcon"
+  [nzRemoveIcon]="crossIcon"
 >
   <nz-option
     *ngIf="showSelectAll"
@@ -27,7 +27,7 @@
     {{ option.label }}
     <spy-icon
       class="ant-select-dropdown-menu-item__icon--checked"
-      name="check"
+      [name]="checkIcon"
     ></spy-icon>
   </nz-option>
 </nz-select>
@@ -45,23 +45,23 @@
 </select>
 
 <ng-template #suffixIcon>
-  <spy-icon class="ant-select-arrow__icon" name="suffix"></spy-icon>
+  <spy-icon class="ant-select-arrow__icon" [name]="arrowDownIcon"></spy-icon>
 </ng-template>
 
-<ng-template #removeIcon>
+<ng-template #crossIcon>
   <spy-icon
     class="ant-select-selection__choice__remove__icon"
-    name="remove"
+    [name]="removeIcon"
   ></spy-icon>
 </ng-template>
 
 <ng-template #multiSelectOptionIcon let-optionTitle="label">
   <spy-icon
     class="ant-select-dropdown-menu-item__icon--multiChecked"
-    name="multiSelectChecked"
+    [name]="checkboxCheckedIcon"
   ></spy-icon>
   <spy-icon
     class="ant-select-dropdown-menu-item__icon--multiUnchecked"
-    name="multiSelectUnChecked"
+    [name]="checkboxUncheckedIcon"
   ></spy-icon>
 </ng-template>

@@ -165,10 +165,6 @@
       padding: 0;
       border-bottom: none;
 
-      &.@{table-prefix-cls}-column-selectable {
-        width: (@table-padding-horizontal * 2) + @checkbox-size;
-      }
-
       .@{table-prefix-cls}-column-inner {
         margin: @table-body-margin-vertical 0;
         padding: @table-body-padding-vertical @table-padding-horizontal;
@@ -221,9 +217,15 @@
       bottom: 0;
     }
 
-    > td.@{table-prefix-cls}-column-sort,
-    > th.@{table-prefix-cls}-column-sort {
-      background: transparent;
+    > td,
+    > th {
+      &.@{table-prefix-cls}-column-sort {
+        background: transparent;
+      }
+
+      &.@{table-prefix-cls}-column-selectable {
+        width: (@table-padding-horizontal * 2) + @checkbox-size;
+      }
     }
   }
 

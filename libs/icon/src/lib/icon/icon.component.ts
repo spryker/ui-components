@@ -1,11 +1,17 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
   Input,
   OnChanges,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
+
 import { IconService } from './icon.component.service';
 
 @Component({
@@ -15,17 +21,72 @@ import { IconService } from './icon.component.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class IconComponent implements OnInit, OnChanges {
-  isIconResolved: Promise<string> | null = null;
-  @Input() name = '';
+export class IconComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() name?: string;
 
-  constructor(private iconsService: IconService) {}
+  isIconResolved?: Promise<string | undefined>;
+
+  private destroyed = false;
+
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private renderer: Renderer2,
+    private elemRef: ElementRef<HTMLElement>,
+    private iconsService: IconService,
+  ) {}
 
   ngOnInit(): void {
     this.iconsService._init();
+    this.updateHostClass();
+    this.updateIcon();
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.name?.firstChange) {
+      this.updateHostClass(changes.name.previousValue);
+      this.updateIcon();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed = true;
+  }
+
+  private async updateIcon() {
+    if (!this.name) {
+      this.isIconResolved = undefined;
+      return;
+    }
+
     this.isIconResolved = this.iconsService.resolveIcon(this.name);
+
+    // Re-render manually after icon resolved
+    await this.isIconResolved;
+
+    // After await component might have been destroyed
+    // So we have to check before performing CD
+    if (!this.destroyed) {
+      this.cdr.detectChanges();
+    }
+  }
+
+  private updateHostClass(prevName?: string) {
+    if (prevName) {
+      this.renderer.removeClass(
+        this.elemRef.nativeElement,
+        this.getHostClassName(prevName),
+      );
+    }
+
+    if (this.name) {
+      this.renderer.addClass(
+        this.elemRef.nativeElement,
+        this.getHostClassName(this.name),
+      );
+    }
+  }
+
+  private getHostClassName(icon: string) {
+    return `spy-icon-${icon}`;
   }
 }

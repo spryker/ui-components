@@ -1,12 +1,13 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
-  TemplateRef,
+  Component,
+  EventEmitter,
   Input,
   Output,
-  EventEmitter,
+  TemplateRef,
+  ViewEncapsulation,
 } from '@angular/core';
+import { IconArrowDownModule } from '@spryker/icon/icons';
 
 @Component({
   selector: 'spy-sidebar',
@@ -22,6 +23,8 @@ export class SidebarComponent {
   @Input() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
   @Input() ctxBgClass = 'ctx-spy-bg-white';
+
+  arrowIcon = IconArrowDownModule.icon;
 
   updateCollapse(isCollapsed: boolean): void {
     this.collapsed = isCollapsed;

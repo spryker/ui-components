@@ -20,7 +20,7 @@
 >
   <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
     <tr>
-      <th *ngIf="config?.selectable">
+      <th *ngIf="config?.selectable" class="ant-table-column-selectable">
         <spy-checkbox
           [(checked)]="allChecked"
           [indeterminate]="isIndeterminate"

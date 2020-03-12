@@ -9,7 +9,7 @@ export interface AddIcon {
 }
 
 export interface Icon {
-  name: string;
+  icon: string;
   svg: string | SvgPromise;
 }
 
@@ -32,7 +32,7 @@ export function provideIcons(icons: Icon[]): Provider {
 
 @Injectable({ providedIn: 'root' })
 export class IconService implements AddIcon {
-  resolvedIcons: { [key: string]: Promise<string> } = {};
+  resolvedIcons: Record<string, Promise<string> | undefined> = {};
   isInited = false;
 
   constructor(
@@ -44,24 +44,19 @@ export class IconService implements AddIcon {
     if (this.isInited) {
       return;
     }
+    this.isInited = true;
 
     this.icons.flat().forEach((icon: Icon) => {
-      this.addIcon(icon.name, icon.svg);
+      this.addIcon(icon.icon, icon.svg);
     });
-
-    this.isInited = true;
   }
 
   private async getSvgIcon(
     name: string,
     svg: string | SvgPromise,
   ): Promise<string> {
-    if (typeof svg === 'string') {
-      return svg;
-    }
-
-    this.resolvedIcons[name] = svg();
-    return await this.resolvedIcons[name];
+    const icon = typeof svg === 'string' ? Promise.resolve(svg) : svg();
+    return await (this.resolvedIcons[name] = icon);
   }
 
   async addIcon(name: string, svg: string | SvgPromise): Promise<void> {
@@ -72,11 +67,10 @@ export class IconService implements AddIcon {
     });
   }
 
-  resolveIcon(name: string): Promise<string> {
+  async resolveIcon(name: string): Promise<string | undefined> {
     if (this.resolvedIcons[name]) {
-      return this.resolvedIcons[name].then(() => name);
+      await this.resolvedIcons[name];
+      return name;
     }
-
-    return new Promise(resolve => resolve(name));
   }
 }

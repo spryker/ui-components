@@ -1,8 +1,8 @@
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { FormItemComponent } from './form-item.component';
-import { NzInputModule } from 'ng-zorro-antd/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormItemModule } from '@spryker/form-item';
 import { InputModule } from '@spryker/input';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 export default {
   title: 'FormItemComponent',
@@ -10,7 +10,13 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [FormItemModule, NzFormModule, NzInputModule, InputModule],
+    imports: [
+      FormItemModule,
+      BrowserAnimationsModule,
+      NzFormModule,
+      NzInputModule,
+      InputModule,
+    ],
   },
   template: `
     <spy-form-item for="input-id" error="Error Message">

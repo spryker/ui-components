@@ -1,4 +1,9 @@
-<nz-input-group [nzSuffix]="suffix" [nzPrefix]="prefix">
+<nz-input-group
+  [nzSuffix]="suffix"
+  [nzPrefix]="prefix"
+  [nzAddOnBefore]="outerPrefix"
+  [nzAddOnAfter]="outerSuffix"
+>
   <input
     nz-input
     [placeholder]="placeholder"

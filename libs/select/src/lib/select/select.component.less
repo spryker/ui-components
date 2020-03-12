@@ -23,7 +23,8 @@
       color: @ink;
 
       &__content {
-        margin-left: @dropdown-selection-content-margin;
+        padding-left: @dropdown-selection-content-padding;
+        margin-right: @dropdown-selection-content-margin-right;
         max-width: @dropdown-selection-content-max-width;
         line-height: @dropdown-selection-content-line-height;
         font-family: @font-family;
@@ -59,6 +60,11 @@
   &-selection__placeholder {
     font-weight: @font-weight-medium;
     letter-spacing: @letter-spacing-base;
+  }
+
+  &-selection__rendered > &-selection-selected-value {
+    padding: @dropdown-menu-vertical-padding
+      @dropdown-menu-selected-horizontal-padding;
   }
 
   &-selection-selected-value,
@@ -141,6 +147,17 @@
       pointer-events: none;
       color: @ink;
       background-color: @gray-light;
+    }
+  }
+
+  &-disabled {
+    .@{select-prefix-cls}-selection {
+      background-color: @gray-lighter;
+      color: @gray;
+
+      .@{select-prefix-cls}-arrow__icon {
+        color: @gray;
+      }
     }
   }
 

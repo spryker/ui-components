@@ -1,3 +1,5 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AlertModule } from '../alert.module';
 
 export default {
@@ -6,7 +8,7 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [AlertModule],
+    imports: [BrowserAnimationsModule, AlertModule],
   },
   template: `
     <spy-alert type="error">Some message</spy-alert>

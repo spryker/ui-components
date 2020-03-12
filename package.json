@@ -135,7 +135,8 @@
   },
   "lint-staged": {
     "*.{jsx?,tsx?,json,s?css,less,html}": [
-      "prettier --write"
+      "prettier --write",
+      "git add"
     ]
   },
   "husky": {

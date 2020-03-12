@@ -105,7 +105,11 @@
       "@spryker/dropdown": [
         "dist/libs/dropdown/index.d.ts",
         "libs/dropdown/src/index.ts"
-      ]
+      ],
+        "@spryker/table/columns": [
+            "dist/libs/table/columns/index.d.ts",
+            "libs/table/columns/src/index.ts"
+        ]
     }
   },
   "exclude": ["node_modules", "tmp"]

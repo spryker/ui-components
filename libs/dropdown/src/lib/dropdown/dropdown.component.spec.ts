@@ -2,9 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { DropdownComponent } from './dropdown.component';
 import { DropdownModule } from '../dropdown.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DropdownComponent', () => {
   @Component({
@@ -34,7 +33,7 @@ describe('DropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [DropdownModule, BrowserAnimationsModule],
+      imports: [DropdownModule, NoopAnimationsModule],
       declarations: [TestComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

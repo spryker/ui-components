@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.4...@spryker/utils@0.1.0-next.5) (2020-03-12)
+
+
+### Bug Fixes
+
+* **tabs:** toboolean utility improvements ([2bb55fd](https://github.com/spryker/ui-components/commit/2bb55fd6edd8070578740d5fbe733072ee0c3103))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.3...@spryker/utils@0.1.0-next.4) (2020-03-05)
 
 

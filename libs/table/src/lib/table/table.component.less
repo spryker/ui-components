@@ -1,31 +1,5 @@
 @import './table.component.theme.less';
 
-@table-prefix-cls: ~'@{ant-prefix}-table';
-
-@table-header-icon-color: @gray;
-@table-column-body-color: @gray-dark;
-@table-body-row-bg: @white;
-@table-body-selected-row-bg: @green-lighter;
-@table-body-selected-row-border-bg: @green-light;
-@table-column-head-color: @ink;
-@table-border-radius-base: @border-width-base;
-
-@table-selection-column-min-height: 70px;
-
-@table-head-padding-vertical: 20px;
-@table-body-padding-vertical: 12px;
-@table-body-margin-vertical: 3px;
-@table-padding-horizontal: 25px;
-
-@table-features-padding-vertical: 30px;
-@table-features-col-padding: 5px;
-
-@table-sorts-holder-height: 14px;
-@table-sorts-holder-width: 20px;
-
-@table-head-checkbox-wrapper-size: 32px;
-@table-head-checkbox-wrapper-bg: @gray-light;
-
 .@{table-prefix-cls} {
   padding-bottom: 30px;
 
@@ -255,19 +229,22 @@
   }
 
   &-dropdown {
-    width: 50px;
-    height: 50px;
+    width: @table-dropdown-trigger-size;
+    height: @table-dropdown-trigger-size;
     cursor: pointer;
     border-radius: 50%;
-    transition: background 0.3s ease-in-out;
+    transition: background @common-transition-time @common-transition-function, color @common-transition-time @common-transition-function;
+    color: @table-dropdown-trigger-color;
+    font-size: @table-dropdown-trigger-icon-size;
 
     &:hover {
-      background: #f8f8f8;
+      background: @table-dropdown-trigger-hover-bg;
+      color: @table-dropdown-trigger-hover-color;
     }
 
     .ant-dropdown-trigger {
-      display: flex;
-      height: 100%;
+      justify-content: center;
+      align-items: center;
     }
   }
 

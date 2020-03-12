@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { ToBoolean } from '@spryker/utils';
 
 export interface DropdownItem {
   action: string;
@@ -14,7 +15,7 @@ export interface DropdownItem {
   disabled?: boolean;
   subItems?: DropdownItem[];
 }
-type Placement =
+export type Placement =
   | 'bottomLeft'
   | 'bottomCenter'
   | 'bottomRight'
@@ -32,8 +33,8 @@ type Placement =
 export class DropdownComponent {
   @Input() items: DropdownItem[] = [];
   @Input() placement: Placement = 'bottomRight';
-  @Input() visible = false;
-  @Input() disabled = false;
+  @Input() @ToBoolean() visible = false;
+  @Input() @ToBoolean() disabled = false;
   @Output() visibleChange = new EventEmitter<boolean>();
   @Output() actionTriggered = new EventEmitter<string>();
 }

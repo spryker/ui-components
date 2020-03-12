@@ -1,6 +1,11 @@
 @import './dropdown.component.theme.less';
 
 .@{dropdown-prefix-cls} {
+  &-trigger {
+    display: flex;
+    height: 100%;
+  }
+
   &-menu {
     width: @dropdown-menu-width;
     border-radius: @dropdown-menu-border-radius;
@@ -10,8 +15,8 @@
 
     &-item {
       height: @dropdown-menu-item-height;
-      font: @font-weight-medium @font-size-base @font-family;
-      line-height: @dropdown-menu-item-line-height;
+      font: @font-weight-medium @font-size-base /
+        @dropdown-menu-item-line-height @font-family;
       color: @ink;
       border: @dropdown-menu-item-border;
 

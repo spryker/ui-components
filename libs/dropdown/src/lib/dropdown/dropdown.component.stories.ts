@@ -10,8 +10,7 @@ export const primary = () => ({
   moduleMetadata: {
     imports: [DropdownModule, BrowserAnimationsModule],
   },
-  // template: `<spy-dropdown>Test<spy-dropdown>`,
-  component: DropdownComponent,
+  template: `<spy-dropdown>Test<spy-dropdown>`,
   props: {
     items: [
       { action: '1234', title: '123' },

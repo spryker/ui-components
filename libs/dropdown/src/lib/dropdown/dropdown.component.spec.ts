@@ -6,30 +6,6 @@ import { DropdownComponent } from './dropdown.component';
 import { DropdownModule } from '../dropdown.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const mockedData = [
-  {
-    title: 'Dropdown',
-  },
-  {
-    action: '',
-    title: 'Dropdown',
-    icon: 'orders',
-    disabled: false,
-    subItems: [
-      {
-        title: 'Subitem',
-      },
-      {
-        action: '',
-        title: 'SubItem2',
-        icon: '',
-        disabled: false,
-        subItems: [],
-      },
-    ],
-  },
-];
-
 describe('DropdownComponent', () => {
   @Component({
     selector: 'test',
@@ -39,6 +15,8 @@ describe('DropdownComponent', () => {
         [placement]="placement"
         [visible]="visible"
         [disabled]="disabled"
+        (visibleChange)="visibleChangeSpy($event)"
+        (actionTriggered)="actionTriggeredSpy(action)"
       ></spy-dropdown>
     `,
   })
@@ -47,8 +25,8 @@ describe('DropdownComponent', () => {
     placement: any;
     visible: any;
     disabled: any;
-    visibleChange = jest.fn();
-    actionTriggered = jest.fn();
+    visibleChangeSpy = jest.fn();
+    actionTriggeredSpy = jest.fn();
   }
 
   let component: TestComponent;
@@ -90,34 +68,40 @@ describe('DropdownComponent', () => {
       expect(spanElem.attributes['ng-reflect-nz-placement']).toBe(mockedValue);
     });
 
-    // it('should bind disabled to nzDisabled of nz-dropdown', () => {
-    //   const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
-    //   component.disabled = true;
+    it('should bind disabled to nzDisabled of nz-dropdown', () => {
+      const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
+      component.disabled = true;
 
-    //   fixture.detectChanges();
+      const mockedValue = 'bottomLeft';
+      component.placement = mockedValue;
 
-    //   expect(spanElem.attributes['ng-reflect-nz-disabled']).toBe('true');
-    // });
+      fixture.detectChanges();
+
+      expect(spanElem.attributes['ng-reflect-nz-disabled']).toBe('true');
+    });
+
+    it('should bind visible to nzVisible of nz-dropdown', () => {
+      const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
+      component.visible = true;
+
+      const mockedValue = 'bottomLeft';
+      component.placement = mockedValue;
+
+      fixture.detectChanges();
+
+      expect(spanElem.attributes['ng-reflect-nz-visible']).toBe('true');
+    });
   });
 
-  describe('@Input(items)', () => {
-    // it('should render <li> with empty array `items` input', () => {
-    //   component.items = mockedData;
-    //   fixture.detectChanges();
-    //   const liElem = fixture.debugElement.query(By.css('li'));
-    //   expect(liElem).toBeTruthy();
-    // });
-    // it('should render <li> with `nz-menu-item` attribute with empty `subItems` array', () => {
-    //   component.items = [mockedData[0]];
-    //   fixture.detectChanges();
-    //   const liElem = fixture.debugElement.query(By.css('li'));
-    //   expect(liElem.attributes['nz-menu-item']).toBeDefined();
-    // });
-    // it('should render <li> with `nz-submenu` attribute with non empty `subItems` array', () => {
-    //   component.items = [mockedData[1]];
-    //   fixture.detectChanges();
-    //   const liElem = fixture.debugElement.query(By.css('li'));
-    //   expect(liElem.attributes['nz-submenu']).toBeDefined();
-    // });
+  it('visibleChange must be emitted every time nzVisibleChange emits with $event', () => {
+    const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
+
+    const mockedValue = 'bottomLeft';
+    component.placement = mockedValue;
+
+    spanElem.triggerEventHandler('nzVisibleChange', []);
+    fixture.detectChanges();
+
+    expect(component.visibleChangeSpy).toHaveBeenCalled();
   });
 });

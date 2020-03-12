@@ -1,7 +1,11 @@
 @import './pagination.component.theme.less';
 
 .@{pagination-prefix-cls} {
-  li {
+  &-item,
+  &-prev,
+  &-next,
+  &-jump-next,
+  &-jump-prev {
     width: @pagination-link-size;
     height: @pagination-link-size;
     background-color: @white;
@@ -37,7 +41,7 @@
     }
   }
 
-  .@{pagination-prefix-cls} &-item-active {
+  & &-item-active {
     background-color: @green;
 
     a {

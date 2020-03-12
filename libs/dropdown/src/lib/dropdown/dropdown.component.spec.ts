@@ -99,9 +99,9 @@ describe('DropdownComponent', () => {
     const mockedValue = 'bottomLeft';
     component.placement = mockedValue;
 
-    spanElem.triggerEventHandler('nzVisibleChange', []);
+    spanElem.triggerEventHandler('nzVisibleChange', false);
     fixture.detectChanges();
 
-    expect(component.visibleChangeSpy).toHaveBeenCalled();
+    expect(component.visibleChangeSpy).toHaveBeenCalledWith(false);
   });
 });

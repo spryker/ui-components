@@ -5,3 +5,4 @@ export * from './lib/of-type.pipe';
 export * from './lib/of-type.module';
 export * from './lib/to-json';
 export * from './lib/apply-contexts';
+export * from './lib/context';

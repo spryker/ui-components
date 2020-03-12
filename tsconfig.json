@@ -93,6 +93,10 @@
       "@spryker/table": [
         "dist/libs/table/index.d.ts",
         "libs/table/src/index.ts"
+      ],
+      "@spryker/table/columns": [
+        "dist/libs/table/columns/index.d.ts",
+        "libs/table/columns/src/index.ts"
       ]
     }
   },

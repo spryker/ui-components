@@ -94,6 +94,10 @@
         "dist/libs/notification/index.d.ts",
         "libs/notification/src/index.ts"
       ],
+      "@spryker/dropdown": [
+        "dist/libs/dropdown/index.d.ts",
+        "libs/dropdown/src/index.ts"
+      ],
       "@spryker/pagination": [
         "dist/libs/pagination/index.d.ts",
         "libs/pagination/src/index.ts"

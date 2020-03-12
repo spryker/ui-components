@@ -5,7 +5,7 @@
   width: @select-component-width;
 
   &-dropdown {
-    border-radius: @dropdown-border-radius;
+    border-radius: @select-border-radius;
   }
 
   .@{select-prefix-cls}-selection {
@@ -16,17 +16,17 @@
       padding: 0;
       display: flex;
       justify-content: space-between;
-      min-width: @dropdown-selection-choice-min-width;
-      max-width: @dropdown-selection-choice-max-width;
+      min-width: @select-selection-choice-min-width;
+      max-width: @select-selection-choice-max-width;
       border-radius: @choice-border-radius;
       background-color: @gray-light;
       color: @ink;
 
       &__content {
-        padding-left: @dropdown-selection-content-padding;
-        margin-right: @dropdown-selection-content-margin-right;
-        max-width: @dropdown-selection-content-max-width;
-        line-height: @dropdown-selection-content-line-height;
+        padding-left: @select-selection-content-padding;
+        margin-right: @select-selection-content-margin-right;
+        max-width: @select-selection-content-max-width;
+        line-height: @select-selection-content-line-height;
         font-family: @font-family;
         font-weight: @font-weight-medium;
         text-overflow: ellipsis;
@@ -36,7 +36,7 @@
       &__remove {
         top: -3px;
         right: -2px;
-        line-height: @dropdown-selection-remove-line-height;
+        line-height: @select-selection-remove-line-height;
         background-color: @gray;
         height: @choise-remove-size;
         width: @choise-remove-size;
@@ -63,20 +63,20 @@
   }
 
   &-selection__rendered > &-selection-selected-value {
-    padding: @dropdown-menu-vertical-padding
-      @dropdown-menu-selected-horizontal-padding;
+    padding: @select-menu-vertical-padding
+      @select-menu-selected-horizontal-padding;
   }
 
   &-selection-selected-value,
   &-dropdown-menu-item {
     border-radius: 0 !important;
-    height: @dropdown-menu-item-height;
-    line-height: @dropdown-menu-item-line-height;
+    height: @select-menu-item-height;
+    line-height: @select-menu-item-line-height;
     color: @ink;
     font-weight: @font-weight-medium;
     font-size: @font-size-base;
     letter-spacing: @letter-spacing-base;
-    padding: @dropdown-menu-vertical-padding @dropdown-menu-horizontal-padding;
+    padding: @select-menu-vertical-padding @select-menu-horizontal-padding;
   }
 
   &-dropdown-menu-item {
@@ -87,7 +87,7 @@
     }
 
     &:focus {
-      border: @dropdown-menu-item-border;
+      border: @select-menu-item-border;
     }
 
     &__icon {
@@ -125,7 +125,7 @@
       background-color: @green-lighter !important;
 
       &:focus {
-        border: @dropdown-menu-item-border;
+        border: @select-menu-item-border;
       }
     }
 

@@ -72,7 +72,7 @@ class TestComponent {
   @Input() limit?: number;
 }
 
-xdescribe('TableFeaturesRendererComponent', () => {
+describe('TableFeaturesRendererComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(
     TableFeaturesRendererComponent,
     {

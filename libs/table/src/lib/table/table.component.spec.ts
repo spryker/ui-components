@@ -552,7 +552,7 @@ describe('TableComponent', () => {
     ] as TableRowActionBase[];
     const mockActionsConfig = { ...mockConfigCols, rowActions: mockActions };
 
-    it('must be emitted every time when `toggleCheckedRows` is triggered', async () => {
+    it('must be emitted every time when `actionTriggerHandler` is triggered', async () => {
       const host = await createComponent({ config: mockActionsConfig }, true);
 
       spyOn(host.component.actionTriggered, 'emit');

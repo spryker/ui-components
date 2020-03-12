@@ -20,7 +20,7 @@ import { TableColumnComponentDeclaration } from './table/table';
 import { TableComponent } from './table/table.component';
 import { TableFeatureDirective } from './table/table-feature.directive';
 
-const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
+export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
   TableColumnComponentDeclaration[]
 >('TABLE_COLUMN_COMPONENT_TOKEN');
 

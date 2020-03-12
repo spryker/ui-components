@@ -8,9 +8,9 @@ import {
   ViewChild,
   TemplateRef,
   ChangeDetectorRef,
-  AfterViewInit,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
+import { IconErrorModule } from '@spryker/icon/icons';
 
 @Component({
   selector: 'spy-tab',
@@ -20,6 +20,7 @@ import { ToBoolean } from '@spryker/utils';
   encapsulation: ViewEncapsulation.None,
 })
 export class TabComponent {
+  iconErrorReference = IconErrorModule;
   @Input() title = '';
   @Input() @ToBoolean() disabled = false;
   @ToBoolean() private _hasWarning = false;

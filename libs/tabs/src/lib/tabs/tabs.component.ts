@@ -106,6 +106,6 @@ export class TabsComponent implements OnInit, OnDestroy {
   }
 
   private isTabInRange(index: number): boolean {
-    return index < this.tabs$.getValue().length && index >= 0;
+    return index >= 0 && index < this.tabs$.getValue().length;
   }
 }

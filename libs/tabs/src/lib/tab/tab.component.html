@@ -10,7 +10,7 @@
     }"
   >
     <div *ngIf="hasWarning" ngClass="ant-tabs-custom-tab-icon">
-      <spy-icon name="error"></spy-icon>
+      <spy-icon [name]="iconErrorReference.icon"></spy-icon>
     </div>
     <div>
       {{ title }}

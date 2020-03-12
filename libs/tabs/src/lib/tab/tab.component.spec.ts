@@ -17,8 +17,7 @@ describe('TabComponent', () => {
     it('should emit hasWarningChange on hasWarningChange', async () => {
       const host = await createComponent({ hasWarning: false }, true);
 
-      host.component.hasWarning = true;
-      host.detectChanges();
+      host.setInputs({ hasWarning: true }, true);
 
       expect(host.hostComponent.hasWarningChange).toHaveBeenCalledWith(true);
     });

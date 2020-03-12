@@ -5,7 +5,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { IconModule } from '@spryker/icon';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tab/tab.component';
-import { IconErrorModule } from './icons';
+import { IconErrorModule } from '@spryker/icon/icons';
 
 @NgModule({
   imports: [

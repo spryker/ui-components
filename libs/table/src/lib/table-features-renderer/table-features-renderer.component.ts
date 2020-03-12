@@ -8,19 +8,16 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import {
-  TableFeatureComponent,
-  TableFeatureContext,
-  TableComponent as ITableFeatureComponent,
-} from '../table/table';
-import { TableColumnsResolverService } from '../table/table.columns.resolver.service';
+import { TableColumnsResolverService } from '../table/columns-resolver.service';
+import { TableDataConfiguratorService } from '../table/data-configurator.service';
+import { TableDataFetcherService } from '../table/data-fetcher.service';
+import { TableFeatureContext } from '../table/table';
+import { TableFeatureComponent } from '../table/table-feature.component';
 import { TableComponent } from '../table/table.component';
-import { TableDataConfiguratorService } from '../table/table.data.configurator.service';
-import { TableDataFetcherService } from '../table/table.data.fetcher.service';
 
 interface FeatureRecord {
   component: TableFeatureComponent;
-  template: TemplateRef<TableFeatureContext>;
+  template?: TemplateRef<TableFeatureContext>;
   context: TableFeatureContext;
 }
 
@@ -72,9 +69,7 @@ export class TableFeaturesRendererComponent implements OnChanges {
   }
 
   private initFeature(feature: TableFeatureComponent) {
-    feature.setTableComponent(
-      (this.tableComponent as unknown) as ITableFeatureComponent,
-    );
+    feature.setTableComponent(this.tableComponent);
     feature.setColumnsResolverService(this.columnsResolverService);
     feature.setDataFetcherService(this.dataFetcherService);
     feature.setDataConfiguratorService(this.dataConfiguratorService);

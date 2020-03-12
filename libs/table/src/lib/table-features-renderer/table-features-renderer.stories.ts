@@ -2,15 +2,12 @@ import { Component, Input, TemplateRef } from '@angular/core';
 import { number } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
-import {
-  TableFeatureComponent,
-  TableFeatureContext,
-  TableComponent as ITableFeatureComponent,
-} from '../table/table';
-import { TableColumnsResolverService } from '../table/table.columns.resolver.service';
+import { TableColumnsResolverService } from '../table/columns-resolver.service';
+import { TableDataConfiguratorService } from '../table/data-configurator.service';
+import { TableDataFetcherService } from '../table/data-fetcher.service';
+import { TableFeatureContext } from '../table/table';
+import { TableFeatureComponent } from '../table/table-feature.component';
 import { TableComponent } from '../table/table.component';
-import { TableDataConfiguratorService } from '../table/table.data.configurator.service';
-import { TableDataFetcherService } from '../table/table.data.fetcher.service';
 import { TableFeaturesRendererComponent } from './table-features-renderer.component';
 
 export default {
@@ -21,11 +18,11 @@ class MockTableFeatureComponent implements TableFeatureComponent {
   location = 'mocked-location';
   styles?: Record<string, string>;
   template?: TemplateRef<TableFeatureContext>;
-  table?: ITableFeatureComponent;
+  table?: TableComponent;
   columnsResolverService?: TableColumnsResolverService;
   dataFetcherService?: TableDataFetcherService;
   dataConfiguratorService?: TableDataConfiguratorService;
-  setTableComponent(table: any): void {}
+  setTableComponent(table: TableComponent): void {}
   setColumnsResolverService(service: TableColumnsResolverService): void {}
   setDataFetcherService(service: TableDataFetcherService): void {}
   setDataConfiguratorService(service: TableDataConfiguratorService): void {}

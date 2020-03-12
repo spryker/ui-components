@@ -1,4 +1,5 @@
 import {
+  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -7,33 +8,39 @@ import {
   OnInit,
   Output,
   QueryList,
-  ViewEncapsulation,
-  AfterContentInit,
   TemplateRef,
+  ViewEncapsulation,
 } from '@angular/core';
+import { ToJson } from '@spryker/utils';
+import { merge, Observable } from 'rxjs';
+import { mapTo, shareReplay, startWith, tap } from 'rxjs/operators';
+
+import { TableActionService } from './action.service';
+import { ColTplDirective } from './col-tpl.directive';
+import { TableColumnsResolverService } from './columns-resolver.service';
+import { TableDataConfiguratorService } from './data-configurator.service';
+import { TableDataFetcherService } from './data-fetcher.service';
 import {
+  SortingCriteria,
   TableActionTriggeredEvent,
   TableColumn,
   TableColumns,
+  TableColumnTplContext,
   TableConfig,
   TableData,
+  TableDataConfig,
   TableDataRow,
   TableRowActionBase,
-  SortingCriteria,
-  TableDataConfig,
-  TableColumnTplContext,
 } from './table';
-import { merge, Observable } from 'rxjs';
-import { ToJson } from '@spryker/utils';
-import { HttpClient } from '@angular/common/http';
-import { TableDataFetcherService } from './table.data.fetcher.service';
-import { TableDataConfiguratorService } from './table.data.configurator.service';
-import { TableColumnsResolverService } from './table.columns.resolver.service';
-import { mapTo, shareReplay, startWith, tap } from 'rxjs/operators';
-import { TableActionService } from './table.action.service';
-import { ColTplDirective } from './col.tpl.directive';
-import { TableFeatureDirective } from './table.feature.directive';
-import { TableFeatureComponent } from './table.feature.component';
+import { TableFeatureComponent } from './table-feature.component';
+import { TableFeatureDirective } from './table-feature.directive';
+
+export enum TableFeatureLocation {
+  top = 'top',
+  headerExt = 'header-ext',
+  afterTable = 'after-table',
+  bottom = 'bottom',
+}
 
 @Component({
   selector: 'spy-table',
@@ -58,15 +65,17 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   @ContentChildren(TableFeatureDirective)
   set featureDirectives(featureDirectives: QueryList<TableFeatureDirective>) {
-    const features = featureDirectives.map(feature => feature.component);
-
-    this.updateFeaturesLocation(features);
+    this.updateFeaturesLocation(
+      featureDirectives.map(feature => feature.component),
+    );
   }
+
+  featureLocation = TableFeatureLocation;
+  components = TableFeatureComponent;
 
   columns$ = new Observable<TableColumns>();
   data$ = new Observable<TableData>();
   isLoading$ = new Observable<boolean>();
-  components = TableFeatureComponent;
   allChecked = false;
   isIndeterminate = false;
   checkedRows: Record<TableColumn['id'], boolean> = {};
@@ -77,7 +86,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   private rowsData: TableDataRow[] = [];
 
   constructor(
-    private http: HttpClient,
     private dataFetcherService: TableDataFetcherService,
     private dataConfiguratorService: TableDataConfiguratorService,
     private columnsResolverService: TableColumnsResolverService,
@@ -96,27 +104,6 @@ export class TableComponent implements OnInit, AfterContentInit {
       }),
       {},
     );
-  }
-
-  updateFeaturesLocation(featureComponents: TableFeatureComponent[]): void {
-    this.featuresLocation = featureComponents.reduce(
-      (features, feature) => ({
-        ...features,
-        [feature.location]: feature,
-      }),
-      {},
-    );
-  }
-
-  private initCheckedRows(data: TableData) {
-    let uninitedRowsLength = data.data.length;
-
-    while (uninitedRowsLength--) {
-      this.checkedRows[uninitedRowsLength] = false;
-    }
-
-    this.allChecked = false;
-    this.isIndeterminate = false;
   }
 
   ngOnInit(): void {
@@ -142,6 +129,16 @@ export class TableComponent implements OnInit, AfterContentInit {
       .pipe(shareReplay());
     this.dataConfiguratorService.changePage(0);
     this.isLoading$ = this.isLoading();
+  }
+
+  updateFeaturesLocation(features: TableFeatureComponent[]): void {
+    this.featuresLocation = features.reduce(
+      (acc, feature) => ({
+        ...acc,
+        [feature.location]: feature,
+      }),
+      {},
+    );
   }
 
   toggleCheckedRows(): void {
@@ -219,6 +216,17 @@ export class TableComponent implements OnInit, AfterContentInit {
     if (!wasActionHandled) {
       this.actionTriggered.emit(event);
     }
+  }
+
+  private initCheckedRows(data: TableData) {
+    let uninitedRowsLength = data.data.length;
+
+    while (uninitedRowsLength--) {
+      this.checkedRows[uninitedRowsLength] = false;
+    }
+
+    this.allChecked = false;
+    this.isIndeterminate = false;
   }
 
   private isLoading() {

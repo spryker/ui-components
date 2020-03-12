@@ -1,5 +1,6 @@
 /* tslint:disable:no-empty-interface */
-import { Type, EventEmitter, TemplateRef } from '@angular/core';
+import { TemplateRef, Type } from '@angular/core';
+import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
@@ -23,15 +24,14 @@ export interface TableColumnTypeOptions {
 }
 
 export interface TableColumnTypeRegistry {
-  // link; // Extension on project level
+  // Key is type string - value is type config class
+  'layout-flat': LayoutFlatConfig;
 }
 
-export type TableColumnTypes = keyof TableColumnTypeRegistry;
-
-export type TableColumnType = 'layout-flat' | TableColumnTypes;
+export type TableColumnType = keyof TableColumnTypeRegistry;
 
 export interface TableColumnContext {
-  value: unknown;
+  value: TableDataValue;
   row: TableDataRow;
   id: TableColumn['id'];
 }
@@ -42,16 +42,24 @@ export interface TableColumnTplContext extends TableColumnContext {
 
 export interface TableColumnComponent<C = any> {
   config?: C;
-  context: TableColumnContext;
+  context?: TableColumnContext;
 }
 
-export interface TableColumnComponentDeclaration {
-  [name: string]: Type<TableColumnComponent>;
-}
+export type TableColumnComponentDeclaration = {
+  [P in keyof TableColumnTypeRegistry]?: Type<
+    TableColumnComponent<
+      TableColumnTypeRegistry[P] extends object
+        ? TableColumnTypeRegistry[P]
+        : any
+    >
+  >;
+};
 
 export type TableColumns = TableColumn[];
 
-export type TableDataRow = Record<TableColumn['id'], unknown>;
+export type TableDataValue = unknown | unknown[];
+
+export type TableDataRow = Record<TableColumn['id'], TableDataValue>;
 
 export interface TableData {
   data: TableDataRow[];
@@ -66,7 +74,7 @@ export interface TableRowActionBase {
 }
 
 export interface TableRowActionRegistry {
-  // link;
+  // Key is action string - value is action options type
 }
 
 export type TableRowAction = keyof TableRowActionRegistry;
@@ -91,26 +99,6 @@ export interface TableConfig {
   selectable?: boolean;
   fixHeader?: string;
   rowActions?: TableRowActionBase[];
-}
-
-export interface TableComponent {
-  tableId: string;
-  config: TableConfig;
-  selectionChange: EventEmitter<TableDataRow[]>;
-  actionTriggered: EventEmitter<TableActionTriggeredEvent>;
-  features: TableFeatureComponent[];
-  featuresLocation: Record<string, TableFeatureComponent[]>;
-  allChecked: boolean;
-  isIndeterminate: boolean;
-  checkedRows: Record<TableColumn['id'], boolean>;
-  getTableId(): string;
-  toggleCheckedRows(isChecked: boolean): void;
-  updateCheckedRows(): void;
-  updateSorting(event: {
-    key: string;
-    value: 'descend' | 'ascend' | null;
-  }): void;
-  updatePagination(page: number): void;
 }
 
 export type ColumnsTransformer = (
@@ -147,26 +135,6 @@ export interface ColTplDirective {
 
 export interface TableFeatureContext {
   location: string;
-}
-
-export interface TableFeatureComponent {
-  location: string;
-  styles?: Record<string, string>;
-  template?: TemplateRef<TableFeatureContext>;
-  table?: TableComponent;
-  columnsResolverService?: TableColumnsResolverService;
-  dataFetcherService?: TableDataFetcherService;
-  dataConfiguratorService?: TableDataConfiguratorService;
-
-  setTableComponent(table: TableComponent): void;
-  setColumnsResolverService(service: TableColumnsResolverService): void;
-  setDataFetcherService(service: TableDataFetcherService): void;
-  setDataConfiguratorService(service: TableDataConfiguratorService): void;
-  getTemplate(): TemplateRef<TableFeatureContext>;
-}
-
-export interface TableFeatureDirective {
-  component: TableFeatureComponent;
 }
 
 export interface HttpOptionsParams {

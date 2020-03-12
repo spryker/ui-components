@@ -1,5 +1,6 @@
 import { Directive } from '@angular/core';
-import { TableFeatureComponent } from './table.feature.component';
+
+import { TableFeatureComponent } from './table-feature.component';
 
 @Directive({
   selector: '[spy-table-feature]',

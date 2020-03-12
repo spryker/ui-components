@@ -1,11 +1,14 @@
 import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
-import { TableFeatureContext, TableComponent } from './table';
-import { TableColumnsResolverService } from './table.columns.resolver.service';
-import { TableDataFetcherService } from './table.data.fetcher.service';
-import { TableDataConfiguratorService } from './table.data.configurator.service';
+
+import { TableColumnsResolverService } from './columns-resolver.service';
+import { TableDataConfiguratorService } from './data-configurator.service';
+import { TableDataFetcherService } from './data-fetcher.service';
+import { TableFeatureContext } from './table';
+import { TableComponent } from './table.component';
 
 @Component({
   selector: 'selector',
+  template: ``,
 })
 export abstract class TableFeatureComponent {
   @Input() location = '';

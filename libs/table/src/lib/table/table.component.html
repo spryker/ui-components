@@ -8,7 +8,7 @@
 
   <div class="ant-table-features-col ant-table-features-col--dynamic">
     <spy-table-features-renderer
-      [features]="featuresLocation['top']"
+      [features]="featuresLocation[featureLocation.top]"
     ></spy-table-features-renderer>
   </div>
 </div>
@@ -40,11 +40,11 @@
       <th
         *ngIf="
           config?.rowActions?.length ||
-          featuresLocation['header-ext']?.length > 0
+          featuresLocation[featureLocation.headerExt]?.length > 0
         "
       >
         <spy-table-features-renderer
-          [features]="featuresLocation['header-ext']"
+          [features]="featuresLocation[featureLocation.headerExt]"
           maxFeatures="1"
         ></spy-table-features-renderer>
       </th>
@@ -107,12 +107,12 @@
 </nz-table>
 
 <spy-table-features-renderer
-  [features]="featuresLocation['after-table']"
+  [features]="featuresLocation[featureLocation.afterTable]"
 ></spy-table-features-renderer>
 <!--<spy-pagination></spy-pagination>-->
 <!--Trigger updatePagination with event on pageChange output-->
 <spy-table-features-renderer
-  [features]="featuresLocation['bottom']"
+  [features]="featuresLocation[featureLocation.bottom]"
 ></spy-table-features-renderer>
 <span
   style="display: none"

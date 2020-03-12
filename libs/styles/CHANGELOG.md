@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.17...@spryker/styles@0.1.0-next.18) (2020-03-12)
+
+
+### Bug Fixes
+
+* **select:** fixed styles and icon usage ([bab200f](https://github.com/spryker/ui-components/commit/bab200f6f91859d6848f1c34ab5db92fc2c8deec))
+
+
+
+
+
 # [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.16...@spryker/styles@0.1.0-next.17) (2020-03-11)
 
 

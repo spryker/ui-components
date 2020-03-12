@@ -23,8 +23,9 @@ export class TabComponent {
   iconErrorReference = IconErrorModule;
   @Input() title = '';
   @Input() @ToBoolean() disabled = false;
-  @ToBoolean() private _hasWarning = false;
+  private _hasWarning = false;
   @Input()
+  @ToBoolean()
   set hasWarning(value: boolean) {
     this._hasWarning = value;
 

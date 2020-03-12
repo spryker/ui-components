@@ -1,7 +1,17 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-export function ToBoolean(): PropertyDecorator {
-  return (target, key) => {
+export function ToBoolean() {
+  return (target: Object, key: string, descriptor?: any) => {
+    if (descriptor !== undefined) {
+      const originalSet = descriptor.set;
+
+      descriptor.set = function(value: boolean | string) {
+        return originalSet.call(this, coerceBooleanProperty(value));
+      };
+
+      return descriptor;
+    }
+
     const internalKey = `__${key.toString()}-value`;
 
     const getter = function(this: any) {

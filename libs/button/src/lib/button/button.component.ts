@@ -7,6 +7,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { propsTransformation } from '@spryker/utils';
+import { ToBoolean } from '@spryker/utils';
 
 export interface Props {
   type: 'button' | 'submit';
@@ -42,7 +43,7 @@ export class ButtonComponent implements OnChanges {
   @Input() type: Props['type'] = 'button';
   @Input() shape: Props['shape'] = 'default';
   @Input() size: Props['size'] = 'md';
-  @Input() disabled: Props['disabled'] = false;
+  @Input() @ToBoolean() disabled: Props['disabled'] = false;
   @Input() variant: Props['variant'] = 'primary';
 
   sizeInner = this.sizeTransformation();

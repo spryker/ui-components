@@ -6,7 +6,7 @@ import {
   EventEmitter,
   ViewEncapsulation,
 } from '@angular/core';
-import { ToJson } from '@spryker/utils';
+import { ToBoolean, ToJson } from '@spryker/utils';
 
 @Component({
   selector: 'spy-textarea',
@@ -18,7 +18,7 @@ import { ToJson } from '@spryker/utils';
 export class TextareaComponent {
   @Input() name = '';
   @Input() value = '';
-  @Input() disabled = false;
+  @Input() @ToBoolean() disabled = false;
   @Input() placeholder = '';
   @Input() rows = 4;
   @Input() cols = 4;

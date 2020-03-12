@@ -3,8 +3,8 @@
 .@{form-prefix-cls}-item {
   font-family: @font-family;
 
-  &,
-  &-with-help {
+  &:not(.no-spaces),
+  &-with-help:not(.no-spaces) {
     margin-bottom: @form-item-bottom-margin;
   }
 

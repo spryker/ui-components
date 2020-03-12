@@ -1,5 +1,10 @@
-<nz-form-item>
-  <nz-form-label [nzNoColon]="true" [nzFor]="for" [nzRequired]="false">
+<nz-form-item [ngClass]="{ 'no-spaces': noSpaces }">
+  <nz-form-label
+    *ngIf="!noLabel"
+    [nzNoColon]="true"
+    [nzFor]="for"
+    [nzRequired]="false"
+  >
     <ng-content></ng-content>
   </nz-form-label>
   <nz-form-control

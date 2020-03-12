@@ -1,16 +1,16 @@
 @import './table.component.theme.less';
 
 .@{table-prefix-cls} {
-  padding-bottom: 30px;
+  padding-bottom: @table-bottom-padding;
 
   &-features {
     display: flex;
     align-items: center;
     padding-bottom: @table-features-padding-vertical;
-    margin: -5px;
+    margin: -@table-top-features-padding;
 
     &-col {
-      padding: 5px;
+      padding: @table-top-features-padding;
 
       &--static {
         font: @font-weight-medium @font-size-base @font-family;

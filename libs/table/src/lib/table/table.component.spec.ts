@@ -546,15 +546,18 @@ describe('TableComponent', () => {
   });
 
   describe('@Output(actionTriggered)', () => {
+    const mockActions = [
+      { id: '1234', title: '123' },
+      { id: '2345', title: '234' },
+    ] as TableRowActionBase[];
+    const mockActionsConfig = { ...mockConfigCols, rowActions: mockActions };
+
     it('must be emitted every time when `toggleCheckedRows` is triggered', async () => {
-      const host = await createComponent({ config: mockConfig }, true);
+      const host = await createComponent({ config: mockActionsConfig }, true);
 
       spyOn(host.component.actionTriggered, 'emit');
 
-      host.component.actionTriggerHandler(
-        { title: '', id: 'click' } as TableRowActionBase,
-        [],
-      );
+      host.component.actionTriggerHandler(mockActions[0].id, []);
       host.detectChanges();
 
       expect(host.component.actionTriggered.emit).toHaveBeenCalled();

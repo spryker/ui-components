@@ -5,7 +5,7 @@ import { TableColumnTplContext } from './table';
   selector: '[spyColTpl]',
 })
 export class ColTplDirective {
-  @Input() colTpl = '';
+  @Input() spyColTpl = '';
 
   constructor(public template: TemplateRef<TableColumnTplContext>) {}
 }

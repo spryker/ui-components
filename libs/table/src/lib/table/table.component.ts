@@ -100,7 +100,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.templatesObj = this.slotTemplates.reduce(
       (templates, template) => ({
         ...templates,
-        [template.colTpl]: template.template,
+        [template.spyColTpl]: template.template,
       }),
       {},
     );

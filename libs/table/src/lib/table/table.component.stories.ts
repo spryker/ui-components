@@ -67,10 +67,10 @@ export const withFeatures = (): IStory => ({
   },
   template: `
     <spy-table [config]="config">
-      <div *colTpl="'name'; let name">Name is3: {{ name }}</div>
-        <ng-template colTpl="name" let-name>Name is2: {{ name }}</ng-template>
-        <div *colTpl="'sku'; let sku">sku {{ sku }}</div>
-        <div *colTpl="'id3'; let row='row'">{{ row.name }} - {{ row.id3 }}</div>
+      <div *spyColTpl="'name'; let name">Name is3: {{ name }}</div>
+      <ng-template spyColTpl="name" let-name>Name is2: {{ name }}</ng-template>
+      <div *spyColTpl="'sku'; let sku">sku {{ sku }}</div>
+      <div *spyColTpl="'id3'; let row='row'">{{ row.name }} - {{ row.id3 }}</div>
     </spy-table>
   `,
   props: {

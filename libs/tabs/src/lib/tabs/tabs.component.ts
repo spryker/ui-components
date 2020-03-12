@@ -26,13 +26,13 @@ export class TabsComponent implements OnInit, OnDestroy {
   tabReference = TabComponent;
   tabs$ = new BehaviorSubject<TabComponent[]>([]);
   hasWarning$ = this.tabs$.pipe(
-    switchMap((tabs: TabComponent[]) => {
-      return combineLatest(
+    switchMap((tabs: TabComponent[]) =>
+      combineLatest(
         tabs.map((tab: TabComponent) =>
           tab.hasWarningChange.pipe(startWith(tab.hasWarning)),
         ),
-      );
-    }),
+      ),
+    ),
     map((hasWarnings: boolean[]) =>
       hasWarnings.some((hasWarning: boolean) => hasWarning),
     ),
@@ -67,7 +67,6 @@ export class TabsComponent implements OnInit, OnDestroy {
     }
 
     this.tab = index;
-
     this.tabChange.emit(this.currentActiveTab());
   }
 

@@ -94,6 +94,10 @@
         "dist/libs/notification/index.d.ts",
         "libs/notification/src/index.ts"
       ],
+      "@spryker/pagination": [
+        "dist/libs/pagination/index.d.ts",
+        "libs/pagination/src/index.ts"
+      ],
       "@spryker/tabs": ["dist/libs/tabs/index.d.ts", "libs/tabs/src/index.ts"]
     }
   },

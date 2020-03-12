@@ -1306,6 +1306,79 @@
         }
       }
     },
+    "pagination": {
+      "projectType": "library",
+      "root": "libs/pagination",
+      "sourceRoot": "libs/pagination/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/pagination/tsconfig.lib.json",
+            "project": "libs/pagination/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/pagination/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pagination/tsconfig.lib.json",
+              "libs/pagination/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pagination/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/pagination/jest.config.js",
+            "tsConfig": "libs/pagination/tsconfig.spec.json",
+            "setupFile": "libs/pagination/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/pagination/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/pagination",
+            "config": {
+              "configFolder": "libs/pagination/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "less"
+        }
+      }
+    },
     "notification": {
       "projectType": "library",
       "root": "libs/notification",

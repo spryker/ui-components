@@ -10,6 +10,8 @@ import { PaginationModule } from '@spryker/pagination';
 import { DropdownModule } from '@spryker/dropdown';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { SelectComponentsModule } from '@spryker/web-components';
+import { IconActionModule } from '@spryker/icon/icons';
+import { IconModule } from '@spryker/icon';
 
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
 import { TableFeaturesRendererComponent } from './table-features-renderer/table-features-renderer.component';
@@ -32,6 +34,8 @@ const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
     SelectComponentsModule,
     PaginationModule,
     DropdownModule,
+    IconActionModule,
+    IconModule,
   ],
   declarations: [
     TableComponent,

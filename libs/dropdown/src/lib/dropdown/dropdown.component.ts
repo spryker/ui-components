@@ -7,14 +7,14 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
-interface DropdownItem {
+export interface DropdownItem {
   action: string;
   title: string;
   icon?: string;
   disabled?: boolean;
   subItems?: DropdownItem[];
 }
-type Placement =
+export type Placement =
   | 'bottomLeft'
   | 'bottomCenter'
   | 'bottomRight'

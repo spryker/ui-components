@@ -1,0 +1,111 @@
+@import './tabs.component.theme.less';
+
+.@{tab-prefix-cls} {
+  &-bar {
+    border-bottom: none;
+  }
+
+  &-ink-bar {
+    bottom: -@tabs-boarder-width;
+  }
+
+  &-nav-wrap {
+    margin-bottom: 0;
+  }
+
+  &-nav-container {
+    line-height: @tabs-nav-line-height;
+    font-weight: @font-weight-medium;
+  }
+
+  &-projected-content {
+    display: none;
+  }
+
+  &-custom-tab {
+    position: relative;
+    padding: @tabs-vertical-padding @tabs-horizontal-padding;
+    transition: all @common-transition-time;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -@tabs-boarder-width;
+      left: 0;
+      width: 100%;
+      height: @tabs-boarder-width;
+      background: transparent;
+      transition: background @common-transition-time;
+    }
+
+    &:hover {
+      color: @tabs-hover-color;
+
+      &::after {
+        background: @tabs-hover-color;
+      }
+    }
+
+    &:active {
+      color: @tabs-active-color;
+    }
+
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translate(0, -50%);
+      display: flex;
+      padding-right: 6px;
+      font-size: @font-size-lg;
+    }
+
+    &-warning {
+      padding-left: @tabs-horizontal-padding + 13px;
+      color: @red;
+
+      &:hover {
+        color: @red;
+
+        &::after {
+          background: @red;
+        }
+      }
+    }
+  }
+
+  &-nav {
+    width: 100%;
+    border-bottom: @tabs-boarder-width @border-style-base @gray-light;
+
+    .@{tab-prefix-cls}-tab {
+      padding: 0;
+
+      &-active {
+        &:hover {
+          color: @tabs-highlight-color;
+          border-bottom-color: @tabs-highlight-color;
+        }
+
+        .@{tab-prefix-cls}-custom-tab {
+          &:hover {
+            color: @tabs-highlight-color;
+            border-bottom-color: @tabs-highlight-color;
+          }
+
+          &-warning {
+            &::after {
+              background: @red;
+              z-index: 10;
+            }
+
+            &:hover {
+              color: @red;
+              border-bottom-color: @red;
+            }
+          }
+        }
+      }
+    }
+  }
+}

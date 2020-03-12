@@ -58,6 +58,10 @@
         "libs/navigation/src/index.ts"
       ],
       "@spryker/icon": ["dist/libs/icon/index.d.ts", "libs/icon/src/index.ts"],
+      "@spryker/icon/icons": [
+        "dist/libs/icon/icons/index.d.ts",
+        "libs/icon/icons/src/index.ts"
+      ],
       "@spryker/alert": [
         "dist/libs/alert/index.d.ts",
         "libs/alert/src/index.ts"
@@ -93,6 +97,10 @@
       "@spryker/dropdown": [
         "dist/libs/dropdown/index.d.ts",
         "libs/dropdown/src/index.ts"
+      ],
+      "@spryker/pagination": [
+        "dist/libs/pagination/index.d.ts",
+        "libs/pagination/src/index.ts"
       ]
     }
   },

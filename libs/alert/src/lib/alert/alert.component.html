@@ -1,7 +1,7 @@
 <nz-alert [nzType]="type" [nzMessage]="messageTmpl"></nz-alert>
 <ng-template #messageTmpl>
   <span *ngIf="type === 'error'" class="alert-icon">
-    <spy-icon name="error"></spy-icon>
+    <spy-icon [name]="errorIcon"></spy-icon>
   </span>
   <ng-content></ng-content>
 </ng-template>

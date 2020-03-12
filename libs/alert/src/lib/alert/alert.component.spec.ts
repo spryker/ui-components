@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AlertModule } from '../alert.module';
 
@@ -20,7 +21,7 @@ describe('AlertComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AlertModule],
+      imports: [NoopAnimationsModule, AlertModule],
       declarations: [TestComponent],
     }).compileComponents();
   }));
@@ -59,7 +60,7 @@ describe('AlertComponent', () => {
       fixture.detectChanges();
 
       const iconElem = fixture.debugElement.query(
-        By.css('nz-alert spy-icon[name="error"]'),
+        By.css('nz-alert spy-icon.spy-icon-error'),
       );
 
       expect(iconElem).toBeTruthy();

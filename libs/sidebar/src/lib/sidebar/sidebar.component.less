@@ -8,20 +8,8 @@ spy-sidebar .@{layout-prefix-cls}-sider {
   &-collapsed {
     .@{layout-prefix-cls}-sider {
       &-trigger {
-        &:hover {
-          color: @layout-trigger-color-light;
-          background: @layout-trigger-background;
-          border-color: @layout-trigger-background-hover;
-        }
-
-        &:focus {
-          color: @layout-trigger-background;
-          background: @layout-trigger-background-hover;
-          border-color: @layout-trigger-background-hover;
-        }
-
         &-icon {
-          transform: rotate(0deg);
+          transform: rotate(-90deg);
         }
       }
     }
@@ -63,8 +51,7 @@ spy-sidebar .@{layout-prefix-cls}-sider {
     }
 
     &-icon {
-      transform: rotate(180deg);
-      line-height: 0;
+      transform: rotate(90deg);
     }
   }
 

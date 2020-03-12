@@ -113,6 +113,7 @@
 
 @input-icon-color: @input-placeholder-color;
 @input-icon-hover-color: @input-placeholder-color;
+@input-add-before-spacing: 35px;
 
 // Menu
 @menu-prefix-cls: ~'@{ant-prefix}-menu';
@@ -137,6 +138,9 @@
 @menu-item-decorator-height: 36px;
 @menu-item-icon-size: 24px;
 @menu-item-icon-margin: 15px;
+@menu-item-icon-min-width: 0;
+@menu-item-colapsed-icon-margin: 0;
+@menu-item-colapsed-icon-line-height: 1;
 @menu-item-transition-time: @common-transition-time;
 
 // Alert
@@ -217,11 +221,16 @@
 @dropdown-menu-item-line-height: 24px;
 @dropdown-menu-vertical-padding: 8px;
 @dropdown-menu-horizontal-padding: 15px;
+@dropdown-menu-selected-horizontal-padding: 2px;
 @dropdown-selection-choice-min-width: 100px;
 @dropdown-selection-choice-max-width: 90%;
-@dropdown-selection-content-max-width: 80%;
+@dropdown-selection-remove-block-width: 32px;
+@dropdown-selection-content-max-width: 100% -
+  @dropdown-selection-remove-block-width;
+@dropdown-selection-content-margin-right: 10px +
+  @dropdown-selection-remove-block-width;
 @dropdown-selection-content-line-height: 33px;
-@dropdown-selection-content-margin: 10px;
+@dropdown-selection-content-padding: 10px;
 @dropdown-selection-remove-line-height: 40px;
 
 @suffix-icon-size: 14px;
@@ -230,7 +239,7 @@
 @checkbox-icon-size: 18px;
 @checkbox-icon-line-height: 28px;
 @checkbox-icon-margin-right: 6px;
-@remove-icon-size: 14px;
+@remove-icon-size: 12px;
 @choice-border-radius: 24px;
 @choise-remove-size: 38px;
 
@@ -269,3 +278,17 @@
 @dropdown-menu-item-line-height: 30px;
 @dropdown-menu-item-border: 2px solid @white;
 @dropdown-menu-item-border-focus-radius: 4px;
+
+// Pagination
+@pagination-prefix-cls: ~'@{ant-prefix}-pagination';
+
+@pagination-link-size: 38px;
+@pagination-link-border-radius: 4px;
+@pagination-link-margin-right: 5px;
+@pagination-link-border: 2px solid @white;
+@pagination-link-padding-top: 8px;
+@pagination-item-container-margin-top: 8px;
+@pagination-icon-arrow-size: 16px;
+@pagination-icon-arrow-line-height: 36px;
+@pagination-jump-next-width: 22px;
+@pagination-jump-next-min-width: 0;

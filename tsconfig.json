@@ -98,10 +98,14 @@
         "dist/libs/table/index.d.ts",
         "libs/table/src/index.ts"
       ],
-        "@spryker/pagination": [
-            "dist/libs/pagination/index.d.ts",
-            "libs/pagination/src/index.ts"
-        ]
+      "@spryker/pagination": [
+        "dist/libs/pagination/index.d.ts",
+        "libs/pagination/src/index.ts"
+      ],
+      "@spryker/dropdown": [
+        "dist/libs/dropdown/index.d.ts",
+        "libs/dropdown/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

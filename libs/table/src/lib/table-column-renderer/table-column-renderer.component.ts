@@ -46,7 +46,7 @@ export class TableColumnRendererComponent implements OnInit {
     const data = this.data?.[this.config.id];
     const isRowArray = Array.isArray(data);
 
-    if (this.config?.multiple && isRowArray)  {
+    if (this.config?.multiple && isRowArray) {
       this.values = <unknown[]>data;
 
       return;
@@ -73,7 +73,7 @@ export class TableColumnRendererComponent implements OnInit {
   private updateItemConfig(): void {
     if (!this.config || !this.config.type) {
       this.itemConfig = undefined;
-      
+
       return;
     }
 

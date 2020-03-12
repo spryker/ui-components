@@ -93,13 +93,12 @@
       </td>
 
       <td *ngIf="config?.rowActions?.length">
-        <div class="ant-table-column-inner">
-          DROPDOWN
-          <div *ngFor="let action of config.rowActions">
-            <span (click)="this.actionTriggerHandler(action, [data])">{{
-              action.title
-            }}</span>
-          </div>
+        <div class="ant-table-column-inner ant-table-column-inner--align-right">
+          <spy-dropdown
+            [items]="actionTransformation()"
+            (actionTriggered)="this.actionTriggerHandler($event, [data])"
+            class="ant-table-dropdown"
+          >:</spy-dropdown>
         </div>
       </td>
     </tr>
@@ -111,12 +110,12 @@
 ></spy-table-features-renderer>
 
 <spy-pagination
-	[pageSizeOptions]="config?.pageSizes || [10, 20, 50]"
-	[total]="(data$ | async)?.total"
-	[pageSize]="(data$ | async)?.size"
-	[page]="(data$ | async)?.offset"
-	(pageChange)="updatePagination($event)"
-    (pageSizeChange)="updatePaginationSize($event)"
+  [pageSizeOptions]="config?.pageSizes || [10, 20, 50]"
+  [total]="(data$ | async)?.total"
+  [pageSize]="(data$ | async)?.size"
+  [page]="(data$ | async)?.offset"
+  (pageChange)="updatePagination($event)"
+  (pageSizeChange)="updatePaginationSize($event)"
 ></spy-pagination>
 
 <spy-table-features-renderer

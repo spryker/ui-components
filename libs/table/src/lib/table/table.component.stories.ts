@@ -81,19 +81,24 @@ export const withFeatures = (): IStory => ({
       {
         dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
         columns: [
-          { id: 'name', sortable: true, title: 'name', width: '40%' },
-          { id: 'sku', sortable: true, title: 'sku' },
-          { id: 'id3', sortable: true, title: 'id3' },
+          { id: 'name', sortable: true, title: 'name', width: '20%' },
+          { id: 'sku', sortable: true, title: 'sku', width: '20%' },
+          { id: 'id3', sortable: true, title: 'id3', width: '20%' },
           {
             id: 'sku3',
             title: 'sku3 | link',
             type: 'test',
+            width: '20%',
             typeOptions: { text: '${value} in ${row.name}' },
           },
         ],
         selectable: true,
         fixHeader: '200px',
-        pageSizes: [20, 40, 50]
+        rowActions: [
+          { id: '1234', title: '123' },
+          { id: '2345', title: '234' },
+        ],
+        pageSizes: [20, 40, 50],
       },
       'Group',
     ),

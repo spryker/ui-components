@@ -10,7 +10,7 @@ import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { TableComponent } from './table.component';
-import { TableConfig, TableColumns } from './table';
+import { TableConfig, TableColumns, TableRowActionBase } from './table';
 
 const mockedDataUrl = 'https://test-data-url.com';
 const mockColUrl = 'https://test-col-url.com';
@@ -67,7 +67,7 @@ const mockConfigCols: TableConfig = {
   columns: mockCols,
 };
 
-xdescribe('TableComponent', () => {
+describe('TableComponent', () => {
   let httpTestingController: HttpTestingController;
 
   const { testModule, createComponent } = getTestingForComponent(
@@ -102,7 +102,9 @@ xdescribe('TableComponent', () => {
 
     it('must render spy-pagination after spy-table-features-renderer and nz-table', async () => {
       const host = await createComponent({ config: mockConfig }, true);
-      const paginationElem = host.queryCss('nz-table + spy-table-features-renderer + spy-pagination');
+      const paginationElem = host.queryCss(
+        'nz-table + spy-table-features-renderer + spy-pagination',
+      );
 
       expect(paginationElem).toBeTruthy();
     });
@@ -474,7 +476,7 @@ xdescribe('TableComponent', () => {
     describe('pageSizes', () => {
       const defaultSizesArray = [10, 20, 50];
       const mockSizesArray = [20, 30, 40];
-      const mockHeaderConfig = { ...mockConfigCols, pageSizes: mockSizesArray };
+      const mockSizesConfig = { ...mockConfigCols, pageSizes: mockSizesArray };
 
       it('should bind to `nzScroll` input of `nz-table` component', async () => {
         const host = await createComponent({ config: mockConfigCols }, true);
@@ -484,11 +486,37 @@ xdescribe('TableComponent', () => {
 
         const paginationElem = host.queryCss('spy-pagination');
 
-        expect(paginationElem!.properties.pageSizeOptions).toEqual(defaultSizesArray);
+        expect(paginationElem!.properties.pageSizeOptions).toEqual(
+          defaultSizesArray,
+        );
 
-        host.setInputs({ config: mockHeaderConfig }, true);
+        host.setInputs({ config: mockSizesConfig }, true);
 
-        expect(paginationElem!.properties.pageSizeOptions).toEqual(mockSizesArray);
+        expect(paginationElem!.properties.pageSizeOptions).toEqual(
+          mockSizesArray,
+        );
+      });
+    });
+
+    describe('rowActions', () => {
+      const mockActions = [
+        { id: '1234', title: '123' },
+        { id: '2345', title: '234' },
+      ] as TableRowActionBase[];
+      const mockActionsConfig = { ...mockConfigCols, rowActions: mockActions };
+
+      it('render extra td as last column with `spy-dropdown` component', async () => {
+        const host = await createComponent({ config: mockActionsConfig }, true);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
+
+        dataRes.flush(mockData);
+        host.detectChanges();
+
+        const dropDownElem = host.queryCss('tr td:last-child spy-dropdown');
+
+        expect(dropDownElem).toBeTruthy();
       });
     });
   });
@@ -514,6 +542,22 @@ xdescribe('TableComponent', () => {
       host.detectChanges();
 
       expect(host.component.selectionChange.emit).toHaveBeenCalled();
+    });
+  });
+
+  describe('@Output(actionTriggered)', () => {
+    it('must be emitted every time when `toggleCheckedRows` is triggered', async () => {
+      const host = await createComponent({ config: mockConfig }, true);
+
+      spyOn(host.component.actionTriggered, 'emit');
+
+      host.component.actionTriggerHandler(
+        { title: '', id: 'click' } as TableRowActionBase,
+        [],
+      );
+      host.detectChanges();
+
+      expect(host.component.actionTriggered.emit).toHaveBeenCalled();
     });
   });
 });

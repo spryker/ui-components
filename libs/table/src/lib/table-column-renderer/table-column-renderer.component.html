@@ -1,15 +1,15 @@
 <ng-container *ngFor="let value of values; index as i">
   <ng-container
-      *ngIf="template; else typeTpl"
-      [ngTemplateOutlet]="template"
-      [ngTemplateOutletContext]="contexts[i]"
+    *ngIf="template; else typeTpl"
+    [ngTemplateOutlet]="template"
+    [ngTemplateOutletContext]="contexts[i]"
   ></ng-container>
 
   <ng-template #typeTpl>
     <orc-orchestrator
-        *ngIf="config.type; else defaultTpl"
-        [config]="itemConfig"
-        [context]="contexts[i]"
+      *ngIf="config.type; else defaultTpl"
+      [config]="itemConfig"
+      [context]="contexts[i]"
     ></orc-orchestrator>
   </ng-template>
 

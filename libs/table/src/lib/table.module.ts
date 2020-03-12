@@ -7,6 +7,7 @@ import {
 } from '@orchestrator/layout';
 import { CheckboxModule } from '@spryker/checkbox';
 import { PaginationModule } from '@spryker/pagination';
+import { DropdownModule } from '@spryker/dropdown';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { SelectComponentsModule } from '@spryker/web-components';
 
@@ -30,6 +31,7 @@ const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
     LayoutFlatHostModule,
     SelectComponentsModule,
     PaginationModule,
+    DropdownModule,
   ],
   declarations: [
     TableComponent,

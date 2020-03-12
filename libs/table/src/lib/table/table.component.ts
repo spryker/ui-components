@@ -211,6 +211,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   actionTriggerHandler(action: TableRowActionBase, items: TableDataRow[]) {
+    console.log(action);
     const event: TableActionTriggeredEvent = {
       action,
       items,
@@ -220,6 +221,10 @@ export class TableComponent implements OnInit, AfterContentInit {
     if (!wasActionHandled) {
       this.actionTriggered.emit(event);
     }
+  }
+
+  private actionTransformation(): any {
+    return this.config?.rowActions?.map(({ id, title }) => ({ action: id, title }))
   }
 
   private initCheckedRows(data: TableData) {

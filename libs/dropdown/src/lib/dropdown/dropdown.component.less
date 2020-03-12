@@ -1,0 +1,29 @@
+@import './dropdown.component.theme.less';
+
+.@{dropdown-prefix-cls} {
+  &-menu {
+    width: @dropdown-menu-width;
+    border-radius: @dropdown-menu-border-radius;
+    box-shadow: @dropdown-menu-box-shadow;
+    background-color: @white;
+    padding: @dropdown-menu-padding;
+
+    &-item {
+      height: @dropdown-menu-item-height;
+      font: @font-weight-medium @font-size-base @font-family;
+      line-height: @dropdown-menu-item-line-height;
+      color: @ink;
+      border: @dropdown-menu-item-border;
+
+      &:hover {
+        background-color: @gray-lighter;
+        border-color: @gray-lighter;
+      }
+
+      &:focus {
+        border-radius: @dropdown-menu-item-border-focus-radius;
+        border-color: @green;
+      }
+    }
+  }
+}

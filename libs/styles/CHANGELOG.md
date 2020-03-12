@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.19](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.18...@spryker/styles@0.1.0-next.19) (2020-03-12)
+
+
+### Features
+
+* **pagination component:** pagination component implementation ([381b224](https://github.com/spryker/ui-components/commit/381b22463019f41f8749ef4e29733789cdaa8ef6))
+
+
+
+
+
 # [0.1.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.17...@spryker/styles@0.1.0-next.18) (2020-03-12)
 
 

@@ -82,6 +82,9 @@
     },
     "pagination": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "tabs": {
+      "tags": ["level:molecule", "type:component"]
     }
   }
 }

@@ -1,19 +1,19 @@
 export function ToJson(): PropertyDecorator {
   return (target, key) => {
-    const newKey = '__json-value';
+    const internalKey = `__${key.toString()}-value`;
 
     const getter = function(this: any) {
-      return this[newKey];
+      return this[internalKey];
     };
 
     const setter = function(this: any, prop: Record<string, string> | string) {
       if (!prop) {
-        this[newKey] = undefined;
+        this[internalKey] = undefined;
 
         return;
       }
 
-      this[newKey] = typeof prop === 'string' ? JSON.parse(prop) : prop;
+      this[internalKey] = typeof prop === 'string' ? JSON.parse(prop) : prop;
     };
 
     Object.defineProperty(target, key, {

@@ -1,0 +1,19 @@
+<ng-template #contentTpl>
+  <ng-content></ng-content>
+</ng-template>
+
+<ng-template #titleTpl>
+  <div
+    [ngClass]="{
+      'ant-tabs-custom-tab': true,
+      'ant-tabs-custom-tab-warning': hasWarning
+    }"
+  >
+    <div *ngIf="hasWarning" ngClass="ant-tabs-custom-tab-icon">
+      <spy-icon [name]="iconErrorReference.icon"></spy-icon>
+    </div>
+    <div>
+      {{ title }}
+    </div>
+  </div>
+</ng-template>

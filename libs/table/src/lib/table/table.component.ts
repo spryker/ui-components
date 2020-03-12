@@ -98,9 +98,9 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
 
     this.templatesObj = this.slotTemplates.reduce(
-      (templates, template) => ({
+      (templates, slot) => ({
         ...templates,
-        [template.spyColTpl]: template.template,
+        [slot.spyColTpl]: slot.template,
       }),
       {},
     );
@@ -192,6 +192,10 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   updatePagination(page: number): void {
     this.dataConfiguratorService.changePage(page);
+  }
+
+  updatePaginationSize(size: number): void {
+    this.dataConfiguratorService.update({ size });
   }
 
   getTableId() {

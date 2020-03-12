@@ -106,11 +106,11 @@ describe('PaginationComponent', () => {
     expect(component.pageChangeSpy).toHaveBeenCalled();
   });
 
-  it('pageSizeChange must be emitted every time nzPageSizeChange emits from nz-select', () => {
-    const nzPagElem = fixture.debugElement.query(By.css('nz-pagination'));
+  it('pageSizeChange must be emitted every time valueChange emits from spy-select', () => {
+    const nzPagElem = fixture.debugElement.query(By.css('spy-select'));
     const page = 2;
 
-    nzPagElem.triggerEventHandler('nzPageSizeChange', page);
+    nzPagElem.triggerEventHandler('valueChange', page);
     fixture.detectChanges();
 
     expect(component.pageSizeChangeSpy).toHaveBeenCalled();

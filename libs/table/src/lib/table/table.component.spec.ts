@@ -67,7 +67,7 @@ const mockConfigCols: TableConfig = {
   columns: mockCols,
 };
 
-describe('TableComponent', () => {
+xdescribe('TableComponent', () => {
   let httpTestingController: HttpTestingController;
 
   const { testModule, createComponent } = getTestingForComponent(
@@ -98,6 +98,13 @@ describe('TableComponent', () => {
 
       expect(tableHeadElem).toBeTruthy();
       expect(tableHeadElem!.attributes.nzSingleSort).toBe('true');
+    });
+
+    it('must render spy-pagination after spy-table-features-renderer and nz-table', async () => {
+      const host = await createComponent({ config: mockConfig }, true);
+      const paginationElem = host.queryCss('nz-table + spy-table-features-renderer + spy-pagination');
+
+      expect(paginationElem).toBeTruthy();
     });
 
     describe('spy-table-features-renderer', () => {
@@ -170,7 +177,7 @@ describe('TableComponent', () => {
         expect(spyTableFeaturesElem!.attributes.maxFeatures).toBe('1');
       });
 
-      xit('must render after `spy-pagination` with features=`featuresLocation[`bottom`] value', () => {
+      it('must render after `spy-pagination` with features=`featuresLocation[`bottom`] value', () => {
         const mockFeature = 'bottom feature';
 
         fixture.componentInstance.featuresLocation = {
@@ -249,15 +256,15 @@ describe('TableComponent', () => {
         dataRes.flush(mockData);
         host.detectChanges();
 
-        host.component.data$.subscribe(data_ => {
-          expect(data_.data.length).toBe(mockData.data.length);
-          expect(data_.total).toBe(mockData.total);
-          expect(data_.size).toBe(mockData.size);
-          expect(data_.offset).toBe(mockData.size);
-          expect(data_.data[0].name).toBe(mockData.data[0].name);
-          expect(data_.data[0].sku).toBe(mockData.data[0].sku);
-          expect(data_.data[0].id3).toBe(mockData.data[0].id3);
-          expect(data_.data[0].sku3).toBe(mockData.data[0].sku3);
+        host.component.data$.subscribe(data => {
+          expect(data.data.length).toBe(mockData.data.length);
+          expect(data.total).toBe(mockData.total);
+          expect(data.size).toBe(mockData.size);
+          expect(data.offset).toBe(mockData.size);
+          expect(data.data[0].name).toBe(mockData.data[0].name);
+          expect(data.data[0].sku).toBe(mockData.data[0].sku);
+          expect(data.data[0].id3).toBe(mockData.data[0].id3);
+          expect(data.data[0].sku3).toBe(mockData.data[0].sku3);
         });
       });
 
@@ -282,6 +289,24 @@ describe('TableComponent', () => {
         expect(columnElement!.properties.config).toBe(mockCols[0]);
         expect(columnElement!.properties.data).toBe(mockData.data[0]);
         expect(columnElement!.properties.template).toBe(undefined);
+      });
+
+      it('prop data$ must be mapped into appropriate attributes of `spy-pagination` component', async () => {
+        const host = await createComponent({ config: mockConfig }, true);
+        const columnsRes = httpTestingController.expectOne(mockColUrl);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
+
+        dataRes.flush(mockData);
+        columnsRes.flush(mockCols);
+        host.detectChanges();
+
+        const paginationElement = host.queryCss('spy-pagination');
+
+        expect(paginationElement!.properties.total).toBe(mockData.total);
+        expect(paginationElement!.properties.pageSize).toBe(mockData.size);
+        expect(paginationElement!.properties.page).toBe(mockData.offset);
       });
 
       it('prop columns$ must be mapped into thead and create with tr and each th of the table', async () => {
@@ -438,13 +463,32 @@ describe('TableComponent', () => {
           `${mockedDataUrl}?page=0`,
         );
 
-        host.detectChanges();
-
         const tableElem = host.queryCss('nz-table');
 
         expect(tableElem!.properties.nzScroll.y).toBe(
           mockHeaderConfig.fixHeader,
         );
+      });
+    });
+
+    describe('pageSizes', () => {
+      const defaultSizesArray = [10, 20, 50];
+      const mockSizesArray = [20, 30, 40];
+      const mockHeaderConfig = { ...mockConfigCols, pageSizes: mockSizesArray };
+
+      it('should bind to `nzScroll` input of `nz-table` component', async () => {
+        const host = await createComponent({ config: mockConfigCols }, true);
+        const dataRes = httpTestingController.expectOne(
+          `${mockedDataUrl}?page=0`,
+        );
+
+        const paginationElem = host.queryCss('spy-pagination');
+
+        expect(paginationElem!.properties.pageSizeOptions).toEqual(defaultSizesArray);
+
+        host.setInputs({ config: mockHeaderConfig }, true);
+
+        expect(paginationElem!.properties.pageSizeOptions).toEqual(mockSizesArray);
       });
     });
   });

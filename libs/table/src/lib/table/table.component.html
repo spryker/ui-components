@@ -116,6 +116,7 @@
 	[pageSize]="(data$ | async)?.size"
 	[page]="(data$ | async)?.offset"
 	(pageChange)="updatePagination($event)"
+    (pageSizeChange)="updatePaginationSize($event)"
 ></spy-pagination>
 
 <spy-table-features-renderer

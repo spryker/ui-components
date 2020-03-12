@@ -30,6 +30,7 @@ import {
   TableData,
   TableDataConfig,
   TableDataRow,
+  TableRowAction,
   TableRowActionBase,
 } from './table';
 import { TableFeatureComponent } from './table-feature.component';
@@ -210,8 +211,12 @@ export class TableComponent implements OnInit, AfterContentInit {
     return index;
   }
 
-  actionTriggerHandler(action: TableRowActionBase, items: TableDataRow[]) {
-    console.log(action);
+  actionTriggerHandler(actionId: TableRowAction, items: TableDataRow[]) {
+    // tslint:disable: no-non-null-assertion
+    const action: TableRowActionBase = this.config!.rowActions!.filter(
+      rowAction => rowAction.id === actionId,
+    )[0];
+    // tslint:enable: no-non-null-assertion
     const event: TableActionTriggeredEvent = {
       action,
       items,
@@ -224,7 +229,10 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   private actionTransformation(): any {
-    return this.config?.rowActions?.map(({ id, title }) => ({ action: id, title }))
+    return this.config?.rowActions?.map(({ id, title }) => ({
+      action: id,
+      title,
+    }));
   }
 
   private initCheckedRows(data: TableData) {

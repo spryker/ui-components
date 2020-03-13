@@ -10,7 +10,7 @@ export const primary = () => ({
     imports: [CollapsibleModule, BrowserAnimationsModule],
   },
   template: `
-    <spy-collapsible title="Collapsible Title" titleIcon="info">
+    <spy-collapsible title="Collapsible Title">
        <div>Collapse Content</div> 
     </spy-collapsible>
   `,

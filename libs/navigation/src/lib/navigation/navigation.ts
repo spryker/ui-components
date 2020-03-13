@@ -1,5 +1,3 @@
-import { ToBoolean } from '@spryker/utils';
-
 export interface NavigationComponentMethods {
   collapse(): void;
   expand(): void;

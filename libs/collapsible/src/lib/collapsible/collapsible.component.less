@@ -42,13 +42,14 @@
     }
 
     &-active {
-      border-color: @gray;
+      border-color: @gray-light;
 
       &:last-child {
         & > .@{collapse-prefix-cls}-header {
           border-radius: @collapse-panel-border-radius
             @collapse-panel-border-radius 0 0;
-          border-bottom: @collapse-panel-border-width @border-style-base @gray;
+          border-bottom: @collapse-panel-border-width @border-style-base
+            @gray-light;
 
           &:hover {
             background: @gray-light;
@@ -68,7 +69,7 @@
         & > .@{collapse-prefix-cls}-header {
           &:hover {
             background: @gray-lighter;
-            border-bottom-color: @gray;
+            border-bottom-color: @gray-light;
 
             &::before,
             &::after {

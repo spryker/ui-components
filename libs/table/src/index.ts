@@ -1,4 +1,5 @@
 export * from './lib/table.module';
+export * from './lib/table/table';
 export * from './lib/table/table.component';
 export * from './lib/table/table-feature.component';
 export * from './lib/table/table-feature.directive';

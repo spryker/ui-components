@@ -7,3 +7,4 @@ export * from './lib/to-json';
 export * from './lib/to-boolean';
 export * from './lib/apply-contexts';
 export * from './lib/context';
+export * from './lib/types';

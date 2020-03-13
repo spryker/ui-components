@@ -145,9 +145,9 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
   featuresLocation: Record<string, TableFeatureComponent[]> = {};
 
-  handleStreamError = () => (err: any) => EMPTY;
-
   private rowsData: TableDataRow[] = [];
+
+  handleStreamError = () => (err: any) => EMPTY;
 
   constructor(
     private dataFetcherService: TableDataFetcherService,

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.21](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.20...@spryker/styles@0.1.0-next.21) (2020-03-12)
+
+
+### Features
+
+* **dropdown:** dropdown component ([3e73bde](https://github.com/spryker/ui-components/commit/3e73bde7260fabd4c3ff01839ce161b50b36d041))
+
+
+
+
+
 # [0.1.0-next.20](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.19...@spryker/styles@0.1.0-next.20) (2020-03-12)
 
 

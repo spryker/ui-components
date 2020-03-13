@@ -1598,6 +1598,79 @@
         }
       }
     },
+    "dropdown": {
+      "projectType": "library",
+      "root": "libs/dropdown",
+      "sourceRoot": "libs/dropdown/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/dropdown/tsconfig.lib.json",
+            "project": "libs/dropdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/dropdown/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/dropdown/tsconfig.lib.json",
+              "libs/dropdown/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/dropdown/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/dropdown/jest.config.js",
+            "tsConfig": "libs/dropdown/tsconfig.spec.json",
+            "setupFile": "libs/dropdown/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/dropdown/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/dropdown",
+            "config": {
+              "configFolder": "libs/dropdown/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "less"
+        }
+      }
+    },
     "label": {
       "projectType": "library",
       "root": "libs/label",

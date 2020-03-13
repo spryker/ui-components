@@ -26,7 +26,6 @@ import {
   distinctUntilChanged,
   map,
   mapTo,
-  share,
   shareReplay,
   startWith,
   switchMap,
@@ -96,7 +95,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   components = TableFeatureComponent;
 
   private setConfig$ = new ReplaySubject<TableConfig>(1);
-  config$ = this.setConfig$.pipe(share());
+  config$ = this.setConfig$.pipe(shareReplay());
 
   columnsConfig$ = this.config$.pipe(
     map(config => config.columns || config.columnsUrl),

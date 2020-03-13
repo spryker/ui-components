@@ -5,15 +5,33 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
   QueryList,
+  SimpleChanges,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
-import { merge, Observable } from 'rxjs';
-import { mapTo, shareReplay, startWith, tap } from 'rxjs/operators';
+import {
+  EMPTY,
+  merge,
+  MonoTypeOperatorFunction,
+  of,
+  ReplaySubject,
+} from 'rxjs';
+import {
+  catchError,
+  distinctUntilChanged,
+  map,
+  mapTo,
+  share,
+  shareReplay,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 
 import { TableActionService } from './action.service';
 import { ColTplDirective } from './col-tpl.directive';
@@ -24,7 +42,6 @@ import {
   SortingCriteria,
   TableActionTriggeredEvent,
   TableColumn,
-  TableColumns,
   TableColumnTplContext,
   TableConfig,
   TableData,
@@ -43,6 +60,9 @@ export enum TableFeatureLocation {
   bottom = 'bottom',
 }
 
+const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
+  shareReplay({ bufferSize: 1, refCount: true });
+
 @Component({
   selector: 'spy-table',
   templateUrl: './table.component.html',
@@ -56,12 +76,13 @@ export enum TableFeatureLocation {
     TableActionService,
   ],
 })
-export class TableComponent implements OnInit, AfterContentInit {
+export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() @ToJson() config?: TableConfig;
   @Input() tableId?: string;
 
   @Output() selectionChange = new EventEmitter<TableDataRow[]>();
   @Output() actionTriggered = new EventEmitter<TableActionTriggeredEvent>();
+
   @ContentChildren(ColTplDirective) slotTemplates?: QueryList<ColTplDirective>;
 
   @ContentChildren(TableFeatureDirective)
@@ -74,15 +95,58 @@ export class TableComponent implements OnInit, AfterContentInit {
   featureLocation = TableFeatureLocation;
   components = TableFeatureComponent;
 
-  columns$ = new Observable<TableColumns>();
-  data$ = new Observable<TableData>();
-  isLoading$ = new Observable<boolean>();
+  private setConfig$ = new ReplaySubject<TableConfig>(1);
+  config$ = this.setConfig$.pipe(share());
+
+  columnsConfig$ = this.config$.pipe(
+    map(config => config.columns || config.columnsUrl),
+    distinctUntilChanged(),
+    shareReplaySafe(),
+  );
+
+  columns$ = this.columnsConfig$.pipe(
+    switchMap(colsOrUrl =>
+      colsOrUrl
+        ? this.columnsResolverService
+            .resolve(colsOrUrl)
+            .pipe(catchError(this.handleStreamError()))
+        : of([]),
+    ),
+    shareReplaySafe(),
+  );
+
+  dataUrl$ = this.config$.pipe(
+    map(config => config.dataUrl),
+    distinctUntilChanged(),
+    shareReplaySafe(),
+  );
+
+  data$ = this.dataUrl$.pipe(
+    switchMap(dataUrl =>
+      this.dataFetcherService
+        .resolve(dataUrl)
+        .pipe(catchError(this.handleStreamError())),
+    ),
+    tap(data => {
+      this.initCheckedRows(data);
+      this.rowsData = data.data;
+    }),
+    shareReplaySafe(),
+  );
+
+  isLoading$ = merge(
+    this.dataConfiguratorService.config$.pipe(mapTo(true)),
+    this.data$.pipe(mapTo(false)),
+  ).pipe(startWith(false), shareReplaySafe());
+
   allChecked = false;
   isIndeterminate = false;
   checkedRows: Record<TableColumn['id'], boolean> = {};
   checkedRowsArr: TableDataRow[] = [];
   templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
   featuresLocation: Record<string, TableFeatureComponent[]> = {};
+
+  handleStreamError = () => (err: any) => EMPTY;
 
   private rowsData: TableDataRow[] = [];
 
@@ -108,28 +172,13 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
-    if (!this.config) {
-      throw new Error(`TableComponent: No input config found!`);
-    }
-
-    const colsOrUrl = this.config.columnsUrl || this.config.columns;
-
-    if (!colsOrUrl) {
-      throw new Error(`TableComponent: No cols data found in input config!`);
-    }
-
-    this.data$ = this.dataFetcherService.resolve(this.config.dataUrl).pipe(
-      tap(data => {
-        this.initCheckedRows(data);
-        this.rowsData = data.data;
-      }),
-      shareReplay(),
-    );
-    this.columns$ = this.columnsResolverService
-      .resolve(colsOrUrl)
-      .pipe(shareReplay());
     this.dataConfiguratorService.changePage(0);
-    this.isLoading$ = this.isLoading();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.config) {
+      this.setConfig$.next(this.config);
+    }
   }
 
   updateFeaturesLocation(features: TableFeatureComponent[]): void {
@@ -228,7 +277,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  private actionTransformation(): any {
+  actionTransformation(): any {
     return this.config?.rowActions?.map(({ id, title }) => ({
       action: id,
       title,
@@ -244,13 +293,6 @@ export class TableComponent implements OnInit, AfterContentInit {
 
     this.allChecked = false;
     this.isIndeterminate = false;
-  }
-
-  private isLoading() {
-    return merge(
-      this.dataConfiguratorService.config$.pipe(mapTo(true)),
-      this.data$.pipe(mapTo(false)),
-    ).pipe(startWith(false));
   }
 
   private sortingValueTransformation(

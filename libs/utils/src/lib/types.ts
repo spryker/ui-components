@@ -1,3 +1,5 @@
+import { InjectionToken } from '@angular/core';
+
 /**
  * Map type `T` to type `M` if it extends type `E`
  */
@@ -15,3 +17,10 @@ export type Default<T, D> = Distribute<T> extends never ? D : T;
  * create a tuple for each element from that union (ex. `[string, number]`)
  */
 export type Distribute<T> = T extends any ? T : never;
+
+/**
+ * Extract stored type from {@link InjectionToken}
+ */
+export type InjectionTokenType<T> = T extends InjectionToken<infer V>
+  ? V
+  : never;

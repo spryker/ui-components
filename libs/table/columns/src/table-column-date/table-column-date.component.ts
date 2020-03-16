@@ -13,7 +13,7 @@ import {
 import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
-class TableColumnDateConfig {
+export class TableColumnDateConfig {
   @ColumnTypeOption()
   date? = this.contextService.wrap('value');
   @ColumnTypeOption()

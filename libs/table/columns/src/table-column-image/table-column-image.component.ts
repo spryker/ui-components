@@ -5,11 +5,12 @@ import {
   ViewEncapsulation,
   Injectable,
 } from '@angular/core';
-import { ColumnTypeOption, TableColumnTypeComponent } from '@spryker/table';
 import {
+  ColumnTypeOption,
+  TableColumnTypeComponent,
   TableColumnComponent,
   TableColumnContext,
-} from './../../../src/lib/table/table';
+} from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })

@@ -9,7 +9,7 @@ import { ColumnTypeOption, TableColumnTypeComponent } from '@spryker/table';
 import {
   TableColumnComponent,
   TableColumnContext,
-} from '../../../src/lib/table/table';
+} from './../../../src/lib/table/table';
 import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })

@@ -3,7 +3,10 @@ import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TableColumnDateComponent } from './table-column-date.component';
 import { ContextPipe } from '@spryker/utils';
 
-const configMock = { date: new Date('2020-01-01T17:25:00'), format: 'mediumDate' };
+const configMock = {
+  date: new Date('2020-01-01T17:25:00'),
+  format: 'mediumDate',
+};
 
 describe('TableColumnDateComponent', () => {
   @Component({

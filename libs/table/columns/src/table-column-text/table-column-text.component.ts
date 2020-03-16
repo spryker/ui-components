@@ -13,7 +13,7 @@ import {
 import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
-class TableColumnTextConfig {
+export class TableColumnTextConfig {
   @ColumnTypeOption()
   text? = this.contextService.wrap('value');
 

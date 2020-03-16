@@ -81,7 +81,7 @@ describe('TabsComponent', () => {
   });
 
   describe('@Input(isAnimated)', () => {
-    it('should by default have value `line`', async () => {
+    it('should bind to `nzAnimated` of <nz-tabset>', async () => {
       const host = await createComponent({ isAnimated: true }, true);
       const tabsElement = host.queryCss('nz-tabset')!;
 

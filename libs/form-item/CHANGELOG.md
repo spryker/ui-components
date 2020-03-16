@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.7...@spryker/form-item@0.1.0-next.8) (2020-03-16)
+
+
+### Features
+
+* **label:** label component, bool updates ([4d5e875](https://github.com/spryker/ui-components/commit/4d5e8757009faa5fa2b4546b0061508b2c5725f0))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.6...@spryker/form-item@0.1.0-next.7) (2020-03-11)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.10...@spryker/input@0.1.0-next.11) (2020-03-16)
+
+
+### Features
+
+* **label:** label component, bool updates ([4d5e875](https://github.com/spryker/ui-components/commit/4d5e8757009faa5fa2b4546b0061508b2c5725f0))
+
+
+
+
+
 # [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.9...@spryker/input@0.1.0-next.10) (2020-03-11)
 
 

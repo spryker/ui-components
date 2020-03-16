@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.22](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.21...@spryker/styles@0.1.0-next.22) (2020-03-16)
+
+
+### Bug Fixes
+
+* **input:** input bg ([d76aa6c](https://github.com/spryker/ui-components/commit/d76aa6cb73963f5c9a021bfddd2c720ef3607a17))
+
+
+
+
+
 # [0.1.0-next.21](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.20...@spryker/styles@0.1.0-next.21) (2020-03-12)
 
 

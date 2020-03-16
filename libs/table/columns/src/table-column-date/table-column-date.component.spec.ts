@@ -3,7 +3,7 @@ import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TableColumnDateComponent } from './table-column-date.component';
 import { ContextPipe } from '@spryker/utils';
 
-const configMock = { date: new Date('2020-01-01T17:25:00'), format: 'long' };
+const configMock = { date: new Date('2020-01-01T17:25:00'), format: 'mediumDate' };
 
 describe('TableColumnDateComponent', () => {
   @Component({
@@ -34,7 +34,7 @@ describe('TableColumnDateComponent', () => {
   }));
 
   it('Template must render value from config.date converted by DatePipe with format value', () => {
-    const expectedValue = 'January 1, 2020 at 5:25:00 PM GMT+2';
+    const expectedValue = 'Jan 1, 2020';
 
     component.config = configMock;
     fixture.detectChanges();

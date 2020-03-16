@@ -147,7 +147,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   private rowsData: TableDataRow[] = [];
 
-  handleStreamError = () => (err: any) => EMPTY;
+  handleStreamError = () => (error: any) => EMPTY;
 
   constructor(
     private dataFetcherService: TableDataFetcherService,

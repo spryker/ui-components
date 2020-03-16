@@ -14,9 +14,11 @@ import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext } from './table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableColumnImageComponent } from '../../../columns/src/table-column-image/table-column-image.component';
-import { TableColumnTextComponent } from '../../../columns/src/table-column-text/table-column-text.component';
-import { TableColumnDateComponent } from 'libs/table/columns/src/table-column-date/table-column-date.component';
+import {
+  TableColumnImageComponent,
+  TableColumnTextComponent,
+  TableColumnDateComponent,
+} from '../../../columns/src';
 
 export default {
   title: 'TableComponent',

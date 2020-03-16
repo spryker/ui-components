@@ -176,10 +176,7 @@ describe('TableColumnRendererComponent', () => {
 
   it('must render `orc-orchestrator` when input `config` has key `type`', () => {
     component.config = {
-      id: 'name',
-      title: 'test',
-      sortable: true,
-      width: '40%',
+      ...mockConfig,
       type: 'test',
       typeOptions: { text: '${value} orc-orchestrator' },
     };

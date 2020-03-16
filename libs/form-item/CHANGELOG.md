@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.8...@spryker/form-item@0.1.0-next.9) (2020-03-16)
+
+
+### Bug Fixes
+
+* **form-item:** label styles ([804a06f](https://github.com/spryker/ui-components/commit/804a06f87507f78fe8b6c99d9e7916b21562661c))
+* **tabs,collapsible,styles:** tans anim, toggle styles ([fc994c2](https://github.com/spryker/ui-components/commit/fc994c273b25161dc54bcfc45b0a3d56724a394a))
+
+
+
+
+
 # [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.7...@spryker/form-item@0.1.0-next.8) (2020-03-16)
 
 

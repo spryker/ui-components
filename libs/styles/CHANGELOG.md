@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.23](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.22...@spryker/styles@0.1.0-next.23) (2020-03-16)
+
+
+### Bug Fixes
+
+* **tabs,collapsible,styles:** tans anim, toggle styles ([fc994c2](https://github.com/spryker/ui-components/commit/fc994c273b25161dc54bcfc45b0a3d56724a394a))
+
+
+
+
+
 # [0.1.0-next.22](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.21...@spryker/styles@0.1.0-next.22) (2020-03-16)
 
 

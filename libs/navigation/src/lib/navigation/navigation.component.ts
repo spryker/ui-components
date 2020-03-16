@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NavigationItem, NavigationComponentMethods } from './navigation';
-import { ToJson } from '@spryker/utils';
+import { ToBoolean, ToJson } from '@spryker/utils';
 
 @Component({
   selector: 'spy-navigation',
@@ -15,7 +15,7 @@ import { ToJson } from '@spryker/utils';
   encapsulation: ViewEncapsulation.None,
 })
 export class NavigationComponent implements NavigationComponentMethods {
-  @Input() collapsed = false;
+  @Input() @ToBoolean() collapsed = false;
   @Input() @ToJson() items: NavigationItem[] = [];
 
   collapse(): void {

@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
   EventEmitter,
 } from '@angular/core';
+import { ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-collapsible',
@@ -17,8 +18,8 @@ import {
 export class CollapsibleComponent {
   @Input() title = '';
   @Input() titleIcon = '';
-  @Input() active = false;
-  @Input() disabled = false;
+  @Input() @ToBoolean() active = false;
+  @Input() @ToBoolean() disabled = false;
 
   @Output() activeChange = new EventEmitter<boolean>();
 

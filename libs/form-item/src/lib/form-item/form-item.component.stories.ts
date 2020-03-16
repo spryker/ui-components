@@ -19,11 +19,11 @@ export const primary = () => ({
     ],
   },
   template: `
-    <spy-form-item for="input-id" error="Error Message">
+    <spy-form-item for="input-id" error="Error Message" [noLabel]="true">
       Label
       <spy-input placeholder="placeholder" attrs='{"id":"form-id"}' type="text" control></spy-input>
     </spy-form-item>
-   <spy-form-item for="input-id" error="Error Message">
+   <spy-form-item for="input-id" error="Error Message" [noSpaces]="true">
       Label
       <spy-input attrs='{"id":"form-id2"}' type="text" control></spy-input>
     </spy-form-item>

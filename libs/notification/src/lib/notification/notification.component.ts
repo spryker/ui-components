@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconRemoveModule } from '@spryker/icon/icons';
-import { applyContexts } from '@spryker/utils';
+import { applyContexts, ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-notification',
@@ -19,7 +19,7 @@ import { applyContexts } from '@spryker/utils';
 })
 export class NotificationComponent {
   @Input() type: 'info' | 'error' | 'warning' | 'success' = 'info';
-  @Input() closeable = false;
+  @Input() @ToBoolean() closeable = false;
 
   @Output() closed = new EventEmitter<void>();
 

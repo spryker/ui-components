@@ -80,6 +80,15 @@ describe('TabsComponent', () => {
     });
   });
 
+  describe('@Input(animateSlides)', () => {
+    it('should bind to `nzAnimated` of <nz-tabset>', async () => {
+      const host = await createComponent({ animateSlides: true }, true);
+      const tabsElement = host.queryCss('nz-tabset')!;
+
+      expect(tabsElement.properties.nzAnimated).toBe(true);
+    });
+  });
+
   describe('component.toNextTab', () => {
     it('should increase tab property', async () => {
       const host = await createComponent({ tab: 0, mode: 'line' }, true);

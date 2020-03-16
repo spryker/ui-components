@@ -44,10 +44,9 @@ export class TableColumnRendererComponent implements OnInit {
     }
 
     const data = this.data?.[this.config.id];
-    const isRowArray = Array.isArray(data);
 
-    if (this.config?.multiple && isRowArray) {
-      this.values = <unknown[]>data;
+    if (this.config?.multiple && Array.isArray(data)) {
+      this.values = data;
 
       return;
     }
@@ -62,9 +61,8 @@ export class TableColumnRendererComponent implements OnInit {
 
     this.contexts = this.values.map(value => ({
       $implicit: value,
-      // tslint:disable: no-non-null-assertion
+      // tslint:disable-next-line: no-non-null-assertion
       id: this.config!.id,
-      // tslint:enable: no-non-null-assertion
       row: this.data || {},
       value: value,
     }));

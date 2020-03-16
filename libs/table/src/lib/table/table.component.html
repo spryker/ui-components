@@ -3,7 +3,7 @@
     <ng-container *ngIf="checkedRowsArr.length"
       >{{ checkedRowsArr.length }} selected /
     </ng-container>
-    {{ (data$ | async)?.total }} results
+    {{ total$ | async }} results
   </div>
 
   <div class="ant-table-features-col ant-table-features-col--dynamic">
@@ -53,11 +53,7 @@
 
   <tbody>
     <tr
-      *ngFor="
-        let data of (data$ | async)?.data;
-        trackBy: trackByData;
-        index as indexOfElement
-      "
+      *ngFor="let data of tableData$ | async; index as indexOfElement"
       [class.ant-table-row--selected]="checkedRows[indexOfElement]"
     >
       <td *ngIf="config?.selectable" class="ant-table-column-selectable">
@@ -77,7 +73,7 @@
         "
         [colSpan]="
           !config?.rowActions?.length &&
-          featuresLocation['header-ext']?.length > 0 &&
+          featuresLocation[featureLocation.headerExt]?.length > 0 &&
           last
             ? 2
             : 1
@@ -95,7 +91,7 @@
       <td *ngIf="config?.rowActions?.length">
         <div class="ant-table-column-inner ant-table-column-inner--align-right">
           <spy-dropdown
-            [items]="actionTransformation()"
+            [items]="actions"
             (actionTriggered)="this.actionTriggerHandler($event, [data])"
             class="ant-table-dropdown"
             ><spy-icon name="action"></spy-icon
@@ -112,9 +108,9 @@
 
 <spy-pagination
   [pageSizeOptions]="config?.pageSizes || [10, 20, 50]"
-  [total]="(data$ | async)?.total"
-  [pageSize]="(data$ | async)?.size"
-  [page]="(data$ | async)?.offset"
+  [total]="total$ | async"
+  [pageSize]="size$ | async"
+  [page]="offset$ | async"
   (pageChange)="updatePagination($event)"
   (pageSizeChange)="updatePaginationSize($event)"
 ></spy-pagination>
@@ -125,8 +121,13 @@
 
 <span
   style="display: none"
-  [spySelectComponents]="components"
+  [spySelectComponents]="featureComponentType"
   (spySelectComponentsFound)="updateFeaturesLocation($event)"
 >
   <ng-content select="[spy-table-feature]"></ng-content>
 </span>
+
+<spy-table-features-renderer
+  [features]="featuresLocation[featureLocation.hidden]"
+  style="display: none"
+></spy-table-features-renderer>

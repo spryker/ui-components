@@ -68,7 +68,7 @@ export const withFeatures = (): IStory => ({
     ],
   },
   template: `
-    <spy-table [config]="config">
+    <spy-table [config]="config" (actionTriggered)="logActions($event)">
       <div *spyColTpl="'name'; let name">Name is3: {{ name }}</div>
       <ng-template spyColTpl="name" let-name>Name is2: {{ name }}</ng-template>
       <div *spyColTpl="'sku'; let sku">sku {{ sku }}</div>
@@ -101,5 +101,6 @@ export const withFeatures = (): IStory => ({
       },
       'Group',
     ),
+    logActions: console.log,
   },
 });

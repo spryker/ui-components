@@ -42,7 +42,7 @@ export class TabsComponent implements OnInit, OnDestroy {
 
   @Input() tab = 0;
   @Input() mode: 'line' | 'card' = 'line';
-  @Input() @ToBoolean() isAnimated = false;
+  @Input() @ToBoolean() animateSlides = false;
   @HostBinding('class.tabs--warning') hasWarning = false;
 
   @Output() tabChange = new EventEmitter<number>();

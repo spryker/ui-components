@@ -80,9 +80,9 @@ describe('TabsComponent', () => {
     });
   });
 
-  describe('@Input(isAnimated)', () => {
+  describe('@Input(animateSlides)', () => {
     it('should bind to `nzAnimated` of <nz-tabset>', async () => {
-      const host = await createComponent({ isAnimated: true }, true);
+      const host = await createComponent({ animateSlides: true }, true);
       const tabsElement = host.queryCss('nz-tabset')!;
 
       expect(tabsElement.properties.nzAnimated).toBe(true);

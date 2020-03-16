@@ -1,4 +1,4 @@
-<nz-tabset [nzSelectedIndex]="tab" [nzType]="mode">
+<nz-tabset [nzSelectedIndex]="tab" [nzType]="mode" [nzAnimated]="isAnimated">
   <nz-tab
     *ngFor="let tab of tabs$ | async"
     [nzTitle]="tab.titleTemplate"

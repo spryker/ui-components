@@ -80,6 +80,15 @@ describe('TabsComponent', () => {
     });
   });
 
+  describe('@Input(isAnimated)', () => {
+    it('should by default have value `line`', async () => {
+      const host = await createComponent({ isAnimated: true }, true);
+      const tabsElement = host.queryCss('nz-tabset')!;
+
+      expect(tabsElement.properties.nzAnimated).toBe(true);
+    });
+  });
+
   describe('component.toNextTab', () => {
     it('should increase tab property', async () => {
       const host = await createComponent({ tab: 0, mode: 'line' }, true);

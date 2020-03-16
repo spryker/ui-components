@@ -18,10 +18,10 @@ import {
 } from '@spryker/icon/icons';
 import { ToJson } from '@spryker/utils';
 
-type SelectValue = string | number;
-type SelectOption = SelectValue | SelectOptionItem;
+export type SelectValue = string | number;
+export type SelectOption = SelectValue | SelectOptionItem;
 
-interface SelectOptionItem {
+export interface SelectOptionItem {
   label: string;
   value: SelectValue;
   isDisabled?: boolean;

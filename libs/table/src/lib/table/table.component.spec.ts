@@ -10,9 +10,14 @@ import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { TableComponent } from './table.component';
-import { TableConfig, TableColumns, TableRowActionBase } from './table';
+import {
+  TableConfig,
+  TableColumns,
+  TableRowActionBase,
+  TableActionTriggeredEvent,
+} from './table';
 
-const mockedDataUrl = 'https://test-data-url.com';
+const mockDataUrl = 'https://test-data-url.com';
 const mockColUrl = 'https://test-col-url.com';
 const mockCols: TableColumns = [
   {
@@ -59,11 +64,11 @@ const mockData = {
   offset: 1,
 };
 const mockConfig: TableConfig = {
-  dataUrl: mockedDataUrl,
+  dataUrl: mockDataUrl,
   columnsUrl: mockColUrl,
 };
 const mockConfigCols: TableConfig = {
-  dataUrl: mockedDataUrl,
+  dataUrl: mockDataUrl,
   columns: mockCols,
 };
 
@@ -210,71 +215,56 @@ describe('TableComponent', () => {
     describe('columnsUrl dataUrl columns', () => {
       it('returned columns$ Observable should match the right data with `columnsUrl key`', async () => {
         const host = await createComponent({ config: mockConfig }, true);
+        const callback = jest.fn();
         const columnsRes = httpTestingController.expectOne(mockColUrl);
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         expect(columnsRes.request.method).toBe('GET');
 
         columnsRes.flush(mockCols);
         host.detectChanges();
+        host.component.columns$.subscribe(callback);
 
-        host.component.columns$.subscribe(cols => {
-          expect(cols.length).toBe(mockCols.length);
-          expect(cols[0].id).toBe(mockCols[0].id);
-          expect(cols[0].title).toBe(mockCols[0].title);
-          expect(cols[0].sortable).toBe(mockCols[0].sortable);
-          expect(cols[0].width).toBe(mockCols[0].width);
-        });
+        expect(callback).toHaveBeenCalledWith(mockCols);
       });
 
       it('returned columns$ Observable should match the right data with `columns` key', async () => {
         const host = await createComponent({ config: mockConfigCols }, true);
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const callback = jest.fn();
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         host.detectChanges();
+        host.component.columns$.subscribe(callback);
 
-        host.component.columns$.subscribe(columns => {
-          expect(columns.length).toBe(mockCols.length);
-          expect(columns[0].id).toBe(mockCols[0].id);
-          expect(columns[0].title).toBe(mockCols[0].title);
-          expect(columns[0].sortable).toBe(mockCols[0].sortable);
-          expect(columns[0].width).toBe(mockCols[0].width);
-        });
+        expect(callback).toHaveBeenCalledWith(mockCols);
       });
 
       it('returned data$ Observable should match the right data', async () => {
         const host = await createComponent({ config: mockConfig }, true);
+        const callback = jest.fn();
         const columnsRes = httpTestingController.expectOne(mockColUrl);
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         expect(dataRes.request.method).toBe('GET');
 
         dataRes.flush(mockData);
         host.detectChanges();
+        host.component.data$.subscribe(callback);
 
-        host.component.data$.subscribe(data => {
-          expect(data.data.length).toBe(mockData.data.length);
-          expect(data.total).toBe(mockData.total);
-          expect(data.size).toBe(mockData.size);
-          expect(data.offset).toBe(mockData.size);
-          expect(data.data[0].name).toBe(mockData.data[0].name);
-          expect(data.data[0].sku).toBe(mockData.data[0].sku);
-          expect(data.data[0].id3).toBe(mockData.data[0].id3);
-          expect(data.data[0].sku3).toBe(mockData.data[0].sku3);
-        });
+        expect(callback).toHaveBeenCalledWith(mockData);
       });
 
       it('prop data$ must be mapped into tbody and render spy-table-column-renderer at each td', async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         dataRes.flush(mockData);
@@ -296,8 +286,8 @@ describe('TableComponent', () => {
       it('prop data$ must be mapped into appropriate attributes of `spy-pagination` component', async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         dataRes.flush(mockData);
@@ -314,8 +304,8 @@ describe('TableComponent', () => {
       it('prop columns$ must be mapped into thead and create with tr and each th of the table', async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         columnsRes.flush(mockCols);
@@ -333,7 +323,7 @@ describe('TableComponent', () => {
       });
     });
 
-    describe('sortable is true', () => {
+    describe('selectable is true', () => {
       const mockSelectableConfig = { ...mockConfigCols, selectable: true };
 
       it('should create first `th` with `spy-checkbox` into each `tr` into `thead`', async () => {
@@ -341,8 +331,8 @@ describe('TableComponent', () => {
           { config: mockSelectableConfig },
           true,
         );
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         host.detectChanges();
@@ -361,8 +351,8 @@ describe('TableComponent', () => {
         host.component.allChecked = true;
         host.detectChanges();
 
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
         const checkboxElem = host.queryCss(
           'thead tr th:first-child spy-checkbox',
@@ -378,8 +368,8 @@ describe('TableComponent', () => {
         host.component.isIndeterminate = true;
         host.detectChanges();
 
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
         const checkboxElem = host.queryCss(
           'thead tr th:first-child spy-checkbox',
@@ -393,8 +383,8 @@ describe('TableComponent', () => {
           { config: mockSelectableConfig },
           true,
         );
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         dataRes.flush(mockData);
@@ -412,8 +402,8 @@ describe('TableComponent', () => {
           { config: mockSelectableConfig },
           true,
         );
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
         const mockChecked = true;
 
@@ -435,8 +425,8 @@ describe('TableComponent', () => {
           { config: mockSelectableConfig },
           true,
         );
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
         const mockChecked = true;
 
@@ -461,8 +451,8 @@ describe('TableComponent', () => {
 
       it('should bind to `nzScroll` input of `nz-table` component', async () => {
         const host = await createComponent({ config: mockHeaderConfig }, true);
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         const tableElem = host.queryCss('nz-table');
@@ -480,8 +470,8 @@ describe('TableComponent', () => {
 
       it('should bind to `nzScroll` input of `nz-table` component', async () => {
         const host = await createComponent({ config: mockConfigCols }, true);
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         const paginationElem = host.queryCss('spy-pagination');
@@ -507,8 +497,8 @@ describe('TableComponent', () => {
 
       it('render extra td as last column with `spy-dropdown` component', async () => {
         const host = await createComponent({ config: mockActionsConfig }, true);
-        const dataRes = httpTestingController.expectOne(
-          `${mockedDataUrl}?page=0`,
+        const dataRes = httpTestingController.expectOne(req =>
+          req.url.includes(mockDataUrl),
         );
 
         dataRes.flush(mockData);
@@ -525,23 +515,19 @@ describe('TableComponent', () => {
     it('must be emitted every time when `toggleCheckedRows` is triggered', async () => {
       const host = await createComponent({ config: mockConfig }, true);
 
-      spyOn(host.component.selectionChange, 'emit');
-
       host.component.toggleCheckedRows();
       host.detectChanges();
 
-      expect(host.component.selectionChange.emit).toHaveBeenCalled();
+      expect(host.hostComponent.selectionChange).toHaveBeenCalledWith([]);
     });
 
     it('must be emitted every time when `updateCheckedRows` is triggered', async () => {
       const host = await createComponent({ config: mockConfig }, true);
 
-      spyOn(host.component.selectionChange, 'emit');
-
       host.component.updateCheckedRows();
       host.detectChanges();
 
-      expect(host.component.selectionChange.emit).toHaveBeenCalled();
+      expect(host.hostComponent.selectionChange).toHaveBeenCalledWith([]);
     });
   });
 
@@ -554,13 +540,45 @@ describe('TableComponent', () => {
 
     it('must be emitted every time when `actionTriggerHandler` is triggered', async () => {
       const host = await createComponent({ config: mockActionsConfig }, true);
-
-      spyOn(host.component.actionTriggered, 'emit');
+      const actionTriggeredRes: TableActionTriggeredEvent = {
+        action: mockActions[0],
+        items: [],
+      };
 
       host.component.actionTriggerHandler(mockActions[0].id, []);
       host.detectChanges();
 
-      expect(host.component.actionTriggered.emit).toHaveBeenCalled();
+      expect(host.hostComponent.actionTriggered).toHaveBeenCalledWith(
+        actionTriggeredRes,
+      );
+    });
+
+    it('must be emitted every time when `actionTriggerHandler` is triggered', async () => {
+      httpTestingController = TestBed.inject(HttpTestingController);
+
+      const host = await createComponent({ config: mockActionsConfig }, true);
+      const dataRes = httpTestingController.expectOne(req =>
+        req.url.includes(mockDataUrl),
+      );
+      const actionTriggeredRes: TableActionTriggeredEvent = {
+        action: mockActions[0],
+        items: [mockData.data[0]],
+      };
+
+      dataRes.flush(mockData);
+      host.detectChanges();
+
+      const dropDownElem = host.queryCss('tr td:last-child spy-dropdown');
+
+      dropDownElem!.triggerEventHandler('actionTriggered', mockActions[0].id);
+
+      host.detectChanges();
+
+      expect(host.hostComponent.actionTriggered).toHaveBeenCalledWith(
+        actionTriggeredRes,
+      );
+
+      httpTestingController.verify();
     });
   });
 });

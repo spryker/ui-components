@@ -9,3 +9,4 @@ export * from './lib/table/data-fetcher.service';
 export * from './lib/table/data-configurator.service';
 export * from './lib/table/col-tpl.directive';
 export * from './lib/column-type';
+export * from './lib/table/table';

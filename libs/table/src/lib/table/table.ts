@@ -116,7 +116,3 @@ export interface SortingCriteria {
 export interface TableFeatureContext {
   location: string;
 }
-
-export interface HttpOptionsParams {
-  [param: string]: string | ReadonlyArray<string>;
-}

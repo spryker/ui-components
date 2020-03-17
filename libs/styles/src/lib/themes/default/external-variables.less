@@ -312,7 +312,8 @@
 @table-column-body-color: @gray-dark;
 @table-body-row-bg: @white;
 @table-body-selected-row-bg: @green-lighter;
-@table-body-selected-row-border-bg: @green-light;
+@table-body-active-row-border-bg: @green-light;
+@table-body-hover-row-border-shadow: 2px 2px 4px @gray-light;
 @table-column-head-color: @ink;
 @table-border-radius-base: @border-width-base;
 @table-bottom-padding: 30px;
@@ -342,3 +343,6 @@
 
 @table-column-image-width: 74px;
 @table-column-image-height: 60px;
+
+// Table Column Renderer
+@table-column-renderer-prefix-cls: ~'@{ant-prefix}-table-column-renderer';

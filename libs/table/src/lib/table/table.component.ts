@@ -181,7 +181,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   ngOnInit(): void {
     this.dataConfiguratorService.changePage(0);
-    this.updateActions();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

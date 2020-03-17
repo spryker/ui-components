@@ -11,9 +11,7 @@ export class JsonHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
     }
 
     if (typeof value === 'object' || Array.isArray(value)) {
-      const encodedValue = JSON.stringify(value);
-
-      return super.encodeValue(encodedValue);
+      return super.encodeValue(JSON.stringify(value));
     }
 
     return super.encodeValue(value);
@@ -26,6 +24,10 @@ export class JsonHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
   decodeValue(value: string): any {
     const decodedValue = super.decodeKey(value);
 
-    return JSON.parse(decodedValue) || decodedValue;
+    try {
+      return JSON.parse(decodedValue);
+    } catch (error) {
+      return decodedValue;
+    }
   }
 }

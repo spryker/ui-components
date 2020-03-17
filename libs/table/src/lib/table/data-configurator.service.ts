@@ -3,7 +3,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { scan, shareReplay } from 'rxjs/operators';
 import { TableDataConfig } from './table';
 
-const resetConfig = {};
+let resetConfig = {};
 
 @Injectable()
 export class TableDataConfiguratorService {
@@ -11,8 +11,14 @@ export class TableDataConfiguratorService {
 
   readonly config$: Observable<TableDataConfig> = this.internalConfig$.pipe(
     scan((config, newConfig) => {
-      if (newConfig === resetConfig) {
+      const isResetConfig = newConfig === resetConfig;
+
+      if (isResetConfig && !Object.keys(resetConfig).length) {
         return { page: 0 };
+      }
+
+      if (isResetConfig) {
+        return resetConfig;
       }
 
       return { ...config, ...newConfig };
@@ -28,7 +34,11 @@ export class TableDataConfiguratorService {
     this.internalConfig$.next({ page });
   }
 
-  reset(): void {
+  reset(config?: TableDataConfig): void {
+    if (config) {
+      resetConfig = config;
+    }
+
     this.internalConfig$.next(resetConfig);
   }
 }

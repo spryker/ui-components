@@ -181,17 +181,24 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   ngOnInit(): void {
     this.dataConfiguratorService.changePage(0);
-
-    this.actions = this.config?.rowActions?.map(({ id, title }) => ({
-      action: id,
-      title,
-    }));
+    this.updateActions();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config) {
       this.setConfig$.next(this.config);
     }
+
+    if (changes.actions) {
+      this.updateActions();
+    }
+  }
+
+  updateActions(): void {
+    this.actions = this.config?.rowActions?.map(({ id, title }) => ({
+      action: id,
+      title,
+    }));
   }
 
   updateFeaturesLocation(features: TableFeatureComponent[]): void {

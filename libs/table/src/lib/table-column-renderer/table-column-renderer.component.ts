@@ -31,6 +31,7 @@ export class TableColumnRendererComponent implements OnInit {
 
   values: unknown[] = [];
   contexts: TableColumnTplContext[] = [];
+  valuesLimited: unknown[] = [];
 
   ngOnInit(): void {
     this.updateValues();
@@ -47,11 +48,13 @@ export class TableColumnRendererComponent implements OnInit {
 
     if (this.config?.multiple && Array.isArray(data)) {
       this.values = data;
+      this.valuesLimited = data.slice(0, this.config?.multipleLimit || 2);
 
       return;
     }
 
     this.values = [data];
+    this.valuesLimited = [data];
   }
 
   private updateTplContext() {

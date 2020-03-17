@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { TableData, TableDataConfig } from './table';
+import { TableData } from './table';
 import { Observable } from 'rxjs';
 import { TableDataConfiguratorService } from './data-configurator.service';
 import { switchMap } from 'rxjs/operators';
@@ -17,9 +17,9 @@ export class TableDataFetcherService {
     return this.dataConfiguratorService.config$.pipe(
       switchMap(config => {
         const params = new HttpParams({
-          fromObject: config,
+          fromObject: config as any, // any values can be used and custom codec supports it
           encoder: new JsonHttpUrlEncodingCodec(),
-        } as TableDataConfig);
+        });
 
         return this.http.get<TableData>(dataUrl, { params });
       }),

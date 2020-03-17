@@ -23,11 +23,11 @@ export const primary = () => ({
       Label
       <spy-input placeholder="placeholder" attrs='{"id":"form-id"}' type="text" control></spy-input>
     </spy-form-item>
-   <spy-form-item for="input-id" [noSpaces]="true">
+   <spy-form-item for="input-id2" [noSpaces]="true">
       Label
       <spy-input attrs='{"id":"form-id2"}' type="text" control></spy-input>
     </spy-form-item>
-    <spy-form-item for="input-id" error="Error Message">
+    <spy-form-item for="input-id3" error="Error Message">
       Label
       <spy-input attrs='{"id":"form-id3"}' type="text" control></spy-input>
     </spy-form-item>

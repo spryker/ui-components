@@ -10,9 +10,9 @@ export class TableDataConfiguratorService {
 
   readonly config$: Observable<TableDataConfig> = this.resetConfig$.pipe(
     startWith({}),
-    switchMap(config =>
+    switchMap(internalConfig =>
       this.internalConfig$.pipe(
-        startWith(config),
+        startWith(internalConfig),
         scan((config, newConfig) => ({ ...config, ...newConfig })),
       ),
     ),

@@ -10,12 +10,12 @@ export class TableDataConfiguratorService {
 
   readonly config$: Observable<TableDataConfig> = this.resetConfig$.pipe(
     startWith({}),
-    switchMap(config => {
-      return this.internalConfig$.pipe(
+    switchMap(config =>
+      this.internalConfig$.pipe(
         startWith(config),
         scan((config, newConfig) => ({ ...config, ...newConfig })),
-      );
-    }),
+      ),
+    ),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 

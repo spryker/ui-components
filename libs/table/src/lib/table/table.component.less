@@ -102,6 +102,10 @@
       &:not(.@{table-prefix-cls}-expanded-row):not(.@{table-prefix-cls}-row-selected)
         > td {
         background: none;
+
+        .@{table-prefix-cls}-column-inner::after {
+          box-shadow: @table-body-hover-row-border-shadow;
+        }
       }
     }
 
@@ -163,7 +167,7 @@
           border-bottom: @table-border-radius-base solid transparent;
           transition: background @common-transition-time
               @common-transition-function,
-            border @common-transition-time @common-transition-function;
+            border @common-transition-time @common-transition-function, box-shadow @common-transition-time @common-transition-function;
           z-index: -1;
         }
       }
@@ -183,7 +187,6 @@
       > td
       .@{table-prefix-cls}-column-inner::after {
       background: @table-body-selected-row-bg;
-      border-color: @table-body-selected-row-border-bg;
     }
 
     &:first-child > td .@{table-prefix-cls}-column-inner::after {

@@ -262,8 +262,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   }
 
   updatePaginationSize(size: number): void {
-    console.log(size);
-    this.dataConfiguratorService.reset();
+    this.dataConfiguratorService.update({ size });
   }
 
   getTableId(): string | undefined {

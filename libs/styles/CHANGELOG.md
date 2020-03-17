@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.24](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.23...@spryker/styles@0.1.0-next.24) (2020-03-17)
+
+
+### Features
+
+* **table:** add columns resolver service ([4d27c70](https://github.com/spryker/ui-components/commit/4d27c70e2acf23017b2b636c17f34773dfb6f790))
+* **table:** add styles ([b69c7e1](https://github.com/spryker/ui-components/commit/b69c7e1a427fa68bcb984d2eb8dfdaf2448ccd4c))
+
+
+
+
+
 # [0.1.0-next.23](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.22...@spryker/styles@0.1.0-next.23) (2020-03-16)
 
 

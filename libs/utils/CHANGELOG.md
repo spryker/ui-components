@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.5...@spryker/utils@0.1.0-next.6) (2020-03-17)
+
+
+### Bug Fixes
+
+* **utils:** export shared TS types ([20c616b](https://github.com/spryker/ui-components/commit/20c616b72999d935b392aa2ae3ead1449df6e063))
+
+
+### Features
+
+* **table:** add columns resolver service ([4d27c70](https://github.com/spryker/ui-components/commit/4d27c70e2acf23017b2b636c17f34773dfb6f790))
+* **utils:** add context module with service and pipe ([7c08281](https://github.com/spryker/ui-components/commit/7c08281b56f0a39017f3aa544fcefc0ce2f79fcd))
+
+
+
+
+
 # [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.4...@spryker/utils@0.1.0-next.5) (2020-03-12)
 
 

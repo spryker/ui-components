@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.9...@spryker/form-item@0.1.0-next.10) (2020-03-17)
+
+
+### Bug Fixes
+
+* **form-item:** form-item spacing bottom fixes ([d9a0417](https://github.com/spryker/ui-components/commit/d9a0417db98299f66d340987c3d368592095b826))
+* **form-item:** form-item stories improvements ([7bfc75b](https://github.com/spryker/ui-components/commit/7bfc75b081a90f1bfc1e3306bd3db59541886bd4))
+
+
+
+
+
 # [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.8...@spryker/form-item@0.1.0-next.9) (2020-03-16)
 
 

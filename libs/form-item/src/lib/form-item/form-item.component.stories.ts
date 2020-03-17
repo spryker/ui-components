@@ -23,7 +23,7 @@ export const primary = () => ({
       Label
       <spy-input placeholder="placeholder" attrs='{"id":"form-id"}' type="text" control></spy-input>
     </spy-form-item>
-   <spy-form-item for="input-id" error="Error Message" [noSpaces]="true">
+   <spy-form-item for="input-id" [noSpaces]="true">
       Label
       <spy-input attrs='{"id":"form-id2"}' type="text" control></spy-input>
     </spy-form-item>

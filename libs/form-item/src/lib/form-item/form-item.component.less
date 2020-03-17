@@ -2,11 +2,12 @@
 
 spy-form-item {
   .@{form-prefix-cls}-item {
+    margin-bottom: @form-item-bottom-margin;
     font-family: @font-family;
 
-    &:not(.no-spaces),
-    &-with-help:not(.no-spaces) {
-      margin-bottom: @form-item-bottom-margin;
+    &.no-spaces,
+    &-with-help.no-spaces {
+      margin-bottom: 0;
     }
 
     &-label {

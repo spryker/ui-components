@@ -180,7 +180,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   }
 
   ngOnInit(): void {
-    this.dataConfiguratorService.changePage(0);
+    setTimeout(() => this.dataConfiguratorService.changePage(0), 0);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

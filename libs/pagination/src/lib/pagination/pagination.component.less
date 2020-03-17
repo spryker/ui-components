@@ -1,6 +1,21 @@
 @import './pagination.component.theme.less';
 
 .@{pagination-prefix-cls} {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 0 @pagination-select-width;
+  }
+
+  &-select {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: @pagination-select-width;
+  }
+
   &-item,
   &-prev,
   &-next,

@@ -1,0 +1,256 @@
+@import './table.component.theme.less';
+
+.@{table-prefix-cls} {
+  padding-bottom: @table-bottom-padding;
+
+  &-features {
+    display: flex;
+    align-items: center;
+    padding-bottom: @table-features-padding-vertical;
+    margin: -@table-top-features-padding;
+
+    &-col {
+      padding: @table-top-features-padding;
+
+      &--static {
+        font: @font-weight-medium @font-size-base @font-family;
+        color: @gray-dark;
+        flex-shrink: 0;
+      }
+
+      &--dynamic {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  &-thead > tr > th {
+    color: @table-header-color;
+    font: @font-weight-medium @font-size-base @font-family;
+    background: transparent;
+    border-bottom: none;
+    text-transform: uppercase;
+
+    &[colspan] {
+      text-align: left;
+    }
+
+    .@{table-prefix-cls}-column-sorter {
+      display: block;
+      position: relative;
+      width: @table-sorts-holder-width;
+      height: @table-sorts-holder-height;
+
+      .@{table-prefix-cls}-column-sorter-inner {
+        height: auto;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        right: 0;
+        color: @table-header-icon-color;
+        line-height: 0;
+
+        &-full {
+          margin-top: 0;
+
+          .@{table-prefix-cls}-column-sorter-up,
+          .@{table-prefix-cls}-column-sorter-down {
+            line-height: 0;
+            transform: none;
+            vertical-align: 0;
+            height: @table-sorts-holder-height / 2;
+          }
+
+          .@{table-prefix-cls}-column-sorter-down {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+
+    &.@{table-prefix-cls}-column-has-actions {
+      &.@{table-prefix-cls}-column-has-sorters {
+        &:hover {
+          background: none;
+        }
+
+        &:active {
+          .@{table-prefix-cls}-column-sorter-up:not(.on),
+          .@{table-prefix-cls}-column-sorter-down:not(.on) {
+            color: @table-header-icon-color;
+          }
+        }
+      }
+    }
+
+    .@{table-prefix-cls}-header-column .@{table-prefix-cls}-column-sorters {
+      &:hover::before {
+        background: transparent;
+      }
+    }
+  }
+
+  &-thead > tr,
+  &-tbody > tr {
+    &.@{table-prefix-cls}-row-hover,
+    &:hover {
+      background: none;
+
+      &:not(.@{table-prefix-cls}-expanded-row):not(.@{table-prefix-cls}-row-selected)
+        > td {
+        background: none;
+
+        .@{table-prefix-cls}-column-inner::after {
+          box-shadow: @table-body-hover-row-border-shadow;
+        }
+      }
+    }
+
+    &:first-child > th {
+      &:last-child,
+      &:first-child {
+        border-radius: 0;
+      }
+    }
+
+    > th {
+      padding: @table-head-padding-vertical @table-padding-horizontal;
+      color: @table-column-head-color;
+
+      .ant-checkbox-wrapper {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: @table-head-checkbox-wrapper-size;
+          height: @table-head-checkbox-wrapper-size;
+          background: @table-head-checkbox-wrapper-bg;
+          border-radius: @checkbox-border-radius;
+        }
+      }
+    }
+
+    > td {
+      position: relative;
+      padding: 0;
+      border-bottom: none;
+
+      .@{table-prefix-cls}-column-inner {
+        margin: @table-body-margin-vertical 0;
+        padding: @table-body-padding-vertical @table-padding-horizontal;
+        color: @table-column-body-color;
+        min-height: @table-selection-column-min-height;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &--align-right {
+          align-items: flex-end;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: @table-body-margin-vertical;
+          bottom: @table-body-margin-vertical;
+          left: 0;
+          width: 100%;
+          background: @table-body-row-bg;
+          border-top: @table-border-radius-base solid transparent;
+          border-bottom: @table-border-radius-base solid transparent;
+          transition: background @common-transition-time
+              @common-transition-function,
+            border @common-transition-time @common-transition-function,
+            box-shadow @common-transition-time @common-transition-function;
+          z-index: -1;
+        }
+      }
+
+      &:first-child .@{table-prefix-cls}-column-inner::after {
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+        border-left: @table-border-radius-base solid transparent;
+      }
+
+      &:last-child .@{table-prefix-cls}-column-inner::after {
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+        border-right: @table-border-radius-base solid transparent;
+      }
+    }
+
+    &.@{table-prefix-cls}-row--selected
+      > td
+      .@{table-prefix-cls}-column-inner::after {
+      background: @table-body-selected-row-bg;
+    }
+
+    &:first-child > td .@{table-prefix-cls}-column-inner::after {
+      top: 0;
+    }
+
+    &:last-child > td .@{table-prefix-cls}-column-inner::after {
+      bottom: 0;
+    }
+
+    > td,
+    > th {
+      &.@{table-prefix-cls}-column-sort {
+        background: transparent;
+      }
+
+      &.@{table-prefix-cls}-column-selectable {
+        width: (@table-padding-horizontal * 2) + @checkbox-size;
+      }
+    }
+  }
+
+  &-placeholder {
+    display: none;
+  }
+
+  &-empty {
+    .@{table-prefix-cls}-body {
+      overflow-x: inherit !important;
+      overflow-y: inherit !important;
+    }
+  }
+
+  &-body {
+    z-index: 1;
+  }
+
+  &-header {
+    background: transparent;
+  }
+
+  &-dropdown {
+    width: @table-dropdown-trigger-size;
+    height: @table-dropdown-trigger-size;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background @common-transition-time @common-transition-function,
+      color @common-transition-time @common-transition-function;
+    color: @table-dropdown-trigger-color;
+    font-size: @table-dropdown-trigger-icon-size;
+
+    &:hover {
+      background: @table-dropdown-trigger-hover-bg;
+      color: @table-dropdown-trigger-hover-color;
+    }
+
+    .ant-dropdown-trigger {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .ant-checkbox-inner {
+    background: @white;
+  }
+}

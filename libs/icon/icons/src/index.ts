@@ -8,3 +8,4 @@ export * from './remove';
 export * from './success';
 export * from './warning';
 export * from './pagination-arrow';
+export * from './action';

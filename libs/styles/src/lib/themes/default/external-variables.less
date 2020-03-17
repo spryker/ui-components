@@ -14,8 +14,14 @@
 @component-background: @white;
 @border-color-base: @gray;
 @border-color-split: @gray-light;
+@disabled-color: @gray-dark;
+@disabled-bg: @gray-lighter;
+
+// Common
 @common-transition-time: 0.3s;
 @common-transition-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+@border-radius-base: 10px;
+@border-width-base: 2px;
 
 //Fonts
 @heading-1-size: @heading-1-font-size;
@@ -33,12 +39,7 @@
 @form-item-label-line-height: 1;
 @form-item-label-bottom-padding: 9px;
 
-@border-radius-base: 10px;
-@border-width-base: 2px;
 @form-help-margin-top: 5px;
-
-@disabled-color: @gray-dark;
-@disabled-bg: @gray-lighter;
 
 // Buttons
 @btn-prefix-cls: ~'@{ant-prefix}-btn';
@@ -213,7 +214,7 @@
 // Select
 @select-prefix-cls: ~'@{ant-prefix}-select';
 
-@select-component-width: 400px;
+@select-component-width: 100%;
 @select-component-height: 42px;
 @select-border-radius: 4px;
 @select-menu-item-height: 40px;
@@ -291,6 +292,7 @@
 @pagination-icon-arrow-line-height: 36px;
 @pagination-jump-next-width: 22px;
 @pagination-jump-next-min-width: 0;
+@pagination-select-width: 75px;
 
 // Tabs
 @tab-prefix-cls: ~'@{ant-prefix}-tabs';
@@ -302,3 +304,42 @@
 @tabs-nav-line-height: 1.715;
 
 @tabs-hover-color: @gray-darker;
+
+// Table
+@table-prefix-cls: ~'@{ant-prefix}-table';
+
+@table-header-icon-color: @gray;
+@table-column-body-color: @gray-dark;
+@table-body-row-bg: @white;
+@table-body-selected-row-bg: @green-lighter;
+@table-body-active-row-border-bg: @green-light;
+@table-body-hover-row-border-shadow: 2px 2px 4px @gray-light;
+@table-column-head-color: @ink;
+@table-border-radius-base: @border-width-base;
+@table-bottom-padding: 30px;
+@table-top-features-padding: 5px;
+
+@table-selection-column-min-height: 70px;
+
+@table-head-padding-vertical: 20px;
+@table-body-padding-vertical: 10px;
+@table-body-margin-vertical: 3px;
+@table-padding-horizontal: 25px;
+
+@table-features-padding-vertical: 30px;
+@table-features-col-padding: 5px;
+
+@table-sorts-holder-height: 14px;
+@table-sorts-holder-width: 20px;
+
+@table-head-checkbox-wrapper-size: 32px;
+@table-head-checkbox-wrapper-bg: @gray-light;
+
+@table-dropdown-trigger-size: 50px;
+@table-dropdown-trigger-icon-size: 24px;
+@table-dropdown-trigger-color: @gray-dark;
+@table-dropdown-trigger-hover-color: @primary-color;
+@table-dropdown-trigger-hover-bg: @gray-lighter;
+
+// Table Column Renderer
+@table-column-renderer-prefix-cls: ~'@{ant-prefix}-table-column-renderer';

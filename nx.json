@@ -77,10 +77,13 @@
     "notification": {
       "tags": ["level:molecule", "type:component"]
     },
-    "dropdown": {
-      "tags": ["level:molecule", "type:component"]
+    "table": {
+      "tags": ["level:organism", "type:component"]
     },
     "pagination": {
+      "tags": ["level:molecule", "type:component"]
+    },
+    "dropdown": {
       "tags": ["level:molecule", "type:component"]
     },
     "tabs": {

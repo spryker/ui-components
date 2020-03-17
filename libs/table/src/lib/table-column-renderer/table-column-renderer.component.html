@@ -1,0 +1,28 @@
+<div class="ant-table-column-renderer">
+  <ng-container
+    [ngTemplateOutlet]="valuesTpl"
+    [ngTemplateOutletContext]="{ $implicit: valuesLimited }"
+  ></ng-container>
+
+  <!--TODO: add popover-->
+</div>
+
+<ng-template #valuesTpl let-values="$implicit">
+  <ng-container *ngFor="let value of values; index as i">
+    <ng-container
+      *ngIf="template; else typeTpl"
+      [ngTemplateOutlet]="template"
+      [ngTemplateOutletContext]="contexts[i]"
+    ></ng-container>
+
+    <ng-template #typeTpl>
+      <orc-orchestrator
+        *ngIf="config.type; else defaultTpl"
+        [config]="itemConfig"
+        [context]="contexts[i]"
+      ></orc-orchestrator>
+    </ng-template>
+
+    <ng-template #defaultTpl>{{ value }}</ng-template>
+  </ng-container>
+</ng-template>

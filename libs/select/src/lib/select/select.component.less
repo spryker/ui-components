@@ -4,6 +4,11 @@
   height: @select-component-height;
   width: @select-component-width;
 
+  &,
+  &-dropdown-menu {
+    font: @font-weight-medium @font-size-base @font-family;
+  }
+
   &-dropdown {
     border-radius: @select-border-radius;
   }
@@ -27,8 +32,6 @@
         margin-right: @select-selection-content-margin-right;
         max-width: @select-selection-content-max-width;
         line-height: @select-selection-content-line-height;
-        font-family: @font-family;
-        font-weight: @font-weight-medium;
         text-overflow: ellipsis;
         overflow: hidden;
       }

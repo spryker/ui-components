@@ -30,7 +30,11 @@
     font: @font-weight-medium @font-size-base @font-family;
 
     a {
-      padding-top: @pagination-link-padding-top;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      margin: 0;
     }
 
     &:hover {
@@ -58,6 +62,7 @@
 
   & &-item-active {
     background-color: @green;
+    border-color: @green;
 
     a {
       color: @white;
@@ -65,7 +70,7 @@
   }
 
   &-item-container {
-    margin-top: @pagination-item-container-margin-top;
+    width: 100%;
   }
 
   &-jump-next,
@@ -79,7 +84,6 @@
   &-icon {
     height: @pagination-icon-arrow-size;
     width: @pagination-icon-arrow-size;
-    line-height: @pagination-icon-arrow-line-height;
     color: @gray-dark;
 
     .@{pagination-prefix-cls}-prev & {

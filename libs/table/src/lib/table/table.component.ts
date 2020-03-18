@@ -132,6 +132,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     tap(data => {
       this.initCheckedRows(data);
       this.rowsData = data.data;
+      this.updateCheckedRowsArr();
     }),
     shareReplaySafe(),
   );
@@ -186,9 +187,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config) {
       this.setConfig$.next(this.config);
-    }
-
-    if (changes.actions) {
       this.updateActions();
     }
   }
@@ -220,6 +218,8 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }
 
     this.updateCheckedRowsArr();
+
+    this.selectionChange.emit(this.checkedRowsArr);
   }
 
   updateCheckedRows(): void {
@@ -232,6 +232,8 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.allChecked = !isUncheckedExist;
 
     this.updateCheckedRowsArr();
+
+    this.selectionChange.emit(this.checkedRowsArr);
 
     if (checkedArrayLength) {
       this.isIndeterminate = isUncheckedExist;
@@ -246,8 +248,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.checkedRowsArr = Object.keys(this.checkedRows)
       .filter(idx => this.checkedRows[idx])
       .map(idx => this.rowsData[Number(idx)]);
-
-    this.selectionChange.emit(this.checkedRowsArr);
   }
 
   updateSorting(event: {

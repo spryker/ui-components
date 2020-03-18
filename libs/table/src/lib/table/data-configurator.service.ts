@@ -27,7 +27,7 @@ export class TableDataConfiguratorService {
     this.internalConfig$.next({ page });
   }
 
-  reset(config: TableDataConfig = { page: 0 }): void {
+  reset(config: TableDataConfig = { page: 1 }): void {
     this.resetConfig$.next(config);
   }
 }

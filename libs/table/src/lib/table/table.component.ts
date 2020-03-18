@@ -139,7 +139,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   total$ = this.data$.pipe(pluck('total'));
   size$ = this.data$.pipe(pluck('size'));
-  offset$ = this.data$.pipe(pluck('offset'));
+  page$ = this.data$.pipe(pluck('page'));
   tableData$ = this.data$.pipe(pluck('data'));
 
   isLoading$ = merge(
@@ -181,7 +181,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => this.dataConfiguratorService.changePage(0), 0);
+    setTimeout(() => this.dataConfiguratorService.changePage(1), 0);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

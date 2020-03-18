@@ -13,11 +13,7 @@
   </div>
 </div>
 
-<nz-table
-  nzFrontPagination="false"
-  [nzLoading]="isLoading$ | async"
-  [nzScroll]="{ y: config?.fixHeader }"
->
+<nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
   <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
     <tr>
       <th *ngIf="config?.selectable" class="ant-table-column-selectable">
@@ -110,7 +106,7 @@
   [pageSizeOptions]="config?.pageSizes || [10, 20, 50]"
   [total]="total$ | async"
   [pageSize]="size$ | async"
-  [page]="offset$ | async"
+  [page]="page$ | async"
   (pageChange)="updatePagination($event)"
   (pageSizeChange)="updatePaginationSize($event)"
 ></spy-pagination>

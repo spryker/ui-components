@@ -65,7 +65,7 @@ export type TableDataRow = Record<TableColumn['id'], TableDataValue>;
 export interface TableData {
   data: TableDataRow[];
   total: number;
-  offset: number;
+  page: number;
   size: number;
 }
 
@@ -98,7 +98,6 @@ export interface TableConfig {
   dataUrl: string;
   columns?: TableColumns;
   selectable?: boolean;
-  fixHeader?: string;
   pageSizes?: number[];
   rowActions?: TableRowActionBase[];
 }

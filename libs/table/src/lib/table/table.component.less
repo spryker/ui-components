@@ -7,11 +7,9 @@
 .@{table-prefix-cls} {
   padding-bottom: @table-bottom-padding;
   font: @font-weight-medium @font-size-base @font-family;
-  overflow: auto;
 
-  &-header,
   &-body {
-    min-width: @table-min-width;
+    overflow: auto !important;
   }
 
   &-features {

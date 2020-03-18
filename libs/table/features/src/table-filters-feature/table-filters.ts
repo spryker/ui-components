@@ -21,11 +21,12 @@ export interface TableFiltersFeatureComponent extends TableFeatureComponent {
   updateFilterValue(type: string, value: unknown): void;
 }
 
-export interface TableFilterBase {
+export interface TableFilterBase<V = unknown> {
+  __capturedValue: V;
   id: string;
   title: string;
   type: string;
-  typeOptions?: Record<string, unknown> | void;
+  typeOptions?: unknown;
 }
 
 export interface TableFiltersRegistry {
@@ -41,9 +42,9 @@ export type TableFilter = TableFilterMap[keyof TableFiltersRegistry];
 export type TableFilterType = TableFilter['type'];
 
 export interface TableFilterComponent<C extends TableFilterBase> {
-  config: C; // @Input
-  value: unknown;
-  valueChange: EventEmitter<unknown>;
+  config?: C; // @Input
+  value?: C['__capturedValue']; // @Input
+  valueChange: EventEmitter<C['__capturedValue']>;
 }
 
 export type FindTableFilter<

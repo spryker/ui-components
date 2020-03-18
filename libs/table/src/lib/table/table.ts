@@ -11,6 +11,7 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
   multiple?: boolean;
   hideable?: boolean;
   searchable?: boolean;
+  multipleLimit?: number;
 }
 
 export interface TableColumnTypeDef {
@@ -106,38 +107,13 @@ export type ColumnsTransformer = (
   cols: TableColumns,
 ) => Observable<TableColumns>;
 
-export interface TableColumnsResolverService {
-  resolve(colsOrUrl: string | TableColumns): Observable<TableColumns>;
-  addTransformer(transformer: ColumnsTransformer): void;
-}
-
 export type TableDataConfig = Record<string, unknown>;
-
-export interface TableDataConfiguratorService {
-  readonly config$: Observable<TableDataConfig>;
-  changePage(page: number): void;
-  update(criteria: TableDataConfig): void;
-  reset(): void;
-}
-
-export interface TableDataFetcherService {
-  resolve(dataUrl: string): Observable<TableData>;
-}
 
 export interface SortingCriteria {
   sortBy?: string;
   sortDirection?: 'asc' | 'desc';
 }
 
-export interface ColTplDirective {
-  colTpl: TableColumn['id'];
-  templateRef: TemplateRef<TableColumnTplContext>;
-}
-
 export interface TableFeatureContext {
   location: string;
-}
-
-export interface HttpOptionsParams {
-  [param: string]: string | ReadonlyArray<string>;
 }

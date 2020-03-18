@@ -1,4 +1,5 @@
 export * from './lib/table.module';
+export * from './lib/table/table';
 export * from './lib/table/table.component';
 export * from './lib/table/table-feature.component';
 export * from './lib/table/table-feature.directive';
@@ -8,3 +9,4 @@ export * from './lib/table/data-fetcher.service';
 export * from './lib/table/data-configurator.service';
 export * from './lib/table/col-tpl.directive';
 export * from './lib/column-type';
+export * from './lib/table/table';

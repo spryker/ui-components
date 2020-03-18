@@ -40,6 +40,28 @@ describe('FormItemModule', () => {
     expect(labelComponent.properties.nzNoColon).toBe(true);
   });
 
+  it('should not render label on noLabel', () => {
+    component.noLabel = true;
+
+    fixture.detectChanges();
+
+    const labelComponent = fixture.debugElement.query(By.css('nz-form-label'));
+    expect(labelComponent).toBeFalsy();
+  });
+
+  it('should add no-spaces class to nz-form-item', () => {
+    component.noSpaces = true;
+
+    fixture.detectChanges();
+
+    const formItemComponent = fixture.debugElement.query(
+      By.css('nz-form-item'),
+    );
+    expect(
+      formItemComponent.nativeElement.classList.contains('no-spaces'),
+    ).toBeTruthy();
+  });
+
   it('should show error validation message', () => {
     component.error = 'Error Message';
 

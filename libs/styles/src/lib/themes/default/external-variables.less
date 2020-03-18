@@ -103,6 +103,7 @@
 @input-height-base: 42px;
 @input-padding-horizontal-base: 11px;
 
+@input-bg: @white;
 @input-placeholder-color: @gray-dark;
 @input-color: @ink;
 
@@ -196,7 +197,6 @@
 // Collapsible
 @collapse-prefix-cls: ~'@{ant-prefix}-collapse';
 
-@component-background: transparent;
 @collapse-panel-border-radius: 4px;
 @collapse-panel-border-width: 1px;
 @collapse-header-plus-width: 12px;
@@ -312,7 +312,8 @@
 @table-column-body-color: @gray-dark;
 @table-body-row-bg: @white;
 @table-body-selected-row-bg: @green-lighter;
-@table-body-selected-row-border-bg: @green-light;
+@table-body-active-row-border-bg: @green-light;
+@table-body-hover-row-border-shadow: 2px 2px 4px @gray-light;
 @table-column-head-color: @ink;
 @table-border-radius-base: @border-width-base;
 @table-bottom-padding: 30px;
@@ -339,3 +340,6 @@
 @table-dropdown-trigger-color: @gray-dark;
 @table-dropdown-trigger-hover-color: @primary-color;
 @table-dropdown-trigger-hover-bg: @gray-lighter;
+
+// Table Column Renderer
+@table-column-renderer-prefix-cls: ~'@{ant-prefix}-table-column-renderer';

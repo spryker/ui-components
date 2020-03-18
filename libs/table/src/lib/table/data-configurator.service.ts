@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
-import { map, pairwise, startWith } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { scan, shareReplay, startWith, switchMap } from 'rxjs/operators';
 import { TableDataConfig } from './table';
 
 @Injectable()
 export class TableDataConfiguratorService {
-  private internalConfig$ = new ReplaySubject<TableDataConfig>(1);
+  private internalConfig$ = new Subject<TableDataConfig>();
+  private resetConfig$ = new Subject<TableDataConfig>();
 
-  readonly config$: Observable<TableDataConfig> = this.internalConfig$.pipe(
+  readonly config$: Observable<TableDataConfig> = this.resetConfig$.pipe(
     startWith({}),
-    pairwise(),
-    map(params => ({ ...params[0], ...params[1] })),
+    switchMap(internalConfig =>
+      this.internalConfig$.pipe(
+        startWith(internalConfig),
+        scan((config, newConfig) => ({ ...config, ...newConfig })),
+      ),
+    ),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   update(criteria: TableDataConfig): void {
@@ -21,7 +27,7 @@ export class TableDataConfiguratorService {
     this.internalConfig$.next({ page });
   }
 
-  reset(): void {
-    this.internalConfig$.next({ page: 0 });
+  reset(config: TableDataConfig = { page: 0 }): void {
+    this.resetConfig$.next(config);
   }
 }

@@ -1,3 +1,4 @@
+import 'core-js/features/reflect';
 import { setOutputMock } from '@orchestrator/ngx-testing';
 
 setOutputMock(() => jest.fn());

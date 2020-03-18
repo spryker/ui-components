@@ -6,7 +6,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { ToJson } from '@spryker/utils';
+import { ToJson, ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-checkbox',
@@ -17,10 +17,10 @@ import { ToJson } from '@spryker/utils';
 })
 export class CheckboxComponent {
   @Input() spyId = '';
-  @Input() checked = false;
-  @Input() disabled = false;
-  @Input() indeterminate = false;
-  @Input() required = false;
+  @Input() @ToBoolean() checked = false;
+  @Input() @ToBoolean() disabled = false;
+  @Input() @ToBoolean() indeterminate = false;
+  @Input() @ToBoolean() required = false;
   @Input() name = '';
   @Input() @ToJson() attrs: Record<string, string> = {};
 

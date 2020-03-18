@@ -12,7 +12,7 @@
     "build:libs": "node tools/scripts/build-libs.js",
     "pretest": "npm run clean:dist",
     "test": "ng test",
-    "test:ci": "npm run test -- --runInBand",
+    "test:ci": "npm run run:all -- test --runInBand",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "affected:apps": "nx affected:apps",

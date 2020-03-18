@@ -7,22 +7,16 @@ export const TABLE_ROW_ACTIONS_TOKEN = new InjectionToken<
 
 @Injectable()
 export class TableActionService {
-  private actionHandlersObject: TableRowActionsDeclaration = {};
+  private actionHandlersObject?: TableRowActionsDeclaration = this.actionHandlers?.reduce(
+    (actions, action) => ({ ...actions, ...action }),
+    {},
+  );
 
   constructor(
     @Optional()
     @Inject(TABLE_ROW_ACTIONS_TOKEN)
-    private actionHandlers: TableRowActionsDeclaration[],
-  ) {
-    this.actionHandlerTransformer();
-  }
-
-  private actionHandlerTransformer() {
-    this.actionHandlersObject = this.actionHandlers?.reduce(
-      (actions, action) => ({ ...actions, ...action }),
-      {},
-    );
-  }
+    private actionHandlers?: TableRowActionsDeclaration[],
+  ) {}
 
   handle(actionEvent: TableActionTriggeredEvent): boolean {
     const actionHandler = this.actionHandlersObject?.[actionEvent.action.id];

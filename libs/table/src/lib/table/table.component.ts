@@ -30,6 +30,7 @@ import {
   startWith,
   switchMap,
   tap,
+  pluck,
 } from 'rxjs/operators';
 
 import { TableActionService } from './action.service';
@@ -51,12 +52,14 @@ import {
 } from './table';
 import { TableFeatureComponent } from './table-feature.component';
 import { TableFeatureDirective } from './table-feature.directive';
+import { DropdownItem } from '@spryker/dropdown';
 
 export enum TableFeatureLocation {
   top = 'top',
   headerExt = 'header-ext',
   afterTable = 'after-table',
   bottom = 'bottom',
+  hidden = 'hidden',
 }
 
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
@@ -92,10 +95,10 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   }
 
   featureLocation = TableFeatureLocation;
-  components = TableFeatureComponent;
+  featureComponentType = TableFeatureComponent;
 
   private setConfig$ = new ReplaySubject<TableConfig>(1);
-  config$ = this.setConfig$.pipe(shareReplay());
+  config$ = this.setConfig$.pipe(shareReplaySafe());
 
   columnsConfig$ = this.config$.pipe(
     map(config => config.columns || config.columnsUrl),
@@ -133,6 +136,11 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     shareReplaySafe(),
   );
 
+  total$ = this.data$.pipe(pluck('total'));
+  size$ = this.data$.pipe(pluck('size'));
+  offset$ = this.data$.pipe(pluck('offset'));
+  tableData$ = this.data$.pipe(pluck('data'));
+
   isLoading$ = merge(
     this.dataConfiguratorService.config$.pipe(mapTo(true)),
     this.data$.pipe(mapTo(false)),
@@ -144,10 +152,11 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   checkedRowsArr: TableDataRow[] = [];
   templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
   featuresLocation: Record<string, TableFeatureComponent[]> = {};
+  actions?: DropdownItem[];
 
   private rowsData: TableDataRow[] = [];
 
-  handleStreamError = () => (err: any) => EMPTY;
+  handleStreamError = () => (error: any) => EMPTY;
 
   constructor(
     private dataFetcherService: TableDataFetcherService,
@@ -156,7 +165,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     private tableActionService: TableActionService,
   ) {}
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     if (!this.slotTemplates) {
       return;
     }
@@ -171,13 +180,24 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   }
 
   ngOnInit(): void {
-    this.dataConfiguratorService.changePage(0);
+    setTimeout(() => this.dataConfiguratorService.changePage(0), 0);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config) {
       this.setConfig$.next(this.config);
     }
+
+    if (changes.actions) {
+      this.updateActions();
+    }
+  }
+
+  updateActions(): void {
+    this.actions = this.config?.rowActions?.map(({ id, title }) => ({
+      action: id,
+      title,
+    }));
   }
 
   updateFeaturesLocation(features: TableFeatureComponent[]): void {
@@ -204,9 +224,10 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   updateCheckedRows(): void {
     const valuesOfCheckedRows = Object.values(this.checkedRows);
-    const isUncheckedExist = valuesOfCheckedRows.some(checkbox => !checkbox);
-    const checkedArrayLength = valuesOfCheckedRows.filter(checkbox => checkbox)
-      .length;
+    const uncheckedRows = valuesOfCheckedRows.filter(checkbox => !checkbox);
+    const isUncheckedExist = uncheckedRows.length > 0;
+    const checkedArrayLength =
+      valuesOfCheckedRows.length - uncheckedRows.length;
 
     this.allChecked = !isUncheckedExist;
 
@@ -229,14 +250,17 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.selectionChange.emit(this.checkedRowsArr);
   }
 
-  updateSorting(event: { key: string; value: 'descend' | 'ascend' | null }) {
+  updateSorting(event: {
+    key: string;
+    value: 'descend' | 'ascend' | null;
+  }): void {
     const { key, value } = event;
     const sortingCriteria: SortingCriteria = {
       sortBy: key,
       sortDirection: this.sortingValueTransformation(value),
     };
 
-    this.dataConfiguratorService.update(<TableDataConfig>sortingCriteria);
+    this.dataConfiguratorService.update(sortingCriteria as TableDataConfig);
   }
 
   updatePagination(page: number): void {
@@ -247,24 +271,27 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.dataConfiguratorService.update({ size });
   }
 
-  getTableId() {
+  getTableId(): string | undefined {
     return this.tableId;
   }
 
-  trackByColumns(index: number, item: TableColumn) {
+  trackByColumns(index: number, item: TableColumn): string {
     return item.id;
   }
 
-  trackByData(index: number) {
-    return index;
-  }
+  actionTriggerHandler(actionId: TableRowAction, items: TableDataRow[]): void {
+    if (!this.config?.rowActions) {
+      return;
+    }
 
-  actionTriggerHandler(actionId: TableRowAction, items: TableDataRow[]) {
-    // tslint:disable: no-non-null-assertion
-    const action: TableRowActionBase = this.config!.rowActions!.filter(
+    const action: TableRowActionBase = this.config.rowActions.filter(
       rowAction => rowAction.id === actionId,
     )[0];
-    // tslint:enable: no-non-null-assertion
+
+    if (!action) {
+      return;
+    }
+
     const event: TableActionTriggeredEvent = {
       action,
       items,
@@ -276,14 +303,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }
   }
 
-  actionTransformation(): any {
-    return this.config?.rowActions?.map(({ id, title }) => ({
-      action: id,
-      title,
-    }));
-  }
-
-  private initCheckedRows(data: TableData) {
+  private initCheckedRows(data: TableData): void {
     let uninitedRowsLength = data.data.length;
 
     while (uninitedRowsLength--) {

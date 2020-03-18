@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.1.0-next.0...@spryker/tabs@0.1.0-next.1) (2020-03-16)
+
+
+### Bug Fixes
+
+* **tabs:** animateSlides arg ([1412fa2](https://github.com/spryker/ui-components/commit/1412fa288b9454d31c3ba34f2c70f8783c49f9a2))
+* **tabs:** invalid test fix ([25ab769](https://github.com/spryker/ui-components/commit/25ab769148145951dbfad0ee76e65ef15c4cfa1f))
+* **tabs,collapsible,styles:** tans anim, toggle styles ([fc994c2](https://github.com/spryker/ui-components/commit/fc994c273b25161dc54bcfc45b0a3d56724a394a))
+
+
+### Features
+
+* **label:** label component, bool updates ([4d5e875](https://github.com/spryker/ui-components/commit/4d5e8757009faa5fa2b4546b0061508b2c5725f0))
+
+
+
+
+
 # 0.1.0-next.0 (2020-03-12)
 
 

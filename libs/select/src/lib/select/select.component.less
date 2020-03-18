@@ -1,11 +1,19 @@
 @import './select.component.theme.less';
 
 .@{select-prefix-cls} {
+  font: @font-weight-medium @font-size-base /
+    @select-selection-content-line-height @font-family;
   height: @select-component-height;
   width: @select-component-width;
 
   &-dropdown {
     border-radius: @select-border-radius;
+
+    &-menu {
+      margin: 0;
+      font: @font-weight-medium @font-size-base /
+        @select-selection-content-line-height @font-family;
+    }
   }
 
   .@{select-prefix-cls}-selection {
@@ -26,9 +34,6 @@
         padding-left: @select-selection-content-padding;
         margin-right: @select-selection-content-margin-right;
         max-width: @select-selection-content-max-width;
-        line-height: @select-selection-content-line-height;
-        font-family: @font-family;
-        font-weight: @font-weight-medium;
         text-overflow: ellipsis;
         overflow: hidden;
       }

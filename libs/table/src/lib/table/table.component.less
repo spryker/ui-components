@@ -1,7 +1,12 @@
 @import './table.component.theme.less';
 
+* {
+  box-sizing: border-box;
+}
+
 .@{table-prefix-cls} {
   padding-bottom: @table-bottom-padding;
+  font: @font-weight-medium @font-size-base @font-family;
 
   &-features {
     display: flex;
@@ -28,7 +33,6 @@
 
   &-thead > tr > th {
     color: @table-header-color;
-    font: @font-weight-medium @font-size-base @font-family;
     background: transparent;
     border-bottom: none;
     text-transform: uppercase;

@@ -1,1 +1,1 @@
-{{ config.date | date: config.format | context: context }}
+{{ config.date | context: context | date: config.format }}

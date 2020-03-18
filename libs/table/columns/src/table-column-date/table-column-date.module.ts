@@ -4,8 +4,8 @@ import { TableColumnDateComponent } from './table-column-date.component';
 import { ContextModule } from '@spryker/utils';
 
 @NgModule({
-  declarations: [TableColumnDateComponent],
   imports: [CommonModule, ContextModule],
   exports: [TableColumnDateComponent],
+  declarations: [TableColumnDateComponent],
 })
 export class TableColumnDateModule {}

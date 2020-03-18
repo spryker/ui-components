@@ -35,7 +35,7 @@ describe('TableColumnImageComponent', () => {
   }));
 
   describe('Image', () => {
-    it('Template must render text from config', () => {
+    it('Template must render image node', () => {
       const image = fixture.debugElement.query(By.css('img'));
       expect(image).toBeTruthy();
     });

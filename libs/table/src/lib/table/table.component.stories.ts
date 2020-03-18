@@ -18,7 +18,7 @@ import {
   TableColumnImageComponent,
   TableColumnTextComponent,
   TableColumnDateComponent,
-} from '../../../columns/src';
+} from '@spryker/table/columns';
 
 export default {
   title: 'TableComponent',

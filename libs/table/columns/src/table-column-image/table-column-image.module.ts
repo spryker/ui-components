@@ -4,8 +4,8 @@ import { TableColumnImageComponent } from './table-column-image.component';
 import { ContextModule } from '@spryker/utils';
 
 @NgModule({
-  declarations: [TableColumnImageComponent],
   imports: [CommonModule, ContextModule],
   exports: [TableColumnImageComponent],
+  declarations: [TableColumnImageComponent],
 })
 export class TableColumnImageModule {}

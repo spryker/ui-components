@@ -2,11 +2,6 @@
 import { TemplateRef, Type } from '@angular/core';
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
-import {
-  TableColumnDateConfig,
-  TableColumnTextConfig,
-  TableColumnImageConfig,
-} from '@spryker/table/columns';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;
@@ -32,9 +27,6 @@ export interface TableColumnTypeOptions {
 export interface TableColumnTypeRegistry {
   // Key is type string - value is type config class
   'layout-flat': LayoutFlatConfig;
-  image: TableColumnImageConfig;
-  text: TableColumnTextConfig;
-  date: TableColumnDateConfig;
 }
 
 export type TableColumnType = keyof TableColumnTypeRegistry;

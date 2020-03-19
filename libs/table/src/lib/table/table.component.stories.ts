@@ -24,13 +24,6 @@ export default {
   title: 'TableComponent',
 };
 
-// Example of how column type registry may be extended
-// declare module './table' {
-//   interface TableColumnTypeRegistry {
-//     test: TableColumnTestConfig;
-//   }
-// }
-
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
   @ColumnTypeOption()

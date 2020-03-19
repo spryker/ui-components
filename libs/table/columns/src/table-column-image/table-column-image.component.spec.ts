@@ -1,52 +1,63 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { By } from '@angular/platform-browser';
+// tslint:disable: no-non-null-assertion
+import { TestBed } from '@angular/core/testing';
 import { TableColumnImageComponent } from './table-column-image.component';
 import { ContextPipe } from '@spryker/utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
-const configMock = { src: 'imageSrc' };
+const configMock: any = [
+  {
+    src: 'imageSrc',
+  },
+  {
+    src: '${value}',
+  },
+];
+
+const context: any = {
+  value: 'imageSrc',
+};
 
 describe('TableColumnImageComponent', () => {
-  @Component({
-    selector: 'test-component',
-    template: `
-      <spy-table-column-image
-        [config]="config"
-        [context]="context"
-      ></spy-table-column-image>
-    `,
-  })
-  class TestComponent {
-    config: any;
-    context: any;
-  }
+  const { testModule, createComponent } = getTestingForComponent(
+    TableColumnImageComponent,
+    {
+      ngModule: {
+        declarations: [ContextPipe],
+      },
+    },
+  );
 
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+  beforeEach(() => {
+    TestBed.configureTestingModule({ imports: [testModule] });
+  });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TableColumnImageComponent, TestComponent, ContextPipe],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
+  it('Template must render image node', async () => {
+    const host = await createComponent(
+      { config: configMock[0], context },
+      true,
+    );
+    const imageElem = host.queryCss('img');
 
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-  }));
+    expect(imageElem).toBeTruthy();
+  });
 
-  describe('Image', () => {
-    it('Template must render image node', () => {
-      const image = fixture.debugElement.query(By.css('img'));
-      expect(image).toBeTruthy();
-    });
+  it('Image should have src from config', async () => {
+    const host = await createComponent(
+      { config: configMock[0], context },
+      true,
+    );
+    const imageElem = host.queryCss('img');
 
-    it('Image should have src from config', () => {
-      component.config = configMock;
-      fixture.detectChanges();
+    expect(imageElem!.properties.src).toBe(configMock[0].src);
+  });
 
-      const imageSrc = fixture.debugElement.nativeElement.querySelector('img')
-        .src;
-      expect(imageSrc).toContain(configMock.src);
-    });
+  it('Image should have src with dynamic text string from context', async () => {
+    const host = await createComponent(
+      { config: configMock[1], context },
+      true,
+    );
+    const imageElem = host.queryCss('img');
+
+    expect(imageElem!.properties.src).toBe(context.value);
   });
 });

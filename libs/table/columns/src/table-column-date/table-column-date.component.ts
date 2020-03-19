@@ -13,6 +13,12 @@ import {
 } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
+declare module '@spryker/table' {
+  interface TableColumnTypeRegistry {
+    date: TableColumnDateConfig;
+  }
+}
+
 @Injectable({ providedIn: 'root' })
 export class TableColumnDateConfig {
   @ColumnTypeOption()

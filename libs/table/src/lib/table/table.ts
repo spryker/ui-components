@@ -1,5 +1,5 @@
 /* tslint:disable:no-empty-interface */
-import { TemplateRef, Type } from '@angular/core';
+import { Type } from '@angular/core';
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 

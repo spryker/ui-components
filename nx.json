@@ -91,6 +91,9 @@
     },
     "label": {
       "tags": ["level:atom", "type:component"]
+    },
+    "internal-utils": {
+      "tags": ["type:meta"]
     }
   }
 }

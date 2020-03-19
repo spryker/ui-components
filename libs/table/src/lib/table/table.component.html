@@ -4,9 +4,9 @@
 
 <div class="ant-table-features" *ngIf="config">
   <div class="ant-table-features-col ant-table-features-col--static">
-    <ng-container *ngIf="checkedRowsArr.length"
+    <!-- <ng-container *ngIf="checkedRowsArr.length"
       >{{ checkedRowsArr.length }} selected /
-    </ng-container>
+    </ng-container> -->
     {{ total$ | async }} results
   </div>
 
@@ -20,13 +20,16 @@
 <nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
   <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
     <tr>
-      <th *ngIf="config?.selectable" class="ant-table-column-selectable">
-        <spy-checkbox
-          [(checked)]="allChecked"
-          [indeterminate]="isIndeterminate"
-          (checkedChange)="toggleCheckedRows()"
-        ></spy-checkbox>
-      </th>
+      <ng-container
+        *ngFor="let feature of featuresLocation[featureLocation.beforeCols]"
+      >
+        <th *ngIf="!featuresDisabled[featureLocation.beforeCols][feature]">
+          <spy-table-features-renderer
+            [features]="[feature]"
+            [maxFeatures]="1"
+          ></spy-table-features-renderer>
+        </th>
+      </ng-container>
 
       <th
         *ngFor="let column of columns$ | async; trackBy: trackByColumns"
@@ -54,16 +57,22 @@
   <tbody>
     <tr
       *ngFor="let data of tableData$ | async; index as indexOfElement"
-      [class.ant-table-row--selected]="checkedRows[indexOfElement]"
+      [ngClass]="rowClasses[indexOfElement]"
     >
-      <td *ngIf="config?.selectable" class="ant-table-column-selectable">
-        <div class="ant-table-column-inner">
-          <spy-checkbox
-            [(checked)]="checkedRows[indexOfElement]"
-            (checkedChange)="updateCheckedRows()"
-          ></spy-checkbox>
-        </div>
-      </td>
+      <ng-container
+        *ngFor="let feature of featuresLocation[featureLocation.beforeCols]"
+      >
+        <td *ngIf="!featuresDisabled[featureLocation.beforeCols][feature]">
+          <div class="ant-table-column-inner">
+            <spy-table-column-renderer
+              [config]="{}"
+              [data]="data"
+              [template]="feature.colTemplate"
+              [i]="indexOfElement"
+            ></spy-table-column-renderer>
+          </div>
+        </td>
+      </ng-container>
 
       <td
         *ngFor="
@@ -84,6 +93,7 @@
             [config]="column"
             [data]="data"
             [template]="templatesObj[column.id]"
+            [i]="indexOfElement"
           ></spy-table-column-renderer>
         </div>
       </td>
@@ -123,7 +133,7 @@
 <span
   style="display: none"
   [spySelectComponents]="featureComponentType"
-  (spySelectComponentsFound)="updateFeaturesLocation($event)"
+  (spySelectComponentsFound)="updateFeatures($event)"
 >
   <ng-content select="[spy-table-feature]"></ng-content>
 </span>

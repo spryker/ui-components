@@ -2,7 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
+  OnChanges,
+  SimpleChanges,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
@@ -22,10 +23,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TableColumnRendererComponent implements OnInit {
+export class TableColumnRendererComponent implements OnChanges {
   @Input() config?: TableColumn;
   @Input() data?: TableDataRow;
   @Input() template?: TemplateRef<TableColumnTplContext>;
+  @Input() i?: number;
 
   itemConfig?: OrchestratorConfigItem;
 
@@ -34,11 +36,21 @@ export class TableColumnRendererComponent implements OnInit {
   emptyValue?: string;
   defaultEmptyValue = '-';
 
-  ngOnInit(): void {
-    if (this.config) {
-      this.emptyValue = this.config.emptyValue || this.defaultEmptyValue;
-      this.value = this.data?.[this.config.id];
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.config || changes.data) {
+      this.updateValues();
+    } else if (changes.i) {
+      this.updateTplContext();
     }
+  }
+
+  private updateValues() {
+    if (!this.config) {
+      return;
+    }
+
+    this.emptyValue = this.config.emptyValue || this.defaultEmptyValue;
+    this.value = this.data?.[this.config.id];
 
     this.updateTplContext();
     this.updateItemConfig();
@@ -54,6 +66,8 @@ export class TableColumnRendererComponent implements OnInit {
       config: this.config,
       row: this.data || {},
       value: this.value,
+      // tslint:disable-next-line: no-non-null-assertion
+      i: this.i!,
     };
   }
 

@@ -1,6 +1,7 @@
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -32,7 +33,6 @@ import {
   shareReplay,
   startWith,
   switchMap,
-  tap,
 } from 'rxjs/operators';
 
 import { TableActionService } from './action.service';
@@ -46,7 +46,6 @@ import {
   TableColumn,
   TableColumnTplContext,
   TableConfig,
-  TableData,
   TableDataConfig,
   TableDataRow,
   TableRowAction,
@@ -59,6 +58,8 @@ export enum TableFeatureLocation {
   top = 'top',
   beforeTable = 'before-table',
   headerExt = 'header-ext',
+  beforeCols = 'before-cols',
+  afterCols = 'after-cols',
   afterTable = 'after-table',
   bottom = 'bottom',
   hidden = 'hidden',
@@ -91,9 +92,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   @ContentChildren(TableFeatureDirective)
   set featureDirectives(featureDirectives: QueryList<TableFeatureDirective>) {
-    this.updateFeaturesLocation(
-      featureDirectives.map(feature => feature.component),
-    );
+    this.updateFeatures(featureDirectives.map(feature => feature.component));
   }
 
   featureLocation = TableFeatureLocation;
@@ -133,11 +132,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
         .resolve(dataUrl)
         .pipe(catchError(this.handleStreamError())),
     ),
-    tap(data => {
-      this.initCheckedRows(data);
-      this.rowsData = data.data;
-      this.updateCheckedRowsArr();
-    }),
     shareReplaySafe(),
   );
 
@@ -152,15 +146,11 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.error$.pipe(mapTo(false)),
   ).pipe(startWith(false), shareReplaySafe());
 
-  allChecked = false;
-  isIndeterminate = false;
-  checkedRows: Record<TableColumn['id'], boolean> = {};
-  checkedRowsArr: TableDataRow[] = [];
   templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
   featuresLocation: Record<string, TableFeatureComponent[]> = {};
+  featuresDisabled: Record<string, Map<TableFeatureComponent, boolean>> = {};
+  rowClasses: Record<string, Record<string, boolean>> = {};
   actions?: DropdownItem[];
-
-  private rowsData: TableDataRow[] = [];
 
   handleStreamError = () => (error: unknown) => {
     this.error$.next(error);
@@ -168,6 +158,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   };
 
   constructor(
+    private cdr: ChangeDetectorRef,
     private dataFetcherService: TableDataFetcherService,
     private dataConfiguratorService: TableDataConfiguratorService,
     private columnsResolverService: TableColumnsResolverService,
@@ -206,58 +197,45 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }));
   }
 
-  updateFeaturesLocation(features: TableFeatureComponent[]): void {
+  updateFeatures(features: TableFeatureComponent[]): void {
     this.featuresLocation = features.reduce(
-      (acc, feature) => ({
+      (acc, feature) =>
+        feature.locations.reduce(
+          (_acc, location) => ({
+            ..._acc,
+            [location]: acc[location] ? [...acc[location], feature] : [feature],
+          }),
+          acc,
+        ),
+      {} as TableComponent['featuresLocation'],
+    );
+
+    this.featuresDisabled = Object.keys(this.featuresLocation).reduce(
+      (acc, location) => ({
         ...acc,
-        [feature.location]: acc[feature.location]
-          ? [...acc[feature.location], feature]
-          : [feature],
+        [location]: new Map(
+          this.featuresLocation[location].map(feature => [feature, false]),
+        ),
       }),
-      {} as Record<string, TableFeatureComponent[]>,
+      {} as TableComponent['featuresDisabled'],
     );
   }
 
-  toggleCheckedRows(): void {
-    let unchangedRowsLength = Object.keys(this.checkedRows).length;
-
-    this.isIndeterminate = false;
-
-    while (unchangedRowsLength--) {
-      this.checkedRows[unchangedRowsLength] = this.allChecked;
-    }
-
-    this.updateCheckedRowsArr();
-
-    this.selectionChange.emit(this.checkedRowsArr);
+  updateRowClasses(rowIdx: string, classes: Record<string, boolean>) {
+    this.setRowClasses(rowIdx, { ...this.rowClasses[rowIdx], ...classes });
   }
 
-  updateCheckedRows(): void {
-    const valuesOfCheckedRows = Object.values(this.checkedRows);
-    const uncheckedRows = valuesOfCheckedRows.filter(checkbox => !checkbox);
-    const isUncheckedExist = uncheckedRows.length > 0;
-    const checkedArrayLength =
-      valuesOfCheckedRows.length - uncheckedRows.length;
-
-    this.allChecked = !isUncheckedExist;
-
-    this.updateCheckedRowsArr();
-
-    this.selectionChange.emit(this.checkedRowsArr);
-
-    if (checkedArrayLength) {
-      this.isIndeterminate = isUncheckedExist;
-
-      return;
-    }
-
-    this.isIndeterminate = false;
+  setRowClasses(rowIdx: string, classes: Record<string, boolean>) {
+    this.rowClasses[rowIdx] = classes;
   }
 
-  updateCheckedRowsArr(): void {
-    this.checkedRowsArr = Object.keys(this.checkedRows)
-      .filter(idx => this.checkedRows[idx])
-      .map(idx => this.rowsData[Number(idx)]);
+  disableFeatureAt(
+    location: TableFeatureLocation,
+    feature: TableFeatureComponent,
+    isDisabled: boolean,
+  ) {
+    this.featuresDisabled[location].set(feature, isDisabled);
+    this.cdr.detectChanges();
   }
 
   updateSorting(event: {
@@ -311,17 +289,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     if (!wasActionHandled) {
       this.actionTriggered.emit(event);
     }
-  }
-
-  private initCheckedRows(data: TableData): void {
-    let uninitedRowsLength = data.data.length;
-
-    while (uninitedRowsLength--) {
-      this.checkedRows[uninitedRowsLength] = false;
-    }
-
-    this.allChecked = false;
-    this.isIndeterminate = false;
   }
 
   private sortingValueTransformation(

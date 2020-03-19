@@ -1,0 +1,13 @@
+<ng-template>
+  <spy-checkbox
+    [(checked)]="allChecked"
+    [indeterminate]="isIndeterminate"
+    (checkedChange)="toggleCheckedAll()"
+  ></spy-checkbox>
+</ng-template>
+<ng-template #colTemplate let-i="i">
+  <spy-checkbox
+    [(checked)]="checkedRows[i]"
+    (checkedChange)="updateCheckedRows()"
+  ></spy-checkbox>
+</ng-template>

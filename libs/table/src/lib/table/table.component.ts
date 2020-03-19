@@ -13,6 +13,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { DropdownItem } from '@spryker/dropdown';
 import { ToJson } from '@spryker/utils';
 import {
   EMPTY,
@@ -20,17 +21,18 @@ import {
   MonoTypeOperatorFunction,
   of,
   ReplaySubject,
+  Subject,
 } from 'rxjs';
 import {
   catchError,
   distinctUntilChanged,
   map,
   mapTo,
+  pluck,
   shareReplay,
   startWith,
   switchMap,
   tap,
-  pluck,
 } from 'rxjs/operators';
 
 import { TableActionService } from './action.service';
@@ -52,7 +54,6 @@ import {
 } from './table';
 import { TableFeatureComponent } from './table-feature.component';
 import { TableFeatureDirective } from './table-feature.directive';
-import { DropdownItem } from '@spryker/dropdown';
 
 export enum TableFeatureLocation {
   top = 'top',
@@ -100,6 +101,8 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   private setConfig$ = new ReplaySubject<TableConfig>(1);
   config$ = this.setConfig$.pipe(shareReplaySafe());
 
+  error$ = new Subject<unknown>();
+
   columnsConfig$ = this.config$.pipe(
     map(config => config.columns || config.columnsUrl),
     distinctUntilChanged(),
@@ -139,12 +142,13 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   total$ = this.data$.pipe(pluck('total'));
   size$ = this.data$.pipe(pluck('size'));
-  offset$ = this.data$.pipe(pluck('offset'));
+  page$ = this.data$.pipe(pluck('page'));
   tableData$ = this.data$.pipe(pluck('data'));
 
   isLoading$ = merge(
     this.dataConfiguratorService.config$.pipe(mapTo(true)),
     this.data$.pipe(mapTo(false)),
+    this.error$.pipe(mapTo(false)),
   ).pipe(startWith(false), shareReplaySafe());
 
   allChecked = false;
@@ -157,7 +161,10 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   private rowsData: TableDataRow[] = [];
 
-  handleStreamError = () => (error: any) => EMPTY;
+  handleStreamError = () => (error: unknown) => {
+    this.error$.next(error);
+    return EMPTY;
+  };
 
   constructor(
     private dataFetcherService: TableDataFetcherService,
@@ -181,7 +188,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => this.dataConfiguratorService.changePage(0), 0);
+    setTimeout(() => this.dataConfiguratorService.changePage(1), 0);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -202,9 +209,11 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.featuresLocation = features.reduce(
       (acc, feature) => ({
         ...acc,
-        [feature.location]: feature,
+        [feature.location]: acc[feature.location]
+          ? [...acc[feature.location], feature]
+          : [feature],
       }),
-      {},
+      {} as Record<string, TableFeatureComponent[]>,
     );
   }
 
@@ -268,7 +277,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   }
 
   updatePaginationSize(size: number): void {
-    this.dataConfiguratorService.update({ size });
+    this.dataConfiguratorService.update({ size, page: 1 });
   }
 
   getTableId(): string | undefined {

@@ -6,6 +6,7 @@ import {
   EventEmitter,
   ViewEncapsulation,
 } from '@angular/core';
+import { ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-pagination',
@@ -18,7 +19,7 @@ export class PaginationComponent {
   @Input() total = 0;
   @Input() page = 1;
   @Input() pageSize = 10;
-  @Input() hideOnSinglePage = false;
+  @Input() @ToBoolean() hideOnSinglePage = false;
   @Input() pageSizeOptions = [10, 20, 50];
   @Input() placeholder = '';
   @Output() pageChange = new EventEmitter<number>();

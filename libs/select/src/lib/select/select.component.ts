@@ -16,7 +16,7 @@ import {
   IconCheckModule,
   IconRemoveModule,
 } from '@spryker/icon/icons';
-import { ToJson } from '@spryker/utils';
+import { ToBoolean, ToJson } from '@spryker/utils';
 
 export type SelectValue = string | number;
 export type SelectOption = SelectValue | SelectOptionItem;
@@ -37,11 +37,11 @@ export interface SelectOptionItem {
 export class SelectComponent implements OnInit, OnChanges {
   @Input() @ToJson() options: SelectOption[] = [];
   @Input() value: SelectValue | SelectValue[] = [];
-  @Input() search = false;
-  @Input() disabled = false;
-  @Input() multiple = false;
+  @Input() @ToBoolean() search = false;
+  @Input() @ToBoolean() disabled = false;
+  @Input() @ToBoolean() multiple = false;
   @Input() placeholder = '';
-  @Input() showSelectAll = false;
+  @Input() @ToBoolean() showSelectAll = false;
   @Input() selectAllTitle = '';
   @Input() name = '';
   @Input() noOptionsText = '';

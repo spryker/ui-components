@@ -88,6 +88,9 @@
     },
     "tabs": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "label": {
+      "tags": ["level:atom", "type:component"]
     }
   }
 }

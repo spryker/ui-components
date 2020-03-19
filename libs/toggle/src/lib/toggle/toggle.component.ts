@@ -6,6 +6,7 @@ import {
   EventEmitter,
   ViewEncapsulation,
 } from '@angular/core';
+import { ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-toggle',
@@ -15,8 +16,8 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class ToggleComponent {
-  @Input() value = false;
-  @Input() disabled = false;
+  @Input() @ToBoolean() value = false;
+  @Input() @ToBoolean() disabled = false;
   @Input() name = '';
   @Output() valueChange = new EventEmitter<boolean>();
 }

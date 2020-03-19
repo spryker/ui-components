@@ -8,6 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
+import { ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-sidebar',
@@ -20,7 +21,7 @@ export class SidebarComponent {
   @Input() width = 250;
   @Input() collapsedWidth = 62;
   @Input() trigger: undefined | TemplateRef<void>;
-  @Input() collapsed = false;
+  @Input() @ToBoolean() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
   @Input() ctxBgClass = 'ctx-spy-bg-white';
 

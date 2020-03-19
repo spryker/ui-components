@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.25](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.24...@spryker/styles@0.1.0-next.25) (2020-03-18)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.1.0-next.24](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.23...@spryker/styles@0.1.0-next.24) (2020-03-17)
+
+
+### Features
+
+* **table:** add columns resolver service ([4d27c70](https://github.com/spryker/ui-components/commit/4d27c70e2acf23017b2b636c17f34773dfb6f790))
+* **table:** add styles ([b69c7e1](https://github.com/spryker/ui-components/commit/b69c7e1a427fa68bcb984d2eb8dfdaf2448ccd4c))
+
+
+
+
+
+# [0.1.0-next.23](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.22...@spryker/styles@0.1.0-next.23) (2020-03-16)
+
+
+### Bug Fixes
+
+* **tabs,collapsible,styles:** tans anim, toggle styles ([fc994c2](https://github.com/spryker/ui-components/commit/fc994c273b25161dc54bcfc45b0a3d56724a394a))
+
+
+
+
+
+# [0.1.0-next.22](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.21...@spryker/styles@0.1.0-next.22) (2020-03-16)
+
+
+### Bug Fixes
+
+* **input:** input bg ([d76aa6c](https://github.com/spryker/ui-components/commit/d76aa6cb73963f5c9a021bfddd2c720ef3607a17))
+
+
+
+
+
 # [0.1.0-next.21](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.20...@spryker/styles@0.1.0-next.21) (2020-03-12)
 
 

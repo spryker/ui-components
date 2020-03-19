@@ -196,10 +196,10 @@ describe('ButtonComponent', () => {
     });
 
     it('should bind to `disabled` of <button>', async () => {
-      const host = await createComponent({ disabled: 'value' as any }, true);
+      const host = await createComponent({ disabled: true }, true);
       const buttonElem = host.queryCss('button')!;
 
-      expect(buttonElem.properties.disabled).toBe('value');
+      expect(buttonElem.properties.disabled).toBe(true);
     });
   });
 });

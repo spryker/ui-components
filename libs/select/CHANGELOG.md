@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.6...@spryker/select@0.1.0-next.7) (2020-03-18)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.5...@spryker/select@0.1.0-next.6) (2020-03-17)
+
+
+### Bug Fixes
+
+* **select:** export missing compnent types as public API ([9d00628](https://github.com/spryker/ui-components/commit/9d0062872530c2c13375f5dfacd17a6f3f119565))
+
+
+
+
+
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.4...@spryker/select@0.1.0-next.5) (2020-03-16)
+
+
+### Bug Fixes
+
+* **select:** standart select behavior ([cc47335](https://github.com/spryker/ui-components/commit/cc47335ceb8924c76f7b06a158c18490fa82f719))
+
+
+### Features
+
+* **label:** label component, bool updates ([4d5e875](https://github.com/spryker/ui-components/commit/4d5e8757009faa5fa2b4546b0061508b2c5725f0))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.3...@spryker/select@0.1.0-next.4) (2020-03-12)
 
 **Note:** Version bump only for package @spryker/select

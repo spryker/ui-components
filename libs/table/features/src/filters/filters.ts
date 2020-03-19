@@ -1,3 +1,4 @@
+/* tslint:disable:no-empty-interface */
 import { EventEmitter } from '@angular/core';
 
 export interface TableFiltersRegistry {

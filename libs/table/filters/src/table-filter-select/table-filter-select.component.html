@@ -1,1 +1,7 @@
-<spy-select [options]="selectOptions" [value]="value" (valueChange)="valueChange.emit($event)" [multiple]="selectMultiple"></spy-select>
+<spy-select
+  [options]="selectOptions"
+  [value]="value"
+  (valueChange)="valueChange.emit($event)"
+  [multiple]="config?.typeOptions?.multiple"
+  [placeholder]="config?.title"
+></spy-select>

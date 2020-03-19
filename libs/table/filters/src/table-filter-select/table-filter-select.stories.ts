@@ -1,4 +1,5 @@
-import { object, array } from '@storybook/addon-knobs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { object, array, text } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
 import { TableFilterSelectComponent } from './table-filter-select.component';
@@ -8,33 +9,52 @@ export default {
   title: 'TableFilterSelect',
 };
 
-export const withFeatures = (): IStory => ({
+const mockSelectConfig = {
+  id: 'Filter Id',
+  title: 'Filter title',
+  type: 'select',
+  typeOptions: {
+    values: [
+      {
+        title: 'Option 1',
+        value: 'value_1',
+      },
+      {
+        title: 'Option 2',
+        value: 'value_2',
+      },
+      {
+        title: 'Option 3',
+        value: 'value_3',
+      },
+    ],
+  },
+};
+
+export const TableFilterSelect = (): IStory => ({
   moduleMetadata: {
-    imports: [TableFilterSelectModule],
+    imports: [BrowserAnimationsModule, TableFilterSelectModule],
+  },
+  component: TableFilterSelectComponent,
+  props: {
+    config: object('Config', mockSelectConfig),
+    value: text('Value', 'value_1'),
+  },
+});
+
+export const TableFilterSelectMultiple = (): IStory => ({
+  moduleMetadata: {
+    imports: [BrowserAnimationsModule, TableFilterSelectModule],
   },
   component: TableFilterSelectComponent,
   props: {
     config: object('Config', {
-      id: 'Filter Id',
-      title: 'Filter title',
-      type: 'select',
+      ...mockSelectConfig,
       typeOptions: {
-        values: [
-          {
-            title: 'Option 1',
-            value: 'value_1',
-          },
-          {
-            title: 'Option 2',
-            value: 'value_2',
-          },
-          {
-            title: 'Option 3',
-            value: 'value_3',
-          },
-        ]
-      }
+        ...mockSelectConfig.typeOptions,
+        multiple: true,
+      },
     }),
-    context: array('Context', ['value_1']),
+    value: array('Value', ['value_1', 'value_2']),
   },
 });

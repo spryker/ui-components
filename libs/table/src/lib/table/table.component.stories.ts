@@ -51,16 +51,11 @@ export const withFeatures = (): IStory => ({
       } as any),
       BrowserAnimationsModule,
     ],
-    declarations: [
-      TableColumnTestComponent,
-    ],
+    declarations: [TableColumnTestComponent],
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [
-          LayoutFlatHostComponent,
-          TableColumnTestComponent,
-        ],
+        useValue: [LayoutFlatHostComponent, TableColumnTestComponent],
         multi: true,
       },
     ],

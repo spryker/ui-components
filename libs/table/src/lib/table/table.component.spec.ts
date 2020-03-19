@@ -61,7 +61,7 @@ const mockData = {
   ],
   total: 5,
   size: 10,
-  offset: 1,
+  page: 1,
 };
 const mockConfig: TableConfig = {
   dataUrl: mockDataUrl,
@@ -298,7 +298,7 @@ describe('TableComponent', () => {
 
         expect(paginationElement!.properties.total).toBe(mockData.total);
         expect(paginationElement!.properties.pageSize).toBe(mockData.size);
-        expect(paginationElement!.properties.page).toBe(mockData.offset);
+        expect(paginationElement!.properties.page).toBe(mockData.page);
       });
 
       it('prop columns$ must be mapped into thead and create with tr and each th of the table', async () => {
@@ -443,23 +443,6 @@ describe('TableComponent', () => {
             'ant-table-row--selected',
           ),
         ).toBe(true);
-      });
-    });
-
-    describe('fixHeader', () => {
-      const mockHeaderConfig = { ...mockConfigCols, fixHeader: '100px' };
-
-      it('should bind to `nzScroll` input of `nz-table` component', async () => {
-        const host = await createComponent({ config: mockHeaderConfig }, true);
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-
-        const tableElem = host.queryCss('nz-table');
-
-        expect(tableElem!.properties.nzScroll.y).toBe(
-          mockHeaderConfig.fixHeader,
-        );
       });
     });
 

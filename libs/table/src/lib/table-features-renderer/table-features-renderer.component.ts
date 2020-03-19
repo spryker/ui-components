@@ -1,5 +1,7 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
   OnChanges,
@@ -28,7 +30,8 @@ interface FeatureRecord {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TableFeaturesRendererComponent implements OnChanges {
+export class TableFeaturesRendererComponent
+  implements OnChanges, AfterViewInit {
   @Input() features?: TableFeatureComponent[];
   @Input() maxFeatures?: number;
 
@@ -36,11 +39,22 @@ export class TableFeaturesRendererComponent implements OnChanges {
   featureRecords: FeatureRecord[] = [];
 
   constructor(
+    private cdr: ChangeDetectorRef,
     private tableComponent: TableComponent,
     private columnsResolverService: TableColumnsResolverService,
     private dataFetcherService: TableDataFetcherService,
     private dataConfiguratorService: TableDataConfiguratorService,
   ) {}
+
+  ngAfterViewInit(): void {
+    // Features templates will be available AfterViewInit
+    // And our AfterViewInit is triggered before theirs -
+    // so we wait next tick via `setTimeout`
+    setTimeout(() => {
+      this.updateFeatures();
+      this.cdr.detectChanges();
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.features) {

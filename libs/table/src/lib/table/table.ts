@@ -35,6 +35,7 @@ export interface TableColumnContext {
   value: TableDataValue;
   row: TableDataRow;
   id: TableColumn['id'];
+  i: number;
 }
 
 export interface TableColumnTplContext extends TableColumnContext {
@@ -97,7 +98,6 @@ export interface TableConfig {
   columnsUrl?: string;
   dataUrl: string;
   columns?: TableColumns;
-  selectable?: boolean;
   pageSizes?: number[];
   rowActions?: TableRowActionBase[];
 }

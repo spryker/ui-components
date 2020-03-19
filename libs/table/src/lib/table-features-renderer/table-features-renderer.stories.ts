@@ -5,31 +5,21 @@ import { IStory } from '@storybook/angular';
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
 import { TableDataFetcherService } from '../table/data-fetcher.service';
-import { TableFeatureContext } from '../table/table';
+import { TableFeatureContext, TableColumnContext } from '../table/table';
 import { TableFeatureComponent } from '../table/table-feature.component';
-import { TableComponent } from '../table/table.component';
+import { TableComponent, TableFeatureLocation } from '../table/table.component';
 import { TableFeaturesRendererComponent } from './table-features-renderer.component';
 
 export default {
   title: 'TableFeaturesRendererComponent',
 };
 
-class MockTableFeatureComponent implements TableFeatureComponent {
+class MockTableFeatureComponent extends TableFeatureComponent {
   location = 'mocked-location';
-  styles?: Record<string, string>;
-  template?: TemplateRef<TableFeatureContext>;
-  table?: TableComponent;
-  columnsResolverService?: TableColumnsResolverService;
-  dataFetcherService?: TableDataFetcherService;
-  dataConfiguratorService?: TableDataConfiguratorService;
-  setTableComponent(table: TableComponent): void {}
-  setColumnsResolverService(service: TableColumnsResolverService): void {}
-  setDataFetcherService(service: TableDataFetcherService): void {}
-  setDataConfiguratorService(service: TableDataConfiguratorService): void {}
-  getTemplate(): TemplateRef<TableFeatureContext> {
-    return this.templateRef;
+  constructor(template: TemplateRef<TableFeatureContext>) {
+    super();
+    this.template = template;
   }
-  constructor(private templateRef: TemplateRef<TableFeatureContext>) {}
 }
 
 @Component({

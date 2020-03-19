@@ -50,13 +50,13 @@ export interface TableFilterComponent<C extends TableFilterBase> {
 export type FindTableFilter<
   T extends TableFilter['type'],
   F = Distribute<TableFilter>
-  > = F extends { type: T } ? F : never;
+> = F extends { type: T } ? F : never;
 
 export type TableFiltersDeclaration = Partial<
   {
     [P in TableFilterType]: TableFilterComponent<FindTableFilter<P>>;
   }
-  >;
+>;
 
 // Multi DI token
 export type TableFiltersToken = InjectionToken<TableFiltersDeclaration[]>;

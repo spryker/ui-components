@@ -7,15 +7,12 @@ import { TableFiltersDeclaration } from './table-filters';
 
 export const TABLE_FILTERS_TOKEN = new InjectionToken<
   TableFiltersDeclaration[]
-  >('TABLE_FILTERS_TOKEN');
+>('TABLE_FILTERS_TOKEN');
 
 @NgModule({
-  imports: [
-    CommonModule,
-    DynamicIoModule
-  ],
+  imports: [CommonModule, DynamicIoModule],
   declarations: [TableFiltersFeatureComponent],
-  exports: [TableFiltersFeatureComponent]
+  exports: [TableFiltersFeatureComponent],
 })
 export class TableFiltersFeatureModule {
   static withFilterComponents(
@@ -29,7 +26,7 @@ export class TableFiltersFeatureModule {
           useValue: filters,
           multi: true,
         },
-      ]
-    }
+      ],
+    };
   }
 }

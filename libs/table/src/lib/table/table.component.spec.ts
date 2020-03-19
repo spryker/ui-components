@@ -130,11 +130,28 @@ describe('TableComponent', () => {
         fixture.detectChanges();
       });
 
-      it('must render in the `ant-table-features-col--dynamic` div with features=`featuresLocation[`top`] value', () => {
+      it('must render at the top of the template with features=`featuresLocation[`top`] value', () => {
         const mockFeature = 'top feature';
 
         fixture.componentInstance.featuresLocation = {
           top: mockFeature,
+        } as any;
+
+        fixture.detectChanges();
+
+        const spyTableFeaturesElem = fixture.debugElement.query(
+          By.css('spy-table-features-renderer:first-of-type'),
+        );
+
+        expect(spyTableFeaturesElem).toBeTruthy();
+        expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
+      });
+
+      it('must render in the `ant-table-features-col--dynamic` div with features=`featuresLocation[`before-table`] value', () => {
+        const mockFeature = 'before-table feature';
+
+        fixture.componentInstance.featuresLocation = {
+          'before-table': mockFeature,
         } as any;
 
         fixture.detectChanges();

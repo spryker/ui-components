@@ -3,4 +3,4 @@ import { withKnobs } from '@storybook/addon-knobs';
 import '../../../.storybook/config';
 
 addDecorator(withKnobs);
-configure(require.context('../src/lib', true, /\.stories\.tsx?$/), module);
+configure(require.context('..', true, /\/src\/.*\.stories\.tsx?$/), module);

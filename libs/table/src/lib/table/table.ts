@@ -62,8 +62,8 @@ export type TableDataValue = unknown | unknown[];
 
 export type TableDataRow = Record<TableColumn['id'], TableDataValue>;
 
-export interface TableData {
-  data: TableDataRow[];
+export interface TableData<T extends TableDataRow = TableDataRow> {
+  data: T[];
   total: number;
   page: number;
   size: number;

@@ -2,11 +2,8 @@ import { Component, Input } from '@angular/core';
 import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
-import {
-  TableColumnTextConfig,
-  TableColumnTextModule,
-} from '@spryker/table/columns';
-import { TableColumnContext } from '@spryker/table';
+import { TableColumnTextComponent } from './table-column-text.component';
+import { TableColumnTextModule } from './table-column-text.module';
 
 export default {
   title: 'TableColumnText',
@@ -29,11 +26,8 @@ class RenderColumnType {
 export const withFeatures = (): IStory => ({
   moduleMetadata: {
     imports: [TableColumnTextModule],
-    declarations: [RenderColumnType],
   },
-  template: `
-    <render-column-type [config]="config" [context]="context"></render-column-type>
-  `,
+  component: TableColumnTextComponent,
   props: {
     config: object('Config', {
       text: '${value}',

@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.4...@spryker/table@0.1.0-next.5) (2020-03-19)
+
+
+### Bug Fixes
+
+* **table:** features template rendering ([90d2d55](https://github.com/spryker/ui-components/commit/90d2d5588675d2df0aa79b018abddd62cd6be864))
+
+
+
+
+
+# [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.3...@spryker/table@0.1.0-next.4) (2020-03-19)
+
+
+### Bug Fixes
+
+* **table:** properly merge all feature components in arrays ([894b73f](https://github.com/spryker/ui-components/commit/894b73f12a602b7d6cf98870578a5af3cd9bb085))
+
+
+
+
+
+# [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.2...@spryker/table@0.1.0-next.3) (2020-03-18)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.1...@spryker/table@0.1.0-next.2) (2020-03-18)
+
+
+### Bug Fixes
+
+* **table:** style include paths for secondary entry-points ([e873be7](https://github.com/spryker/ui-components/commit/e873be75f9c5fb0b20d2759fc5680f6b43fa884d))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.0...@spryker/table@0.1.0-next.1) (2020-03-18)
 
 **Note:** Version bump only for package @spryker/table

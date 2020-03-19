@@ -14,11 +14,6 @@ import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext } from './table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  TableColumnImageComponent,
-  TableColumnTextComponent,
-  TableColumnDateComponent,
-} from '@spryker/table/columns';
 
 export default {
   title: 'TableComponent',
@@ -53,17 +48,11 @@ export const withFeatures = (): IStory => ({
       TableModule.forRoot(),
       TableModule.withColumnComponents({
         test: TableColumnTestComponent,
-        image: TableColumnImageComponent,
-        text: TableColumnTextComponent,
-        date: TableColumnDateComponent,
       } as any),
       BrowserAnimationsModule,
     ],
     declarations: [
       TableColumnTestComponent,
-      TableColumnImageComponent,
-      TableColumnTextComponent,
-      TableColumnDateComponent,
     ],
     providers: [
       {
@@ -71,9 +60,6 @@ export const withFeatures = (): IStory => ({
         useValue: [
           LayoutFlatHostComponent,
           TableColumnTestComponent,
-          TableColumnImageComponent,
-          TableColumnTextComponent,
-          TableColumnDateComponent,
         ],
         multi: true,
       },
@@ -96,24 +82,6 @@ export const withFeatures = (): IStory => ({
           { id: 'name', sortable: true, title: 'name', width: '20%' },
           { id: 'sku', sortable: true, title: 'sku', width: '20%' },
           { id: 'id3', sortable: true, title: 'id3' },
-          {
-            id: 'img',
-            title: 'Image',
-            type: 'image',
-            typeOptions: { src: '123' },
-          },
-          {
-            id: 'title',
-            title: 'Title',
-            type: 'text',
-            typeOptions: { text: 'asfdasdfadsf' },
-          },
-          {
-            id: 'date',
-            title: 'Date',
-            type: 'date',
-            typeOptions: { date: new Date() },
-          },
         ],
         selectable: true,
         rowActions: [

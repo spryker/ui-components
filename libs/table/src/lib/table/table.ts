@@ -8,10 +8,10 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
   title: string;
   sortable?: true;
   width?: string;
-  multiple?: boolean;
+  multiRenderMode?: boolean;
+  multiRenderModeLimit?: number;
   hideable?: boolean;
   searchable?: boolean;
-  multipleLimit?: number;
 }
 
 export interface TableColumnTypeDef {
@@ -66,7 +66,7 @@ export interface TableData {
   data: TableDataRow[];
   total: number;
   page: number;
-  size: number;
+  pageSize: number;
 }
 
 export interface TableRowActionBase {

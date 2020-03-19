@@ -60,7 +60,7 @@ const mockData = {
     },
   ],
   total: 5,
-  size: 10,
+  pageSize: 10,
   page: 1,
 };
 const mockConfig: TableConfig = {
@@ -297,7 +297,7 @@ describe('TableComponent', () => {
         const paginationElement = host.queryCss('spy-pagination');
 
         expect(paginationElement!.properties.total).toBe(mockData.total);
-        expect(paginationElement!.properties.pageSize).toBe(mockData.size);
+        expect(paginationElement!.properties.pageSize).toBe(mockData.pageSize);
         expect(paginationElement!.properties.page).toBe(mockData.page);
       });
 

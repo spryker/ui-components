@@ -28,10 +28,12 @@ export class TableFilterSelectComponent implements TableFilterComponent<TableFil
   @Input() value?: TableFilterSelectValues;
   @Output() valueChange = new EventEmitter<TableFilterSelectValues>();
   selectOptions: SelectOptionItem[] = [];
+  selectMultiple?: boolean;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.config && this.config) {
-      this.selectOptions = this.config.typeOptions.values.map(({ value, title: label }) => ({ label, value })) as SelectOptionItem[];
+    if (changes.config) {
+      this.selectOptions = this.config?.typeOptions.values.map(({ value, title: label }) => ({ label, value })) as SelectOptionItem[];
+      this.selectMultiple = this.config?.typeOptions?.multiple;
     }
   }
 }

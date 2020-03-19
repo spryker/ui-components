@@ -8,6 +8,7 @@ export interface TableFilterSelect
 
 export interface TableFilterSelectOptions {
   values: TableFilterSelectOptionsValue[];
+  multiple?: boolean;
 }
 
 export interface TableFilterSelectOptionsValue {

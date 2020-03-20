@@ -1,1 +1,1 @@
-export * from './table-features';
+export * from './table-filters-feature';

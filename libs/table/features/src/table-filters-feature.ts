@@ -14,7 +14,7 @@ export interface TableFilterBase<V = unknown> {
 }
 
 export interface TableFilterComponent<C extends TableFilterBase> {
-  config?: C;
+  config?: C; // @Input
   value?: C['__capturedValue']; // @Input
-  valueChange: EventEmitter<C['__capturedValue']>;
+  valueChange: EventEmitter<C['__capturedValue']>; // @Output
 }

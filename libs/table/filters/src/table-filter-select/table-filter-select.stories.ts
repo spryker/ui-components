@@ -52,7 +52,7 @@ export const TableFilterSelectMultiple = (): IStory => ({
       ...mockSelectConfig,
       typeOptions: {
         ...mockSelectConfig.typeOptions,
-        multiple: true,
+        multiselect: true,
       },
     }),
     value: array('Value', ['value_1', 'value_2']),

@@ -122,7 +122,7 @@ describe('TableFilterSelectComponent', () => {
       );
       const selectElem = host.queryCss('spy-select');
 
-      expect(selectElem!.properties.value).toEqual(['value_1']);
+      expect(selectElem!.properties.value).toEqual(mockSelectValue);
     });
   });
 

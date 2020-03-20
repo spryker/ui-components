@@ -6,7 +6,9 @@ import { AnyContext, ContextService } from './context.service';
 export class ContextPipe implements PipeTransform {
   constructor(private contextService: ContextService) {}
 
-  transform(value?: string, ctx?: AnyContext) {
-    return value && ctx ? this.contextService.interpolate(value, ctx) : value;
+  transform(value?: unknown, ctx?: AnyContext) {
+    return value && ctx && typeof value === 'string'
+      ? this.contextService.interpolate(value, ctx)
+      : value;
   }
 }

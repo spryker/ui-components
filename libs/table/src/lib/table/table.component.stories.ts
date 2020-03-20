@@ -19,13 +19,6 @@ export default {
   title: 'TableComponent',
 };
 
-// Example of how column type registry may be extended
-// declare module './table' {
-//   interface TableColumnTypeRegistry {
-//     test: TableColumnTestConfig;
-//   }
-// }
-
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
   @ColumnTypeOption()
@@ -92,7 +85,6 @@ export const withFeatures = (): IStory => ({
           },
         ],
         selectable: true,
-        fixHeader: '200px',
         rowActions: [
           { id: '1234', title: '123' },
           { id: '2345', title: '234' },

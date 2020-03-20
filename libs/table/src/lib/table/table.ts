@@ -1,5 +1,5 @@
 /* tslint:disable:no-empty-interface */
-import { TemplateRef, Type } from '@angular/core';
+import { Type } from '@angular/core';
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 
@@ -62,10 +62,10 @@ export type TableDataValue = unknown | unknown[];
 
 export type TableDataRow = Record<TableColumn['id'], TableDataValue>;
 
-export interface TableData {
-  data: TableDataRow[];
+export interface TableData<T extends TableDataRow = TableDataRow> {
+  data: T[];
   total: number;
-  offset: number;
+  page: number;
   size: number;
 }
 
@@ -98,7 +98,6 @@ export interface TableConfig {
   dataUrl: string;
   columns?: TableColumns;
   selectable?: boolean;
-  fixHeader?: string;
   pageSizes?: number[];
   rowActions?: TableRowActionBase[];
 }

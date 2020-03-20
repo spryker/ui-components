@@ -14,6 +14,8 @@ import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext } from './table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableFiltersFeatureModule } from '../../../features/src/table-filters-feature/table-filters-feature.module';
+import { TableFilterSelectComponent } from '../../../filters/src/table-filter-select/table-filter-select.component';
 
 export default {
   title: 'TableComponent',
@@ -50,6 +52,10 @@ export const withFeatures = (): IStory => ({
         test: TableColumnTestComponent,
       } as any),
       BrowserAnimationsModule,
+      TableFiltersFeatureModule,
+      TableFiltersFeatureModule.withFilterComponents({
+        select: TableFilterSelectComponent as any
+      })
     ],
     declarations: [TableColumnTestComponent],
     providers: [
@@ -62,6 +68,8 @@ export const withFeatures = (): IStory => ({
   },
   template: `
     <spy-table [config]="config" (actionTriggered)="logActions($event)">
+      <spy-table-filters-feature spy-table-feature location="top"></spy-table-filters-feature>
+      
       <div *spyColTpl="'name'; let name">Name is3: {{ name }}</div>
       <ng-template spyColTpl="name" let-name>Name is2: {{ name }}</ng-template>
       <div *spyColTpl="'sku'; let sku">sku {{ sku }}</div>

@@ -1,25 +1,8 @@
 import {
   EventEmitter,
   InjectionToken,
-  ModuleWithProviders,
 } from '@angular/core';
-import { TableFeatureComponent } from '@spryker/table';
 import { Distribute } from '@spryker/utils';
-import { Observable } from 'rxjs';
-
-declare module '@spryker/table' {
-  interface TableConfig {
-    filters?: TableFilterBase[];
-  }
-}
-
-// @Component() class
-export interface TableFiltersFeatureComponent extends TableFeatureComponent {
-  filterComponentMap: Record<string, TableFilterComponent<TableFilterBase>>;
-  filters$: Observable<TableFilterBase[]>;
-  filterValues$: Observable<Record<string, unknown>>;
-  updateFilterValue(type: string, value: unknown): void;
-}
 
 export interface TableFilterBase<V = unknown> {
   __capturedValue: V;
@@ -44,7 +27,7 @@ export type TableFilterType = TableFilter['type'];
 export interface TableFilterComponent<C extends TableFilterBase> {
   config?: C; // @Input
   value?: C['__capturedValue']; // @Input
-  valueChange: EventEmitter<C['__capturedValue']>;
+  valueChange: EventEmitter<C['__capturedValue']>; // @Output
 }
 
 export type FindTableFilter<
@@ -60,10 +43,3 @@ export type TableFiltersDeclaration = Partial<
 
 // Multi DI token
 export type TableFiltersToken = InjectionToken<TableFiltersDeclaration[]>;
-
-// Static @NgModule() class
-export interface TableFiltersFeatureModuleType {
-  withFilterComponents(
-    filters: TableFiltersDeclaration,
-  ): ModuleWithProviders<TableFiltersFeatureModuleType>;
-}

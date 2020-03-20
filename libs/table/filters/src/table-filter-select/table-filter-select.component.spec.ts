@@ -5,7 +5,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SelectOptionItem } from '@spryker/select';
 
 import { TableFilterSelectComponent } from './table-filter-select.component';
-import { TableFilterSelect } from './table-filter-select';
+import { TableFilterSelect } from './types';
 
 const mockSelectValues = [
   {

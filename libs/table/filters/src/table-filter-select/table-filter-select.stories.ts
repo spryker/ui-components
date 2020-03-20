@@ -37,8 +37,8 @@ export const TableFilterSelect = (): IStory => ({
   },
   component: TableFilterSelectComponent,
   props: {
-    config: object('Config', mockSelectConfig),
-    value: text('Value', 'value_1'),
+    config: object('Config', mockSelectConfig, 'GR1'),
+    value: text('Value', 'value_1', 'GR1'),
   },
 });
 

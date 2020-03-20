@@ -9,11 +9,8 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  TableFilterSelect,
-  TableFilterSelectValue,
-  TableFilterComponent,
-} from './table-filter-select';
+import { TableFilterSelect, TableFilterSelectValue } from './types';
+import { TableFilterComponent } from '@spryker/table/features';
 
 @Component({
   selector: 'spy-table-filter-select',

@@ -8,6 +8,8 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
   title: string;
   sortable?: true;
   width?: string;
+  multiRenderMode?: boolean;
+  multiRenderModeLimit?: number;
   hideable?: boolean;
   searchable?: boolean;
 }
@@ -114,3 +116,14 @@ export interface SortingCriteria {
 export interface TableFeatureContext {
   location: string;
 }
+
+export interface TableColumnListConfig extends TableColumnListConfigInner {
+  limit: 2;
+}
+
+export interface TableColumnListConfigInner {
+  type?: string;
+  typeOptions?: Object;
+  typeChildren?: TableColumnListConfigInner[];
+}
+

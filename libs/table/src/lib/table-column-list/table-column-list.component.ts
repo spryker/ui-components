@@ -10,6 +10,8 @@ import {
   TableColumnComponent,
   TableColumn,
   TableColumnContext,
+  TableColumnTypeDef,
+  TableColumnListConfig as ListConfig
 } from '../table/table';
 import {
   ColumnTypeOption,
@@ -70,14 +72,18 @@ export class TableColumnListComponent
   }
 
   private updateConfigs(): void {
-    console.log(this.values);
-    // this.configs = this.values.map(value => {
-    //   let config = {...this.context?.config};
-    //   delete config.age;
-    //   // config.de
-    //
-    //   config = {...config, ...this.config};
-    //
-    // });
+    this.configs = this.values.map(() => {
+      let config = {...this.context?.config};
+
+      delete (config as TableColumnTypeDef).type;
+      delete (config as TableColumnTypeDef).typeOptions;
+      delete (config as TableColumnTypeDef).children;
+
+      config = {...config, ...this.config};
+
+      delete (config as ListConfig).limit;
+
+      return config as TableColumn;
+    });
   }
 }

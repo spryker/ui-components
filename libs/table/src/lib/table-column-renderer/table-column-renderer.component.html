@@ -6,7 +6,7 @@
 
 <ng-template #typeTpl>
   <orc-orchestrator
-      *ngIf="config.type; else defaultTpl"
+      *ngIf="config?.type; else defaultTpl"
       [config]="itemConfig"
       [context]="context"
   ></orc-orchestrator>

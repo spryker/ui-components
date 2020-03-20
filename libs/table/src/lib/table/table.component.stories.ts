@@ -78,20 +78,12 @@ export const withFeatures = (): IStory => ({
           { id: 'name', sortable: true, title: 'name', width: '20%' },
           { id: 'sku', sortable: true, title: 'sku', width: '20%' },
           { id: 'id3', sortable: true, title: 'id3' },
-          // {
-          //   id: 'sku3',
-          //   type: 'list',
-          //   typeOptions: {
-          //     limit: 2,
-          //     type: 'text',
-          //   },
-          // },
-          // {
-          //   id: 'sku3',
-          //   title: 'sku3 | link',
-          //   type: 'test',
-          //   typeOptions: {text: '${value} in ${row.name}'},
-          // },
+          {
+            id: 'sku3',
+            title: 'sku3 | link',
+            type: 'test',
+            typeOptions: {text: '${value} in ${row.name}'},
+          },
         ],
         selectable: true,
         rowActions: [

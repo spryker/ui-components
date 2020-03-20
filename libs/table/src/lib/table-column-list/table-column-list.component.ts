@@ -1,10 +1,20 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injectable, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+  Injectable,
+  Input,
+  OnInit,
+} from '@angular/core';
+import {
+  TableColumnComponent,
+  TableColumn,
+  TableColumnContext,
+} from '../table/table';
 import {
   ColumnTypeOption,
   TableColumnTypeComponent,
-  TableColumnComponent,
-  TableColumn, TableColumnContext,
-} from '@spryker/table';
+} from '../column-type'
 
 export class TableColumnListConfigInner {
   @ColumnTypeOption()
@@ -29,7 +39,8 @@ export class TableColumnListConfig extends TableColumnListConfigInner {
   encapsulation: ViewEncapsulation.None,
 })
 @TableColumnTypeComponent(TableColumnListConfig)
-export class TableColumnListComponent implements TableColumnComponent<TableColumnListConfig>, OnInit {
+export class TableColumnListComponent
+  implements TableColumnComponent<TableColumnListConfig>, OnInit {
   @Input() config?: TableColumnListConfig;
   @Input() context?: TableColumnContext;
 
@@ -39,10 +50,10 @@ export class TableColumnListComponent implements TableColumnComponent<TableColum
 
   ngOnInit(): void {
     this.updateValues();
-    this.configs = this.updateConfigs();
+    this.updateConfigs();
   }
 
-  private updateValues() {
+  private updateValues(): void {
     if (!this.context) {
       return;
     }
@@ -52,18 +63,21 @@ export class TableColumnListComponent implements TableColumnComponent<TableColum
     if (Array.isArray(value)) {
       this.values = value;
       this.valuesLimited = value.slice(0, this.config?.limit);
-
-      return;
+    } else {
+      this.values = [value];
+      this.valuesLimited = [value];
     }
-
-    this.values = [value];
-    this.valuesLimited = [value];
   }
 
-  private updateConfigs(): any {
-    return this.values.map(value => {
-      // const config = {...this.context?.config};
-
-    });
+  private updateConfigs(): void {
+    console.log(this.values);
+    // this.configs = this.values.map(value => {
+    //   let config = {...this.context?.config};
+    //   delete config.age;
+    //   // config.de
+    //
+    //   config = {...config, ...this.config};
+    //
+    // });
   }
 }

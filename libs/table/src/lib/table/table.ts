@@ -8,8 +8,6 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
   title: string;
   sortable?: true;
   width?: string;
-  multiRenderMode?: boolean;
-  multiRenderModeLimit?: number;
   hideable?: boolean;
   searchable?: boolean;
 }
@@ -27,7 +25,6 @@ export interface TableColumnTypeOptions {
 export interface TableColumnTypeRegistry {
   // Key is type string - value is type config class
   'layout-flat': LayoutFlatConfig;
-
 }
 
 export type TableColumnType = keyof TableColumnTypeRegistry;
@@ -35,7 +32,7 @@ export type TableColumnType = keyof TableColumnTypeRegistry;
 export interface TableColumnContext {
   value: TableDataValue;
   row: TableDataRow;
-  id: TableColumn['id'];
+  config: TableColumn;
 }
 
 export interface TableColumnTplContext extends TableColumnContext {
@@ -116,19 +113,4 @@ export interface SortingCriteria {
 
 export interface TableFeatureContext {
   location: string;
-}
-
-// @Injectable() class
-interface TableColumnListConfig implements TableColumnListConfigInner {
-  // @ColumnTypeOption()
-  limit: 2;
-}
-
-export interface TableColumnListConfigInner implements TableColumnTypeDef {
-  // @ColumnTypeOption()
-  type?: string;
-  // @ColumnTypeOption()
-  typeOptions?: Object;
-  // @ColumnTypeOption()
-  typeChildren?: TableColumnListConfigInner[];
 }

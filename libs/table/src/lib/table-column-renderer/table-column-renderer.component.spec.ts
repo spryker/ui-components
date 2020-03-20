@@ -155,7 +155,7 @@ describe('TableColumnRendererComponent', () => {
     );
   });
 
-  it('must render `template` when input `template` is set', () => {
+  xit('must render `template` when input `template` is set', () => {
     component.config = mockConfig;
     component.data = mockData;
 
@@ -174,7 +174,7 @@ describe('TableColumnRendererComponent', () => {
     expect(rendererElem!.nativeElement.textContent).toMatch('Name is: test');
   });
 
-  it('must render `orc-orchestrator` when input `config` has key `type`', () => {
+  xit('must render `orc-orchestrator` when input `config` has key `type`', () => {
     component.config = {
       ...mockConfig,
       type: 'test',

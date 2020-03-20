@@ -44,6 +44,7 @@ export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
     ColTplDirective,
     TableFeaturesRendererComponent,
     TableFeatureDirective,
+    TableColumnListComponent,
   ],
   exports: [
     TableComponent,
@@ -61,6 +62,7 @@ export class TableModule {
         ...(OrchestratorCoreModule.forRoot().providers || []),
         ...OrchestratorCoreModule.registerComponents({
           'layout-flat': LayoutFlatHostComponent,
+          list: TableColumnListComponent,
         }),
       ],
     };

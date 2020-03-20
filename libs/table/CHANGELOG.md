@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.5...@spryker/table@0.1.0-next.6) (2020-03-20)
+
+
+### Features
+
+* **image, text, date:** initial implementation ([d8b9bb3](https://github.com/spryker/ui-components/commit/d8b9bb3b14cac51f991d5bb57f51ffbd14353b8d))
+
+
+
+
+
 # [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.4...@spryker/table@0.1.0-next.5) (2020-03-19)
 
 

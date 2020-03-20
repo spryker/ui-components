@@ -1,7 +1,4 @@
-import {
-  EventEmitter,
-  InjectionToken,
-} from '@angular/core';
+import { EventEmitter, InjectionToken } from '@angular/core';
 import { Distribute } from '@spryker/utils';
 
 export interface TableFilterBase<V = unknown> {

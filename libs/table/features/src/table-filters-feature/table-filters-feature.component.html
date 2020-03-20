@@ -1,1 +1,21 @@
-<p>table-filters-feature works!</p>
+<ng-template>
+  <div>
+    <ng-container
+      *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
+    >
+      <div
+        [ngComponentOutlet]="filterComponentMap[filter.type]"
+        [ndcDynamicInputs]="{
+          config: filter,
+          value: filterValues$ | async | pluck: filter.type
+        }"
+        [ndcDynamicOutputs]="{
+          valueChange: {
+            handler: updateFilterValue,
+            args: [filter.type, '$event']
+          }
+        }"
+      ></div>
+    </ng-container>
+  </div>
+</ng-template>

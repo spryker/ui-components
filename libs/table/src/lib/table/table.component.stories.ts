@@ -16,6 +16,7 @@ import { TableColumnComponent, TableColumnContext } from './table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableFiltersFeatureModule } from '../../../features/src/table-filters-feature/table-filters-feature.module';
 import { TableFilterSelectComponent } from '../../../filters/src/table-filter-select/table-filter-select.component';
+import { TableFilterSelectModule } from '../../../filters/src/table-filter-select/table-filter-select.module';
 
 export default {
   title: 'TableComponent',
@@ -54,14 +55,21 @@ export const withFeatures = (): IStory => ({
       BrowserAnimationsModule,
       TableFiltersFeatureModule,
       TableFiltersFeatureModule.withFilterComponents({
-        select: TableFilterSelectComponent as any
-      })
+        select: TableFilterSelectComponent as any,
+        select2: TableFilterSelectComponent as any,
+        select3: TableFilterSelectComponent as any,
+      } as any),
+      TableFilterSelectModule,
     ],
     declarations: [TableColumnTestComponent],
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnTestComponent],
+        useValue: [
+          LayoutFlatHostComponent,
+          TableColumnTestComponent,
+          TableFilterSelectComponent,
+        ],
         multi: true,
       },
     ],
@@ -98,6 +106,34 @@ export const withFeatures = (): IStory => ({
           { id: '2345', title: '234' },
         ],
         pageSizes: [20, 40, 50],
+        filters: {
+          items: [
+            {
+              id: 'offers',
+              title: 'Has Offers',
+              type: 'select',
+              typeOptions: {
+                multiselect: false,
+                values: [
+                  { value: 1, title: 'Yes' },
+                  { value: 0, title: 'No' },
+                ],
+              },
+            },
+            {
+              id: 'status',
+              title: 'Product Status',
+              type: 'select',
+              typeOptions: {
+                multiselect: false,
+                values: [
+                  { value: 1, title: 'Active' },
+                  { value: 0, title: 'Inactive' },
+                ],
+              },
+            },
+          ],
+        },
       },
       'Group',
     ),

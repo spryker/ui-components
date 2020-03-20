@@ -2,8 +2,12 @@ import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableFiltersFeatureComponent } from './table-filters-feature.component';
 import { DynamicIoModule } from 'ng-dynamic-component';
+import { PluckModule } from '@spryker/utils';
 
-import { TableFiltersDeclaration, TableFilterBase } from './table-filters-feature';
+import {
+  TableFiltersDeclaration,
+  TableFilterBase,
+} from './table-filters-feature';
 
 declare module '@spryker/table' {
   interface TableConfig {
@@ -16,7 +20,7 @@ export const TABLE_FILTERS_TOKEN = new InjectionToken<
 >('TABLE_FILTERS_TOKEN');
 
 @NgModule({
-  imports: [CommonModule, DynamicIoModule],
+  imports: [CommonModule, DynamicIoModule, PluckModule],
   declarations: [TableFiltersFeatureComponent],
   exports: [TableFiltersFeatureComponent],
 })

@@ -60,7 +60,7 @@ const mockData = {
     },
   ],
   total: 5,
-  size: 10,
+  pageSize: 10,
   page: 1,
 };
 const mockConfig: TableConfig = {
@@ -130,11 +130,28 @@ describe('TableComponent', () => {
         fixture.detectChanges();
       });
 
-      it('must render in the `ant-table-features-col--dynamic` div with features=`featuresLocation[`top`] value', () => {
+      it('must render at the top of the template with features=`featuresLocation[`top`] value', () => {
         const mockFeature = 'top feature';
 
         fixture.componentInstance.featuresLocation = {
           top: mockFeature,
+        } as any;
+
+        fixture.detectChanges();
+
+        const spyTableFeaturesElem = fixture.debugElement.query(
+          By.css('spy-table-features-renderer:first-of-type'),
+        );
+
+        expect(spyTableFeaturesElem).toBeTruthy();
+        expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
+      });
+
+      it('must render in the `ant-table-features-col--dynamic` div with features=`featuresLocation[`before-table`] value', () => {
+        const mockFeature = 'before-table feature';
+
+        fixture.componentInstance.featuresLocation = {
+          'before-table': mockFeature,
         } as any;
 
         fixture.detectChanges();
@@ -297,7 +314,7 @@ describe('TableComponent', () => {
         const paginationElement = host.queryCss('spy-pagination');
 
         expect(paginationElement!.properties.total).toBe(mockData.total);
-        expect(paginationElement!.properties.pageSize).toBe(mockData.size);
+        expect(paginationElement!.properties.pageSize).toBe(mockData.pageSize);
         expect(paginationElement!.properties.page).toBe(mockData.page);
       });
 

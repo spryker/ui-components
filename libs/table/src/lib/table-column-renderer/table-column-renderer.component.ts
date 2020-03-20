@@ -46,9 +46,12 @@ export class TableColumnRendererComponent implements OnInit {
 
     const data = this.data?.[this.config.id];
 
-    if (this.config?.multiple && Array.isArray(data)) {
+    if (this.config?.multiRenderMode && Array.isArray(data)) {
       this.values = data;
-      this.valuesLimited = data.slice(0, this.config?.multipleLimit || 2);
+      this.valuesLimited = data.slice(
+        0,
+        this.config?.multiRenderModeLimit || 2,
+      );
 
       return;
     }

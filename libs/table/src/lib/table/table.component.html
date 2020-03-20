@@ -1,3 +1,7 @@
+<spy-table-features-renderer
+  [features]="featuresLocation[featureLocation.top]"
+></spy-table-features-renderer>
+
 <div class="ant-table-features" *ngIf="config">
   <div class="ant-table-features-col ant-table-features-col--static">
     <ng-container *ngIf="checkedRowsArr.length"
@@ -8,7 +12,7 @@
 
   <div class="ant-table-features-col ant-table-features-col--dynamic">
     <spy-table-features-renderer
-      [features]="featuresLocation[featureLocation.top]"
+      [features]="featuresLocation[featureLocation.beforeTable]"
     ></spy-table-features-renderer>
   </div>
 </div>
@@ -105,10 +109,10 @@
 <spy-pagination
   [pageSizeOptions]="config?.pageSizes || [10, 20, 50]"
   [total]="total$ | async"
-  [pageSize]="size$ | async"
+  [pageSize]="pageSize$ | async"
   [page]="page$ | async"
   (pageChange)="updatePagination($event)"
-  (pageSizeChange)="updatePaginationSize($event)"
+  (pageSizeChange)="updatePageSize($event)"
 ></spy-pagination>
 
 <spy-table-features-renderer

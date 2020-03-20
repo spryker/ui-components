@@ -38,7 +38,7 @@ const mockSelectConfig: TableFilterSelect = {
   type: 'select',
   typeOptions: {
     values: mockSelectValues,
-    multiple: true,
+    multiselect: true,
   },
 };
 
@@ -70,7 +70,7 @@ describe('TableFilterSelectComponent', () => {
       expect(selectElem!.properties.placeholder).toBe(mockSelectConfig.title);
     });
 
-    it('`config.typeOptions.multiple` must be bound to placeholder multiple of the `spy-select` element', async () => {
+    it('`config.typeOptions.multiselect` must be bound to placeholder multiple of the `spy-select` element', async () => {
       const host = await createComponent(
         { config: mockSelectConfig, value: mockSelectValue },
         true,
@@ -78,7 +78,7 @@ describe('TableFilterSelectComponent', () => {
       const selectElem = host.queryCss('spy-select');
 
       expect(selectElem!.properties.multiple).toBe(
-        mockSelectConfig.typeOptions.multiple,
+        mockSelectConfig.typeOptions.multiselect,
       );
     });
 

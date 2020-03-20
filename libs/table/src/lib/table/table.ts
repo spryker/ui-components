@@ -27,7 +27,7 @@ export interface TableColumnTypeOptions {
 export interface TableColumnTypeRegistry {
   // Key is type string - value is type config class
   'layout-flat': LayoutFlatConfig;
-  list: TableColumnListConfig;
+
 }
 
 export type TableColumnType = keyof TableColumnTypeRegistry;

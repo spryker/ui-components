@@ -48,10 +48,10 @@ export class TableColumnRendererComponent implements OnInit {
 
     this.context = {
       $implicit: this.value,
-      config: this.config!,
+      config: this.config,
       row: this.data || {},
       value: this.value,
-    }
+    };
   }
 
   private updateItemConfig(): void {

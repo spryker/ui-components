@@ -11,12 +11,9 @@ import {
   TableColumn,
   TableColumnContext,
   TableColumnTypeDef,
-  TableColumnListConfig as ListConfig
+  TableColumnListConfig as ListConfig,
 } from '../table/table';
-import {
-  ColumnTypeOption,
-  TableColumnTypeComponent,
-} from '../column-type'
+import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 
 export class TableColumnListConfigInner {
   @ColumnTypeOption()
@@ -73,13 +70,13 @@ export class TableColumnListComponent
 
   private updateConfigs(): void {
     this.configs = this.values.map(() => {
-      let config = {...this.context?.config};
+      let config = { ...this.context?.config };
 
       delete (config as TableColumnTypeDef).type;
       delete (config as TableColumnTypeDef).typeOptions;
       delete (config as TableColumnTypeDef).children;
 
-      config = {...config, ...this.config};
+      config = { ...config, ...this.config };
 
       delete (config as ListConfig).limit;
 

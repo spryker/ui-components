@@ -1,14 +1,14 @@
 <ng-container
-    *ngIf="template; else typeTpl"
-    [ngTemplateOutlet]="template"
-    [ngTemplateOutletContext]="context"
+  *ngIf="template; else typeTpl"
+  [ngTemplateOutlet]="template"
+  [ngTemplateOutletContext]="context"
 ></ng-container>
 
 <ng-template #typeTpl>
   <orc-orchestrator
-      *ngIf="config?.type; else defaultTpl"
-      [config]="itemConfig"
-      [context]="context"
+    *ngIf="config?.type; else defaultTpl"
+    [config]="itemConfig"
+    [context]="context"
   ></orc-orchestrator>
 </ng-template>
 

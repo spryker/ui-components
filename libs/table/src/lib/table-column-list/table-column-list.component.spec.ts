@@ -1,8 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// tslint:disable: no-non-null-assertion
+import { TestBed } from '@angular/core/testing';
 
 import { TableColumnListComponent } from './table-column-list.component';
-import { getTestingForComponent } from "@orchestrator/ngx-testing";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const columns: any = [
   {
@@ -18,7 +19,7 @@ const columns: any = [
 const context: any = {
   $implicit: 'sku1',
   config: columns,
-  row: {sku: ['sku1', 'sku2', 'sku3']},
+  row: { sku: ['sku1', 'sku2', 'sku3'] },
   value: 'sku1',
 };
 

@@ -56,7 +56,11 @@ export const withFeatures = (): IStory => ({
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnTestComponent, TableColumnListComponent],
+        useValue: [
+          LayoutFlatHostComponent,
+          TableColumnTestComponent,
+          TableColumnListComponent,
+        ],
         multi: true,
       },
     ],
@@ -82,7 +86,7 @@ export const withFeatures = (): IStory => ({
             id: 'sku3',
             title: 'sku3 | link',
             type: 'test',
-            typeOptions: {text: '${value} in ${row.name}'},
+            typeOptions: { text: '${value} in ${row.name}' },
           },
         ],
         selectable: true,

@@ -126,4 +126,3 @@ export interface TableColumnListConfigInner {
   typeOptions?: Object;
   typeChildren?: TableColumnListConfigInner[];
 }
-

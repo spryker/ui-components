@@ -12,14 +12,8 @@ import {
 import {
   TableFilterSelect,
   TableFilterSelectValue,
+  TableFilterComponent,
 } from './table-filter-select';
-import { TableFilterComponent } from '@spryker/table/features';
-
-declare module '@spryker/table/features' {
-  interface TableFiltersRegistry {
-    select: TableFilterSelect;
-  }
-}
 
 @Component({
   selector: 'spy-table-filter-select',

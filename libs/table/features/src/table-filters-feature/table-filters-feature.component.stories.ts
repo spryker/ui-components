@@ -1,14 +1,15 @@
 import { HttpClientModule } from '@angular/common/http';
-import {
-  ANALYZE_FOR_ENTRY_COMPONENTS,
-} from '@angular/core';
+import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TableModule } from '../../../src/lib/table.module';
 import { TableFiltersFeatureModule } from './table-filters-feature.module';
-import { TableFilterSelectComponent, TableFilterSelectModule } from '../../../filters/src/table-filter-select/';
+import {
+  TableFilterSelectComponent,
+  TableFilterSelectModule,
+} from '../../../filters/src/table-filter-select/';
 
 export default {
   title: 'TableFiltersFeature',
@@ -30,9 +31,7 @@ export const withSelectFeatures = (): IStory => ({
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [
-          TableFilterSelectComponent,
-        ],
+        useValue: [TableFilterSelectComponent],
         multi: true,
       },
     ],

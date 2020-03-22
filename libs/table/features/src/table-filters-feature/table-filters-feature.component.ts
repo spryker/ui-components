@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   Inject,
-  forwardRef, ChangeDetectorRef, OnInit,
+  forwardRef,
+  OnInit,
 } from '@angular/core';
 import { TABLE_FILTERS_TOKEN } from './table-filters-feature.module';
 import {
@@ -12,12 +13,18 @@ import {
   TableFiltersToken,
 } from './table-filters-feature';
 import {
-  TableComponent, TableDataConfig,
+  TableComponent,
   TableDataConfiguratorService,
   TableFeatureComponent,
 } from '@spryker/table';
-import { Observable, Subject } from 'rxjs';
-import { last, pluck, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { pluck } from 'rxjs/operators';
+
+declare module '@spryker/table' {
+  interface TableConfig {
+    filters?: TableFilterBase[];
+  }
+}
 
 @Component({
   selector: 'spy-table-filters-feature',
@@ -31,16 +38,13 @@ import { last, pluck, tap } from 'rxjs/operators';
     },
   ],
 })
-export class TableFiltersFeatureComponent extends TableFeatureComponent implements OnInit {
+export class TableFiltersFeatureComponent extends TableFeatureComponent
+  implements OnInit {
   filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;
   filters$?: Observable<TableFilterBase[]>;
   filterValues$?: Observable<Record<string, unknown>>;
 
-  private updateFilterValue$ = new Subject<any>();
-
   constructor(
-    private cdr: ChangeDetectorRef,
-
     @Inject(forwardRef(() => TABLE_FILTERS_TOKEN))
     private tableFilterToken: TableFiltersToken,
     private tableComponent: TableComponent,
@@ -62,9 +66,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent implemen
       {},
     );
 
-    this.filters$ = this.tableComponent.config$.pipe(
-      pluck('filters', 'items'),
-    );
+    this.filters$ = this.tableComponent.config$.pipe(pluck('filters', 'items'));
 
     this.filterValues$ = this.dataConfiguratorService.config$.pipe(
       pluck('filter'),

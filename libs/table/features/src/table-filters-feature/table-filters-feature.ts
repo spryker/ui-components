@@ -1,3 +1,4 @@
+/* tslint:disable:no-empty-interface */
 import { EventEmitter, InjectionToken } from '@angular/core';
 import { Distribute } from '@spryker/utils';
 

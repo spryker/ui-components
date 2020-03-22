@@ -38,5 +38,4 @@ export type TableFiltersDeclaration = Partial<
   }
 >;
 
-// Multi DI token
 export type TableFiltersToken = InjectionToken<TableFiltersDeclaration[]>;

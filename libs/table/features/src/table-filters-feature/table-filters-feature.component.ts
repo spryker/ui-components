@@ -1,9 +1,8 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Inject,
-  forwardRef, ChangeDetectorRef, AfterViewInit,
+  forwardRef, ChangeDetectorRef, OnInit,
 } from '@angular/core';
 import { TABLE_FILTERS_TOKEN } from './table-filters-feature.module';
 import {
@@ -13,12 +12,12 @@ import {
   TableFiltersToken,
 } from './table-filters-feature';
 import {
-  TableComponent,
+  TableComponent, TableDataConfig,
   TableDataConfiguratorService,
   TableFeatureComponent,
 } from '@spryker/table';
-import { Observable } from 'rxjs';
-import { pluck, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { last, pluck, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'spy-table-filters-feature',
@@ -32,11 +31,12 @@ import { pluck, tap } from 'rxjs/operators';
     },
   ],
 })
-export class TableFiltersFeatureComponent extends TableFeatureComponent
-  implements AfterViewInit {
+export class TableFiltersFeatureComponent extends TableFeatureComponent implements OnInit {
   filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;
   filters$?: Observable<TableFilterBase[]>;
   filterValues$?: Observable<Record<string, unknown>>;
+
+  private updateFilterValue$ = new Subject<any>();
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -49,30 +49,35 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
     super();
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.filterComponentMap = ((this
-        .tableFilterToken as unknown) as TableFiltersDeclaration[]).reduce(
-        (acc: any, filter: any) => {
-          return { ...acc, ...filter };
-        },
-        {},
-      );
-
-      this.filters$ = this.tableComponent.config$.pipe(
-        pluck('filters'),
-        pluck('items'),
-      );
-
-      this.filterValues$ = this.dataConfiguratorService.config$.pipe(
-        pluck('filter'),
-      ) as Observable<Record<string, unknown>>;
-
-      this.cdr.detectChanges();
-    });
+  ngOnInit(): void {
+    this.updateFilters();
   }
 
-  updateFilterValue(type: string, value: unknown): void {}
+  updateFilters(): void {
+    this.filterComponentMap = ((this
+      .tableFilterToken as unknown) as TableFiltersDeclaration[]).reduce(
+      (acc: any, filter: any) => {
+        return { ...acc, ...filter };
+      },
+      {},
+    );
+
+    this.filters$ = this.tableComponent.config$.pipe(
+      pluck('filters', 'items'),
+    );
+
+    this.filterValues$ = this.dataConfiguratorService.config$.pipe(
+      pluck('filter'),
+    ) as Observable<Record<string, unknown>>;
+  }
+
+  updateFilterValue(type: string, value: unknown): void {
+    this.filterValues$?.subscribe(filterValues => {
+      const filters = { filter: { ...filterValues, [type]: value } };
+
+      this.dataConfiguratorService.update(filters);
+    });
+  }
 
   trackByFilter(index: number, filter: TableFilterBase): string {
     return filter.type;

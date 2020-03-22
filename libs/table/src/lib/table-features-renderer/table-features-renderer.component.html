@@ -1,8 +1,8 @@
-<div
+<ng-container
   *ngFor="let feature of featureRecords"
   [ngStyle]="feature.component.styles"
 >
   <ng-container
     *ngTemplateOutlet="feature.template; context: feature.context"
   ></ng-container>
-</div>
+</ng-container>

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.7...@spryker/utils@0.1.0-next.8) (2020-03-23)
+
+
+### Bug Fixes
+
+* **pluck:** fix pluck pipe ([b8cf053](https://github.com/spryker/ui-components/commit/b8cf053dd976e6a4cd8b9e2b0ae087d0e5096bc1))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.6...@spryker/utils@0.1.0-next.7) (2020-03-20)
 
 **Note:** Version bump only for package @spryker/utils

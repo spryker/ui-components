@@ -1,9 +1,9 @@
 {
   "name": "@spryker/table",
-  "version": "0.1.0-next.8",
+  "version": "0.1.0-next.9",
   "dependencies": {
-    "ng-zorro-antd": "^9.0.0-beta.0",
-    "ng-dynamic-component": "^6.1.0"
+    "ng-dynamic-component": "^6.1.0",
+    "ng-zorro-antd": "^9.0.0-beta.0"
   },
   "peerDependencies": {
     "@angular/common": "^9.0.0",

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.8...@spryker/table@0.1.0-next.9) (2020-03-23)
+
+
+### Features
+
+* **table-filters:** add scaffoldiong ([508a270](https://github.com/spryker/ui-components/commit/508a2708b64273b89feab5fb9aff807d5d1a72fd))
+* **table-filters-feature:** add format ([5bf1c9b](https://github.com/spryker/ui-components/commit/5bf1c9ba224d0bef6eafba4fab47d9b6d98ae476))
+* **table-filters-feature:** update interfaces ([dde5831](https://github.com/spryker/ui-components/commit/dde58317bd14f3752d38f457b08291b3ee15c917))
+
+
+
+
+
 # [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.7...@spryker/table@0.1.0-next.8) (2020-03-23)
 
 

@@ -323,28 +323,6 @@ describe('TableComponent', () => {
       });
     });
 
-    describe('selectable is true', () => {
-      const mockSelectableConfig = { ...mockConfigCols, selectable: true };
-
-      it('should create first `th` with `spy-checkbox` into each `tr` into `thead`', async () => {
-        const host = await createComponent(
-          { config: mockSelectableConfig },
-          true,
-        );
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-
-        host.detectChanges();
-
-        const checkboxElem = host.queryCss(
-          'thead tr th:first-child spy-checkbox',
-        );
-
-        expect(checkboxElem).toBeTruthy();
-      });
-    });
-
     describe('pageSizes', () => {
       const defaultSizesArray = [10, 20, 50];
       const mockSizesArray = [20, 30, 40];

@@ -8,36 +8,14 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { MockTableFeatureComponent } from '@spryker/table/testing';
 
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
 import { TableDataFetcherService } from '../table/data-fetcher.service';
 import { TableFeatureContext } from '../table/table';
-import { TableFeatureComponent } from '../table/table-feature.component';
 import { TableComponent } from '../table/table.component';
 import { TableFeaturesRendererComponent } from './table-features-renderer.component';
-
-class MockTableFeatureComponent implements TableFeatureComponent {
-  location = 'mocked-location';
-  styles?: Record<string, string> = this.config.styles;
-  template?: TemplateRef<TableFeatureContext> = this.config.template;
-  table?: TableComponent;
-  columnsResolverService?: TableColumnsResolverService;
-  dataFetcherService?: TableDataFetcherService;
-  dataConfiguratorService?: TableDataConfiguratorService;
-  setTableComponent = jest.fn();
-  setColumnsResolverService = jest.fn();
-  setDataFetcherService = jest.fn();
-  setDataConfiguratorService = jest.fn();
-  getTemplate = jest.fn().mockReturnValue(this.template);
-
-  constructor(
-    private config: {
-      styles?: Record<string, string>;
-      template?: TemplateRef<TableFeatureContext>;
-    } = {},
-  ) {}
-}
 
 @Component({
   // tslint:disable-next-line: component-selector

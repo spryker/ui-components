@@ -100,6 +100,7 @@ export interface TableConfig {
   columns?: TableColumns;
   pageSizes?: number[];
   rowActions?: TableRowActionBase[];
+  placeholder?: string;
 }
 
 export type ColumnsTransformer = (

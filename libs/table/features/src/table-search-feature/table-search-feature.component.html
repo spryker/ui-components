@@ -1,0 +1,11 @@
+<ng-template>
+  <spy-input
+    [prefix]="messageTmpl"
+    [placeholder]="(table?.config$ | async)?.placeholder"
+    (valueChange)="inputValueChange($event)"
+  ></spy-input>
+
+  <ng-template #messageTmpl>
+    <spy-icon name="magnifier" class="ant-magnifier-icon"></spy-icon>
+  </ng-template>
+</ng-template>

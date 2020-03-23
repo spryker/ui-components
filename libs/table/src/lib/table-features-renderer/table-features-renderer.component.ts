@@ -5,6 +5,7 @@ import {
   Component,
   Input,
   OnChanges,
+  OnDestroy,
   SimpleChanges,
   TemplateRef,
   ViewEncapsulation,
@@ -31,12 +32,13 @@ interface FeatureRecord {
   encapsulation: ViewEncapsulation.None,
 })
 export class TableFeaturesRendererComponent
-  implements OnChanges, AfterViewInit {
+  implements OnChanges, AfterViewInit, OnDestroy {
   @Input() features?: TableFeatureComponent[];
   @Input() maxFeatures?: number;
 
   allFeatureRecords: FeatureRecord[] = [];
   featureRecords: FeatureRecord[] = [];
+  isDestroyed = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -51,9 +53,15 @@ export class TableFeaturesRendererComponent
     // And our AfterViewInit is triggered before theirs -
     // so we wait next tick via `setTimeout`
     setTimeout(() => {
-      this.updateFeatures();
-      this.cdr.detectChanges();
+      if (!this.isDestroyed) {
+        this.updateFeatures();
+        this.cdr.detectChanges();
+      }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.isDestroyed = true;
   }
 
   ngOnChanges(changes: SimpleChanges): void {

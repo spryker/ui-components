@@ -17,8 +17,14 @@ import {
   TableDataConfiguratorService,
   TableFeatureComponent,
 } from '@spryker/table';
-import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { combineLatest, Observable, Subject } from 'rxjs';
+import {
+  distinctUntilChanged,
+  map,
+  pluck,
+  startWith,
+  tap,
+} from 'rxjs/operators';
 
 declare module '@spryker/table' {
   interface TableConfig {
@@ -44,6 +50,8 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
   filters$?: Observable<TableFilterBase[]>;
   filterValues$?: Observable<Record<string, unknown>>;
 
+  updateFiltersValue$ = new Subject<any>();
+
   constructor(
     @Inject(forwardRef(() => TABLE_FILTERS_TOKEN))
     private tableFilterToken: TableFiltersToken,
@@ -68,17 +76,31 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
 
     this.filters$ = this.tableComponent.config$.pipe(pluck('filters', 'items'));
 
-    this.filterValues$ = this.dataConfiguratorService.config$.pipe(
-      pluck('filter'),
-    ) as Observable<Record<string, unknown>>;
+    this.filterValues$ = combineLatest([
+      this.dataConfiguratorService.config$.pipe(pluck('filter')) as Observable<
+        Record<string, unknown>
+      >,
+      this.updateFiltersValue$.pipe(startWith(null)),
+    ]).pipe(
+      tap(([filterValues, upValues]) => {
+        if (!upValues) {
+          return;
+        }
+
+        const filters = {
+          filter: { ...filterValues, [upValues.type]: upValues.value },
+        };
+
+        this.updateFiltersValue$.next(null);
+        this.dataConfiguratorService.update(filters);
+      }),
+      map(([filterValues]) => filterValues),
+      distinctUntilChanged(),
+    );
   }
 
   updateFilterValue(type: string, value: unknown): void {
-    this.filterValues$?.subscribe(filterValues => {
-      const filters = { filter: { ...filterValues, [type]: value } };
-
-      this.dataConfiguratorService.update(filters);
-    });
+    this.updateFiltersValue$.next({ type, value });
   }
 
   trackByFilter(index: number, filter: TableFilterBase): string {

@@ -1,8 +1,9 @@
-<ng-container
+<div
+  class="ant-table-features-renderer"
   *ngFor="let feature of featureRecords"
   [ngStyle]="feature.component.styles"
 >
   <ng-container
     *ngTemplateOutlet="feature.template; context: feature.context"
   ></ng-container>
-</ng-container>
+</div>

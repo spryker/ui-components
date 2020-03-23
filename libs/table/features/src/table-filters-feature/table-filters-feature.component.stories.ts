@@ -51,34 +51,32 @@ export const withSelectFeatures = (): IStory => ({
           { id: 'sku', sortable: true, title: 'sku' },
           { id: 'id3', sortable: true, title: 'id3' },
         ],
-        filters: {
-          items: [
-            {
-              id: 'offers',
-              title: 'Has Offers',
-              type: 'select',
-              typeOptions: {
-                multiselect: false,
-                values: [
-                  { value: 1, title: 'Yes' },
-                  { value: 0, title: 'No' },
-                ],
-              },
+        filters: [
+          {
+            id: 'offers',
+            title: 'Has Offers',
+            type: 'select',
+            typeOptions: {
+              multiselect: false,
+              values: [
+                { value: 1, title: 'Yes' },
+                { value: 0, title: 'No' },
+              ],
             },
-            {
-              id: 'status',
-              title: 'Product Status',
-              type: 'select2',
-              typeOptions: {
-                multiselect: false,
-                values: [
-                  { value: 1, title: 'Active' },
-                  { value: 0, title: 'Inactive' },
-                ],
-              },
+          },
+          {
+            id: 'status',
+            title: 'Product Status',
+            type: 'select2',
+            typeOptions: {
+              multiselect: false,
+              values: [
+                { value: 1, title: 'Active' },
+                { value: 0, title: 'Inactive' },
+              ],
             },
-          ],
-        },
+          },
+        ],
       },
       'Group',
     ),

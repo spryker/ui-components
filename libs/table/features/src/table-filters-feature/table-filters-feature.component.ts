@@ -10,7 +10,6 @@ import {
   TableFilterBase,
   TableFilterComponent,
   TableFiltersDeclaration,
-  TableFiltersToken,
 } from './table-filters-feature';
 import {
   TableComponent,
@@ -50,11 +49,11 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
   filters$?: Observable<TableFilterBase[]>;
   filterValues$?: Observable<Record<string, unknown>>;
 
-  updateFiltersValue$ = new Subject<any>();
+  updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
 
   constructor(
     @Inject(forwardRef(() => TABLE_FILTERS_TOKEN))
-    private tableFilterToken: TableFiltersToken,
+    private tableFilterToken: TableFiltersDeclaration[],
     private tableComponent: TableComponent,
     public dataConfiguratorService: TableDataConfiguratorService,
   ) {
@@ -66,15 +65,12 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
   }
 
   updateFilters(): void {
-    this.filterComponentMap = ((this
-      .tableFilterToken as unknown) as TableFiltersDeclaration[]).reduce(
-      (acc: any, filter: any) => {
-        return { ...acc, ...filter };
-      },
+    this.filterComponentMap = this.tableFilterToken.reduce(
+      (acc, filter) => ({ ...acc, ...filter }),
       {},
-    );
+    ) as Record<string, TableFilterComponent<TableFilterBase>>;
 
-    this.filters$ = this.tableComponent.config$.pipe(pluck('filters', 'items'));
+    this.filters$ = this.tableComponent.config$.pipe(pluck('filters'));
 
     this.filterValues$ = combineLatest([
       this.dataConfiguratorService.config$.pipe(pluck('filter')) as Observable<
@@ -82,13 +78,13 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
       >,
       this.updateFiltersValue$.pipe(startWith(null)),
     ]).pipe(
-      tap(([filterValues, upValues]) => {
-        if (!upValues) {
+      tap(([filterValues, updatedValue]) => {
+        if (!updatedValue) {
           return;
         }
 
         const filters = {
-          filter: { ...filterValues, [upValues.type]: upValues.value },
+          filter: { ...filterValues, ...updatedValue },
         };
 
         this.updateFiltersValue$.next(null);
@@ -100,7 +96,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
   }
 
   updateFilterValue(type: string, value: unknown): void {
-    this.updateFiltersValue$.next({ type, value });
+    this.updateFiltersValue$.next({ [type]: value });
   }
 
   trackByFilter(index: number, filter: TableFilterBase): string {

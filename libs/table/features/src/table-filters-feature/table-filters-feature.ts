@@ -38,5 +38,3 @@ export type TableFiltersDeclaration = Partial<
     [P in TableFilterType]: TableFilterComponent<FindTableFilter<P>>;
   }
 >;
-
-export type TableFiltersToken = InjectionToken<TableFiltersDeclaration[]>;

@@ -96,11 +96,13 @@
     &__icon {
       &--checked {
         display: none;
+        position: absolute;
+        right: @select-menu-horizontal-padding;
+        top: @select-menu-vertical-padding;
         color: @green;
         background-size: @check-icon-size;
         height: @check-icon-size;
         width: @check-icon-size;
-        float: right;
         line-height: @check-icon-line-height;
       }
 
@@ -132,17 +134,21 @@
       }
     }
 
-    &-selected > &__icon {
-      &--checked {
-        display: block;
-      }
+    &-selected {
+      padding-right: @select-menu-horizontal-padding + @check-icon-size;
 
-      &--multiChecked {
-        display: block;
-      }
+      .@{select-prefix-cls}-dropdown-menu-item__icon {
+        &--checked {
+          display: block;
+        }
 
-      &--multiUnchecked {
-        display: none;
+        &--multiChecked {
+          display: block;
+        }
+
+        &--multiUnchecked {
+          display: none;
+        }
       }
     }
 

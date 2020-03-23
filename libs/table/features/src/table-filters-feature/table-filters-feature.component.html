@@ -1,0 +1,22 @@
+<ng-template>
+  <div class="ant-table-filters-feature">
+    <div
+      *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
+      class="ant-table-filters-feature-item"
+    >
+      <ng-container
+        [ngComponentOutlet]="filterComponentMap[filter.type]"
+        [ndcDynamicInputs]="{
+          config: filter,
+          value: filterValues$ | async | pluck: filter.type
+        }"
+        [ndcDynamicOutputs]="{
+          valueChange: {
+            handler: updateFilterValue.bind(this),
+            args: [filter.type, '$event']
+          }
+        }"
+      ></ng-container>
+    </div>
+  </div>
+</ng-template>

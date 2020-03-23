@@ -34,7 +34,7 @@ export class TableFilterSelectComponent
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config) {
-      this.selectOptions = this.config?.typeOptions.values.map(
+      this.selectOptions = this.config?.typeOptions?.values.map(
         ({ value, title: label }) => ({ label, value }),
       ) as SelectOptionItem[];
     }

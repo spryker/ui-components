@@ -5,5 +5,5 @@
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../styles/src/lib"]
   },
-  "whitelistedNonPeerDependencies": ["ng-zorro-antd"]
+  "whitelistedNonPeerDependencies": ["ng-zorro-antd", "ng-dynamic-component"]
 }

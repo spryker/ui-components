@@ -14,6 +14,7 @@ import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext } from './table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
 
 export default {
   title: 'TableComponent',
@@ -55,7 +56,11 @@ export const withFeatures = (): IStory => ({
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnTestComponent],
+        useValue: [
+          LayoutFlatHostComponent,
+          TableColumnTestComponent,
+          TableColumnListComponent,
+        ],
         multi: true,
       },
     ],
@@ -82,6 +87,18 @@ export const withFeatures = (): IStory => ({
             title: 'sku3 | link',
             type: 'test',
             typeOptions: { text: '${value} in ${row.name}' },
+          },
+          {
+            id: 'sku3',
+            title: 'sku',
+            type: 'list',
+            typeOptions: {
+              limit: 2,
+              type: 'test',
+              typeOptions: {
+                text: '${value} in ${row.name}',
+              },
+            },
           },
         ],
         selectable: true,

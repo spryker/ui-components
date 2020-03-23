@@ -8,10 +8,10 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
   title: string;
   sortable?: true;
   width?: string;
-  multiple?: boolean;
+  multiRenderMode?: boolean;
+  multiRenderModeLimit?: number;
   hideable?: boolean;
   searchable?: boolean;
-  multipleLimit?: number;
 }
 
 export interface TableColumnTypeDef {
@@ -34,7 +34,7 @@ export type TableColumnType = keyof TableColumnTypeRegistry;
 export interface TableColumnContext {
   value: TableDataValue;
   row: TableDataRow;
-  id: TableColumn['id'];
+  config: TableColumn;
 }
 
 export interface TableColumnTplContext extends TableColumnContext {
@@ -66,7 +66,7 @@ export interface TableData<T extends TableDataRow = TableDataRow> {
   data: T[];
   total: number;
   page: number;
-  size: number;
+  pageSize: number;
 }
 
 export interface TableRowActionBase {

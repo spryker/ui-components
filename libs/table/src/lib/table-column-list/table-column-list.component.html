@@ -1,0 +1,20 @@
+<div class="ant-table-column-list">
+  <ng-container
+    [ngTemplateOutlet]="valuesTpl"
+    [ngTemplateOutletContext]="{ $implicit: valuesLimited }"
+  ></ng-container>
+
+  <!--TODO: add popover-->
+</div>
+
+<ng-template #valuesTpl let-values>
+  <div
+    class="ant-table-column-list-holder"
+    *ngFor="let value of values; index as i"
+  >
+    <spy-table-column-renderer
+      [config]="configs[i]"
+      [data]="value"
+    ></spy-table-column-renderer>
+  </div>
+</ng-template>

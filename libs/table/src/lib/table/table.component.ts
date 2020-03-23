@@ -57,6 +57,7 @@ import { TableFeatureDirective } from './table-feature.directive';
 
 export enum TableFeatureLocation {
   top = 'top',
+  beforeTable = 'before-table',
   headerExt = 'header-ext',
   afterTable = 'after-table',
   bottom = 'bottom',
@@ -141,7 +142,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   );
 
   total$ = this.data$.pipe(pluck('total'));
-  size$ = this.data$.pipe(pluck('size'));
+  pageSize$ = this.data$.pipe(pluck('pageSize'));
   page$ = this.data$.pipe(pluck('page'));
   tableData$ = this.data$.pipe(pluck('data'));
 
@@ -276,8 +277,8 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.dataConfiguratorService.changePage(page);
   }
 
-  updatePaginationSize(size: number): void {
-    this.dataConfiguratorService.update({ size, page: 1 });
+  updatePageSize(pageSize: number): void {
+    this.dataConfiguratorService.update({ pageSize, page: 1 });
   }
 
   getTableId(): string | undefined {

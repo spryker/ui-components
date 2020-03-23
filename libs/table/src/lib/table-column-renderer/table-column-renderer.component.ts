@@ -29,46 +29,29 @@ export class TableColumnRendererComponent implements OnInit {
 
   itemConfig?: OrchestratorConfigItem;
 
-  values: unknown[] = [];
-  contexts: TableColumnTplContext[] = [];
-  valuesLimited: unknown[] = [];
+  value?: unknown;
+  context?: TableColumnTplContext;
 
   ngOnInit(): void {
-    this.updateValues();
+    if (this.config) {
+      this.value = this.data?.[this.config.id];
+    }
+
     this.updateTplContext();
     this.updateItemConfig();
   }
 
-  private updateValues() {
+  private updateTplContext(): void {
     if (!this.config) {
       return;
     }
 
-    const data = this.data?.[this.config.id];
-
-    if (this.config?.multiple && Array.isArray(data)) {
-      this.values = data;
-      this.valuesLimited = data.slice(0, this.config?.multipleLimit || 2);
-
-      return;
-    }
-
-    this.values = [data];
-    this.valuesLimited = [data];
-  }
-
-  private updateTplContext() {
-    if (!this.config) {
-      return;
-    }
-
-    this.contexts = this.values.map(value => ({
-      $implicit: value,
-      // tslint:disable-next-line: no-non-null-assertion
-      id: this.config!.id,
+    this.context = {
+      $implicit: this.value,
+      config: this.config,
       row: this.data || {},
-      value: value,
-    }));
+      value: this.value,
+    };
   }
 
   private updateItemConfig(): void {

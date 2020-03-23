@@ -15,6 +15,12 @@ import {
 } from '../table/table';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 
+declare module '../table/table' {
+  interface TableColumnTypeRegistry {
+    list: TableColumnListConfig;
+  }
+}
+
 export class TableColumnListConfigInner {
   @ColumnTypeOption()
   type?: string;

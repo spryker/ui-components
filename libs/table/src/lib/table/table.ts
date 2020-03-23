@@ -27,7 +27,6 @@ export interface TableColumnTypeOptions {
 export interface TableColumnTypeRegistry {
   // Key is type string - value is type config class
   'layout-flat': LayoutFlatConfig;
-  list: TableColumnListConfig;
 }
 
 export type TableColumnType = keyof TableColumnTypeRegistry;
@@ -116,14 +115,4 @@ export interface SortingCriteria {
 
 export interface TableFeatureContext {
   location: string;
-}
-
-export interface TableColumnListConfig extends TableColumnListConfigInner {
-  limit: 2;
-}
-
-export interface TableColumnListConfigInner {
-  type?: string;
-  typeOptions?: Object;
-  typeChildren?: TableColumnListConfigInner[];
 }

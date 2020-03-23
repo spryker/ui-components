@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   Output,
   ViewEncapsulation,
@@ -13,6 +14,7 @@ import {
   TableData,
   TableDataRow,
   TableFeatureComponent,
+  TableFeatureLocation,
 } from '@spryker/table';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
@@ -43,12 +45,12 @@ export type TableSelectionChangeEvent = TableDataRow[];
 })
 export class TableSelectableFeatureComponent extends TableFeatureComponent
   implements OnDestroy {
+  @Input() location = TableFeatureLocation.beforeCols;
   @Output() selectionChange = new EventEmitter<TableDataRow[]>();
 
   allChecked = false;
   isIndeterminate = false;
   checkedRows: Record<TableColumn['id'], boolean> = {};
-  checkedRowsArr: TableDataRow[] = [];
 
   private destroyed$ = new Subject<void>();
   private rowsData: TableDataRow[] = [];

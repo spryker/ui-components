@@ -48,7 +48,6 @@ export const primary = (): IStory => ({
     <spy-table [config]="config" [mockHttp]="mockHttp">
       <spy-table-selectable-feature
         spy-table-feature
-        location="before-cols"
         (selectionChange)="logSelectionChange($event)"
       ></spy-table-selectable-feature>
     </spy-table>

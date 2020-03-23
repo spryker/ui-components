@@ -10,7 +10,7 @@ import {
   TableFilterBase,
   TableFilterComponent,
   TableFiltersDeclaration,
-} from './table-filters-feature';
+} from './types';
 import {
   TableComponent,
   TableDataConfiguratorService,

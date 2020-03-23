@@ -72,15 +72,16 @@ export class TableColumnRendererComponent implements OnChanges {
       return;
     }
 
-    this.contexts = this.values.map(value => ({
-      $implicit: value,
-      // tslint:disable-next-line: no-non-null-assertion
-      id: this.config!.id,
-      row: this.data || {},
-      value: value,
-      // tslint:disable-next-line: no-non-null-assertion
-      i: this.i!,
-    }));
+    this.contexts = this.values.map(
+      value =>
+        ({
+          $implicit: value,
+          config: this.config,
+          row: this.data,
+          value: value,
+          i: this.i,
+        } as TableColumnTplContext),
+    );
   }
 
   private updateItemConfig(): void {

@@ -52,4 +52,8 @@ export abstract class TableFeatureComponent {
   getTemplate(): TemplateRef<TableFeatureContext> | undefined {
     return this.template;
   }
+
+  getColTemplate(): TemplateRef<TableColumnContext> | undefined {
+    return this.colTemplate;
+  }
 }

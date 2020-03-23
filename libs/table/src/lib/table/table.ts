@@ -32,9 +32,9 @@ export interface TableColumnTypeRegistry {
 export type TableColumnType = keyof TableColumnTypeRegistry;
 
 export interface TableColumnContext {
+  config: TableColumn;
   value: TableDataValue;
   row: TableDataRow;
-  id: TableColumn['id'];
   i: number;
 }
 

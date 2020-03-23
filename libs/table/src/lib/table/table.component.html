@@ -36,6 +36,17 @@
         {{ column.title }}
       </th>
 
+      <ng-container
+        *ngFor="let feature of featuresLocation[featureLocation.afterCols]"
+      >
+        <th *ngIf="!featuresDisabled[featureLocation.afterCols][feature]">
+          <spy-table-features-renderer
+            [features]="[feature]"
+            [maxFeatures]="1"
+          ></spy-table-features-renderer>
+        </th>
+      </ng-container>
+
       <th
         *ngIf="
           config?.rowActions?.length ||
@@ -104,6 +115,21 @@
           ></spy-dropdown>
         </div>
       </td>
+
+      <ng-container
+        *ngFor="let feature of featuresLocation[featureLocation.afterCols]"
+      >
+        <td *ngIf="!featuresDisabled[featureLocation.afterCols][feature]">
+          <div class="ant-table-column-inner">
+            <spy-table-column-renderer
+              [config]="{}"
+              [data]="data"
+              [template]="feature.colTemplate"
+              [i]="indexOfElement"
+            ></spy-table-column-renderer>
+          </div>
+        </td>
+      </ng-container>
     </tr>
   </tbody>
 </nz-table>

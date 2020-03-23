@@ -118,6 +118,10 @@
         "dist/libs/table/features/index.d.ts",
         "libs/table/features/src/index.ts"
       ],
+      "@spryker/table/features/testing": [
+        "dist/libs/table/features/testing/index.d.ts",
+        "libs/table/features/testing/src/index.ts"
+      ],
       "@spryker/table/filters": [
         "dist/libs/table/filters/index.d.ts",
         "libs/table/filters/src/index.ts"

@@ -343,107 +343,6 @@ describe('TableComponent', () => {
 
         expect(checkboxElem).toBeTruthy();
       });
-
-      it('should bind `allChecked` to `checked` input of `spy-checkbox``', async () => {
-        const host = await createComponent({ config: mockSelectableConfig });
-        const mockAllChecked = true;
-
-        host.component.allChecked = true;
-        host.detectChanges();
-
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-        const checkboxElem = host.queryCss(
-          'thead tr th:first-child spy-checkbox',
-        );
-
-        expect(checkboxElem!.properties.checked).toBe(mockAllChecked);
-      });
-
-      it('should bind `isIndeterminate` to `indeterminate` input of `spy-checkbox``', async () => {
-        const host = await createComponent({ config: mockSelectableConfig });
-        const mockIndeterminate = true;
-
-        host.component.isIndeterminate = true;
-        host.detectChanges();
-
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-        const checkboxElem = host.queryCss(
-          'thead tr th:first-child spy-checkbox',
-        );
-
-        expect(checkboxElem!.properties.indeterminate).toBe(mockIndeterminate);
-      });
-
-      it('should create first `td` with `spy-checkbox` into each tr into `tbody``', async () => {
-        const host = await createComponent(
-          { config: mockSelectableConfig },
-          true,
-        );
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-
-        dataRes.flush(mockData);
-        host.detectChanges();
-
-        const checkboxElem = host.queryCss(
-          'tbody tr td:first-child spy-checkbox',
-        );
-
-        expect(checkboxElem).toBeTruthy();
-      });
-
-      it('should bind checkedRows[RowIndex] to `checked` input of `spy-checkbox``', async () => {
-        const host = await createComponent(
-          { config: mockSelectableConfig },
-          true,
-        );
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-        const mockChecked = true;
-
-        dataRes.flush(mockData);
-        host.component.checkedRows = {
-          0: mockChecked,
-        };
-        host.detectChanges();
-
-        const checkboxElem = host.queryCss(
-          'tbody tr:first-child td:first-child spy-checkbox',
-        );
-
-        expect(checkboxElem!.properties.checked).toBe(mockChecked);
-      });
-
-      it('should apply class `--selected` to tr when checkedRows[RowIndex] is `truthy`', async () => {
-        const host = await createComponent(
-          { config: mockSelectableConfig },
-          true,
-        );
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-        const mockChecked = true;
-
-        dataRes.flush(mockData);
-        host.component.checkedRows = {
-          0: mockChecked,
-        };
-        host.detectChanges();
-
-        const checkboxElem = host.queryCss('tbody tr:first-child');
-
-        expect(
-          checkboxElem!.nativeElement.classList.contains(
-            'ant-table-row--selected',
-          ),
-        ).toBe(true);
-      });
     });
 
     describe('pageSizes', () => {
@@ -491,26 +390,6 @@ describe('TableComponent', () => {
 
         expect(dropDownElem).toBeTruthy();
       });
-    });
-  });
-
-  describe('@Output(selectionChange)', () => {
-    it('must be emitted every time when `toggleCheckedRows` is triggered', async () => {
-      const host = await createComponent({ config: mockConfig }, true);
-
-      host.component.toggleCheckedRows();
-      host.detectChanges();
-
-      expect(host.hostComponent.selectionChange).toHaveBeenCalledWith([]);
-    });
-
-    it('must be emitted every time when `updateCheckedRows` is triggered', async () => {
-      const host = await createComponent({ config: mockConfig }, true);
-
-      host.component.updateCheckedRows();
-      host.detectChanges();
-
-      expect(host.hostComponent.selectionChange).toHaveBeenCalledWith([]);
     });
   });
 

@@ -5,13 +5,13 @@ import {
   Injectable,
   Input,
   OnInit,
+  OnChanges,
 } from '@angular/core';
 import {
   TableColumnComponent,
   TableColumn,
   TableColumnContext,
   TableColumnTypeDef,
-  TableColumnListConfig as ListConfig,
 } from '../table/table';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 
@@ -39,7 +39,7 @@ export class TableColumnListConfig extends TableColumnListConfigInner {
 })
 @TableColumnTypeComponent(TableColumnListConfig)
 export class TableColumnListComponent
-  implements TableColumnComponent<TableColumnListConfig>, OnInit {
+  implements TableColumnComponent<TableColumnListConfig>, OnInit, OnChanges {
   @Input() config?: TableColumnListConfig;
   @Input() context?: TableColumnContext;
 
@@ -52,33 +52,40 @@ export class TableColumnListComponent
     this.updateConfigs();
   }
 
+  ngOnChanges(): void {
+    this.updateValues();
+    this.updateConfigs();
+  }
+
   private updateValues(): void {
     if (!this.context) {
       return;
     }
 
     const value = this.context.value;
-
-    if (Array.isArray(value)) {
-      this.values = value;
-      this.valuesLimited = value.slice(0, this.config?.limit);
-    } else {
-      this.values = [value];
-      this.valuesLimited = [value];
-    }
+    const values = Array.isArray(value) ? value : [value];
+    this.values = values.map(_value => ({
+      // tslint:disable-next-line: no-non-null-assertion
+      ...this.context!.row,
+      // tslint:disable-next-line: no-non-null-assertion
+      [this.context!.config.id]: _value,
+    }));
+    this.valuesLimited = Array.isArray(value)
+      ? this.values.slice(0, this.config?.limit)
+      : [...this.values];
   }
 
   private updateConfigs(): void {
     this.configs = this.values.map(() => {
-      let config = { ...this.context?.config };
+      const config = { ...this.context?.config };
 
       delete (config as TableColumnTypeDef).type;
       delete (config as TableColumnTypeDef).typeOptions;
       delete (config as TableColumnTypeDef).children;
 
-      config = { ...config, ...this.config };
+      Object.assign(config, this.config);
 
-      delete (config as ListConfig).limit;
+      delete (config as TableColumnListConfig).limit;
 
       return config as TableColumn;
     });

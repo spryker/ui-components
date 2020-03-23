@@ -1,26 +1,50 @@
 // tslint:disable: no-non-null-assertion
 import { TestBed } from '@angular/core/testing';
 
-import { TableColumnListComponent } from './table-column-list.component';
+import {
+  TableColumnListComponent,
+  TableColumnListConfig,
+} from './table-column-list.component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TableColumnTplContext } from '@spryker/table';
 
-const columns: any = [
-  {
+const mockConfig: TableColumnListConfig = {
+  limit: 2,
+  type: 'test',
+  typeOptions: {
+    text: '${value}',
+  },
+};
+
+const mockContext: TableColumnTplContext = {
+  $implicit: 'test value',
+  config: {
     id: 'sku',
+    title: 'sku',
     type: 'list',
     typeOptions: {
       limit: 2,
-      type: 'text',
+      type: 'test',
+      typeOptions: {
+        text: '${value}',
+      },
     },
   },
-];
+  row: {
+    name: 'name',
+    sku: 'non transformed value',
+  },
+  value: 'test value',
+};
 
-const context: any = {
-  $implicit: 'sku1',
-  config: columns,
-  row: { sku: ['sku1', 'sku2', 'sku3'] },
-  value: 'sku1',
+const mockTransformedData = { name: 'name', sku: 'test value' };
+
+const mockTransformedConfig = {
+  id: 'sku',
+  title: 'sku',
+  type: 'test',
+  typeOptions: { text: '${value}' },
 };
 
 describe('TableColumnListComponent', () => {
@@ -37,13 +61,33 @@ describe('TableColumnListComponent', () => {
     TestBed.configureTestingModule({ imports: [testModule] });
   });
 
-  it('should render spy-table-column-renderer', async () => {
+  it('should render `spy-table-column-renderer` element', async () => {
     const host = await createComponent(
-      { config: columns, context: context },
+      { config: mockConfig, context: mockContext },
       true,
     );
     const columnElem = host.queryCss('spy-table-column-renderer');
 
-    console.log(columnElem!.properties);
+    expect(columnElem).toBeTruthy();
+  });
+
+  it('`spy-table-column-renderer` element should bind transformed `config` to the input `config`', async () => {
+    const host = await createComponent(
+      { config: mockConfig, context: mockContext },
+      true,
+    );
+    const columnElem = host.queryCss('spy-table-column-renderer');
+
+    expect(columnElem!.properties.config).toEqual(mockTransformedConfig);
+  });
+
+  it('`spy-table-column-renderer` element should bind transformed `data` to the input `data`', async () => {
+    const host = await createComponent(
+      { config: mockConfig, context: mockContext },
+      true,
+    );
+    const columnElem = host.queryCss('spy-table-column-renderer');
+
+    expect(columnElem!.properties.data).toEqual(mockTransformedData);
   });
 });

@@ -88,6 +88,18 @@ export const withFeatures = (): IStory => ({
             type: 'test',
             typeOptions: { text: '${value} in ${row.name}' },
           },
+          {
+            id: 'sku3',
+            title: 'sku',
+            type: 'list',
+            typeOptions: {
+              limit: 2,
+              type: 'test',
+              typeOptions: {
+                text: '${value} in ${row.name}',
+              },
+            },
+          },
         ],
         selectable: true,
         rowActions: [

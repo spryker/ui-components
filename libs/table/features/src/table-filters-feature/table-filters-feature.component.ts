@@ -11,7 +11,7 @@ import {
   TableFilterComponent,
   TableFiltersDeclaration,
   TableFiltersToken,
-} from './table-filters-feature';
+} from './types';
 import {
   TableComponent,
   TableDataConfiguratorService,

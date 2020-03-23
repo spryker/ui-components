@@ -4,7 +4,7 @@ import { TableFiltersFeatureComponent } from './table-filters-feature.component'
 import { DynamicIoModule } from 'ng-dynamic-component';
 import { PluckModule } from '@spryker/utils';
 
-import { TableFiltersDeclaration } from './table-filters-feature';
+import { TableFiltersDeclaration } from './types';
 
 export const TABLE_FILTERS_TOKEN = new InjectionToken<
   TableFiltersDeclaration[]

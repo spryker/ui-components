@@ -18,6 +18,7 @@ import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
 declare module '@spryker/table' {
+  // tslint:disable-next-line: no-empty-interface
   interface TableConfig extends TableSelectableConfig {}
 }
 
@@ -103,10 +104,13 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
     this.updateChecks();
   }
 
-  private updateChecks() {
+  private updateChecks(skipEmit = false) {
     this.updateRowClasses();
-    this.selectionChange.emit(this.getCheckedRowsArr());
     this.cdr.detectChanges();
+
+    if (!skipEmit) {
+      this.selectionChange.emit(this.getCheckedRowsArr());
+    }
   }
 
   private updateRowClasses() {
@@ -130,6 +134,6 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
 
     data.data.forEach((_, i) => (this.checkedRows[i] = false));
 
-    this.updateChecks();
+    this.updateChecks(true);
   }
 }

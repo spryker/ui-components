@@ -3,7 +3,7 @@ import { TableData, TableDataRow } from '@spryker/table';
 
 export interface TableDataMockGeneratorOptions {
   page: number;
-  size: number;
+  pageSize: number;
   total: number;
 }
 
@@ -17,14 +17,14 @@ export function generateMockTableDataFor<T extends TableDataRow>(
   dataGenerator?: TableDataMockGenerator<T>,
 ): TableData<T> {
   const page = +(request.request.params.get('page') || 1);
-  const size = +(request.request.params.get('size') || 10);
-  const total = size + 100;
-  const data = generateMockTableData({ page, size, total }, dataGenerator);
+  const pageSize = +(request.request.params.get('pageSize') || 10);
+  const total = pageSize + 100;
+  const data = generateMockTableData({ page, pageSize, total }, dataGenerator);
 
   return {
     data,
     page,
-    size,
+    pageSize,
     total,
   };
 }
@@ -33,7 +33,7 @@ function generateMockTableData<T extends TableDataRow>(
   options: TableDataMockGeneratorOptions,
   dataGenerator: TableDataMockGenerator<T> = () => ({} as T),
 ): T[] {
-  return new Array(options.size)
+  return new Array(options.pageSize)
     .fill(null)
     .map((_, i) => dataGenerator(i, options));
 }

@@ -24,7 +24,6 @@ class TestHostComponent {}
 
 describe('TableSearchFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
-  let featureFixture: ComponentFixture<TableSearchFeatureComponent>;
   let testTableFeature: TestTableFeatureComponent;
 
   const inputSelector = 'spy-input';
@@ -52,7 +51,6 @@ describe('TableSearchFeatureComponent', () => {
 
   beforeEach(fakeAsync(() => {
     fixture = TestBed.createComponent(TestHostComponent);
-    featureFixture = TestBed.createComponent(TableSearchFeatureComponent);
     testTableFeature = fixture.debugElement.query(
       By.directive(TestTableFeatureComponent),
     ).componentInstance;
@@ -80,16 +78,4 @@ describe('TableSearchFeatureComponent', () => {
       .properties.placeholder;
     expect(inputPlaceholder).toBe(expectedValue);
   }));
-
-  describe('Default values of feature component', () => {
-    it('location should be set to `top` by default', fakeAsync(() => {
-      const expectedValue = 'top';
-      expect(featureFixture.componentInstance.location).toBe(expectedValue);
-    }));
-
-    it('styles with order property should be set to 99 by default', fakeAsync(() => {
-      const expectedValue = '99';
-      expect(featureFixture.componentInstance.styles.order).toBe(expectedValue);
-    }));
-  });
 });

@@ -67,7 +67,7 @@ export interface TableData<T extends TableDataRow = TableDataRow> {
   data: T[];
   total: number;
   page: number;
-  size: number;
+  pageSize: number;
 }
 
 export interface TableRowActionBase {

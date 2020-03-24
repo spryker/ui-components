@@ -42,27 +42,26 @@ export interface TableSearchConfig {
 export class TableSearchFeatureComponent extends TableFeatureComponent
   implements OnDestroy, AfterViewInit {
   @Input() location = 'top';
+  @Input() styles = { order: '99' };
   placeholder = '';
-  styles = { order: '99' };
   destroyed$ = new Subject();
   valueChangeSubject$ = new Subject<string>();
+  valueChangeObservable$ = this.valueChangeSubject$.pipe(
+    filter(value => value.length > 2 || !value.length),
+    debounceTime(300),
+    distinctUntilChanged(),
+    takeUntil(this.destroyed$),
+  );
   placeholderSubject$: Observable<TableSearchConfig> | undefined;
 
-  constructor() {
-    super();
-  }
-
   ngAfterViewInit(): void {
-    this.placeholderSubject$ = this.table?.config$.pipe(pluck('search'));
+    this.placeholderSubject$ = this.table?.config$.pipe(
+      pluck('search', 'placeholder'),
+    );
 
-    this.valueChangeSubject$
-      .pipe(
-        filter(value => value.length > 2 || !value.length),
-        takeUntil(this.destroyed$),
-        debounceTime(300),
-        distinctUntilChanged(),
-      )
-      .subscribe((value: string) => this.triggerUpdate(value));
+    this.valueChangeObservable$.subscribe((value: string) =>
+      this.triggerUpdate(value),
+    );
   }
 
   ngOnDestroy(): void {
@@ -76,7 +75,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
 
   triggerUpdate(inputValue: string): void {
     this.dataConfiguratorService?.update({
-      search: inputValue.length ? inputValue : undefined,
+      search: inputValue || undefined,
     });
   }
 }

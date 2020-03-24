@@ -45,8 +45,8 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   @Input() styles = { order: '99' };
   placeholder = '';
   destroyed$ = new Subject();
-  valueChangeSubject$ = new Subject<string>();
-  valueChangeObservable$ = this.valueChangeSubject$.pipe(
+  setValue$ = new Subject<string>();
+  valueChange$ = this.setValue$.pipe(
     filter(value => value.length > 2 || !value.length),
     debounceTime(300),
     distinctUntilChanged(),
@@ -59,7 +59,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
       pluck('search', 'placeholder'),
     );
 
-    this.valueChangeObservable$.subscribe((value: string) =>
+    this.valueChange$.subscribe((value: string) =>
       this.triggerUpdate(value),
     );
   }
@@ -70,7 +70,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   }
 
   inputValueChange(event: string): void {
-    this.valueChangeSubject$.next(event);
+    this.setValue$.next(event);
   }
 
   triggerUpdate(inputValue: string): void {

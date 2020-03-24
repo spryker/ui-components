@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.1.0-next.1...@spryker/toggle@0.1.0-next.2) (2020-03-24)
+
+
+### Bug Fixes
+
+* **toggle:** update spryker peer dep libs ([32f3824](https://github.com/spryker/ui-components/commit/32f382478a4a11fc21051c3faa2de70642a68371))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.1.0-next.0...@spryker/toggle@0.1.0-next.1) (2020-03-16)
 
 

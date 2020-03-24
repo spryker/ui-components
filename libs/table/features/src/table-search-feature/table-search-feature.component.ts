@@ -59,9 +59,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
       pluck('search', 'placeholder'),
     );
 
-    this.valueChange$.subscribe((value: string) =>
-      this.triggerUpdate(value),
-    );
+    this.valueChange$.subscribe((value: string) => this.triggerUpdate(value));
   }
 
   ngOnDestroy(): void {

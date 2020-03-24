@@ -8,11 +8,11 @@
     nz-input
     [placeholder]="placeholder"
     [name]="name"
-    [value]="value"
+    [ngModel]="value"
     [type]="type"
     [readOnly]="readOnly"
     [disabled]="disabled"
-    (input)="valueChange.emit($event)"
+    (ngModelChange)="valueChange.emit($event)"
     [id]="spyId"
     [required]="required"
     [applyAttrs]="attrs"

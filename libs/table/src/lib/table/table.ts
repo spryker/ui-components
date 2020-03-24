@@ -35,6 +35,7 @@ export interface TableColumnContext {
   value: TableDataValue;
   row: TableDataRow;
   config: TableColumn;
+  i?: number;
 }
 
 export interface TableColumnTplContext extends TableColumnContext {

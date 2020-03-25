@@ -12,7 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { IconService } from './icon.component.service';
+import { InternalIconService } from './internal-icon.service';
 
 @Component({
   selector: 'spy-icon',
@@ -32,17 +32,16 @@ export class IconComponent implements OnInit, OnChanges, OnDestroy {
     private cdr: ChangeDetectorRef,
     private renderer: Renderer2,
     private elemRef: ElementRef<HTMLElement>,
-    private iconsService: IconService,
+    private iconService: InternalIconService,
   ) {}
 
   ngOnInit(): void {
-    this.iconsService._init();
     this.updateHostClass();
     this.updateIcon();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.name?.firstChange) {
+    if (changes.name && !changes.name.firstChange) {
       this.updateHostClass(changes.name.previousValue);
       this.updateIcon();
     }
@@ -58,11 +57,11 @@ export class IconComponent implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
-    this.isIconResolved = this.iconsService.resolveIcon(this.name);
+    this.isIconResolved = this.iconService.resolveIcon(this.name);
 
-    // Re-render manually after icon resolved
     await this.isIconResolved;
 
+    // Re-render manually after icon resolved
     // After await component might have been destroyed
     // So we have to check before performing CD
     if (!this.destroyed) {

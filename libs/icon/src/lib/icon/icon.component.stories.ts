@@ -3,8 +3,9 @@ import { optionsKnob, text } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
+import { IconModule } from '../icon.module';
 import { IconComponent } from './icon.component';
-import { Icon } from './icon.component.service';
+import { Icon } from './types';
 
 export default {
   title: 'IconComponent',
@@ -18,8 +19,7 @@ const iconNames = iconsModules.map(i => i.icon);
 
 export const allIcons = (): IStory => ({
   moduleMetadata: {
-    imports: [NzIconModule, ...iconsModules],
-    declarations: [IconComponent],
+    imports: [NzIconModule, IconModule, ...iconsModules],
   },
   template: `
     <p *ngFor="let icon of icons">
@@ -35,7 +35,7 @@ export const allIcons = (): IStory => ({
 
 export const icon = (): IStory => ({
   moduleMetadata: {
-    imports: [NzIconModule, ...iconsModules],
+    imports: [NzIconModule, IconModule, ...iconsModules],
   },
   component: IconComponent,
   props: {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.30](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.29...@spryker/styles@0.1.0-next.30) (2020-03-25)
+
+
+### Features
+
+* **search feature:** search feature for table component ([742eaee](https://github.com/spryker/ui-components/commit/742eaeea5da37018bed2e17a9eb211d1c6385908))
+
+
+
+
+
 # [0.1.0-next.29](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.28...@spryker/styles@0.1.0-next.29) (2020-03-23)
 
 **Note:** Version bump only for package @spryker/styles

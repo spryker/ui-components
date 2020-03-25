@@ -75,7 +75,7 @@ describe('InputComponent', () => {
       expect(inputElem.properties.placeholder).toBe(mockedPlaceholder);
     });
 
-    it('should bind value to value of input', () => {
+    it('should bind value to ngModel of input', () => {
       const inputElem = fixture.debugElement.query(By.css('input'));
       const mockedValue = 'test value';
 
@@ -83,7 +83,7 @@ describe('InputComponent', () => {
 
       fixture.detectChanges();
 
-      expect(inputElem.properties.value).toBe(mockedValue);
+      expect(inputElem.properties.ngModel).toBe(mockedValue);
     });
 
     it('should bind name to name of input', () => {
@@ -220,10 +220,10 @@ describe('InputComponent', () => {
   });
 
   describe('valueChange', () => {
-    it('should trigger change callback when input is changed', () => {
+    it('should trigger change callback when ngModelChange was triggered', () => {
       const inputElem = fixture.debugElement.query(By.css('input'));
 
-      inputElem.triggerEventHandler('input', {});
+      inputElem.triggerEventHandler('ngModelChange', {});
       fixture.detectChanges();
 
       expect(component.changeSpy).toHaveBeenCalled();

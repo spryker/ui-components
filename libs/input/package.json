@@ -11,6 +11,7 @@
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@spryker/styles": "^0.0.1",
-    "@spryker/utils": "^0.0.1"
+    "@spryker/utils": "^0.0.1",
+    "@angular/forms": "^9.0.0"
   }
 }

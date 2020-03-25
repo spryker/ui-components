@@ -1816,6 +1816,37 @@
           "styleext": "less"
         }
       }
+    },
+    "internal-utils": {
+      "projectType": "library",
+      "root": "libs/internal-utils",
+      "sourceRoot": "libs/internal-utils/src",
+      "prefix": "spy",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/internal-utils/tsconfig.lib.json",
+              "libs/internal-utils/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/internal-utils/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/internal-utils/jest.config.js",
+            "tsConfig": "libs/internal-utils/tsconfig.spec.json",
+            "setupFile": "libs/internal-utils/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "less"
+        }
+      }
     }
   },
   "cli": {

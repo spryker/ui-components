@@ -106,6 +106,10 @@
         "dist/libs/table/index.d.ts",
         "libs/table/src/index.ts"
       ],
+      "@spryker/table/testing": [
+        "dist/libs/table/testing/index.d.ts",
+        "libs/table/testing/src/index.ts"
+      ],
       "@spryker/table/columns": [
         "dist/libs/table/columns/index.d.ts",
         "libs/table/columns/src/index.ts"
@@ -113,6 +117,10 @@
       "@spryker/table/features": [
         "dist/libs/table/features/index.d.ts",
         "libs/table/features/src/index.ts"
+      ],
+      "@spryker/table/features/testing": [
+        "dist/libs/table/features/testing/index.d.ts",
+        "libs/table/features/testing/src/index.ts"
       ],
       "@spryker/table/filters": [
         "dist/libs/table/filters/index.d.ts",
@@ -122,7 +130,8 @@
       "@spryker/label": [
         "dist/libs/label/index.d.ts",
         "libs/label/src/index.ts"
-      ]
+      ],
+      "@spryker/internal-utils": ["libs/internal-utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

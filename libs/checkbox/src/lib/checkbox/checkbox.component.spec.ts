@@ -89,7 +89,7 @@ describe('CheckboxComponent', () => {
   });
 
   describe('@Input(name)', () => {
-    it('must be bound to name property of hidden HTML <input>', () => {
+    it('must be bound to name attribute of hidden HTML <input>', () => {
       const testName = 'testName';
       const inputElem = fixture.debugElement.query(
         By.css('input[type="hidden"]'),
@@ -97,7 +97,7 @@ describe('CheckboxComponent', () => {
       component.name = testName;
       fixture.detectChanges();
 
-      expect(inputElem.properties.name).toBe(testName);
+      expect(inputElem.attributes.name).toBe(testName);
     });
   });
 

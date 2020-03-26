@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.5 (2020-03-26)
+
+
+### Bug Fixes
+
+* **layout:** set background to white via context class ([350d98b](https://github.com/spryker/ui-components/commit/350d98b91cecc54abeca4d221f7987f025c12e2d))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/layout@0.1.0-next.3...@spryker/layout@0.1.0-next.4) (2020-02-27)
 
 **Note:** Version bump only for package @spryker/layout

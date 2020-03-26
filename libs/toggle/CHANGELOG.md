@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.1.0-next.2...@spryker/toggle@0.1.0-next.3) (2020-03-26)
+
+
+### Bug Fixes
+
+* **toggle:** set name as attribute to hidden input ([3ccdb04](https://github.com/spryker/ui-components/commit/3ccdb0458a36f779e7c548c3164906ef7651e880))
+
+
+
+
+
 # [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.1.0-next.1...@spryker/toggle@0.1.0-next.2) (2020-03-24)
 
 

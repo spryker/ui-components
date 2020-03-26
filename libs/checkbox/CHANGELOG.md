@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.1.0-next.1...@spryker/checkbox@0.1.0-next.2) (2020-03-26)
+
+
+### Bug Fixes
+
+* **checkbox:** set name as attribute on hidden input ([b382d3f](https://github.com/spryker/ui-components/commit/b382d3ffef6e1fa42302afed4c59beffb6826e7d))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.1.0-next.0...@spryker/checkbox@0.1.0-next.1) (2020-03-16)
 
 

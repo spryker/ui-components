@@ -21,7 +21,7 @@ export class CheckboxComponent {
   @Input() @ToBoolean() disabled = false;
   @Input() @ToBoolean() indeterminate = false;
   @Input() @ToBoolean() required = false;
-  @Input() name = '';
+  @Input() name?: string;
   @Input() @ToJson() attrs: Record<string, string> = {};
 
   @Output() checkedChange: EventEmitter<boolean> = new EventEmitter();

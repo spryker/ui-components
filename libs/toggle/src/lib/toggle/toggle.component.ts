@@ -18,6 +18,6 @@ import { ToBoolean } from '@spryker/utils';
 export class ToggleComponent {
   @Input() @ToBoolean() value = false;
   @Input() @ToBoolean() disabled = false;
-  @Input() name = '';
+  @Input() name?: string;
   @Output() valueChange = new EventEmitter<boolean>();
 }

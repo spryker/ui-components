@@ -11,5 +11,7 @@ export const primary = () => ({
     imports: [NzSwitchModule, ToggleModule],
   },
   component: ToggleComponent,
-  props: {},
+  props: {
+    name: 'test-name',
+  },
 });

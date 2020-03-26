@@ -44,7 +44,7 @@ describe('ToggleComponent', () => {
   });
 
   describe('Input name must be bound to input', () => {
-    it('should bind name to name of input', () => {
+    it('should bind name to attribute name of input', () => {
       const inputElem = fixture.debugElement.query(
         By.css('input[type=hidden]'),
       );
@@ -54,7 +54,7 @@ describe('ToggleComponent', () => {
 
       fixture.detectChanges();
 
-      expect(inputElem.properties.name).toBe(mockedValue);
+      expect(inputElem.attributes.name).toBe(mockedValue);
     });
   });
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.10...@spryker/form-item@0.1.0-next.11) (2020-03-27)
+
+
+### Features
+
+* **form-item:** add required input that renders asterisk after label ([2216443](https://github.com/spryker/ui-components/commit/2216443a69e1ef20918235c8a78cfa014e026d06))
+
+
+
+
+
 # [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.9...@spryker/form-item@0.1.0-next.10) (2020-03-17)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@spryker/form-item",
-  "version": "0.1.0-next.10",
+  "version": "0.1.0-next.11",
   "publishConfig": {
     "access": "public"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.8...@spryker/select@0.1.0-next.9) (2020-03-27)
+
+
+### Bug Fixes
+
+* **select:** validate value within options ([9118f90](https://github.com/spryker/ui-components/commit/9118f9034b235657b9172d2a4bdb928d7fdfca94))
+
+
+
+
+
 # [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.7...@spryker/select@0.1.0-next.8) (2020-03-23)
 
 **Note:** Version bump only for package @spryker/select

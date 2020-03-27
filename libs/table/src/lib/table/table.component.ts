@@ -208,13 +208,15 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   updateFeaturesLocation(features: TableFeatureComponent[]): void {
     this.featuresLocation = features.reduce(
-      (acc, feature) => ({
-        ...acc,
-        [feature.location]: acc[feature.location]
-          ? [...acc[feature.location], feature]
-          : [feature],
-      }),
-      {} as Record<string, TableFeatureComponent[]>,
+      (acc, feature) =>
+        feature.locations.reduce(
+          (_acc, location) => ({
+            ..._acc,
+            [location]: acc[location] ? [...acc[location], feature] : [feature],
+          }),
+          acc,
+        ),
+      {} as TableComponent['featuresLocation'],
     );
   }
 

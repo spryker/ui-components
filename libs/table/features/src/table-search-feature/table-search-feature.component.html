@@ -1,7 +1,7 @@
 <ng-template>
   <spy-input
     [prefix]="messageTmpl"
-    [placeholder]="placeholderSubject$ | async"
+    [placeholder]="(placeholderSubject$ | async) || ''"
     (valueChange)="inputValueChange($event)"
   ></spy-input>
 

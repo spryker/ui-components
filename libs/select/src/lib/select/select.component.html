@@ -1,5 +1,5 @@
 <nz-select
-  [(ngModel)]="value"
+  [(ngModel)]="mappedValue"
   (ngModelChange)="handleValueChange($event)"
   [nzShowSearch]="search"
   [nzDisabled]="disabled"
@@ -35,7 +35,7 @@
 <select
   [disabled]="disabled"
   [name]="name"
-  [value]="value"
+  [value]="mappedValue"
   [multiple]="multiple"
   hidden
 >

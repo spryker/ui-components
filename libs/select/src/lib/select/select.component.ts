@@ -19,6 +19,7 @@ import {
 import { ToBoolean, ToJson } from '@spryker/utils';
 
 export type SelectValue = string | number;
+export type SelectValueSelected = SelectValue | SelectValue[];
 export type SelectOption = SelectValue | SelectOptionItem;
 
 export interface SelectOptionItem {
@@ -35,8 +36,8 @@ export interface SelectOptionItem {
   encapsulation: ViewEncapsulation.None,
 })
 export class SelectComponent implements OnInit, OnChanges {
-  @Input() @ToJson() options: SelectOption[] = [];
-  @Input() value: SelectValue | SelectValue[] = [];
+  @Input() @ToJson() options?: SelectOption[];
+  @Input() value?: SelectValueSelected;
   @Input() @ToBoolean() search = false;
   @Input() @ToBoolean() disabled = false;
   @Input() @ToBoolean() multiple = false;
@@ -45,7 +46,7 @@ export class SelectComponent implements OnInit, OnChanges {
   @Input() selectAllTitle = '';
   @Input() name = '';
   @Input() noOptionsText = '';
-  @Output() valueChange = new EventEmitter<SelectValue | SelectValue[]>();
+  @Output() valueChange = new EventEmitter<SelectValueSelected>();
 
   checkIcon = IconCheckModule.icon;
   arrowDownIcon = IconArrowDownModule.icon;
@@ -55,26 +56,19 @@ export class SelectComponent implements OnInit, OnChanges {
 
   allValues: SelectValue[] = [];
   mappedOptions: SelectOptionItem[] = [];
+  mappedValue?: SelectValueSelected;
   selectAllValue = 'select-all';
 
   ngOnInit() {
-    this.mapOptionsArray(this.options);
+    this.updateOptions();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.options?.firstChange) return;
-
-    this.mapOptionsArray(this.options);
-  }
-
-  mapOptionsArray(options: SelectOption[]): void {
-    this.mappedOptions = options.map((option: any) => {
-      return typeof option !== 'object'
-        ? { value: option, label: option }
-        : option;
-    });
-
-    this.allValues = this.mappedOptions.map(option => option.value);
+    if (changes.options && !changes.options.firstChange) {
+      this.updateOptions();
+    } else if (changes.value && !changes.value.firstChange) {
+      this.updateValue();
+    }
   }
 
   handleValueChange(value: SelectValue | SelectValue[]): void {
@@ -82,15 +76,41 @@ export class SelectComponent implements OnInit, OnChanges {
       value = this.getValueArrayForSelectAllAction(value);
     }
 
-    this.value = value;
+    this.mappedValue = value;
     this.valueChange.emit(value);
   }
 
-  isSelectAllAction(value: SelectValue[]): boolean {
+  private updateOptions(): void {
+    this.mappedOptions =
+      this.options?.map(option =>
+        typeof option !== 'object'
+          ? ({ value: option, label: option } as SelectOptionItem)
+          : option,
+      ) ?? [];
+
+    this.allValues = this.mappedOptions.map(option => option.value);
+
+    this.updateValue();
+  }
+
+  private updateValue() {
+    this.mappedValue =
+      this.multiple && Array.isArray(this.value)
+        ? this.value.filter(value => this.isValueExist(value))
+        : this.isValueExist(this.value)
+        ? this.value
+        : undefined;
+  }
+
+  private isValueExist(value?: any): boolean {
+    return value !== undefined ? this.allValues.includes(value) : false;
+  }
+
+  private isSelectAllAction(value: SelectValue[]): boolean {
     return this.multiple && value[value.length - 1] === this.selectAllValue;
   }
 
-  getValueArrayForSelectAllAction(value: SelectValue[]): SelectValue[] {
+  private getValueArrayForSelectAllAction(value: SelectValue[]): SelectValue[] {
     return value.length <= this.allValues.length ? [...this.allValues] : [];
   }
 }

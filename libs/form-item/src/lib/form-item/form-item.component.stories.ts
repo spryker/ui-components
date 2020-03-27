@@ -1,35 +1,74 @@
+import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormItemModule } from '@spryker/form-item';
 import { InputModule } from '@spryker/input';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzInputModule } from 'ng-zorro-antd/input';
+import { IStory } from '@storybook/angular';
+
+import { FormItemModule } from '../form-item.module';
 
 export default {
   title: 'FormItemComponent',
 };
 
+@NgModule({
+  imports: [BrowserAnimationsModule],
+  exports: [FormItemModule, InputModule],
+})
+class StoryModule {}
+
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [
-      FormItemModule,
-      BrowserAnimationsModule,
-      NzFormModule,
-      NzInputModule,
-      InputModule,
-    ],
-  },
+  moduleMetadata: { imports: [StoryModule] },
   template: `
-    <spy-form-item for="input-id" error="Error Message" [noLabel]="true">
+    <spy-form-item for="input-id1">
       Label
-      <spy-input placeholder="placeholder" attrs='{"id":"form-id"}' type="text" control></spy-input>
+      <spy-input spyId="form-id1" type="text" control></spy-input>
     </spy-form-item>
-   <spy-form-item for="input-id2" [noSpaces]="true">
+    <spy-form-item for="input-id2">
       Label
-      <spy-input attrs='{"id":"form-id2"}' type="text" control></spy-input>
+      <spy-input spyId="form-id2" type="text" control></spy-input>
     </spy-form-item>
-    <spy-form-item for="input-id3" error="Error Message">
+  `,
+});
+
+export const withError = (): IStory => ({
+  moduleMetadata: { imports: [StoryModule] },
+  template: `
+    <spy-form-item error="Error Message">
       Label
-      <spy-input attrs='{"id":"form-id3"}' type="text" control></spy-input>
+      <spy-input placeholder="Type here..." type="text" control></spy-input>
+    </spy-form-item>
+  `,
+});
+
+export const required = (): IStory => ({
+  moduleMetadata: { imports: [StoryModule] },
+  template: `
+    <spy-form-item required>
+      Label
+      <spy-input placeholder="Type here..." type="text" control></spy-input>
+    </spy-form-item>
+  `,
+});
+
+export const noLabel = (): IStory => ({
+  moduleMetadata: { imports: [StoryModule] },
+  template: `
+    <spy-form-item [noLabel]="true">
+      Hidden label!
+      <spy-input placeholder="Type here..." type="text" control></spy-input>
+    </spy-form-item>
+  `,
+});
+
+export const noSpaces = (): IStory => ({
+  moduleMetadata: { imports: [StoryModule] },
+  template: `
+    <spy-form-item noSpaces>
+      Label
+      <spy-input type="text" control></spy-input>
+    </spy-form-item>
+    <spy-form-item noSpaces>
+      Label
+      <spy-input type="text" control></spy-input>
     </spy-form-item>
   `,
 });

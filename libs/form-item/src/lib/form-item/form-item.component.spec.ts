@@ -1,97 +1,124 @@
-import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+// tslint:disable: no-non-null-assertion
+import { NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { OfTypePipeModule } from '@spryker/utils';
 
 import { FormItemComponent } from './form-item.component';
 
 describe('FormItemModule', () => {
-  let component: FormItemComponent;
-  let fixture: ComponentFixture<FormItemComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, OfTypePipeModule],
-      declarations: [FormItemComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-  }));
+  const { testModule, createComponent } = getTestingForComponent(
+    FormItemComponent,
+    {
+      ngModule: {
+        imports: [NoopAnimationsModule, OfTypePipeModule],
+        schemas: [NO_ERRORS_SCHEMA],
+      },
+      projectContent: `
+        Label
+        <span control>Control</span>
+      `,
+    },
+  );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormItemComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({ imports: [testModule] });
   });
 
-  it('template must render as a tree [nz-form-item]=>[nz-form-label,nz-form-control]', () => {
-    const formItemElem = fixture.debugElement.query(By.css('nz-form-item'));
-    expect(formItemElem).toBeTruthy();
+  it('template must render as a tree [nz-form-item]=>[nz-form-label,nz-form-control]', async () => {
+    const host = await createComponent({}, true);
+    const formLabelElem = host.queryCss('nz-form-item nz-form-label');
+    const formControlElem = host.queryCss('nz-form-item nz-form-control');
 
-    const formLabelElem = formItemElem.query(By.css('nz-form-label'));
-    const formControlElem = formItemElem.query(By.css('nz-form-control'));
     expect(formLabelElem).toBeTruthy();
     expect(formControlElem).toBeTruthy();
   });
 
-  it('input nzNoColon must be set to true on nz-form-label', () => {
-    const labelComponent = fixture.debugElement.query(By.css('nz-form-label'));
-    fixture.detectChanges();
-    expect(labelComponent.properties.nzNoColon).toBe(true);
+  it('should project content in <nz-form-label>', async () => {
+    const host = await createComponent({}, true);
+    const formLabelElem = host.queryCss('nz-form-label');
+
+    expect(formLabelElem).toBeTruthy();
+    expect(formLabelElem?.nativeElement.textContent.trim()).toBe('Label');
   });
 
-  it('should not render label on noLabel', () => {
-    component.noLabel = true;
+  it('should project content `[control]` in <nz-form-label>', async () => {
+    const host = await createComponent({}, true);
+    const formControlElem = host.queryCss('nz-form-control');
 
-    fixture.detectChanges();
+    expect(formControlElem).toBeTruthy();
+    expect(formControlElem?.nativeElement.textContent.trim()).toBe('Control');
+  });
 
-    const labelComponent = fixture.debugElement.query(By.css('nz-form-label'));
+  it('input nzNoColon must be set to true on nz-form-label', async () => {
+    const host = await createComponent({}, true);
+    const labelComponent = host.queryCss('nz-form-label');
+
+    expect(labelComponent).toBeTruthy();
+    expect(labelComponent!.properties.nzNoColon).toBe(true);
+  });
+
+  describe('@Input(required)', () => {
+    describe('when is truthy', () => {
+      it('should render `*` after projected content in <nz-form-label>', async () => {
+        const host = await createComponent({ required: true }, true);
+        const labelComponent = host.queryCss('nz-form-label');
+
+        expect(labelComponent).toBeTruthy();
+        expect(labelComponent?.nativeElement.textContent.trim()).toBe(
+          'Label *',
+        );
+      });
+    });
+  });
+
+  it('should not render label on noLabel', async () => {
+    const host = await createComponent({ noLabel: true }, true);
+
+    const labelComponent = host.queryCss('nz-form-label');
+
     expect(labelComponent).toBeFalsy();
   });
 
-  it('should add no-spaces class to nz-form-item', () => {
-    component.noSpaces = true;
+  it('should add no-spaces class to nz-form-item', async () => {
+    const host = await createComponent({ noSpaces: true }, true);
 
-    fixture.detectChanges();
+    const formItemComponent = host.queryCss('nz-form-item');
 
-    const formItemComponent = fixture.debugElement.query(
-      By.css('nz-form-item'),
+    expect(formItemComponent).toBeTruthy();
+    expect(formItemComponent!.classes['no-spaces']).toBeTruthy();
+  });
+
+  it('should show error validation message', async () => {
+    const host = await createComponent({ error: 'Error Message' }, true);
+
+    const formControlElem = host.queryCss('nz-form-control');
+
+    expect(formControlElem).toBeTruthy();
+    expect(formControlElem!.properties.nzValidateStatus).toBe('error');
+    expect(formControlElem!.properties.nzErrorTip).toEqual(
+      expect.any(TemplateRef),
     );
-    expect(
-      formItemComponent.nativeElement.classList.contains('no-spaces'),
-    ).toBeTruthy();
   });
 
-  it('should show error validation message', () => {
-    component.error = 'Error Message';
+  it('should show warning validation message', async () => {
+    const host = await createComponent({ warning: 'Warning Message' }, true);
 
-    component.ngOnChanges({
-      error: new SimpleChange('', 'Error Message', true),
-    });
+    const formControlElem = host.queryCss('nz-form-control');
 
-    fixture.detectChanges();
-    expect(component.currentValidationStatus).toEqual('error');
+    expect(formControlElem).toBeTruthy();
+    expect(formControlElem!.properties.nzValidateStatus).toBe('warning');
+    expect(formControlElem!.properties.nzWarningTip).toBe('Warning Message');
   });
 
-  it('should show warning validation message', () => {
-    component.warning = 'Warning Message';
+  it('should show hint validation message', async () => {
+    const host = await createComponent({ hint: 'Hint Message' }, true);
 
-    component.ngOnChanges({
-      warning: new SimpleChange('', 'Warning Message', true),
-    });
+    const formControlElem = host.queryCss('nz-form-control');
 
-    fixture.detectChanges();
-    expect(component.currentValidationStatus).toEqual('warning');
-  });
-
-  it('should show hint validation message', () => {
-    component.hint = 'Hint Message';
-
-    component.ngOnChanges({
-      hint: new SimpleChange('', 'Hint Message', true),
-    });
-
-    fixture.detectChanges();
-    expect(component.currentValidationStatus).toEqual('validating');
+    expect(formControlElem).toBeTruthy();
+    expect(formControlElem!.properties.nzValidateStatus).toEqual('validating');
+    expect(formControlElem!.properties.nzValidatingTip).toBe('Hint Message');
   });
 });

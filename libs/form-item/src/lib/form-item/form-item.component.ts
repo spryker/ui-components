@@ -20,6 +20,7 @@ export class FormItemComponent implements OnInit, OnChanges {
   @Input() error: string | TemplateRef<void> = '';
   @Input() warning: string | TemplateRef<void> = '';
   @Input() hint: string | TemplateRef<void> = '';
+  @Input() @ToBoolean() required = false;
   @Input() @ToBoolean() noSpaces = false;
   @Input() @ToBoolean() noLabel = false;
   currentValidationStatus = '';

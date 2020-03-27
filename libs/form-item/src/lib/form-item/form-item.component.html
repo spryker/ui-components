@@ -6,6 +6,7 @@
     [nzRequired]="false"
   >
     <ng-content></ng-content>
+    <ng-container *ngIf="required">*</ng-container>
   </nz-form-label>
   <nz-form-control
     [nzValidateStatus]="currentValidationStatus"

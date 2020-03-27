@@ -3,30 +3,18 @@ import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { TableColumnsResolverService } from './columns-resolver.service';
 import { TableDataConfiguratorService } from './data-configurator.service';
 import { TableDataFetcherService } from './data-fetcher.service';
-import { TableColumnContext, TableFeatureContext } from './table';
-import { TableComponent, TableFeatureLocation } from './table.component';
+import { TableFeatureContext } from './table';
+import { TableComponent } from './table.component';
 
 @Component({
   selector: 'selector',
   template: ``,
 })
 export abstract class TableFeatureComponent {
-  private _location = '';
-  @Input() set location(val: string) {
-    this._location = val;
-    this.locations = val.split(',') as TableFeatureLocation[];
-  }
-  get location() {
-    return this._location;
-  }
+  @Input() location = '';
   @Input() styles?: Record<string, string>;
 
   @ViewChild(TemplateRef) template?: TemplateRef<TableFeatureContext>;
-  @ViewChild('colTemplate', { read: TemplateRef }) colTemplate?: TemplateRef<
-    TableColumnContext
-  >;
-
-  locations: TableFeatureLocation[] = [];
 
   table?: TableComponent;
   columnsResolverService?: TableColumnsResolverService;

@@ -14,12 +14,22 @@ export default {
   title: 'TableFeaturesRendererComponent',
 };
 
-class MockTableFeatureComponent extends TableFeatureComponent {
+class MockTableFeatureComponent implements TableFeatureComponent {
   location = 'mocked-location';
-  constructor(template: TemplateRef<TableFeatureContext>) {
-    super();
-    this.template = template;
+  styles?: Record<string, string>;
+  template?: TemplateRef<TableFeatureContext>;
+  table?: TableComponent;
+  columnsResolverService?: TableColumnsResolverService;
+  dataFetcherService?: TableDataFetcherService;
+  dataConfiguratorService?: TableDataConfiguratorService;
+  setTableComponent(table: TableComponent): void {}
+  setColumnsResolverService(service: TableColumnsResolverService): void {}
+  setDataFetcherService(service: TableDataFetcherService): void {}
+  setDataConfiguratorService(service: TableDataConfiguratorService): void {}
+  getTemplate(): TemplateRef<TableFeatureContext> {
+    return this.templateRef;
   }
+  constructor(private templateRef: TemplateRef<TableFeatureContext>) {}
 }
 
 @Component({

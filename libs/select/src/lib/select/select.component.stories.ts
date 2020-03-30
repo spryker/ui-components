@@ -1,8 +1,8 @@
+import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SelectModule } from '../select.module';
 import { SelectComponent } from './select.component';
-import { NgModule } from '@angular/core';
 
 export default {
   title: 'SelectComponent',
@@ -10,7 +10,6 @@ export default {
 
 @NgModule({
   imports: [BrowserAnimationsModule, SelectModule],
-  exports: [],
 })
 class StoryModule {}
 

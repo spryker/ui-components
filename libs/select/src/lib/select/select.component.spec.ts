@@ -111,6 +111,18 @@ describe('SelectComponent', () => {
       expect(nzSelectElem).toBeTruthy();
       expect(nzSelectElem!.properties.nzPlaceHolder).toBe('placeholder');
     });
+
+    it('should bind disableClear inverted to nzAllowClear of nz-select', async () => {
+      const host = await createComponent({}, true);
+      const nzSelectElem = host.queryCss('nz-select');
+
+      expect(nzSelectElem).toBeTruthy();
+      expect(nzSelectElem!.properties.nzAllowClear).toBe(true);
+
+      host.setInputs({ disableClear: true }, true);
+
+      expect(nzSelectElem!.properties.nzAllowClear).toBe(false);
+    });
   });
 
   it('options array must be correctly mapped and create each option of the dropdown', async () => {

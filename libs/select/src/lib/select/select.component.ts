@@ -46,6 +46,8 @@ export class SelectComponent implements OnInit, OnChanges {
   @Input() selectAllTitle = '';
   @Input() name = '';
   @Input() noOptionsText = '';
+  @Input() @ToBoolean() disableClear = false;
+
   @Output() valueChange = new EventEmitter<SelectValueSelected>();
 
   checkIcon = IconCheckModule.icon;

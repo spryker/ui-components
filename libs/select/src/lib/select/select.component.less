@@ -21,6 +21,10 @@
     border-color: @gray-light;
     background-color: @white;
 
+    &:hover {
+      border-color: @gray;
+    }
+
     &__choice {
       padding: 0;
       display: flex;
@@ -164,12 +168,15 @@
   }
 
   &-disabled {
-    .@{select-prefix-cls}-selection {
-      background-color: @gray-lighter;
-      color: @gray;
-
-      .@{select-prefix-cls}-arrow__icon {
+    .@{select-prefix-cls} {
+      &-selection.@{select-prefix-cls}-selection {
+        background-color: @gray-lighter;
+        border-color: @gray-light;
         color: @gray;
+
+        &-arrow__icon {
+          color: @gray;
+        }
       }
     }
   }

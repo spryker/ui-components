@@ -146,6 +146,31 @@ describe('SelectComponent', () => {
     expect(host.hostComponent.valueChange).toHaveBeenCalled();
   });
 
+  describe('native select', () => {
+    it('should render empty <option> tag', async () => {
+      const host = await createComponent({}, true);
+      const optionElems = host.fixture.debugElement.queryAll(
+        By.css('select option'),
+      );
+
+      expect(optionElems.length).toBe(1);
+      expect(optionElems[0].properties.value).toBe(undefined);
+    });
+
+    it('should render <option> tags for every @Input(options) value', async () => {
+      const host = await createComponent({ options: [1, 2, 3] }, true);
+      const optionElems = host.fixture.debugElement.queryAll(
+        By.css('select option'),
+      );
+
+      expect(optionElems.length).toBe(4); // +1 for empty option
+      expect(optionElems[0].properties.value).toBe(undefined);
+      expect(optionElems[1].properties.value).toBe(1);
+      expect(optionElems[2].properties.value).toBe(2);
+      expect(optionElems[3].properties.value).toBe(3);
+    });
+  });
+
   describe('SelectComponent methods', () => {
     it('options array with numbers or strings should be correctly mapped', async () => {
       const host = await createComponent({ options: [123, '123'] }, true);

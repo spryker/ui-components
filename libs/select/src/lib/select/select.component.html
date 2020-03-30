@@ -38,8 +38,9 @@
   [name]="name"
   [value]="mappedValue"
   [multiple]="multiple"
-  hidden
+  class="ant-select-native"
 >
+  <option></option>
   <option *ngFor="let option of mappedOptions" [value]="option.value">
     {{ option.label }}
   </option>

@@ -10,14 +10,14 @@ import { TableFeatureComponent } from '@spryker/table';
 import {
   debounceTime,
   distinctUntilChanged,
-  pluck,
   takeUntil,
   filter,
+  map,
 } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 
 declare module '@spryker/table' {
-  interface TableConfig extends TableSearchConfig {
+  interface TableConfig {
     search?: TableSearchConfig;
   }
 }
@@ -56,7 +56,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
 
   ngAfterViewInit(): void {
     this.placeholderSubject$ = this.table?.config$.pipe(
-      pluck('search', 'placeholder'),
+      map((config: any) => config.search?.placeholder || this.placeholder),
     );
 
     this.valueChange$.subscribe((value: string) => this.triggerUpdate(value));

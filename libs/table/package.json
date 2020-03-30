@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table",
-  "version": "0.1.0-next.10",
+  "version": "0.1.0-next.11",
   "dependencies": {
     "ng-dynamic-component": "^6.1.0",
     "ng-zorro-antd": "^9.0.0-beta.0"

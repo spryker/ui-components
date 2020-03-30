@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.32](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.31...@spryker/styles@0.1.0-next.32) (2020-03-30)
+
+
+### Features
+
+* **select:** customize style of clear icon ([8cd9cab](https://github.com/spryker/ui-components/commit/8cd9cabfee0ca068e6e03a7e7f808d413122c002))
+
+
+
+
+
 # [0.1.0-next.31](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.30...@spryker/styles@0.1.0-next.31) (2020-03-30)
 
 **Note:** Version bump only for package @spryker/styles

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.10...@spryker/select@0.1.0-next.11) (2020-03-30)
+
+
+### Bug Fixes
+
+* **select:** add empty option to native select ([39eb53b](https://github.com/spryker/ui-components/commit/39eb53b5ff22b19565de3c6139b0d71f391af27f))
+* **select:** add hover state styles ([d5cab4d](https://github.com/spryker/ui-components/commit/d5cab4d1e2f1b0c9ed1c8f1ed1df89a26a0e0079))
+
+
+### Features
+
+* **select:** customize style of clear icon ([8cd9cab](https://github.com/spryker/ui-components/commit/8cd9cabfee0ca068e6e03a7e7f808d413122c002))
+
+
+
+
+
 # [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.9...@spryker/select@0.1.0-next.10) (2020-03-30)
 
 

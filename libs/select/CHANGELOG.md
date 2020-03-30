@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.9...@spryker/select@0.1.0-next.10) (2020-03-30)
+
+
+### Features
+
+* **select:** add disableClear input with `false` default value ([56ab726](https://github.com/spryker/ui-components/commit/56ab726658d3fd34d82dc9206232bf73a0a3edd4))
+
+
+
+
+
 # [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.8...@spryker/select@0.1.0-next.9) (2020-03-27)
 
 

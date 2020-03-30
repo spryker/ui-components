@@ -61,6 +61,26 @@
         }
       }
     }
+
+    &__clear {
+      right: 6px;
+      margin-top: @select-selection-clear-btn-size / -2;
+      width: @select-selection-clear-btn-size;
+      height: @select-selection-clear-btn-size;
+      font-size: @select-selection-clear-icon-size;
+      line-height: @select-selection-clear-btn-size;
+      color: @gray-dark;
+      background-color: @gray-light;
+      border-radius: 50%;
+
+      &:hover {
+        color: @gray-darker;
+      }
+
+      &-icon {
+        vertical-align: middle;
+      }
+    }
   }
 
   &-open &-selection {

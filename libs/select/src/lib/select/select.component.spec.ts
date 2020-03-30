@@ -1,17 +1,27 @@
 // tslint:disable: no-non-null-assertion
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, Input, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { IconRemoveModule } from '@spryker/icon/icons';
 
 import { SelectComponent } from './select.component';
-import { By } from '@angular/platform-browser';
 
 describe('SelectComponent', () => {
+  @Component({
+    selector: 'nz-select',
+    template: `
+      <ng-content></ng-content>
+    `,
+  })
+  class MockNzSelectComponent {}
+
   const { testModule, createComponent } = getTestingForComponent(
     SelectComponent,
     {
       ngModule: {
         schemas: [NO_ERRORS_SCHEMA],
+        declarations: [MockNzSelectComponent],
       },
     },
   );
@@ -27,6 +37,38 @@ describe('SelectComponent', () => {
 
     expect(nzSelectElem).toBeTruthy();
     expect(selectElem).toBeTruthy();
+  });
+
+  describe('custom clear icon', () => {
+    it('should bind templateRef to `nzClearIcon` input of `nz-select`', async () => {
+      const host = await createComponent({}, true);
+      const nzSelectElem = host.queryCss('nz-select');
+
+      expect(nzSelectElem).toBeTruthy();
+      expect(nzSelectElem!.properties.nzClearIcon).toEqual(
+        expect.any(TemplateRef),
+      );
+    });
+
+    it('should render <spy-icon> with `IconRemoveModule` icon', async () => {
+      TestBed.overrideComponent(MockNzSelectComponent, {
+        set: {
+          inputs: ['nzClearIcon'],
+          template: `<ng-container *ngTemplateOutlet="nzClearIcon"></ng-container>`,
+        },
+      });
+
+      const host = await createComponent({}, true);
+      const clearIconElem = host.queryCss('nz-select spy-icon');
+
+      expect(clearIconElem).toBeTruthy();
+      expect(clearIconElem!.properties.name).toBe(IconRemoveModule.icon);
+      expect(
+        clearIconElem!.nativeElement.classList.contains(
+          'ant-select-selection__clear-icon',
+        ),
+      ).toBe(true);
+    });
   });
 
   describe('Input disabled and multiple must be bound to select', () => {

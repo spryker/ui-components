@@ -5,11 +5,12 @@
   [nzDisabled]="disabled"
   [nzPlaceHolder]="placeholder"
   [nzMode]="multiple ? 'tags' : 'default'"
-  [nzSuffixIcon]="suffixIcon"
+  [nzSuffixIcon]="suffixIconTpl"
   [nzNotFoundContent]="noOptionsText"
-  [nzMenuItemSelectedIcon]="multiSelectOptionIcon"
-  [nzRemoveIcon]="crossIcon"
+  [nzMenuItemSelectedIcon]="multiSelectOptionIconTpl"
+  [nzRemoveIcon]="crossIconTpl"
   [nzAllowClear]="!disableClear"
+  [nzClearIcon]="clearIconTpl"
 >
   <nz-option
     *ngIf="showSelectAll"
@@ -46,18 +47,18 @@
   </option>
 </select>
 
-<ng-template #suffixIcon>
+<ng-template #suffixIconTpl>
   <spy-icon class="ant-select-arrow__icon" [name]="arrowDownIcon"></spy-icon>
 </ng-template>
 
-<ng-template #crossIcon>
+<ng-template #crossIconTpl>
   <spy-icon
     class="ant-select-selection__choice__remove__icon"
     [name]="removeIcon"
   ></spy-icon>
 </ng-template>
 
-<ng-template #multiSelectOptionIcon let-optionTitle="label">
+<ng-template #multiSelectOptionIconTpl>
   <spy-icon
     class="ant-select-dropdown-menu-item__icon--multiChecked"
     [name]="checkboxCheckedIcon"
@@ -65,5 +66,12 @@
   <spy-icon
     class="ant-select-dropdown-menu-item__icon--multiUnchecked"
     [name]="checkboxUncheckedIcon"
+  ></spy-icon>
+</ng-template>
+
+<ng-template #clearIconTpl>
+  <spy-icon
+    class="ant-select-selection__clear-icon"
+    [name]="removeIcon"
   ></spy-icon>
 </ng-template>

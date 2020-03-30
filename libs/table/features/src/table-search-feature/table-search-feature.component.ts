@@ -10,16 +10,19 @@ import { TableFeatureComponent } from '@spryker/table';
 import {
   debounceTime,
   distinctUntilChanged,
-  pluck,
   takeUntil,
   filter,
+  map,
 } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 
 declare module '@spryker/table' {
-  interface TableConfig extends TableSearchConfig {
-    search?: TableSearchConfig;
-  }
+  // tslint:disable-next-line: no-empty-interface
+  interface TableConfig extends TableConfigWithSearch {}
+}
+
+export interface TableConfigWithSearch {
+  search?: TableSearchConfig;
 }
 
 export interface TableSearchConfig {
@@ -43,7 +46,6 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   implements OnDestroy, AfterViewInit {
   @Input() location = 'top';
   @Input() styles = { order: '99' };
-  placeholder = '';
   destroyed$ = new Subject();
   setValue$ = new Subject<string>();
   valueChange$ = this.setValue$.pipe(
@@ -52,12 +54,12 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
     distinctUntilChanged(),
     takeUntil(this.destroyed$),
   );
-  placeholderSubject$: Observable<TableSearchConfig> | undefined;
+  placeholder$: Observable<string> | undefined;
 
   ngAfterViewInit(): void {
-    this.placeholderSubject$ = this.table?.config$.pipe(
-      pluck('search', 'placeholder'),
-    );
+    this.placeholder$ = (this.table?.config$ as Observable<
+      TableConfigWithSearch
+    >).pipe(map(config => config.search?.placeholder || ''));
 
     this.valueChange$.subscribe((value: string) => this.triggerUpdate(value));
   }

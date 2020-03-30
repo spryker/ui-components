@@ -1,1 +1,3 @@
-{{ config.date | context: context | date: config.format }}
+<ng-container *ngIf="context.value">
+  {{ config.date | context: context | date: config.format }}
+</ng-container>

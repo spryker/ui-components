@@ -13,6 +13,7 @@ import { TableComponent } from './table.component';
 export abstract class TableFeatureComponent {
   @Input() location = '';
   @Input() styles?: Record<string, string>;
+
   @ViewChild(TemplateRef) template?: TemplateRef<TableFeatureContext>;
 
   table?: TableComponent;

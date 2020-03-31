@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.11...@spryker/table@0.1.0-next.12) (2020-03-31)
+
+
+### Bug Fixes
+
+* **table:** add [@orchestrator](https://github.com/orchestrator) libs to dependencies ([daf0ce0](https://github.com/spryker/ui-components/commit/daf0ce0e6cc2bf7a9c31da6931645015e65b4e2f))
+
+
+
+
+
 # [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.10...@spryker/table@0.1.0-next.11) (2020-03-30)
 
 **Note:** Version bump only for package @spryker/table

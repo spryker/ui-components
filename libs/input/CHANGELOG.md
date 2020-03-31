@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.13...@spryker/input@0.1.0-next.14) (2020-03-31)
+
+
+### Bug Fixes
+
+* **libs:** update peer dependencies to next tags ([179dba1](https://github.com/spryker/ui-components/commit/179dba1ab72ac5229bdefbab5cca0747b9d1d004))
+
+
+
+
+
 # [0.1.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.12...@spryker/input@0.1.0-next.13) (2020-03-30)
 
 **Note:** Version bump only for package @spryker/input

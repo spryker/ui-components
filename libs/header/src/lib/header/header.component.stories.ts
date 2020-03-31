@@ -1,5 +1,5 @@
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { HeaderComponent } from './header.component';
+
 import { HeaderModule } from '../header.module';
 
 export default {

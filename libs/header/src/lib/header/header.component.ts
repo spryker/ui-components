@@ -13,5 +13,5 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent {
-  @Input() ctxBgClass = 'ctx-spy-bg-white';
+  @Input() ctxBgClass = 'spy-bg-white';
 }

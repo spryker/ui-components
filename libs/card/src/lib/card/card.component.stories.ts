@@ -1,5 +1,5 @@
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { CardComponent } from './card.component';
+
 import { CardModule } from '../card.module';
 
 export default {

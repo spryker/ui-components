@@ -8,6 +8,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NzAlertComponent } from 'ng-zorro-antd/alert';
 
 import { NotificationModule } from '../notification.module';
 import { NotificationComponent } from './notification.component';
@@ -150,7 +151,17 @@ describe('NotificationComponent', () => {
       expect(component.changeSpy).toHaveBeenCalled();
     }));
 
-    it('close method should return current closeable value and emit closed output', fakeAsync(() => {
+    it('close method should return current closeable value and call `NzAlertComponent.closeAlert()`', fakeAsync(() => {
+      const nzAlertElem = fixture.debugElement.query(
+        By.directive(NzAlertComponent),
+      );
+
+      expect(nzAlertElem).toBeTruthy();
+
+      const nzAlert = nzAlertElem.componentInstance as NzAlertComponent;
+
+      const closeSpy = spyOn(nzAlert, 'closeAlert');
+
       let currentCloseable = notificationComponent.close();
 
       expect(currentCloseable).toBeFalsy();
@@ -160,7 +171,7 @@ describe('NotificationComponent', () => {
       fixture.detectChanges();
       tick();
 
-      expect(component.changeSpy).toHaveBeenCalledTimes(1);
+      expect(closeSpy).toHaveBeenCalledTimes(1);
 
       currentCloseable = notificationComponent.close();
 
@@ -169,7 +180,7 @@ describe('NotificationComponent', () => {
       fixture.detectChanges();
       tick();
 
-      expect(component.changeSpy).toHaveBeenCalledTimes(2);
+      expect(closeSpy).toHaveBeenCalledTimes(2);
     }));
   });
 });

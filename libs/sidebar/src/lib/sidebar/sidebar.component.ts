@@ -23,7 +23,7 @@ export class SidebarComponent {
   @Input() trigger: undefined | TemplateRef<void>;
   @Input() @ToBoolean() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
-  @Input() ctxBgClass = 'ctx-spy-bg-white';
+  @Input() ctxBgClass = 'spy-bg-white';
 
   arrowIcon = IconArrowDownModule.icon;
 

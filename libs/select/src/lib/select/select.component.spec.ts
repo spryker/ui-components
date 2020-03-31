@@ -71,32 +71,6 @@ describe('SelectComponent', () => {
     });
   });
 
-  describe('Input disabled and multiple must be bound to select', () => {
-    it('should bind disabled to disabled of default select', async () => {
-      const host = await createComponent({ disabled: true }, true);
-      const selectElem = host.queryCss('select');
-
-      expect(selectElem).toBeTruthy();
-      expect(selectElem!.properties.disabled).toBe(true);
-    });
-
-    it('should bind multiple to multiple of default select', async () => {
-      const host = await createComponent({ multiple: true }, true);
-      const selectElem = host.queryCss('select');
-
-      expect(selectElem).toBeTruthy();
-      expect(selectElem!.properties.multiple).toBe(true);
-    });
-
-    it('should bind name to name of default select', async () => {
-      const host = await createComponent({ name: 'mocked-name' }, true);
-      const selectElem = host.queryCss('select');
-
-      expect(selectElem).toBeTruthy();
-      expect(selectElem!.properties.name).toBe('mocked-name');
-    });
-  });
-
   describe('@Input(value) affects ngModel of nz-select', () => {
     it('should be set when value exists in options', async () => {
       const host = await createComponent(
@@ -189,6 +163,38 @@ describe('SelectComponent', () => {
   });
 
   describe('native select', () => {
+    it('should bind @Input(disabled) to `disabled` property', async () => {
+      const host = await createComponent({ disabled: true }, true);
+      const selectElem = host.queryCss('select');
+
+      expect(selectElem).toBeTruthy();
+      expect(selectElem!.properties.disabled).toBe(true);
+    });
+
+    it('should set multiple attribute when @Input(multiple) is `true`', async () => {
+      const host = await createComponent({ multiple: true }, true);
+      const selectElem = host.queryCss('select');
+
+      expect(selectElem).toBeTruthy();
+      expect(selectElem!.attributes.multiple).toBe('');
+    });
+
+    it('should NOT set multiple attribute when @Input(multiple) is `false`', async () => {
+      const host = await createComponent({ multiple: false }, true);
+      const selectElem = host.queryCss('select');
+
+      expect(selectElem).toBeTruthy();
+      expect(selectElem!.attributes.multiple).toBeFalsy();
+    });
+
+    it('should bind @Input(name) to `name` property', async () => {
+      const host = await createComponent({ name: 'mocked-name' }, true);
+      const selectElem = host.queryCss('select');
+
+      expect(selectElem).toBeTruthy();
+      expect(selectElem!.properties.name).toBe('mocked-name');
+    });
+
     it('should render empty <option> tag', async () => {
       const host = await createComponent({}, true);
       const optionElems = host.fixture.debugElement.queryAll(

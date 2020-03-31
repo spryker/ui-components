@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.12...@spryker/select@0.1.0-next.13) (2020-03-31)
+
+
+### Bug Fixes
+
+* **select:** set name attribute on native select ([bfc85d8](https://github.com/spryker/ui-components/commit/bfc85d8493ecda0a5adb39e81e9ed1e7c43376f3))
+
+
+
+
+
 # [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.11...@spryker/select@0.1.0-next.12) (2020-03-31)
 
 

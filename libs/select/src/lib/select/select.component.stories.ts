@@ -20,6 +20,7 @@ export const primary = () => ({
     options: ['Option 1', 'Option 2', 'Option 3'],
     placeholder: 'Select option...',
     value: '',
+    name: 'some-name',
     valueChange: console.log,
   },
 });

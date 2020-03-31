@@ -187,12 +187,12 @@ describe('SelectComponent', () => {
       expect(selectElem!.attributes.multiple).toBeFalsy();
     });
 
-    it('should bind @Input(name) to `name` property', async () => {
+    it('should bind @Input(name) to `name` attribute', async () => {
       const host = await createComponent({ name: 'mocked-name' }, true);
       const selectElem = host.queryCss('select');
 
       expect(selectElem).toBeTruthy();
-      expect(selectElem!.properties.name).toBe('mocked-name');
+      expect(selectElem!.attributes.name).toBe('mocked-name');
     });
 
     it('should render empty <option> tag', async () => {

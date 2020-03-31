@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.8...@spryker/utils@0.1.0-next.9) (2020-03-31)
+
+
+### Bug Fixes
+
+* **utils:** add directive that applies dynamic context classes ([b2ae647](https://github.com/spryker/ui-components/commit/b2ae64738e8c8e3fe1af62f04de05ff956dc8c52))
+
+
+
+
+
 # [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.7...@spryker/utils@0.1.0-next.8) (2020-03-23)
 
 

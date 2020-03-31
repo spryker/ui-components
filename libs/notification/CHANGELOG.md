@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.3 (2020-03-31)
+
+
+### Bug Fixes
+
+* **apply-contexts:** update all dynamic use of context ([d907081](https://github.com/spryker/ui-components/commit/d90708195bc6730ffaa2f8b740a7d01c01a31407))
+* **notification:** do not use deprecated alert LESS variables ([076177d](https://github.com/spryker/ui-components/commit/076177deb343fe9cb1f3c0306efff2f4fc1e85e3))
+
+
+
+
+
 # [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/notification@0.1.0-next.1...@spryker/notification@0.1.0-next.2) (2020-03-16)
 
 

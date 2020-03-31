@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-next.8...@spryker/card@0.1.0-next.9) (2020-03-31)
+
+
+### Bug Fixes
+
+* **apply-contexts:** update all dynamic use of context ([d907081](https://github.com/spryker/ui-components/commit/d90708195bc6730ffaa2f8b740a7d01c01a31407))
+
+
+
+
+
 # 0.1.0-next.8 (2020-03-31)
 
 

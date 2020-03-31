@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.34](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.33...@spryker/styles@0.1.0-next.34) (2020-03-31)
+
+
+### Bug Fixes
+
+* **notification:** do not use deprecated alert LESS variables ([076177d](https://github.com/spryker/ui-components/commit/076177deb343fe9cb1f3c0306efff2f4fc1e85e3))
+
+
+
+
+
 # [0.1.0-next.33](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.32...@spryker/styles@0.1.0-next.33) (2020-03-31)
 
 

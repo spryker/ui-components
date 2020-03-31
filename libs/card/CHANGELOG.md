@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.8 (2020-03-31)
+
+
+### Bug Fixes
+
+* **card:** fixed head-title text size ([f967464](https://github.com/spryker/ui-components/commit/f96746424d7ff7a89fe666f42c8437cdb4b12c9a))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-next.6...@spryker/card@0.1.0-next.7) (2020-03-05)
 
 

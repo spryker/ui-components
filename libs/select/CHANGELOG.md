@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.11...@spryker/select@0.1.0-next.12) (2020-03-31)
+
+
+### Bug Fixes
+
+* **select:** split multiple native select in template ([e765b9d](https://github.com/spryker/ui-components/commit/e765b9d7f7ec380c34cbc4acd5d73a3cc2c791e9))
+
+
+
+
+
 # [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.10...@spryker/select@0.1.0-next.11) (2020-03-30)
 
 

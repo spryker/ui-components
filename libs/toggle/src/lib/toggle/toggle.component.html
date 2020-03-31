@@ -4,4 +4,10 @@
   (ngModelChange)="valueChange.emit($event)"
 >
 </nz-switch>
-<input [attr.name]="name" [ngModel]="value" type="hidden" />
+<input
+  type="checkbox"
+  [attr.name]="name"
+  [ngModel]="value"
+  [disabled]="disabled"
+  style="display: none"
+/>

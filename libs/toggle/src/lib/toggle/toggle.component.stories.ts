@@ -15,3 +15,26 @@ export const primary = () => ({
     name: 'test-name',
   },
 });
+
+export const disabledOn = () => ({
+  moduleMetadata: {
+    imports: [NzSwitchModule, ToggleModule],
+  },
+  component: ToggleComponent,
+  props: {
+    value: true,
+    name: 'test-name',
+    disabled: true,
+  },
+});
+
+export const disabledOff = () => ({
+  moduleMetadata: {
+    imports: [NzSwitchModule, ToggleModule],
+  },
+  component: ToggleComponent,
+  props: {
+    name: 'test-name',
+    disabled: true,
+  },
+});

@@ -1,99 +1,99 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// tslint:disable: no-non-null-assertion
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+
 import { ToggleComponent } from './toggle.component';
 
 describe('ToggleComponent', () => {
-  @Component({
-    selector: 'test-component',
-    template: `
-      <spy-toggle
-        [name]="name"
-        [value]="value"
-        [disabled]="disabled"
-        (valueChange)="changeSpy()"
-      ></spy-toggle>
-    `,
-  })
-  class TestComponent {
-    name: any;
-    value: any;
-    disabled: any = false;
-    changeSpy = jest.fn();
-  }
+  const { testModule, createComponent } = getTestingForComponent(
+    ToggleComponent,
+    {
+      ngModule: {
+        schemas: [NO_ERRORS_SCHEMA],
+      },
+    },
+  );
 
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+  const nzSwitchSelector = 'nz-switch';
+  const inputSelector = 'input[type=checkbox]';
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestComponent, ToggleComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({ imports: [testModule] });
+  });
 
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-  }));
+  it('should render nz-switch component from Ant Design', async () => {
+    const host = await createComponent({}, true);
 
-  it('template must render nz-switch component from Ant Design with input type="hidden"', () => {
-    const nzSwitchElem = fixture.debugElement.query(By.css('nz-switch'));
-    expect(nzSwitchElem).toBeTruthy();
+    expect(host.queryCss(nzSwitchSelector)).toBeTruthy();
+  });
 
-    const inputElem = fixture.debugElement.query(By.css('input[type=hidden]'));
+  it('should render input type="checkbox" with style `display: none`', async () => {
+    const host = await createComponent({}, true);
+    const inputElem = host.queryCss(inputSelector);
+
     expect(inputElem).toBeTruthy();
+    expect(inputElem!.nativeElement.style.display).toBe('none');
   });
 
-  describe('Input name must be bound to input', () => {
-    it('should bind name to attribute name of input', () => {
-      const inputElem = fixture.debugElement.query(
-        By.css('input[type=hidden]'),
-      );
-      const mockedValue = 'testValue';
+  describe('@Input(name)', () => {
+    it('should bind to `name` attribute of input', async () => {
+      const host = await createComponent({ name: 'mock-name' }, true);
+      const inputElem = host.queryCss(inputSelector);
 
-      component.name = mockedValue;
-
-      fixture.detectChanges();
-
-      expect(inputElem.attributes.name).toBe(mockedValue);
+      expect(inputElem).toBeTruthy();
+      expect(inputElem!.attributes.name).toBe('mock-name');
     });
   });
 
-  describe('Input value and disabled must be bound to nz-switch', () => {
-    it('should bind value to nz-switch and changing value should provide changing the same state for input', () => {
-      const nzSwitchElem = fixture.debugElement.query(By.css('nz-switch'));
-      const inputElem = fixture.debugElement.query(
-        By.css('input[type=hidden]'),
-      );
-      const mockedValue = true;
+  describe('@Input(value)', () => {
+    it('should bind to `ngModel` property of nz-switch', async () => {
+      const host = await createComponent({ value: true }, true);
+      const nzSwitchElem = host.queryCss(nzSwitchSelector);
 
-      component.value = mockedValue;
-
-      fixture.detectChanges();
-
-      expect(nzSwitchElem.properties.ngModel).toBe(mockedValue);
-      expect(inputElem.properties.ngModel).toBe(mockedValue);
+      expect(nzSwitchElem).toBeTruthy();
+      expect(nzSwitchElem!.properties.ngModel).toBe(true);
     });
 
-    it('should bind disabled to nzDisabled of nz-switch', () => {
-      const nzSwitchElem = fixture.debugElement.query(By.css('nz-switch'));
-      const mockedDisabledProp = true;
+    it('should bind to `ngModel` property of input', async () => {
+      const host = await createComponent({ value: true }, true);
+      const inputElem = host.queryCss(inputSelector);
 
-      component.disabled = mockedDisabledProp;
-
-      fixture.detectChanges();
-
-      expect(nzSwitchElem.properties.nzDisabled).toBe(mockedDisabledProp);
+      expect(inputElem).toBeTruthy();
+      expect(inputElem!.properties.ngModel).toBe(true);
     });
   });
 
-  describe('valueChange', () => {
-    it('valueChange must be emitted every time ngModelChange emits from nz-switch', () => {
-      const nzSwitchElem = fixture.debugElement.query(By.css('nz-switch'));
+  describe('@Input(disabled)', () => {
+    it('should bind disabled to nzDisabled of nz-switch', async () => {
+      const host = await createComponent({ disabled: true }, true);
+      const nzSwitchElem = host.queryCss(nzSwitchSelector);
 
-      nzSwitchElem.triggerEventHandler('ngModelChange', {});
-      fixture.detectChanges();
+      expect(nzSwitchElem).toBeTruthy();
+      expect(nzSwitchElem!.properties.nzDisabled).toBe(true);
+    });
 
-      expect(component.changeSpy).toHaveBeenCalled();
+    it('should bind `disabled` property of input', async () => {
+      const host = await createComponent({ disabled: true }, true);
+      const inputElem = host.queryCss(inputSelector);
+
+      expect(inputElem).toBeTruthy();
+      expect(inputElem!.properties.disabled).toBe(true);
+    });
+  });
+
+  describe('@Output(valueChange)', () => {
+    it('should emit when `ngModelChange` emits from nz-switch', async () => {
+      const host = await createComponent({}, true);
+      const nzSwitchElem = host.queryCss(nzSwitchSelector);
+
+      expect(nzSwitchElem).toBeTruthy();
+
+      nzSwitchElem!.triggerEventHandler('ngModelChange', 'value');
+      host.detectChanges();
+
+      expect(host.hostComponent.valueChange).toHaveBeenCalledWith('value');
     });
   });
 });

@@ -1,3 +1,3 @@
-export * from './apply-contexts';
+export * from './function';
 export * from './apply-contexts.directive';
 export * from './apply-contexts.module';

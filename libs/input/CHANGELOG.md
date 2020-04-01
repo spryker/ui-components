@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.14...@spryker/input@0.1.0-next.15) (2020-04-01)
+
+
+### Bug Fixes
+
+* **libs:** lock Ant lib to beta.0 ([cc0bcbc](https://github.com/spryker/ui-components/commit/cc0bcbc133e8322cdd23cd7ac60acd398386a3e3))
+* **utils:** add spy prefix to applyAttrs directive ([c76532b](https://github.com/spryker/ui-components/commit/c76532b4400f1b61f87d3f2809c5b0a0ab773008))
+
+
+
+
+
 # [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.13...@spryker/input@0.1.0-next.14) (2020-03-31)
 
 

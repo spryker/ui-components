@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table",
-  "version": "0.1.0-next.12",
+  "version": "0.1.0-next.13",
   "dependencies": {
     "@orchestrator/core": "^0.2.0",
     "@orchestrator/layout": "^0.1.0",

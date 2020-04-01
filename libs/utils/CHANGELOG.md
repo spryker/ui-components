@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.9...@spryker/utils@0.1.0-next.10) (2020-04-01)
+
+
+### Bug Fixes
+
+* **utils:** add spy prefix to applyAttrs directive ([c76532b](https://github.com/spryker/ui-components/commit/c76532b4400f1b61f87d3f2809c5b0a0ab773008))
+
+
+
+
+
 # [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.8...@spryker/utils@0.1.0-next.9) (2020-03-31)
 
 

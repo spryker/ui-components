@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.1 (2020-04-01)
+
+
+### Bug Fixes
+
+* **table:** features template rendering ([90d2d55](https://github.com/spryker/ui-components/commit/90d2d5588675d2df0aa79b018abddd62cd6be864))
+
+
+
+
+
 # 0.1.0-next.0 (2020-03-16)
 
 

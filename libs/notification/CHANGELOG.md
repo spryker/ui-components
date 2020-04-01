@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/notification@0.1.0-next.4...@spryker/notification@0.1.0-next.5) (2020-04-01)
+
+
+### Bug Fixes
+
+* **libs:** lock Ant lib to beta.0 ([cc0bcbc](https://github.com/spryker/ui-components/commit/cc0bcbc133e8322cdd23cd7ac60acd398386a3e3))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/notification@0.1.0-next.3...@spryker/notification@0.1.0-next.4) (2020-03-31)
 
 

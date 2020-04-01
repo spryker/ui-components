@@ -87,7 +87,7 @@ describe('InputComponent', () => {
       expect(inputElem.properties.ngModel).toBe(mockedValue);
     });
 
-    it('should bind name to name of input', () => {
+    it('should bind name to name attribute of input', () => {
       const inputElem = fixture.debugElement.query(By.css('input'));
       const mockedName = 'test name';
 
@@ -95,7 +95,7 @@ describe('InputComponent', () => {
 
       fixture.detectChanges();
 
-      expect(inputElem.properties.name).toBe(mockedName);
+      expect(inputElem.attributes.name).toBe(mockedName);
     });
 
     it('should bind type to type of input', () => {

@@ -4,8 +4,8 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { IconComponent } from './icon.component';
-import { provideIcons } from './tokens';
 import { InternalIconService } from './internal-icon.service';
+import { provideIcons } from './tokens';
 
 const promiseIcon = 'promise';
 const stringIcon = 'string';
@@ -77,6 +77,7 @@ describe('IconComponent', () => {
     it('should render <i> from promise', fakeAsync(async () => {
       const host = await createComponent({ name: promiseIcon }, true);
       tick();
+      host.detectChanges();
 
       const iconElem = host.queryCss('i');
 
@@ -87,6 +88,7 @@ describe('IconComponent', () => {
     it('should render <i> from string', fakeAsync(async () => {
       const host = await createComponent({ name: stringIcon }, true);
       tick();
+      host.detectChanges();
 
       const iconComponent = host.queryCss('i');
 
@@ -97,6 +99,7 @@ describe('IconComponent', () => {
     it('should re-render <i> when changed', fakeAsync(async () => {
       const host = await createComponent({ name: promiseIcon }, true);
       tick();
+      host.detectChanges();
 
       const firstIconElem = host.queryCss('i');
 
@@ -105,6 +108,7 @@ describe('IconComponent', () => {
 
       host.setInputs({ name: stringIcon }, true);
       tick();
+      host.detectChanges();
 
       const secondIconElem = host.queryCss('i');
 

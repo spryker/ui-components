@@ -36,7 +36,11 @@ export function setMockHttp(responses: MockHttpResponse[]) {
   return responses;
 }
 
-@Directive({ selector: '[mockHttp]' })
+@Directive({
+  // This is for internal use only
+  // tslint:disable-next-line: directive-selector
+  selector: '[mockHttp]',
+})
 export class MockHttpDirective implements DoCheck, OnDestroy {
   private static options: Required<MockHttpOptions> = {
     delay: 'random',

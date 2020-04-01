@@ -46,6 +46,7 @@ const mockData: TableDataRow = {
 };
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'test-host-wrapper',
   template: `
     <spy-table-column-renderer
@@ -86,6 +87,7 @@ class TableColumnTestConfig {
 }
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'table-column-test',
   template: `
     {{ config.text | context: context }}

@@ -50,6 +50,7 @@ export function initFeature<T>(
 }
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'test-table-feature',
   template: `
     <div class="template">

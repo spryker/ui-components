@@ -56,7 +56,7 @@ describe('CardComponent', () => {
   });
 
   it('should render card extra', () => {
-    component.extra = <TemplateRef<void>>{};
+    component.extra = {} as TemplateRef<void>;
     fixture.detectChanges();
 
     const cardExtraElement = fixture.debugElement.query(

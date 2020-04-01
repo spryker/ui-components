@@ -35,6 +35,7 @@ describe('NavigationComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
   @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'test',
     template: `
       <spy-navigation [items]="items" [collapsed]="collapsed"></spy-navigation>

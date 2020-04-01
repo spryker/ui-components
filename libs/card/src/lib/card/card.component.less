@@ -12,6 +12,11 @@ spy-card {
     line-height: @card-head-line-height;
     font-weight: @font-weight-semi-bold;
     border-bottom-width: @card-border-width;
+    letter-spacing: @card-head-letter-spacing;
+
+    &-title {
+      padding: @card-head-title-padding 0;
+    }
 
     .head-title-position-left & {
       text-align: left;
@@ -24,6 +29,10 @@ spy-card {
     .head-title-position-center & {
       text-align: center;
     }
+  }
+
+  &-extra {
+    padding: @card-head-extra-padding 0;
   }
 
   &-actions {

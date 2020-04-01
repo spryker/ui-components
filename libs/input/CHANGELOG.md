@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.15...@spryker/input@0.1.0-next.16) (2020-04-01)
+
+
+### Bug Fixes
+
+* **input:** remove broken left padding style ([bb6e25e](https://github.com/spryker/ui-components/commit/bb6e25e79fbc1cd6933ba48dcffc988ea1c640fd))
+* **input:** set name as attribute on native input ([c44ae15](https://github.com/spryker/ui-components/commit/c44ae1579883544ff91f9e87fabe7a2aa7a3d532))
+
+
+
+
+
 # [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.14...@spryker/input@0.1.0-next.15) (2020-04-01)
 
 

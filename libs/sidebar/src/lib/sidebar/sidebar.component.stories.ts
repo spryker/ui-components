@@ -16,14 +16,3 @@ export const primary = () => ({
     </spy-sidebar>
   `,
 });
-
-export const withGrayBackground = () => ({
-  moduleMetadata: {
-    imports: [SidebarModule, IconModule],
-  },
-  template: `
-    <spy-sidebar ctxBgClass="spy-bg-gray">
-       <div>SideBar Content</div>
-    </spy-sidebar>
-  `,
-});

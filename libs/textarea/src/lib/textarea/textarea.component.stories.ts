@@ -10,5 +10,7 @@ export const primary = () => ({
     imports: [TextareaModule],
   },
   component: TextareaComponent,
-  props: {},
+  props: {
+    name: 'some-name',
+  },
 });

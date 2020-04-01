@@ -10,5 +10,7 @@ export const primary = () => ({
     imports: [InputModule],
   },
   component: InputComponent,
-  props: {},
+  props: {
+    name: 'some-name',
+  },
 });

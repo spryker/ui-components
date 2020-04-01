@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/textarea@0.1.0-next.4...@spryker/textarea@0.1.0-next.5) (2020-04-01)
+
+
+### Bug Fixes
+
+* **textarea:** fix name as attribute on native textarea ([7f989cb](https://github.com/spryker/ui-components/commit/7f989cb475d091abdb19ba997371dc19751d45f5))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/textarea@0.1.0-next.3...@spryker/textarea@0.1.0-next.4) (2020-04-01)
 
 

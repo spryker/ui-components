@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.17...@spryker/input@0.1.0-next.18) (2020-04-01)
+
+
+### Bug Fixes
+
+* **pagination:** removed styles dependency ([b0974fa](https://github.com/spryker/ui-components/commit/b0974fac733f8c5642c5dfe0f6d40349d64128f4))
+
+
+
+
+
 # [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.16...@spryker/input@0.1.0-next.17) (2020-04-01)
 
 

@@ -1,8 +1,7 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   ViewEncapsulation,
-  Input,
 } from '@angular/core';
 
 @Component({
@@ -12,6 +11,4 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class HeaderComponent {
-  @Input() ctxBgClass = 'spy-bg-white';
-}
+export class HeaderComponent {}

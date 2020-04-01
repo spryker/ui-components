@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/header@0.1.0-next.7...@spryker/header@0.1.0-next.8) (2020-04-01)
+
+
+### Bug Fixes
+
+* **ctx:** set all class contexts statically ([4bfa8e1](https://github.com/spryker/ui-components/commit/4bfa8e1ab31a9ffaf74989d1f098f3d4229ec5eb))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/header@0.1.0-next.6...@spryker/header@0.1.0-next.7) (2020-04-01)
 
 

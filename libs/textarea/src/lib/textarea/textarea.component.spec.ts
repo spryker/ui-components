@@ -74,7 +74,7 @@ describe('TextareaComponent', () => {
       expect(textareaElem.properties.value).toBe(mockedValue);
     });
 
-    it('should bind name to name of textarea', () => {
+    it('should bind name to name attribute of textarea', () => {
       const textareaElem = fixture.debugElement.query(By.css('textarea'));
       const mockedName = 'test name';
 
@@ -82,7 +82,7 @@ describe('TextareaComponent', () => {
 
       fixture.detectChanges();
 
-      expect(textareaElem.properties.name).toBe(mockedName);
+      expect(textareaElem.attributes.name).toBe(mockedName);
     });
 
     it('should bind disabled to disabled of textarea', () => {

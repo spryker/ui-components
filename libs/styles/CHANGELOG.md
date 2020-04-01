@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.36](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.35...@spryker/styles@0.1.0-next.36) (2020-04-01)
+
+
+### Bug Fixes
+
+* **input, card:** fixed styles ([f240c82](https://github.com/spryker/ui-components/commit/f240c82e5eb36d14c14b1f7b6ba5733e213edb83))
+
+
+
+
+
 # [0.1.0-next.35](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.34...@spryker/styles@0.1.0-next.35) (2020-04-01)
 
 

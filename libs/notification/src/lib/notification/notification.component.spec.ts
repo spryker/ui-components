@@ -15,6 +15,7 @@ import { NotificationComponent } from './notification.component';
 
 describe('NotificationComponent', () => {
   @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'test',
     template: `
       <spy-notification

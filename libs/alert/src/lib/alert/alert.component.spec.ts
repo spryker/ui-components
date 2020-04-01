@@ -10,6 +10,7 @@ describe('AlertComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
   @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'text',
     template: `
       <spy-alert [type]="type">Content</spy-alert>

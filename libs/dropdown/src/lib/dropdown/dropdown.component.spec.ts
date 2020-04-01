@@ -7,6 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DropdownComponent', () => {
   @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'test',
     template: `
       <spy-dropdown

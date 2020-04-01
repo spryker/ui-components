@@ -8,20 +8,20 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[applyAttrs]',
+  selector: '[spyApplyAttrs]',
 })
 export class ApplyAttrsDirective implements OnChanges {
-  @Input() applyAttrs: Record<string, string> = {};
+  @Input() spyApplyAttrs: Record<string, string> = {};
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   updateAttrs(): void {
-    if (!this.applyAttrs) {
+    if (!this.spyApplyAttrs) {
       return;
     }
 
     const element = this.el.nativeElement;
-    const attrArray: [string, string][] = Object.entries(this.applyAttrs);
+    const attrArray: [string, string][] = Object.entries(this.spyApplyAttrs);
 
     attrArray.forEach(([key, value]) => {
       this.renderer.setAttribute(element, key, value);
@@ -33,7 +33,7 @@ export class ApplyAttrsDirective implements OnChanges {
     const prevAttrsArray = Object.entries(prevAttrs);
 
     prevAttrsArray.forEach(([key]) => {
-      const shouldKeepAttr = this.applyAttrs && key in this.applyAttrs;
+      const shouldKeepAttr = this.spyApplyAttrs && key in this.spyApplyAttrs;
 
       if (shouldKeepAttr) {
         return;
@@ -44,10 +44,8 @@ export class ApplyAttrsDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { firstChange, previousValue } = changes.applyAttrs;
-
-    if (!firstChange) {
-      this.deleteAttrs(previousValue);
+    if (changes.spyApplyAttrs && !changes.spyApplyAttrs.firstChange) {
+      this.deleteAttrs(changes.spyApplyAttrs.previousValue);
     }
 
     this.updateAttrs();

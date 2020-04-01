@@ -6,6 +6,7 @@ import { PaginationComponent } from './pagination.component';
 
 describe('PaginationComponent', () => {
   @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'test-component',
     template: `
       <spy-pagination

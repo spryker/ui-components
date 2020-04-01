@@ -106,7 +106,7 @@ export function crossComponentCommunication(): IStory {
     async custom() {
       await customElements.whenDefined('a-b');
       class MyB extends customElements.get('a-b') {}
-      customElements.define('my-b', MyB);
+      customElements.define('my-b', MyB as any);
     }
   }
 

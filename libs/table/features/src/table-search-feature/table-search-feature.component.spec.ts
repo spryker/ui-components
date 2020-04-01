@@ -13,6 +13,7 @@ import { InputModule } from '@spryker/input';
 import { IconModule } from '@spryker/icon';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'test-host',
   template: `
     <test-table-feature>

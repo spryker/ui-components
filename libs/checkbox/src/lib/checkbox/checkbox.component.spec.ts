@@ -7,6 +7,7 @@ import { By } from '@angular/platform-browser';
 
 describe('CheckboxComponent', () => {
   @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'test',
     template: `
       <spy-checkbox

@@ -40,6 +40,7 @@ class MockTableFeatureComponent implements TableFeatureComponent {
 }
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'render-features',
   template: `
     <spy-table-features-renderer
@@ -63,6 +64,7 @@ class RenderFeaturesComponent {
 }
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'test',
   template: `
     <render-features [limit]="limit"></render-features>

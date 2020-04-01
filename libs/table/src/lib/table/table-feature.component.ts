@@ -7,6 +7,8 @@ import { TableFeatureContext } from './table';
 import { TableComponent } from './table.component';
 
 @Component({
+  // This is abstract component so selector is ignored
+  // tslint:disable-next-line: component-selector
   selector: 'selector',
   template: ``,
 })

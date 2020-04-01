@@ -7,6 +7,7 @@ import { ApplyAttrsDirective } from '@spryker/utils';
 
 describe('TextareaComponent', () => {
   @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'test-component',
     template: `
       <spy-textarea

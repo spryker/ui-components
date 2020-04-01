@@ -9,6 +9,7 @@ import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
   @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'nz-select',
     template: `
       <ng-content></ng-content>

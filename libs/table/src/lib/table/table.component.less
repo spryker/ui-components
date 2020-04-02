@@ -19,8 +19,6 @@
     margin: -@table-top-features-padding 0;
 
     &-col {
-      display: flex;
-      justify-content: flex-end;
       padding: @table-top-features-padding;
 
       &--static {
@@ -31,6 +29,8 @@
       }
 
       &--dynamic {
+        display: flex;
+        justify-content: flex-end;
         flex-grow: 1;
         padding-right: 0;
       }

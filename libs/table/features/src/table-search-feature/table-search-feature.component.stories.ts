@@ -15,6 +15,11 @@ import { TableModule } from '@spryker/table';
 import { TableColumnComponent, TableColumnContext } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableSearchFeatureModule } from '@spryker/table/features';
+import { TableFiltersFeatureModule } from '../table-filters-feature';
+import {
+  TableFilterSelectComponent,
+  TableFilterSelectModule,
+} from '../../../filters/src/table-filter-select/';
 
 export default {
   title: 'TableSearchFeatureComponent',
@@ -53,12 +58,22 @@ export const withFeatures = (): IStory => ({
       } as any),
       BrowserAnimationsModule,
       TableSearchFeatureModule,
+      TableFiltersFeatureModule,
+      TableFiltersFeatureModule.withFilterComponents({
+        select: TableFilterSelectComponent as any,
+        select2: TableFilterSelectComponent as any,
+      } as any),
+      TableFilterSelectModule,
     ],
     declarations: [TableColumnTestComponent],
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnTestComponent],
+        useValue: [
+          LayoutFlatHostComponent,
+          TableColumnTestComponent,
+          TableFilterSelectComponent,
+        ],
         multi: true,
       },
     ],
@@ -66,6 +81,7 @@ export const withFeatures = (): IStory => ({
   template: `
     <spy-table [config]="config" (actionTriggered)="logActions($event)">
       <spy-table-search-feature spy-table-feature location="top"></spy-table-search-feature>
+      <spy-table-filters-feature spy-table-feature location="top"></spy-table-filters-feature>
       <div *spyColTpl="'name'; let name">Name is3: {{ name }}</div>
       <ng-template spyColTpl="name" let-name>Name is2: {{ name }}</ng-template>
       <div *spyColTpl="'sku'; let sku">sku {{ sku }}</div>
@@ -97,6 +113,32 @@ export const withFeatures = (): IStory => ({
           { id: '2345', title: '234' },
         ],
         pageSizes: [20, 40, 50],
+        filters: [
+          {
+            id: 'offers',
+            title: 'Has Offers',
+            type: 'select',
+            typeOptions: {
+              multiselect: false,
+              values: [
+                { value: 1, title: 'Yes' },
+                { value: 0, title: 'No' },
+              ],
+            },
+          },
+          {
+            id: 'status',
+            title: 'Product Status',
+            type: 'select2',
+            typeOptions: {
+              multiselect: false,
+              values: [
+                { value: 1, title: 'Active' },
+                { value: 0, title: 'Inactive' },
+              ],
+            },
+          },
+        ],
       },
       'Group',
     ),

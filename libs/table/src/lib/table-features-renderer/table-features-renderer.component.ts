@@ -30,6 +30,9 @@ interface FeatureRecord {
   styleUrls: ['./table-features-renderer.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'table-renderer',
+  },
 })
 export class TableFeaturesRendererComponent
   implements OnChanges, AfterViewInit, OnDestroy {

@@ -4,6 +4,7 @@ import {
   Inject,
   forwardRef,
   OnInit,
+  Input,
 } from '@angular/core';
 import { TABLE_FILTERS_TOKEN } from './table-filters-feature.module';
 import {
@@ -45,6 +46,7 @@ declare module '@spryker/table' {
 })
 export class TableFiltersFeatureComponent extends TableFeatureComponent
   implements OnInit {
+  @Input() styles = { flexGrow: '1' };
   filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;
   filters$?: Observable<TableFilterBase[]>;
   filterValues$?: Observable<Record<string, unknown>>;

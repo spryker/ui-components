@@ -65,7 +65,7 @@ export const withFeatures = (): IStory => ({
   },
   template: `
     <spy-table [config]="config" (actionTriggered)="logActions($event)">
-      <spy-table-search-feature spy-table-feature location="before-table"></spy-table-search-feature>
+      <spy-table-search-feature spy-table-feature location="top"></spy-table-search-feature>
       <div *spyColTpl="'name'; let name">Name is3: {{ name }}</div>
       <ng-template spyColTpl="name" let-name>Name is2: {{ name }}</ng-template>
       <div *spyColTpl="'sku'; let sku">sku {{ sku }}</div>

@@ -31,7 +31,7 @@ interface FeatureRecord {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'table-renderer',
+    class: 'spy-table-features-renderer',
   },
 })
 export class TableFeaturesRendererComponent

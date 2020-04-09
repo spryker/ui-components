@@ -3,14 +3,17 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { AntRegistrarService } from './ant-registrar.service';
 
-describe('Service: AntRegistrar', () => {
+xdescribe('Service: AntRegistrar', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AntRegistrarService]
+      providers: [AntRegistrarService],
     });
   });
 
-  it('should ...', inject([AntRegistrarService], (service: AntRegistrarService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should ...', inject(
+    [AntRegistrarService],
+    (service: AntRegistrarService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });

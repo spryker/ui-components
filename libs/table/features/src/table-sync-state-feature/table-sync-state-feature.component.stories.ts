@@ -10,9 +10,13 @@ import { ContextModule, ContextService } from '@spryker/utils';
 import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
-import { ColumnTypeOption, TableColumnTypeComponent } from '@spryker/table';
-import { TableModule } from '@spryker/table';
-import { TableColumnComponent, TableColumnContext } from '@spryker/table';
+import {
+  ColumnTypeOption,
+  TableColumnTypeComponent,
+  TableColumnComponent,
+  TableColumnContext,
+  TableModule,
+} from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableSyncStateFeatureModule } from '@spryker/table/features';
 import { UrlPersistenceStrategy } from '@spryker/utils';
@@ -61,10 +65,6 @@ export const withFeatures = (): IStory => ({
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
         useValue: [LayoutFlatHostComponent, TableColumnTestComponent],
         multi: true,
-      },
-      {
-        provide: UrlPersistenceStrategy,
-        useClass: 'UrlPersistenceStrategy',
       },
     ],
   },

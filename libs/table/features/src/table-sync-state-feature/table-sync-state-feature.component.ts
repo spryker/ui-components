@@ -25,15 +25,14 @@ import { merge, Observable } from 'rxjs';
       provide: TableFeatureComponent,
       useExisting: TableSyncStateFeatureComponent,
     },
-    UrlPersistenceStrategy,
   ],
 })
 export class TableSyncStateFeatureComponent extends TableFeatureComponent {
   @Input() location = TableFeatureLocation.hidden;
   key = 'table-state';
-  stateToConfig$!: Observable<unknown>;
-  configToState$!: Observable<Record<string, unknown>>;
-  state$!: Observable<unknown>;
+  stateToConfig$?: Observable<unknown>;
+  configToState$?: Observable<Record<string, unknown>>;
+  state$?: Observable<unknown>;
 
   constructor(
     private urlPersistenceStrategy: UrlPersistenceStrategy,

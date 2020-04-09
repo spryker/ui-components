@@ -1,31 +1,26 @@
-import { NO_ERRORS_SCHEMA, Injectable } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
 import { TableSyncStateFeatureComponent } from './table-sync-state-feature.component';
 
 import { UrlPersistenceStrategy } from '@spryker/utils';
 import { Subject } from 'rxjs';
+import { TableDataConfiguratorService } from '@spryker/table';
 
-@Injectable()
 class MockUrlPersistenceStrategy {
   save = jest.fn();
   retrieveSubject$ = new Subject();
   retrieve = jest.fn().mockReturnValue(this.retrieveSubject$);
 }
 
-class MockTableDataConfiguratorService {
-  config$ = new Subject();
+class MockTableDataConfiguratorService extends TableDataConfiguratorService {
+  config$: any = new Subject();
   reset = jest.fn();
 }
 
 describe('TableSyncStateFeatureComponent', () => {
   let fixture: ComponentFixture<TableSyncStateFeatureComponent>;
-  let testTableFeature: any;
+  let testTableFeature: TableSyncStateFeatureComponent;
   let testUrlPersistenceStrategyService: MockUrlPersistenceStrategy;
 
   beforeEach(() => {
@@ -41,12 +36,6 @@ describe('TableSyncStateFeatureComponent', () => {
         MockUrlPersistenceStrategy,
       ],
     });
-
-    TestBed.overrideComponent(TableSyncStateFeatureComponent, {
-      set: {
-        providers: [MockUrlPersistenceStrategy],
-      },
-    });
   });
 
   beforeEach(fakeAsync(() => {
@@ -58,13 +47,12 @@ describe('TableSyncStateFeatureComponent', () => {
     );
 
     fixture.detectChanges();
-    tick();
-    testTableFeature.featureMocks?.table.config$?.next({});
   }));
 
   it('If dataConfiguratorService config was updated, save merhod of urlPersistanceStrategy has to be called', fakeAsync(() => {
     const dataConfiguratorService = new MockTableDataConfiguratorService();
     const mockedConfig = { page: 1 };
+    const mockedValue = 'table-state';
 
     testTableFeature.setDataConfiguratorService(dataConfiguratorService);
 
@@ -72,20 +60,22 @@ describe('TableSyncStateFeatureComponent', () => {
 
     dataConfiguratorService.config$.next(mockedConfig);
 
-    expect(testUrlPersistenceStrategyService.save).toHaveBeenCalled();
+    expect(testUrlPersistenceStrategyService.save).toHaveBeenCalledWith(
+      mockedValue,
+      mockedConfig,
+    );
   }));
 
   it('If retrieve merhod of urlPersistanceStrategy was called, dataConfiguratorService reset method has to be called', fakeAsync(() => {
     const dataConfiguratorService = new MockTableDataConfiguratorService();
-    const mockedKey = 'table-state';
     const mockedValue = '123';
 
     testTableFeature.setDataConfiguratorService(dataConfiguratorService);
 
     fixture.detectChanges();
 
-    testUrlPersistenceStrategyService.retrieve(mockedKey).next(mockedValue);
+    (testTableFeature.stateToConfig$ as Subject<string>).next(mockedValue);
 
-    expect(dataConfiguratorService.reset).toHaveBeenCalled();
+    expect(dataConfiguratorService.reset).toHaveBeenCalledWith(mockedValue);
   }));
 });

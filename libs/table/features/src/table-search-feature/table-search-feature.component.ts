@@ -6,7 +6,7 @@ import {
   Input,
   OnDestroy,
 } from '@angular/core';
-import { TableFeatureComponent } from '@spryker/table';
+import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -44,7 +44,7 @@ export interface TableSearchConfig {
 })
 export class TableSearchFeatureComponent extends TableFeatureComponent
   implements OnDestroy, AfterViewInit {
-  @Input() location = 'top';
+  @Input() location = TableFeatureLocation.top;
   @Input() styles = { order: '99' };
   destroyed$ = new Subject();
   setValue$ = new Subject<string>();

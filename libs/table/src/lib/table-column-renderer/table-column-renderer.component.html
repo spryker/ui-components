@@ -1,8 +1,14 @@
-<ng-container
-  *ngIf="template; else typeTpl"
-  [ngTemplateOutlet]="template"
-  [ngTemplateOutletContext]="context"
-></ng-container>
+<ng-container *ngIf="!value; else definedValue">
+  {{ emptyValue | context: context }}
+</ng-container>
+
+<ng-template #definedValue>
+  <ng-container
+    *ngIf="template; else typeTpl"
+    [ngTemplateOutlet]="template"
+    [ngTemplateOutletContext]="context"
+  ></ng-container>
+</ng-template>
 
 <ng-template #typeTpl>
   <orc-orchestrator

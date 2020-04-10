@@ -22,11 +22,14 @@ export class UrlPersistenceStrategy implements PersistenceStrategy {
 
   save(key: string, value: unknown): Observable<void> {
     const convertedValue = JSON.stringify(value);
-    history.pushState(
-      { convertedValue },
-      key,
-      `${window.location.pathname}?${key}=${convertedValue}`,
-    );
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set(key, convertedValue);
+
+    const urlPathName = window.location.pathname;
+    const urlHash = window.location.hash && `#${window.location.hash}`;
+    const queryString = `${urlPathName}?${urlParams.toString() + urlHash}`;
+
+    history.pushState({}, key, queryString);
 
     return EMPTY;
   }

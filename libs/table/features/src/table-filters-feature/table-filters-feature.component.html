@@ -8,12 +8,12 @@
         [ngComponentOutlet]="filterComponentMap[filter.type]"
         [ndcDynamicInputs]="{
           config: filter,
-          value: filterValues$ | async | pluck: filter.type
+          value: filterValues$ | async | pluck: filter.id
         }"
         [ndcDynamicOutputs]="{
           valueChange: {
             handler: updateFilterValue.bind(this),
-            args: [filter.type, '$event']
+            args: [filter.id, '$event']
           }
         }"
       ></ng-container>

@@ -67,7 +67,7 @@ export const withSelectFeatures = (): IStory => ({
           {
             id: 'status',
             title: 'Product Status',
-            type: 'select2',
+            type: 'select',
             typeOptions: {
               multiselect: false,
               values: [

@@ -20,6 +20,7 @@ import { TableColumnComponentDeclaration } from './table/table';
 import { TableComponent } from './table/table.component';
 import { TableFeatureDirective } from './table/table-feature.directive';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
+import { ContextModule } from '@spryker/utils';
 
 export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
   TableColumnComponentDeclaration[]
@@ -37,6 +38,7 @@ export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
     DropdownModule,
     IconActionModule,
     IconModule,
+    ContextModule,
   ],
   declarations: [
     TableComponent,

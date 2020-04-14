@@ -12,6 +12,7 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
   multiRenderModeLimit?: number;
   hideable?: boolean;
   searchable?: boolean;
+  emptyValue?: string;
 }
 
 export interface TableColumnTypeDef {

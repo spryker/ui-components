@@ -111,9 +111,9 @@
   [total]="total$ | async"
   [pageSize]="pageSize$ | async"
   [page]="page$ | async"
+  disableClear
   (pageChange)="updatePagination($event)"
   (pageSizeChange)="updatePageSize($event)"
-  [disableClear]="true"
 ></spy-pagination>
 
 <spy-table-features-renderer

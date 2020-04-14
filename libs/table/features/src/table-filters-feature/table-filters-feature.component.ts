@@ -50,7 +50,6 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
   @Input() location = TableFeatureLocation.top;
   @Input() styles = {
     flexGrow: '1',
-    marginBottom: this.location === TableFeatureLocation.top ? '25px' : '0',
   };
   filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;
   filters$?: Observable<TableFilterBase[]>;

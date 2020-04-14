@@ -75,7 +75,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
 
   triggerUpdate(inputValue: string): void {
     this.dataConfiguratorService?.update({
-      search: inputValue || undefined,
+      search: inputValue || '',
     });
   }
 }

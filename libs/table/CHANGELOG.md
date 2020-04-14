@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.20](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.19...@spryker/table@0.1.0-next.20) (2020-04-14)
+
+
+### Features
+
+* **sync-state:** new feature sync-state ([08f6da1](https://github.com/spryker/ui-components/commit/08f6da1313765bf35a51447159a970a9efbd7843))
+
+
+
+
+
 # [0.1.0-next.19](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.18...@spryker/table@0.1.0-next.19) (2020-04-14)
 
 

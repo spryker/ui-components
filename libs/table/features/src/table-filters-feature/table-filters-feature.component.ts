@@ -16,6 +16,7 @@ import {
   TableComponent,
   TableDataConfiguratorService,
   TableFeatureComponent,
+  TableFeatureLocation,
 } from '@spryker/table';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import {
@@ -46,7 +47,10 @@ declare module '@spryker/table' {
 })
 export class TableFiltersFeatureComponent extends TableFeatureComponent
   implements OnInit {
-  @Input() styles = { flexGrow: '1' };
+  @Input() location = TableFeatureLocation.top;
+  @Input() styles = {
+    flexGrow: '1',
+  };
   filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;
   filters$?: Observable<TableFilterBase[]>;
   filterValues$?: Observable<Record<string, unknown>>;

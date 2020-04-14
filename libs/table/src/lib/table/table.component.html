@@ -111,7 +111,7 @@
   [total]="total$ | async"
   [pageSize]="pageSize$ | async"
   [page]="page$ | async"
-  disableClear="true"
+  disableClear
   (pageChange)="updatePagination($event)"
   (pageSizeChange)="updatePageSize($event)"
 ></spy-pagination>

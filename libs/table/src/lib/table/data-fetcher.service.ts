@@ -16,6 +16,12 @@ export class TableDataFetcherService {
   resolve(dataUrl: string): Observable<TableData> {
     return this.dataConfiguratorService.config$.pipe(
       switchMap(config => {
+        for (const key in config) {
+          if (config[key] === undefined) {
+            delete config[key];
+          }
+        }
+
         const params = new HttpParams({
           fromObject: config as any, // any values can be used and custom codec supports it
           encoder: new JsonHttpUrlEncodingCodec(),

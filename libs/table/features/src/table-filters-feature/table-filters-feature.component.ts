@@ -97,8 +97,8 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
     );
   }
 
-  updateFilterValue(type: string, value: unknown): void {
-    this.updateFiltersValue$.next({ [type]: value });
+  updateFilterValue(id: string, value: unknown): void {
+    this.updateFiltersValue$.next({ [id]: value });
   }
 
   trackByFilter(index: number, filter: TableFilterBase): string {

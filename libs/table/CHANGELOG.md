@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.19](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.18...@spryker/table@0.1.0-next.19) (2020-04-14)
+
+
+### Bug Fixes
+
+* **table:** fixed margin for top feature ([ced6557](https://github.com/spryker/ui-components/commit/ced65572fbee991b380e0b256b46a5e350f66cdf))
+
+
+
+
+
 # [0.1.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.17...@spryker/table@0.1.0-next.18) (2020-04-14)
 
 **Note:** Version bump only for package @spryker/table

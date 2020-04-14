@@ -22,6 +22,7 @@ export class PaginationComponent {
   @Input() @ToBoolean() hideOnSinglePage = false;
   @Input() pageSizeOptions = [10, 20, 50];
   @Input() placeholder = '';
+  @Input() @ToBoolean() disableClear = false;
   @Output() pageChange = new EventEmitter<number>();
   @Output() pageSizeChange = new EventEmitter<number>();
 }

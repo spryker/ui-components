@@ -32,11 +32,11 @@ export class TableColumnRendererComponent implements OnInit {
   value?: unknown;
   context?: TableColumnTplContext;
   emptyValue?: string;
-  defaultValue = '-';
+  defaultEmptyValue = '-';
 
   ngOnInit(): void {
     if (this.config) {
-      this.emptyValue = this.config.emptyValue || this.defaultValue;
+      this.emptyValue = this.config.emptyValue || this.defaultEmptyValue;
       this.value = this.data?.[this.config.id];
     }
 

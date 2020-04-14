@@ -13,6 +13,7 @@
     class="ant-pagination-select"
     [value]="pageSize"
     [options]="pageSizeOptions"
+    [disableClear]="disableClear"
     (valueChange)="pageSizeChange.emit($event)"
   ></spy-select>
 </div>

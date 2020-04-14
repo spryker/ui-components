@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.1.0-next.5...@spryker/pagination@0.1.0-next.6) (2020-04-14)
+
+
+### Bug Fixes
+
+* **pagination:** removed unnecessary hover style ([3421a24](https://github.com/spryker/ui-components/commit/3421a24ce3167c790eaafc2b23d7c953479111c8))
+
+
+
+
+
 # [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.1.0-next.4...@spryker/pagination@0.1.0-next.5) (2020-04-01)
 
 

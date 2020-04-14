@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.16...@spryker/table@0.1.0-next.17) (2020-04-14)
+
+
+### Bug Fixes
+
+* **table filters:** fixed request params ([6532424](https://github.com/spryker/ui-components/commit/6532424f2d1ae49861fe6816bd15216e7470ca7c))
+
+
+
+
+
 # [0.1.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.15...@spryker/table@0.1.0-next.16) (2020-04-03)
 
 **Note:** Version bump only for package @spryker/table

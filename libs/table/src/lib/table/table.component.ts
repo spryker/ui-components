@@ -266,7 +266,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   }): void {
     const { key, value } = event;
     const sortingCriteria: SortingCriteria = {
-      sortBy: key,
+      sortBy: value ? key : undefined,
       sortDirection: this.sortingValueTransformation(value),
     };
 

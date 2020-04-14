@@ -18,8 +18,7 @@ import {
   TableModule,
 } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableSyncStateFeatureModule } from '@spryker/table/features';
-import { UrlPersistenceStrategy } from '@spryker/utils';
+import { TableSyncStateFeatureModule } from './table-sync-state-feature.module';
 
 export default {
   title: 'TableSyncStateFeatureComponent',

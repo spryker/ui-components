@@ -69,13 +69,17 @@ describe('TableSyncStateFeatureComponent', () => {
   it('If retrieve merhod of urlPersistanceStrategy was called, dataConfiguratorService reset method has to be called', fakeAsync(() => {
     const dataConfiguratorService = new MockTableDataConfiguratorService();
     const mockedValue = '123';
+    const mockedKey = 'table-state';
 
     testTableFeature.setDataConfiguratorService(dataConfiguratorService);
 
     fixture.detectChanges();
 
-    (testTableFeature.stateToConfig$ as Subject<string>).next(mockedValue);
+    testUrlPersistenceStrategyService.retrieveSubject$.next(mockedValue);
 
+    expect(testUrlPersistenceStrategyService.retrieve).toHaveBeenCalledWith(
+      mockedKey,
+    );
     expect(dataConfiguratorService.reset).toHaveBeenCalledWith(mockedValue);
   }));
 });

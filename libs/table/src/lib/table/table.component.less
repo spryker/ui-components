@@ -37,6 +37,10 @@
     }
   }
 
+  &-row {
+    height: @table-row-height;
+  }
+
   &-thead > tr > th {
     color: @table-header-color;
     background: transparent;
@@ -100,6 +104,10 @@
       &:hover::before {
         background: transparent;
       }
+
+      .@{table-prefix-cls}-column-title {
+        font-size: @table-column-title-font-size;
+      }
     }
   }
 
@@ -154,10 +162,8 @@
       z-index: 0;
 
       .@{table-prefix-cls}-column-inner {
-        margin: @table-body-margin-vertical 0;
         padding: @table-body-padding-vertical @table-padding-horizontal;
         color: @table-column-body-color;
-        min-height: @table-selection-column-min-height;
         display: flex;
         flex-direction: column;
         justify-content: center;

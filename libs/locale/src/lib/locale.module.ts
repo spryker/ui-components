@@ -4,6 +4,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { AntRegistrarService } from './loader-registrars/ant-registrar.service';
 import { NgRegistrarService } from './loader-registrars/ng-registrar.service';
 import { LocaleRenderDirective } from './locale-render/locale-render.directive';
+import { LocaleSwitcherComponent } from './locale-switcher/locale-switcher.component';
 import {
   provideDefaultLocale,
   provideLocaleId,
@@ -18,8 +19,8 @@ export interface LocaleModuleOptions {
 
 @NgModule({
   imports: [CommonModule],
-  exports: [LocaleRenderDirective],
-  declarations: [LocaleRenderDirective],
+  exports: [LocaleRenderDirective, LocaleSwitcherComponent],
+  declarations: [LocaleRenderDirective, LocaleSwitcherComponent],
 })
 export class LocaleModule {
   static forRoot({

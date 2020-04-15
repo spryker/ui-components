@@ -1,8 +1,15 @@
 @import './table-column-image.component.theme.less';
 
 .@{table-column-image-prefix-cls} {
-  width: @table-column-image-width;
-  height: @table-column-image-height;
-  border-radius: @border-radius-base;
-  overflow: hidden;
+  margin: 0 auto;
+
+  &-overlay {
+    display: flex;
+    align-items: center;
+    width: @table-column-image-width;
+    height: @table-column-image-height;
+    border-radius: @border-radius-base;
+    overflow: hidden;
+    background-color: @gray-light;
+  }
 }

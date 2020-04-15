@@ -131,7 +131,15 @@
         "dist/libs/label/index.d.ts",
         "libs/label/src/index.ts"
       ],
-      "@spryker/internal-utils": ["libs/internal-utils/src/index.ts"]
+      "@spryker/internal-utils": ["libs/internal-utils/src/index.ts"],
+      "@spryker/locale": [
+        "dist/libs/locale/index.d.ts",
+        "libs/locale/src/index.ts"
+      ],
+      "@spryker/locale/locales/*": [
+        "dist/libs/locale/locales/*",
+        "libs/locale/locales/*/src"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

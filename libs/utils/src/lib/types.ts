@@ -24,3 +24,21 @@ export type Distribute<T> = T extends any ? T : never;
 export type InjectionTokenType<T> = T extends InjectionToken<infer V>
   ? V
   : never;
+
+/**
+ * Represents any function in Javascript
+ */
+export type AnyFunction<R = any, A extends any[] = any[]> = (...args: A) => R;
+
+/**
+ * Represents a function with at least 1 argument
+ */
+export type FunctionWithArgs<
+  R = any,
+  A extends [any, ...any[]] = [any]
+> = AnyFunction<R, A>;
+
+/**
+ * Represents a function without any arguments
+ */
+export type FunctionWithoutArgs<R = any> = AnyFunction<R, []>;

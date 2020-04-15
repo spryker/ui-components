@@ -94,13 +94,22 @@
     },
     "internal-utils": {
       "tags": ["type:meta"]
+    },
+    "locale": {
+      "tags": ["type:util"]
     }
   },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
       }
     }
   }

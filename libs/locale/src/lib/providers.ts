@@ -1,12 +1,17 @@
 import { LOCALE_ID, Provider } from '@angular/core';
+import {
+  AnyFunction,
+  FunctionWithArgs,
+  FunctionWithoutArgs,
+} from '@spryker/utils';
 
 import { LocaleService } from './locale.service';
 import {
   LocaleDefaultToken,
-  LocaleRecordsToken,
   LocaleLoaderRegistrarsToken,
+  LocaleRecordsToken,
 } from './tokens';
-import { LocaleRecord, LocaleLoaderRegistrarMap } from './types';
+import { LocaleLoaderRegistrarMap, LocaleRecord } from './types';
 
 export function provideLocaleId(): Provider {
   return {
@@ -20,6 +25,24 @@ export function provideLocaleRecords(locales: LocaleRecord[]): Provider {
   return {
     provide: LocaleRecordsToken,
     useValue: locales,
+    multi: true,
+  };
+}
+
+export function provideLocaleRecordsFactory<
+  F extends FunctionWithArgs<LocaleRecord[]>
+>(factory: F, deps: Parameters<F>): Provider;
+export function provideLocaleRecordsFactory<
+  F extends FunctionWithoutArgs<LocaleRecord[]>
+>(factory: F): Provider;
+export function provideLocaleRecordsFactory(
+  factory: AnyFunction<LocaleRecord[]>,
+  deps?: any[],
+): Provider {
+  return {
+    provide: LocaleRecordsToken,
+    useFactory: factory,
+    deps,
     multi: true,
   };
 }

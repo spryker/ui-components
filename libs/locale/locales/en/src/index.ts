@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { provideLocaleRecords } from '@spryker/locale';
 
-export const EN_LOCALE = 'en-US';
+export const EN_LOCALE = 'en';
 
 @NgModule({
   imports: [CommonModule],

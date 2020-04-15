@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.1.0-next.6...@spryker/pagination@0.1.0-next.7) (2020-04-15)
+
+
+### Bug Fixes
+
+* **table, pagination:** fixed styles ([dc714d2](https://github.com/spryker/ui-components/commit/dc714d217d8e449957b054bc302faae1b1bf4022))
+
+
+
+
+
 # [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.1.0-next.5...@spryker/pagination@0.1.0-next.6) (2020-04-14)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.22](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.21...@spryker/table@0.1.0-next.22) (2020-04-15)
+
+
+### Bug Fixes
+
+* **table:** fixed height ([e9e456e](https://github.com/spryker/ui-components/commit/e9e456e52fe1756f42dad80352ba6cd5421a8ce4))
+* **table, pagination:** fixed styles ([dc714d2](https://github.com/spryker/ui-components/commit/dc714d217d8e449957b054bc302faae1b1bf4022))
+
+
+
+
+
 # [0.1.0-next.21](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.20...@spryker/table@0.1.0-next.21) (2020-04-14)
 
 

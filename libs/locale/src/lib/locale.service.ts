@@ -125,7 +125,7 @@ export class LocaleService implements OnDestroy {
     this.destroyed$.next();
   }
 
-  async setLocale(locale: string) {
+  setLocale(locale: string) {
     if (locale in this.knownLocales === false) {
       throw new Error(
         `LocaleService: Cannot switch to unknown locale ${locale}`,
@@ -133,6 +133,8 @@ export class LocaleService implements OnDestroy {
     }
 
     this.setLocale$.next(locale);
+
+    return this.localeLoaded$;
   }
 
   private loadLocale(locale: string) {

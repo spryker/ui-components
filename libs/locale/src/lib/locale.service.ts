@@ -6,11 +6,24 @@ import {
   Optional,
   Type,
 } from '@angular/core';
-import { forkJoin, from, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import {
+  combineLatest,
+  forkJoin,
+  from,
+  merge,
+  Observable,
+  of,
+  ReplaySubject,
+  Subject,
+} from 'rxjs';
 import {
   catchError,
+  debounceTime,
   distinctUntilChanged,
+  filter,
+  map,
   mapTo,
+  share,
   shareReplay,
   switchMap,
   takeUntil,
@@ -63,11 +76,23 @@ export class LocaleService implements OnDestroy {
 
   locale$ = this.setLocale$.pipe(distinctUntilChanged());
 
-  localeLoaded$ = this.locale$.pipe(
+  private localeLoad$ = this.locale$.pipe(
     switchMap(locale =>
       this.loadLocale(locale).pipe(catchError(() => of(locale))),
     ),
-    shareReplay({ bufferSize: 1, refCount: false }),
+    share(),
+  );
+
+  localeLoading$ = merge(
+    this.locale$.pipe(mapTo(true)),
+    this.localeLoad$.pipe(mapTo(false)),
+  ).pipe(shareReplay({ bufferSize: 1, refCount: false }));
+
+  localeLoaded$ = combineLatest([this.localeLoading$, this.locale$]).pipe(
+    debounceTime(0),
+    filter(([isLoaded]) => !isLoaded),
+    map(([_, locale]) => locale),
+    share(),
   );
 
   constructor(
@@ -107,14 +132,17 @@ export class LocaleService implements OnDestroy {
       );
     }
 
-    this.locale = locale;
     this.setLocale$.next(locale);
   }
 
   private loadLocale(locale: string) {
-    return this.invokeLoaders(locale, this.loaders[locale] || {})
-      .pipe(tap(() => delete this.loaders[locale]))
-      .pipe(mapTo(locale));
+    return this.invokeLoaders(locale, this.loaders[locale] || {}).pipe(
+      tap(() => {
+        delete this.loaders[locale];
+        this.locale = locale;
+      }),
+      mapTo(locale),
+    );
   }
 
   private invokeLoaders(

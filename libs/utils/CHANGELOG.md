@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.11...@spryker/utils@0.1.0-next.12) (2020-04-15)
+
+
+### Features
+
+* **utils:** add function types ([28b4c22](https://github.com/spryker/ui-components/commit/28b4c221e0c2df1bc18cf32c43c19ea0b38996fd))
+* **utils:** add typed SimpleChanges interface ([e7d2fb1](https://github.com/spryker/ui-components/commit/e7d2fb15f2e09fe730d9dc8a7751a099f2adc5de))
+
+
+
+
+
 # [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.10...@spryker/utils@0.1.0-next.11) (2020-04-14)
 
 

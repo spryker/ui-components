@@ -11,3 +11,4 @@ export * from './lib/types';
 export * from './lib/json-http-url-encoding-codec';
 export * from './lib/pluck';
 export * from './lib/url-persistence-strategy';
+export * from './lib/simple-changes';

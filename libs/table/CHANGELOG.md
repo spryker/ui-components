@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.24](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.23...@spryker/table@0.1.0-next.24) (2020-04-17)
+
+
+### Bug Fixes
+
+* **sync-state:** fixed naming ([31a4e62](https://github.com/spryker/ui-components/commit/31a4e62f4dcdbce0f465d3fd60fc8ffced0548a7))
+* **sync-state:** fixed tests ([24550dd](https://github.com/spryker/ui-components/commit/24550dd9b75d5adbb0986ef52ed73fa1bfb73c94))
+
+
+
+
+
 # [0.1.0-next.23](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.22...@spryker/table@0.1.0-next.23) (2020-04-16)
 
 

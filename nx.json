@@ -97,6 +97,9 @@
     },
     "locale": {
       "tags": ["type:util"]
+    },
+    "chips": {
+      "tags": ["level:atom", "type:component"]
     }
   },
   "tasksRunnerOptions": {

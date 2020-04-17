@@ -139,6 +139,10 @@
       "@spryker/locale/locales/*": [
         "dist/libs/locale/locales/*",
         "libs/locale/locales/*/src"
+      ],
+      "@spryker/chips": [
+        "dist/libs/chips/index.d.ts",
+        "libs/chips/src/index.ts"
       ]
     }
   },

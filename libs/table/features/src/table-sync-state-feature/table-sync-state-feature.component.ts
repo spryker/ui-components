@@ -11,7 +11,7 @@ import {
   TableFeatureLocation,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/utils';
-import { tap } from 'rxjs/operators';
+import { tap, take } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
 
 @Component({
@@ -44,15 +44,23 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
   setDataConfiguratorService(service: TableDataConfiguratorService): void {
     super.setDataConfiguratorService(service);
 
+    const url$ = this.urlPersistenceStrategy.retrieve(this.key) as Observable<
+      Record<string, unknown>
+    >;
+
+    service.provideInitialDataStrategy({
+      getData: () => {
+        return url$.pipe(take(1));
+      },
+    });
+
     this.configToState$ = service.config$.pipe(
       tap(config => {
         return this.urlPersistenceStrategy.save(this.key, config);
       }),
     );
 
-    this.stateToConfig$ = this.urlPersistenceStrategy
-      .retrieve(this.key)
-      .pipe(tap(state => service.reset(state as Record<string, unknown>)));
+    this.stateToConfig$ = url$.pipe(tap(state => service.reset(state)));
 
     this.state$ = merge(this.stateToConfig$, this.configToState$);
 

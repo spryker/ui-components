@@ -44,14 +44,12 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
   setDataConfiguratorService(service: TableDataConfiguratorService): void {
     super.setDataConfiguratorService(service);
 
-    const url$ = this.urlPersistenceStrategy.retrieve(this.key) as Observable<
-      Record<string, unknown>
-    >;
+    const urlState$ = this.urlPersistenceStrategy.retrieve(
+      this.key,
+    ) as Observable<Record<string, unknown>>;
 
     service.provideInitialDataStrategy({
-      getData: () => {
-        return url$.pipe(take(1));
-      },
+      getData: () => urlState$.pipe(take(1)),
     });
 
     this.configToState$ = service.config$.pipe(
@@ -60,7 +58,7 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
       }),
     );
 
-    this.stateToConfig$ = url$.pipe(tap(state => service.reset(state)));
+    this.stateToConfig$ = urlState$.pipe(tap(state => service.reset(state)));
 
     this.state$ = merge(this.stateToConfig$, this.configToState$);
 

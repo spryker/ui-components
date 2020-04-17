@@ -9,7 +9,7 @@ import {
 } from 'rxjs/operators';
 import { TableDataConfig } from './table';
 
-interface InitialDataStrategy {
+export interface InitialDataStrategy {
   getData(): Observable<TableDataConfig>;
 }
 

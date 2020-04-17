@@ -1,6 +1,11 @@
 // tslint:disable: no-non-null-assertion
 import { ChangeDetectionStrategy } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -230,10 +235,11 @@ describe('TableComponent', () => {
     });
 
     describe('columnsUrl dataUrl columns', () => {
-      it('returned columns$ Observable should match the right data with `columnsUrl key`', async () => {
+      it('returned columns$ Observable should match the right data with `columnsUrl key`', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const callback = jest.fn();
         const columnsRes = httpTestingController.expectOne(mockColUrl);
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -245,11 +251,12 @@ describe('TableComponent', () => {
         host.component.columns$.subscribe(callback);
 
         expect(callback).toHaveBeenCalledWith(mockCols);
-      });
+      }));
 
-      it('returned columns$ Observable should match the right data with `columns` key', async () => {
+      it('returned columns$ Observable should match the right data with `columns` key', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfigCols }, true);
         const callback = jest.fn();
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -258,12 +265,13 @@ describe('TableComponent', () => {
         host.component.columns$.subscribe(callback);
 
         expect(callback).toHaveBeenCalledWith(mockCols);
-      });
+      }));
 
-      it('returned data$ Observable should match the right data', async () => {
+      it('returned data$ Observable should match the right data', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const callback = jest.fn();
         const columnsRes = httpTestingController.expectOne(mockColUrl);
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -275,11 +283,12 @@ describe('TableComponent', () => {
         host.component.data$.subscribe(callback);
 
         expect(callback).toHaveBeenCalledWith(mockData);
-      });
+      }));
 
-      it('prop data$ must be mapped into tbody and render spy-table-column-renderer at each td', async () => {
+      it('prop data$ must be mapped into tbody and render spy-table-column-renderer at each td', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -298,11 +307,12 @@ describe('TableComponent', () => {
         expect(columnElement!.properties.config).toBe(mockCols[0]);
         expect(columnElement!.properties.data).toBe(mockData.data[0]);
         expect(columnElement!.properties.template).toBe(undefined);
-      });
+      }));
 
-      it('prop data$ must be mapped into appropriate attributes of `spy-pagination` component', async () => {
+      it('prop data$ must be mapped into appropriate attributes of `spy-pagination` component', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -316,11 +326,12 @@ describe('TableComponent', () => {
         expect(paginationElement!.properties.total).toBe(mockData.total);
         expect(paginationElement!.properties.pageSize).toBe(mockData.pageSize);
         expect(paginationElement!.properties.page).toBe(mockData.page);
-      });
+      }));
 
-      it('prop columns$ must be mapped into thead and create with tr and each th of the table', async () => {
+      it('prop columns$ must be mapped into thead and create with tr and each th of the table', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const columnsRes = httpTestingController.expectOne(mockColUrl);
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -337,17 +348,18 @@ describe('TableComponent', () => {
         expect(thElements[0].nativeElement.textContent).toMatch(
           mockCols[0].title,
         );
-      });
+      }));
     });
 
     describe('selectable is true', () => {
       const mockSelectableConfig = { ...mockConfigCols, selectable: true };
 
-      it('should create first `th` with `spy-checkbox` into each `tr` into `thead`', async () => {
+      it('should create first `th` with `spy-checkbox` into each `tr` into `thead`', fakeAsync(async () => {
         const host = await createComponent(
           { config: mockSelectableConfig },
           true,
         );
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -359,15 +371,16 @@ describe('TableComponent', () => {
         );
 
         expect(checkboxElem).toBeTruthy();
-      });
+      }));
 
-      it('should bind `allChecked` to `checked` input of `spy-checkbox``', async () => {
+      it('should bind `allChecked` to `checked` input of `spy-checkbox``', fakeAsync(async () => {
         const host = await createComponent({ config: mockSelectableConfig });
         const mockAllChecked = true;
 
         host.component.allChecked = true;
         host.detectChanges();
 
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -376,15 +389,16 @@ describe('TableComponent', () => {
         );
 
         expect(checkboxElem!.properties.checked).toBe(mockAllChecked);
-      });
+      }));
 
-      it('should bind `isIndeterminate` to `indeterminate` input of `spy-checkbox``', async () => {
+      it('should bind `isIndeterminate` to `indeterminate` input of `spy-checkbox``', fakeAsync(async () => {
         const host = await createComponent({ config: mockSelectableConfig });
         const mockIndeterminate = true;
 
         host.component.isIndeterminate = true;
         host.detectChanges();
 
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -393,13 +407,15 @@ describe('TableComponent', () => {
         );
 
         expect(checkboxElem!.properties.indeterminate).toBe(mockIndeterminate);
-      });
+      }));
 
-      it('should create first `td` with `spy-checkbox` into each tr into `tbody``', async () => {
+      it('should create first `td` with `spy-checkbox` into each tr into `tbody``', fakeAsync(async () => {
         const host = await createComponent(
           { config: mockSelectableConfig },
           true,
         );
+
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -412,13 +428,14 @@ describe('TableComponent', () => {
         );
 
         expect(checkboxElem).toBeTruthy();
-      });
+      }));
 
-      it('should bind checkedRows[RowIndex] to `checked` input of `spy-checkbox``', async () => {
+      it('should bind checkedRows[RowIndex] to `checked` input of `spy-checkbox``', fakeAsync(async () => {
         const host = await createComponent(
           { config: mockSelectableConfig },
           true,
         );
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -435,13 +452,15 @@ describe('TableComponent', () => {
         );
 
         expect(checkboxElem!.properties.checked).toBe(mockChecked);
-      });
+      }));
 
-      it('should apply class `--selected` to tr when checkedRows[RowIndex] is `truthy`', async () => {
+      it('should apply class `--selected` to tr when checkedRows[RowIndex] is `truthy`', fakeAsync(async () => {
         const host = await createComponent(
           { config: mockSelectableConfig },
           true,
         );
+
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -460,7 +479,7 @@ describe('TableComponent', () => {
             'ant-table-row--selected',
           ),
         ).toBe(true);
-      });
+      }));
     });
 
     describe('pageSizes', () => {
@@ -468,8 +487,10 @@ describe('TableComponent', () => {
       const mockSizesArray = [20, 30, 40];
       const mockSizesConfig = { ...mockConfigCols, pageSizes: mockSizesArray };
 
-      it('should bind to `nzScroll` input of `nz-table` component', async () => {
+      it('should bind to `nzScroll` input of `nz-table` component', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfigCols }, true);
+
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -485,7 +506,7 @@ describe('TableComponent', () => {
         expect(paginationElem!.properties.pageSizeOptions).toEqual(
           mockSizesArray,
         );
-      });
+      }));
     });
 
     describe('rowActions', () => {
@@ -495,8 +516,10 @@ describe('TableComponent', () => {
       ] as TableRowActionBase[];
       const mockActionsConfig = { ...mockConfigCols, rowActions: mockActions };
 
-      it('render extra td as last column with `spy-dropdown` component', async () => {
+      it('render extra td as last column with `spy-dropdown` component', fakeAsync(async () => {
         const host = await createComponent({ config: mockActionsConfig }, true);
+
+        tick();
         const dataRes = httpTestingController.expectOne(req =>
           req.url.includes(mockDataUrl),
         );
@@ -507,7 +530,7 @@ describe('TableComponent', () => {
         const dropDownElem = host.queryCss('tr td:last-child spy-dropdown');
 
         expect(dropDownElem).toBeTruthy();
-      });
+      }));
     });
   });
 
@@ -553,10 +576,12 @@ describe('TableComponent', () => {
       );
     });
 
-    it('must be emitted every time when `actionTriggerHandler` is triggered', async () => {
+    it('must be emitted every time when `actionTriggerHandler` is triggered', fakeAsync(async () => {
       httpTestingController = TestBed.inject(HttpTestingController);
 
       const host = await createComponent({ config: mockActionsConfig }, true);
+
+      tick();
       const dataRes = httpTestingController.expectOne(req =>
         req.url.includes(mockDataUrl),
       );
@@ -579,6 +604,6 @@ describe('TableComponent', () => {
       );
 
       httpTestingController.verify();
-    });
+    }));
   });
 });

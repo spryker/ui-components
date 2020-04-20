@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.13...@spryker/utils@0.1.0-next.14) (2020-04-20)
+
+
+### Bug Fixes
+
+* **sync-state:** fixed naming ([d6540bd](https://github.com/spryker/ui-components/commit/d6540bd3396bd944d7c607d5bb7640a48b955152))
+* **sync-state:** fixed url stream ([7089f63](https://github.com/spryker/ui-components/commit/7089f63b75733f9058ff4730376ed14072617845))
+* **sync-state:** made property private ([356d7fb](https://github.com/spryker/ui-components/commit/356d7fb1f223dc6a0f198954849d0fd14c8548bf))
+* **sync-state:** removed tap ([ef6af0a](https://github.com/spryker/ui-components/commit/ef6af0a56c67f29441f4f1cb1df93b08562d897a))
+
+
+
+
+
 # [0.1.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.12...@spryker/utils@0.1.0-next.13) (2020-04-20)
 
 

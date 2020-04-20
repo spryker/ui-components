@@ -5,6 +5,7 @@ import {
   distinctUntilChanged,
   map,
   startWith,
+  tap,
 } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
@@ -16,8 +17,8 @@ interface PersistenceStrategy {
 @Injectable({ providedIn: 'root' })
 export class UrlPersistenceStrategy implements PersistenceStrategy {
   url$ = fromEvent(window, 'popstate').pipe(
-    map(event => location.href),
-    startWith(location.href),
+    map(event => location.search),
+    startWith(location.search),
   );
 
   save(key: string, value: unknown): Observable<void> {

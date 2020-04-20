@@ -15,7 +15,7 @@ interface PersistenceStrategy {
 
 @Injectable({ providedIn: 'root' })
 export class UrlPersistenceStrategy implements PersistenceStrategy {
-  urlSearch$ = fromEvent(window, 'popstate').pipe(
+  private urlSearch$ = fromEvent(window, 'popstate').pipe(
     map(event => location.search),
     startWith(location.search),
   );

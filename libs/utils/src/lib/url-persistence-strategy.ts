@@ -41,7 +41,7 @@ export class UrlPersistenceStrategy implements PersistenceStrategy {
         const urlParams = new URLSearchParams(url);
         const value = urlParams.get(key);
 
-        return value ? of(JSON.parse(value)) : EMPTY;
+        return value ? of(JSON.parse(value)) : of(undefined);
       }),
       shareReplay({ bufferSize: 1, refCount: true }),
     );

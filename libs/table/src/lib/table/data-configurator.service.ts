@@ -54,7 +54,7 @@ export class TableDataConfiguratorService {
   }
 }
 
-class DefaultInitialDataStrategy implements InitialDataStrategy {
+export class DefaultInitialDataStrategy implements InitialDataStrategy {
   getData(): Observable<TableDataConfig> {
     return of({ page: 1 });
   }

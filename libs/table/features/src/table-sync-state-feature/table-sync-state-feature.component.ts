@@ -9,10 +9,11 @@ import {
   TableFeatureComponent,
   TableDataConfiguratorService,
   TableFeatureLocation,
+  DefaultInitialDataStrategy,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/utils';
-import { tap, take } from 'rxjs/operators';
-import { merge, Observable } from 'rxjs';
+import { tap, take, switchMap } from 'rxjs/operators';
+import { merge, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'spy-table-sync-state-feature',
@@ -48,9 +49,9 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
       this.key,
     ) as Observable<Record<string, unknown>>;
 
-    service.provideInitialDataStrategy({
-      getData: () => urlState$.pipe(take(1)),
-    });
+    const syncStateInitialData = new SyncStateInitialDataStrategy(urlState$);
+
+    service.provideInitialDataStrategy(syncStateInitialData);
 
     this.configToState$ = service.config$.pipe(
       tap(config => {
@@ -63,5 +64,18 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
     this.state$ = merge(this.stateToConfig$, this.configToState$);
 
     this.cdr.detectChanges();
+  }
+}
+
+class SyncStateInitialDataStrategy extends DefaultInitialDataStrategy {
+  constructor(private urlState$: Observable<Record<string, unknown>>) {
+    super();
+  }
+
+  getData() {
+    return this.urlState$.pipe(
+      take(1),
+      switchMap(url => (url ? of(url) : super.getData())),
+    );
   }
 }

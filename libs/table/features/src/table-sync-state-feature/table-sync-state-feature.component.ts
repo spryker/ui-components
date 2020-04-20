@@ -49,9 +49,7 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
       this.key,
     ) as Observable<Record<string, unknown>>;
 
-    const syncStateInitialData = new SyncStateInitialDataStrategy(
-      urlState$.pipe(take(1)),
-    );
+    const syncStateInitialData = new SyncStateInitialDataStrategy(urlState$);
 
     service.provideInitialDataStrategy(syncStateInitialData);
 
@@ -76,6 +74,7 @@ class SyncStateInitialDataStrategy extends DefaultInitialDataStrategy {
 
   getData() {
     return this.urlState$.pipe(
+      take(1),
       switchMap(url => (url ? of(url) : super.getData())),
     );
   }

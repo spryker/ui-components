@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.12...@spryker/utils@0.1.0-next.13) (2020-04-20)
+
+
+### Bug Fixes
+
+* **sync-state:** fixed behavior ([4ff364c](https://github.com/spryker/ui-components/commit/4ff364c115a4b54d9ba3975db972e5ca5856c0b0))
+
+
+
+
+
 # [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.11...@spryker/utils@0.1.0-next.12) (2020-04-15)
 
 

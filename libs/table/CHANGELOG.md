@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.26](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.25...@spryker/table@0.1.0-next.26) (2020-04-21)
+
+
+### Bug Fixes
+
+* **table:** resolve circular imports in filters feature ([a6c2626](https://github.com/spryker/ui-components/commit/a6c26268ebb1a1424b7f301d54c8708ec8f329e6))
+
+
+
+
+
 # [0.1.0-next.25](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.24...@spryker/table@0.1.0-next.25) (2020-04-20)
 
 

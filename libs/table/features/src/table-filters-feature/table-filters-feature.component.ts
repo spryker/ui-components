@@ -1,17 +1,11 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  Inject,
+  Component,
   forwardRef,
-  OnInit,
+  Inject,
   Input,
+  OnInit,
 } from '@angular/core';
-import { TABLE_FILTERS_TOKEN } from './table-filters-feature.module';
-import {
-  TableFilterBase,
-  TableFilterComponent,
-  TableFiltersDeclaration,
-} from './types';
 import {
   TableComponent,
   TableDataConfiguratorService,
@@ -26,6 +20,13 @@ import {
   startWith,
   tap,
 } from 'rxjs/operators';
+
+import { TABLE_FILTERS_TOKEN } from './tokens';
+import {
+  TableFilterBase,
+  TableFilterComponent,
+  TableFiltersDeclaration,
+} from './types';
 
 declare module '@spryker/table' {
   interface TableConfig {
@@ -58,7 +59,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
 
   constructor(
-    @Inject(forwardRef(() => TABLE_FILTERS_TOKEN))
+    @Inject(TABLE_FILTERS_TOKEN)
     private tableFilterToken: TableFiltersDeclaration[],
     private tableComponent: TableComponent,
     public dataConfiguratorService: TableDataConfiguratorService,

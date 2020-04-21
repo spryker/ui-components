@@ -1,14 +1,11 @@
-import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableFiltersFeatureComponent } from './table-filters-feature.component';
-import { DynamicIoModule } from 'ng-dynamic-component';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { PluckModule } from '@spryker/utils';
+import { DynamicIoModule } from 'ng-dynamic-component';
 
+import { TableFiltersFeatureComponent } from './table-filters-feature.component';
+import { TABLE_FILTERS_TOKEN } from './tokens';
 import { TableFiltersDeclaration } from './types';
-
-export const TABLE_FILTERS_TOKEN = new InjectionToken<
-  TableFiltersDeclaration[]
->('TABLE_FILTERS_TOKEN');
 
 @NgModule({
   imports: [CommonModule, DynamicIoModule, PluckModule],

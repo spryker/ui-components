@@ -5,7 +5,7 @@ import { ChipsComponent } from './chips.component';
 
 // tslint:disable: no-non-null-assertion
 
-describe('ButtonComponent', () => {
+describe('ChipsComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(
     ChipsComponent,
     {
@@ -25,5 +25,17 @@ describe('ButtonComponent', () => {
     const chipsElem = host.queryCss('spy-chips');
 
     expect(chipsElem?.properties.className).toBe(mockedColor);
+  });
+
+  it('Input maxWidth should be bound to host element', async () => {
+    const mockedWidth = '200px';
+    const host = await createComponent({ maxWidth: mockedWidth });
+
+    host.detectChanges();
+
+    const chipsElem = host.queryCss('spy-chips');
+
+    expect(chipsElem?.styles.maxWidth).toBe(mockedWidth);
+    expect(chipsElem?.nativeElement.style.maxWidth).toBe(mockedWidth);
   });
 });

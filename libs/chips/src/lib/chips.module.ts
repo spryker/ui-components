@@ -4,6 +4,7 @@ import { ChipsComponent } from './chips/chips.component';
 
 @NgModule({
   imports: [CommonModule],
+  exports: [ChipsComponent],
   declarations: [ChipsComponent],
 })
 export class ChipsModule {}

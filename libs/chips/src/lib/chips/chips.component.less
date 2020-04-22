@@ -1,0 +1,54 @@
+@import 'themes/default/theme.less';
+
+spy-chips {
+  &.blue,
+  &.green,
+  &.yellow,
+  &.orange,
+  &.red,
+  &.grey,
+  &.grey-lighter {
+    display: inline-block;
+    padding: @chips-padding;
+    min-width: @chips-min-width;
+    border-radius: @chips-border-radius;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font: @font-weight-medium @font-size-base @font-family;
+  }
+
+  &.blue {
+    background-color: @blue-light;
+    color: @blue-dark;
+  }
+
+  &.green {
+    background-color: @green-lighter;
+    color: @green-dark;
+  }
+
+  &.yellow {
+    background-color: @yellow-light;
+    color: @yellow-dark;
+  }
+
+  &.orange {
+    background-color: @orange-light;
+    color: @orange-dark;
+  }
+
+  &.red {
+    background-color: @red-light;
+    color: @red-dark;
+  }
+
+  &.grey {
+    background-color: @gray-light;
+    color: @gray-darker;
+  }
+
+  &.grey-lighter {
+    background-color: @gray-lighter;
+    color: @gray-darker;
+  }
+}

@@ -1,25 +1,29 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ChipsComponent } from './chips.component';
 
-describe('ChipsComponent', () => {
-  let component: ChipsComponent;
-  let fixture: ComponentFixture<ChipsComponent>;
+// tslint:disable: no-non-null-assertion
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ChipsComponent ]
-    })
-    .compileComponents();
-  }));
+describe('ButtonComponent', () => {
+  const { testModule, createComponent } = getTestingForComponent(
+    ChipsComponent,
+    {
+      ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+      projectContent: 'Content',
+    },
+  );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ChipsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Input color should be bound to host element', async () => {
+    const mockedColor = 'red';
+    const host = await createComponent({ color: mockedColor });
+
+    host.detectChanges();
+
+    const chipsElem = host.queryCss('spy-chips');
+
+    expect(chipsElem?.properties.className).toBe(mockedColor);
   });
 });

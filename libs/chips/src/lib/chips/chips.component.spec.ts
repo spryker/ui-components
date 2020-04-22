@@ -36,6 +36,5 @@ describe('ChipsComponent', () => {
     const chipsElem = host.queryCss('spy-chips');
 
     expect(chipsElem?.styles.maxWidth).toBe(mockedWidth);
-    expect(chipsElem?.nativeElement.style.maxWidth).toBe(mockedWidth);
   });
 });

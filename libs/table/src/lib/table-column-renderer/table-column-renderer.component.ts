@@ -30,6 +30,8 @@ export class TableColumnRendererComponent implements OnInit {
   itemConfig?: OrchestratorConfigItem;
 
   value?: unknown;
+  mappedValue?: unknown;
+  isValueUndefined?: boolean;
   context?: TableColumnTplContext;
   emptyValue?: string;
   defaultEmptyValue = '-';
@@ -38,6 +40,7 @@ export class TableColumnRendererComponent implements OnInit {
     if (this.config) {
       this.emptyValue = this.config.emptyValue || this.defaultEmptyValue;
       this.value = this.data?.[this.config.id];
+      this.isValueUndefined = this.value === undefined || this.value === null;
     }
 
     this.updateTplContext();

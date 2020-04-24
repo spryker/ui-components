@@ -30,7 +30,6 @@ export class TableColumnRendererComponent implements OnInit {
   itemConfig?: OrchestratorConfigItem;
 
   value?: unknown;
-  mappedValue?: unknown;
   isValueUndefined?: boolean;
   context?: TableColumnTplContext;
   emptyValue?: string;

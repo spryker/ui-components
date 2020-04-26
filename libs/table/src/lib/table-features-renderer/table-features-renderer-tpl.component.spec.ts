@@ -13,9 +13,9 @@ import { MockTableFeatureComponent } from '@spryker/table/testing';
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
 import { TableDataFetcherService } from '../table/data-fetcher.service';
-import { TableFeatureContext } from '../table/table';
-import { TableComponent } from '../table/table.component';
-import { TableFeaturesRendererComponent } from './table-features-renderer.component';
+import { TableFeatureTplContext } from '../table/table-feature-tpl.directive';
+import { CoreTableComponent } from '../table/table.component';
+import { TableFeaturesRendererTplComponent } from './table-features-renderer-tpl.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -31,7 +31,7 @@ class RenderFeaturesComponent {
   @Input() limit?: number;
 
   @ContentChildren(TemplateRef) set templates(
-    templates: QueryList<TemplateRef<TableFeatureContext>>,
+    templates: QueryList<TemplateRef<TableFeatureTplContext>>,
   ) {
     this.features = templates.map(
       template => new MockTableFeatureComponent({ template }),
@@ -54,7 +54,7 @@ class TestComponent {
 
 describe('TableFeaturesRendererComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(
-    TableFeaturesRendererComponent,
+    TableFeaturesRendererTplComponent,
     {
       ngModule: {
         declarations: [TestComponent, RenderFeaturesComponent],
@@ -67,7 +67,7 @@ describe('TableFeaturesRendererComponent', () => {
     TestBed.configureTestingModule({
       imports: [testModule],
       providers: [
-        { provide: TableComponent, useValue: 'MockTableComponent' },
+        { provide: CoreTableComponent, useValue: 'MockCoreTableComponent' },
         {
           provide: TableColumnsResolverService,
           useValue: 'MockTableColumnsResolverService',

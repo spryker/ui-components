@@ -14,7 +14,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
-import { TableComponent } from './table.component';
+import { CoreTableComponent } from './table.component';
 import {
   TableConfig,
   TableColumns,
@@ -81,7 +81,7 @@ describe('TableComponent', () => {
   let httpTestingController: HttpTestingController;
 
   const { testModule, createComponent } = getTestingForComponent(
-    TableComponent,
+    CoreTableComponent,
     {
       ngModule: {
         imports: [HttpClientTestingModule],
@@ -120,15 +120,15 @@ describe('TableComponent', () => {
     });
 
     describe('spy-table-features-renderer', () => {
-      let component: TableComponent;
-      let fixture: ComponentFixture<TableComponent>;
+      let component: CoreTableComponent;
+      let fixture: ComponentFixture<CoreTableComponent>;
 
       beforeEach(() => {
-        TestBed.overrideComponent(TableComponent, {
+        TestBed.overrideComponent(CoreTableComponent, {
           set: { changeDetection: ChangeDetectionStrategy.Default },
         });
 
-        fixture = TestBed.createComponent(TableComponent);
+        fixture = TestBed.createComponent(CoreTableComponent);
         component = fixture.componentInstance;
 
         fixture.componentInstance.config = mockConfig;

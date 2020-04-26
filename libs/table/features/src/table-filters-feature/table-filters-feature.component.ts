@@ -48,10 +48,13 @@ declare module '@spryker/table' {
 })
 export class TableFiltersFeatureComponent extends TableFeatureComponent
   implements OnInit {
+  name = 'filters';
+
   @Input() location = TableFeatureLocation.top;
   @Input() styles = {
     flexGrow: '1',
   };
+
   filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;
   filters$?: Observable<TableFilterBase[]>;
   filterValues$?: Observable<Record<string, unknown>>;
@@ -61,8 +64,6 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
   constructor(
     @Inject(TABLE_FILTERS_TOKEN)
     private tableFilterToken: TableFiltersDeclaration[],
-    private tableComponent: TableComponent,
-    public dataConfiguratorService: TableDataConfiguratorService,
   ) {
     super();
   }
@@ -77,10 +78,10 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
       {},
     ) as Record<string, TableFilterComponent<TableFilterBase>>;
 
-    this.filters$ = this.tableComponent.config$.pipe(pluck('filters'));
+    this.filters$ = this.table?.config$.pipe(pluck('filters'));
 
     this.filterValues$ = combineLatest([
-      this.dataConfiguratorService.config$.pipe(pluck('filter')) as Observable<
+      this.dataConfiguratorService?.config$.pipe(pluck('filter')) as Observable<
         Record<string, unknown>
       >,
       this.updateFiltersValue$.pipe(startWith(null)),
@@ -95,7 +96,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
         };
 
         this.updateFiltersValue$.next(null);
-        this.dataConfiguratorService.update(filters);
+        this.dataConfiguratorService?.update(filters);
       }),
       map(([filterValues]) => filterValues),
       distinctUntilChanged(),

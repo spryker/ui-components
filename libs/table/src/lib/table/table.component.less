@@ -13,27 +13,13 @@
   }
 
   &-features {
-    display: flex;
-    align-items: center;
-    padding-bottom: @table-features-padding-vertical;
-    margin: -@table-top-features-padding 0;
+    &--before-table {
+      padding-bottom: @table-features-padding-vertical;
+    }
 
-    &-col {
-      padding: @table-top-features-padding;
-
-      &--static {
-        font: @font-weight-medium @font-size-base @font-family;
-        color: @gray-dark;
-        flex-shrink: 0;
-        padding-left: 0;
-      }
-
-      &--dynamic {
-        display: flex;
-        justify-content: flex-end;
-        flex-grow: 1;
-        padding-right: 0;
-      }
+    spy-table-features-renderer {
+      display: flex;
+      flex-grow: 1;
     }
   }
 

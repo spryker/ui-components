@@ -44,8 +44,11 @@ export interface TableSearchConfig {
 })
 export class TableSearchFeatureComponent extends TableFeatureComponent
   implements OnDestroy, AfterViewInit {
+  name = 'search';
+
   @Input() location = TableFeatureLocation.top;
   @Input() styles = { order: '99' };
+
   destroyed$ = new Subject();
   setValue$ = new Subject<string>();
   valueChange$ = this.setValue$.pipe(

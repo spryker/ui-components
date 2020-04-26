@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -45,20 +44,27 @@ import {
   TableActionTriggeredEvent,
   TableColumn,
   TableColumnTplContext,
+  TableComponent,
   TableConfig,
   TableDataConfig,
   TableDataRow,
   TableRowAction,
   TableRowActionBase,
 } from './table';
-import { TableFeatureComponent } from './table-feature.component';
+import { TableEventBus } from './table-event-bus';
+import {
+  TableFeatureComponent,
+  TableFeatureEventBus,
+} from './table-feature.component';
 import { TableFeatureDirective } from './table-feature.directive';
 
 export enum TableFeatureLocation {
   top = 'top',
   beforeTable = 'before-table',
   headerExt = 'header-ext',
+  beforeColsHeader = 'before-cols-header',
   beforeCols = 'before-cols',
+  afterColsHeader = 'after-cols-header',
   afterCols = 'after-cols',
   afterTable = 'after-table',
   bottom = 'bottom',
@@ -81,14 +87,30 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
     TableActionService,
   ],
 })
-export class TableComponent implements OnInit, OnChanges, AfterContentInit {
+export class CoreTableComponent implements TableComponent, OnInit, OnChanges {
   @Input() @ToJson() config?: TableConfig;
   @Input() tableId?: string;
+  /**
+   * {
+   *    selectable: () => ...,
+   *    'selectable:bla': () => ...,
+   * }
+   */
+  @Input() events: Record<string, ((data: unknown) => void) | undefined> = {};
 
-  @Output() selectionChange = new EventEmitter<TableDataRow[]>();
   @Output() actionTriggered = new EventEmitter<TableActionTriggeredEvent>();
 
-  @ContentChildren(ColTplDirective) slotTemplates?: QueryList<ColTplDirective>;
+  @ContentChildren(ColTplDirective) set slotTemplates(
+    val: QueryList<ColTplDirective>,
+  ) {
+    this.templatesObj = val.reduce(
+      (templates, slot) => ({
+        ...templates,
+        [slot.spyColTpl]: slot.template,
+      }),
+      {},
+    );
+  }
 
   @ContentChildren(TableFeatureDirective)
   set featureDirectives(featureDirectives: QueryList<TableFeatureDirective>) {
@@ -147,15 +169,23 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   ).pipe(startWith(false), shareReplaySafe());
 
   templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
-  featuresLocation: Record<string, TableFeatureComponent[]> = {};
-  featuresDisabled: Record<string, Map<TableFeatureComponent, boolean>> = {};
+  features: TableFeatureComponent[] = [];
   rowClasses: Record<string, Record<string, boolean>> = {};
   actions?: DropdownItem[];
 
-  handleStreamError = () => (error: unknown) => {
+  private handleStreamError = () => (error: unknown) => {
     this.error$.next(error);
     return EMPTY;
   };
+
+  private handleEvent = (event: string, data: unknown) => {
+    const eventHandler = this.events[event];
+    eventHandler?.(data);
+  };
+
+  // We rely here on order to have the handler ready
+  // tslint:disable-next-line: member-ordering
+  private tableEventBus = new TableEventBus(this.handleEvent);
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -164,20 +194,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     private columnsResolverService: TableColumnsResolverService,
     private tableActionService: TableActionService,
   ) {}
-
-  ngAfterContentInit(): void {
-    if (!this.slotTemplates) {
-      return;
-    }
-
-    this.templatesObj = this.slotTemplates.reduce(
-      (templates, slot) => ({
-        ...templates,
-        [slot.spyColTpl]: slot.template,
-      }),
-      {},
-    );
-  }
 
   ngOnInit(): void {
     setTimeout(() => this.dataConfiguratorService.triggerInitialData(), 0);
@@ -190,6 +206,27 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }
   }
 
+  updateRowClasses(rowIdx: string, classes: Record<string, boolean>) {
+    this.setRowClasses(rowIdx, { ...this.rowClasses[rowIdx], ...classes });
+  }
+
+  setRowClasses(rowIdx: string, classes: Record<string, boolean>) {
+    this.rowClasses[rowIdx] = classes;
+    this.cdr.markForCheck();
+  }
+
+  getTableId(): string | undefined {
+    return this.tableId;
+  }
+
+  emitEvent<T = unknown>(featureName: string, data: T, eventName?: string) {
+    const eventHash = eventName ? `${featureName}:${eventName}` : featureName;
+    const eventHandler = this.events[eventHash];
+
+    eventHandler?.(data);
+  }
+
+  /** @internal */
   updateActions(): void {
     this.actions = this.config?.rowActions?.map(({ id, title }) => ({
       action: id,
@@ -197,47 +234,14 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }));
   }
 
-  updateFeatures(features: TableFeatureComponent[]): void {
-    this.featuresLocation = features.reduce(
-      (acc, feature) =>
-        feature.locations.reduce(
-          (_acc, location) => ({
-            ..._acc,
-            [location]: acc[location] ? [...acc[location], feature] : [feature],
-          }),
-          acc,
-        ),
-      {} as TableComponent['featuresLocation'],
-    );
+  /** @internal */
+  updateFeatures(features: TableFeatureComponent[]) {
+    this.features = features;
 
-    this.featuresDisabled = Object.keys(this.featuresLocation).reduce(
-      (acc, location) => ({
-        ...acc,
-        [location]: new Map(
-          this.featuresLocation[location].map(feature => [feature, false]),
-        ),
-      }),
-      {} as TableComponent['featuresDisabled'],
-    );
+    this.features.forEach(feature => this.initFeature(feature));
   }
 
-  updateRowClasses(rowIdx: string, classes: Record<string, boolean>) {
-    this.setRowClasses(rowIdx, { ...this.rowClasses[rowIdx], ...classes });
-  }
-
-  setRowClasses(rowIdx: string, classes: Record<string, boolean>) {
-    this.rowClasses[rowIdx] = classes;
-  }
-
-  disableFeatureAt(
-    location: TableFeatureLocation,
-    feature: TableFeatureComponent,
-    isDisabled: boolean,
-  ) {
-    this.featuresDisabled[location].set(feature, isDisabled);
-    this.cdr.detectChanges();
-  }
-
+  /** @internal */
   updateSorting(event: {
     key: string;
     value: 'descend' | 'ascend' | null;
@@ -251,22 +255,22 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.dataConfiguratorService.update(sortingCriteria as TableDataConfig);
   }
 
+  /** @internal */
   updatePagination(page: number): void {
     this.dataConfiguratorService.changePage(page);
   }
 
+  /** @internal */
   updatePageSize(pageSize: number): void {
     this.dataConfiguratorService.update({ pageSize, page: 1 });
   }
 
-  getTableId(): string | undefined {
-    return this.tableId;
-  }
-
+  /** @internal */
   trackByColumns(index: number, item: TableColumn): string {
     return item.id;
   }
 
+  /** @internal */
   actionTriggerHandler(actionId: TableRowAction, items: TableDataRow[]): void {
     if (!this.config?.rowActions) {
       return;
@@ -303,5 +307,15 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }
 
     return undefined;
+  }
+
+  private initFeature(feature: TableFeatureComponent) {
+    feature.setTableComponent(this);
+    feature.setTableEventBus(
+      new TableFeatureEventBus(feature.name, this.tableEventBus),
+    );
+    feature.setColumnsResolverService(this.columnsResolverService);
+    feature.setDataFetcherService(this.dataFetcherService);
+    feature.setDataConfiguratorService(this.dataConfiguratorService);
   }
 }

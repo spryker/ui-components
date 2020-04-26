@@ -2,10 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
-  Input,
   OnDestroy,
-  Output,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -16,8 +13,8 @@ import {
   TableFeatureComponent,
   TableFeatureLocation,
 } from '@spryker/table';
-import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 declare module '@spryker/table' {
   // tslint:disable-next-line: no-empty-interface
@@ -28,7 +25,12 @@ export interface TableSelectableConfig {
   selectable?: boolean;
 }
 
-export type TableSelectionChangeEvent = TableDataRow[];
+export interface TableSelectionRow {
+  data: TableDataRow;
+  index: number;
+}
+
+export type TableSelectionChangeEvent = TableSelectionRow[];
 
 @Component({
   selector: 'spy-table-selectable-feature',
@@ -45,12 +47,13 @@ export type TableSelectionChangeEvent = TableDataRow[];
 })
 export class TableSelectableFeatureComponent extends TableFeatureComponent
   implements OnDestroy {
-  @Input() location = TableFeatureLocation.beforeCols;
-  @Output() selectionChange = new EventEmitter<TableDataRow[]>();
+  name = 'selectable';
+  tableFeatureLocation = TableFeatureLocation;
 
   allChecked = false;
   isIndeterminate = false;
   checkedRows: Record<TableColumn['id'], boolean> = {};
+  checkedRowsArr: TableSelectionRow[] = [];
 
   private destroyed$ = new Subject<void>();
   private rowsData: TableDataRow[] = [];
@@ -69,18 +72,6 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
     table.data$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(data => this.resetCheckedRows(data));
-
-    (this.table?.config$ as Observable<TableSelectableConfig>)
-      .pipe(
-        map(config => (config.selectable != null ? config.selectable : true)),
-        distinctUntilChanged(),
-        takeUntil(this.destroyed$),
-      )
-      .subscribe(selectable => {
-        this.locations.forEach(location =>
-          table.disableFeatureAt(location, this, selectable),
-        );
-      });
   }
 
   toggleCheckedAll(): void {
@@ -106,36 +97,39 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
     this.updateChecks();
   }
 
-  private updateChecks(skipEmit = false) {
+  private updateChecks() {
     this.updateRowClasses();
-    this.cdr.detectChanges();
+    this.updateCheckedRowsArr();
+    this.cdr.markForCheck();
 
-    if (!skipEmit) {
-      this.selectionChange.emit(this.getCheckedRowsArr());
-    }
+    this.tableEventBus?.emit<TableSelectionChangeEvent>(this.checkedRowsArr);
   }
 
   private updateRowClasses() {
-    Object.keys(this.checkedRows).forEach(i => {
+    Object.keys(this.checkedRows).forEach(i =>
       this.table?.updateRowClasses(i, {
         'ant-table-row--selected': this.checkedRows[i],
-      });
-    });
+      }),
+    );
   }
 
-  private getCheckedRowsArr() {
-    return Object.keys(this.checkedRows)
+  private updateCheckedRowsArr() {
+    this.checkedRowsArr = Object.keys(this.checkedRows)
       .filter(idx => this.checkedRows[idx])
-      .map(idx => this.rowsData[Number(idx)]);
+      .map(idx => ({
+        data: this.rowsData[Number(idx)],
+        index: Number(idx),
+      }));
   }
 
   private resetCheckedRows(data: TableData): void {
     this.rowsData = data.data;
+    this.checkedRowsArr = [];
     this.allChecked = false;
     this.isIndeterminate = false;
 
     data.data.forEach((_, i) => (this.checkedRows[i] = false));
 
-    this.updateChecks(true);
+    this.updateChecks();
   }
 }

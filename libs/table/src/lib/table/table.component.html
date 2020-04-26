@@ -1,35 +1,33 @@
-<spy-table-features-renderer
-  [features]="featuresLocation[featureLocation.top]"
-></spy-table-features-renderer>
+<div class="ant-table-features ant-table-features--top">
+  <spy-table-features-renderer
+    [location]="featureLocation.top"
+    [features]="features"
+  ></spy-table-features-renderer>
+</div>
 
-<div class="ant-table-features" *ngIf="config">
-  <div class="ant-table-features-col ant-table-features-col--static">
-    <!-- <ng-container *ngIf="checkedRowsArr.length"
-      >{{ checkedRowsArr.length }} selected /
-    </ng-container> -->
-    {{ total$ | async }} results
-  </div>
-
-  <div class="ant-table-features-col ant-table-features-col--dynamic">
-    <spy-table-features-renderer
-      [features]="featuresLocation[featureLocation.beforeTable]"
-    ></spy-table-features-renderer>
-  </div>
+<div class="ant-table-features ant-table-features--before-table">
+  <spy-table-features-renderer
+    [location]="featureLocation.beforeTable"
+    [features]="features"
+  ></spy-table-features-renderer>
 </div>
 
 <nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
   <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
     <tr>
-      <ng-container
-        *ngFor="let feature of featuresLocation[featureLocation.beforeCols]"
+      <ng-template
+        [spyTableFeaturesRenderer]="featureLocation.beforeColsHeader"
+        [spyTableFeaturesRendererFeatures]="features"
+        #beforeColsHeaderFeaturesRenderer="spyTableFeaturesRenderer"
+        let-feature
       >
-        <th *ngIf="!featuresDisabled[featureLocation.beforeCols][feature]">
-          <spy-table-features-renderer
-            [features]="[feature]"
-            [maxFeatures]="1"
-          ></spy-table-features-renderer>
+        <th>
+          <ng-template
+            [spyTableRenderFeature]="feature"
+            [spyTableRenderFeatureRenderer]="beforeColsHeaderFeaturesRenderer"
+          ></ng-template>
         </th>
-      </ng-container>
+      </ng-template>
 
       <th
         *ngFor="let column of columns$ | async; trackBy: trackByColumns"
@@ -40,28 +38,34 @@
         {{ column.title }}
       </th>
 
-      <ng-container
-        *ngFor="let feature of featuresLocation[featureLocation.afterCols]"
+      <ng-template
+        [spyTableFeaturesRenderer]="featureLocation.afterColsHeader"
+        [spyTableFeaturesRendererFeatures]="features"
+        #afterColsHeaderFeaturesRenderer="spyTableFeaturesRenderer"
+        let-feature
       >
-        <th *ngIf="!featuresDisabled[featureLocation.afterCols][feature]">
-          <spy-table-features-renderer
-            [features]="[feature]"
-            [maxFeatures]="1"
-          ></spy-table-features-renderer>
+        <th>
+          <ng-template
+            [spyTableRenderFeature]="feature"
+            [spyTableRenderFeatureRenderer]="afterColsHeaderFeaturesRenderer"
+          ></ng-template>
         </th>
-      </ng-container>
+      </ng-template>
 
-      <th
-        *ngIf="
-          config?.rowActions?.length ||
-          featuresLocation[featureLocation.headerExt]?.length > 0
-        "
+      <ng-template
+        [spyTableFeaturesRenderer]="featureLocation.headerExt"
+        [spyTableFeaturesRendererFeatures]="features"
+        [spyTableFeaturesRendererMaxFeatures]="1"
+        #headerExtFeaturesRenderer="spyTableFeaturesRenderer"
+        let-feature
       >
-        <spy-table-features-renderer
-          [features]="featuresLocation[featureLocation.headerExt]"
-          maxFeatures="1"
-        ></spy-table-features-renderer>
-      </th>
+        <th>
+          <ng-template
+            [spyTableRenderFeature]="feature"
+            [spyTableRenderFeatureRenderer]="headerExtFeaturesRenderer"
+          ></ng-template>
+        </th>
+      </ng-template>
     </tr>
   </thead>
 
@@ -70,20 +74,22 @@
       *ngFor="let data of tableData$ | async; index as indexOfElement"
       [ngClass]="rowClasses[indexOfElement]"
     >
-      <ng-container
-        *ngFor="let feature of featuresLocation[featureLocation.beforeCols]"
+      <ng-template
+        [spyTableFeaturesRenderer]="featureLocation.beforeCols"
+        [spyTableFeaturesRendererFeatures]="features"
+        [spyTableFeaturesRendererContext]="{ data: data, i: indexOfElement }"
+        #beforeColsFeaturesRenderer="spyTableFeaturesRenderer"
+        let-feature
       >
-        <td *ngIf="!featuresDisabled[featureLocation.beforeCols][feature]">
+        <td>
           <div class="ant-table-column-inner">
-            <spy-table-column-renderer
-              [config]="{}"
-              [data]="data"
-              [template]="feature.colTemplate"
-              [i]="indexOfElement"
-            ></spy-table-column-renderer>
+            <ng-template
+              [spyTableRenderFeature]="feature"
+              [spyTableRenderFeatureRenderer]="beforeColsFeaturesRenderer"
+            ></ng-template>
           </div>
         </td>
-      </ng-container>
+      </ng-template>
 
       <td
         *ngFor="
@@ -91,13 +97,7 @@
           trackBy: trackByColumns;
           let last = last
         "
-        [colSpan]="
-          !config?.rowActions?.length &&
-          featuresLocation[featureLocation.headerExt]?.length > 0 &&
-          last
-            ? 2
-            : 1
-        "
+        [colSpan]="!config?.rowActions?.length && last ? 2 : 1"
       >
         <div class="ant-table-column-inner">
           <spy-table-column-renderer
@@ -120,27 +120,32 @@
         </div>
       </td>
 
-      <ng-container
-        *ngFor="let feature of featuresLocation[featureLocation.afterCols]"
+      <ng-template
+        [spyTableFeaturesRenderer]="featureLocation.afterCols"
+        [spyTableFeaturesRendererFeatures]="features"
+        [spyTableFeaturesRendererContext]="{ data: data, i: indexOfElement }"
+        #afterColsFeaturesRenderer="spyTableFeaturesRenderer"
+        let-feature
       >
-        <td *ngIf="!featuresDisabled[featureLocation.afterCols][feature]">
+        <td>
           <div class="ant-table-column-inner">
-            <spy-table-column-renderer
-              [config]="{}"
-              [data]="data"
-              [template]="feature.colTemplate"
-              [i]="indexOfElement"
-            ></spy-table-column-renderer>
+            <ng-template
+              [spyTableRenderFeature]="feature"
+              [spyTableRenderFeatureRenderer]="afterColsFeaturesRenderer"
+            ></ng-template>
           </div>
         </td>
-      </ng-container>
+      </ng-template>
     </tr>
   </tbody>
 </nz-table>
 
-<spy-table-features-renderer
-  [features]="featuresLocation[featureLocation.afterTable]"
-></spy-table-features-renderer>
+<div class="ant-table-features ant-table-features--after-table">
+  <spy-table-features-renderer
+    [location]="featureLocation.afterTable"
+    [features]="features"
+  ></spy-table-features-renderer>
+</div>
 
 <spy-pagination
   [pageSizeOptions]="config?.pageSizes || [10, 20, 50]"
@@ -152,9 +157,22 @@
   (pageSizeChange)="updatePageSize($event)"
 ></spy-pagination>
 
-<spy-table-features-renderer
-  [features]="featuresLocation[featureLocation.bottom]"
-></spy-table-features-renderer>
+<div class="ant-table-features ant-table-features--bottom">
+  <spy-table-features-renderer
+    [location]="featureLocation.bottom"
+    [features]="features"
+  ></spy-table-features-renderer>
+</div>
+
+<div
+  class="ant-table-features ant-table-features--hidden"
+  style="display: none"
+>
+  <spy-table-features-renderer
+    [location]="featureLocation.hidden"
+    [features]="features"
+  ></spy-table-features-renderer>
+</div>
 
 <span
   style="display: none"
@@ -163,8 +181,3 @@
 >
   <ng-content select="[spy-table-feature]"></ng-content>
 </span>
-
-<spy-table-features-renderer
-  [features]="featuresLocation[featureLocation.hidden]"
-  style="display: none"
-></spy-table-features-renderer>

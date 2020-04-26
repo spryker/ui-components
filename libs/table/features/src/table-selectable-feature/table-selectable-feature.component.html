@@ -1,13 +1,11 @@
-<ng-template>
-  <spy-checkbox
-    [(checked)]="allChecked"
-    [indeterminate]="isIndeterminate"
-    (checkedChange)="toggleCheckedAll()"
-  ></spy-checkbox>
-</ng-template>
-<ng-template #colTemplate let-i="i">
-  <spy-checkbox
-    [(checked)]="checkedRows[i]"
-    (checkedChange)="updateCheckedRows()"
-  ></spy-checkbox>
-</ng-template>
+<spy-checkbox
+  *spyTableFeatureTpl="tableFeatureLocation.beforeColsHeader"
+  [(checked)]="allChecked"
+  [indeterminate]="isIndeterminate"
+  (checkedChange)="toggleCheckedAll()"
+></spy-checkbox>
+<spy-checkbox
+  *spyTableFeatureTpl="tableFeatureLocation.beforeCols; let i = i"
+  [(checked)]="checkedRows[i]"
+  (checkedChange)="updateCheckedRows()"
+></spy-checkbox>

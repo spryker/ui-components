@@ -4,12 +4,12 @@ import { TableFeatureComponent, TableFeatureContext } from '@spryker/table';
 export class MockTableFeatureComponent extends TableFeatureComponent {
   location = 'mocked-location';
   styles?: Record<string, string> = this.config.styles;
-  template?: TemplateRef<TableFeatureContext> = this.config.template;
+  tplDirectives?: TemplateRef<TableFeatureContext> = this.config.template;
   setTableComponent = jest.fn();
   setColumnsResolverService = jest.fn();
   setDataFetcherService = jest.fn();
   setDataConfiguratorService = jest.fn();
-  getTemplate = jest.fn().mockReturnValue(this.template);
+  getTplDirectives = jest.fn().mockReturnValue(this.tplDirectives);
 
   constructor(
     private config: {

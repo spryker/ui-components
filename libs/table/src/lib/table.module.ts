@@ -6,21 +6,25 @@ import {
   LayoutFlatHostModule,
 } from '@orchestrator/layout';
 import { CheckboxModule } from '@spryker/checkbox';
-import { PaginationModule } from '@spryker/pagination';
 import { DropdownModule } from '@spryker/dropdown';
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { SelectComponentsModule } from '@spryker/web-components';
-import { IconActionModule } from '@spryker/icon/icons';
 import { IconModule } from '@spryker/icon';
+import { IconActionModule } from '@spryker/icon/icons';
+import { PaginationModule } from '@spryker/pagination';
+import { ContextModule } from '@spryker/utils';
+import { SelectComponentsModule } from '@spryker/web-components';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
+import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
+import { TableFeaturesRendererTplComponent } from './table-features-renderer/table-features-renderer-tpl.component';
 import { TableFeaturesRendererComponent } from './table-features-renderer/table-features-renderer.component';
+import { TableFeaturesRendererDirective } from './table-features-renderer/table-features-renderer.directive';
+import { TableRenderFeatureDirective } from './table-features-renderer/table-render-feature.directive';
 import { ColTplDirective } from './table/col-tpl.directive';
 import { TableColumnComponentDeclaration } from './table/table';
-import { TableComponent } from './table/table.component';
+import { TableFeatureTplDirective } from './table/table-feature-tpl.directive';
 import { TableFeatureDirective } from './table/table-feature.directive';
-import { TableColumnListComponent } from './table-column-list/table-column-list.component';
-import { ContextModule } from '@spryker/utils';
+import { CoreTableComponent } from './table/table.component';
 
 export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
   TableColumnComponentDeclaration[]
@@ -41,18 +45,22 @@ export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
     ContextModule,
   ],
   declarations: [
-    TableComponent,
+    CoreTableComponent,
     TableColumnRendererComponent,
     ColTplDirective,
+    TableFeaturesRendererTplComponent,
     TableFeaturesRendererComponent,
+    TableFeaturesRendererDirective,
+    TableRenderFeatureDirective,
     TableFeatureDirective,
     TableColumnListComponent,
+    TableFeatureTplDirective,
   ],
   exports: [
-    TableComponent,
-    TableColumnRendererComponent,
+    CoreTableComponent,
     ColTplDirective,
     TableFeatureDirective,
+    TableFeatureTplDirective,
   ],
 })
 export class TableModule {

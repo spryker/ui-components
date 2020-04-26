@@ -114,6 +114,12 @@ export interface SortingCriteria {
   sortDirection?: 'asc' | 'desc';
 }
 
-export interface TableFeatureContext {
-  location: string;
+export interface TableComponent {
+  config$: Observable<TableConfig>;
+  columns$: Observable<TableColumns>;
+  data$: Observable<TableData>;
+  isLoading$: Observable<boolean>;
+  getTableId(): string | undefined;
+  updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
+  setRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
 }

@@ -103,7 +103,7 @@ export class TestTableFeatureComponent<T = TableMockComponent>
     );
 
     setTimeout(() => {
-      this.template = this.feature!.template;
+      this.template = this.feature!.tplDirectives;
       // this.colTemplate = this.feature!.colTemplate;
       this.cdr.detectChanges();
     });

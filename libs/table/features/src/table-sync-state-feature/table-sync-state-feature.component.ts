@@ -29,6 +29,8 @@ import { merge, Observable, of } from 'rxjs';
   ],
 })
 export class TableSyncStateFeatureComponent extends TableFeatureComponent {
+  name = 'sync-state';
+
   @Input() location = TableFeatureLocation.hidden;
   key = 'table-state';
   stateToConfig$?: Observable<unknown>;

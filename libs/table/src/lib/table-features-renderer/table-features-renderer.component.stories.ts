@@ -1,24 +1,28 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, QueryList, TemplateRef } from '@angular/core';
 import { number } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
 import { TableDataFetcherService } from '../table/data-fetcher.service';
-import { TableFeatureContext, TableColumnContext } from '../table/table';
+import {
+  TableFeatureTplContext,
+  TableFeatureTplDirective,
+} from '../table/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table/table-feature.component';
-import { TableComponent, TableFeatureLocation } from '../table/table.component';
-import { TableFeaturesRendererComponent } from './table-features-renderer.component';
+import { CoreTableComponent } from '../table/table.component';
+// import { TableFeaturesRendererTplComponent } from './table-features-renderer.component';
 
 export default {
   title: 'TableFeaturesRendererComponent',
 };
 
 class MockTableFeatureComponent extends TableFeatureComponent {
+  name = 'mock-feature';
   location = 'mocked-location';
-  constructor(template: TemplateRef<TableFeatureContext>) {
+  constructor(tplDirectives: QueryList<TableFeatureTplDirective>) {
     super();
-    this.template = template;
+    this.tplDirectives = tplDirectives;
   }
 }
 
@@ -32,8 +36,8 @@ class MockTableFeatureComponent extends TableFeatureComponent {
   `,
 })
 class RenderFeaturesComponent {
-  @Input() set templates(templates: TemplateRef<TableFeatureContext>[]) {
-    this.features = templates.map(tpl => new MockTableFeatureComponent(tpl));
+  @Input() set templates(templates: TemplateRef<TableFeatureTplContext>[]) {
+    // this.features = templates.map(tpl => new MockTableFeatureComponent(tpl));
   }
 
   @Input() limit?: number;
@@ -44,9 +48,9 @@ class RenderFeaturesComponent {
 export const withFeatures = (): IStory => ({
   moduleMetadata: {
     imports: [],
-    declarations: [TableFeaturesRendererComponent, RenderFeaturesComponent],
+    // declarations: [TableFeaturesRendererTplComponent, RenderFeaturesComponent],
     providers: [
-      { provide: TableComponent, useValue: 'TableComponent' },
+      { provide: CoreTableComponent, useValue: 'CoreTableComponent' },
       {
         provide: TableColumnsResolverService,
         useValue: 'TableColumnsResolverService',

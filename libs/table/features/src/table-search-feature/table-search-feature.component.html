@@ -1,11 +1,18 @@
 <ng-template>
   <spy-input
     [prefix]="messageTmpl"
+    [suffix]="suffixTpl"
     [placeholder]="placeholder$ | async"
     (valueChange)="inputValueChange($event)"
   ></spy-input>
 
   <ng-template #messageTmpl>
     <spy-icon name="magnifier" class="ant-magnifier-icon"></spy-icon>
+  </ng-template>
+
+  <ng-template #suffixTpl>
+    <div *ngIf="!!input?.value" (click)="suffixClickHandler()">
+      <spy-icon class="ant-remove-icon" [name]="removeIcon"></spy-icon>
+    </div>
   </ng-template>
 </ng-template>

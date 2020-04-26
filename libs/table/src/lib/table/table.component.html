@@ -21,7 +21,7 @@
         #beforeColsHeaderFeaturesRenderer="spyTableFeaturesRenderer"
         let-feature
       >
-        <th>
+        <th [ngStyle]="feature.featureStyles$ | async">
           <ng-template
             [spyTableRenderFeature]="feature"
             [spyTableRenderFeatureRenderer]="beforeColsHeaderFeaturesRenderer"
@@ -44,7 +44,7 @@
         #afterColsHeaderFeaturesRenderer="spyTableFeaturesRenderer"
         let-feature
       >
-        <th>
+        <th [ngStyle]="feature.featureStyles$ | async">
           <ng-template
             [spyTableRenderFeature]="feature"
             [spyTableRenderFeatureRenderer]="afterColsHeaderFeaturesRenderer"
@@ -59,7 +59,7 @@
         #headerExtFeaturesRenderer="spyTableFeaturesRenderer"
         let-feature
       >
-        <th>
+        <th [ngStyle]="feature.featureStyles$ | async">
           <ng-template
             [spyTableRenderFeature]="feature"
             [spyTableRenderFeatureRenderer]="headerExtFeaturesRenderer"
@@ -81,7 +81,7 @@
         #beforeColsFeaturesRenderer="spyTableFeaturesRenderer"
         let-feature
       >
-        <td>
+        <td [ngStyle]="feature.featureStyles$ | async">
           <div class="ant-table-column-inner">
             <ng-template
               [spyTableRenderFeature]="feature"
@@ -127,7 +127,7 @@
         #afterColsFeaturesRenderer="spyTableFeaturesRenderer"
         let-feature
       >
-        <td>
+        <td [ngStyle]="feature.featureStyles$ | async">
           <div class="ant-table-column-inner">
             <ng-template
               [spyTableRenderFeature]="feature"

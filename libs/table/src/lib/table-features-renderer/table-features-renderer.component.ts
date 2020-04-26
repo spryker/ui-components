@@ -14,7 +14,7 @@ import { TableFeatureComponent } from '../table/table-feature.component';
       #featuresRenderer="spyTableFeaturesRenderer"
       let-feature
     >
-      <div>
+      <div [ngStyle]="feature.featureStyles$ | async">
         <ng-template
           [spyTableRenderFeature]="feature"
           [spyTableRenderFeatureRenderer]="featuresRenderer"
@@ -22,6 +22,13 @@ import { TableFeatureComponent } from '../table/table-feature.component';
       </div>
     </ng-template>
   `,
+  styles: [
+    `
+      .spy-table-features-renderer {
+        display: flex;
+      }
+    `,
+  ],
 })
 export class TableFeaturesRendererComponent {
   @Input() location?: string;

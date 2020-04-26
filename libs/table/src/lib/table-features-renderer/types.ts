@@ -13,5 +13,5 @@ export interface FeatureRecord {
   template: TemplateRef<TableFeaturesRendererContext>;
   featureTemplate: TemplateRef<TableFeatureTplContext>;
   featureContext$?: Observable<TableFeatureTplContext>;
-  featureStyles$?: Observable<string>;
+  featureStyles$?: Observable<Record<string, any>>;
 }

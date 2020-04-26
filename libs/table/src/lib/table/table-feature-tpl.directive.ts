@@ -13,12 +13,12 @@ export class TableFeatureTplDirective {
     this.locations$.next(Array.isArray(val) ? val : [val]);
   }
 
-  @Input() set spyTableFeatureTplStyles(val: string) {
+  @Input() set spyTableFeatureTplStyles(val: Record<string, any>) {
     this.styles$.next(val);
   }
 
   locations$ = new ReplaySubject<string[]>(1);
-  styles$ = new ReplaySubject<string>(1);
+  styles$ = new ReplaySubject<Record<string, any>>(1);
 
   constructor(public template: TemplateRef<TableFeatureTplContext>) {}
 }

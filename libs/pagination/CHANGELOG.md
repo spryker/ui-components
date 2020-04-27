@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.1.0-next.7...@spryker/pagination@0.1.0-next.8) (2020-04-27)
+
+
+### Bug Fixes
+
+* **pagination:** added logic to select ([89d731d](https://github.com/spryker/ui-components/commit/89d731db265e8be28bd626d8ddd4774f36b95b70))
+* **pagination:** added test ([46553cc](https://github.com/spryker/ui-components/commit/46553cc3b68386935255cfd73d218626d2a49956))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.1.0-next.6...@spryker/pagination@0.1.0-next.7) (2020-04-15)
 
 

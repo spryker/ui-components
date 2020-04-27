@@ -44,6 +44,9 @@ describe('PaginationComponent', () => {
   }));
 
   it('template must render nz-pagination from Ant Design and spy-select', () => {
+    component.total = 1;
+    fixture.detectChanges();
+
     const nzPagElem = fixture.debugElement.query(By.css('nz-pagination'));
     const selectElem = fixture.debugElement.query(By.css('spy-select'));
 
@@ -108,10 +111,13 @@ describe('PaginationComponent', () => {
   });
 
   it('pageSizeChange must be emitted every time valueChange emits from spy-select', () => {
-    const nzPagElem = fixture.debugElement.query(By.css('spy-select'));
+    component.total = 1;
+    fixture.detectChanges();
+
+    const nzSelectElem = fixture.debugElement.query(By.css('spy-select'));
     const page = 2;
 
-    nzPagElem.triggerEventHandler('valueChange', page);
+    nzSelectElem.triggerEventHandler('valueChange', page);
     fixture.detectChanges();
 
     expect(component.pageSizeChangeSpy).toHaveBeenCalled();

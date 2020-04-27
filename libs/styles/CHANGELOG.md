@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.42](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.41...@spryker/styles@0.1.0-next.42) (2020-04-27)
+
+
+### Bug Fixes
+
+* **table:** ui-issues ([e1111eb](https://github.com/spryker/ui-components/commit/e1111ebc94ae2e8eaf7ab65662ef122bcf755faf))
+* **table:** ui-issues ([f29702c](https://github.com/spryker/ui-components/commit/f29702c1c6af44a61ae52a9b47ed70ca3d713be5))
+
+
+
+
+
 # [0.1.0-next.41](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.40...@spryker/styles@0.1.0-next.41) (2020-04-22)
 
 

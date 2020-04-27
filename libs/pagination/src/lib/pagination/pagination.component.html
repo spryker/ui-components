@@ -10,6 +10,7 @@
   </nz-pagination>
 
   <spy-select
+    *ngIf="total"
     class="ant-pagination-select"
     [value]="pageSize"
     [disableClear]="disableClear"

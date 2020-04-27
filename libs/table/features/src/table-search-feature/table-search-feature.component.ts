@@ -11,9 +11,9 @@ import {
   debounceTime,
   distinctUntilChanged,
   takeUntil,
-  filter,
   map,
 } from 'rxjs/operators';
+import { IconRemoveModule } from '@spryker/icon/icons';
 import { Subject, Observable } from 'rxjs';
 
 declare module '@spryker/table' {
@@ -47,14 +47,15 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   @Input() location = TableFeatureLocation.top;
   @Input() styles = { order: '99' };
   destroyed$ = new Subject();
-  setValue$ = new Subject<string>();
-  valueChange$ = this.setValue$.pipe(
-    filter(value => value.length > 2 || !value.length),
+  value$ = new Subject<string>();
+  valueChange$ = this.value$.pipe(
     debounceTime(300),
     distinctUntilChanged(),
     takeUntil(this.destroyed$),
   );
   placeholder$: Observable<string> | undefined;
+
+  removeIcon = IconRemoveModule.icon;
 
   ngAfterViewInit(): void {
     this.placeholder$ = (this.table?.config$ as Observable<
@@ -70,12 +71,16 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   }
 
   inputValueChange(event: string): void {
-    this.setValue$.next(event);
+    this.value$.next(event);
   }
 
   triggerUpdate(inputValue: string): void {
     this.dataConfiguratorService?.update({
       search: inputValue || '',
     });
+  }
+
+  clearInput(): void {
+    this.inputValueChange('');
   }
 }

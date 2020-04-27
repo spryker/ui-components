@@ -3,7 +3,7 @@
   [nzDropdownMenu]="menu"
   [nzPlacement]="placement"
   [nzDisabled]="disabled"
-  [nzVisible]="visible"
+  [(nzVisible)]="visible"
   (nzVisibleChange)="visibleChange.emit($event)"
 >
   <ng-content></ng-content>

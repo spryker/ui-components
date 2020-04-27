@@ -5,10 +5,8 @@ import {
   AfterViewInit,
   Input,
   OnDestroy,
-  ViewChild,
 } from '@angular/core';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
-import { InputComponent } from '@spryker/input';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -46,12 +44,11 @@ export interface TableSearchConfig {
 })
 export class TableSearchFeatureComponent extends TableFeatureComponent
   implements OnDestroy, AfterViewInit {
-  @ViewChild(InputComponent) input?: InputComponent;
   @Input() location = TableFeatureLocation.top;
   @Input() styles = { order: '99' };
   destroyed$ = new Subject();
-  setValue$ = new Subject<string>();
-  valueChange$ = this.setValue$.pipe(
+  value$ = new Subject<string>();
+  valueChange$ = this.value$.pipe(
     debounceTime(300),
     distinctUntilChanged(),
     takeUntil(this.destroyed$),
@@ -74,7 +71,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   }
 
   inputValueChange(event: string): void {
-    this.setValue$.next(event);
+    this.value$.next(event);
   }
 
   triggerUpdate(inputValue: string): void {
@@ -83,10 +80,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
     });
   }
 
-  suffixClickHandler(): void {
-    if (this.input && this.input.value) {
-      this.input.value = null;
-      this.inputValueChange('');
-    }
+  clearInput(): void {
+    this.inputValueChange('');
   }
 }

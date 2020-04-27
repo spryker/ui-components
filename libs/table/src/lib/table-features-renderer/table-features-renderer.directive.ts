@@ -1,5 +1,6 @@
 import {
   ApplicationRef,
+  ChangeDetectorRef,
   ComponentFactoryResolver,
   Directive,
   ElementRef,
@@ -12,7 +13,6 @@ import {
   Renderer2,
   TemplateRef,
   ViewContainerRef,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { isNonNullable } from '@spryker/utils';
 import { combineLatest, Observable, ReplaySubject, Subject } from 'rxjs';
@@ -176,14 +176,20 @@ export class TableFeaturesRendererDirective implements OnInit, OnDestroy {
 
   private updateFeatures(changes: IterableChanges<FeatureRecord>) {
     changes.forEachAddedItem(record =>
+      // Index always exists when adding feature
+      // tslint:disable-next-line: no-non-null-assertion
       this.renderFeatureTpl(record.item, record.currentIndex!),
     );
 
     changes.forEachMovedItem(record =>
+      // Index always exists when moving feature
+      // tslint:disable-next-line: no-non-null-assertion
       this.moveFeature(record.previousIndex!, record.currentIndex!),
     );
 
     changes.forEachRemovedItem(record =>
+      // Index always exists when removing feature
+      // tslint:disable-next-line: no-non-null-assertion
       this.destroyFeature(record.currentIndex!),
     );
   }

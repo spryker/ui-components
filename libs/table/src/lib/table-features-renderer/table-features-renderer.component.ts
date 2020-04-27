@@ -11,14 +11,10 @@ import { TableFeatureComponent } from '../table/table-feature.component';
       [spyTableFeaturesRendererFeatures]="features"
       [spyTableFeaturesRendererMaxFeatures]="maxFeatures"
       [spyTableFeaturesRendererContext]="context"
-      #featuresRenderer="spyTableFeaturesRenderer"
       let-feature
     >
       <div [ngStyle]="feature.featureStyles$ | async">
-        <ng-template
-          [spyTableRenderFeature]="feature"
-          [spyTableRenderFeatureRenderer]="featuresRenderer"
-        ></ng-template>
+        <ng-template [spyTableRenderFeature]="feature"></ng-template>
       </div>
     </ng-template>
   `,

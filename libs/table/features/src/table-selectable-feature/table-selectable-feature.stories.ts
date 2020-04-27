@@ -11,7 +11,6 @@ import {
 } from '@spryker/table/testing';
 import { IStory } from '@storybook/angular';
 
-import { TableFeaturesRendererTplComponent } from '../../../src/lib/table-features-renderer/table-features-renderer-tpl.component';
 import { TableTotalFeatureModule } from '../table-total-feature';
 import {
   TableSelectableFeatureComponent,
@@ -67,10 +66,7 @@ function getSelectableStory(
       providers: [
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: [
-            LayoutFlatHostComponent,
-            TableFeaturesRendererTplComponent,
-          ],
+          useValue: [LayoutFlatHostComponent],
           multi: true,
         },
       ],

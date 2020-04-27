@@ -16,7 +16,6 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
-import { TableFeaturesRendererTplComponent } from './table-features-renderer/table-features-renderer-tpl.component';
 import { TableFeaturesRendererComponent } from './table-features-renderer/table-features-renderer.component';
 import { TableFeaturesRendererDirective } from './table-features-renderer/table-features-renderer.directive';
 import { TableRenderFeatureDirective } from './table-features-renderer/table-render-feature.directive';
@@ -48,7 +47,6 @@ export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
     CoreTableComponent,
     TableColumnRendererComponent,
     ColTplDirective,
-    TableFeaturesRendererTplComponent,
     TableFeaturesRendererComponent,
     TableFeaturesRendererDirective,
     TableRenderFeatureDirective,

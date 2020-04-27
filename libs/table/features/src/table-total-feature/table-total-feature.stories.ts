@@ -11,7 +11,6 @@ import {
 } from '@spryker/table/testing';
 import { IStory } from '@storybook/angular';
 
-import { TableFeaturesRendererTplComponent } from '../../../src/lib/table-features-renderer/table-features-renderer-tpl.component';
 import { TableTotalFeatureComponent } from './table-total-feature.component';
 
 export default {
@@ -37,7 +36,7 @@ export const primary = (): IStory => ({
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableFeaturesRendererTplComponent],
+        useValue: [LayoutFlatHostComponent],
         multi: true,
       },
     ],

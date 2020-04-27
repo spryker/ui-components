@@ -1,16 +1,11 @@
 import {
-  ApplicationRef,
   ChangeDetectorRef,
-  ComponentFactoryResolver,
   Directive,
-  ElementRef,
-  Injector,
   Input,
   IterableChanges,
   IterableDiffers,
   OnDestroy,
   OnInit,
-  Renderer2,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
@@ -30,7 +25,6 @@ import {
   TableFeatureTplDirective,
 } from '../table/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table/table-feature.component';
-import { TableFeaturesRendererTplComponent } from './table-features-renderer-tpl.component';
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
 
 @Directive({
@@ -53,10 +47,6 @@ export class TableFeaturesRendererDirective implements OnInit, OnDestroy {
   @Input() set spyTableFeaturesRendererContext(val: TableFeatureTplContext) {
     this.context$.next(val);
   }
-
-  private featuresRendererFactory = this.cfr.resolveComponentFactory(
-    TableFeaturesRendererTplComponent,
-  );
 
   private featuresDiffer = this.iterableDiffers
     .find([])
@@ -126,29 +116,8 @@ export class TableFeaturesRendererDirective implements OnInit, OnDestroy {
     private templateRef: TemplateRef<TableFeaturesRendererContext>,
     private vcr: ViewContainerRef,
     private iterableDiffers: IterableDiffers,
-    private injector: Injector,
-    private cfr: ComponentFactoryResolver,
-    private renderer: Renderer2,
-    private appRef: ApplicationRef,
     private cdr: ChangeDetectorRef,
   ) {}
-
-  renderFeatureTo(location: ElementRef, feature: FeatureRecord) {
-    const componentRef = this.featuresRendererFactory.create(this.injector);
-
-    const parent = this.renderer.parentNode(location.nativeElement);
-
-    this.renderer.insertBefore(
-      parent,
-      componentRef.location.nativeElement,
-      location.nativeElement,
-    );
-
-    this.appRef.attachView(componentRef.hostView);
-
-    componentRef.instance.feature = feature;
-    componentRef.changeDetectorRef.detectChanges();
-  }
 
   ngOnInit(): void {
     this.featureChanges$

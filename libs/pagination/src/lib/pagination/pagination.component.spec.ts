@@ -122,4 +122,13 @@ describe('PaginationComponent', () => {
 
     expect(component.pageSizeChangeSpy).toHaveBeenCalled();
   });
+
+  it('spy-select should not be rendered if total value is 0', () => {
+    component.total = 0;
+    fixture.detectChanges();
+
+    const nzSelectElem = fixture.debugElement.query(By.css('spy-select'));
+
+    expect(nzSelectElem).toBeFalsy();
+  });
 });

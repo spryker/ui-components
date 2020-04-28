@@ -4,28 +4,26 @@ import {
   Input,
   OnChanges,
   OnInit,
-  SimpleChanges,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
+import { TypedSimpleChanges } from '@spryker/utils';
 import { combineLatest, of, ReplaySubject, Subject } from 'rxjs';
-import {
-  debounceTime,
-  map,
-  startWith,
-  switchMap,
-  takeUntil,
-} from 'rxjs/operators';
+import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 import { TableFeatureTplContext } from '../table/table-feature-tpl.directive';
 import { FeatureRecord } from './types';
 
+export class TableRenderFeatureDirectiveInputs {
+  @Input() spyTableRenderFeature?: FeatureRecord;
+}
+
 @Directive({
   selector: '[spyTableRenderFeature]',
 })
-export class TableRenderFeatureDirective implements OnInit, OnChanges {
-  @Input() spyTableRenderFeature?: FeatureRecord;
-
+export class TableRenderFeatureDirective
+  extends TableRenderFeatureDirectiveInputs
+  implements OnInit, OnChanges {
   private destroyed$ = new Subject<void>();
   private feature$ = new ReplaySubject<FeatureRecord>(1);
 
@@ -37,17 +35,21 @@ export class TableRenderFeatureDirective implements OnInit, OnChanges {
     startWith(undefined),
   );
 
-  constructor(private vcr: ViewContainerRef, private cdr: ChangeDetectorRef) {}
+  constructor(private vcr: ViewContainerRef, private cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit(): void {
     combineLatest([this.template$, this.templateContext$])
-      .pipe(debounceTime(0), takeUntil(this.destroyed$))
+      .pipe(takeUntil(this.destroyed$))
       .subscribe(([template, context]) =>
         this.renderFeature(template, context),
       );
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(
+    changes: TypedSimpleChanges<TableRenderFeatureDirectiveInputs>,
+  ): void {
     if (changes.spyTableRenderFeature) {
       this.feature$.next(this.spyTableRenderFeature);
     }

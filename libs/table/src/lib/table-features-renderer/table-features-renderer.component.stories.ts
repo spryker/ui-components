@@ -21,7 +21,7 @@ class MockTableFeatureComponent extends TableFeatureComponent {
   name = 'mock-feature';
   location = 'mocked-location';
   constructor(tplDirectives: QueryList<TableFeatureTplDirective>) {
-    super();
+    super(null as any);
     this.tplDirectives = tplDirectives;
   }
 }

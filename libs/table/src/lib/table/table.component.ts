@@ -1,11 +1,14 @@
 import {
+  AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
   Input,
+  IterableDiffers,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -32,8 +35,10 @@ import {
   shareReplay,
   startWith,
   switchMap,
+  takeUntil,
 } from 'rxjs/operators';
 
+import { TableFeaturesRendererService } from '../table-features-renderer/table-features-renderer.service';
 import { TableActionService } from './action.service';
 import { ColTplDirective } from './col-tpl.directive';
 import { TableColumnsResolverService } from './columns-resolver.service';
@@ -85,9 +90,11 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
     TableDataConfiguratorService,
     TableColumnsResolverService,
     TableActionService,
+    TableFeaturesRendererService,
   ],
 })
-export class CoreTableComponent implements TableComponent, OnInit, OnChanges {
+export class CoreTableComponent
+  implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy {
   @Input() @ToJson() config?: TableConfig;
   @Input() tableId?: string;
   /**
@@ -113,9 +120,7 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges {
   }
 
   @ContentChildren(TableFeatureDirective)
-  set featureDirectives(featureDirectives: QueryList<TableFeatureDirective>) {
-    this.updateFeatures(featureDirectives.map(feature => feature.component));
-  }
+  featureDirectives?: QueryList<TableFeatureDirective>;
 
   featureLocation = TableFeatureLocation;
   featureComponentType = TableFeatureComponent;
@@ -173,6 +178,12 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges {
   rowClasses: Record<string, Record<string, boolean>> = {};
   actions?: DropdownItem[];
 
+  private destroyed$ = new Subject<void>();
+
+  private featuresDiffer = this.iterableDiffers
+    .find([])
+    .create<TableFeatureComponent>();
+
   private handleStreamError = () => (error: unknown) => {
     this.error$.next(error);
     return EMPTY;
@@ -189,6 +200,7 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges {
 
   constructor(
     private cdr: ChangeDetectorRef,
+    private iterableDiffers: IterableDiffers,
     private dataFetcherService: TableDataFetcherService,
     private dataConfiguratorService: TableDataConfiguratorService,
     private columnsResolverService: TableColumnsResolverService,
@@ -204,6 +216,26 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges {
       this.setConfig$.next(this.config);
       this.updateActions();
     }
+  }
+
+  ngAfterContentInit(): void {
+    if (!this.featureDirectives) {
+      return;
+    }
+
+    this.featureDirectives.changes
+      .pipe(
+        startWith(null),
+        // featureDirectives were already checked above
+        // tslint:disable-next-line: no-non-null-assertion
+        map(() => this.featureDirectives!.map(feature => feature.component)),
+        takeUntil(this.destroyed$),
+      )
+      .subscribe(features => this.updateFeatures(features));
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
   }
 
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>) {
@@ -236,8 +268,11 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges {
 
   /** @internal */
   updateFeatures(features: TableFeatureComponent[]) {
-    this.features = features;
+    if (!this.featuresDiffer.diff(features)) {
+      return;
+    }
 
+    this.features = features;
     this.features.forEach(feature => this.initFeature(feature));
   }
 
@@ -268,6 +303,11 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges {
   /** @internal */
   trackByColumns(index: number, item: TableColumn): string {
     return item.id;
+  }
+
+  /** @internal */
+  trackByData(index: number, data: TableDataRow) {
+    return index;
   }
 
   /** @internal */

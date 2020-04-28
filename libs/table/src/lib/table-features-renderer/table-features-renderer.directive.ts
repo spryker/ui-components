@@ -4,99 +4,64 @@ import {
   Input,
   IterableChanges,
   IterableDiffers,
+  OnChanges,
   OnDestroy,
   OnInit,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { isNonNullable } from '@spryker/utils';
+import { isNonNullable, TypedSimpleChanges } from '@spryker/utils';
 import { combineLatest, Observable, ReplaySubject, Subject } from 'rxjs';
 import {
   debounceTime,
   filter,
   map,
   startWith,
-  switchMap,
+  switchAll,
   takeUntil,
+  tap,
 } from 'rxjs/operators';
 
-import {
-  TableFeatureTplContext,
-  TableFeatureTplDirective,
-} from '../table/table-feature-tpl.directive';
+import { TableFeatureTplContext } from '../table/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table/table-feature.component';
+import { TableFeaturesRendererService } from './table-features-renderer.service';
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
+
+export class TableFeaturesRendererDirectiveInputs {
+  /** Location of the feature */
+  @Input() spyTableFeaturesRenderer?: string;
+  @Input() spyTableFeaturesRendererFeatures?: TableFeatureComponent[];
+  @Input() spyTableFeaturesRendererMaxFeatures?: number;
+  @Input() spyTableFeaturesRendererContext?: TableFeatureTplContext;
+}
 
 @Directive({
   selector: '[spyTableFeaturesRenderer]',
   exportAs: 'spyTableFeaturesRenderer',
 })
-export class TableFeaturesRendererDirective implements OnInit, OnDestroy {
-  @Input() set spyTableFeaturesRenderer(val: string) {
-    this.location$.next(val);
-  }
-
-  @Input() set spyTableFeaturesRendererFeatures(val: TableFeatureComponent[]) {
-    this.features$.next(val || []);
-  }
-
-  @Input() set spyTableFeaturesRendererMaxFeatures(val: number) {
-    this.maxFeatures$.next(val);
-  }
-
-  @Input() set spyTableFeaturesRendererContext(val: TableFeatureTplContext) {
-    this.context$.next(val);
-  }
-
+export class TableFeaturesRendererDirective
+  extends TableFeaturesRendererDirectiveInputs
+  implements OnInit, OnChanges, OnDestroy {
   private featuresDiffer = this.iterableDiffers
     .find([])
     .create<FeatureRecord>((idx, feature) => feature.component);
 
   private destroyed$ = new Subject<void>();
-  private location$ = new ReplaySubject<string>(1);
-  private features$ = new ReplaySubject<TableFeatureComponent[]>(1);
   private maxFeatures$ = new ReplaySubject<number>(1);
   private context$ = new ReplaySubject<TableFeatureTplContext>(1);
 
-  private featureLocations$ = this.features$.pipe(
-    switchMap(features =>
-      combineLatest(
-        features.map(feature =>
-          feature.tplDirectives$.pipe(
-            switchMap(tplDirectives =>
-              combineLatest(
-                tplDirectives.map(tplDirective => tplDirective.locations$),
-              ),
-            ),
-            debounceTime(0),
-          ),
-        ),
-      ),
+  private setAllFeatureRecords$ = new ReplaySubject<
+    Observable<FeatureRecord[]>
+  >(1);
+  private allFeatureRecords$ = this.setAllFeatureRecords$.pipe(
+    switchAll(),
+    map(features =>
+      features.map(feature => ({
+        ...feature,
+        template: this.templateRef,
+        featureContext$: this.context$,
+      })),
     ),
-    debounceTime(0),
-  );
-
-  private allFeatureRecords$: Observable<FeatureRecord[]> = combineLatest([
-    this.features$,
-    this.location$,
-    this.featureLocations$,
-  ]).pipe(
-    debounceTime(0),
-    switchMap(([features, location, featureLocations]) =>
-      combineLatest(
-        features.map((feature, i) =>
-          feature.tplDirectives$.pipe(
-            map(tplDirectives =>
-              tplDirectives
-                .filter((_, j) => featureLocations[i][j].includes(location))
-                .map(tplDirective => this.mapFeature(feature, tplDirective)),
-            ),
-          ),
-        ),
-      ),
-    ),
-    debounceTime(0),
-    map(featureRecords => featureRecords.flat()),
   );
 
   private featureRecords$: Observable<FeatureRecord[]> = combineLatest([
@@ -110,6 +75,7 @@ export class TableFeaturesRendererDirective implements OnInit, OnDestroy {
   private featureChanges$ = this.featureRecords$.pipe(
     map(features => this.featuresDiffer.diff(features)),
     filter(isNonNullable),
+    tap(features => console.log('features', features)),
   );
 
   constructor(
@@ -117,7 +83,10 @@ export class TableFeaturesRendererDirective implements OnInit, OnDestroy {
     private vcr: ViewContainerRef,
     private iterableDiffers: IterableDiffers,
     private cdr: ChangeDetectorRef,
-  ) {}
+    private featuresRendererService: TableFeaturesRendererService,
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.featureChanges$
@@ -125,22 +94,33 @@ export class TableFeaturesRendererDirective implements OnInit, OnDestroy {
       .subscribe(features => this.updateFeatures(features));
   }
 
+  ngOnChanges(
+    changes: TypedSimpleChanges<TableFeaturesRendererDirectiveInputs>,
+  ): void {
+    if (
+      changes.spyTableFeaturesRenderer ||
+      changes.spyTableFeaturesRendererFeatures
+    ) {
+      this.setAllFeatureRecords$.next(
+        this.featuresRendererService.trackFeatureRecords(
+          this.spyTableFeaturesRendererFeatures,
+          this.spyTableFeaturesRenderer,
+        ),
+      );
+    }
+
+    if (changes.spyTableFeaturesRendererContext) {
+      this.context$.next(this.spyTableFeaturesRendererContext);
+    }
+
+    if (changes.spyTableFeaturesRendererMaxFeatures) {
+      this.maxFeatures$.next(this.spyTableFeaturesRendererMaxFeatures);
+    }
+  }
+
   ngOnDestroy(): void {
     this.destroyed$.next();
     this.vcr.clear();
-  }
-
-  private mapFeature(
-    feature: TableFeatureComponent,
-    tplDirective: TableFeatureTplDirective,
-  ): FeatureRecord {
-    return {
-      component: feature,
-      template: this.templateRef,
-      featureTemplate: tplDirective.template,
-      featureContext$: this.context$,
-      featureStyles$: tplDirective.styles$,
-    };
   }
 
   private updateFeatures(changes: IterableChanges<FeatureRecord>) {

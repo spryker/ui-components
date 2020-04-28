@@ -1,11 +1,13 @@
 import {
   AfterViewInit,
   Component,
+  Injector,
+  IterableDiffers,
   QueryList,
   ViewChildren,
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { map, startWith, switchAll } from 'rxjs/operators';
+import { filter, map, shareReplay, startWith, switchAll } from 'rxjs/operators';
 
 import { TableColumnsResolverService } from './columns-resolver.service';
 import { TableDataConfiguratorService } from './data-configurator.service';
@@ -54,7 +56,17 @@ export abstract class TableFeatureComponent implements AfterViewInit {
   private setTplDirectives$ = new ReplaySubject<
     Observable<TableFeatureTplDirective[]>
   >(1);
-  tplDirectives$ = this.setTplDirectives$.pipe(switchAll());
+  tplDirectives$ = this.setTplDirectives$.pipe(
+    switchAll(),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+
+  private iterableDiffers = this.injector.get(IterableDiffers);
+  private tplDirectivesDiffer = this.iterableDiffers
+    .find([])
+    .create<TableFeatureTplDirective>();
+
+  constructor(private injector: Injector) {}
 
   ngAfterViewInit(): void {
     if (!this.tplDirectives) {
@@ -63,10 +75,13 @@ export abstract class TableFeatureComponent implements AfterViewInit {
 
     this.setTplDirectives$.next(
       this.tplDirectives.changes.pipe(
-        startWith(this.tplDirectives.toArray()),
+        startWith(undefined),
         // This null-check is done above
         // tslint:disable-next-line: no-non-null-assertion
         map(() => this.tplDirectives!.toArray()),
+        // Only pass when actual changes were made to directives
+        // Otherwise Angular will emit on every re-renders
+        filter(tplDirectives => !!this.tplDirectivesDiffer.diff(tplDirectives)),
       ),
     );
   }

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Injector,
   OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
@@ -58,8 +59,8 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
   private destroyed$ = new Subject<void>();
   private rowsData: TableDataRow[] = [];
 
-  constructor(private cdr: ChangeDetectorRef) {
-    super();
+  constructor(private cdr: ChangeDetectorRef, injector: Injector) {
+    super(injector);
   }
 
   ngOnDestroy(): void {

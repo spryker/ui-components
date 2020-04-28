@@ -59,7 +59,11 @@
 
   <tbody>
     <tr
-      *ngFor="let data of tableData$ | async; index as indexOfElement"
+      *ngFor="
+        let data of tableData$ | async;
+        trackBy: trackByData;
+        index as indexOfElement
+      "
       [ngClass]="rowClasses[indexOfElement]"
     >
       <ng-template

@@ -22,8 +22,8 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { TableFeatureTplContext } from '../table/table-feature-tpl.directive';
-import { TableFeatureComponent } from '../table/table-feature.component';
+import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableFeaturesRendererService } from './table-features-renderer.service';
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
 

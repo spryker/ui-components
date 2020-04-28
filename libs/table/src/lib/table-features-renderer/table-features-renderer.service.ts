@@ -9,7 +9,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { TableFeatureComponent } from '../table/table-feature.component';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { FeatureRecord } from './types';
 
 @Injectable()

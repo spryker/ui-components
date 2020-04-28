@@ -123,3 +123,16 @@ export interface TableComponent {
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
   setRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
 }
+
+export enum TableFeatureLocation {
+  top = 'top',
+  beforeTable = 'before-table',
+  headerExt = 'header-ext',
+  beforeColsHeader = 'before-cols-header',
+  beforeCols = 'before-cols',
+  afterColsHeader = 'after-cols-header',
+  afterCols = 'after-cols',
+  afterTable = 'after-table',
+  bottom = 'bottom',
+  hidden = 'hidden',
+}

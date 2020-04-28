@@ -9,24 +9,12 @@ import {
 import { Observable, ReplaySubject } from 'rxjs';
 import { filter, map, shareReplay, startWith, switchAll } from 'rxjs/operators';
 
-import { TableColumnsResolverService } from './columns-resolver.service';
-import { TableDataConfiguratorService } from './data-configurator.service';
-import { TableDataFetcherService } from './data-fetcher.service';
-import { TableComponent } from './table';
-import { TableEventBus } from './table-event-bus';
+import { TableColumnsResolverService } from '../table/columns-resolver.service';
+import { TableDataConfiguratorService } from '../table/data-configurator.service';
+import { TableDataFetcherService } from '../table/data-fetcher.service';
+import { TableComponent } from '../table/table';
+import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
-
-export class TableFeatureEventBus {
-  constructor(private name: string, private tableEventBus: TableEventBus) {}
-
-  emit<D = unknown>(data: D, eventName?: string) {
-    this.tableEventBus.emit(this.name, data, eventName);
-  }
-
-  on<D = unknown>(feature: string, eventName?: string): Observable<D> {
-    return this.tableEventBus.on<D>(feature, eventName);
-  }
-}
 
 @Component({
   // This is abstract component so selector is ignored

@@ -21,8 +21,8 @@ import { TableFeaturesRendererDirective } from './table-features-renderer/table-
 import { TableRenderFeatureDirective } from './table-features-renderer/table-render-feature.directive';
 import { ColTplDirective } from './table/col-tpl.directive';
 import { TableColumnComponentDeclaration } from './table/table';
-import { TableFeatureTplDirective } from './table/table-feature-tpl.directive';
-import { TableFeatureDirective } from './table/table-feature.directive';
+import { TableFeatureTplDirective } from './table-feature/table-feature-tpl.directive';
+import { TableFeatureDirective } from './table-feature/table-feature.directive';
 import { CoreTableComponent } from './table/table.component';
 
 export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<

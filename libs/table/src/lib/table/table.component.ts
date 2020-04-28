@@ -38,6 +38,9 @@ import {
   takeUntil,
 } from 'rxjs/operators';
 
+import { TableFeatureEventBus } from '../table-feature/table-feature-event-bus';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
+import { TableFeatureDirective } from '../table-feature/table-feature.directive';
 import { TableFeaturesRendererService } from '../table-features-renderer/table-features-renderer.service';
 import { TableActionService } from './action.service';
 import { ColTplDirective } from './col-tpl.directive';
@@ -53,28 +56,11 @@ import {
   TableConfig,
   TableDataConfig,
   TableDataRow,
+  TableFeatureLocation,
   TableRowAction,
   TableRowActionBase,
 } from './table';
 import { TableEventBus } from './table-event-bus';
-import {
-  TableFeatureComponent,
-  TableFeatureEventBus,
-} from './table-feature.component';
-import { TableFeatureDirective } from './table-feature.directive';
-
-export enum TableFeatureLocation {
-  top = 'top',
-  beforeTable = 'before-table',
-  headerExt = 'header-ext',
-  beforeColsHeader = 'before-cols-header',
-  beforeCols = 'before-cols',
-  afterColsHeader = 'after-cols-header',
-  afterCols = 'after-cols',
-  afterTable = 'after-table',
-  bottom = 'bottom',
-  hidden = 'hidden',
-}
 
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   shareReplay({ bufferSize: 1, refCount: true });

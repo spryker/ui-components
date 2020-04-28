@@ -8,8 +8,8 @@ import { TableDataFetcherService } from '../table/data-fetcher.service';
 import {
   TableFeatureTplContext,
   TableFeatureTplDirective,
-} from '../table/table-feature-tpl.directive';
-import { TableFeatureComponent } from '../table/table-feature.component';
+} from '../table-feature/table-feature-tpl.directive';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { CoreTableComponent } from '../table/table.component';
 // import { TableFeaturesRendererTplComponent } from './table-features-renderer.component';
 

@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background: red;
+}
+
 .@{table-prefix-cls} {
   margin-bottom: @table-bottom-margin;
   font: @font-weight-medium @font-size-base @font-family;
@@ -158,17 +162,20 @@
     }
 
     > td {
-      position: relative;
       padding: 0;
       border-bottom: none;
       z-index: 0;
+      height: inherit;
 
       .@{table-prefix-cls}-column-inner {
+        position: relative;
         padding: @table-body-padding-vertical @table-padding-horizontal;
         color: @table-column-body-color;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        height: 100%;
+        z-index: 0;
 
         &--align-right {
           align-items: flex-end;

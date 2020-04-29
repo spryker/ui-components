@@ -101,6 +101,8 @@ export interface TableConfig {
   columns?: TableColumns;
   pageSizes?: number[];
   rowActions?: TableRowActionBase[];
+  // Features may expect it's config under it's namespace
+  [featureName: string]: unknown;
 }
 
 export type ColumnsTransformer = (

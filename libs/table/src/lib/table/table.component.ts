@@ -14,11 +14,14 @@ import {
   QueryList,
   SimpleChanges,
   TemplateRef,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { DropdownItem } from '@spryker/dropdown';
 import { ToJson } from '@spryker/utils';
 import {
+  BehaviorSubject,
+  combineLatest,
   EMPTY,
   merge,
   MonoTypeOperatorFunction,
@@ -36,8 +39,10 @@ import {
   startWith,
   switchMap,
   takeUntil,
+  tap,
 } from 'rxjs/operators';
 
+import { TableFeatureLoaderService } from '../table-feature-loader/table-feature-loader.service';
 import { TableFeatureEventBus } from '../table-feature/table-feature-event-bus';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableFeatureDirective } from '../table-feature/table-feature.directive';
@@ -153,6 +158,46 @@ export class CoreTableComponent
   page$ = this.data$.pipe(pluck('page'));
   tableData$ = this.data$.pipe(pluck('data'));
 
+  featureFactories$ = this.config$.pipe(
+    switchMap(config => this.featureLoaderService.loadFactoriesFor(config)),
+  );
+
+  featureRefs$ = this.featureFactories$.pipe(
+    map(featureFactories =>
+      Object.entries(featureFactories).map(([name, featureFactory]) => {
+        const featureRef = featureFactory.create(this.vcr.injector);
+
+        // Init feature name component
+        featureRef.instance.name = name;
+
+        // Add feature to the view CD
+        this.vcr.insert(featureRef.hostView);
+
+        featureRef.changeDetectorRef.detectChanges();
+
+        return featureRef;
+      }),
+    ),
+    shareReplaySafe(),
+  );
+
+  configFeatures$ = this.featureRefs$.pipe(
+    map(featureRefs => featureRefs.map(featureRef => featureRef.instance)),
+    startWith([]),
+    shareReplaySafe(),
+  );
+
+  projectedFeatures$ = new BehaviorSubject<TableFeatureComponent[]>([]);
+
+  features$ = combineLatest([
+    this.configFeatures$,
+    this.projectedFeatures$,
+  ]).pipe(
+    map(allFeatures => allFeatures.flat()),
+    tap(features => features.forEach(feature => this.initFeature(feature))),
+    shareReplaySafe(),
+  );
+
   isLoading$ = merge(
     this.dataConfiguratorService.config$.pipe(mapTo(true)),
     this.data$.pipe(mapTo(false)),
@@ -186,11 +231,13 @@ export class CoreTableComponent
 
   constructor(
     private cdr: ChangeDetectorRef,
+    private vcr: ViewContainerRef,
     private iterableDiffers: IterableDiffers,
     private dataFetcherService: TableDataFetcherService,
     private dataConfiguratorService: TableDataConfiguratorService,
     private columnsResolverService: TableColumnsResolverService,
     private tableActionService: TableActionService,
+    private featureLoaderService: TableFeatureLoaderService,
   ) {}
 
   ngOnInit(): void {
@@ -258,8 +305,7 @@ export class CoreTableComponent
       return;
     }
 
-    this.features = features;
-    this.features.forEach(feature => this.initFeature(feature));
+    this.projectedFeatures$.next(features);
   }
 
   /** @internal */
@@ -336,6 +382,7 @@ export class CoreTableComponent
   }
 
   private initFeature(feature: TableFeatureComponent) {
+    feature.setConfig(this.config?.[feature.name]);
     feature.setTableComponent(this);
     feature.setTableEventBus(
       new TableFeatureEventBus(feature.name, this.tableEventBus),

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { OrchestratorCoreModule } from '@orchestrator/core';
 import {
   LayoutFlatHostComponent,
@@ -14,20 +14,18 @@ import { ContextModule } from '@spryker/utils';
 import { SelectComponentsModule } from '@spryker/web-components';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
+import { provideTableColumnComponents } from './column-type/tokens';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
+import { provideTableFeatures } from './table-feature-loader/tokens';
+import { TableFeaturesRegistry } from './table-feature-loader/types';
+import { TableFeatureModule } from './table-feature/table-feature.module';
 import { TableFeaturesRendererComponent } from './table-features-renderer/table-features-renderer.component';
 import { TableFeaturesRendererDirective } from './table-features-renderer/table-features-renderer.directive';
 import { TableRenderFeatureDirective } from './table-features-renderer/table-render-feature.directive';
 import { ColTplDirective } from './table/col-tpl.directive';
 import { TableColumnComponentDeclaration } from './table/table';
-import { TableFeatureTplDirective } from './table-feature/table-feature-tpl.directive';
-import { TableFeatureDirective } from './table-feature/table-feature.directive';
 import { CoreTableComponent } from './table/table.component';
-
-export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
-  TableColumnComponentDeclaration[]
->('TABLE_COLUMN_COMPONENT_TOKEN');
 
 @NgModule({
   imports: [
@@ -42,6 +40,7 @@ export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
     IconActionModule,
     IconModule,
     ContextModule,
+    TableFeatureModule,
   ],
   declarations: [
     CoreTableComponent,
@@ -50,16 +49,9 @@ export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
     TableFeaturesRendererComponent,
     TableFeaturesRendererDirective,
     TableRenderFeatureDirective,
-    TableFeatureDirective,
     TableColumnListComponent,
-    TableFeatureTplDirective,
   ],
-  exports: [
-    CoreTableComponent,
-    ColTplDirective,
-    TableFeatureDirective,
-    TableFeatureTplDirective,
-  ],
+  exports: [CoreTableComponent, ColTplDirective, TableFeatureModule],
 })
 export class TableModule {
   static forRoot(): ModuleWithProviders<TableModule> {
@@ -85,12 +77,17 @@ export class TableModule {
         OrchestratorCoreModule.registerComponents(
           components as Required<TableColumnComponentDeclaration>,
         ),
-        {
-          provide: TABLE_COLUMN_COMPONENT_TOKEN,
-          useValue: components,
-          multi: true,
-        },
+        provideTableColumnComponents(components),
       ],
+    };
+  }
+
+  static withFeatures(
+    features: TableFeaturesRegistry,
+  ): ModuleWithProviders<TableModule> {
+    return {
+      ngModule: TableModule,
+      providers: [provideTableFeatures(features)],
     };
   }
 }

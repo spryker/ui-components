@@ -1,14 +1,14 @@
 <div class="ant-table-features ant-table-features--top">
   <spy-table-features-renderer
     [location]="featureLocation.top"
-    [features]="features"
+    [features]="features$ | async"
   ></spy-table-features-renderer>
 </div>
 
 <div class="ant-table-features ant-table-features--before-table">
   <spy-table-features-renderer
     [location]="featureLocation.beforeTable"
-    [features]="features"
+    [features]="features$ | async"
   ></spy-table-features-renderer>
 </div>
 
@@ -17,7 +17,7 @@
     <tr>
       <ng-template
         [spyTableFeaturesRenderer]="featureLocation.beforeColsHeader"
-        [spyTableFeaturesRendererFeatures]="features"
+        [spyTableFeaturesRendererFeatures]="features$ | async"
         let-feature
       >
         <th [ngStyle]="feature.featureStyles$ | async">
@@ -36,7 +36,7 @@
 
       <ng-template
         [spyTableFeaturesRenderer]="featureLocation.afterColsHeader"
-        [spyTableFeaturesRendererFeatures]="features"
+        [spyTableFeaturesRendererFeatures]="features$ | async"
         let-feature
       >
         <th [ngStyle]="feature.featureStyles$ | async">
@@ -46,7 +46,7 @@
 
       <ng-template
         [spyTableFeaturesRenderer]="featureLocation.headerExt"
-        [spyTableFeaturesRendererFeatures]="features"
+        [spyTableFeaturesRendererFeatures]="features$ | async"
         [spyTableFeaturesRendererMaxFeatures]="1"
         let-feature
       >
@@ -68,7 +68,7 @@
     >
       <ng-template
         [spyTableFeaturesRenderer]="featureLocation.beforeCols"
-        [spyTableFeaturesRendererFeatures]="features"
+        [spyTableFeaturesRendererFeatures]="features$ | async"
         [spyTableFeaturesRendererContext]="{ data: data, i: indexOfElement }"
         let-feature
       >
@@ -110,7 +110,7 @@
 
       <ng-template
         [spyTableFeaturesRenderer]="featureLocation.afterCols"
-        [spyTableFeaturesRendererFeatures]="features"
+        [spyTableFeaturesRendererFeatures]="features$ | async"
         [spyTableFeaturesRendererContext]="{ data: data, i: indexOfElement }"
         let-feature
       >
@@ -127,7 +127,7 @@
 <div class="ant-table-features ant-table-features--after-table">
   <spy-table-features-renderer
     [location]="featureLocation.afterTable"
-    [features]="features"
+    [features]="features$ | async"
   ></spy-table-features-renderer>
 </div>
 
@@ -144,7 +144,7 @@
 <div class="ant-table-features ant-table-features--bottom">
   <spy-table-features-renderer
     [location]="featureLocation.bottom"
-    [features]="features"
+    [features]="features$ | async"
   ></spy-table-features-renderer>
 </div>
 
@@ -154,7 +154,7 @@
 >
   <spy-table-features-renderer
     [location]="featureLocation.hidden"
-    [features]="features"
+    [features]="features$ | async"
   ></spy-table-features-renderer>
 </div>
 

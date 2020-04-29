@@ -5,6 +5,7 @@ import {
   IterableDiffers,
   QueryList,
   ViewChildren,
+  Input,
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { filter, map, shareReplay, startWith, switchAll } from 'rxjs/operators';
@@ -22,19 +23,23 @@ import { TableFeatureTplDirective } from './table-feature-tpl.directive';
   selector: 'selector',
   template: ``,
 })
-export abstract class TableFeatureComponent implements AfterViewInit {
-  abstract readonly name: string;
+export abstract class TableFeatureComponent<C = unknown>
+  implements AfterViewInit {
+  @Input()
+  name = '';
 
   @ViewChildren(TableFeatureTplDirective) tplDirectives?: QueryList<
     TableFeatureTplDirective
   >;
 
+  config?: C;
   table?: TableComponent;
   tableEventBus?: TableFeatureEventBus;
   columnsResolverService?: TableColumnsResolverService;
   dataFetcherService?: TableDataFetcherService;
   dataConfiguratorService?: TableDataConfiguratorService;
 
+  config$ = new ReplaySubject<C>(1);
   table$ = new ReplaySubject<TableComponent>(1);
   tableEventBus$ = new ReplaySubject<TableFeatureEventBus>(1);
   columnsResolverService$ = new ReplaySubject<TableColumnsResolverService>(1);
@@ -72,6 +77,11 @@ export abstract class TableFeatureComponent implements AfterViewInit {
         filter(tplDirectives => !!this.tplDirectivesDiffer.diff(tplDirectives)),
       ),
     );
+  }
+
+  setConfig(config: C): void {
+    this.config = config;
+    this.config$.next(config);
   }
 
   setTableComponent(table: TableComponent): void {

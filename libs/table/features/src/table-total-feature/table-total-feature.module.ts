@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TableModule } from '@spryker/table';
+import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
 
 import { TableTotalFeatureComponent } from './table-total-feature.component';
 
 @NgModule({
-  imports: [CommonModule, TableModule],
+  imports: [CommonModule, TableFeatureModule],
   exports: [TableTotalFeatureComponent],
   declarations: [TableTotalFeatureComponent],
 })
-export class TableTotalFeatureModule {}
+export class TableTotalFeatureModule implements ModuleWithFeature {
+  featureComponent = TableTotalFeatureComponent;
+}

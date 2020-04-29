@@ -19,7 +19,6 @@ import {
   startWith,
   switchAll,
   takeUntil,
-  tap,
 } from 'rxjs/operators';
 
 import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
@@ -75,7 +74,6 @@ export class TableFeaturesRendererDirective
   private featureChanges$ = this.featureRecords$.pipe(
     map(features => this.featuresDiffer.diff(features)),
     filter(isNonNullable),
-    tap(features => console.log('features', features)),
   );
 
   constructor(

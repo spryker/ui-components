@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, NgModule, Type } from '@angular/core';
+import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { CheckboxModule } from '@spryker/checkbox';
@@ -12,13 +12,8 @@ import {
 import { IStory } from '@storybook/angular';
 
 import { TableTotalFeatureModule } from '../table-total-feature';
-import {
-  TableSelectableFeatureComponent,
-  TableSelectionChangeEvent,
-} from './table-selectable-feature.component';
-
-@NgModule({})
-class NoopModule {}
+import { TableSelectionChangeEvent } from './table-selectable-feature.component';
+import { TableSelectableFeatureModule } from './table-selectable-feature.module';
 
 export default {
   title: 'TableSelectableFeatureComponent',
@@ -30,12 +25,27 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const primary = getSelectableStory(
+export const viaHtml = getSelectableStory(
   `
     <spy-table [config]="config" [events]="{selectable: logSelectionChange}" [mockHttp]="mockHttp">
       <spy-table-selectable-feature spy-table-feature></spy-table-selectable-feature>
     </spy-table>
   `,
+  [TableSelectableFeatureModule],
+);
+
+export const viaConfig = getSelectableStory(
+  `
+    <spy-table [config]="config" [events]="{selectable: logSelectionChange}" [mockHttp]="mockHttp">
+  `,
+  [
+    TableModule.withFeatures({
+      selectable: () =>
+        import('./table-selectable-feature.module').then(
+          m => m.TableSelectableFeatureModule,
+        ),
+    }),
+  ],
 );
 
 export const withTotalFeature = getSelectableStory(
@@ -45,12 +55,12 @@ export const withTotalFeature = getSelectableStory(
       <spy-table-total-feature spy-table-feature></spy-table-total-feature>
     </spy-table>
   `,
-  TableTotalFeatureModule,
+  [TableSelectableFeatureModule, TableTotalFeatureModule],
 );
 
 function getSelectableStory(
   template: string,
-  extraNgModule: Type<any> = NoopModule,
+  extraNgModules: any[] = [],
 ): () => IStory {
   return () => ({
     moduleMetadata: {
@@ -60,9 +70,8 @@ function getSelectableStory(
         MockHttpModule,
         CheckboxModule,
         TableModule.forRoot(),
-        extraNgModule,
+        ...extraNgModules,
       ],
-      declarations: [TableSelectableFeatureComponent],
       providers: [
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
@@ -80,6 +89,7 @@ function getSelectableStory(
           { id: 'col2', title: 'Column #2' },
           { id: 'col3', title: 'Column #3' },
         ],
+        selectable: true, // This will enable feature via config
       } as TableConfig,
       mockHttp: setMockHttp([
         {

@@ -315,6 +315,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   private initCheckedRows(data: TableData): void {
     let uninitedRowsLength = data.data.length;
+    this.checkedRows = {};
 
     while (uninitedRowsLength--) {
       this.checkedRows[uninitedRowsLength] = false;

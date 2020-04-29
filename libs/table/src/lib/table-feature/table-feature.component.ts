@@ -2,14 +2,15 @@ import {
   AfterViewInit,
   Component,
   Injector,
+  Input,
   IterableDiffers,
   QueryList,
   ViewChildren,
-  Input,
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { filter, map, shareReplay, startWith, switchAll } from 'rxjs/operators';
 
+import { TableFeatureConfig } from '../table-config/types';
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
 import { TableDataFetcherService } from '../table/data-fetcher.service';
@@ -23,8 +24,9 @@ import { TableFeatureTplDirective } from './table-feature-tpl.directive';
   selector: 'selector',
   template: ``,
 })
-export abstract class TableFeatureComponent<C = unknown>
-  implements AfterViewInit {
+export abstract class TableFeatureComponent<
+  C extends TableFeatureConfig = TableFeatureConfig
+> implements AfterViewInit {
   @Input()
   name = '';
 

@@ -14,6 +14,7 @@ import { InjectionTokenType } from '@spryker/utils';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
 
+import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableConfig } from '../table/table';
 import { TableFeaturesRegistryToken } from './tokens';
@@ -95,7 +96,9 @@ export class TableFeatureLoaderService implements OnDestroy {
   ): Observable<Record<string, ComponentFactory<TableFeatureComponent>>> {
     const configNames = Object.keys(config);
     const featureNames = configNames.filter(
-      name => name in this.featuresRegistry,
+      name =>
+        name in this.featuresRegistry &&
+        (config[name] as TableFeatureConfig).enabled !== false,
     );
 
     if (featureNames.length === 0) {

@@ -102,7 +102,7 @@ export interface TableConfig {
   pageSizes?: number[];
   rowActions?: TableRowActionBase[];
   // Features may expect it's config under it's namespace
-  [featureName: string]: unknown;
+  [featureName: string]: unknown; // FIXME: Replace `unknown` to `TableFeatureConfig`
 }
 
 export type ColumnsTransformer = (

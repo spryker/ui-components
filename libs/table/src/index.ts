@@ -14,3 +14,5 @@ export * from './lib/table/col-tpl.directive';
 export * from './lib/column-type';
 export * from './lib/table-feature-loader/types';
 export * from './lib/table-feature-loader/tokens';
+export * from './lib/table-config/types';
+export * from './lib/table-config/table-config-default';

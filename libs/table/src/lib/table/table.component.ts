@@ -42,6 +42,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
+import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureLoaderService } from '../table-feature-loader/table-feature-loader.service';
 import { TableFeatureEventBus } from '../table-feature/table-feature-event-bus';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
@@ -66,6 +67,7 @@ import {
   TableRowActionBase,
 } from './table';
 import { TableEventBus } from './table-event-bus';
+import { TableConfigService } from '../table-config/table-config.service';
 
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   shareReplay({ bufferSize: 1, refCount: true });
@@ -238,6 +240,7 @@ export class CoreTableComponent
     private columnsResolverService: TableColumnsResolverService,
     private tableActionService: TableActionService,
     private featureLoaderService: TableFeatureLoaderService,
+    private configService: TableConfigService,
   ) {}
 
   ngOnInit(): void {
@@ -246,6 +249,7 @@ export class CoreTableComponent
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config) {
+      this.config = this.configService.normalize(this.config);
       this.setConfig$.next(this.config);
       this.updateActions();
     }
@@ -382,7 +386,7 @@ export class CoreTableComponent
   }
 
   private initFeature(feature: TableFeatureComponent) {
-    feature.setConfig(this.config?.[feature.name]);
+    feature.setConfig(this.config?.[feature.name] as TableFeatureConfig);
     feature.setTableComponent(this);
     feature.setTableEventBus(
       new TableFeatureEventBus(feature.name, this.tableEventBus),

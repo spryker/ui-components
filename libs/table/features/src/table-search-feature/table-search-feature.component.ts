@@ -12,6 +12,7 @@ import {
   distinctUntilChanged,
   takeUntil,
   map,
+  pluck,
 } from 'rxjs/operators';
 import { IconRemoveModule } from '@spryker/icon/icons';
 import { Subject, Observable } from 'rxjs';
@@ -54,6 +55,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
     takeUntil(this.destroyed$),
   );
   placeholder$: Observable<string> | undefined;
+  searchValue$?: Observable<unknown> | undefined;
 
   removeIcon = IconRemoveModule.icon;
 
@@ -61,6 +63,10 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
     this.placeholder$ = (this.table?.config$ as Observable<
       TableConfigWithSearch
     >).pipe(map(config => config.search?.placeholder || ''));
+
+    this.searchValue$ = this.dataConfiguratorService?.config$.pipe(
+      pluck('search'),
+    );
 
     this.valueChange$.subscribe((value: string) => this.triggerUpdate(value));
   }

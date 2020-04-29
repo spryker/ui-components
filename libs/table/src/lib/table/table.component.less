@@ -164,7 +164,8 @@
       z-index: 0;
 
       .@{table-prefix-cls}-column-inner {
-        padding: @table-body-padding-vertical @table-padding-horizontal;
+        padding: @table-body-padding-top @table-padding-horizontal
+          @table-body-padding-bottom;
         color: @table-column-body-color;
         display: flex;
         flex-direction: column;

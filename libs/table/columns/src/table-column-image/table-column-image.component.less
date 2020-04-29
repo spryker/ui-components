@@ -2,10 +2,11 @@
 
 .@{table-column-image-prefix-cls} {
   margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 
   &-container {
-    display: flex;
-    align-items: center;
     width: @table-column-image-width;
     height: @table-column-image-height;
     overflow: hidden;

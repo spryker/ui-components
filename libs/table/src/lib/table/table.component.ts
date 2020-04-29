@@ -314,12 +314,14 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   }
 
   private initCheckedRows(data: TableData): void {
+    const checkedRows: Record<TableColumn['id'], boolean> = {};
     let uninitedRowsLength = data.data.length;
 
     while (uninitedRowsLength--) {
-      this.checkedRows[uninitedRowsLength] = false;
+      checkedRows[uninitedRowsLength] = false;
     }
 
+    this.checkedRows = { ...checkedRows };
     this.allChecked = false;
     this.isIndeterminate = false;
   }

@@ -2,14 +2,13 @@
 
 .@{table-column-image-prefix-cls} {
   margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 
   &-container {
-    display: flex;
-    align-items: center;
     width: @table-column-image-width;
     height: @table-column-image-height;
     overflow: hidden;
-    margin-top: @table-column-image-margin-top;
-    margin-bottom: @table-column-image-margin-bottom;
   }
 }

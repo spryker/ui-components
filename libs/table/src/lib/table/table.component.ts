@@ -145,6 +145,18 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   pageSize$ = this.data$.pipe(pluck('pageSize'));
   page$ = this.data$.pipe(pluck('page'));
   tableData$ = this.data$.pipe(pluck('data'));
+  sortingData$ = this.dataConfiguratorService.config$.pipe(
+    map(config => {
+      const sortBy = config.sortBy;
+      let direction = config.sortDirection;
+
+      if (sortBy && direction) {
+        direction = direction === 'asc' ? 'ascend' : 'descend';
+      }
+
+      return { sortDirection: direction, sortBy: sortBy };
+    }),
+  );
 
   isLoading$ = merge(
     this.dataConfiguratorService.config$.pipe(mapTo(true)),
@@ -315,6 +327,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   private initCheckedRows(data: TableData): void {
     let uninitedRowsLength = data.data.length;
+    this.checkedRows = {};
 
     while (uninitedRowsLength--) {
       this.checkedRows[uninitedRowsLength] = false;

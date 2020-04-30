@@ -19,6 +19,7 @@ import {
   pluck,
   startWith,
   tap,
+  shareReplay,
 } from 'rxjs/operators';
 
 import { TABLE_FILTERS_TOKEN } from './tokens';
@@ -99,6 +100,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
       }),
       map(([filterValues]) => filterValues),
       distinctUntilChanged(),
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 

@@ -53,7 +53,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   @Input() location = TableFeatureLocation.top;
   @Input() styles = { order: '99' };
   destroyed$ = new Subject();
-  value$?: Observable<unknown>;
+  value$?: Observable<string>;
   inputValue$ = new Subject<string>();
   valueChange$ = this.inputValue$.pipe(
     debounceTime(300),
@@ -61,7 +61,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
     takeUntil(this.destroyed$),
   );
   placeholder$: Observable<string> | undefined;
-  searchValue$?: Observable<Record<string, unknown>>;
+  searchValue$?: Observable<string>;
 
   removeIcon = IconRemoveModule.icon;
 
@@ -83,7 +83,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
     super.setDataConfiguratorService(service);
 
     this.searchValue$ = service.config$.pipe(pluck('search')) as Observable<
-      Record<string, unknown>
+      string
     >;
 
     this.value$ = merge(this.inputValue$, this.searchValue$);

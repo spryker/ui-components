@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.31](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.30...@spryker/table@0.1.0-next.31) (2020-04-30)
+
+
+### Bug Fixes
+
+* **search:** fixed types ([2a767d4](https://github.com/spryker/ui-components/commit/2a767d4c9709cfd781c2371d10fd1b0e20caa37d))
+* **search:** removed sync ([b9e3026](https://github.com/spryker/ui-components/commit/b9e30265ee2cbd3c7271c219133561d0aa1bb7a2))
+* **table:** fix for styles, search and filters ([d133418](https://github.com/spryker/ui-components/commit/d13341816cabf0564b65d2db72d3a283163a0de3))
+* **table:** fix ie images styles ([bdb22b9](https://github.com/spryker/ui-components/commit/bdb22b9fe71f6b015ea9fb1974b6b90a0a66d97b))
+* **table:** fix ie images styles ([b43bb4f](https://github.com/spryker/ui-components/commit/b43bb4fae4e64da9b48366b5582bab7cb1b38d22))
+* **table:** fix ie styles ([2893ef0](https://github.com/spryker/ui-components/commit/2893ef04ae7497a5d44646e8b5bde8edf1a94b2a))
+* **table:** fix ie styles ([fcbcabd](https://github.com/spryker/ui-components/commit/fcbcabd5ceef500c1b82cb01afbcbc0cb089b3cc))
+* **table:** init checked rows ([add8801](https://github.com/spryker/ui-components/commit/add8801f0cb8b6c0967baa1397f91b01a8ad43ab))
+* **table:** init checked rows ([faecd34](https://github.com/spryker/ui-components/commit/faecd34cf01818bcce93bc0dadccd2bd883e8e08))
+* **table:** removed import ([31248bb](https://github.com/spryker/ui-components/commit/31248bb47e5384e9109f15335664620ca913fcad))
+* **table:** search, sorting issues ([5106546](https://github.com/spryker/ui-components/commit/5106546eac8ef0069e308fcded39c3c5e922201b))
+
+
+
+
+
 # [0.1.0-next.30](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.29...@spryker/table@0.1.0-next.30) (2020-04-27)
 
 

@@ -15,6 +15,7 @@ import { TableModule } from '@spryker/table';
 import { TableColumnComponent, TableColumnContext } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableSearchFeatureModule } from '@spryker/table/features';
+import { TableSyncStateFeatureModule } from '../table-sync-state-feature/table-sync-state-feature.module';
 
 export default {
   title: 'TableSearchFeatureComponent',
@@ -53,6 +54,7 @@ export const withFeatures = (): IStory => ({
       } as any),
       BrowserAnimationsModule,
       TableSearchFeatureModule,
+      TableSyncStateFeatureModule,
     ],
     declarations: [TableColumnTestComponent],
     providers: [
@@ -66,6 +68,7 @@ export const withFeatures = (): IStory => ({
   template: `
     <spy-table [config]="config" (actionTriggered)="logActions($event)">
       <spy-table-search-feature spy-table-feature location="top"></spy-table-search-feature>
+      <spy-table-sync-state-feature spy-table-feature location="hidden"></spy-table-sync-state-feature>
       <div *spyColTpl="'name'; let name">Name is3: {{ name }}</div>
       <ng-template spyColTpl="name" let-name>Name is2: {{ name }}</ng-template>
       <div *spyColTpl="'sku'; let sku">sku {{ sku }}</div>

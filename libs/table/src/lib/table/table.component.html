@@ -33,8 +33,8 @@
         [nzShowSort]="column.sortable"
         [nzSortKey]="column.id"
         [nzSort]="
-          (sortingData$ | async)?.sortBy === column.id
-            ? (sortingData$ | async)?.sortDirection
+          (sortingData$ | async | pluck: 'sortBy') === column.id
+            ? (sortingData$ | async | pluck: 'sortDirection')
             : null
         "
         [nzWidth]="column.width"

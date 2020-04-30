@@ -13,6 +13,7 @@ import {
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { PluckModule } from '@spryker/utils';
 
 import { TableComponent } from './table.component';
 import {
@@ -84,7 +85,7 @@ describe('TableComponent', () => {
     TableComponent,
     {
       ngModule: {
-        imports: [HttpClientTestingModule],
+        imports: [HttpClientTestingModule, PluckModule],
         schemas: [NO_ERRORS_SCHEMA],
       },
     },

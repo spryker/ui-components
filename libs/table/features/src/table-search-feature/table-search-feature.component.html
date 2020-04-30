@@ -1,6 +1,6 @@
 <ng-template>
   <spy-input
-    [value]="(searchValue$ | async) || (value$ | async)"
+    [value]="value$ | async"
     [prefix]="messageTmpl"
     [suffix]="suffixTpl"
     [placeholder]="placeholder$ | async"
@@ -12,10 +12,7 @@
   </ng-template>
 
   <ng-template #suffixTpl>
-    <div
-      *ngIf="(searchValue$ | async) || (value$ | async)"
-      (click)="clearInput()"
-    >
+    <div *ngIf="value$ | async" (click)="clearInput()">
       <spy-icon class="ant-remove-icon" [name]="removeIcon"></spy-icon>
     </div>
   </ng-template>

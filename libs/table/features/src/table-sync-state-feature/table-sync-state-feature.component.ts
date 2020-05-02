@@ -56,9 +56,7 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
     service.provideInitialDataStrategy(syncStateInitialData);
 
     this.configToState$ = service.config$.pipe(
-      tap(config => {
-        return this.urlPersistenceStrategy.save(this.key, config);
-      }),
+      tap(config => this.urlPersistenceStrategy.save(this.key, config)),
     );
 
     this.stateToConfig$ = urlState$.pipe(tap(state => service.reset(state)));

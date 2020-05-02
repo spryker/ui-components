@@ -159,6 +159,18 @@ export class CoreTableComponent
   pageSize$ = this.data$.pipe(pluck('pageSize'));
   page$ = this.data$.pipe(pluck('page'));
   tableData$ = this.data$.pipe(pluck('data'));
+  sortingData$ = this.dataConfiguratorService.config$.pipe(
+    map(config => {
+      const sortBy = config.sortBy;
+      let direction = config.sortDirection;
+
+      if (sortBy && direction) {
+        direction = direction === 'asc' ? 'ascend' : 'descend';
+      }
+
+      return { sortDirection: direction, sortBy: sortBy };
+    }),
+  );
 
   featureFactories$ = this.config$.pipe(
     switchMap(config => this.featureLoaderService.loadFactoriesFor(config)),

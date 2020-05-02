@@ -2,19 +2,25 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  AfterViewInit,
   Input,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
-import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
+import {
+  TableFeatureComponent,
+  TableFeatureLocation,
+  TableDataConfiguratorService,
+  TableComponent,
+} from '@spryker/table';
 import {
   debounceTime,
   distinctUntilChanged,
   takeUntil,
-  filter,
   map,
+  pluck,
 } from 'rxjs/operators';
-import { Subject, Observable } from 'rxjs';
+import { IconRemoveModule } from '@spryker/icon/icons';
+import { Subject, Observable, merge } from 'rxjs';
 
 declare module '@spryker/table' {
   // tslint:disable-next-line: no-empty-interface
@@ -43,28 +49,46 @@ export interface TableSearchConfig {
   ],
 })
 export class TableSearchFeatureComponent extends TableFeatureComponent
-  implements OnDestroy, AfterViewInit {
+  implements OnDestroy, OnInit {
   name = 'search';
-
   @Input() location = TableFeatureLocation.top;
   @Input() styles = { order: '99' };
 
   destroyed$ = new Subject();
-  setValue$ = new Subject<string>();
-  valueChange$ = this.setValue$.pipe(
-    filter(value => value.length > 2 || !value.length),
+  value$?: Observable<string>;
+  inputValue$ = new Subject<string>();
+  valueChange$ = this.inputValue$.pipe(
     debounceTime(300),
     distinctUntilChanged(),
     takeUntil(this.destroyed$),
   );
   placeholder$: Observable<string> | undefined;
+  searchValue$?: Observable<string>;
 
-  ngAfterViewInit(): void {
-    this.placeholder$ = (this.table?.config$ as Observable<
+  removeIcon = IconRemoveModule.icon;
+
+  setTableComponent(table: TableComponent) {
+    super.setTableComponent(table);
+
+    this.placeholder$ = (table.config$ as Observable<
       TableConfigWithSearch
     >).pipe(map(config => config.search?.placeholder || ''));
+  }
 
-    this.valueChange$.subscribe((value: string) => this.triggerUpdate(value));
+  ngOnInit() {
+    this.valueChange$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(value => this.triggerUpdate(value));
+  }
+
+  setDataConfiguratorService(service: TableDataConfiguratorService) {
+    super.setDataConfiguratorService(service);
+
+    this.searchValue$ = service.config$.pipe(pluck('search')) as Observable<
+      string
+    >;
+
+    this.value$ = merge(this.inputValue$, this.searchValue$);
   }
 
   ngOnDestroy(): void {
@@ -73,12 +97,16 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   }
 
   inputValueChange(event: string): void {
-    this.setValue$.next(event);
+    this.inputValue$.next(event);
   }
 
   triggerUpdate(inputValue: string): void {
     this.dataConfiguratorService?.update({
       search: inputValue || '',
     });
+  }
+
+  clearInput(): void {
+    this.inputValueChange('');
   }
 }

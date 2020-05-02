@@ -5,6 +5,7 @@ import {
   EventEmitter,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  HostBinding,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 
@@ -33,7 +34,10 @@ export type Placement =
 export class DropdownComponent {
   @Input() items: DropdownItem[] = [];
   @Input() placement: Placement = 'bottomRight';
-  @Input() @ToBoolean() visible = false;
+  @HostBinding('class.spy-dropdown--open')
+  @Input()
+  @ToBoolean()
+  visible = false;
   @Input() @ToBoolean() disabled = false;
   @Output() visibleChange = new EventEmitter<boolean>();
   @Output() actionTriggered = new EventEmitter<string>();

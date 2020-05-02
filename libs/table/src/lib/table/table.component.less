@@ -87,6 +87,8 @@
     }
 
     .@{table-prefix-cls}-header-column .@{table-prefix-cls}-column-sorters {
+      margin-top: @table-column-sorters-margin-top;
+
       &:hover::before {
         background: transparent;
       }
@@ -142,17 +144,21 @@
     }
 
     > td {
-      position: relative;
       padding: 0;
       border-bottom: none;
       z-index: 0;
+      height: inherit;
 
       .@{table-prefix-cls}-column-inner {
-        padding: @table-body-padding-vertical @table-padding-horizontal;
+        position: relative;
+        padding: @table-body-padding-top @table-padding-horizontal
+          @table-body-padding-bottom;
         color: @table-column-body-color;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        height: 100%;
+        z-index: 0;
 
         &--align-right {
           align-items: flex-end;
@@ -233,6 +239,14 @@
     .ant-dropdown-trigger {
       justify-content: center;
       align-items: center;
+    }
+  }
+
+  .spy-dropdown--open {
+    background: @table-dropdown-trigger-hover-bg;
+
+    .spy-icon-action {
+      color: @table-dropdown-trigger-hover-color;
     }
   }
 

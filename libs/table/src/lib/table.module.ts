@@ -26,6 +26,7 @@ import { TableRenderFeatureDirective } from './table-features-renderer/table-ren
 import { ColTplDirective } from './table/col-tpl.directive';
 import { TableColumnComponentDeclaration } from './table/table';
 import { CoreTableComponent } from './table/table.component';
+import { PluckModule } from '@spryker/utils';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { CoreTableComponent } from './table/table.component';
     IconModule,
     ContextModule,
     TableFeatureModule,
+    PluckModule,
   ],
   declarations: [
     CoreTableComponent,

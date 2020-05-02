@@ -29,6 +29,11 @@
         *ngFor="let column of columns$ | async; trackBy: trackByColumns"
         [nzShowSort]="column.sortable"
         [nzSortKey]="column.id"
+        [nzSort]="
+          (sortingData$ | async | pluck: 'sortBy') === column.id
+            ? (sortingData$ | async | pluck: 'sortDirection')
+            : null
+        "
         [nzWidth]="column.width"
       >
         {{ column.title }}

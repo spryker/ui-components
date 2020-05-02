@@ -125,6 +125,7 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
 
   private resetCheckedRows(data: TableData): void {
     this.rowsData = data.data;
+    this.checkedRows = {};
     this.checkedRowsArr = [];
     this.allChecked = false;
     this.isIndeterminate = false;

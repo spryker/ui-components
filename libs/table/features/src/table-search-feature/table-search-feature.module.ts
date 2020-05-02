@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableSearchFeatureComponent } from './table-search-feature.component';
 import { InputModule } from '@spryker/input';
 import { IconModule } from '@spryker/icon';
 import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
+import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
+
+import { TableSearchFeatureComponent } from './table-search-feature.component';
 
 @NgModule({
   imports: [
     CommonModule,
     IconModule,
-    InputModule,
     IconMagnifierModule,
     IconRemoveModule,
+    InputModule,
+    TableFeatureModule,
   ],
   exports: [TableSearchFeatureComponent],
   declarations: [TableSearchFeatureComponent],
+  entryComponents: [TableSearchFeatureComponent],
 })
-export class TableSearchFeatureModule {}
+export class TableSearchFeatureModule implements ModuleWithFeature {
+  featureComponent = TableSearchFeatureComponent;
+}

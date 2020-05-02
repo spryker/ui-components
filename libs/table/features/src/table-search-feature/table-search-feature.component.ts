@@ -19,7 +19,6 @@ import {
   map,
   pluck,
 } from 'rxjs/operators';
-import { IconRemoveModule } from '@spryker/icon/icons';
 import { Subject, Observable, merge } from 'rxjs';
 
 declare module '@spryker/table' {
@@ -51,7 +50,8 @@ export interface TableSearchConfig {
 export class TableSearchFeatureComponent extends TableFeatureComponent
   implements OnDestroy, OnInit {
   name = 'search';
-  @Input() location = TableFeatureLocation.top;
+  tableFeatureLocation = TableFeatureLocation;
+
   @Input() styles = { order: '99' };
 
   destroyed$ = new Subject();
@@ -64,8 +64,6 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   );
   placeholder$: Observable<string> | undefined;
   searchValue$?: Observable<string>;
-
-  removeIcon = IconRemoveModule.icon;
 
   setTableComponent(table: TableComponent) {
     super.setTableComponent(table);

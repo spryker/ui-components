@@ -1,4 +1,4 @@
-<ng-template>
+<ng-container *spyTableFeatureTpl="tableFeatureLocation.top">
   <spy-input
     [value]="value$ | async"
     [prefix]="messageTmpl"
@@ -13,7 +13,7 @@
 
   <ng-template #suffixTpl>
     <div *ngIf="value$ | async" (click)="clearInput()">
-      <spy-icon class="ant-remove-icon" [name]="removeIcon"></spy-icon>
+      <spy-icon name="remove" class="ant-remove-icon"></spy-icon>
     </div>
   </ng-template>
-</ng-template>
+</ng-container>

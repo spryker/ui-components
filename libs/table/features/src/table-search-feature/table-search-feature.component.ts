@@ -63,7 +63,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
     distinctUntilChanged(),
     takeUntil(this.destroyed$),
   );
-  placeholder$: Observable<string> | undefined;
+  placeholder$?: Observable<string>;
   searchValue$?: Observable<string>;
 
   setTableComponent(table: TableComponent) {

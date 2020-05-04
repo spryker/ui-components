@@ -155,9 +155,6 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
-  total$ = this.data$.pipe(pluck('total'));
-  pageSize$ = this.data$.pipe(pluck('pageSize'));
-  page$ = this.data$.pipe(pluck('page'));
   tableData$ = this.data$.pipe(pluck('data'));
   sortingData$ = this.dataConfiguratorService.config$.pipe(
     map(config => {
@@ -336,16 +333,6 @@ export class CoreTableComponent
     };
 
     this.dataConfiguratorService.update(sortingCriteria as TableDataConfig);
-  }
-
-  /** @internal */
-  updatePagination(page: number): void {
-    this.dataConfiguratorService.changePage(page);
-  }
-
-  /** @internal */
-  updatePageSize(pageSize: number): void {
-    this.dataConfiguratorService.update({ pageSize, page: 1 });
   }
 
   /** @internal */

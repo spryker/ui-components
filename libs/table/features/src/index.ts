@@ -3,3 +3,4 @@ export * from './table-search-feature';
 export * from './table-sync-state-feature';
 export * from './table-selectable-feature';
 export * from './table-total-feature';
+export * from './table-pagination-feature';

@@ -9,7 +9,6 @@ import { CheckboxModule } from '@spryker/checkbox';
 import { DropdownModule } from '@spryker/dropdown';
 import { IconModule } from '@spryker/icon';
 import { IconActionModule } from '@spryker/icon/icons';
-import { PaginationModule } from '@spryker/pagination';
 import { ContextModule } from '@spryker/utils';
 import { SelectComponentsModule } from '@spryker/web-components';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -36,7 +35,6 @@ import { PluckModule } from '@spryker/utils';
     OrchestratorCoreModule,
     LayoutFlatHostModule,
     SelectComponentsModule,
-    PaginationModule,
     DropdownModule,
     IconActionModule,
     IconModule,

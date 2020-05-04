@@ -137,4 +137,5 @@ export enum TableFeatureLocation {
   afterTable = 'after-table',
   bottom = 'bottom',
   hidden = 'hidden',
+  pagination = 'pagination',
 }

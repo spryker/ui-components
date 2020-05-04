@@ -31,6 +31,7 @@ export interface TableConfigWithSearch {
 }
 
 export interface TableSearchConfig {
+  enabled: boolean;
   placeholder?: string;
 }
 

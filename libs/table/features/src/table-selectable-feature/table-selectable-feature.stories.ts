@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { CheckboxModule } from '@spryker/checkbox';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { TableConfig, TableModule } from '@spryker/table';
+import { TableModule } from '@spryker/table';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,
@@ -40,7 +40,7 @@ export const viaConfig = getSelectableStory(
   `,
   [
     TableModule.withFeatures({
-      selectable: () =>
+      itemSelection: () =>
         import('./table-selectable-feature.module').then(
           m => m.TableSelectableFeatureModule,
         ),
@@ -89,8 +89,10 @@ function getSelectableStory(
           { id: 'col2', title: 'Column #2' },
           { id: 'col3', title: 'Column #3' },
         ],
-        selectable: true, // This will enable feature via config
-      } as TableConfig,
+        itemSelection: {
+          enabled: true, // This will enable feature via config
+        },
+      },
       mockHttp: setMockHttp([
         {
           url: '/data-request',

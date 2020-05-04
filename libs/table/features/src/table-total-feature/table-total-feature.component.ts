@@ -6,6 +6,17 @@ import {
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { map, mapTo, shareReplay, switchMap, take } from 'rxjs/operators';
 
+declare module '@spryker/table' {
+  // tslint:disable-next-line: no-empty-interface
+  interface TableConfig extends TableTotalConfig {}
+}
+
+export interface TableTotalConfig {
+  total?: {
+    enabled: boolean;
+  };
+}
+
 @Component({
   selector: 'spy-table-total-feature',
   templateUrl: './table-total-feature.component.html',

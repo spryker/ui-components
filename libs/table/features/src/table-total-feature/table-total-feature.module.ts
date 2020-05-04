@@ -8,6 +8,7 @@ import { TableTotalFeatureComponent } from './table-total-feature.component';
   imports: [CommonModule, TableFeatureModule],
   exports: [TableTotalFeatureComponent],
   declarations: [TableTotalFeatureComponent],
+  entryComponents: [TableTotalFeatureComponent],
 })
 export class TableTotalFeatureModule implements ModuleWithFeature {
   featureComponent = TableTotalFeatureComponent;

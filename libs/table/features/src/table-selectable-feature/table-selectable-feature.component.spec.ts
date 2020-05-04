@@ -12,7 +12,7 @@ import { TestTableFeatureComponent } from '@spryker/table/features/testing';
 import { TableSelectableFeatureComponent } from './table-selectable-feature.component';
 
 @Component({
-  selector: 'test-host',
+  selector: 'spy-test-host',
   template: `
     <test-table-feature>
       <spy-table-selectable-feature

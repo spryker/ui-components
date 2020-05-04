@@ -9,7 +9,10 @@ import {
   TableFilterSelectModule,
 } from '@spryker/table/filters';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { generateMockTableDataFor, TableDataMockGenerator } from '@spryker/table/testing';
+import {
+  generateMockTableDataFor,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 
 export default {
@@ -22,23 +25,30 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const viaHtml = getSearchStory(
+export const viaHtml = getFiltersStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp" (actionTriggered)="logActions($event)">
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
     </spy-table>
   `,
+  [TableFiltersFeatureModule],
+);
+
+export const viaConfig = getFiltersStory(
+  `
+    <spy-table [config]="config" [mockHttp]="mockHttp">
+  `,
   [
-    TableFiltersFeatureModule,
-    TableFiltersFeatureModule.withFilterComponents({
-      select: TableFilterSelectComponent,
-      select2: TableFilterSelectComponent,
-    } as any),
-    TableFilterSelectModule,
+    TableModule.withFeatures({
+      filters: () =>
+        import('./table-filters-feature.module').then(
+          m => m.TableFiltersFeatureModule,
+        ),
+    }),
   ],
 );
 
-function getSearchStory(
+function getFiltersStory(
   template: string,
   extraNgModules: any[] = [],
 ): () => IStory {
@@ -49,6 +59,13 @@ function getSearchStory(
         BrowserAnimationsModule,
         MockHttpModule,
         TableModule.forRoot(),
+
+        TableFiltersFeatureModule.withFilterComponents({
+          select: TableFilterSelectComponent,
+          select2: TableFilterSelectComponent,
+        } as any),
+        TableFilterSelectModule,
+
         ...extraNgModules,
       ],
       providers: [
@@ -68,33 +85,35 @@ function getSearchStory(
           { id: 'col2', title: 'Column #2' },
           { id: 'col3', title: 'Column #3' },
         ],
-        // filters: true,
-        filters: [
-          {
-            id: 'offers',
-            title: 'Has Offers',
-            type: 'select',
-            typeOptions: {
-              multiselect: false,
-              values: [
-                { value: 1, title: 'Yes' },
-                { value: 0, title: 'No' },
-              ],
+        filters: {
+          enabled: true, // This will enable feature via config
+          items: [
+            {
+              id: 'offers',
+              title: 'Has Offers',
+              type: 'select',
+              typeOptions: {
+                multiselect: false,
+                values: [
+                  { value: 1, title: 'Yes' },
+                  { value: 0, title: 'No' },
+                ],
+              },
             },
-          },
-          {
-            id: 'status',
-            title: 'Product Status',
-            type: 'select',
-            typeOptions: {
-              multiselect: false,
-              values: [
-                { value: 1, title: 'Active' },
-                { value: 0, title: 'Inactive' },
-              ],
+            {
+              id: 'status',
+              title: 'Product Status',
+              type: 'select',
+              typeOptions: {
+                multiselect: false,
+                values: [
+                  { value: 1, title: 'Active' },
+                  { value: 0, title: 'Inactive' },
+                ],
+              },
             },
-          },
-        ],
+          ],
+        },
       },
       logActions: console.log,
       mockHttp: setMockHttp([
@@ -105,4 +124,4 @@ function getSearchStory(
       ]),
     },
   });
-};
+}

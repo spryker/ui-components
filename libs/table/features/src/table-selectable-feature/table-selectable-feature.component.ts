@@ -23,7 +23,9 @@ declare module '@spryker/table' {
 }
 
 export interface TableSelectableConfig {
-  selectable?: boolean;
+  itemSelection?: {
+    enabled: boolean;
+  };
 }
 
 export interface TableSelectionRow {
@@ -48,7 +50,7 @@ export type TableSelectionChangeEvent = TableSelectionRow[];
 })
 export class TableSelectableFeatureComponent extends TableFeatureComponent
   implements OnDestroy {
-  name = 'selectable';
+  name = 'item-selection';
   tableFeatureLocation = TableFeatureLocation;
 
   allChecked = false;

@@ -3,10 +3,15 @@ import {
   Component,
   forwardRef,
   Inject,
+  Injector,
   Input,
   OnInit,
 } from '@angular/core';
-import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
+import {
+  TableComponent,
+  TableFeatureComponent,
+  TableFeatureLocation,
+} from '@spryker/table';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -25,9 +30,15 @@ import {
 } from './types';
 
 declare module '@spryker/table' {
-  interface TableConfig {
-    filters?: TableFilterBase[];
-  }
+  // tslint:disable-next-line: no-empty-interface
+  interface TableConfig extends TableFiltersConfig {}
+}
+
+export interface TableFiltersConfig {
+  filters?: {
+    enabled: boolean;
+    items: TableFilterBase[];
+  };
 }
 
 @Component({
@@ -60,21 +71,24 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
   constructor(
     @Inject(TABLE_FILTERS_TOKEN)
     private tableFilterToken: TableFiltersDeclaration[],
+    injector: Injector,
   ) {
-    super();
+    super(injector);
   }
 
-  ngOnInit(): void {
-    this.updateFilters();
+  setTableComponent(table: TableComponent) {
+    super.setTableComponent(table);
+
+    this.updateFilters(table);
   }
 
-  updateFilters(): void {
+  updateFilters(table: TableComponent): void {
     this.filterComponentMap = this.tableFilterToken.reduce(
       (acc, filter) => ({ ...acc, ...filter }),
       {},
     ) as Record<string, TableFilterComponent<TableFilterBase>>;
 
-    this.filters$ = this.table?.config$.pipe(pluck('filters'));
+    this.filters$ = table.config$.pipe(pluck('filters', 'items'));
 
     this.filterValues$ = combineLatest([
       this.dataConfiguratorService?.config$.pipe(pluck('filter')) as Observable<

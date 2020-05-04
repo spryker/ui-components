@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { CheckboxModule } from '@spryker/checkbox';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { TableConfig, TableModule } from '@spryker/table';
+import { TableModule } from '@spryker/table';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,
@@ -54,7 +54,7 @@ export const primary = (): IStory => ({
         { id: 'col2', title: 'Column #2' },
         { id: 'col3', title: 'Column #3' },
       ],
-    } as TableConfig,
+    },
     mockHttp: setMockHttp([
       {
         url: '/data-request',

@@ -20,13 +20,18 @@
 
 .@{ant-input}-affix-wrapper {
   .@{ant-input} {
+    &-prefix,
+    &-suffix {
+      color: @input-icon-color;
+      overflow: hidden;
+    }
+
     &-prefix {
       left: 10px;
-      color: @input-icon-color;
     }
+
     &-suffix {
       right: 10px;
-      color: @input-icon-color;
     }
   }
 
@@ -75,6 +80,10 @@
 
   &:invalid {
     box-shadow: none;
+  }
+
+  &::-ms-clear {
+    display: none;
   }
 
   .@{ant-input}-affix-wrapper {

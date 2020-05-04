@@ -1,56 +1,74 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { TableModule } from '../../../src/lib/table.module';
+import { TableModule } from '@spryker/table';
 import { TableFiltersFeatureModule } from './table-filters-feature.module';
 import {
   TableFilterSelectComponent,
   TableFilterSelectModule,
-} from '../../../filters/src/table-filter-select/';
+} from '@spryker/table/filters';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { generateMockTableDataFor, TableDataMockGenerator } from '@spryker/table/testing';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
 
 export default {
   title: 'TableFiltersFeature',
 };
 
-export const withSelectFeatures = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      HttpClientModule,
-      TableModule,
-      BrowserAnimationsModule,
-      TableFiltersFeatureModule,
-      TableFiltersFeatureModule.withFilterComponents({
-        select: TableFilterSelectComponent as any,
-        select2: TableFilterSelectComponent as any,
-      } as any),
-      TableFilterSelectModule,
-    ],
-    providers: [
-      {
-        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [TableFilterSelectComponent],
-        multi: true,
-      },
-    ],
-  },
-  template: `
-    <spy-table [config]="config" (actionTriggered)="logActions($event)">
-      <spy-table-filters-feature spy-table-feature location="top"></spy-table-filters-feature>
+const tableDataGenerator: TableDataMockGenerator = i => ({
+  col1: `col1 #${i}`,
+  col2: 'col2',
+  col3: 'col3',
+});
+
+export const viaHtml = getSearchStory(
+  `
+    <spy-table [config]="config" [mockHttp]="mockHttp" (actionTriggered)="logActions($event)">
+      <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
     </spy-table>
   `,
-  props: {
-    config: object(
-      'Config',
-      {
-        dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
+  [
+    TableFiltersFeatureModule,
+    TableFiltersFeatureModule.withFilterComponents({
+      select: TableFilterSelectComponent,
+      select2: TableFilterSelectComponent,
+    } as any),
+    TableFilterSelectModule,
+  ],
+);
+
+function getSearchStory(
+  template: string,
+  extraNgModules: any[] = [],
+): () => IStory {
+  return () => ({
+    moduleMetadata: {
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        MockHttpModule,
+        TableModule.forRoot(),
+        ...extraNgModules,
+      ],
+      providers: [
+        {
+          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+          useValue: [LayoutFlatHostComponent, TableFilterSelectComponent],
+          multi: true,
+        },
+      ],
+    },
+    template,
+    props: {
+      config: {
+        dataUrl: '/data-request',
         columns: [
-          { id: 'name', sortable: true, title: 'name' },
-          { id: 'sku', sortable: true, title: 'sku' },
-          { id: 'id3', sortable: true, title: 'id3' },
+          { id: 'col1', title: 'Column #1' },
+          { id: 'col2', title: 'Column #2' },
+          { id: 'col3', title: 'Column #3' },
         ],
+        // filters: true,
         filters: [
           {
             id: 'offers',
@@ -78,8 +96,13 @@ export const withSelectFeatures = (): IStory => ({
           },
         ],
       },
-      'Group',
-    ),
-    logActions: console.log,
-  },
-});
+      logActions: console.log,
+      mockHttp: setMockHttp([
+        {
+          url: '/data-request',
+          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+        },
+      ]),
+    },
+  });
+};

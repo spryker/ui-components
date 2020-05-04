@@ -45,8 +45,8 @@ declare module '@spryker/table' {
 export class TableFiltersFeatureComponent extends TableFeatureComponent
   implements OnInit {
   name = 'filters';
+  tableFeatureLocation = TableFeatureLocation;
 
-  @Input() location = TableFeatureLocation.top;
   @Input() styles = {
     flexGrow: '1',
   };

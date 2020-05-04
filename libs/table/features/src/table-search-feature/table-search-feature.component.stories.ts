@@ -2,7 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { IStory } from '@storybook/angular';
-import { TableModule, TableConfig } from '@spryker/table';
+import { TableModule } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableSearchFeatureModule } from '@spryker/table/features';
 import {
@@ -78,7 +78,7 @@ function getSearchStory(
           enabled: true, // This will enable feature via config
           placeholder: 'Placeholder',
         },
-      } as TableConfig,
+      },
       mockHttp: setMockHttp([
         {
           url: '/data-request',

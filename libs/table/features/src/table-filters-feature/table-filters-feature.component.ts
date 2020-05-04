@@ -52,6 +52,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
   @Input() location = TableFeatureLocation.top;
   @Input() styles = {
     flexGrow: '1',
+    flexShrink: '0',
   };
   filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;
   filters$?: Observable<TableFilterBase[]>;

@@ -60,6 +60,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent
 
   @Input() styles = {
     flexGrow: '1',
+    flexShrink: '0',
   };
 
   filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;

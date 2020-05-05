@@ -1,12 +1,19 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
+import {
+  ANALYZE_FOR_ENTRY_COMPONENTS,
+  ChangeDetectionStrategy,
+  Component, EventEmitter, Input,
+  OnChanges, Output, SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
 import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@spryker/table';
 import { TableFiltersFeatureModule } from './table-filters-feature.module';
 import {
+  TableFilterSelect,
   TableFilterSelectComponent,
-  TableFilterSelectModule,
+  TableFilterSelectModule, TableFilterSelectValue,
 } from '@spryker/table/filters';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
@@ -14,6 +21,8 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { TableFilterComponent } from "@spryker/table/features";
+import { SelectOptionItem } from "@spryker/select";
 
 export default {
   title: 'TableFiltersFeatureComponent',
@@ -24,6 +33,27 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col2: 'col2',
   col3: 'col3',
 });
+
+@Component({
+  selector: 'spy-table-filter',
+  template: `
+    <input 
+        type="text" 
+        [value]="value"
+        style="border: 2px solid lightskyblue; height: 50px; padding: 10px;"
+    >
+  `,
+})
+class TableDummyFilterComponent implements TableFilterComponent, OnChanges {
+  @Input() config?: any;
+  value = '';
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.config) {
+      this.value = this.config?.typeOptions?.value;
+    }
+  }
+}
 
 export const viaHtml = getFiltersStory(
   `
@@ -59,19 +89,16 @@ function getFiltersStory(
         BrowserAnimationsModule,
         MockHttpModule,
         TableModule.forRoot(),
-
         TableFiltersFeatureModule.withFilterComponents({
-          select: TableFilterSelectComponent,
-          select2: TableFilterSelectComponent,
-        } as any),
-        TableFilterSelectModule,
-
+          filter: TableDummyFilterComponent,
+        }),
         ...extraNgModules,
       ],
+      declarations: [TableDummyFilterComponent],
       providers: [
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: [LayoutFlatHostComponent, TableFilterSelectComponent],
+          useValue: [LayoutFlatHostComponent, TableDummyFilterComponent],
           multi: true,
         },
       ],
@@ -86,30 +113,14 @@ function getFiltersStory(
           { id: 'col3', title: 'Column #3' },
         ],
         filters: {
-          enabled: true, // This will enable feature via config
+          enabled: true,
           items: [
             {
-              id: 'offers',
-              title: 'Has Offers',
-              type: 'select',
+              id: 'filter',
+              title: 'Filter',
+              type: 'filter',
               typeOptions: {
-                multiselect: false,
-                values: [
-                  { value: 1, title: 'Yes' },
-                  { value: 0, title: 'No' },
-                ],
-              },
-            },
-            {
-              id: 'status',
-              title: 'Product Status',
-              type: 'select',
-              typeOptions: {
-                multiselect: false,
-                values: [
-                  { value: 1, title: 'Active' },
-                  { value: 0, title: 'Inactive' },
-                ],
+                value: 'This is dummy input filter',
               },
             },
           ],

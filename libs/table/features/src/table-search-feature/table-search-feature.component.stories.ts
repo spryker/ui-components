@@ -4,7 +4,7 @@ import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { IStory } from '@storybook/angular';
 import { TableModule } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableSearchFeatureModule } from '@spryker/table/features';
+import { TableSearchFeatureModule } from './table-search-feature.module';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,

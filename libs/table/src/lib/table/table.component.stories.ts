@@ -56,7 +56,7 @@ export const withFeatures = (): IStory => ({
       MockHttpModule,
       TableModule.forRoot(),
       TableModule.withColumnComponents({
-        test: TableColumnTestComponent,
+        test: TableColumnTestComponent as any,
       } as any),
       BrowserAnimationsModule,
     ],
@@ -95,14 +95,11 @@ export const withFeatures = (): IStory => ({
             limit: 2,
             type: 'test',
             typeOptions: {
-              text: '${value} in ${row.name}',
+              text: '${value} in ${row.col1}',
             },
           },
         },
       ],
-      selectable: {
-        enabled: true,
-      },
     },
     mockHttp: setMockHttp([
       {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/icon@0.1.0-next.10...@spryker/icon@0.1.0-next.11) (2020-05-05)
+
+
+### Bug Fixes
+
+* **table:** fix ie issues ([ce32dce](https://github.com/spryker/ui-components/commit/ce32dce11779f3c1e068431c43a3271e5bbefcf6))
+
+
+
+
+
 # [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/icon@0.1.0-next.9...@spryker/icon@0.1.0-next.10) (2020-04-01)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.1.0-next.4...@spryker/dropdown@0.1.0-next.5) (2020-05-05)
+
+
+### Bug Fixes
+
+* **table:** fix ie issues ([ce32dce](https://github.com/spryker/ui-components/commit/ce32dce11779f3c1e068431c43a3271e5bbefcf6))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.1.0-next.3...@spryker/dropdown@0.1.0-next.4) (2020-05-04)
 
 

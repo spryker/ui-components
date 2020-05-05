@@ -84,7 +84,6 @@ function getSyncStateStory(
           dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
-      logActions: console.log,
     },
   });
 }

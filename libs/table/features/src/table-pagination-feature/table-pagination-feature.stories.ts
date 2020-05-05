@@ -12,7 +12,7 @@ import {
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 
 export default {
-  title: 'TablePaginationFeatureModule',
+  title: 'TablePaginationFeatureComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
@@ -85,7 +85,6 @@ function getPaginationStory(
           dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
-      logActions: console.log,
     },
   });
 }

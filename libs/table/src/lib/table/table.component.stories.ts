@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {
   ANALYZE_FOR_ENTRY_COMPONENTS,
   Component,
@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { ContextModule, ContextService } from '@spryker/utils';
-import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
@@ -15,10 +14,18 @@ import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext } from './table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
+import { generateMockTableDataFor, TableDataMockGenerator } from '../../../../table/testing/src';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 
 export default {
   title: 'TableComponent',
 };
+
+const tableDataGenerator: TableDataMockGenerator = i => ({
+  col1: `col1 #${i}`,
+  col2: 'col2',
+  col3: 'col3',
+});
 
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
@@ -44,8 +51,9 @@ class TableColumnTestComponent
 export const withFeatures = (): IStory => ({
   moduleMetadata: {
     imports: [
-      HttpClientModule,
+      HttpClientTestingModule,
       ContextModule,
+      MockHttpModule,
       TableModule.forRoot(),
       TableModule.withColumnComponents({
         test: TableColumnTestComponent,
@@ -66,7 +74,7 @@ export const withFeatures = (): IStory => ({
     ],
   },
   template: `
-    <spy-table [config]="config" (actionTriggered)="logActions($event)">
+    <spy-table [config]="config" [mockHttp]="mockHttp">
       <div *spyColTpl="'name'; let name">Name is3: {{ name }}</div>
       <ng-template spyColTpl="name" let-name>Name is2: {{ name }}</ng-template>
       <div *spyColTpl="'sku'; let sku">sku {{ sku }}</div>
@@ -74,44 +82,33 @@ export const withFeatures = (): IStory => ({
     </spy-table>
   `,
   props: {
-    config: object(
-      'Config',
-      {
-        dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
-        columns: [
-          { id: 'name', sortable: true, title: 'name', width: '20%' },
-          { id: 'sku', sortable: true, title: 'sku', width: '20%' },
-          { id: 'id3', sortable: true, title: 'id3' },
-          {
-            id: 'sku3',
-            title: 'sku3 | link',
+    config: {
+      dataUrl: '/data-request',
+      columns: [
+        { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
+        { id: 'col2', title: 'Column #2', width: '20%' },
+        {
+          id: 'col3',
+          title: 'Column #3',
+          type: 'list',
+          typeOptions: {
+            limit: 2,
             type: 'test',
-            typeOptions: { text: '${value} in ${row.name}' },
-          },
-          {
-            id: 'sku3',
-            title: 'sku',
-            type: 'list',
             typeOptions: {
-              limit: 2,
-              type: 'test',
-              typeOptions: {
-                text: '${value} in ${row.name}',
-              },
+              text: '${value} in ${row.name}',
             },
           },
-        ],
-        selectable: {
-          enabled: true,
         },
-        rowActions: [
-          { id: '1234', title: '123' },
-          { id: '2345', title: '234' },
-        ],
-        pageSizes: [20, 40, 50],
+      ],
+      selectable: {
+        enabled: true,
       },
-      'Group',
-    ),
-    logActions: console.log,
+    },
+    mockHttp: setMockHttp([
+      {
+        url: '/data-request',
+        dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+      },
+    ]),
   },
 });

@@ -12,7 +12,7 @@ import {
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 
 export default {
-  title: 'TableRowActionsFeatureModule',
+  title: 'TableRowActionsFeatureComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
@@ -23,7 +23,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 export const viaHtml = getRowActionsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [mockHttp]="mockHttp" [events]="{'rowActions': logActionTriggered}">
       <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
     </spy-table>
   `,

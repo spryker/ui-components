@@ -5,7 +5,7 @@ import { TableColumnTextComponent } from './table-column-text.component';
 import { TableColumnTextModule } from './table-column-text.module';
 
 export default {
-  title: 'TableColumnText',
+  title: 'TableColumnTextComponent',
 };
 
 export const withFeatures = (): IStory => ({

@@ -5,7 +5,7 @@ import { TableColumnDateComponent } from './table-column-date.component';
 import { TableColumnDateModule } from './table-column-date.module';
 
 export default {
-  title: 'TableColumnDate',
+  title: 'TableColumnDateComponent',
 };
 
 export const withFeatures = (): IStory => ({

@@ -5,7 +5,7 @@ import { TableColumnChipComponent } from './table-column-chip.component';
 import { TableColumnChipModule } from './table-column-chip.module';
 
 export default {
-  title: 'TableColumnChip',
+  title: 'TableColumnChipComponent',
 };
 
 export const withFeatures = (): IStory => ({

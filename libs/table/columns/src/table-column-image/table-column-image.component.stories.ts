@@ -5,7 +5,7 @@ import { TableColumnImageComponent } from './table-column-image.component';
 import { TableColumnImageModule } from './table-column-image.module';
 
 export default {
-  title: 'TableColumnImage',
+  title: 'TableColumnImageComponent',
 };
 
 export const withFeatures = (): IStory => ({

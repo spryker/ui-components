@@ -16,7 +16,7 @@ import {
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 
 export default {
-  title: 'TableFiltersFeature',
+  title: 'TableFiltersFeatureComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
@@ -27,7 +27,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 export const viaHtml = getFiltersStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp" (actionTriggered)="logActions($event)">
+    <spy-table [config]="config" [mockHttp]="mockHttp">
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
     </spy-table>
   `,
@@ -115,7 +115,6 @@ function getFiltersStory(
           ],
         },
       },
-      logActions: console.log,
       mockHttp: setMockHttp([
         {
           url: '/data-request',

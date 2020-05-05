@@ -1,6 +1,7 @@
-import { Component, Input, QueryList, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, Injector, Input, QueryList, ContentChildren } from '@angular/core';
 import { number } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
+import { CommonModule } from '@angular/common';
 
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
@@ -11,7 +12,10 @@ import {
 } from '../table-feature/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { CoreTableComponent } from '../table/table.component';
-// import { TableFeaturesRendererTplComponent } from './table-features-renderer.component';
+import { TableFeaturesRendererComponent } from './table-features-renderer.component';
+import { TableFeaturesRendererDirective } from './table-features-renderer.directive';
+import { TableRenderFeatureDirective } from './table-render-feature.directive';
+import { TableFeaturesRendererService } from './table-features-renderer.service';
 
 export default {
   title: 'TableFeaturesRendererComponent',
@@ -20,35 +24,45 @@ export default {
 class MockTableFeatureComponent extends TableFeatureComponent {
   name = 'mock-feature';
   location = 'mocked-location';
-  constructor(tplDirectives: QueryList<TableFeatureTplDirective>) {
-    super(null as any);
+  constructor(
+    tplDirectives: QueryList<TableFeatureTplDirective>,
+    injector: Injector,
+  ) {
+    super(injector);
     this.tplDirectives = tplDirectives;
+    this.ngAfterViewInit();
   }
 }
 
 @Component({
-  selector: 'render-features',
+  selector: 'spy-render-features',
   template: `
     <spy-table-features-renderer
       [features]="features"
       [maxFeatures]="limit < 0 ? null : limit"
+      location="mocked-location"
     ></spy-table-features-renderer>
+    <ng-content></ng-content>
   `,
 })
 class RenderFeaturesComponent {
-  @Input() set templates(templates: TemplateRef<TableFeatureTplContext>[]) {
-    // this.features = templates.map(tpl => new MockTableFeatureComponent(tpl));
+  @Input() limit?: number;
+
+  @ContentChildren(TableFeatureTplDirective) set tplDirectives(directives: QueryList<
+    TableFeatureTplDirective>) {
+    this.features = [new MockTableFeatureComponent(directives, this.injector)];
+    this.cdr.detectChanges();
   }
 
-  @Input() limit?: number;
+  constructor(private injector: Injector, private cdr: ChangeDetectorRef) {}
 
   features: MockTableFeatureComponent[] = [];
 }
 
 export const withFeatures = (): IStory => ({
   moduleMetadata: {
-    imports: [],
-    // declarations: [TableFeaturesRendererTplComponent, RenderFeaturesComponent],
+    imports: [CommonModule],
+    declarations: [RenderFeaturesComponent, TableFeatureTplDirective, TableFeaturesRendererComponent, TableFeaturesRendererDirective, TableRenderFeatureDirective],
     providers: [
       { provide: CoreTableComponent, useValue: 'CoreTableComponent' },
       {
@@ -60,13 +74,14 @@ export const withFeatures = (): IStory => ({
         provide: TableDataConfiguratorService,
         useValue: 'TableDataConfiguratorService',
       },
+      TableFeaturesRendererService,
     ],
   },
   template: `
-    <render-features [templates]="[feat1, feat2, feat3]" [limit]="limit"></render-features>
-    <ng-template #feat1>Feature #1</ng-template>
-    <ng-template #feat2 let-loc="location">Feature #2 at {{ loc }}</ng-template>
-    <ng-template #feat3>Feature #3</ng-template>
+    <spy-render-features [limit]="limit">
+      <div *spyTableFeatureTpl="'mocked-location'">feat</div>
+      <div *spyTableFeatureTpl="'mocked-location'">feat</div>
+    </spy-render-features>
   `,
   props: {
     limit: number('Max features (-1 is unlimited)', -1, {

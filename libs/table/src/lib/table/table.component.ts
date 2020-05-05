@@ -55,7 +55,6 @@ import { TableDataConfiguratorService } from './data-configurator.service';
 import { TableDataFetcherService } from './data-fetcher.service';
 import {
   SortingCriteria,
-  TableActionTriggeredEvent,
   TableColumn,
   TableColumnTplContext,
   TableComponent,
@@ -63,8 +62,6 @@ import {
   TableDataConfig,
   TableDataRow,
   TableFeatureLocation,
-  TableRowAction,
-  TableRowActionBase,
 } from './table';
 import { TableEventBus } from './table-event-bus';
 import { TableConfigService } from '../table-config/table-config.service';
@@ -97,8 +94,6 @@ export class CoreTableComponent
    * }
    */
   @Input() events: Record<string, ((data: unknown) => void) | undefined> = {};
-
-  @Output() actionTriggered = new EventEmitter<TableActionTriggeredEvent>();
 
   @ContentChildren(ColTplDirective) set slotTemplates(
     val: QueryList<ColTplDirective>,
@@ -260,7 +255,6 @@ export class CoreTableComponent
     if (changes.config) {
       this.config = this.configService.normalize(this.config);
       this.setConfig$.next(this.config);
-      this.updateActions();
     }
   }
 
@@ -305,14 +299,6 @@ export class CoreTableComponent
   }
 
   /** @internal */
-  updateActions(): void {
-    this.actions = this.config?.rowActions?.map(({ id, title }) => ({
-      action: id,
-      title,
-    }));
-  }
-
-  /** @internal */
   updateFeatures(features: TableFeatureComponent[]) {
     if (!this.featuresDiffer.diff(features)) {
       return;
@@ -343,31 +329,6 @@ export class CoreTableComponent
   /** @internal */
   trackByData(index: number, data: TableDataRow) {
     return index;
-  }
-
-  /** @internal */
-  actionTriggerHandler(actionId: TableRowAction, items: TableDataRow[]): void {
-    if (!this.config?.rowActions) {
-      return;
-    }
-
-    const action: TableRowActionBase = this.config.rowActions.filter(
-      rowAction => rowAction.id === actionId,
-    )[0];
-
-    if (!action) {
-      return;
-    }
-
-    const event: TableActionTriggeredEvent = {
-      action,
-      items,
-    };
-    const wasActionHandled = this.tableActionService.handle(event);
-
-    if (!wasActionHandled) {
-      this.actionTriggered.emit(event);
-    }
   }
 
   private sortingValueTransformation(

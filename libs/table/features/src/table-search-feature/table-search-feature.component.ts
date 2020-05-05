@@ -10,14 +10,13 @@ import {
   TableFeatureComponent,
   TableFeatureLocation,
   TableDataConfiguratorService,
-  TableComponent,
 } from '@spryker/table';
 import {
   debounceTime,
   distinctUntilChanged,
   takeUntil,
-  map,
   pluck,
+  defaultIfEmpty,
 } from 'rxjs/operators';
 import { Subject, Observable, merge } from 'rxjs';
 
@@ -63,16 +62,11 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
     distinctUntilChanged(),
     takeUntil(this.destroyed$),
   );
-  placeholder$?: Observable<string>;
+  placeholder$ = this.config$.pipe(
+    pluck('placeholder'),
+    defaultIfEmpty('default'),
+  );
   searchValue$?: Observable<string>;
-
-  setTableComponent(table: TableComponent) {
-    super.setTableComponent(table);
-
-    this.placeholder$ = (table.config$ as Observable<
-      TableConfigWithSearch
-    >).pipe(map(config => config.search?.placeholder || ''));
-  }
 
   ngOnInit() {
     this.valueChange$

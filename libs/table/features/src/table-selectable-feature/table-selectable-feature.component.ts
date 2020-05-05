@@ -50,7 +50,7 @@ export type TableSelectionChangeEvent = TableSelectionRow[];
 })
 export class TableSelectableFeatureComponent extends TableFeatureComponent
   implements OnDestroy {
-  name = 'item-selection';
+  name = 'itemSelection';
   tableFeatureLocation = TableFeatureLocation;
 
   allChecked = false;

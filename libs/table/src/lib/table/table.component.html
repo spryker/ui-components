@@ -84,14 +84,7 @@
         </td>
       </ng-template>
 
-      <td
-        *ngFor="
-          let column of columns$ | async;
-          trackBy: trackByColumns;
-          let last = last
-        "
-        [colSpan]="!config?.rowActions?.length && last ? 2 : 1"
-      >
+      <td *ngFor="let column of columns$ | async; trackBy: trackByColumns">
         <div class="ant-table-column-inner">
           <spy-table-column-renderer
             [config]="column"
@@ -102,17 +95,6 @@
         </div>
       </td>
 
-      <td *ngIf="config?.rowActions?.length">
-        <div class="ant-table-column-inner ant-table-column-inner--align-right">
-          <spy-dropdown
-            [items]="actions"
-            (actionTriggered)="this.actionTriggerHandler($event, [data])"
-            class="ant-table-dropdown"
-            ><spy-icon name="action"></spy-icon
-          ></spy-dropdown>
-        </div>
-      </td>
-
       <ng-template
         [spyTableFeaturesRenderer]="featureLocation.afterCols"
         [spyTableFeaturesRendererFeatures]="features$ | async"
@@ -120,7 +102,9 @@
         let-feature
       >
         <td [ngStyle]="feature.featureStyles$ | async">
-          <div class="ant-table-column-inner">
+          <div
+            class="ant-table-column-inner ant-table-column-inner--align-right"
+          >
             <ng-template [spyTableRenderFeature]="feature"></ng-template>
           </div>
         </td>

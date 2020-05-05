@@ -2,9 +2,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { IStory } from '@storybook/angular';
-import { TableModule } from '@spryker/table';
+import { TableModule, TableActionTriggeredEvent } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TablePaginationFeatureModule } from './table-pagination-feature.module';
+import { TableRowActionsFeatureModule } from './table-row-actions-feature.module';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,
@@ -12,7 +12,7 @@ import {
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 
 export default {
-  title: 'TablePaginationFeatureModule',
+  title: 'TableRowActionsFeatureModule',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
@@ -21,30 +21,30 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const viaHtml = getPaginationStory(
+export const viaHtml = getRowActionsStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
-      <spy-table-pagination-feature spy-table-feature></spy-table-pagination-feature>
+      <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
     </spy-table>
   `,
-  [TablePaginationFeatureModule],
+  [TableRowActionsFeatureModule],
 );
 
-export const viaConfig = getPaginationStory(
+export const viaConfig = getRowActionsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [mockHttp]="mockHttp" [events]="{'rowActions': logActionTriggered}">
   `,
   [
     TableModule.withFeatures({
-      pagination: () =>
-        import('./table-pagination-feature.module').then(
-          m => m.TablePaginationFeatureModule,
+      rowActions: () =>
+        import('./table-row-actions-feature.module').then(
+          m => m.TableRowActionsFeatureModule,
         ),
     }),
   ],
 );
 
-function getPaginationStory(
+function getRowActionsStory(
   template: string,
   extraNgModules: any[] = [],
 ): () => IStory {
@@ -74,9 +74,12 @@ function getPaginationStory(
           { id: 'col2', title: 'Column #2' },
           { id: 'col3', title: 'Column #3' },
         ],
-        pagination: {
+        rowActions: {
           enabled: true, // This will enable feature via config
-          sizes: [10, 50, 100],
+          actions: [
+            { id: '1234', title: '123' },
+            { id: '2345', title: '234' },
+          ],
         },
       },
       mockHttp: setMockHttp([
@@ -85,7 +88,7 @@ function getPaginationStory(
           dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
-      logActions: console.log,
+      logActionTriggered: (event: TableActionTriggeredEvent) => console.log('actionTriggered', event),
     },
   });
 }

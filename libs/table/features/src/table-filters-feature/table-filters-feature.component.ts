@@ -5,7 +5,6 @@ import {
   Inject,
   Injector,
   Input,
-  OnInit,
 } from '@angular/core';
 import {
   TableComponent,
@@ -53,8 +52,7 @@ export interface TableFiltersConfig {
     },
   ],
 })
-export class TableFiltersFeatureComponent extends TableFeatureComponent
-  implements OnInit {
+export class TableFiltersFeatureComponent extends TableFeatureComponent {
   name = 'filters';
   tableFeatureLocation = TableFeatureLocation;
 

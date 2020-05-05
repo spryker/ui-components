@@ -29,7 +29,7 @@ class TableColumnTestConfig {
 }
 
 @Component({
-  selector: 'table-column-test',
+  selector: 'spy-table-column-test',
   template: `
     {{ config.text | context: context }}
   `,

@@ -41,7 +41,7 @@ export interface TableSyncStateConfig {
   ],
 })
 export class TableSyncStateFeatureComponent extends TableFeatureComponent {
-  name = 'sync-state-url';
+  name = 'syncStateUrl';
   tableFeatureLocation = TableFeatureLocation;
 
   key = 'table-state';

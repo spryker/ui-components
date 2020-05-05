@@ -5,10 +5,6 @@ import {
   LayoutFlatHostComponent,
   LayoutFlatHostModule,
 } from '@orchestrator/layout';
-import { CheckboxModule } from '@spryker/checkbox';
-import { DropdownModule } from '@spryker/dropdown';
-import { IconModule } from '@spryker/icon';
-import { IconActionModule } from '@spryker/icon/icons';
 import { ContextModule } from '@spryker/utils';
 import { SelectComponentsModule } from '@spryker/web-components';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -31,15 +27,11 @@ import { PluckModule } from '@spryker/utils';
   imports: [
     CommonModule,
     NzTableModule,
-    CheckboxModule,
     OrchestratorCoreModule,
     LayoutFlatHostModule,
-    SelectComponentsModule,
-    DropdownModule,
-    IconActionModule,
-    IconModule,
     ContextModule,
     TableFeatureModule,
+    SelectComponentsModule,
     PluckModule,
   ],
   declarations: [

@@ -1,7 +1,7 @@
-/* tslint:disable:no-empty-interface */
 import { Type } from '@angular/core';
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
+import { TableRowActionBase } from '../../../features/src/table-row-actions-feature/types';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;
@@ -71,17 +71,6 @@ export interface TableData<T extends TableDataRow = TableDataRow> {
   pageSize: number;
 }
 
-export interface TableRowActionBase {
-  id: TableRowAction;
-  title: string;
-}
-
-export interface TableRowActionRegistry {
-  // Key is action string - value is action options type
-}
-
-export type TableRowAction = keyof TableRowActionRegistry;
-
 export interface TableRowActionHandler {
   handleAction(actionEvent: TableActionTriggeredEvent): void;
 }
@@ -99,7 +88,6 @@ export interface TableConfig {
   columnsUrl?: string;
   dataUrl: string;
   columns?: TableColumns;
-  pageSizes?: number[];
   rowActions?: TableRowActionBase[];
   // Features may expect it's config under it's namespace
   [featureName: string]: unknown; // FIXME: Replace `unknown` to `TableFeatureConfig`

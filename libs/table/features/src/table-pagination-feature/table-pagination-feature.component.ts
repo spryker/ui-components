@@ -3,13 +3,8 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  TableComponent,
-  TableFeatureComponent,
-  TableFeatureLocation,
-} from '@spryker/table';
+import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 declare module '@spryker/table' {
   // tslint:disable-next-line: no-empty-interface
@@ -41,8 +36,6 @@ export class TablePaginationFeatureComponent extends TableFeatureComponent {
   tableFeatureLocation = TableFeatureLocation;
   defaultSizes = [10, 20, 50];
 
-  sizes$?: Observable<number[]>;
-
   tableData$ = this.table$.pipe(
     switchMap(table => table.data$),
     shareReplay({ bufferSize: 1, refCount: true }),
@@ -51,14 +44,10 @@ export class TablePaginationFeatureComponent extends TableFeatureComponent {
   total$ = this.tableData$.pipe(pluck('total'));
   pageSize$ = this.tableData$.pipe(pluck('pageSize'));
   page$ = this.tableData$.pipe(pluck('page'));
-
-  setTableComponent(table: TableComponent) {
-    super.setTableComponent(table);
-
-    this.sizes$ = (table.config$ as Observable<TablePaginationConfig>).pipe(
-      map(config => config?.pagination?.sizes ?? this.defaultSizes),
-    );
-  }
+  sizes$ = this.config$.pipe(
+    pluck('sizes'),
+    map(sizes => sizes ?? this.defaultSizes),
+  );
 
   updatePagination(page: number): void {
     this.dataConfiguratorService?.changePage(page);

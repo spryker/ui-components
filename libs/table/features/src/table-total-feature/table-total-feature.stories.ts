@@ -2,7 +2,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { CheckboxModule } from '@spryker/checkbox';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { TableModule } from '@spryker/table';
 import {
@@ -11,7 +10,7 @@ import {
 } from '@spryker/table/testing';
 import { IStory } from '@storybook/angular';
 
-import { TableTotalFeatureComponent } from './table-total-feature.component';
+import { TableTotalFeatureModule } from './table-total-feature.module';
 
 export default {
   title: 'TableTotalFeatureComponent',
@@ -23,43 +22,69 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const primary = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      BrowserAnimationsModule,
-      HttpClientTestingModule,
-      MockHttpModule,
-      CheckboxModule,
-      TableModule.forRoot(),
-    ],
-    declarations: [TableTotalFeatureComponent],
-    providers: [
-      {
-        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent],
-        multi: true,
-      },
-    ],
-  },
-  template: `
+export const viaHtml = getTotalStory(
+  `
     <spy-table [config]="config" [mockHttp]="mockHttp">
       <spy-table-total-feature spy-table-feature></spy-table-total-feature>
     </spy-table>
   `,
-  props: {
-    config: {
-      dataUrl: '/data-request',
-      columns: [
-        { id: 'col1', title: 'Column #1' },
-        { id: 'col2', title: 'Column #2' },
-        { id: 'col3', title: 'Column #3' },
+  [TableTotalFeatureModule],
+);
+
+export const viaConfig = getTotalStory(
+  `
+    <spy-table [config]="config" [mockHttp]="mockHttp">
+  `,
+  [
+    TableModule.withFeatures({
+      total: () =>
+        import('./table-total-feature.module').then(
+          m => m.TableTotalFeatureModule,
+        ),
+    }),
+  ],
+);
+
+function getTotalStory(
+  template: string,
+  extraNgModules: any[] = [],
+): () => IStory {
+  return () => ({
+    moduleMetadata: {
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        MockHttpModule,
+        TableModule.forRoot(),
+        ...extraNgModules,
+      ],
+      providers: [
+        {
+          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+          useValue: [LayoutFlatHostComponent],
+          multi: true,
+        },
       ],
     },
-    mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+    template,
+    props: {
+      config: {
+        dataUrl: '/data-request',
+        columns: [
+          { id: 'col1', title: 'Column #1' },
+          { id: 'col2', title: 'Column #2' },
+          { id: 'col3', title: 'Column #3' },
+        ],
+        total: {
+          enabled: true, // This will enable feature via config
+        },
       },
-    ]),
-  },
-});
+      mockHttp: setMockHttp([
+        {
+          url: '/data-request',
+          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+        },
+      ]),
+    },
+  });
+}

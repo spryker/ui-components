@@ -3,7 +3,7 @@
     [value]="value$ | async"
     [prefix]="messageTmpl"
     [suffix]="suffixTpl"
-    [placeholder]="placeholder$ | async"
+    [placeholder]="(placeholder$ | async) || ''"
     (valueChange)="inputValueChange($event)"
   ></spy-input>
 

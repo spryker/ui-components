@@ -11,7 +11,6 @@ import {
 } from '@spryker/table/testing';
 import { IStory } from '@storybook/angular';
 
-import { TableTotalFeatureModule } from '../table-total-feature';
 import { TableSelectionChangeEvent } from './table-selectable-feature.component';
 import { TableSelectableFeatureModule } from './table-selectable-feature.module';
 
@@ -27,7 +26,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 export const viaHtml = getSelectableStory(
   `
-    <spy-table [config]="config" [events]="{selectable: logSelectionChange}" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [events]="{'itemSelection': logSelectionChange}" [mockHttp]="mockHttp">
       <spy-table-selectable-feature spy-table-feature></spy-table-selectable-feature>
     </spy-table>
   `,
@@ -36,7 +35,7 @@ export const viaHtml = getSelectableStory(
 
 export const viaConfig = getSelectableStory(
   `
-    <spy-table [config]="config" [events]="{selectable: logSelectionChange}" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [events]="{'itemSelection': logSelectionChange}" [mockHttp]="mockHttp">
   `,
   [
     TableModule.withFeatures({
@@ -46,16 +45,6 @@ export const viaConfig = getSelectableStory(
         ),
     }),
   ],
-);
-
-export const withTotalFeature = getSelectableStory(
-  `
-    <spy-table [config]="config" [events]="{selectable: logSelectionChange}" [mockHttp]="mockHttp">
-      <spy-table-selectable-feature spy-table-feature></spy-table-selectable-feature>
-      <spy-table-total-feature spy-table-feature></spy-table-total-feature>
-    </spy-table>
-  `,
-  [TableSelectableFeatureModule, TableTotalFeatureModule],
 );
 
 function getSelectableStory(

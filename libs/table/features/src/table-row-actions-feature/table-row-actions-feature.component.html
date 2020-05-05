@@ -1,0 +1,17 @@
+<ng-container *ngIf="actions$ | async as actions">
+  <spy-dropdown
+    *spyTableFeatureTpl="
+      tableFeatureLocation.afterCols;
+      let data = data
+    "
+    class="ant-table-row-actions-feature"
+    [items]="actions"
+    (actionTriggered)="actionTriggerHandler($event, [data])"
+  >
+    <spy-icon name="action"></spy-icon>
+  </spy-dropdown>
+
+  <ng-container
+    *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader"
+  ></ng-container>
+</ng-container>

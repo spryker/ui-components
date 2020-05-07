@@ -148,6 +148,10 @@
     border-radius: @calendar-date-border-radius;
     line-height: @calendar-date-line-height;
     font-weight: 500;
+
+    &::before {
+      content: none !important;
+    }
   }
 
   &-today {

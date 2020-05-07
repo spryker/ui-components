@@ -4,10 +4,7 @@ import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@spryker/table';
 import { TableFiltersFeatureModule } from '@spryker/table/features';
-import {
-  TableFilterSelectComponent,
-  TableFilterSelectModule,
-} from './index';
+import { TableFilterSelectComponent, TableFilterSelectModule } from './index';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
   generateMockTableDataFor,

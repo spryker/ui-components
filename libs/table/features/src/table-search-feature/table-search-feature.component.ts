@@ -17,6 +17,8 @@ import {
   takeUntil,
   pluck,
   defaultIfEmpty,
+  map,
+  tap,
 } from 'rxjs/operators';
 import { Subject, Observable, merge } from 'rxjs';
 
@@ -64,7 +66,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   );
   placeholder$ = this.config$.pipe(
     pluck('placeholder'),
-    defaultIfEmpty('default'),
+    map(placeholder => placeholder ?? ''),
   );
   searchValue$?: Observable<string>;
 

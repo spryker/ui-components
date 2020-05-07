@@ -4,34 +4,51 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChild,
-  EventEmitter,
+  Directive,
   Inject,
   InjectionToken,
+  Injector,
+  OnChanges,
   Optional,
   TemplateRef,
+  ViewContainerRef,
 } from '@angular/core';
 import {
   TableColumn,
-  TableColumnContext,
-  TableConfig,
+  TableColumnsResolverService,
   TableData,
+  TableDataConfiguratorService,
+  TableDataFetcherService,
   TableFeatureComponent,
-  TableFeatureContext,
-} from '@spryker/table';
+  TableFeatureEventBus,
+  TableFeatureTplContext,
+  TableFeatureTplDirectiveInputs,
+  TableComponent,
+} from '../../../src/index';
+import { TableConfig } from '../../../src/lib/table/table';
+import { TableEventBus } from '../../../src/lib/table/table-event-bus';
 import { ReplaySubject } from 'rxjs';
+import { InjectionTokenType, TypedSimpleChanges } from '@spryker/utils';
 
-export class TableMockComponent {
-  selectionChange = new EventEmitter<any>();
-  actionTriggered = new EventEmitter<any>();
+export class TableMockComponent implements TableComponent {
   config$ = new ReplaySubject<TableConfig>(1);
   columns$ = new ReplaySubject<TableColumn[]>(1);
   data$ = new ReplaySubject<TableData>(1);
-  disableFeatureAt = jest.fn();
+  isLoading$ = new ReplaySubject<boolean>(1);
   updateRowClasses = jest.fn();
+  getTableId = jest.fn();
+  setRowClasses = jest.fn();
+  eventHandler = jest.fn();
+  eventBus = new TableEventBus(this.eventHandler);
 }
 
 export interface TableFeatureMocks<T = TableMockComponent> {
   table: Partial<T>;
+  config: any;
+  eventBus: Partial<TableFeatureEventBus>;
+  columnsResolverService: Partial<TableColumnsResolverService>;
+  dataFetcherService: Partial<TableDataFetcherService>;
+  dataConfiguratorService: Partial<TableDataConfiguratorService>;
 }
 
 export const TestTableFeatureMocks = new InjectionToken<TableFeatureMocks>(
@@ -41,28 +58,44 @@ export const TestTableFeatureMocks = new InjectionToken<TableFeatureMocks>(
 export function initFeature<T>(
   feature: TableFeatureComponent,
   mocks: Partial<TableFeatureMocks<T>> = {},
+  injector: Injector,
 ): TableFeatureMocks<T> {
   const table = mocks.table || (new TableMockComponent() as any);
+  const config = mocks.config as any;
+  const eventBus =
+    mocks.eventBus ||
+    (new TableFeatureEventBus(feature.name, table.eventBus) as any);
+  const columnsResolverService =
+    mocks.columnsResolverService ||
+    (injector.get(TableColumnsResolverService) as any);
+  const dataFetcherService =
+    mocks.dataFetcherService || (injector.get(TableDataFetcherService) as any);
+  const dataConfiguratorService =
+    mocks.dataConfiguratorService ||
+    (injector.get(TableDataConfiguratorService) as any);
 
   feature.setTableComponent(table);
+  feature.setConfig(config);
+  feature.setTableEventBus(eventBus);
+  feature.setColumnsResolverService(columnsResolverService);
+  feature.setDataFetcherService(dataFetcherService);
+  feature.setDataConfiguratorService(dataConfiguratorService);
 
-  return { table };
+  return {
+    table,
+    config,
+    eventBus,
+    columnsResolverService,
+    dataConfiguratorService,
+    dataFetcherService,
+  };
 }
 
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'test-table-feature',
   template: `
-    <div class="template">
-      <ng-container
-        *ngTemplateOutlet="template; context: templateCtx"
-      ></ng-container>
-    </div>
-    <div class="column-template">
-      <ng-container
-        *ngTemplateOutlet="colTemplate; context: templateColumnCtx"
-      ></ng-container>
-    </div>
+    <ng-content></ng-content>
   `,
 })
 export class TestTableFeatureComponent<T = TableMockComponent>
@@ -71,25 +104,12 @@ export class TestTableFeatureComponent<T = TableMockComponent>
 
   featureMocks?: TableFeatureMocks<T>;
 
-  template?: TemplateRef<TableFeatureContext>;
-  colTemplate?: TemplateRef<TableColumnContext>;
-
-  templateCtx: TableFeatureContext = {
-    location: 'mock-location',
-  };
-
-  templateColumnCtx: TableColumnContext = {
-    config: {} as any,
-    value: 'mock-data',
-    row: {},
-    i: 0,
-  };
-
   constructor(
     private cdr: ChangeDetectorRef,
     @Inject(TestTableFeatureMocks)
     @Optional()
     private globalMocks: TableFeatureMocks<T> | null,
+    private injector: Injector,
   ) {}
 
   ngAfterContentInit(): void {
@@ -100,12 +120,44 @@ export class TestTableFeatureComponent<T = TableMockComponent>
     this.featureMocks = initFeature<T>(
       this.feature,
       this.globalMocks ?? undefined,
+      this.injector,
     );
+  }
+}
 
-    setTimeout(() => {
-      this.template = this.feature!.tplDirectives;
-      // this.colTemplate = this.feature!.colTemplate;
-      this.cdr.detectChanges();
-    });
+export const TestTableFeatureTplContext = new InjectionToken<
+  Record<string, TableFeatureTplContext>
+>('TestTableFeatureTplContext');
+
+@Directive({
+  selector: '[spyTableFeatureTpl]',
+})
+export class TestTableFeatureTplDirective extends TableFeatureTplDirectiveInputs
+  implements OnChanges {
+  constructor(
+    public template: TemplateRef<TableFeatureTplContext>,
+    public vcr: ViewContainerRef,
+    @Inject(TestTableFeatureTplContext)
+    @Optional()
+    public locationContext?: InjectionTokenType<
+      typeof TestTableFeatureTplContext
+    >,
+  ) {
+    super();
+  }
+
+  ngOnChanges(changes: TypedSimpleChanges<TableFeatureTplDirectiveInputs>) {
+    if (changes.spyTableFeatureTpl) {
+      const locations = Array.isArray(this.spyTableFeatureTpl!)
+        ? this.spyTableFeatureTpl!
+        : [this.spyTableFeatureTpl!];
+      this.vcr.clear();
+      locations.forEach(location =>
+        this.vcr.createEmbeddedView(
+          this.template,
+          this.locationContext?.[location],
+        ),
+      );
+    }
   }
 }

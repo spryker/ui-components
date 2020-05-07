@@ -44,7 +44,7 @@ export class TableTotalFeatureComponent extends TableFeatureComponent {
   total$ = this.tableData$.pipe(map(data => data.total));
 
   selected$ = this.tableEventBus$.pipe(
-    switchMap(eventBus => eventBus.on<any[]>('selectable')),
+    switchMap(eventBus => eventBus.on<any[]>('itemSelection')),
     map(items => items.length),
     shareReplay({ bufferSize: 1, refCount: true }),
   );

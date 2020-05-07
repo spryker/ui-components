@@ -11,51 +11,40 @@ import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
 } from '@spryker/table/features/testing';
-import { TableSearchFeatureComponent } from './table-search-feature.component';
+import { TableTotalFeatureComponent } from './table-total-feature.component';
 import {
-  TableColumnsResolverService,
-  TableDataConfig,
+  TableColumnsResolverService, TableData,
   TableDataConfiguratorService,
   TableDataFetcherService,
 } from '@spryker/table';
-import { ReplaySubject } from 'rxjs';
-import { InputModule } from '@spryker/input';
 
 @Component({
   selector: 'spy-test-host',
   template: `
     <test-table-feature>
-      <spy-table-search-feature></spy-table-search-feature>
+      <spy-table-total-feature></spy-table-total-feature>
     </test-table-feature>
   `,
 })
 class TestHostComponent {}
 
-class MockTableDataConfiguratorService {
-  readonly config$ = new ReplaySubject<TableDataConfig>(1);
-}
-
-describe('TableSearchFeatureComponent', () => {
+describe('TableTotalFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
+  let mockData: TableData;
 
-  const inputSelector = 'spy-input';
-  const iconSelector = 'spy-icon';
+  const totalContainer = '.table-total-feature';
 
-  function queryInput(): DebugElement {
-    return fixture.debugElement.query(By.css(inputSelector));
-  }
-
-  function queryIcon(): DebugElement {
-    return fixture.debugElement.query(By.css(iconSelector));
+  function queryTotal(): DebugElement {
+    return fixture.debugElement.query(By.css(totalContainer));
   }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [InputModule],
+      imports: [],
       declarations: [
         TestTableFeatureTplDirective,
-        TableSearchFeatureComponent,
+        TableTotalFeatureComponent,
         TestTableFeatureComponent,
         TestHostComponent,
       ],
@@ -70,14 +59,13 @@ describe('TableSearchFeatureComponent', () => {
         },
         {
           provide: TableDataConfiguratorService,
-          useClass: MockTableDataConfiguratorService,
+          useValue: 'TableDataConfiguratorService',
         },
         {
           provide: TestTableFeatureMocks,
           useValue: {
             config: {
               enabled: true,
-              placeholder: '123',
             },
           },
         },
@@ -92,24 +80,35 @@ describe('TableSearchFeatureComponent', () => {
       By.directive(TestTableFeatureComponent),
     ).componentInstance;
 
+    mockData = {
+      data: [{}],
+      page: 0,
+      pageSize: 0,
+      total: 10,
+    };
+
     fixture.detectChanges();
     tick();
-  }));
 
-  it('should render `spy-input`', fakeAsync(() => {
-    expect(queryInput()).toBeTruthy();
-  }));
-
-  it('should render `spy-icon`', fakeAsync(() => {
-    expect(queryIcon()).toBeTruthy();
-  }));
-
-  it('should bind placeholder to input', fakeAsync(() => {
+    testTableFeature.featureMocks?.table.data$?.next(mockData);
     fixture.detectChanges();
-    const expectedValue = '123';
+  }));
 
-    const inputPlaceholder = fixture.debugElement.query(By.css('input'))
-      .properties.placeholder;
-    expect(inputPlaceholder).toBe(expectedValue);
+  it('should render `.table-total-feature`', fakeAsync(() => {
+    expect(queryTotal()).toBeTruthy();
+  }));
+
+  it('should render number of total items', fakeAsync(() => {
+    expect(queryTotal().nativeElement.textContent).toContain(mockData.total);
+  }));
+
+  it('should render number of selected items', fakeAsync(() => {
+    const selectedItemsArr = [{}, {}, {}];
+
+    testTableFeature.featureMocks?.table?.eventBus?.emit('itemSelection', selectedItemsArr);
+
+    fixture.detectChanges();
+
+    expect(queryTotal().nativeElement.textContent).toContain(selectedItemsArr.length);
   }));
 });

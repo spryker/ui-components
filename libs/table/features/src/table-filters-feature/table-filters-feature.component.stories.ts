@@ -1,28 +1,18 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {
-  ANALYZE_FOR_ENTRY_COMPONENTS,
-  ChangeDetectionStrategy,
-  Component, EventEmitter, Input,
-  OnChanges, Output, SimpleChanges,
-  ViewEncapsulation
+  ANALYZE_FOR_ENTRY_COMPONENTS
 } from '@angular/core';
 import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@spryker/table';
 import { TableFiltersFeatureModule } from './table-filters-feature.module';
-import {
-  TableFilterSelect,
-  TableFilterSelectComponent,
-  TableFilterSelectModule, TableFilterSelectValue,
-} from '@spryker/table/filters';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { TableFilterComponent } from "@spryker/table/features";
-import { SelectOptionItem } from "@spryker/select";
+import { TableDummyFilterComponent } from './dummy-filter';
 
 export default {
   title: 'TableFiltersFeatureComponent',
@@ -33,27 +23,6 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col2: 'col2',
   col3: 'col3',
 });
-
-@Component({
-  selector: 'spy-table-filter',
-  template: `
-    <input 
-        type="text" 
-        [value]="value"
-        style="border: 2px solid lightskyblue; height: 50px; padding: 10px;"
-    >
-  `,
-})
-class TableDummyFilterComponent implements TableFilterComponent, OnChanges {
-  @Input() config?: any;
-  value = '';
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.config) {
-      this.value = this.config?.typeOptions?.value;
-    }
-  }
-}
 
 export const viaHtml = getFiltersStory(
   `
@@ -90,7 +59,7 @@ function getFiltersStory(
         MockHttpModule,
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
-          filter: TableDummyFilterComponent,
+          filter: TableDummyFilterComponent as any,
         }),
         ...extraNgModules,
       ],

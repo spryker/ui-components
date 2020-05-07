@@ -26,7 +26,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 export const viaHtml = getSelectableStory(
   `
-    <spy-table [config]="config" [events]="{'itemSelection': logSelectionChange}" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [events]="{itemSelection: logSelectionChange}" [mockHttp]="mockHttp">
       <spy-table-selectable-feature spy-table-feature></spy-table-selectable-feature>
     </spy-table>
   `,
@@ -35,7 +35,7 @@ export const viaHtml = getSelectableStory(
 
 export const viaConfig = getSelectableStory(
   `
-    <spy-table [config]="config" [events]="{'itemSelection': logSelectionChange}" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [events]="{itemSelection: logSelectionChange}" [mockHttp]="mockHttp">
   `,
   [
     TableModule.withFeatures({

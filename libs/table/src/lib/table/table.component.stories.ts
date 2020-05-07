@@ -14,7 +14,10 @@ import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext } from './table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
-import { generateMockTableDataFor, TableDataMockGenerator } from '../../../../table/testing/src';
+import {
+  generateMockTableDataFor,
+  TableDataMockGenerator,
+} from '../../../../table/testing/src';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 
 export default {

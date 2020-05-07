@@ -11,10 +11,7 @@ import {
   TableFeatureComponent,
   TableFeatureLocation,
 } from '@spryker/table';
-import {
-  TableRowAction,
-  TableRowActionBase,
-} from './types';
+import { TableRowAction, TableRowActionBase } from './types';
 import { pluck, map, shareReplay } from 'rxjs/operators';
 import { DropdownItem } from '@spryker/dropdown';
 import { Observable } from 'rxjs';
@@ -50,7 +47,7 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent {
 
   actions$: Observable<DropdownItem[]> = this.config$.pipe(
     pluck('actions'),
-    map(actions => actions.map(({ id: action, title }) => ({ action, title }))),
+    map(actions => (actions as TableRowActionBase[]).map(({ id: action, title }) => ({ action, title }))),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
@@ -66,7 +63,7 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent {
       return;
     }
 
-    const action: TableRowActionBase = this.config.actions.filter(
+    const action: TableRowActionBase = (this.config?.actions as TableRowActionBase[]).filter(
       rowAction => rowAction.id === actionId,
     )[0];
 

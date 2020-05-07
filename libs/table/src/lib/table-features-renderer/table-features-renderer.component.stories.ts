@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, Injector, Input, QueryList, ContentChildren } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  Input,
+  QueryList,
+  ContentChildren,
+} from '@angular/core';
 import { number } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
@@ -6,10 +13,7 @@ import { CommonModule } from '@angular/common';
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
 import { TableDataFetcherService } from '../table/data-fetcher.service';
-import {
-  TableFeatureTplContext,
-  TableFeatureTplDirective,
-} from '../table-feature/table-feature-tpl.directive';
+import { TableFeatureTplDirective } from '../table-feature/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { CoreTableComponent } from '../table/table.component';
 import { TableFeaturesRendererComponent } from './table-features-renderer.component';
@@ -48,8 +52,9 @@ class MockTableFeatureComponent extends TableFeatureComponent {
 class RenderFeaturesComponent {
   @Input() limit?: number;
 
-  @ContentChildren(TableFeatureTplDirective) set tplDirectives(directives: QueryList<
-    TableFeatureTplDirective>) {
+  @ContentChildren(TableFeatureTplDirective) set tplDirectives(
+    directives: QueryList<TableFeatureTplDirective>,
+  ) {
     this.features = [new MockTableFeatureComponent(directives, this.injector)];
     this.cdr.detectChanges();
   }
@@ -62,7 +67,13 @@ class RenderFeaturesComponent {
 export const withFeatures = (): IStory => ({
   moduleMetadata: {
     imports: [CommonModule],
-    declarations: [RenderFeaturesComponent, TableFeatureTplDirective, TableFeaturesRendererComponent, TableFeaturesRendererDirective, TableRenderFeatureDirective],
+    declarations: [
+      RenderFeaturesComponent,
+      TableFeatureTplDirective,
+      TableFeaturesRendererComponent,
+      TableFeaturesRendererDirective,
+      TableRenderFeatureDirective,
+    ],
     providers: [
       { provide: CoreTableComponent, useValue: 'CoreTableComponent' },
       {

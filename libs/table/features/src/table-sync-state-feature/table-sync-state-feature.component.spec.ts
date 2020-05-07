@@ -1,11 +1,28 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import {
+  TestTableFeatureComponent,
+  TestTableFeatureMocks,
+  TestTableFeatureTplDirective
+} from '@spryker/table/features/testing';
 import { TableSyncStateFeatureComponent } from './table-sync-state-feature.component';
 
 import { UrlPersistenceStrategy } from '@spryker/utils';
+import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
-import { TableDataConfiguratorService } from '@spryker/table';
+import {
+  TableColumnsResolverService,
+  TableData,
+  TableDataConfiguratorService,
+  TableDataFetcherService
+} from '@spryker/table';
+
+// tslint:disable: no-non-null-assertion
 
 class MockUrlPersistenceStrategy {
   save = jest.fn();
@@ -18,35 +35,82 @@ class MockTableDataConfiguratorService extends TableDataConfiguratorService {
   reset = jest.fn();
 }
 
+@Component({
+  selector: 'spy-test-host',
+  template: `
+    <test-table-feature>
+      <spy-table-sync-state-feature></spy-table-sync-state-feature>
+    </test-table-feature>
+  `,
+})
+class TestHostComponent {}
+
 describe('TableSyncStateFeatureComponent', () => {
-  let fixture: ComponentFixture<TableSyncStateFeatureComponent>;
-  let testTableFeature: TableSyncStateFeatureComponent;
+  let fixture: ComponentFixture<TestHostComponent>;
+  let testTableFeature: TestTableFeatureComponent;
   let testUrlPersistenceStrategyService: MockUrlPersistenceStrategy;
+  let mockData: TableData;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
-      declarations: [TableSyncStateFeatureComponent],
-      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [
+        TestTableFeatureTplDirective,
+        TableSyncStateFeatureComponent,
+        TestHostComponent,
+        TestTableFeatureComponent,
+      ],
       providers: [
+        {
+          provide: TableColumnsResolverService,
+          useValue: 'TableColumnsResolverService',
+        },
+        {
+          provide: TableDataFetcherService,
+          useValue: 'TableDataFetcherService',
+        },
+        {
+          provide: TableDataConfiguratorService,
+          useValue: 'TableDataConfiguratorService',
+        },
+        {
+          provide: TestTableFeatureMocks,
+          useValue: {
+            config: {
+              enabled: true,
+            },
+          },
+        },
         {
           provide: UrlPersistenceStrategy,
           useExisting: MockUrlPersistenceStrategy,
         },
         MockUrlPersistenceStrategy,
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     });
   });
 
   beforeEach(fakeAsync(() => {
-    fixture = TestBed.createComponent(TableSyncStateFeatureComponent);
-    testTableFeature = fixture.componentInstance;
+    fixture = TestBed.createComponent(TestHostComponent);
+    testTableFeature = fixture.debugElement.query(
+      By.directive(TestTableFeatureComponent),
+    ).componentInstance;
+
+    mockData = {
+      data: [{}],
+      page: 0,
+      pageSize: 0,
+      total: 0,
+    };
 
     testUrlPersistenceStrategyService = TestBed.inject(
       MockUrlPersistenceStrategy,
     );
 
     fixture.detectChanges();
+    tick();
+
+    testTableFeature.featureMocks?.table.data$?.next(mockData);
   }));
 
   it('If dataConfiguratorService config was updated, save merhod of urlPersistanceStrategy has to be called', fakeAsync(() => {
@@ -54,7 +118,9 @@ describe('TableSyncStateFeatureComponent', () => {
     const mockedConfig = { page: 1 };
     const mockedValue = 'table-state';
 
-    testTableFeature.setDataConfiguratorService(dataConfiguratorService);
+    testTableFeature.feature!.setDataConfiguratorService(
+      dataConfiguratorService,
+    );
 
     fixture.detectChanges();
 
@@ -71,7 +137,9 @@ describe('TableSyncStateFeatureComponent', () => {
     const mockedValue = '123';
     const mockedKey = 'table-state';
 
-    testTableFeature.setDataConfiguratorService(dataConfiguratorService);
+    testTableFeature.feature!.setDataConfiguratorService(
+      dataConfiguratorService,
+    );
 
     fixture.detectChanges();
 

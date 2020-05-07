@@ -11,21 +11,19 @@ import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
 } from '@spryker/table/features/testing';
-import { TableSearchFeatureComponent } from './table-search-feature.component';
+import { TablePaginationFeatureComponent } from './table-pagination-feature.component';
 import {
-  TableColumnsResolverService,
-  TableDataConfig,
+  TableColumnsResolverService, TableData, TableDataConfig,
   TableDataConfiguratorService,
   TableDataFetcherService,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
-import { InputModule } from '@spryker/input';
 
 @Component({
   selector: 'spy-test-host',
   template: `
     <test-table-feature>
-      <spy-table-search-feature></spy-table-search-feature>
+      <spy-table-pagination-feature></spy-table-pagination-feature>
     </test-table-feature>
   `,
 })
@@ -35,27 +33,24 @@ class MockTableDataConfiguratorService {
   readonly config$ = new ReplaySubject<TableDataConfig>(1);
 }
 
-describe('TableSearchFeatureComponent', () => {
+describe('TablePaginationFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
+  let mockData: TableData;
+  const mockSizes = [10, 50, 100];
 
-  const inputSelector = 'spy-input';
-  const iconSelector = 'spy-icon';
+  const paginationSelector = 'spy-pagination';
 
-  function queryInput(): DebugElement {
-    return fixture.debugElement.query(By.css(inputSelector));
-  }
-
-  function queryIcon(): DebugElement {
-    return fixture.debugElement.query(By.css(iconSelector));
+  function queryPagination(): DebugElement {
+    return fixture.debugElement.query(By.css(paginationSelector));
   }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [InputModule],
+      imports: [],
       declarations: [
         TestTableFeatureTplDirective,
-        TableSearchFeatureComponent,
+        TablePaginationFeatureComponent,
         TestTableFeatureComponent,
         TestHostComponent,
       ],
@@ -77,7 +72,7 @@ describe('TableSearchFeatureComponent', () => {
           useValue: {
             config: {
               enabled: true,
-              placeholder: '123',
+              sizes: mockSizes,
             },
           },
         },
@@ -92,24 +87,37 @@ describe('TableSearchFeatureComponent', () => {
       By.directive(TestTableFeatureComponent),
     ).componentInstance;
 
+    mockData = {
+      data: [{}],
+      page: 3,
+      pageSize: 30,
+      total: 10,
+    };
+
     fixture.detectChanges();
     tick();
-  }));
 
-  it('should render `spy-input`', fakeAsync(() => {
-    expect(queryInput()).toBeTruthy();
-  }));
-
-  it('should render `spy-icon`', fakeAsync(() => {
-    expect(queryIcon()).toBeTruthy();
-  }));
-
-  it('should bind placeholder to input', fakeAsync(() => {
+    testTableFeature.featureMocks?.table.data$?.next(mockData);
     fixture.detectChanges();
-    const expectedValue = '123';
+  }));
 
-    const inputPlaceholder = fixture.debugElement.query(By.css('input'))
-      .properties.placeholder;
-    expect(inputPlaceholder).toBe(expectedValue);
+  it('should render `spy-pagination`', fakeAsync(() => {
+    expect(queryPagination()).toBeTruthy();
+  }));
+
+  it('should bind `total` by default to `total` property of `spy-pagination`', fakeAsync(() => {
+    expect(queryPagination().properties.total).toBe(mockData.total);
+  }));
+
+  it('should bind `page` by default to `page` property of `spy-pagination`', fakeAsync(() => {
+    expect(queryPagination().properties.page).toBe(mockData.page);
+  }));
+
+  it('should bind `pageSize` by default to `pageSize` property of `spy-pagination`', fakeAsync(() => {
+    expect(queryPagination().properties.pageSize).toBe(mockData.pageSize);
+  }));
+
+  it('should bind `sizes` by default to `pageSizeOptions` property of `spy-pagination`', fakeAsync(() => {
+    expect(queryPagination().properties.pageSizeOptions).toEqual(mockSizes);
   }));
 });

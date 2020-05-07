@@ -23,7 +23,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 export const viaHtml = getRowActionsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp" [events]="{'rowActions': logActionTriggered}">
+    <spy-table [config]="config" [mockHttp]="mockHttp" [events]="{rowActions: logActionTriggered}">
       <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
     </spy-table>
   `,
@@ -32,7 +32,7 @@ export const viaHtml = getRowActionsStory(
 
 export const viaConfig = getRowActionsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp" [events]="{'rowActions': logActionTriggered}">
+    <spy-table [config]="config" [mockHttp]="mockHttp" [events]="{rowActions: logActionTriggered}">
   `,
   [
     TableModule.withFeatures({
@@ -88,7 +88,8 @@ function getRowActionsStory(
           dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
-      logActionTriggered: (event: TableActionTriggeredEvent) => console.log('actionTriggered', event),
+      logActionTriggered: (event: TableActionTriggeredEvent) =>
+        console.log('actionTriggered', event),
     },
   });
 }

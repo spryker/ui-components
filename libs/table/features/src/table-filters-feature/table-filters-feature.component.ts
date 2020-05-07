@@ -61,11 +61,38 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent {
     flexShrink: '0',
   };
 
-  filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;
-  filters$?: Observable<TableFilterBase[]>;
-  filterValues$?: Observable<Record<string, unknown>>;
-
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
+  filterComponentMap: Record<string, TableFilterComponent<TableFilterBase>> = this.tableFilterToken.reduce(
+    (acc, filter) => ({ ...acc, ...filter }),
+    {},
+  ) as Record<string, TableFilterComponent<TableFilterBase>>;
+
+  filters$ = this.config$.pipe(
+    pluck('items')
+  );
+
+  filterValues$: Observable<Record<string, unknown>> = combineLatest([
+    this.dataConfiguratorService?.config$.pipe(pluck('filter')) as Observable<
+      Record<string, unknown>
+      >,
+    this.updateFiltersValue$.pipe(startWith(null)),
+  ]).pipe(
+    tap(([filterValues, updatedValue]) => {
+      if (!updatedValue) {
+        return;
+      }
+
+      const filters = {
+        filter: { ...filterValues, ...updatedValue },
+      };
+
+      this.updateFiltersValue$.next(null);
+      this.dataConfiguratorService?.update(filters);
+    }),
+    map(([filterValues]) => filterValues),
+    distinctUntilChanged(),
+    shareReplay({ refCount: true, bufferSize: 1 }),
+  );
 
   constructor(
     @Inject(TABLE_FILTERS_TOKEN)
@@ -73,44 +100,6 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent {
     injector: Injector,
   ) {
     super(injector);
-  }
-
-  setTableComponent(table: TableComponent) {
-    super.setTableComponent(table);
-
-    this.updateFilters(table);
-  }
-
-  updateFilters(table: TableComponent): void {
-    this.filterComponentMap = this.tableFilterToken.reduce(
-      (acc, filter) => ({ ...acc, ...filter }),
-      {},
-    ) as Record<string, TableFilterComponent<TableFilterBase>>;
-
-    this.filters$ = table.config$.pipe(pluck('filters', 'items'));
-
-    this.filterValues$ = combineLatest([
-      this.dataConfiguratorService?.config$.pipe(pluck('filter')) as Observable<
-        Record<string, unknown>
-      >,
-      this.updateFiltersValue$.pipe(startWith(null)),
-    ]).pipe(
-      tap(([filterValues, updatedValue]) => {
-        if (!updatedValue) {
-          return;
-        }
-
-        const filters = {
-          filter: { ...filterValues, ...updatedValue },
-        };
-
-        this.updateFiltersValue$.next(null);
-        this.dataConfiguratorService?.update(filters);
-      }),
-      map(([filterValues]) => filterValues),
-      distinctUntilChanged(),
-      shareReplay({ refCount: true, bufferSize: 1 }),
-    );
   }
 
   updateFilterValue(id: string, value: unknown): void {

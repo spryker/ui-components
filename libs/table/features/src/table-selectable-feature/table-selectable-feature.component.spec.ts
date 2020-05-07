@@ -6,47 +6,84 @@ import {
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { TableData } from '@spryker/table';
-import { TestTableFeatureComponent } from '@spryker/table/features/testing';
+import {
+  TableColumnsResolverService,
+  TableData,
+  TableDataConfiguratorService,
+  TableDataFetcherService,
+  TableFeatureLocation,
+} from '@spryker/table';
+import {
+  TestTableFeatureComponent,
+  TestTableFeatureMocks,
+  TestTableFeatureTplDirective,
+  TestTableFeatureTplContext,
+} from '@spryker/table/features/testing';
 
 import { TableSelectableFeatureComponent } from './table-selectable-feature.component';
 
 @Component({
   selector: 'spy-test-host',
   template: `
-    <test-table-feature>
-      <spy-table-selectable-feature
-        (selectionChange)="selectionChange($event)"
-      ></spy-table-selectable-feature>
-    </test-table-feature>
+	  <test-table-feature>
+      <spy-table-selectable-feature></spy-table-selectable-feature>
+	  </test-table-feature>
   `,
 })
-class TestHostComponent {
-  selectionChange = jest.fn();
-}
+class TestHostComponent {}
 
 describe('TableSelectableFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
+  const mockItemSelectionEventData = [{'data': {}, 'index': 0}];
 
-  const headerCheckboxSelector = '.template spy-checkbox';
-  const columnCheckboxSelector = '.column-template spy-checkbox';
+  const checkboxSelector = 'spy-checkbox';
 
   function queryHeaderCheckbox(): DebugElement {
-    return fixture.debugElement.query(By.css(headerCheckboxSelector));
+    return fixture.debugElement.queryAll(By.css(checkboxSelector))[0];
   }
 
   function queryColumnCheckbox(): DebugElement {
-    return fixture.debugElement.query(By.css(columnCheckboxSelector));
+    return fixture.debugElement.queryAll(By.css(checkboxSelector))[1];
   }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
+        TestTableFeatureTplDirective,
         TableSelectableFeatureComponent,
         TestHostComponent,
         TestTableFeatureComponent,
+      ],
+      providers: [
+        {
+          provide: TableColumnsResolverService,
+          useValue: 'TableColumnsResolverService',
+        },
+        {
+          provide: TableDataFetcherService,
+          useValue: 'TableDataFetcherService',
+        },
+        {
+          provide: TableDataConfiguratorService,
+          useValue: 'TableDataConfiguratorService',
+        },
+        {
+          provide: TestTableFeatureMocks,
+          useValue: {
+            config: {
+              enabled: true,
+            },
+          },
+        },
+        { provide: TestTableFeatureTplContext,
+          useValue: {
+            [TableFeatureLocation.beforeCols]: {
+              i: 0,
+            },
+          },
+        },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -61,7 +98,7 @@ describe('TableSelectableFeatureComponent', () => {
     mockData = {
       data: [{}],
       page: 0,
-      size: 0,
+      pageSize: 0,
       total: 0,
     };
 
@@ -69,10 +106,13 @@ describe('TableSelectableFeatureComponent', () => {
     tick();
 
     testTableFeature.featureMocks?.table.data$?.next(mockData);
+    fixture.detectChanges();
   }));
 
   describe('header template', () => {
     it('should render `spy-checkbox`', fakeAsync(() => {
+      fixture.detectChanges();
+
       expect(queryHeaderCheckbox()).toBeTruthy();
     }));
 
@@ -98,22 +138,18 @@ describe('TableSelectableFeatureComponent', () => {
       expect(queryColumnCheckbox().properties.checked).toBe(false);
     }));
 
-    it('should emit `selectionChange` with data when check changes', fakeAsync(() => {
+    it('should emit `itemSelection` with data when check changes', fakeAsync(() => {
       queryHeaderCheckbox().triggerEventHandler('checkedChange', true);
 
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.selectionChange).toHaveBeenCalledWith([
-        mockData.data[0],
-      ]);
+      expect(testTableFeature.featureMocks?.table.eventHandler).toHaveBeenCalledWith('itemSelection', mockItemSelectionEventData);
 
       queryHeaderCheckbox().triggerEventHandler('checkedChange', false);
 
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.selectionChange).toHaveBeenCalledWith(
-        [],
-      );
+      expect(testTableFeature.featureMocks?.table.eventHandler).toHaveBeenCalledWith('itemSelection', []);
     }));
   });
 
@@ -127,15 +163,13 @@ describe('TableSelectableFeatureComponent', () => {
     }));
 
     it('should set check checkbox when it is checked', fakeAsync(() => {
-      const columnCheckboxElem = queryColumnCheckbox();
+      expect(queryColumnCheckbox().properties.checked).toBeFalsy();
 
-      expect(columnCheckboxElem.properties.checked).toBeFalsy();
-
-      columnCheckboxElem.triggerEventHandler('checkedChange', true);
+      queryColumnCheckbox().triggerEventHandler('checkedChange', true);
 
       fixture.detectChanges();
 
-      expect(columnCheckboxElem.properties.checked).toBe(true);
+      expect(queryColumnCheckbox().properties.checked).toBe(true);
     }));
 
     it('should check header checkbox when all checked', fakeAsync(() => {
@@ -180,22 +214,18 @@ describe('TableSelectableFeatureComponent', () => {
       ).toHaveBeenCalledWith('0', { 'ant-table-row--selected': false });
     }));
 
-    it('should emit `selectionChange` with data when check changes', fakeAsync(() => {
+    it('should emit `itemSelection` with data when check changes', fakeAsync(() => {
       queryColumnCheckbox().triggerEventHandler('checkedChange', true);
 
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.selectionChange).toHaveBeenCalledWith([
-        mockData.data[0],
-      ]);
+      expect(testTableFeature.featureMocks?.table.eventHandler).toHaveBeenCalledWith('itemSelection', mockItemSelectionEventData);
 
       queryColumnCheckbox().triggerEventHandler('checkedChange', false);
 
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.selectionChange).toHaveBeenCalledWith(
-        [],
-      );
+      expect(testTableFeature.featureMocks?.table.eventHandler).toHaveBeenCalledWith('itemSelection', []);
     }));
   });
 });

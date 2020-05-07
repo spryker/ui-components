@@ -13,7 +13,6 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 
 import { TableFiltersFeatureModule } from './table-filters-feature';
 import { TablePaginationFeatureModule } from './table-pagination-feature';
@@ -45,7 +44,15 @@ export const viaHtml = getFiltersStory(
       <spy-table-total-feature spy-table-feature></spy-table-total-feature>
     </spy-table>
   `,
-  [TableFiltersFeatureModule, TablePaginationFeatureModule, TableRowActionsFeatureModule, TableSearchFeatureModule, TableSyncStateFeatureModule, TableSelectableFeatureModule, TableTotalFeatureModule],
+  [
+    TableFiltersFeatureModule,
+    TablePaginationFeatureModule,
+    TableRowActionsFeatureModule,
+    TableSearchFeatureModule,
+    TableSyncStateFeatureModule,
+    TableSelectableFeatureModule,
+    TableTotalFeatureModule,
+  ],
 );
 
 export const viaConfig = getFiltersStory(
@@ -67,17 +74,13 @@ export const viaConfig = getFiltersStory(
           m => m.TableRowActionsFeatureModule,
         ),
       search: () =>
-        import('./table-search-feature').then(
-          m => m.TableSearchFeatureModule,
-        ),
+        import('./table-search-feature').then(m => m.TableSearchFeatureModule),
       syncStateUrl: () =>
         import('./table-sync-state-feature').then(
           m => m.TableSyncStateFeatureModule,
         ),
       total: () =>
-        import('./table-total-feature').then(
-          m => m.TableTotalFeatureModule,
-        ),
+        import('./table-total-feature').then(m => m.TableTotalFeatureModule),
     }),
   ],
 );

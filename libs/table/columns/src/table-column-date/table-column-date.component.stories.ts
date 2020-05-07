@@ -9,7 +9,10 @@ import { ContextModule } from '@spryker/utils';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { TableModule } from '@spryker/table';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { generateMockTableDataFor, TableDataMockGenerator } from '@spryker/table/testing';
+import {
+  generateMockTableDataFor,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
 
 export default {
   title: 'TableColumnDateComponent',
@@ -53,10 +56,7 @@ export const withTable = (): IStory => ({
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [
-          LayoutFlatHostComponent,
-          TableColumnDateComponent,
-        ],
+        useValue: [LayoutFlatHostComponent, TableColumnDateComponent],
         multi: true,
       },
     ],

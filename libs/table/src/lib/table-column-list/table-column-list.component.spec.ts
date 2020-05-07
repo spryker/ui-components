@@ -36,6 +36,7 @@ const mockContext: TableColumnTplContext = {
     sku: 'non transformed value',
   },
   value: 'test value',
+  i: 0,
 };
 
 const mockTransformedData = { name: 'name', sku: 'test value' };

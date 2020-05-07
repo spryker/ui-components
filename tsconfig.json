@@ -143,6 +143,10 @@
       "@spryker/chips": [
         "dist/libs/chips/index.d.ts",
         "libs/chips/src/index.ts"
+      ],
+      "@spryker/date-picker": [
+        "dist/libs/date-picker/index.d.ts",
+        "libs/date-picker/src/index.ts"
       ]
     }
   },

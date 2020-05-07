@@ -1,0 +1,14 @@
+<nz-date-picker
+  [nzAllowClear]="clearButton"
+  [nzDisabled]="disabled"
+  [ngModel]="date"
+  [nzFormat]="format"
+  [nzPlaceHolder]="placeholder"
+  [nzDisabledDate]="disabledDate"
+  [nzShowToday]="false"
+  (ngModelChange)="dateChange.emit($event)"
+  (nzOnOpenChange)="openChange.emit($event)"
+  *spyLocaleRender
+  #datePicker
+>
+</nz-date-picker>

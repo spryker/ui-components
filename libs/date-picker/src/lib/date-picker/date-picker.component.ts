@@ -47,7 +47,7 @@ export class DatePickerComponent
   @Input() @ToBoolean() open = false;
   @Input()
   set date(value: Date) {
-    this._date = new Date(value);
+    this._date = value ? new Date(value) : undefined;
   }
 
   get date(): Date {
@@ -140,6 +140,3 @@ export class DatePickerComponent
     this.openChange.emit(false);
   }
 }
-
-// unit tests for real picker
-// add ant component to module test that picker was opened

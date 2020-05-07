@@ -1,23 +1,33 @@
-import { DatePickerModule } from '../date-picker.module';
+import { DateRangePickerModule } from './date-range-picker.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
 import { EnLocaleModule, EN_LOCALE } from '@spryker/locale/locales/en';
 
 export default {
-  title: 'DatePickerComponent',
+  title: 'DateRangePickerComponent',
+};
+
+const dates = {
+  from: '2012-12-12',
+  to: '2019-12-12',
 };
 
 export const primary = () => ({
   moduleMetadata: {
     imports: [
-      DatePickerModule,
+      DateRangePickerModule,
       BrowserAnimationsModule,
       LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
       EnLocaleModule,
     ],
   },
   template: `
-    <spy-date-picker time format="yyyy-MM-dd" date="2012-12-12" placeholder="123"></spy-date-picker>
+    <spy-date-range-picker 
+        format="yyyy-MM-dd" 
+        [dates]="{from: '2012-12-12', to: '2012-12-12'}"
+        placeholderFrom="from"
+        placeholderTo="to"
+    ></spy-date-range-picker>
   `,
   props: {},
 });

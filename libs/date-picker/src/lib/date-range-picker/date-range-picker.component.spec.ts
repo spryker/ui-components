@@ -24,7 +24,7 @@ describe('DateRangePickerComponent', () => {
     TestBed.configureTestingModule({ imports: [testModule] });
   });
 
-  it('should render two <nz-date-picker> elements', async () => {
+  it('should render two <spy-date-picker> elements', async () => {
     const host = await createComponent({ dates: mockedDates }, true);
 
     const datePickerElemFrom = host.queryCss('spy-date-picker');
@@ -34,7 +34,7 @@ describe('DateRangePickerComponent', () => {
     expect(datePickerElemTo).toBeTruthy();
   });
 
-  describe('Inputs', () => {
+  describe('@Input', () => {
     it('Input dates.from should be bound to date of first date picker', async () => {
       const host = await createComponent({ dates: mockedDates }, true);
 

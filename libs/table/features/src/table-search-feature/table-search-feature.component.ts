@@ -16,9 +16,7 @@ import {
   distinctUntilChanged,
   takeUntil,
   pluck,
-  defaultIfEmpty,
   map,
-  tap,
 } from 'rxjs/operators';
 import { Subject, Observable, merge } from 'rxjs';
 

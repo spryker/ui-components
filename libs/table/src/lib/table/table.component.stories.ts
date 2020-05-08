@@ -11,6 +11,7 @@ import { IStory } from '@storybook/angular';
 
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableModule } from '../table.module';
+import { TableDatasourceHttpService } from '../../../datasources/src'
 import { TableColumnComponent, TableColumnContext } from './table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
@@ -28,6 +29,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
+  col4: 'col4',
 });
 
 @Injectable({ providedIn: 'root' })
@@ -59,8 +61,11 @@ export const withFeatures = (): IStory => ({
       MockHttpModule,
       TableModule.forRoot(),
       TableModule.withColumnComponents({
-        test: TableColumnTestComponent as any,
+        test: TableColumnTestComponent,
       } as any),
+      TableModule.withDatasourceTypes({
+        http: TableDatasourceHttpService,
+      }),
       BrowserAnimationsModule,
     ],
     declarations: [TableColumnTestComponent],
@@ -71,6 +76,7 @@ export const withFeatures = (): IStory => ({
           LayoutFlatHostComponent,
           TableColumnTestComponent,
           TableColumnListComponent,
+          TableDatasourceHttpService,
         ],
         multi: true,
       },
@@ -78,21 +84,24 @@ export const withFeatures = (): IStory => ({
   },
   template: `
     <spy-table [config]="config" [mockHttp]="mockHttp">
-      <div *spyColTpl="'name'; let name">Name is3: {{ name }}</div>
-      <ng-template spyColTpl="name" let-name>Name is2: {{ name }}</ng-template>
-      <div *spyColTpl="'sku'; let sku">sku {{ sku }}</div>
-      <div *spyColTpl="'id3'; let row='row'">{{ row.name }} - {{ row.id3 }}</div>
+      <div *spyColTpl="'col1'; let col1">spyColTpl: {{ col1 }}</div>
+      <ng-template spyColTpl="col2" let-col2>spyColTpl Template: {{ col2 }}</ng-template>
     </spy-table>
   `,
   props: {
     config: {
+      dataSource: {
+        type: 'http',
+        url: '/data-request',
+      },
       dataUrl: '/data-request',
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
         { id: 'col2', title: 'Column #2', width: '20%' },
+        { id: 'col3', title: 'Column #3', width: '20%' },
         {
-          id: 'col3',
-          title: 'Column #3',
+          id: 'col4',
+          title: 'Column #4',
           type: 'list',
           typeOptions: {
             limit: 2,

@@ -1,7 +1,8 @@
-import { Type } from '@angular/core';
+/* tslint:disable:no-empty-interface */
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
-import { TableRowActionBase } from '../../../features/src/table-row-actions-feature/types';
+import { Injector, Type } from '@angular/core';
+import { TableFeatureConfig } from '../table-config/types';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;
@@ -19,6 +20,7 @@ export interface TableColumnTypeDef {
   type: TableColumnType;
   typeOptions?: TableColumnTypeOptions;
   children?: TableColumnTypeDef[];
+  typeOptionsMappings?: any // TODO replace any type;
 }
 
 export interface TableColumnTypeOptions {
@@ -71,6 +73,17 @@ export interface TableData<T extends TableDataRow = TableDataRow> {
   pageSize: number;
 }
 
+export interface TableRowActionBase {
+  id: TableRowAction;
+  title: string;
+}
+
+export interface TableRowActionRegistry {
+  // Key is action string - value is action options type
+}
+
+export type TableRowAction = keyof TableRowActionRegistry;
+
 export interface TableRowActionHandler {
   handleAction(actionEvent: TableActionTriggeredEvent): void;
 }
@@ -85,10 +98,10 @@ export interface TableActionTriggeredEvent {
 }
 
 export interface TableConfig {
+  dataSource: TableDatasourceConfig;
   columnsUrl?: string;
   dataUrl: string;
   columns?: TableColumns;
-  rowActions?: TableRowActionBase[];
   // Features may expect it's config under it's namespace
   [featureName: string]: unknown; // FIXME: Replace `unknown` to `TableFeatureConfig`
 }
@@ -126,4 +139,30 @@ export enum TableFeatureLocation {
   bottom = 'bottom',
   hidden = 'hidden',
   pagination = 'pagination',
+}
+
+export interface TableDatasourceRegistry {
+  // http
+  // inline?
+  // etc...
+}
+
+export type TableDatasourceType = keyof TableDatasourceRegistry;
+
+export interface TableDatasourceConfig {
+  type: TableDatasourceType;
+  // Specific datasource types may have custom configs
+  [k: string]: unknown;
+}
+
+export interface TableDatasource<C extends TableDatasourceConfig> {
+  resolve(
+    datasource: C,
+    dataConfig$: Observable<TableDataConfig>,
+    injector: Injector
+  ): Observable<TableData>;
+}
+
+export type TableDatasourceTypesDeclaration = {
+  [P in keyof TableDatasourceRegistry]?: Type<TableDatasource<TableDatasourceRegistry[P]>>;
 }

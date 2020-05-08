@@ -12,8 +12,7 @@ export class TableConfigService {
     columns: true,
     columnsUrl: true,
     dataUrl: true,
-    pageSizes: true,
-    rowActions: true,
+    dataSource: true,
   };
 
   constructor(private defaultConfig: TableDefaultConfig) {}

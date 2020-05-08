@@ -4,13 +4,11 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  EventEmitter,
   Input,
   IterableDiffers,
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
   QueryList,
   SimpleChanges,
   TemplateRef,
@@ -24,7 +22,7 @@ import {
   combineLatest,
   EMPTY,
   merge,
-  MonoTypeOperatorFunction,
+  MonoTypeOperatorFunction, Observable,
   of,
   ReplaySubject,
   Subject,
@@ -58,13 +56,14 @@ import {
   TableColumn,
   TableColumnTplContext,
   TableComponent,
-  TableConfig,
+  TableConfig, TableData,
   TableDataConfig,
   TableDataRow,
   TableFeatureLocation,
 } from './table';
 import { TableEventBus } from './table-event-bus';
 import { TableConfigService } from '../table-config/table-config.service';
+import { TableDatasourceService } from './datasource.service';
 
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   shareReplay({ bufferSize: 1, refCount: true });
@@ -81,6 +80,7 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
     TableColumnsResolverService,
     TableActionService,
     TableFeaturesRendererService,
+    TableDatasourceService,
   ],
 })
 export class CoreTableComponent
@@ -135,18 +135,10 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
-  dataUrl$ = this.config$.pipe(
-    map(config => config.dataUrl),
+  data$ = this.config$.pipe(
+    map(config => config.dataSource),
     distinctUntilChanged(),
-    shareReplaySafe(),
-  );
-
-  data$ = this.dataUrl$.pipe(
-    switchMap(dataUrl =>
-      this.dataFetcherService
-        .resolve(dataUrl)
-        .pipe(catchError(this.handleStreamError())),
-    ),
+    switchMap(dataSource => this.datasourceService.resolve(dataSource)),
     shareReplaySafe(),
   );
 
@@ -245,6 +237,7 @@ export class CoreTableComponent
     private tableActionService: TableActionService,
     private featureLoaderService: TableFeatureLoaderService,
     private configService: TableConfigService,
+    private datasourceService: TableDatasourceService,
   ) {}
 
   ngOnInit(): void {

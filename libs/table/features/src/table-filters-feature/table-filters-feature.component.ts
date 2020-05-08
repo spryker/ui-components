@@ -7,7 +7,6 @@ import {
   Input,
 } from '@angular/core';
 import {
-  TableComponent,
   TableFeatureComponent,
   TableFeatureLocation,
 } from '@spryker/table';

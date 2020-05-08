@@ -10,6 +10,7 @@ import { SelectComponentsModule } from '@spryker/web-components';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
 import { provideTableColumnComponents } from './column-type/tokens';
+import { provideTableDatasourceServices } from './datasource-type/tokens';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
 import { provideTableFeatures } from './table-feature-loader/tokens';
@@ -19,7 +20,7 @@ import { TableFeaturesRendererComponent } from './table-features-renderer/table-
 import { TableFeaturesRendererDirective } from './table-features-renderer/table-features-renderer.directive';
 import { TableRenderFeatureDirective } from './table-features-renderer/table-render-feature.directive';
 import { ColTplDirective } from './table/col-tpl.directive';
-import { TableColumnComponentDeclaration } from './table/table';
+import { TableColumnComponentDeclaration, TableDatasourceTypesDeclaration } from './table/table';
 import { CoreTableComponent } from './table/table.component';
 import { PluckModule } from '@spryker/utils';
 
@@ -81,5 +82,14 @@ export class TableModule {
       ngModule: TableModule,
       providers: [provideTableFeatures(features)],
     };
+  }
+
+  static withDatasourceTypes(
+    datasourceTypes: TableDatasourceTypesDeclaration
+  ): ModuleWithProviders<TableModule> {
+    return {
+      ngModule: TableModule,
+      providers: [provideTableDatasourceServices(datasourceTypes)],
+    }
   }
 }

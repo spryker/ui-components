@@ -10,8 +10,9 @@ import {
   TableDataRow,
   TableFeatureComponent,
   TableFeatureLocation,
+  TableRowAction,
+  TableRowActionBase,
 } from '@spryker/table';
-import { TableRowAction, TableRowActionBase } from './types';
 import { pluck, map, shareReplay } from 'rxjs/operators';
 import { DropdownItem } from '@spryker/dropdown';
 import { Observable } from 'rxjs';

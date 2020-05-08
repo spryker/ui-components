@@ -27,7 +27,6 @@ import { PluckModule } from '@spryker/utils';
 import { TableDummyFilterComponent } from './dummy-filter';
 import { TABLE_FILTERS_TOKEN } from './tokens';
 import { ReplaySubject } from 'rxjs';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
 
 @Component({
   selector: 'spy-test-host',

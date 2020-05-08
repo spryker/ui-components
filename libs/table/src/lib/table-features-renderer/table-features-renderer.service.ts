@@ -29,11 +29,7 @@ export class TableFeaturesRendererService implements OnDestroy {
           debounceTime(0),
         ),
       ),
-    ).pipe(
-      debounceTime(0),
-      tap(locations => console.log('locations', locations)),
-      shareReplay({ bufferSize: 1, refCount: true }),
-    ),
+    ).pipe(debounceTime(0), shareReplay({ bufferSize: 1, refCount: true })),
   );
 
   private featureRecordsStore = new TokenStore<

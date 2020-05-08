@@ -13,7 +13,8 @@ import {
 } from '@spryker/table/features/testing';
 import { TableTotalFeatureComponent } from './table-total-feature.component';
 import {
-  TableColumnsResolverService, TableData,
+  TableColumnsResolverService,
+  TableData,
   TableDataConfiguratorService,
   TableDataFetcherService,
 } from '@spryker/table';
@@ -105,10 +106,15 @@ describe('TableTotalFeatureComponent', () => {
   it('should render number of selected items', fakeAsync(() => {
     const selectedItemsArr = [{}, {}, {}];
 
-    testTableFeature.featureMocks?.table?.eventBus?.emit('itemSelection', selectedItemsArr);
+    testTableFeature.featureMocks?.table?.eventBus?.emit(
+      'itemSelection',
+      selectedItemsArr,
+    );
 
     fixture.detectChanges();
 
-    expect(queryTotal().nativeElement.textContent).toContain(selectedItemsArr.length);
+    expect(queryTotal().nativeElement.textContent).toContain(
+      selectedItemsArr.length,
+    );
   }));
 });

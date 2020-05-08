@@ -120,10 +120,12 @@
   ></spy-table-features-renderer>
 </div>
 
-<spy-table-features-renderer
-  [location]="featureLocation.pagination"
-  [features]="features$ | async"
-></spy-table-features-renderer>
+<div class="ant-table-features ant-table-features--pagination">
+  <spy-table-features-renderer
+    [location]="featureLocation.pagination"
+    [features]="features$ | async"
+  ></spy-table-features-renderer>
+</div>
 
 <div class="ant-table-features ant-table-features--bottom">
   <spy-table-features-renderer

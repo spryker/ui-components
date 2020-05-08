@@ -9,14 +9,18 @@ import { By } from '@angular/platform-browser';
 import {
   TestTableFeatureTplDirective,
   TestTableFeatureComponent,
-  TestTableFeatureMocks, TestTableFeatureTplContext,
+  TestTableFeatureMocks,
+  TestTableFeatureTplContext,
 } from '@spryker/table/features/testing';
 import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
 import {
   TableActionService,
-  TableColumnsResolverService, TableData, TableDataConfig,
+  TableColumnsResolverService,
+  TableData,
+  TableDataConfig,
   TableDataConfiguratorService,
-  TableDataFetcherService, TableFeatureLocation,
+  TableDataFetcherService,
+  TableFeatureLocation,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
 
@@ -38,9 +42,7 @@ describe('TableRowActionsFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
-  const mockActions = [
-    { id: '1234', title: '123' },
-  ];
+  const mockActions = [{ id: '1234', title: '123' }];
 
   const dropdownSelector = 'spy-dropdown';
 
@@ -79,7 +81,8 @@ describe('TableRowActionsFeatureComponent', () => {
             },
           },
         },
-        { provide: TestTableFeatureTplContext,
+        {
+          provide: TestTableFeatureTplContext,
           useValue: {
             [TableFeatureLocation.afterCols]: {
               data: {},
@@ -118,7 +121,10 @@ describe('TableRowActionsFeatureComponent', () => {
   }));
 
   it('should bind `actions` by default to `items` property of `spy-pagination`', fakeAsync(() => {
-    const transformedActions = mockActions.map(({ id: action, title }) => ({ action, title }));
+    const transformedActions = mockActions.map(({ id: action, title }) => ({
+      action,
+      title,
+    }));
 
     expect(queryDropdown().properties.items).toEqual(transformedActions);
   }));
@@ -133,6 +139,8 @@ describe('TableRowActionsFeatureComponent', () => {
 
     fixture.detectChanges();
 
-    expect(testTableFeature.featureMocks?.table.eventHandler).toHaveBeenCalledWith('rowActions', actionTriggeredRes);
+    expect(
+      testTableFeature.featureMocks?.table.eventHandler,
+    ).toHaveBeenCalledWith('rowActions', actionTriggeredRes);
   }));
 });

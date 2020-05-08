@@ -13,7 +13,9 @@ import {
 } from '@spryker/table/features/testing';
 import { TablePaginationFeatureComponent } from './table-pagination-feature.component';
 import {
-  TableColumnsResolverService, TableData, TableDataConfig,
+  TableColumnsResolverService,
+  TableData,
+  TableDataConfig,
   TableDataConfiguratorService,
   TableDataFetcherService,
 } from '@spryker/table';

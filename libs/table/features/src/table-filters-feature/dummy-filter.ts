@@ -11,7 +11,8 @@ import { TableFilterComponent } from '@spryker/table/features';
     />
   `,
 })
-export class TableDummyFilterComponent implements TableFilterComponent<any>, OnChanges {
+export class TableDummyFilterComponent
+  implements TableFilterComponent<any>, OnChanges {
   @Input() config?: any;
   valueChange: any;
   value = '';

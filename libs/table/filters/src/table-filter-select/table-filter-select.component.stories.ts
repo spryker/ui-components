@@ -58,7 +58,7 @@ function getFiltersStory(
         TableModule.forRoot(),
 
         TableFiltersFeatureModule.withFilterComponents({
-          select: TableFilterSelectComponent,
+          select: TableFilterSelectComponent as any,
         }),
         TableFilterSelectModule,
 

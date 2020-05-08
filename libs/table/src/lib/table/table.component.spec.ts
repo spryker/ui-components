@@ -1,11 +1,5 @@
 // tslint:disable: no-non-null-assertion
-import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -16,12 +10,12 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { PluckModule } from '@spryker/utils';
 
 import { CoreTableComponent } from './table.component';
-import { TableConfig, TableColumns, TableColumnComponentDeclaration } from './table';
+import { TableConfig, TableColumns } from './table';
 import { TableFeaturesRendererDirective } from '../table-features-renderer/table-features-renderer.directive';
 import { TableRenderFeatureDirective } from '../table-features-renderer/table-render-feature.directive';
-import { provideTableColumnComponents, TableColumnComponentsToken, TableModule } from '@spryker/table';
-import { OrchestratorCoreModule } from "@orchestrator/core";
-import { MockFeatureModule } from '../../../testing/src/mock-feature-component';
+import { TableFeaturesRegistryToken } from '@spryker/table';
+import { TableFeaturesRendererComponent } from '../table-features-renderer/table-features-renderer.component';
+import { of } from 'rxjs';
 
 const mockDataUrl = 'https://test-data-url.com';
 const mockColUrl = 'https://test-col-url.com';
@@ -68,13 +62,13 @@ const mockData = {
   total: 5,
   pageSize: 10,
   page: 1,
-  mockFeature: {
-    enabled: true,
-  },
 };
 const mockConfig: TableConfig = {
   dataUrl: mockDataUrl,
   columnsUrl: mockColUrl,
+  mockFeature: {
+    enabled: true,
+  },
 };
 const mockConfigCols: TableConfig = {
   dataUrl: mockDataUrl,
@@ -88,11 +82,9 @@ describe('TableComponent', () => {
     CoreTableComponent,
     {
       ngModule: {
-        imports: [
-          HttpClientTestingModule, PluckModule,
-
-        ],
+        imports: [HttpClientTestingModule, PluckModule],
         declarations: [
+          TableFeaturesRendererComponent,
           TableFeaturesRendererDirective,
           TableRenderFeatureDirective,
         ],
@@ -102,16 +94,9 @@ describe('TableComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule], providers: [
-        OrchestratorCoreModule.registerComponents(
-          { mockFeature: MockFeatureModule } as any,
-        ),
-        {
-          provide: TableColumnComponentsToken,
-          useValue: { mockFeature: MockFeatureModule },
-          multi: true,
-        },
-      ], });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+    });
   });
 
   describe('Template structure', () => {
@@ -131,108 +116,79 @@ describe('TableComponent', () => {
     });
 
     describe('spy-table-features-renderer', () => {
-      let component: CoreTableComponent;
-      let fixture: ComponentFixture<CoreTableComponent>;
-
       beforeEach(() => {
-        TestBed.overrideComponent(CoreTableComponent, {
-          set: { changeDetection: ChangeDetectionStrategy.Default },
+        TestBed.configureTestingModule({
+          imports: [testModule],
+          providers: [
+            {
+              provide: TableFeaturesRegistryToken,
+              useValue: {
+                mockFeature: () =>
+                  import('../../../testing/src/mock-feature-component').then(
+                    m => m.MockFeatureModule,
+                  ),
+              },
+              multi: true,
+            },
+          ],
         });
-
-        fixture = TestBed.createComponent(CoreTableComponent);
-        component = fixture.componentInstance;
-
-        fixture.componentInstance.config = mockConfig;
-        fixture.detectChanges();
       });
 
-      it('must render at the top of the template with features=`featureLocation[`top`] value', () => {
-        const mockFeature = 'top feature';
+      it('must render features in the appropriate blocks', fakeAsync(async () => {
+        const host = await createComponent({ config: mockConfig }, true);
+        host.component.tableData$ = of([{}]);
 
-        fixture.componentInstance.featureLocation = {
-          top: mockFeature,
-        } as any;
+        tick();
+        host.detectChanges();
+        tick();
+        host.detectChanges();
 
-        fixture.detectChanges();
-
-        const spyTableFeaturesElem = fixture.debugElement.query(
-          By.css('spy-table-features-renderer:first-of-type'),
+        const topFeaturesElem = host.queryCss(
+          '.ant-table-features--top .top-feature',
         );
-console.log(spyTableFeaturesElem.nativeElement.textContent, 'yTableFeaturesElemspyTableFeaturesElemspyTableFeaturesElemspyTableFeaturesElemspyTableFeaturesElemspyTableFeaturesElem');
-        expect(spyTableFeaturesElem).toBeTruthy();
-        expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
-      });
+        const beforeTableFeaturesElem = host.queryCss(
+          '.ant-table-features--before-table .before-table-feature',
+        );
+        const afterTableFeaturesElem = host.queryCss(
+          '.ant-table-features--after-table .after-table-feature',
+        );
+        const paginationFeaturesElem = host.queryCss(
+          '.ant-table-features--pagination .pagination-feature',
+        );
+        const bottomFeaturesElem = host.queryCss(
+          '.ant-table-features--bottom .bottom-feature',
+        );
+        const hiddenFeaturesElem = host.queryCss(
+          '.ant-table-features--hidden .hidden-feature',
+        );
+        const headerExtFeaturesElem = host.queryCss(
+          'thead th:last-child .header-ext-header-feature',
+        );
+        const beforeColsHeaderFeaturesElem = host.queryCss(
+          'thead th:first-child .before-cols-header-feature',
+        );
+        const afterColsHeaderFeaturesElem = host.queryCss(
+          'thead th:nth-child(2) .after-cols-header-feature',
+        );
+        const beforeColsFeaturesElem = host.queryCss(
+          'tbody tr:first-child td:first-child .before-cols-feature',
+        );
+        const afterColsFeaturesElem = host.queryCss(
+          'tbody tr:first-child td:nth-child(2) .after-cols-feature',
+        );
 
-      // it('must render in the `ant-table-features-col--dynamic` div with features=`featureLocation[`before-table`] value', () => {
-      //   const mockFeature = 'before-table feature';
-      //
-      //   fixture.componentInstance.featureLocation = {
-      //     'before-table': mockFeature,
-      //   } as any;
-      //
-      //   fixture.detectChanges();
-      //
-      //   const spyTableFeaturesElem = fixture.debugElement.query(
-      //     By.css(
-      //       '.ant-table-features-col--dynamic spy-table-features-renderer',
-      //     ),
-      //   );
-      //
-      //   expect(spyTableFeaturesElem).toBeTruthy();
-      //   expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
-      // });
-
-      // it('must render after `nz-table` with features=`featureLocation[`after-table`] value', () => {
-      //   const mockFeature = 'after table feature';
-      //
-      //   fixture.componentInstance.featureLocation = {
-      //     'after-table': mockFeature,
-      //   } as any;
-      //
-      //   fixture.detectChanges();
-      //
-      //   const spyTableFeaturesElem = fixture.debugElement.query(
-      //     By.css('nz-table + spy-table-features-renderer'),
-      //   );
-      //
-      //   expect(spyTableFeaturesElem).toBeTruthy();
-      //   expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
-      // });
-      //
-      // it('must render as `th` in `thead` with features=`featureLocation[`header-ext`] value and maxFeatures=`1` attribute', () => {
-      //   const mockFeature = 'header ext feature';
-      //
-      //   fixture.componentInstance.featureLocation = {
-      //     'header-ext': mockFeature,
-      //   } as any;
-      //
-      //   fixture.detectChanges();
-      //
-      //   const spyTableFeaturesElem = fixture.debugElement.query(
-      //     By.css('thead th:last-child spy-table-features-renderer'),
-      //   );
-      //
-      //   expect(spyTableFeaturesElem).toBeTruthy();
-      //   expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
-      //   expect(spyTableFeaturesElem!.attributes.maxFeatures).toBe('1');
-      // });
-
-      // it('must render after `spy-pagination` with features=`featureLocation[`bottom`] value', () => {
-      //   const mockFeature = 'bottom feature';
-      //
-      //   fixture.componentInstance.featureLocation = {
-      //     bottom: mockFeature,
-      //   } as any;
-      //
-      //   fixture.detectChanges();
-      //
-      //   const spyTableFeaturesElem = fixture.debugElement.query(
-      //     By.css('spy-pagination + spy-table-features-renderer'),
-      //   );
-      //
-      //   expect(spyTableFeaturesElem).toBeTruthy();
-      //   expect(spyTableFeaturesElem!.properties.features).toBe(mockFeature);
-      // });
+        expect(topFeaturesElem).toBeTruthy();
+        expect(beforeTableFeaturesElem).toBeTruthy();
+        expect(afterTableFeaturesElem).toBeTruthy();
+        expect(paginationFeaturesElem).toBeTruthy();
+        expect(bottomFeaturesElem).toBeTruthy();
+        expect(hiddenFeaturesElem).toBeTruthy();
+        expect(headerExtFeaturesElem).toBeTruthy();
+        expect(beforeColsHeaderFeaturesElem).toBeTruthy();
+        expect(afterColsHeaderFeaturesElem).toBeTruthy();
+        expect(beforeColsFeaturesElem).toBeTruthy();
+        expect(afterColsFeaturesElem).toBeTruthy();
+      }));
     });
   });
 
@@ -342,57 +298,5 @@ console.log(spyTableFeaturesElem.nativeElement.textContent, 'yTableFeaturesElems
         );
       }));
     });
-
-    // describe('@Output(actionTriggered)', () => {
-    //   const mockActions = [
-    //     { id: '1234', title: '123' },
-    //     { id: '2345', title: '234' },
-    //   ] as TableRowActionBase[];
-    //   const mockActionsConfig = { ...mockConfigCols, rowActions: mockActions };
-    //
-    //   it('must be emitted every time when `actionTriggerHandler` is triggered', async () => {
-    //     const host = await createComponent({ config: mockActionsConfig }, true);
-    //     const actionTriggeredRes: TableActionTriggeredEvent = {
-    //       action: mockActions[0],
-    //       items: [],
-    //     };
-    //
-    //     host.component.actionTriggerHandler(mockActions[0].id, []);
-    //     host.detectChanges();
-    //
-    //     expect(host.hostComponent.actionTriggered).toHaveBeenCalledWith(
-    //       actionTriggeredRes,
-    //     );
-    //   });
-    //
-    //   it('must be emitted every time when `actionTriggerHandler` is triggered', fakeAsync(async () => {
-    //     httpTestingController = TestBed.inject(HttpTestingController);
-    //
-    //     const host = await createComponent({ config: mockActionsConfig }, true);
-    //
-    //     tick();
-    //     const dataRes = httpTestingController.expectOne(req =>
-    //       req.url.includes(mockDataUrl),
-    //     );
-    //     const actionTriggeredRes: TableActionTriggeredEvent = {
-    //       action: mockActions[0],
-    //       items: [mockData.data[0]],
-    //     };
-    //
-    //     dataRes.flush(mockData);
-    //     host.detectChanges();
-    //
-    //     const dropDownElem = host.queryCss('tr td:last-child spy-dropdown');
-    //
-    //     dropDownElem!.triggerEventHandler('actionTriggered', mockActions[0].id);
-    //
-    //     host.detectChanges();
-    //
-    //     expect(host.hostComponent.actionTriggered).toHaveBeenCalledWith(
-    //       actionTriggeredRes,
-    //     );
-    //
-    //     httpTestingController.verify();
-    //   }));
   });
 });

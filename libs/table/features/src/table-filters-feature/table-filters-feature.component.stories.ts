@@ -1,7 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  ANALYZE_FOR_ENTRY_COMPONENTS
-} from '@angular/core';
+import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@spryker/table';

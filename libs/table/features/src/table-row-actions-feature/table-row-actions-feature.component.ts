@@ -47,7 +47,12 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent {
 
   actions$: Observable<DropdownItem[]> = this.config$.pipe(
     pluck('actions'),
-    map(actions => (actions as TableRowActionBase[]).map(({ id: action, title }) => ({ action, title }))),
+    map(actions =>
+      (actions as TableRowActionBase[]).map(({ id: action, title }) => ({
+        action,
+        title,
+      })),
+    ),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
@@ -63,7 +68,8 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent {
       return;
     }
 
-    const action: TableRowActionBase = (this.config?.actions as TableRowActionBase[]).filter(
+    const action: TableRowActionBase = (this.config
+      ?.actions as TableRowActionBase[]).filter(
       rowAction => rowAction.id === actionId,
     )[0];
 

@@ -62,19 +62,20 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent {
   };
 
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
-  filterComponentMap: Record<string, TableFilterComponent<TableFilterBase>> = this.tableFilterToken.reduce(
+  filterComponentMap: Record<
+    string,
+    TableFilterComponent<TableFilterBase>
+  > = this.tableFilterToken.reduce(
     (acc, filter) => ({ ...acc, ...filter }),
     {},
   ) as Record<string, TableFilterComponent<TableFilterBase>>;
 
-  filters$ = this.config$.pipe(
-    pluck('items')
-  );
+  filters$ = this.config$.pipe(pluck('items'));
 
   filterValues$: Observable<Record<string, unknown>> = combineLatest([
     this.dataConfiguratorService?.config$.pipe(pluck('filter')) as Observable<
       Record<string, unknown>
-      >,
+    >,
     this.updateFiltersValue$.pipe(startWith(null)),
   ]).pipe(
     tap(([filterValues, updatedValue]) => {

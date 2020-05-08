@@ -10,7 +10,6 @@ import {
   TableDataConfiguratorService,
   TableFeatureLocation,
   DefaultInitialDataStrategy,
-  TableComponent,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/utils';
 import { tap, take, switchMap } from 'rxjs/operators';
@@ -55,10 +54,6 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
     injector: Injector,
   ) {
     super(injector);
-  }
-
-  setTableComponent(table: TableComponent) {
-    super.setTableComponent(table);
   }
 
   setDataConfiguratorService(service: TableDataConfiguratorService): void {

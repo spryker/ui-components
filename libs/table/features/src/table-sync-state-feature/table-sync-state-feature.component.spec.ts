@@ -8,7 +8,7 @@ import {
 import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
-  TestTableFeatureTplDirective
+  TestTableFeatureTplDirective,
 } from '@spryker/table/features/testing';
 import { TableSyncStateFeatureComponent } from './table-sync-state-feature.component';
 
@@ -17,9 +17,8 @@ import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import {
   TableColumnsResolverService,
-  TableData,
   TableDataConfiguratorService,
-  TableDataFetcherService
+  TableDataFetcherService,
 } from '@spryker/table';
 
 // tslint:disable: no-non-null-assertion
@@ -49,7 +48,6 @@ describe('TableSyncStateFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let testUrlPersistenceStrategyService: MockUrlPersistenceStrategy;
-  let mockData: TableData;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -69,10 +67,6 @@ describe('TableSyncStateFeatureComponent', () => {
           useValue: 'TableDataFetcherService',
         },
         {
-          provide: TableDataConfiguratorService,
-          useValue: 'TableDataConfiguratorService',
-        },
-        {
           provide: TestTableFeatureMocks,
           useValue: {
             config: {
@@ -84,6 +78,7 @@ describe('TableSyncStateFeatureComponent', () => {
           provide: UrlPersistenceStrategy,
           useExisting: MockUrlPersistenceStrategy,
         },
+        TableDataConfiguratorService,
         MockUrlPersistenceStrategy,
       ],
       schemas: [NO_ERRORS_SCHEMA],
@@ -96,21 +91,12 @@ describe('TableSyncStateFeatureComponent', () => {
       By.directive(TestTableFeatureComponent),
     ).componentInstance;
 
-    mockData = {
-      data: [{}],
-      page: 0,
-      pageSize: 0,
-      total: 0,
-    };
-
     testUrlPersistenceStrategyService = TestBed.inject(
       MockUrlPersistenceStrategy,
     );
 
     fixture.detectChanges();
     tick();
-
-    testTableFeature.featureMocks?.table.data$?.next(mockData);
   }));
 
   it('If dataConfiguratorService config was updated, save merhod of urlPersistanceStrategy has to be called', fakeAsync(() => {

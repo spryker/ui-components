@@ -1,13 +1,12 @@
 // tslint:disable: no-non-null-assertion
 import { TestBed } from '@angular/core/testing';
-
 import {
   TableColumnListComponent,
   TableColumnListConfig,
 } from './table-column-list.component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TableColumnTplContext } from '@spryker/table';
+import { TableColumnTplContext } from '../table/table';
 
 const mockConfig: TableColumnListConfig = {
   limit: 2,

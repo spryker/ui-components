@@ -11,6 +11,7 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 
 export default {
   title: 'TableFiltersSelectComponent',
@@ -56,12 +57,13 @@ function getFiltersStory(
         BrowserAnimationsModule,
         MockHttpModule,
         TableModule.forRoot(),
-
         TableFiltersFeatureModule.withFilterComponents({
           select: TableFilterSelectComponent as any,
         }),
+        TableModule.withDatasourceTypes({
+          http: TableDatasourceHttpService,
+        }),
         TableFilterSelectModule,
-
         ...extraNgModules,
       ],
       providers: [
@@ -75,7 +77,10 @@ function getFiltersStory(
     template,
     props: {
       config: {
-        dataUrl: '/data-request',
+        dataSource: {
+          type: 'http',
+          url: '/data-request',
+        },
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },

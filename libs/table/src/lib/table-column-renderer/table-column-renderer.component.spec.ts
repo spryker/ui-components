@@ -17,13 +17,9 @@ import {
   LayoutFlatHostComponent,
   LayoutFlatHostModule,
 } from '@orchestrator/layout';
-import {
-  ColTplDirective,
-  ColumnTypeOption,
-  TableColumnTypeComponent,
-} from '@spryker/table';
+import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
+import { ColTplDirective } from '../table/col-tpl.directive';
 import { ContextModule, ContextService } from '@spryker/utils';
-
 import {
   TableColumn,
   TableColumnComponent,

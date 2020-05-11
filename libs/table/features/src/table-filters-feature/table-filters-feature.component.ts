@@ -6,10 +6,7 @@ import {
   Injector,
   Input,
 } from '@angular/core';
-import {
-  TableFeatureComponent,
-  TableFeatureLocation,
-} from '@spryker/table';
+import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,

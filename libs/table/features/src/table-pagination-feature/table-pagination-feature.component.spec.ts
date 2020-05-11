@@ -17,7 +17,7 @@ import {
   TableData,
   TableDataConfig,
   TableDataConfiguratorService,
-  TableDataFetcherService,
+  TableDatasourceService,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
 
@@ -62,8 +62,8 @@ describe('TablePaginationFeatureComponent', () => {
           useValue: 'TableColumnsResolverService',
         },
         {
-          provide: TableDataFetcherService,
-          useValue: 'TableDataFetcherService',
+          provide: TableDatasourceService,
+          useValue: 'TableDatasourceService',
         },
         {
           provide: TableDataConfiguratorService,

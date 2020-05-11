@@ -10,7 +10,7 @@ import {
   TableColumnsResolverService,
   TableData,
   TableDataConfiguratorService,
-  TableDataFetcherService,
+  TableDatasourceService,
   TableFeatureLocation,
 } from '@spryker/table';
 import {
@@ -62,8 +62,8 @@ describe('TableSelectableFeatureComponent', () => {
           useValue: 'TableColumnsResolverService',
         },
         {
-          provide: TableDataFetcherService,
-          useValue: 'TableDataFetcherService',
+          provide: TableDatasourceService,
+          useValue: 'TableDatasourceService',
         },
         {
           provide: TableDataConfiguratorService,

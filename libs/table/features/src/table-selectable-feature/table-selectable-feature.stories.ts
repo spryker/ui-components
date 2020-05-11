@@ -13,6 +13,7 @@ import { IStory } from '@storybook/angular';
 
 import { TableSelectionChangeEvent } from './table-selectable-feature.component';
 import { TableSelectableFeatureModule } from './table-selectable-feature.module';
+import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 
 export default {
   title: 'TableSelectableFeatureComponent',
@@ -59,6 +60,9 @@ function getSelectableStory(
         MockHttpModule,
         CheckboxModule,
         TableModule.forRoot(),
+        TableModule.withDatasourceTypes({
+          http: TableDatasourceHttpService,
+        }),
         ...extraNgModules,
       ],
       providers: [
@@ -72,7 +76,10 @@ function getSelectableStory(
     template,
     props: {
       config: {
-        dataUrl: '/data-request',
+        dataSource: {
+          type: 'http',
+          url: '/data-request',
+        },
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },

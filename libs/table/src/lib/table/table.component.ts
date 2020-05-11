@@ -22,7 +22,7 @@ import {
   combineLatest,
   EMPTY,
   merge,
-  MonoTypeOperatorFunction, Observable,
+  MonoTypeOperatorFunction,
   of,
   ReplaySubject,
   Subject,
@@ -50,13 +50,12 @@ import { TableActionService } from './action.service';
 import { ColTplDirective } from './col-tpl.directive';
 import { TableColumnsResolverService } from './columns-resolver.service';
 import { TableDataConfiguratorService } from './data-configurator.service';
-import { TableDataFetcherService } from './data-fetcher.service';
 import {
   SortingCriteria,
   TableColumn,
   TableColumnTplContext,
   TableComponent,
-  TableConfig, TableData,
+  TableConfig,
   TableDataConfig,
   TableDataRow,
   TableFeatureLocation,
@@ -75,7 +74,6 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [
-    TableDataFetcherService,
     TableDataConfiguratorService,
     TableColumnsResolverService,
     TableActionService,
@@ -197,7 +195,7 @@ export class CoreTableComponent
   );
 
   isLoading$ = merge(
-    this.dataConfiguratorService.config$.pipe(mapTo(true)),
+    this.config$.pipe(mapTo(true)),
     this.data$.pipe(mapTo(false)),
     this.error$.pipe(mapTo(false)),
   ).pipe(startWith(false), shareReplaySafe());
@@ -231,7 +229,6 @@ export class CoreTableComponent
     private cdr: ChangeDetectorRef,
     private vcr: ViewContainerRef,
     private iterableDiffers: IterableDiffers,
-    private dataFetcherService: TableDataFetcherService,
     private dataConfiguratorService: TableDataConfiguratorService,
     private columnsResolverService: TableColumnsResolverService,
     private tableActionService: TableActionService,
@@ -345,7 +342,7 @@ export class CoreTableComponent
       new TableFeatureEventBus(feature.name, this.tableEventBus),
     );
     feature.setColumnsResolverService(this.columnsResolverService);
-    feature.setDataFetcherService(this.dataFetcherService);
+    feature.setDataSourceService(this.datasourceService);
     feature.setDataConfiguratorService(this.dataConfiguratorService);
   }
 }

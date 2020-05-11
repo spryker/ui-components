@@ -16,7 +16,7 @@ import {
   TableColumnsResolverService,
   TableData,
   TableDataConfiguratorService,
-  TableDataFetcherService,
+  TableDatasourceService,
 } from '@spryker/table';
 
 @Component({
@@ -55,8 +55,8 @@ describe('TableTotalFeatureComponent', () => {
           useValue: 'TableColumnsResolverService',
         },
         {
-          provide: TableDataFetcherService,
-          useValue: 'TableDataFetcherService',
+          provide: TableDatasourceService,
+          useValue: 'TableDatasourceService',
         },
         {
           provide: TableDataConfiguratorService,

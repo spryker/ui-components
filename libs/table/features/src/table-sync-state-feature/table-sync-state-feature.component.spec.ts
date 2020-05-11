@@ -18,7 +18,7 @@ import { Subject } from 'rxjs';
 import {
   TableColumnsResolverService,
   TableDataConfiguratorService,
-  TableDataFetcherService,
+  TableDatasourceService,
 } from '@spryker/table';
 
 // tslint:disable: no-non-null-assertion
@@ -63,8 +63,8 @@ describe('TableSyncStateFeatureComponent', () => {
           useValue: 'TableColumnsResolverService',
         },
         {
-          provide: TableDataFetcherService,
-          useValue: 'TableDataFetcherService',
+          provide: TableDatasourceService,
+          useValue: 'TableDatasourceService',
         },
         {
           provide: TestTableFeatureMocks,

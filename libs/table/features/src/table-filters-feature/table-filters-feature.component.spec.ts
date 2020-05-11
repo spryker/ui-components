@@ -20,7 +20,7 @@ import {
   TableColumnsResolverService,
   TableDataConfig,
   TableDataConfiguratorService,
-  TableDataFetcherService,
+  TableDatasourceService,
 } from '@spryker/table';
 import { TableFiltersFeatureComponent } from './table-filters-feature.component';
 import { PluckModule } from '@spryker/utils';
@@ -62,8 +62,8 @@ describe('TableFiltersFeatureComponent', () => {
           useValue: 'TableColumnsResolverService',
         },
         {
-          provide: TableDataFetcherService,
-          useValue: 'TableDataFetcherService',
+          provide: TableDatasourceService,
+          useValue: 'TableDatasourceService',
         },
         {
           provide: TableDataConfiguratorService,

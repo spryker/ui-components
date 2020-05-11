@@ -8,32 +8,33 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { PluckModule } from '@spryker/utils';
-
 import { CoreTableComponent } from './table.component';
 import { TableConfig, TableColumns } from './table';
 import { TableFeaturesRendererDirective } from '../table-features-renderer/table-features-renderer.directive';
 import { TableRenderFeatureDirective } from '../table-features-renderer/table-render-feature.directive';
-import { TableFeaturesRegistryToken } from '@spryker/table';
+import { TableFeaturesRegistryToken } from '../table-feature-loader/tokens';
 import { TableFeaturesRendererComponent } from '../table-features-renderer/table-features-renderer.component';
 import { of } from 'rxjs';
+import { TableDatasourceTypesToken } from '../datasource-type/tokens';
+import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 
 const mockDataUrl = 'https://test-data-url.com';
 const mockColUrl = 'https://test-col-url.com';
 const mockCols: TableColumns = [
   {
-    id: 'name',
-    title: 'name',
+    id: 'col1',
+    title: 'col1',
     sortable: true,
     width: '40%',
   },
   {
-    id: 'sku',
-    title: 'sku',
+    id: 'col2',
+    title: 'col2',
     sortable: true,
   },
   {
-    id: 'id3',
-    title: 'id3',
+    id: 'col3',
+    title: 'col3',
     sortable: true,
   },
 ];
@@ -41,22 +42,19 @@ const mockCols: TableColumns = [
 const mockData = {
   data: [
     {
-      name: 'tesst',
-      sku: 'tesst2',
-      id3: 'tesst3',
-      sku3: '124124',
+      col1: 'col1_data1',
+      col2: 'col2_data1',
+      col3: 'col3_data1',
     },
     {
-      name: 'tesst1',
-      sku: 'tesst22',
-      id3: 'tesst34',
-      sku3: 'idasaasf',
+      col1: 'col1_data2',
+      col2: 'col2_data2',
+      col3: 'col3_data2',
     },
     {
-      name: 'tess2t',
-      sku: 'asfasffas',
-      id3: 'tessst3',
-      sku3: '111idasaasf',
+      col1: 'col1_data3',
+      col2: 'col2_data2',
+      col3: 'col3_data2',
     },
   ],
   total: 5,
@@ -64,14 +62,20 @@ const mockData = {
   page: 1,
 };
 const mockConfig: TableConfig = {
-  dataUrl: mockDataUrl,
+  dataSource: {
+    type: 'http' as never,
+    url: mockDataUrl,
+  },
   columnsUrl: mockColUrl,
   mockFeature: {
     enabled: true,
   },
 };
 const mockConfigCols: TableConfig = {
-  dataUrl: mockDataUrl,
+  dataSource: {
+    type: 'http' as never,
+    url: mockDataUrl,
+  },
   columns: mockCols,
 };
 
@@ -96,6 +100,15 @@ describe('TableComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [testModule],
+      providers: [
+        {
+          provide: TableDatasourceTypesToken,
+          useValue: {
+            http: TableDatasourceHttpService,
+          },
+          multi: true,
+        },
+      ],
     });
   });
 
@@ -201,7 +214,7 @@ describe('TableComponent', () => {
       httpTestingController.verify();
     });
 
-    describe('columnsUrl dataUrl columns', () => {
+    describe('columnsUrl dataSourceUrl columns', () => {
       it('returned columns$ Observable should match the right data with `columnsUrl key`', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const callback = jest.fn();

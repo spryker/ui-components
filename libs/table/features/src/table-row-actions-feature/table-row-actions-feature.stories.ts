@@ -10,6 +10,7 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 
 export default {
   title: 'TableRowActionsFeatureComponent',
@@ -55,6 +56,9 @@ function getRowActionsStory(
         BrowserAnimationsModule,
         MockHttpModule,
         TableModule.forRoot(),
+        TableModule.withDatasourceTypes({
+          http: TableDatasourceHttpService,
+        }),
         ...extraNgModules,
       ],
       providers: [
@@ -68,7 +72,10 @@ function getRowActionsStory(
     template,
     props: {
       config: {
-        dataUrl: '/data-request',
+        dataSource: {
+          type: 'http',
+          url: '/data-request',
+        },
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },

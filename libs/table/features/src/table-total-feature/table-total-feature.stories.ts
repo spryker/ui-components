@@ -11,6 +11,7 @@ import {
 import { IStory } from '@storybook/angular';
 
 import { TableTotalFeatureModule } from './table-total-feature.module';
+import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 
 export default {
   title: 'TableTotalFeatureComponent',
@@ -56,6 +57,9 @@ function getTotalStory(
         BrowserAnimationsModule,
         MockHttpModule,
         TableModule.forRoot(),
+        TableModule.withDatasourceTypes({
+          http: TableDatasourceHttpService,
+        }),
         ...extraNgModules,
       ],
       providers: [
@@ -69,7 +73,10 @@ function getTotalStory(
     template,
     props: {
       config: {
-        dataUrl: '/data-request',
+        dataSource: {
+          type: 'http',
+          url: '/data-request',
+        },
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },

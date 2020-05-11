@@ -21,6 +21,7 @@ import { TableSearchFeatureModule } from './table-search-feature';
 import { TableSelectableFeatureModule } from './table-selectable-feature';
 import { TableSyncStateFeatureModule } from './table-sync-state-feature';
 import { TableTotalFeatureModule } from './table-total-feature';
+import { TableDatasourceHttpService } from '../../datasources/src/table-datasource-http';
 
 export default {
   title: 'TableFeaturesComponent',
@@ -96,12 +97,13 @@ function getFiltersStory(
         BrowserAnimationsModule,
         MockHttpModule,
         TableModule.forRoot(),
-
         TableFiltersFeatureModule.withFilterComponents({
           select: TableFilterSelectComponent,
         } as any),
+        TableModule.withDatasourceTypes({
+          http: TableDatasourceHttpService,
+        }),
         TableFilterSelectModule,
-
         ...extraNgModules,
       ],
       providers: [
@@ -115,7 +117,10 @@ function getFiltersStory(
     template,
     props: {
       config: {
-        dataUrl: '/data-request',
+        dataSource: {
+          type: 'http',
+          url: '/data-request',
+        },
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },

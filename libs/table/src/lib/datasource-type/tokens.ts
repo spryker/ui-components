@@ -7,7 +7,7 @@ import { TableDatasourceTypesDeclaration } from '../table/table';
  */
 export const TableDatasourceTypesToken = new InjectionToken<
   TableDatasourceTypesDeclaration[]
-  >('TableDatasourceTypesToken');
+>('TableDatasourceTypesToken');
 
 export function provideTableDatasourceServices(
   datasourceTypes: TableDatasourceTypesDeclaration,

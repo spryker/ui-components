@@ -20,7 +20,7 @@ export interface TableColumnTypeDef {
   type: TableColumnType;
   typeOptions?: TableColumnTypeOptions;
   children?: TableColumnTypeDef[];
-  typeOptionsMappings?: any // TODO replace any type;
+  typeOptionsMappings?: any; // TODO replace any type;
 }
 
 export interface TableColumnTypeOptions {
@@ -100,10 +100,9 @@ export interface TableActionTriggeredEvent {
 export interface TableConfig {
   dataSource: TableDatasourceConfig;
   columnsUrl?: string;
-  dataUrl: string;
   columns?: TableColumns;
   // Features may expect it's config under it's namespace
-  [featureName: string]: unknown; // FIXME: Replace `unknown` to `TableFeatureConfig`
+  [featureName: string]: TableFeatureConfig | unknown;
 }
 
 export type ColumnsTransformer = (
@@ -159,10 +158,12 @@ export interface TableDatasource<C extends TableDatasourceConfig> {
   resolve(
     datasource: C,
     dataConfig$: Observable<TableDataConfig>,
-    injector: Injector
+    injector: Injector,
   ): Observable<TableData>;
 }
 
 export type TableDatasourceTypesDeclaration = {
-  [P in keyof TableDatasourceRegistry]?: Type<TableDatasource<TableDatasourceRegistry[P]>>;
-}
+  [P in keyof TableDatasourceRegistry]?: Type<
+    TableDatasource<TableDatasourceRegistry[P]>
+  >;
+};

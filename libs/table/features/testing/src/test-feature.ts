@@ -18,7 +18,7 @@ import {
   TableColumnsResolverService,
   TableData,
   TableDataConfiguratorService,
-  TableDataFetcherService,
+  TableDatasourceService,
   TableFeatureComponent,
   TableFeatureEventBus,
   TableFeatureTplContext,
@@ -47,7 +47,7 @@ export interface TableFeatureMocks<T = TableMockComponent> {
   config: any;
   eventBus: Partial<TableFeatureEventBus>;
   columnsResolverService: Partial<TableColumnsResolverService>;
-  dataFetcherService: Partial<TableDataFetcherService>;
+  dataSourceService: Partial<TableDatasourceService>;
   dataConfiguratorService: Partial<TableDataConfiguratorService>;
 }
 
@@ -68,8 +68,8 @@ export function initFeature<T>(
   const columnsResolverService =
     mocks.columnsResolverService ||
     (injector.get(TableColumnsResolverService) as any);
-  const dataFetcherService =
-    mocks.dataFetcherService || (injector.get(TableDataFetcherService) as any);
+  const dataSourceService =
+    mocks.dataSourceService || (injector.get(TableDatasourceService) as any);
   const dataConfiguratorService =
     mocks.dataConfiguratorService ||
     (injector.get(TableDataConfiguratorService) as any);
@@ -78,7 +78,7 @@ export function initFeature<T>(
   feature.setConfig(config);
   feature.setTableEventBus(eventBus);
   feature.setColumnsResolverService(columnsResolverService);
-  feature.setDataFetcherService(dataFetcherService);
+  feature.setDataSourceService(dataSourceService);
   feature.setDataConfiguratorService(dataConfiguratorService);
 
   return {
@@ -87,7 +87,7 @@ export function initFeature<T>(
     eventBus,
     columnsResolverService,
     dataConfiguratorService,
-    dataFetcherService,
+    dataSourceService,
   };
 }
 

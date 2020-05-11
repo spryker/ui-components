@@ -11,7 +11,7 @@ import { IStory } from '@storybook/angular';
 
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableModule } from '../table.module';
-import { TableDatasourceHttpService } from '../../../datasources/src'
+import { TableDatasourceHttpService } from '../../../datasources/src';
 import { TableColumnComponent, TableColumnContext } from './table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
@@ -94,7 +94,6 @@ export const withFeatures = (): IStory => ({
         type: 'http',
         url: '/data-request',
       },
-      dataUrl: '/data-request',
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
         { id: 'col2', title: 'Column #2', width: '20%' },

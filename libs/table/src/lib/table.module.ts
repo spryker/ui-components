@@ -20,7 +20,10 @@ import { TableFeaturesRendererComponent } from './table-features-renderer/table-
 import { TableFeaturesRendererDirective } from './table-features-renderer/table-features-renderer.directive';
 import { TableRenderFeatureDirective } from './table-features-renderer/table-render-feature.directive';
 import { ColTplDirective } from './table/col-tpl.directive';
-import { TableColumnComponentDeclaration, TableDatasourceTypesDeclaration } from './table/table';
+import {
+  TableColumnComponentDeclaration,
+  TableDatasourceTypesDeclaration,
+} from './table/table';
 import { CoreTableComponent } from './table/table.component';
 import { PluckModule } from '@spryker/utils';
 
@@ -85,11 +88,11 @@ export class TableModule {
   }
 
   static withDatasourceTypes(
-    datasourceTypes: TableDatasourceTypesDeclaration
+    datasourceTypes: TableDatasourceTypesDeclaration,
   ): ModuleWithProviders<TableModule> {
     return {
       ngModule: TableModule,
       providers: [provideTableDatasourceServices(datasourceTypes)],
-    }
+    };
   }
 }

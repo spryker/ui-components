@@ -11,7 +11,6 @@ export class TableConfigService {
   } = {
     columns: true,
     columnsUrl: true,
-    dataUrl: true,
     dataSource: true,
   };
 

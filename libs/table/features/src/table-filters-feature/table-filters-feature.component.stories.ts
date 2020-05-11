@@ -11,6 +11,7 @@ import {
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableDummyFilterComponent } from './dummy-filter';
+import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 
 export default {
   title: 'TableFiltersFeatureComponent',
@@ -59,6 +60,9 @@ function getFiltersStory(
         TableFiltersFeatureModule.withFilterComponents({
           filter: TableDummyFilterComponent as any,
         }),
+        TableModule.withDatasourceTypes({
+          http: TableDatasourceHttpService,
+        }),
         ...extraNgModules,
       ],
       declarations: [TableDummyFilterComponent],
@@ -73,7 +77,10 @@ function getFiltersStory(
     template,
     props: {
       config: {
-        dataUrl: '/data-request',
+        dataSource: {
+          type: 'http',
+          url: '/data-request',
+        },
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },

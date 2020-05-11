@@ -13,7 +13,7 @@ import { filter, map, shareReplay, startWith, switchAll } from 'rxjs/operators';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
-import { TableDataFetcherService } from '../table/data-fetcher.service';
+import { TableDatasourceService } from '../table/datasource.service';
 import { TableComponent } from '../table/table';
 import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
@@ -38,14 +38,14 @@ export abstract class TableFeatureComponent<
   table?: TableComponent;
   tableEventBus?: TableFeatureEventBus;
   columnsResolverService?: TableColumnsResolverService;
-  dataFetcherService?: TableDataFetcherService;
+  dataSourceService?: TableDatasourceService;
   dataConfiguratorService?: TableDataConfiguratorService;
 
   config$ = new ReplaySubject<C>(1);
   table$ = new ReplaySubject<TableComponent>(1);
   tableEventBus$ = new ReplaySubject<TableFeatureEventBus>(1);
   columnsResolverService$ = new ReplaySubject<TableColumnsResolverService>(1);
-  dataFetcherService$ = new ReplaySubject<TableDataFetcherService>(1);
+  dataSourceService$ = new ReplaySubject<TableDatasourceService>(1);
   dataConfiguratorService$ = new ReplaySubject<TableDataConfiguratorService>(1);
 
   private setTplDirectives$ = new ReplaySubject<
@@ -101,9 +101,9 @@ export abstract class TableFeatureComponent<
     this.columnsResolverService$.next(service);
   }
 
-  setDataFetcherService(service: TableDataFetcherService): void {
-    this.dataFetcherService = service;
-    this.dataFetcherService$.next(service);
+  setDataSourceService(service: TableDatasourceService): void {
+    this.dataSourceService = service;
+    this.dataSourceService$.next(service);
   }
 
   setDataConfiguratorService(service: TableDataConfiguratorService): void {

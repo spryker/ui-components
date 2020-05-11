@@ -13,6 +13,7 @@ import {
   generateMockTableDataFor,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
+import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 
 export default {
   title: 'TableColumnImageComponent',
@@ -49,6 +50,9 @@ export const withTable = (): IStory => ({
       TableModule.forRoot(),
       TableModule.withColumnComponents({
         image: TableColumnImageComponent,
+      } as any),
+      TableModule.withDatasourceTypes({
+        http: TableDatasourceHttpService,
       }),
       BrowserAnimationsModule,
     ],
@@ -65,7 +69,10 @@ export const withTable = (): IStory => ({
   `,
   props: {
     config: {
-      dataUrl: '/data-request',
+      dataSource: {
+        type: 'http',
+        url: '/data-request',
+      },
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
         {

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
-import { TableDataFetcherService } from '../table/data-fetcher.service';
+import { TableDatasourceService } from '../table/datasource.service';
 import { TableFeatureTplDirective } from '../table-feature/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { CoreTableComponent } from '../table/table.component';
@@ -80,7 +80,7 @@ export const withFeatures = (): IStory => ({
         provide: TableColumnsResolverService,
         useValue: 'TableColumnsResolverService',
       },
-      { provide: TableDataFetcherService, useValue: 'TableDataFetcherService' },
+      { provide: TableDatasourceService, useValue: 'TableDatasourceService' },
       {
         provide: TableDataConfiguratorService,
         useValue: 'TableDataConfiguratorService',

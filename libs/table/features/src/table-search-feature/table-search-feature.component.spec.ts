@@ -16,7 +16,7 @@ import {
   TableColumnsResolverService,
   TableDataConfig,
   TableDataConfiguratorService,
-  TableDataFetcherService,
+  TableDatasourceService,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
 import { InputModule } from '@spryker/input';
@@ -65,8 +65,8 @@ describe('TableSearchFeatureComponent', () => {
           useValue: 'TableColumnsResolverService',
         },
         {
-          provide: TableDataFetcherService,
-          useValue: 'TableDataFetcherService',
+          provide: TableDatasourceService,
+          useValue: 'TableDatasourceService',
         },
         {
           provide: TableDataConfiguratorService,

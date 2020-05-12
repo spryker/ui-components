@@ -9,7 +9,7 @@ import {
   ViewChild,
   OnChanges,
   AfterViewChecked,
-  ChangeDetectorRef,
+  HostBinding,
 } from '@angular/core';
 import { DateWorkDaysToken } from './tokens';
 import { ToBoolean, ToJson } from '@spryker/utils';
@@ -64,11 +64,9 @@ export class DatePickerComponent
 
   disabledDate?: EnableDateFunction;
   _date?: Date;
+  @HostBinding('class.open') isOpen = false;
 
-  constructor(
-    @Inject(DateWorkDaysToken) private dateWorkDaysToken: number[],
-    private cdr: ChangeDetectorRef,
-  ) {}
+  constructor(@Inject(DateWorkDaysToken) private dateWorkDaysToken: number[]) {}
 
   ngOnChanges(): void {
     this.updatePicker();
@@ -118,6 +116,11 @@ export class DatePickerComponent
     };
   }
 
+  openChangeEvent(isOpen: boolean) {
+    this.isOpen = isOpen;
+    this.openChange.emit(isOpen);
+  }
+
   private convertStringsToDates(obj: EnableDate) {
     return {
       onlyWorkDays: obj.onlyWorkDays,
@@ -132,17 +135,13 @@ export class DatePickerComponent
     } else {
       this.closePicker();
     }
-
-    this.cdr.detectChanges();
   }
 
   openPicker(): void {
     this._picker?.picker.showOverlay(); // used private API of NzDatePickerComponent
-    this.openChange.emit(true);
   }
 
   closePicker(): void {
     this._picker?.picker.hideOverlay(); // used private API of NzDatePickerComponent
-    this.openChange.emit(false);
   }
 }

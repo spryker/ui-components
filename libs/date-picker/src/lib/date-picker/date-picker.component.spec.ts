@@ -117,4 +117,36 @@ describe('DatePickerComponent', () => {
       );
     });
   });
+
+  describe('Methods', () => {
+    it('Should apply open class to the host element if input open is true', async () => {
+      const host = await createComponent({ open: true });
+
+      try {
+        host.detectChanges();
+      } catch (e) {
+        host.detectChanges();
+      }
+
+      const datePicker = host.query(DatePickerComponent);
+      const openClass = datePicker?.classes.open;
+
+      expect(openClass).toBeTruthy();
+    });
+
+    it('Should NOT apply open class to the host element if input open is false', async () => {
+      const host = await createComponent({ open: false });
+
+      try {
+        host.detectChanges();
+      } catch (e) {
+        host.detectChanges();
+      }
+
+      const datePicker = host.query(DatePickerComponent);
+      const openClass = datePicker?.classes.open;
+
+      expect(openClass).toBeFalsy();
+    });
+  });
 });

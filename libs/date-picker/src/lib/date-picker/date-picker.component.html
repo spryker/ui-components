@@ -7,7 +7,7 @@
   [nzDisabledDate]="disabledDate"
   [nzShowToday]="false"
   (ngModelChange)="dateChange.emit($event)"
-  (nzOnOpenChange)="openChange.emit($event)"
+  (nzOnOpenChange)="openChangeEvent($event)"
   *spyLocaleRender
   #datePicker
 >

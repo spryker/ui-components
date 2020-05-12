@@ -23,6 +23,12 @@ interface EnableDate extends EnableDateRange {
   onlyWorkDays?: boolean;
 }
 
+interface ConvertedEnableDateRange {
+  onlyWorkDays?: boolean;
+  from?: Date;
+  to?: Date;
+}
+
 export type EnableDateOptions = EnableDate | EnableDateFunction;
 export type EnableDateFunction = (current: Date) => boolean;
 
@@ -88,7 +94,7 @@ export class DatePickerComponent
     }
   }
 
-  private convertEnableDateFuncToFunc(enableDateObj: EnableDateFunction) {
+  private convertEnableDateFuncToFunc(enableDateObj: EnableDateFunction): void {
     this.disabledDate = (date: Date): boolean => {
       const originalResult = enableDateObj(date);
 
@@ -116,20 +122,20 @@ export class DatePickerComponent
     };
   }
 
-  openChangeEvent(isOpen: boolean) {
+  openChangeEvent(isOpen: boolean): void {
     this.isOpen = isOpen;
     this.openChange.emit(isOpen);
   }
 
-  private convertStringsToDates(obj: EnableDate) {
+  private convertStringsToDates(obj: EnableDate): ConvertedEnableDateRange {
     return {
       onlyWorkDays: obj.onlyWorkDays,
-      from: obj.from && new Date(obj.from as string | Date),
-      to: obj.to && new Date(obj.to as string | Date),
+      from: (obj.from && new Date(obj.from)) as Date,
+      to: (obj.to && new Date(obj.to)) as Date,
     };
   }
 
-  private updatePicker() {
+  private updatePicker(): void {
     if (this.open) {
       this.openPicker();
     } else {

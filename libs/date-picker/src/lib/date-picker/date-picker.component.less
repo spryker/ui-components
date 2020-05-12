@@ -41,20 +41,20 @@
     margin-top: @calendar-header-margin-top;
     margin-bottom: @calendar-header-margin-bottom;
 
-    .ant-calendar-next-month-btn,
-    .ant-calendar-year-panel-next-decade-btn,
-    .ant-calendar-month-panel-next-year-btn,
-    .ant-calendar-decade-panel-next-century-btn,
-    .ant-calendar-prev-month-btn,
-    .ant-calendar-year-panel-prev-decade-btn,
-    .ant-calendar-month-panel-prev-year-btn,
-    .ant-calendar-decade-panel-prev-century-btn {
+    .@{calendar-prefix-cls}-next-month-btn,
+    .@{calendar-prefix-cls}-year-panel-next-decade-btn,
+    .@{calendar-prefix-cls}-month-panel-next-year-btn,
+    .@{calendar-prefix-cls}-decade-panel-next-century-btn,
+    .@{calendar-prefix-cls}-prev-month-btn,
+    .@{calendar-prefix-cls}-year-panel-prev-decade-btn,
+    .@{calendar-prefix-cls}-month-panel-prev-year-btn,
+    .@{calendar-prefix-cls}-decade-panel-prev-century-btn {
       color: @gray-dark;
       background: url(icons/icon_navigation_arrow.svg) no-repeat center/
         @calendar-btn-background-size;
     }
 
-    .ant-calendar-next-month-btn {
+    .@{calendar-prefix-cls}-next-month-btn {
       right: @calendar-next-month-button-right;
 
       &:before {
@@ -62,7 +62,7 @@
       }
     }
 
-    .ant-calendar-prev-month-btn {
+    .@{calendar-prefix-cls}-prev-month-btn {
       left: @calendar-prev-month-button-left;
       transform: rotate(180deg);
 
@@ -71,9 +71,9 @@
       }
     }
 
-    .ant-calendar-year-panel-next-decade-btn,
-    .ant-calendar-month-panel-next-year-btn,
-    .ant-calendar-decade-panel-next-century-btn {
+    .@{calendar-prefix-cls}-year-panel-next-decade-btn,
+    .@{calendar-prefix-cls}-month-panel-next-year-btn,
+    .@{calendar-prefix-cls}-decade-panel-next-century-btn {
       right: @calendar-next-btn-right;
 
       &:before {
@@ -85,9 +85,9 @@
       }
     }
 
-    .ant-calendar-year-panel-prev-decade-btn,
-    .ant-calendar-month-panel-prev-year-btn,
-    .ant-calendar-decade-panel-prev-century-btn {
+    .@{calendar-prefix-cls}-year-panel-prev-decade-btn,
+    .@{calendar-prefix-cls}-month-panel-prev-year-btn,
+    .@{calendar-prefix-cls}-decade-panel-prev-century-btn {
       left: @calendar-prev-btn-left;
       transform: rotate(180deg);
 
@@ -110,22 +110,22 @@
   &-cell {
     padding: @calendar-cell-padding;
 
-    &.ant-calendar-next-month-btn-day,
-    &.ant-calendar-last-month-cell {
+    &.@{calendar-prefix-cls}-next-month-btn-day,
+    &.@{calendar-prefix-cls}-last-month-cell {
       > .ant-calendar-date {
         color: @gray;
       }
     }
 
     &:hover {
-      > .ant-calendar-date {
+      > .@{calendar-prefix-cls}-date {
         color: @gray-dark;
-        background-color: @gray-lighter;
+        background-color: @gray-light;
       }
     }
 
     &:focus {
-      > .ant-calendar-date {
+      > .@{calendar-prefix-cls}-date {
         border-color: @green;
       }
     }
@@ -143,7 +143,7 @@
   &-date {
     width: 100%;
     height: @calendar-tbody-td-height;
-    border: @calendar-tbody-border;
+    border: @calendar-tbody-border !important;
     border-radius: @calendar-date-border-radius;
     line-height: @calendar-date-line-height;
     font-weight: 500;
@@ -156,13 +156,13 @@
   &-today {
     background-color: @white;
 
-    > .ant-calendar-date {
+    > .@{calendar-prefix-cls}-date {
       color: @ink;
     }
   }
 
   &-selected-day {
-    > .ant-calendar-date {
+    > .@{calendar-prefix-cls}-date {
       background-color: @green;
       color: @white;
     }

@@ -80,7 +80,7 @@ export class DatePickerComponent
     }
   }
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
     if (!this._picker && this.datePicker) {
       this._picker = this.datePicker;
 

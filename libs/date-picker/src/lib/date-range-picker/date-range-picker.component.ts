@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 
-interface DateRangeValueInput {
+export interface DateRangeValueInput {
   from?: Date | string;
   to?: Date | string;
 }

@@ -17,14 +17,18 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
 }
 
 export interface TableColumnTypeDef {
-  type: TableColumnType;
+  type?: TableColumnType;
   typeOptions?: TableColumnTypeOptions;
   children?: TableColumnTypeDef[];
-  typeOptionsMappings?: any; // TODO replace any type;
+  typeOptionsMappings?: TableColumnTypeOptionsMappings;
 }
 
 export interface TableColumnTypeOptions {
   [key: string]: any;
+}
+
+interface TableColumnTypeOptionsMappings {
+  [optionName: string]: Record<string, any>; // Map of option values to new values
 }
 
 export interface TableColumnTypeRegistry {

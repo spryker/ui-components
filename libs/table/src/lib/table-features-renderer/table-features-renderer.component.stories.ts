@@ -91,7 +91,8 @@ export const withFeatures = (): IStory => ({
   template: `
     <spy-render-features [limit]="limit">
       <div *spyTableFeatureTpl="'mocked-location'">feat</div>
-      <div *spyTableFeatureTpl="'mocked-location'">feat</div>
+      <div *spyTableFeatureTpl="'mocked-location'">feat2</div>
+      <div *spyTableFeatureTpl="'mocked-location'">feat3</div>
     </spy-render-features>
   `,
   props: {

@@ -97,7 +97,18 @@ export const withFeatures = (): IStory => ({
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
         { id: 'col2', title: 'Column #2', width: '20%' },
-        { id: 'col3', title: 'Column #3', width: '20%' },
+        {
+          id: 'col3',
+          title: 'Column #3',
+          type: 'test',
+          typeOptions: {
+            text: '${value}',
+          },
+          typeOptionsMappings: {
+            text: { col3: 'Active', false: 'Inactive' },
+            color: { col3: 'green' },
+          },
+        },
         {
           id: 'col4',
           title: 'Column #4',

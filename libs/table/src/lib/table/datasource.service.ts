@@ -28,7 +28,7 @@ export class TableDatasourceService {
     const sourceType = datasource?.type;
     const sourceClass = this.dataSources?.[sourceType];
 
-    if (!sourceClass || !sourceClass) {
+    if (!sourceType || !sourceClass) {
       return of({
         data: [],
         total: 0,

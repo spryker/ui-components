@@ -15,6 +15,7 @@ import {
   TableColumnTypeDef,
   TableDataRow,
 } from '../table/table';
+import { ContextService } from '@spryker/utils';
 
 @Component({
   selector: 'spy-table-column-renderer',
@@ -37,6 +38,8 @@ export class TableColumnRendererComponent implements OnChanges {
   emptyValue?: string;
   defaultEmptyValue = '-';
 
+  constructor(private contextService: ContextService) {}
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config || changes.data) {
       this.updateValues();
@@ -55,7 +58,16 @@ export class TableColumnRendererComponent implements OnChanges {
     this.isValueUndefined = this.value === undefined || this.value === null;
 
     this.updateTplContext();
+    this.updateConfig();
     this.updateItemConfig();
+  }
+
+  private updateConfig() {
+    this.config = this.mapConfig(this.config);
+
+    if (this.context && this.config) {
+      this.context.config = this.config;
+    }
   }
 
   private updateTplContext(): void {
@@ -80,14 +92,52 @@ export class TableColumnRendererComponent implements OnChanges {
       return;
     }
 
-    this.itemConfig = this.mapConfig(this.config as TableColumnTypeDef);
+    this.itemConfig = this.configColumnToItem(
+      this.config as TableColumnTypeDef,
+    );
   }
 
-  private mapConfig(config: TableColumnTypeDef): OrchestratorConfigItem {
+  private mapConfig(config?: TableColumn): TableColumn | undefined {
+    if (!config) {
+      return;
+    }
+
+    return this.mapConfigChildren(config);
+  }
+
+  private mapConfigChildren<T extends TableColumnTypeDef>(config: T): T {
+    let { typeOptions } = config;
+
+    if (config.typeOptionsMappings) {
+      typeOptions = Object.entries(config.typeOptionsMappings).reduce(
+        (mapOptions, [mapKey, mapOption]) => {
+          const matchedValue = mapOption[String(this.value)];
+
+          if (matchedValue) {
+            this.contextService.interpolate(matchedValue, this.context as any);
+
+            return { ...mapOptions, [mapKey]: matchedValue };
+          } else {
+            return mapOptions;
+          }
+        },
+        typeOptions,
+      );
+    }
+
+    // tslint:disable-next-line: no-non-null-assertion
+    const children = config.children?.map(c => this.mapConfigChildren(c)!);
+
+    return { ...config, typeOptions, children };
+  }
+
+  private configColumnToItem(
+    config: TableColumnTypeDef,
+  ): OrchestratorConfigItem {
     return {
-      component: config.type,
+      component: config.type || '',
       config: config.typeOptions,
-      items: config.children?.map(c => this.mapConfig(c)),
+      items: config.children?.map(c => this.configColumnToItem(c)),
     };
   }
 }

@@ -79,13 +79,17 @@ export const withTable = (): IStory => ({
           id: 'col2',
           title: 'Column #2',
           type: 'text',
-          typeOptions: { text: '${value}' },
+          typeOptions: {
+            text: '${value}',
+          },
         },
         {
           id: 'col3',
           title: 'Column #3',
           type: 'text',
-          typeOptions: { text: '${value} in ${row.col1}' },
+          typeOptions: {
+            text: '${value} in ${row.col1}',
+          },
         },
       ],
     },

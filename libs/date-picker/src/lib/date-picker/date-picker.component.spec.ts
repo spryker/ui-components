@@ -26,6 +26,7 @@ describe('DatePickerComponent', () => {
   const mockedDate = new Date('2012-12-12');
   const mockedFormat = 'yyyy-MM-dd';
   const mockedPlaceholder = 'placeholder';
+  const mockedCallValue = 'mockedCallValue';
 
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [testModule] });
@@ -95,9 +96,11 @@ describe('DatePickerComponent', () => {
 
       const datePicker = host.queryCss(nzDatePickerSelector);
 
-      datePicker!.triggerEventHandler('ngModelChange', {});
+      datePicker!.triggerEventHandler('ngModelChange', mockedCallValue);
 
-      expect(host.hostComponent.dateChange).toHaveBeenCalled();
+      expect(host.hostComponent.dateChange).toHaveBeenCalledWith(
+        mockedCallValue,
+      );
     });
 
     it('Output openChange should be emitted every time when the nzOnOpenChange emits on nz-date-picker', async () => {
@@ -107,9 +110,11 @@ describe('DatePickerComponent', () => {
 
       const datePicker = host.queryCss(nzDatePickerSelector);
 
-      datePicker!.triggerEventHandler('nzOnOpenChange', {});
+      datePicker!.triggerEventHandler('nzOnOpenChange', mockedCallValue);
 
-      expect(host.hostComponent.openChange).toHaveBeenCalled();
+      expect(host.hostComponent.openChange).toHaveBeenCalledWith(
+        mockedCallValue,
+      );
     });
   });
 });

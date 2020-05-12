@@ -12,7 +12,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { DateWorkDaysToken } from './tokens';
-import { ToBoolean } from '@spryker/utils';
+import { ToBoolean, ToJson } from '@spryker/utils';
 
 interface EnableDateRange {
   from?: Date | string;
@@ -43,7 +43,7 @@ export class DatePickerComponent
   implements DatePickerComponent, OnChanges, AfterViewChecked {
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
-  @Input() enableDate?: EnableDateOptions;
+  @Input() @ToJson() enableDate?: EnableDateOptions;
   @Input() @ToBoolean() open = false;
   @Input()
   set date(value: Date) {
@@ -73,34 +73,12 @@ export class DatePickerComponent
   ngOnChanges(): void {
     this.updatePicker();
 
-    const originalEnableDate = this.enableDate;
+    if (typeof this.enableDate === 'function') {
+      this.convertEnableDateFuncToFunc(this.enableDate as EnableDateFunction);
+    }
 
-    if (typeof originalEnableDate === 'function') {
-      this.disabledDate = (date: Date): boolean => {
-        const originalResult = originalEnableDate(date);
-
-        return !originalResult;
-      };
-    } else if (typeof originalEnableDate === 'object') {
-      const convertedEnableDate = this.convertStringsToDates(
-        originalEnableDate,
-      );
-
-      this.disabledDate = (date: Date): boolean => {
-        const isDateLessThanFrom =
-            convertedEnableDate.from &&
-            date.getTime() < convertedEnableDate.from.getTime(),
-          isToLessThatDate =
-            convertedEnableDate.to &&
-            convertedEnableDate.to.getTime() < date.getTime(),
-          isDateInWorkDays =
-            convertedEnableDate.onlyWorkDays &&
-            this.dateWorkDaysToken.includes(date.getDay());
-
-        return isDateLessThanFrom || isToLessThatDate || isDateInWorkDays
-          ? true
-          : false;
-      };
+    if (typeof this.enableDate === 'object') {
+      this.convertEnableDateObjToFunc(this.enableDate as EnableDate);
     }
   }
 
@@ -112,7 +90,35 @@ export class DatePickerComponent
     }
   }
 
-  convertStringsToDates(obj: EnableDate) {
+  private convertEnableDateFuncToFunc(enableDateObj: EnableDateFunction) {
+    this.disabledDate = (date: Date): boolean => {
+      const originalResult = enableDateObj(date);
+
+      return !originalResult;
+    };
+  }
+
+  private convertEnableDateObjToFunc(enableDateObj: EnableDate): void {
+    const convertedEnableDate = this.convertStringsToDates(enableDateObj);
+
+    this.disabledDate = (date: Date): boolean => {
+      const isDateLessThanFrom =
+        convertedEnableDate.from &&
+        date.getTime() < convertedEnableDate.from.getTime();
+      const isToLessThatDate =
+        convertedEnableDate.to &&
+        convertedEnableDate.to.getTime() < date.getTime();
+      const isDateInWorkDays =
+        convertedEnableDate.onlyWorkDays &&
+        this.dateWorkDaysToken.includes(date.getDay());
+
+      return (
+        isDateLessThanFrom || isToLessThatDate || (isDateInWorkDays as boolean)
+      );
+    };
+  }
+
+  private convertStringsToDates(obj: EnableDate) {
     return {
       onlyWorkDays: obj.onlyWorkDays,
       from: obj.from && new Date(obj.from as string | Date),

@@ -14,8 +14,8 @@
       top: @calendar-picker-container-top;
     }
 
-    &-input {
-      background: none !important;
+    &-input.@{input-prefix-cls} {
+      background: none;
     }
 
     &-icon,
@@ -41,21 +41,20 @@
     margin-top: @calendar-header-margin-top;
     margin-bottom: @calendar-header-margin-bottom;
 
-    & .ant-calendar-next-month-btn,
-    & .ant-calendar-year-panel-next-decade-btn,
-    & .ant-calendar-month-panel-next-year-btn,
-    & .ant-calendar-decade-panel-next-century-btn,
-    & .ant-calendar-prev-month-btn,
-    & .ant-calendar-year-panel-prev-decade-btn,
-    & .ant-calendar-month-panel-prev-year-btn,
-    & .ant-calendar-decade-panel-prev-century-btn {
+    .ant-calendar-next-month-btn,
+    .ant-calendar-year-panel-next-decade-btn,
+    .ant-calendar-month-panel-next-year-btn,
+    .ant-calendar-decade-panel-next-century-btn,
+    .ant-calendar-prev-month-btn,
+    .ant-calendar-year-panel-prev-decade-btn,
+    .ant-calendar-month-panel-prev-year-btn,
+    .ant-calendar-decade-panel-prev-century-btn {
       color: @gray-darker;
-      background: url(icons/icon_navigation_arrow.svg) no-repeat;
-      background-size: @calendar-btn-background-size;
-      background-position: center;
+      background: url(icons/icon_navigation_arrow.svg) no-repeat center/
+        @calendar-btn-background-size;
     }
 
-    & .ant-calendar-next-month-btn {
+    .ant-calendar-next-month-btn {
       right: @calendar-next-month-button-right;
 
       &:before {
@@ -63,7 +62,7 @@
       }
     }
 
-    & .ant-calendar-prev-month-btn {
+    .ant-calendar-prev-month-btn {
       left: @calendar-prev-month-button-left;
       transform: rotate(180deg);
 
@@ -72,9 +71,9 @@
       }
     }
 
-    & .ant-calendar-year-panel-next-decade-btn,
-    & .ant-calendar-month-panel-next-year-btn,
-    & .ant-calendar-decade-panel-next-century-btn {
+    .ant-calendar-year-panel-next-decade-btn,
+    .ant-calendar-month-panel-next-year-btn,
+    .ant-calendar-decade-panel-next-century-btn {
       right: @calendar-next-btn-right;
 
       &:before {
@@ -86,9 +85,9 @@
       }
     }
 
-    & .ant-calendar-year-panel-prev-decade-btn,
-    & .ant-calendar-month-panel-prev-year-btn,
-    & .ant-calendar-decade-panel-prev-century-btn {
+    .ant-calendar-year-panel-prev-decade-btn,
+    .ant-calendar-month-panel-prev-year-btn,
+    .ant-calendar-decade-panel-prev-century-btn {
       left: @calendar-prev-btn-left;
       transform: rotate(180deg);
 

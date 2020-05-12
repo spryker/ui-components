@@ -7,16 +7,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
-
-export interface DateRangeValueInput {
-  from?: Date | string;
-  to?: Date | string;
-}
-
-interface DateRangeValue {
-  from?: Date;
-  to?: Date;
-}
+import { DateRangeValueInput, DateRangeValue } from './types';
 
 @Component({
   selector: 'spy-date-range-picker',

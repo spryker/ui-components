@@ -23,15 +23,16 @@ import {
   TableFeatureEventBus,
   TableFeatureTplContext,
   TableFeatureTplDirectiveInputs,
+  TableEventBus,
   TableComponent,
-} from '../../../src/index';
-import { TableConfig } from '../../../src/lib/table/table';
-import { TableEventBus } from '../../../src/lib/table/table-event-bus';
+  TableConfig,
+} from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
 import { InjectionTokenType, TypedSimpleChanges } from '@spryker/utils';
 
 export class TableMockComponent implements TableComponent {
-  config$ = new ReplaySubject<TableConfig>(1);
+  // cast any because of ts error of `TableConfig` paths conflict
+  config$ = new ReplaySubject<any>(1);
   columns$ = new ReplaySubject<TableColumn[]>(1);
   data$ = new ReplaySubject<TableData>(1);
   isLoading$ = new ReplaySubject<boolean>(1);

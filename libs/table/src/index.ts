@@ -11,6 +11,7 @@ export * from './lib/table/columns-resolver.service';
 export * from './lib/table/data-configurator.service';
 export * from './lib/table/col-tpl.directive';
 export * from './lib/table/datasource.service';
+export * from './lib/table/table-event-bus';
 export * from './lib/column-type';
 export * from './lib/table-feature-loader/types';
 export * from './lib/table-feature-loader/tokens';

@@ -6,7 +6,7 @@ export class TableEventBus {
 
   constructor(private handler: (event: string, data: unknown) => void) {}
 
-  emit<D = unknown>(feature: string, data: D, eventName?: string) {
+  emit<D = unknown>(feature: string, data: D, eventName?: string): void {
     const hash = this.hashEvent(feature, eventName);
     const listener = this.listeners[hash];
 

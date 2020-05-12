@@ -58,7 +58,7 @@ export class TableRenderFeatureDirective
   private renderFeature(
     template: TemplateRef<TableFeatureTplContext>,
     context?: TableFeatureTplContext,
-  ) {
+  ): void {
     this.vcr.clear();
     this.vcr.createEmbeddedView(template, context);
     this.cdr.markForCheck();

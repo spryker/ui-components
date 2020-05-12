@@ -68,13 +68,13 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
   );
   searchValue$?: Observable<string>;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.valueChange$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(value => this.triggerUpdate(value));
   }
 
-  setDataConfiguratorService(service: TableDataConfiguratorService) {
+  setDataConfiguratorService(service: TableDataConfiguratorService): void {
     super.setDataConfiguratorService(service);
 
     this.searchValue$ = service.config$.pipe(pluck('search')) as Observable<

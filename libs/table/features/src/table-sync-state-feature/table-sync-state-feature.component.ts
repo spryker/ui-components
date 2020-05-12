@@ -10,6 +10,7 @@ import {
   TableDataConfiguratorService,
   TableFeatureLocation,
   DefaultInitialDataStrategy,
+  TableDataConfig,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/utils';
 import { tap, take, switchMap } from 'rxjs/operators';
@@ -84,7 +85,7 @@ class SyncStateInitialDataStrategy extends DefaultInitialDataStrategy {
     super();
   }
 
-  getData() {
+  getData(): Observable<TableDataConfig> {
     return this.urlState$.pipe(
       take(1),
       switchMap(url => (url ? of(url) : super.getData())),

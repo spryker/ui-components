@@ -6,7 +6,6 @@ import {
   shareReplay,
   switchMap,
   take,
-  tap,
 } from 'rxjs/operators';
 
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
@@ -73,7 +72,10 @@ export class TableFeaturesRendererService implements OnDestroy {
     this.featureRecordsStore.clear();
   }
 
-  trackFeatureRecords(features?: TableFeatureComponent[], location?: string) {
+  trackFeatureRecords(
+    features?: TableFeatureComponent[],
+    location?: string,
+  ): Observable<FeatureRecord[]> {
     if (!features || !location) {
       return of([]);
     }
@@ -113,7 +115,7 @@ class TokenStore<T extends any[], D> {
     return data;
   }
 
-  clear() {
+  clear(): void {
     this.args = [];
     this.data = {};
   }

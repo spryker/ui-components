@@ -121,7 +121,7 @@ export class TableFeaturesRendererDirective
     this.vcr.clear();
   }
 
-  private updateFeatures(changes: IterableChanges<FeatureRecord>) {
+  private updateFeatures(changes: IterableChanges<FeatureRecord>): void {
     changes.forEachAddedItem(record =>
       // Index always exists when adding feature
       // tslint:disable-next-line: no-non-null-assertion
@@ -141,7 +141,7 @@ export class TableFeaturesRendererDirective
     );
   }
 
-  private renderFeatureTpl(feature: FeatureRecord, idx: number) {
+  private renderFeatureTpl(feature: FeatureRecord, idx: number): void {
     this.vcr.createEmbeddedView<TableFeaturesRendererContext>(
       this.templateRef,
       { $implicit: feature },
@@ -151,7 +151,7 @@ export class TableFeaturesRendererDirective
     this.cdr.markForCheck();
   }
 
-  private moveFeature(prevIdx: number, idx: number) {
+  private moveFeature(prevIdx: number, idx: number): void {
     const viewRef = this.vcr.get(prevIdx);
 
     if (viewRef) {
@@ -159,7 +159,7 @@ export class TableFeaturesRendererDirective
     }
   }
 
-  private destroyFeature(idx: number) {
+  private destroyFeature(idx: number): void {
     this.vcr.remove(idx);
   }
 }

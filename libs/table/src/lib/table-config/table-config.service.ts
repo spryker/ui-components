@@ -38,11 +38,11 @@ export class TableConfigService {
     );
   }
 
-  private applyDefaults(config: TableConfig) {
+  private applyDefaults(config: TableConfig): TableConfig {
     return mergeDeep(this.defaultConfig, config);
   }
 
-  private normalizeFeatures(config: TableConfig) {
+  private normalizeFeatures(config: TableConfig): void {
     this.getFeatureKeys(config).forEach(key => {
       if (!config[key] || typeof config[key] !== 'object') {
         config[key] = {};

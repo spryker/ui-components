@@ -268,11 +268,11 @@ export class CoreTableComponent
     this.destroyed$.next();
   }
 
-  updateRowClasses(rowIdx: string, classes: Record<string, boolean>) {
+  updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void {
     this.setRowClasses(rowIdx, { ...this.rowClasses[rowIdx], ...classes });
   }
 
-  setRowClasses(rowIdx: string, classes: Record<string, boolean>) {
+  setRowClasses(rowIdx: string, classes: Record<string, boolean>): void {
     this.rowClasses[rowIdx] = classes;
     this.cdr.markForCheck();
   }
@@ -281,7 +281,11 @@ export class CoreTableComponent
     return this.tableId;
   }
 
-  emitEvent<T = unknown>(featureName: string, data: T, eventName?: string) {
+  emitEvent<T = unknown>(
+    featureName: string,
+    data: T,
+    eventName?: string,
+  ): void {
     const eventHash = eventName ? `${featureName}:${eventName}` : featureName;
     const eventHandler = this.events[eventHash];
 
@@ -289,7 +293,7 @@ export class CoreTableComponent
   }
 
   /** @internal */
-  updateFeatures(features: TableFeatureComponent[]) {
+  updateFeatures(features: TableFeatureComponent[]): void {
     if (!this.featuresDiffer.diff(features)) {
       return;
     }
@@ -317,7 +321,7 @@ export class CoreTableComponent
   }
 
   /** @internal */
-  trackByData(index: number, data: TableDataRow) {
+  trackByData(index: number, data: TableDataRow): number {
     return index;
   }
 
@@ -335,7 +339,7 @@ export class CoreTableComponent
     return undefined;
   }
 
-  private initFeature(feature: TableFeatureComponent) {
+  private initFeature(feature: TableFeatureComponent): void {
     feature.setConfig(this.config?.[feature.name] as TableFeatureConfig);
     feature.setTableComponent(this);
     feature.setTableEventBus(

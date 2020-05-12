@@ -5,7 +5,7 @@ import { TableEventBus } from '../table/table-event-bus';
 export class TableFeatureEventBus {
   constructor(private name: string, private tableEventBus: TableEventBus) {}
 
-  emit<D = unknown>(data: D, eventName?: string) {
+  emit<D = unknown>(data: D, eventName?: string): void {
     this.tableEventBus.emit(this.name, data, eventName);
   }
 

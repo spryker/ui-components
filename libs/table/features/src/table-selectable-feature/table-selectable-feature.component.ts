@@ -69,7 +69,7 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
     this.destroyed$.next();
   }
 
-  setTableComponent(table: TableComponent) {
+  setTableComponent(table: TableComponent): void {
     super.setTableComponent(table);
 
     table.data$
@@ -100,7 +100,7 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
     this.updateChecks();
   }
 
-  private updateChecks() {
+  private updateChecks(): void {
     this.updateRowClasses();
     this.updateCheckedRowsArr();
     this.cdr.markForCheck();
@@ -108,7 +108,7 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
     this.tableEventBus?.emit<TableSelectionChangeEvent>(this.checkedRowsArr);
   }
 
-  private updateRowClasses() {
+  private updateRowClasses(): void {
     Object.keys(this.checkedRows).forEach(i =>
       this.table?.updateRowClasses(i, {
         'ant-table-row--selected': this.checkedRows[i],
@@ -116,7 +116,7 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent
     );
   }
 
-  private updateCheckedRowsArr() {
+  private updateCheckedRowsArr(): void {
     this.checkedRowsArr = Object.keys(this.checkedRows)
       .filter(idx => this.checkedRows[idx])
       .map(idx => ({

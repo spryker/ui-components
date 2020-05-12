@@ -14,7 +14,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import {
-  TableColumn,
+  TableColumns,
   TableColumnsResolverService,
   TableData,
   TableDataConfiguratorService,
@@ -33,7 +33,7 @@ import { InjectionTokenType, TypedSimpleChanges } from '@spryker/utils';
 export class TableMockComponent implements TableComponent {
   // cast any because of ts error of `TableConfig` paths conflict
   config$ = new ReplaySubject<any>(1);
-  columns$ = new ReplaySubject<TableColumn[]>(1);
+  columns$ = new ReplaySubject<TableColumns>(1);
   data$ = new ReplaySubject<TableData>(1);
   isLoading$ = new ReplaySubject<boolean>(1);
   updateRowClasses = jest.fn();
@@ -147,7 +147,9 @@ export class TestTableFeatureTplDirective extends TableFeatureTplDirectiveInputs
     super();
   }
 
-  ngOnChanges(changes: TypedSimpleChanges<TableFeatureTplDirectiveInputs>) {
+  ngOnChanges(
+    changes: TypedSimpleChanges<TableFeatureTplDirectiveInputs>,
+  ): void {
     if (changes.spyTableFeatureTpl) {
       const locations = Array.isArray(this.spyTableFeatureTpl!)
         ? this.spyTableFeatureTpl!

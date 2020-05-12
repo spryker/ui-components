@@ -43,12 +43,14 @@ export class TableColumnRendererComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config || changes.data) {
       this.updateValues();
-    } else if (changes.i) {
+    }
+
+    if (changes.i) {
       this.updateTplContext();
     }
   }
 
-  private updateValues() {
+  private updateValues(): void {
     if (!this.config) {
       return;
     }
@@ -62,7 +64,7 @@ export class TableColumnRendererComponent implements OnChanges {
     this.updateItemConfig();
   }
 
-  private updateConfig() {
+  private updateConfig(): void {
     this.config = this.mapConfig(this.config);
 
     if (this.context && this.config) {

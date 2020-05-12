@@ -4,6 +4,7 @@ import {
   Inject,
   Injectable,
   Injector,
+  ModuleWithComponentFactories,
   NgModuleFactory,
   NgModuleRef,
   OnDestroy,
@@ -128,11 +129,15 @@ export class TableFeatureLoaderService implements OnDestroy {
     });
   }
 
-  private compileFeatureModule(moduleType: Type<ModuleWithFeature>) {
+  private compileFeatureModule(
+    moduleType: Type<ModuleWithFeature>,
+  ): Observable<ModuleWithComponentFactories<ModuleWithFeature>> {
     return from(this.compiler.compileModuleAndAllComponentsAsync(moduleType));
   }
 
-  private initFeatureModule(moduleFactory: NgModuleFactory<ModuleWithFeature>) {
+  private initFeatureModule(
+    moduleFactory: NgModuleFactory<ModuleWithFeature>,
+  ): NgModuleRef<ModuleWithFeature> {
     const moduleRef = moduleFactory.create(this.injector);
 
     // Store created module refs for future cleanup
@@ -141,7 +146,9 @@ export class TableFeatureLoaderService implements OnDestroy {
     return moduleRef;
   }
 
-  private resolveFeatureFactory(moduleRef: NgModuleRef<ModuleWithFeature>) {
+  private resolveFeatureFactory(
+    moduleRef: NgModuleRef<ModuleWithFeature>,
+  ): ComponentFactory<TableFeatureComponent<TableFeatureConfig>> {
     return moduleRef.componentFactoryResolver.resolveComponentFactory(
       moduleRef.instance.featureComponent,
     );

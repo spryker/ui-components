@@ -12,7 +12,7 @@ import {
   HostBinding,
 } from '@angular/core';
 import { DateWorkDaysToken } from './tokens';
-import { ToBoolean, ToJson } from '@spryker/utils';
+import { ToBoolean, ToJson, InjectionTokenType } from '@spryker/utils';
 
 interface EnableDateRange {
   from?: Date | string;
@@ -32,12 +32,6 @@ interface ConvertedEnableDateRange {
 export type EnableDateOptions = EnableDate | EnableDateFunction;
 export type EnableDateFunction = (current: Date) => boolean;
 
-export interface DatePickerComponent {
-  disabledDate?: EnableDateFunction;
-  openPicker(): void;
-  closePicker(): void;
-}
-
 @Component({
   selector: 'spy-date-picker',
   templateUrl: './date-picker.component.html',
@@ -45,24 +39,23 @@ export interface DatePickerComponent {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DatePickerComponent
-  implements DatePickerComponent, OnChanges, AfterViewChecked {
+export class DatePickerComponent implements OnChanges, AfterViewChecked {
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
   @Input() @ToJson() enableDate?: EnableDateOptions;
   @Input() @ToBoolean() open = false;
   @Input()
-  set date(value: Date) {
-    this._date = value ? new Date(value) : undefined;
+  set date(value: Date | string) {
+    this._date = value ? this.convertValueToDate(value) : undefined;
   }
 
-  get date(): Date {
+  get date(): Date | string {
     return this._date as Date;
   }
   @Input() format?: string;
   @Input() placeholder?: string;
-  @Output() dateChange: EventEmitter<Date> = new EventEmitter();
-  @Output() openChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() dateChange = new EventEmitter<Date>();
+  @Output() openChange = new EventEmitter<boolean>();
 
   @ViewChild('datePicker', { static: false }) datePicker?: any;
 
@@ -72,16 +65,17 @@ export class DatePickerComponent
   _date?: Date;
   @HostBinding('class.open') isOpen = false;
 
-  constructor(@Inject(DateWorkDaysToken) private dateWorkDaysToken: number[]) {}
+  constructor(
+    @Inject(DateWorkDaysToken)
+    private dateWorkDaysToken: InjectionTokenType<typeof DateWorkDaysToken>,
+  ) {}
 
   ngOnChanges(): void {
     this.updatePicker();
 
     if (typeof this.enableDate === 'function') {
       this.convertEnableDateFuncToFunc(this.enableDate as EnableDateFunction);
-    }
-
-    if (typeof this.enableDate === 'object') {
+    } else if (typeof this.enableDate === 'object') {
       this.convertEnableDateObjToFunc(this.enableDate as EnableDate);
     }
   }
@@ -95,29 +89,25 @@ export class DatePickerComponent
   }
 
   private convertEnableDateFuncToFunc(enableDateObj: EnableDateFunction): void {
-    this.disabledDate = (date: Date): boolean => {
-      const originalResult = enableDateObj(date);
-
-      return !originalResult;
-    };
+    this.disabledDate = (date: Date): boolean => !enableDateObj(date);
   }
 
   private convertEnableDateObjToFunc(enableDateObj: EnableDate): void {
-    const convertedEnableDate = this.convertStringsToDates(enableDateObj);
+    const convertedEnableDate = this.getConvertedObject(enableDateObj);
 
     this.disabledDate = (date: Date): boolean => {
       const isDateLessThanFrom =
         convertedEnableDate.from &&
         date.getTime() < convertedEnableDate.from.getTime();
-      const isToLessThatDate =
+      const isDateGraterThanTo =
         convertedEnableDate.to &&
         convertedEnableDate.to.getTime() < date.getTime();
       const isDateInWorkDays =
         convertedEnableDate.onlyWorkDays &&
-        this.dateWorkDaysToken.includes(date.getDay());
+        !this.dateWorkDaysToken.includes(date.getDay());
 
       return Boolean(
-        isDateLessThanFrom || isToLessThatDate || isDateInWorkDays,
+        isDateLessThanFrom || isDateGraterThanTo || isDateInWorkDays,
       );
     };
   }
@@ -127,12 +117,16 @@ export class DatePickerComponent
     this.openChange.emit(isOpen);
   }
 
-  private convertStringsToDates(obj: EnableDate): ConvertedEnableDateRange {
+  private getConvertedObject(obj: EnableDate): ConvertedEnableDateRange {
     return {
       onlyWorkDays: obj.onlyWorkDays,
-      from: (obj.from && new Date(obj.from)) as Date,
-      to: (obj.to && new Date(obj.to)) as Date,
+      from: this.convertValueToDate(obj.from as string | Date),
+      to: this.convertValueToDate(obj.to as string | Date),
     };
+  }
+
+  private convertValueToDate(value: string | Date): Date {
+    return value && value instanceof Date ? value : new Date(value);
   }
 
   private updatePicker(): void {

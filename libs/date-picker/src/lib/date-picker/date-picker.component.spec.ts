@@ -122,6 +122,8 @@ describe('DatePickerComponent', () => {
     it('Should apply open class to the host element if input open is true', async () => {
       const host = await createComponent({ open: true });
 
+      // Double detectChanges() call added to update element's DOM
+      // and prevent ExpressionChangedAfterItHasBeenCheckedError
       try {
         host.detectChanges();
       } catch (e) {
@@ -137,6 +139,8 @@ describe('DatePickerComponent', () => {
     it('Should NOT apply open class to the host element if input open is false', async () => {
       const host = await createComponent({ open: false });
 
+      // Double detectChanges() call added to update element's DOM
+      // and prevent ExpressionChangedAfterItHasBeenCheckedError
       try {
         host.detectChanges();
       } catch (e) {

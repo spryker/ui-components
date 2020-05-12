@@ -32,5 +32,5 @@ export class DateRangePickerComponent {
   @Input() format?: string;
   @Input() placeholderFrom?: string;
   @Input() placeholderTo?: string;
-  @Output() datesChange: EventEmitter<DateRangeValue> = new EventEmitter();
+  @Output() datesChange = new EventEmitter<DateRangeValue>();
 }

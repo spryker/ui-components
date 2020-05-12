@@ -110,9 +110,9 @@ export class DatePickerComponent
         convertedEnableDate.onlyWorkDays &&
         this.dateWorkDaysToken.includes(date.getDay());
 
-      return (isDateLessThanFrom ||
-        isToLessThatDate ||
-        isDateInWorkDays) as boolean;
+      return Boolean(
+        isDateLessThanFrom || isToLessThatDate || isDateInWorkDays,
+      );
     };
   }
 

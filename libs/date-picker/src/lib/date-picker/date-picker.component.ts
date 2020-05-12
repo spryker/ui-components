@@ -96,19 +96,28 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     const convertedEnableDate = this.getConvertedObject(enableDateObj);
 
     this.disabledDate = (date: Date): boolean => {
-      const isDateLessThanFrom =
+      if (
         convertedEnableDate.from &&
-        date.getTime() < convertedEnableDate.from.getTime();
-      const isDateGraterThanTo =
-        convertedEnableDate.to &&
-        convertedEnableDate.to.getTime() < date.getTime();
-      const isDateInWorkDays =
-        convertedEnableDate.onlyWorkDays &&
-        !this.dateWorkDaysToken.includes(date.getDay());
+        date.getTime() < convertedEnableDate.from.getTime()
+      ) {
+        return true;
+      }
 
-      return Boolean(
-        isDateLessThanFrom || isDateGraterThanTo || isDateInWorkDays,
-      );
+      if (
+        convertedEnableDate.to &&
+        convertedEnableDate.to.getTime() < date.getTime()
+      ) {
+        return true;
+      }
+
+      if (
+        convertedEnableDate.onlyWorkDays &&
+        !this.dateWorkDaysToken.includes(date.getDay())
+      ) {
+        return true;
+      }
+
+      return false;
     };
   }
 

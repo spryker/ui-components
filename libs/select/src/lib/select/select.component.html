@@ -28,7 +28,7 @@
   >
     {{ option.label }}
     <spy-icon
-      class="ant-select-dropdown-menu-item__icon--checked"
+      class="ant-select-item-option__icon--checked"
       [name]="checkIcon"
     ></spy-icon>
   </nz-option>
@@ -68,25 +68,25 @@
 
 <ng-template #crossIconTpl>
   <spy-icon
-    class="ant-select-selection__choice__remove__icon"
+    class="ant-select-selector__choice__remove__icon"
     [name]="removeIcon"
   ></spy-icon>
 </ng-template>
 
 <ng-template #multiSelectOptionIconTpl>
   <spy-icon
-    class="ant-select-dropdown-menu-item__icon--multiChecked"
+    class="ant-select-item-option__icon--multiChecked"
     [name]="checkboxCheckedIcon"
   ></spy-icon>
   <spy-icon
-    class="ant-select-dropdown-menu-item__icon--multiUnchecked"
+    class="ant-select-item-option__icon--multiUnchecked"
     [name]="checkboxUncheckedIcon"
   ></spy-icon>
 </ng-template>
 
 <ng-template #clearIconTpl>
   <spy-icon
-    class="ant-select-selection__clear-icon"
+    class="ant-select-clear__icon"
     [name]="removeIcon"
   ></spy-icon>
 </ng-template>

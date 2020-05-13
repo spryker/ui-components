@@ -60,7 +60,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^9.1.2",
-    "@angular/cdk": "^9.2.1",
+    "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.1.2",
     "@angular/compiler": "^9.1.2",
     "@angular/core": "^9.1.2",
@@ -74,7 +74,7 @@
     "core-js": "^3.6.4",
     "deepmerge": "^4.2.2",
     "ng-dynamic-component": "^6.1.0",
-    "ng-zorro-antd": "9.0.2",
+    "ng-zorro-antd": "^9.1.1",
     "rxjs": "^6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "^0.10.2"

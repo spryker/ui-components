@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.1.0-next.0...@spryker/date-picker@0.1.0-next.1) (2020-05-13)
+
+
+### Features
+
+* **date-range-filter:** added date-range-filter ([6947303](https://github.com/spryker/ui-components/commit/694730397b87cdcd0e03226e555736dcf067bbbb))
+* **date-range-filter:** added new filter ([15cc30c](https://github.com/spryker/ui-components/commit/15cc30c7cf735aed9f1bfbbdd5a2f3099fd075bf))
+
+
+
+
+
 # 0.1.0-next.0 (2020-05-13)
 
 

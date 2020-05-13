@@ -19,10 +19,23 @@
 }
 
 .@{ant-input}-affix-wrapper {
+  height: @input-height-base;
+  padding: 0;
+
+  input.@{ant-input} {
+    height: 100%;
+    padding: @input-padding-vertical-base @input-affix-padding;
+  }
+
   .@{ant-input} {
     &-prefix,
     &-suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       color: @input-icon-color;
+      z-index: 2;
+      line-height: 0;
     }
 
     &-prefix {
@@ -31,10 +44,6 @@
 
     &-suffix {
       right: 10px;
-    }
-
-    &:not(:first-child) {
-      padding-left: @input-affix-padding-left;
     }
   }
 
@@ -48,10 +57,18 @@
       border-color: @primary-color;
     }
   }
+
+  &:focus,
+  &-focused {
+    box-shadow: none;
+    border-color: @input-focus-border-color !important;
+  }
 }
 
 .@{ant-input} {
+  height: @input-height-base;
   font: @font-weight-medium @font-size-base @font-family;
+  padding: @input-padding-vertical-base @input-padding-horizontal-base;
 
   &:read-only,
   &-disabled {
@@ -87,15 +104,5 @@
 
   &::-ms-clear {
     display: none;
-  }
-
-  .@{ant-input}-affix-wrapper {
-    &:not(:first-child) {
-      padding-left: 40px;
-    }
-
-    &:not(:last-child) {
-      padding-right: 40px;
-    }
   }
 }

@@ -122,7 +122,7 @@ function getFiltersStory(
           url: '/data-request',
         },
         columns: [
-          { id: 'col1', title: 'Column #1' },
+          { id: 'col1', title: 'Column #1', sortable: true },
           { id: 'col2', title: 'Column #2' },
           { id: 'col3', title: 'Column #3' },
         ],

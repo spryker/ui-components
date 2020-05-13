@@ -45,7 +45,7 @@ export class TableColumnRendererComponent implements OnChanges {
       this.updateValues();
     }
 
-    if (changes.i) {
+    if (!(changes.config || changes.data) && changes.i) {
       this.updateTplContext();
     }
   }

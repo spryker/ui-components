@@ -10,3 +10,4 @@ export * from './warning';
 export * from './pagination-arrow';
 export * from './action';
 export * from './magnifier';
+export * from './calendar';

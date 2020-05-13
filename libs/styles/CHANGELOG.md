@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.46](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.45...@spryker/styles@0.1.0-next.46) (2020-05-13)
+
+
+### Features
+
+* **date-picker:** fixed styles ([f136c18](https://github.com/spryker/ui-components/commit/f136c183aeca024d8e5734c4d19e988076fa9638))
+* **date-picker:** fixed styles, methods ([9e4b2f3](https://github.com/spryker/ui-components/commit/9e4b2f36d33276cbc17805141de44da2cd12d9a3))
+* **date-picker:** fixed types ([bdb5f97](https://github.com/spryker/ui-components/commit/bdb5f97414d2a432b03e08ac397b6492089aa5c5))
+* **date-picker:** without unit-test ([9389a21](https://github.com/spryker/ui-components/commit/9389a21f7476c1ef10a7c64cc6c338aaa7450912))
+
+
+
+
+
 # [0.1.0-next.45](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.44...@spryker/styles@0.1.0-next.45) (2020-05-04)
 
 

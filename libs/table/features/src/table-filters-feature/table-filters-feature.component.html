@@ -1,4 +1,4 @@
-<ng-template>
+<ng-container *spyTableFeatureTpl="tableFeatureLocation.top">
   <div class="ant-table-filters-feature">
     <div
       *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
@@ -19,4 +19,4 @@
       ></ng-container>
     </div>
   </div>
-</ng-template>
+</ng-container>

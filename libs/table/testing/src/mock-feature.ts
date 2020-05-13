@@ -1,22 +1,23 @@
-import { TemplateRef } from '@angular/core';
-import { TableFeatureComponent, TableFeatureContext } from '@spryker/table';
+import { Injector, TemplateRef } from '@angular/core';
+import { TableFeatureComponent } from '@spryker/table';
 
 export class MockTableFeatureComponent extends TableFeatureComponent {
   location = 'mocked-location';
-  styles?: Record<string, string> = this.config.styles;
-  template?: TemplateRef<TableFeatureContext> = this.config.template;
+  styles?: Record<string, string> = this.innerConfig.styles;
+  // tplDirectives?: QueryList<TableFeatureTplDirective> = this.config.template;
   setTableComponent = jest.fn();
   setColumnsResolverService = jest.fn();
   setDataFetcherService = jest.fn();
   setDataConfiguratorService = jest.fn();
-  getTemplate = jest.fn().mockReturnValue(this.template);
+  getTplDirectives = jest.fn().mockReturnValue(this.tplDirectives);
 
   constructor(
-    private config: {
+    public innerConfig: {
       styles?: Record<string, string>;
-      template?: TemplateRef<TableFeatureContext>;
+      // template?: TemplateRef<TableFeatureContext>;
     } = {},
+    injector: Injector,
   ) {
-    super();
+    super(injector);
   }
 }

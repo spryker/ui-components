@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.32](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.31...@spryker/table@0.1.0-next.32) (2020-05-04)
+
+
+### Bug Fixes
+
+* **table:** fix ie ui issues ([c2fb341](https://github.com/spryker/ui-components/commit/c2fb3414defaddec1e462466c541ad9745270170))
+
+
+
+
+
+# [0.1.0-next.31](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.30...@spryker/table@0.1.0-next.31) (2020-04-30)
+
+
+### Bug Fixes
+
+* **search:** fixed types ([2a767d4](https://github.com/spryker/ui-components/commit/2a767d4c9709cfd781c2371d10fd1b0e20caa37d))
+* **search:** removed sync ([b9e3026](https://github.com/spryker/ui-components/commit/b9e30265ee2cbd3c7271c219133561d0aa1bb7a2))
+* **table:** fix for styles, search and filters ([d133418](https://github.com/spryker/ui-components/commit/d13341816cabf0564b65d2db72d3a283163a0de3))
+* **table:** fix ie images styles ([bdb22b9](https://github.com/spryker/ui-components/commit/bdb22b9fe71f6b015ea9fb1974b6b90a0a66d97b))
+* **table:** fix ie images styles ([b43bb4f](https://github.com/spryker/ui-components/commit/b43bb4fae4e64da9b48366b5582bab7cb1b38d22))
+* **table:** fix ie styles ([2893ef0](https://github.com/spryker/ui-components/commit/2893ef04ae7497a5d44646e8b5bde8edf1a94b2a))
+* **table:** fix ie styles ([fcbcabd](https://github.com/spryker/ui-components/commit/fcbcabd5ceef500c1b82cb01afbcbc0cb089b3cc))
+* **table:** init checked rows ([add8801](https://github.com/spryker/ui-components/commit/add8801f0cb8b6c0967baa1397f91b01a8ad43ab))
+* **table:** init checked rows ([faecd34](https://github.com/spryker/ui-components/commit/faecd34cf01818bcce93bc0dadccd2bd883e8e08))
+* **table:** removed import ([31248bb](https://github.com/spryker/ui-components/commit/31248bb47e5384e9109f15335664620ca913fcad))
+* **table:** search, sorting issues ([5106546](https://github.com/spryker/ui-components/commit/5106546eac8ef0069e308fcded39c3c5e922201b))
+
+
+
+
+
+# [0.1.0-next.30](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.29...@spryker/table@0.1.0-next.30) (2020-04-27)
+
+
+### Bug Fixes
+
+* **table:** ui-issues ([2a6ee0b](https://github.com/spryker/ui-components/commit/2a6ee0b274a732c57161cc7c4cf9dbf152b8929c))
+
+
+
+
+
+# [0.1.0-next.29](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.28...@spryker/table@0.1.0-next.29) (2020-04-27)
+
+
+### Bug Fixes
+
+* **table:** ui-issues ([e1111eb](https://github.com/spryker/ui-components/commit/e1111ebc94ae2e8eaf7ab65662ef122bcf755faf))
+* **table:** ui-issues ([f29702c](https://github.com/spryker/ui-components/commit/f29702c1c6af44a61ae52a9b47ed70ca3d713be5))
+
+
+
+
+
+# [0.1.0-next.28](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.27...@spryker/table@0.1.0-next.28) (2020-04-24)
+
+
+### Bug Fixes
+
+* **table:** default value ([e590658](https://github.com/spryker/ui-components/commit/e590658ea53ab56fecbec904b1ba36f07d971952))
+* **table:** moved check ([ee08373](https://github.com/spryker/ui-components/commit/ee0837303f234abe893383a694d0eca2939a0fad))
+* **table renderer:** removed variable ([86add66](https://github.com/spryker/ui-components/commit/86add66c7ba384f6ed8b9d7a43940066f77cc308))
+
+
+
+
+
+# [0.1.0-next.27](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.26...@spryker/table@0.1.0-next.27) (2020-04-22)
+
+
+### Features
+
+* **chips component:** chips component and column type ([01912e2](https://github.com/spryker/ui-components/commit/01912e2d28c81a6943ad9704c748cad0da71e45f))
+
+
+
+
+
+# [0.1.0-next.26](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.25...@spryker/table@0.1.0-next.26) (2020-04-21)
+
+
+### Bug Fixes
+
+* **table:** resolve circular imports in filters feature ([a6c2626](https://github.com/spryker/ui-components/commit/a6c26268ebb1a1424b7f301d54c8708ec8f329e6))
+
+
+
+
+
 # [0.1.0-next.25](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.24...@spryker/table@0.1.0-next.25) (2020-04-20)
 
 

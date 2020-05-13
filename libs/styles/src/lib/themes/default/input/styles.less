@@ -20,13 +20,21 @@
 
 .@{ant-input}-affix-wrapper {
   .@{ant-input} {
-    &-prefix {
-      left: 10px;
+    &-prefix,
+    &-suffix {
       color: @input-icon-color;
     }
+
+    &-prefix {
+      left: 10px;
+    }
+
     &-suffix {
       right: 10px;
-      color: @input-icon-color;
+    }
+
+    &:not(:first-child) {
+      padding-left: @input-affix-padding-left;
     }
   }
 
@@ -43,7 +51,7 @@
 }
 
 .@{ant-input} {
-  font-weight: @font-weight-medium;
+  font: @font-weight-medium @font-size-base @font-family;
 
   &:read-only,
   &-disabled {
@@ -75,6 +83,10 @@
 
   &:invalid {
     box-shadow: none;
+  }
+
+  &::-ms-clear {
+    display: none;
   }
 
   .@{ant-input}-affix-wrapper {

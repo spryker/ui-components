@@ -3,17 +3,29 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   ChangeDetectorRef,
-  Input,
+  Injector,
 } from '@angular/core';
 import {
   TableFeatureComponent,
   TableDataConfiguratorService,
   TableFeatureLocation,
   DefaultInitialDataStrategy,
+  TableDataConfig,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/utils';
 import { tap, take, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
+
+declare module '@spryker/table' {
+  // tslint:disable-next-line: no-empty-interface
+  interface TableConfig extends TableSyncStateConfig {}
+}
+
+export interface TableSyncStateConfig {
+  syncStateUrl?: {
+    enabled: boolean;
+  };
+}
 
 @Component({
   selector: 'spy-table-sync-state-feature',
@@ -29,7 +41,9 @@ import { merge, Observable, of } from 'rxjs';
   ],
 })
 export class TableSyncStateFeatureComponent extends TableFeatureComponent {
-  @Input() location = TableFeatureLocation.hidden;
+  name = 'syncStateUrl';
+  tableFeatureLocation = TableFeatureLocation;
+
   key = 'table-state';
   stateToConfig$?: Observable<unknown>;
   configToState$?: Observable<Record<string, unknown>>;
@@ -38,8 +52,9 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
   constructor(
     private urlPersistenceStrategy: UrlPersistenceStrategy,
     private cdr: ChangeDetectorRef,
+    injector: Injector,
   ) {
-    super();
+    super(injector);
   }
 
   setDataConfiguratorService(service: TableDataConfiguratorService): void {
@@ -54,9 +69,7 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
     service.provideInitialDataStrategy(syncStateInitialData);
 
     this.configToState$ = service.config$.pipe(
-      tap(config => {
-        return this.urlPersistenceStrategy.save(this.key, config);
-      }),
+      tap(config => this.urlPersistenceStrategy.save(this.key, config)),
     );
 
     this.stateToConfig$ = urlState$.pipe(tap(state => service.reset(state)));
@@ -72,7 +85,7 @@ class SyncStateInitialDataStrategy extends DefaultInitialDataStrategy {
     super();
   }
 
-  getData() {
+  getData(): Observable<TableDataConfig> {
     return this.urlState$.pipe(
       take(1),
       switchMap(url => (url ? of(url) : super.getData())),

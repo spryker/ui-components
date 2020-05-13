@@ -13,26 +13,16 @@
   }
 
   &-features {
-    display: flex;
-    align-items: center;
-    padding-bottom: @table-features-padding-vertical;
-    margin: -@table-top-features-padding 0;
+    &--before-table {
+      padding-bottom: @table-features-padding-vertical;
+    }
 
-    &-col {
-      padding: @table-top-features-padding;
+    spy-table-features-renderer {
+      display: flex;
+      flex-grow: 1;
 
-      &--static {
-        font: @font-weight-medium @font-size-base @font-family;
-        color: @gray-dark;
-        flex-shrink: 0;
-        padding-left: 0;
-      }
-
-      &--dynamic {
-        display: flex;
-        justify-content: flex-end;
-        flex-grow: 1;
-        padding-right: 0;
+      & > div {
+        width: 100%;
       }
     }
   }
@@ -101,6 +91,8 @@
     }
 
     .@{table-prefix-cls}-header-column .@{table-prefix-cls}-column-sorters {
+      margin-top: @table-column-sorters-margin-top;
+
       &:hover::before {
         background: transparent;
       }
@@ -156,17 +148,21 @@
     }
 
     > td {
-      position: relative;
       padding: 0;
       border-bottom: none;
       z-index: 0;
+      height: inherit;
 
       .@{table-prefix-cls}-column-inner {
-        padding: @table-body-padding-vertical @table-padding-horizontal;
+        position: relative;
+        padding: @table-body-padding-top @table-padding-horizontal
+          @table-body-padding-bottom;
         color: @table-column-body-color;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        height: 100%;
+        z-index: 0;
 
         &--align-right {
           align-items: flex-end;
@@ -201,12 +197,6 @@
       }
     }
 
-    &.@{table-prefix-cls}-row--selected
-      > td
-      .@{table-prefix-cls}-column-inner::after {
-      background: @table-body-selected-row-bg;
-    }
-
     &:first-child > td .@{table-prefix-cls}-column-inner::after {
       top: 0;
     }
@@ -233,30 +223,5 @@
 
   &-header {
     background: transparent;
-  }
-
-  &-dropdown {
-    width: @table-dropdown-trigger-size;
-    height: @table-dropdown-trigger-size;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background @common-transition-time @common-transition-function,
-      color @common-transition-time @common-transition-function;
-    color: @table-dropdown-trigger-color;
-    font-size: @table-dropdown-trigger-icon-size;
-
-    &:hover {
-      background: @table-dropdown-trigger-hover-bg;
-      color: @table-dropdown-trigger-hover-color;
-    }
-
-    .ant-dropdown-trigger {
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  .ant-checkbox-inner {
-    background: @white;
   }
 }

@@ -1,85 +1,111 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { TableModule } from '../../../src/lib/table.module';
+import { TableModule } from '@spryker/table';
 import { TableFiltersFeatureModule } from './table-filters-feature.module';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
-  TableFilterSelectComponent,
-  TableFilterSelectModule,
-} from '../../../filters/src/table-filter-select/';
+  generateMockTableDataFor,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { TableDummyFilterComponent } from './dummy-filter';
+import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 
 export default {
-  title: 'TableFiltersFeature',
+  title: 'TableFiltersFeatureComponent',
 };
 
-export const withSelectFeatures = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      HttpClientModule,
-      TableModule,
-      BrowserAnimationsModule,
-      TableFiltersFeatureModule,
-      TableFiltersFeatureModule.withFilterComponents({
-        select: TableFilterSelectComponent as any,
-        select2: TableFilterSelectComponent as any,
-      } as any),
-      TableFilterSelectModule,
-    ],
-    providers: [
-      {
-        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [TableFilterSelectComponent],
-        multi: true,
-      },
-    ],
-  },
-  template: `
-    <spy-table [config]="config" (actionTriggered)="logActions($event)">
-      <spy-table-filters-feature spy-table-feature location="top"></spy-table-filters-feature>
+const tableDataGenerator: TableDataMockGenerator = i => ({
+  col1: `col1 #${i}`,
+  col2: 'col2',
+  col3: 'col3',
+});
+
+export const viaHtml = getFiltersStory(
+  `
+    <spy-table [config]="config" [mockHttp]="mockHttp">
+      <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
     </spy-table>
   `,
-  props: {
-    config: object(
-      'Config',
-      {
-        dataUrl: 'https://angular-recipe-24caa.firebaseio.com/data.json',
+  [TableFiltersFeatureModule],
+);
+
+export const viaConfig = getFiltersStory(
+  `
+    <spy-table [config]="config" [mockHttp]="mockHttp">
+  `,
+  [
+    TableModule.withFeatures({
+      filters: () =>
+        import('./table-filters-feature.module').then(
+          m => m.TableFiltersFeatureModule,
+        ),
+    }),
+  ],
+);
+
+function getFiltersStory(
+  template: string,
+  extraNgModules: any[] = [],
+): () => IStory {
+  return () => ({
+    moduleMetadata: {
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        MockHttpModule,
+        TableModule.forRoot(),
+        TableFiltersFeatureModule.withFilterComponents({
+          filter: TableDummyFilterComponent as any,
+        }),
+        TableModule.withDatasourceTypes({
+          http: TableDatasourceHttpService,
+        }),
+        ...extraNgModules,
+      ],
+      declarations: [TableDummyFilterComponent],
+      providers: [
+        {
+          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+          useValue: [LayoutFlatHostComponent, TableDummyFilterComponent],
+          multi: true,
+        },
+      ],
+    },
+    template,
+    props: {
+      config: {
+        dataSource: {
+          type: 'http',
+          url: '/data-request',
+        },
         columns: [
-          { id: 'name', sortable: true, title: 'name' },
-          { id: 'sku', sortable: true, title: 'sku' },
-          { id: 'id3', sortable: true, title: 'id3' },
+          { id: 'col1', title: 'Column #1' },
+          { id: 'col2', title: 'Column #2' },
+          { id: 'col3', title: 'Column #3' },
         ],
-        filters: [
-          {
-            id: 'offers',
-            title: 'Has Offers',
-            type: 'select',
-            typeOptions: {
-              multiselect: false,
-              values: [
-                { value: 1, title: 'Yes' },
-                { value: 0, title: 'No' },
-              ],
+        filters: {
+          enabled: true,
+          items: [
+            {
+              id: 'filter',
+              title: 'Filter',
+              type: 'filter',
+              typeOptions: {
+                value: 'This is dummy input filter',
+              },
             },
-          },
-          {
-            id: 'status',
-            title: 'Product Status',
-            type: 'select',
-            typeOptions: {
-              multiselect: false,
-              values: [
-                { value: 1, title: 'Active' },
-                { value: 0, title: 'Inactive' },
-              ],
-            },
-          },
-        ],
+          ],
+        },
       },
-      'Group',
-    ),
-    logActions: console.log,
-  },
-});
+      mockHttp: setMockHttp([
+        {
+          url: '/data-request',
+          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+        },
+      ]),
+    },
+  });
+}

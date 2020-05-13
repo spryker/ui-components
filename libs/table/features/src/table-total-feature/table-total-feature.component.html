@@ -1,0 +1,8 @@
+<ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable">
+  <span *ngIf="isDataResolved$ | async" class="table-total-feature">
+    <ng-container *ngIf="selected$ | async as selected"
+      >{{ selected }} selected /
+    </ng-container>
+    {{ total$ | async }} results
+  </span>
+</ng-container>

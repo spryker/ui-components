@@ -119,8 +119,9 @@
 @input-icon-hover-color: @input-placeholder-color;
 @input-add-before-spacing: 35px;
 
-// Textarea
+@input-affix-padding-left: 40px;
 
+// Textarea
 @textarea-vertical-padding: 7px;
 @textarea-horizontal-padding: 11px;
 
@@ -291,6 +292,13 @@
 @checkbox-label-color: @ink;
 @checkbox-label-line-height: 1.7;
 
+// Chips
+
+@chips-padding: 3px 12px;
+@chips-min-width: 57px;
+@chips-max-width: 145px;
+@chips-border-radius: 24px;
+
 //Dropdown
 @dropdown-prefix-cls: ~'@{ant-prefix}-dropdown';
 
@@ -331,6 +339,7 @@
 
 @table-header-icon-color: @gray;
 @table-column-body-color: @gray-dark;
+@table-column-sorters-margin-top: 2px;
 @table-body-row-bg: @white;
 @table-body-selected-row-bg: @green-lighter;
 @table-body-active-row-border-bg: @green-light;
@@ -344,7 +353,8 @@
 @table-selection-column-min-height: 70px;
 
 @table-head-padding-vertical: 17px;
-@table-body-padding-vertical: 0px;
+@table-body-padding-top: 10px;
+@table-body-padding-bottom: 12.5px;
 @table-body-margin-vertical: 3px;
 @table-padding-horizontal: 25px;
 
@@ -360,7 +370,7 @@
 @table-row-height: 70px;
 
 @table-dropdown-trigger-size: 50px;
-@table-dropdown-trigger-icon-size: 24px;
+@table-dropdown-trigger-icon-size: 18px;
 @table-dropdown-trigger-color: @gray-dark;
 @table-dropdown-trigger-hover-color: @primary-color;
 @table-dropdown-trigger-hover-bg: @gray-lighter;
@@ -370,25 +380,30 @@
 
 // Table Column Image
 @table-column-image-prefix-cls: ~'@{ant-prefix}-table-column-image';
-@table-column-image-width: 60px;
-@table-column-image-height: 60px;
-@table-column-image-margin-top: 3.5px;
-@table-column-image-margin-bottom: 6.5px;
+@table-column-image-width: 50px;
+@table-column-image-height: 50px;
 
 // Table Feature Renderer
 @table-feature-renderer-prefix-cls: ~'@{ant-prefix}-table-features-renderer';
+@table-feature-renderer-input-min-width: 317px;
 
 // Table Filters Feature
 @table-filters-feature-prefix-cls: ~'@{ant-prefix}-table-filters-feature';
 @table-filters-feature-margin: -7px -7px 25px -7px;
 @table-filters-feature-item-padding: 7px;
+@table-filters-feature-item-min-width: 200px;
 
-//Table feature search
+//Table Search Feature
 @magnifier-icon-width: 22px;
 @magnifier-icon-height: 22px;
 @magnifier-icon-font-size: 22px;
 @magnifier-icon-line-height: 1;
 
-// Input
-@input-prefix-cls: ~'@{ant-prefix}-input';
-@input-affix-padding-left: 40px;
+@remove-icon-size: 24px;
+@remove-icon-font-size: 10px;
+@remove-icon-line-height: 27px;
+
+@search-feature-input-suffix-right: 12px;
+
+// Table Row Actions Feature
+@table-row-actions-feature-prefix-cls: ~'@{ant-prefix}-table-row-actions-feature';

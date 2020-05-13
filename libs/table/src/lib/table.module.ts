@@ -1,59 +1,53 @@
 import { CommonModule } from '@angular/common';
-import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { OrchestratorCoreModule } from '@orchestrator/core';
 import {
   LayoutFlatHostComponent,
   LayoutFlatHostModule,
 } from '@orchestrator/layout';
-import { CheckboxModule } from '@spryker/checkbox';
-import { PaginationModule } from '@spryker/pagination';
-import { DropdownModule } from '@spryker/dropdown';
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { SelectComponentsModule } from '@spryker/web-components';
-import { IconActionModule } from '@spryker/icon/icons';
-import { IconModule } from '@spryker/icon';
-
-import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
-import { TableFeaturesRendererComponent } from './table-features-renderer/table-features-renderer.component';
-import { ColTplDirective } from './table/col-tpl.directive';
-import { TableColumnComponentDeclaration } from './table/table';
-import { TableComponent } from './table/table.component';
-import { TableFeatureDirective } from './table/table-feature.directive';
-import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { ContextModule } from '@spryker/utils';
+import { SelectComponentsModule } from '@spryker/web-components';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
-export const TABLE_COLUMN_COMPONENT_TOKEN = new InjectionToken<
-  TableColumnComponentDeclaration[]
->('TABLE_COLUMN_COMPONENT_TOKEN');
+import { provideTableColumnComponents } from './column-type/tokens';
+import { provideTableDatasourceServices } from './datasource-type/tokens';
+import { TableColumnListComponent } from './table-column-list/table-column-list.component';
+import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
+import { provideTableFeatures } from './table-feature-loader/tokens';
+import { TableFeaturesRegistry } from './table-feature-loader/types';
+import { TableFeatureModule } from './table-feature/table-feature.module';
+import { TableFeaturesRendererComponent } from './table-features-renderer/table-features-renderer.component';
+import { TableFeaturesRendererDirective } from './table-features-renderer/table-features-renderer.directive';
+import { TableRenderFeatureDirective } from './table-features-renderer/table-render-feature.directive';
+import { ColTplDirective } from './table/col-tpl.directive';
+import {
+  TableColumnComponentDeclaration,
+  TableDatasourceTypesDeclaration,
+} from './table/table';
+import { CoreTableComponent } from './table/table.component';
+import { PluckModule } from '@spryker/utils';
 
 @NgModule({
   imports: [
     CommonModule,
     NzTableModule,
-    CheckboxModule,
     OrchestratorCoreModule,
     LayoutFlatHostModule,
-    SelectComponentsModule,
-    PaginationModule,
-    DropdownModule,
-    IconActionModule,
-    IconModule,
     ContextModule,
+    TableFeatureModule,
+    SelectComponentsModule,
+    PluckModule,
   ],
   declarations: [
-    TableComponent,
+    CoreTableComponent,
     TableColumnRendererComponent,
     ColTplDirective,
     TableFeaturesRendererComponent,
-    TableFeatureDirective,
+    TableFeaturesRendererDirective,
+    TableRenderFeatureDirective,
     TableColumnListComponent,
   ],
-  exports: [
-    TableComponent,
-    TableColumnRendererComponent,
-    ColTplDirective,
-    TableFeatureDirective,
-  ],
+  exports: [CoreTableComponent, ColTplDirective, TableFeatureModule],
 })
 export class TableModule {
   static forRoot(): ModuleWithProviders<TableModule> {
@@ -79,12 +73,26 @@ export class TableModule {
         OrchestratorCoreModule.registerComponents(
           components as Required<TableColumnComponentDeclaration>,
         ),
-        {
-          provide: TABLE_COLUMN_COMPONENT_TOKEN,
-          useValue: components,
-          multi: true,
-        },
+        provideTableColumnComponents(components),
       ],
+    };
+  }
+
+  static withFeatures(
+    features: TableFeaturesRegistry,
+  ): ModuleWithProviders<TableModule> {
+    return {
+      ngModule: TableModule,
+      providers: [provideTableFeatures(features)],
+    };
+  }
+
+  static withDatasourceTypes(
+    datasourceTypes: TableDatasourceTypesDeclaration,
+  ): ModuleWithProviders<TableModule> {
+    return {
+      ngModule: TableModule,
+      providers: [provideTableDatasourceServices(datasourceTypes)],
     };
   }
 }

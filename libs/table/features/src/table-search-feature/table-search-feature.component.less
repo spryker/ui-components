@@ -1,9 +1,34 @@
-@import './table-search-feature.component.theme.less';
+@import 'themes/default/theme.less';
 
-.@{ant-prefix}-magnifier-icon {
-  height: @magnifier-icon-height;
-  width: @magnifier-icon-width;
-  font-size: @magnifier-icon-font-size;
-  line-height: @magnifier-icon-line-height !important;
-  color: @gray-dark;
+.@{ant-prefix} {
+  &-input-suffix {
+    right: @search-feature-input-suffix-right !important;
+  }
+
+  &-magnifier-icon {
+    height: @magnifier-icon-height;
+    width: @magnifier-icon-width;
+    font-size: @magnifier-icon-font-size;
+    line-height: @magnifier-icon-line-height !important;
+    color: @gray-dark;
+  }
+
+  &-remove-icon {
+    width: @remove-icon-size;
+    height: @remove-icon-size;
+    font-size: @remove-icon-font-size;
+    line-height: @remove-icon-line-height !important;
+    text-align: center;
+    color: @gray-dark;
+    background-color: @gray-light;
+    border-radius: 50%;
+
+    &:hover {
+      color: @gray-darker;
+    }
+
+    &-icon {
+      vertical-align: middle;
+    }
+  }
 }

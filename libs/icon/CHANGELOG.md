@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/icon@0.1.0-next.11...@spryker/icon@0.1.0-next.12) (2020-05-13)
+
+
+### Features
+
+* **date-picker:** fixed icons ([93a0ea2](https://github.com/spryker/ui-components/commit/93a0ea2a0e2968b412dc72bd01b9c6bb8d05e4f1))
+* **date-picker:** without unit-test ([9389a21](https://github.com/spryker/ui-components/commit/9389a21f7476c1ef10a7c64cc6c338aaa7450912))
+
+
+
+
+
 # [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/icon@0.1.0-next.10...@spryker/icon@0.1.0-next.11) (2020-05-05)
 
 

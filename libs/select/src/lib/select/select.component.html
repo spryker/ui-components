@@ -11,6 +11,8 @@
   [nzRemoveIcon]="crossIconTpl"
   [nzAllowClear]="!disableClear"
   [nzClearIcon]="clearIconTpl"
+  [nzMaxTagCount]="0"
+  [nzMaxTagPlaceholder]="tagPlaceholder"
 >
   <nz-option
     *ngIf="showSelectAll"
@@ -28,7 +30,7 @@
   >
     {{ option.label }}
     <spy-icon
-      class="ant-select-item-option__icon--checked"
+      class="ant-select-dropdown-menu-item__icon--checked"
       [name]="checkIcon"
     ></spy-icon>
   </nz-option>
@@ -74,19 +76,23 @@
 </ng-template>
 
 <ng-template #multiSelectOptionIconTpl>
-  <spy-icon
-    class="ant-select-item-option__icon--multiChecked"
-    [name]="checkboxCheckedIcon"
-  ></spy-icon>
-  <spy-icon
-    class="ant-select-item-option__icon--multiUnchecked"
-    [name]="checkboxUncheckedIcon"
-  ></spy-icon>
+  <span class="ant-select-selection--multiple__multiChecked">
+    <spy-icon
+      class="ant-select-selection--multiple__multiChecked--icon"
+      [name]="checkIcon"
+    ></spy-icon>
+  </span>
+  <span class="ant-select-selection--multiple__multiUnChecked"></span>
 </ng-template>
 
 <ng-template #clearIconTpl>
   <spy-icon
-    class="ant-select-clear__icon"
+    class="ant-select-selection__clear-icon"
     [name]="removeIcon"
   ></spy-icon>
 </ng-template>
+
+<!-- TODO: Localize "selected" text once locale pipe available -->
+<ng-template #tagPlaceholder let-selectedList
+  >{{ selectedList.length }} selected</ng-template
+>

@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IconModule } from '@spryker/icon';
 import {
   IconArrowDownModule,
-  IconCheckboxCheckedModule,
-  IconCheckboxUncheckedModule,
   IconCheckModule,
   IconRemoveModule,
 } from '@spryker/icon/icons';
@@ -22,8 +20,6 @@ import { SelectComponent } from './select/select.component';
     IconArrowDownModule,
     IconCheckModule,
     IconRemoveModule,
-    IconCheckboxCheckedModule,
-    IconCheckboxUncheckedModule,
   ],
   declarations: [SelectComponent],
   exports: [SelectComponent],

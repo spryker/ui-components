@@ -22,221 +22,150 @@
     margin: @select-menu-horizontal-margin 0;
     padding: 0;
 
+    &-menu {
+      box-sizing: border-box;
+
+      &-item {
+        height: @select-dropdown-menu-item-height;
+        line-height: @select-dropdown-menu-item-line-height;
+        font-weight: @select-dropdown-menu-item-font-weight;
+        color: @ink;
+        padding: @select-dropdown-menu-item-padding;
+        border: @select-dropdown-menu-item-border;
+
+        &:hover {
+          &:not(.@{select-prefix-cls}-dropdown-menu-item-disabled) {
+            background-color: @gray-lighter;
+          }
+        }
+
+        &-selected {
+          color: @green;
+          background-color: @green-lighter;
+          font-weight: @font-weight-medium;
+
+          .@{select-prefix-cls}-dropdown-menu-item__icon--checked {
+            display: block;
+          }
+
+          .@{select-prefix-cls}-selection--multiple__multiChecked {
+            display: block;
+          }
+
+          .@{select-prefix-cls}-selection--multiple__multiUnChecked {
+            display: none;
+          }
+        }
+
+        &-disabled {
+          .@{select-prefix-cls}-selection--multiple__multiUnChecked {
+            border-color: @gray-light;
+            background-color: @gray-lighter;
+          }
+        }
+
+        &__icon--checked {
+          display: none;
+          position: absolute;
+          right: @select-menu-horizontal-padding;
+          top: @select-menu-vertical-padding;
+          color: @green;
+          background-size: @check-icon-size;
+          height: @check-icon-size;
+          width: @check-icon-size;
+          line-height: @check-icon-line-height;
+        }
+
+        &:focus {
+          border: @select-menu-item-border;
+          border-radius: 2px;
+        }
+      }
+    }
+
     .cdk-virtual-scroll-content-wrapper {
       max-height: 250px !important;
       height: auto !important;
     }
   }
 
-  &-selection-item {
-    color: @ink;
-  }
-
-  &-single&-show-arrow &-selection-item,
-  &-single&-show-arrow &-selection-placeholder {
-    padding-right: 0;
-  }
-
-  &-focused&-single:not(&-customize-input) &-selector {
-    box-shadow: none;
-  }
-
-  &-single:not(&-customize-input) &-selector,
-  &-selector {
+  &-selection {
     border-color: @gray-light;
-    background-color: @white;
-    padding: 0 24px 0 11px;
 
     &:hover {
       border-color: @gray;
     }
 
-    &__choice {
-      padding: 0;
-      display: flex;
-      justify-content: space-between;
-      min-width: @select-selection-choice-min-width;
-      max-width: @select-selection-choice-max-width;
-      border-radius: @choice-border-radius;
-      background-color: @gray-light;
+    &-selected-value {
       color: @ink;
-
-      &__content {
-        padding-left: @select-selection-content-padding;
-        margin-right: @select-selection-content-margin-right;
-        max-width: @select-selection-content-max-width;
-        line-height: @select-selection-content-line-height;
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
-
-      &__remove {
-        top: -3px;
-        right: -2px;
-        line-height: @select-selection-remove-line-height;
-        background-color: @gray;
-        height: @choise-remove-size;
-        width: @choise-remove-size;
-        border-radius: 0 @choice-border-radius @choice-border-radius 0;
-
-        &__icon {
-          height: @remove-icon-size;
-          width: @remove-icon-size;
-          font-size: @remove-icon-size;
-          color: @white;
-        }
-      }
-    }
-  }
-
-  &-clear {
-    right: 8px;
-    margin-top: @select-selection-clear-btn-size / -2;
-    width: @select-selection-clear-btn-size;
-    height: @select-selection-clear-btn-size;
-    font-size: @select-selection-clear-icon-size;
-    line-height: @select-selection-clear-btn-size;
-    color: @gray-dark;
-    background-color: @gray-light;
-    border-radius: 50%;
-
-    &:hover {
-      color: @gray-darker;
     }
 
-    &__icon {
-      vertical-align: middle;
-    }
-  }
-
-  &-open &-selection {
-    border-color: @green;
-    box-shadow: none;
-  }
-
-  &-selection-placeholder {
-    opacity: 1;
-    font-weight: @font-weight-medium;
-    letter-spacing: @letter-spacing-base;
-  }
-
-  &-selection-selected-value,
-  &-item-option {
-    border-radius: 0;
-    height: @select-menu-item-height;
-    line-height: @select-menu-item-line-height;
-    color: @ink;
-    font-weight: @font-weight-medium;
-    font-size: @font-size-base;
-    letter-spacing: @letter-spacing-base;
-    padding: @select-menu-vertical-padding @select-menu-horizontal-padding;
-  }
-
-  &-item-option {
-    background-color: @white;
-
-    &:hover {
-      background-color: @gray-lighter;
-    }
-
-    &:focus {
-      border: @select-menu-item-border;
-    }
-
-    &__icon {
-      &--checked {
-        display: none;
-        position: absolute;
-        right: @select-menu-horizontal-padding;
-        top: @select-menu-vertical-padding;
-        color: @green;
-        background-size: @check-icon-size;
-        height: @check-icon-size;
-        width: @check-icon-size;
-        line-height: @check-icon-line-height;
-      }
-
-      &--multiChecked {
-        display: none;
-        height: @checkbox-icon-size;
-        width: @checkbox-icon-size;
-        margin-right: @checkbox-icon-margin-right;
-        float: left;
-        line-height: @checkbox-icon-line-height;
-      }
-
-      &--multiUnchecked {
-        height: @checkbox-icon-size;
-        width: @checkbox-icon-size;
-        margin-right: @checkbox-icon-margin-right;
-        float: left;
-        line-height: @checkbox-icon-line-height;
-      }
-    }
-
-    &-selected:not(&-disabled),
-    &-selected,
-    &-active {
-      color: @green;
-      background-color: @green-lighter;
-      font-weight: @font-weight-medium;
-
-      &:focus {
-        border: @select-menu-item-border;
-      }
+    &__clear {
+      right: @select-selection-clear-right;
+      margin-top: @select-selection-clear-btn-size / -2;
+      width: @select-selection-clear-btn-size;
+      height: @select-selection-clear-btn-size;
+      font-size: @select-selection-clear-icon-size;
+      line-height: @select-selection-clear-btn-size;
+      color: @gray-dark;
+      background-color: @gray-light;
+      border-radius: 50%;
 
       &:hover {
-        background-color: @gray-lighter;
+        color: @gray-darker;
+      }
+
+      &-icon {
+        vertical-align: middle;
       }
     }
 
-    &-selected {
-      padding-right: @select-menu-horizontal-padding + @check-icon-size;
+    &--multiple {
+      padding-bottom: 0;
 
-      .@{select-prefix-cls}-item-option__icon {
-        &--checked {
-          display: block;
-        }
+      & .@{select-prefix-cls}-selection__choice {
+        background: none;
+        border: none;
+        color: @ink;
+      }
+      &__multiChecked,
+      &__multiUnChecked {
+        box-sizing: border-box;
+        height: @checkbox-icon-size;
+        width: @checkbox-icon-size;
+        margin-right: @checkbox-icon-margin-right;
+        margin-top: @checkbox-icon-margin-top;
+        border-radius: @checkbox-icon-border-radius;
+        float: left;
+      }
 
-        &--multiChecked {
-          display: block;
-        }
+      &__multiChecked {
+        background-color: @green;
+        display: none;
+        text-align: center;
+        line-height: @checkbox-multi-select-checked-line-height;
 
-        &--multiUnchecked {
-          display: none;
+        &--icon {
+          color: @white;
+          font-size: @checkbox-multi-select-checked-icon-size;
         }
       }
-    }
 
-    &-disabled {
-      pointer-events: none;
-      color: @ink;
-      background-color: @gray-light;
-    }
-  }
+      &__multiUnChecked {
+        border: 2px solid @gray-light;
 
-  &-disabled {
-    .@{select-prefix-cls} {
-      &-selection.@{select-prefix-cls}-selection {
-        background-color: @gray-lighter;
-        border-color: @gray-light;
-        color: @gray;
+        &:focus {
+          border-color: @green;
+        }
 
-        &-arrow__icon {
-          color: @gray;
+        &:hover {
+          border-color: @gray;
         }
       }
     }
   }
 
   &-arrow {
-    right: 15px;
-
-    &__icon {
-      color: @gray-dark;
-      background-size: @suffix-icon-size;
-      height: @suffix-icon-size;
-      width: @suffix-icon-size;
-    }
+    right: @select-arrow-right;
   }
 }

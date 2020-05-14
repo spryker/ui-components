@@ -5,13 +5,16 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  TableActionTriggeredEvent,
   TableDataRow,
-  TableFeatureComponent, TableFeatureConfig,
+  TableFeatureComponent,
+  TableFeatureConfig,
   TableFeatureLocation,
+} from '@spryker/table';
+import {
+  TableActionTriggeredEvent,
   TableRowAction,
   TableRowActionBase,
-} from '@spryker/table';
+} from './types';
 import { TableActionService } from './action.service';
 import { pluck, map, shareReplay } from 'rxjs/operators';
 import { DropdownItem } from '@spryker/dropdown';
@@ -42,7 +45,9 @@ export interface TableRowActionsConfig extends TableFeatureConfig {
     },
   ],
 })
-export class TableRowActionsFeatureComponent extends TableFeatureComponent<TableRowActionsConfig> {
+export class TableRowActionsFeatureComponent extends TableFeatureComponent<
+  TableRowActionsConfig
+> {
   name = 'rowActions';
   tableFeatureLocation = TableFeatureLocation;
   triggerIcon = IconActionModule.icon;
@@ -88,7 +93,10 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent<Table
     const wasActionHandled = this.tableActionService.handle(actions);
 
     if (!wasActionHandled) {
-      this.tableEventBus?.emit<TableActionTriggeredEvent>(actions, actions.action.type);
+      this.tableEventBus?.emit<TableActionTriggeredEvent>(
+        actions,
+        actions.action.type,
+      );
       this.tableEventBus?.emit<TableActionTriggeredEvent>(actions);
     }
   }

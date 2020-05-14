@@ -3,7 +3,11 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { TableFeatureComponent, TableFeatureConfig, TableFeatureLocation } from '@spryker/table';
+import {
+  TableFeatureComponent,
+  TableFeatureConfig,
+  TableFeatureLocation,
+} from '@spryker/table';
 import { map, mapTo, shareReplay, switchMap, take } from 'rxjs/operators';
 
 declare module '@spryker/table' {
@@ -28,7 +32,9 @@ export interface TableTotalConfig extends TableFeatureConfig {}
     },
   ],
 })
-export class TableTotalFeatureComponent extends TableFeatureComponent<TableTotalConfig> {
+export class TableTotalFeatureComponent extends TableFeatureComponent<
+  TableTotalConfig
+> {
   name = 'total';
   tableFeatureLocation = TableFeatureLocation;
 

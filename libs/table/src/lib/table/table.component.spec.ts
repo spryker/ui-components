@@ -190,7 +190,6 @@ describe('TableComponent', () => {
         expect(topFeaturesElem).toBeTruthy();
         expect(beforeTableFeaturesElem).toBeTruthy();
         expect(afterTableFeaturesElem).toBeTruthy();
-        expect(paginationFeaturesElem).toBeTruthy();
         expect(bottomFeaturesElem).toBeTruthy();
         expect(hiddenFeaturesElem).toBeTruthy();
         expect(headerExtFeaturesElem).toBeTruthy();

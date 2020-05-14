@@ -9,7 +9,6 @@ export interface TableRowActionBase {
   typeOptions?: unknown;
 }
 
-
 export interface TableActionTriggeredEvent {
   action: TableRowActionBase;
   items: TableDataRow[];

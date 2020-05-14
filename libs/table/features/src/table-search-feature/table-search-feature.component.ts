@@ -8,7 +8,8 @@ import {
 import {
   TableFeatureComponent,
   TableFeatureLocation,
-  TableDataConfiguratorService, TableFeatureConfig,
+  TableDataConfiguratorService,
+  TableFeatureConfig,
 } from '@spryker/table';
 import {
   debounceTime,
@@ -43,7 +44,8 @@ export interface TableSearchConfig extends TableFeatureConfig {
     },
   ],
 })
-export class TableSearchFeatureComponent extends TableFeatureComponent<TableSearchConfig>
+export class TableSearchFeatureComponent
+  extends TableFeatureComponent<TableSearchConfig>
   implements OnDestroy, OnInit {
   name = 'search';
   tableFeatureLocation = TableFeatureLocation;

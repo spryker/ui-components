@@ -3,7 +3,11 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { TableFeatureComponent, TableFeatureConfig, TableFeatureLocation } from '@spryker/table';
+import {
+  TableFeatureComponent,
+  TableFeatureConfig,
+  TableFeatureLocation,
+} from '@spryker/table';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 
 declare module '@spryker/table' {
@@ -29,7 +33,9 @@ export interface TablePaginationConfig extends TableFeatureConfig {
     },
   ],
 })
-export class TablePaginationFeatureComponent extends TableFeatureComponent<TablePaginationConfig> {
+export class TablePaginationFeatureComponent extends TableFeatureComponent<
+  TablePaginationConfig
+> {
   name = 'pagination';
   tableFeatureLocation = TableFeatureLocation;
   defaultSizes = [10, 20, 50];

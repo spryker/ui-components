@@ -11,7 +11,8 @@ import {
   TableComponent,
   TableData,
   TableDataRow,
-  TableFeatureComponent, TableFeatureConfig,
+  TableFeatureComponent,
+  TableFeatureConfig,
   TableFeatureLocation,
 } from '@spryker/table';
 import { Subject } from 'rxjs';
@@ -19,7 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 
 declare module '@spryker/table' {
   interface TableConfig {
-    itemSelection?: TableFeatureConfig
+    itemSelection?: TableFeatureConfig;
   }
 }
 
@@ -46,7 +47,8 @@ export type TableSelectionChangeEvent = TableSelectionRow[];
     },
   ],
 })
-export class TableSelectableFeatureComponent extends TableFeatureComponent<TableSelectableConfig>
+export class TableSelectableFeatureComponent
+  extends TableFeatureComponent<TableSelectableConfig>
   implements OnDestroy {
   name = 'itemSelection';
   tableFeatureLocation = TableFeatureLocation;

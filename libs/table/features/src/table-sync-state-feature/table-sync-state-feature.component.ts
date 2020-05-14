@@ -10,7 +10,8 @@ import {
   TableDataConfiguratorService,
   TableFeatureLocation,
   DefaultInitialDataStrategy,
-  TableDataConfig, TableFeatureConfig,
+  TableDataConfig,
+  TableFeatureConfig,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/utils';
 import { tap, take, switchMap } from 'rxjs/operators';
@@ -18,7 +19,7 @@ import { merge, Observable, of } from 'rxjs';
 
 declare module '@spryker/table' {
   interface TableConfig {
-    syncStateUrl?: TableSyncStateConfig
+    syncStateUrl?: TableSyncStateConfig;
   }
 }
 
@@ -38,7 +39,9 @@ export interface TableSyncStateConfig extends TableFeatureConfig {}
     },
   ],
 })
-export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableSyncStateConfig> {
+export class TableSyncStateFeatureComponent extends TableFeatureComponent<
+  TableSyncStateConfig
+> {
   name = 'syncStateUrl';
   tableFeatureLocation = TableFeatureLocation;
 

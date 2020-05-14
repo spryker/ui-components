@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.1.0-next.1...@spryker/date-picker@0.1.0-next.2) (2020-05-14)
+
+
+### Bug Fixes
+
+* **date-picker:** set public publishing ([5dfafce](https://github.com/spryker/ui-components/commit/5dfafce242b7d8a6255aa52cd5de6f01ef5b69c6))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.1.0-next.0...@spryker/date-picker@0.1.0-next.1) (2020-05-13)
 
 

@@ -1,10 +1,9 @@
-<ng-container *spyTableFeatureTpl="tableFeatureLocation.top">
-  <div class="ant-table-filters-feature">
-    <div
+<div class="ant-table-filters-feature" *spyTableFeatureTpl="tableFeatureLocation.top" [ngStyle]="styles">
+  <div
       *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
       class="ant-table-filters-feature-item"
-    >
-      <ng-container
+  >
+    <ng-container
         [ngComponentOutlet]="filterComponentMap[filter.type]"
         [ndcDynamicInputs]="{
           config: filter,
@@ -16,7 +15,6 @@
             args: [filter.id, '$event']
           }
         }"
-      ></ng-container>
-    </div>
+    ></ng-container>
   </div>
-</ng-container>
+</div>

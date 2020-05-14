@@ -90,26 +90,26 @@ function getFiltersStory(
           enabled: true, // This will enable feature via config
           items: [
             {
-              id: 'offers',
-              title: 'Has Offers',
+              id: 'select1',
+              title: 'Select 1',
               type: 'select',
               typeOptions: {
                 multiselect: false,
                 values: [
-                  { value: 1, title: 'Yes' },
-                  { value: 0, title: 'No' },
+                  { value: 1, title: 'Option_1' },
+                  { value: 0, title: 'Option_2' },
                 ],
               },
             },
             {
-              id: 'status',
-              title: 'Product Status',
+              id: 'select2',
+              title: 'Select 2',
               type: 'select',
               typeOptions: {
                 multiselect: false,
                 values: [
-                  { value: 1, title: 'Active' },
-                  { value: 0, title: 'Inactive' },
+                  { value: 1, title: 'Option_1' },
+                  { value: 0, title: 'Option_2' },
                 ],
               },
             },

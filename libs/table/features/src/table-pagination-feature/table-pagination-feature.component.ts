@@ -3,19 +3,17 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
+import { TableFeatureComponent, TableFeatureConfig, TableFeatureLocation } from '@spryker/table';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 
 declare module '@spryker/table' {
-  // tslint:disable-next-line: no-empty-interface
-  interface TableConfig extends TablePaginationConfig {}
+  interface TableConfig {
+    pagination?: TablePaginationConfig;
+  }
 }
 
-export interface TablePaginationConfig {
-  pagination?: {
-    enabled: boolean;
-    sizes: number[];
-  };
+export interface TablePaginationConfig extends TableFeatureConfig {
+  sizes: number[];
 }
 
 @Component({
@@ -31,7 +29,7 @@ export interface TablePaginationConfig {
     },
   ],
 })
-export class TablePaginationFeatureComponent extends TableFeatureComponent {
+export class TablePaginationFeatureComponent extends TableFeatureComponent<TablePaginationConfig> {
   name = 'pagination';
   tableFeatureLocation = TableFeatureLocation;
   defaultSizes = [10, 20, 50];

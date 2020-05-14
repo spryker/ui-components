@@ -3,19 +3,17 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
+import { TableFeatureComponent, TableFeatureConfig, TableFeatureLocation } from '@spryker/table';
 import { map, mapTo, shareReplay, switchMap, take } from 'rxjs/operators';
 
 declare module '@spryker/table' {
-  // tslint:disable-next-line: no-empty-interface
-  interface TableConfig extends TableTotalConfig {}
+  interface TableConfig {
+    total?: TableTotalConfig;
+  }
 }
 
-export interface TableTotalConfig {
-  total?: {
-    enabled: boolean;
-  };
-}
+// tslint:disable-next-line: no-empty-interface
+export interface TableTotalConfig extends TableFeatureConfig {}
 
 @Component({
   selector: 'spy-table-total-feature',
@@ -30,7 +28,7 @@ export interface TableTotalConfig {
     },
   ],
 })
-export class TableTotalFeatureComponent extends TableFeatureComponent {
+export class TableTotalFeatureComponent extends TableFeatureComponent<TableTotalConfig> {
   name = 'total';
   tableFeatureLocation = TableFeatureLocation;
 

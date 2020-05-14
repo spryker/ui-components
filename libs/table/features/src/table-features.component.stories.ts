@@ -33,7 +33,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const viaHtml = getFiltersStory(
+export const viaHtml = getFeaturesStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
@@ -56,7 +56,7 @@ export const viaHtml = getFiltersStory(
   ],
 );
 
-export const viaConfig = getFiltersStory(
+export const viaConfig = getFeaturesStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
   `,
@@ -86,7 +86,7 @@ export const viaConfig = getFiltersStory(
   ],
 );
 
-function getFiltersStory(
+function getFeaturesStory(
   template: string,
   extraNgModules: any[] = [],
 ): () => IStory {
@@ -122,7 +122,7 @@ function getFiltersStory(
           url: '/data-request',
         },
         columns: [
-          { id: 'col1', title: 'Column #1' },
+          { id: 'col1', title: 'Column #1', sortable: true },
           { id: 'col2', title: 'Column #2' },
           { id: 'col3', title: 'Column #3' },
         ],

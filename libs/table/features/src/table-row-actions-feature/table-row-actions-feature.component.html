@@ -5,7 +5,7 @@
     [items]="actions"
     (actionTriggered)="actionTriggerHandler($event, [data])"
   >
-    <spy-icon name="action"></spy-icon>
+    <spy-icon [name]="triggerIcon"></spy-icon>
   </spy-dropdown>
 
   <ng-container

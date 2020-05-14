@@ -25,7 +25,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: new Date('2020-01-01T17:25:00'),
 });
 
-export const withFeatures = (): IStory => ({
+export const primary = (): IStory => ({
   moduleMetadata: {
     imports: [TableColumnDateModule],
   },

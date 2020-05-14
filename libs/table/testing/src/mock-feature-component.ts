@@ -25,12 +25,6 @@ import {
       After Table Feature
     </div>
     <div
-      *spyTableFeatureTpl="tableFeatureLocation.pagination"
-      class="pagination-feature"
-    >
-      Pagination Feature
-    </div>
-    <div
       *spyTableFeatureTpl="tableFeatureLocation.bottom"
       class="bottom-feature"
     >

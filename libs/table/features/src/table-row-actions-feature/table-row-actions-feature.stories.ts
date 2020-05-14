@@ -2,8 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { IStory } from '@storybook/angular';
-import { TableModule } from '@spryker/table';
-import { TableActionTriggeredEvent } from './types';
+import { TableModule, TableActionTriggeredEvent } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableRowActionsFeatureModule } from './table-row-actions-feature.module';
 import {

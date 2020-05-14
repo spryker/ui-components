@@ -46,7 +46,7 @@ import { TableFeatureEventBus } from '../table-feature/table-feature-event-bus';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableFeatureDirective } from '../table-feature/table-feature.directive';
 import { TableFeaturesRendererService } from '../table-features-renderer/table-features-renderer.service';
-import { TableActionService } from '../../../features/src/table-row-actions-feature/action.service';
+import { TableActionService } from './action.service';
 import { ColTplDirective } from './col-tpl.directive';
 import { TableColumnsResolverService } from './columns-resolver.service';
 import { TableDataConfiguratorService } from './data-configurator.service';

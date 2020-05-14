@@ -1,0 +1,183 @@
+@import './date-picker.component.theme.less';
+
+.@{calendar-prefix-cls} {
+  height: @calendar-height;
+  width: @calendar-width;
+  border-radius: @calendar-border-radius;
+  background-color: @white;
+
+  &-picker {
+    width: @calendar-picker-width;
+    font: @font-weight-medium @font-size-base @font-family;
+
+    &-container {
+      top: @calendar-picker-container-top;
+    }
+
+    //&-input.@{input-prefix-cls} {
+    //  background: none;
+    //}
+
+    &-icon,
+    &-clear {
+      height: @calendar-picker-icon-width;
+      width: @calendar-picker-icon-height;
+      font-size: @calendar-picker-icon-font-size;
+      margin-top: @calendar-picker-icon-margin-top;
+      color: @gray-dark;
+    }
+  }
+
+  calendar-input {
+    display: none;
+  }
+
+  &-body {
+    padding: @calendar-body-padding;
+  }
+
+  &-header {
+    border-bottom: none;
+    margin-top: @calendar-header-margin-top;
+    margin-bottom: @calendar-header-margin-bottom;
+
+    .@{calendar-prefix-cls}-next-month-btn,
+    .@{calendar-prefix-cls}-year-panel-next-decade-btn,
+    .@{calendar-prefix-cls}-month-panel-next-year-btn,
+    .@{calendar-prefix-cls}-decade-panel-next-century-btn,
+    .@{calendar-prefix-cls}-prev-month-btn,
+    .@{calendar-prefix-cls}-year-panel-prev-decade-btn,
+    .@{calendar-prefix-cls}-month-panel-prev-year-btn,
+    .@{calendar-prefix-cls}-decade-panel-prev-century-btn {
+      color: @gray-dark;
+      background: url(icons/icon_navigation_arrow.svg) no-repeat center/
+        @calendar-btn-background-size;
+    }
+
+    .@{calendar-prefix-cls}-next-month-btn {
+      right: @calendar-next-month-button-right;
+
+      &:before {
+        content: none;
+      }
+    }
+
+    .@{calendar-prefix-cls}-prev-month-btn {
+      left: @calendar-prev-month-button-left;
+      transform: rotate(180deg);
+
+      &:before {
+        content: none;
+      }
+    }
+
+    .@{calendar-prefix-cls}-year-panel-next-decade-btn,
+    .@{calendar-prefix-cls}-month-panel-next-year-btn,
+    .@{calendar-prefix-cls}-decade-panel-next-century-btn {
+      right: @calendar-next-btn-right;
+
+      &:before,
+      &:after {
+        content: none;
+      }
+    }
+
+    .@{calendar-prefix-cls}-year-panel-prev-decade-btn,
+    .@{calendar-prefix-cls}-month-panel-prev-year-btn,
+    .@{calendar-prefix-cls}-decade-panel-prev-century-btn {
+      left: @calendar-prev-btn-left;
+      transform: rotate(180deg);
+
+      &:before,
+      &:after {
+        content: none;
+      }
+    }
+  }
+
+  &-month-panel-header,
+  &-year-panel-header,
+  &-decade-panel-header {
+    border-bottom: none;
+  }
+
+  &-cell {
+    padding: @calendar-cell-padding;
+
+    &.@{calendar-prefix-cls}-next-month-btn-day,
+    &.@{calendar-prefix-cls}-last-month-cell {
+      > .ant-calendar-date {
+        color: @gray;
+      }
+    }
+
+    &:hover {
+      > .@{calendar-prefix-cls}-date {
+        color: @gray-dark;
+        background-color: @gray-light;
+      }
+    }
+
+    &:focus {
+      > .@{calendar-prefix-cls}-date {
+        border-color: @green;
+      }
+    }
+  }
+
+  &-tbody {
+    box-sizing: border-box;
+    border: @calendar-tbody-border;
+
+    > tr > td {
+      height: @calendar-tbody-td-height;
+    }
+  }
+
+  &-date {
+    width: 100%;
+    height: @calendar-tbody-td-height;
+    border: @calendar-tbody-border !important;
+    border-radius: @calendar-date-border-radius;
+    line-height: @calendar-date-line-height;
+    font-weight: @calendar-date-font-weight;
+
+    &::before {
+      content: none !important;
+    }
+  }
+
+  &-today {
+    background-color: @white;
+
+    > .@{calendar-prefix-cls}-date {
+      color: @ink;
+    }
+  }
+
+  &-selected-day {
+    > .@{calendar-prefix-cls}-date {
+      background-color: @green;
+      color: @white;
+    }
+  }
+
+  &-next-month-btn,
+  &-prev-month-btn,
+  &-year-panel-next-decade-btn,
+  &-year-panel-prev-decade-btn,
+  &-month-panel-next-year-btn,
+  &-month-panel-prev-year-btn,
+  &-decade-panel-next-century-btn,
+  &-decade-panel-prev-century-btn {
+    width: @calendar-month-btn-width;
+    height: @calendar-month-btn-height;
+    border-radius: @calendar-month-btn-border-radius;
+    border: @calendar-month-btn-border;
+  }
+
+  &-prev-year-btn,
+  &-next-year-btn {
+    display: none !important;
+  }
+}

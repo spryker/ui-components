@@ -12,3 +12,4 @@ export * from './action';
 export * from './magnifier';
 export * from './double-arrow-right';
 export * from './dots';
+export * from './calendar';

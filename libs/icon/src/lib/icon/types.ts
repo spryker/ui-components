@@ -9,5 +9,5 @@ export type IconSvg = string | IconSvgLoader;
 export interface Icon {
   icon: string;
   svg: IconSvg;
-  forceInit?: true;
+  forceInit?: boolean;
 }

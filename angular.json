@@ -1995,6 +1995,80 @@
           "style": "less"
         }
       }
+    },
+    "date-picker": {
+      "projectType": "library",
+      "root": "libs/date-picker",
+      "sourceRoot": "libs/date-picker/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/date-picker/tsconfig.lib.json",
+            "project": "libs/date-picker/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/date-picker/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/date-picker/tsconfig.lib.json",
+              "libs/date-picker/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/date-picker/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/date-picker/jest.config.js",
+            "tsConfig": "libs/date-picker/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/date-picker/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/date-picker/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/date-picker",
+            "config": {
+              "configFolder": "libs/date-picker/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

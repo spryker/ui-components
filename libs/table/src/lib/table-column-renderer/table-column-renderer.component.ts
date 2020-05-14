@@ -43,9 +43,7 @@ export class TableColumnRendererComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config || changes.data) {
       this.updateValues();
-    }
-
-    if (!(changes.config || changes.data) && changes.i) {
+    } else if (changes.i) {
       this.updateTplContext();
     }
   }
@@ -119,9 +117,9 @@ export class TableColumnRendererComponent implements OnChanges {
             this.contextService.interpolate(matchedValue, this.context as any);
 
             return { ...mapOptions, [mapKey]: matchedValue };
-          } else {
-            return mapOptions;
           }
+
+          return mapOptions;
         },
         typeOptions,
       );

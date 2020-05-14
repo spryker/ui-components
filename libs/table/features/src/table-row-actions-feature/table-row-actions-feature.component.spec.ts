@@ -14,7 +14,6 @@ import {
 } from '@spryker/table/features/testing';
 import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
 import {
-  TableActionService,
   TableColumnsResolverService,
   TableData,
   TableDataConfig,
@@ -22,6 +21,7 @@ import {
   TableDatasourceService,
   TableFeatureLocation,
 } from '@spryker/table';
+import { TableActionService } from './action.service';
 import { ReplaySubject } from 'rxjs';
 
 @Component({

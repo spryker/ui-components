@@ -165,9 +165,6 @@ describe('TableComponent', () => {
         const afterTableFeaturesElem = host.queryCss(
           '.ant-table-features--after-table .after-table-feature',
         );
-        const paginationFeaturesElem = host.queryCss(
-          '.ant-table-features--pagination .pagination-feature',
-        );
         const bottomFeaturesElem = host.queryCss(
           '.ant-table-features--bottom .bottom-feature',
         );
@@ -193,7 +190,6 @@ describe('TableComponent', () => {
         expect(topFeaturesElem).toBeTruthy();
         expect(beforeTableFeaturesElem).toBeTruthy();
         expect(afterTableFeaturesElem).toBeTruthy();
-        expect(paginationFeaturesElem).toBeTruthy();
         expect(bottomFeaturesElem).toBeTruthy();
         expect(hiddenFeaturesElem).toBeTruthy();
         expect(headerExtFeaturesElem).toBeTruthy();

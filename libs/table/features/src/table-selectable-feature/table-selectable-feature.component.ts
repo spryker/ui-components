@@ -12,21 +12,20 @@ import {
   TableData,
   TableDataRow,
   TableFeatureComponent,
+  TableFeatureConfig,
   TableFeatureLocation,
 } from '@spryker/table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 declare module '@spryker/table' {
-  // tslint:disable-next-line: no-empty-interface
-  interface TableConfig extends TableSelectableConfig {}
+  interface TableConfig {
+    itemSelection?: TableFeatureConfig;
+  }
 }
 
-export interface TableSelectableConfig {
-  itemSelection?: {
-    enabled: boolean;
-  };
-}
+// tslint:disable-next-line: no-empty-interface
+export interface TableSelectableConfig extends TableFeatureConfig {}
 
 export interface TableSelectionRow {
   data: TableDataRow;
@@ -48,7 +47,8 @@ export type TableSelectionChangeEvent = TableSelectionRow[];
     },
   ],
 })
-export class TableSelectableFeatureComponent extends TableFeatureComponent
+export class TableSelectableFeatureComponent
+  extends TableFeatureComponent<TableSelectableConfig>
   implements OnDestroy {
   name = 'itemSelection';
   tableFeatureLocation = TableFeatureLocation;

@@ -25,7 +25,7 @@ export class TableDatasourceService {
   ) {}
 
   resolve(datasource: TableDatasourceConfig): Observable<TableData> {
-    const sourceType = datasource?.type;
+    const sourceType = datasource.type;
     const sourceClass = this.dataSources?.[sourceType];
 
     if (!sourceType || !sourceClass) {

@@ -25,7 +25,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const withFeatures = (): IStory => ({
+export const primary = (): IStory => ({
   moduleMetadata: {
     imports: [TableColumnTextModule],
   },

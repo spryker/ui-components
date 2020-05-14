@@ -33,7 +33,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const viaHtml = getFiltersStory(
+export const viaHtml = getFeaturesStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
@@ -56,7 +56,7 @@ export const viaHtml = getFiltersStory(
   ],
 );
 
-export const viaConfig = getFiltersStory(
+export const viaConfig = getFeaturesStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
   `,
@@ -86,7 +86,7 @@ export const viaConfig = getFiltersStory(
   ],
 );
 
-function getFiltersStory(
+function getFeaturesStory(
   template: string,
   extraNgModules: any[] = [],
 ): () => IStory {
@@ -130,15 +130,25 @@ function getFiltersStory(
           enabled: true,
           items: [
             {
-              id: 'offers',
-              title: 'Has Offers',
+              id: 'select',
+              title: 'Select',
               type: 'select',
               typeOptions: {
                 multiselect: false,
                 values: [
-                  { value: 1, title: 'Yes' },
-                  { value: 0, title: 'No' },
+                  { value: 1, title: 'Option_1' },
+                  { value: 0, title: 'Option_2' },
                 ],
+              },
+            },
+            {
+              id: 'range',
+              title: 'Range',
+              type: 'range',
+              typeOptions: {
+                placeholderFrom: 'from',
+                placeholderTo: 'to',
+                format: 'yyyy-MM-dd',
               },
             },
           ],

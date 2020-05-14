@@ -26,6 +26,6 @@ declare module '@spryker/table/features' {
 export class TableFilterDateRangeComponent
   implements TableFilterComponent<TableFilterDateRange> {
   @Input() config?: TableFilterDateRange;
-  @Input() value?: DateRangeValueInput;
+  @Input() value?: DateRangeValueInput = {};
   @Output() valueChange = new EventEmitter<DateRangeValueInput>();
 }

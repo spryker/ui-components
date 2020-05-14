@@ -2,7 +2,6 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -10,6 +9,7 @@ import {
   TableFeatureComponent,
   TableFeatureLocation,
   TableDataConfiguratorService,
+  TableFeatureConfig,
 } from '@spryker/table';
 import {
   debounceTime,
@@ -19,18 +19,15 @@ import {
   map,
 } from 'rxjs/operators';
 import { Subject, Observable, merge } from 'rxjs';
+import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
 
 declare module '@spryker/table' {
-  // tslint:disable-next-line: no-empty-interface
-  interface TableConfig extends TableConfigWithSearch {}
+  interface TableConfig {
+    search?: TableSearchConfig;
+  }
 }
 
-export interface TableConfigWithSearch {
-  search?: TableSearchConfig;
-}
-
-export interface TableSearchConfig {
-  enabled: boolean;
+export interface TableSearchConfig extends TableFeatureConfig {
   placeholder?: string;
 }
 
@@ -47,12 +44,13 @@ export interface TableSearchConfig {
     },
   ],
 })
-export class TableSearchFeatureComponent extends TableFeatureComponent
+export class TableSearchFeatureComponent
+  extends TableFeatureComponent<TableSearchConfig>
   implements OnDestroy, OnInit {
   name = 'search';
   tableFeatureLocation = TableFeatureLocation;
-
-  @Input() styles = { order: '99' };
+  suffixIcon = IconRemoveModule.icon;
+  prefixIcon = IconMagnifierModule.icon;
 
   destroyed$ = new Subject();
   value$?: Observable<string>;

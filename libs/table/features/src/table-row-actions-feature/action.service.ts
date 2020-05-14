@@ -1,5 +1,5 @@
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
-import { TableRowActionsDeclaration, TableActionTriggeredEvent } from './table';
+import { TableRowActionsDeclaration, TableActionTriggeredEvent } from './types';
 
 export const TABLE_ROW_ACTIONS_TOKEN = new InjectionToken<
   TableRowActionsDeclaration[]
@@ -20,6 +20,7 @@ export class TableActionService {
 
   handle(actionEvent: TableActionTriggeredEvent): boolean {
     const actionHandler = this.actionHandlersObject?.[actionEvent.action.id];
+
     if (actionHandler) {
       actionHandler.handleAction(actionEvent);
 

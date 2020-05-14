@@ -6,7 +6,6 @@ export * from './lib/table-feature/table-feature.directive';
 export * from './lib/table-feature/table-feature.module';
 export * from './lib/table-feature/table-feature-tpl.directive';
 export * from './lib/table-feature/table-feature-event-bus';
-export * from './lib/table/action.service';
 export * from './lib/table/columns-resolver.service';
 export * from './lib/table/data-configurator.service';
 export * from './lib/table/col-tpl.directive';

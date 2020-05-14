@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/locale@0.1.0-next.0...@spryker/locale@0.1.0-next.1) (2020-05-13)
+
+
+### Features
+
+* **date-picker:** added unit-tests ([b8589bc](https://github.com/spryker/ui-components/commit/b8589bcaee61819f5e8f012abc04d645c0d86791))
+* **date-picker:** fixed tests ([17a4b48](https://github.com/spryker/ui-components/commit/17a4b48087ab501e3ec1a67eb800a02817b5cd01))
+
+
+
+
+
 # 0.1.0-next.0 (2020-04-15)
 
 

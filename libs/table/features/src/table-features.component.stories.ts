@@ -6,6 +6,8 @@ import { TableModule } from '@spryker/table';
 import {
   TableFilterSelectComponent,
   TableFilterSelectModule,
+  TableFilterDateRangeComponent,
+  TableFilterDateRangeModule,
 } from '@spryker/table/filters';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
@@ -22,6 +24,8 @@ import { TableSelectableFeatureModule } from './table-selectable-feature';
 import { TableSyncStateFeatureModule } from './table-sync-state-feature';
 import { TableTotalFeatureModule } from './table-total-feature';
 import { TableDatasourceHttpService } from '../../datasources/src/table-datasource-http';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 
 export default {
   title: 'TableFeaturesComponent',
@@ -99,17 +103,25 @@ function getFeaturesStory(
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
           select: TableFilterSelectComponent,
+          range: TableFilterDateRangeComponent,
         } as any),
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
         }),
+        TableFilterDateRangeModule,
         TableFilterSelectModule,
+        LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+        EnLocaleModule,
         ...extraNgModules,
       ],
       providers: [
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: [LayoutFlatHostComponent, TableFilterSelectComponent],
+          useValue: [
+            LayoutFlatHostComponent,
+            TableFilterSelectComponent,
+            TableFilterDateRangeComponent,
+          ],
           multi: true,
         },
       ],

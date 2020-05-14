@@ -130,15 +130,25 @@ function getFeaturesStory(
           enabled: true,
           items: [
             {
-              id: 'offers',
-              title: 'Has Offers',
+              id: 'select',
+              title: 'Select',
               type: 'select',
               typeOptions: {
                 multiselect: false,
                 values: [
-                  { value: 1, title: 'Yes' },
-                  { value: 0, title: 'No' },
+                  { value: 1, title: 'Option_1' },
+                  { value: 0, title: 'Option_2' },
                 ],
+              },
+            },
+            {
+              id: 'range',
+              title: 'Range',
+              type: 'range',
+              typeOptions: {
+                placeholderFrom: 'from',
+                placeholderTo: 'to',
+                format: 'yyyy-MM-dd',
               },
             },
           ],

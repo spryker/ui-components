@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.13 (2020-05-15)
+
+**Note:** Version bump only for package @spryker/sidebar
+
+
+
+
+
 # [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.1.0-next.11...@spryker/sidebar@0.1.0-next.12) (2020-04-01)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.2-next.5 (2020-05-15)
+
+**Note:** Version bump only for package @spryker/core
+
+
+
+
+
 ## [0.1.2-next.4](https://github.com/spryker/ui-components/compare/@spryker/core@0.1.2-next.3...@spryker/core@0.1.2-next.4) (2020-04-01)
 
 

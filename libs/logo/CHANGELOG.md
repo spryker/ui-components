@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.7 (2020-05-15)
+
+**Note:** Version bump only for package @spryker/logo
+
+
+
+
+
 # [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/logo@0.1.0-next.5...@spryker/logo@0.1.0-next.6) (2020-04-01)
 
 

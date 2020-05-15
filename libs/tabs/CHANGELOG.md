@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.4 (2020-05-15)
+
+**Note:** Version bump only for package @spryker/tabs
+
+
+
+
+
 # [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.1.0-next.2...@spryker/tabs@0.1.0-next.3) (2020-04-01)
 
 

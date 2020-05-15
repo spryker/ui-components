@@ -83,6 +83,8 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   ngAfterViewChecked(): void {
     if (!this._picker && this.datePicker) {
       this._picker = this.datePicker;
+
+      this.updatePicker();
     }
   }
 

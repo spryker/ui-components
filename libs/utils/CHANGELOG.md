@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.14...@spryker/utils@0.1.0-next.15) (2020-05-15)
+
+
+### Features
+
+* **table:** add ability to set default configuration ([70788f8](https://github.com/spryker/ui-components/commit/70788f84d3474f7c927ca5ec1e06d6d755370a8f))
+* **table:** allow features to target multiple locations ([134ebb6](https://github.com/spryker/ui-components/commit/134ebb644b34ba44632cca321b5bc71286a85040))
+
+
+
+
+
 # [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.13...@spryker/utils@0.1.0-next.14) (2020-04-20)
 
 

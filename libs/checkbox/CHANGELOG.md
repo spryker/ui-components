@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.5 (2020-05-15)
+
+
+### Bug Fixes
+
+* **ctx:** set all class contexts statically ([4bfa8e1](https://github.com/spryker/ui-components/commit/4bfa8e1ab31a9ffaf74989d1f098f3d4229ec5eb))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.1.0-next.3...@spryker/checkbox@0.1.0-next.4) (2020-04-01)
 
 

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.34](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.33...@spryker/table@0.1.0-next.34) (2020-05-15)
+
+
+### Bug Fixes
+
+* **table:** add checkbox module to selectable feature module ([eb9786e](https://github.com/spryker/ui-components/commit/eb9786ef7cbee6ab33c26453662b8a5c195ea37a))
+* **table:** add column config to column renderer context ([6126a20](https://github.com/spryker/ui-components/commit/6126a2057cf08e99bc387f8606849636d15622ba))
+* **table:** apply styles on parent element of the features ([fe32c91](https://github.com/spryker/ui-components/commit/fe32c9115658f0d39626961dc7ec864223c48f05))
+* **table:** rendering of selectable feature template ([9e8b3fc](https://github.com/spryker/ui-components/commit/9e8b3fcc23c16a76feae49a24194905a7ad4663e))
+* **table:** set default location of selectable feature ([8734554](https://github.com/spryker/ui-components/commit/87345542b7c49d1b4430fdbd958b925c615940fd))
+
+
+### Features
+
+* **table:** add ability to set default configuration ([70788f8](https://github.com/spryker/ui-components/commit/70788f84d3474f7c927ca5ec1e06d6d755370a8f))
+* **table:** allow features to target multiple locations ([134ebb6](https://github.com/spryker/ui-components/commit/134ebb644b34ba44632cca321b5bc71286a85040))
+* **table:** allow to lazy-load features by table configuration ([a1ca4a3](https://github.com/spryker/ui-components/commit/a1ca4a3ba8e0036e0ac5aa42de7a3b7959fd463a))
+
+
+### Performance Improvements
+
+* **table:** improve perf by checking diff before recomputations ([7414df0](https://github.com/spryker/ui-components/commit/7414df0e437dc77c9a555850e5c495caea97ab16))
+
+
+
+
+
 # [0.1.0-next.33](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.32...@spryker/table@0.1.0-next.33) (2020-05-13)
 
 

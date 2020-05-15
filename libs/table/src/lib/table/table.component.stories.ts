@@ -1,25 +1,34 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {
   ANALYZE_FOR_ENTRY_COMPONENTS,
   Component,
   Injectable,
   Input,
+  NgModule,
 } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { ContextModule, ContextService } from '@spryker/utils';
 import { IStory } from '@storybook/angular';
 
-import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
-import { TableModule } from '../table.module';
-import { TableDatasourceHttpService } from '../../../datasources/src';
-import { TableColumnComponent, TableColumnContext } from './table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,
 } from '../../../../table/testing/src';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { TableDatasourceHttpService } from '../../../datasources/src';
+import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
+import { LazyConditionModule } from '../lazy-condition/lazy-condition.module';
+import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
+import { ModuleWithFeature } from '../table-feature-loader/types';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
+import { TableModule } from '../table.module';
+import {
+  TableColumnComponent,
+  TableColumnContext,
+  TableFeatureLocation,
+} from './table';
 
 export default {
   title: 'TableComponent',
@@ -53,6 +62,47 @@ class TableColumnTestComponent
   @Input() context?: TableColumnContext;
 }
 
+@Component({
+  selector: 'spy-table-test-feature',
+  template: `
+    <span
+      *spyTableFeatureTpl="
+        tableFeatureLocation.beforeRow;
+        condition: 'data' | lcCtx | lcProp: 'col1' | lcEq: 'col1 #2';
+        let i = i
+      "
+    >
+      beforeRow {{ i }}
+    </span>
+    <span
+      *spyTableFeatureTpl="
+        tableFeatureLocation.afterRow;
+        condition: 'i' | lcCtx | lcEq: 0;
+        let i = i
+      "
+    >
+      afterRow {{ i }}
+    </span>
+  `,
+  providers: [
+    { provide: TableFeatureComponent, useClass: TableFeatureTestComponent },
+  ],
+})
+class TableFeatureTestComponent extends TableFeatureComponent {
+  name = 'test';
+  tableFeatureLocation = TableFeatureLocation;
+}
+
+@NgModule({
+  imports: [CommonModule, TableModule, LazyConditionModule],
+  declarations: [TableFeatureTestComponent],
+  exports: [TableFeatureTestComponent],
+  entryComponents: [TableFeatureTestComponent],
+})
+class TableFeatureTestModule implements ModuleWithFeature {
+  featureComponent = TableFeatureTestComponent;
+}
+
 export const withFeatures = (): IStory => ({
   moduleMetadata: {
     imports: [
@@ -66,6 +116,7 @@ export const withFeatures = (): IStory => ({
       TableModule.withDatasourceTypes({
         http: TableDatasourceHttpService,
       }),
+      TableModule.withFeatures({ test: async () => TableFeatureTestModule }),
       BrowserAnimationsModule,
     ],
     declarations: [TableColumnTestComponent],
@@ -122,6 +173,7 @@ export const withFeatures = (): IStory => ({
           },
         },
       ],
+      test: {},
     },
     mockHttp: setMockHttp([
       {

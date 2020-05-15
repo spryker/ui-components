@@ -4,12 +4,17 @@ import {
   debounceTime,
   map,
   shareReplay,
+  startWith,
   switchMap,
   take,
 } from 'rxjs/operators';
 
+import { createLazyConditionLiteral } from '../lazy-condition/ast/literal';
+import { LazyConditionService } from '../lazy-condition/lazy-condition.service';
+import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { FeatureRecord } from './types';
+import { LazyConditionNode } from '../lazy-condition/lazy-condition';
 
 @Injectable()
 export class TableFeaturesRendererService implements OnDestroy {
@@ -31,12 +36,56 @@ export class TableFeaturesRendererService implements OnDestroy {
     ).pipe(debounceTime(0), shareReplay({ bufferSize: 1, refCount: true })),
   );
 
+  private featureConditionNodesStore = new TokenStore<
+    [TableFeatureComponent[]],
+    Observable<LazyConditionNode[][]>
+  >(features =>
+    combineLatest(
+      features.map(feature =>
+        feature.tplDirectives$.pipe(
+          switchMap(tplDirectives =>
+            combineLatest(
+              tplDirectives.map(tplDirective =>
+                tplDirective.condition$.pipe(
+                  startWith(createLazyConditionLiteral(true)),
+                ),
+              ),
+            ),
+          ),
+          debounceTime(0),
+        ),
+      ),
+    ).pipe(debounceTime(0), shareReplay({ bufferSize: 1, refCount: true })),
+  );
+
+  private featureConditionsStore = new TokenStore<
+    [Observable<LazyConditionNode[][]>, TableFeatureTplContext | undefined],
+    Observable<boolean[][]>
+  >((conditions, context) =>
+    conditions.pipe(
+      map(c1 =>
+        c1.map(c2 =>
+          c2.map(
+            condition =>
+              !!this.lazyConditionService.evaluate(condition, context),
+          ),
+        ),
+      ),
+      shareReplay({ bufferSize: 1, refCount: true }),
+    ),
+  );
+
   private featureRecordsStore = new TokenStore<
-    [TableFeatureComponent[], string, Observable<string[][][]>],
+    [
+      TableFeatureComponent[],
+      string,
+      Observable<string[][][]>,
+      Observable<boolean[][]>,
+    ],
     Observable<FeatureRecord[]>
-  >((features, location, featureLocations$) =>
-    featureLocations$.pipe(
-      switchMap(featureLocations =>
+  >((features, location, featureLocations$, conditions$) =>
+    combineLatest([featureLocations$, conditions$]).pipe(
+      switchMap(([featureLocations, conditions]) =>
         combineLatest(
           features.map((feature, i) =>
             feature.tplDirectives$.pipe(
@@ -45,7 +94,11 @@ export class TableFeaturesRendererService implements OnDestroy {
               take(1),
               map(tplDirectives =>
                 tplDirectives
-                  .filter((_, j) => featureLocations[i][j].includes(location))
+                  .filter(
+                    (_, j) =>
+                      featureLocations[i][j].includes(location) &&
+                      conditions[i][j],
+                  )
                   .map(
                     tplDirective =>
                       ({
@@ -67,6 +120,8 @@ export class TableFeaturesRendererService implements OnDestroy {
     ),
   );
 
+  constructor(private lazyConditionService: LazyConditionService) {}
+
   ngOnDestroy(): void {
     this.featureLocationStore.clear();
     this.featureRecordsStore.clear();
@@ -75,6 +130,7 @@ export class TableFeaturesRendererService implements OnDestroy {
   trackFeatureRecords(
     features?: TableFeatureComponent[],
     location?: string,
+    context?: TableFeatureTplContext,
   ): Observable<FeatureRecord[]> {
     if (!features || !location) {
       return of([]);
@@ -84,6 +140,10 @@ export class TableFeaturesRendererService implements OnDestroy {
       features,
       location,
       this.featureLocationStore.resolve(features),
+      this.featureConditionsStore.resolve(
+        this.featureConditionNodesStore.resolve(features),
+        context,
+      ),
     );
   }
 }

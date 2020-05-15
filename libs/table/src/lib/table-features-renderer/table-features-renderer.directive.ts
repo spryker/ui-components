@@ -103,6 +103,7 @@ export class TableFeaturesRendererDirective
         this.featuresRendererService.trackFeatureRecords(
           this.spyTableFeaturesRendererFeatures,
           this.spyTableFeaturesRenderer,
+          this.spyTableFeaturesRendererContext,
         ),
       );
     }

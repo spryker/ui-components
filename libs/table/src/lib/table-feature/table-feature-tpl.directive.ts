@@ -1,6 +1,8 @@
-import { Directive, Input, TemplateRef, OnChanges } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { Directive, Input, OnChanges, TemplateRef } from '@angular/core';
 import { TypedSimpleChanges } from '@spryker/utils';
+import { ReplaySubject } from 'rxjs';
+
+import { LazyConditionNode } from '../lazy-condition/lazy-condition';
 
 export interface TableFeatureTplContext {
   [key: string]: any;
@@ -9,6 +11,7 @@ export interface TableFeatureTplContext {
 export class TableFeatureTplDirectiveInputs {
   @Input() spyTableFeatureTpl?: string | string[];
   @Input() spyTableFeatureTplStyles?: Record<string, any>;
+  @Input() spyTableFeatureTplCondition?: LazyConditionNode;
 }
 
 @Directive({
@@ -18,6 +21,7 @@ export class TableFeatureTplDirective extends TableFeatureTplDirectiveInputs
   implements OnChanges {
   locations$ = new ReplaySubject<string[]>(1);
   styles$ = new ReplaySubject<Record<string, any>>(1);
+  condition$ = new ReplaySubject<LazyConditionNode>(1);
 
   constructor(public template: TemplateRef<TableFeatureTplContext>) {
     super();
@@ -38,6 +42,10 @@ export class TableFeatureTplDirective extends TableFeatureTplDirectiveInputs
 
     if (changes.spyTableFeatureTplStyles) {
       this.styles$.next(this.spyTableFeatureTplStyles);
+    }
+
+    if (changes.spyTableFeatureTplCondition) {
+      this.condition$.next(this.spyTableFeatureTplCondition);
     }
   }
 }

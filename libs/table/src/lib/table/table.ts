@@ -114,6 +114,8 @@ export enum TableFeatureLocation {
   beforeCols = 'before-cols',
   afterColsHeader = 'after-cols-header',
   afterCols = 'after-cols',
+  beforeRow = 'before-row',
+  afterRow = 'after-row',
   afterTable = 'after-table',
   bottom = 'bottom',
   hidden = 'hidden',

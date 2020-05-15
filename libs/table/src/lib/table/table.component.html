@@ -63,53 +63,90 @@
   </thead>
 
   <tbody>
-    <tr
+    <ng-container
       *ngFor="
         let data of tableData$ | async;
         trackBy: trackByData;
         index as indexOfElement
       "
-      [ngClass]="rowClasses[indexOfElement]"
     >
       <ng-template
-        [spyTableFeaturesRenderer]="featureLocation.beforeCols"
+        [spyTableFeaturesRenderer]="featureLocation.beforeRow"
         [spyTableFeaturesRendererFeatures]="features$ | async"
-        [spyTableFeaturesRendererContext]="{ data: data, i: indexOfElement }"
+        [spyTableFeaturesRendererContext]="{
+          data: data,
+          i: indexOfElement,
+          columns: columns$ | async
+        }"
         let-feature
       >
-        <td [ngStyle]="feature.featureStyles$ | async">
-          <div class="ant-table-column-inner">
-            <ng-template [spyTableRenderFeature]="feature"></ng-template>
-          </div>
-        </td>
+        <tr
+          class="ant-table-row-ext ant-table-row-ext__before ant-table-features ant-table-features--before-row"
+          [ngClass]="rowClasses[indexOfElement]"
+        >
+          <ng-container *spyTableRenderFeature="feature"></ng-container>
+        </tr>
       </ng-template>
 
-      <td *ngFor="let column of columns$ | async; trackBy: trackByColumns">
-        <div class="ant-table-column-inner">
-          <spy-table-column-renderer
-            [config]="column"
-            [data]="data"
-            [template]="templatesObj[column.id]"
-            [i]="indexOfElement"
-          ></spy-table-column-renderer>
-        </div>
-      </td>
+      <tr [ngClass]="rowClasses[indexOfElement]">
+        <ng-template
+          [spyTableFeaturesRenderer]="featureLocation.beforeCols"
+          [spyTableFeaturesRendererFeatures]="features$ | async"
+          [spyTableFeaturesRendererContext]="{ data: data, i: indexOfElement }"
+          let-feature
+        >
+          <td [ngStyle]="feature.featureStyles$ | async">
+            <div class="ant-table-column-inner">
+              <ng-template [spyTableRenderFeature]="feature"></ng-template>
+            </div>
+          </td>
+        </ng-template>
+
+        <td *ngFor="let column of columns$ | async; trackBy: trackByColumns">
+          <div class="ant-table-column-inner">
+            <spy-table-column-renderer
+              [config]="column"
+              [data]="data"
+              [template]="templatesObj[column.id]"
+              [i]="indexOfElement"
+            ></spy-table-column-renderer>
+          </div>
+        </td>
+
+        <ng-template
+          [spyTableFeaturesRenderer]="featureLocation.afterCols"
+          [spyTableFeaturesRendererFeatures]="features$ | async"
+          [spyTableFeaturesRendererContext]="{ data: data, i: indexOfElement }"
+          let-feature
+        >
+          <td [ngStyle]="feature.featureStyles$ | async">
+            <div
+              class="ant-table-column-inner ant-table-column-inner--align-right"
+            >
+              <ng-template [spyTableRenderFeature]="feature"></ng-template>
+            </div>
+          </td>
+        </ng-template>
+      </tr>
 
       <ng-template
-        [spyTableFeaturesRenderer]="featureLocation.afterCols"
+        [spyTableFeaturesRenderer]="featureLocation.afterRow"
         [spyTableFeaturesRendererFeatures]="features$ | async"
-        [spyTableFeaturesRendererContext]="{ data: data, i: indexOfElement }"
+        [spyTableFeaturesRendererContext]="{
+          data: data,
+          i: indexOfElement,
+          columns: columns$ | async
+        }"
         let-feature
       >
-        <td [ngStyle]="feature.featureStyles$ | async">
-          <div
-            class="ant-table-column-inner ant-table-column-inner--align-right"
-          >
-            <ng-template [spyTableRenderFeature]="feature"></ng-template>
-          </div>
-        </td>
+        <tr
+          class="ant-table-row-ext ant-table-row-ext__after ant-table-features ant-table-features--after-row"
+          [ngClass]="rowClasses[indexOfElement]"
+        >
+          <ng-container *spyTableRenderFeature="feature"></ng-container>
+        </tr>
       </ng-template>
-    </tr>
+    </ng-container>
   </tbody>
 </nz-table>
 
@@ -144,3 +181,9 @@
 >
   <ng-content select="[spy-table-feature]"></ng-content>
 </span>
+
+<ng-template #rowExt let-columns>
+  <td [attr.colspan]="columns.length">
+    <div class="ant-table-column-inner">TEST</div>
+  </td>
+</ng-template>

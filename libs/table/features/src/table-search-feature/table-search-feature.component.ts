@@ -2,7 +2,6 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -10,28 +9,25 @@ import {
   TableFeatureComponent,
   TableFeatureLocation,
   TableDataConfiguratorService,
-  TableComponent,
+  TableFeatureConfig,
 } from '@spryker/table';
 import {
   debounceTime,
   distinctUntilChanged,
   takeUntil,
-  map,
   pluck,
+  map,
 } from 'rxjs/operators';
-import { IconRemoveModule } from '@spryker/icon/icons';
 import { Subject, Observable, merge } from 'rxjs';
+import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
 
 declare module '@spryker/table' {
-  // tslint:disable-next-line: no-empty-interface
-  interface TableConfig extends TableConfigWithSearch {}
+  interface TableConfig {
+    search?: TableSearchConfig;
+  }
 }
 
-export interface TableConfigWithSearch {
-  search?: TableSearchConfig;
-}
-
-export interface TableSearchConfig {
+export interface TableSearchConfig extends TableFeatureConfig {
   placeholder?: string;
 }
 
@@ -48,10 +44,14 @@ export interface TableSearchConfig {
     },
   ],
 })
-export class TableSearchFeatureComponent extends TableFeatureComponent
+export class TableSearchFeatureComponent
+  extends TableFeatureComponent<TableSearchConfig>
   implements OnDestroy, OnInit {
-  @Input() location = TableFeatureLocation.top;
-  @Input() styles = { order: '99' };
+  name = 'search';
+  tableFeatureLocation = TableFeatureLocation;
+  suffixIcon = IconRemoveModule.icon;
+  prefixIcon = IconMagnifierModule.icon;
+
   destroyed$ = new Subject();
   value$?: Observable<string>;
   inputValue$ = new Subject<string>();
@@ -60,26 +60,19 @@ export class TableSearchFeatureComponent extends TableFeatureComponent
     distinctUntilChanged(),
     takeUntil(this.destroyed$),
   );
-  placeholder$: Observable<string> | undefined;
+  placeholder$ = this.config$.pipe(
+    pluck('placeholder'),
+    map(placeholder => placeholder ?? ''),
+  );
   searchValue$?: Observable<string>;
 
-  removeIcon = IconRemoveModule.icon;
-
-  setTableComponent(table: TableComponent) {
-    super.setTableComponent(table);
-
-    this.placeholder$ = (table.config$ as Observable<
-      TableConfigWithSearch
-    >).pipe(map(config => config.search?.placeholder || ''));
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.valueChange$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(value => this.triggerUpdate(value));
   }
 
-  setDataConfiguratorService(service: TableDataConfiguratorService) {
+  setDataConfiguratorService(service: TableDataConfiguratorService): void {
     super.setDataConfiguratorService(service);
 
     this.searchValue$ = service.config$.pipe(pluck('search')) as Observable<

@@ -6,15 +6,23 @@ import {
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { TestTableFeatureComponent } from '@spryker/table/features/testing';
-
+import {
+  TestTableFeatureTplDirective,
+  TestTableFeatureComponent,
+  TestTableFeatureMocks,
+} from '@spryker/table/features/testing';
 import { TableSearchFeatureComponent } from './table-search-feature.component';
+import {
+  TableColumnsResolverService,
+  TableDataConfig,
+  TableDataConfiguratorService,
+  TableDatasourceService,
+} from '@spryker/table';
+import { ReplaySubject } from 'rxjs';
 import { InputModule } from '@spryker/input';
-import { IconModule } from '@spryker/icon';
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'test-host',
+  selector: 'spy-test-host',
   template: `
     <test-table-feature>
       <spy-table-search-feature></spy-table-search-feature>
@@ -22,6 +30,10 @@ import { IconModule } from '@spryker/icon';
   `,
 })
 class TestHostComponent {}
+
+class MockTableDataConfiguratorService {
+  readonly config$ = new ReplaySubject<TableDataConfig>(1);
+}
 
 describe('TableSearchFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
@@ -40,11 +52,35 @@ describe('TableSearchFeatureComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [InputModule, IconModule],
+      imports: [InputModule],
       declarations: [
+        TestTableFeatureTplDirective,
         TableSearchFeatureComponent,
-        TestHostComponent,
         TestTableFeatureComponent,
+        TestHostComponent,
+      ],
+      providers: [
+        {
+          provide: TableColumnsResolverService,
+          useValue: 'TableColumnsResolverService',
+        },
+        {
+          provide: TableDatasourceService,
+          useValue: 'TableDatasourceService',
+        },
+        {
+          provide: TableDataConfiguratorService,
+          useClass: MockTableDataConfiguratorService,
+        },
+        {
+          provide: TestTableFeatureMocks,
+          useValue: {
+            config: {
+              enabled: true,
+              placeholder: '123',
+            },
+          },
+        },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -58,9 +94,6 @@ describe('TableSearchFeatureComponent', () => {
 
     fixture.detectChanges();
     tick();
-    testTableFeature.featureMocks?.table.config$?.next({
-      search: { placeholder: '123' },
-    });
   }));
 
   it('should render `spy-input`', fakeAsync(() => {
@@ -71,7 +104,7 @@ describe('TableSearchFeatureComponent', () => {
     expect(queryIcon()).toBeTruthy();
   }));
 
-  it('should bind placeholder as AsyncPipe to input', fakeAsync(() => {
+  it('should bind placeholder to input', fakeAsync(() => {
     fixture.detectChanges();
     const expectedValue = '123';
 

@@ -1,5 +1,4 @@
 // tslint:disable: no-non-null-assertion
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   AfterViewInit,
   ANALYZE_FOR_ENTRY_COMPONENTS,
@@ -11,8 +10,16 @@ import {
   TemplateRef,
   ViewChildren,
 } from '@angular/core';
-
-import { TableColumnRendererComponent } from './table-column-renderer.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { OrchestratorCoreModule } from '@orchestrator/core';
+import {
+  LayoutFlatHostComponent,
+  LayoutFlatHostModule,
+} from '@orchestrator/layout';
+import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
+import { ColTplDirective } from '../table/col-tpl.directive';
+import { ContextModule, ContextService } from '@spryker/utils';
 import {
   TableColumn,
   TableColumnComponent,
@@ -20,19 +27,7 @@ import {
   TableColumnTplContext,
   TableDataRow,
 } from '../table/table';
-import {
-  ColTplDirective,
-  ColumnTypeOption,
-  TABLE_COLUMN_COMPONENT_TOKEN,
-  TableColumnTypeComponent,
-} from '@spryker/table';
-import { By } from '@angular/platform-browser';
-import { ContextModule, ContextService } from '@spryker/utils';
-import { OrchestratorCoreModule } from '@orchestrator/core';
-import {
-  LayoutFlatHostComponent,
-  LayoutFlatHostModule,
-} from '@orchestrator/layout';
+import { TableColumnRendererComponent } from './table-column-renderer.component';
 
 const mockConfig: TableColumn = {
   id: 'name',
@@ -121,13 +116,6 @@ describe('TableColumnRendererComponent', () => {
           'layout-flat': LayoutFlatHostComponent,
         }),
         ...(LayoutFlatHostModule.forRoot().providers || []),
-        {
-          provide: TABLE_COLUMN_COMPONENT_TOKEN,
-          useValue: {
-            test: TableColumnTestComponent,
-          },
-          multi: true,
-        },
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
           useValue: [LayoutFlatHostComponent, TableColumnTestComponent],

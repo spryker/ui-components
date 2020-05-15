@@ -5,6 +5,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  SimpleChanges,
 } from '@angular/core';
 import { TableFilterComponent } from '@spryker/table/features';
 import { TableFilterDateRange } from './types';
@@ -26,6 +27,12 @@ declare module '@spryker/table/features' {
 export class TableFilterDateRangeComponent
   implements TableFilterComponent<TableFilterDateRange> {
   @Input() config?: TableFilterDateRange;
-  @Input() value?: DateRangeValueInput;
+  @Input() value?: DateRangeValueInput = {};
   @Output() valueChange = new EventEmitter<DateRangeValueInput>();
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('value' in changes && !this.value) {
+      this.value = {};
+    }
+  }
 }

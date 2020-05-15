@@ -3,17 +3,28 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   ChangeDetectorRef,
-  Input,
+  Injector,
 } from '@angular/core';
 import {
   TableFeatureComponent,
   TableDataConfiguratorService,
   TableFeatureLocation,
   DefaultInitialDataStrategy,
+  TableDataConfig,
+  TableFeatureConfig,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/utils';
 import { tap, take, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
+
+declare module '@spryker/table' {
+  interface TableConfig {
+    syncStateUrl?: TableSyncStateConfig;
+  }
+}
+
+// tslint:disable-next-line: no-empty-interface
+export interface TableSyncStateConfig extends TableFeatureConfig {}
 
 @Component({
   selector: 'spy-table-sync-state-feature',
@@ -28,8 +39,12 @@ import { merge, Observable, of } from 'rxjs';
     },
   ],
 })
-export class TableSyncStateFeatureComponent extends TableFeatureComponent {
-  @Input() location = TableFeatureLocation.hidden;
+export class TableSyncStateFeatureComponent extends TableFeatureComponent<
+  TableSyncStateConfig
+> {
+  name = 'syncStateUrl';
+  tableFeatureLocation = TableFeatureLocation;
+
   key = 'table-state';
   stateToConfig$?: Observable<unknown>;
   configToState$?: Observable<Record<string, unknown>>;
@@ -38,8 +53,9 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent {
   constructor(
     private urlPersistenceStrategy: UrlPersistenceStrategy,
     private cdr: ChangeDetectorRef,
+    injector: Injector,
   ) {
-    super();
+    super(injector);
   }
 
   setDataConfiguratorService(service: TableDataConfiguratorService): void {
@@ -70,7 +86,7 @@ class SyncStateInitialDataStrategy extends DefaultInitialDataStrategy {
     super();
   }
 
-  getData() {
+  getData(): Observable<TableDataConfig> {
     return this.urlState$.pipe(
       take(1),
       switchMap(url => (url ? of(url) : super.getData())),

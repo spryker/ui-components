@@ -20,6 +20,7 @@ export class TableActionService {
 
   handle(actionEvent: TableActionTriggeredEvent): boolean {
     const actionHandler = this.actionHandlersObject?.[actionEvent.action.id];
+
     if (actionHandler) {
       actionHandler.handleAction(actionEvent);
 

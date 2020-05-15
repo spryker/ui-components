@@ -1,78 +1,99 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  Input,
+  QueryList,
+  ContentChildren,
+} from '@angular/core';
 import { number } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
+import { CommonModule } from '@angular/common';
 
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
-import { TableDataFetcherService } from '../table/data-fetcher.service';
-import { TableFeatureContext } from '../table/table';
-import { TableFeatureComponent } from '../table/table-feature.component';
-import { TableComponent } from '../table/table.component';
+import { TableDatasourceService } from '../table/datasource.service';
+import { TableFeatureTplDirective } from '../table-feature/table-feature-tpl.directive';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
+import { CoreTableComponent } from '../table/table.component';
 import { TableFeaturesRendererComponent } from './table-features-renderer.component';
+import { TableFeaturesRendererDirective } from './table-features-renderer.directive';
+import { TableRenderFeatureDirective } from './table-render-feature.directive';
+import { TableFeaturesRendererService } from './table-features-renderer.service';
 
 export default {
   title: 'TableFeaturesRendererComponent',
 };
 
-class MockTableFeatureComponent implements TableFeatureComponent {
+class MockTableFeatureComponent extends TableFeatureComponent {
+  name = 'mock-feature';
   location = 'mocked-location';
-  styles?: Record<string, string>;
-  template?: TemplateRef<TableFeatureContext>;
-  table?: TableComponent;
-  columnsResolverService?: TableColumnsResolverService;
-  dataFetcherService?: TableDataFetcherService;
-  dataConfiguratorService?: TableDataConfiguratorService;
-  setTableComponent(table: TableComponent): void {}
-  setColumnsResolverService(service: TableColumnsResolverService): void {}
-  setDataFetcherService(service: TableDataFetcherService): void {}
-  setDataConfiguratorService(service: TableDataConfiguratorService): void {}
-  getTemplate(): TemplateRef<TableFeatureContext> {
-    return this.templateRef;
+  constructor(
+    tplDirectives: QueryList<TableFeatureTplDirective>,
+    injector: Injector,
+  ) {
+    super(injector);
+    this.tplDirectives = tplDirectives;
+    this.ngAfterViewInit();
   }
-  constructor(private templateRef: TemplateRef<TableFeatureContext>) {}
 }
 
 @Component({
-  selector: 'render-features',
+  selector: 'spy-render-features',
   template: `
     <spy-table-features-renderer
       [features]="features"
       [maxFeatures]="limit < 0 ? null : limit"
+      location="mocked-location"
     ></spy-table-features-renderer>
+    <ng-content></ng-content>
   `,
 })
 class RenderFeaturesComponent {
-  @Input() set templates(templates: TemplateRef<TableFeatureContext>[]) {
-    this.features = templates.map(tpl => new MockTableFeatureComponent(tpl));
+  @Input() limit?: number;
+
+  @ContentChildren(TableFeatureTplDirective) set tplDirectives(
+    directives: QueryList<TableFeatureTplDirective>,
+  ) {
+    this.features = [new MockTableFeatureComponent(directives, this.injector)];
+    this.cdr.detectChanges();
   }
 
-  @Input() limit?: number;
+  constructor(private injector: Injector, private cdr: ChangeDetectorRef) {}
 
   features: MockTableFeatureComponent[] = [];
 }
 
 export const withFeatures = (): IStory => ({
   moduleMetadata: {
-    imports: [],
-    declarations: [TableFeaturesRendererComponent, RenderFeaturesComponent],
+    imports: [CommonModule],
+    declarations: [
+      RenderFeaturesComponent,
+      TableFeatureTplDirective,
+      TableFeaturesRendererComponent,
+      TableFeaturesRendererDirective,
+      TableRenderFeatureDirective,
+    ],
     providers: [
-      { provide: TableComponent, useValue: 'TableComponent' },
+      { provide: CoreTableComponent, useValue: 'CoreTableComponent' },
       {
         provide: TableColumnsResolverService,
         useValue: 'TableColumnsResolverService',
       },
-      { provide: TableDataFetcherService, useValue: 'TableDataFetcherService' },
+      { provide: TableDatasourceService, useValue: 'TableDatasourceService' },
       {
         provide: TableDataConfiguratorService,
         useValue: 'TableDataConfiguratorService',
       },
+      TableFeaturesRendererService,
     ],
   },
   template: `
-    <render-features [templates]="[feat1, feat2, feat3]" [limit]="limit"></render-features>
-    <ng-template #feat1>Feature #1</ng-template>
-    <ng-template #feat2 let-loc="location">Feature #2 at {{ loc }}</ng-template>
-    <ng-template #feat3>Feature #3</ng-template>
+    <spy-render-features [limit]="limit">
+      <div *spyTableFeatureTpl="'mocked-location'">feat</div>
+      <div *spyTableFeatureTpl="'mocked-location'">feat2</div>
+      <div *spyTableFeatureTpl="'mocked-location'">feat3</div>
+    </spy-render-features>
   `,
   props: {
     limit: number('Max features (-1 is unlimited)', -1, {

@@ -1,0 +1,11 @@
+<spy-checkbox
+  *spyTableFeatureTpl="tableFeatureLocation.beforeColsHeader"
+  [(checked)]="allChecked"
+  [indeterminate]="isIndeterminate"
+  (checkedChange)="toggleCheckedAll()"
+></spy-checkbox>
+<spy-checkbox
+  *spyTableFeatureTpl="tableFeatureLocation.beforeCols; let i = i"
+  [(checked)]="checkedRows[i]"
+  (checkedChange)="updateCheckedRows()"
+></spy-checkbox>

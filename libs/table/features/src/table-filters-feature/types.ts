@@ -1,5 +1,5 @@
 /* tslint:disable:no-empty-interface */
-import { EventEmitter, InjectionToken } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Distribute } from '@spryker/utils';
 
 export interface TableFilterBase<V = unknown> {

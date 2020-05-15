@@ -1,9 +1,11 @@
-@import './table-filters-feature.component.theme.less';
+@import 'themes/default/theme.less';
 
 .@{table-filters-feature-prefix-cls} {
   display: flex;
   margin: @table-filters-feature-margin;
   width: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
 
   &-item {
     min-width: @table-filters-feature-item-min-width;

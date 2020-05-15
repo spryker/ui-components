@@ -33,7 +33,9 @@ function generateMockTableData<T extends TableDataRow>(
   options: TableDataMockGeneratorOptions,
   dataGenerator: TableDataMockGenerator<T> = () => ({} as T),
 ): T[] {
+  const offset = (options.page - 1) * options.pageSize;
+
   return new Array(options.pageSize)
     .fill(null)
-    .map((_, i) => dataGenerator(i, options));
+    .map((_, i) => dataGenerator(i + offset, options));
 }

@@ -3,13 +3,11 @@ import {
   Component,
   forwardRef,
   Inject,
-  Input,
-  OnInit,
+  Injector,
 } from '@angular/core';
 import {
-  TableComponent,
-  TableDataConfiguratorService,
   TableFeatureComponent,
+  TableFeatureConfig,
   TableFeatureLocation,
 } from '@spryker/table';
 import { combineLatest, Observable, Subject } from 'rxjs';
@@ -31,8 +29,12 @@ import {
 
 declare module '@spryker/table' {
   interface TableConfig {
-    filters?: TableFilterBase[];
+    filters?: TableFiltersConfig;
   }
+}
+
+export interface TableFiltersConfig extends TableFeatureConfig {
+  items: TableFilterBase[];
 }
 
 @Component({
@@ -47,62 +49,56 @@ declare module '@spryker/table' {
     },
   ],
 })
-export class TableFiltersFeatureComponent extends TableFeatureComponent
-  implements OnInit {
-  @Input() location = TableFeatureLocation.top;
-  @Input() styles = {
+export class TableFiltersFeatureComponent extends TableFeatureComponent<
+  TableFiltersConfig
+> {
+  name = 'filters';
+  tableFeatureLocation = TableFeatureLocation;
+  styles = {
     flexGrow: '1',
     flexShrink: '0',
   };
-  filterComponentMap?: Record<string, TableFilterComponent<TableFilterBase>>;
-  filters$?: Observable<TableFilterBase[]>;
-  filterValues$?: Observable<Record<string, unknown>>;
 
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
+  filterComponentMap: Record<
+    string,
+    TableFilterComponent<TableFilterBase>
+  > = this.tableFilterToken.reduce(
+    (acc, filter) => ({ ...acc, ...filter }),
+    {},
+  ) as Record<string, TableFilterComponent<TableFilterBase>>;
+
+  filters$ = this.config$.pipe(pluck('items'));
+
+  filterValues$: Observable<Record<string, unknown>> = combineLatest([
+    this.dataConfiguratorService$.pipe(pluck('config', 'filter')) as Observable<
+      Record<string, unknown>
+    >,
+    this.updateFiltersValue$.pipe(startWith(null)),
+  ]).pipe(
+    tap(([filterValues, updatedValue]) => {
+      if (!updatedValue) {
+        return;
+      }
+
+      const filters = {
+        filter: { ...filterValues, ...updatedValue },
+      };
+
+      this.updateFiltersValue$.next(null);
+      this.dataConfiguratorService?.update(filters);
+    }),
+    map(([filterValues]) => filterValues),
+    distinctUntilChanged(),
+    shareReplay({ refCount: true, bufferSize: 1 }),
+  );
 
   constructor(
     @Inject(TABLE_FILTERS_TOKEN)
     private tableFilterToken: TableFiltersDeclaration[],
-    private tableComponent: TableComponent,
-    public dataConfiguratorService: TableDataConfiguratorService,
+    injector: Injector,
   ) {
-    super();
-  }
-
-  ngOnInit(): void {
-    this.updateFilters();
-  }
-
-  updateFilters(): void {
-    this.filterComponentMap = this.tableFilterToken.reduce(
-      (acc, filter) => ({ ...acc, ...filter }),
-      {},
-    ) as Record<string, TableFilterComponent<TableFilterBase>>;
-
-    this.filters$ = this.tableComponent.config$.pipe(pluck('filters'));
-
-    this.filterValues$ = combineLatest([
-      this.dataConfiguratorService.config$.pipe(pluck('filter')) as Observable<
-        Record<string, unknown>
-      >,
-      this.updateFiltersValue$.pipe(startWith(null)),
-    ]).pipe(
-      tap(([filterValues, updatedValue]) => {
-        if (!updatedValue) {
-          return;
-        }
-
-        const filters = {
-          filter: { ...filterValues, ...updatedValue },
-        };
-
-        this.updateFiltersValue$.next(null);
-        this.dataConfiguratorService.update(filters);
-      }),
-      map(([filterValues]) => filterValues),
-      distinctUntilChanged(),
-      shareReplay({ refCount: true, bufferSize: 1 }),
-    );
+    super(injector);
   }
 
   updateFilterValue(id: string, value: unknown): void {

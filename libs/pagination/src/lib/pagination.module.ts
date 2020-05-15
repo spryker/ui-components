@@ -4,7 +4,11 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { IconModule } from '@spryker/icon';
 import { SelectModule } from '@spryker/select';
-import { IconPaginationArrowModule } from '@spryker/icon/icons';
+import {
+  IconPaginationArrowModule,
+  IconDoubleArrowRightModule,
+  IconDotsModule,
+} from '@spryker/icon/icons';
 
 @NgModule({
   imports: [
@@ -13,6 +17,8 @@ import { IconPaginationArrowModule } from '@spryker/icon/icons';
     IconModule,
     SelectModule,
     IconPaginationArrowModule,
+    IconDoubleArrowRightModule,
+    IconDotsModule,
   ],
   declarations: [PaginationComponent],
   exports: [PaginationComponent],

@@ -32,6 +32,19 @@
     height: @table-row-height;
   }
 
+  &-column-sorters {
+    padding: 0;
+  }
+
+  &-column-sorter-up,
+  &-column-sorter-down {
+    font-size: @table-column-title-font-size;
+  }
+
+  &-column-sorter-up + &-column-sorter-down {
+    margin-top: -5px;
+  }
+
   &-thead > tr > th {
     color: @table-header-color;
     background: transparent;
@@ -47,6 +60,7 @@
       position: relative;
       width: @table-sorts-holder-width;
       height: @table-sorts-holder-height;
+      margin: 0;
 
       .@{table-prefix-cls}-column-sorter-inner {
         height: auto;
@@ -57,45 +71,6 @@
         right: 0;
         color: @table-header-icon-color;
         line-height: 0;
-
-        &-full {
-          margin-top: 0;
-
-          .@{table-prefix-cls}-column-sorter-up,
-          .@{table-prefix-cls}-column-sorter-down {
-            line-height: 0;
-            transform: none;
-            vertical-align: 0;
-            height: @table-sorts-holder-height / 2;
-          }
-
-          .@{table-prefix-cls}-column-sorter-down {
-            margin-top: 0;
-          }
-        }
-      }
-    }
-
-    &.@{table-prefix-cls}-column-has-actions {
-      &.@{table-prefix-cls}-column-has-sorters {
-        &:hover {
-          background: none;
-        }
-
-        &:active {
-          .@{table-prefix-cls}-column-sorter-up:not(.on),
-          .@{table-prefix-cls}-column-sorter-down:not(.on) {
-            color: @table-header-icon-color;
-          }
-        }
-      }
-    }
-
-    .@{table-prefix-cls}-header-column .@{table-prefix-cls}-column-sorters {
-      margin-top: @table-column-sorters-margin-top;
-
-      &:hover::before {
-        background: transparent;
       }
     }
 
@@ -127,9 +102,16 @@
       }
     }
 
+    th.@{table-prefix-cls}-column-has-sorters,
     > th {
       padding: @table-head-padding-vertical @table-padding-horizontal;
       color: @table-column-head-color;
+      white-space: nowrap;
+      font-size: @table-column-title-font-size;
+
+      &:hover {
+        background: none;
+      }
 
       .ant-checkbox-wrapper {
         position: relative;

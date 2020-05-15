@@ -2,6 +2,7 @@ import { Icon, provideIcons } from '@spryker/icon';
 
 import { NavigationModule } from '../navigation.module';
 import { NavigationComponent } from './navigation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'NavigationComponent',
@@ -102,40 +103,40 @@ const icons: Icon[] = [
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [NavigationModule],
+    imports: [NavigationModule, BrowserAnimationsModule],
     providers: [provideIcons(icons)],
   },
   component: NavigationComponent,
   props: {
     items: [
       {
-        title: 'Dashboard Dashboard Dashboard Dashboard Dashboard',
+        title: 'Item1',
       },
       {
-        title: 'Orders Orders Orders Orders Orders Orders Orders',
+        title: 'Item2',
         url: '',
         icon: 'orders',
         isActive: false,
         subItems: [
           {
-            title: 'Dashboard2',
+            title: 'SubItem1',
             url: '',
             icon: '',
             isActive: false,
             subItems: [],
           },
           {
-            title: 'Dashboard2',
+            title: 'SubItem2',
           },
           {
-            title: 'Dashboard2',
+            title: 'SubItem3',
             url: '',
             icon: '',
             isActive: false,
             subItems: [],
           },
           {
-            title: 'Dashboard2',
+            title: 'SubItem4',
             url: '',
             icon: '',
             isActive: false,
@@ -144,14 +145,14 @@ export const primary = () => ({
         ],
       },
       {
-        title: 'Offers',
+        title: 'Item3',
         url: '',
         icon: 'offers',
         isActive: true,
         subItems: [],
       },
       {
-        title: 'Merchant',
+        title: 'Item4',
         url: '',
         icon: 'merchant',
         isActive: false,

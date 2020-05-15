@@ -1,39 +1,39 @@
 @import './form-item.component.theme.less';
 
-spy-form-item {
-  .@{form-prefix-cls}-item {
-    margin-bottom: @form-item-bottom-margin;
-    font-family: @font-family;
+.@{form-prefix-cls}-item {
+  display: block;
+  margin-bottom: @form-item-bottom-margin;
+  font-family: @font-family;
 
-    &.no-spaces,
-    &-with-help.no-spaces {
-      margin-bottom: 0;
-    }
+  &.no-spaces,
+  &-with-help.no-spaces {
+    margin-bottom: 0;
+  }
 
-    &-label {
+  &-label {
+    display: block;
+    text-align: left;
+    line-height: 0;
+
+    > label {
       font: @font-weight-medium @form-item-label-font-size /
         @form-item-label-line-height @font-family;
       letter-spacing: @letter-spacing-base;
       text-transform: uppercase;
       padding-bottom: @form-item-label-bottom-padding;
+      height: auto;
     }
+  }
 
-    // FIXME(ng-deep):
-    &::ng-deep {
-      .ant-form-explain {
-        padding-top: 3px;
-      }
+  &-explain,
+  &-extra {
+    margin-top: @form-extra-margin-top;
+    font-size: @form-extra-font-size;
+    min-height: 0;
+  }
 
-      .is-validating {
-        .ant-form-explain {
-          color: @gray-dark;
-        }
-      }
-    }
-
-    &-control {
-      line-height: 1;
-    }
+  &-control {
+    line-height: 1;
   }
 }
 

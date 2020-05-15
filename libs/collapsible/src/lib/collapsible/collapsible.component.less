@@ -1,11 +1,15 @@
 @import './collapsible.component.theme.less';
 
 .@{collapse-prefix-cls} {
-  border: none;
+  display: block;
+  font-family: @font-family;
+  border: @collapse-panel-border-width @border-style-base @gray-light;
+  border-radius: @collapse-panel-border-radius;
+  background: @gray-lighter;
 
   & > &-item {
-    border: @collapse-panel-border-width @border-style-base transparent;
-    border-radius: @collapse-panel-border-radius;
+    display: block;
+    border: none;
 
     & > .@{collapse-prefix-cls}-header {
       padding: @collapse-header-padding-y
@@ -14,24 +18,14 @@
       font-size: @font-size-sm;
       font-weight: @font-weight-medium;
       line-height: @collapse-header-line-height;
-      background: @gray-lighter;
-      border-radius: @collapse-panel-border-radius;
 
       &:hover {
         background: @gray-light;
-        border-bottom-color: transparent;
 
         &::before,
         &::after {
           background: @gray-darker;
         }
-      }
-    }
-
-    &:last-child {
-      &,
-      & > .@{collapse-prefix-cls}-header {
-        border-radius: @collapse-panel-border-radius;
       }
     }
 
@@ -42,18 +36,10 @@
     }
 
     &-active {
-      border-color: @gray-light;
-
       &:last-child {
         & > .@{collapse-prefix-cls}-header {
-          border-radius: @collapse-panel-border-radius
-            @collapse-panel-border-radius 0 0;
-          border-bottom: @collapse-panel-border-width @border-style-base
-            @gray-light;
-
           &:hover {
             background: @gray-light;
-            border-bottom-color: transparent;
           }
 
           &::after {
@@ -69,7 +55,6 @@
         & > .@{collapse-prefix-cls}-header {
           &:hover {
             background: @gray-lighter;
-            border-bottom-color: @gray-light;
 
             &::before,
             &::after {
@@ -126,7 +111,7 @@
   }
 
   &-content {
-    border-top: none;
+    border-top: @collapse-panel-border-width @border-style-base @gray-light;
     background: @gray-lighter;
     color: @ink;
   }

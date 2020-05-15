@@ -8,7 +8,10 @@ export default {
 export const primary = () => ({
   moduleMetadata: {
     imports: [NzButtonModule],
+    declarations: [ButtonComponent],
   },
-  component: ButtonComponent,
+  template: `
+    <spy-button>Button</spy-button>
+  `,
   props: {},
 });

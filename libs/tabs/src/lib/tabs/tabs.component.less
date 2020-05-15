@@ -1,8 +1,11 @@
 @import './tabs.component.theme.less';
 
 .@{tab-prefix-cls} {
+  font-family: @font-family;
+
   &-bar {
     border-bottom: none;
+    margin-bottom: 16px;
   }
 
   &-ink-bar {
@@ -16,6 +19,7 @@
   &-nav-container {
     line-height: @tabs-nav-line-height;
     font-weight: @font-weight-medium;
+    margin-bottom: @tabs-nav-bottom-margin;
   }
 
   &-projected-content {

@@ -77,30 +77,6 @@ export interface TableData<T extends TableDataRow = TableDataRow> {
   pageSize: number;
 }
 
-export interface TableRowActionBase {
-  id: TableRowAction;
-  title: string;
-}
-
-export interface TableRowActionRegistry {
-  // Key is action string - value is action options type
-}
-
-export type TableRowAction = keyof TableRowActionRegistry;
-
-export interface TableRowActionHandler {
-  handleAction(actionEvent: TableActionTriggeredEvent): void;
-}
-
-export interface TableRowActionsDeclaration {
-  [type: string]: TableRowActionHandler;
-}
-
-export interface TableActionTriggeredEvent {
-  action: TableRowActionBase;
-  items: TableDataRow[];
-}
-
 export interface TableConfig {
   dataSource: TableDatasourceConfig;
   columnsUrl?: string;
@@ -141,7 +117,6 @@ export enum TableFeatureLocation {
   afterTable = 'after-table',
   bottom = 'bottom',
   hidden = 'hidden',
-  pagination = 'pagination',
 }
 
 export interface TableDatasourceRegistry {
@@ -171,3 +146,30 @@ export type TableDatasourceTypesDeclaration = {
     TableDatasource<TableDatasourceRegistry[P]>
   >;
 };
+
+export interface TableRowActionBase {
+  id: string;
+  title: string;
+  icon?: string;
+  type: TableRowAction;
+  typeOptions?: unknown;
+}
+
+export interface TableActionTriggeredEvent {
+  action: TableRowActionBase;
+  items: TableDataRow[];
+}
+
+export interface TableRowActionRegistry {
+  // Key is action string - value is action options type
+}
+
+export type TableRowAction = keyof TableRowActionRegistry;
+
+export interface TableRowActionHandler {
+  handleAction(actionEvent: TableActionTriggeredEvent): void;
+}
+
+export interface TableRowActionsDeclaration {
+  [type: string]: TableRowActionHandler;
+}

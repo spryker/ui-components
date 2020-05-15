@@ -136,6 +136,10 @@
         "dist/libs/locale/index.d.ts",
         "libs/locale/src/index.ts"
       ],
+      "@spryker/locale/testing": [
+        "dist/libs/locale/testing/index.d.ts",
+        "libs/locale/testing/src/index.ts"
+      ],
       "@spryker/locale/locales/*": [
         "dist/libs/locale/locales/*",
         "libs/locale/locales/*/src"
@@ -143,6 +147,10 @@
       "@spryker/chips": [
         "dist/libs/chips/index.d.ts",
         "libs/chips/src/index.ts"
+      ],
+      "@spryker/date-picker": [
+        "dist/libs/date-picker/index.d.ts",
+        "libs/date-picker/src/index.ts"
       ]
     }
   },

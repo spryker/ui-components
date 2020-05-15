@@ -1,22 +1,23 @@
-<ng-container *spyTableFeatureTpl="tableFeatureLocation.top">
-  <div class="ant-table-filters-feature">
-    <div
-      *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
-      class="ant-table-filters-feature-item"
-    >
-      <ng-container
-        [ngComponentOutlet]="filterComponentMap[filter.type]"
-        [ndcDynamicInputs]="{
-          config: filter,
-          value: filterValues$ | async | pluck: filter.id
-        }"
-        [ndcDynamicOutputs]="{
+<div
+  class="ant-table-filters-feature"
+  *spyTableFeatureTpl="tableFeatureLocation.top"
+>
+  <div
+    *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
+    class="ant-table-filters-feature-item"
+  >
+    <ng-container
+      [ngComponentOutlet]="filterComponentMap[filter.type]"
+      [ndcDynamicInputs]="{
+        config: filter,
+        value: filterValues$ | async | pluck: filter.id
+      }"
+      [ndcDynamicOutputs]="{
           valueChange: {
             handler: updateFilterValue.bind(this),
             args: [filter.id, '$event']
           }
         }"
-      ></ng-container>
-    </div>
+    ></ng-container>
   </div>
-</ng-container>
+</div>

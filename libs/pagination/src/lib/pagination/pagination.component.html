@@ -20,11 +20,36 @@
 </div>
 
 <ng-template #renderItemTemplate let-type let-page="page">
-  <a *ngIf="type === 'pre'">
-    <spy-icon name="pagination-arrow" class="ant-pagination-icon"></spy-icon>
+  <ng-container [ngSwitch]="type">
+    <a *ngSwitchCase="'prev'" title="">
+      <spy-icon name="pagination-arrow" class="ant-pagination-icon"></spy-icon>
+    </a>
+
+    <a *ngSwitchCase="'next'" title="">
+      <spy-icon name="pagination-arrow" class="ant-pagination-icon"></spy-icon>
+    </a>
+
+    <a *ngSwitchCase="'page'" title="">{{ page }}</a>
+
+    <ng-container *ngSwitchCase="'next_5'">
+      <ng-container *ngTemplateOutlet="moreItem"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'prev_5'">
+      <ng-container *ngTemplateOutlet="moreItem"></ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #moreItem>
+  <a title="">
+    <spy-icon
+      name="double-arrow-right"
+      class="ant-pagination-icon ant-pagination-icon--hover"
+    ></spy-icon>
+    <spy-icon
+      name="dots"
+      class="ant-pagination-icon ant-pagination-icon--default"
+    ></spy-icon>
   </a>
-  <a *ngIf="type === 'next'">
-    <spy-icon name="pagination-arrow" class="ant-pagination-icon"></spy-icon>
-  </a>
-  <a *ngIf="type === 'page'">{{ page }}</a>
 </ng-template>

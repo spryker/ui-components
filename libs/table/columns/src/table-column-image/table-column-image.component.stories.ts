@@ -25,7 +25,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'https://images.icecat.biz/img/gallery_mediums/30663302_6177.jpg',
 });
 
-export const withFeatures = (): IStory => ({
+export const primary = (): IStory => ({
   moduleMetadata: {
     imports: [TableColumnImageModule],
   },

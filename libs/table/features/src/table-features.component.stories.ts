@@ -6,6 +6,8 @@ import { TableModule } from '@spryker/table';
 import {
   TableFilterSelectComponent,
   TableFilterSelectModule,
+  TableFilterDateRangeComponent,
+  TableFilterDateRangeModule,
 } from '@spryker/table/filters';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
@@ -22,6 +24,8 @@ import { TableSelectableFeatureModule } from './table-selectable-feature';
 import { TableSyncStateFeatureModule } from './table-sync-state-feature';
 import { TableTotalFeatureModule } from './table-total-feature';
 import { TableDatasourceHttpService } from '../../datasources/src/table-datasource-http';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 
 export default {
   title: 'TableFeaturesComponent',
@@ -33,7 +37,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const viaHtml = getFiltersStory(
+export const viaHtml = getFeaturesStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
@@ -56,7 +60,7 @@ export const viaHtml = getFiltersStory(
   ],
 );
 
-export const viaConfig = getFiltersStory(
+export const viaConfig = getFeaturesStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
   `,
@@ -86,7 +90,7 @@ export const viaConfig = getFiltersStory(
   ],
 );
 
-function getFiltersStory(
+function getFeaturesStory(
   template: string,
   extraNgModules: any[] = [],
 ): () => IStory {
@@ -99,17 +103,25 @@ function getFiltersStory(
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
           select: TableFilterSelectComponent,
+          range: TableFilterDateRangeComponent,
         } as any),
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
         }),
+        TableFilterDateRangeModule,
         TableFilterSelectModule,
+        LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+        EnLocaleModule,
         ...extraNgModules,
       ],
       providers: [
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: [LayoutFlatHostComponent, TableFilterSelectComponent],
+          useValue: [
+            LayoutFlatHostComponent,
+            TableFilterSelectComponent,
+            TableFilterDateRangeComponent,
+          ],
           multi: true,
         },
       ],
@@ -122,7 +134,7 @@ function getFiltersStory(
           url: '/data-request',
         },
         columns: [
-          { id: 'col1', title: 'Column #1' },
+          { id: 'col1', title: 'Column #1', sortable: true },
           { id: 'col2', title: 'Column #2' },
           { id: 'col3', title: 'Column #3' },
         ],
@@ -130,15 +142,25 @@ function getFiltersStory(
           enabled: true,
           items: [
             {
-              id: 'offers',
-              title: 'Has Offers',
+              id: 'select',
+              title: 'Select',
               type: 'select',
               typeOptions: {
                 multiselect: false,
                 values: [
-                  { value: 1, title: 'Yes' },
-                  { value: 0, title: 'No' },
+                  { value: 1, title: 'Option_1' },
+                  { value: 0, title: 'Option_2' },
                 ],
+              },
+            },
+            {
+              id: 'range',
+              title: 'Range',
+              type: 'range',
+              typeOptions: {
+                placeholderFrom: 'from',
+                placeholderTo: 'to',
+                format: 'yyyy-MM-dd',
               },
             },
           ],

@@ -14,13 +14,13 @@ import {
 } from '@spryker/table/features/testing';
 import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
 import {
-  TableActionService,
   TableColumnsResolverService,
   TableData,
   TableDataConfig,
   TableDataConfiguratorService,
   TableDatasourceService,
   TableFeatureLocation,
+  TableActionService,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
 

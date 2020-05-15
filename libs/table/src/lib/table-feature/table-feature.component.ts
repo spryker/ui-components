@@ -41,12 +41,27 @@ export abstract class TableFeatureComponent<
   dataSourceService?: TableDatasourceService;
   dataConfiguratorService?: TableDataConfiguratorService;
 
-  config$ = new ReplaySubject<C>(1);
-  table$ = new ReplaySubject<TableComponent>(1);
-  tableEventBus$ = new ReplaySubject<TableFeatureEventBus>(1);
-  columnsResolverService$ = new ReplaySubject<TableColumnsResolverService>(1);
-  dataSourceService$ = new ReplaySubject<TableDatasourceService>(1);
-  dataConfiguratorService$ = new ReplaySubject<TableDataConfiguratorService>(1);
+  private setConfig$ = new ReplaySubject<TableFeatureConfig>(1);
+  config$ = this.setConfig$.asObservable() as Observable<C>;
+
+  private setTable$ = new ReplaySubject<TableComponent>(1);
+  table$ = this.setTable$.asObservable();
+
+  private setTableEventBus$ = new ReplaySubject<TableFeatureEventBus>(1);
+  tableEventBus$ = this.setTableEventBus$.asObservable();
+
+  private setColumnsResolverService$ = new ReplaySubject<
+    TableColumnsResolverService
+  >(1);
+  columnsResolverService$ = this.setColumnsResolverService$.asObservable();
+
+  private setDataSourceService$ = new ReplaySubject<TableDatasourceService>(1);
+  dataSourceService$ = this.setDataSourceService$.asObservable();
+
+  private setDataConfiguratorService$ = new ReplaySubject<
+    TableDataConfiguratorService
+  >(1);
+  dataConfiguratorService$ = this.setDataConfiguratorService$.asObservable();
 
   private setTplDirectives$ = new ReplaySubject<
     Observable<TableFeatureTplDirective[]>
@@ -83,31 +98,31 @@ export abstract class TableFeatureComponent<
 
   setConfig(config: C): void {
     this.config = config;
-    this.config$.next(config);
+    this.setConfig$.next(config);
   }
 
   setTableComponent(table: TableComponent): void {
     this.table = table;
-    this.table$.next(table);
+    this.setTable$.next(table);
   }
 
   setTableEventBus(eventBus: TableFeatureEventBus): void {
     this.tableEventBus = eventBus;
-    this.tableEventBus$.next(eventBus);
+    this.setTableEventBus$.next(eventBus);
   }
 
   setColumnsResolverService(service: TableColumnsResolverService): void {
     this.columnsResolverService = service;
-    this.columnsResolverService$.next(service);
+    this.setColumnsResolverService$.next(service);
   }
 
   setDataSourceService(service: TableDatasourceService): void {
     this.dataSourceService = service;
-    this.dataSourceService$.next(service);
+    this.setDataSourceService$.next(service);
   }
 
   setDataConfiguratorService(service: TableDataConfiguratorService): void {
     this.dataConfiguratorService = service;
-    this.dataConfiguratorService$.next(service);
+    this.setDataConfiguratorService$.next(service);
   }
 }

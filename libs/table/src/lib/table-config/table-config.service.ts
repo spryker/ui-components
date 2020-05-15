@@ -22,7 +22,6 @@ export class TableConfigService {
     }
 
     config = this.applyDefaults(config);
-
     this.normalizeFeatures(config);
 
     return config;

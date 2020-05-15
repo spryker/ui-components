@@ -281,17 +281,6 @@ export class CoreTableComponent
     return this.tableId;
   }
 
-  emitEvent<T = unknown>(
-    featureName: string,
-    data: T,
-    eventName?: string,
-  ): void {
-    const eventHash = eventName ? `${featureName}:${eventName}` : featureName;
-    const eventHandler = this.events[eventHash];
-
-    eventHandler?.(data);
-  }
-
   /** @internal */
   updateFeatures(features: TableFeatureComponent[]): void {
     if (!this.featuresDiffer.diff(features)) {

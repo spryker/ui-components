@@ -102,9 +102,7 @@
         let-feature
       >
         <td [ngStyle]="feature.featureStyles$ | async">
-          <div
-            class="ant-table-column-inner ant-table-column-inner--align-right"
-          >
+          <div class="ant-table-column-inner">
             <ng-template [spyTableRenderFeature]="feature"></ng-template>
           </div>
         </td>
@@ -116,13 +114,6 @@
 <div class="ant-table-features ant-table-features--after-table">
   <spy-table-features-renderer
     [location]="featureLocation.afterTable"
-    [features]="features$ | async"
-  ></spy-table-features-renderer>
-</div>
-
-<div class="ant-table-features ant-table-features--pagination">
-  <spy-table-features-renderer
-    [location]="featureLocation.pagination"
     [features]="features$ | async"
   ></spy-table-features-renderer>
 </div>

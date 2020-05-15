@@ -5,10 +5,29 @@
   position: relative;
   cursor: pointer;
   padding: 0;
+  border-color: @gray-light;
 
   &,
   &-dropdown {
     font: @font-weight-medium @font-size-base @font-family;
+  }
+
+  &-focused {
+    box-shadow: none;
+    border-color: @green;
+
+    &:hover {
+      border-color: @green;
+    }
+  }
+
+  &.@{calendar-prefix-cls}-disabled {
+    border-color: @gray-light;
+    background: @disabled-bg;
+
+    .@{calendar-prefix-cls}-suffix {
+      color: @gray;
+    }
   }
 
   &-input {
@@ -18,14 +37,10 @@
     > input {
       font-size: inherit;
 
-      &.@{ant-input}:read-only {
-        background: @white;
+      &.@{ant-input} {
+        background: transparent;
       }
     }
-  }
-
-  &-focused {
-    box-shadow: none;
   }
 
   &-suffix,
@@ -40,12 +55,41 @@
     right: @calendar-input-horizontal-padding;
   }
 
-  &-suffix {
-    z-index: 1;
-  }
-
   &-clear {
     z-index: 2;
+    background: @gray-light;
+    border-radius: 50%;
+
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      width: @calendar-clear-cross-width;
+      height: @calendar-clear-cross-height;
+      border-radius: @calendar-clear-cross-radius;
+      background: @gray-dark;
+      transition: background @common-transition-time @common-transition-function;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:hover {
+      background: @gray-light;
+
+      &::before,
+      &::after {
+        background: @gray-darker;
+      }
+    }
+
+    .anticon {
+      display: none;
+    }
   }
 
   &-dropdown {

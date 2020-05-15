@@ -339,6 +339,7 @@
 @tabs-horizontal-padding: 30px;
 @tabs-vertical-padding: 8px;
 @tabs-nav-line-height: 1.715;
+@tabs-nav-bottom-margin: 16px;
 
 @tabs-hover-color: @gray-darker;
 
@@ -424,7 +425,9 @@
 @calendar-input-height: @input-height-base;
 @calendar-input-vertical-padding: @input-padding-vertical-base;
 @calendar-input-horizontal-padding: @input-padding-horizontal-base;
-@calendar-input-padding: @input-padding-vertical-base @input-padding-horizontal-base + @calendar-picker-icon-width @input-padding-vertical-base @input-padding-horizontal-base;
+@calendar-input-padding: @input-padding-vertical-base
+  @input-padding-horizontal-base + @calendar-picker-icon-width
+  @input-padding-vertical-base @input-padding-horizontal-base;
 
 @calendar-width: 314px;
 @calendar-height: 344px;
@@ -468,6 +471,10 @@
 @calendar-next-btn-right: 12px;
 @calendar-prev-btn-left: 12px;
 @calendar-btn-background-size: 19px;
+
+@calendar-clear-cross-width: 14px;
+@calendar-clear-cross-height: 3px;
+@calendar-clear-cross-radius: 10px;
 
 // DateRangePicker
 @range-calendar-prefix-cls: ~'@{ant-prefix}-range-picker';

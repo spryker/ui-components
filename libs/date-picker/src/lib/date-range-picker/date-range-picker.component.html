@@ -1,27 +1,27 @@
 <div class="ant-range-picker">
-	<div class="ant-range-picker-col">
-		<spy-date-picker
-            #startPicker
-			[(date)]="dates.from"
-			[enableDate]="{ to: dates?.to }"
-			[placeholder]="placeholderFrom"
-			[clearButton]="clearButton"
-			[disabled]="disabled"
-			[format]="format"
-			(dateChange)="datesChange.emit(dates)"
-		></spy-date-picker>
-	</div>
+  <div class="ant-range-picker-col">
+    <spy-date-picker
+      #startPicker
+      [(date)]="dates.from"
+      [enableDate]="{ to: dates?.to }"
+      [placeholder]="placeholderFrom"
+      [clearButton]="clearButton"
+      [disabled]="disabled"
+      [format]="format"
+      (dateChange)="datesChange.emit(dates)"
+    ></spy-date-picker>
+  </div>
 
-	<div class="ant-range-picker-col">
-		<spy-date-picker
-            #endPicker
-			[(date)]="dates.to"
-			[enableDate]="{ from: dates?.from }"
-			[placeholder]="placeholderTo"
-			[clearButton]="clearButton"
-			[disabled]="disabled"
-			[format]="format"
-			(dateChange)="datesChange.emit(dates)"
-		></spy-date-picker>
-	</div>
+  <div class="ant-range-picker-col">
+    <spy-date-picker
+      #endPicker
+      [(date)]="dates.to"
+      [enableDate]="{ from: dates?.from }"
+      [placeholder]="placeholderTo"
+      [clearButton]="clearButton"
+      [disabled]="disabled"
+      [format]="format"
+      (dateChange)="datesChange.emit(dates)"
+    ></spy-date-picker>
+  </div>
 </div>

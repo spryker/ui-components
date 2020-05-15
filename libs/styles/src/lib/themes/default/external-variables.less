@@ -419,27 +419,37 @@
 @table-row-actions-feature-trigger-radius: 50%;
 
 // DatePicker
-@calendar-prefix-cls: ~'@{ant-prefix}-calendar';
+@calendar-prefix-cls: ~'@{ant-prefix}-picker';
+
+@calendar-input-height: @input-height-base;
+@calendar-input-vertical-padding: @input-padding-vertical-base;
+@calendar-input-horizontal-padding: @input-padding-horizontal-base;
+@calendar-input-padding: @input-padding-vertical-base @input-padding-horizontal-base + @calendar-picker-icon-width @input-padding-vertical-base @input-padding-horizontal-base;
 
 @calendar-width: 314px;
 @calendar-height: 344px;
 @calendar-border-radius: 10px;
 
-@calendar-picker-width: 240px;
-@calendar-picker-container-top: 50px;
+@calendar-picker-width: 100%;
+@calendar-picker-container-top: 2px;
+@calendar-picker-container-left: 10px;
 
-@calendar-body-padding: 4px 12px;
+@calendar-body-horizontal-padding: 12px;
+@calendar-body-padding: 4px @calendar-body-horizontal-padding;
 
 @calendar-header-margin-top: 18px;
-@calendar-header-margin-bottom: 5px;
+@calendar-header-margin-bottom: 0;
 
 @calendar-next-month-button-right: 12px;
 @calendar-prev-month-button-left: 12px;
 
 @calendar-cell-padding: 0px;
+@calendar-border-width: 1px;
 
-@calendar-tbody-border: 0.5px solid @gray;
+@calendar-tbody-border: @calendar-border-width solid @gray;
 @calendar-tbody-td-height: 38px;
+@calendar-tbody-td-max-width-height: 58px;
+@calendar-tbody-td-month-radius: 4px;
 
 @calendar-date-border-radius: 0px;
 @calendar-date-line-height: 38px;
@@ -447,7 +457,7 @@
 
 @calendar-month-btn-width: 38px;
 @calendar-month-btn-height: 38px;
-@calendar-month-btn-border: 1px solid @gray-light;
+@calendar-month-btn-border: @calendar-border-width solid @gray-light;
 @calendar-month-btn-border-radius: 4px;
 
 @calendar-picker-icon-width: 24px;
@@ -458,3 +468,8 @@
 @calendar-next-btn-right: 12px;
 @calendar-prev-btn-left: 12px;
 @calendar-btn-background-size: 19px;
+
+// DateRangePicker
+@range-calendar-prefix-cls: ~'@{ant-prefix}-range-picker';
+
+@range-calendar-indents: 3px;

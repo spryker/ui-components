@@ -24,7 +24,7 @@ export const primary = () => ({
   template: `
     <spy-date-range-picker 
         format="yyyy-MM-dd" 
-        [dates]="{from: '2012-12-12', to: '2012-12-12'}"
+        [dates]="{from: '2012-12-12', to: '2012-12-15'}"
         placeholderFrom="from"
         placeholderTo="to"
     ></spy-date-range-picker>

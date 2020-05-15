@@ -20,7 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 
 declare module '@spryker/table' {
   interface TableConfig {
-    itemSelection?: TableFeatureConfig;
+    itemSelection?: TableSelectableConfig;
   }
 }
 

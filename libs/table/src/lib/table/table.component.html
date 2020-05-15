@@ -102,9 +102,7 @@
         let-feature
       >
         <td [ngStyle]="feature.featureStyles$ | async">
-          <div
-            class="ant-table-column-inner ant-table-column-inner--align-right"
-          >
+          <div class="ant-table-column-inner">
             <ng-template [spyTableRenderFeature]="feature"></ng-template>
           </div>
         </td>

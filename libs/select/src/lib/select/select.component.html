@@ -30,7 +30,7 @@
   >
     {{ option.label }}
     <spy-icon
-      class="ant-select-dropdown-menu-item__icon--checked"
+      class="ant-select-item-option__icon--checked"
       [name]="checkIcon"
     ></spy-icon>
   </nz-option>
@@ -76,13 +76,13 @@
 </ng-template>
 
 <ng-template #multiSelectOptionIconTpl>
-  <span class="ant-select-selection--multiple__multiChecked">
+  <span class="ant-select-item-option-state__multiChecked">
     <spy-icon
-      class="ant-select-selection--multiple__multiChecked--icon"
+      class="ant-select-item-option-state__multiChecked--icon"
       [name]="checkIcon"
     ></spy-icon>
   </span>
-  <span class="ant-select-selection--multiple__multiUnChecked"></span>
+  <span class="ant-select-item-option-state__multiUnChecked"></span>
 </ng-template>
 
 <ng-template #clearIconTpl>

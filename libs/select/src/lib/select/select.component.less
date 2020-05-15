@@ -8,6 +8,10 @@
     display: none;
   }
 
+  &-selection-item {
+    color: @ink;
+  }
+
   &,
   &-dropdown {
     font: @font-weight-medium @font-size-base @font-family;
@@ -22,112 +26,117 @@
     margin: @select-menu-horizontal-margin 0;
     padding: 0;
 
-    &-menu {
-      box-sizing: border-box;
-
-      &-item {
-        height: @select-dropdown-menu-item-height;
-        line-height: @select-dropdown-menu-item-line-height;
-        font-weight: @select-dropdown-menu-item-font-weight;
-        color: @ink;
-        padding: @select-dropdown-menu-item-padding;
-        border: @select-dropdown-menu-item-border;
-
-        &:hover {
-          &:not(.@{select-prefix-cls}-dropdown-menu-item-disabled) {
-            background-color: @gray-lighter;
-          }
-        }
-
-        &-selected {
-          color: @green;
-          background-color: @green-lighter;
-          font-weight: @font-weight-medium;
-
-          .@{select-prefix-cls}-dropdown-menu-item__icon--checked {
-            display: block;
-          }
-
-          .@{select-prefix-cls}-selection--multiple__multiChecked {
-            display: block;
-          }
-
-          .@{select-prefix-cls}-selection--multiple__multiUnChecked {
-            display: none;
-          }
-        }
-
-        &-disabled {
-          .@{select-prefix-cls}-selection--multiple__multiUnChecked {
-            border-color: @gray-light;
-            background-color: @gray-lighter;
-          }
-        }
-
-        &__icon--checked {
-          display: none;
-          position: absolute;
-          right: @select-menu-horizontal-padding;
-          top: @select-menu-vertical-padding;
-          color: @green;
-          background-size: @check-icon-size;
-          height: @check-icon-size;
-          width: @check-icon-size;
-          line-height: @check-icon-line-height;
-        }
-
-        &:focus {
-          border: @select-menu-item-border;
-          border-radius: 2px;
-        }
-      }
-    }
-
     .cdk-virtual-scroll-content-wrapper {
       max-height: 250px !important;
       height: auto !important;
     }
   }
 
-  &-selection {
-    border-color: @gray-light;
+  &-item {
+    height: @select-dropdown-menu-item-height;
+    line-height: @select-dropdown-menu-item-line-height;
+    font-weight: @select-dropdown-menu-item-font-weight;
+    color: @ink;
+    padding: @select-dropdown-menu-item-padding;
+    border: @select-dropdown-menu-item-border;
 
     &:hover {
-      border-color: @gray;
+      &:not(.@{select-prefix-cls}-dropdown-menu-item-disabled) {
+        background-color: @gray-lighter;
+      }
     }
 
-    &-selected-value {
+    &-option {
+      &__icon--checked {
+        display: none;
+        position: absolute;
+        right: @select-menu-horizontal-padding;
+        top: @select-menu-vertical-padding;
+        color: @green;
+        background-size: @check-icon-size;
+        height: @check-icon-size;
+        width: @check-icon-size;
+        line-height: @check-icon-line-height;
+      }
+
+      &-selected:not(.ant-select-item-option-disabled) {
+        color: @green;
+        background-color: @green-lighter;
+        font-weight: @font-weight-medium;
+  
+        .@{select-prefix-cls}-item-option__icon--checked {
+          display: block;
+        }
+  
+        .@{select-prefix-cls}-selection--multiple__multiChecked {
+          display: block;
+        }
+  
+        .@{select-prefix-cls}-selection--multiple__multiUnChecked {
+          display: none;
+        }
+      }
+  
+      &-disabled {
+        .@{select-prefix-cls}-selection--multiple__multiUnChecked {
+          border-color: @gray-light;
+          background-color: @gray-lighter;
+        }
+      }
+    }
+    
+    &:focus {
+      border: @select-menu-item-border;
+      border-radius: 2px;
+    }
+  }
+
+  &-clear {
+    right: @select-selection-clear-right;
+    margin-top: @select-selection-clear-btn-size / -2;
+    width: @select-selection-clear-btn-size;
+    height: @select-selection-clear-btn-size;
+    font-size: @select-selection-clear-icon-size;
+    line-height: @select-selection-clear-btn-line-height;
+    color: @gray-dark;
+    background-color: @gray-light;
+    border-radius: 50%;
+
+    &:hover {
+      color: @gray-darker;
+    }
+
+    &-icon {
+      vertical-align: middle;
+    }
+
+  // &-selection {
+  //   border-color: @gray-light;
+
+  //   &:hover {
+  //     border-color: @gray;
+  //   }
+
+  //   &-selected-value {
+  //     color: @ink;
+  //   }
+  //   }
+  }
+
+  &-multiple {
+
+    .@{select-prefix-cls}-selector {
+      padding-bottom: 2px;
+    }
+
+    .@{select-prefix-cls}-selection-item {
+      background: none;
+      border: none;
       color: @ink;
-    }
+    }    
 
-    &__clear {
-      right: @select-selection-clear-right;
-      margin-top: @select-selection-clear-btn-size / -2;
-      width: @select-selection-clear-btn-size;
-      height: @select-selection-clear-btn-size;
-      font-size: @select-selection-clear-icon-size;
-      line-height: @select-selection-clear-btn-size;
-      color: @gray-dark;
-      background-color: @gray-light;
-      border-radius: 50%;
-
-      &:hover {
-        color: @gray-darker;
-      }
-
-      &-icon {
-        vertical-align: middle;
-      }
-    }
-
-    &--multiple {
-      padding-bottom: 0;
-
-      & .@{select-prefix-cls}-selection__choice {
-        background: none;
-        border: none;
-        color: @ink;
-      }
+    .@{select-prefix-cls}-item-option-state {
+      
       &__multiChecked,
       &__multiUnChecked {
         box-sizing: border-box;
@@ -138,26 +147,26 @@
         border-radius: @checkbox-icon-border-radius;
         float: left;
       }
-
+  
       &__multiChecked {
         background-color: @green;
         display: none;
         text-align: center;
         line-height: @checkbox-multi-select-checked-line-height;
-
+  
         &--icon {
           color: @white;
           font-size: @checkbox-multi-select-checked-icon-size;
         }
       }
-
+  
       &__multiUnChecked {
         border: 2px solid @gray-light;
-
+  
         &:focus {
           border-color: @green;
         }
-
+  
         &:hover {
           border-color: @gray;
         }

@@ -71,9 +71,9 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
   filters$ = this.config$.pipe(pluck('items'));
 
   filterValues$: Observable<Record<string, unknown>> = combineLatest([
-    this.dataConfiguratorService$?.pipe(
-      pluck('config', 'filter'),
-    ) as Observable<Record<string, unknown>>,
+    this.dataConfiguratorService$.pipe(pluck('config', 'filter')) as Observable<
+      Record<string, unknown>
+    >,
     this.updateFiltersValue$.pipe(startWith(null)),
   ]).pipe(
     tap(([filterValues, updatedValue]) => {

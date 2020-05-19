@@ -1,4 +1,9 @@
-<ng-container *spyTableFeatureTpl="tableFeatureLocation.top">
+<ng-container
+  *spyTableFeatureTpl="
+    tableFeatureLocation.beforeTable;
+    styles: { width: '100%' }
+  "
+>
   <ng-container *ngIf="isVisible$ | async">
     <div class="ant-table-filters-feature">
       <div

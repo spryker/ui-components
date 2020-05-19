@@ -246,35 +246,38 @@
 
 @select-component-width: 100%;
 @select-component-height: 42px;
+
+@select-dropdown-menu-item-height: 40px;
+@select-dropdown-menu-item-line-height: 36px;
+@select-dropdown-menu-item-font-weight: 500;
+@select-dropdown-menu-item-padding: 0 12px;
+@select-dropdown-menu-item-border: 2px solid transparent;
+@select-arrow-right: 14px;
+@select-selection-clear-right: 9px;
+
 @select-border-radius: 4px;
-@select-menu-item-height: 40px;
 @select-menu-item-border: 2px solid @green;
-@select-menu-item-line-height: 24px;
 @select-menu-vertical-padding: 8px;
 @select-menu-horizontal-padding: 15px;
-@select-menu-selected-horizontal-padding: 2px;
 @select-menu-horizontal-margin: 4px;
-@select-selection-choice-min-width: 100px;
-@select-selection-choice-max-width: 90%;
-@select-selection-remove-block-width: 32px;
-@select-selection-content-max-width: 100% - @select-selection-remove-block-width;
-@select-selection-content-margin-right: 10px +
-  @select-selection-remove-block-width;
-@select-selection-content-line-height: 33px;
-@select-selection-content-padding: 10px;
-@select-selection-remove-line-height: 40px;
+@select-multiple-padding-vertical: 0px;
+@select-multiple-padding-horizontal: 4px;
+@select-item-focus-border-radius: 2px;
 @select-selection-clear-btn-size: 24px;
+@select-selection-clear-btn-line-height: 25px;
 @select-selection-clear-icon-size: 9px;
 
-@suffix-icon-size: 14px;
-@check-icon-size: 16px;
 @check-icon-line-height: 24px;
+@check-icon-size: 19px;
 @checkbox-icon-size: 18px;
 @checkbox-icon-line-height: 28px;
-@checkbox-icon-margin-right: 6px;
-@remove-icon-size: 12px;
-@choice-border-radius: 24px;
-@choise-remove-size: 38px;
+@checkbox-icon-margin-right: 7px;
+@checkbox-icon-margin-top: 9px;
+@checkbox-icon-font-size: 19px;
+@checkbox-icon-border-radius: 4px;
+@checkbox-icon-border-width: 2px;
+@checkbox-multi-select-checked-line-height: 21px;
+@checkbox-multi-select-checked-icon-size: 12px;
 
 // Checkbox
 @checkbox-prefix-cls: ~'@{ant-prefix}-checkbox';
@@ -403,9 +406,13 @@
 
 // Table Filters Feature
 @table-filters-feature-prefix-cls: ~'@{ant-prefix}-table-filters-feature';
-@table-filters-feature-margin: -7px -7px 25px -7px;
+@table-filters-feature-margin-top: 15px;
+@table-filters-feature-margin-bottom: 45px;
+@table-filters-feature-padding: 25px 30px;
+@table-filters-feature-border-radius: 10px;
 @table-filters-feature-item-padding: 7px;
 @table-filters-feature-item-min-width: 200px;
+@table-filters-feature-item-title-margin-bottom: 5px;
 
 //Table Search Feature
 @magnifier-icon-width: 22px;

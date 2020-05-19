@@ -1,6 +1,9 @@
 <div
   class="ant-table-filters-feature"
-  *spyTableFeatureTpl="tableFeatureLocation.beforeTable"
+  *spyTableFeatureTpl="
+    tableFeatureLocation.beforeTable;
+    styles: { width: '100%' }
+  "
 >
   <div
     *ngFor="let filter of filters$ | async; trackBy: trackByFilter"

@@ -21,9 +21,10 @@
     spy-table-features-renderer {
       display: flex;
       flex-grow: 1;
+      flex-wrap: wrap;
 
-      & > div {
-        width: 100%;
+      &[ng-reflect-location='top'] {
+        justify-content: flex-end;
       }
     }
   }

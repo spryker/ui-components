@@ -84,7 +84,7 @@
         }
 
         &__multiUnChecked {
-          border: @checkbox-icon-border;
+          border: @checkbox-icon-border-width solid @gray-light;
 
           &:focus {
             border-color: @green;
@@ -109,7 +109,7 @@
       }
 
       &-selected {
-        &:not(.ant-select-item-option-disabled) {
+        &:not(.@{select-prefix-cls}-item-option-disabled) {
           color: @green;
           background-color: @green-lighter;
         }
@@ -166,7 +166,8 @@
 
   &-multiple {
     .@{select-prefix-cls}-selector {
-      padding: @select-multiple-padding;
+      padding: @select-multiple-padding-vertical
+        @select-multiple-padding-horizontal;
       border-color: @gray-light;
 
       &:hover {

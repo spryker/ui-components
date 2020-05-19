@@ -12,7 +12,6 @@ jobs:
         - npm run format:check
         - npm run lint
         - COVERAGE=true npm run test:ci
-        - npx ng run storybook:compile
         - npm run build
       before_deploy:
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc

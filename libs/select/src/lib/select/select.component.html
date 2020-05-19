@@ -1,3 +1,4 @@
+{{ 'select.selected:number' | spyI18n: { number: 1 } | async }}
 <nz-select
   [(ngModel)]="mappedValue"
   (ngModelChange)="handleValueChange($event)"

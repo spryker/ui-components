@@ -148,6 +148,10 @@
         "dist/libs/locale/locales/*",
         "libs/locale/locales/*/src"
       ],
+      "@spryker/locale/data/*": [
+        "dist/libs/locale/data/*",
+        "libs/locale/data/*/src"
+      ],
       "@spryker/chips": [
         "dist/libs/chips/index.d.ts",
         "libs/chips/src/index.ts"

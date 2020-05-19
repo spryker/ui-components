@@ -84,7 +84,7 @@
         }
 
         &__multiUnChecked {
-          border: 2px solid @gray-light;
+          border: @checkbox-icon-border;
 
           &:focus {
             border-color: @green;
@@ -140,7 +140,7 @@
 
     &:focus {
       border: @select-menu-item-border;
-      border-radius: 2px;
+      border-radius: @select-item-focus-border-radius;
     }
   }
 
@@ -166,7 +166,7 @@
 
   &-multiple {
     .@{select-prefix-cls}-selector {
-      padding: 0px 4px;
+      padding: @select-multiple-padding;
       border-color: @gray-light;
 
       &:hover {

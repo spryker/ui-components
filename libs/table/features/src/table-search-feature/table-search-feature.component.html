@@ -1,4 +1,6 @@
-<ng-container *spyTableFeatureTpl="tableFeatureLocation.top">
+<ng-container
+  *spyTableFeatureTpl="tableFeatureLocation.top; styles: { marginLeft: 'auto' }"
+>
   <spy-input
     [value]="value$ | async"
     [prefix]="messageTmpl"

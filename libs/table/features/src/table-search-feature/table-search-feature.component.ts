@@ -10,6 +10,7 @@ import {
   TableFeatureLocation,
   TableDataConfiguratorService,
   TableFeatureConfig,
+  TableDataConfig,
 } from '@spryker/table';
 import {
   debounceTime,
@@ -17,8 +18,10 @@ import {
   takeUntil,
   pluck,
   map,
+  switchMap,
+  shareReplay,
 } from 'rxjs/operators';
-import { Subject, Observable, merge } from 'rxjs';
+import { Subject, Observable, merge, combineLatest } from 'rxjs';
 import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
 
 declare module '@spryker/table' {
@@ -53,7 +56,6 @@ export class TableSearchFeatureComponent
   prefixIcon = IconMagnifierModule.icon;
 
   destroyed$ = new Subject();
-  value$?: Observable<string>;
   inputValue$ = new Subject<string>();
   valueChange$ = this.inputValue$.pipe(
     debounceTime(300),
@@ -64,22 +66,38 @@ export class TableSearchFeatureComponent
     pluck('placeholder'),
     map(placeholder => placeholder ?? ''),
   );
-  searchValue$?: Observable<string>;
+  searchValue$ = this.dataConfiguratorService$.pipe(
+    switchMap(service => service.config$),
+    pluck('search'),
+  );
+  value$ = merge(this.inputValue$, this.searchValue$);
+  data$ = this.table$.pipe(
+    switchMap(table => table.data$),
+    pluck('data'),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+  isVisible$ = combineLatest([
+    this.dataConfiguratorService$.pipe(switchMap(service => service.config$)),
+    this.data$,
+  ]).pipe(
+    map(([config, data]) => {
+      const isFiltered = config?.filter
+        ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)
+        : false;
+      const isSearched = config?.search
+        ? (config.search as string).length
+        : false;
+      const isChanged = isFiltered || isSearched;
+      const isData = Boolean(data.length);
+
+      return isData || (!isData && isChanged);
+    }),
+  );
 
   ngOnInit(): void {
     this.valueChange$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(value => this.triggerUpdate(value));
-  }
-
-  setDataConfiguratorService(service: TableDataConfiguratorService): void {
-    super.setDataConfiguratorService(service);
-
-    this.searchValue$ = service.config$.pipe(pluck('search')) as Observable<
-      string
-    >;
-
-    this.value$ = merge(this.inputValue$, this.searchValue$);
   }
 
   ngOnDestroy(): void {

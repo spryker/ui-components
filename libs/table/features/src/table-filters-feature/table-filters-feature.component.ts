@@ -18,6 +18,7 @@ import {
   startWith,
   tap,
   shareReplay,
+  switchMap,
 } from 'rxjs/operators';
 
 import { TABLE_FILTERS_TOKEN } from './tokens';
@@ -71,9 +72,10 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
   filters$ = this.config$.pipe(pluck('items'));
 
   filterValues$: Observable<Record<string, unknown>> = combineLatest([
-    this.dataConfiguratorService$.pipe(pluck('config', 'filter')) as Observable<
-      Record<string, unknown>
-    >,
+    this.dataConfiguratorService$.pipe(
+      switchMap(service => service.config$),
+      pluck('filter'),
+    ) as Observable<Record<string, unknown>>,
     this.updateFiltersValue$.pipe(startWith(null)),
   ]).pipe(
     tap(([filterValues, updatedValue]) => {
@@ -91,6 +93,28 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     map(([filterValues]) => filterValues),
     distinctUntilChanged(),
     shareReplay({ refCount: true, bufferSize: 1 }),
+  );
+  data$ = this.table$.pipe(
+    switchMap(table => table.data$),
+    pluck('data'),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+  isVisible$ = combineLatest([
+    this.dataConfiguratorService$.pipe(switchMap(service => service.config$)),
+    this.data$,
+  ]).pipe(
+    map(([config, data]) => {
+      const isFiltered = config?.filter
+        ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)
+        : false;
+      const isSearched = config?.search
+        ? (config.search as string).length
+        : false;
+      const isChanged = isFiltered || isSearched;
+      const isData = data.length;
+
+      return isData || (!isData && isChanged);
+    }),
   );
 
   constructor(

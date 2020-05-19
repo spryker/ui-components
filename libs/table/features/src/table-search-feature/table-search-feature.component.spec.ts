@@ -14,6 +14,7 @@ import {
 import { TableSearchFeatureComponent } from './table-search-feature.component';
 import {
   TableColumnsResolverService,
+  TableData,
   TableDataConfig,
   TableDataConfiguratorService,
   TableDatasourceService,
@@ -32,12 +33,13 @@ import { InputModule } from '@spryker/input';
 class TestHostComponent {}
 
 class MockTableDataConfiguratorService {
-  readonly config$ = new ReplaySubject<TableDataConfig>(1);
+  config$ = new ReplaySubject<TableDataConfig>(1);
 }
 
 describe('TableSearchFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
+  let mockData: TableData;
 
   const inputSelector = 'spy-input';
   const iconSelector = 'spy-icon';
@@ -70,8 +72,9 @@ describe('TableSearchFeatureComponent', () => {
         },
         {
           provide: TableDataConfiguratorService,
-          useClass: MockTableDataConfiguratorService,
+          useExisting: MockTableDataConfiguratorService,
         },
+        MockTableDataConfiguratorService,
         {
           provide: TestTableFeatureMocks,
           useValue: {
@@ -92,8 +95,19 @@ describe('TableSearchFeatureComponent', () => {
       By.directive(TestTableFeatureComponent),
     ).componentInstance;
 
+    mockData = {
+      data: [{}],
+      page: 0,
+      pageSize: 0,
+      total: 10,
+    };
+
     fixture.detectChanges();
     tick();
+
+    testTableFeature.featureMocks?.table.data$?.next(mockData);
+    TestBed.inject(MockTableDataConfiguratorService).config$.next({});
+    fixture.detectChanges();
   }));
 
   it('should render `spy-input`', fakeAsync(() => {

@@ -86,6 +86,10 @@ export const viaConfig = getFeaturesStory(
         ),
       total: () =>
         import('./table-total-feature').then(m => m.TableTotalFeatureModule),
+      itemSelection: () =>
+        import('./table-selectable-feature').then(
+          m => m.TableSelectableFeatureModule,
+        ),
     }),
   ],
 );

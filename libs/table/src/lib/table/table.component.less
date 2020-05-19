@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background: #cccccc;
+}
+
 .@{table-prefix-cls} {
   margin-bottom: @table-bottom-margin;
   font: @font-weight-medium @font-size-base @font-family;
@@ -22,7 +26,7 @@
       display: flex;
       flex-grow: 1;
 
-      & > div {
+      > div {
         width: 100%;
       }
     }
@@ -136,6 +140,11 @@
       z-index: 0;
       height: inherit;
 
+      // safari styles
+      @media not all and (min-resolution: 0.001dpcm) {
+        position: relative;
+      }
+
       .@{table-prefix-cls}-column-inner {
         position: relative;
         padding: @table-body-padding-top @table-padding-horizontal
@@ -146,6 +155,11 @@
         justify-content: center;
         height: 100%;
         z-index: 0;
+
+        // safari styles
+        @media not all and (min-resolution: 0.001dpcm) {
+          position: static;
+        }
 
         &--align-right {
           align-items: flex-end;
@@ -206,5 +220,60 @@
 
   &-header {
     background: transparent;
+  }
+
+  &-wrapper {
+    .@{spin-prefix-cls} {
+      &-container {
+        &::after {
+          display: none;
+        }
+      }
+
+      &-nested-loading {
+        display: block;
+
+        > div > .@{spin-prefix-cls} {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+
+  &-empty {
+    display: flex;
+    height: @table-empty-container-height;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    font: @font-weight-medium @font-size-base @font-family;
+    border-radius: @border-radius-base;
+    background: @white;
+    padding: @table-empty-container-padding;
+    color: @gray-dark;
+
+    &__title {
+      padding-bottom: 9px;
+      font-weight: @font-weight-semi-bold;
+      font-size: @heading-3-font-size;
+      color: @gray-darker;
+
+      &--sm {
+        font-size: @heading-5-font-size;
+      }
+    }
+
+    &__icon {
+      display: block;
+      font-size: @table-empty-icon-size;
+      margin-bottom: 20px;
+
+      &--sm {
+        font-size: @table-empty-icon-size-sm;
+      }
+    }
   }
 }

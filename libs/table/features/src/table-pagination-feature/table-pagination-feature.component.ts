@@ -48,6 +48,7 @@ export class TablePaginationFeatureComponent extends TableFeatureComponent<
   total$ = this.tableData$.pipe(pluck('total'));
   pageSize$ = this.tableData$.pipe(pluck('pageSize'));
   page$ = this.tableData$.pipe(pluck('page'));
+  data$ = this.tableData$.pipe(pluck('data'));
   sizes$ = this.config$.pipe(
     pluck('sizes'),
     map(sizes => sizes ?? this.defaultSizes),

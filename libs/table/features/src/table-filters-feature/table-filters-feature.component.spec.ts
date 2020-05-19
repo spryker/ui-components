@@ -18,6 +18,7 @@ import {
 } from '@spryker/table/features/testing';
 import {
   TableColumnsResolverService,
+  TableData,
   TableDataConfig,
   TableDataConfiguratorService,
   TableDatasourceService,
@@ -39,12 +40,13 @@ import { ReplaySubject } from 'rxjs';
 class TestHostComponent {}
 
 class MockTableDataConfiguratorService {
-  readonly config$ = new ReplaySubject<TableDataConfig>(1);
+  config$ = new ReplaySubject<TableDataConfig>(1);
 }
 
 describe('TableFiltersFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
+  let mockData: TableData;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -67,8 +69,9 @@ describe('TableFiltersFeatureComponent', () => {
         },
         {
           provide: TableDataConfiguratorService,
-          useClass: MockTableDataConfiguratorService,
+          useExisting: MockTableDataConfiguratorService,
         },
+        MockTableDataConfiguratorService,
         {
           provide: TABLE_FILTERS_TOKEN,
           useValue: {
@@ -110,8 +113,19 @@ describe('TableFiltersFeatureComponent', () => {
       By.directive(TestTableFeatureComponent),
     ).componentInstance;
 
+    mockData = {
+      data: [{}],
+      page: 0,
+      pageSize: 0,
+      total: 10,
+    };
+
     fixture.detectChanges();
     tick();
+
+    testTableFeature.featureMocks?.table.data$?.next(mockData);
+    TestBed.inject(MockTableDataConfiguratorService).config$.next({});
+    fixture.detectChanges();
   }));
 
   const filtersContainerSelector = '.ant-table-filters-feature';

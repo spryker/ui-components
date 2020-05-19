@@ -26,6 +26,8 @@ import {
 } from './table/table';
 import { CoreTableComponent } from './table/table.component';
 import { PluckModule } from '@spryker/utils';
+import { IconModule } from '@spryker/icon';
+import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
 
 @NgModule({
   imports: [
@@ -37,6 +39,9 @@ import { PluckModule } from '@spryker/utils';
     TableFeatureModule,
     SelectComponentsModule,
     PluckModule,
+    IconModule,
+    IconNoDataModule,
+    IconNoFilteredDataModule,
   ],
   declarations: [
     CoreTableComponent,

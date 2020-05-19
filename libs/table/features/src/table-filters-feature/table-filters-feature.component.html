@@ -1,11 +1,15 @@
 <div
   class="ant-table-filters-feature"
-  *spyTableFeatureTpl="tableFeatureLocation.top"
+  *spyTableFeatureTpl="
+    tableFeatureLocation.beforeTable;
+    styles: { width: '100%' }
+  "
 >
   <div
     *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
     class="ant-table-filters-feature-item"
   >
+    <span class="ant-table-filters-feature-item-title">{{ filter.title }}</span>
     <ng-container
       [ngComponentOutlet]="filterComponentMap[filter.type]"
       [ndcDynamicInputs]="{

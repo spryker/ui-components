@@ -2,12 +2,13 @@
   [(ngModel)]="mappedValue"
   (ngModelChange)="handleValueChange($event)"
   [nzShowSearch]="search"
+  [nzShowArrow]="true"
   [nzDisabled]="disabled"
   [nzPlaceHolder]="placeholder"
   [nzMode]="multiple ? 'tags' : 'default'"
   [nzSuffixIcon]="suffixIconTpl"
   [nzNotFoundContent]="noOptionsText"
-  [nzMenuItemSelectedIcon]="multiSelectOptionIconTpl"
+  [nzOptionHeightPx]="40"
   [nzRemoveIcon]="crossIconTpl"
   [nzAllowClear]="!disableClear"
   [nzClearIcon]="clearIconTpl"
@@ -26,13 +27,16 @@
     [nzValue]="option.value"
     [nzLabel]="option.label"
     [nzDisabled]="option.isDisabled"
-    [nzCustomContent]="!multiple"
+    [nzCustomContent]="true"
   >
     {{ option.label }}
-    <spy-icon
-      class="ant-select-item-option__icon--checked"
-      [name]="checkIcon"
-    ></spy-icon>
+
+    <ng-container
+      *ngTemplateOutlet="
+        multiple ? multiSelectOptionIconTpl : singleSelectOptionIconTpl
+      "
+    >
+    </ng-container>
   </nz-option>
 </nz-select>
 
@@ -72,6 +76,13 @@
   <spy-icon
     class="ant-select-selector__choice__remove__icon"
     [name]="removeIcon"
+  ></spy-icon>
+</ng-template>
+
+<ng-template #singleSelectOptionIconTpl>
+  <spy-icon
+    class="ant-select-item-option__icon--checked"
+    [name]="checkIcon"
   ></spy-icon>
 </ng-template>
 

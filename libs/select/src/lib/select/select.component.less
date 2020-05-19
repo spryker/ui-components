@@ -4,6 +4,16 @@
   height: @select-component-height;
   width: @select-component-width;
 
+  &.@{select-prefix-cls}-single {
+    .@{select-prefix-cls}-selector {
+      border-color: @gray-light;
+
+      &:hover {
+        border-color: @gray;
+      }
+    }
+  }
+
   &-native {
     display: none;
   }
@@ -47,6 +57,45 @@
     }
 
     &-option {
+      &-state {
+        display: none;
+
+        &__multiChecked,
+        &__multiUnChecked {
+          box-sizing: border-box;
+          height: @checkbox-icon-size;
+          width: @checkbox-icon-size;
+          margin-right: @checkbox-icon-margin-right;
+          margin-top: @checkbox-icon-margin-top;
+          border-radius: @checkbox-icon-border-radius;
+          float: left;
+        }
+
+        &__multiChecked {
+          background-color: @green;
+          display: none;
+          text-align: center;
+          line-height: @checkbox-multi-select-checked-line-height;
+
+          &--icon {
+            color: @white;
+            font-size: @checkbox-multi-select-checked-icon-size;
+          }
+        }
+
+        &__multiUnChecked {
+          border: 2px solid @gray-light;
+
+          &:focus {
+            border-color: @green;
+          }
+
+          &:hover {
+            border-color: @gray;
+          }
+        }
+      }
+
       &__icon--checked {
         display: none;
         position: absolute;
@@ -59,32 +108,36 @@
         line-height: @check-icon-line-height;
       }
 
-      &-selected:not(.ant-select-item-option-disabled) {
-        color: @green;
-        background-color: @green-lighter;
-        font-weight: @font-weight-medium;
-  
+      &-selected {
+        &:not(.ant-select-item-option-disabled) {
+          color: @green;
+          background-color: @green-lighter;
+        }
+
         .@{select-prefix-cls}-item-option__icon--checked {
           display: block;
         }
-  
-        .@{select-prefix-cls}-selection--multiple__multiChecked {
+
+        .@{select-prefix-cls}-item-option-state__multiChecked {
           display: block;
         }
-  
-        .@{select-prefix-cls}-selection--multiple__multiUnChecked {
+
+        .@{select-prefix-cls}-item-option-state__multiUnChecked {
           display: none;
         }
       }
-  
+
       &-disabled {
-        .@{select-prefix-cls}-selection--multiple__multiUnChecked {
+        background-color: @gray-lighter;
+        color: @gray-dark;
+
+        .@{select-prefix-cls}-item-option-state__multiUnChecked {
           border-color: @gray-light;
           background-color: @gray-lighter;
         }
       }
     }
-    
+
     &:focus {
       border: @select-menu-item-border;
       border-radius: 2px;
@@ -109,68 +162,22 @@
     &-icon {
       vertical-align: middle;
     }
-
-  // &-selection {
-  //   border-color: @gray-light;
-
-  //   &:hover {
-  //     border-color: @gray;
-  //   }
-
-  //   &-selected-value {
-  //     color: @ink;
-  //   }
-  //   }
   }
 
   &-multiple {
-
     .@{select-prefix-cls}-selector {
-      padding-bottom: 2px;
+      padding: 0px 4px;
+      border-color: @gray-light;
+
+      &:hover {
+        border-color: @gray;
+      }
     }
 
     .@{select-prefix-cls}-selection-item {
       background: none;
       border: none;
       color: @ink;
-    }    
-
-    .@{select-prefix-cls}-item-option-state {
-      
-      &__multiChecked,
-      &__multiUnChecked {
-        box-sizing: border-box;
-        height: @checkbox-icon-size;
-        width: @checkbox-icon-size;
-        margin-right: @checkbox-icon-margin-right;
-        margin-top: @checkbox-icon-margin-top;
-        border-radius: @checkbox-icon-border-radius;
-        float: left;
-      }
-  
-      &__multiChecked {
-        background-color: @green;
-        display: none;
-        text-align: center;
-        line-height: @checkbox-multi-select-checked-line-height;
-  
-        &--icon {
-          color: @white;
-          font-size: @checkbox-multi-select-checked-icon-size;
-        }
-      }
-  
-      &__multiUnChecked {
-        border: 2px solid @gray-light;
-  
-        &:focus {
-          border-color: @green;
-        }
-  
-        &:hover {
-          border-color: @gray;
-        }
-      }
     }
   }
 

@@ -135,7 +135,7 @@ describe('TableComponent', () => {
       expect(tableElem).toBeTruthy();
     }));
 
-    it('must render `thead` with input `nzSingleSort` must be `true`', fakeAsync(async () => {
+    it('must render `thead` with input `nzSortFn` must be `true`', fakeAsync(async () => {
       const host = await createComponent({ config: mockConfig }, true);
       tick();
       const dataRes = httpTestingController.expectOne(req =>
@@ -147,7 +147,7 @@ describe('TableComponent', () => {
       const tableHeadElem = host.queryCss('thead');
 
       expect(tableHeadElem).toBeTruthy();
-      expect(tableHeadElem!.attributes.nzSingleSort).toBe('true');
+      expect(tableHeadElem!.attributes.nzSortFn).toBe('true');
     }));
   });
 
@@ -329,7 +329,7 @@ describe('TableComponent', () => {
         expect(thElements.length).toBe(mockCols.length);
         expect(thElements[0].properties.nzShowSort).toBe(mockCols[0].sortable);
         expect(thElements[0].properties.nzWidth).toBe(mockCols[0].width);
-        expect(thElements[0].properties.nzSortKey).toBe(mockCols[0].id);
+        expect(thElements[0].properties.nzColumnKey).toBe(mockCols[0].id);
         expect(thElements[0].nativeElement.textContent).toMatch(
           mockCols[0].title,
         );

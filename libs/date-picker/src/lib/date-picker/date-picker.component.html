@@ -8,8 +8,12 @@
   [nzShowToday]="false"
   (ngModelChange)="dateChange.emit($event)"
   (nzOnOpenChange)="openChangeEvent($event)"
-  [nzSuffixIcon]="suffixIcon"
+  [nzSuffixIcon]="suffixTpl"
   *spyLocaleRender
   #datePicker
 >
 </nz-date-picker>
+
+<ng-template #suffixTpl>
+  <spy-icon [name]="suffixIcon"></spy-icon>
+</ng-template>

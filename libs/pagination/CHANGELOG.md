@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.1.0-next.9...@spryker/pagination@0.1.0-next.10) (2020-05-20)
+
+**Note:** Version bump only for package @spryker/pagination
+
+
+
+
+
 # [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.1.0-next.8...@spryker/pagination@0.1.0-next.9) (2020-05-15)
 
 **Note:** Version bump only for package @spryker/pagination

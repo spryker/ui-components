@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table",
-  "version": "0.1.0-next.38",
+  "version": "0.1.0-next.39",
   "dependencies": {
     "@orchestrator/core": "^0.2.0",
     "@orchestrator/layout": "^0.1.0",
@@ -11,6 +11,8 @@
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@spryker/checkbox": "^0.0.1-next.6",
+    "@spryker/chips": "^0.0.1-next.0",
+    "@spryker/date-picker ": "^0.0.1-next.5",
     "@spryker/dropdown": "^0.0.1-next.6",
     "@spryker/icon": "^0.0.1-next.14",
     "@spryker/pagination": "^0.0.1-next.9",
@@ -18,7 +20,6 @@
     "@spryker/styles": "^0.0.1-next.48",
     "@spryker/date-picker": "^0.0.1-next.5",
     "@spryker/utils": "^0.0.1-next.15",
-    "@spryker/chips": "^0.0.1-next.0",
     "@spryker/web-components": "^0.2.0-next.2",
     "tslib": "^1.10.0"
   },

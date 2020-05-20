@@ -34,7 +34,7 @@
 
 <ng-container *ngIf="tableData$ | async | pluck: 'length'">
   <nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
-    <thead nzSingleSort="true" (nzSortChange)="updateSorting($event)">
+    <thead nzSortFn="true" (nzSortOrderChange)="updateSorting($event)">
       <tr>
         <ng-template
           [spyTableFeaturesRenderer]="featureLocation.beforeColsHeader"
@@ -49,8 +49,8 @@
         <th
           *ngFor="let column of columns$ | async; trackBy: trackByColumns"
           [nzShowSort]="column.sortable"
-          [nzSortKey]="column.id"
-          [nzSort]="
+          [nzColumnKey]="column.id"
+          [nzSortOrder]="
             (sortingData$ | async | pluck: 'sortBy') === column.id
               ? (sortingData$ | async | pluck: 'sortDirection')
               : null

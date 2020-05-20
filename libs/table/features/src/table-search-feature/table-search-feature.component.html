@@ -4,13 +4,13 @@
   <spy-input
     *ngIf="isVisible$ | async"
     [value]="value$ | async"
-    [prefix]="messageTmpl"
+    [prefix]="prefixTmpl"
     [suffix]="suffixTpl"
     [placeholder]="placeholder$ | async"
     (valueChange)="inputValueChange($event)"
   ></spy-input>
 
-  <ng-template #messageTmpl>
+  <ng-template #prefixTmpl>
     <spy-icon [name]="prefixIcon" class="ant-magnifier-icon"></spy-icon>
   </ng-template>
 

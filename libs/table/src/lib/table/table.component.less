@@ -9,8 +9,12 @@
   font: @font-weight-medium @font-size-base @font-family;
   background: none;
 
-  &-body {
-    overflow: auto !important;
+  table {
+    table-layout: fixed !important;
+  }
+
+  &-content {
+    overflow-x: auto;
   }
 
   &-features {
@@ -193,10 +197,6 @@
     > th {
       &.@{table-prefix-cls}-column-sort {
         background: transparent;
-      }
-
-      &.@{table-prefix-cls}-column-selectable {
-        width: (@table-padding-horizontal * 2) + @checkbox-size;
       }
     }
   }

@@ -96,7 +96,7 @@ export const withFeatures = (): IStory => ({
       },
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
-        { id: 'col2', title: 'Column #2', width: '20%' },
+        { id: 'col2', sortable: true, title: 'Column #2', width: '20%' },
         {
           id: 'col3',
           title: 'Column #3',

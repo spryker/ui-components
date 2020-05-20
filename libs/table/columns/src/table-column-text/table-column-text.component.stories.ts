@@ -21,8 +21,9 @@ export default {
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
   col1: `col1 #${i}`,
-  col2: 'col2',
+  col2: 'very looooooooooooooooooooooooooooooooooong col',
   col3: 'col3',
+  col4: 'col4',
 });
 
 export const primary = (): IStory => ({
@@ -74,7 +75,7 @@ export const withTable = (): IStory => ({
         url: '/data-request',
       },
       columns: [
-        { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
+        { id: 'col1', sortable: true, title: 'Column #1' },
         {
           id: 'col2',
           title: 'Column #2',
@@ -86,6 +87,17 @@ export const withTable = (): IStory => ({
         {
           id: 'col3',
           title: 'Column #3',
+          type: 'text',
+          typeOptions: {
+            text: '${value}',
+          },
+          typeOptionsMappings: {
+            color: { col3: 'green' },
+          },
+        },
+        {
+          id: 'col4',
+          title: 'Column #4',
           type: 'text',
           typeOptions: {
             text: '${value} in ${row.col1}',

@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { DateWorkDaysToken } from './tokens';
 import { ToBoolean, ToJson, InjectionTokenType } from '@spryker/utils';
+import { IconCalendarModule } from '@spryker/icon/icons';
 
 interface EnableDateRange {
   from?: Date | string;
@@ -64,6 +65,8 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   disabledDate?: EnableDateFunction;
   _date?: Date;
   @HostBinding('class.open') isOpen = false;
+
+  suffixIcon = IconCalendarModule.icon;
 
   constructor(
     @Inject(DateWorkDaysToken)

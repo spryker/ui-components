@@ -9,8 +9,8 @@
   font: @font-weight-medium @font-size-base @font-family;
   background: none;
 
-  &-body {
-    overflow: auto !important;
+  &-content {
+    overflow-x: auto;
   }
 
   &-features {
@@ -132,6 +132,7 @@
       border-bottom: none;
       z-index: 0;
       height: inherit;
+      width: 1%;
 
       .safari-styles({position: relative;});
 

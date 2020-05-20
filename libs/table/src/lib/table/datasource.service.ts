@@ -29,12 +29,9 @@ export class TableDatasourceService {
     const sourceClass = this.dataSources?.[sourceType];
 
     if (!sourceType || !sourceClass) {
-      return of({
-        data: [],
-        total: 0,
-        page: 0,
-        pageSize: 0,
-      });
+      throw Error(
+        `TableDatasourceService: Unknown data source type ${sourceType}`,
+      );
     }
 
     const sourceService: TableDatasource<TableDatasourceConfig> = this.injector.get(

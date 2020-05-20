@@ -195,10 +195,39 @@ export class CoreTableComponent
   );
 
   isLoading$ = merge(
-    this.config$.pipe(mapTo(true)),
+    this.dataConfiguratorService.config$.pipe(mapTo(true)),
     this.data$.pipe(mapTo(false)),
     this.error$.pipe(mapTo(false)),
   ).pipe(startWith(false), shareReplaySafe());
+
+  isEmpty$ = combineLatest([
+    this.isLoading$,
+    this.tableData$.pipe(map(data => Boolean(data.length))),
+    this.dataConfiguratorService.config$.pipe(
+      map(config => Boolean(Object.keys(config).length)),
+    ),
+  ]).pipe(
+    startWith([true, true, false]),
+    map(
+      ([isLoading, isTableData, isConfig]) =>
+        !isLoading && !isTableData && isConfig,
+    ),
+    shareReplaySafe(),
+  );
+
+  isNotFiltered$ = this.dataConfiguratorService.config$.pipe(
+    map(config => {
+      const isFiltered = config.filter
+        ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)
+        : false;
+      const isSearched = config.search
+        ? (config.search as string).length
+        : false;
+
+      return !(isFiltered || isSearched);
+    }),
+    shareReplaySafe(),
+  );
 
   templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
   features: TableFeatureComponent[] = [];

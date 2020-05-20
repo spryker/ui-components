@@ -8,7 +8,14 @@ import {
   TableFeatureConfig,
   TableFeatureLocation,
 } from '@spryker/table';
-import { map, mapTo, shareReplay, switchMap, take } from 'rxjs/operators';
+import {
+  map,
+  mapTo,
+  shareReplay,
+  switchMap,
+  take,
+  pluck,
+} from 'rxjs/operators';
 
 declare module '@spryker/table' {
   interface TableConfig {
@@ -45,7 +52,8 @@ export class TableTotalFeatureComponent extends TableFeatureComponent<
 
   isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
 
-  total$ = this.tableData$.pipe(map(data => data.total));
+  total$ = this.tableData$.pipe(pluck('total'));
+  data$ = this.tableData$.pipe(pluck('data'));
 
   selected$ = this.tableEventBus$.pipe(
     switchMap(eventBus => eventBus.on<any[]>('itemSelection')),

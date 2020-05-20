@@ -2,6 +2,7 @@
   *spyTableFeatureTpl="tableFeatureLocation.top; styles: { marginLeft: 'auto' }"
 >
   <spy-input
+    *ngIf="isVisible$ | async"
     [value]="value$ | async"
     [prefix]="messageTmpl"
     [suffix]="suffixTpl"

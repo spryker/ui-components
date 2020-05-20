@@ -84,7 +84,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     if (!this._picker && this.datePicker) {
       this._picker = this.datePicker;
 
-      this.updatePicker();
+      setTimeout(() => this.updatePicker());
     }
   }
 

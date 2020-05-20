@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
+import { PluckModule } from '@spryker/utils';
 
 import { TableTotalFeatureComponent } from './table-total-feature.component';
 
 @NgModule({
-  imports: [CommonModule, TableFeatureModule],
+  imports: [CommonModule, TableFeatureModule, PluckModule],
   exports: [TableTotalFeatureComponent],
   declarations: [TableTotalFeatureComponent],
   entryComponents: [TableTotalFeatureComponent],

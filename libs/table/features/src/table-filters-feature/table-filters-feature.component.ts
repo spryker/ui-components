@@ -68,13 +68,13 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     (acc, filter) => ({ ...acc, ...filter }),
     {},
   ) as Record<string, TableFilterComponent<TableFilterBase>>;
-  tableConfig$ = this.dataConfiguratorService$.pipe(
+  dataConfig$ = this.dataConfiguratorService$.pipe(
     switchMap(service => service.config$),
     shareReplay({ refCount: true, bufferSize: 1 }),
   );
   filters$ = this.config$.pipe(pluck('items'));
   filterValues$: Observable<Record<string, unknown>> = combineLatest([
-    this.tableConfig$.pipe(pluck('filter')) as Observable<
+    this.dataConfig$.pipe(pluck('filter')) as Observable<
       Record<string, unknown>
     >,
     this.updateFiltersValue$.pipe(startWith(null)),
@@ -100,7 +100,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     pluck('data'),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
-  isVisible$ = combineLatest([this.tableConfig$, this.data$]).pipe(
+  isVisible$ = combineLatest([this.dataConfig$, this.data$]).pipe(
     map(([config, data]) => {
       const isFiltered = config?.filter
         ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)

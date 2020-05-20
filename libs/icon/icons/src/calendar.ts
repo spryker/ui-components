@@ -13,5 +13,4 @@ const svg = `
 export class IconCalendarModule {
   static icon = 'calendar';
   static svg = svg;
-  static forceInit = true;
 }

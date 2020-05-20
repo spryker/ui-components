@@ -20,6 +20,7 @@ import {
   TableDatasourceService,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
+import { PluckModule } from "@spryker/utils";
 
 @Component({
   selector: 'spy-test-host',
@@ -49,7 +50,7 @@ describe('TablePaginationFeatureComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [PluckModule],
       declarations: [
         TestTableFeatureTplDirective,
         TablePaginationFeatureComponent,

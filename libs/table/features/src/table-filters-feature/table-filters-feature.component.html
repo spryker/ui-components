@@ -10,7 +10,9 @@
         *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
         class="ant-table-filters-feature-item"
       >
-        <span class="ant-table-filters-feature-item-title">{{ filter.title }}</span>
+        <span class="ant-table-filters-feature-item-title">{{
+          filter.title
+        }}</span>
         <ng-container
           [ngComponentOutlet]="filterComponentMap[filter.type]"
           [ndcDynamicInputs]="{

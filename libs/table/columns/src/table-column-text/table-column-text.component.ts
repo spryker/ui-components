@@ -23,8 +23,6 @@ declare module '@spryker/table' {
 export class TableColumnTextConfig {
   @ColumnTypeOption()
   text? = this.contextService.wrap('value');
-  @ColumnTypeOption()
-  color?: string;
 
   constructor(private contextService: ContextService) {}
 }

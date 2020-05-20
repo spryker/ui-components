@@ -9,6 +9,10 @@
   font: @font-weight-medium @font-size-base @font-family;
   background: none;
 
+  table {
+    table-layout: fixed !important;
+  }
+
   &-content {
     overflow-x: auto;
   }
@@ -132,7 +136,6 @@
       border-bottom: none;
       z-index: 0;
       height: inherit;
-      width: 1%;
 
       .safari-styles({position: relative;});
 
@@ -194,10 +197,6 @@
     > th {
       &.@{table-prefix-cls}-column-sort {
         background: transparent;
-      }
-
-      &.@{table-prefix-cls}-column-selectable {
-        width: (@table-padding-horizontal * 2) + @checkbox-size;
       }
     }
   }

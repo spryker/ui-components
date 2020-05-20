@@ -1,0 +1,6 @@
+// safari styles only mixin
+.safari-styles(@rules) {
+  @media not all and (min-resolution: 0.001dpcm) {
+    @rules();
+  }
+}

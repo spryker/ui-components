@@ -33,7 +33,7 @@ import { InputModule } from '@spryker/input';
 class TestHostComponent {}
 
 class MockTableDataConfiguratorService {
-  config$ = new ReplaySubject<TableDataConfig>(1);
+  readonly config$ = new ReplaySubject<TableDataConfig>(1);
 }
 
 describe('TableSearchFeatureComponent', () => {

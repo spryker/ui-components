@@ -40,7 +40,7 @@ import { ReplaySubject } from 'rxjs';
 class TestHostComponent {}
 
 class MockTableDataConfiguratorService {
-  config$ = new ReplaySubject<TableDataConfig>(1);
+  readonly config$ = new ReplaySubject<TableDataConfig>(1);
 }
 
 describe('TableFiltersFeatureComponent', () => {

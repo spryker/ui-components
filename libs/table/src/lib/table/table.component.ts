@@ -208,15 +208,14 @@ export class CoreTableComponent
     ),
   ]).pipe(
     startWith([true, true, false]),
-    map((states: boolean[]) => {
-      const [isLoading, isTableData, isConfig] = states;
-
-      return !isLoading && !isTableData && isConfig;
-    }),
+    map(
+      ([isLoading, isTableData, isConfig]) =>
+        !isLoading && !isTableData && isConfig,
+    ),
     shareReplaySafe(),
   );
 
-  isFiltered$ = this.dataConfiguratorService.config$.pipe(
+  isNotFiltered$ = this.dataConfiguratorService.config$.pipe(
     map(config => {
       const isFiltered = config.filter
         ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)
@@ -225,7 +224,7 @@ export class CoreTableComponent
         ? (config.search as string).length
         : false;
 
-      return isFiltered || isSearched;
+      return !(isFiltered || isSearched);
     }),
     shareReplaySafe(),
   );

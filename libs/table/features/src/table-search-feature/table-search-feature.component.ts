@@ -62,24 +62,22 @@ export class TableSearchFeatureComponent
     distinctUntilChanged(),
     takeUntil(this.destroyed$),
   );
+  tableConfig$ = this.dataConfiguratorService$.pipe(
+    switchMap(service => service.config$),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
   placeholder$ = this.config$.pipe(
     pluck('placeholder'),
     map(placeholder => placeholder ?? ''),
   );
-  searchValue$ = this.dataConfiguratorService$.pipe(
-    switchMap(service => service.config$),
-    pluck('search'),
-  );
+  searchValue$ = this.tableConfig$.pipe(pluck('search'));
   value$ = merge(this.inputValue$, this.searchValue$);
   data$ = this.table$.pipe(
     switchMap(table => table.data$),
     pluck('data'),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
-  isVisible$ = combineLatest([
-    this.dataConfiguratorService$.pipe(switchMap(service => service.config$)),
-    this.data$,
-  ]).pipe(
+  isVisible$ = combineLatest([this.tableConfig$, this.data$]).pipe(
     map(([config, data]) => {
       const isFiltered = config?.filter
         ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)

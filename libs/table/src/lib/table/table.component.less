@@ -133,10 +133,7 @@
       z-index: 0;
       height: inherit;
 
-      // safari styles
-      @media not all and (min-resolution: 0.001dpcm) {
-        position: relative;
-      }
+      .safari-styles({position: relative;});
 
       .@{table-prefix-cls}-column-inner {
         position: relative;
@@ -149,10 +146,7 @@
         height: 100%;
         z-index: 0;
 
-        // safari styles
-        @media not all and (min-resolution: 0.001dpcm) {
-          position: static;
-        }
+        .safari-styles({position: static;});
 
         &--align-right {
           align-items: flex-end;
@@ -262,7 +256,7 @@
     &__icon {
       display: block;
       font-size: @table-empty-icon-size;
-      margin-bottom: 20px;
+      margin-bottom: @table-empty-icon-margin-bottom;
 
       &--sm {
         font-size: @table-empty-icon-size-sm;

@@ -13,8 +13,9 @@
 </div>
 
 <div class="ant-table-empty" *ngIf="isEmpty$ | async">
-  <ng-container *ngIf="!(isFiltered$ | async); else elseEmptyBlock">
+  <ng-container *ngIf="isNotFiltered$ | async; else elseEmptyBlock">
     <spy-icon name="no-data" class="ant-table-empty__icon"></spy-icon>
+    <!-- TODO: add i18n pipe -->
     <h2 class="ant-table-empty__title">There is nothing here.</h2>
   </ng-container>
 
@@ -23,6 +24,7 @@
       name="no-filtered-data"
       class="ant-table-empty__icon ant-table-empty__icon--sm"
     ></spy-icon>
+    <!-- TODO: add i18n pipe -->
     <h3 class="ant-table-empty__title ant-table-empty__title--sm">
       No results
     </h3>

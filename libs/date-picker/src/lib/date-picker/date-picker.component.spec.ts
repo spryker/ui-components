@@ -133,21 +133,18 @@ describe('DatePickerComponent', () => {
       expect(openClass).toBeTruthy();
     }));
 
-    it('Should NOT apply open class to the host element if input open is false', async () => {
+    it('Should NOT apply open class to the host element if input open is false', fakeAsync(async () => {
       const host = await createComponent({ open: false });
 
-      // Double detectChanges() call added to update element's DOM
-      // and prevent ExpressionChangedAfterItHasBeenCheckedError
-      try {
-        host.detectChanges();
-      } catch (e) {
-        host.detectChanges();
-      }
+      tick();
+      host.detectChanges();
+      tick();
+      host.detectChanges();
 
       const datePicker = host.query(DatePickerComponent);
       const openClass = datePicker?.classes.open;
 
       expect(openClass).toBeFalsy();
-    });
+    }));
   });
 });

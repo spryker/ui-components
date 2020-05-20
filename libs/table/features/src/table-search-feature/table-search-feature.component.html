@@ -1,23 +1,22 @@
 <ng-container
   *spyTableFeatureTpl="tableFeatureLocation.top; styles: { marginLeft: 'auto' }"
 >
-  <ng-container *ngIf="isVisible$ | async">
-    <spy-input
-      [value]="value$ | async"
-      [prefix]="messageTmpl"
-      [suffix]="suffixTpl"
-      [placeholder]="placeholder$ | async"
-      (valueChange)="inputValueChange($event)"
-    ></spy-input>
+  <spy-input
+    *ngIf="isVisible$ | async"
+    [value]="value$ | async"
+    [prefix]="messageTmpl"
+    [suffix]="suffixTpl"
+    [placeholder]="placeholder$ | async"
+    (valueChange)="inputValueChange($event)"
+  ></spy-input>
 
-    <ng-template #messageTmpl>
-      <spy-icon [name]="prefixIcon" class="ant-magnifier-icon"></spy-icon>
-    </ng-template>
+  <ng-template #messageTmpl>
+    <spy-icon [name]="prefixIcon" class="ant-magnifier-icon"></spy-icon>
+  </ng-template>
 
-    <ng-template #suffixTpl>
-      <div *ngIf="value$ | async" (click)="clearInput()">
-        <spy-icon [name]="suffixIcon" class="ant-remove-icon"></spy-icon>
-      </div>
-    </ng-template>
-  </ng-container>
+  <ng-template #suffixTpl>
+    <div *ngIf="value$ | async" (click)="clearInput()">
+      <spy-icon [name]="suffixIcon" class="ant-remove-icon"></spy-icon>
+    </div>
+  </ng-template>
 </ng-container>

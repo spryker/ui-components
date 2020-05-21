@@ -106,6 +106,7 @@ describe('TableSearchFeatureComponent', () => {
     tick();
 
     testTableFeature.featureMocks?.table.data$?.next(mockData);
+    testTableFeature.featureMocks?.table.isLoading$?.next(true);
     TestBed.inject(MockTableDataConfiguratorService).config$.next({});
     fixture.detectChanges();
   }));

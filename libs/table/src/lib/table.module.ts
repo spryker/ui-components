@@ -8,7 +8,7 @@ import {
 import { ContextModule } from '@spryker/utils';
 import { SelectComponentsModule } from '@spryker/web-components';
 import { NzTableModule } from 'ng-zorro-antd/table';
-
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { provideTableColumnComponents } from './column-type/tokens';
 import { provideTableDatasourceServices } from './datasource-type/tokens';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
@@ -42,6 +42,7 @@ import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
     IconModule,
     IconNoDataModule,
     IconNoFilteredDataModule,
+    NzSpinModule,
   ],
   declarations: [
     CoreTableComponent,

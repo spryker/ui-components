@@ -12,25 +12,29 @@
   ></spy-table-features-renderer>
 </div>
 
-<div class="ant-table-empty" *ngIf="isEmpty$ | async">
-  <ng-container *ngIf="isNotFiltered$ | async; else elseEmptyBlock">
-    <spy-icon name="no-data" class="ant-table-empty__icon"></spy-icon>
-    <!-- TODO: add i18n pipe -->
-    <h2 class="ant-table-empty__title">There is nothing here.</h2>
-  </ng-container>
+<ng-container *ngIf="isEmpty$ | async">
+  <nz-spin [nzSpinning]="isLoading$ | async">
+    <div class="ant-table-empty">
+      <ng-container *ngIf="isNotFiltered$ | async; else elseEmptyBlock">
+        <spy-icon name="no-data" class="ant-table-empty__icon"></spy-icon>
+        <!-- TODO: add i18n pipe -->
+        <h2 class="ant-table-empty__title">There is nothing here.</h2>
+      </ng-container>
 
-  <ng-template #elseEmptyBlock>
-    <spy-icon
-      name="no-filtered-data"
-      class="ant-table-empty__icon ant-table-empty__icon--sm"
-    ></spy-icon>
-    <!-- TODO: add i18n pipe -->
-    <h3 class="ant-table-empty__title ant-table-empty__title--sm">
-      No results
-    </h3>
-    <p>Try changing filter criteria</p>
-  </ng-template>
-</div>
+      <ng-template #elseEmptyBlock>
+        <spy-icon
+          name="no-filtered-data"
+          class="ant-table-empty__icon ant-table-empty__icon--sm"
+        ></spy-icon>
+        <!-- TODO: add i18n pipe -->
+        <h3 class="ant-table-empty__title ant-table-empty__title--sm">
+          No results
+        </h3>
+        <p>Try changing filter criteria</p>
+      </ng-template>
+    </div>
+  </nz-spin>
+</ng-container>
 
 <ng-container *ngIf="tableData$ | async | pluck: 'length'">
   <nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">

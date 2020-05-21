@@ -23,10 +23,6 @@ export class ButtonLinkComponent implements OnInit {
   classList?: string;
 
   ngOnInit(): void {
-    this.classList = this.getClassList();
-  }
-
-  getClassList(): string {
-    return `${this.shape} ${this.size} ${this.variant}`;
+    this.classList = `${this.shape} ${this.size} ${this.variant}`;
   }
 }

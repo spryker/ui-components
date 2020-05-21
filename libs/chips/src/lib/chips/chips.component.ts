@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Input,
-  HostBinding,
 } from '@angular/core';
 
 @Component({
@@ -14,6 +13,6 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class ChipsComponent {
-  @HostBinding('class') @Input() color = 'green';
-  @HostBinding('style.maxWidth') @Input() maxWidth = '145px';
+  @Input() color = 'green';
+  @Input() maxWidth = '145px';
 }

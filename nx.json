@@ -103,6 +103,9 @@
     },
     "date-picker": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "button-link": {
+      "tags": ["level:atom"]
     }
   },
   "tasksRunnerOptions": {

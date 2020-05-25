@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Input,
+  HostBinding,
 } from '@angular/core';
 
 @Component({
@@ -11,8 +12,14 @@ import {
   styleUrls: ['./chips.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: { class: 'ant-chips' },
 })
 export class ChipsComponent {
   @Input() color = 'green';
-  @Input() maxWidth = '145px';
+  @HostBinding('style.maxWidth') @Input() maxWidth = '145px';
+
+  @HostBinding('class')
+  get hostClasses(): string {
+    return `ant-chips ${this.color}`;
+  }
 }

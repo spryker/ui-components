@@ -4,5 +4,8 @@
     "emitDecoratorMetadata": true
   },
   "exclude": ["../src/test.ts", "../**/*.spec.ts"],
-  "include": ["../src/**/*"]
+  "include": ["../src/**/*"],
+  "angularCompilerOptions": {
+    "enableIvy": true
+  }
 }

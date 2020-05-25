@@ -24,4 +24,11 @@ export class DateRangePickerComponent {
   @Input() placeholderFrom?: string;
   @Input() placeholderTo?: string;
   @Output() datesChange = new EventEmitter<DateRangeValue>();
+
+  datesChangeHandler(dates: DateRangeValue): void {
+    dates.from?.setHours(0, 0, 0);
+    dates.to?.setHours(23, 59, 59);
+
+    this.datesChange.emit(dates);
+  }
 }

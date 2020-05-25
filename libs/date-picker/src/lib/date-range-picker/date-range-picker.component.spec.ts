@@ -16,7 +16,10 @@ describe('DateRangePickerComponent', () => {
     },
   );
 
-  const mockedDates = { from: '2012-12-12', to: '2012-12-17' };
+  const mockedDates = {
+    from: new Date('2012-12-12'),
+    to: new Date('2012-12-17'),
+  };
   const mockedPlaceholder = 'placeholder';
   const mockedFormat = 'yyyy-MM-dd';
 
@@ -158,7 +161,7 @@ describe('DateRangePickerComponent', () => {
 
       const datePickerElemFrom = host.queryCss('spy-date-picker');
 
-      datePickerElemFrom!.triggerEventHandler('dateChange', mockedDates);
+      datePickerElemFrom!.triggerEventHandler('dateChange', mockedDates.from);
       host.detectChanges();
 
       expect(host.hostComponent.datesChange).toHaveBeenCalledWith(mockedDates);
@@ -176,7 +179,7 @@ describe('DateRangePickerComponent', () => {
         '.ant-range-picker-col:last-child spy-date-picker',
       );
 
-      datePickerElemTo!.triggerEventHandler('dateChange', mockedDates);
+      datePickerElemTo!.triggerEventHandler('dateChange', mockedDates.to);
       host.detectChanges();
 
       expect(host.hostComponent.datesChange).toHaveBeenCalledWith(mockedDates);

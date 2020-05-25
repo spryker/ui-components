@@ -5,7 +5,7 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
-import { Props } from '@spryker/button';
+import { Props } from '../button/button.component';
 import { ToJson } from '@spryker/utils';
 
 @Component({

@@ -1,6 +1,7 @@
 import {
   Component,
   OnChanges,
+  OnInit,
   ChangeDetectionStrategy,
   Input,
   ViewEncapsulation,
@@ -15,7 +16,7 @@ import { ToJson } from '@spryker/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ButtonLinkComponent implements OnChanges {
+export class ButtonLinkComponent implements OnChanges, OnInit {
   @Input() url?: string;
   @Input() shape: Props['shape'] = 'default';
   @Input() size: Props['size'] = 'md';
@@ -24,7 +25,15 @@ export class ButtonLinkComponent implements OnChanges {
 
   classList?: string;
 
+  ngOnInit(): void {
+    this.setClassList();
+  }
+
   ngOnChanges(): void {
+    this.setClassList();
+  }
+
+  private setClassList(): void {
     this.classList = `${this.shape} ${this.size} ${this.variant}`;
   }
 }

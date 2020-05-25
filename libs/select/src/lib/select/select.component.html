@@ -1,4 +1,3 @@
-{{ 'select.selected:number' | spyI18n: { number: 1 } | async }}
 <nz-select
   [(ngModel)]="mappedValue"
   (ngModelChange)="handleValueChange($event)"
@@ -105,6 +104,6 @@
 </ng-template>
 
 <!-- TODO: Localize "selected" text once locale pipe available -->
-<ng-template #tagPlaceholder let-selectedList
-  >{{ selectedList.length }} selected</ng-template
->
+<ng-template #tagPlaceholder let-selectedList>{{
+  'select.selected:number' | spyI18n: { number: selectedList.length } | async
+}}</ng-template>

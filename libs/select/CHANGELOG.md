@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.19](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.18...@spryker/select@0.1.0-next.19) (2020-05-25)
+
+
+### Features
+
+* **locale:** add i18n capabilities with data aggregation ([da20eb3](https://github.com/spryker/ui-components/commit/da20eb3846f11635eec909c05f4aceeff45388d8))
+
+
+
+
+
 # [0.1.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.17...@spryker/select@0.1.0-next.18) (2020-05-21)
 
 **Note:** Version bump only for package @spryker/select

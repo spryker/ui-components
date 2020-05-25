@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.10...@spryker/button@0.1.0-next.11) (2020-05-25)
+
+
+### Features
+
+* **button-link:** added oninit method ([15c2b41](https://github.com/spryker/ui-components/commit/15c2b411509e088c03310858b618050bcc363be6))
+* **button-link:** added variable ([a9e34c1](https://github.com/spryker/ui-components/commit/a9e34c1ea2acaf733abecb5140a06adc12862037))
+* **button-link:** fixed dependency ([f658866](https://github.com/spryker/ui-components/commit/f65886676cdf8218c21251fc8c8dad01bc0edc6b))
+* **button-link:** fixed travis ([82999da](https://github.com/spryker/ui-components/commit/82999dabd6017d2ab44327d1bf2e501f316e994b))
+* **button-link:** moved to button module ([7535667](https://github.com/spryker/ui-components/commit/753566792154a64b95ad8155f7bf9d441797c5e9))
+
+
+
+
+
 # 0.1.0-next.10 (2020-05-15)
 
 **Note:** Version bump only for package @spryker/button

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.54](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.53...@spryker/styles@0.1.0-next.54) (2020-05-25)
+
+
+### Features
+
+* **button-link:** added spy variable ([205b84c](https://github.com/spryker/ui-components/commit/205b84c845b033c8c9dc05e3a318aa6cd33eb544))
+* **button-link:** added variable ([a9e34c1](https://github.com/spryker/ui-components/commit/a9e34c1ea2acaf733abecb5140a06adc12862037))
+* **button-link:** feature button-link ([171e7aa](https://github.com/spryker/ui-components/commit/171e7aabb87c24ec93aa1d1583c5f38d305046bf))
+* **button-link:** fixed dependency ([f658866](https://github.com/spryker/ui-components/commit/f65886676cdf8218c21251fc8c8dad01bc0edc6b))
+
+
+
+
+
 # [0.1.0-next.53](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.52...@spryker/styles@0.1.0-next.53) (2020-05-21)
 
 **Note:** Version bump only for package @spryker/styles

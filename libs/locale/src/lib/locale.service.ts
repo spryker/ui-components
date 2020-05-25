@@ -92,7 +92,7 @@ export class LocaleService implements OnDestroy {
     debounceTime(0),
     filter(([isLoaded]) => !isLoaded),
     map(([_, locale]) => locale),
-    share(),
+    shareReplay({ bufferSize: 1, refCount: false }),
   );
 
   constructor(

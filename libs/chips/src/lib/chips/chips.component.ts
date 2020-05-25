@@ -12,7 +12,6 @@ import {
   styleUrls: ['./chips.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  host: { class: 'ant-chips' },
 })
 export class ChipsComponent {
   @Input() color = 'green';

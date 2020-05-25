@@ -3,6 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { AntRegistrarService } from './loader-registrars/ant-registrar.service';
 import { NgRegistrarService } from './loader-registrars/ng-registrar.service';
+import { SprykerRegistrarService } from './loader-registrars/spryker-registrar.service';
 import { LocaleRenderDirective } from './locale-render/locale-render.directive';
 import { LocaleSwitcherComponent } from './locale-switcher/locale-switcher.component';
 import {
@@ -35,6 +36,7 @@ export class LocaleModule {
         provideLocaleLoaderRegistrars({
           ng: NgRegistrarService,
           ant: AntRegistrarService,
+          spryker: SprykerRegistrarService,
         }),
         defaultLocale ? provideDefaultLocale(defaultLocale) : [],
         registrars ? provideLocaleLoaderRegistrars(registrars) : [],

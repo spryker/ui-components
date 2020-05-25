@@ -5,7 +5,7 @@ import { LocaleRecord, provideLocaleRecordsFactory } from '@spryker/locale';
 export const DE_LOCALE = 'de';
 
 export function deLocaleFactory() {
-  // We should use factory with internal const to workaround AOT error
+  // FIXME(angular/angular#23629): Use factory with internal const to workaround AOT error
   // @see https://github.com/angular/angular/issues/23629
   const deLocale: LocaleRecord = {
     id: DE_LOCALE,
@@ -20,6 +20,10 @@ export function deLocaleFactory() {
         })),
       ant: () =>
         import('ng-zorro-antd/esm5/i18n/languages/de_DE' as any).then(m => ({
+          data: m.default,
+        })),
+      spryker: () =>
+        import('@spryker/locale/data/de' as any).then(m => ({
           data: m.default,
         })),
     },

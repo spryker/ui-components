@@ -1,11 +1,12 @@
 import {
   Component,
-  OnInit,
+  OnChanges,
   ChangeDetectionStrategy,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
 import { Props } from '@spryker/button';
+import { ToJson } from '@spryker/utils';
 
 @Component({
   selector: 'spy-button-link',
@@ -14,15 +15,16 @@ import { Props } from '@spryker/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ButtonLinkComponent implements OnInit {
+export class ButtonLinkComponent implements OnChanges {
   @Input() url?: string;
   @Input() shape: Props['shape'] = 'default';
   @Input() size: Props['size'] = 'md';
   @Input() variant: Props['variant'] = 'primary';
+  @Input() @ToJson() attrs: Record<string, string> = {};
 
   classList?: string;
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.classList = `${this.shape} ${this.size} ${this.variant}`;
   }
 }

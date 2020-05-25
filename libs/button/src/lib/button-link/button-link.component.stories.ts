@@ -1,4 +1,5 @@
 import { ButtonLinkComponent } from './button-link.component';
+import { ApplyAttrsModule } from '@spryker/utils';
 
 export default {
   title: 'ButtonLinkComponent',
@@ -6,7 +7,7 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [],
+    imports: [ApplyAttrsModule],
     declarations: [ButtonLinkComponent],
   },
   template: `

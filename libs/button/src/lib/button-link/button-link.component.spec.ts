@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { ButtonLinkComponent } from './button-link.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -54,6 +54,14 @@ describe('ButtonComponent', () => {
       expect(buttonLinkElem.properties.className).toContain('critical');
       expect(buttonLinkElem.properties.className).toContain('default');
       expect(buttonLinkElem.properties.className).toContain('lg');
+    });
+
+    it('should bind attrs to spyApplyAttrs properties of <a>', async () => {
+      const mockedAttrs = { mockAttr: 'mockAttr' };
+      const host = await createComponent({ attrs: mockedAttrs }, true);
+      const buttonLinkElem = host.queryCss('a')!;
+
+      expect(buttonLinkElem.properties.spyApplyAttrs).toBe(mockedAttrs);
     });
   });
 });

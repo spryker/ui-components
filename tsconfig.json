@@ -155,10 +155,6 @@
       "@spryker/date-picker": [
         "dist/libs/date-picker/index.d.ts",
         "libs/date-picker/src/index.ts"
-      ],
-      "@spryker/button-link": [
-        "dist/libs/button-link/index.d.ts",
-        "libs/button-link/src/index.ts"
       ]
     }
   },

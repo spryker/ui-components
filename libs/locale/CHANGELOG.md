@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/locale@0.1.0-next.2...@spryker/locale@0.1.0-next.3) (2020-05-25)
+
+
+### Features
+
+* **locale:** add i18n capabilities with data aggregation ([da20eb3](https://github.com/spryker/ui-components/commit/da20eb3846f11635eec909c05f4aceeff45388d8))
+
+
+
+
+
 # [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/locale@0.1.0-next.1...@spryker/locale@0.1.0-next.2) (2020-05-15)
 
 **Note:** Version bump only for package @spryker/locale

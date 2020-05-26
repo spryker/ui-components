@@ -183,10 +183,10 @@ nx g @nrwl/storybook:configuration --name=<my-lib> --uiFramework=@storybook/angu
 
 _NOTE:_ Do the following updates after command above:
 
-- Replace content in file `libs/<my-lib>/.storybook/presets.js` with `module.exports = require('../../../.storybook/main');`
 - Delete file `libs/<my-lib>/.storybook/addons.js`
-- Rename file `libs/<my-lib>/.storybook/config.js` => `libs/<my-lib>/.storybook/preview.js`
-- Add `import '../../../.storybook/preview';` to the generated `libs/<my-lib>/.storybook/preview.js` file.
+- Delete file `libs/<my-lib>/.storybook/config.js`
+- Add file `libs/<my-lib>/.storybook/main.js` with content `module.exports = require('../../../.storybook/main');`
+- Add file `libs/<my-lib>/.storybook/preview.js` with content `import '../../../.storybook/preview';`
 
 ### Library Stories
 

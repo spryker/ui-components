@@ -2,6 +2,11 @@
 
 .@{table-column-list-prefix-cls} {
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  flex-wrap: wrap;
+  line-height: 1;
+  margin: -@table-column-list-indent;
+
+  &-holder {
+    padding: @table-column-list-indent;
+  }
 }

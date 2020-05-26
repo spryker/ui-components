@@ -32,6 +32,7 @@ import {
   distinctUntilChanged,
   map,
   mapTo,
+  pairwise,
   pluck,
   shareReplay,
   startWith,
@@ -201,30 +202,35 @@ export class CoreTableComponent
   ).pipe(startWith(false), shareReplaySafe());
 
   isEmpty$ = combineLatest([
-    this.isLoading$,
     this.tableData$.pipe(map(data => Boolean(data.length))),
     this.dataConfiguratorService.config$.pipe(
       map(config => Boolean(Object.keys(config).length)),
     ),
   ]).pipe(
-    startWith([true, true, false]),
-    map(
-      ([isLoading, isTableData, isConfig]) =>
-        !isLoading && !isTableData && isConfig,
-    ),
+    startWith([true, false]),
+    map(([isTableData, isConfig]) => !isTableData && isConfig),
     shareReplaySafe(),
   );
 
   isNotFiltered$ = this.dataConfiguratorService.config$.pipe(
-    map(config => {
-      const isFiltered = config.filter
-        ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)
-        : false;
-      const isSearched = config.search
-        ? (config.search as string).length
-        : false;
+    startWith({}),
+    pairwise(),
+    map(([prevConfig, newConfig]) => {
+      const isFiltered = (config: Record<string, unknown>) =>
+        config.filter
+          ? Boolean(
+              Object.keys(config.filter as Record<string, unknown>).length,
+            )
+          : false;
+      const isSearched = (config: Record<string, unknown>) =>
+        config.search ? String(config.search).length : false;
+      const isChanged =
+        isFiltered(prevConfig) ||
+        isSearched(prevConfig) ||
+        isFiltered(newConfig) ||
+        isSearched(newConfig);
 
-      return !(isFiltered || isSearched);
+      return !isChanged;
     }),
     shareReplaySafe(),
   );

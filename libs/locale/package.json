@@ -10,6 +10,7 @@
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
+    "@spryker/utils": "^0.0.1-next.16",
     "tslib": "^1.10.0"
   }
 }

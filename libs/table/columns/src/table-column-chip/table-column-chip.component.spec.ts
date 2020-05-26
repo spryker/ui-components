@@ -44,22 +44,22 @@ describe('TableColumnChipComponent', () => {
     expect(chipsElem).toBeTruthy();
   });
 
-  it('Input color MUST be bound to className of `ant-chips` element', async () => {
+  it('Input color MUST be bound to className of spy-input', async () => {
     const host = await createComponent(
       { config: configMock[0], context },
       true,
     );
-    const chipsElem = host.queryCss('.ant-chips');
+    const chipsElem = host.queryCss('spy-chips');
 
     expect(chipsElem!.properties.className).toContain(configMock[0].color);
   });
 
-  it('Input text with dynamic text string MUST be content of `ant-chips` element', async () => {
+  it('Input text with dynamic text string MUST be content of spy-chips element', async () => {
     const host = await createComponent(
       { config: configMock[1], context },
       true,
     );
-    const chipsElem = host.queryCss('.ant-chips');
+    const chipsElem = host.queryCss('spy-chips');
 
     expect(chipsElem?.nativeElement.textContent).toContain(context.value);
   });

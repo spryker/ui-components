@@ -16,25 +16,25 @@ describe('ChipsComponent', () => {
 
   beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
 
-  it('Input color should be bound to `ant-chips` element', async () => {
+  it('Input color should be bound to host element', async () => {
     const mockedColor = 'red';
     const host = await createComponent({ color: mockedColor });
 
     host.detectChanges();
 
-    const chipsElem = host.queryCss('.ant-chips');
+    const chipsElem = host.queryCss('spy-chips');
 
-    expect(chipsElem!.properties.className).toContain(mockedColor);
+    expect(chipsElem?.properties.className).toContain(mockedColor);
   });
 
-  it('Input maxWidth should be bound to `ant-chips` element', async () => {
+  it('Input maxWidth should be bound to host element', async () => {
     const mockedWidth = '200px';
     const host = await createComponent({ maxWidth: mockedWidth });
 
     host.detectChanges();
 
-    const chipsElem = host.queryCss('.ant-chips');
+    const chipsElem = host.queryCss('spy-chips');
 
-    expect(chipsElem!.styles.maxWidth).toBe(mockedWidth);
+    expect(chipsElem?.styles.maxWidth).toBe(mockedWidth);
   });
 });

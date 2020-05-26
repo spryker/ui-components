@@ -163,7 +163,6 @@ function getFeaturesStory(
               type: 'range',
               typeOptions: {
                 placeholderFrom: 'from',
-                placeholderTo: 'to',
                 format: 'yyyy-MM-dd',
               },
             },

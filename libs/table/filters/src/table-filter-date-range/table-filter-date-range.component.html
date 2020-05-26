@@ -1,7 +1,7 @@
 <spy-date-range-picker
   [dates]="value"
-  [placeholderFrom]="config.typeOptions?.placeholderFrom"
-  [placeholderTo]="config.typeOptions?.placeholderTo"
+  [placeholderFrom]="placeholderFrom$ | async"
+  [placeholderTo]="placeholderTo$ | async"
   [format]="config.typeOptions?.format"
   (datesChange)="valueChange.emit($event)"
 ></spy-date-range-picker>

@@ -43,3 +43,6 @@ Thumbs.db
 
 # Compiled Ant Design themes
 /libs/styles/src/lib/themes/**/*.css
+
+# Compiled i18n data
+/libs/locale/data/**

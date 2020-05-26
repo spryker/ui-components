@@ -8,7 +8,7 @@
       [clearButton]="clearButton"
       [disabled]="disabled"
       [format]="format"
-      (dateChange)="datesChange.emit(dates)"
+      (dateChange)="datesChangeHandler(dates)"
     ></spy-date-picker>
   </div>
 
@@ -21,7 +21,7 @@
       [clearButton]="clearButton"
       [disabled]="disabled"
       [format]="format"
-      (dateChange)="datesChange.emit(dates)"
+      (dateChange)="datesChangeHandler(dates)"
     ></spy-date-picker>
   </div>
 </div>

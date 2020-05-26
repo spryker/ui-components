@@ -14,7 +14,7 @@
     "@spryker/icon": "0.1.0-next.0",
     "@spryker/styles": "^0.1.0-next.0",
     "@spryker/locale": "^0.1.0-next.4",
-    "@spryker/utils": "^0.0.1-next.16",
+    "@spryker/utils": "^0.1.0-next.16",
     "tslib": "^1.10.0"
   }
 }

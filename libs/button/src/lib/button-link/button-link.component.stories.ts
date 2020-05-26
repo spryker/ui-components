@@ -11,7 +11,7 @@ export const primary = () => ({
     declarations: [ButtonLinkComponent],
   },
   template: `
-    <spy-button-link variant="primary" size="lg">Button</spy-button-link>
+    <spy-button-link variant="secondary" size="lg">Button</spy-button-link>
   `,
   props: {},
 });

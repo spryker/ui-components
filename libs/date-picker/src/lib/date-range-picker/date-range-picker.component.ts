@@ -26,6 +26,7 @@ export class DateRangePickerComponent {
   @Output() datesChange = new EventEmitter<DateRangeValue>();
 
   datesChangeHandler(dates: DateRangeValue): void {
+    // TODO: Add condition when input time is falsy when time feature will be added
     dates.from?.setHours(0, 0, 0);
     dates.to?.setHours(23, 59, 59);
 

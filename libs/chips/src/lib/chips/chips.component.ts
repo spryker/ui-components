@@ -14,6 +14,11 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class ChipsComponent {
-  @HostBinding('class') @Input() color = 'green';
+  @Input() color = 'green';
   @HostBinding('style.maxWidth') @Input() maxWidth = '145px';
+
+  @HostBinding('class')
+  get hostClasses(): string {
+    return `ant-chips ${this.color}`;
+  }
 }

@@ -10,6 +10,8 @@ import {
 import { TableFilterComponent } from '@spryker/table/features';
 import { TableFilterDateRange } from './types';
 import { DateRangeValueInput } from '@spryker/date-picker';
+import { Observable, of } from 'rxjs';
+import { I18nService } from '@spryker/locale';
 
 declare module '@spryker/table/features' {
   interface TableFiltersRegistry {
@@ -30,7 +32,32 @@ export class TableFilterDateRangeComponent
   @Input() value?: DateRangeValueInput = {};
   @Output() valueChange = new EventEmitter<DateRangeValueInput>();
 
+  placeholderFrom$?: Observable<string>;
+  placeholderTo$?: Observable<string>;
+
+  constructor(private i18nService: I18nService) {}
+
+  private updatePlaceholder(
+    property: 'placeholderFrom' | 'placeholderTo',
+    defaultToken: string,
+  ): Observable<string> {
+    return this.config?.typeOptions?.[property]
+      ? (of(this.config.typeOptions[property]) as Observable<string>)
+      : this.i18nService.translate(defaultToken);
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
+    if ('config' in changes) {
+      this.placeholderFrom$ = this.updatePlaceholder(
+        'placeholderFrom',
+        'table.date-range-picker-from',
+      );
+      this.placeholderTo$ = this.updatePlaceholder(
+        'placeholderTo',
+        'table.date-range-picker-to',
+      );
+    }
+
     if ('value' in changes && !this.value) {
       this.value = {};
     }

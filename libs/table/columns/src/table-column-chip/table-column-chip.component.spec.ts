@@ -51,7 +51,7 @@ describe('TableColumnChipComponent', () => {
     );
     const chipsElem = host.queryCss('spy-chips');
 
-    expect(chipsElem!.properties.className).toBe(configMock[0].color);
+    expect(chipsElem!.properties.className).toContain(configMock[0].color);
   });
 
   it('Input text with dynamic text string MUST be content of spy-chips element', async () => {

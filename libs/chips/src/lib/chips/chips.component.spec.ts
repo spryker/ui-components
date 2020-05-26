@@ -24,7 +24,7 @@ describe('ChipsComponent', () => {
 
     const chipsElem = host.queryCss('spy-chips');
 
-    expect(chipsElem?.properties.className).toBe(mockedColor);
+    expect(chipsElem?.properties.className).toContain(mockedColor);
   });
 
   it('Input maxWidth should be bound to host element', async () => {

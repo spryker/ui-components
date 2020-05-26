@@ -20,6 +20,8 @@ import {
   map,
   switchMap,
   shareReplay,
+  mapTo,
+  startWith,
 } from 'rxjs/operators';
 import { Subject, Observable, merge, combineLatest } from 'rxjs';
 import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
@@ -77,8 +79,12 @@ export class TableSearchFeatureComponent
     pluck('data'),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
-  isVisible$ = combineLatest([this.dataConfig$, this.data$]).pipe(
-    map(([config, data]) => {
+  isVisible$ = combineLatest([
+    this.dataConfig$,
+    this.data$,
+    this.table$.pipe(switchMap(table => table.isLoading$)),
+  ]).pipe(
+    map(([config, data, isLoading]) => {
       const isFiltered = config?.filter
         ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)
         : false;
@@ -88,7 +94,7 @@ export class TableSearchFeatureComponent
       const isChanged = isFiltered || isSearched;
       const isData = Boolean(data.length);
 
-      return isData || (!isData && isChanged);
+      return isData || (!isData && (isChanged || isLoading));
     }),
   );
 

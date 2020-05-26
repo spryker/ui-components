@@ -18,6 +18,13 @@
   border: @btn-link-border-width solid transparent;
   text-decoration: none;
   color: @btn-primary-color;
+  transition: all @common-transition-time @common-transition-function;
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+  }
 
   &:active {
     transform: scaleX(0.9);
@@ -28,34 +35,37 @@
     border-color: @btn-primary-bg;
 
     &:hover {
+      color: @btn-primary-color;
       box-shadow: @btn-primary-shadow-hover;
     }
 
     &:focus {
+      color: @btn-primary-color;
       box-shadow: @btn-shadow-default-size transparent;
-
-      &::after {
-        box-shadow: @btn-shadow-default-size @btn-primary-bg;
-      }
     }
 
     &:active {
+      color: @btn-primary-color;
       background: @btn-primary-active-bg;
       border-color: @btn-primary-active-bg;
     }
   }
 
   &.secondary {
+    background: @btn-default-bg;
     color: @btn-default-color;
     border-color: @btn-default-border;
 
     &:hover {
+      background: @btn-default-bg;
+      color: @btn-default-color;
       border-color: @btn-default-border-hover;
       box-shadow: @btn-default-shadow-hover;
     }
 
     &:focus,
     &:active {
+      background: @btn-default-bg;
       color: @btn-default-color;
       border-color: @btn-default-border-active;
     }
@@ -66,37 +76,6 @@
 
     &:active {
       background: @btn-default-bg-active;
-    }
-
-    &-primary {
-      &:focus,
-      &:hover {
-        color: @btn-primary-color;
-        background: @btn-primary-bg;
-        border-color: @btn-primary-bg;
-      }
-
-      &:hover {
-        box-shadow: @btn-primary-shadow-hover;
-      }
-
-      &:focus {
-        box-shadow: @btn-shadow-default-size transparent;
-
-        &::after {
-          box-shadow: @btn-shadow-default-size @btn-primary-bg;
-        }
-      }
-
-      &:active {
-        color: @btn-primary-color;
-        background: @btn-primary-active-bg;
-        border-color: @btn-primary-active-bg;
-
-        &::after {
-          box-shadow: @btn-shadow-default-size transparent;
-        }
-      }
     }
   }
 

@@ -1,7 +1,24 @@
 @import './table.component.theme.less';
 
-* {
-  box-sizing: border-box;
+spy-table {
+  .@{spin-prefix-cls} {
+    &-container {
+      &::after {
+        display: none;
+      }
+    }
+
+    &-nested-loading {
+      display: block;
+
+      > div > .@{spin-prefix-cls} {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
 }
 
 .@{table-prefix-cls} {
@@ -205,27 +222,6 @@
     background: transparent;
   }
 
-  &-wrapper {
-    .@{spin-prefix-cls} {
-      &-container {
-        &::after {
-          display: none;
-        }
-      }
-
-      &-nested-loading {
-        display: block;
-
-        > div > .@{spin-prefix-cls} {
-          position: absolute;
-          top: 0;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-      }
-    }
-  }
-
   &-empty {
     display: flex;
     height: @table-empty-container-height;
@@ -258,5 +254,9 @@
         font-size: @table-empty-icon-size-sm;
       }
     }
+  }
+
+  .@{chips-prefix-cls} {
+    white-space: nowrap;
   }
 }

@@ -34,7 +34,7 @@ export class I18nService {
     private readonly config: I18nConfig,
     @Optional()
     @Inject(I18nLocaleDataToken)
-      defaultLocale?: InjectionTokenType<typeof I18nLocaleDataToken>,
+    defaultLocale?: InjectionTokenType<typeof I18nLocaleDataToken>,
   ) {
     if (defaultLocale) {
       this.setLocale(defaultLocale);

@@ -1,7 +1,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { escapeRegex, InjectionTokenType } from '@spryker/utils';
 import { Observable, OperatorFunction, ReplaySubject } from 'rxjs';
-import { distinctUntilChanged, map, shareReplay } from 'rxjs/operators';
+import { distinctUntilChanged, map, shareReplay, tap } from 'rxjs/operators';
 
 import { LocaleService } from '../locale.service';
 import { I18nLocaleDataToken } from './tokens';
@@ -42,6 +42,7 @@ export class I18nService {
   }
 
   setLocale(locale: I18nLocaleData) {
+    console.log(locale);
     this.locale$.next(locale);
   }
 
@@ -50,7 +51,9 @@ export class I18nService {
     data?: I18nLocaleInterpolationData,
   ): Observable<string> {
     return this.locale$.pipe(
+      // tap((locale: any) => console.log(locale, token, 'locale, token')),
       map(locale => locale[token]),
+      // tap(console.log),
       distinctUntilChanged(),
       this.maybeInterpolateLocale(data),
       shareReplay({ bufferSize: 1, refCount: true }),

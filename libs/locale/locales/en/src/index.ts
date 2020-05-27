@@ -20,7 +20,7 @@ export function enLocaleFactory() {
         })),
       spryker: () =>
         import('@spryker/locale/data/en' as any).then(m => ({
-          data: m.default,
+          data: m.data,
         })),
     },
   };

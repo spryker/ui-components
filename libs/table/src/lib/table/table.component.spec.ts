@@ -17,6 +17,7 @@ import { TableFeaturesRendererComponent } from '../table-features-renderer/table
 import { of } from 'rxjs';
 import { TableDatasourceTypesToken } from '../datasource-type/tokens';
 import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { I18nModule } from '@spryker/locale';
 
 const mockDataUrl = 'https://test-data-url.com';
 const mockColUrl = 'https://test-col-url.com';
@@ -86,7 +87,7 @@ describe('TableComponent', () => {
     CoreTableComponent,
     {
       ngModule: {
-        imports: [HttpClientTestingModule, PluckModule],
+        imports: [HttpClientTestingModule, PluckModule, I18nModule],
         declarations: [
           TableFeaturesRendererComponent,
           TableFeaturesRendererDirective,

@@ -20,6 +20,8 @@ import {
   TableDataMockGenerator,
 } from '../../../../table/testing/src';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 
 export default {
   title: 'TableComponent',
@@ -66,6 +68,8 @@ export const withFeatures = (): IStory => ({
       TableModule.withDatasourceTypes({
         http: TableDatasourceHttpService,
       }),
+      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+      EnLocaleModule,
       BrowserAnimationsModule,
     ],
     declarations: [TableColumnTestComponent],

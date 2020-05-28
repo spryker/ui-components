@@ -12,6 +12,8 @@ import { IStory } from '@storybook/angular';
 
 import { TableTotalFeatureModule } from './table-total-feature.module';
 import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 
 export default {
   title: 'TableTotalFeatureComponent',
@@ -60,6 +62,8 @@ function getTotalStory(
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
         }),
+        LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+        EnLocaleModule,
         ...extraNgModules,
       ],
       providers: [

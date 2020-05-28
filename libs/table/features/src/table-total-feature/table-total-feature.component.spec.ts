@@ -19,6 +19,7 @@ import {
   TableDatasourceService,
 } from '@spryker/table';
 import { PluckModule } from '@spryker/utils';
+import { I18nModule } from '@spryker/locale';
 
 @Component({
   selector: 'spy-test-host',
@@ -43,7 +44,7 @@ describe('TableTotalFeatureComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [PluckModule],
+      imports: [PluckModule, I18nModule],
       declarations: [
         TestTableFeatureTplDirective,
         TableTotalFeatureComponent,

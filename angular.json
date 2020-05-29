@@ -2145,6 +2145,80 @@
       }
     }
   },
+  "drawer-poc": {
+    "projectType": "library",
+    "root": "libs/drawer-poc",
+    "sourceRoot": "libs/drawer-poc/src",
+    "prefix": "spy",
+    "architect": {
+      "build": {
+        "builder": "@nrwl/angular:package",
+        "options": {
+          "tsConfig": "libs/drawer-poc/tsconfig.lib.json",
+          "project": "libs/drawer-poc/ng-package.json"
+        },
+        "configurations": {
+          "production": {
+            "tsConfig": "libs/drawer-poc/tsconfig.lib.prod.json"
+          }
+        }
+      },
+      "lint": {
+        "builder": "@angular-devkit/build-angular:tslint",
+        "options": {
+          "tsConfig": [
+            "libs/drawer-poc/tsconfig.lib.json",
+            "libs/drawer-poc/tsconfig.spec.json"
+          ],
+          "exclude": ["**/node_modules/**", "!libs/drawer-poc/**"]
+        }
+      },
+      "test": {
+        "builder": "@nrwl/jest:jest",
+        "options": {
+          "jestConfig": "libs/drawer-poc/jest.config.js",
+          "tsConfig": "libs/drawer-poc/tsconfig.spec.json",
+          "passWithNoTests": true,
+          "setupFile": "libs/drawer-poc/src/test-setup.ts"
+        }
+      },
+      "storybook": {
+        "builder": "@nrwl/storybook:storybook",
+        "options": {
+          "uiFramework": "@storybook/angular",
+          "port": 4400,
+          "config": {
+            "configFolder": "libs/drawer-poc/.storybook"
+          }
+        },
+        "configurations": {
+          "ci": {
+            "quiet": true
+          }
+        }
+      },
+      "build-storybook": {
+        "builder": "@nrwl/storybook:build",
+        "options": {
+          "uiFramework": "@storybook/angular",
+          "outputPath": "dist/storybook/drawer-poc",
+          "config": {
+            "configFolder": "libs/drawer-poc/.storybook"
+          }
+        },
+        "configurations": {
+          "ci": {
+            "quiet": true
+          }
+        }
+      }
+    },
+    "schematics": {
+      "@nrwl/angular:component": {
+        "style": "less"
+      }
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/angular",
     "analytics": false

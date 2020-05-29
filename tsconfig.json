@@ -163,7 +163,8 @@
       "@spryker/html-renderer": [
         "dist/libs/html-renderer/index.d.ts",
         "libs/html-renderer/src/index.ts"
-      ]
+      ],
+      "@spryker/drawer-poc": ["libs/drawer-poc/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

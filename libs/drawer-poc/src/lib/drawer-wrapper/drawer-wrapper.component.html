@@ -1,0 +1,20 @@
+<div class="drawer-actions">
+  <button
+    class="drawer-action drawer-actions__close"
+    *ngIf="closeable"
+    (click)="close()"
+  >
+    X
+  </button>
+  <button
+    class="drawer-action drawer-actions__resize"
+    *ngIf="resizable"
+    (click)="resize()"
+  >
+    <->
+  </button>
+</div>
+
+<div class="drawer-content">
+  <ng-content></ng-content>
+</div>

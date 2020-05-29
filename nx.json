@@ -106,6 +106,9 @@
     },
     "html-renderer": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "drawer-poc": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

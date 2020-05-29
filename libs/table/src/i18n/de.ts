@@ -8,7 +8,7 @@ export default {
     'no-results': 'Keine Ergebnisse',
     'no-results-suggest': 'Versuchen Sie, die Filterkriterien zu ändern',
     'empty-table': 'Hier ist nichts.',
-    'selected:number': '{{ number }} ausgewählt /',
+    'selected:number': '{{ number }} ausgewählt',
     'total:number': '{{ number }} ergebnisse',
   },
 } as I18nLocaleDataPackage;

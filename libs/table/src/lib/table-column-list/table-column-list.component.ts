@@ -52,6 +52,7 @@ export class TableColumnListComponent
   values: unknown[] = [];
   valuesLimited: unknown[] = [];
   configs: TableColumn[] = [];
+  isValueUndefined?: boolean;
 
   ngOnInit(): void {
     this.updateValues();
@@ -70,6 +71,7 @@ export class TableColumnListComponent
 
     const value = this.context.value;
     const values = Array.isArray(value) ? value : [value];
+    this.isValueUndefined = !Boolean(values.length);
     this.values = values.map(_value => ({
       // tslint:disable-next-line: no-non-null-assertion
       ...this.context!.row,

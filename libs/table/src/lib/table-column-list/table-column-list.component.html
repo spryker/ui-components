@@ -1,8 +1,15 @@
 <div class="ant-table-column-list">
-  <ng-container
-    [ngTemplateOutlet]="valuesTpl"
-    [ngTemplateOutletContext]="{ $implicit: valuesLimited }"
-  ></ng-container>
+  <spy-table-column-renderer
+    [config]="config"
+    *ngIf="isValueUndefined; else definedValue"
+  ></spy-table-column-renderer>
+
+  <ng-template #definedValue>
+    <ng-container
+      [ngTemplateOutlet]="valuesTpl"
+      [ngTemplateOutletContext]="{ $implicit: valuesLimited }"
+    ></ng-container>
+  </ng-template>
 
   <!--TODO: add popover-->
 </div>

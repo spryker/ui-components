@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.46](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.45...@spryker/table@0.1.0-next.46) (2020-05-29)
+
+
+### Bug Fixes
+
+* **table:** align column type children interface ([ae537b1](https://github.com/spryker/ui-components/commit/ae537b1ad6aed6f069394673544fda8132d1f945))
+
+
+
+
+
 # [0.1.0-next.45](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.44...@spryker/table@0.1.0-next.45) (2020-05-29)
 
 **Note:** Version bump only for package @spryker/table

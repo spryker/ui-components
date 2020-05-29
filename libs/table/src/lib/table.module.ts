@@ -28,6 +28,7 @@ import { CoreTableComponent } from './table/table.component';
 import { PluckModule } from '@spryker/utils';
 import { IconModule } from '@spryker/icon';
 import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
+import { I18nModule } from '@spryker/locale';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
     IconNoDataModule,
     IconNoFilteredDataModule,
     NzSpinModule,
+    I18nModule,
   ],
   declarations: [
     CoreTableComponent,

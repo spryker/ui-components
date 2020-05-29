@@ -151,7 +151,6 @@ export class LocaleService implements OnDestroy {
     locale: string,
     loaders: UnknownLocaleLoaderMap,
   ): Observable<unknown> {
-    console.log('invoke loaders', locale);
     const loadersMap = Object.entries(this.loaderRegistrars).map(
       ([name, registrarType]) => ({
         // Iterating over existing values

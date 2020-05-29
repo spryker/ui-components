@@ -91,7 +91,10 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
       this.updateFiltersValue$.next(null);
       this.dataConfiguratorService?.update(filters);
     }),
-    map(([filterValues]) => filterValues),
+    map(([filterValues, updatedValue]) => ({
+      ...filterValues,
+      ...updatedValue,
+    })),
     distinctUntilChanged(),
     shareReplay({ refCount: true, bufferSize: 1 }),
   );

@@ -19,6 +19,6 @@ export class ChipsComponent {
 
   @HostBinding('class')
   get hostClasses(): string {
-    return `ant-chips ${this.color}`;
+    return `spy-chips spy-chips--${this.color}`;
   }
 }

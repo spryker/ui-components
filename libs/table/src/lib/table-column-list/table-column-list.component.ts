@@ -87,7 +87,7 @@ export class TableColumnListComponent
 
       delete (config as TableColumnTypeDef).type;
       delete (config as TableColumnTypeDef).typeOptions;
-      delete (config as TableColumnTypeDef).children;
+      delete (config as TableColumnTypeDef).typeChildren;
 
       Object.assign(config, this.config);
 

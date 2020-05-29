@@ -19,7 +19,7 @@ import {
   TableDatasourceService,
 } from '@spryker/table';
 import { PluckModule } from '@spryker/utils';
-import { I18nModule } from '@spryker/locale';
+import { TestLocaleModule, I18nTestService } from '@spryker/locale/testing';
 
 @Component({
   selector: 'spy-test-host',
@@ -35,6 +35,7 @@ describe('TableTotalFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
+  let service: I18nTestService;
 
   const totalContainer = '.table-total-feature';
 
@@ -44,7 +45,7 @@ describe('TableTotalFeatureComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [PluckModule, I18nModule],
+      imports: [PluckModule, TestLocaleModule],
       declarations: [
         TestTableFeatureTplDirective,
         TableTotalFeatureComponent,
@@ -83,6 +84,8 @@ describe('TableTotalFeatureComponent', () => {
       By.directive(TestTableFeatureComponent),
     ).componentInstance;
 
+    service = TestBed.inject(I18nTestService);
+
     mockData = {
       data: [{}],
       page: 0,
@@ -102,11 +105,15 @@ describe('TableTotalFeatureComponent', () => {
   }));
 
   it('should render number of total items', fakeAsync(() => {
-    expect(queryTotal().nativeElement.textContent).toContain(mockData.total);
+    const token = 'table.total:number';
+
+    expect(queryTotal().nativeElement.textContent).toContain(token);
+    expect(service.getLocaleData(token, 'number')).toBe(mockData.total);
   }));
 
   it('should render number of selected items', fakeAsync(() => {
     const selectedItemsArr = [{}, {}, {}];
+    const token = 'table.selected:number';
 
     testTableFeature.featureMocks?.table?.eventBus?.emit(
       'itemSelection',
@@ -115,7 +122,8 @@ describe('TableTotalFeatureComponent', () => {
 
     fixture.detectChanges();
 
-    expect(queryTotal().nativeElement.textContent).toContain(
+    expect(queryTotal().nativeElement.textContent).toContain(token);
+    expect(service.getLocaleData(token, 'number')).toBe(
       selectedItemsArr.length,
     );
   }));

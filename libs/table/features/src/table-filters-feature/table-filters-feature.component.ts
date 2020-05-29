@@ -55,10 +55,6 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
 > {
   name = 'filters';
   tableFeatureLocation = TableFeatureLocation;
-  styles = {
-    flexGrow: '1',
-    flexShrink: '0',
-  };
 
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
   filterComponentMap: Record<
@@ -93,7 +89,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     }),
     map(([filterValues, updatedValue]) => ({
       ...filterValues,
-      ...updatedValue,
+      ...(updatedValue ? updatedValue : {}),
     })),
     distinctUntilChanged(),
     shareReplay({ refCount: true, bufferSize: 1 }),

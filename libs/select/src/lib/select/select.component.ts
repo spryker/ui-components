@@ -112,7 +112,7 @@ export class SelectComponent implements OnInit, OnChanges {
     return value.length <= this.allValues.length ? [...this.allValues] : [];
   }
 
-  private checkSelectedState(value: any) {
+  private checkSelectedState(value: SelectValue) {
     if (this.mappedValue && Array.isArray(this.mappedValue)) {
       return this.mappedValue.includes(value);
     }

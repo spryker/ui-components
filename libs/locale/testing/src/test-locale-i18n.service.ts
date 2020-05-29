@@ -5,7 +5,7 @@ import { I18nLocaleInterpolationData } from '@spryker/locale';
   providedIn: 'root',
 })
 export class I18nTestService {
-  localeData: Record<string, Record<string, unknown>> = {};
+  private localeData: Record<string, Record<string, unknown>> = {};
 
   addLocaleData(token: string, data: I18nLocaleInterpolationData = {}): void {
     this.localeData[token] = data;

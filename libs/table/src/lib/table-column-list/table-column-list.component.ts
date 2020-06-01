@@ -72,7 +72,6 @@ export class TableColumnListComponent
     const value = this.context.value;
     let values = Array.isArray(value) ? value : [value];
     values = !Boolean(values.length) ? [undefined] : (values as unknown[]);
-    this.isValueUndefined = !Boolean(values.length);
     this.values = values.map(_value => ({
       // tslint:disable-next-line: no-non-null-assertion
       ...this.context!.row,

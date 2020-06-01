@@ -46,8 +46,16 @@
   height: @checkbox-size;
   position: relative;
 
-  &-checked::after {
-    display: none;
+  &-checked {
+    &::after {
+      display: none;
+    }
+
+    .@{checkbox-prefix-cls}-inner {
+      &::after {
+        transition: none;
+      }
+    }
   }
 
   &-inner {
@@ -59,8 +67,9 @@
     background: @checkbox-background;
 
     &::after {
-      top: 46%;
-      left: 21%;
+      top: @checkbox-check-position-top;
+      left: @checkbox-check-position-left;
+      transition: none;
     }
   }
 

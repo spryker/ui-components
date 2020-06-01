@@ -1,8 +1,6 @@
 @import 'themes/default/theme.less';
 
 .@{table-filters-feature-prefix-cls} {
-  display: flex;
-  flex-wrap: wrap;
   margin-top: @table-filters-feature-margin-top;
   margin-bottom: @table-filters-feature-margin-bottom;
   padding: @table-filters-feature-padding;
@@ -11,6 +9,12 @@
   border-radius: @table-filters-feature-border-radius;
   flex-grow: 1;
   flex-shrink: 0;
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -@table-filters-feature-item-padding;
+  }
 
   &-item {
     min-width: @table-filters-feature-item-min-width;

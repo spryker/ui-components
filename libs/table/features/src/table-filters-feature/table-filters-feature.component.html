@@ -4,13 +4,13 @@
     styles: { width: '100%', order: '-1' }
   "
 >
-  <ng-container *ngIf="isVisible$ | async">
-    <div class="ant-table-filters-feature">
+  <div class="spy-table-filters-feature" *ngIf="isVisible$ | async">
+    <div class="spy-table-filters-feature__inner">
       <div
         *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
-        class="ant-table-filters-feature-item"
+        class="spy-table-filters-feature__item"
       >
-        <span class="ant-table-filters-feature-item-title">{{
+        <span class="spy-table-filters-feature__item-title">{{
           filter.title
         }}</span>
         <ng-container
@@ -20,13 +20,13 @@
             value: filterValues$ | async | pluck: filter.id
           }"
           [ndcDynamicOutputs]="{
-          valueChange: {
-            handler: updateFilterValue.bind(this),
-            args: [filter.id, '$event']
-          }
-        }"
+            valueChange: {
+              handler: updateFilterValue.bind(this),
+              args: [filter.id, '$event']
+            }
+          }"
         ></ng-container>
       </div>
     </div>
-  </ng-container>
+  </div>
 </ng-container>

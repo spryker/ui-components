@@ -158,6 +158,20 @@ function getFeaturesStory(
               },
             },
             {
+              id: 'select2',
+              title: 'Select',
+              type: 'select',
+              typeOptions: {
+                multiselect: true,
+                values: [
+                  { value: 1, title: 'Option_1' },
+                  { value: 2, title: 'Option_2' },
+                  { value: 3, title: 'Option_3' },
+                  { value: 4, title: 'Option_4' },
+                ],
+              },
+            },
+            {
               id: 'range',
               title: 'Range',
               type: 'range',

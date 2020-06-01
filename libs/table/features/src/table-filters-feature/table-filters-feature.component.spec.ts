@@ -129,7 +129,7 @@ describe('TableFiltersFeatureComponent', () => {
     fixture.detectChanges();
   }));
 
-  const filtersContainerSelector = '.ant-table-filters-feature';
+  const filtersContainerSelector = '.spy-table-filters-feature';
   const filterSelector = 'spy-table-filter';
 
   function queryFiltersContainer(): DebugElement {
@@ -142,13 +142,13 @@ describe('TableFiltersFeatureComponent', () => {
     );
   }
 
-  it('should render `ant-table-filters-feature` container block', () => {
+  it('should render `spy-table-filters-feature` container block', () => {
     fixture.detectChanges();
 
     expect(queryFiltersContainer()).toBeTruthy();
   });
 
-  it('should render filters inside `ant-table-filters-feature` container block', () => {
+  it('should render filters inside `spy-table-filters-feature` container block', () => {
     fixture.detectChanges();
 
     expect(queryFilter()).toBeTruthy();

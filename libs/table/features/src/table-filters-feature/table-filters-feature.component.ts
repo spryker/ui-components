@@ -75,22 +75,17 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     >,
     this.updateFiltersValue$.pipe(startWith(null)),
   ]).pipe(
-    tap(([filterValues, updatedValue]) => {
-      if (!updatedValue) {
-        return;
+    map(([filterValues, updatedValue]) => {
+      const filter = { ...filterValues, ...updatedValue };
+      const filters = { filter };
+
+      if (updatedValue) {
+        this.updateFiltersValue$.next(null);
+        this.dataConfiguratorService?.update(filters);
       }
 
-      const filters = {
-        filter: { ...filterValues, ...updatedValue },
-      };
-
-      this.updateFiltersValue$.next(null);
-      this.dataConfiguratorService?.update(filters);
+      return filter;
     }),
-    map(([filterValues, updatedValue]) => ({
-      ...filterValues,
-      ...(updatedValue ? updatedValue : {}),
-    })),
     distinctUntilChanged(),
     shareReplay({ refCount: true, bufferSize: 1 }),
   );

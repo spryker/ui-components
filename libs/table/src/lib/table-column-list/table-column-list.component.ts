@@ -52,7 +52,6 @@ export class TableColumnListComponent
   values: unknown[] = [];
   valuesLimited: unknown[] = [];
   configs: TableColumn[] = [];
-  isValueUndefined?: boolean;
 
   ngOnInit(): void {
     this.updateValues();

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.47](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.46...@spryker/table@0.1.0-next.47) (2020-06-01)
+
+
+### Bug Fixes
+
+* **select:** changed behavior of check ([a9425e4](https://github.com/spryker/ui-components/commit/a9425e47942fd5b346cb6861a7b1d04fa2f3027e))
+* **select:** fixed story-book and component behavior ([8b80d80](https://github.com/spryker/ui-components/commit/8b80d80542d9adae12c2113bf799aa4999876db6))
+* **select:** fixed styles and null issue ([8cb1a65](https://github.com/spryker/ui-components/commit/8cb1a657aa5bd8ab05543087bbbfbe6e9cc45f42))
+* **select:** merged two operators ([93f3a08](https://github.com/spryker/ui-components/commit/93f3a08fdea6484821dd939539f308cf761768dd))
+
+
+
+
+
 # [0.1.0-next.46](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.45...@spryker/table@0.1.0-next.46) (2020-05-29)
 
 

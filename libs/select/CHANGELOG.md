@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.23](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.22...@spryker/select@0.1.0-next.23) (2020-06-01)
+
+
+### Bug Fixes
+
+* **select:** added return type ([f060ec6](https://github.com/spryker/ui-components/commit/f060ec61169a49adc11564b21b5db413eb489a0a))
+* **select:** changed behavior of check ([a9425e4](https://github.com/spryker/ui-components/commit/a9425e47942fd5b346cb6861a7b1d04fa2f3027e))
+* **select:** fixed styles and null issue ([8cb1a65](https://github.com/spryker/ui-components/commit/8cb1a657aa5bd8ab05543087bbbfbe6e9cc45f42))
+* **select:** removed private as it is used in html ([77b8046](https://github.com/spryker/ui-components/commit/77b8046f86c80c5ff6169a2218f6fce1a69fcc83))
+
+
+
+
+
 # [0.1.0-next.22](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.21...@spryker/select@0.1.0-next.22) (2020-05-29)
 
 **Note:** Version bump only for package @spryker/select

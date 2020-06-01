@@ -97,7 +97,8 @@ function getFiltersStory(
                 multiselect: false,
                 values: [
                   { value: 1, title: 'Option_1' },
-                  { value: 0, title: 'Option_2' },
+                  { value: 2, title: 'Option_2' },
+                  { value: 0, title: 'Option_0' },
                 ],
               },
             },
@@ -106,10 +107,27 @@ function getFiltersStory(
               title: 'Select 2',
               type: 'select',
               typeOptions: {
+                multiselect: true,
+                values: [
+                  { value: 1, title: 'Option_1' },
+                  { value: 2, title: 'Option_2' },
+                  { value: 3, title: 'Option_3' },
+                  { value: 4, title: 'Option_4' },
+                  { value: 5, title: 'Option_5' },
+                  { value: 0, title: 'Option_0' },
+                ],
+              },
+            },
+            {
+              id: 'select3',
+              title: 'Select 3',
+              type: 'select',
+              typeOptions: {
                 multiselect: false,
                 values: [
                   { value: 1, title: 'Option_1' },
-                  { value: 0, title: 'Option_2' },
+                  { value: 2, title: 'Option_2' },
+                  { value: 0, title: 'Option_0' },
                 ],
               },
             },

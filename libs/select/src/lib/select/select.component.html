@@ -29,14 +29,21 @@
     [nzDisabled]="option.isDisabled"
     [nzCustomContent]="true"
   >
-    {{ option.label }}
-
-    <ng-container
-      *ngTemplateOutlet="
-        multiple ? multiSelectOptionIconTpl : singleSelectOptionIconTpl
+    <div
+      class="ant-select-item-option-content-wrapper"
+      [class.ant-select-item-option-content-wrapper-selected]="
+        checkSelectedState(option.value)
       "
     >
-    </ng-container>
+      {{ option.label }}
+
+      <ng-container
+        *ngTemplateOutlet="
+          multiple ? multiSelectOptionIconTpl : singleSelectOptionIconTpl
+        "
+      >
+      </ng-container>
+    </div>
   </nz-option>
 </nz-select>
 

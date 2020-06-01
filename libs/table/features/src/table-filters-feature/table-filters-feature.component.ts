@@ -55,10 +55,6 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
 > {
   name = 'filters';
   tableFeatureLocation = TableFeatureLocation;
-  styles = {
-    flexGrow: '1',
-    flexShrink: '0',
-  };
 
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
   filterComponentMap: Record<
@@ -79,19 +75,17 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     >,
     this.updateFiltersValue$.pipe(startWith(null)),
   ]).pipe(
-    tap(([filterValues, updatedValue]) => {
-      if (!updatedValue) {
-        return;
+    map(([filterValues, updatedValue]) => {
+      const filter = { ...filterValues, ...updatedValue };
+      const filters = { filter };
+
+      if (updatedValue) {
+        this.updateFiltersValue$.next(null);
+        this.dataConfiguratorService?.update(filters);
       }
 
-      const filters = {
-        filter: { ...filterValues, ...updatedValue },
-      };
-
-      this.updateFiltersValue$.next(null);
-      this.dataConfiguratorService?.update(filters);
+      return filter;
     }),
-    map(([filterValues]) => filterValues),
     distinctUntilChanged(),
     shareReplay({ refCount: true, bufferSize: 1 }),
   );

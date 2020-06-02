@@ -152,6 +152,11 @@ When library is generated please do the following:
     ]
   }
   ```
+- In `lib/<lib-name>/tsconfig.lib.json`
+  - add to beginning of `angularCompilerOptions` new option `enableIvy=false`:
+  ```json
+    "enableIvy": false,
+  ```
 - In `libs/<lib-name>/package.json`
   - add `publishConfig` prop with `access=public` value:
   ```json

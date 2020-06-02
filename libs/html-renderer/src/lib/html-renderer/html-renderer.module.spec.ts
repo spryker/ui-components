@@ -1,5 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
-import { HtmlRendererModule } from './html-renderer.module';
+import { HtmlRendererModule } from '../html-renderer.module';
 
 describe('HtmlRendererModule', () => {
   beforeEach(async(() => {

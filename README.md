@@ -143,11 +143,11 @@ When library is generated please do the following:
   }
   ```
 - In `tsconfig.json`
-  - add to beginning of `paths[@spryker/<lib-name>]` new path `libs/<lib-name>/dist/index.d.ts`:
+  - add to beginning of `paths[@spryker/<lib-name>]` new path `dist/libs/<lib-name>/index.d.ts`:
   ```json
   "paths": {
     "@spryker/<lib-name>": [
-      + "libs/<lib-name>/dist/index.d.ts",
+      + "dist/libs/<lib-name>/index.d.ts",
       "libs/<lib-name>/src/index.ts"
     ]
   }

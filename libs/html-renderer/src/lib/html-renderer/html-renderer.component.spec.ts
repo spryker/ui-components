@@ -1,154 +1,84 @@
-import { Component } from '@angular/core';
-import {
-  async,
-  TestBed,
-  ComponentFixture,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
-import { BrowserModule } from '@angular/platform-browser';
-import { By } from '@angular/platform-browser';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { HtmlRendererModule } from '../html-renderer.module';
+import { async, TestBed } from '@angular/core/testing';
+import { HtmlRendererComponent } from './html-renderer.component';
+import { HtmlRendererProvider } from './html-renderer.provider';
+import { ReplaySubject, Observable } from 'rxjs';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+
+// tslint:disable: no-non-null-assertion
 
 const mockHtmlTemplate = `
   <p>Hello World!!!</p>
 `;
 
-@Component({
-  selector: 'spy-test',
-  template: `
-    <spy-html-renderer
-      [html]="html"
-      (htmlRendered)="renderedSpy()"
-    ></spy-html-renderer>
-  `,
-})
-class TestStaticHtmlComponent {
-  html: any;
-  renderedSpy = jest.fn();
-}
+class MockHtmlRendererProvider {
+  html$ = new ReplaySubject<string>(1);
 
-@Component({
-  selector: 'spy-test',
-  template: `
-    <spy-html-renderer
-      [urlHtml]="urlHtml"
-      (htmlRendered)="renderedSpy()"
-    ></spy-html-renderer>
-  `,
-})
-class TestUrlHtmlComponent {
-  urlHtml: any;
-  renderedSpy = jest.fn();
+  getHtml(): Observable<string> {
+    return this.html$.asObservable();
+  }
 }
 
 describe('HtmlRendererComponent', () => {
-  describe('StaticHtmlRendererDirective', () => {
-    let component: TestStaticHtmlComponent;
-    let fixture: ComponentFixture<TestStaticHtmlComponent>;
+  let testHtmlRendererProvider: MockHtmlRendererProvider;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [HtmlRendererModule, BrowserModule],
-        declarations: [TestStaticHtmlComponent],
-      }).compileComponents();
-    }));
+  const { testModule, createComponent } = getTestingForComponent(
+    HtmlRendererComponent,
+  );
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestStaticHtmlComponent);
-      component = fixture.componentInstance;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      providers: [
+        {
+          provide: HtmlRendererProvider,
+          useExisting: MockHtmlRendererProvider,
+        },
+        MockHtmlRendererProvider,
+      ],
     });
+    testHtmlRendererProvider = TestBed.inject(MockHtmlRendererProvider);
+  }));
 
-    it('should render `spy-html-renderer`', () => {
-      const htmlRendererElem = fixture.debugElement.query(
-        By.css('spy-html-renderer'),
-      );
+  it('should render `spy-html-renderer` component', async () => {
+    const host = await createComponent({}, true);
+    const htmlRendererElem = host.queryCss('spy-html-renderer')!;
 
-      expect(htmlRendererElem).toBeTruthy();
-    });
-
-    it('should render @Input(html) inside of `spy-html-renderer`', () => {
-      component.html = mockHtmlTemplate;
-      fixture.detectChanges();
-
-      const htmlRendererElem = fixture.debugElement.query(
-        By.css('spy-html-renderer'),
-      );
-
-      expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
-    });
-
-    it('should emit @Output(htmlRendered) when component renders HTML code', () => {
-      component.html = mockHtmlTemplate;
-      fixture.detectChanges();
-
-      expect(component.renderedSpy).toHaveBeenCalled();
-    });
+    expect(htmlRendererElem).toBeTruthy();
   });
 
-  describe('UrlHtmlRendererDirective', () => {
-    let component: TestUrlHtmlComponent;
-    let fixture: ComponentFixture<TestUrlHtmlComponent>;
-    let httpTestingController: HttpTestingController;
+  it('should render html inside `spy-html-renderer`', async () => {
+    const host = await createComponent({}, true);
+    const htmlRendererElem = host.queryCss('spy-html-renderer')!;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [HtmlRendererModule, BrowserModule, HttpClientTestingModule],
-        declarations: [TestUrlHtmlComponent],
-      }).compileComponents();
-    }));
+    testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+    host.detectChanges();
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestUrlHtmlComponent);
-      component = fixture.componentInstance;
-      httpTestingController = TestBed.inject(HttpTestingController);
-    });
+    expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
+  });
 
-    afterEach(() => {
-      httpTestingController.verify();
-    });
+  it('should render html inside `spy-html-renderer` when html was changes', async () => {
+    const mockRerenderHtml = `<p>Rerendered!!!</p>`;
+    const host = await createComponent({}, true);
+    const htmlRendererElem = host.queryCss('spy-html-renderer')!;
 
-    it('should render `spy-html-renderer`', () => {
-      const htmlRendererElem = fixture.debugElement.query(
-        By.css('spy-html-renderer'),
-      );
+    testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+    host.detectChanges();
 
-      expect(htmlRendererElem).toBeTruthy();
-    });
+    expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
 
-    it('should render html response inside of `spy-html-renderer`', () => {
-      const mockUrl = '/html-request';
-      component.urlHtml = mockUrl;
-      fixture.detectChanges();
-      const htmlResponse = httpTestingController.expectOne(mockUrl);
+    testHtmlRendererProvider.html$.next(mockRerenderHtml);
+    host.detectChanges();
 
-      expect(htmlResponse.request.method).toBe('GET');
+    expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml);
+  });
 
-      htmlResponse.flush(mockHtmlTemplate);
-      fixture.detectChanges();
-      const htmlRendererElem = fixture.debugElement.query(
-        By.css('spy-html-renderer'),
-      );
+  it('should emit @Output(htmlRendered) when component renders HTML code', async () => {
+    const host = await createComponent({}, true);
 
-      expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
-    });
+    host.hostComponent.htmlRendered = jest.fn();
+    testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+    host.detectChanges();
 
-    it('should emit @Output(htmlRendered) when component renders HTML code', () => {
-      const mockUrl = '/html-request';
-      component.urlHtml = mockUrl;
-      fixture.detectChanges();
-      const htmlResponse = httpTestingController.expectOne(mockUrl);
-
-      expect(htmlResponse.request.method).toBe('GET');
-
-      htmlResponse.flush(mockHtmlTemplate);
-      fixture.detectChanges();
-
-      expect(component.renderedSpy).toHaveBeenCalled();
-    });
+    expect(host.hostComponent.htmlRendered).toHaveBeenCalled();
   });
 });

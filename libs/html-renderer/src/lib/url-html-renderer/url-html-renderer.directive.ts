@@ -5,15 +5,15 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { HtmlRendererProvider } from './html-renderer.provider';
-import { Observable, ReplaySubject, of } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
+import { Observable, ReplaySubject, EMPTY } from 'rxjs';
+import { switchMap, tap, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
-  selector: '[urlHtml]',
-  exportAs: 'urlHtml',
+  selector: 'spy-html-renderer[urlHtml]',
+  exportAs: 'urlHtmlRendererProvider',
   providers: [
     {
       provide: HtmlRendererProvider,
@@ -38,7 +38,12 @@ export class UrlHtmlRendererDirective
     return this.html$.pipe(
       tap(() => this.urlHtmlLoading.emit(true)),
       switchMap(urlHtml =>
-        this.http.get(this.urlHtml, { responseType: 'text' }),
+        this.http.get(this.urlHtml, { responseType: 'text' }).pipe(
+          catchError(() => {
+            this.urlHtmlLoading.emit(false);
+            return EMPTY;
+          }),
+        ),
       ),
       tap(() => this.urlHtmlLoading.emit(false)),
     );

@@ -1,6 +1,6 @@
-import { HtmlRendererModule } from '../html-renderer.module';
+import { StaticHtmlRendererModule } from '../static-html-renderer/static-html-renderer.module';
+import { UrlHtmlRendererModule } from '../url-html-renderer/url-html-renderer.module';
 import { IStory } from '@storybook/angular';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 
@@ -44,7 +44,7 @@ export default {
 
 export const withStaticHtml = (): IStory => ({
   moduleMetadata: {
-    imports: [HtmlRendererModule, BrowserModule],
+    imports: [StaticHtmlRendererModule],
   },
   template: `
     <spy-html-renderer [html]="html"></spy-html-renderer>
@@ -56,12 +56,7 @@ export const withStaticHtml = (): IStory => ({
 
 export const withUrlHtml = (): IStory => ({
   moduleMetadata: {
-    imports: [
-      HtmlRendererModule,
-      MockHttpModule,
-      BrowserModule,
-      HttpClientTestingModule,
-    ],
+    imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
   },
   template: `
     <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>

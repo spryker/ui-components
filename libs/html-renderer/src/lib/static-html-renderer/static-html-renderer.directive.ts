@@ -1,11 +1,11 @@
 import { Directive, Input, OnChanges } from '@angular/core';
-import { HtmlRendererProvider } from './html-renderer.provider';
+import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
 import { Observable, ReplaySubject } from 'rxjs';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
-  selector: '[html]',
-  exportAs: 'html',
+  selector: 'spy-html-renderer[html]',
+  exportAs: 'staticHtmlRendererProvider',
   providers: [
     {
       provide: HtmlRendererProvider,

@@ -13,11 +13,19 @@ const mockUrl = '/html-request';
 @Component({
   selector: 'spy-test',
   template: `
-    <spy-html-renderer [urlHtml]="urlHtml"></spy-html-renderer>
+    <spy-html-renderer
+      [urlHtml]="urlHtml"
+      (urlHtmlLoading)="urlHtmlLoading($event)"
+    ></spy-html-renderer>
   `,
 })
 class TestComponent {
   urlHtml: any;
+  isLoading?: boolean;
+
+  urlHtmlLoading(isLoading: boolean): void {
+    this.isLoading = isLoading;
+  }
 }
 
 describe('UrlHtmlRendererDirective', () => {
@@ -58,7 +66,7 @@ describe('UrlHtmlRendererDirective', () => {
     expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
   });
 
-  it('should render html response inside `spy-html-renderer` when @Input(urlHtml) was changes', async () => {
+  it('should render html response inside `spy-html-renderer` when @Input(urlHtml) was changes', () => {
     const mockRerenderHtml = `<p>Rerendered!!!</p>`;
     const mockRerenderUrl = '/new-html-request';
     const htmlRendererElem = fixture.debugElement.query(
@@ -82,5 +90,33 @@ describe('UrlHtmlRendererDirective', () => {
     fixture.detectChanges();
 
     expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml);
+  });
+
+  it('should emit @Output(urlHtmlLoading) on appropriate fetching process phases', () => {
+    component.urlHtml = mockUrl;
+    fixture.detectChanges();
+
+    expect(component.isLoading).toBe(true);
+
+    const htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    htmlResponse.flush(mockHtmlTemplate);
+    fixture.detectChanges();
+
+    expect(component.isLoading).toBe(false);
+  });
+
+  it('should emit @Output(urlHtmlLoading) on unsucessfull response', () => {
+    component.urlHtml = mockUrl;
+    fixture.detectChanges();
+
+    expect(component.isLoading).toBe(true);
+
+    const htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    htmlResponse.error(new ErrorEvent('Error'));
+    fixture.detectChanges();
+
+    expect(component.isLoading).toBe(false);
   });
 });

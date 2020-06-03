@@ -106,7 +106,7 @@ describe('UrlHtmlRendererDirective', () => {
     expect(component.isLoading).toBe(false);
   });
 
-  it('should emit @Output(urlHtmlLoading) on unsucessfull response', () => {
+  it('should emit @Output(urlHtmlLoading) on unsuccessful response', () => {
     component.urlHtml = mockUrl;
     fixture.detectChanges();
 

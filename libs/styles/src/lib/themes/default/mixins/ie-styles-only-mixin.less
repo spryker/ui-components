@@ -1,0 +1,6 @@
+// ie styles only mixin
+.ie-styles(@rules) {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @rules();
+  }
+}

@@ -142,7 +142,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
       return undefined;
     }
 
-    return value && value instanceof Date ? value : new Date(value);
+    return value instanceof Date ? value : new Date(value);
   }
 
   private updatePicker(): void {

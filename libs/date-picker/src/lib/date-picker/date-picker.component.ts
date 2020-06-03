@@ -132,12 +132,16 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   private getConvertedObject(obj: EnableDate): ConvertedEnableDateRange {
     return {
       onlyWorkDays: obj.onlyWorkDays,
-      from: obj.from ? this.convertValueToDate(obj.from as string | Date) : undefined,
-      to: obj.to ? this.convertValueToDate(obj.to as string | Date) : undefined,
+      from: this.convertValueToDate(obj.from as string | Date),
+      to: this.convertValueToDate(obj.to as string | Date),
     };
   }
 
-  private convertValueToDate(value: string | Date): Date {
+  private convertValueToDate(value: string | Date): Date | undefined {
+    if (!value) {
+      return undefined;
+    }
+
     return value && value instanceof Date ? value : new Date(value);
   }
 

@@ -137,8 +137,12 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     };
   }
 
-  private convertValueToDate(value: string | Date): Date {
-    return value && value instanceof Date ? value : new Date(value);
+  private convertValueToDate(value: string | Date): Date | undefined {
+    if (!value) {
+      return undefined;
+    }
+
+    return value instanceof Date ? value : new Date(value);
   }
 
   private updatePicker(): void {

@@ -167,6 +167,10 @@
       "@spryker/ajax-action/post-actions": [
         "dist/libs/ajax-action/post-actions/index.d.ts",
         "libs/ajax-action/post-actions/src/index.ts"
+      ],
+      "@spryker/html-renderer": [
+        "dist/libs/html-renderer/index.d.ts",
+        "libs/html-renderer/src/index.ts"
       ]
     }
   },

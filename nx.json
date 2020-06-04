@@ -106,6 +106,9 @@
     },
     "ajax-action": {
       "tags": ["type:service"]
+    },
+    "html-renderer": {
+      "tags": ["level:molecule", "type:component"]
     }
   },
   "tasksRunnerOptions": {

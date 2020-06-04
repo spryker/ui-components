@@ -14,8 +14,8 @@ import { ToastPackage, ToastrService } from 'ngx-toastr';
 })
 export class NotificationWrapperComponent {
   constructor(
-    public toastPackage: ToastPackage,
-    public toastrService: ToastrService,
+    private toastPackage: ToastPackage,
+    private toastrService: ToastrService,
   ) {}
 
   closeHandler(): void {

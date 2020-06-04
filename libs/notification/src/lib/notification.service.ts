@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NotificationData } from './types';
 import { ToastrService, IndividualConfig } from 'ngx-toastr';
 import { NotificationRef } from './notification-ref';
+import { mapDataToConfig } from './util';
 
 @Injectable({
   providedIn: 'root',
@@ -10,29 +11,17 @@ export class NotificationService {
   constructor(private toastrService: ToastrService) {}
 
   show(data: NotificationData): NotificationRef {
-    const individualConfig: Partial<IndividualConfig> = {
+    let individualConfig: Partial<IndividualConfig> = {
       easeTime: 300,
       easing: 'ease-in',
       positionClass: 'topRight',
       timeOut: 5000,
     };
-    const type = data.type ? data.type : 'info';
+    const type = data.type || 'info';
 
-    if (data?.closeable) {
-      individualConfig.closeButton = data.closeable;
-    }
-    if (data?.timeOut) {
-      individualConfig.timeOut = data?.timeOut;
-    }
-    if (data?.easing) {
-      individualConfig.easing = data?.easing;
-    }
-    if (data?.easeTime) {
-      individualConfig.easeTime = data?.easeTime;
-    }
-    if (data?.position) {
-      individualConfig.positionClass = data?.position;
-    }
+    individualConfig.closeButton =
+      data.closeable ?? individualConfig.closeButton;
+    individualConfig = mapDataToConfig(data, individualConfig);
 
     const notificationRef = new NotificationRef(
       this.toastrService.show(

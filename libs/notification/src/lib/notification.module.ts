@@ -14,6 +14,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { ToastrModule, GlobalConfig, ToastContainerModule } from 'ngx-toastr';
 import { NotificationGlobalConfig } from './types';
 import { NotificationWrapperComponent } from './notification-wrapper/notification-wrapper.component';
+import { mapDataToConfig } from './util';
 
 @NgModule({
   imports: [
@@ -28,28 +29,19 @@ import { NotificationWrapperComponent } from './notification-wrapper/notificatio
     ToastrModule,
     ToastContainerModule,
   ],
-  declarations: [NotificationComponent, NotificationWrapperComponent],
-  exports: [NotificationComponent, NotificationWrapperComponent],
+  declarations: [NotificationComponent],
+  exports: [NotificationComponent],
 })
 export class NotificationModule {
   static forRoot(config?: NotificationGlobalConfig): ModuleWithProviders {
-    const mappedConfig: Partial<GlobalConfig> = {
+    let mappedConfig: Partial<GlobalConfig> = {
       toastComponent: NotificationWrapperComponent,
       maxOpened: config?.maxOpened ? config.maxOpened : 0,
       newestOnTop: config?.newestOnTop ? config.newestOnTop : true,
     };
 
-    if (config?.timeOut) {
-      mappedConfig.timeOut = config?.timeOut;
-    }
-    if (config?.easing) {
-      mappedConfig.easing = config?.easing;
-    }
-    if (config?.easeTime) {
-      mappedConfig.easeTime = config?.easeTime;
-    }
-    if (config?.position) {
-      mappedConfig.positionClass = config?.position;
+    if (config) {
+      mappedConfig = mapDataToConfig(config, mappedConfig);
     }
 
     return {

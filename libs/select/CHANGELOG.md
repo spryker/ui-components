@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.25](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.24...@spryker/select@0.1.0-next.25) (2020-06-04)
+
+
+### Bug Fixes
+
+* **select:** fixed checkbox behavior ([562a11e](https://github.com/spryker/ui-components/commit/562a11e09aaa39319c425dd2dfaabecdb10a9ec0))
+
+
+
+
+
 # [0.1.0-next.24](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.23...@spryker/select@0.1.0-next.24) (2020-06-01)
 
 **Note:** Version bump only for package @spryker/select

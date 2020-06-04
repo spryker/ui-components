@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs';
-
 export interface NotificationConfig {
   timeOut?: number;
   position?:
@@ -16,8 +14,8 @@ export interface NotificationConfig {
 }
 
 export interface NotificationGlobalConfig extends NotificationConfig {
-  maxOpened?: number; // 0
-  newestOnTop?: boolean; // true
+  maxOpened?: number;
+  newestOnTop?: boolean;
 }
 
 export interface NotificationData extends NotificationConfig {

@@ -12,12 +12,14 @@ describe('NotificationWrapperComponent', () => {
   const mockedConfig = { closeButton: true };
   const mockedTitle = 'mockedTitle';
   const mockedMessage = 'mockedMessage';
+  const mockedToastId = 'mockedToastId';
 
   class MockToastPackage {
     toastType = mockedType;
     config = mockedConfig;
     title = mockedTitle;
     message = mockedMessage;
+    toastId = mockedToastId;
   }
 
   class MockToastrService {
@@ -28,7 +30,8 @@ describe('NotificationWrapperComponent', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: ToastPackage, useClass: MockToastPackage },
-        { provide: ToastrService, useClass: MockToastrService },
+        { provide: ToastrService, useExisting: MockToastrService },
+        MockToastrService,
       ],
       declarations: [NotificationWrapperComponent],
       schemas: [NO_ERRORS_SCHEMA],
@@ -42,8 +45,6 @@ describe('NotificationWrapperComponent', () => {
   });
 
   it('should render <spy-notification>', async () => {
-    fixture.detectChanges();
-
     const notificationElem = fixture.debugElement.query(
       By.css('spy-notification'),
     );
@@ -52,8 +53,6 @@ describe('NotificationWrapperComponent', () => {
   });
 
   it('should bind toastPackage.toastType to type of <spy-notification>', async () => {
-    fixture.detectChanges();
-
     const notificationElem = fixture.debugElement.query(
       By.css('spy-notification'),
     );
@@ -62,8 +61,6 @@ describe('NotificationWrapperComponent', () => {
   });
 
   it('should bind toastPackage.closeButton to closeable of <spy-notification>', async () => {
-    fixture.detectChanges();
-
     const notificationElem = fixture.debugElement.query(
       By.css('spy-notification'),
     );
@@ -74,14 +71,13 @@ describe('NotificationWrapperComponent', () => {
   });
 
   it('closed output of <spy-notification> should call toastrService.remove', async () => {
-    fixture.detectChanges();
-
+    const mockToastrService = TestBed.inject(MockToastrService);
     const notificationElem = fixture.debugElement.query(
       By.css('spy-notification'),
     );
 
     notificationElem.triggerEventHandler('closed', {});
 
-    expect(component.toastrService.remove).toHaveBeenCalled();
+    expect(mockToastrService.remove).toHaveBeenCalledWith(mockedToastId);
   });
 });

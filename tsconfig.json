@@ -159,6 +159,14 @@
       "@spryker/date-picker": [
         "dist/libs/date-picker/index.d.ts",
         "libs/date-picker/src/index.ts"
+      ],
+      "@spryker/ajax-action": [
+        "dist/libs/ajax-action/index.d.ts",
+        "libs/ajax-action/src/index.ts"
+      ],
+      "@spryker/ajax-action/post-actions": [
+        "dist/libs/ajax-action/post-actions/index.d.ts",
+        "libs/ajax-action/post-actions/src/index.ts"
       ]
     }
   },

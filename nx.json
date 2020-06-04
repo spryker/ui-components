@@ -103,6 +103,9 @@
     },
     "date-picker": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "ajax-action": {
+      "tags": ["type:service"]
     }
   },
   "tasksRunnerOptions": {

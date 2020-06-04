@@ -2069,6 +2069,50 @@
           "style": "less"
         }
       }
+    },
+    "ajax-action": {
+      "projectType": "library",
+      "root": "libs/ajax-action",
+      "sourceRoot": "libs/ajax-action/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ajax-action/tsconfig.lib.json",
+            "project": "libs/ajax-action/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ajax-action/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ajax-action/tsconfig.lib.json",
+              "libs/ajax-action/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ajax-action/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ajax-action/jest.config.js",
+            "tsConfig": "libs/ajax-action/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ajax-action/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

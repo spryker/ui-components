@@ -5,18 +5,9 @@ export function mapDataToConfig(
   config: NotificationGlobalConfig | NotificationData,
   mappedConfig: Partial<GlobalConfig>,
 ) {
-  if (config.timeOut) {
-    mappedConfig.timeOut = config.timeOut;
-  }
-
-  if (config.easing) {
-    mappedConfig.easing = config.easing;
-  }
-
-  if (config.easeTime) {
-    mappedConfig.easeTime = config.easeTime;
-  }
-
+  mappedConfig.timeOut = config.timeOut ?? mappedConfig.timeOut;
+  mappedConfig.easing = config.easing ?? mappedConfig.easing;
+  mappedConfig.easeTime = config.easeTime ?? mappedConfig.easeTime;
   mappedConfig.positionClass = mapPositionClass(config.position as string);
 
   return mappedConfig;

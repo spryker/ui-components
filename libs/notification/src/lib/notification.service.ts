@@ -19,10 +19,8 @@ export class NotificationService {
     };
     const type = data.type || 'info';
 
-    if (data.closeable) {
-      individualConfig.closeButton = data.closeable;
-    }
-
+    individualConfig.closeButton =
+      data.closeable ?? individualConfig.closeButton;
     individualConfig = mapDataToConfig(data, individualConfig);
 
     const notificationRef = new NotificationRef(

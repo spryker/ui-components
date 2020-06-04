@@ -29,8 +29,8 @@ import { mapDataToConfig } from './util';
     ToastrModule,
     ToastContainerModule,
   ],
-  declarations: [NotificationComponent, NotificationWrapperComponent],
-  exports: [NotificationComponent, NotificationWrapperComponent],
+  declarations: [NotificationComponent],
+  exports: [NotificationComponent],
 })
 export class NotificationModule {
   static forRoot(config?: NotificationGlobalConfig): ModuleWithProviders {

@@ -39,7 +39,7 @@ class StoryComponent implements OnChanges {
 
 @NgModule({
   imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
-  declarations: [StoryComponent],
+  declarations: [StoryComponent, NotificationWrapperComponent],
   exports: [NotificationModule],
   entryComponents: [NotificationWrapperComponent],
 })

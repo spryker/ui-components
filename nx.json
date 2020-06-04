@@ -12,103 +12,195 @@
   },
   "projects": {
     "core": {
-      "tags": ["type:util", "core"]
+      "tags": [
+        "type:util",
+        "core"
+      ]
     },
     "styles": {
-      "tags": ["type:style"]
+      "tags": [
+        "type:style"
+      ]
     },
     "utils": {
-      "tags": ["type:util"]
+      "tags": [
+        "type:util"
+      ]
     },
     "storybook": {
-      "tags": ["type:meta"]
+      "tags": [
+        "type:meta"
+      ]
     },
     "web-components": {
-      "tags": ["type:util"]
+      "tags": [
+        "type:util"
+      ]
     },
     "button": {
-      "tags": ["type:component", "level:atom"]
+      "tags": [
+        "type:component",
+        "level:atom"
+      ]
     },
     "logo": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "card": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "form-item": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "input": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "alert": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "layout": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "header": {
-      "tags": ["level:organism", "type:component"]
+      "tags": [
+        "level:organism",
+        "type:component"
+      ]
     },
     "navigation": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "icon": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "sidebar": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "textarea": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "toggle": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "checkbox": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "collapsible": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "select": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "notification": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "table": {
-      "tags": ["level:organism", "type:component"]
+      "tags": [
+        "level:organism",
+        "type:component"
+      ]
     },
     "pagination": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "dropdown": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "tabs": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "label": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "internal-utils": {
-      "tags": ["type:meta"]
+      "tags": [
+        "type:meta"
+      ]
     },
     "locale": {
-      "tags": ["type:util"]
+      "tags": [
+        "type:util"
+      ]
     },
     "chips": {
-      "tags": ["level:atom", "type:component"]
+      "tags": [
+        "level:atom",
+        "type:component"
+      ]
     },
     "date-picker": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     },
     "ajax-action": {
-      "tags": ["type:service"]
+      "tags": [
+        "type:service"
+      ]
     },
     "html-renderer": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": [
+        "level:molecule",
+        "type:component"
+      ]
     }
   },
   "tasksRunnerOptions": {

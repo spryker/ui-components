@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { IconModule } from '@spryker/icon';
 import {
   IconErrorModule,
@@ -11,6 +11,10 @@ import {
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 import { NotificationComponent } from './notification/notification.component';
+import { ToastrModule, GlobalConfig, ToastContainerModule } from 'ngx-toastr';
+import { NotificationGlobalConfig } from './types';
+import { NotificationWrapperComponent } from './notification-wrapper/notification-wrapper.component';
+import { mapDataToConfig } from './util';
 
 @NgModule({
   imports: [
@@ -22,8 +26,27 @@ import { NotificationComponent } from './notification/notification.component';
     IconWarningModule,
     IconInfoModule,
     IconRemoveModule,
+    ToastrModule,
+    ToastContainerModule,
   ],
   declarations: [NotificationComponent],
   exports: [NotificationComponent],
 })
-export class NotificationModule {}
+export class NotificationModule {
+  static forRoot(config?: NotificationGlobalConfig): ModuleWithProviders {
+    let mappedConfig: Partial<GlobalConfig> = {
+      toastComponent: NotificationWrapperComponent,
+      maxOpened: config?.maxOpened ? config.maxOpened : 0,
+      newestOnTop: config?.newestOnTop ? config.newestOnTop : true,
+    };
+
+    if (config) {
+      mappedConfig = mapDataToConfig(config, mappedConfig);
+    }
+
+    return {
+      ngModule: NotificationModule,
+      providers: [ToastrModule.forRoot(mappedConfig).providers || []],
+    };
+  }
+}

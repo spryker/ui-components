@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.60](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.59...@spryker/styles@0.1.0-next.60) (2020-06-04)
+
+
+### Features
+
+* **notification wrapper:** fixed tests and logic ([681d78b](https://github.com/spryker/ui-components/commit/681d78be514e8187dfa41eb182959891c6a7c715))
+
+
+
+
+
 # [0.1.0-next.59](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.58...@spryker/styles@0.1.0-next.59) (2020-06-04)
 
 **Note:** Version bump only for package @spryker/styles

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/notification@0.1.0-next.6...@spryker/notification@0.1.0-next.7) (2020-06-04)
+
+
+### Features
+
+* **notification wrapper:** added import of types ([aa46257](https://github.com/spryker/ui-components/commit/aa462570d1b7a8b4cc8fe286db7ad1802722e88b))
+* **notification wrapper:** added imports ([41a8d20](https://github.com/spryker/ui-components/commit/41a8d203703b1b512edf70c602f3803798eaa847))
+* **notification wrapper:** fixed codestyle ([4558406](https://github.com/spryker/ui-components/commit/4558406ff7d8f9df9b6be4f635c5e385c033cb89))
+* **notification wrapper:** fixed imports ([f8a9106](https://github.com/spryker/ui-components/commit/f8a9106b4212747e40a1e00bbe9de69db8de7804))
+* **notification wrapper:** fixed tests and logic ([681d78b](https://github.com/spryker/ui-components/commit/681d78be514e8187dfa41eb182959891c6a7c715))
+* **notification wrapper:** wrapper and service for notification ([c0da9a9](https://github.com/spryker/ui-components/commit/c0da9a9b048315346bd7e719970b5586c69645aa))
+
+
+
+
+
 # 0.1.0-next.6 (2020-05-15)
 
 **Note:** Version bump only for package @spryker/notification

@@ -21,11 +21,7 @@ const mockUrl = '/html-request';
 })
 class TestComponent {
   urlHtml: any;
-  isLoading?: boolean;
-
-  urlHtmlLoading(isLoading: boolean): void {
-    this.isLoading = isLoading;
-  }
+  urlHtmlLoading = jest.fn();
 }
 
 describe('UrlHtmlRendererDirective', () => {
@@ -96,27 +92,27 @@ describe('UrlHtmlRendererDirective', () => {
     component.urlHtml = mockUrl;
     fixture.detectChanges();
 
-    expect(component.isLoading).toBe(true);
+    expect(component.urlHtmlLoading).toHaveBeenCalledWith(true);
 
     const htmlResponse = httpTestingController.expectOne(mockUrl);
 
     htmlResponse.flush(mockHtmlTemplate);
     fixture.detectChanges();
 
-    expect(component.isLoading).toBe(false);
+    expect(component.urlHtmlLoading).toHaveBeenCalledWith(false);
   });
 
   it('should emit @Output(urlHtmlLoading) on unsuccessful response', () => {
     component.urlHtml = mockUrl;
     fixture.detectChanges();
 
-    expect(component.isLoading).toBe(true);
+    expect(component.urlHtmlLoading).toHaveBeenCalledWith(true);
 
     const htmlResponse = httpTestingController.expectOne(mockUrl);
 
     htmlResponse.error(new ErrorEvent('Error'));
     fixture.detectChanges();
 
-    expect(component.isLoading).toBe(false);
+    expect(component.urlHtmlLoading).toHaveBeenCalledWith(false);
   });
 });

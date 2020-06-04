@@ -11,9 +11,8 @@ describe('DrawerContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DrawerContainerComponent ]
-    })
-    .compileComponents();
+      declarations: [DrawerContainerComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

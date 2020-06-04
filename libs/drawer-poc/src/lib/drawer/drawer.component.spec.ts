@@ -11,9 +11,8 @@ describe('DrawerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DrawerComponent ]
-    })
-    .compileComponents();
+      declarations: [DrawerComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

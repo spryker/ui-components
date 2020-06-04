@@ -6,7 +6,7 @@ import { DrawerService } from './drawer.service';
 describe('Service: Drawer', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DrawerService]
+      providers: [DrawerService],
     });
   });
 

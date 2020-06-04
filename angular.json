@@ -2069,6 +2069,80 @@
           "style": "less"
         }
       }
+    },
+    "html-renderer": {
+      "projectType": "library",
+      "root": "libs/html-renderer",
+      "sourceRoot": "libs/html-renderer/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/html-renderer/tsconfig.lib.json",
+            "project": "libs/html-renderer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/html-renderer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/html-renderer/tsconfig.lib.json",
+              "libs/html-renderer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/html-renderer/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/html-renderer/jest.config.js",
+            "tsConfig": "libs/html-renderer/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/html-renderer/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/html-renderer/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/html-renderer",
+            "config": {
+              "configFolder": "libs/html-renderer/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

@@ -159,6 +159,10 @@
       "@spryker/date-picker": [
         "dist/libs/date-picker/index.d.ts",
         "libs/date-picker/src/index.ts"
+      ],
+      "@spryker/html-renderer": [
+        "dist/libs/html-renderer/index.d.ts",
+        "libs/html-renderer/src/index.ts"
       ]
     }
   },

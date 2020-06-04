@@ -2,14 +2,17 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
+  Output,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from '@angular/core';
-import { TypedSimpleChanges } from '@spryker/utils';
+import { take } from 'rxjs/operators';
 
 import { DrawerData } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
@@ -33,20 +36,25 @@ export class DrawerComponentInputs {
 })
 export class DrawerComponent extends DrawerComponentInputs
   implements OnChanges, AfterViewInit, OnDestroy {
+  @Output() isOpenChange = new EventEmitter<boolean>();
+
   @ViewChild('contentTpl') contentTpl?: TemplateRef<any>;
 
   private drawerRef?: DrawerRef;
 
-  constructor(private drawerService: DrawerService) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private drawerService: DrawerService,
+  ) {
     super();
   }
 
   ngAfterViewInit(): void {
-    this.open();
+    this.updateDrawer();
   }
 
-  ngOnChanges(changes: TypedSimpleChanges<DrawerComponentInputs>): void {
-    this.open();
+  ngOnChanges(): void {
+    this.updateDrawer();
   }
 
   ngOnDestroy(): void {
@@ -61,13 +69,35 @@ export class DrawerComponent extends DrawerComponentInputs
     this.close();
 
     this.drawerRef = this.drawerService.openTemplate(this.contentTpl, this);
+
+    this.drawerRef
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe(() => this.close());
+
+    this.isOpen = true;
+    this.isOpenChange.emit(true);
+    this.cdr.markForCheck();
   }
 
   close() {
-    if (this.drawerRef) {
-      const drawerRef = this.drawerRef;
-      this.drawerRef.close();
-      this.drawerRef = undefined;
+    if (!this.drawerRef) {
+      return;
+    }
+
+    this.drawerRef.close();
+    this.drawerRef = undefined;
+
+    this.isOpen = false;
+    this.isOpenChange.emit(false);
+    this.cdr.markForCheck();
+  }
+
+  private updateDrawer() {
+    if (this.isOpen) {
+      this.open();
+    } else {
+      this.close();
     }
   }
 }

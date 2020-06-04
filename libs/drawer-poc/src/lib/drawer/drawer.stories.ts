@@ -14,6 +14,7 @@ export default {
   selector: 'spy-story',
   template: `
     <spy-drawer
+      [(isOpen)]="openDrawer"
       [closeable]="closeable"
       [resizable]="resizable"
       [width]="width"
@@ -21,9 +22,12 @@ export default {
     >
       <h3>Drawer content here...</h3>
     </spy-drawer>
+    <button (click)="openDrawer = !openDrawer">Toggle drawer</button>
   `,
 })
-class StoryComponent extends DrawerComponentInputs {}
+class StoryComponent extends DrawerComponentInputs {
+  openDrawer = false;
+}
 
 export const primary = (): IStory => ({
   moduleMetadata: {

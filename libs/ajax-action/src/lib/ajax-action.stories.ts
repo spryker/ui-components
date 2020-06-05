@@ -2,7 +2,7 @@ import { NgModule, Component, Injectable, Injector } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AjaxActionModule } from './ajax-action.module';
 import { AjaxActionService } from './ajax-action.service';
-import { AjaxPostActionRedirect } from '../../post-actions//src/ajax-post-action-redirect';
+import { AjaxPostActionRedirect } from '../../post-actions/src/ajax-post-action-redirect';
 import { NotificationModule } from '@spryker/notification';
 import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 
@@ -68,8 +68,7 @@ class StoryComponent {
       mock: AjaxPostActionMockService,
     }),
   ],
-  declarations: [StoryComponent, NotificationWrapperComponent],
-  exports: [NotificationModule],
+  declarations: [StoryComponent],
   entryComponents: [NotificationWrapperComponent],
 })
 class StoryModule {}

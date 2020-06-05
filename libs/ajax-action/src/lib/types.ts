@@ -1,4 +1,4 @@
-import { Type } from '@angular/core';
+import { Type, Injector } from '@angular/core';
 import { NotificationDataType } from '@spryker/notification';
 
 export interface AjaxActionNotification {
@@ -18,7 +18,7 @@ export interface AjaxPostAction {
 }
 
 export interface AjaxPostActionHandler {
-  handleAction(action: AjaxPostAction): void;
+  handleAction(action: AjaxPostAction, injector: Injector): void;
 }
 
 export interface AjaxPostActionsDeclaration {

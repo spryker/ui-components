@@ -10,6 +10,7 @@ declare module '@spryker/ajax-action' {
 }
 
 export interface AjaxPostActionRedirect extends AjaxPostAction {
+  type: 'redirect';
   url: string;
 }
 

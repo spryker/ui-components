@@ -18,8 +18,10 @@ export interface NotificationGlobalConfig extends NotificationConfig {
   newestOnTop?: boolean;
 }
 
+export type NotificationDataType = 'info' | 'error' | 'warning' | 'success';
+
 export interface NotificationData extends NotificationConfig {
-  type?: 'info' | 'error' | 'warning' | 'success';
+  type?: NotificationDataType;
   title: string;
   description?: string;
   closeable?: boolean;

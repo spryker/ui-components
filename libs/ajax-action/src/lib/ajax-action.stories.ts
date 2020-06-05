@@ -1,44 +1,71 @@
-import { NgModule, Component, Input, OnChanges } from '@angular/core';
+import { NgModule, Component, Injectable, Injector } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AjaxActionModule } from './ajax-action.module';
 import { AjaxActionService } from './ajax-action.service';
-import { AjaxPostActionRedirectService } from '../../post-actions//src/ajax-post-action-redirect';
-
-import { NotificationModule } from '../../../notification/src/lib/notification.module';
+import { AjaxPostActionRedirect } from '../../post-actions//src/ajax-post-action-redirect';
+import { NotificationModule } from '@spryker/notification';
 import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 
 export default {
   title: 'AjaxActionComponent',
 };
 
+@Injectable({
+  providedIn: 'root',
+})
+class AjaxPostActionMockService {
+  constructor() {}
+
+  handleAction(action: AjaxPostActionRedirect): void {
+    // tslint:disable-next-line: no-non-null-assertion
+    document.getElementById(
+      'test-id',
+    )!.innerHTML += `<div>${action.random}</div>`;
+  }
+}
+
 @Component({
   selector: 'spy-story',
   template: `
-    <button (click)="clickHandler()">TestButton</button>
+    <button (click)="clickHandler()">
+      Show random number with notifications
+    </button>
+    <div id="test-id"></div>
   `,
   providers: [AjaxActionService],
 })
 class StoryComponent {
-  constructor(private ajaxActionService: AjaxActionService) {}
+  constructor(
+    private injector: Injector,
+    private ajaxActionService: AjaxActionService,
+  ) {}
 
   clickHandler() {
-    console.log('clicked');
+    const random = Math.random().toFixed(4);
+
     const actionObject = {
       postAction: {
-        type: 'redirect',
-        url: 'http://www.google.com',
+        type: 'mock',
+        random,
       },
-    } as any;
-    this.ajaxActionService.handle(actionObject);
+      notifications: [
+        {
+          type: 'info' as any,
+          message: `Random value is ${random}`,
+        },
+      ],
+    };
+
+    this.ajaxActionService.handle(actionObject, this.injector);
   }
 }
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     NotificationModule.forRoot(),
     AjaxActionModule.withActions({
-      redirect: AjaxPostActionRedirectService,
+      mock: AjaxPostActionMockService,
     }),
   ],
   declarations: [StoryComponent, NotificationWrapperComponent],

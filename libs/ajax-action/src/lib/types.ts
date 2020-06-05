@@ -1,7 +1,8 @@
 import { Type } from '@angular/core';
+import { NotificationDataType } from '@spryker/notification';
 
 export interface AjaxActionNotification {
-  type: string;
+  type: NotificationDataType;
   message: string;
 }
 
@@ -11,7 +12,7 @@ export interface AjaxPostActionRegistry {}
 export type AjaxPostActionType = keyof AjaxPostActionRegistry;
 
 export interface AjaxPostAction {
-  type: AjaxPostActionType;
+  type: string;
   // Specific AjaxPostAction types may have custom props
   [k: string]: unknown;
 }

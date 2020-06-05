@@ -12,13 +12,15 @@ import {
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
+  OnInit,
 } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { take, takeUntil, switchMap } from 'rxjs/operators';
 
 import { DrawerData } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerService } from '../drawer.service';
 import { DrawerTemplateContext } from '../types';
+import { Subject, merge, Observable } from 'rxjs';
 
 export class DrawerComponentInputs {
   @Input() isOpen?: boolean;
@@ -37,7 +39,7 @@ export class DrawerComponentInputs {
   encapsulation: ViewEncapsulation.None,
 })
 export class DrawerComponent extends DrawerComponentInputs
-  implements OnChanges, AfterViewInit, OnDestroy {
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @Output() isOpenChange = new EventEmitter<boolean>();
 
   @ViewChild('contentTpl') contentTpl?: TemplateRef<any>;
@@ -46,11 +48,26 @@ export class DrawerComponent extends DrawerComponentInputs
 
   private drawerRef?: DrawerRef;
 
+  private closed$ = new Subject<void>();
+  private destroyed$ = new Subject<void>();
+  private afterClosed$$ = new Subject<Observable<void>>();
+
   constructor(
     private cdr: ChangeDetectorRef,
     private drawerService: DrawerService,
   ) {
     super();
+  }
+
+  ngOnInit(): void {
+    this.afterClosed$$
+      .pipe(
+        switchMap(afterClosed$ =>
+          afterClosed$.pipe(take(1), takeUntil(this.closed$)),
+        ),
+        takeUntil(this.destroyed$),
+      )
+      .subscribe(() => this.close());
   }
 
   ngAfterViewInit(): void {
@@ -62,6 +79,7 @@ export class DrawerComponent extends DrawerComponentInputs
   }
 
   ngOnDestroy(): void {
+    this.destroyed$.next();
     this.close();
   }
 
@@ -76,10 +94,7 @@ export class DrawerComponent extends DrawerComponentInputs
 
     this.drawerRef = this.drawerService.openTemplate(template, this);
 
-    this.drawerRef
-      .afterClosed()
-      .pipe(take(1))
-      .subscribe(() => this.close());
+    this.afterClosed$$.next(this.drawerRef.afterClosed());
 
     this.isOpen = true;
     this.isOpenChange.emit(true);
@@ -87,6 +102,8 @@ export class DrawerComponent extends DrawerComponentInputs
   }
 
   close() {
+    this.closed$.next();
+
     if (!this.drawerRef) {
       return;
     }

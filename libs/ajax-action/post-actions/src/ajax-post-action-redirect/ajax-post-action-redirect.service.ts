@@ -2,6 +2,7 @@ import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { AjaxPostAction, AjaxPostActionHandler } from '@spryker/ajax-action';
 import { WindowToken } from './tokens';
 import { InjectionTokenType } from '@spryker/utils';
+
 // Add redirect type to registry
 declare module '@spryker/ajax-action' {
   interface AjaxPostActionRegistry {
@@ -14,6 +15,9 @@ export interface AjaxPostActionRedirect extends AjaxPostAction {
   url: string;
 }
 
+/**
+ * Changes window location
+ */
 @Injectable({
   providedIn: 'root',
 })

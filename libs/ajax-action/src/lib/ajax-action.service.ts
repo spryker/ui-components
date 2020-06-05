@@ -9,7 +9,7 @@ import { NotificationService } from '@spryker/notification';
 import { AjaxPostActionsToken } from './tokens';
 
 /**
- * Combines all ajax action by token and invoke appropriate via handle method
+ * Combines all ajax action by token and invoke appropriate handle method
  * Shows notifications via {@link NotificationService}
  */
 @Injectable({

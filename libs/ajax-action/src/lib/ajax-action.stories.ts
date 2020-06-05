@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AjaxActionModule } from './ajax-action.module';
 import { AjaxActionService } from './ajax-action.service';
 import { AjaxPostActionRedirect } from '../../post-actions/src/ajax-post-action-redirect';
-import { NotificationModule } from '@spryker/notification';
 import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 
 export default {
@@ -63,7 +62,6 @@ class StoryComponent {
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    NotificationModule.forRoot(),
     AjaxActionModule.withActions({
       mock: AjaxPostActionMockService,
     }),

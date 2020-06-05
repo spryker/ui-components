@@ -12,9 +12,6 @@ import { AjaxPostActionsToken } from './tokens';
  * Combines all ajax action by token and invoke appropriate handle method
  * Shows notifications via {@link NotificationService}
  */
-@Injectable({
-  providedIn: 'root',
-})
 export class AjaxActionService {
   /**
    * Merge tokens array {@link AjaxPostActionsToken} objects into one object by overriding keys

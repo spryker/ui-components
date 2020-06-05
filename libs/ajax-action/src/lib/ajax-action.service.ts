@@ -1,12 +1,13 @@
-import { Inject, Injectable, Optional, Injector } from '@angular/core';
+import { Inject, Injector, Optional } from '@angular/core';
+import { NotificationService } from '@spryker/notification';
+import { InjectionTokenType } from '@spryker/utils';
+
+import { AjaxPostActionsToken } from './tokens';
 import {
   AjaxActionResponse,
-  AjaxPostActionsDeclaration,
   AjaxPostActionHandler,
+  AjaxPostActionsDeclaration,
 } from './types';
-import { InjectionTokenType } from '@spryker/utils';
-import { NotificationService } from '@spryker/notification';
-import { AjaxPostActionsToken } from './tokens';
 
 /**
  * Combines all ajax action by token and invoke appropriate handle method

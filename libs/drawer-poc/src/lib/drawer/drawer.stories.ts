@@ -20,7 +20,10 @@ export default {
       [width]="width"
       [hasBackdrop]="hasBackdrop"
     >
-      <h3>Drawer content here...</h3>
+      <ng-template let-drawerRef>
+        <h3>Drawer content here...</h3>
+        <button (click)="drawerRef.close()">Close</button>
+      </ng-template>
     </spy-drawer>
     <button (click)="openDrawer = !openDrawer">Toggle drawer</button>
   `,

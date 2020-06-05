@@ -1,7 +1,9 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ContentChild,
   EventEmitter,
   Input,
   OnChanges,
@@ -10,13 +12,13 @@ import {
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 import { DrawerData } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerService } from '../drawer.service';
+import { DrawerTemplateContext } from '../types';
 
 export class DrawerComponentInputs {
   @Input() isOpen?: boolean;
@@ -40,6 +42,8 @@ export class DrawerComponent extends DrawerComponentInputs
 
   @ViewChild('contentTpl') contentTpl?: TemplateRef<any>;
 
+  @ContentChild(TemplateRef) templateRef?: TemplateRef<DrawerTemplateContext>;
+
   private drawerRef?: DrawerRef;
 
   constructor(
@@ -62,13 +66,15 @@ export class DrawerComponent extends DrawerComponentInputs
   }
 
   open() {
-    if (!this.contentTpl) {
+    const template = this.templateRef || this.contentTpl;
+
+    if (!template) {
       return;
     }
 
     this.close();
 
-    this.drawerRef = this.drawerService.openTemplate(this.contentTpl, this);
+    this.drawerRef = this.drawerService.openTemplate(template, this);
 
     this.drawerRef
       .afterClosed()

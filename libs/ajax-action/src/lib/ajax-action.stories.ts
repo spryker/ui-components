@@ -17,13 +17,20 @@ export default {
   template: `
     <button (click)="clickHandler()">TestButton</button>
   `,
-  providers: [],
+  providers: [AjaxActionService],
 })
 class StoryComponent {
-  constructor() {}
+  constructor(private ajaxActionService: AjaxActionService) {}
 
   clickHandler() {
     console.log('clicked');
+    const actionObject = {
+      postAction: {
+        type: 'redirect',
+        url: 'http://www.google.com',
+      },
+    } as any;
+    this.ajaxActionService.handle(actionObject);
   }
 }
 

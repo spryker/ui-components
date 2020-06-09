@@ -75,7 +75,7 @@
       "tags": ["level:molecule", "type:component"]
     },
     "notification": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": ["level:molecule", "type:component-service"]
     },
     "table": {
       "tags": ["level:organism", "type:component"]
@@ -103,6 +103,9 @@
     },
     "date-picker": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "ajax-action": {
+      "tags": ["type:service"]
     },
     "html-renderer": {
       "tags": ["level:molecule", "type:component"]

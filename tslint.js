@@ -112,7 +112,11 @@ module.exports = {
           { sourceTag: 'type:style', onlyDependOnLibsWithTags: ['type:style'] },
           {
             sourceTag: 'type:service',
-            onlyDependOnLibsWithTags: ['type:util', 'type:service'],
+            onlyDependOnLibsWithTags: [
+              'type:util',
+              'type:service',
+              'type:component-service',
+            ],
           },
           {
             sourceTag: 'type:component',
@@ -120,6 +124,16 @@ module.exports = {
               'type:util',
               'type:service',
               'type:component',
+              'type:component-service',
+            ],
+          },
+          {
+            sourceTag: 'type:component-service',
+            onlyDependOnLibsWithTags: [
+              'type:util',
+              'type:service',
+              'type:component',
+              'type:component-service',
             ],
           },
           // type rules END

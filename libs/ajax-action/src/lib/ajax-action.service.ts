@@ -10,8 +10,7 @@ import {
 } from './types';
 
 /**
- * Combines all ajax action by token and invoke appropriate handle method
- * Shows notifications via {@link NotificationService}
+ * Invokes appropriate {@link AjaxPostActionHandler} from all registered handlers in {@link AjaxPostActionsToken}
  */
 export class AjaxActionService {
   /**
@@ -36,14 +35,12 @@ export class AjaxActionService {
    * Invokes related {@link AjaxPostActionHandler} provided from {@link AjaxPostActionsToken}
    */
   handle(response: AjaxActionResponse, injector?: Injector): void {
-    response.notifications?.forEach(notification => {
-      const { type, message } = notification;
-
+    response.notifications?.forEach(({ type, message }) =>
       this.notificationService.show({
         type,
         title: message,
-      });
-    });
+      }),
+    );
 
     if (!response.postAction?.type) {
       return;
@@ -52,10 +49,12 @@ export class AjaxActionService {
     const actionClass = this.actionHandlersObject[response.postAction.type];
 
     if (!actionClass) {
-      throw new Error(`AjaxPostActionHandler: action type is not defined!`);
+      throw new Error(
+        `AjaxActionService: Post Action type '${response.postAction.type}' is not registered!`,
+      );
     }
 
-    const actionService: AjaxPostActionHandler = this.injector.get(actionClass);
+    const actionService = this.injector.get(actionClass);
 
     actionService?.handleAction(response.postAction, injector ?? this.injector);
   }

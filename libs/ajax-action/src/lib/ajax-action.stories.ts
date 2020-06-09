@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationModule } from '@spryker/notification';
 
 import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
-import { AjaxPostActionRedirect } from '../../post-actions/src/ajax-post-action-redirect';
 import { AjaxActionModule } from './ajax-action.module';
 import { AjaxActionService } from './ajax-action.service';
 
@@ -17,7 +16,7 @@ export default {
 class AjaxPostActionMockService {
   constructor() {}
 
-  handleAction(action: AjaxPostActionRedirect): void {
+  handleAction(action: any): void {
     // tslint:disable-next-line: no-non-null-assertion
     document.getElementById(
       'test-id',

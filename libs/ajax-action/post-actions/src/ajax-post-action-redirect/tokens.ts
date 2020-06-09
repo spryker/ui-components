@@ -1,10 +1,10 @@
 import { InjectionToken } from '@angular/core';
 
-export function getWindowObject(): Window {
+export function browserWindowFactory(): Window {
   return window;
 }
 
 export const WindowToken = new InjectionToken<Window>('WindowToken', {
   providedIn: 'root',
-  factory: getWindowObject,
+  factory: browserWindowFactory,
 });

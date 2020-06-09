@@ -27,15 +27,11 @@ const mockNotificationsForProp = {
 };
 
 class MockAjaxPostActionService {
-  constructor() {}
-
-  handleAction(action: AjaxPostActionRedirect): void {}
+  handleAction = jest.fn();
 }
 
 class MockNotificationService {
-  constructor() {}
-
-  show(data: any): void {}
+  show = jest.fn();
 }
 
 describe('AjaxActionService', () => {
@@ -72,7 +68,6 @@ describe('AjaxActionService', () => {
       notifications: mockNotifications,
     };
 
-    notificationService.show = jest.fn();
     actionService.handle(mockResponse);
 
     expect(notificationService.show).toHaveBeenCalledWith(
@@ -83,7 +78,6 @@ describe('AjaxActionService', () => {
   it('should not call `notificationService` if `notifications` key does exists', () => {
     const mockResponse = {};
 
-    notificationService.show = jest.fn();
     actionService.handle(mockResponse);
 
     expect(notificationService.show).not.toHaveBeenCalled();
@@ -94,7 +88,6 @@ describe('AjaxActionService', () => {
       postAction: mockPostActions,
     };
 
-    postActionService.handleAction = jest.fn();
     actionService.handle(mockResponse);
 
     expect(postActionService.handleAction).toHaveBeenCalledWith(
@@ -109,7 +102,6 @@ describe('AjaxActionService', () => {
     };
     const mockInjector = {} as any;
 
-    postActionService.handleAction = jest.fn();
     actionService.handle(mockResponse, mockInjector);
 
     expect(postActionService.handleAction).toHaveBeenCalledWith(
@@ -125,7 +117,7 @@ describe('AjaxActionService', () => {
       },
     };
 
-    expect(function() {
+    expect(() => {
       actionService.handle(mockResponse, injector);
     }).toThrow();
   });

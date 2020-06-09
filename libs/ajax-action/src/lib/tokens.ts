@@ -9,11 +9,11 @@ export const AjaxPostActionsToken = new InjectionToken<
 >('AjaxPostActionsToken');
 
 export function provideAjaxActions(
-  registry: AjaxPostActionsDeclaration,
+  postActions: AjaxPostActionsDeclaration,
 ): Provider {
   return {
     provide: AjaxPostActionsToken,
-    useValue: registry,
+    useValue: postActions,
     multi: true,
   };
 }

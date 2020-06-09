@@ -29,7 +29,7 @@ import { mapDataToConfig } from './util';
     ToastrModule,
     ToastContainerModule,
   ],
-  declarations: [NotificationComponent],
+  declarations: [NotificationComponent, NotificationWrapperComponent],
   exports: [NotificationComponent],
 })
 export class NotificationModule {

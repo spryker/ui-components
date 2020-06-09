@@ -103,6 +103,7 @@ For this every component library should have associated ONE level tag:
 ## Available Tags
 
 - `type:*` Describes types of library
+  - `type:component-service` Component with service library
   - `type:component` Component library
   - `type:service` Services library
   - `type:style` Styles library

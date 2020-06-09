@@ -1,41 +1,74 @@
-import { NgModule, Component, Input, OnChanges } from '@angular/core';
+import { Component, Injectable, Injector, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationModule } from '@spryker/notification';
 
+import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 import { AjaxActionModule } from './ajax-action.module';
 import { AjaxActionService } from './ajax-action.service';
-import { AjaxPostActionRedirectService } from '../../post-actions//src/ajax-post-action-redirect';
-
-import { NotificationModule } from '../../../notification/src/lib/notification.module';
-import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 
 export default {
   title: 'AjaxActionComponent',
 };
 
+@Injectable({
+  providedIn: 'root',
+})
+class AjaxPostActionMockService {
+  constructor() {}
+
+  handleAction(action: any): void {
+    // tslint:disable-next-line: no-non-null-assertion
+    document.getElementById(
+      'test-id',
+    )!.innerHTML += `<div>${action.random}</div>`;
+  }
+}
+
 @Component({
   selector: 'spy-story',
   template: `
-    <button (click)="clickHandler()">TestButton</button>
+    <button (click)="clickHandler()">
+      Show random number with notifications
+    </button>
+    <div id="test-id"></div>
   `,
-  providers: [],
+  providers: [AjaxActionService],
 })
 class StoryComponent {
-  constructor() {}
+  constructor(
+    private injector: Injector,
+    private ajaxActionService: AjaxActionService,
+  ) {}
 
   clickHandler() {
-    console.log('clicked');
+    const random = Math.random().toFixed(4);
+
+    const actionObject = {
+      postAction: {
+        type: 'mock',
+        random,
+      },
+      notifications: [
+        {
+          type: 'info' as any,
+          message: `Random value is ${random}`,
+        },
+      ],
+    };
+
+    this.ajaxActionService.handle(actionObject, this.injector);
   }
 }
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     NotificationModule.forRoot(),
     AjaxActionModule.withActions({
-      redirect: AjaxPostActionRedirectService,
+      mock: AjaxPostActionMockService,
     }),
   ],
-  declarations: [StoryComponent, NotificationWrapperComponent],
-  exports: [NotificationModule],
+  declarations: [StoryComponent],
   entryComponents: [NotificationWrapperComponent],
 })
 class StoryModule {}

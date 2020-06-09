@@ -75,7 +75,7 @@
       "tags": ["level:molecule", "type:component"]
     },
     "notification": {
-      "tags": ["level:molecule", "type:component", "type:service"]
+      "tags": ["level:molecule", "type:component-service"]
     },
     "table": {
       "tags": ["level:organism", "type:component"]

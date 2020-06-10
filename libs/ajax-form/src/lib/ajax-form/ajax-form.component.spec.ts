@@ -19,7 +19,7 @@ import { AjaxFormModule } from '../ajax-form.module';
 import { AjaxActionService } from '@spryker/ajax-action';
 
 const mockFirstHtmlTemplate = `
-  <input type="text" name="name">
+  <input type="text" name="name" id="name">
   <button type="submit">Submit</button>
 `;
 const mockSecondHtmlTemplate = `<p>Hello World!!!</p>`;
@@ -143,11 +143,17 @@ describe('AjaxFormComponent', () => {
 
     const formElem = fixture.debugElement.query(By.css('form'));
 
+    const inputElem = fixture.nativeElement.querySelector('#name');
+
+    inputElem.value = 'mockValue';
+
     formElem.triggerEventHandler('submit', {});
 
     htmlResponse = httpTestingController.expectOne(mockUrl);
 
     expect(htmlResponse.request.body instanceof FormData).toBeTruthy();
+    expect(htmlResponse.request.body.get('name')).toBe('mockValue');
+
     htmlResponse.flush(mockSecondResponse);
 
     tick();

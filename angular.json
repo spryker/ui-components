@@ -2218,21 +2218,21 @@
         }
       }
     },
-    "drawer-poc": {
+    "drawer": {
       "projectType": "library",
-      "root": "libs/drawer-poc",
-      "sourceRoot": "libs/drawer-poc/src",
+      "root": "libs/drawer",
+      "sourceRoot": "libs/drawer/src",
       "prefix": "spy",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/drawer-poc/tsconfig.lib.json",
-            "project": "libs/drawer-poc/ng-package.json"
+            "tsConfig": "libs/drawer/tsconfig.lib.json",
+            "project": "libs/drawer/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/drawer-poc/tsconfig.lib.prod.json"
+              "tsConfig": "libs/drawer/tsconfig.lib.prod.json"
             }
           }
         },
@@ -2240,19 +2240,19 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/drawer-poc/tsconfig.lib.json",
-              "libs/drawer-poc/tsconfig.spec.json"
+              "libs/drawer/tsconfig.lib.json",
+              "libs/drawer/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/drawer-poc/**"]
+            "exclude": ["**/node_modules/**", "!libs/drawer/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/drawer-poc/jest.config.js",
-            "tsConfig": "libs/drawer-poc/tsconfig.spec.json",
+            "jestConfig": "libs/drawer/jest.config.js",
+            "tsConfig": "libs/drawer/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/drawer-poc/src/test-setup.ts"
+            "setupFile": "libs/drawer/src/test-setup.ts"
           }
         },
         "storybook": {
@@ -2261,7 +2261,7 @@
             "uiFramework": "@storybook/angular",
             "port": 4400,
             "config": {
-              "configFolder": "libs/drawer-poc/.storybook"
+              "configFolder": "libs/drawer/.storybook"
             }
           },
           "configurations": {
@@ -2274,9 +2274,9 @@
           "builder": "@nrwl/storybook:build",
           "options": {
             "uiFramework": "@storybook/angular",
-            "outputPath": "dist/storybook/drawer-poc",
+            "outputPath": "dist/storybook/drawer",
             "config": {
-              "configFolder": "libs/drawer-poc/.storybook"
+              "configFolder": "libs/drawer/.storybook"
             }
           },
           "configurations": {

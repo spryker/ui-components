@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'drawer-poc',
+  name: 'drawer',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/libs/drawer-poc',
+  coverageDirectory: '../../coverage/libs/drawer',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

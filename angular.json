@@ -2291,6 +2291,80 @@
           "style": "less"
         }
       }
+    },
+    "ajax-form": {
+      "projectType": "library",
+      "root": "libs/ajax-form",
+      "sourceRoot": "libs/ajax-form/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ajax-form/tsconfig.lib.json",
+            "project": "libs/ajax-form/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ajax-form/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ajax-form/tsconfig.lib.json",
+              "libs/ajax-form/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ajax-form/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ajax-form/jest.config.js",
+            "tsConfig": "libs/ajax-form/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ajax-form/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ajax-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/ajax-form",
+            "config": {
+              "configFolder": "libs/ajax-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

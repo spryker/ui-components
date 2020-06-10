@@ -112,6 +112,9 @@
     },
     "drawer-poc": {
       "tags": []
+    },
+    "ajax-form": {
+      "tags": ["level:molecule", "type:component"]
     }
   },
   "tasksRunnerOptions": {

@@ -3,19 +3,18 @@ import { StaticHtmlRendererModule } from '@spryker/html-renderer';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule } from '@spryker/notification';
-import { NotificationWrapperComponent } from 'libs/notification/src/lib/notification-wrapper/notification-wrapper.component';
 
 export default {
   title: 'AjaxFormComponent',
 };
 
-const mockHtmlTemplate = (template: string) => `
+const mockHtmlTemplate = () => `
   <input type="text" name="name">
   <button type="submit">Submit</button>
 `;
 
-function generateMockHtmlPage(template: string): any {
-  return { form: mockHtmlTemplate(template) };
+function generateMockHtmlPage(): any {
+  return { form: mockHtmlTemplate() };
 }
 
 export const primary = () => ({
@@ -27,7 +26,6 @@ export const primary = () => ({
       NotificationModule.forRoot(),
     ],
     declarations: [AjaxFormComponent],
-    entryComponents: [NotificationWrapperComponent],
   },
   template: `<spy-ajax-form [action]="action" [mockHttp]="mockHttp"></spy-ajax-form>`,
   props: {
@@ -35,7 +33,7 @@ export const primary = () => ({
     mockHttp: setMockHttp([
       {
         url: '/html-request',
-        dataFn: () => generateMockHtmlPage('Url'),
+        dataFn: () => generateMockHtmlPage(),
       },
     ]),
   },

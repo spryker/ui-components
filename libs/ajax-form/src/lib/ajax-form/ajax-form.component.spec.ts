@@ -86,13 +86,25 @@ describe('AjaxFormComponent', () => {
     expect(htmlResponse.request.method).toBe('GET');
   });
 
-  it('component should render html that comes as a response', fakeAsync(() => {
+  it('component should not render form if response doesn`t have form property', fakeAsync(() => {
     component.action = mockUrl;
     fixture.detectChanges();
 
-    const ajaxFormElem = fixture.debugElement.query(By.css('spy-ajax-form'));
+    const htmlResponse = httpTestingController.expectOne(mockUrl);
 
-    expect(ajaxFormElem).toBeTruthy();
+    htmlResponse.flush({});
+
+    tick();
+    fixture.detectChanges();
+
+    const formElem = fixture.debugElement.query(By.css('form'));
+
+    expect(formElem).toBeFalsy();
+  }));
+
+  it('component should render html that comes as a response', fakeAsync(() => {
+    component.action = mockUrl;
+    fixture.detectChanges();
 
     const htmlResponse = httpTestingController.expectOne(mockUrl);
 
@@ -106,7 +118,7 @@ describe('AjaxFormComponent', () => {
     expect(staticHtml.nativeElement.innerHTML).toBe(mockFirstResponse.form);
   }));
 
-  it('component should rerender html that comes as a response', fakeAsync(() => {
+  it('component should submit form data and rerender html that comes from response', fakeAsync(() => {
     component.action = mockUrl;
     component.method = 'POST';
     fixture.detectChanges();
@@ -126,11 +138,16 @@ describe('AjaxFormComponent', () => {
 
     expect(staticHtml.nativeElement.innerHTML).toBe(mockFirstResponse.form);
 
+    tick();
+    fixture.detectChanges();
+
     const formElem = fixture.debugElement.query(By.css('form'));
 
     formElem.triggerEventHandler('submit', {});
 
     htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    expect(htmlResponse.request.body instanceof FormData).toBeTruthy();
     htmlResponse.flush(mockSecondResponse);
 
     tick();

@@ -3,7 +3,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
 import { DrawerContainerComponent } from '../drawer-container/drawer-container.component';
-import { DrawerPocModule } from '../drawer.module';
+import { DrawerModule } from '../drawer.module';
 import { DrawerComponentInputs } from './drawer.component';
 
 export default {
@@ -34,7 +34,7 @@ class StoryComponent extends DrawerComponentInputs {
 
 export const primary = (): IStory => ({
   moduleMetadata: {
-    imports: [DrawerPocModule],
+    imports: [DrawerModule],
     entryComponents: [DrawerContainerComponent],
   },
   component: StoryComponent,

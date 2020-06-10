@@ -41,6 +41,7 @@ export class DrawerComponentInputs {
 export class DrawerComponent extends DrawerComponentInputs
   implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @Output() isOpenChange = new EventEmitter<boolean>();
+  @Output() closed = new EventEmitter<void>();
 
   @ViewChild('contentTpl') contentTpl?: TemplateRef<any>;
 
@@ -50,7 +51,7 @@ export class DrawerComponent extends DrawerComponentInputs
 
   private closed$ = new Subject<void>();
   private destroyed$ = new Subject<void>();
-  private afterClosed$$ = new Subject<Observable<void>>();
+  private afterClosed$ = new Subject<Observable<void>>();
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -60,7 +61,7 @@ export class DrawerComponent extends DrawerComponentInputs
   }
 
   ngOnInit(): void {
-    this.afterClosed$$
+    this.afterClosed$
       .pipe(
         switchMap(afterClosed$ =>
           afterClosed$.pipe(take(1), takeUntil(this.closed$)),
@@ -83,7 +84,7 @@ export class DrawerComponent extends DrawerComponentInputs
     this.close();
   }
 
-  open() {
+  open(): void {
     const template = this.templateRef || this.contentTpl;
 
     if (!template) {
@@ -94,11 +95,19 @@ export class DrawerComponent extends DrawerComponentInputs
 
     this.drawerRef = this.drawerService.openTemplate(template, this);
 
-    this.afterClosed$$.next(this.drawerRef.afterClosed());
+    this.afterClosed$.next(this.drawerRef.afterClosed());
 
     this.isOpen = true;
     this.isOpenChange.emit(true);
     this.cdr.markForCheck();
+  }
+
+  maximize(): void {
+    this.drawerRef?.maximize();
+  }
+
+  minimize(): void {
+    this.drawerRef?.minimize();
   }
 
   close() {
@@ -113,6 +122,7 @@ export class DrawerComponent extends DrawerComponentInputs
 
     this.isOpen = false;
     this.isOpenChange.emit(false);
+    this.closed.emit();
     this.cdr.markForCheck();
   }
 

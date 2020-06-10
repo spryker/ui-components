@@ -42,6 +42,7 @@ export class DrawerService implements OnDestroy {
     options?: Partial<DrawerOptions>,
   ): DrawerRef {
     const opts = this.getOptions(options);
+
     return this.getDrawerContainer(opts).openComponent(compType, opts);
   }
 
@@ -50,10 +51,11 @@ export class DrawerService implements OnDestroy {
     options?: Partial<DrawerOptions>,
   ): DrawerRef {
     const opts = this.getOptions(options);
+
     return this.getDrawerContainer(opts).openTemplate(templateRef, opts);
   }
 
-  closeAll() {
+  closeAll(): void {
     this.allClosed$.next();
     this.drawerStack.forEach(drawer => this.destroyDrawerRecord(drawer));
     this.drawerStack = [];
@@ -64,15 +66,10 @@ export class DrawerService implements OnDestroy {
   }
 
   private getDrawerContainer(options: DrawerOptions): DrawerContainerComponent {
-    let record: DrawerRecord;
+    this.drawerStack.unshift(this.createDrawerRecord(options));
+    this.drawerStack[1]?.container.maximize();
 
-    if (this.drawerStack.length === 0 || options.hasBackdrop) {
-      this.drawerStack.unshift(this.createDrawerRecord(options));
-    }
-
-    record = this.drawerStack[0];
-
-    return record.container;
+    return this.drawerStack[0].container;
   }
 
   private createDrawerRecord(options: DrawerOptions): DrawerRecord {
@@ -101,7 +98,7 @@ export class DrawerService implements OnDestroy {
       overlay.keydownEvents().pipe(filter(e => e.key === 'Escape')),
     )
       .pipe(takeUntil(merge(containerEmpty$, this.allClosed$)))
-      .subscribe(() => record.container.closeLatest());
+      .subscribe(() => this.destroyDrawerRecord(record));
 
     containerEmpty$
       .pipe(takeUntil(this.allClosed$))
@@ -110,19 +107,22 @@ export class DrawerService implements OnDestroy {
     return record;
   }
 
-  private removeDrawerRecord(record: DrawerRecord) {
+  private removeDrawerRecord(record: DrawerRecord): void {
     const idx = this.drawerStack.indexOf(record);
 
     if (idx === -1) {
       return;
     }
 
-    this.drawerStack.splice(idx, 1);
+    for (let i = idx; i >= 0; i--) {
+      this.destroyDrawerRecord(this.drawerStack[i]);
+    }
 
-    this.destroyDrawerRecord(record);
+    this.drawerStack.splice(0, idx + 1);
+    this.drawerStack[0]?.container.minimize();
   }
 
-  private destroyDrawerRecord(record: DrawerRecord) {
+  private destroyDrawerRecord(record: DrawerRecord): void {
     record.overlay.dispose();
   }
 }

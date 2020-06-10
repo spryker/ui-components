@@ -12,7 +12,7 @@ export class DrawerOptions {
   constructor({
     closeable = true,
     resizable = true,
-    width = '350px',
+    width = '50%',
     hasBackdrop = false,
     data,
   }: Partial<DrawerOptions> = {}) {

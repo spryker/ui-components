@@ -109,6 +109,9 @@
     },
     "html-renderer": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "ajax-form": {
+      "tags": ["level:molecule", "type:component"]
     }
   },
   "tasksRunnerOptions": {

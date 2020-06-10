@@ -1,0 +1,3 @@
+<form #submitForm *ngIf="form" (submit)="submitHandler(submitForm)">
+  <spy-html-renderer [html]="form"></spy-html-renderer>
+</form>

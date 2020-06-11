@@ -98,7 +98,7 @@ export class DrawerService implements OnDestroy {
       overlay.keydownEvents().pipe(filter(e => e.key === 'Escape')),
     )
       .pipe(takeUntil(merge(containerEmpty$, this.allClosed$)))
-      .subscribe(() => this.destroyDrawerRecord(record));
+      .subscribe(() => this.removeDrawerRecord(record));
 
     containerEmpty$
       .pipe(takeUntil(this.allClosed$))

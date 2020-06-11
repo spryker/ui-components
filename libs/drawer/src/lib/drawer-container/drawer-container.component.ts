@@ -127,7 +127,7 @@ export class DrawerContainerComponent implements OnDestroy {
     const stackIdx = this.drawerStack.indexOf(drawer);
 
     if (stackIdx !== -1) {
-      this.drawerStack.splice(stackIdx, 1);
+      this.drawerStack.splice(0, stackIdx + 1);
     }
 
     if (this.drawerMap.size === 0) {

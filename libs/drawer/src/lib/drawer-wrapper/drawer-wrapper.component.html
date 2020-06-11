@@ -1,18 +1,19 @@
 <div class="spy-drawer-wrapper__actions">
   <button
-    class="spy-drawer-wrapper__actions spy-drawer-wrapper__actions--close"
+    class="spy-drawer-wrapper__action spy-drawer-wrapper__action--close"
     *ngIf="closeable"
     (click)="close()"
   >
     <spy-icon name="remove"></spy-icon>
   </button>
+
   <button
-    class="spy-drawer-wrapper__actions spy-drawer-wrapper__actions--resize"
+    class="spy-drawer-wrapper__action spy-drawer-wrapper__action--resize"
     *ngIf="resizable"
     (click)="resize()"
   >
     <spy-icon name="minimize" *ngIf="isFullScreen"></spy-icon>
-    <spy-icon name="remove" *ngIf="!isFullScreen"></spy-icon>
+    <spy-icon name="maximize" *ngIf="!isFullScreen"></spy-icon>
   </button>
 </div>
 

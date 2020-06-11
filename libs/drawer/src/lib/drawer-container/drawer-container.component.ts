@@ -87,7 +87,6 @@ export class DrawerContainerComponent implements OnDestroy {
   }
 
   minimize(): void {
-    console.log('minimize');
     this.drawerWrapperComponent?.minimize();
     this.cdr.detectChanges();
   }

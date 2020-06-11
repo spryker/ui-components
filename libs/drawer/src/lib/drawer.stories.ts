@@ -5,9 +5,10 @@ import { IStory } from '@storybook/angular';
 import { DrawerContainerComponent } from './drawer-container/drawer-container.component';
 import { DrawerModule } from './drawer.module';
 import { DrawerService } from './drawer.service';
+import { DrawerComponentInputs } from './drawer/drawer.component';
 
 export default {
-  title: 'Drawer',
+  title: 'DrawersComponent',
 };
 
 @Component({
@@ -24,7 +25,7 @@ export default {
     </ng-template>
   `,
 })
-class StoryComponent {
+class MultipleDrawersComponent {
   @Input() closeable = true;
   @Input() width = '50%';
   @Input() hasBackdrop = false;
@@ -50,12 +51,48 @@ class StoryComponent {
   }
 }
 
+@Component({
+  selector: 'spy-story',
+  template: `
+    <spy-drawer
+      [(isOpen)]="openDrawer"
+      [closeable]="closeable"
+      [resizable]="resizable"
+      [width]="width"
+      [hasBackdrop]="hasBackdrop"
+    >
+      <ng-template let-drawerRef>
+        <h3>Drawer content here...</h3>
+        <button (click)="drawerRef.close()">Close</button>
+      </ng-template>
+    </spy-drawer>
+    <button (click)="openDrawer = !openDrawer">Toggle drawer</button>
+  `,
+})
+class SimpleDrawerComponent extends DrawerComponentInputs {
+  openDrawer = false;
+}
+
 export const primary = (): IStory => ({
   moduleMetadata: {
     imports: [DrawerModule],
     entryComponents: [DrawerContainerComponent],
   },
-  component: StoryComponent,
+  component: SimpleDrawerComponent,
+  props: {
+    closeable: boolean('Closeable', true),
+    resizable: boolean('Resizable', true),
+    width: text('Width', '50%'),
+    hasBackdrop: boolean('Has backdrop', false),
+  },
+});
+
+export const widthMultipleDrawers = (): IStory => ({
+  moduleMetadata: {
+    imports: [DrawerModule],
+    entryComponents: [DrawerContainerComponent],
+  },
+  component: MultipleDrawersComponent,
   props: {
     closeable: boolean('Closeable', true),
     resizable: boolean('Resizable', true),

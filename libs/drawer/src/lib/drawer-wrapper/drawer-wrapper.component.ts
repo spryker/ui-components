@@ -8,6 +8,7 @@ import {
   HostBinding,
 } from '@angular/core';
 
+/** @internal */
 @Component({
   selector: 'spy-drawer-wrapper',
   templateUrl: './drawer-wrapper.component.html',

@@ -1,9 +1,8 @@
 <spy-drawer-wrapper
-  *ngFor="let drawer of drawerMap | keyvalue; trackBy: trackByIndex"
-  [closeable]="drawer.key.options.closeable"
-  [resizable]="drawer.key.options.resizable"
-  [width]="drawer.key.options.width"
-  (closed)="drawer.key.close()"
+  [closeable]="drawerInst?.drawer.options.closeable"
+  [resizable]="drawerInst?.drawer.options.resizable"
+  [width]="drawerInst?.drawer.options.width"
+  (closed)="drawerInst?.drawer.close()"
 >
-  <ng-container *cdkPortalOutlet="drawer.value"></ng-container>
+  <ng-container *cdkPortalOutlet="drawerInst?.portal"></ng-container>
 </spy-drawer-wrapper>

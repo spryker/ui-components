@@ -1,6 +1,7 @@
+import { PortalModule } from '@angular/cdk/portal';
 import {
-  ANALYZE_FOR_ENTRY_COMPONENTS,
   Component,
+  NO_ERRORS_SCHEMA,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -8,7 +9,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DrawerContainerComponent } from './drawer-container.component';
-import { DrawerContainerModule } from './drawer-container.module';
 
 @Component({
   selector: 'spy-test',
@@ -46,15 +46,9 @@ describe('DrawerContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [DrawerContainerModule],
-      declarations: [TestComponent],
-      providers: [
-        {
-          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: [DrawerContainerComponent],
-          multi: true,
-        },
-      ],
+      imports: [PortalModule],
+      declarations: [TestComponent, DrawerContainerComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
@@ -79,7 +73,7 @@ describe('DrawerContainerComponent', () => {
       By.css('spy-drawer-wrapper'),
     );
 
-    expect(wrapperElem.attributes['ng-reflect-closeable']).toBe('true');
+    expect(wrapperElem.properties.closeable).toBe(true);
   });
 
   it('should bind @Input(resizable) to `resizable` of `spy-drawer-wrapper`', () => {
@@ -89,7 +83,7 @@ describe('DrawerContainerComponent', () => {
       By.css('spy-drawer-wrapper'),
     );
 
-    expect(wrapperElem.attributes['ng-reflect-resizable']).toBe('true');
+    expect(wrapperElem.properties.resizable).toBe(true);
   });
 
   it('should bind @Input(width) to `width` of `spy-drawer-wrapper`', () => {
@@ -99,13 +93,13 @@ describe('DrawerContainerComponent', () => {
       By.css('spy-drawer-wrapper'),
     );
 
-    expect(wrapperElem.attributes['ng-reflect-width']).toBe('30%');
+    expect(wrapperElem.properties.width).toBe('30%');
   });
 
   it('should render content inside `spy-drawer-wrapper__content` element as content projection', async () => {
     fixture.detectChanges();
     const wrapperElem = fixture.debugElement.query(
-      By.css('.spy-drawer-wrapper__content'),
+      By.css('spy-drawer-wrapper'),
     );
 
     expect(wrapperElem.nativeElement.textContent).toContain('Content');

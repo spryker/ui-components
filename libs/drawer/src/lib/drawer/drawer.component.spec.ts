@@ -6,7 +6,6 @@ import { DrawerContainerComponent } from '../drawer-container/drawer-container.c
 import { DrawerModule } from '../drawer.module';
 import { DrawerComponentInputs } from './drawer.component';
 
-// tslint:disable: no-non-null-assertion
 @Component({
   selector: 'spy-test',
   template: `

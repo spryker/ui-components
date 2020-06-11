@@ -91,7 +91,7 @@ export class DrawerService implements OnDestroy {
       container: drawerContainerRef.instance,
     };
 
-    const containerEmpty$ = drawerContainerRef.instance.afterAllClosed();
+    const containerEmpty$ = drawerContainerRef.instance.afterClosed();
 
     merge(
       overlay.backdropClick(),

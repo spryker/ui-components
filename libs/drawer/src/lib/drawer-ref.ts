@@ -9,7 +9,12 @@ export class DrawerRef {
   private originalWidth?: string;
   private afterClosed$ = new ReplaySubject<void>();
 
-  constructor(public options: DrawerOptions, private closeFn: () => void) {
+  constructor(
+    public options: DrawerOptions,
+    private closeFn: () => void,
+    private maximizeFn: () => void,
+    private minimizeFn: () => void,
+  ) {
     this.width = this.options.width;
   }
 
@@ -24,13 +29,10 @@ export class DrawerRef {
   }
 
   minimize(): void {
-    this.isFullScreen = true;
-    this.originalWidth = this.width;
-    this.width = '100%';
+    this.minimizeFn();
   }
 
   maximize(): void {
-    this.isFullScreen = false;
-    this.width = this.originalWidth;
+    this.maximizeFn();
   }
 }

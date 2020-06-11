@@ -30,10 +30,9 @@ import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.compone
   },
 })
 export class DrawerContainerComponent implements OnDestroy {
-  drawerMap = new Map<DrawerRef, Portal<any>>();
+  drawerInst?: { drawer: DrawerRef; portal: Portal<any> };
 
-  private drawerStack: DrawerRef[] = [];
-  private afterAllClosed$ = new ReplaySubject<void>();
+  private afterClosed$ = new ReplaySubject<void>();
   private destroyed = false;
 
   @ViewChild(DrawerWrapperComponent)
@@ -43,7 +42,7 @@ export class DrawerContainerComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.destroyed = true;
-    this.clearAllDrawers();
+    this.drawerInst = undefined;
   }
 
   trackByIndex(idx: number): number {
@@ -83,36 +82,31 @@ export class DrawerContainerComponent implements OnDestroy {
 
   maximize(): void {
     this.drawerWrapperComponent?.maximize();
-    this.cdr.detectChanges();
+    this.cdr.markForCheck();
   }
 
   minimize(): void {
     this.drawerWrapperComponent?.minimize();
-    this.cdr.detectChanges();
+    this.cdr.markForCheck();
   }
 
-  closeAll(): void {
-    this.clearAllDrawers();
-    this.cdr.detectChanges();
-    this.emitAllClosed();
-  }
-
-  afterAllClosed(): Observable<void> {
-    return this.afterAllClosed$.asObservable();
+  afterClosed(): Observable<void> {
+    return this.afterClosed$.asObservable();
   }
 
   private createDrawerRef(options: DrawerOptions): DrawerRef {
-    const drawerRef: DrawerRef = new DrawerRef(options, () =>
-      this.removeDrawer(drawerRef),
+    const drawerRef: DrawerRef = new DrawerRef(
+      options,
+      () => this.removeDrawer(drawerRef),
+      () => this.maximize(),
+      () => this.minimize(),
     );
 
     return drawerRef;
   }
 
   private addDrawer(drawer: DrawerRef, portal: Portal<any>): void {
-    this.drawerMap.set(drawer, portal);
-    this.drawerStack.unshift(drawer);
-    this.cdr.detectChanges();
+    this.drawerInst = { drawer, portal };
   }
 
   private removeDrawer(drawer: DrawerRef): void {
@@ -120,23 +114,9 @@ export class DrawerContainerComponent implements OnDestroy {
       return;
     }
 
-    this.drawerMap.delete(drawer);
+    this.drawerInst = undefined;
     this.cdr.detectChanges();
-
-    const stackIdx = this.drawerStack.indexOf(drawer);
-
-    if (stackIdx !== -1) {
-      this.drawerStack.splice(0, stackIdx + 1);
-    }
-
-    if (this.drawerMap.size === 0) {
-      this.emitAllClosed();
-    }
-  }
-
-  private clearAllDrawers(): void {
-    this.drawerMap.clear();
-    this.drawerStack = [];
+    this.emitClosed();
   }
 
   private createDrawerInjector(drawerRef: DrawerRef): Injector {
@@ -151,8 +131,8 @@ export class DrawerContainerComponent implements OnDestroy {
     return { $implicit: drawerRef };
   }
 
-  private emitAllClosed(): void {
-    this.afterAllClosed$.next();
-    this.afterAllClosed$.complete();
+  private emitClosed(): void {
+    this.afterClosed$.next();
+    this.afterClosed$.complete();
   }
 }

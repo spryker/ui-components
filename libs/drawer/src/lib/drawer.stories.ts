@@ -63,7 +63,10 @@ class MultipleDrawersComponent {
     >
       <ng-template let-drawerRef>
         <h3>Drawer content here...</h3>
+
         <button (click)="drawerRef.close()">Close</button>
+        <p><button (click)="drawerRef.maximize()">Maximize</button></p>
+        <p><button (click)="drawerRef.minimize()">Minimize</button></p>
       </ng-template>
     </spy-drawer>
     <button (click)="openDrawer = !openDrawer">Toggle drawer</button>

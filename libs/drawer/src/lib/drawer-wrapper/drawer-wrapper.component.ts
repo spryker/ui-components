@@ -1,11 +1,13 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
+  HostBinding,
   Input,
+  OnInit,
   Output,
   ViewEncapsulation,
-  HostBinding,
 } from '@angular/core';
 
 /** @internal */
@@ -19,7 +21,7 @@ import {
     class: 'spy-drawer-wrapper',
   },
 })
-export class DrawerWrapperComponent {
+export class DrawerWrapperComponent implements OnInit {
   @Input() closeable = true;
   @Input() resizable = true;
   @Input() @HostBinding('style.width') width?: string;
@@ -31,6 +33,12 @@ export class DrawerWrapperComponent {
 
   private originalWidth?: string;
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    this.originalWidth = this.width;
+  }
+
   close(): void {
     if (this.closeable) {
       this.closed.emit();
@@ -39,13 +47,14 @@ export class DrawerWrapperComponent {
 
   maximize(): void {
     this.isFullScreen = true;
-    this.originalWidth = this.width;
     this.width = '100%';
+    this.cdr.markForCheck();
   }
 
   minimize(): void {
     this.isFullScreen = false;
     this.width = this.originalWidth;
+    this.cdr.markForCheck();
   }
 
   resize(): void {

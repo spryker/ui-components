@@ -74,6 +74,7 @@
     "@angular/platform-browser": "^9.1.12",
     "@angular/platform-browser-dynamic": "^9.1.12",
     "@angular/router": "^9.1.12",
+    "@nrwl/nx-cloud": "^9.3.5",
     "@orchestrator/core": "^0.2.0",
     "@orchestrator/layout": "^0.1.0",
     "core-js": "^3.6.4",

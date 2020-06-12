@@ -30,7 +30,7 @@ import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.compone
   },
 })
 export class DrawerContainerComponent implements OnDestroy {
-  drawerInst?: { drawer: DrawerRef; portal: Portal<any> };
+  drawerRecord?: { drawer: DrawerRef; portal: Portal<any> };
 
   private afterClosed$ = new ReplaySubject<void>();
   private destroyed = false;
@@ -42,7 +42,7 @@ export class DrawerContainerComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.destroyed = true;
-    this.drawerInst = undefined;
+    this.drawerRecord = undefined;
   }
 
   trackByIndex(idx: number): number {
@@ -106,7 +106,7 @@ export class DrawerContainerComponent implements OnDestroy {
   }
 
   private addDrawer(drawer: DrawerRef, portal: Portal<any>): void {
-    this.drawerInst = { drawer, portal };
+    this.drawerRecord = { drawer, portal };
   }
 
   private removeDrawer(drawer: DrawerRef): void {
@@ -114,7 +114,7 @@ export class DrawerContainerComponent implements OnDestroy {
       return;
     }
 
-    this.drawerInst = undefined;
+    this.drawerRecord = undefined;
     this.cdr.detectChanges();
     this.emitClosed();
   }

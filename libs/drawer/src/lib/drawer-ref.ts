@@ -3,10 +3,6 @@ import { ReplaySubject, Observable } from 'rxjs';
 import { DrawerOptions } from './drawer-options';
 
 export class DrawerRef {
-  isFullScreen = false;
-  width?: string;
-
-  private originalWidth?: string;
   private afterClosed$ = new ReplaySubject<void>();
 
   constructor(
@@ -14,9 +10,7 @@ export class DrawerRef {
     private closeFn: () => void,
     private maximizeFn: () => void,
     private minimizeFn: () => void,
-  ) {
-    this.width = this.options.width;
-  }
+  ) {}
 
   close(): void {
     this.closeFn();

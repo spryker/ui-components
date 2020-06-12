@@ -111,7 +111,7 @@
       "tags": ["level:molecule", "type:component"]
     },
     "drawer": {
-      "tags": ["level:molecule", "type:component"]
+      "tags": ["level:molecule", "type:component-service"]
     },
     "ajax-form": {
       "tags": ["level:molecule", "type:component"]

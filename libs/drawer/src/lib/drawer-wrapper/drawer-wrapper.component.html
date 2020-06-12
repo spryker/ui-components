@@ -4,7 +4,7 @@
     *ngIf="closeable"
     (click)="close()"
   >
-    <spy-icon name="remove"></spy-icon>
+    <spy-icon [name]="removeIcon"></spy-icon>
   </button>
 
   <button
@@ -12,8 +12,8 @@
     *ngIf="resizable"
     (click)="resize()"
   >
-    <spy-icon name="minimize" *ngIf="isFullScreen"></spy-icon>
-    <spy-icon name="maximize" *ngIf="!isFullScreen"></spy-icon>
+    <spy-icon [name]="minimizeIcon" *ngIf="isFullScreen"></spy-icon>
+    <spy-icon [name]="maximizeIcon" *ngIf="!isFullScreen"></spy-icon>
   </button>
 </div>
 

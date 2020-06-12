@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
+import { AjaxPostActionHandler } from '@spryker/ajax-action';
 
 import { WindowToken } from './tokens';
 import { AjaxPostActionRedirect } from './types';
@@ -10,7 +11,7 @@ import { AjaxPostActionRedirect } from './types';
 @Injectable({
   providedIn: 'root',
 })
-export class AjaxPostActionRedirectService {
+export class AjaxPostActionRedirectService implements AjaxPostActionHandler {
   constructor(
     @Inject(WindowToken)
     private windowToken: InjectionTokenType<typeof WindowToken>,

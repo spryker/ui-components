@@ -26,6 +26,10 @@ export class TableFormOverlayActionHandlerService
         TableFormOverlayActionHandlerComponent,
         { data: this.drawerData$ },
       );
+
+      this.drawerRef.afterClosed().subscribe({
+        next: () => (this.drawerRef = undefined),
+      });
     }
 
     return merge(

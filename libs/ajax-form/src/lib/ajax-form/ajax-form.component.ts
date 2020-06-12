@@ -50,13 +50,17 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
     this.submitSubscription?.unsubscribe();
   }
 
-  submitHandler(form: HTMLFormElement): void {
+  submitHandler(form: HTMLFormElement, event: Event): void {
+    if (event && event.preventDefault) {
+      event.preventDefault();
+    }
+
     const submitForm = new FormData(form);
 
     if (this.action) {
       this.submitSubscription?.unsubscribe();
       this.submitSubscription = this.http
-        .request<AjaxFormResponse>(this.method, this.action, {
+        .request<AjaxFormResponse>(this.method || 'GET', this.action, {
           body: submitForm,
         })
         .subscribe({

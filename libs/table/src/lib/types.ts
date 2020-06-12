@@ -3,6 +3,7 @@ import { TableDataRow } from '@spryker/table';
 import { Observable } from 'rxjs';
 import { Type } from '@angular/core';
 
+// tslint:disable-next-line: no-empty-interface
 export interface TableActionRegistry {
   // link;
 }

@@ -1,11 +1,6 @@
 import { Injectable, Inject, Optional, Injector } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { TableDataRow } from './table/table';
-import {
-  TableActionBase,
-  TableActionsDeclaration,
-  TableActionTriggeredEvent,
-} from './types';
+import { TableActionsDeclaration, TableActionTriggeredEvent } from './types';
 import { InjectionTokenType } from '@spryker/utils';
 import { TableActionsToken } from './tokens';
 import { TableEventBus } from './table/table-event-bus';

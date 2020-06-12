@@ -1,5 +1,6 @@
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
-import { TableRowActionsDeclaration, TableActionTriggeredEvent } from './table';
+import { TableRowActionsDeclaration } from './table';
+import { TableActionTriggeredEvent } from '../types';
 
 export const TABLE_ROW_ACTIONS_TOKEN = new InjectionToken<
   TableRowActionsDeclaration[]

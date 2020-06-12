@@ -1,8 +1,8 @@
 <spy-drawer-wrapper
-  [closeable]="drawerInst?.drawer.options.closeable"
-  [resizable]="drawerInst?.drawer.options.resizable"
-  [width]="drawerInst?.drawer.options.width"
-  (closed)="drawerInst?.drawer.close()"
+  [closeable]="drawerRecord?.drawer.options.closeable"
+  [resizable]="drawerRecord?.drawer.options.resizable"
+  [width]="drawerRecord?.drawer.options.width"
+  (closed)="drawerRecord?.drawer.close()"
 >
-  <ng-container *cdkPortalOutlet="drawerInst?.portal"></ng-container>
+  <ng-container *cdkPortalOutlet="drawerRecord?.portal"></ng-container>
 </spy-drawer-wrapper>

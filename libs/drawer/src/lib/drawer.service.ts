@@ -114,6 +114,7 @@ export class DrawerService implements OnDestroy {
       return;
     }
 
+    // loop is destroying all drawers opened after current drawer being removed
     for (let i = idx; i >= 0; i--) {
       this.destroyDrawerRecord(this.drawerStack[i]);
     }

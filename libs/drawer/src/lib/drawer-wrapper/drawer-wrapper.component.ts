@@ -5,10 +5,14 @@ import {
   EventEmitter,
   HostBinding,
   Input,
-  OnInit,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import {
+  IconMaximizeModule,
+  IconMinimizeModule,
+  IconRemoveModule,
+} from '@spryker/icon/icons';
 
 /** @internal */
 @Component({
@@ -21,7 +25,7 @@ import {
     class: 'spy-drawer-wrapper',
   },
 })
-export class DrawerWrapperComponent implements OnInit {
+export class DrawerWrapperComponent {
   @Input() closeable = true;
   @Input() resizable = true;
   @Input() @HostBinding('style.width') width?: string;
@@ -32,12 +36,11 @@ export class DrawerWrapperComponent implements OnInit {
   isFullScreen = false;
 
   private originalWidth?: string;
+  removeIcon = IconRemoveModule.icon;
+  maximizeIcon = IconMaximizeModule.icon;
+  minimizeIcon = IconMinimizeModule.icon;
 
   constructor(private cdr: ChangeDetectorRef) {}
-
-  ngOnInit(): void {
-    this.originalWidth = this.width;
-  }
 
   close(): void {
     if (this.closeable) {
@@ -46,7 +49,12 @@ export class DrawerWrapperComponent implements OnInit {
   }
 
   maximize(): void {
+    if (this.isFullScreen) {
+      return;
+    }
+
     this.isFullScreen = true;
+    this.originalWidth = this.width;
     this.width = '100%';
     this.cdr.markForCheck();
   }

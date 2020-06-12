@@ -2,12 +2,12 @@ export interface DrawerData {
   [key: string]: any;
 }
 
-export class DrawerOptions {
+export class DrawerOptions<D = DrawerData> {
   readonly closeable: boolean;
   readonly resizable: boolean;
   readonly width: string;
   readonly hasBackdrop: boolean;
-  readonly data?: DrawerData;
+  readonly data?: D;
 
   constructor({
     closeable = true,
@@ -15,7 +15,7 @@ export class DrawerOptions {
     width = '50%',
     hasBackdrop = false,
     data,
-  }: Partial<DrawerOptions> = {}) {
+  }: Partial<DrawerOptions<D>> = {}) {
     this.closeable = closeable;
     this.resizable = resizable;
     this.width = width;

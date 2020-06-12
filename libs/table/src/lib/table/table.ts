@@ -3,6 +3,7 @@ import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 import { Injector, Type } from '@angular/core';
 import { TableFeatureConfig } from '../table-config/types';
+import { TableActionTriggeredEvent } from '@spryker/table';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;
@@ -153,11 +154,6 @@ export interface TableRowActionBase {
   icon?: string;
   type: TableRowAction;
   typeOptions?: unknown;
-}
-
-export interface TableActionTriggeredEvent {
-  action: TableRowActionBase;
-  items: TableDataRow[];
 }
 
 export interface TableRowActionRegistry {

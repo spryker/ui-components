@@ -1,22 +1,18 @@
 import { ReplaySubject, Observable } from 'rxjs';
 
-import { DrawerOptions } from './drawer-options';
+import { DrawerOptions, DrawerData } from './drawer-options';
 
-export class DrawerRef {
+export class DrawerRef<D = DrawerData> {
   isFullScreen = false;
-  width?: string;
 
-  private originalWidth?: string;
   private afterClosed$ = new ReplaySubject<void>();
 
   constructor(
-    public options: DrawerOptions,
+    public options: DrawerOptions<D>,
     private closeFn: () => void,
     private maximizeFn: () => void,
     private minimizeFn: () => void,
-  ) {
-    this.width = this.options.width;
-  }
+  ) {}
 
   close(): void {
     this.closeFn();

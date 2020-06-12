@@ -17,6 +17,7 @@ import { TableDatasourceService } from '../table/datasource.service';
 import { TableComponent } from '../table/table';
 import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
+import { TableActionsService } from '../table-actions.service';
 
 @Component({
   // This is abstract component so selector is ignored
@@ -40,6 +41,7 @@ export abstract class TableFeatureComponent<
   columnsResolverService?: TableColumnsResolverService;
   dataSourceService?: TableDatasourceService;
   dataConfiguratorService?: TableDataConfiguratorService;
+  actionsService?: TableActionsService;
 
   private setConfig$ = new ReplaySubject<TableFeatureConfig>(1);
   config$ = this.setConfig$.asObservable() as Observable<C>;
@@ -62,6 +64,9 @@ export abstract class TableFeatureComponent<
     TableDataConfiguratorService
   >(1);
   dataConfiguratorService$ = this.setDataConfiguratorService$.asObservable();
+
+  private setActionsService$ = new ReplaySubject<TableActionsService>(1);
+  actionsService$ = this.setActionsService$.asObservable();
 
   private setTplDirectives$ = new ReplaySubject<
     Observable<TableFeatureTplDirective[]>
@@ -124,5 +129,10 @@ export abstract class TableFeatureComponent<
   setDataConfiguratorService(service: TableDataConfiguratorService): void {
     this.dataConfiguratorService = service;
     this.setDataConfiguratorService$.next(service);
+  }
+
+  setActionsService(service: TableActionsService): void {
+    this.actionsService = service;
+    this.setActionsService$.next(service);
   }
 }

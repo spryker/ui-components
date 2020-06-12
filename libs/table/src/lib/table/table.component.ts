@@ -64,6 +64,7 @@ import {
 import { TableEventBus } from './table-event-bus';
 import { TableConfigService } from '../table-config/table-config.service';
 import { TableDatasourceService } from './datasource.service';
+import { TableActionsService } from '../table-actions.service';
 
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   shareReplay({ bufferSize: 1, refCount: true });
@@ -266,7 +267,7 @@ export class CoreTableComponent
     private iterableDiffers: IterableDiffers,
     private dataConfiguratorService: TableDataConfiguratorService,
     private columnsResolverService: TableColumnsResolverService,
-    private tableActionService: TableActionService,
+    private tableActionsService: TableActionsService,
     private featureLoaderService: TableFeatureLoaderService,
     private configService: TableConfigService,
     private datasourceService: TableDatasourceService,
@@ -274,6 +275,7 @@ export class CoreTableComponent
 
   ngOnInit(): void {
     setTimeout(() => this.dataConfiguratorService.triggerInitialData(), 0);
+    this.tableActionsService._setEventBus(this.tableEventBus);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -372,5 +374,6 @@ export class CoreTableComponent
     feature.setColumnsResolverService(this.columnsResolverService);
     feature.setDataSourceService(this.datasourceService);
     feature.setDataConfiguratorService(this.dataConfiguratorService);
+    feature.setActionsService(this.tableActionsService);
   }
 }

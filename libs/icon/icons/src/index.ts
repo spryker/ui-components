@@ -13,3 +13,5 @@ export * from './magnifier';
 export * from './double-arrow-right';
 export * from './dots';
 export * from './calendar';
+export * from './minimize';
+export * from './maximize';

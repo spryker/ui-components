@@ -172,6 +172,10 @@
         "dist/libs/html-renderer/index.d.ts",
         "libs/html-renderer/src/index.ts"
       ],
+      "@spryker/drawer": [
+        "dist/libs/drawer/index.d.ts",
+        "libs/drawer/src/index.ts"
+      ],
       "@spryker/ajax-form": [
         "dist/libs/ajax-form/index.d.ts",
         "libs/ajax-form/src/index.ts"

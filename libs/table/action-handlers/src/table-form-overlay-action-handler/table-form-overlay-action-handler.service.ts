@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { TableActionHandler, TableActionTriggeredEvent } from '@spryker/table';
 import { TableFormOverlayAction, TableFormOverlayOptions } from './types';
 import { Observable, merge, ReplaySubject } from 'rxjs';
 import { DrawerRef, DrawerService } from '@spryker/drawer';
 import { TableFormOverlayActionHandlerComponent } from '.';
 import { skip, take } from 'rxjs/operators';
+import { TableActionHandler, TableActionTriggeredEvent } from '../../../src/lib/types';
 
 @Injectable({
   providedIn: 'root',

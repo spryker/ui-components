@@ -87,6 +87,7 @@ function getRowActionsStory(
             { id: '1234', title: '123' },
             { id: '2345', title: '234' },
           ],
+          click: '1234',
         },
       },
       mockHttp: setMockHttp([

@@ -1,9 +1,9 @@
+import { Injector } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { NotificationService } from '@spryker/notification';
+
 import { AjaxActionModule } from './ajax-action.module';
 import { AjaxActionService } from './ajax-action.service';
-import { AjaxPostActionRedirect } from '../../post-actions/src/ajax-post-action-redirect';
-import { NotificationService } from '@spryker/notification';
-import { Injector } from '@angular/core';
 
 const mockPostActionsType = 'mock';
 

@@ -7,6 +7,8 @@ import {
   Input,
   Output,
   ViewEncapsulation,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import {
   IconMaximizeModule,
@@ -25,7 +27,7 @@ import {
     class: 'spy-drawer-wrapper',
   },
 })
-export class DrawerWrapperComponent {
+export class DrawerWrapperComponent implements OnChanges {
   @Input() closeable = true;
   @Input() resizable = true;
   @Input() @HostBinding('style.width') width?: string;
@@ -41,6 +43,14 @@ export class DrawerWrapperComponent {
   minimizeIcon = IconMinimizeModule.icon;
 
   constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('width' in changes && this.isFullScreen) {
+      // Reset fullscreen state to recalculate width
+      this.isFullScreen = false;
+      this.maximize();
+    }
+  }
 
   close(): void {
     if (this.closeable) {

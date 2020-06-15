@@ -73,7 +73,7 @@ describe('DrawerWrapperComponent', () => {
     expect(buttonElem).toBeTruthy();
   });
 
-  it('should not show `spy-drawer-wrapper__action--close` button if @Input(closeable) is true', async () => {
+  it('should not show `spy-drawer-wrapper__action--close` button if @Input(closeable) is false', async () => {
     component.closeable = false;
     fixture.detectChanges();
     const buttonElem = fixture.debugElement.query(
@@ -93,7 +93,7 @@ describe('DrawerWrapperComponent', () => {
     expect(buttonElem).toBeTruthy();
   });
 
-  it('should not show `spy-drawer-wrapper__action--resize` button if @Input(resizable) is true', async () => {
+  it('should not show `spy-drawer-wrapper__action--resize` button if @Input(resizable) is false', async () => {
     component.resizable = false;
     fixture.detectChanges();
     const buttonElem = fixture.debugElement.query(

@@ -5,7 +5,7 @@ import { DrawerRef } from '@spryker/drawer';
 import { AjaxPostActionClose } from './types';
 
 /**
- * Closes drawer
+ * Closes the drawer via {@link DrawerRef}
  */
 @Injectable({
   providedIn: 'root',

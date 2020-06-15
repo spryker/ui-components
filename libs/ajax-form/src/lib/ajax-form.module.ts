@@ -5,11 +5,7 @@ import { StaticHtmlRendererModule } from '@spryker/html-renderer';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    StaticHtmlRendererModule,
-    NzSpinModule,
-  ],
+  imports: [CommonModule, StaticHtmlRendererModule, NzSpinModule],
   declarations: [AjaxFormComponent],
   exports: [AjaxFormComponent],
 })

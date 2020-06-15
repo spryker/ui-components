@@ -102,6 +102,26 @@ describe('AjaxFormComponent', () => {
     expect(formElem).toBeFalsy();
   }));
 
+  it('component should render loading state nz-spin while request is in progress', fakeAsync(() => {
+    component.action = mockUrl;
+    fixture.detectChanges();
+
+    let nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+
+    expect(nzSpinElem).toBeTruthy();
+
+    const htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    htmlResponse.flush(mockFirstResponse);
+
+    tick();
+    fixture.detectChanges();
+
+    nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+
+    expect(nzSpinElem).toBeFalsy();
+  }));
+
   it('component should render html that comes as a response', fakeAsync(() => {
     component.action = mockUrl;
     fixture.detectChanges();

@@ -18,6 +18,9 @@ import { AjaxFormResponse } from '../types';
   styleUrls: ['./ajax-form.component.less'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'spy-ajax-form',
+  },
 })
 export class AjaxFormComponent implements OnInit, OnDestroy {
   @Input() action?: string;

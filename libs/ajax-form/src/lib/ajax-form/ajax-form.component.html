@@ -1,3 +1,5 @@
 <form #submitForm *ngIf="form" (submit)="submitHandler(submitForm, $event)">
   <spy-html-renderer [html]="form"></spy-html-renderer>
 </form>
+
+<nz-spin *ngIf="!form" class="spy-ajax-form-empty-state"></nz-spin>

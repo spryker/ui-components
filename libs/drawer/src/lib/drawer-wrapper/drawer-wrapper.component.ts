@@ -45,7 +45,9 @@ export class DrawerWrapperComponent implements OnChanges {
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if ('width' in changes) {
+    if ('width' in changes && this.isFullScreen) {
+      // Reset fullscreen state to recalculate width
+      this.isFullScreen = false;
       this.maximize();
     }
   }

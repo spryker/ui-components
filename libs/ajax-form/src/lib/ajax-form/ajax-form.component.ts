@@ -51,9 +51,7 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
   }
 
   submitHandler(form: HTMLFormElement, event: Event): void {
-    if (event && event.preventDefault) {
-      event.preventDefault();
-    }
+    event.preventDefault();
 
     const submitForm = new FormData(form);
 

@@ -5,10 +5,17 @@ import { InjectionTokenType } from '@spryker/utils';
 import { TableActionsToken } from './tokens';
 import { TableEventBus } from './table/table-event-bus';
 
+/**
+ * Invokes appropriate {@link TableFormOverlayActionHandlerService}
+ * from all registered handlers in {@link TableActionsToken}
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class TableActionsService {
+  /**
+   * Merge tokens array {@link TableActionsToken} objects into one object by overriding keys
+   */
   actionHandlers: TableActionsDeclaration =
     this.actionHandlersToken?.reduce(
       (actionHandlers, actionHandler) => ({
@@ -28,6 +35,11 @@ export class TableActionsService {
     > | null,
   ) {}
 
+  /**
+   * Handle actions of {@link TableComponent}
+   * and calls {@method handleAction} of {@link TableFormOverlayActionHandlerService}
+   * provided from {@link TableActionsToken}
+   */
   handle(actionEvent: TableActionTriggeredEvent): Observable<unknown> {
     const actionHandler = this.actionHandlers[
       actionEvent.action.type as string
@@ -49,6 +61,9 @@ export class TableActionsService {
     return of(null);
   }
 
+  /**
+   * Sets {@link TableEventBus} that comes from {@link TableComponent}
+   */
   _setEventBus(tableEventBus: TableEventBus): void {
     this.tableEventBus = tableEventBus;
   }

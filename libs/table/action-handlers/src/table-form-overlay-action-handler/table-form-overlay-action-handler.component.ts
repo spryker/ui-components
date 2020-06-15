@@ -1,19 +1,18 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+} from '@angular/core';
 import { DrawerRef } from '@spryker/drawer';
-import { TableFormOverlayAction, TableFormOverlayOptions } from './types';
+import { TableFormOverlayOptions } from './types';
 import { Observable } from 'rxjs';
-
-declare module '@spryker/table' {
-  interface TableActionRegistry {
-    'form-overlay': TableFormOverlayAction;
-  }
-}
 
 @Component({
   selector: 'spy-table-form-overlay-action-handler',
   templateUrl: './table-form-overlay-action-handler.component.html',
   styleUrls: ['./table-form-overlay-action-handler.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TableFormOverlayActionHandlerComponent {
   data = this.drawerRef.options.data;

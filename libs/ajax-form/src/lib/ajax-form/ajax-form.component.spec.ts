@@ -147,7 +147,7 @@ describe('AjaxFormComponent', () => {
 
     inputElem.value = 'mockValue';
 
-    formElem.triggerEventHandler('submit', {});
+    formElem.triggerEventHandler('submit', new Event('submit', {}));
 
     htmlResponse = httpTestingController.expectOne(mockUrl);
 

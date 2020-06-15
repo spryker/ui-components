@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { TableFormOverlayAction, TableFormOverlayOptions } from './types';
 import { Observable, merge, ReplaySubject } from 'rxjs';
 import { DrawerRef, DrawerService } from '@spryker/drawer';
-import { TableFormOverlayActionHandlerComponent } from '.';
+import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
 import { skip, take } from 'rxjs/operators';
-import { TableActionHandler, TableActionTriggeredEvent } from '../../../src/lib/types';
+import { TableActionHandler, TableActionTriggeredEvent } from '@spryker/table';
 
+/**
+ * Handles action triggered by the {@link TableComponent}
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +19,10 @@ export class TableFormOverlayActionHandlerService
 
   constructor(private drawerService: DrawerService) {}
 
+  /**
+   * Opens the drawer with the ajax form component in it
+   * and also reuse that opened drawer for next action triggers
+   */
   handleAction(
     actionEvent: TableActionTriggeredEvent<TableFormOverlayAction>,
   ): Observable<unknown> {

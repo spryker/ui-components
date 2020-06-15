@@ -20,7 +20,6 @@ import {
   TableDataConfiguratorService,
   TableDatasourceService,
   TableFeatureLocation,
-  TableActionService,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
 
@@ -90,7 +89,6 @@ describe('TableRowActionsFeatureComponent', () => {
             },
           },
         },
-        TableActionService,
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });

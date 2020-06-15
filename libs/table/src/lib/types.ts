@@ -1,7 +1,6 @@
-// import { TableActionHandler } from './table-actions.service';
-import { TableDataRow } from '@spryker/table';
 import { Observable } from 'rxjs';
 import { Type } from '@angular/core';
+import { TableDataRow } from './table/table';
 
 // tslint:disable-next-line: no-empty-interface
 export interface TableActionRegistry {

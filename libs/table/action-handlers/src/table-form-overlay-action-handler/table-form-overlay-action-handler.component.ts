@@ -13,6 +13,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./table-form-overlay-action-handler.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'spy-table-form-overlay-action-handler',
+  },
 })
 export class TableFormOverlayActionHandlerComponent {
   data = this.drawerRef.options.data;

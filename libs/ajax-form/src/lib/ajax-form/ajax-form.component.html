@@ -1,3 +1,10 @@
-<form #submitForm *ngIf="form" (submit)="submitHandler(submitForm, $event)">
-  <spy-html-renderer [html]="form"></spy-html-renderer>
-</form>
+<div
+  class="spy-ajax-form-container"
+  [class.spy-ajax-form-container--loading]="isLoading"
+>
+  <form #submitForm *ngIf="form" (submit)="submitHandler(submitForm, $event)">
+    <spy-html-renderer [html]="form"></spy-html-renderer>
+  </form>
+</div>
+
+<nz-spin *ngIf="isLoading" class="spy-ajax-form-empty-state"></nz-spin>

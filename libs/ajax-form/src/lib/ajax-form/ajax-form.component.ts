@@ -18,6 +18,9 @@ import { AjaxFormResponse } from '../types';
   styleUrls: ['./ajax-form.component.less'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'spy-ajax-form',
+  },
 })
 export class AjaxFormComponent implements OnInit, OnDestroy {
   @Input() action?: string;
@@ -27,6 +30,7 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
   submitSubscription?: Subscription;
   ajaxFormResponse?: AjaxFormResponse;
   form?: string;
+  isLoading = false;
 
   constructor(
     private ajaxActionService: AjaxActionService,
@@ -36,6 +40,8 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.action) {
+      this.isLoading = true;
+
       this.subscription = this.http
         .get<AjaxFormResponse>(this.action)
         .subscribe({
@@ -54,6 +60,7 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
     event.preventDefault();
 
     const submitForm = new FormData(form);
+    this.isLoading = true;
 
     if (this.action) {
       this.submitSubscription?.unsubscribe();
@@ -76,6 +83,7 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
       this.cdr.markForCheck();
     }
 
+    this.isLoading = false;
     this.ajaxActionService.handle(response);
   }
 }

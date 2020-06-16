@@ -30,7 +30,7 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
   submitSubscription?: Subscription;
   ajaxFormResponse?: AjaxFormResponse;
   form?: string;
-  isLoading = true;
+  isLoading = false;
 
   constructor(
     private ajaxActionService: AjaxActionService,
@@ -40,6 +40,8 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.action) {
+      this.isLoading = true;
+
       this.subscription = this.http
         .get<AjaxFormResponse>(this.action)
         .subscribe({

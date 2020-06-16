@@ -1,8 +1,6 @@
 <div
   class="spy-ajax-form-container"
-  [ngClass]="{
-    'spy-ajax-form-loading': isLoading
-  }"
+  [class.spy-ajax-form-container--loading]="isLoading"
 >
   <form #submitForm *ngIf="form" (submit)="submitHandler(submitForm, $event)">
     <spy-html-renderer [html]="form"></spy-html-renderer>

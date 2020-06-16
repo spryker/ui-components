@@ -12,7 +12,7 @@ import {
   TableActionTriggeredEvent,
   TableRowAction,
   TableRowActionBase,
-  TableActionService,
+  TableActionsService,
 } from '@spryker/table';
 import { pluck, map, shareReplay } from 'rxjs/operators';
 import { DropdownItem } from '@spryker/dropdown';
@@ -62,7 +62,7 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent<
   );
 
   constructor(
-    private tableActionService: TableActionService,
+    private tableActionsService: TableActionsService,
     injector: Injector,
   ) {
     super(injector);
@@ -78,24 +78,24 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent<
       return;
     }
 
-    const event: TableActionTriggeredEvent = {
-      action,
-      items,
-    };
+    const isClickExists =
+      this.config?.click &&
+      (this.config?.actions as TableRowActionBase[]).find(
+        configAction => configAction.id === this.config?.click,
+      );
 
-    this.tableEventBus?.on('table', 'row-click');
-    this.triggerEvent(event);
+    if (isClickExists) {
+      const event: TableActionTriggeredEvent = {
+        action,
+        items,
+      };
+
+      this.tableEventBus?.on('table', 'row-click');
+      this.triggerEvent(event);
+    }
   }
 
   triggerEvent(actions: TableActionTriggeredEvent): void {
-    const wasActionHandled = this.tableActionService.handle(actions);
-
-    if (!wasActionHandled) {
-      this.tableEventBus?.emit<TableActionTriggeredEvent>(
-        actions,
-        actions.action.type,
-      );
-      this.tableEventBus?.emit<TableActionTriggeredEvent>(actions);
-    }
+    this.tableActionsService.handle(actions);
   }
 }

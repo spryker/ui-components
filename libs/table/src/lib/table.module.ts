@@ -29,6 +29,8 @@ import { PluckModule } from '@spryker/utils';
 import { IconModule } from '@spryker/icon';
 import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
 import { I18nModule } from '@spryker/locale';
+import { TableActionsDeclaration } from './types';
+import { provideTableActionsServices } from './tokens';
 
 @NgModule({
   imports: [
@@ -101,6 +103,15 @@ export class TableModule {
     return {
       ngModule: TableModule,
       providers: [provideTableDatasourceServices(datasourceTypes)],
+    };
+  }
+
+  static withActions(
+    actions: TableActionsDeclaration,
+  ): ModuleWithProviders<TableModule> {
+    return {
+      ngModule: TableModule,
+      providers: [provideTableActionsServices(actions)],
     };
   }
 }

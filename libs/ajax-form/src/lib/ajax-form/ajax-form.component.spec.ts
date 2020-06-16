@@ -46,6 +46,10 @@ class MockAjaxActionService {
   handle = jest.fn();
 }
 
+class MockEvent {
+  preventDefault = jest.fn();
+}
+
 describe('AjaxFormComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
@@ -123,6 +127,7 @@ describe('AjaxFormComponent', () => {
     component.method = 'POST';
     fixture.detectChanges();
 
+    const event = new MockEvent();
     const ajaxFormElem = fixture.debugElement.query(By.css('spy-ajax-form'));
 
     expect(ajaxFormElem).toBeTruthy();
@@ -147,10 +152,11 @@ describe('AjaxFormComponent', () => {
 
     inputElem.value = 'mockValue';
 
-    formElem.triggerEventHandler('submit', {});
+    formElem.triggerEventHandler('submit', event);
 
     htmlResponse = httpTestingController.expectOne(mockUrl);
 
+    expect(event.preventDefault).toHaveBeenCalled();
     expect(htmlResponse.request.body instanceof FormData).toBeTruthy();
     expect(htmlResponse.request.body.get('name')).toBe('mockValue');
 

@@ -81,7 +81,7 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent<
     const isClickExists =
       this.config?.click &&
       (this.config?.actions as TableRowActionBase[]).find(
-        action => action.id === this.config?.click,
+        configAction => configAction.id === this.config?.click,
       );
 
     if (isClickExists) {

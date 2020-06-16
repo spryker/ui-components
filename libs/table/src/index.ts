@@ -16,5 +16,6 @@ export * from './lib/table-feature-loader/types';
 export * from './lib/table-feature-loader/tokens';
 export * from './lib/table-config/types';
 export * from './lib/table-config/table-config-default';
-export * from './lib/types';
 export * from './lib/table-actions.service';
+export * from './lib/tokens';
+export * from './lib/types';

@@ -30,6 +30,7 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
   submitSubscription?: Subscription;
   ajaxFormResponse?: AjaxFormResponse;
   form?: string;
+  isLoading = true;
 
   constructor(
     private ajaxActionService: AjaxActionService,
@@ -57,6 +58,7 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
     event.preventDefault();
 
     const submitForm = new FormData(form);
+    this.isLoading = true;
 
     if (this.action) {
       this.submitSubscription?.unsubscribe();
@@ -79,6 +81,7 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
       this.cdr.markForCheck();
     }
 
+    this.isLoading = false;
     this.ajaxActionService.handle(response);
   }
 }

@@ -46,6 +46,10 @@ class MockAjaxActionService {
   handle = jest.fn();
 }
 
+class MockEvent {
+  preventDefault = jest.fn();
+}
+
 describe('AjaxFormComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
@@ -143,6 +147,7 @@ describe('AjaxFormComponent', () => {
     component.method = 'POST';
     fixture.detectChanges();
 
+    const event = new MockEvent();
     const ajaxFormElem = fixture.debugElement.query(By.css('spy-ajax-form'));
 
     expect(ajaxFormElem).toBeTruthy();
@@ -167,10 +172,11 @@ describe('AjaxFormComponent', () => {
 
     inputElem.value = 'mockValue';
 
-    formElem.triggerEventHandler('submit', new Event('submit', {}));
+    formElem.triggerEventHandler('submit', event);
 
     htmlResponse = httpTestingController.expectOne(mockUrl);
 
+    expect(event.preventDefault).toHaveBeenCalled();
     expect(htmlResponse.request.body instanceof FormData).toBeTruthy();
     expect(htmlResponse.request.body.get('name')).toBe('mockValue');
 
@@ -179,6 +185,53 @@ describe('AjaxFormComponent', () => {
     tick();
     fixture.detectChanges();
 
+    expect(staticHtml.nativeElement.innerHTML).toBe(mockSecondResponse.form);
+  }));
+
+  it('if first form was submitted component should render nz-spinner over the current form', fakeAsync(() => {
+    component.action = mockUrl;
+    component.method = 'POST';
+    fixture.detectChanges();
+
+    const event = new MockEvent();
+    const ajaxFormElem = fixture.debugElement.query(By.css('spy-ajax-form'));
+
+    expect(ajaxFormElem).toBeTruthy();
+
+    let htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    htmlResponse.flush(mockFirstResponse);
+
+    tick();
+    fixture.detectChanges();
+
+    const formElem = fixture.debugElement.query(By.css('form'));
+
+    const inputElem = fixture.nativeElement.querySelector('#name');
+
+    inputElem.value = 'mockValue';
+
+    formElem.triggerEventHandler('submit', event);
+
+    tick();
+    fixture.detectChanges();
+
+    const staticHtml = fixture.debugElement.query(By.css('spy-html-renderer'));
+    let nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+
+    htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    expect(nzSpinElem).toBeTruthy();
+    expect(staticHtml.nativeElement.innerHTML).toBe(mockFirstResponse.form);
+
+    htmlResponse.flush(mockSecondResponse);
+
+    tick();
+    fixture.detectChanges();
+
+    nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+
+    expect(nzSpinElem).toBeFalsy();
     expect(staticHtml.nativeElement.innerHTML).toBe(mockSecondResponse.form);
   }));
 });

@@ -20,6 +20,7 @@ import {
   TableDataConfiguratorService,
   TableDatasourceService,
   TableFeatureLocation,
+  TableActionsToken,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
 
@@ -37,11 +38,16 @@ class MockTableDataConfiguratorService {
   readonly config$ = new ReplaySubject<TableDataConfig>(1);
 }
 
+class MockTableFormOverlayActionHandlerService {
+  handleAction = jest.fn();
+}
+
 describe('TableRowActionsFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
-  const mockActions = [{ id: '1234', title: '123' }];
+  const mockActions = [{ id: '1234', title: '123', type: 'rowActions' }];
+  const mockClick = '1234';
 
   const dropdownSelector = 'spy-dropdown';
 
@@ -71,12 +77,21 @@ describe('TableRowActionsFeatureComponent', () => {
           provide: TableDataConfiguratorService,
           useClass: MockTableDataConfiguratorService,
         },
+        MockTableFormOverlayActionHandlerService,
+        {
+          provide: TableActionsToken,
+          useValue: {
+            rowActions: MockTableFormOverlayActionHandlerService,
+          },
+          multi: true,
+        },
         {
           provide: TestTableFeatureMocks,
           useValue: {
             config: {
               enabled: true,
               actions: mockActions,
+              click: mockClick,
             },
           },
         },
@@ -127,18 +142,21 @@ describe('TableRowActionsFeatureComponent', () => {
     expect(queryDropdown().properties.items).toEqual(transformedActions);
   }));
 
-  it('should emit `rowActions` with data when dropdown changes', fakeAsync(() => {
+  it('should trigger `handleAction` method of TableActionsService with data when dropdown changes', fakeAsync(() => {
     const actionTriggeredRes = {
       action: mockActions[0],
       items: [mockData.data[0]],
     };
+    const tableActionsService = TestBed.inject(
+      MockTableFormOverlayActionHandlerService,
+    );
 
     queryDropdown().triggerEventHandler('actionTriggered', mockActions[0].id);
 
     fixture.detectChanges();
 
-    expect(
-      testTableFeature.featureMocks?.table.eventHandler,
-    ).toHaveBeenCalledWith('rowActions', actionTriggeredRes);
+    expect(tableActionsService.handleAction).toHaveBeenCalledWith(
+      actionTriggeredRes,
+    );
   }));
 });

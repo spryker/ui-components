@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.50](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.49...@spryker/table@0.1.0-next.50) (2020-06-16)
+
+
+### Features
+
+* **form-overlat:** fixed dependency ([0386380](https://github.com/spryker/ui-components/commit/0386380398b5636092ecb613184654c390286b62))
+* **form-overlay:** added storybook ([13d811d](https://github.com/spryker/ui-components/commit/13d811d171bc5ff36e939bbceacadd97cd051341))
+* **form-overlay:** added unit-tests ([4d21694](https://github.com/spryker/ui-components/commit/4d21694e79f241171dd748cd2cfa1c18936c8df3))
+* **form-overlay:** code improvements ([2cf87d9](https://github.com/spryker/ui-components/commit/2cf87d9ffe04c442410d3c0bb705757cdd14c4a9))
+* **form-overlay:** fix CI ([240ff3c](https://github.com/spryker/ui-components/commit/240ff3cb52ec5ec4177c38210d18766195b87ffa))
+* **form-overlay:** fixed dependencies ([f1fbb19](https://github.com/spryker/ui-components/commit/f1fbb1951f5a1ed5217a2fcd5a99a3e43e3d30d3))
+* **form-overlay:** fixed import ([271452c](https://github.com/spryker/ui-components/commit/271452c19ca3817dc40e91150fcd9d25ddf6e150))
+* **form-overlay:** fixed tests ([891fe76](https://github.com/spryker/ui-components/commit/891fe76d37ed4c28b1dedf30a05a48380163d5fc))
+* **form-overlay:** fixed tests, removed service ([a41e752](https://github.com/spryker/ui-components/commit/a41e75216b61a3095da1441e0b3205a8c5910ae1))
+
+
+
+
+
 # [0.1.0-next.49](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.48...@spryker/table@0.1.0-next.49) (2020-06-03)
 
 **Note:** Version bump only for package @spryker/table

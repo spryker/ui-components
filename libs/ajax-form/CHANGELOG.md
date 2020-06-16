@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.1.0-next.0...@spryker/ajax-form@0.1.0-next.1) (2020-06-16)
+
+
+### Features
+
+* **form-overlay:** added storybook ([13d811d](https://github.com/spryker/ui-components/commit/13d811d171bc5ff36e939bbceacadd97cd051341))
+* **form-overlay:** code improvements ([2cf87d9](https://github.com/spryker/ui-components/commit/2cf87d9ffe04c442410d3c0bb705757cdd14c4a9))
+* **form-overlay:** fixed tests, removed service ([a41e752](https://github.com/spryker/ui-components/commit/a41e75216b61a3095da1441e0b3205a8c5910ae1))
+
+
+
+
+
 # 0.1.0-next.0 (2020-06-10)
 
 

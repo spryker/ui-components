@@ -7,7 +7,8 @@ import { skip, take } from 'rxjs/operators';
 import { TableActionHandler, TableActionTriggeredEvent } from '@spryker/table';
 
 /**
- * Handles action triggered by the {@link TableComponent}
+ * Handles Form Overlay action triggered from the {@link TableComponent}
+ * by opening {@link TableFormOverlayActionHandlerComponent} in the drawer.
  */
 @Injectable({
   providedIn: 'root',

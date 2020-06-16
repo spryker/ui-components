@@ -20,9 +20,9 @@ import {
   TableDataConfiguratorService,
   TableDatasourceService,
   TableFeatureLocation,
+  TableActionsToken,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
-import { TableActionsToken } from '@spryker/table';
 
 @Component({
   selector: 'spy-test-host',

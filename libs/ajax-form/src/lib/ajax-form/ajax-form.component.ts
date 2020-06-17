@@ -80,10 +80,11 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
 
     if (response.form) {
       this.form = response.form;
-      this.cdr.markForCheck();
     }
 
     this.isLoading = false;
     this.ajaxActionService.handle(response);
+    // TODO: investigate ExpressionChangedAfterItHasBeenCheckedError
+    this.cdr.markForCheck();
   }
 }

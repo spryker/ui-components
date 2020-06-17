@@ -13,7 +13,11 @@ export function ToJson(): PropertyDecorator {
         return;
       }
 
-      this[internalKey] = typeof prop === 'string' ? JSON.parse(prop) : prop;
+      try {
+        this[internalKey] = typeof prop === 'string' ? JSON.parse(prop) : prop;
+      } catch (error) {
+        this[internalKey] = prop;
+      }
     };
 
     Object.defineProperty(target, key, {

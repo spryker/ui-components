@@ -59,6 +59,7 @@ import {
   TableDataConfig,
   TableDataRow,
   TableFeatureLocation,
+  TableRowClickEvent,
 } from './table';
 import { TableEventBus } from './table-event-bus';
 import { TableConfigService } from '../table-config/table-config.service';
@@ -324,6 +325,14 @@ export class CoreTableComponent
     }
 
     this.projectedFeatures$.next(features);
+  }
+
+  rowClickHandler(row: TableDataRow, event: Event): void {
+    this.tableEventBus.emit<TableRowClickEvent>(
+      'table',
+      { row, event },
+      'row-click',
+    );
   }
 
   /** @internal */

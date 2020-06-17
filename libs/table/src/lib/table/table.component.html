@@ -95,6 +95,7 @@
           index as indexOfElement
         "
         [ngClass]="rowClasses[indexOfElement]"
+        (click)="rowClickHandler(data, $event)"
       >
         <ng-template
           [spyTableFeaturesRenderer]="featureLocation.beforeCols"

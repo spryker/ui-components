@@ -169,3 +169,8 @@ export interface TableRowActionHandler {
 export interface TableRowActionsDeclaration {
   [type: string]: TableRowActionHandler;
 }
+
+export interface TableRowClickEvent {
+  row: TableDataRow;
+  event: Event;
+}

@@ -1,3 +1,8 @@
-<form #submitForm *ngIf="form" (submit)="submitHandler(submitForm, $event)">
+<form
+  class="spy-ajax-form"
+  #submitForm
+  *ngIf="form"
+  (submit)="submitHandler(submitForm, $event)"
+>
   <spy-html-renderer [html]="form"></spy-html-renderer>
 </form>

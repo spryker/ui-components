@@ -35,7 +35,7 @@ export interface SelectOptionItem {
 })
 export class SelectComponent implements OnInit, OnChanges {
   @Input() @ToJson() options?: SelectOption[];
-  @Input() value?: SelectValueSelected;
+  @Input() @ToJson() value?: SelectValueSelected;
   @Input() @ToBoolean() search = false;
   @Input() @ToBoolean() disabled = false;
   @Input() @ToBoolean() multiple = false;

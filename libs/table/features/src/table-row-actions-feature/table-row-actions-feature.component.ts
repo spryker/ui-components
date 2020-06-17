@@ -3,6 +3,8 @@ import {
   Component,
   Injector,
   ViewEncapsulation,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import {
   TableDataRow,
@@ -14,9 +16,9 @@ import {
   TableRowActionBase,
   TableActionsService,
 } from '@spryker/table';
-import { pluck, map, shareReplay } from 'rxjs/operators';
+import { pluck, map, shareReplay, takeUntil } from 'rxjs/operators';
 import { DropdownItem } from '@spryker/dropdown';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IconActionModule } from '@spryker/icon/icons';
 
 declare module '@spryker/table' {
@@ -43,9 +45,9 @@ export interface TableRowActionsConfig extends TableFeatureConfig {
     },
   ],
 })
-export class TableRowActionsFeatureComponent extends TableFeatureComponent<
-  TableRowActionsConfig
-> {
+export class TableRowActionsFeatureComponent
+  extends TableFeatureComponent<TableRowActionsConfig>
+  implements OnDestroy, OnInit {
   name = 'rowActions';
   tableFeatureLocation = TableFeatureLocation;
   triggerIcon = IconActionModule.icon;
@@ -60,6 +62,7 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent<
     ),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
+  private destroyed$ = new Subject<void>();
 
   constructor(
     private tableActionsService: TableActionsService,
@@ -67,12 +70,12 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent<
   ) {
     super(injector);
   }
+  ngOnInit(): void {
+    if (!this.config?.click) {
+      return;
+    }
 
-  actionTriggerHandler(actionId: TableRowAction, items: TableDataRow[]): void {
-    const action: TableRowActionBase = (this.config
-      ?.actions as TableRowActionBase[]).filter(
-      rowAction => rowAction.id === actionId,
-    )[0];
+    const action = this.getActionById(this.config.click as TableRowAction);
 
     if (!action) {
       return;
@@ -90,9 +93,27 @@ export class TableRowActionsFeatureComponent extends TableFeatureComponent<
         items,
       };
 
-      this.tableEventBus?.on('table', 'row-click');
-      this.triggerEvent(event);
+      this.tableEventBus
+        ?.on('table', 'row-click')
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe(row => this.triggerEvent(event));
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+  }
+
+  private getActionById(
+    actionId: TableRowAction,
+  ): TableRowActionBase | undefined {
+    return (this.config?.actions as TableRowActionBase[]).filter(
+      rowAction => rowAction.id === actionId,
+    )[0];
+  }
+
+  actionTriggerHandler(actionId: TableRowAction, items: TableDataRow[]): void {
+    const action = this.getActionById(actionId);
   }
 
   triggerEvent(actions: TableActionTriggeredEvent): void {

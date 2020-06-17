@@ -4,7 +4,12 @@ import { Observable, merge, ReplaySubject } from 'rxjs';
 import { DrawerRef, DrawerService } from '@spryker/drawer';
 import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
 import { skip, take } from 'rxjs/operators';
-import { TableActionHandler, TableActionTriggeredEvent } from '@spryker/table';
+import {
+  TableActionHandler,
+  TableActionTriggeredEvent,
+  TableColumnContext,
+} from '@spryker/table';
+import { ContextService } from '@spryker/utils';
 
 /**
  * Handles Form Overlay action triggered from the {@link TableComponent}
@@ -18,7 +23,10 @@ export class TableFormOverlayActionHandlerService
   drawerData$ = new ReplaySubject<TableFormOverlayOptions>(1);
   drawerRef?: DrawerRef;
 
-  constructor(private drawerService: DrawerService) {}
+  constructor(
+    private drawerService: DrawerService,
+    private contextService: ContextService,
+  ) {}
 
   /**
    * Opens the drawer with the ajax form component in it
@@ -27,7 +35,18 @@ export class TableFormOverlayActionHandlerService
   handleAction(
     actionEvent: TableActionTriggeredEvent<TableFormOverlayAction>,
   ): Observable<unknown> {
-    this.drawerData$.next(actionEvent.action.typeOptions);
+    const actionEventItem = actionEvent.items[0];
+    const drawerData = { ...actionEvent.action.typeOptions };
+    const dataContext = {
+      row: actionEventItem,
+      i: 0,
+    } as TableColumnContext;
+
+    drawerData.url = this.contextService.interpolate(
+      drawerData.url,
+      dataContext as any,
+    );
+    this.drawerData$.next(drawerData);
 
     if (!this.drawerRef) {
       this.drawerRef = this.drawerService.openComponent(

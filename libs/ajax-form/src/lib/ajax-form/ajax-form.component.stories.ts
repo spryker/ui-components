@@ -8,7 +8,7 @@ export default {
 };
 
 const mockHtmlTemplate = () => `
-name
+  name
   <input type="text" name="name" style="border: 1px solid red">
   <br>
   name1

@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { PluckModule } from '@spryker/utils';
 import { DrawerRef } from '@spryker/drawer';
 
-const mockedData = { url: 'url', method: 'get' };
+const mockedData = { url: 'url' };
 
 class MockDrawerRef {
   options = {
@@ -48,13 +48,5 @@ describe('TableFormOverlayActionHandlerComponent', () => {
     );
 
     expect(tableFormOverlayElement.properties.action).toBe(mockedData.url);
-  });
-
-  it('should bind method to method Input of spy-ajax-form', () => {
-    const tableFormOverlayElement = fixture.debugElement.query(
-      By.css('spy-ajax-form'),
-    );
-
-    expect(tableFormOverlayElement.properties.method).toBe(mockedData.method);
   });
 });

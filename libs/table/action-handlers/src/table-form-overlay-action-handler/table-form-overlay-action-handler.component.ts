@@ -20,6 +20,7 @@ import { TableFormOverlayOptions } from './types';
 })
 export class TableFormOverlayActionHandlerComponent {
   data$ = this.drawerRef.options.data;
+  method = 'POST';
 
   constructor(
     private drawerRef: DrawerRef<Observable<TableFormOverlayOptions>>,

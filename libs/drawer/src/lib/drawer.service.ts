@@ -81,7 +81,7 @@ export class DrawerService implements OnDestroy {
       width: '100%',
     });
     overlay.hostElement.parentElement?.classList.add(
-      'spy-drawer-wrapper-overlay',
+      'spy-drawer-container-overlay',
     );
 
     const drawerContainerRef = overlay.attach(

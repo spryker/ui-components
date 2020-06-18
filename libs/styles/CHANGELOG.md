@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.65](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.64...@spryker/styles@0.1.0-next.65) (2020-06-18)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
 # [0.1.0-next.64](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.63...@spryker/styles@0.1.0-next.64) (2020-06-17)
 
 **Note:** Version bump only for package @spryker/styles

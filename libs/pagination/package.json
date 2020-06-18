@@ -1,6 +1,6 @@
 {
   "name": "@spryker/pagination",
-  "version": "0.1.0-next.10",
+  "version": "0.1.0-next.11",
   "publishConfig": {
     "access": "public"
   },
@@ -11,9 +11,9 @@
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@spryker/icon": "^0.1.0-next.0",
+    "@spryker/locale": "^0.1.0-next.7",
     "@spryker/select": "^0.1.0-next.0",
-    "tslib": "^1.10.0",
     "@spryker/utils": "^0.1.0-next.16",
-    "@spryker/locale": "^0.1.0-next.7"
+    "tslib": "^1.10.0"
   }
 }

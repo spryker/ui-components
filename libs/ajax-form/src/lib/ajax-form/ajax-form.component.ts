@@ -73,13 +73,14 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
     if (this.action) {
       this.submitSubscription?.unsubscribe();
       this.submitSubscription = this.http
-        .request<AjaxFormResponse>(
-          this.method || 'GET',
-          this.action,
-          submitForm as Record<string, any>,
-        )
+        .request<AjaxFormResponse>(this.method || 'GET', this.action, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: submitForm,
+        })
         .subscribe({
-          next: (response: AjaxFormResponse) => this.responseHandler(response),
+          next: response => this.responseHandler(response),
           error: response => this.responseHandler(response),
         });
     }

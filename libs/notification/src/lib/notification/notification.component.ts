@@ -22,6 +22,9 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./notification.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'spy-notification',
+  },
 })
 export class NotificationComponent implements OnInit, OnDestroy {
   @Input() type: 'info' | 'error' | 'warning' | 'success' = 'info';

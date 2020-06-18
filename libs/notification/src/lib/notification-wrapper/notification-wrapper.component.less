@@ -1,5 +1,16 @@
 @import './notification-wrapper.theme.less';
 
-@{notification-spy-prefix-cls} {
-  pointer-events: auto;
+.@{notification-wrapper-prefix-cls} {
+  .@{notification-spryker-prefix-cls} {
+    pointer-events: auto;
+  }
+
+  .@{notification-prefix-cls} {
+    min-width: @notification-min-width;
+  }
+}
+
+.@{notification-toast-top-right-prefix-cls} {
+  top: @notification-toast-top-right-top-position;
+  right: @notification-toast-top-right-right-position;
 }

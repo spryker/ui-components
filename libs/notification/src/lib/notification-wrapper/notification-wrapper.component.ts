@@ -11,6 +11,9 @@ import { ToastPackage, ToastrService } from 'ngx-toastr';
   styleUrls: ['./notification-wrapper.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'spy-notification-wrapper ctx-spy-bg-gray',
+  },
 })
 export class NotificationWrapperComponent {
   constructor(

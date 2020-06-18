@@ -192,19 +192,27 @@
 
 // Notification
 @notification-prefix-cls: ~'@{ant-prefix}-alert';
-@notification-spy-prefix-cls: ~'@{spryker-prefix}-notification';
+@notification-spryker-prefix-cls: ~'@{spryker-prefix}-notification';
+@notification-wrapper-prefix-cls: ~'@{notification-spryker-prefix-cls}-wrapper';
+@notification-toast-prefix-cls: ~'toast';
+@notification-toast-top-right-prefix-cls: ~'@{notification-toast-prefix-cls}-top-right';
 
 @notification-padding-y: 10px;
 @notification-padding-x: 14px;
 @notification-border-radius: 4px;
 @notification-border-width: 6px;
 @notification-block-margin-bottom: 30px;
+@notification-min-width: 396px;
 
 @notification-icon-wrapper-width: 38px;
 @notification-icon-width: 25px;
 @notification-icon-padding: 15px;
+@notification-close-icon-right-position: 20px;
 
 @notification-close-hover-color: @gray-darker;
+
+@notification-toast-top-right-right-position: 30px;
+@notification-toast-top-right-top-position: 85px;
 
 // Header
 @header-prefix-cls: ~'@{ant-prefix}-layout-header';

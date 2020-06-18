@@ -66,11 +66,9 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
 
   submitHandler(form: HTMLFormElement, event: Event): void {
     event.preventDefault();
-    console.log(form);
+
     const submitForm = new FormData(form);
     this.isLoading = true;
-
-    console.log(submitForm.getAll('name'));
 
     if (this.action) {
       this.submitSubscription?.unsubscribe();

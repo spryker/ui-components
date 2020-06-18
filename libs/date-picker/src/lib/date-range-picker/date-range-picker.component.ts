@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
+import { ToBoolean, ToJson } from '@spryker/utils';
 import { DateRangeValueInput, DateRangeValue } from './types';
 
 @Component({
@@ -17,7 +17,7 @@ import { DateRangeValueInput, DateRangeValue } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateRangePickerComponent {
-  @Input() dates: DateRangeValueInput = {};
+  @Input() @ToJson() dates: DateRangeValueInput = {};
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
   @Input() format?: string;

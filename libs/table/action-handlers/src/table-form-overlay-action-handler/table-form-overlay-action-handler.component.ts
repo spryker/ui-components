@@ -1,12 +1,12 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   ViewEncapsulation,
 } from '@angular/core';
 import { DrawerRef } from '@spryker/drawer';
-import { TableFormOverlayOptions } from './types';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+
+import { TableFormOverlayOptions } from './types';
 
 @Component({
   selector: 'spy-table-form-overlay-action-handler',

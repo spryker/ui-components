@@ -1,15 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import {
-  Component,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
-  OnInit,
-  OnDestroy,
   ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
-import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+
 import { AjaxFormResponse } from '../types';
 
 @Component({
@@ -22,7 +24,7 @@ import { AjaxFormResponse } from '../types';
     class: 'spy-ajax-form',
   },
 })
-export class AjaxFormComponent implements OnInit, OnDestroy {
+export class AjaxFormComponent implements OnDestroy, OnChanges {
   @Input() action?: string;
   @Input() method = 'GET';
 
@@ -38,7 +40,13 @@ export class AjaxFormComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
   ) {}
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('action' in changes) {
+      this.fetchForm();
+    }
+  }
+
+  private fetchForm(): void {
     if (this.action) {
       this.isLoading = true;
 

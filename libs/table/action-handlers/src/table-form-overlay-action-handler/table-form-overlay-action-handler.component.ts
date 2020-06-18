@@ -6,6 +6,7 @@ import {
 import { DrawerRef } from '@spryker/drawer';
 import { TableFormOverlayOptions } from './types';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'spy-table-form-overlay-action-handler',
@@ -18,7 +19,7 @@ import { Observable } from 'rxjs';
   },
 })
 export class TableFormOverlayActionHandlerComponent {
-  data = this.drawerRef.options.data;
+  data$ = this.drawerRef.options.data;
 
   constructor(
     private drawerRef: DrawerRef<Observable<TableFormOverlayOptions>>,

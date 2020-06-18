@@ -80,7 +80,9 @@ export class DrawerService implements OnDestroy {
       backdropClass: 'spy-drawer-container-backdrop',
       width: '100%',
     });
-    overlay.hostElement.classList.add('spy-drawer-wrapper-overlay');
+    overlay.hostElement.parentElement?.classList.add(
+      'spy-drawer-wrapper-overlay',
+    );
 
     const drawerContainerRef = overlay.attach(
       new ComponentPortal(DrawerContainerComponent),

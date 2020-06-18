@@ -1,19 +1,20 @@
 import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Input,
-  Output,
-  EventEmitter,
-  Inject,
-  ViewChild,
-  OnChanges,
   AfterViewChecked,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
   HostBinding,
+  Inject,
+  Input,
+  OnChanges,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { DateWorkDaysToken } from './tokens';
-import { ToBoolean, ToJson, InjectionTokenType } from '@spryker/utils';
 import { IconCalendarModule } from '@spryker/icon/icons';
+import { InjectionTokenType, ToBoolean, ToJson } from '@spryker/utils';
+
+import { DateWorkDaysToken } from './tokens';
 
 interface EnableDateRange {
   from?: Date | string;
@@ -55,6 +56,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   }
   @Input() format?: string;
   @Input() placeholder?: string;
+  @Input() name?: string;
   @Output() dateChange = new EventEmitter<Date>();
   @Output() openChange = new EventEmitter<boolean>();
 

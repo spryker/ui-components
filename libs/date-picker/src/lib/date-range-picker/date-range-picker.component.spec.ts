@@ -22,6 +22,7 @@ describe('DateRangePickerComponent', () => {
   };
   const mockedPlaceholder = 'placeholder';
   const mockedFormat = 'yyyy-MM-dd';
+  const mockedName = 'mockedName';
 
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [testModule] });
@@ -102,6 +103,30 @@ describe('DateRangePickerComponent', () => {
       );
 
       expect(datePickerElemTo?.properties.placeholder).toBe(mockedPlaceholder);
+    });
+
+    it('Input nameFrom should be bound to name of first date picker', async () => {
+      const host = await createComponent(
+        { dates: mockedDates, nameFrom: mockedName },
+        true,
+      );
+
+      const datePickerElemFrom = host.queryCss('spy-date-picker');
+
+      expect(datePickerElemFrom?.properties.name).toBe(mockedName);
+    });
+
+    it('Input nameTo should be bound to name of second date picker', async () => {
+      const host = await createComponent(
+        { dates: mockedDates, nameTo: mockedName },
+        true,
+      );
+
+      const datePickerElemTo = host.queryCss(
+        '.ant-range-picker-col:last-child spy-date-picker',
+      );
+
+      expect(datePickerElemTo?.properties.name).toBe(mockedName);
     });
 
     it('Input clearButton should be bound to clearButton of both date pickers', async () => {

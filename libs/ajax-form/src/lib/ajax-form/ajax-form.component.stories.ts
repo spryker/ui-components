@@ -1,5 +1,4 @@
-import { AjaxFormComponent } from './ajax-form.component';
-import { StaticHtmlRendererModule } from '@spryker/html-renderer';
+import { AjaxFormModule } from '../ajax-form.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule } from '@spryker/notification';
@@ -9,7 +8,21 @@ export default {
 };
 
 const mockHtmlTemplate = () => `
-  <input type="text" name="name">
+  name
+  <input type="text" name="name" style="border: 1px solid red">
+  <br>
+  name1
+  <input type="text" name="name1" style="border: 1px solid red">
+  <br>
+  name2
+  <input type="text" name="name2" style="border: 1px solid red">
+  <br>
+  name3
+  <input type="text" name="name3" style="border: 1px solid red">
+  <br>
+  name4
+  <input type="text" name="name4" style="border: 1px solid red">
+  <br>
   <button type="submit">Submit</button>
 `;
 
@@ -20,12 +33,11 @@ function generateMockHtmlPage(): any {
 export const primary = () => ({
   moduleMetadata: {
     imports: [
-      StaticHtmlRendererModule,
+      AjaxFormModule,
       MockHttpModule,
       HttpClientTestingModule,
       NotificationModule.forRoot(),
     ],
-    declarations: [AjaxFormComponent],
   },
   template: `<spy-ajax-form [action]="action" [mockHttp]="mockHttp"></spy-ajax-form>`,
   props: {

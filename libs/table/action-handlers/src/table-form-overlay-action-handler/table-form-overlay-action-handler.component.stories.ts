@@ -5,7 +5,10 @@ import { TableFormOverlayActionHandlerModule } from './table-form-overlay-action
 import { TableFormOverlayActionHandlerService } from './table-form-overlay-action-handler.service';
 import { TableModule } from '@spryker/table';
 import { NotificationModule } from '@spryker/notification';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  TestRequest,
+} from '@angular/common/http/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { TableDatasourceHttpService } from '@spryker/table/datasources';
 import {
@@ -15,6 +18,8 @@ import {
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { DrawerContainerComponent } from '../../../../drawer/src/lib/drawer-container/drawer-container.component';
 import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
+import { AjaxFormResponse } from '@spryker/ajax-form';
+import { NotificationWrapperComponent } from 'libs/notification/src/lib/notification-wrapper/notification-wrapper.component';
 
 export default {
   title: 'TableFormOverlayActionHandlerComponent',
@@ -57,6 +62,7 @@ class StoryComponent {
       useValue: [
         DrawerContainerComponent,
         TableFormOverlayActionHandlerComponent,
+        NotificationWrapperComponent,
       ],
       multi: true,
     },
@@ -76,8 +82,17 @@ const mockHtmlTemplate = () => `
   <button type="submit">Submit</button>
 `;
 
-const tableResponse = () => ({
+const tableResponse = (request: TestRequest): AjaxFormResponse => ({
   form: mockHtmlTemplate(),
+  notifications:
+    request.request.method === 'POST'
+      ? [
+          {
+            type: 'info',
+            message: 'message',
+          },
+        ]
+      : [],
 });
 
 export const primary = () => ({
@@ -103,7 +118,10 @@ export const primary = () => ({
             id: '1234',
             title: '123',
             type: 'form-overlay',
-            typeOptions: { url: '/mock-url' },
+            typeOptions: {
+              url: '/mock-url?${row.col1}',
+              method: 'POST',
+            },
           },
         ],
         click: '1234',
@@ -115,7 +133,7 @@ export const primary = () => ({
         dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
       },
       {
-        url: '/mock-url',
+        url: /^\/mock-url/,
         dataFn: tableResponse,
       },
     ]),

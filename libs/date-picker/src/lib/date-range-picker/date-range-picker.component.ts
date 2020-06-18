@@ -23,6 +23,8 @@ export class DateRangePickerComponent {
   @Input() format?: string;
   @Input() placeholderFrom?: string;
   @Input() placeholderTo?: string;
+  @Input() nameFrom?: string;
+  @Input() nameTo?: string;
   @Output() datesChange = new EventEmitter<DateRangeValue>();
 
   datesChangeHandler(dates: DateRangeValue): void {

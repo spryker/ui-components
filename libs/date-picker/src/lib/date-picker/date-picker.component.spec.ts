@@ -27,6 +27,7 @@ describe('DatePickerComponent', () => {
   const mockedFormat = 'yyyy-MM-dd';
   const mockedPlaceholder = 'placeholder';
   const mockedCallValue = 'mockedCallValue';
+  const mockedName = 'mockedName';
 
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [testModule] });
@@ -58,6 +59,14 @@ describe('DatePickerComponent', () => {
       expect(datePicker?.attributes['ng-reflect-nz-disabled']).toBe('true');
     });
 
+    it('Input date should be bound to ngModel input of `hidden input`', async () => {
+      const host = await createComponent({ date: mockedDate }, true);
+
+      const inputElement = host.queryCss('input[type="hidden"]');
+
+      expect(inputElement?.properties.ngModel).toMatchObject(mockedDate);
+    });
+
     it('Input date should be bound to ngModel input of nz-date-picker', async () => {
       const host = await createComponent({ date: mockedDate }, true);
 
@@ -72,6 +81,14 @@ describe('DatePickerComponent', () => {
       const datePicker = host.queryCss(nzDatePickerSelector);
 
       expect(datePicker?.attributes['ng-reflect-nz-format']).toBe(mockedFormat);
+    });
+
+    it('Input name should be bound to name input of `hidden input`', async () => {
+      const host = await createComponent({ name: mockedName }, true);
+
+      const inputElement = host.queryCss('input[type="hidden"]');
+
+      expect(inputElement?.properties.name).toBe(mockedName);
     });
 
     it('Input placeholder should be bound to nzPlaceholder input of nz-date-picker', async () => {

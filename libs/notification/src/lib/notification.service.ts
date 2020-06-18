@@ -16,6 +16,7 @@ export class NotificationService {
       easing: 'ease-in',
       positionClass: 'topRight',
       timeOut: 5000,
+      closeButton: true,
     };
     const type = data.type || 'info';
 

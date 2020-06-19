@@ -51,12 +51,15 @@
   *ngIf="multiple; else singleSelectTpl"
   class="ant-select-native"
   multiple
-  [ngModel]="mappedValue"
   [attr.name]="name"
   [disabled]="disabled"
 >
   <option></option>
-  <option *ngFor="let option of mappedOptions" [value]="option.value">
+  <option
+    *ngFor="let option of mappedOptions"
+    [value]="option.value"
+    [selected]="checkSelectedState(option.value)"
+  >
     {{ option.label }}
   </option>
 </select>

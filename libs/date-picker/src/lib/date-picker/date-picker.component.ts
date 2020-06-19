@@ -162,4 +162,13 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   closePicker(): void {
     this._picker?.picker.hideOverlay(); // used private API of NzDatePickerComponent
   }
+
+  datesChangeHandler(date: Date) {
+    // TODO: Add condition when input time is falsy when time feature will be added
+    if (date) {
+      date.setHours(0, 0, 0);
+    }
+
+    this.dateChange.emit(date);
+  }
 }

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.1.0-next.5...@spryker/ajax-form@0.1.0-next.6) (2020-06-19)
+
+**Note:** Version bump only for package @spryker/ajax-form
+
+
+
+
+
 # [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.1.0-next.4...@spryker/ajax-form@0.1.0-next.5) (2020-06-18)
 
 **Note:** Version bump only for package @spryker/ajax-form

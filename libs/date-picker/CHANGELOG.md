@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.1.0-next.13...@spryker/date-picker@0.1.0-next.14) (2020-06-19)
+
+**Note:** Version bump only for package @spryker/date-picker
+
+
+
+
+
 # [0.1.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.1.0-next.12...@spryker/date-picker@0.1.0-next.13) (2020-06-18)
 
 **Note:** Version bump only for package @spryker/date-picker

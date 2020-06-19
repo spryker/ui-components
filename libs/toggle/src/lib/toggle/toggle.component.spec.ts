@@ -6,6 +6,8 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { ToggleComponent } from './toggle.component';
 
+const mockProjectContent = 'mockProjectContent';
+
 describe('ToggleComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(
     ToggleComponent,
@@ -13,6 +15,7 @@ describe('ToggleComponent', () => {
       ngModule: {
         schemas: [NO_ERRORS_SCHEMA],
       },
+      projectContent: mockProjectContent,
     },
   );
 
@@ -35,6 +38,16 @@ describe('ToggleComponent', () => {
 
     expect(inputElem).toBeTruthy();
     expect(inputElem!.nativeElement.style.display).toBe('none');
+  });
+
+  it('should render `ng-content` inside `.spy-toggle__label` wrapper element', async () => {
+    const host = await createComponent({}, true);
+    const labelWrapperElem = host.queryCss('.spy-toggle__label');
+
+    expect(labelWrapperElem).toBeTruthy();
+    expect(labelWrapperElem!.nativeElement.textContent).toContain(
+      mockProjectContent,
+    );
   });
 
   describe('@Input(name)', () => {

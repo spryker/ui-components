@@ -16,6 +16,18 @@ export const primary = () => ({
   },
 });
 
+export const withLabel = () => ({
+  moduleMetadata: {
+    imports: [NzSwitchModule, ToggleModule],
+  },
+  template: `
+    <spy-toggle [name]="name">Label</spy-toggle>
+  `,
+  props: {
+    name: 'test-name',
+  },
+});
+
 export const disabledOn = () => ({
   moduleMetadata: {
     imports: [NzSwitchModule, ToggleModule],

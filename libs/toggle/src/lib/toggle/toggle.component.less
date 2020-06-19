@@ -1,5 +1,25 @@
 @import './toggle.component.theme.less';
 
+.@{toggle-wrapper-prefix-cls} {
+  display: inline-flex;
+  align-items: center;
+
+  &__label {
+    .transition-mixin(color);
+    padding-right: @toggle-wrapper-label-padding-right;
+    color: @gray-darker;
+    font: @font-weight-medium @font-size-base @font-family;
+
+    &--active {
+      color: @green;
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+}
+
 .@{toggle-prefix-cls} {
   &:hover,
   &:focus {

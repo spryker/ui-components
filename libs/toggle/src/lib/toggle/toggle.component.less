@@ -14,6 +14,10 @@
       color: @green;
     }
 
+    &--disabled {
+      color: @gray-dark;
+    }
+
     &:empty {
       display: none;
     }
@@ -21,12 +25,15 @@
 }
 
 .@{toggle-prefix-cls} {
+  border: @toggle-border-width solid transparent;
+
   &:hover,
   &:focus {
     background-color: @gray-darker;
   }
 
   &:focus {
+    border-color: @white;
     box-shadow: @btn-shadow-default-size @gray-darker;
   }
 
@@ -34,6 +41,10 @@
     &:hover,
     &:focus {
       background-color: @green-dark;
+    }
+
+    &:focus {
+      box-shadow: @btn-shadow-default-size @green;
     }
 
     &:hover {

@@ -9,7 +9,7 @@
       [disabled]="disabled"
       [format]="format"
       [name]="nameFrom"
-      (dateChange)="datesChange.emit(dates)"
+      (dateChange)="datesChangeHandler(dates)"
     ></spy-date-picker>
   </div>
 
@@ -23,7 +23,7 @@
       [disabled]="disabled"
       [format]="format"
       [name]="nameTo"
-      (dateChange)="datesChange.emit(dates)"
+      (dateChange)="datesChangeHandler(dates)"
     ></spy-date-picker>
   </div>
 </div>

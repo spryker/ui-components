@@ -6,7 +6,7 @@
   [nzPlaceHolder]="placeholder"
   [nzDisabledDate]="disabledDate"
   [nzShowToday]="false"
-  (ngModelChange)="datesChangeHandler($event)"
+  (ngModelChange)="dateChange.emit($event)"
   (nzOnOpenChange)="openChangeEvent($event)"
   [nzSuffixIcon]="suffixTpl"
   *spyLocaleRender

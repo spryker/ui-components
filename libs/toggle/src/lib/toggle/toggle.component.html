@@ -1,4 +1,8 @@
-<div class="spy-toggle__label" [class.spy-toggle__label--active]="value">
+<div
+  class="spy-toggle__label"
+  [class.spy-toggle__label--active]="value"
+  [class.spy-toggle__label--disabled]="disabled"
+>
   <ng-content></ng-content>
 </div>
 

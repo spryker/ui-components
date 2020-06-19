@@ -50,3 +50,16 @@ export const disabledOff = () => ({
     disabled: true,
   },
 });
+
+export const disabledWithLabel = () => ({
+  moduleMetadata: {
+    imports: [NzSwitchModule, ToggleModule],
+  },
+  template: `
+    <spy-toggle [name]="name" [disabled]="disabled">Label</spy-toggle>
+  `,
+  props: {
+    name: 'test-name',
+    disabled: true,
+  },
+});

@@ -28,10 +28,29 @@ export class DateRangePickerComponent {
   @Output() datesChange = new EventEmitter<DateRangeValue>();
 
   datesChangeHandler(dates: DateRangeValue): void {
-    // TODO: Add condition when input time is falsy when time feature will be added
-    dates.from?.setHours(0, 0, 0);
-    dates.to?.setHours(23, 59, 59);
+    dates.from = this.normalizeDate(dates.from, 0, 0, 0);
+    dates.to = this.normalizeDate(dates.to, 23, 59, 59);
 
     this.datesChange.emit(dates);
+  }
+
+  private normalizeDate(
+    date: Date | string | undefined,
+    hour: number,
+    min: number,
+    sec: number,
+  ): Date | undefined {
+    if (!date) {
+      return;
+    }
+
+    if (typeof date === 'string') {
+      date = new Date(date);
+    }
+
+    // TODO: Add condition when input time is falsy when time feature will be added
+    date.setHours(hour, min, sec);
+
+    return date;
   }
 }

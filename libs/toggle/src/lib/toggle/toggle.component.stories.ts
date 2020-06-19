@@ -16,6 +16,18 @@ export const primary = () => ({
   },
 });
 
+export const withLabel = () => ({
+  moduleMetadata: {
+    imports: [NzSwitchModule, ToggleModule],
+  },
+  template: `
+    <spy-toggle [name]="name">Label</spy-toggle>
+  `,
+  props: {
+    name: 'test-name',
+  },
+});
+
 export const disabledOn = () => ({
   moduleMetadata: {
     imports: [NzSwitchModule, ToggleModule],
@@ -33,6 +45,19 @@ export const disabledOff = () => ({
     imports: [NzSwitchModule, ToggleModule],
   },
   component: ToggleComponent,
+  props: {
+    name: 'test-name',
+    disabled: true,
+  },
+});
+
+export const disabledWithLabel = () => ({
+  moduleMetadata: {
+    imports: [NzSwitchModule, ToggleModule],
+  },
+  template: `
+    <spy-toggle [name]="name" [disabled]="disabled">Label</spy-toggle>
+  `,
   props: {
     name: 'test-name',
     disabled: true,

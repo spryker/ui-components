@@ -16,7 +16,7 @@ export abstract class CustomElementModule {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
-    // Initialize all web components withing Angular Zone
+    // Initialize all web components within Angular Zone
     // so all change detections are handled by the Angular
     this.injector.get(NgZone).runGuarded(() => this.initComponents());
   }

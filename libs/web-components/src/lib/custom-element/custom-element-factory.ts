@@ -47,6 +47,13 @@ export function createCustomElementForStatic<T>(
 
     connectedCallback() {
       super.connectedCallback();
+
+      // When there is no {@link ComponentRef} - it means that the component
+      // was either moved or has been destroyed already
+      if (!this.ngElementStrategy.componentRef) {
+        return;
+      }
+
       this.ngComponent = this.ngElementStrategy.componentRef.instance;
       this.__init();
     }

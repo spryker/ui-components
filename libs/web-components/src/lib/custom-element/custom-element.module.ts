@@ -1,4 +1,9 @@
-import { ComponentFactoryResolver, Injector, NgModule } from '@angular/core';
+import {
+  ComponentFactoryResolver,
+  Injector,
+  NgModule,
+  NgZone,
+} from '@angular/core';
 
 import { createCustomElementFor } from './custom-element-factory';
 import { WebComponentDeclaration, WebComponentDefs } from './types';
@@ -11,10 +16,12 @@ export abstract class CustomElementModule {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
-    this.init();
+    // Initialize all web components within Angular Zone
+    // so all change detections are handled by the Angular
+    this.injector.get(NgZone).runGuarded(() => this.initComponents());
   }
 
-  private init() {
+  private initComponents() {
     const componentDeclarations = componentDefsToDeclarations(this.components);
 
     componentDeclarations.forEach(componentDeclaration =>

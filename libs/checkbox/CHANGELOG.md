@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.1.0-next.7...@spryker/checkbox@0.1.0-next.8) (2020-06-22)
+
+**Note:** Version bump only for package @spryker/checkbox
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.1.0-next.6...@spryker/checkbox@0.1.0-next.7) (2020-06-01)
 
 **Note:** Version bump only for package @spryker/checkbox

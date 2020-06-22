@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.3 (2020-06-22)
+
+
+### Bug Fixes
+
+* **web-components:** run all web components in Angular Zone ([666f567](https://github.com/spryker/ui-components/commit/666f56706dccb4f6f2bfe63c4232aae523277525))
+
+
+
+
+
 # 0.2.0-next.2 (2020-04-01)
 
 

@@ -9,11 +9,12 @@
 </label>
 
 <input
-  type="hidden"
+  type="checkbox"
   [attr.name]="name"
   [spyApplyAttrs]="attrs"
   [required]="required"
   [id]="spyId"
   [ngModel]="checked && !indeterminate"
   [disabled]="disabled"
+  style="display: none"
 />

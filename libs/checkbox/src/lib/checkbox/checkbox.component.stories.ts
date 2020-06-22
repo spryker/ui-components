@@ -9,9 +9,12 @@ export const primary = () => ({
     imports: [CheckboxModule],
   },
   template: `
-    <spy-checkbox [name]="name">Checkbox label</spy-checkbox>
+    <spy-checkbox [name]="name" [attrs]="attrs">Checkbox label</spy-checkbox>
   `,
   props: {
     name: 'some-name',
+    attrs: {
+      attr1: 'attr1',
+    },
   },
 });

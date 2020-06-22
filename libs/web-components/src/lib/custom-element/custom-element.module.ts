@@ -13,12 +13,12 @@ import { componentDefsToDeclarations, isDeclarationLazy } from './util';
 export abstract class CustomElementModule {
   protected abstract components: WebComponentDefs;
 
-  constructor(private injector: Injector, private ngZone: NgZone) {}
+  constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
     // Initialize all web components withing Angular Zone
     // so all change detections are handled by the Angular
-    this.ngZone.runGuarded(() => this.initComponents());
+    this.injector.get(NgZone).runGuarded(() => this.initComponents());
   }
 
   private initComponents() {

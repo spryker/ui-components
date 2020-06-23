@@ -17,7 +17,7 @@ export const primary = () => ({
     ],
   },
   template: `
-    <spy-date-picker format="yyyy-MM-dd" date="2012-12-12" placeholder="123" open="true"></spy-date-picker>
+    <spy-date-picker date="2012-12-12" placeholder="123" open="true"></spy-date-picker>
   `,
   props: {},
 });

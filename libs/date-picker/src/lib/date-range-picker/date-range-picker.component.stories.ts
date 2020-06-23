@@ -22,12 +22,16 @@ export const primary = () => ({
     ],
   },
   template: `
-    <spy-date-range-picker 
-        format="yyyy-MM-dd" 
-        [dates]="{from: '2012-12-12', to: '2012-12-15'}"
+    <spy-date-range-picker
+        [dates]="dates"
         placeholderFrom="from"
         placeholderTo="to"
     ></spy-date-range-picker>
   `,
-  props: {},
+  props: {
+    dates: {
+      from: new Date('2012-12-15'),
+      to: new Date('2012-12-18'),
+    },
+  },
 });

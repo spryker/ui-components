@@ -103,7 +103,6 @@ function getFiltersStory(
               typeOptions: {
                 placeholderFrom: 'from',
                 placeholderTo: 'to',
-                format: 'yyyy-MM-dd',
               },
             },
           ],

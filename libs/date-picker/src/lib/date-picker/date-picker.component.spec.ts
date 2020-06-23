@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-
+import { ToIsoFormatModule, toIsoFormat } from '@spryker/utils';
 import { DatePickerComponent } from './date-picker.component';
 import { TestLocaleModule } from '@spryker/locale/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +17,12 @@ describe('DatePickerComponent', () => {
     {
       ngModule: {
         schemas: [NO_ERRORS_SCHEMA],
-        imports: [TestLocaleModule, NzDatePickerModule, NoopAnimationsModule],
+        imports: [
+          TestLocaleModule,
+          NzDatePickerModule,
+          NoopAnimationsModule,
+          ToIsoFormatModule,
+        ],
       },
     },
   );
@@ -64,7 +69,7 @@ describe('DatePickerComponent', () => {
 
       const inputElement = host.queryCss('input[type="hidden"]');
 
-      expect(inputElement?.properties.ngModel).toMatchObject(mockedDate);
+      expect(inputElement?.properties.ngModel).toBe(toIsoFormat(mockedDate));
     });
 
     it('Input date should be bound to ngModel input of nz-date-picker', async () => {

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToIsoFormat } from './to-iso-format.pipe';
+import { ToIsoFormatPipe } from './to-iso-format.pipe';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [ToIsoFormat],
-  exports: [ToIsoFormat],
+  declarations: [ToIsoFormatPipe],
+  exports: [ToIsoFormatPipe],
 })
 export class ToIsoFormatModule {}

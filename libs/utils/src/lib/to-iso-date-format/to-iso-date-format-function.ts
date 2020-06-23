@@ -3,7 +3,7 @@ export function toIsoDateFormat(date: string | Date): string {
     return '';
   }
 
-  return typeof date === 'object'
+  return date instanceof Date
     ? date.toISOString()
     : new Date(date).toISOString();
 }

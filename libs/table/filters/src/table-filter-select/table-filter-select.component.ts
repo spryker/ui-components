@@ -11,6 +11,9 @@ import {
 } from '@angular/core';
 import { TableFilterSelect, TableFilterSelectValue } from './types';
 import { TableFilterComponent } from '@spryker/table/features';
+import { I18nService } from '@spryker/locale';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 declare module '@spryker/table/features' {
   interface TableFiltersRegistry {
@@ -31,9 +34,22 @@ export class TableFilterSelectComponent
   @Input() value?: TableFilterSelectValue;
   @Output() valueChange = new EventEmitter<TableFilterSelectValue>();
   selectOptions: SelectOptionItem[] = [];
+  placeholder$?: Observable<string>;
+
+  constructor(private i18nService: I18nService) {}
+
+  private updatePlaceholder(token: string): Observable<string> {
+    return this.i18nService.translate(token);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config) {
+      this.placeholder$ = this.updatePlaceholder('table.filter-select').pipe(
+        map(value => {
+          return `${value} ${this.config?.title}`;
+        }),
+      );
+
       this.selectOptions = this.config?.typeOptions?.values.map(
         ({ value, title: label }) => ({ label, value }),
       ) as SelectOptionItem[];

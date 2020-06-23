@@ -3,5 +3,5 @@
   [(value)]="value"
   (valueChange)="valueChange.emit($event)"
   [multiple]="config?.typeOptions?.multiselect"
-  [placeholder]="config?.title"
+  [placeholder]="placeholder$ | async"
 ></spy-select>

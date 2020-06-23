@@ -12,6 +12,8 @@ import {
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 
 export default {
   title: 'TableFiltersSelectComponent',
@@ -64,6 +66,8 @@ function getFiltersStory(
           http: TableDatasourceHttpService,
         }),
         TableFilterSelectModule,
+        LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+        EnLocaleModule,
         ...extraNgModules,
       ],
       providers: [
@@ -91,7 +95,7 @@ function getFiltersStory(
           items: [
             {
               id: 'select1',
-              title: 'Select 1',
+              title: 'Column 1',
               type: 'select',
               typeOptions: {
                 multiselect: false,
@@ -104,7 +108,7 @@ function getFiltersStory(
             },
             {
               id: 'select2',
-              title: 'Select 2',
+              title: 'Column 2',
               type: 'select',
               typeOptions: {
                 multiselect: true,
@@ -120,7 +124,7 @@ function getFiltersStory(
             },
             {
               id: 'select3',
-              title: 'Select 3',
+              title: 'Column 3',
               type: 'select',
               typeOptions: {
                 multiselect: false,

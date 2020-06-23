@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { I18nLocaleInterpolationData } from '@spryker/locale';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +14,15 @@ export class I18nTestService {
 
   getLocaleData(token: string, key: string): unknown {
     return this.localeData[token][key];
+  }
+
+  setLocale = jest.fn();
+
+  translate(
+    token: string,
+    data?: I18nLocaleInterpolationData,
+  ): Observable<string> {
+    this.addLocaleData(token, data);
+    return of(token);
   }
 }

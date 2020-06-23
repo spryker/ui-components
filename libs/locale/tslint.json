@@ -5,6 +5,6 @@
     "component-selector": [true, "element", "spy", "kebab-case"]
   },
   "linterOptions": {
-    "exclude": ["!**/*"]
+    "exclude": ["!**/*", "data/*/src/data/**"]
   }
 }

@@ -43,7 +43,7 @@ export type EnableDateFunction = (current: Date) => boolean;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatePickerComponent implements OnChanges, AfterViewChecked {
-  private defaultFormat = 'dd.MM.yyyy';
+  private static defaultFormat = 'dd.MM.yyyy';
 
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
@@ -57,7 +57,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   get date(): Date | string {
     return this._date as Date;
   }
-  @Input() format = this.defaultFormat;
+  @Input() format = DatePickerComponent.defaultFormat;
   @Input() placeholder?: string;
   @Input() name?: string;
   @Output() dateChange = new EventEmitter<Date>();
@@ -82,7 +82,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     this.updatePicker();
 
     if ('format' in changes && !this.format) {
-      this.format = this.defaultFormat;
+      this.format = DatePickerComponent.defaultFormat;
     }
 
     if (typeof this.enableDate === 'function') {

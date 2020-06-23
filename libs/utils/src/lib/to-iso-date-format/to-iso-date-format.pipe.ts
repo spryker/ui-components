@@ -5,7 +5,11 @@ import { toIsoDateFormat } from './to-iso-date-format-function';
   name: 'spyToIsoDateFormat',
 })
 export class ToIsoDateFormatPipe implements PipeTransform {
-  transform(date: string | Date): string {
+  transform(date?: string | Date): string {
+    if (!date) {
+      return '';
+    }
+
     return toIsoDateFormat(date);
   }
 }

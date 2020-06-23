@@ -46,6 +46,10 @@ export class TableFilterDateRangeComponent
       : this.i18nService.translate(defaultToken);
   }
 
+  setFormatOption() {
+    return this.config?.typeOptions?.format ?? 'dd.MM.yyyy';
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if ('config' in changes) {
       this.placeholderFrom$ = this.updatePlaceholder(

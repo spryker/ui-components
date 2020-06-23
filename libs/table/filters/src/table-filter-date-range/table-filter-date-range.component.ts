@@ -46,7 +46,7 @@ export class TableFilterDateRangeComponent
       : this.i18nService.translate(defaultToken);
   }
 
-  setFormatOption() {
+  setFormatOption(): string {
     return this.config?.typeOptions?.format ?? 'dd.MM.yyyy';
   }
 

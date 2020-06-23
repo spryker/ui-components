@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { IconModule } from '@spryker/icon';
 import { IconCalendarModule } from '@spryker/icon/icons';
 import { LocaleModule } from '@spryker/locale';
+import { ToIsoDateFormatModule } from '@spryker/utils';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { LocaleModule } from '@spryker/locale';
     IconModule,
     IconCalendarModule,
     LocaleModule,
+    ToIsoDateFormatModule,
   ],
   declarations: [DatePickerComponent],
   exports: [DatePickerComponent],

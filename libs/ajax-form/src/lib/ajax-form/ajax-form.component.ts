@@ -8,6 +8,7 @@ import {
   OnDestroy,
   SimpleChanges,
   ViewEncapsulation,
+  Injector,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { Subscription } from 'rxjs';
@@ -38,6 +39,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
     private ajaxActionService: AjaxActionService,
     private http: HttpClient,
     private cdr: ChangeDetectorRef,
+    private injector: Injector,
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -91,7 +93,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
     }
 
     this.isLoading = false;
-    this.ajaxActionService.handle(response);
+    this.ajaxActionService.handle(response, this.injector);
     // TODO: investigate ExpressionChangedAfterItHasBeenCheckedError
     this.cdr.markForCheck();
   }

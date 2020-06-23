@@ -15,3 +15,4 @@ export * from './lib/simple-changes';
 export * from './lib/misc';
 export * from './lib/merge-deep';
 export * from './lib/regex';
+export * from './lib/to-iso-format';

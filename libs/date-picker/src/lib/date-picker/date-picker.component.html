@@ -1,7 +1,7 @@
 <nz-date-picker
   [nzAllowClear]="clearButton"
   [nzDisabled]="disabled"
-  [ngModel]="date"
+  [(ngModel)]="date"
   [nzFormat]="format"
   [nzPlaceHolder]="placeholder"
   [nzDisabledDate]="disabledDate"
@@ -20,7 +20,7 @@
 
 <input
   type="hidden"
-  [ngModel]="date"
+  [ngModel]="date | toIsoFormat"
   [name]="name"
   [attr.name]="name"
   [disabled]="disabled"

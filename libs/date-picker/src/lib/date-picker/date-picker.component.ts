@@ -54,7 +54,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   get date(): Date | string {
     return this._date as Date;
   }
-  @Input() format?: string;
+  @Input() format = 'dd.MM.yyyy';
   @Input() placeholder?: string;
   @Input() name?: string;
   @Output() dateChange = new EventEmitter<Date>();

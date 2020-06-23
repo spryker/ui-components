@@ -8,6 +8,7 @@ import {
   Input,
   OnChanges,
   Output,
+  SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -42,6 +43,8 @@ export type EnableDateFunction = (current: Date) => boolean;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatePickerComponent implements OnChanges, AfterViewChecked {
+  private defaultFormat = 'dd.MM.yyyy';
+
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
   @Input() @ToJson() enableDate?: EnableDateOptions;
@@ -54,7 +57,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   get date(): Date | string {
     return this._date as Date;
   }
-  @Input() format = 'dd.MM.yyyy';
+  @Input() format = this.defaultFormat;
   @Input() placeholder?: string;
   @Input() name?: string;
   @Output() dateChange = new EventEmitter<Date>();
@@ -75,8 +78,12 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     private dateWorkDaysToken: InjectionTokenType<typeof DateWorkDaysToken>,
   ) {}
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.updatePicker();
+
+    if ('format' in changes && !this.format) {
+      this.format = this.defaultFormat;
+    }
 
     if (typeof this.enableDate === 'function') {
       this.convertEnableDateFuncToFunc(this.enableDate as EnableDateFunction);

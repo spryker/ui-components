@@ -20,7 +20,7 @@ export class DateRangePickerComponent {
   @Input() @ToJson() dates: DateRangeValueInput = {};
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
-  @Input() format = 'dd.MM.yyyy';
+  @Input() format?: string;
   @Input() placeholderFrom?: string;
   @Input() placeholderTo?: string;
   @Input() nameFrom?: string;

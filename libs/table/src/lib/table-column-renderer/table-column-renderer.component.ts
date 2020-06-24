@@ -41,6 +41,12 @@ export class TableColumnRendererComponent implements OnChanges {
   constructor(private contextService: ContextService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes.config && this.config) {
+      this.config = this.mapConfigWithDefaultTypeOptionsMappingsValue(
+        this.config,
+      );
+    }
+
     if (changes.config || changes.data) {
       this.updateValues();
     } else if (changes.i) {
@@ -107,19 +113,23 @@ export class TableColumnRendererComponent implements OnChanges {
 
   private mapConfigChildren<T extends TableColumnTypeDef>(config: T): T {
     let { typeOptions } = config;
+    const { typeOptionsMappings } = config;
 
-    if (config.typeOptionsMappings) {
-      typeOptions = Object.entries(config.typeOptionsMappings).reduce(
+    if (typeOptionsMappings) {
+      typeOptions = Object.entries(typeOptionsMappings).reduce(
         (mapOptions, [mapKey, mapOption]) => {
           const matchedValue = mapOption[String(this.value)];
-
           if (matchedValue) {
             this.contextService.interpolate(matchedValue, this.context as any);
 
             return { ...mapOptions, [mapKey]: matchedValue };
+          } else {
+            return {
+              ...mapOptions,
+              // tslint:disable-next-line: no-non-null-assertion
+              [mapKey]: typeOptionsMappings![mapKey].default,
+            };
           }
-
-          return mapOptions;
         },
         typeOptions,
       );
@@ -129,6 +139,36 @@ export class TableColumnRendererComponent implements OnChanges {
     const children = config.typeChildren?.map(c => this.mapConfigChildren(c)!);
 
     return { ...config, typeOptions, typeChildren: children };
+  }
+
+  private mapConfigWithDefaultTypeOptionsMappingsValue<
+    T extends TableColumnTypeDef
+  >(config: T): T {
+    let { typeOptionsMappings } = config;
+
+    if (typeOptionsMappings) {
+      typeOptionsMappings = Object.entries(typeOptionsMappings).reduce(
+        (mapOptions, [mapKey]) => {
+          return {
+            ...mapOptions,
+            [mapKey]: {
+              // tslint:disable-next-line: no-non-null-assertion
+              ...typeOptionsMappings![mapKey],
+              // tslint:disable-next-line: no-non-null-assertion
+              default: config.typeOptions![mapKey],
+            },
+          };
+        },
+        typeOptionsMappings,
+      );
+    }
+
+    const children = config.typeChildren?.map(
+      // tslint:disable-next-line: no-non-null-assertion
+      c => this.mapConfigWithDefaultTypeOptionsMappingsValue(c)!,
+    );
+
+    return { ...config, typeOptionsMappings, typeChildren: children };
   }
 
   private configColumnToItem(

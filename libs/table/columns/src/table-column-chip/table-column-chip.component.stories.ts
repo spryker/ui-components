@@ -21,7 +21,7 @@ export default {
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
   col1: `col1 #${i}`,
-  col2: 'col2',
+  col2: Math.random() > 0.5 ? 1 : 0,
   col3: 'col3',
 });
 
@@ -80,9 +80,12 @@ export const withTable = (): IStory => ({
           id: 'col2',
           title: 'Column #2',
           type: 'chip',
+          sortable: true,
           typeOptions: {
-            text: '${value}',
-            color: 'red',
+            color: 'grey',
+          },
+          typeOptionsMappings: {
+            color: { 0: 'red' },
           },
         },
         {

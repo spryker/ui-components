@@ -13,9 +13,8 @@ import { InjectionTokenType } from '@spryker/utils';
 })
 export class I18nTestService {
   private localeData: Record<string, Record<string, unknown>> = {};
-  setLocale = jest.fn();
 
-  constructor() {}
+  setLocale = jest.fn();
 
   addLocaleData(token: string, data: I18nLocaleInterpolationData = {}): void {
     this.localeData[token] = data;

@@ -3,5 +3,7 @@
   [(value)]="value"
   (valueChange)="valueChange.emit($event)"
   [multiple]="config?.typeOptions?.multiselect"
-  [placeholder]="placeholder$ | async"
+  [placeholder]="
+    'table.filter:title' | spyI18n: { title: config?.title } | async
+  "
 ></spy-select>

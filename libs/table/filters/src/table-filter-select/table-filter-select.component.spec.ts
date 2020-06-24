@@ -70,7 +70,7 @@ describe('TableFilterSelectComponent', () => {
         true,
       );
       const selectElem = host.queryCss('spy-select');
-      const expectedPlaceholder = `table.filter-select ${mockSelectConfig.title}`;
+      const expectedPlaceholder = `table.filter:title`;
       expect(selectElem!.properties.placeholder).toBe(expectedPlaceholder);
     });
 

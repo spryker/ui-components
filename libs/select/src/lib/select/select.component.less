@@ -64,6 +64,7 @@
 
     .cdk-virtual-scroll-content-wrapper {
       max-height: 250px !important;
+      width: 100%;
       height: auto !important;
     }
   }
@@ -84,6 +85,7 @@
     &-option {
       &-content {
         &-wrapper {
+          display: flex;
           padding: @select-dropdown-menu-item-wrapped-padding;
           border: @select-dropdown-menu-item-border;
 
@@ -108,6 +110,13 @@
             border-radius: @select-item-focus-border-radius;
           }
         }
+
+        &-label {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          min-width: 0;
+          flex: 1;
+        }
       }
 
       &-state {
@@ -121,7 +130,6 @@
           margin-right: @checkbox-icon-margin-right;
           margin-top: @checkbox-icon-margin-top;
           border-radius: @checkbox-icon-border-radius;
-          float: left;
         }
 
         &__multiChecked {

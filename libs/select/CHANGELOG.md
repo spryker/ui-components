@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.28](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.27...@spryker/select@0.1.0-next.28) (2020-06-24)
+
+
+### Bug Fixes
+
+* **select:** added ellipsis to lable ([85c5e74](https://github.com/spryker/ui-components/commit/85c5e74d45b79eb772532bd8cefdd991d7593155))
+* **select:** added storybook option ([49d8dd9](https://github.com/spryker/ui-components/commit/49d8dd9ea02bf5677390f10504c8517c33d4b5f0))
+* **select:** fixed markup ([1879801](https://github.com/spryker/ui-components/commit/18798014df726b7236313bdfb0600b733ebbfd35))
+
+
+
+
+
 # [0.1.0-next.27](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.26...@spryker/select@0.1.0-next.27) (2020-06-22)
 
 **Note:** Version bump only for package @spryker/select

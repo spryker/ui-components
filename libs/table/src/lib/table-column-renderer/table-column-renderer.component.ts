@@ -31,6 +31,7 @@ export class TableColumnRendererComponent implements OnChanges {
   @Input() i?: number;
 
   itemConfig?: OrchestratorConfigItem;
+  originalConfig?: TableColumn;
 
   value?: unknown;
   isValueUndefined?: boolean;
@@ -41,6 +42,12 @@ export class TableColumnRendererComponent implements OnChanges {
   constructor(private contextService: ContextService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes.config) {
+      this.originalConfig = { ...this.config } as TableColumn;
+    } else if (changes.data) {
+      this.config = { ...this.originalConfig } as TableColumn;
+    }
+
     if (changes.config || changes.data) {
       this.updateValues();
     } else if (changes.i) {

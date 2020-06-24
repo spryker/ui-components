@@ -1,7 +1,12 @@
-import {Inject, Injectable, Optional} from '@angular/core';
-import {I18nConfig, I18nLocaleDataToken, I18nLocaleInterpolationData, LocaleService} from '@spryker/locale';
+import { Inject, Injectable, Optional } from '@angular/core';
+import {
+  I18nConfig,
+  I18nLocaleDataToken,
+  I18nLocaleInterpolationData,
+  LocaleService,
+} from '@spryker/locale';
 import { Observable, of } from 'rxjs';
-import {InjectionTokenType} from "@spryker/utils";
+import { InjectionTokenType } from '@spryker/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +15,7 @@ export class I18nTestService {
   private localeData: Record<string, Record<string, unknown>> = {};
   setLocale = jest.fn();
 
-  constructor() {
-
-  }
+  constructor() {}
 
   addLocaleData(token: string, data: I18nLocaleInterpolationData = {}): void {
     this.localeData[token] = data;
@@ -21,8 +24,6 @@ export class I18nTestService {
   getLocaleData(token: string, key: string): unknown {
     return this.localeData[token][key];
   }
-
-
 
   translate(
     token: string,

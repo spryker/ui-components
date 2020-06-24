@@ -36,7 +36,12 @@ export const multiSelect = () => ({
   moduleMetadata: { imports: [StoryModule] },
   component: SelectComponent,
   props: {
-    options: ['Option 1', 'Option 2', 'Option 3'],
+    options: [
+      'Option 1',
+      'Option 2',
+      'Option 3',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    ],
     placeholder: 'Select option...',
     multiple: true,
   },

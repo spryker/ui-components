@@ -64,6 +64,7 @@
 
     .cdk-virtual-scroll-content-wrapper {
       max-height: 250px !important;
+      width: 100%;
       height: auto !important;
     }
   }
@@ -113,7 +114,8 @@
         &-label {
           text-overflow: ellipsis;
           overflow: hidden;
-          width: calc(100% - @checkbox-full-width);
+          min-width: 0;
+          flex: 1;
         }
       }
 
@@ -224,8 +226,4 @@
     margin: 0;
     right: @select-arrow-right;
   }
-}
-
-.cdk-virtual-scroll-content-wrapper {
-  width: 100%;
 }

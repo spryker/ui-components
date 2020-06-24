@@ -166,6 +166,16 @@
     &-super-next-btn {
       display: none;
     }
+
+    &-view {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+
+      button:not(:first-child) {
+        margin: @calendar-header-view-first-button-margin;
+      }
+    }
   }
 
   &-cell {

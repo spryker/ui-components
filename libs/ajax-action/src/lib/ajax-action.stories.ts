@@ -44,10 +44,12 @@ class StoryComponent {
     const random = Math.random().toFixed(4);
 
     const actionObject = {
-      postAction: {
-        type: 'mock',
-        random,
-      },
+      postActions: [
+        {
+          type: 'mock',
+          random,
+        },
+      ],
       notifications: [
         {
           type: 'info' as any,

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/locale@0.1.0-next.8...@spryker/locale@0.1.0-next.9) (2020-06-25)
+
+
+### Bug Fixes
+
+* **table-filter:** changed placeholder for filters ([e65dfd5](https://github.com/spryker/ui-components/commit/e65dfd5f84cd7bf3791b8f794eb23468b10655a8))
+* **table-filter:** changed placeholder for filters ([0b71fd7](https://github.com/spryker/ui-components/commit/0b71fd780185a4af4fc2f7ef0ec27edd1edfc5a7))
+* **table-filter:** changed placeholder for filters ([3859ba6](https://github.com/spryker/ui-components/commit/3859ba6643af52eeaeecc39f2d96aff780dd0cd2))
+* **table-filter:** changed placeholder for filters ([06958b3](https://github.com/spryker/ui-components/commit/06958b308987444021ec2be665fdc9617441bedf))
+* **table-filter:** fixes after PR ([dca3369](https://github.com/spryker/ui-components/commit/dca3369131b1151a37048fca90b6498b49bf1ae3))
+
+
+
+
+
 # [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/locale@0.1.0-next.7...@spryker/locale@0.1.0-next.8) (2020-06-23)
 
 **Note:** Version bump only for package @spryker/locale

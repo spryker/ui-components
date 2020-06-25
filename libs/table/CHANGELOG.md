@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.58](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.57...@spryker/table@0.1.0-next.58) (2020-06-25)
+
+
+### Bug Fixes
+
+* **table-filter:** changed placeholder for filters ([06958b3](https://github.com/spryker/ui-components/commit/06958b308987444021ec2be665fdc9617441bedf))
+* **table-filter:** fixes after PR ([ef199d2](https://github.com/spryker/ui-components/commit/ef199d2165579ed3690d373de974c883e987a6af))
+* **table-filter:** fixes after PR ([dca3369](https://github.com/spryker/ui-components/commit/dca3369131b1151a37048fca90b6498b49bf1ae3))
+* **table-filter:** fixes after PR (format issue) ([ea4e84c](https://github.com/spryker/ui-components/commit/ea4e84c42bfa11e2db664d0319962e37b9371a12))
+
+
+
+
+
 # [0.1.0-next.57](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.56...@spryker/table@0.1.0-next.57) (2020-06-25)
 
 

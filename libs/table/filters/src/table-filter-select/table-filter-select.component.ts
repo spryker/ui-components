@@ -25,7 +25,6 @@ declare module '@spryker/table/features' {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-
 export class TableFilterSelectComponent
   implements TableFilterComponent<TableFilterSelect>, OnChanges {
   @Input() config?: TableFilterSelect;

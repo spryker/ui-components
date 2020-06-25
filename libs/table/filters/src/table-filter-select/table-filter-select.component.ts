@@ -11,9 +11,6 @@ import {
 } from '@angular/core';
 import { TableFilterSelect, TableFilterSelectValue } from './types';
 import { TableFilterComponent } from '@spryker/table/features';
-import { I18nService } from '@spryker/locale';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 declare module '@spryker/table/features' {
   interface TableFiltersRegistry {
@@ -28,6 +25,7 @@ declare module '@spryker/table/features' {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
+
 export class TableFilterSelectComponent
   implements TableFilterComponent<TableFilterSelect>, OnChanges {
   @Input() config?: TableFilterSelect;

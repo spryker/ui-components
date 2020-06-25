@@ -6,7 +6,7 @@ import { SelectOptionItem } from '@spryker/select';
 
 import { TableFilterSelectComponent } from './table-filter-select.component';
 import { TableFilterSelect } from './types';
-import { TestLocaleModule } from '@spryker/locale/testing';
+import {I18nTestService, TestLocaleModule} from '@spryker/locale/testing';
 
 const mockSelectValues = [
   {
@@ -44,6 +44,8 @@ const mockSelectConfig: TableFilterSelect = {
 };
 
 describe('TableFilterSelectComponent', () => {
+  let service: I18nTestService;
+
   const { testModule, createComponent } = getTestingForComponent(
     TableFilterSelectComponent,
     {
@@ -54,7 +56,10 @@ describe('TableFilterSelectComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() => {
+    TestBed.configureTestingModule({ imports: [testModule] });
+    service = TestBed.inject(I18nTestService);
+  })
 
   it('template must render `spy-select`', async () => {
     const host = await createComponent({}, true);
@@ -70,8 +75,8 @@ describe('TableFilterSelectComponent', () => {
         true,
       );
       const selectElem = host.queryCss('spy-select');
-      const expectedPlaceholder = `table.filter:title`;
-      expect(selectElem!.properties.placeholder).toBe(expectedPlaceholder);
+      const token = 'table.filter:title';
+      expect(service.getLocaleData(token, 'title')).toBe(mockSelectConfig.title);
     });
 
     it('`config.typeOptions.multiselect` must be bound to placeholder multiple of the `spy-select` element', async () => {

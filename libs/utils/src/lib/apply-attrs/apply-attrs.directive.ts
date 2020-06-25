@@ -44,7 +44,7 @@ export class ApplyAttrsDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.spyApplyAttrs && !changes.spyApplyAttrs.firstChange) {
+    if (changes.spyApplyAttrs && changes.spyApplyAttrs.previousValue) {
       this.deleteAttrs(changes.spyApplyAttrs.previousValue);
     }
 

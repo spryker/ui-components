@@ -1,4 +1,9 @@
-import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  NO_ERRORS_SCHEMA,
+  Injector,
+} from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -46,6 +51,7 @@ describe('TableRowActionsFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
+  let injector: Injector;
   const mockActions = [{ id: '1234', title: '123', type: 'rowActions' }];
   const mockClick = '1234';
 
@@ -110,6 +116,7 @@ describe('TableRowActionsFeatureComponent', () => {
   });
 
   beforeEach(fakeAsync(() => {
+    injector = TestBed.inject(Injector);
     fixture = TestBed.createComponent(TestHostComponent);
     testTableFeature = fixture.debugElement.query(
       By.directive(TestTableFeatureComponent),
@@ -157,6 +164,7 @@ describe('TableRowActionsFeatureComponent', () => {
 
     expect(tableActionsService.handleAction).toHaveBeenCalledWith(
       actionTriggeredRes,
+      injector,
     );
   }));
 });

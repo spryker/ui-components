@@ -12,12 +12,6 @@ export function ToJson(): PropertyDecorator {
       this: any,
       prop: Record<string, string> | string | number,
     ) {
-      if (!prop && prop !== 0) {
-        this[internalKey] = undefined;
-
-        return;
-      }
-
       try {
         this[internalKey] = typeof prop === 'string' ? JSON.parse(prop) : prop;
       } catch (error) {

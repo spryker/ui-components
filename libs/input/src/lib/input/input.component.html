@@ -3,6 +3,9 @@
   [nzPrefix]="prefix"
   [nzAddOnBefore]="outerPrefix"
   [nzAddOnAfter]="outerSuffix"
+  [ngClass]="currentClassName"
+  (mouseover)="setHoverState($event)"
+  (mouseout)="setHoverState($event)"
 >
   <input
     nz-input
@@ -16,5 +19,7 @@
     [id]="spyId"
     [required]="required"
     [spyApplyAttrs]="attrs"
+    (focus)="setFocusState($event)"
+    (blur)="setFocusState($event)"
   />
 </nz-input-group>

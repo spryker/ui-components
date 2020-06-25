@@ -45,20 +45,22 @@ export class AjaxActionService {
       }),
     );
 
-    if (!response.postAction?.type) {
-      return;
-    }
+    response.postActions?.forEach(postAction => {
+      if (!postAction?.type) {
+        return;
+      }
 
-    const actionClass = this.actionHandlersObject[response.postAction.type];
+      const actionClass = this.actionHandlersObject[postAction.type];
 
-    if (!actionClass) {
-      throw new Error(
-        `AjaxActionService: Post Action type '${response.postAction.type}' is not registered!`,
-      );
-    }
+      if (!actionClass) {
+        throw new Error(
+          `AjaxActionService: Post Action type '${postAction.type}' is not registered!`,
+        );
+      }
 
-    const actionService = this.injector.get(actionClass);
+      const actionService = this.injector.get(actionClass);
 
-    actionService?.handleAction(response.postAction, injector ?? this.injector);
+      actionService?.handleAction(postAction, injector ?? this.injector);
+    });
   }
 }

@@ -168,10 +168,6 @@
         "dist/libs/ajax-action/index.d.ts",
         "libs/ajax-action/src/index.ts"
       ],
-      "@spryker/ajax-action/post-actions": [
-        "dist/libs/ajax-action/post-actions/index.d.ts",
-        "libs/ajax-action/post-actions/src/index.ts"
-      ],
       "@spryker/html-renderer": [
         "dist/libs/html-renderer/index.d.ts",
         "libs/html-renderer/src/index.ts"
@@ -183,6 +179,10 @@
       "@spryker/ajax-form": [
         "dist/libs/ajax-form/index.d.ts",
         "libs/ajax-form/src/index.ts"
+      ],
+      "@spryker/ajax-post-actions": [
+        "libs/ajax-post-actions/src/index.ts",
+        "libs/ajax-post-actions/src/index.ts"
       ]
     }
   },

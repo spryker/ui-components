@@ -115,6 +115,9 @@
     },
     "ajax-form": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "ajax-post-actions": {
+      "tags": ["type:service"]
     }
   },
   "tasksRunnerOptions": {

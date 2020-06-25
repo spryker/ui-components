@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.29](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.28...@spryker/select@0.1.0-next.29) (2020-06-25)
+
+
+### Bug Fixes
+
+* **select:** single select option fix ([5abdcef](https://github.com/spryker/ui-components/commit/5abdcef35e82ec84041ff7737db1cde6511ab8c2))
+
+
+
+
+
 # [0.1.0-next.28](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.27...@spryker/select@0.1.0-next.28) (2020-06-24)
 
 

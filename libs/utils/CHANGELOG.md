@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.19](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.18...@spryker/utils@0.1.0-next.19) (2020-06-25)
+
+
+### Bug Fixes
+
+* **select:** fixed tests for checkbox ([22bdcec](https://github.com/spryker/ui-components/commit/22bdcec14f03d10bae289c931e9bf5c5cd404bcd))
+* **select:** fixed utils logic ([3a86074](https://github.com/spryker/ui-components/commit/3a860744e08121b3193ac11d4004f26f6a8b31dc))
+* **select:** removed check ([da7b4f4](https://github.com/spryker/ui-components/commit/da7b4f48c0296289fffc4f07a77435dc4a6e9fba))
+* **select:** removed import ([3663c08](https://github.com/spryker/ui-components/commit/3663c087a96afbc07829321cb8ee805c9066e27b))
+* **select:** single select option fix ([5abdcef](https://github.com/spryker/ui-components/commit/5abdcef35e82ec84041ff7737db1cde6511ab8c2))
+
+
+
+
+
 # [0.1.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.17...@spryker/utils@0.1.0-next.18) (2020-06-23)
 
 **Note:** Version bump only for package @spryker/utils

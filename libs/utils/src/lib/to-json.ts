@@ -1,3 +1,5 @@
+import { isNull } from 'util';
+
 export function ToJson(): PropertyDecorator {
   return (target, key) => {
     const internalKey = `__${key.toString()}-value`;
@@ -6,8 +8,11 @@ export function ToJson(): PropertyDecorator {
       return this[internalKey];
     };
 
-    const setter = function(this: any, prop: Record<string, string> | string) {
-      if (prop === undefined) {
+    const setter = function(
+      this: any,
+      prop: Record<string, string> | string | number,
+    ) {
+      if (!prop && prop !== 0) {
         this[internalKey] = undefined;
 
         return;

@@ -4,6 +4,9 @@ import { TableDataConfiguratorService } from '@spryker/table';
 
 import { AjaxPostActionRefreshTable } from './types';
 
+/**
+ * Refresh the table via {@link TableDataConfiguratorService}
+ */
 @Injectable({
   providedIn: 'root',
 })

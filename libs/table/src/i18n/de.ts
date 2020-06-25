@@ -10,5 +10,6 @@ export default {
     'empty-table': 'Hier ist nichts.',
     'selected:number': '{{ number }} ausgewählt',
     'total:number': '{{ number }} ergebnisse',
+    'filter:title': 'Wählen {{ title }}',
   },
 } as I18nLocaleDataPackage;

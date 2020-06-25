@@ -181,7 +181,7 @@
         "libs/ajax-form/src/index.ts"
       ],
       "@spryker/ajax-post-actions": [
-        "libs/ajax-post-actions/src/index.ts",
+        "dist/libs/ajax-post-actions/index.d.ts",
         "libs/ajax-post-actions/src/index.ts"
       ]
     }

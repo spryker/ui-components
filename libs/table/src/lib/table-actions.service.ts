@@ -48,7 +48,7 @@ export class TableActionsService {
     if (actionHandler) {
       const actionHandlerService = this.injector.get(actionHandler);
 
-      return actionHandlerService.handleAction(actionEvent);
+      return actionHandlerService.handleAction(actionEvent, this.injector);
     }
 
     this.tableEventBus?.emit<TableActionTriggeredEvent>(

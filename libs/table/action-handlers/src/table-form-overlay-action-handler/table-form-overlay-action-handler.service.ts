@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { TableFormOverlayAction, TableFormOverlayOptions } from './types';
 import { Observable, merge, ReplaySubject } from 'rxjs';
 import { DrawerRef, DrawerService } from '@spryker/drawer';
@@ -34,6 +34,7 @@ export class TableFormOverlayActionHandlerService
    */
   handleAction(
     actionEvent: TableActionTriggeredEvent<TableFormOverlayAction>,
+    injector: Injector,
   ): Observable<unknown> {
     const actionEventItem = actionEvent.items[0];
     const drawerData = { ...actionEvent.action.typeOptions };
@@ -51,7 +52,7 @@ export class TableFormOverlayActionHandlerService
     if (!this.drawerRef) {
       this.drawerRef = this.drawerService.openComponent(
         TableFormOverlayActionHandlerComponent,
-        { data: this.drawerData$ },
+        { data: this.drawerData$, injector },
       );
 
       this.drawerRef.afterClosed().subscribe({

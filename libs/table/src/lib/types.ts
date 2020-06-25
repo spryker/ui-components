@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Type } from '@angular/core';
+import { Type, Injector } from '@angular/core';
 import { TableDataRow } from './table/table';
 
 // tslint:disable-next-line: no-empty-interface
@@ -29,5 +29,8 @@ export interface TableActionTriggeredEvent<
 export interface TableActionHandler<
   A extends TableActionBase = TableActionBase
 > {
-  handleAction(actionEvent: TableActionTriggeredEvent<A>): Observable<unknown>;
+  handleAction(
+    actionEvent: TableActionTriggeredEvent<A>,
+    injector: Injector,
+  ): Observable<unknown>;
 }

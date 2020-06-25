@@ -123,7 +123,7 @@ export class DrawerContainerComponent implements OnDestroy {
     return Injector.create({
       name: 'DrawerInjector',
       providers: [{ provide: DrawerRef, useValue: drawerRef }],
-      parent: this.vcr.injector,
+      parent: drawerRef.options.injector ?? this.vcr.injector,
     });
   }
 

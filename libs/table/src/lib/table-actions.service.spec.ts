@@ -58,7 +58,7 @@ describe('TableActionsService', () => {
 
     expect(
       tableFormOverlayActionHandlerService.handleAction,
-    ).toHaveBeenCalledWith(mockAction);
+    ).toHaveBeenCalledWith(mockAction, injector);
   });
 
   it('should call `emit` of TableEventBus if actionHandler undefined', () => {

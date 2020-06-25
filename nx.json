@@ -117,7 +117,7 @@
       "tags": ["level:molecule", "type:component"]
     },
     "ajax-post-actions": {
-      "tags": ["type:service"]
+      "tags": ["type:component-service"]
     }
   },
   "tasksRunnerOptions": {

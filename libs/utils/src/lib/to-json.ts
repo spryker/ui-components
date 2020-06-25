@@ -1,5 +1,3 @@
-import { isNull } from 'util';
-
 export function ToJson(): PropertyDecorator {
   return (target, key) => {
     const internalKey = `__${key.toString()}-value`;
@@ -8,10 +6,7 @@ export function ToJson(): PropertyDecorator {
       return this[internalKey];
     };
 
-    const setter = function(
-      this: any,
-      prop: Record<string, string> | string | number,
-    ) {
+    const setter = function(this: any, prop: Record<string, string> | string) {
       try {
         this[internalKey] = typeof prop === 'string' ? JSON.parse(prop) : prop;
       } catch (error) {

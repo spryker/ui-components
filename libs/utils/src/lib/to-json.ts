@@ -7,7 +7,7 @@ export function ToJson(): PropertyDecorator {
     };
 
     const setter = function(this: any, prop: Record<string, string> | string) {
-      if (!prop) {
+      if (prop === undefined) {
         this[internalKey] = undefined;
 
         return;

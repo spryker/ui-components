@@ -12,10 +12,6 @@
     letter-spacing: @card-head-letter-spacing;
     padding: @card-head-y-padding @card-padding-base;
 
-    &-title {
-      padding: 0;
-    }
-
     .head-title-position-left & {
       text-align: left;
     }
@@ -29,6 +25,7 @@
     }
   }
 
+  &-head-title,
   &-extra {
     padding: 0;
   }
@@ -46,21 +43,19 @@
       }
     }
   }
-}
-
-.@{card-prefix-cls} .@{card-prefix-cls} {
-  background-color: @card-inner-background;
 
   .@{card-prefix-cls} {
-    &-head {
-      font-size: @font-size-base;
-      font-weight: @font-weight-medium;
-      border-color: @card-inner-head-border-color;
-      padding: @card-head-y-padding @card-padding-x-base;
-    }
+    background-color: @card-inner-background;
+  }
 
-    &-body {
-      padding: @card-padding-y-base @card-padding-x-base;
-    }
+  .@{card-prefix-cls} .@{card-prefix-cls}-head {
+    font-size: @font-size-base;
+    font-weight: @font-weight-medium;
+    border-color: @card-inner-head-border-color;
+    padding: @card-head-y-padding @card-padding-x-base;
+  }
+
+  .@{card-prefix-cls} .@{card-prefix-cls}-body {
+    padding: @card-padding-y-base @card-padding-x-base;
   }
 }

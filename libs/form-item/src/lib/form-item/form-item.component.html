@@ -6,7 +6,9 @@
     [nzRequired]="false"
   >
     <ng-content></ng-content>
-    <ng-container *ngIf="required">*</ng-container>
+    <ng-container *ngIf="required"
+      ><span class="ant-form-item-label--required">*</span></ng-container
+    >
   </nz-form-label>
   <nz-form-control
     [nzValidateStatus]="currentValidationStatus"

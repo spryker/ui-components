@@ -62,9 +62,6 @@ const mockData = {
   pageSize: 10,
   page: 1,
 };
-const mockRowActions = {
-  click: 'mockClick',
-};
 const mockConfig: TableConfig = {
   dataSource: {
     type: 'http' as never,
@@ -74,7 +71,6 @@ const mockConfig: TableConfig = {
   mockFeature: {
     enabled: true,
   },
-  rowActions: mockRowActions,
 };
 const mockConfigCols: TableConfig = {
   dataSource: {

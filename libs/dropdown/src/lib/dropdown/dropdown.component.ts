@@ -41,8 +41,4 @@ export class DropdownComponent {
   @Input() @ToBoolean() disabled = false;
   @Output() visibleChange = new EventEmitter<boolean>();
   @Output() actionTriggered = new EventEmitter<string>();
-
-  clickHandler(event: Event): void {
-    event.stopPropagation();
-  }
 }

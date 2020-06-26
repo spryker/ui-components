@@ -96,7 +96,6 @@
         "
         [ngClass]="rowClasses[indexOfElement]"
         (click)="rowClickHandler(data, $event)"
-        [class.ant-table-row-clickable]="rowClick$ | async"
       >
         <ng-template
           [spyTableFeaturesRenderer]="featureLocation.beforeCols"

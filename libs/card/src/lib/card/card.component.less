@@ -10,9 +10,10 @@
     font-weight: @font-weight-semi-bold;
     border-bottom-width: @card-border-width;
     letter-spacing: @card-head-letter-spacing;
+    padding: @card-head-y-padding @card-padding-base;
 
     &-title {
-      padding: @card-head-title-padding 0;
+      padding: 0;
     }
 
     .head-title-position-left & {
@@ -29,7 +30,7 @@
   }
 
   &-extra {
-    padding: @card-head-extra-padding 0;
+    padding: 0;
   }
 
   &-actions {
@@ -43,6 +44,23 @@
       &:not(:last-child) {
         border-right-width: @card-border-width;
       }
+    }
+  }
+}
+
+.@{card-prefix-cls} .@{card-prefix-cls} {
+  background-color: @card-inner-background;
+
+  .@{card-prefix-cls} {
+    &-head {
+      font-size: @font-size-base;
+      font-weight: @font-weight-medium;
+      border-color: @card-inner-head-border-color;
+      padding: @card-head-y-padding @card-padding-x-base;
+    }
+
+    &-body {
+      padding: @card-padding-y-base @card-padding-x-base;
     }
   }
 }

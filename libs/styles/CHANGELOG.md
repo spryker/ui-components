@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.71](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.70...@spryker/styles@0.1.0-next.71) (2020-06-30)
+
+
+### Bug Fixes
+
+* **table:** row-action fix ([d774648](https://github.com/spryker/ui-components/commit/d7746485c50dab8adc4bec3586fea7b139ff546d))
+
+
+
+
+
 # [0.1.0-next.70](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.69...@spryker/styles@0.1.0-next.70) (2020-06-30)
 
 

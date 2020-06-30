@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.59](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.58...@spryker/table@0.1.0-next.59) (2020-06-30)
+
+
+### Bug Fixes
+
+* **table:** removed variable ([2156280](https://github.com/spryker/ui-components/commit/215628050a338277705d860472cea1b6b64a04df))
+* **table:** row-action fix ([d774648](https://github.com/spryker/ui-components/commit/d7746485c50dab8adc4bec3586fea7b139ff546d))
+* **table:** row-action styles ([d047747](https://github.com/spryker/ui-components/commit/d04774795e24d9abd595dcbeb4153bb49519806e))
+* **table:** row-action, merged observables ([0242b66](https://github.com/spryker/ui-components/commit/0242b669488a7482076f2318b55a84d22b85fe3b))
+* **table:** row-actions, fixed logic of hover event ([925000a](https://github.com/spryker/ui-components/commit/925000a3cb1efb488a027dc009bb1a4479db1eff))
+
+
+
+
+
 # [0.1.0-next.58](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.57...@spryker/table@0.1.0-next.58) (2020-06-25)
 
 

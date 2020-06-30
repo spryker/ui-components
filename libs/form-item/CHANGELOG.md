@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.15...@spryker/form-item@0.1.0-next.16) (2020-06-30)
+
+
+### Bug Fixes
+
+* **table:** row-action fix ([d774648](https://github.com/spryker/ui-components/commit/d7746485c50dab8adc4bec3586fea7b139ff546d))
+* **table:** row-actions, fixed logic of hover event ([925000a](https://github.com/spryker/ui-components/commit/925000a3cb1efb488a027dc009bb1a4479db1eff))
+
+
+
+
+
 # [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.14...@spryker/form-item@0.1.0-next.15) (2020-06-18)
 
 **Note:** Version bump only for package @spryker/form-item

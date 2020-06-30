@@ -1,38 +1,41 @@
 @import './input.component.theme.less';
 
-.@{ant-input-container} {
+@form-prefix-cls: ~'@{ant-prefix}-form';
+@form-item-prefix-cls: ~'@{form-prefix-cls}-item';
+
+.@{ant-input-wrapper} {
   .@{ant-input-group} {
-    border: 2px solid transparent;
+    border: @border-width-base @border-style-base @transparent;
     border-radius: @border-radius-base;
   }
 
-  .ant-form-item-has-error & {
+  .@{form-item-prefix-cls}-has-error & {
     .@{ant-input-group} {
       border-color: @red;
     }
   }
 
-  &--hover {
+  &.@{ant-input-container}--hover {
     &:not(.@{ant-input-group}) {
       .@{ant-input-group} {
         border-color: @gray;
 
         .@{ant-input} {
-          border-color: transparent;
+          border-color: @transparent;
           border-left-color: @gray-light;
         }
       }
     }
   }
 
-  &--focus {
+  &.@{ant-input-container}--focus {
     &:not(.@{ant-input-group}) {
       .@{ant-input-group} {
         border-color: @primary-color;
       }
 
       .@{ant-input} {
-        border-color: transparent;
+        border-color: @transparent;
         border-left-color: @gray-light;
       }
     }

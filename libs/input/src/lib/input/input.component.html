@@ -3,9 +3,10 @@
   [nzPrefix]="prefix"
   [nzAddOnBefore]="outerPrefix"
   [nzAddOnAfter]="outerSuffix"
-  [ngClass]="currentClassName"
-  (mouseover)="setHoverState($event)"
-  (mouseout)="setHoverState($event)"
+  [class.ant-input-container--hover]="isHovered"
+  [class.ant-input-container--focus]="isFocused"
+  (mouseover)="isHovered = true"
+  (mouseout)="isHovered = false"
 >
   <input
     nz-input
@@ -19,7 +20,7 @@
     [id]="spyId"
     [required]="required"
     [spyApplyAttrs]="attrs"
-    (focus)="setFocusState($event)"
-    (blur)="setFocusState($event)"
+    (focus)="isFocused = true"
+    (blur)="isFocused = false"
   />
 </nz-input-group>

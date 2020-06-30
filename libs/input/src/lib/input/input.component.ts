@@ -34,26 +34,4 @@ export class InputComponent {
 
   isHovered = false;
   isFocused = false;
-  baseClassName = 'ant-input-container';
-  currentClassName: string = this.baseClassName;
-
-  setHoverState = (event: Event) => {
-    this.isHovered = event.type === 'mouseover';
-    this.setComponentClassName();
-  };
-
-  setFocusState = (event: Event) => {
-    this.isFocused = event.type === 'focus';
-    this.setComponentClassName();
-  };
-
-  setComponentClassName = () => {
-    this.currentClassName = `${this.baseClassName} `;
-    this.currentClassName += this.isHovered
-      ? `${this.baseClassName}--hover `
-      : '';
-    this.currentClassName += this.isFocused
-      ? `${this.baseClassName}--focus `
-      : '';
-  };
 }

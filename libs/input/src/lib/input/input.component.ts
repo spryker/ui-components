@@ -31,4 +31,7 @@ export class InputComponent {
   @Input() @ToJson() attrs: Record<string, string> = {};
   @Input() spyId = '';
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
+
+  isHovered = false;
+  isFocused = false;
 }

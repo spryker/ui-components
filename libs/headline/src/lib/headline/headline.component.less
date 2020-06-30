@@ -1,14 +1,18 @@
 @import './headline.component.theme.less';
 
 .@{ajax-headline-prefix-cls} {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  display: block;
   padding-bottom: @ajax-headline-bottom-padding;
-  margin: -@ajax-headline-col-spacing;
-  font: @font-weight-semi-bold @font-size-base @font-family;
+  font: @font-weight-medium @font-size-base @font-family;
   color: @ink;
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: -@ajax-headline-col-spacing;
+  }
 
   &__col {
     padding: @ajax-headline-col-spacing;
@@ -23,6 +27,7 @@
   }
 
   h1 {
+    font-weight: @font-weight-semi-bold;
     font-size: @heading-1-font-size;
     letter-spacing: @ajax-headline-title-letter-spacing;
     margin: 0;

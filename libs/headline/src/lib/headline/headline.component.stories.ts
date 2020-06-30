@@ -1,5 +1,3 @@
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-
 import { HeadlineModule } from '../headline.module';
 
 export default {
@@ -8,7 +6,7 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [HeadlineModule, NzLayoutModule],
+    imports: [HeadlineModule],
   },
   template: `
     <spy-headline>

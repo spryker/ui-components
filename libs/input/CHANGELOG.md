@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.23 (2020-06-30)
+
+
+### Bug Fixes
+
+* **input:** fixed hover, focus, error states for input ([15cfddb](https://github.com/spryker/ui-components/commit/15cfddbf34734d0c1abc6bd0f4d401714519ff0f))
+* **input:** fixes after cr ([2315cd0](https://github.com/spryker/ui-components/commit/2315cd0b5bc219b69ea44b429918df70482dc673))
+* **input:** fixes after cr ([9cce0bf](https://github.com/spryker/ui-components/commit/9cce0bfadd8f721adc4a830647a5039f03c0a09f))
+* **input:** moved styles to separate file ([81d89bd](https://github.com/spryker/ui-components/commit/81d89bd65a2b6e60f00c093f0a3665277a3fb8d5))
+* **input:** rollback wrong changes ([5e88ec2](https://github.com/spryker/ui-components/commit/5e88ec273c501e9d026d9abaa2a5ee79eeca471b))
+
+
+
+
+
 # [0.1.0-next.22](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.21...@spryker/input@0.1.0-next.22) (2020-05-15)
 
 **Note:** Version bump only for package @spryker/input

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.16...@spryker/form-item@0.1.0-next.17) (2020-06-30)
+
+
+### Bug Fixes
+
+* **form-item:** have hidden an empty label ([cf5b559](https://github.com/spryker/ui-components/commit/cf5b559dd48196797fa1c278269c150110fa8a3e))
+
+
+
+
+
 # [0.1.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.15...@spryker/form-item@0.1.0-next.16) (2020-06-30)
 
 

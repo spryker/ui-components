@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.1.0-next.3...@spryker/drawer@0.1.0-next.4) (2020-06-30)
+
+
+### Bug Fixes
+
+* **drawer:** added shadow to the buttons component ([0bb3d77](https://github.com/spryker/ui-components/commit/0bb3d77ee4fa307704b0de09d7d90917fa66fc04))
+
+
+
+
+
 # [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.1.0-next.2...@spryker/drawer@0.1.0-next.3) (2020-06-25)
 
 

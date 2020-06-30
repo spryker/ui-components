@@ -183,6 +183,10 @@
       "@spryker/ajax-post-actions": [
         "dist/libs/ajax-post-actions/index.d.ts",
         "libs/ajax-post-actions/src/index.ts"
+      ],
+      "@spryker/headline": [
+        "dist/libs/headline/index.d.ts",
+        "libs/headline/src/index.ts"
       ]
     }
   },

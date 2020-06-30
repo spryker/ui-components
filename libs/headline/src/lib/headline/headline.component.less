@@ -1,0 +1,30 @@
+@import './headline.component.theme.less';
+
+.@{ajax-headline-prefix-cls} {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: @ajax-headline-bottom-padding;
+  margin: -@ajax-headline-col-spacing;
+  font: @font-weight-semi-bold @font-size-base @font-family;
+  color: @ink;
+
+  &__col {
+    padding: @ajax-headline-col-spacing;
+
+    &--heading {
+      flex-grow: 1;
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  h1 {
+    font-size: @heading-1-font-size;
+    letter-spacing: @ajax-headline-title-letter-spacing;
+    margin: 0;
+  }
+}

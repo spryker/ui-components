@@ -1,6 +1,9 @@
 @import 'ng-zorro-antd/input/style/index.less';
 @import '../theme.less';
 
+@form-prefix-cls: ~'@{ant-prefix}-form';
+@form-item-prefix-cls: ~'@{form-prefix-cls}-item';
+
 .@{ant-input}-group {
   .@{ant-input} {
     &:only-child {
@@ -104,5 +107,46 @@
 
   &::-ms-clear {
     display: none;
+  }
+}
+
+.@{ant-input-wrapper} {
+  .@{ant-input-group} {
+    border: @border-width-base @border-style-base @transparent;
+    border-radius: @border-radius-base;
+  }
+
+  .@{form-item-prefix-cls}-has-error & {
+    .@{ant-input-group} {
+      border-color: @red;
+    }
+  }
+
+  &.@{ant-input-container}--hover {
+    &:not(.@{ant-input-group}) {
+      .@{ant-input-group} {
+        border-color: @gray;
+
+        .@{ant-input} {
+          border-color: @transparent;
+          border-left-color: @gray-light;
+          border-right-color: @gray-light;
+        }
+      }
+    }
+  }
+
+  &.@{ant-input-container}--focus {
+    &:not(.@{ant-input-group}) {
+      .@{ant-input-group} {
+        border-color: @primary-color;
+      }
+
+      .@{ant-input} {
+        border-color: @transparent;
+        border-left-color: @gray-light;
+        border-right-color: @gray-light;
+      }
+    }
   }
 }

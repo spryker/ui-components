@@ -4,6 +4,7 @@
   [nzPlacement]="placement"
   [nzDisabled]="disabled"
   [(nzVisible)]="visible"
+  (click)="$event.stopPropagation()"
   (nzVisibleChange)="visibleChange.emit($event)"
 >
   <ng-content></ng-content>

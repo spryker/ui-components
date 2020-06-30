@@ -85,6 +85,11 @@ export class TableRowActionsFeatureComponent
     ),
   );
 
+  tableData$ = this.table$.pipe(
+    switchMap(table => table.data$),
+    pluck('data'),
+  );
+
   constructor(
     private tableActionsService: TableActionsService,
     injector: Injector,
@@ -107,6 +112,16 @@ export class TableRowActionsFeatureComponent
 
         this.triggerEvent(event);
       });
+
+    this.tableData$
+      .pipe(withLatestFrom(this.configClick$), takeUntil(this.destroyed$))
+      .subscribe(([data, click]) =>
+        data.forEach((element, index) =>
+          this.table?.updateRowClasses(`${index}`, {
+            'ant-table-row--clickable': Boolean(click),
+          }),
+        ),
+      );
   }
 
   ngOnDestroy(): void {

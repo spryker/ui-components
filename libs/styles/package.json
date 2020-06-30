@@ -1,6 +1,6 @@
 {
   "name": "@spryker/styles",
-  "version": "0.1.0-next.68",
+  "version": "0.1.0-next.69",
   "publishConfig": {
     "access": "public"
   },

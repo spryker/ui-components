@@ -143,7 +143,6 @@ export class CoreTableComponent
   );
 
   tableData$ = this.data$.pipe(pluck('data'));
-  rowClick$ = this.config$.pipe(pluck('rowActions', 'click'));
   sortingData$ = this.dataConfiguratorService.config$.pipe(
     map(config => {
       const sortBy = config.sortBy;

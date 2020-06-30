@@ -71,6 +71,7 @@ export class TableRowActionsFeatureComponent
     ),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
+  private rowAction?: TableRowAction;
   private destroyed$ = new Subject<void>();
   private configClick$ = this.config$.pipe(pluck('click'));
   private clickAction$ = this.configClick$.pipe(
@@ -113,13 +114,13 @@ export class TableRowActionsFeatureComponent
         this.triggerEvent(event);
       });
 
-    this.tableData$.subscribe(data => {
-      data.forEach((element, index) => {
-        return this.table?.updateRowClasses(`${index}`, {
-          'ant-table-row--clickable': true,
-        });
-      });
-    });
+    this.tableData$.pipe(takeUntil(this.destroyed$)).subscribe(data =>
+      data.forEach((element, index) =>
+        this.table?.updateRowClasses(`${index}`, {
+          'ant-table-row--clickable': Boolean(this.rowAction),
+        }),
+      ),
+    );
   }
 
   ngOnDestroy(): void {
@@ -129,6 +130,7 @@ export class TableRowActionsFeatureComponent
   private getActionById(
     actionId: TableRowAction,
   ): TableRowActionBase | undefined {
+    this.rowAction = actionId;
     return (this.config?.actions as TableRowActionBase[]).filter(
       rowAction => rowAction.id === actionId,
     )[0];

@@ -1,8 +1,8 @@
 @import './headline.component.theme.less';
 
-.@{ajax-headline-prefix-cls} {
+.@{headline-prefix-cls} {
   display: block;
-  padding-bottom: @ajax-headline-bottom-padding;
+  padding-bottom: @headline-bottom-padding;
   font: @font-weight-medium @font-size-base @font-family;
   color: @ink;
 
@@ -11,11 +11,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: -@ajax-headline-col-spacing;
+    margin: -@headline-col-spacing;
   }
 
   &__col {
-    padding: @ajax-headline-col-spacing;
+    padding: @headline-col-spacing;
 
     &--heading {
       flex-grow: 1;
@@ -26,10 +26,36 @@
     }
   }
 
-  h1 {
-    font-weight: @font-weight-semi-bold;
-    font-size: @heading-1-font-size;
-    letter-spacing: @ajax-headline-title-letter-spacing;
-    margin: 0;
+  &__title {
+    display: block;
+
+    /* prettier-ignore */
+    .loop-mixin(5, {
+      &--h@{i} {
+        font-weight: @font-weight-semi-bold;
+        margin: 0;
+        letter-spacing: @headline-title-letter-spacing;
+      }
+    });
+
+    &--h1 {
+      font-size: @heading-1-font-size;
+    }
+
+    &--h2 {
+      font-size: @heading-2-font-size;
+    }
+
+    &--h3 {
+      font-size: @heading-3-font-size;
+    }
+
+    &--h4 {
+      font-size: @heading-4-font-size;
+    }
+
+    &--h5 {
+      font-size: @heading-5-font-size;
+    }
   }
 }

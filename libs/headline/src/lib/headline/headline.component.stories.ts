@@ -10,7 +10,7 @@ export const primary = () => ({
   },
   template: `
     <spy-headline>
-      <h1>Title Content</h1>
+      Title Content
       <div actions>Actions Content</div>
     </spy-headline>
   `,

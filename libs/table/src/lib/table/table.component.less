@@ -155,7 +155,7 @@ spy-table {
       z-index: 0;
       position: relative;
 
-      .ie-styles({height: inherit; position: static;});
+      .ie-styles-only-mixin({height: inherit; position: static;});
 
       .@{table-prefix-cls}-column-inner {
         padding: @table-body-padding-top @table-padding-horizontal
@@ -167,7 +167,7 @@ spy-table {
         height: 100%;
         z-index: 0;
 
-        .ie-styles({position: relative;});
+        .ie-styles-only-mixin({position: relative;});
 
         &--align-right {
           align-items: flex-end;

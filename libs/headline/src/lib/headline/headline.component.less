@@ -29,15 +29,6 @@
   &__title {
     display: block;
 
-    /* prettier-ignore */
-    .loop-mixin(5, {
-      &--h@{i} {
-        font-weight: @font-weight-semi-bold;
-        margin: 0;
-        letter-spacing: @headline-title-letter-spacing;
-      }
-    });
-
     &--h1 {
       font-size: @heading-1-font-size;
     }
@@ -57,5 +48,14 @@
     &--h5 {
       font-size: @heading-5-font-size;
     }
+
+    /* prettier-ignore */
+    .loop-mixin(5, {
+      &--h@{i} {
+        font-weight: @font-weight-semi-bold;
+        margin: 0;
+        letter-spacing: @headline-title-letter-spacing;
+      }
+    });
   }
 }

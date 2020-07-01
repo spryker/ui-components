@@ -1,0 +1,8 @@
+/**
+ * Provides custom loop for selectors.
+ */
+.loop-mixin (@i, @rules) when (@i > 0) {
+  @rules();
+
+  .loop-mixin(@i - 1, @rules);
+}

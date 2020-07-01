@@ -2,7 +2,17 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  Input,
 } from '@angular/core';
+
+export enum Level {
+  H1 = 'h1',
+  H2 = 'h2',
+  H3 = 'h3',
+  H4 = 'h4',
+  H5 = 'h5',
+  Base = 'base',
+}
 
 @Component({
   selector: 'spy-headline',
@@ -14,4 +24,6 @@ import {
     class: 'spy-headline',
   },
 })
-export class HeadlineComponent {}
+export class HeadlineComponent {
+  @Input() level: Level = Level.H1;
+}

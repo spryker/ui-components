@@ -39,6 +39,46 @@ export const withError = (): IStory => ({
   `,
 });
 
+export const withErrorAndPrefix = (): IStory => ({
+  moduleMetadata: { imports: [StoryModule] },
+  template: `
+    <spy-form-item error="Error Message">
+      Label
+      <spy-input prefix="P" placeholder="Type here..." type="text" control></spy-input>
+    </spy-form-item>
+  `,
+});
+
+export const withErrorAndOuterPrefix = (): IStory => ({
+  moduleMetadata: { imports: [StoryModule] },
+  template: `
+    <spy-form-item error="Error Message">
+      Label
+      <spy-input outerPrefix="prefix" placeholder="Type here..." type="text" control></spy-input>
+    </spy-form-item>
+  `,
+});
+
+export const withErrorAndSuffix = (): IStory => ({
+  moduleMetadata: { imports: [StoryModule] },
+  template: `
+    <spy-form-item error="Error Message">
+      Label
+      <spy-input suffix="S" placeholder="Type here..." type="text" control></spy-input>
+    </spy-form-item>
+  `,
+});
+
+export const withErrorAndOuterSuffix = (): IStory => ({
+  moduleMetadata: { imports: [StoryModule] },
+  template: `
+    <spy-form-item error="Error Message">
+      Label
+      <spy-input outerSuffix="suffix" placeholder="Type here..." type="text" control></spy-input>
+    </spy-form-item>
+  `,
+});
+
 export const required = (): IStory => ({
   moduleMetadata: { imports: [StoryModule] },
   template: `

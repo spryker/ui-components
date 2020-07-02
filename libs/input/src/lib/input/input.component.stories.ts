@@ -21,7 +21,7 @@ export const withPrefix = () => ({
   },
   component: InputComponent,
   props: {
-    prefix: 'prefix',
+    prefix: 'P',
   },
 });
 
@@ -41,7 +41,7 @@ export const withSuffix = () => ({
   },
   component: InputComponent,
   props: {
-    suffix: 'suffix',
+    suffix: 'S',
   },
 });
 

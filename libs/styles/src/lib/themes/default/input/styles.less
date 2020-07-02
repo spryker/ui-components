@@ -8,9 +8,10 @@
     }
   }
 
-  &-addon {
+  .@{ant-input-group-addon} {
     background: @gray-lighter;
     color: @gray-dark;
+    font-family: @font-family;
 
     &:first-of-type {
       padding-right: @input-add-before-spacing;
@@ -36,6 +37,7 @@
       color: @input-icon-color;
       z-index: 2;
       line-height: 0;
+      font-family: @font-family;
     }
 
     &-prefix {
@@ -52,16 +54,6 @@
     .@{ant-input}:read-only {
       border-color: @input-disabled-border;
     }
-
-    .@{ant-input}:focus {
-      border-color: @primary-color;
-    }
-  }
-
-  &:focus,
-  &-focused {
-    box-shadow: none;
-    border-color: @input-focus-border-color !important;
   }
 }
 
@@ -107,43 +99,48 @@
   }
 }
 
-.@{ant-input-wrapper} {
-  .@{ant-input-group} {
-    border: @border-width-base @border-style-base @transparent;
-    border-radius: @border-radius-base;
-  }
+.@{ant-input}-affix-wrapper.@{ant-input-container}--hover {
+  border-color: @gray;
+}
 
-  .@{form-item-prefix-cls}-has-error & {
-    .@{ant-input-group} {
-      border-color: @red;
+.@{ant-input-container}--focus.@{ant-input}-affix-wrapper {
+  border-color: @primary-color;
+  border-width: @border-width-base;
+}
+
+.@{ant-input-container} {
+  &--hover {
+    .@{ant-input-group-addon},
+    .@{ant-input} {
+      border-color: @gray;
+      box-shadow: none;
     }
   }
 
-  &.@{ant-input-container}--hover {
-    &:not(.@{ant-input-group}) {
-      .@{ant-input-group} {
-        border-color: @gray;
+  &--focus {
+    .@{ant-input-group-addon},
+    .@{ant-input} {
+      border-color: @primary-color;
+      border-width: @border-width-base;
+      box-shadow: none;
+    }
+  }
+}
 
-        .@{ant-input} {
-          border-color: @transparent;
-          border-left-color: @gray-light;
-          border-right-color: @gray-light;
-        }
-      }
+.@{form-item-prefix-cls}-has-error {
+  .@{ant-input}-affix-wrapper.@{ant-input-container}--hover,
+  .@{ant-input}-affix-wrapper.@{ant-input-container}--focus,
+  .@{ant-input-group-addon},
+  .@{ant-input} {
+    border-color: @red;
+
+    &:focus {
+      box-shadow: none;
     }
   }
 
-  &.@{ant-input-container}--focus {
-    &:not(.@{ant-input-group}) {
-      .@{ant-input-group} {
-        border-color: @primary-color;
-      }
-
-      .@{ant-input} {
-        border-color: @transparent;
-        border-left-color: @gray-light;
-        border-right-color: @gray-light;
-      }
-    }
+  .@{ant-input-group-addon} {
+    background: @gray-lighter;
+    color: @gray-dark;
   }
 }

@@ -45,6 +45,24 @@
   }
 }
 
+.@{form-item-prefix-cls}-has-error {
+  .@{ant-affix-wrapper}.@{ant-input-container}--hover,
+  .@{ant-affix-wrapper}.@{ant-input-container}--focus,
+  .@{ant-input-group-addon},
+  .@{ant-input} {
+    border-color: @red;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .@{ant-input-group-addon} {
+    background: @gray-lighter;
+    color: @gray-dark;
+  }
+}
+
 .anticon-info-circle {
   font-size: @font-size-lg;
   line-height: 0.95;

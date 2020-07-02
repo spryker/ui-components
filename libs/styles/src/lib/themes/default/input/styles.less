@@ -1,7 +1,7 @@
 @import 'ng-zorro-antd/input/style/index.less';
 @import '../theme.less';
 
-.@{ant-input}-group {
+.@{ant-input-group} {
   .@{ant-input} {
     &:only-child {
       border-radius: @border-radius-base;
@@ -19,7 +19,7 @@
   }
 }
 
-.@{ant-input}-affix-wrapper {
+.@{ant-affix-wrapper} {
   height: @input-height-base;
   padding: 0;
 
@@ -54,6 +54,14 @@
     .@{ant-input}:read-only {
       border-color: @input-disabled-border;
     }
+  }
+
+  &.@{ant-input-container}--hover {
+    border-color: @gray;
+  }
+
+  &.@{ant-input-container}--focus {
+    border-color: @primary-color;
   }
 }
 
@@ -99,15 +107,6 @@
   }
 }
 
-.@{ant-input}-affix-wrapper.@{ant-input-container}--hover {
-  border-color: @gray;
-}
-
-.@{ant-input-container}--focus.@{ant-input}-affix-wrapper {
-  border-color: @primary-color;
-  border-width: @border-width-base;
-}
-
 .@{ant-input-container} {
   &--hover {
     .@{ant-input-group-addon},
@@ -128,8 +127,8 @@
 }
 
 .@{form-item-prefix-cls}-has-error {
-  .@{ant-input}-affix-wrapper.@{ant-input-container}--hover,
-  .@{ant-input}-affix-wrapper.@{ant-input-container}--focus,
+  .@{ant-affix-wrapper}.@{ant-input-container}--hover,
+  .@{ant-affix-wrapper}.@{ant-input-container}--focus,
   .@{ant-input-group-addon},
   .@{ant-input} {
     border-color: @red;

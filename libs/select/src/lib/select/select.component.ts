@@ -82,7 +82,7 @@ export class SelectComponent implements OnInit, OnChanges {
     this.mappedOptions =
       this.options?.map(option =>
         typeof option !== 'object'
-          ? ({ value: option, label: option } as SelectOptionItem)
+          ? ({ value: option.toString(), label: option } as SelectOptionItem)
           : option,
       ) ?? [];
 

@@ -86,7 +86,7 @@ export class SelectComponent implements OnInit, OnChanges {
           : option,
       ) ?? [];
 
-    this.allValues = this.mappedOptions.map(option => option.value);
+    this.allValues = this.mappedOptions.map(option => option.value.toString());
 
     this.updateValue();
   }

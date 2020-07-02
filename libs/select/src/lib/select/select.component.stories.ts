@@ -17,27 +17,39 @@ export default {
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
     EnLocaleModule,
   ],
+  exports: [SelectComponent],
 })
 class StoryModule {}
 
 export const primary = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  component: SelectComponent,
+  moduleMetadata: {
+    imports: [StoryModule],
+  },
+  template: `
+    <spy-select
+      (valueChange)="valueChange()"
+      [name]="name"
+      [options]="options"
+      [placeholder]="placeholder"
+      value="2"
+    ></spy-select>
+  `,
   props: {
     options: [
-      'Option 1',
-      'Option 2',
-      'Option 3',
-      'Option 4',
-      'Option 5',
-      'Option 6',
-      'Option 7',
-      'Option 8',
-      'Option 9',
-      'Option 10',
+      {
+        value: '1',
+        label: 'Option 1',
+      },
+      {
+        value: '2',
+        label: 'Option 2',
+      },
+      {
+        value: '3',
+        label: 'Option 3',
+      },
     ],
-    placeholder: 'Select option...',
-    value: '',
+    placeholder: 'Option option...',
     name: 'some-name',
     valueChange: console.log,
   },

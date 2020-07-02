@@ -95,8 +95,8 @@ export class SelectComponent implements OnInit, OnChanges {
     this.mappedValue =
       this.multiple && Array.isArray(this.value)
         ? this.value.filter(value => this.isValueExist(value))
-        : this.isValueExist(this.value)
-        ? this.value
+        : this.isValueExist(this.value?.toString())
+        ? this.value?.toString()
         : undefined;
   }
 

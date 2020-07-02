@@ -1,6 +1,6 @@
 @import './form-item.component.theme.less';
 
-.@{form-prefix-cls}-item {
+.@{form-item-prefix-cls} {
   display: block;
   margin-bottom: @form-item-bottom-margin;
   font-family: @font-family;
@@ -42,24 +42,6 @@
 
   &-control {
     line-height: 1;
-  }
-}
-
-.@{form-item-prefix-cls}-has-error {
-  .@{ant-affix-wrapper}.@{ant-input-container}--hover,
-  .@{ant-affix-wrapper}.@{ant-input-container}--focus,
-  .@{ant-input-group-addon},
-  .@{ant-input} {
-    border-color: @red;
-
-    &:focus {
-      box-shadow: none;
-    }
-  }
-
-  .@{ant-input-group-addon} {
-    background: @gray-lighter;
-    color: @gray-dark;
   }
 }
 

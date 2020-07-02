@@ -1,14 +1,14 @@
 @import 'ng-zorro-antd/input/style/index.less';
 @import '../theme.less';
 
-.@{ant-input-group} {
+.@{ant-input}-group {
   .@{ant-input} {
     &:only-child {
       border-radius: @border-radius-base;
     }
   }
 
-  .@{ant-input-group-addon} {
+  .@{ant-input}-group-addon {
     background: @gray-lighter;
     color: @gray-dark;
     font-family: @font-family;
@@ -16,52 +16,6 @@
     &:first-of-type {
       padding-right: @input-add-before-spacing;
     }
-  }
-}
-
-.@{ant-affix-wrapper} {
-  height: @input-height-base;
-  padding: 0;
-
-  input.@{ant-input} {
-    height: 100%;
-    padding: @input-padding-vertical-base @input-affix-padding;
-  }
-
-  .@{ant-input} {
-    &-prefix,
-    &-suffix {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: @input-icon-color;
-      z-index: 2;
-      line-height: 0;
-      font-family: @font-family;
-    }
-
-    &-prefix {
-      left: 10px;
-    }
-
-    &-suffix {
-      right: 10px;
-    }
-  }
-
-  &:hover {
-    .@{ant-input}-disabled,
-    .@{ant-input}:read-only {
-      border-color: @input-disabled-border;
-    }
-  }
-
-  &.@{ant-input-container}--hover {
-    border-color: @gray;
-  }
-
-  &.@{ant-input-container}--focus {
-    border-color: @primary-color;
   }
 }
 
@@ -105,31 +59,77 @@
   &::-ms-clear {
     display: none;
   }
-}
 
-.@{ant-input-container} {
-  &--hover {
-    .@{ant-input-group-addon},
+  &-affix-wrapper {
+    height: @input-height-base;
+    padding: 0;
+
+    input.@{ant-input} {
+      height: 100%;
+      padding: @input-padding-vertical-base @input-affix-padding;
+    }
+
     .@{ant-input} {
+      &-prefix,
+      &-suffix {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: @input-icon-color;
+        z-index: 2;
+        line-height: 0;
+        font-family: @font-family;
+      }
+
+      &-prefix {
+        left: 10px;
+      }
+
+      &-suffix {
+        right: 10px;
+      }
+    }
+
+    &:hover {
+      .@{ant-input}-disabled,
+      .@{ant-input}:read-only {
+        border-color: @input-disabled-border;
+      }
+    }
+
+    &.@{ant-input}-container--hover {
       border-color: @gray;
-      box-shadow: none;
+    }
+
+    &.@{ant-input}-container--focus {
+      border-color: @primary-color;
     }
   }
 
-  &--focus {
-    .@{ant-input-group-addon},
-    .@{ant-input} {
-      border-color: @primary-color;
-      border-width: @border-width-base;
-      box-shadow: none;
+  &-container {
+    &--hover {
+      .@{ant-input}-group-addon,
+      .@{ant-input} {
+        border-color: @gray;
+        box-shadow: none;
+      }
+    }
+
+    &--focus {
+      .@{ant-input}-group-addon,
+      .@{ant-input} {
+        border-color: @primary-color;
+        border-width: @border-width-base;
+        box-shadow: none;
+      }
     }
   }
 }
 
 .@{form-item-prefix-cls}-has-error {
-  .@{ant-affix-wrapper}.@{ant-input-container}--hover,
-  .@{ant-affix-wrapper}.@{ant-input-container}--focus,
-  .@{ant-input-group-addon},
+  .@{ant-input}-affix-wrapper.@{ant-input}-container--hover,
+  .@{ant-input}-affix-wrapper.@{ant-input}-container--focus,
+  .@{ant-input}-group-addon,
   .@{ant-input} {
     border-color: @red;
 
@@ -138,7 +138,7 @@
     }
   }
 
-  .@{ant-input-group-addon} {
+  .@{ant-input}-group-addon {
     background: @gray-lighter;
     color: @gray-dark;
   }

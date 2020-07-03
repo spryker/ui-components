@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-
-import { ButtonComponent } from './button/button.component';
+import { ApplyAttrsModule } from '@spryker/utils';
+import { ButtonComponent } from './button.component';
 
 @NgModule({
-  imports: [CommonModule, NzButtonModule],
+  imports: [CommonModule, ApplyAttrsModule],
   exports: [ButtonComponent],
   declarations: [ButtonComponent],
 })

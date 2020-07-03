@@ -1,11 +1,15 @@
 <button
-  nz-button
-  role="button"
   [type]="type"
-  [nzShape]="shapeInner"
-  [nzType]="variantInner"
-  [nzSize]="sizeInner"
+  role="button"
+  class="
+    spy-button
+    spy-button--{{ variant }}
+    spy-button--{{ shape }}
+    spy-button--{{ size }}
+  "
   [disabled]="disabled"
+  [spyApplyAttrs]="attrs"
+  #buttonRef
 >
   <ng-content></ng-content>
 </button>

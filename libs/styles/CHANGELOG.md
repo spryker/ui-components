@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.74](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.73...@spryker/styles@0.1.0-next.74) (2020-07-03)
+
+
+### Bug Fixes
+
+* **styles:** added correct styles for input and prefixes ([054946b](https://github.com/spryker/ui-components/commit/054946b1e9cedc7db0870dc82ea49e5c32a730dd))
+* **styles, form-item:** added correct styles for input and prefixes ([9ad4680](https://github.com/spryker/ui-components/commit/9ad46804c0dc1ada4234b34b9b360aca9b6b8c29))
+* **styles, form-item:** fixes after code review ([508a50f](https://github.com/spryker/ui-components/commit/508a50f0f11c87fbfbeddc5819675d14f8693929))
+
+
+
+
+
 # [0.1.0-next.73](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.72...@spryker/styles@0.1.0-next.73) (2020-07-01)
 
 **Note:** Version bump only for package @spryker/styles

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.24](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.23...@spryker/input@0.1.0-next.24) (2020-07-03)
+
+
+### Bug Fixes
+
+* **input:** added comment to re-publish module ([e7c06d7](https://github.com/spryker/ui-components/commit/e7c06d751210f74f60bd486b637bb6ea597dfd19))
+* **styles:** added correct styles for input and prefixes ([054946b](https://github.com/spryker/ui-components/commit/054946b1e9cedc7db0870dc82ea49e5c32a730dd))
+
+
+
+
+
 # 0.1.0-next.23 (2020-06-30)
 
 

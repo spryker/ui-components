@@ -1,12 +1,7 @@
 <button
   [type]="type"
   role="button"
-  class="
-    spy-button
-    spy-button--{{ variant }}
-    spy-button--{{ shape }}
-    spy-button--{{ size }}
-  "
+  class="{{ classList }}"
   [disabled]="disabled"
   [spyApplyAttrs]="attrs"
   #buttonRef

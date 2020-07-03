@@ -1,12 +1,3 @@
-<a
-  [href]="url"
-  class="
-    spy-button
-    spy-button--{{ variant }}
-    spy-button--{{ shape }}
-    spy-button--{{ size }}
-  "
-  [spyApplyAttrs]="attrs"
->
+<a [href]="url" class="{{ classList }}" [spyApplyAttrs]="attrs">
   <ng-content></ng-content>
 </a>

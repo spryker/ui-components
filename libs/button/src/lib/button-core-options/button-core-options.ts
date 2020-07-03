@@ -1,4 +1,4 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, OnInit, OnChanges } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import {
   ButtonAttributes,
@@ -9,7 +9,10 @@ import {
 
 export const buttonClassName = 'spy-button';
 
-export class ButtonCoreOptions {
+@Directive({
+  selector: '[spyButtonCoreOptions]',
+})
+export class ButtonCoreOptions implements OnInit, OnChanges {
   @Input() shape: ButtonShape = ButtonShape.Default;
   @Input() size: ButtonSize = ButtonSize.Medium;
   @Input() variant: ButtonVariant = ButtonVariant.Primary;

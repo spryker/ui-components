@@ -43,14 +43,13 @@ describe('ButtonComponent', () => {
   });
 
   it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the `<button>`', async () => {
-    const host = await createComponent(
-      {
-        variant: ButtonVariant.Critical,
-        shape: ButtonShape.Circle,
-        size: ButtonSize.Large,
-      },
-      true,
-    );
+    const host = await createComponent({
+      variant: ButtonVariant.Critical,
+      shape: ButtonShape.Circle,
+      size: ButtonSize.Large,
+    });
+    host.component.buttonClassName = buttonClassName;
+    host.detectChanges();
     const buttonElem = host.queryCss('button')!;
 
     expect(

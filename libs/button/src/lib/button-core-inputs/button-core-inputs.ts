@@ -28,7 +28,7 @@ export abstract class ButtonCoreInputs implements AfterViewInit, OnChanges {
 
   @ViewChild('buttonRef') buttonRef?: ElementRef;
 
-  protected abstract buttonClassName?: string;
+  protected abstract buttonClassName: string;
 
   constructor(private renderer: Renderer2) {}
 
@@ -59,8 +59,7 @@ export abstract class ButtonCoreInputs implements AfterViewInit, OnChanges {
       return;
     }
 
-    // tslint:disable-next-line: no-non-null-assertion
-    this.renderer.addClass(this.buttonRef.nativeElement, this.buttonClassName!);
+    this.renderer.addClass(this.buttonRef.nativeElement, this.buttonClassName);
     this.renderer.addClass(this.buttonRef.nativeElement, buttonClassName);
     this.changeClassName(this.shape);
     this.changeClassName(this.size);
@@ -69,12 +68,23 @@ export abstract class ButtonCoreInputs implements AfterViewInit, OnChanges {
 
   private changeClassName(type: string, previousValue?: string): void {
     if (previousValue) {
-      this.renderer.removeClass(this.buttonRef?.nativeElement, previousValue);
+      this.renderer.removeClass(
+        this.buttonRef?.nativeElement,
+        `${this.buttonClassName}--${previousValue}`,
+      );
+      this.renderer.removeClass(
+        this.buttonRef?.nativeElement,
+        `${buttonClassName}--${previousValue}`,
+      );
     }
 
     this.renderer.addClass(
       this.buttonRef?.nativeElement,
       `${this.buttonClassName}--${type}`,
+    );
+    this.renderer.addClass(
+      this.buttonRef?.nativeElement,
+      `${buttonClassName}--${type}`,
     );
   }
 }

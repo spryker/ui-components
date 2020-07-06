@@ -17,10 +17,12 @@ import {
   ButtonVariant,
 } from './types';
 
-export const buttonClassName = 'spy-button';
+export const buttonClassName = 'spy-button-core';
 
 @Injectable()
 export class ButtonCoreInputs implements AfterViewInit, OnChanges {
+  protected buttonClassName = 'spy-button';
+
   @Input() shape: ButtonShape = ButtonShape.Default;
   @Input() size: ButtonSize = ButtonSize.Medium;
   @Input() variant: ButtonVariant = ButtonVariant.Primary;
@@ -40,42 +42,15 @@ export class ButtonCoreInputs implements AfterViewInit, OnChanges {
     }
 
     if ('shape' in changes) {
-      this.renderer.removeClass(
-        this.buttonRef?.nativeElement,
-        changes.shape.previousValue,
-      );
-      this.renderer.addClass(
-        this.buttonRef?.nativeElement,
-        `
-          ${buttonClassName}--${this.shape}
-        `,
-      );
+      this.changeClassName(this.shape, changes.shape.previousValue);
     }
 
     if ('size' in changes) {
-      this.renderer.removeClass(
-        this.buttonRef?.nativeElement,
-        changes.size.previousValue,
-      );
-      this.renderer.addClass(
-        this.buttonRef?.nativeElement,
-        `
-          ${buttonClassName}--${this.size}
-        `,
-      );
+      this.changeClassName(this.size, changes.size.previousValue);
     }
 
     if ('variant' in changes) {
-      this.renderer.removeClass(
-        this.buttonRef?.nativeElement,
-        changes.variant.previousValue,
-      );
-      this.renderer.addClass(
-        this.buttonRef?.nativeElement,
-        `
-          ${buttonClassName}--${this.variant}
-        `,
-      );
+      this.changeClassName(this.variant, changes.variant.previousValue);
     }
   }
 
@@ -84,18 +59,21 @@ export class ButtonCoreInputs implements AfterViewInit, OnChanges {
       return;
     }
 
+    this.renderer.addClass(this.buttonRef.nativeElement, this.buttonClassName);
     this.renderer.addClass(this.buttonRef.nativeElement, buttonClassName);
+    this.changeClassName(this.shape);
+    this.changeClassName(this.size);
+    this.changeClassName(this.variant);
+  }
+
+  private changeClassName(type: string, previousValue?: string): void {
+    if (previousValue) {
+      this.renderer.removeClass(this.buttonRef?.nativeElement, previousValue);
+    }
+
     this.renderer.addClass(
-      this.buttonRef.nativeElement,
-      `${buttonClassName}--${this.shape}`,
-    );
-    this.renderer.addClass(
-      this.buttonRef.nativeElement,
-      `${buttonClassName}--${this.size}`,
-    );
-    this.renderer.addClass(
-      this.buttonRef.nativeElement,
-      `${buttonClassName}--${this.variant}`,
+      this.buttonRef?.nativeElement,
+      `${buttonClassName}--${type}`,
     );
   }
 }

@@ -15,5 +15,7 @@ import { ButtonCoreInputs } from '../button-core-inputs/button-core-inputs';
   encapsulation: ViewEncapsulation.None,
 })
 export class ButtonLinkComponent extends ButtonCoreInputs {
+  buttonClassName = 'spy-button-link';
+
   @Input() url?: string;
 }

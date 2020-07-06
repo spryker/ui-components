@@ -1,8 +1,14 @@
-import { TestBed } from '@angular/core/testing';
-
-import { ButtonLinkComponent } from './button-link.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+
+import { buttonClassName } from '../button-core-inputs/button-core-inputs';
+import {
+  ButtonShape,
+  ButtonSize,
+  ButtonVariant,
+} from '../button-core-inputs/types';
+import { ButtonLinkComponent } from './button-link.component';
 
 // tslint:disable: no-non-null-assertion
 
@@ -44,16 +50,26 @@ describe('ButtonComponent', () => {
       expect(buttonLinkElem.properties.href).toBe('someUrl');
     });
 
-    it('should concate variant, shape, size inputs and add them to class list of <a>', async () => {
+    it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the `<a>`', async () => {
       const host = await createComponent(
-        { variant: 'critical', shape: 'default', size: 'lg' },
+        {
+          variant: ButtonVariant.Critical,
+          shape: ButtonShape.Circle,
+          size: ButtonSize.Large,
+        },
         true,
       );
       const buttonLinkElem = host.queryCss('a')!;
 
-      expect(buttonLinkElem.properties.className).toContain('critical');
-      expect(buttonLinkElem.properties.className).toContain('default');
-      expect(buttonLinkElem.properties.className).toContain('lg');
+      expect(
+        buttonLinkElem.classes[`${buttonClassName}--${ButtonVariant.Critical}`],
+      ).toBeTruthy();
+      expect(
+        buttonLinkElem.classes[`${buttonClassName}--${ButtonShape.Circle}`],
+      ).toBeTruthy();
+      expect(
+        buttonLinkElem.classes[`${buttonClassName}--${ButtonSize.Large}`],
+      ).toBeTruthy();
     });
 
     it('should bind attrs to spyApplyAttrs properties of <a>', async () => {

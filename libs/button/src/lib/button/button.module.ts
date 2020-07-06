@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ApplyAttrsModule } from '@spryker/utils';
 
-import { ButtonLinkComponent } from './button-link.component';
+import { ButtonComponent } from './button.component';
 
 @NgModule({
   imports: [CommonModule, ApplyAttrsModule],
-  exports: [ButtonLinkComponent],
-  declarations: [ButtonLinkComponent],
+  exports: [ButtonComponent],
+  declarations: [ButtonComponent],
 })
-export class ButtonLinkModule {}
+export class ButtonModule {}

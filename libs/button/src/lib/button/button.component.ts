@@ -1,36 +1,17 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   Input,
-  OnChanges,
-  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { propsTransformation } from '@spryker/utils';
 import { ToBoolean } from '@spryker/utils';
 
-export interface Props {
-  type: 'button' | 'submit';
-  shape: 'round' | 'circle' | 'default';
-  size: 'lg' | 'md' | 'sm';
-  variant: 'primary' | 'secondary' | 'critical';
-  disabled: boolean;
-}
+import { ButtonCoreInputs } from '../button-core-inputs/button-core-inputs';
 
-const propsTemplate = {
-  size: {
-    lg: 'large',
-    md: 'default',
-    sm: 'small',
-  },
-  variant: {
-    secondary: 'default',
-    critical: 'danger',
-  },
-  shape: {
-    default: 'null',
-  },
-} as const;
+export enum ButtonType {
+  Button = 'button',
+  Submit = 'submit',
+}
 
 @Component({
   selector: 'spy-button',
@@ -39,40 +20,13 @@ const propsTemplate = {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnChanges {
-  @Input() type: Props['type'] = 'button';
-  @Input() shape: Props['shape'] = 'default';
-  @Input() size: Props['size'] = 'md';
-  @Input() @ToBoolean() disabled: Props['disabled'] = false;
-  @Input() variant: Props['variant'] = 'primary';
+export class ButtonComponent extends ButtonCoreInputs {
+  @Input() type: ButtonType = ButtonType.Button;
+  @Input() @ToBoolean() disabled = false;
 
-  sizeInner = this.sizeTransformation();
-  variantInner = this.variantTransformation();
-  shapeInner = this.shapeTransformation();
+  buttonClassName = 'spy-button';
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if ('size' in changes) {
-      this.sizeInner = this.sizeTransformation();
-    }
-
-    if ('variant' in changes) {
-      this.variantInner = this.variantTransformation();
-    }
-
-    if ('shape' in changes) {
-      this.shapeInner = this.shapeTransformation();
-    }
-  }
-
-  sizeTransformation() {
-    return propsTransformation(propsTemplate, this.size, 'size');
-  }
-
-  variantTransformation() {
-    return propsTransformation(propsTemplate, this.variant, 'variant');
-  }
-
-  shapeTransformation() {
-    return propsTransformation(propsTemplate, this.shape, 'shape');
+  click(): void {
+    this.buttonRef?.nativeElement.click();
   }
 }

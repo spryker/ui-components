@@ -1,7 +1,8 @@
-import { ButtonLinkComponent } from './button-link.component';
 import { ApplyAttrsModule } from '@spryker/utils';
 import { select } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
+
+import { ButtonLinkComponent } from './button-link.component';
 
 export default {
   title: 'ButtonLinkComponent',

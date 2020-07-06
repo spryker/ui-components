@@ -1,13 +1,12 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   Input,
   ViewEncapsulation,
-  ViewChild,
-  ElementRef,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
-import { ButtonCoreOptions } from '../button-core-options/button-core-options';
+
+import { ButtonCoreInputs } from '../button-core-inputs/button-core-inputs';
 
 export enum ButtonType {
   Button = 'button',
@@ -21,11 +20,9 @@ export enum ButtonType {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent extends ButtonCoreOptions {
+export class ButtonComponent extends ButtonCoreInputs {
   @Input() type: ButtonType = ButtonType.Button;
   @Input() @ToBoolean() disabled = false;
-
-  @ViewChild('buttonRef') buttonRef?: ElementRef;
 
   click(): void {
     this.buttonRef?.nativeElement.click();

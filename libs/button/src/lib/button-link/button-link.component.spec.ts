@@ -1,13 +1,14 @@
-import { TestBed } from '@angular/core/testing';
-
-import { ButtonLinkComponent } from './button-link.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+
+import { buttonClassName } from '../button-core-inputs/button-core-inputs';
 import {
+  ButtonShape,
   ButtonSize,
   ButtonVariant,
-  ButtonShape,
-} from '../button-core-options/types';
+} from '../button-core-inputs/types';
+import { ButtonLinkComponent } from './button-link.component';
 
 // tslint:disable: no-non-null-assertion
 
@@ -60,11 +61,15 @@ describe('ButtonComponent', () => {
       );
       const buttonLinkElem = host.queryCss('a')!;
 
-      expect(buttonLinkElem.properties.className).toContain(
-        ButtonVariant.Critical,
-      );
-      expect(buttonLinkElem.properties.className).toContain(ButtonShape.Circle);
-      expect(buttonLinkElem.properties.className).toContain(ButtonSize.Large);
+      expect(
+        buttonLinkElem.classes[`${buttonClassName}--${ButtonVariant.Critical}`],
+      ).toBeTruthy();
+      expect(
+        buttonLinkElem.classes[`${buttonClassName}--${ButtonShape.Circle}`],
+      ).toBeTruthy();
+      expect(
+        buttonLinkElem.classes[`${buttonClassName}--${ButtonSize.Large}`],
+      ).toBeTruthy();
     });
 
     it('should bind attrs to spyApplyAttrs properties of <a>', async () => {

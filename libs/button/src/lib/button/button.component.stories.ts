@@ -1,5 +1,6 @@
+import { boolean, select } from '@storybook/addon-knobs';
+
 import { ButtonModule } from './button.module';
-import { select, boolean } from '@storybook/addon-knobs';
 
 export default {
   title: 'ButtonComponent',

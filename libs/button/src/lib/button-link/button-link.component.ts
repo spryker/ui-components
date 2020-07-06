@@ -1,10 +1,12 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
-import { ButtonCoreOptions } from '../button-core-options/button-core-options';
+
+import { ButtonCoreInputs } from '../button-core-inputs/button-core-inputs';
+
 @Component({
   selector: 'spy-button-link',
   templateUrl: './button-link.component.html',
@@ -12,6 +14,6 @@ import { ButtonCoreOptions } from '../button-core-options/button-core-options';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ButtonLinkComponent extends ButtonCoreOptions {
+export class ButtonLinkComponent extends ButtonCoreInputs {
   @Input() url?: string;
 }

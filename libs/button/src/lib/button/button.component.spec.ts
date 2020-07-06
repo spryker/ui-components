@@ -1,12 +1,13 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+
+import { buttonClassName } from '../button-core-inputs/button-core-inputs';
 import {
   ButtonShape,
   ButtonSize,
   ButtonVariant,
-} from '../button-core-options/types';
-
+} from '../button-core-inputs/types';
 import { ButtonComponent } from './button.component';
 
 // tslint:disable: no-non-null-assertion
@@ -52,9 +53,15 @@ describe('ButtonComponent', () => {
     );
     const buttonElem = host.queryCss('button')!;
 
-    expect(buttonElem.properties.className).toContain(ButtonVariant.Critical);
-    expect(buttonElem.properties.className).toContain(ButtonShape.Circle);
-    expect(buttonElem.properties.className).toContain(ButtonSize.Large);
+    expect(
+      buttonElem.classes[`${buttonClassName}--${ButtonVariant.Critical}`],
+    ).toBeTruthy();
+    expect(
+      buttonElem.classes[`${buttonClassName}--${ButtonShape.Circle}`],
+    ).toBeTruthy();
+    expect(
+      buttonElem.classes[`${buttonClassName}--${ButtonSize.Large}`],
+    ).toBeTruthy();
   });
 
   it('should bind attrs to spyApplyAttrs properties of <button>', async () => {

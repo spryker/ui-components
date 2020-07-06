@@ -12,8 +12,6 @@ import {
   TableFeatureConfig,
   TableFeatureLocation,
   TableActionTriggeredEvent,
-  TableRowAction,
-  TableRowActionBase,
   TableActionsService,
   TableRowClickEvent,
 } from '@spryker/table';
@@ -29,6 +27,8 @@ import {
 import { DropdownItem } from '@spryker/dropdown';
 import { Observable, Subject, combineLatest, EMPTY } from 'rxjs';
 import { IconActionModule } from '@spryker/icon/icons';
+import { ContextService } from '@spryker/utils';
+import { TableRowActionBase, TableRowActionContext } from './types';
 
 declare module '@spryker/table' {
   interface TableConfig {
@@ -39,6 +39,8 @@ declare module '@spryker/table' {
 export interface TableRowActionsConfig extends TableFeatureConfig {
   actions?: TableRowActionBase[];
   click?: string;
+  rowIdPath?: string;
+  availableActionsPath?: string;
 }
 
 @Component({
@@ -74,7 +76,7 @@ export class TableRowActionsFeatureComponent
   private destroyed$ = new Subject<void>();
   private configClick$ = this.config$.pipe(pluck('click'));
   private clickAction$ = this.configClick$.pipe(
-    map(actionId => this.getActionById(actionId as TableRowAction)),
+    map(actionId => this.getActionById(actionId)),
   );
   private rowClicks$ = this.tableEventBus$.pipe(
     withLatestFrom(this.clickAction$),
@@ -92,6 +94,7 @@ export class TableRowActionsFeatureComponent
 
   constructor(
     private tableActionsService: TableActionsService,
+    private contextService: ContextService,
     injector: Injector,
   ) {
     super(injector);
@@ -128,15 +131,13 @@ export class TableRowActionsFeatureComponent
     this.destroyed$.next();
   }
 
-  private getActionById(
-    actionId: TableRowAction,
-  ): TableRowActionBase | undefined {
-    return (this.config?.actions as TableRowActionBase[]).filter(
+  private getActionById(actionId?: string): TableRowActionBase | undefined {
+    return this.config?.actions?.filter(
       rowAction => rowAction.id === actionId,
     )[0];
   }
 
-  actionTriggerHandler(actionId: TableRowAction, items: TableDataRow[]): void {
+  actionTriggerHandler(actionId: string, items: TableDataRow[]): void {
     const action = this.getActionById(actionId);
 
     if (!action) {
@@ -151,7 +152,36 @@ export class TableRowActionsFeatureComponent
     this.triggerEvent(event);
   }
 
-  triggerEvent(actions: TableActionTriggeredEvent): void {
-    this.tableActionsService.handle(actions);
+  triggerEvent(action: TableActionTriggeredEvent): void {
+    const rawAction = { ...action };
+    const actionEventItem = rawAction.items[0];
+    const dataContext: TableRowActionContext = {
+      row: actionEventItem,
+      rowId: this.config?.rowIdPath
+        ? String(actionEventItem[this.config.rowIdPath])
+        : '',
+    };
+
+    const rawActionOptions = rawAction.action.typeOptions as Record<
+      string,
+      unknown
+    >;
+
+    for (const option in rawActionOptions) {
+      if (!option) {
+        continue;
+      }
+      const optionItem = rawActionOptions[option];
+      if (typeof optionItem !== 'string') {
+        continue;
+      }
+
+      rawActionOptions[option] = this.contextService.interpolate(
+        optionItem,
+        dataContext as any,
+      );
+    }
+
+    this.tableActionsService.trigger(rawAction);
   }
 }

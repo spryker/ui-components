@@ -20,15 +20,15 @@ import {
 export const buttonClassName = 'spy-button-core';
 
 @Injectable()
-export class ButtonCoreInputs implements AfterViewInit, OnChanges {
-  protected buttonClassName = 'spy-button';
-
+export abstract class ButtonCoreInputs implements AfterViewInit, OnChanges {
   @Input() shape: ButtonShape = ButtonShape.Default;
   @Input() size: ButtonSize = ButtonSize.Medium;
   @Input() variant: ButtonVariant = ButtonVariant.Primary;
   @Input() @ToJson() attrs?: ButtonAttributes;
 
   @ViewChild('buttonRef') buttonRef?: ElementRef;
+
+  protected abstract buttonClassName = buttonClassName;
 
   constructor(private renderer: Renderer2) {}
 

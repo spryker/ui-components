@@ -40,6 +40,10 @@ export class ButtonCoreInputs implements AfterViewInit, OnChanges {
     }
 
     if ('shape' in changes) {
+      this.renderer.removeClass(
+        this.buttonRef?.nativeElement,
+        changes.shape.previousValue,
+      );
       this.renderer.addClass(
         this.buttonRef?.nativeElement,
         `
@@ -49,6 +53,10 @@ export class ButtonCoreInputs implements AfterViewInit, OnChanges {
     }
 
     if ('size' in changes) {
+      this.renderer.removeClass(
+        this.buttonRef?.nativeElement,
+        changes.size.previousValue,
+      );
       this.renderer.addClass(
         this.buttonRef?.nativeElement,
         `
@@ -58,6 +66,10 @@ export class ButtonCoreInputs implements AfterViewInit, OnChanges {
     }
 
     if ('variant' in changes) {
+      this.renderer.removeClass(
+        this.buttonRef?.nativeElement,
+        changes.variant.previousValue,
+      );
       this.renderer.addClass(
         this.buttonRef?.nativeElement,
         `

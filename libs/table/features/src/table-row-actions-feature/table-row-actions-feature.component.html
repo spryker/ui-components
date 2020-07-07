@@ -5,7 +5,7 @@
   >
     <spy-dropdown
       class="ant-table-row-actions-feature__trigger"
-      [items]="actions | FilterAvailableActions: data"
+      [items]="actions | filterAvailableActions: data"
       (actionTriggered)="actionTriggerHandler($event, [data])"
     >
       <spy-icon [name]="triggerIcon"></spy-icon>

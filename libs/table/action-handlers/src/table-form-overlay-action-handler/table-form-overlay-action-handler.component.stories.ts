@@ -19,7 +19,7 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { DrawerContainerComponent } from '../../../../drawer/src/lib/drawer-container/drawer-container.component';
 import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
 import { AjaxFormResponse } from '@spryker/ajax-form';
-import { NotificationWrapperComponent } from 'libs/notification/src/lib/notification-wrapper/notification-wrapper.component';
+import { NotificationWrapperComponent } from '../../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {

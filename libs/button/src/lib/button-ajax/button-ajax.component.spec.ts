@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonAjaxComponent } from './button-ajax.component';
-import { ButtonComponent } from "../button/button.component";
+import { ButtonComponent } from '../button/button.component';
 
 xdescribe('ButtonAjaxComponent', () => {
   let component: ButtonAjaxComponent;

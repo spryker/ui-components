@@ -25,11 +25,10 @@ enum ButtonAjaxMethod {
 export class ButtonAjaxComponent {
   isLoading: Boolean = false;
 
-  constructor(
-    // private ajaxActionService: AjaxActionService,
-    // private http: HttpClient,
-    // private injector: Injector,
-  ) {}
+  constructor() // private ajaxActionService: AjaxActionService,
+  // private http: HttpClient,
+  // private injector: Injector,
+  {}
 
   @Input() url: string = '';
   @Input() size: string = '';

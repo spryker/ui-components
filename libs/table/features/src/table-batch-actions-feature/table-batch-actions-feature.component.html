@@ -1,19 +1,22 @@
 <ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable">
   <ng-container *ngIf="actions$ | async">
     <ng-container *ngIf="itemActions$ | async as itemActions">
-      <spy-button
-        *ngFor="let item of itemActions.actions"
-        (click)="buttonClickHandler(item, itemActions)"
-        >{{ item.title }}</spy-button
-      >
+      <ng-container *ngIf="shouldShowActions$ | async">
+        <spy-button
+          *ngFor="let item of itemActions.actions"
+          (click)="buttonClickHandler(item, itemActions)"
+          >{{ item.title }}</spy-button
+        >
+      </ng-container>
 
-      <ng-template #noActionsTemplate>
-        <div spyApplyContexts="spy-bg-gray">
-          <spy-notification type="warning">
-            <span title>{{ noActionsMessage$ | async }}</span>
-          </spy-notification>
-        </div>
-      </ng-template>
+      <div
+        spyApplyContexts="spy-bg-gray"
+        *ngIf="noActionsMessage$ | async as noActionsMessage"
+      >
+        <spy-notification type="warning">
+          <span title>{{ noActionsMessage }}</span>
+        </spy-notification>
+      </div>
     </ng-container>
   </ng-container>
 </ng-container>

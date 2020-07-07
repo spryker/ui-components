@@ -16,6 +16,7 @@ import { TableDatasourceHttpService } from '../../../datasources/src/table-datas
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { TableSelectableFeatureModule } from '../table-selectable-feature';
+import { TableTotalFeatureModule } from '../table-total-feature';
 
 export default {
   title: 'TableBatchActionsFeatureComponent',
@@ -33,9 +34,14 @@ export const viaHtml = getTotalStory(
     <spy-table [config]="config" [mockHttp]="mockHttp">
       <spy-table-batch-actions-feature spy-table-feature></spy-table-batch-actions-feature>
       <spy-table-selectable-feature spy-table-feature></spy-table-selectable-feature>
+      <spy-table-total-feature spy-table-feature></spy-table-total-feature>
     </spy-table>
   `,
-  [TableBatchActionsFeatureModule, TableSelectableFeatureModule],
+  [
+    TableBatchActionsFeatureModule,
+    TableTotalFeatureModule,
+    TableSelectableFeatureModule,
+  ],
 );
 
 export const viaConfig = getTotalStory(
@@ -52,6 +58,10 @@ export const viaConfig = getTotalStory(
         import(
           '../table-selectable-feature/table-selectable-feature.module'
         ).then(m => m.TableSelectableFeatureModule),
+      total: () =>
+        import('../table-total-feature/table-total-feature.module').then(
+          m => m.TableTotalFeatureModule,
+        ),
     }),
   ],
 );
@@ -96,6 +106,9 @@ function getTotalStory(
           { id: 'col3', title: 'Column #3' },
         ],
         itemSelection: {
+          enabled: true, // This will enable feature via config
+        },
+        total: {
           enabled: true, // This will enable feature via config
         },
         batchActions: {

@@ -48,10 +48,14 @@ export interface TableBatchActionContext {
   rowIds: string[];
 }
 
+export interface SelectedRows
+  extends Record<string, unknown>,
+    TableSelectionRow {}
+
 export interface TableItemActions {
   actions: TableBatchAction[];
   rowIdPath: string;
-  selectedRows: TableSelectionRow[];
+  selectedRows: SelectedRows[];
 }
 
 @Component({
@@ -74,12 +78,9 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
   tableFeatureLocation = TableFeatureLocation;
 
   actions$ = this.config$.pipe(pluck('actions'));
-  noActionsMessage$ = this.config$.pipe(pluck('noActionsMessage'));
   itemSelected$ = this.tableEventBus$.pipe(
     switchMap(tableEventBus =>
-      tableEventBus
-        .on<TableSelectionChangeEvent>('itemSelection')
-        .pipe(shareReplay({ bufferSize: 1, refCount: true })),
+      tableEventBus.on<TableSelectionChangeEvent>('itemSelection'),
     ),
   );
   itemActions$: Observable<TableItemActions> = this.itemSelected$.pipe(
@@ -93,46 +94,31 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
         };
       }
 
-      if (config.availableActionsPath) {
-        const availableActionIds = selectedRows.reduce(
-          (ids: string[], row) => [
-            ...ids,
-            this.contextService.interpolateExpression(
-              // tslint:disable-next-line: no-non-null-assertion
-              config.availableActionsPath!,
-              row.data as any,
-            ) as string,
-          ],
-          [],
-        );
-
-        const availableActions = config.actions.reduce(
-          (actions: TableBatchAction[], action) => {
-            const isAvailable = availableActionIds.every((item: string) =>
-              item.includes(action.id),
-            );
-
-            if (isAvailable) {
-              return [...actions, action];
-            }
-
-            return actions;
-          },
-          [],
-        );
-
-        return {
-          actions: availableActions,
-          rowIdPath: config.rowIdPath,
-          selectedRows: selectedRows,
-        };
-      }
+      const actions = config.availableActionsPath
+        ? this.getAvailableActions(selectedRows, config)
+        : config.actions;
 
       return {
-        actions: config.actions,
+        actions,
         rowIdPath: config.rowIdPath,
-        selectedRows: selectedRows,
+        selectedRows: selectedRows as SelectedRows[],
       };
+    }),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+  shouldShowActions$ = this.itemActions$.pipe(
+    map(itemActions =>
+      Boolean(itemActions.actions.length && itemActions.selectedRows.length),
+    ),
+  );
+  noActionsMessage$ = this.itemActions$.pipe(
+    withLatestFrom(this.config$),
+    map(([itemActions, config]) => {
+      const shouldShowNotification = Boolean(
+        !itemActions.actions.length && itemActions.selectedRows.length,
+      );
+
+      return shouldShowNotification ? config.noActionsMessage : false;
     }),
   );
 
@@ -144,14 +130,38 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
     super(injector);
   }
 
-  buttonClickHandler(action: TableBatchAction, batchAction: TableItemActions) {
-    const rowIdPath = batchAction.rowIdPath;
-    const batchTypeOptions: Record<string, unknown> = { ...action.typeOptions };
-    const rowIds = batchAction.selectedRows.reduce(
-      (ids: string[], row: TableSelectionRow) => [
+  private getAvailableActions(
+    selectedRows: TableSelectionRow[],
+    config: TableBatchActionsConfig,
+  ): TableBatchAction[] {
+    const availableActionIds = selectedRows.reduce(
+      (ids: string[], row) => [
         ...ids,
         this.contextService.interpolateExpression(
-          rowIdPath,
+          // tslint:disable-next-line: no-non-null-assertion
+          config.availableActionsPath!,
+          row.data as any,
+        ) as string,
+      ],
+      [],
+    );
+
+    return config.actions.reduce((actions: TableBatchAction[], action) => {
+      const isAvailable = availableActionIds.every(item =>
+        item.includes(action.id),
+      );
+
+      return isAvailable ? [...actions, action] : actions;
+    }, []);
+  }
+
+  buttonClickHandler(action: TableBatchAction, batchAction: TableItemActions) {
+    const batchTypeOptions: Record<string, unknown> = { ...action.typeOptions };
+    const rowIds = batchAction.selectedRows.reduce(
+      (ids: string[], row) => [
+        ...ids,
+        this.contextService.interpolateExpression(
+          batchAction.rowIdPath,
           row.data as any,
         ) as string,
       ],
@@ -180,8 +190,6 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
       },
       items: batchAction.selectedRows,
     };
-
-    console.log(batchEvent);
 
     // this.tableActionService.trigger(batchData);
   }

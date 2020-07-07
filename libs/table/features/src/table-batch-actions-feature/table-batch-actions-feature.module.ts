@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableBatchActionsFeatureComponent } from './table-batch-actions-feature.component';
 import { TableFeatureModule, ModuleWithFeature } from '@spryker/table';
-import { PluckModule, ApplyContextsModule } from '@spryker/utils';
+import { ApplyContextsModule } from '@spryker/utils';
 import { ButtonModule } from '@spryker/button';
 import { NotificationModule } from '@spryker/notification';
 
@@ -10,7 +10,6 @@ import { NotificationModule } from '@spryker/notification';
   imports: [
     CommonModule,
     TableFeatureModule,
-    PluckModule,
     ButtonModule,
     NotificationModule,
     ApplyContextsModule,

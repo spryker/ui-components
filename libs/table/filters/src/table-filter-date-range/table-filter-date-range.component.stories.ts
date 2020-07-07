@@ -17,6 +17,7 @@ import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
   title: 'TableFilterDateRangeComponent',
@@ -63,8 +64,9 @@ function getFiltersStory(
         MockHttpModule,
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
-          range: TableFilterDateRangeComponent as any,
-        }),
+          range: TableFilterDateRangeComponent,
+        } as any),
+        DefaultContextSerializationModule,
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
         }),

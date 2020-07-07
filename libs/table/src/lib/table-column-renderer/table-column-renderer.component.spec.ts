@@ -19,7 +19,11 @@ import {
 } from '@orchestrator/layout';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { ColTplDirective } from '../table/col-tpl.directive';
-import { ContextModule, ContextService } from '@spryker/utils';
+import {
+  ContextModule,
+  ContextService,
+  DefaultContextSerializationModule,
+} from '@spryker/utils';
 import {
   TableColumn,
   TableColumnComponent,
@@ -101,7 +105,12 @@ describe('TableColumnRendererComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [OrchestratorCoreModule, LayoutFlatHostModule, ContextModule],
+      imports: [
+        OrchestratorCoreModule,
+        LayoutFlatHostModule,
+        ContextModule,
+        DefaultContextSerializationModule,
+      ],
       declarations: [
         TestHostComponent,
         TableColumnRendererComponent,

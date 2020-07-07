@@ -1,7 +1,7 @@
 // tslint:disable: no-non-null-assertion
 import { TestBed } from '@angular/core/testing';
 import { TableColumnTextComponent } from './table-column-text.component';
-import { ContextPipe } from '@spryker/utils';
+import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 const configMock: any = [
@@ -22,6 +22,7 @@ describe('TableColumnTextComponent', () => {
     TableColumnTextComponent,
     {
       ngModule: {
+        imports: [DefaultContextSerializationModule],
         declarations: [ContextPipe],
       },
     },

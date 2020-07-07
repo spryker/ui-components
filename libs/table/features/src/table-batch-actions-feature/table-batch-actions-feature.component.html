@@ -4,6 +4,7 @@
       <ng-container *ngIf="shouldShowActions$ | async">
         <spy-button
           *ngFor="let item of itemActions.actions"
+          size="sm"
           (click)="buttonClickHandler(item, itemActions)"
           >{{ item.title }}</spy-button
         >

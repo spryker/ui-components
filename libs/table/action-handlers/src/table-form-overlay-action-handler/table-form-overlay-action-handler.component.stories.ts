@@ -20,6 +20,7 @@ import { DrawerContainerComponent } from '../../../../drawer/src/lib/drawer-cont
 import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
 import { AjaxFormResponse } from '@spryker/ajax-form';
 import { NotificationWrapperComponent } from 'libs/notification/src/lib/notification-wrapper/notification-wrapper.component';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
   title: 'TableFormOverlayActionHandlerComponent',
@@ -55,6 +56,7 @@ class StoryComponent {
     HttpClientTestingModule,
     MockHttpModule,
     TableFormOverlayActionHandlerModule,
+    DefaultContextSerializationModule,
   ],
   providers: [
     {

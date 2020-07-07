@@ -14,6 +14,7 @@ import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
   title: 'TableFiltersSelectComponent',
@@ -62,6 +63,7 @@ function getFiltersStory(
         TableFiltersFeatureModule.withFilterComponents({
           select: TableFilterSelectComponent as any,
         }),
+        DefaultContextSerializationModule,
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
         }),

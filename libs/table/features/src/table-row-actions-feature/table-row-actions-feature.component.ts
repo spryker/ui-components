@@ -16,6 +16,7 @@ import {
   TableRowActionBase,
   TableActionsService,
   TableRowClickEvent,
+  TableActionBase,
 } from '@spryker/table';
 import {
   pluck,
@@ -106,7 +107,7 @@ export class TableRowActionsFeatureComponent
       .subscribe(([{ row }, action]) => {
         const event: TableActionTriggeredEvent = {
           // tslint:disable-next-line: no-non-null-assertion
-          action: action!,
+          action: action! as TableActionBase,
           items: [row],
         };
 
@@ -144,7 +145,7 @@ export class TableRowActionsFeatureComponent
     }
 
     const event: TableActionTriggeredEvent = {
-      action,
+      action: action as TableActionBase,
       items,
     };
 

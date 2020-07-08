@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { ButtonCoreInputs } from '../button-core-inputs/button-core-inputs';
+import { ButtonCore } from '../button-core-inputs/button-core-inputs';
 
 @Component({
   selector: 'spy-button-link',
@@ -14,7 +14,7 @@ import { ButtonCoreInputs } from '../button-core-inputs/button-core-inputs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ButtonLinkComponent extends ButtonCoreInputs {
+export class ButtonLinkComponent extends ButtonCore {
   buttonClassName = 'spy-button-link';
 
   @Input() url?: string;

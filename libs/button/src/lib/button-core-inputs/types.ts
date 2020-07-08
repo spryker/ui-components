@@ -16,4 +16,9 @@ export enum ButtonSize {
   Small = 'sm',
 }
 
+export enum ButtonAjaxMethod {
+  Get = 'GET',
+  Post = 'POST',
+}
+
 export type ButtonAttributes = Record<string, string>;

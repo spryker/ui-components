@@ -1,3 +1,12 @@
-<spy-button url="custom/path" method="GET" (click)="onClick($event)">
+<spy-button
+  [attrs]="attrs"
+  [shape]="shape"
+  [size]="size"
+  [variant]="variant"
+  [method]="method"
+  [url]="url"
+  (click)="click()"
+>
   <ng-content></ng-content>
+  <span *ngIf="isLoading$ | async">Loading</span>
 </spy-button>

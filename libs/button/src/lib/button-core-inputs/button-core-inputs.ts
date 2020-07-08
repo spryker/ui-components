@@ -15,22 +15,31 @@ import {
   ButtonShape,
   ButtonSize,
   ButtonVariant,
+  ButtonAjaxMethod,
 } from './types';
 
 export const buttonClassName = 'spy-button-core';
 
 @Injectable()
-export abstract class ButtonCoreInputs implements AfterViewInit, OnChanges {
+export class ButtonCoreInputs {
   @Input() shape: ButtonShape = ButtonShape.Default;
   @Input() size: ButtonSize = ButtonSize.Medium;
   @Input() variant: ButtonVariant = ButtonVariant.Primary;
+  @Input() method?: ButtonAjaxMethod = ButtonAjaxMethod.Get;
+  @Input() url? = '';
   @Input() @ToJson() attrs?: ButtonAttributes;
+}
 
+@Injectable()
+export abstract class ButtonCore extends ButtonCoreInputs
+  implements AfterViewInit, OnChanges {
   @ViewChild('buttonRef') buttonRef?: ElementRef;
 
   protected abstract buttonClassName: string;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(public renderer: Renderer2) {
+    super();
+  }
 
   ngAfterViewInit(): void {
     this.setClassList();

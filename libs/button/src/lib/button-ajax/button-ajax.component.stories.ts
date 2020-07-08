@@ -1,53 +1,61 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { boolean, select } from '@storybook/addon-knobs';
 
-import { buttonClassName } from '../button-core-inputs/button-core-inputs';
-import {
-  ButtonShape,
-  ButtonSize,
-  ButtonVariant,
-} from '../button-core-inputs/types';
-import { ButtonAjaxComponent } from './button-ajax.component';
+import { ButtonAjaxModule } from './button-ajax.module';
+
+import { NotificationWrapperComponent } from '../../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationModule } from '@spryker/notification';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 
 // tslint:disable: no-non-null-assertion
 
-describe('ButtonComponent', () => {
-  const { testModule, createComponent } = getTestingForComponent(
-    ButtonAjaxComponent,
-    {
-      ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-      projectContent: 'Content',
-    },
-  );
+export default {
+  title: 'ButtonAjaxComponent',
+};
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+const mockHtmlTemplate = () => `
+    <p>Luke, I am you response...</p>
+`;
 
-  it('should render <button>', async () => {
-    const host = await createComponent();
-
-    host.detectChanges();
-
-    const buttonAjaxElem = host.queryCss('button');
-
-    expect(buttonAjaxElem).toBeTruthy();
-  });
-
-  it('should render projected content inside <a>', async () => {
-    const host = await createComponent();
-    const buttonElem = host.queryCss('button')!;
-
-    host.detectChanges();
-
-    expect(buttonElem.nativeElement.textContent).toMatch('Content');
-  });
-
-  describe('@Inputs', () => {
-    it('should bind input url to url of <button>', async () => {
-      const host = await createComponent({ url: 'someUrl' as any }, true);
-      const buttonLinkElem = host.queryCss('a')!;
-
-      expect(buttonLinkElem.properties.url).toBe('someUrl');
-    });
-  });
+export const primary = () => ({
+  moduleMetadata: {
+    imports: [
+      ButtonAjaxModule,
+      HttpClientTestingModule,
+      BrowserAnimationsModule,
+      NotificationModule.forRoot(),
+      MockHttpModule,
+    ],
+    entryComponents: [NotificationWrapperComponent],
+  },
+  template: `
+    <spy-button-ajax
+      [shape]="shape"
+      [variant]="variant"
+      [size]="size"
+      url="/html-request"
+      method="GET"
+      [mockHttp]="mockHttp"
+    >Button</spy-button-ajax>
+  `,
+  props: {
+    variant: select(
+      'Variant',
+      { Primary: 'primary', Secondary: 'secondary', Critical: 'critical' },
+      'primary',
+    ),
+    size: select('Size', { Large: 'lg', Medium: 'md', Small: 'sm' }, 'lg'),
+    shape: select(
+      'Shape',
+      { Default: 'default', Round: 'round', Circle: 'circle' },
+      'default',
+    ),
+    mockHttp: setMockHttp([
+      {
+        url: '/html-request',
+        dataFn: () => mockHtmlTemplate(),
+      },
+    ]),
+  },
 });

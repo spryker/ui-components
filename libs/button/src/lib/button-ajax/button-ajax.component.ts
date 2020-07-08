@@ -1,19 +1,23 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   ViewEncapsulation,
   Injector,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonCoreInputs } from '../button-core-inputs/button-core-inputs';
 import { AjaxFormResponse } from '@spryker/ajax-form';
-
-enum ButtonAjaxMethod {
-  Get = 'GET',
-  Post = 'POST',
-}
+import { merge, of, Subject } from 'rxjs';
+import {
+  catchError,
+  mapTo,
+  shareReplay,
+  switchMap,
+  takeUntil,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'spy-button-ajax',
@@ -22,31 +26,47 @@ enum ButtonAjaxMethod {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonAjaxComponent {
-  isLoading: Boolean = false;
+export class ButtonAjaxComponent extends ButtonCoreInputs
+  implements OnInit, OnDestroy {
+  click$ = new Subject<void>();
+  request$ = this.click$.pipe(
+    switchMap(() =>
+      this.http
+        .request(String(this.method), String(this.url))
+        .pipe(catchError(response => of(response))),
+    ),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+  destroyed$ = new Subject<void>();
 
-  constructor() // private ajaxActionService: AjaxActionService,
-  // private http: HttpClient,
-  // private injector: Injector,
-  {}
+  isLoading$ = merge(
+    this.click$.pipe(mapTo(true)),
+    this.request$.pipe(mapTo(false)),
+  );
 
-  @Input() url: string = '';
-  @Input() size: string = '';
-  @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
+  constructor(
+    private ajaxActionService: AjaxActionService,
+    private http: HttpClient,
+    private injector: Injector,
+  ) {
+    super();
+  }
 
-  private onClick(event: Event) {
-    /*event.preventDefault();
+  ngOnInit() {
+    this.request$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(response => this.responseHandler(response));
+  }
 
-    this.isLoading = true;
+  ngOnDestroy() {
+    this.destroyed$.next();
+  }
 
-    this.http.request(this.method, this.url).subscribe({
-      next: response => this.responseHandler(response),
-      error: response => this.responseHandler(response),
-    });*/
+  click() {
+    this.click$.next();
   }
 
   private responseHandler(response: AjaxFormResponse): void {
-    /*this.isLoading = false;
-    this.ajaxActionService.handle(response, this.injector);*/
+    this.ajaxActionService.handle(response, this.injector);
   }
 }

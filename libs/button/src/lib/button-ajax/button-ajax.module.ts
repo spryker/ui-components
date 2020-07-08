@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { ApplyAttrsModule } from '@spryker/utils';
 
 import { ButtonAjaxComponent } from './button-ajax.component';
-import { ButtonComponent } from '../button/button.component';
+import { ButtonModule } from '../button/button.module';
 
 @NgModule({
-  imports: [CommonModule, ApplyAttrsModule],
+  imports: [CommonModule, ApplyAttrsModule, ButtonModule],
   exports: [ButtonAjaxComponent],
-  declarations: [ButtonAjaxComponent, ButtonComponent],
+  declarations: [ButtonAjaxComponent],
 })
 export class ButtonAjaxModule {}

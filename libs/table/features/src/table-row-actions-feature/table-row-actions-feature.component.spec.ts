@@ -18,7 +18,7 @@ import {
   TestTableFeatureTplContext,
 } from '@spryker/table/features/testing';
 import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
-import { FilterAvailableActions } from './table-row-actions-feature.pipe';
+import { FilterAvailableActionsPipe } from './table-row-actions.pipe';
 import {
   TableColumnsResolverService,
   TableData,
@@ -74,7 +74,7 @@ describe('TableRowActionsFeatureComponent', () => {
         TableRowActionsFeatureComponent,
         TestTableFeatureComponent,
         TestHostComponent,
-        FilterAvailableActions,
+        FilterAvailableActionsPipe,
       ],
       providers: [
         {

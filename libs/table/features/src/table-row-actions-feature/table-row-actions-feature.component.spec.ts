@@ -54,8 +54,8 @@ describe('TableRowActionsFeatureComponent', () => {
   let mockData: TableData;
   let injector: Injector;
   const mockActions = [
-    { id: '1234', title: '123', type: 'rowActions' },
-    { id: 'add', title: 'Add', type: 'rowActions' },
+    { id: '1234', title: '123', type: 'rowActions', typeOptions: {} },
+    { id: 'add', title: 'Add', type: 'rowActions', typeOptions: {} },
   ];
   const mockAvailableActions = ['add'];
   const mockClick = '1234';

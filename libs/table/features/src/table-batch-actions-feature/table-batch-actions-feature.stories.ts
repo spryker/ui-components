@@ -114,7 +114,7 @@ function getTotalStory(
         batchActions: {
           enabled: true, // This will enable feature via config
           noActionsMessage: 'No available actions for selected rows',
-          availableActionsPath: '_actionIds', // Array<ACTION_ID>
+          availableActionsPath: '_actionIds',
           rowIdPath: 'sku',
           actions: [
             {
@@ -122,7 +122,7 @@ function getTotalStory(
               title: 'Update Offer(s)',
               type: 'form-overlay',
               typeOptions: {
-                url: 'https://.../?ids=${rowIds}', // ids=[sku1,sku2,...]
+                url: 'https://.../?ids=${rowIds}',
                 method: 'GET',
               },
             },
@@ -131,7 +131,7 @@ function getTotalStory(
               title: 'Ship',
               type: 'html-overlay',
               typeOptions: {
-                url: 'https://.../?ids=${rowIds}', // ids=[sku1,sku2,...]
+                url: 'https://.../?ids=${rowIds}',
                 method: 'GET',
               },
             },

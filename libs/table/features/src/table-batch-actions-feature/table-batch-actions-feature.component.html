@@ -1,13 +1,25 @@
-<ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable">
+<div
+  class="spy-table-batch-actions-feature"
+  *spyTableFeatureTpl="
+    tableFeatureLocation.beforeTable;
+    styles: styles$ | async
+  "
+>
   <ng-container *ngIf="actions$ | async">
     <ng-container *ngIf="itemActions$ | async as itemActions">
       <ng-container *ngIf="shouldShowActions$ | async">
-        <spy-button
-          *ngFor="let item of itemActions.actions"
-          size="sm"
-          (click)="buttonClickHandler(item, itemActions)"
-          >{{ item.title }}</spy-button
-        >
+        <div class="spy-table-batch-actions-feature__grid">
+          <div
+            class="spy-table-batch-actions-feature__col"
+            *ngFor="let item of itemActions.actions"
+          >
+            <spy-button
+              size="sm"
+              (click)="buttonClickHandler(item, itemActions)"
+              >{{ item.title }}</spy-button
+            >
+          </div>
+        </div>
       </ng-container>
 
       <div
@@ -20,4 +32,4 @@
       </div>
     </ng-container>
   </ng-container>
-</ng-container>
+</div>

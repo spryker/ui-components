@@ -13,13 +13,14 @@ import {
   TableFeatureLocation,
 } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import {
   map,
   pluck,
   shareReplay,
   switchMap,
   withLatestFrom,
+  tap,
 } from 'rxjs/operators';
 
 import {
@@ -110,6 +111,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
     map(itemActions =>
       Boolean(itemActions.actions.length && itemActions.selectedRows.length),
     ),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
   noActionsMessage$ = this.itemActions$.pipe(
     withLatestFrom(this.config$),
@@ -119,6 +121,31 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
       );
 
       return shouldShowNotification ? config.noActionsMessage : false;
+    }),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+  styles$ = combineLatest([
+    this.shouldShowActions$,
+    this.noActionsMessage$,
+  ]).pipe(
+    map(([shouldShowActions, noActionsMessage]) => {
+      if (shouldShowActions) {
+        return {
+          order: 1,
+          padding: '0 20px',
+        };
+      }
+
+      if (noActionsMessage) {
+        return {
+          order: 1,
+          width: '100%',
+          paddingTop: '30px',
+          marginBottom: '-30px',
+        };
+      }
+
+      return { order: 1 };
     }),
   );
 
@@ -145,6 +172,14 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
       ],
       [],
     );
+
+    const isAllAvailableActionsUndefined = availableActionIds.every(
+      item => typeof item === 'undefined',
+    );
+
+    if (isAllAvailableActionsUndefined) {
+      return config.actions;
+    }
 
     return config.actions.reduce((actions: TableBatchAction[], action) => {
       const isAvailable = availableActionIds.every(item =>

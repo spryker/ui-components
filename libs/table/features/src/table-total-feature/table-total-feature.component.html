@@ -1,4 +1,6 @@
-<ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable">
+<ng-container
+  *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { order: '0' }"
+>
   <ng-container *ngIf="data$ | async | pluck: 'length'">
     <span *ngIf="isDataResolved$ | async" class="table-total-feature">
       <ng-container *ngIf="selected$ | async as selected">

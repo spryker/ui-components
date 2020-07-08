@@ -21,6 +21,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
+  availableActions: i % 2 === 0 ? ['add', 'edit', 'delete'] : undefined,
 });
 
 export const viaHtml = getRowActionsStory(
@@ -88,8 +89,12 @@ function getRowActionsStory(
           actions: [
             { id: '1234', title: '123' },
             { id: '2345', title: '234' },
+            { id: 'add', title: 'Add' },
+            { id: 'edit', title: 'Edit' },
+            { id: 'delete', title: 'Delete' },
           ],
           click: '1234',
+          availableActionsPath: 'availableActions',
         },
       },
       mockHttp: setMockHttp([

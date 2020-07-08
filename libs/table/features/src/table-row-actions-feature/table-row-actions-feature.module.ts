@@ -4,6 +4,7 @@ import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
 import { DropdownModule } from '@spryker/dropdown';
 import { IconActionModule } from '@spryker/icon/icons';
 import { IconModule } from '@spryker/icon';
+import { FilterAvailableActions } from './table-row-actions-feature.pipe';
 
 import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
 
@@ -16,7 +17,7 @@ import { TableRowActionsFeatureComponent } from './table-row-actions-feature.com
     TableFeatureModule,
   ],
   exports: [TableRowActionsFeatureComponent],
-  declarations: [TableRowActionsFeatureComponent],
+  declarations: [TableRowActionsFeatureComponent, FilterAvailableActions],
   entryComponents: [TableRowActionsFeatureComponent],
 })
 export class TableRowActionsFeatureModule implements ModuleWithFeature {

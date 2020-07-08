@@ -9,7 +9,6 @@ import {
   TableActionTriggeredEvent,
   TableColumnContext,
 } from '@spryker/table';
-import { ContextService } from '@spryker/utils';
 
 /**
  * Handles Form Overlay action triggered from the {@link TableComponent}
@@ -23,10 +22,7 @@ export class TableFormOverlayActionHandlerService
   drawerData$ = new ReplaySubject<TableFormOverlayOptions>(1);
   drawerRef?: DrawerRef;
 
-  constructor(
-    private drawerService: DrawerService,
-    private contextService: ContextService,
-  ) {}
+  constructor(private drawerService: DrawerService) {}
 
   /**
    * Opens the drawer with the ajax form component in it
@@ -36,18 +32,7 @@ export class TableFormOverlayActionHandlerService
     actionEvent: TableActionTriggeredEvent<TableFormOverlayAction>,
     injector: Injector,
   ): Observable<unknown> {
-    const actionEventItem = actionEvent.items[0];
-    const drawerData = { ...actionEvent.action.typeOptions };
-    const dataContext = {
-      row: actionEventItem,
-      i: 0,
-    } as TableColumnContext;
-
-    drawerData.url = this.contextService.interpolate(
-      drawerData.url,
-      dataContext as any,
-    );
-    this.drawerData$.next(drawerData);
+    this.drawerData$.next(actionEvent.action.typeOptions);
 
     if (!this.drawerRef) {
       this.drawerRef = this.drawerService.openComponent(

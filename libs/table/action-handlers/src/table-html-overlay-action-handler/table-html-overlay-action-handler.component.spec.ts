@@ -4,6 +4,7 @@ import {
   fakeAsync,
   TestBed,
   async,
+  tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TableHtmlOverlayActionHandlerModule } from './table-html-overlay-action-handler.module';
@@ -23,6 +24,9 @@ const mockHtmlTemplate = `
   <input type="text" name="name" id="name">
   <button type="submit">Submit</button>
 `;
+const mockedResponse = {
+  html: mockHtmlTemplate,
+};
 
 @Component({
   selector: 'spy-test',
@@ -87,4 +91,40 @@ describe('TableHtmlOverlayActionHandlerComponent', () => {
 
     expect(htmlResponse.request.method).toBe('GET');
   });
+
+  it('component should NOT render spy-html-renderer if response doesn`t have html property', fakeAsync(() => {
+    component.action = mockUrl;
+    fixture.detectChanges();
+
+    const htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    htmlResponse.flush({});
+
+    tick();
+    fixture.detectChanges();
+
+    const staticHtmlElem = fixture.debugElement.query(
+      By.css('spy-html-renderer'),
+    );
+
+    expect(staticHtmlElem).toBeFalsy();
+  }));
+
+  it('component should render spy-html-renderer if response doesn`t have html property', fakeAsync(() => {
+    component.action = mockUrl;
+    fixture.detectChanges();
+
+    const htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    htmlResponse.flush(mockedResponse);
+
+    tick();
+    fixture.detectChanges();
+
+    const staticHtmlElem = fixture.debugElement.query(
+      By.css('spy-html-renderer'),
+    );
+
+    expect(staticHtmlElem.nativeElement.innerHTML).toBe(mockedResponse.html);
+  }));
 });

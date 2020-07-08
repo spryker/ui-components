@@ -7,5 +7,5 @@ export interface TableRowActionBase extends TableActionBase {
 
 export interface TableRowActionContext {
   row: TableDataRow;
-  rowId?: string; // Picked by TableRowActionsConfig['rowIdPath']
+  rowId?: string /** Picked by TableRowActionsConfig['rowIdPath'] */;
 }

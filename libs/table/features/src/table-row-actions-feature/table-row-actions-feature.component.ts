@@ -159,35 +159,34 @@ export class TableRowActionsFeatureComponent
   }
 
   triggerEvent(action: TableActionTriggeredEvent): void {
-    const rawAction = { ...action };
-    const actionEventItem = rawAction.items[0];
-    const dataContext: TableRowActionContext = {
-      row: actionEventItem,
+    const rawAction = { ...action.action.typeOptions };
+    const actionItem = action.items[0];
+    const actionContext: TableRowActionContext = {
+      row: actionItem,
       rowId: this.config?.rowIdPath
-        ? String(actionEventItem[this.config.rowIdPath])
+        ? String(actionItem[this.config.rowIdPath])
         : '',
     };
 
-    const rawActionOptions = rawAction.action.typeOptions as Record<
-      string,
-      unknown
-    >;
+    const actionOptions = rawAction as Record<string, unknown>;
 
-    for (const option in rawActionOptions) {
+    for (const option in actionOptions) {
       if (!option) {
         continue;
       }
-      const optionItem = rawActionOptions[option];
+      const optionItem = actionOptions[option];
       if (typeof optionItem !== 'string') {
         continue;
       }
 
-      rawActionOptions[option] = this.contextService.interpolate(
+      actionOptions[option] = this.contextService.interpolate(
         optionItem,
-        dataContext as any,
+        actionContext as any,
       );
     }
 
-    this.tableActionsService.trigger(rawAction);
+    action.action.typeOptions = actionOptions;
+
+    this.tableActionsService.trigger(action);
   }
 }

@@ -2,8 +2,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DropdownItem } from '@spryker/dropdown';
 import { ContextService } from '@spryker/utils';
 
+/**
+ * Filter list of items by list of allowed actions
+ */
 @Pipe({ name: 'filterAvailableActions' })
-export class FilterAvailableActions implements PipeTransform {
+export class FilterAvailableActionsPipe implements PipeTransform {
   constructor(private contextService: ContextService) {}
 
   transform(

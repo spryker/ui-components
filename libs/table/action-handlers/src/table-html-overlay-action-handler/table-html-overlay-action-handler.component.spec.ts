@@ -127,4 +127,24 @@ describe('TableHtmlOverlayActionHandlerComponent', () => {
 
     expect(staticHtmlElem.nativeElement.innerHTML).toBe(mockedResponse.html);
   }));
+
+  it('component should render loading state nz-spin while request is in progress', fakeAsync(() => {
+    component.action = mockUrl;
+    fixture.detectChanges();
+
+    let nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+
+    expect(nzSpinElem).toBeTruthy();
+
+    const htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    htmlResponse.flush(mockedResponse);
+
+    tick();
+    fixture.detectChanges();
+
+    nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+
+    expect(nzSpinElem).toBeFalsy();
+  }));
 });

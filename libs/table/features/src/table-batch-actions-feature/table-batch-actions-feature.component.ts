@@ -59,6 +59,13 @@ export interface TableItemActions {
   selectedRows: SelectedRows[];
 }
 
+/**
+ * Component hooks into the Table Selectable Feature and renders Bulk Action Buttons for selected rows based on the Table Configuration.
+ *
+ * Once the Bulk Action Button is clicked - action is pre-processed via {@link ContextService} and handled via {@link TableActionService}.
+ *
+ * When there are no relevant actions available for selected rows - an inline notification via must be shown with appropriate message from the Table Configuration.
+ */
 @Component({
   selector: 'spy-table-batch-actions-feature',
   templateUrl: './table-batch-actions-feature.component.html',
@@ -190,6 +197,9 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
     }, []);
   }
 
+  /**
+   * Prepares Event Object {@link TableActionTriggeredEvent<TableBatchAction>} and triggers this object via {@link TableActionsService.trigger()} API.
+   */
   buttonClickHandler(action: TableBatchAction, batchAction: TableItemActions) {
     const batchTypeOptions: Record<string, unknown> = { ...action.typeOptions };
     const rowIds = batchAction.selectedRows.reduce(

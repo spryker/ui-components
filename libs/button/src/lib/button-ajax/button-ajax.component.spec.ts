@@ -2,15 +2,12 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
-import { ButtonAjaxMethod } from '../button-core-inputs/types';
-
+import { ButtonAjaxMethod } from '../button-ajax/button-ajax.component';
 import { ButtonAjaxComponent } from './button-ajax.component';
-import { StaticHtmlRendererModule } from '@spryker/html-renderer';
 import {
   HttpTestingController,
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
-import { AjaxFormModule } from '@spryker/ajax-form';
 import { NotificationModule } from '@spryker/notification';
 
 // tslint:disable: no-non-null-assertion
@@ -30,9 +27,7 @@ describe('ButtonComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         testModule,
-        StaticHtmlRendererModule,
         HttpClientTestingModule,
-        AjaxFormModule,
         NotificationModule.forRoot(),
       ],
     }),
@@ -65,35 +60,12 @@ describe('ButtonComponent', () => {
     expect(buttonElem.nativeElement.textContent).toMatch('Content');
   });
 
-  it('should add appropriate @ButtonAjaxMethod(method) to the `<spy-button-ajax>`', async () => {
-    const host = await createComponent(
-      {
-        method: ButtonAjaxMethod.Post,
-      },
-      true,
-    );
-
-    const buttonElem = host.queryCss('spy-button')!;
-    expect(buttonElem.properties.method).toBe(ButtonAjaxMethod.Post);
-  });
-
-  it('should add appropriate `url` attribute to the `<spy-button-ajax>`', async () => {
-    const host = await createComponent(
-      {
-        url: '/custom-path',
-      },
-      true,
-    );
-
-    const buttonElem = host.queryCss('spy-button')!;
-    expect(buttonElem.properties.url).toBe('/custom-path');
-  });
-
   it('should send request by selected method', async () => {
+    const mockPath = '/custom-path';
     const host = await createComponent(
       {
         method: ButtonAjaxMethod.Get,
-        url: '/custom-path',
+        url: mockPath,
       },
       true,
     );
@@ -101,7 +73,7 @@ describe('ButtonComponent', () => {
     const buttonElem = host.queryCss('spy-button')!;
     buttonElem.triggerEventHandler('click', onclick);
 
-    const htmlResponse = httpTestingController.expectOne('/custom-path');
+    const htmlResponse = httpTestingController.expectOne(mockPath);
     expect(htmlResponse.request.method).toBe(ButtonAjaxMethod.Get);
   });
 });

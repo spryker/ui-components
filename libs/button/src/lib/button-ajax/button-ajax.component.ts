@@ -5,6 +5,7 @@ import {
   Injector,
   OnInit,
   OnDestroy,
+  Input,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AjaxActionService } from '@spryker/ajax-action';
@@ -19,6 +20,11 @@ import {
   takeUntil,
 } from 'rxjs/operators';
 
+export enum ButtonAjaxMethod {
+  Get = 'GET',
+  Post = 'POST',
+}
+
 @Component({
   selector: 'spy-button-ajax',
   templateUrl: './button-ajax.component.html',
@@ -28,6 +34,9 @@ import {
 })
 export class ButtonAjaxComponent extends ButtonCoreInputs
   implements OnInit, OnDestroy {
+  @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
+  @Input() url = '';
+
   click$ = new Subject<void>();
   request$ = this.click$.pipe(
     switchMap(() =>
@@ -52,17 +61,17 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
     super();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.request$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(response => this.responseHandler(response));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroyed$.next();
   }
 
-  click() {
+  click(): void {
     this.click$.next();
   }
 

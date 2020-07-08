@@ -15,7 +15,6 @@ import {
   ButtonShape,
   ButtonSize,
   ButtonVariant,
-  ButtonAjaxMethod,
 } from './types';
 
 export const buttonClassName = 'spy-button-core';
@@ -25,8 +24,6 @@ export class ButtonCoreInputs {
   @Input() shape: ButtonShape = ButtonShape.Default;
   @Input() size: ButtonSize = ButtonSize.Medium;
   @Input() variant: ButtonVariant = ButtonVariant.Primary;
-  @Input() method?: ButtonAjaxMethod = ButtonAjaxMethod.Get;
-  @Input() url? = '';
   @Input() @ToJson() attrs?: ButtonAttributes;
 }
 

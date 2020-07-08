@@ -69,7 +69,7 @@ describe('TableRowActionsFeatureComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [DefaultContextSerializationModule],
       declarations: [
         TestTableFeatureTplDirective,
         TableRowActionsFeatureComponent,

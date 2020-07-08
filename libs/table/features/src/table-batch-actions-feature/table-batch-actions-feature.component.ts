@@ -236,6 +236,6 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
       items: batchAction.selectedRows,
     };
 
-    // this.tableActionService.trigger(batchData);
+    this.tableActionService.trigger(batchEvent);
   }
 }

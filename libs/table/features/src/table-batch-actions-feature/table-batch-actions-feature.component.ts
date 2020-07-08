@@ -13,19 +13,18 @@ import {
   TableFeatureLocation,
 } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
-import { Observable, combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import {
   map,
   pluck,
   shareReplay,
   switchMap,
   withLatestFrom,
-  tap,
 } from 'rxjs/operators';
 
 import {
-  TableSelectionRow,
   TableSelectionChangeEvent,
+  TableSelectionRow,
 } from '../table-selectable-feature';
 
 declare module '@spryker/table' {
@@ -168,33 +167,25 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
     selectedRows: TableSelectionRow[],
     config: TableBatchActionsConfig,
   ): TableBatchAction[] {
-    const availableActionIds = selectedRows.reduce(
-      (ids: string[], row) => [
-        ...ids,
-        this.contextService.interpolateExpression(
-          // tslint:disable-next-line: no-non-null-assertion
-          config.availableActionsPath!,
-          row.data as any,
-        ) as string,
-      ],
-      [],
-    );
+    const availableActionIds = selectedRows.reduce((ids: string[][], row) => {
+      const availableActions = this.contextService.interpolateExpression(
+        // tslint:disable-next-line: no-non-null-assertion
+        config.availableActionsPath!,
+        row.data as any,
+      );
 
-    const isAllAvailableActionsUndefined = availableActionIds.every(
-      item => typeof item === 'undefined',
-    );
+      return !Array.isArray(availableActions)
+        ? ids
+        : [...ids, availableActions];
+    }, []);
 
-    if (isAllAvailableActionsUndefined) {
+    if (!availableActionIds.length) {
       return config.actions;
     }
 
-    return config.actions.reduce((actions: TableBatchAction[], action) => {
-      const isAvailable = availableActionIds.every(item =>
-        item.includes(action.id),
-      );
-
-      return isAvailable ? [...actions, action] : actions;
-    }, []);
+    return config.actions.filter(action =>
+      availableActionIds.every(item => item.includes(action.id)),
+    );
   }
 
   /**

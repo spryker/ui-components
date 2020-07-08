@@ -24,10 +24,39 @@ export default {
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
   sku: `sku#${i}`,
-  col2: 'col2',
-  col3: 'col3',
-  _actionIds: i % 2 === 0 ? ['update-offer'] : ['ship'],
+  col2: availableActionsTitle(i),
+  _actionIds: availableActions(i),
 });
+
+const availableActions = (index: number): string[] | undefined => {
+  switch (index) {
+    case 1:
+      return ['update-offer'];
+    case 2:
+      return ['ship'];
+    case 3:
+      return [];
+    case 4:
+      return undefined;
+    default:
+      return ['update-offer', 'ship'];
+  }
+};
+
+const availableActionsTitle = (index: number): string => {
+  switch (index) {
+    case 1:
+      return 'update-offer';
+    case 2:
+      return 'ship';
+    case 3:
+      return 'none';
+    case 4:
+      return 'undefined = both';
+    default:
+      return 'both';
+  }
+};
 
 export const viaHtml = getTotalStory(
   `
@@ -102,8 +131,7 @@ function getTotalStory(
         },
         columns: [
           { id: 'sku', title: 'SKU' },
-          { id: 'col2', title: 'Column #2' },
-          { id: 'col3', title: 'Column #3' },
+          { id: 'col2', title: 'Available Actions' },
         ],
         itemSelection: {
           enabled: true, // This will enable feature via config

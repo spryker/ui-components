@@ -102,7 +102,7 @@ describe('TableSyncStateFeatureComponent', () => {
   it('If dataConfiguratorService config was updated, save merhod of urlPersistanceStrategy has to be called', fakeAsync(() => {
     const dataConfiguratorService = new MockTableDataConfiguratorService();
     const mockedConfig = { page: 1 };
-    const mockedValue = 'table-state';
+    const mockedValue = 'mockTableId';
 
     testTableFeature.feature!.setDataConfiguratorService(
       dataConfiguratorService,
@@ -121,7 +121,7 @@ describe('TableSyncStateFeatureComponent', () => {
   it('If retrieve merhod of urlPersistanceStrategy was called, dataConfiguratorService reset method has to be called', fakeAsync(() => {
     const dataConfiguratorService = new MockTableDataConfiguratorService();
     const mockedValue = '123';
-    const mockedKey = 'table-state';
+    const mockedKey = 'mockTableId';
 
     testTableFeature.feature!.setDataConfiguratorService(
       dataConfiguratorService,

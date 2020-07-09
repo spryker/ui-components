@@ -85,6 +85,8 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
 })
 export class CoreTableComponent
   implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy {
+  static count = 0;
+
   @Input() @ToJson() config?: TableConfig;
   @Input() tableId?: string;
   /**
@@ -243,6 +245,19 @@ export class CoreTableComponent
 
   private destroyed$ = new Subject<void>();
 
+  private setTableId$ = new ReplaySubject<string>();
+  tableId$ = this.setTableId$.pipe(
+    startWith(undefined),
+    map(tableId => {
+      if (!tableId) {
+        tableId = `tableId-${CoreTableComponent.count++}`;
+      }
+
+      return tableId;
+    }),
+    shareReplay({ bufferSize: 1, refCount: false }),
+  );
+
   private featuresDiffer = this.iterableDiffers
     .find([])
     .create<TableFeatureComponent>();
@@ -283,6 +298,10 @@ export class CoreTableComponent
       this.config = this.configService.normalize(this.config);
       this.setConfig$.next(this.config);
     }
+
+    if (changes.tableId) {
+      this.setTableId$.next(this.tableId);
+    }
   }
 
   ngAfterContentInit(): void {
@@ -312,10 +331,6 @@ export class CoreTableComponent
   setRowClasses(rowIdx: string, classes: Record<string, boolean>): void {
     this.rowClasses[rowIdx] = classes;
     this.cdr.markForCheck();
-  }
-
-  getTableId(): string | undefined {
-    return this.tableId;
   }
 
   /** @internal */

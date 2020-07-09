@@ -4,6 +4,8 @@ import {
   ViewEncapsulation,
   TemplateRef,
   Input,
+  OnInit,
+  ElementRef,
 } from '@angular/core';
 
 @Component({
@@ -13,9 +15,15 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   @Input() title: string | TemplateRef<void> = '';
   @Input() extra: TemplateRef<void> | undefined;
   @Input() actions: TemplateRef<void>[] | undefined[] = [];
   @Input() titlePosition: 'left' | 'center' | 'right' = 'left';
+
+  constructor(private elemRef: ElementRef) {}
+
+  ngOnInit(): void {
+    console.log('CardComponent#ngOnInit', this.elemRef.nativeElement);
+  }
 }

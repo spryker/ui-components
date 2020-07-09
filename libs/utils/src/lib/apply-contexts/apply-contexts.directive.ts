@@ -1,111 +1,94 @@
 import {
   Directive,
+  ElementRef,
+  Input,
   OnChanges,
   OnDestroy,
-  Input,
-  ElementRef,
+  OnInit,
+  Optional,
   Renderer2,
   SimpleChanges,
+  SkipSelf,
 } from '@angular/core';
+import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { map, pairwise, share, startWith, takeUntil } from 'rxjs/operators';
 
-export const CONTEXTS_PREFIX = 'ctx-';
-export const HOST_CONTEXTS_PREFIX = 'host-';
-export const FULL_CONTEXTS_PREFIX = `${HOST_CONTEXTS_PREFIX}${CONTEXTS_PREFIX}`;
+import { ApplyContextsOptions } from './apply-contexts-options';
 
-export interface ContextsObserverData {
-  contexts: string[];
-  node: HTMLElement;
-  directive: ApplyContextsDirective;
-}
-
-export type ContextsObserver = (data: ContextsObserverData) => void;
-
-export type ContextsObserveEvent = CustomEvent<ContextsObserver>;
-
-export const APPLY_CONTEXTS_OBSERVE_EVENT = 'apply-contexts-observe';
-
-export type ContextsUnobserveEvent = CustomEvent<ContextsObserver>;
-
-export const APPLY_CONTEXTS_UNOBSERVE_EVENT = 'apply-contexts-unobserve';
-
-@Directive({ selector: '[spyApplyContexts]' })
-export class ApplyContextsDirective implements OnChanges, OnDestroy {
+@Directive({
+  selector: '[spyApplyContexts]',
+})
+export class ApplyContextsDirective implements OnInit, OnChanges, OnDestroy {
   @Input() spyApplyContexts?: string | string[];
 
-  private contextData?: ContextsObserverData;
-  private observers = new Set<ContextsObserver>();
-  private disposables: (() => void)[] = [];
+  private destroyed$ = new Subject<void>();
+
+  private setContexts$ = new ReplaySubject<string[]>(1);
+
+  private selfContexts$ = this.setContexts$.pipe(startWith([]));
+  private hostContexts$ = this.parent?.contexts$ ?? of([]);
+
+  contexts$: Observable<string[]> = combineLatest([
+    this.hostContexts$,
+    this.selfContexts$,
+  ]).pipe(
+    map(([parentContexts, contexts]) => [...parentContexts, ...contexts]),
+    share(),
+  );
 
   constructor(
-    private elemRef: ElementRef<HTMLElement>,
+    private elemRef: ElementRef,
     private renderer: Renderer2,
-  ) {
-    this.disposables.push(
-      this.renderer.listen(
-        this.elemRef.nativeElement,
-        APPLY_CONTEXTS_OBSERVE_EVENT,
-        (event: ContextsObserveEvent) => {
-          this.observers.add(event.detail);
-          this.maybeNotifyObserver(event.detail);
-        },
-      ),
-    );
+    private options: ApplyContextsOptions,
+    @Optional()
+    @SkipSelf()
+    private parent?: ApplyContextsDirective,
+  ) {}
 
-    this.disposables.push(
-      this.renderer.listen(
-        this.elemRef.nativeElement,
-        APPLY_CONTEXTS_UNOBSERVE_EVENT,
-        (event: ContextsUnobserveEvent) =>
-          void this.observers.delete(event.detail),
-      ),
-    );
+  ngOnInit(): void {
+    this.selfContexts$
+      .pipe(pairwise(), takeUntil(this.destroyed$))
+      .subscribe(([prevContexts, contexts]) =>
+        this.applyContexts(contexts, prevContexts),
+      );
+
+    this.hostContexts$
+      .pipe(pairwise(), takeUntil(this.destroyed$))
+      .subscribe(([prevContexts, contexts]) =>
+        this.applyContexts(
+          this.contextsForHost(contexts),
+          this.contextsForHost(prevContexts),
+        ),
+      );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.spyApplyContexts) {
-      this.applyContexts(changes.spyApplyContexts.previousValue);
+    if ('spyApplyContexts' in changes) {
+      this.setContexts$.next(this.normalizeContexts(this.spyApplyContexts));
     }
   }
 
   ngOnDestroy(): void {
-    this.disposables.forEach(dispose => dispose());
-    this.disposables = [];
-    this.observers.clear();
+    this.destroyed$.next();
   }
 
-  private applyContexts(
-    prevContext?: ApplyContextsDirective['spyApplyContexts'],
-  ) {
-    if (prevContext) {
-      this.normalizeContexts(prevContext).forEach(ctx =>
-        this.renderer.removeClass(this.elemRef.nativeElement, ctx),
-      );
-    }
-
-    const ctxs = this.normalizeContexts(this.spyApplyContexts);
-
-    ctxs.forEach(ctx =>
-      this.renderer.addClass(this.elemRef.nativeElement, ctx),
+  private applyContexts(contexts: string[], prevContexts?: string[]) {
+    prevContexts?.forEach(ctx =>
+      this.renderer.removeClass(this.elemRef.nativeElement, ctx),
     );
 
-    this.contextData = {
-      contexts: ctxs,
-      node: this.elemRef.nativeElement,
-      directive: this,
-    };
+    contexts.forEach(ctx =>
+      this.renderer.addClass(this.elemRef.nativeElement, ctx),
+    );
+  }
 
-    this.observers.forEach(observer => this.maybeNotifyObserver(observer));
+  private contextsForHost(contexts: string[]) {
+    return contexts.map(ctx => `${this.options.contextHostPrefix}${ctx}`);
   }
 
   private normalizeContexts(ctxs: ApplyContextsDirective['spyApplyContexts']) {
     return (Array.isArray(ctxs) ? ctxs : ctxs ? [ctxs] : []).map(
-      ctx => `${CONTEXTS_PREFIX}${ctx}`,
+      ctx => `${this.options.contextPrefix}${ctx}`,
     );
-  }
-
-  private maybeNotifyObserver(observer: ContextsObserver) {
-    if (this.contextData) {
-      observer(this.contextData);
-    }
   }
 }

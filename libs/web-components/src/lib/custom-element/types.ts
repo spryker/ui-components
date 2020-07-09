@@ -7,6 +7,7 @@ export interface WebComponentType<T = any> extends Type<T> {
 interface WebComponentDeclarationBase {
   selector?: string;
   exposeAllMethod?: true;
+  isRoot?: true;
 }
 
 export interface WebComponentDeclarationStatic<T extends WebComponentType>

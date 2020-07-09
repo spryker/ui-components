@@ -9,5 +9,8 @@
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@angular/elements": "^9.0.0"
+  },
+  "dependencies": {
+    "ngx-element-boundary": "^1.0.0"
   }
 }

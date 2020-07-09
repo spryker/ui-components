@@ -1,5 +1,7 @@
 import { Injector } from '@angular/core';
 import { createCustomElement, NgElementConstructor } from '@angular/elements';
+import { CrossBoundaryNgElementStrategyFactory } from 'ngx-element-boundary';
+import { DefaultElementBoundaryNgElementStrategyFactory } from 'ngx-element-boundary/element-strategy/default';
 
 import { NgWebComponent } from '../ng-web-component';
 import { getElementMethodsOf } from './custom-element-method';
@@ -30,7 +32,21 @@ export function createCustomElementForStatic<T>(
   injector: Injector,
 ): NgWebComponent<T> {
   const componentType = componentDeclaration.component;
-  const NgElement = createCustomElement(componentType, { injector });
+
+  const defaultStrategyFactory = new DefaultElementBoundaryNgElementStrategyFactory(
+    componentType,
+    injector,
+  );
+
+  const strategyFactory = new CrossBoundaryNgElementStrategyFactory(
+    defaultStrategyFactory,
+    { isRoot: componentDeclaration.isRoot },
+  );
+
+  const NgElement = createCustomElement(componentType, {
+    injector,
+    strategyFactory,
+  });
   const elemMethods = getComponentMethods(componentDeclaration);
 
   class WebComponent extends (NgElement as any) implements NgWebComponent<any> {

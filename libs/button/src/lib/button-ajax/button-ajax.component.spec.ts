@@ -9,6 +9,12 @@ import {
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
 import { NotificationModule } from '@spryker/notification';
+import {
+  buttonClassName,
+  ButtonShape,
+  ButtonSize,
+  ButtonVariant,
+} from '@spryker/button';
 
 // tslint:disable: no-non-null-assertion
 
@@ -71,9 +77,26 @@ describe('ButtonComponent', () => {
     );
     host.detectChanges();
     const buttonElem = host.queryCss('spy-button')!;
-    buttonElem.triggerEventHandler('click', onclick);
+    buttonElem.triggerEventHandler('click', null);
 
     const htmlResponse = httpTestingController.expectOne(mockPath);
     expect(htmlResponse.request.method).toBe(ButtonAjaxMethod.Get);
+    expect(htmlResponse.request.url).toBe(mockPath);
+  });
+
+  it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the `<button>`', async () => {
+    const host = await createComponent(
+      {
+        variant: ButtonVariant.Critical,
+        shape: ButtonShape.Circle,
+        size: ButtonSize.Large,
+      },
+      true,
+    );
+    const buttonElem = host.queryCss('spy-button')!;
+
+    expect(buttonElem.properties.variant).toBe(ButtonVariant.Critical);
+    expect(buttonElem.properties.size).toBe(ButtonSize.Large);
+    expect(buttonElem.properties.shape).toBe(ButtonShape.Circle);
   });
 });

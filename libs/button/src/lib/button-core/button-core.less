@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  height: @btn-height-base;
+  line-height: @btn-line-height-base;
   padding: @btn-vertical-padding-base @btn-horizontal-padding-base;
   box-shadow: @btn-shadow-default-size transparent;
   font: @font-weight-medium @font-size-base @font-family;
@@ -15,6 +15,9 @@
   color: @btn-primary-color;
   cursor: pointer;
   position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &::after {
     .transition-mixin(box-shadow);
@@ -127,18 +130,37 @@
 
   &--lg {
     min-width: @btn-min-width-lg;
-    height: @btn-height-lg;
-    padding: @btn-vertical-padding-lg @btn-horizontal-padding-base;
-  }
+    line-height: @btn-line-height-lg;
+    padding: 0 25px;
 
-  &--sm {
-    min-width: @btn-min-width-sm;
-    padding: @btn-vertical-padding-sm @btn-horizontal-padding-base;
-    height: @btn-height-sm;
+    &.loading {
+      padding: 0 18px 0 32px;
+    }
   }
 
   &--md {
-    min-width: @btn-min-width-base;
+    min-width: @btn-min-width-md;
+    line-height: @btn-line-height-md;
+    padding: 0 20px;
+
+    &.loading {
+      padding: 0 4px 0 36px;
+    }
+  }
+
+  &--xs,
+  &--sm {
+    min-width: @btn-min-width-sm;
+    line-height: @btn-line-height-sm;
+    padding: 0 20px;
+
+    &.loading {
+      padding: 0 10px 0 30px;
+    }
+  }
+
+  &--xs {
+    line-height: @btn-line-height-xs;
   }
 
   &--circle {
@@ -154,5 +176,19 @@
     color: @disabled-color;
     background: @disabled-bg;
     pointer-events: none;
+  }
+
+  .@{spin-prefix-cls} {
+    color: currentColor;
+
+    &-nested-loading {
+      position: absolute;
+      left: 17px;
+      height: 100%;
+    }
+
+    &-dot-item {
+      background: currentColor;
+    }
   }
 }

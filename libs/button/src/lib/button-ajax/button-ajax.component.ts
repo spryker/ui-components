@@ -9,11 +9,11 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AjaxActionService } from '@spryker/ajax-action';
-import { ButtonCoreInputs } from '../button-core-inputs/button-core-inputs';
-import { AjaxFormResponse } from '@spryker/ajax-form';
+import { ButtonCoreInputs } from '../button-core/button-core';
 import { merge, of, Subject } from 'rxjs';
 import {
   catchError,
+  filter,
   mapTo,
   shareReplay,
   switchMap,
@@ -35,20 +35,22 @@ export enum ButtonAjaxMethod {
 export class ButtonAjaxComponent extends ButtonCoreInputs
   implements OnInit, OnDestroy {
   @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
-  @Input() url = '';
+  @Input() url?: string;
 
-  click$ = new Subject<void>();
-  request$ = this.click$.pipe(
+  private click$ = new Subject<void>();
+  private request$ = this.click$.pipe(
+    // tslint:disable: no-non-null-assertion
+    filter(() => Boolean(this.url)),
     switchMap(() =>
       this.http
-        .request(String(this.method), String(this.url))
+        .request(this.method, this.url!)
         .pipe(catchError(response => of(response))),
     ),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
-  destroyed$ = new Subject<void>();
+  private destroyed$ = new Subject<void>();
 
-  isLoading$ = merge(
+  private isLoading$ = merge(
     this.click$.pipe(mapTo(true)),
     this.request$.pipe(mapTo(false)),
   );
@@ -64,7 +66,9 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
   ngOnInit(): void {
     this.request$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(response => this.responseHandler(response));
+      .subscribe(response =>
+        this.ajaxActionService.handle(response, this.injector),
+      );
   }
 
   ngOnDestroy(): void {
@@ -73,9 +77,5 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
 
   click(): void {
     this.click$.next();
-  }
-
-  private responseHandler(response: AjaxFormResponse): void {
-    this.ajaxActionService.handle(response, this.injector);
   }
 }

@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 
-import { ButtonCore } from '../button-core-inputs/button-core-inputs';
+import { ButtonCore } from '../button-core/button-core';
 
 export enum ButtonType {
   Button = 'button',
@@ -23,6 +23,7 @@ export enum ButtonType {
 export class ButtonComponent extends ButtonCore {
   @Input() type: ButtonType = ButtonType.Button;
   @Input() @ToBoolean() disabled = false;
+  @Input() loading?: Boolean;
 
   buttonClassName = 'spy-button';
 

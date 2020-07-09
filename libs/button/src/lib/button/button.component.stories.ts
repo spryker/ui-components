@@ -24,7 +24,11 @@ export const primary = () => ({
       { Primary: 'primary', Secondary: 'secondary', Critical: 'critical' },
       'primary',
     ),
-    size: select('Size', { Large: 'lg', Medium: 'md', Small: 'sm' }, 'lg'),
+    size: select(
+      'Size',
+      { Large: 'lg', Medium: 'md', Small: 'sm', ExtraSmall: 'xs' },
+      'lg',
+    ),
     shape: select(
       'Shape',
       { Default: 'default', Round: 'round', Circle: 'circle' },

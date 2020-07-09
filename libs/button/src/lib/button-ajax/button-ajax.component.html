@@ -4,7 +4,7 @@
   [size]="size"
   [variant]="variant"
   (click)="click()"
+  [loading]="isLoading$ | async"
 >
   <ng-content></ng-content>
-  <span *ngIf="isLoading$ | async">Loading</span>
 </spy-button>

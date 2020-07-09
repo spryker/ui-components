@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { ButtonCore } from '../button-core-inputs/button-core-inputs';
+import { ButtonCore } from '../button-core/button-core';
 
 @Component({
   selector: 'spy-button-link',

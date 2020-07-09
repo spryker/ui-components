@@ -3,7 +3,9 @@
   role="button"
   [disabled]="disabled"
   [spyApplyAttrs]="attrs"
+  [class.loading]="loading"
   #buttonRef
 >
+  <nz-spin *ngIf="loading" [nzSize]="'small'"></nz-spin>
   <ng-content></ng-content>
 </button>

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.76](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.75...@spryker/styles@0.1.0-next.76) (2020-07-09)
+
+
+### Features
+
+* **html-overlay:** added loading state ([5af1040](https://github.com/spryker/ui-components/commit/5af10405efdb125c9b627e13c3e6f5b6648609da))
+
+
+
+
+
 # [0.1.0-next.75](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.74...@spryker/styles@0.1.0-next.75) (2020-07-06)
 
 **Note:** Version bump only for package @spryker/styles

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.61](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.60...@spryker/table@0.1.0-next.61) (2020-07-09)
+
+
+### Features
+
+* **html-overlay:** added action handler for table ([b03b1e8](https://github.com/spryker/ui-components/commit/b03b1e8cb031c0d8c4390772a5697733a68bf1f1))
+* **html-overlay:** added loading state ([5af1040](https://github.com/spryker/ui-components/commit/5af10405efdb125c9b627e13c3e6f5b6648609da))
+* **html-overlay:** added unit-tests ([c5bf200](https://github.com/spryker/ui-components/commit/c5bf200bc3cb4d7b7710a11a303de58728345f73))
+* **html-overlay:** changed behavior ([7dcee12](https://github.com/spryker/ui-components/commit/7dcee12efb7578d8eb6ce378dd7a0fe718706072))
+* **html-overlay:** fixed markup ([f378688](https://github.com/spryker/ui-components/commit/f3786883a65b11cb6ef8c89a02f235b4255363aa))
+* **html-overlay:** removed code ([5c59c03](https://github.com/spryker/ui-components/commit/5c59c0308c9a995e3abb92c2dcdccb2a03f9ec6a))
+
+
+
+
+
 # [0.1.0-next.60](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.59...@spryker/table@0.1.0-next.60) (2020-07-01)
 
 **Note:** Version bump only for package @spryker/table

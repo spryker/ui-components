@@ -41,7 +41,7 @@ export class TableHtmlOverlayActionHandlerComponent {
         .pipe(catchError(response => of(response))),
     ),
     tap(response => this.ajaxActionService.handle(response, this.injector)),
-    shareReplay({ bufferSize: 1, refCount: false }),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   html$ = this.request$?.pipe(map(response => response.html));

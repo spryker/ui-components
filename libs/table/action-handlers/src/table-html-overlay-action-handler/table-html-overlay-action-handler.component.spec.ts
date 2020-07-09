@@ -110,7 +110,7 @@ describe('TableHtmlOverlayActionHandlerComponent', () => {
     expect(staticHtmlElem).toBeFalsy();
   }));
 
-  it('component should render spy-html-renderer if response doesn`t have html property', fakeAsync(() => {
+  it('component should render spy-html-renderer if response has html property', fakeAsync(() => {
     component.action = mockUrl;
     fixture.detectChanges();
 

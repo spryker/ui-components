@@ -28,7 +28,7 @@ export class TableHtmlOverlayActionHandlerService
   ) {}
 
   /**
-   * Opens the drawer with the html renderer component in it
+   * Opens the drawer with the {@link TableHtmlOverlayActionHandlerComponent} in it
    * and also reuse that opened drawer for next action triggers
    */
   handleAction(
@@ -42,7 +42,7 @@ export class TableHtmlOverlayActionHandlerService
       this.drawerRef = this.drawerService.openComponent(
         TableHtmlOverlayActionHandlerComponent,
         {
-          data: of(drawerData) as TableHtmlOverlayDrawerRefData,
+          data: this.drawerData$,
           injector,
         },
       );

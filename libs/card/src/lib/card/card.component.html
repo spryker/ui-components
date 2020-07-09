@@ -5,5 +5,7 @@
   [nzBordered]="false"
   [ngClass]="['head-title-position-' + titlePosition, 'ctx-spy-bg-white']"
 >
-  <ng-content></ng-content>
+  <span spyCustomElementBoundary>
+    <ng-content></ng-content>
+  </span>
 </nz-card>

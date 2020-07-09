@@ -9,7 +9,9 @@
   nzTheme="light"
   ngClass="ctx-spy-bg-white"
 >
-  <ng-content></ng-content>
+  <span spyCustomElementBoundary>
+    <ng-content></ng-content>
+  </span>
 </nz-sider>
 <ng-template #triggerButton>
   <div class="ant-layout-sider-trigger-inner">

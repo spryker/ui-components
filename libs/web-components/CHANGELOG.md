@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-next.3...@spryker/web-components@0.2.0-fix-web-components.0) (2020-07-10)
+
+
+### Bug Fixes
+
+* **libs:** mark content projection boundaries in some component ([4844e58](https://github.com/spryker/ui-components/commit/4844e58776f0c2e5a7ea956276ae610155a4250d))
+* **web-components:** allow to inherit injectors for custom elements ([4b5f637](https://github.com/spryker/ui-components/commit/4b5f6374a476c44acf3f0b6ecae312ecbd54ee00))
+
+
+
+
+
 # 0.2.0-next.3 (2020-06-22)
 
 

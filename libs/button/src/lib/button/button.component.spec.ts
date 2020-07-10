@@ -2,12 +2,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
-import { buttonClassName } from '../button-core-inputs/button-core-inputs';
-import {
-  ButtonShape,
-  ButtonSize,
-  ButtonVariant,
-} from '../button-core-inputs/types';
+import { buttonClassName } from '../button-core/button-core';
+import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonComponent } from './button.component';
 
 // tslint:disable: no-non-null-assertion

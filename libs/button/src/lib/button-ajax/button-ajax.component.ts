@@ -42,7 +42,7 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
     filter(() => Boolean(this.url)),
     switchMap(() =>
       this.http
-        // tslint:disable: no-non-null-assertion
+        // tslint:disable-next-line: no-non-null-assertion
         .request(this.method, this.url!)
         .pipe(catchError(response => of(response))),
     ),

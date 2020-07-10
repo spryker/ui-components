@@ -18,6 +18,7 @@ import {
   TestTableFeatureTplContext,
 } from '@spryker/table/features/testing';
 import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
+import { FilterAvailableActionsPipe } from './table-row-actions.pipe';
 import {
   TableColumnsResolverService,
   TableData,
@@ -52,7 +53,11 @@ describe('TableRowActionsFeatureComponent', () => {
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
   let injector: Injector;
-  const mockActions = [{ id: '1234', title: '123', type: 'rowActions' }];
+  const mockActions = [
+    { id: '1234', title: '123', type: 'rowActions', typeOptions: {} },
+    { id: 'add', title: 'Add', type: 'rowActions', typeOptions: {} },
+  ];
+  const mockAvailableActions = ['add'];
   const mockClick = '1234';
 
   const dropdownSelector = 'spy-dropdown';
@@ -69,6 +74,7 @@ describe('TableRowActionsFeatureComponent', () => {
         TableRowActionsFeatureComponent,
         TestTableFeatureComponent,
         TestHostComponent,
+        FilterAvailableActionsPipe,
       ],
       providers: [
         {

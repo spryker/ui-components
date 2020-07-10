@@ -148,14 +148,6 @@ export type TableDatasourceTypesDeclaration = {
   >;
 };
 
-export interface TableRowActionBase {
-  id: string;
-  title: string;
-  icon?: string;
-  type: TableRowAction;
-  typeOptions?: unknown;
-}
-
 export interface TableRowActionRegistry {
   // Key is action string - value is action options type
 }

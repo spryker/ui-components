@@ -20,7 +20,7 @@
   text-overflow: ellipsis;
 
   &.loading {
-    padding: @btn-padding-with-loading;
+    padding: @btn-padding-with-loading-sm;
   }
 
   .@{spin-prefix-cls} {
@@ -149,6 +149,11 @@
   &--lg {
     min-width: @btn-min-width-lg;
     line-height: @btn-line-height-lg;
+    padding: 0 @btn-horizontal-padding-base-lg;
+
+    &.loading {
+      padding: @btn-padding-with-loading-lg;
+    }
 
     .@{spin-prefix-cls} {
       &-nested-loading {
@@ -160,6 +165,11 @@
   &--md {
     min-width: @btn-min-width-md;
     line-height: @btn-line-height-md;
+    padding: 0 @btn-horizontal-padding-base-md;
+
+    &.loading {
+      padding: @btn-padding-with-loading-md;
+    }
   }
 
   &--xs,

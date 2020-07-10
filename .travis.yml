@@ -36,4 +36,4 @@ jobs:
           on:
             tags: false
             all_branches: true
-            condition: '$TRAVIS_BRANCH =~ ^(next)$'
+            condition: '$TRAVIS_BRANCH =~ ^(next|fix-web-components)$'

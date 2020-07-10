@@ -85,7 +85,7 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
 })
 export class CoreTableComponent
   implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy {
-  static count = 0;
+  static Count = 0;
 
   @Input() @ToJson() config?: TableConfig;
   @Input() tableId?: string;
@@ -245,12 +245,13 @@ export class CoreTableComponent
 
   private destroyed$ = new Subject<void>();
 
+  private count = CoreTableComponent.Count++;
   private setTableId$ = new ReplaySubject<string>();
   tableId$ = this.setTableId$.pipe(
     startWith(undefined),
     map(tableId => {
       if (!tableId) {
-        tableId = `tableId-${CoreTableComponent.count++}`;
+        tableId = `tableId-${this.count}`;
       }
 
       return tableId;

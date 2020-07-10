@@ -39,10 +39,10 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
 
   private click$ = new Subject<void>();
   private request$ = this.click$.pipe(
-    // tslint:disable: no-non-null-assertion
     filter(() => Boolean(this.url)),
     switchMap(() =>
       this.http
+        // tslint:disable: no-non-null-assertion
         .request(this.method, this.url!)
         .pipe(catchError(response => of(response))),
     ),

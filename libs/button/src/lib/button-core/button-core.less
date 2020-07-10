@@ -5,7 +5,7 @@
   justify-content: center;
   box-sizing: border-box;
   line-height: @btn-line-height-base;
-  padding: @btn-vertical-padding-base @btn-horizontal-padding-base;
+  padding: 0 @btn-horizontal-padding-base;
   box-shadow: @btn-shadow-default-size transparent;
   font: @font-weight-medium @font-size-base @font-family;
   text-align: center;
@@ -18,6 +18,24 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  &.loading {
+    padding: @btn-padding-with-loading;
+  }
+
+  .@{spin-prefix-cls} {
+    color: currentColor;
+
+    &-nested-loading {
+      position: absolute;
+      left: @btn-loading-spin-offset-sm;
+      height: 100%;
+    }
+
+    &-dot-item {
+      background: currentColor;
+    }
+  }
 
   &::after {
     .transition-mixin(box-shadow);
@@ -131,32 +149,23 @@
   &--lg {
     min-width: @btn-min-width-lg;
     line-height: @btn-line-height-lg;
-    padding: 0 25px;
 
-    &.loading {
-      padding: 0 18px 0 32px;
+    .@{spin-prefix-cls} {
+      &-nested-loading {
+        left: @btn-loading-spin-offset-lg;
+      }
     }
   }
 
   &--md {
     min-width: @btn-min-width-md;
     line-height: @btn-line-height-md;
-    padding: 0 20px;
-
-    &.loading {
-      padding: 0 4px 0 36px;
-    }
   }
 
   &--xs,
   &--sm {
     min-width: @btn-min-width-sm;
     line-height: @btn-line-height-sm;
-    padding: 0 20px;
-
-    &.loading {
-      padding: 0 10px 0 30px;
-    }
   }
 
   &--xs {
@@ -176,19 +185,5 @@
     color: @disabled-color;
     background: @disabled-bg;
     pointer-events: none;
-  }
-
-  .@{spin-prefix-cls} {
-    color: currentColor;
-
-    &-nested-loading {
-      position: absolute;
-      left: 17px;
-      height: 100%;
-    }
-
-    &-dot-item {
-      background: currentColor;
-    }
   }
 }

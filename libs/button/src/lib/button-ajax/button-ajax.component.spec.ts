@@ -9,12 +9,7 @@ import {
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
 import { NotificationModule } from '@spryker/notification';
-import {
-  buttonClassName,
-  ButtonShape,
-  ButtonSize,
-  ButtonVariant,
-} from '@spryker/button';
+import { ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
 
 // tslint:disable: no-non-null-assertion
 
@@ -81,22 +76,45 @@ describe('ButtonComponent', () => {
 
     const htmlResponse = httpTestingController.expectOne(mockPath);
     expect(htmlResponse.request.method).toBe(ButtonAjaxMethod.Get);
-    expect(htmlResponse.request.url).toBe(mockPath);
   });
 
-  it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the `<button>`', async () => {
+  it('should add appropriate @Input(variant), @Input(shape), @Input(size) props to the `<spy-button>`', async () => {
+    const mockedAttrs = { mockAttr: 'mockAttr' };
     const host = await createComponent(
       {
         variant: ButtonVariant.Critical,
         shape: ButtonShape.Circle,
         size: ButtonSize.Large,
+        attrs: mockedAttrs,
       },
       true,
     );
+
     const buttonElem = host.queryCss('spy-button')!;
 
     expect(buttonElem.properties.variant).toBe(ButtonVariant.Critical);
     expect(buttonElem.properties.size).toBe(ButtonSize.Large);
     expect(buttonElem.properties.shape).toBe(ButtonShape.Circle);
+    expect(buttonElem.properties.attrs).toBe(mockedAttrs);
+  });
+
+  it('should add loading state after click and remove them after response', async () => {
+    const mockPath = '/custom-path';
+    const host = await createComponent(
+      {
+        method: ButtonAjaxMethod.Get,
+        url: mockPath,
+      },
+      true,
+    );
+    host.detectChanges();
+    const buttonElem = host.queryCss('spy-button')!;
+    buttonElem.triggerEventHandler('click', null);
+    host.detectChanges();
+    expect(buttonElem.properties.loading).toBeTruthy();
+    const htmlResponse = httpTestingController.expectOne(mockPath);
+    htmlResponse.flush({});
+    host.detectChanges();
+    expect(buttonElem.properties.loading).toBeFalsy();
   });
 });

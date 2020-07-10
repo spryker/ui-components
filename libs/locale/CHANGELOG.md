@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/locale@0.1.0-fix-web-components.0...@spryker/locale@0.1.0-fix-web-components.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* **lib:** update versions for utils and web-componets packages ([6cc01ac](https://github.com/spryker/ui-components/commit/6cc01acfa6ceacb89fd0f61b954ab122a10cac69))
+
+
+
+
+
 # [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/locale@0.1.0-next.7...@spryker/locale@0.1.0-fix-web-components.0) (2020-07-10)
 
 **Note:** Version bump only for package @spryker/locale

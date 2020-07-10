@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.0...@spryker/web-components@0.2.0-fix-web-components.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* **web-components:** expose `CustomElementOptions` as public API ([c2ee999](https://github.com/spryker/ui-components/commit/c2ee9998f14f5d9f59c7d9194ca28ed76a4a16e0))
+
+
+
+
+
 # [0.2.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-next.3...@spryker/web-components@0.2.0-fix-web-components.0) (2020-07-10)
 
 

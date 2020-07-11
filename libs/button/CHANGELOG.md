@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.14...@spryker/button@0.1.0-next.15) (2020-07-11)
+
+
+### Features
+
+* **button:** added comment to republish component ([93004fd](https://github.com/spryker/ui-components/commit/93004fd916d3d75a01445e40955d30b4ea084171))
+
+
+
+
+
 # [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.13...@spryker/button@0.1.0-next.14) (2020-07-10)
 
 

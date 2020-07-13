@@ -158,8 +158,9 @@ export class TableRowActionsFeatureComponent
   }
 
   triggerEvent(action: TableActionTriggeredEvent): void {
-    const rawAction = { ...action.action.typeOptions };
-    const actionItem = action.items[0];
+    const rawAction = { ...action };
+    const rawTypeOptions = { ...action.action.typeOptions };
+    const actionItem = rawAction.items[0];
     const actionContext: TableRowActionContext = {
       row: actionItem,
       rowId: this.config?.rowIdPath
@@ -167,7 +168,7 @@ export class TableRowActionsFeatureComponent
         : '',
     };
 
-    const actionOptions = rawAction as Record<string, unknown>;
+    const actionOptions = rawTypeOptions as Record<string, unknown>;
 
     for (const option in actionOptions) {
       if (!option) {
@@ -184,8 +185,8 @@ export class TableRowActionsFeatureComponent
       );
     }
 
-    action.action.typeOptions = actionOptions;
+    rawAction.action.typeOptions = actionOptions;
 
-    this.tableActionsService.trigger(action);
+    this.tableActionsService.trigger(rawAction);
   }
 }

@@ -1,0 +1,10 @@
+<spy-button
+  [attrs]="attrs"
+  [shape]="shape"
+  [size]="size"
+  [variant]="variant"
+  (click)="click()"
+  [loading]="isLoading$ | async"
+>
+  <ng-content></ng-content>
+</spy-button>

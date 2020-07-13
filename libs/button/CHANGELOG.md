@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.14...@spryker/button@0.1.0-next.15) (2020-07-11)
+
+
+### Features
+
+* **button:** added comment to republish component ([93004fd](https://github.com/spryker/ui-components/commit/93004fd916d3d75a01445e40955d30b4ea084171))
+
+
+
+
+
+# [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.13...@spryker/button@0.1.0-next.14) (2020-07-10)
+
+
+### Features
+
+* **button:** ajax button ([0f505eb](https://github.com/spryker/ui-components/commit/0f505ebe6ec4221b5958641366a435a69abf0edd))
+* **button:** changes after cr ([5b23c45](https://github.com/spryker/ui-components/commit/5b23c45f0810ad95ca162006e07de35d05350957))
+* **button:** changes after cr ([20c83b1](https://github.com/spryker/ui-components/commit/20c83b1b2230a81617d19a4c25f8d71cf30fc8a7))
+* **button:** changes after cr ([75f2ad3](https://github.com/spryker/ui-components/commit/75f2ad37bae2a7a567211588550084b2bb454228))
+* **button:** fixes for layout ([01c04d8](https://github.com/spryker/ui-components/commit/01c04d8b26b484730b220265dc07546e829bd0f2))
+* **table:** change order for styles ([533350f](https://github.com/spryker/ui-components/commit/533350fb62ec2154c4b971550c99f66badeed91c))
+
+
+
+
+
 # 0.1.0-next.13 (2020-07-06)
 
 **Note:** Version bump only for package @spryker/button

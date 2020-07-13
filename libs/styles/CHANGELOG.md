@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.77](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.76...@spryker/styles@0.1.0-next.77) (2020-07-10)
+
+
+### Features
+
+* **button:** changes after cr ([5b23c45](https://github.com/spryker/ui-components/commit/5b23c45f0810ad95ca162006e07de35d05350957))
+* **button:** changes after cr ([20c83b1](https://github.com/spryker/ui-components/commit/20c83b1b2230a81617d19a4c25f8d71cf30fc8a7))
+* **button:** fixes for layout ([01c04d8](https://github.com/spryker/ui-components/commit/01c04d8b26b484730b220265dc07546e829bd0f2))
+
+
+
+
+
+# [0.1.0-next.76](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.75...@spryker/styles@0.1.0-next.76) (2020-07-09)
+
+
+### Features
+
+* **html-overlay:** added loading state ([5af1040](https://github.com/spryker/ui-components/commit/5af10405efdb125c9b627e13c3e6f5b6648609da))
+
+
+
+
+
 # [0.1.0-next.75](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.74...@spryker/styles@0.1.0-next.75) (2020-07-06)
 
 **Note:** Version bump only for package @spryker/styles

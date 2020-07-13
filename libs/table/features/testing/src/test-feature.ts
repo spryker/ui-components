@@ -25,9 +25,8 @@ import {
   TableFeatureTplDirectiveInputs,
   TableEventBus,
   TableComponent,
-  TableConfig,
 } from '@spryker/table';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, BehaviorSubject } from 'rxjs';
 import { InjectionTokenType, TypedSimpleChanges } from '@spryker/utils';
 
 export class TableMockComponent implements TableComponent {
@@ -36,8 +35,8 @@ export class TableMockComponent implements TableComponent {
   columns$ = new ReplaySubject<TableColumns>(1);
   data$ = new ReplaySubject<TableData>(1);
   isLoading$ = new ReplaySubject<boolean>(1);
+  tableId$ = new BehaviorSubject<string>('mockTableId');
   updateRowClasses = jest.fn();
-  getTableId = jest.fn();
   setRowClasses = jest.fn();
   eventHandler = jest.fn();
   eventBus = new TableEventBus(this.eventHandler);

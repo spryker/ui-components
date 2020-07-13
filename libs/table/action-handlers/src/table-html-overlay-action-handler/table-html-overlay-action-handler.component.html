@@ -1,0 +1,9 @@
+<spy-html-renderer
+  *ngIf="html$ | async as html"
+  [html]="html"
+></spy-html-renderer>
+
+<nz-spin
+  *ngIf="isLoading$ | async"
+  class="spy-table-html-overlay-action-handler-empty-state"
+></nz-spin>

@@ -102,7 +102,7 @@ export interface TableComponent {
   columns$: Observable<TableColumns>;
   data$: Observable<TableData>;
   isLoading$: Observable<boolean>;
-  getTableId(): string | undefined;
+  tableId$: Observable<string>;
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
   setRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.20](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.19...@spryker/utils@0.1.0-next.20) (2020-07-13)
+
+
+### Features
+
+* **batch-actions:** add implementation ([9d30efb](https://github.com/spryker/ui-components/commit/9d30efbf68e8b246b06ee6a6a32011a209b8bd40))
+
+
+
+
+
 # [0.1.0-next.19](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.18...@spryker/utils@0.1.0-next.19) (2020-06-25)
 
 

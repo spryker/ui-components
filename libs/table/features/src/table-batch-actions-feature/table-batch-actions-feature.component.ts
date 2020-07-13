@@ -185,9 +185,9 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
       return actions;
     }
 
-    return actions.filter(action =>
-      multipleIntersectionOfString(availableActionIds).includes(action.id),
-    );
+    const intersection = multipleIntersectionOfString(availableActionIds);
+
+    return actions.filter(action => intersection[action.id]);
   }
 
   /**

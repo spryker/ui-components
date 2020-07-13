@@ -14,6 +14,7 @@ import {
   TableActionTriggeredEvent,
   TableActionsService,
   TableRowClickEvent,
+  TableActionBase,
 } from '@spryker/table';
 import {
   pluck,
@@ -62,17 +63,21 @@ export class TableRowActionsFeatureComponent
   name = 'rowActions';
   tableFeatureLocation = TableFeatureLocation;
   triggerIcon = IconActionModule.icon;
+  availableActionsPath?: string;
 
-  actions$: Observable<DropdownItem[]> = this.config$.pipe(
-    pluck('actions'),
-    map(actions =>
-      (actions as TableRowActionBase[]).map(({ id: action, title }) => ({
+  actions$ = this.config$.pipe(
+    map(config =>
+      (config.actions as TableRowActionBase[]).map(({ id: action, title }) => ({
         action,
         title,
       })),
     ),
+
     shareReplay({ bufferSize: 1, refCount: true }),
   );
+
+  availableActionsPath$ = this.config$.pipe(pluck('availableActionsPath'));
+
   private destroyed$ = new Subject<void>();
   private configClick$ = this.config$.pipe(pluck('click'));
   private clickAction$ = this.configClick$.pipe(
@@ -109,7 +114,7 @@ export class TableRowActionsFeatureComponent
       .subscribe(([{ row }, action]) => {
         const event: TableActionTriggeredEvent = {
           // tslint:disable-next-line: no-non-null-assertion
-          action: action!,
+          action: action! as TableActionBase,
           items: [row],
         };
 
@@ -145,7 +150,7 @@ export class TableRowActionsFeatureComponent
     }
 
     const event: TableActionTriggeredEvent = {
-      action,
+      action: action as TableActionBase,
       items,
     };
 
@@ -154,7 +159,9 @@ export class TableRowActionsFeatureComponent
 
   triggerEvent(action: TableActionTriggeredEvent): void {
     const rawAction = { ...action };
-    const rawTypeOptions = { ...action.action.typeOptions };
+    const rawTypeOptions = {
+      ...(action.action.typeOptions as Record<string, unknown>),
+    };
     const actionItem = rawAction.items[0];
     const actionContext: TableRowActionContext = {
       row: actionItem,

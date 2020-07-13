@@ -26,6 +26,7 @@ import { TableTotalFeatureModule } from './table-total-feature';
 import { TableDatasourceHttpService } from '../../datasources/src/table-datasource-http';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
   title: 'TableFeaturesComponent',
@@ -116,6 +117,7 @@ function getFeaturesStory(
         TableFilterSelectModule,
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
         EnLocaleModule,
+        DefaultContextSerializationModule,
         ...extraNgModules,
       ],
       providers: [

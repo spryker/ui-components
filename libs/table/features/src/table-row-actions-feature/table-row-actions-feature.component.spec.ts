@@ -29,6 +29,7 @@ import {
   TableActionsToken,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 
 @Component({
   selector: 'spy-test-host',
@@ -68,7 +69,7 @@ describe('TableRowActionsFeatureComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [DefaultContextSerializationModule],
       declarations: [
         TestTableFeatureTplDirective,
         TableRowActionsFeatureComponent,

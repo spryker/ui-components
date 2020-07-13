@@ -12,6 +12,7 @@ import {
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableDummyFilterComponent } from './dummy-filter';
 import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
   title: 'TableFiltersFeatureComponent',
@@ -58,8 +59,9 @@ function getFiltersStory(
         MockHttpModule,
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
-          filter: TableDummyFilterComponent as any,
-        }),
+          filter: TableDummyFilterComponent,
+        } as any),
+        DefaultContextSerializationModule,
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
         }),

@@ -1,6 +1,6 @@
 @import './table.component.theme.less';
 
-spy-table {
+@{table-prefix-cls} {
   .@{spin-prefix-cls} {
     &-container {
       &::after {
@@ -40,10 +40,11 @@ spy-table {
       padding-bottom: @table-features-padding-vertical;
     }
 
-    spy-table-features-renderer {
+    @{table-feature-renderer-prefix-cls} {
       display: flex;
       flex-grow: 1;
       flex-wrap: wrap;
+      align-items: center;
     }
   }
 

@@ -12,7 +12,7 @@ import {
   TableFeatureConfig,
   TableFeatureLocation,
 } from '@spryker/table';
-import { ContextService } from '@spryker/utils';
+import { ContextService, multipleIntersectionOfString } from '@spryker/utils';
 import { combineLatest, Observable } from 'rxjs';
 import {
   map,
@@ -48,9 +48,7 @@ export interface TableBatchActionContext {
   rowIds: string[];
 }
 
-export interface SelectedRows
-  extends Record<string, unknown>,
-    TableSelectionRow {}
+interface SelectedRows extends Record<string, unknown>, TableSelectionRow {}
 
 export interface TableItemActions {
   actions: TableBatchAction[];
@@ -63,7 +61,7 @@ export interface TableItemActions {
  *
  * Once the Bulk Action Button is clicked - action is pre-processed via {@link ContextService} and handled via {@link TableActionService}.
  *
- * When there are no relevant actions available for selected rows - an inline notification via must be shown with appropriate message from the Table Configuration.
+ * When there are no relevant actions available for selected rows - an inline notification is shown with appropriate message from the Table Configuration.
  */
 @Component({
   selector: 'spy-table-batch-actions-feature',
@@ -102,7 +100,11 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
       }
 
       const actions = config.availableActionsPath
-        ? this.getAvailableActions(selectedRows, config)
+        ? this.getAvailableActions(
+            selectedRows,
+            config.actions,
+            config.availableActionsPath,
+          )
         : config.actions;
 
       return {
@@ -126,7 +128,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
         !itemActions.actions.length && itemActions.selectedRows.length,
       );
 
-      return shouldShowNotification ? config.noActionsMessage : false;
+      return shouldShowNotification ? config.noActionsMessage : undefined;
     }),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
@@ -165,12 +167,12 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
 
   private getAvailableActions(
     selectedRows: TableSelectionRow[],
-    config: TableBatchActionsConfig,
+    actions: TableBatchAction[],
+    availableActionsPath: string,
   ): TableBatchAction[] {
     const availableActionIds = selectedRows.reduce((ids: string[][], row) => {
       const availableActions = this.contextService.interpolateExpression(
-        // tslint:disable-next-line: no-non-null-assertion
-        config.availableActionsPath!,
+        availableActionsPath,
         row.data as any,
       );
 
@@ -180,11 +182,11 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
     }, []);
 
     if (!availableActionIds.length) {
-      return config.actions;
+      return actions;
     }
 
-    return config.actions.filter(action =>
-      availableActionIds.every(item => item.includes(action.id)),
+    return actions.filter(action =>
+      multipleIntersectionOfString(availableActionIds).includes(action.id),
     );
   }
 
@@ -192,7 +194,9 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
    * Prepares Event Object {@link TableActionTriggeredEvent<TableBatchAction>} and triggers this object via {@link TableActionsService.trigger()} API.
    */
   buttonClickHandler(action: TableBatchAction, batchAction: TableItemActions) {
-    const batchTypeOptions: Record<string, unknown> = { ...action.typeOptions };
+    const batchTypeOptions: Record<string, unknown> = {
+      ...(action.typeOptions as Record<string, unknown>),
+    };
     const rowIds = batchAction.selectedRows.reduce(
       (ids: string[], row) => [
         ...ids,

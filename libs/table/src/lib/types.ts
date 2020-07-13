@@ -16,7 +16,7 @@ export type TableActionType = keyof TableActionRegistry;
 export interface TableActionBase {
   id: string;
   type: TableActionType;
-  typeOptions?: Record<string, unknown>;
+  typeOptions?: unknown;
 }
 
 export interface TableActionTriggeredEvent<

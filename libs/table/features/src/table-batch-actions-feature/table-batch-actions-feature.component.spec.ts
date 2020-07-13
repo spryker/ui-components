@@ -36,9 +36,8 @@ class MockTableDataConfiguratorService {
   readonly config$ = new ReplaySubject<TableDataConfig>(1);
 }
 
-const mockActionsConfig = {
+const mockActionsWithoutAvailableActionsPathConfig = {
   noActionsMessage: 'No available actions for selected rows',
-  availableActionsPath: '_actionIds',
   rowIdPath: 'sku',
   actions: [
     {
@@ -62,148 +61,240 @@ const mockActionsConfig = {
   ],
 };
 
-const mockColData = describe('TableBatchActionsFeatureComponent', () => {
+const mockActionsConfig = {
+  availableActionsPath: '_actionIds',
+  ...mockActionsWithoutAvailableActionsPathConfig,
+};
+
+describe('TableBatchActionsFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [DefaultContextSerializationModule],
-      declarations: [
-        TestTableFeatureTplDirective,
-        TableBatchActionsFeatureComponent,
-        TestTableFeatureComponent,
-        TestHostComponent,
-      ],
-      providers: [
-        {
-          provide: TableColumnsResolverService,
-          useValue: 'TableColumnsResolverService',
-        },
-        {
-          provide: TableDatasourceService,
-          useValue: 'TableDatasourceService',
-        },
-        {
-          provide: TableDataConfiguratorService,
-          useClass: MockTableDataConfiguratorService,
-        },
-        {
-          provide: TestTableFeatureMocks,
-          useValue: {
-            config: {
-              enabled: true, // This will enable feature via config
-              ...mockActionsConfig,
+  describe('Table with availableActionsPath config property', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [DefaultContextSerializationModule],
+        declarations: [
+          TestTableFeatureTplDirective,
+          TableBatchActionsFeatureComponent,
+          TestTableFeatureComponent,
+          TestHostComponent,
+        ],
+        providers: [
+          {
+            provide: TableColumnsResolverService,
+            useValue: 'TableColumnsResolverService',
+          },
+          {
+            provide: TableDatasourceService,
+            useValue: 'TableDatasourceService',
+          },
+          {
+            provide: TableDataConfiguratorService,
+            useClass: MockTableDataConfiguratorService,
+          },
+          {
+            provide: TestTableFeatureMocks,
+            useValue: {
+              config: {
+                enabled: true, // This will enable feature via config
+                ...mockActionsConfig,
+              },
             },
           },
-        },
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
+        ],
+        schemas: [NO_ERRORS_SCHEMA],
+      });
     });
-  });
 
-  beforeEach(fakeAsync(() => {
-    fixture = TestBed.createComponent(TestHostComponent);
-    testTableFeature = fixture.debugElement.query(
-      By.directive(TestTableFeatureComponent),
-    ).componentInstance;
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(TestHostComponent);
+      testTableFeature = fixture.debugElement.query(
+        By.directive(TestTableFeatureComponent),
+      ).componentInstance;
 
-    mockData = {
-      data: [{}],
-      page: 3,
-      pageSize: 30,
-      total: 10,
-    };
+      mockData = {
+        data: [{}],
+        page: 3,
+        pageSize: 30,
+        total: 10,
+      };
 
-    fixture.detectChanges();
-    tick();
+      fixture.detectChanges();
+      tick();
 
-    testTableFeature.featureMocks?.table.data$?.next(mockData);
-    fixture.detectChanges();
-  }));
+      testTableFeature.featureMocks?.table.data$?.next(mockData);
 
-  it('should render `spy-button` with text from appropriate TableBatchAction.title', () => {
-    testTableFeature.featureMocks?.table.eventBus?.emit('itemSelection', [
-      {
-        data: {},
-      },
-    ]);
+      fixture.detectChanges();
+    }));
 
-    fixture.detectChanges();
+    it('should render `spy-button` with text from appropriate TableBatchAction.title', () => {
+      testTableFeature.featureMocks?.table.eventBus?.emit('itemSelection', [
+        {
+          data: {},
+        },
+      ]);
 
-    const buttonElems = fixture.debugElement.queryAll(By.css('spy-button'));
+      fixture.detectChanges();
 
-    buttonElems.forEach((buttonElem, i) => {
-      expect(buttonElem).toBeTruthy();
-      expect(buttonElem.nativeElement.textContent).toContain(
-        mockActionsConfig.actions[i].title,
+      const buttonElems = fixture.debugElement.queryAll(By.css('spy-button'));
+
+      expect(buttonElems.length).toBe(mockActionsConfig.actions.length);
+
+      buttonElems.forEach((buttonElem, i) => {
+        expect(buttonElem).toBeTruthy();
+        expect(buttonElem.nativeElement.textContent).toContain(
+          mockActionsConfig.actions[i].title,
+        );
+      });
+    });
+
+    it('should render `spy-button` with common actions if intersection col exist', () => {
+      testTableFeature.featureMocks?.table.eventBus?.emit('itemSelection', [
+        {
+          data: {
+            [mockActionsConfig.availableActionsPath]: ['update-offer'],
+          },
+        },
+        {
+          data: {
+            [mockActionsConfig.availableActionsPath]: ['update-offer', 'ship'],
+          },
+        },
+      ]);
+
+      fixture.detectChanges();
+
+      const buttonElems = fixture.debugElement.queryAll(By.css('spy-button'));
+      const intersectedAction = mockActionsConfig.actions.find(
+        item => item.id === 'update-offer',
+      );
+
+      expect(buttonElems.length).toBe(1);
+      expect(buttonElems[0].nativeElement.textContent).toContain(
+        intersectedAction?.title,
       );
     });
+
+    it('should render `spy-notification` with text from TableBatchActionsConfig.noActionsMessage if intersection of available actions do not exist', () => {
+      testTableFeature.featureMocks?.table.eventBus?.emit('itemSelection', [
+        {
+          data: {
+            [mockActionsConfig.availableActionsPath]: ['update-offer'],
+          },
+        },
+        {
+          data: {
+            [mockActionsConfig.availableActionsPath]: ['ship'],
+          },
+        },
+      ]);
+
+      fixture.detectChanges();
+
+      const notificationElem = fixture.debugElement.query(
+        By.css('spy-notification'),
+      );
+      const buttonElem = fixture.debugElement.query(By.css('spy-button'));
+
+      expect(notificationElem).toBeTruthy();
+      expect(buttonElem).toBeFalsy();
+      expect(notificationElem.nativeElement.textContent).toContain(
+        mockActionsConfig.noActionsMessage,
+      );
+    });
+
+    it('should render nothing if rows have not been selected', () => {
+      fixture.detectChanges();
+
+      const notificationElem = fixture.debugElement.query(
+        By.css('spy-notification'),
+      );
+      const buttonElem = fixture.debugElement.query(By.css('spy-button'));
+
+      expect(notificationElem).toBeFalsy();
+      expect(buttonElem).toBeFalsy();
+    });
   });
 
-  it('should render `spy-button` with common actions if intersection col exist', () => {
-    testTableFeature.featureMocks?.table.eventBus?.emit('itemSelection', [
-      {
-        data: {
-          [mockActionsConfig.availableActionsPath]: ['update-offer'],
+  describe('Table without availableActionsPath config property', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [DefaultContextSerializationModule],
+        declarations: [
+          TestTableFeatureTplDirective,
+          TableBatchActionsFeatureComponent,
+          TestTableFeatureComponent,
+          TestHostComponent,
+        ],
+        providers: [
+          {
+            provide: TableColumnsResolverService,
+            useValue: 'TableColumnsResolverService',
+          },
+          {
+            provide: TableDatasourceService,
+            useValue: 'TableDatasourceService',
+          },
+          {
+            provide: TableDataConfiguratorService,
+            useClass: MockTableDataConfiguratorService,
+          },
+          {
+            provide: TestTableFeatureMocks,
+            useValue: {
+              config: {
+                enabled: true, // This will enable feature via config
+                ...mockActionsWithoutAvailableActionsPathConfig,
+              },
+            },
+          },
+        ],
+        schemas: [NO_ERRORS_SCHEMA],
+      });
+    });
+
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(TestHostComponent);
+      testTableFeature = fixture.debugElement.query(
+        By.directive(TestTableFeatureComponent),
+      ).componentInstance;
+
+      mockData = {
+        data: [{}],
+        page: 3,
+        pageSize: 30,
+        total: 10,
+      };
+
+      fixture.detectChanges();
+      tick();
+
+      testTableFeature.featureMocks?.table.data$?.next(mockData);
+
+      fixture.detectChanges();
+    }));
+
+    it('should render `spy-button` with text from appropriate TableBatchAction.title', () => {
+      testTableFeature.featureMocks?.table.eventBus?.emit('itemSelection', [
+        {
+          data: {},
         },
-      },
-      {
-        data: {
-          [mockActionsConfig.availableActionsPath]: ['update-offer', 'ship'],
-        },
-      },
-    ]);
+      ]);
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    const buttonElems = fixture.debugElement.queryAll(By.css('spy-button'));
-    const intersectedAction = mockActionsConfig.actions.find(
-      item => item.id === 'update-offer',
-    );
+      const buttonElems = fixture.debugElement.queryAll(By.css('spy-button'));
 
-    expect(buttonElems.length).toBe(1);
-    expect(buttonElems[0].nativeElement.textContent).toContain(
-      intersectedAction?.title,
-    );
-  });
+      expect(buttonElems.length).toBe(mockActionsConfig.actions.length);
 
-  it('should render `spy-notification` with text from TableBatchActionsConfig.noActionsMessage if intersection of available actions do not exist', () => {
-    testTableFeature.featureMocks?.table.eventBus?.emit('itemSelection', [
-      {
-        data: {
-          [mockActionsConfig.availableActionsPath]: ['update-offer'],
-        },
-      },
-      {
-        data: {
-          [mockActionsConfig.availableActionsPath]: ['ship'],
-        },
-      },
-    ]);
-
-    fixture.detectChanges();
-
-    const notificationElem = fixture.debugElement.query(
-      By.css('spy-notification'),
-    );
-
-    expect(notificationElem).toBeTruthy();
-    expect(notificationElem.nativeElement.textContent).toContain(
-      mockActionsConfig.noActionsMessage,
-    );
-  });
-
-  it('should render nothing if rows have not been selected', () => {
-    fixture.detectChanges();
-
-    const notificationElem = fixture.debugElement.query(
-      By.css('spy-notification'),
-    );
-    const buttonElem = fixture.debugElement.query(By.css('spy-button'));
-
-    expect(notificationElem).toBeFalsy();
-    expect(buttonElem).toBeFalsy();
+      buttonElems.forEach((buttonElem, i) => {
+        expect(buttonElem).toBeTruthy();
+        expect(buttonElem.nativeElement.textContent).toContain(
+          mockActionsConfig.actions[i].title,
+        );
+      });
+    });
   });
 });

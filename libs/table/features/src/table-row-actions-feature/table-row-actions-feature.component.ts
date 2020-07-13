@@ -65,19 +65,18 @@ export class TableRowActionsFeatureComponent
   triggerIcon = IconActionModule.icon;
   availableActionsPath?: string;
 
-  actions$: Observable<DropdownItem[]> = this.config$.pipe(
-    map(config => {
-      this.availableActionsPath = config.availableActionsPath;
+  actions$ = this.config$.pipe(
+    map(config =>
+      (config.actions as TableRowActionBase[]).map(({ id: action, title }) => ({
+        action,
+        title,
+      })),
+    ),
 
-      return (config.actions as TableRowActionBase[]).map(
-        ({ id: action, title }) => ({
-          action,
-          title,
-        }),
-      );
-    }),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
+
+  availableActionsPath$ = this.config$.pipe(pluck('availableActionsPath'));
 
   private destroyed$ = new Subject<void>();
   private configClick$ = this.config$.pipe(pluck('click'));

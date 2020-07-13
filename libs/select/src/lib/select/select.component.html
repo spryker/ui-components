@@ -116,5 +116,5 @@
 </ng-template>
 
 <ng-template #tagPlaceholder let-selectedList>{{
-  'select.selected:number' | spyI18n: { number: selectedList.length } | async
+  selectedList.join(', ')
 }}</ng-template>

@@ -159,7 +159,9 @@ export class TableRowActionsFeatureComponent
 
   triggerEvent(action: TableActionTriggeredEvent): void {
     const rawAction = { ...action };
-    const rawTypeOptions = { ...action.action.typeOptions };
+    const rawTypeOptions = {
+      ...(action.action.typeOptions as Record<string, unknown>),
+    };
     const actionItem = rawAction.items[0];
     const actionContext: TableRowActionContext = {
       row: actionItem,

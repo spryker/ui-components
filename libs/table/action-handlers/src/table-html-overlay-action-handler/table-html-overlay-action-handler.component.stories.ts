@@ -20,6 +20,7 @@ import { DrawerContainerComponent } from '../../../../drawer/src/lib/drawer-cont
 import { TableHtmlOverlayActionHandlerComponent } from './table-html-overlay-action-handler.component';
 import { NotificationWrapperComponent } from 'libs/notification/src/lib/notification-wrapper/notification-wrapper.component';
 import { TableHtmlOverlayResponse } from './types';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
   title: 'TableHtmlOverlayActionHandlerComponent',
@@ -55,6 +56,7 @@ class StoryComponent {
     HttpClientTestingModule,
     MockHttpModule,
     TableHtmlOverlayActionHandlerModule,
+    DefaultContextSerializationModule,
   ],
   providers: [
     {

@@ -22,10 +22,7 @@ export class TableHtmlOverlayActionHandlerService
   drawerData$ = new ReplaySubject<TableHtmlOverlayOptions>(1);
   drawerRef?: DrawerRef;
 
-  constructor(
-    private drawerService: DrawerService,
-    private injetor: Injector,
-  ) {}
+  constructor(private drawerService: DrawerService) {}
 
   /**
    * Opens the drawer with the {@link TableHtmlOverlayActionHandlerComponent} in it

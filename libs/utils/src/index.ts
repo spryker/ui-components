@@ -5,6 +5,7 @@ export * from './lib/of-type.pipe';
 export * from './lib/of-type.module';
 export * from './lib/to-json';
 export * from './lib/to-boolean';
+export * from './lib/join';
 export * from './lib/apply-contexts';
 export * from './lib/context';
 export * from './lib/types';

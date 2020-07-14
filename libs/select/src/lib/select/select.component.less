@@ -23,6 +23,16 @@
     }
   }
 
+  &-open {
+    .@{select-prefix-cls}-selection-item {
+      display: none;
+    }
+
+    .@{select-prefix-cls}-selection-search {
+      display: block;
+    }
+  }
+
   &.@{select-prefix-cls}-single {
     .@{select-prefix-cls}-selector {
       border-color: @gray-light;
@@ -39,7 +49,16 @@
 
   &-selection {
     &-item {
+      display: block;
       color: @ink;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+
+      &-remove,
+      &-search {
+        display: none;
+      }
     }
 
     &-placeholder {
@@ -205,6 +224,7 @@
       padding: @select-multiple-padding-vertical
         @select-multiple-padding-horizontal;
       border-color: @gray-light;
+      flex-wrap: nowrap;
 
       &:hover {
         border-color: @gray;

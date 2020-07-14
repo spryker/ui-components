@@ -6,3 +6,4 @@ export * from './lib/button-core/types';
 export * from './lib/button-core/button-core';
 export * from './lib/button-ajax/button-ajax.module';
 export * from './lib/button-ajax/button-ajax.component';
+export * from './lib/button-core/button-core.module'

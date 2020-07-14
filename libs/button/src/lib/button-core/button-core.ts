@@ -1,15 +1,14 @@
 import {
   AfterViewInit,
   ElementRef,
-  Injectable,
   Input,
   OnChanges,
   Renderer2,
   SimpleChanges,
   ViewChild,
+  Directive,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
-
 import {
   ButtonAttributes,
   ButtonShape,
@@ -19,7 +18,9 @@ import {
 
 export const buttonClassName = 'spy-button-core';
 
-@Injectable()
+@Directive({
+  selector: '[spyButtonCoreInputs]',
+})
 export class ButtonCoreInputs {
   @Input() shape: ButtonShape = ButtonShape.Default;
   @Input() size: ButtonSize = ButtonSize.Medium;
@@ -27,12 +28,13 @@ export class ButtonCoreInputs {
   @Input() @ToJson() attrs?: ButtonAttributes;
 }
 
-@Injectable()
-export abstract class ButtonCore extends ButtonCoreInputs
+@Directive({
+  selector: '[spyButtonCore]',
+})
+export class ButtonCore extends ButtonCoreInputs
   implements AfterViewInit, OnChanges {
   @ViewChild('buttonRef') buttonRef?: ElementRef;
-
-  protected abstract buttonClassName: string;
+  protected buttonClassName = '';
 
   constructor(public renderer: Renderer2) {
     super();

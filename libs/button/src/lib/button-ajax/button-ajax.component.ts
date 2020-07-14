@@ -50,7 +50,7 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
   );
   private destroyed$ = new Subject<void>();
 
-  private isLoading$ = merge(
+  isLoading$ = merge(
     this.click$.pipe(mapTo(true)),
     this.request$.pipe(mapTo(false)),
   );
@@ -72,7 +72,6 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
   }
 
   ngOnDestroy(): void {
-    /** clearing stream to prevent memory leak */
     this.destroyed$.next();
   }
 

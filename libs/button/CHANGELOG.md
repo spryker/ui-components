@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.15...@spryker/button@0.1.0-next.16) (2020-07-14)
+
+
+### Features
+
+* **button:** added import for new component ([66aa501](https://github.com/spryker/ui-components/commit/66aa501e698cd14d8541c57198c865b98941e2c9))
+* **button:** code refactoring ([b8aa3b9](https://github.com/spryker/ui-components/commit/b8aa3b93e62db6da02da1218765d465536da7c4f))
+* **button:** code refactoring ([5bdead0](https://github.com/spryker/ui-components/commit/5bdead04d287292797a60005c9845f54f85a2716))
+
+
+
+
+
 # [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.14...@spryker/button@0.1.0-next.15) (2020-07-11)
 
 

@@ -2,7 +2,7 @@
 import { TestBed } from '@angular/core/testing';
 import { TableColumnDateComponent } from './table-column-date.component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { ContextPipe } from '@spryker/utils';
+import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
 
 const configMock: any = [
   {
@@ -28,6 +28,7 @@ describe('TableColumnDateComponent', () => {
     TableColumnDateComponent,
     {
       ngModule: {
+        imports: [DefaultContextSerializationModule],
         declarations: [ContextPipe],
       },
     },

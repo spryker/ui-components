@@ -1,4 +1,9 @@
-import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  NO_ERRORS_SCHEMA,
+  Injector,
+} from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -13,6 +18,7 @@ import {
   TestTableFeatureTplContext,
 } from '@spryker/table/features/testing';
 import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
+import { FilterAvailableActionsPipe } from './table-row-actions.pipe';
 import {
   TableColumnsResolverService,
   TableData,
@@ -23,6 +29,7 @@ import {
   TableActionsToken,
 } from '@spryker/table';
 import { ReplaySubject } from 'rxjs';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 
 @Component({
   selector: 'spy-test-host',
@@ -46,7 +53,12 @@ describe('TableRowActionsFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
-  const mockActions = [{ id: '1234', title: '123', type: 'rowActions' }];
+  let injector: Injector;
+  const mockActions = [
+    { id: '1234', title: '123', type: 'rowActions', typeOptions: {} },
+    { id: 'add', title: 'Add', type: 'rowActions', typeOptions: {} },
+  ];
+  const mockAvailableActions = ['add'];
   const mockClick = '1234';
 
   const dropdownSelector = 'spy-dropdown';
@@ -57,12 +69,13 @@ describe('TableRowActionsFeatureComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [DefaultContextSerializationModule],
       declarations: [
         TestTableFeatureTplDirective,
         TableRowActionsFeatureComponent,
         TestTableFeatureComponent,
         TestHostComponent,
+        FilterAvailableActionsPipe,
       ],
       providers: [
         {
@@ -110,6 +123,7 @@ describe('TableRowActionsFeatureComponent', () => {
   });
 
   beforeEach(fakeAsync(() => {
+    injector = TestBed.inject(Injector);
     fixture = TestBed.createComponent(TestHostComponent);
     testTableFeature = fixture.debugElement.query(
       By.directive(TestTableFeatureComponent),
@@ -157,6 +171,7 @@ describe('TableRowActionsFeatureComponent', () => {
 
     expect(tableActionsService.handleAction).toHaveBeenCalledWith(
       actionTriggeredRes,
+      injector,
     );
   }));
 });

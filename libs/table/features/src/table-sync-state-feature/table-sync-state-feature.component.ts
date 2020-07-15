@@ -14,17 +14,9 @@ import {
   TableFeatureConfig,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/utils';
-import { tap, take, switchMap } from 'rxjs/operators';
-import { merge, Observable, of } from 'rxjs';
-
-declare module '@spryker/table' {
-  interface TableConfig {
-    syncStateUrl?: TableSyncStateConfig;
-  }
-}
-
-// tslint:disable-next-line: no-empty-interface
-export interface TableSyncStateConfig extends TableFeatureConfig {}
+import { tap, take, switchMap, pluck } from 'rxjs/operators';
+import { merge, Observable, of, combineLatest } from 'rxjs';
+import { TableSyncStateConfig } from './types';
 
 @Component({
   selector: 'spy-table-sync-state-feature',
@@ -45,9 +37,18 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<
   name = 'syncStateUrl';
   tableFeatureLocation = TableFeatureLocation;
 
-  key = 'table-state';
+  tableId$ = this.config$.pipe(
+    pluck('tableId'),
+    switchMap(tableId => {
+      if (tableId) {
+        return of(tableId);
+      }
+
+      return this.table$.pipe(switchMap(table => table.tableId$));
+    }),
+  );
   stateToConfig$?: Observable<unknown>;
-  configToState$?: Observable<Record<string, unknown>>;
+  configToState$?: Observable<any>;
   state$?: Observable<unknown>;
 
   constructor(
@@ -61,19 +62,23 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<
   setDataConfiguratorService(service: TableDataConfiguratorService): void {
     super.setDataConfiguratorService(service);
 
-    const urlState$ = this.urlPersistenceStrategy.retrieve(
-      this.key,
+    const urlState$ = this.tableId$.pipe(
+      switchMap(tableId => this.urlPersistenceStrategy.retrieve(tableId)),
     ) as Observable<Record<string, unknown>>;
 
     const syncStateInitialData = new SyncStateInitialDataStrategy(urlState$);
 
     service.provideInitialDataStrategy(syncStateInitialData);
 
-    this.configToState$ = service.config$.pipe(
-      tap(config => this.urlPersistenceStrategy.save(this.key, config)),
+    this.configToState$ = combineLatest([this.tableId$, service.config$]).pipe(
+      tap(([tableId, config]) =>
+        this.urlPersistenceStrategy.save(tableId, config),
+      ),
     );
 
-    this.stateToConfig$ = urlState$.pipe(tap(state => service.reset(state)));
+    this.stateToConfig$ = urlState$.pipe(
+      tap(state => service.reset(state as Record<string, unknown>)),
+    );
 
     this.state$ = merge(this.stateToConfig$, this.configToState$);
 

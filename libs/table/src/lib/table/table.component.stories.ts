@@ -6,7 +6,11 @@ import {
   Input,
 } from '@angular/core';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { ContextModule, ContextService } from '@spryker/utils';
+import {
+  ContextModule,
+  ContextService,
+  DefaultContextSerializationModule,
+} from '@spryker/utils';
 import { IStory } from '@storybook/angular';
 
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
@@ -71,6 +75,7 @@ export const withFeatures = (): IStory => ({
       LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
       EnLocaleModule,
       BrowserAnimationsModule,
+      DefaultContextSerializationModule,
     ],
     declarations: [TableColumnTestComponent],
     providers: [

@@ -14,6 +14,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-next.16...@spryker/card@0.1.0-next.17) (2020-06-30)
+
+
+### Features
+
+* **headline:** add implementation ([83ba904](https://github.com/spryker/ui-components/commit/83ba90461c73e48ff7ab4d24b25bb3ddeef5895c))
+
+
+
+
+
 # [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-next.15...@spryker/card@0.1.0-fix-web-components.0) (2020-07-10)
 
 
@@ -21,6 +32,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **libs:** mark content projection boundaries in some component ([4844e58](https://github.com/spryker/ui-components/commit/4844e58776f0c2e5a7ea956276ae610155a4250d))
 * **libs:** use directive for applying context classes ([e439b36](https://github.com/spryker/ui-components/commit/e439b36b578a5c83024e9625bf93284fe9e9cd8f))
+
+
+
+
+
+# 0.1.0-next.16 (2020-06-26)
+
+**Note:** Version bump only for package @spryker/card
 
 
 

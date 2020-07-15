@@ -12,10 +12,9 @@ import {
   TableFeatureConfig,
   TableFeatureLocation,
   TableActionTriggeredEvent,
-  TableRowAction,
-  TableRowActionBase,
   TableActionsService,
   TableRowClickEvent,
+  TableActionBase,
 } from '@spryker/table';
 import {
   pluck,
@@ -29,6 +28,8 @@ import {
 import { DropdownItem } from '@spryker/dropdown';
 import { Observable, Subject, combineLatest, EMPTY } from 'rxjs';
 import { IconActionModule } from '@spryker/icon/icons';
+import { ContextService } from '@spryker/utils';
+import { TableRowActionBase, TableRowActionContext } from './types';
 
 declare module '@spryker/table' {
   interface TableConfig {
@@ -39,6 +40,8 @@ declare module '@spryker/table' {
 export interface TableRowActionsConfig extends TableFeatureConfig {
   actions?: TableRowActionBase[];
   click?: string;
+  rowIdPath?: string;
+  availableActionsPath?: string;
 }
 
 @Component({
@@ -60,21 +63,25 @@ export class TableRowActionsFeatureComponent
   name = 'rowActions';
   tableFeatureLocation = TableFeatureLocation;
   triggerIcon = IconActionModule.icon;
+  availableActionsPath?: string;
 
-  actions$: Observable<DropdownItem[]> = this.config$.pipe(
-    pluck('actions'),
-    map(actions =>
-      (actions as TableRowActionBase[]).map(({ id: action, title }) => ({
+  actions$ = this.config$.pipe(
+    map(config =>
+      (config.actions as TableRowActionBase[]).map(({ id: action, title }) => ({
         action,
         title,
       })),
     ),
+
     shareReplay({ bufferSize: 1, refCount: true }),
   );
+
+  availableActionsPath$ = this.config$.pipe(pluck('availableActionsPath'));
+
   private destroyed$ = new Subject<void>();
   private configClick$ = this.config$.pipe(pluck('click'));
   private clickAction$ = this.configClick$.pipe(
-    map(actionId => this.getActionById(actionId as TableRowAction)),
+    map(actionId => this.getActionById(actionId)),
   );
   private rowClicks$ = this.tableEventBus$.pipe(
     withLatestFrom(this.clickAction$),
@@ -85,8 +92,14 @@ export class TableRowActionsFeatureComponent
     ),
   );
 
+  tableData$ = this.table$.pipe(
+    switchMap(table => table.data$),
+    pluck('data'),
+  );
+
   constructor(
     private tableActionsService: TableActionsService,
+    private contextService: ContextService,
     injector: Injector,
   ) {
     super(injector);
@@ -101,27 +114,35 @@ export class TableRowActionsFeatureComponent
       .subscribe(([{ row }, action]) => {
         const event: TableActionTriggeredEvent = {
           // tslint:disable-next-line: no-non-null-assertion
-          action: action!,
+          action: action! as TableActionBase,
           items: [row],
         };
 
         this.triggerEvent(event);
       });
+
+    this.tableData$
+      .pipe(withLatestFrom(this.configClick$), takeUntil(this.destroyed$))
+      .subscribe(([data, click]) =>
+        data.forEach((element, index) =>
+          this.table?.updateRowClasses(`${index}`, {
+            'ant-table-row--clickable': Boolean(click),
+          }),
+        ),
+      );
   }
 
   ngOnDestroy(): void {
     this.destroyed$.next();
   }
 
-  private getActionById(
-    actionId: TableRowAction,
-  ): TableRowActionBase | undefined {
-    return (this.config?.actions as TableRowActionBase[]).filter(
+  private getActionById(actionId?: string): TableRowActionBase | undefined {
+    return this.config?.actions?.filter(
       rowAction => rowAction.id === actionId,
     )[0];
   }
 
-  actionTriggerHandler(actionId: TableRowAction, items: TableDataRow[]): void {
+  actionTriggerHandler(actionId: string, items: TableDataRow[]): void {
     const action = this.getActionById(actionId);
 
     if (!action) {
@@ -129,14 +150,43 @@ export class TableRowActionsFeatureComponent
     }
 
     const event: TableActionTriggeredEvent = {
-      action,
+      action: action as TableActionBase,
       items,
     };
 
     this.triggerEvent(event);
   }
 
-  triggerEvent(actions: TableActionTriggeredEvent): void {
-    this.tableActionsService.handle(actions);
+  triggerEvent(action: TableActionTriggeredEvent): void {
+    const rowAction = { ...action };
+    const rowTypeOptions = {
+      ...(action.action.typeOptions as Record<string, unknown>),
+    };
+    const actionItem = rowAction.items[0];
+    const actionContext: TableRowActionContext = {
+      row: actionItem,
+      rowId: this.config?.rowIdPath
+        ? String(actionItem[this.config.rowIdPath])
+        : '',
+    };
+
+    for (const option in rowTypeOptions) {
+      if (!option) {
+        continue;
+      }
+      const optionItem = rowTypeOptions[option];
+      if (typeof optionItem !== 'string') {
+        continue;
+      }
+
+      rowTypeOptions[option] = this.contextService.interpolate(
+        optionItem,
+        actionContext as any,
+      );
+    }
+
+    rowAction.action = { ...rowAction.action, typeOptions: rowTypeOptions };
+
+    this.tableActionsService.trigger(rowAction);
   }
 }

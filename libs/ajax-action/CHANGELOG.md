@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/ajax-action@0.1.0-next.4...@spryker/ajax-action@0.1.0-next.5) (2020-06-25)
+
+
+### Features
+
+* **ajax-post-actions:** added implementation ([74757a5](https://github.com/spryker/ui-components/commit/74757a526b0e0f10e869bf81566619af46d35a9b))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/ajax-action@0.1.0-next.3...@spryker/ajax-action@0.1.0-next.4) (2020-06-18)
 
 **Note:** Version bump only for package @spryker/ajax-action

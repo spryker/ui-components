@@ -1,4 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, Injector } from '@angular/core';
+import { InjectionTokenType } from '../types';
+import {
+  ContextSerializationStrategyToken,
+  ContextSerializationStrategy,
+} from './serialization-strategy';
+import { getPropByPath } from '../misc';
 
 import { escapeRegex } from '../regex';
 
@@ -21,13 +27,23 @@ export class ContextService {
     `${this.interpolationStart}([^${this.interpolationEnd}]+)${this.interpolationEnd}`,
     'g',
   );
+  private serializationStrategies = this.serializationStrategiesArray
+    .flat()
+    .map(strategyType => this.injector.get(strategyType));
 
-  constructor(private options: ContextOptions) {}
+  constructor(
+    private injector: Injector,
+    private options: ContextOptions,
+    @Inject(ContextSerializationStrategyToken)
+    private serializationStrategiesArray: InjectionTokenType<
+      typeof ContextSerializationStrategyToken
+    >,
+  ) {}
 
   interpolate(value: string, ctx: AnyContext): string {
     this.expressionRegex.lastIndex = 0; // Reset global regex
     return value.replace(this.expressionRegex, (_, expr) =>
-      this.interpolateExpression(expr, ctx),
+      this.postProcess(this.interpolateExpression(expr, ctx)),
     );
   }
 
@@ -35,13 +51,19 @@ export class ContextService {
     return `${this.options.interpolationStart}${value}${this.options.interpolationEnd}`;
   }
 
-  private interpolateExpression(expr: string, ctx: AnyContext): any {
-    const paths = expr.split(this.options.delimiter);
-    let value = ctx;
-    while (value && paths.length) {
-      // tslint:disable-next-line: no-non-null-assertion
-      value = value[paths.shift()!];
+  interpolateExpression(expr: string, ctx: AnyContext): unknown {
+    return getPropByPath(ctx, expr, this.options.delimiter);
+  }
+
+  private postProcess(value: unknown): string {
+    const strategy = this.serializationStrategies.find(s =>
+      s.canSerialize(value),
+    );
+
+    if (!strategy) {
+      return String(value);
     }
-    return value;
+
+    return strategy.serialize(value);
   }
 }

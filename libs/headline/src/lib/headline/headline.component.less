@@ -1,0 +1,61 @@
+@import './headline.component.theme.less';
+
+.@{headline-prefix-cls} {
+  display: block;
+  padding-bottom: @headline-bottom-padding;
+  font: @font-weight-medium @font-size-base @font-family;
+  color: @ink;
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: -@headline-col-spacing;
+  }
+
+  &__col {
+    padding: @headline-col-spacing;
+
+    &--heading {
+      flex-grow: 1;
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__title {
+    display: block;
+
+    &--h1 {
+      font-size: @heading-1-font-size;
+    }
+
+    &--h2 {
+      font-size: @heading-2-font-size;
+    }
+
+    &--h3 {
+      font-size: @heading-3-font-size;
+    }
+
+    &--h4 {
+      font-size: @heading-4-font-size;
+    }
+
+    &--h5 {
+      font-size: @heading-5-font-size;
+    }
+
+    /* prettier-ignore */
+    .loop-mixin(5, {
+      &--h@{i} {
+        font-weight: @font-weight-semi-bold;
+        margin: 0;
+        letter-spacing: @headline-title-letter-spacing;
+      }
+    });
+  }
+}

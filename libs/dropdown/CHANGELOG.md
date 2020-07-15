@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.1.0-next.7...@spryker/dropdown@0.1.0-next.8) (2020-06-30)
+
+
+### Bug Fixes
+
+* **table:** row-action fix ([d774648](https://github.com/spryker/ui-components/commit/d7746485c50dab8adc4bec3586fea7b139ff546d))
+* **table:** row-action styles ([d047747](https://github.com/spryker/ui-components/commit/d04774795e24d9abd595dcbeb4153bb49519806e))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.1.0-next.6...@spryker/dropdown@0.1.0-next.7) (2020-06-18)
 
 **Note:** Version bump only for package @spryker/dropdown

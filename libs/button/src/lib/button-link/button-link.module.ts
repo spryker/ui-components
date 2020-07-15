@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonLinkComponent } from './button-link.component';
+import { NgModule } from '@angular/core';
 import { ApplyAttrsModule } from '@spryker/utils';
+
+import { ButtonLinkComponent } from './button-link.component';
 
 @NgModule({
   imports: [CommonModule, ApplyAttrsModule],

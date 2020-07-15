@@ -115,6 +115,12 @@
     },
     "ajax-form": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "ajax-post-actions": {
+      "tags": ["type:component-service"]
+    },
+    "headline": {
+      "tags": ["level:atom", "type:component"]
     }
   },
   "tasksRunnerOptions": {

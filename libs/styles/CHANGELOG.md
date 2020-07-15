@@ -3,6 +3,119 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.78](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.77...@spryker/styles@0.1.0-next.78) (2020-07-13)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.1.0-next.77](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.76...@spryker/styles@0.1.0-next.77) (2020-07-10)
+
+
+### Features
+
+* **button:** changes after cr ([5b23c45](https://github.com/spryker/ui-components/commit/5b23c45f0810ad95ca162006e07de35d05350957))
+* **button:** changes after cr ([20c83b1](https://github.com/spryker/ui-components/commit/20c83b1b2230a81617d19a4c25f8d71cf30fc8a7))
+* **button:** fixes for layout ([01c04d8](https://github.com/spryker/ui-components/commit/01c04d8b26b484730b220265dc07546e829bd0f2))
+
+
+
+
+
+# [0.1.0-next.76](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.75...@spryker/styles@0.1.0-next.76) (2020-07-09)
+
+
+### Features
+
+* **html-overlay:** added loading state ([5af1040](https://github.com/spryker/ui-components/commit/5af10405efdb125c9b627e13c3e6f5b6648609da))
+
+
+
+
+
+# [0.1.0-next.75](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.74...@spryker/styles@0.1.0-next.75) (2020-07-06)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.1.0-next.74](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.73...@spryker/styles@0.1.0-next.74) (2020-07-03)
+
+
+### Bug Fixes
+
+* **styles:** added correct styles for input and prefixes ([054946b](https://github.com/spryker/ui-components/commit/054946b1e9cedc7db0870dc82ea49e5c32a730dd))
+* **styles, form-item:** added correct styles for input and prefixes ([9ad4680](https://github.com/spryker/ui-components/commit/9ad46804c0dc1ada4234b34b9b360aca9b6b8c29))
+* **styles, form-item:** fixes after code review ([508a50f](https://github.com/spryker/ui-components/commit/508a50f0f11c87fbfbeddc5819675d14f8693929))
+
+
+
+
+
+# [0.1.0-next.73](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.72...@spryker/styles@0.1.0-next.73) (2020-07-01)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.1.0-next.72](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.71...@spryker/styles@0.1.0-next.72) (2020-06-30)
+
+
+### Bug Fixes
+
+* **input:** fixed hover, focus, error states for input ([15cfddb](https://github.com/spryker/ui-components/commit/15cfddbf34734d0c1abc6bd0f4d401714519ff0f))
+* **input:** fixes after cr ([9cce0bf](https://github.com/spryker/ui-components/commit/9cce0bfadd8f721adc4a830647a5039f03c0a09f))
+* **input:** moved styles to separate file ([81d89bd](https://github.com/spryker/ui-components/commit/81d89bd65a2b6e60f00c093f0a3665277a3fb8d5))
+* **input:** rollback wrong changes ([5e88ec2](https://github.com/spryker/ui-components/commit/5e88ec273c501e9d026d9abaa2a5ee79eeca471b))
+
+
+
+
+
+# [0.1.0-next.71](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.70...@spryker/styles@0.1.0-next.71) (2020-06-30)
+
+
+### Bug Fixes
+
+* **table:** row-action fix ([d774648](https://github.com/spryker/ui-components/commit/d7746485c50dab8adc4bec3586fea7b139ff546d))
+
+
+
+
+
+# [0.1.0-next.70](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.69...@spryker/styles@0.1.0-next.70) (2020-06-30)
+
+
+### Features
+
+* **headline:** add implementation ([83ba904](https://github.com/spryker/ui-components/commit/83ba90461c73e48ff7ab4d24b25bb3ddeef5895c))
+
+
+
+
+
+# [0.1.0-next.69](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.68...@spryker/styles@0.1.0-next.69) (2020-06-26)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.1.0-next.68](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.67...@spryker/styles@0.1.0-next.68) (2020-06-24)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
 # [0.1.0-next.67](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.66...@spryker/styles@0.1.0-next.67) (2020-06-19)
 
 **Note:** Version bump only for package @spryker/styles

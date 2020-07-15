@@ -1,6 +1,6 @@
 @import './form-item.component.theme.less';
 
-.@{form-prefix-cls}-item {
+.@{form-item-prefix-cls} {
   display: block;
   margin-bottom: @form-item-bottom-margin;
   font-family: @font-family;
@@ -22,6 +22,14 @@
       text-transform: uppercase;
       padding-bottom: @form-item-label-bottom-padding;
       height: auto;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    &--required {
+      margin-left: @form-item-label-reuired-margin-left;
     }
   }
 

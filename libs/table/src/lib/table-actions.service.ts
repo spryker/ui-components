@@ -40,7 +40,7 @@ export class TableActionsService {
    * and calls {@method handleAction} of {@link TableFormOverlayActionHandlerService}
    * provided from {@link TableActionsToken}
    */
-  handle(actionEvent: TableActionTriggeredEvent): Observable<unknown> {
+  trigger(actionEvent: TableActionTriggeredEvent): Observable<unknown> {
     const actionHandler = this.actionHandlers[
       actionEvent.action.type as string
     ];
@@ -48,7 +48,7 @@ export class TableActionsService {
     if (actionHandler) {
       const actionHandlerService = this.injector.get(actionHandler);
 
-      return actionHandlerService.handleAction(actionEvent);
+      return actionHandlerService.handleAction(actionEvent, this.injector);
     }
 
     this.tableEventBus?.emit<TableActionTriggeredEvent>(

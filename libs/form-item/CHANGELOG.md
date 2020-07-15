@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.17...@spryker/form-item@0.1.0-next.18) (2020-07-03)
+
+
+### Bug Fixes
+
+* **styles:** added correct styles for input and prefixes ([054946b](https://github.com/spryker/ui-components/commit/054946b1e9cedc7db0870dc82ea49e5c32a730dd))
+* **styles, form-item:** added correct styles for input and prefixes ([9ad4680](https://github.com/spryker/ui-components/commit/9ad46804c0dc1ada4234b34b9b360aca9b6b8c29))
+* **styles, form-item:** fixes after code review ([508a50f](https://github.com/spryker/ui-components/commit/508a50f0f11c87fbfbeddc5819675d14f8693929))
+
+
+
+
+
+# [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.16...@spryker/form-item@0.1.0-next.17) (2020-06-30)
+
+
+### Bug Fixes
+
+* **form-item:** have hidden an empty label ([cf5b559](https://github.com/spryker/ui-components/commit/cf5b559dd48196797fa1c278269c150110fa8a3e))
+
+
+
+
+
+# [0.1.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.15...@spryker/form-item@0.1.0-next.16) (2020-06-30)
+
+
+### Bug Fixes
+
+* **table:** row-action fix ([d774648](https://github.com/spryker/ui-components/commit/d7746485c50dab8adc4bec3586fea7b139ff546d))
+* **table:** row-actions, fixed logic of hover event ([925000a](https://github.com/spryker/ui-components/commit/925000a3cb1efb488a027dc009bb1a4479db1eff))
+
+
+
+
+
 # [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.14...@spryker/form-item@0.1.0-next.15) (2020-06-18)
 
 **Note:** Version bump only for package @spryker/form-item

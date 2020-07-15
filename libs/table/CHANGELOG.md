@@ -3,6 +3,137 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.68](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.67...@spryker/table@0.1.0-next.68) (2020-07-15)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.1.0-next.67](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.66...@spryker/table@0.1.0-next.67) (2020-07-15)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.1.0-next.66](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.65...@spryker/table@0.1.0-next.66) (2020-07-14)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.1.0-next.65](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.64...@spryker/table@0.1.0-next.65) (2020-07-13)
+
+
+### Features
+
+* **batch-actions:** add implementation ([9d30efb](https://github.com/spryker/ui-components/commit/9d30efbf68e8b246b06ee6a6a32011a209b8bd40))
+
+
+
+
+
+# [0.1.0-next.64](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.63...@spryker/table@0.1.0-next.64) (2020-07-10)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.1.0-next.63](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.62...@spryker/table@0.1.0-next.63) (2020-07-10)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.1.0-next.62](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.61...@spryker/table@0.1.0-next.62) (2020-07-10)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.1.0-next.61](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.60...@spryker/table@0.1.0-next.61) (2020-07-09)
+
+
+### Features
+
+* **html-overlay:** added action handler for table ([b03b1e8](https://github.com/spryker/ui-components/commit/b03b1e8cb031c0d8c4390772a5697733a68bf1f1))
+* **html-overlay:** added loading state ([5af1040](https://github.com/spryker/ui-components/commit/5af10405efdb125c9b627e13c3e6f5b6648609da))
+* **html-overlay:** added unit-tests ([c5bf200](https://github.com/spryker/ui-components/commit/c5bf200bc3cb4d7b7710a11a303de58728345f73))
+* **html-overlay:** changed behavior ([7dcee12](https://github.com/spryker/ui-components/commit/7dcee12efb7578d8eb6ce378dd7a0fe718706072))
+* **html-overlay:** fixed markup ([f378688](https://github.com/spryker/ui-components/commit/f3786883a65b11cb6ef8c89a02f235b4255363aa))
+* **html-overlay:** removed code ([5c59c03](https://github.com/spryker/ui-components/commit/5c59c0308c9a995e3abb92c2dcdccb2a03f9ec6a))
+
+
+
+
+
+# [0.1.0-next.60](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.59...@spryker/table@0.1.0-next.60) (2020-07-01)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.1.0-next.59](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.58...@spryker/table@0.1.0-next.59) (2020-06-30)
+
+
+### Bug Fixes
+
+* **table:** removed variable ([2156280](https://github.com/spryker/ui-components/commit/215628050a338277705d860472cea1b6b64a04df))
+* **table:** row-action fix ([d774648](https://github.com/spryker/ui-components/commit/d7746485c50dab8adc4bec3586fea7b139ff546d))
+* **table:** row-action styles ([d047747](https://github.com/spryker/ui-components/commit/d04774795e24d9abd595dcbeb4153bb49519806e))
+* **table:** row-action, merged observables ([0242b66](https://github.com/spryker/ui-components/commit/0242b669488a7482076f2318b55a84d22b85fe3b))
+* **table:** row-actions, fixed logic of hover event ([925000a](https://github.com/spryker/ui-components/commit/925000a3cb1efb488a027dc009bb1a4479db1eff))
+
+
+
+
+
+# [0.1.0-next.58](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.57...@spryker/table@0.1.0-next.58) (2020-06-25)
+
+
+### Bug Fixes
+
+* **table-filter:** changed placeholder for filters ([06958b3](https://github.com/spryker/ui-components/commit/06958b308987444021ec2be665fdc9617441bedf))
+* **table-filter:** fixes after PR ([ef199d2](https://github.com/spryker/ui-components/commit/ef199d2165579ed3690d373de974c883e987a6af))
+* **table-filter:** fixes after PR ([dca3369](https://github.com/spryker/ui-components/commit/dca3369131b1151a37048fca90b6498b49bf1ae3))
+* **table-filter:** fixes after PR (format issue) ([ea4e84c](https://github.com/spryker/ui-components/commit/ea4e84c42bfa11e2db664d0319962e37b9371a12))
+
+
+
+
+
+# [0.1.0-next.57](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.56...@spryker/table@0.1.0-next.57) (2020-06-25)
+
+
+### Features
+
+* **ajax-post-actions:** added implementation ([74757a5](https://github.com/spryker/ui-components/commit/74757a526b0e0f10e869bf81566619af46d35a9b))
+
+
+
+
+
+# [0.1.0-next.56](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.55...@spryker/table@0.1.0-next.56) (2020-06-24)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
 # [0.1.0-next.55](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.54...@spryker/table@0.1.0-next.55) (2020-06-23)
 
 **Note:** Version bump only for package @spryker/table

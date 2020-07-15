@@ -1,6 +1,6 @@
 {
   "name": "@spryker/input",
-  "version": "0.1.0-next.22",
+  "version": "0.1.0-next.24",
   "publishConfig": {
     "access": "public"
   },

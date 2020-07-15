@@ -17,6 +17,7 @@
 @border-color-split: @gray-light;
 @disabled-color: @gray-dark;
 @disabled-bg: @gray-lighter;
+@transparent: transparent;
 
 // Common
 @common-transition-time: 0.3s;
@@ -32,6 +33,7 @@
 
 // Form Item
 @form-prefix-cls: ~'@{ant-prefix}-form';
+@form-item-prefix-cls: ~'@{form-prefix-cls}-item';
 
 @form-item-bottom-margin: 24px;
 
@@ -39,6 +41,7 @@
 @form-item-label-font-size: @font-size-sm;
 @form-item-label-line-height: 1;
 @form-item-label-bottom-padding: 9px;
+@form-item-label-reuired-margin-left: 4px;
 
 @form-help-margin-top: 5px;
 
@@ -46,19 +49,43 @@
 @form-extra-margin-top: 3px;
 
 // Buttons
-@btn-prefix-cls: ~'@{ant-prefix}-btn';
+@btn-prefix-cls: ~'@{spryker-prefix}-button';
 
 @btn-font-weight: @font-weight-medium;
 @btn-font-size-lg: @font-size-base;
 
 @btn-min-width-base: 100px;
-@btn-min-width-lg: 108px;
+@btn-min-width-lg: 105px;
+@btn-min-width-md: 90px;
 @btn-min-width-sm: 85px;
 @btn-height-base: 42px;
+@btn-line-height-base: 42px;
 @btn-height-lg: 48px;
+@btn-line-height-lg: 46px;
+@btn-height-md: 42px;
+@btn-line-height-md: 40px;
 @btn-height-sm: 38px;
+@btn-line-height-sm: 36px;
+@btn-line-height-xs: 24px;
+
+@btn-horizontal-padding-base: 16px;
+@btn-horizontal-padding-base-lg: 22px;
+@btn-horizontal-padding-base-md: 19px;
+
+@btn-vertical-padding-base: 10px;
+@btn-vertical-padding-sm: 8px;
+@btn-vertical-padding-lg: 13px;
+@btn-padding-with-loading-lg: 0 8px 0 27px;
+@btn-padding-with-loading-md: 0 8px 0 27px;
+@btn-padding-with-loading-sm: 0 8px 0 25px;
+@btn-loading-spin-offset-lg: 17px;
+@btn-loading-spin-offset-sm: 14px;
 
 @btn-border-width: 1px;
+
+@btn-border-radius: 10px;
+@btn-border-radius-round: 40px;
+@btn-border-radius-circle: 50%;
 
 @btn-shadow-default-size: 0 0 2px;
 @btn-shadow-hover-size: 0 4px 18px;
@@ -85,18 +112,6 @@
 
 @btn-disable-border: @gray-light;
 
-// Button-Link
-@btn-link-selector: ~'@{spryker-prefix}-button-link';
-@btn-link-default-height: 42px;
-@btn-link-default-horizontal-padding: 10px;
-@btn-link-default-vertical-padding: 10px;
-@btn-link-sm-vertical-padding: 8px;
-@btn-link-sm-height: 38px;
-@btn-link-lg-vertical-padding: 13px;
-@btn-link-lg-height: 48px;
-@btn-link-border-radius: 10px;
-@btn-link-border-width: 1px;
-
 // Card
 @card-prefix-cls: ~'@{ant-prefix}-card';
 
@@ -108,12 +123,18 @@
 @card-head-letter-spacing: 0.11px;
 
 @card-padding-base: 30px;
-@card-head-title-padding: 19px;
-@card-head-extra-padding: 19px;
+@card-head-y-padding: 19px;
 
 @card-radius: @border-radius-base;
 
 @card-border-width: 1px;
+
+@card-inner-background: @gray-lighter;
+@card-inner-head-border-color: @gray-light;
+
+@card-inner-padding-y-head: 13px;
+@card-inner-padding-y-base: 15px;
+@card-inner-padding-x-base: 20px;
 
 // Input
 @ant-input: ~'@{ant-prefix}-input';
@@ -438,8 +459,8 @@
 @table-column-text-prefix-cls: ~'@{ant-prefix}-table-column-text';
 @table-column-text-max-width: 380px;
 
-// Table Feature Renderer
-@table-feature-renderer-prefix-cls: ~'@{ant-prefix}-table-features-renderer';
+// Table Features Renderer
+@table-feature-renderer-prefix-cls: ~'@{spryker-prefix}-table-features-renderer';
 @table-feature-renderer-input-min-width: 317px;
 
 // Table Filters Feature
@@ -454,6 +475,9 @@
 
 // Table Form Overlay Action Handler
 @table-form-overlay-action-handler-prefix-cls: ~'@{spryker-prefix}-table-form-overlay-action-handler';
+
+// Table HTML Overlay Action Handler
+@table-html-overlay-action-handler-prefix-cls: ~'@{spryker-prefix}-table-html-overlay-action-handler';
 
 //Table Search Feature
 @magnifier-icon-width: 22px;
@@ -471,6 +495,12 @@
 @table-row-actions-feature-prefix-cls: ~'@{ant-prefix}-table-row-actions-feature';
 
 @table-row-actions-feature-trigger-radius: 50%;
+
+// Table Batch Actions Feature
+@table-batch-actions-feature-prefix-cls: ~'@{spryker-prefix}-table-batch-actions-feature';
+
+@table-batch-actions-feature-min-height: @btn-height-sm;
+@table-batch-actions-feature-grid-padding: 5px;
 
 // Date Picker
 @calendar-prefix-cls: ~'@{ant-prefix}-picker';
@@ -496,6 +526,7 @@
 
 @calendar-header-margin-top: 18px;
 @calendar-header-margin-bottom: 0;
+@calendar-header-view-first-button-margin: 0 8px 0 0;
 
 @calendar-next-month-button-right: 12px;
 @calendar-prev-month-button-left: 12px;
@@ -562,6 +593,13 @@
 @drawer-wrapper-action-hover-background: @green;
 @drawer-wrapper-action-hover-color: @white;
 
-// Ajax-Form
+// Ajax Form
 @ajax-form-prefix-cls: ~'@{spryker-prefix}-ajax-form';
 @ajax-form-container-loading-opacity: 60%;
+
+// Headline
+@headline-prefix-cls: ~'@{spryker-prefix}-headline';
+@headline-bottom-padding: 55px;
+
+@headline-title-letter-spacing: 0.2px;
+@headline-col-spacing: 10px;

@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table",
-  "version": "0.1.0-next.55",
+  "version": "0.1.0-next.68",
   "dependencies": {
     "@orchestrator/core": "^0.2.0",
     "@orchestrator/layout": "^0.1.0",
@@ -12,6 +12,7 @@
     "@angular/core": "^9.0.0",
     "@spryker/ajax-action": "^0.1.0-next.2",
     "@spryker/ajax-form": "^0.1.0-next.2",
+    "@spryker/button": "^0.1.0-next.16",
     "@spryker/checkbox": "^0.0.1-next.6",
     "@spryker/chips": "^0.0.1-next.0",
     "@spryker/date-picker": "^0.0.1-next.5",

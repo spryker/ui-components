@@ -34,15 +34,17 @@
       [class.ant-select-item-option-content-wrapper-selected]="
         checkSelectedState(option.value)
       "
+      [title]="option.label"
     >
-      {{ option.label }}
-
       <ng-container
         *ngTemplateOutlet="
           multiple ? multiSelectOptionIconTpl : singleSelectOptionIconTpl
         "
       >
       </ng-container>
+      <span class="ant-select-item-option-content-label">
+        {{ option.label }}
+      </span>
     </div>
   </nz-option>
 </nz-select>
@@ -114,5 +116,5 @@
 </ng-template>
 
 <ng-template #tagPlaceholder let-selectedList>{{
-  'select.selected:number' | spyI18n: { number: selectedList.length } | async
+  selectedList | spyJoin: ', '
 }}</ng-template>

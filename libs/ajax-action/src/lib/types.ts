@@ -27,5 +27,5 @@ export interface AjaxPostActionsDeclaration {
 
 export interface AjaxActionResponse {
   notifications?: AjaxActionNotification[];
-  postAction?: AjaxPostAction;
+  postActions?: AjaxPostAction[];
 }

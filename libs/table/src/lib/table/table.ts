@@ -102,7 +102,7 @@ export interface TableComponent {
   columns$: Observable<TableColumns>;
   data$: Observable<TableData>;
   isLoading$: Observable<boolean>;
-  getTableId(): string | undefined;
+  tableId$: Observable<string>;
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
   setRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
 }
@@ -147,14 +147,6 @@ export type TableDatasourceTypesDeclaration = {
     TableDatasource<TableDatasourceRegistry[P]>
   >;
 };
-
-export interface TableRowActionBase {
-  id: string;
-  title: string;
-  icon?: string;
-  type: TableRowAction;
-  typeOptions?: unknown;
-}
 
 export interface TableRowActionRegistry {
   // Key is action string - value is action options type

@@ -5,7 +5,10 @@ import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 import { TableColumnImageComponent } from './table-column-image.component';
 import { TableColumnImageModule } from './table-column-image.module';
-import { ContextModule } from '@spryker/utils';
+import {
+  ContextModule,
+  DefaultContextSerializationModule,
+} from '@spryker/utils';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { TableModule } from '@spryker/table';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
@@ -27,7 +30,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 export const primary = (): IStory => ({
   moduleMetadata: {
-    imports: [TableColumnImageModule],
+    imports: [TableColumnImageModule, DefaultContextSerializationModule],
   },
   component: TableColumnImageComponent,
   props: {
@@ -54,6 +57,7 @@ export const withTable = (): IStory => ({
       TableModule.withDatasourceTypes({
         http: TableDatasourceHttpService,
       }),
+      DefaultContextSerializationModule,
       BrowserAnimationsModule,
     ],
     providers: [

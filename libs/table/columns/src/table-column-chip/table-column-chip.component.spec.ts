@@ -1,7 +1,7 @@
 // tslint:disable: no-non-null-assertion
 import { TestBed } from '@angular/core/testing';
 import { TableColumnChipComponent } from './table-column-chip.component';
-import { ContextPipe } from '@spryker/utils';
+import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ChipsModule } from '@spryker/chips';
 
@@ -24,7 +24,7 @@ describe('TableColumnChipComponent', () => {
     TableColumnChipComponent,
     {
       ngModule: {
-        imports: [ChipsModule],
+        imports: [ChipsModule, DefaultContextSerializationModule],
         declarations: [ContextPipe],
       },
     },

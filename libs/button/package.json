@@ -1,15 +1,15 @@
 {
   "name": "@spryker/button",
-  "version": "0.1.0-next.12",
+  "version": "0.1.0-next.17",
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "ng-zorro-antd": "9.1.1"
   },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
+    "@spryker/ajax-action": "^0.1.0-next.5",
+    "@spryker/icon": "^0.1.0-next.16",
+    "@spryker/notification": "^0.1.0-next.11",
     "@spryker/styles": "^0.1.0-next.0",
     "@spryker/utils": "^0.1.0-next.0"
   }

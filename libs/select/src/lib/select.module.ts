@@ -9,6 +9,7 @@ import {
 } from '@spryker/icon/icons';
 import { I18nModule } from '@spryker/locale';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { JoinModule } from '@spryker/utils';
 
 import { SelectComponent } from './select/select.component';
 
@@ -22,6 +23,7 @@ import { SelectComponent } from './select/select.component';
     IconArrowDownModule,
     IconCheckModule,
     IconRemoveModule,
+    JoinModule,
   ],
   declarations: [SelectComponent],
   exports: [SelectComponent],

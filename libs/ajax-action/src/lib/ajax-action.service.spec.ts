@@ -7,9 +7,11 @@ import { AjaxActionService } from './ajax-action.service';
 
 const mockPostActionsType = 'mock';
 
-const mockPostActions = {
-  type: mockPostActionsType,
-};
+const mockPostActions = [
+  {
+    type: mockPostActionsType,
+  },
+];
 
 const mockNotificationsType = 'info';
 const mockNotificationsMessage = 'value';
@@ -85,36 +87,38 @@ describe('AjaxActionService', () => {
 
   it('should call appropriate post action if type exist in the tokens with data and default injector', () => {
     const mockResponse = {
-      postAction: mockPostActions,
+      postActions: mockPostActions,
     };
 
     actionService.handle(mockResponse);
 
     expect(postActionService.handleAction).toHaveBeenCalledWith(
-      mockPostActions,
+      mockPostActions[0],
       injector,
     );
   });
 
   it('should call appropriate post action if type exist in the tokens with data and custom injector', () => {
     const mockResponse = {
-      postAction: mockPostActions,
+      postActions: mockPostActions,
     };
     const mockInjector = {} as any;
 
     actionService.handle(mockResponse, mockInjector);
 
     expect(postActionService.handleAction).toHaveBeenCalledWith(
-      mockPostActions,
+      mockPostActions[0],
       mockInjector,
     );
   });
 
   it('should throw an error if post action type does not exist', () => {
     const mockResponse = {
-      postAction: {
-        type: 'invalid',
-      },
+      postActions: [
+        {
+          type: 'invalid',
+        },
+      ],
     };
 
     expect(() => {

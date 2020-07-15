@@ -1,7 +1,8 @@
-import { ButtonLinkComponent } from './button-link.component';
 import { ApplyAttrsModule } from '@spryker/utils';
 import { select } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
+
+import { ButtonLinkComponent } from './button-link.component';
 
 export default {
   title: 'ButtonLinkComponent',
@@ -21,6 +22,10 @@ export const primary = (): IStory => ({
       { Primary: 'primary', Secondary: 'secondary', Critical: 'critical' },
       'primary',
     ),
-    size: select('Size', { Large: 'lg', Medium: 'md', Small: 'sm' }, 'lg'),
+    size: select(
+      'Size',
+      { Large: 'lg', Medium: 'md', Small: 'sm', ExtraSmall: 'xs' },
+      'lg',
+    ),
   },
 });

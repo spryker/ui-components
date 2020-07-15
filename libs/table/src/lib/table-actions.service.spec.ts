@@ -54,16 +54,16 @@ describe('TableActionsService', () => {
   });
 
   it('should call `handleAction` method from FormOverlayActionHandlerService if actionHandler was found', () => {
-    tableActionsService.handle(mockAction as any);
+    tableActionsService.trigger(mockAction as any);
 
     expect(
       tableFormOverlayActionHandlerService.handleAction,
-    ).toHaveBeenCalledWith(mockAction);
+    ).toHaveBeenCalledWith(mockAction, injector);
   });
 
   it('should call `emit` of TableEventBus if actionHandler undefined', () => {
     tableActionsService._setEventBus(new MockTableEventBus() as any);
-    tableActionsService.handle(mockActionWithoutType as any);
+    tableActionsService.trigger(mockActionWithoutType as any);
 
     expect(tableActionsService.tableEventBus?.emit).toHaveBeenCalledWith(
       'table',

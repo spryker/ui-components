@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.21...@spryker/utils@0.1.0-fix-web-components.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **libs:** use directive for applying context classes ([e439b36](https://github.com/spryker/ui-components/commit/e439b36b578a5c83024e9625bf93284fe9e9cd8f))
+* **utils:** export apply contexts pieces from entry point file ([696bffb](https://github.com/spryker/ui-components/commit/696bffb88ad1861e9b5801587ddfea8114c14bee))
+* **utils:** filter out contexts by groups in `ApplyContextsDirective` ([bd04f2b](https://github.com/spryker/ui-components/commit/bd04f2b77948b68eedace02513b0502352ea3b5f))
+
+
+
+
+
 # [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/utils@0.1.0-next.18...@spryker/utils@0.1.0-fix-web-components.0) (2020-07-10)
 
 

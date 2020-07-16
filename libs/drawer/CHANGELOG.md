@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.1.0-fix-web-components.1...@spryker/drawer@0.1.0-fix-web-components.2) (2020-07-16)
+
+
+### Bug Fixes
+
+* **drawer:** added shadow to the buttons component ([0bb3d77](https://github.com/spryker/ui-components/commit/0bb3d77ee4fa307704b0de09d7d90917fa66fc04))
+
+
+### Features
+
+* **ajax-post-actions:** added implementation ([74757a5](https://github.com/spryker/ui-components/commit/74757a526b0e0f10e869bf81566619af46d35a9b))
+
+
+
+
+
 # [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.1.0-fix-web-components.0...@spryker/drawer@0.1.0-fix-web-components.1) (2020-07-10)
 
 

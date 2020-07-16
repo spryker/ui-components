@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.18...@spryker/form-item@0.1.0-fix-web-components.0) (2020-07-16)
+
+**Note:** Version bump only for package @spryker/form-item
+
+
+
+
+
 # [0.1.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.1.0-next.17...@spryker/form-item@0.1.0-next.18) (2020-07-03)
 
 

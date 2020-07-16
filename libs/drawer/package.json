@@ -1,6 +1,6 @@
 {
   "name": "@spryker/drawer",
-  "version": "0.1.0-fix-web-components.2",
+  "version": "0.1.0-fix-web-components.3",
   "peerDependencies": {
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.1.2",

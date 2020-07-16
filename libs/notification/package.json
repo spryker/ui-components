@@ -1,6 +1,6 @@
 {
   "name": "@spryker/notification",
-  "version": "0.1.0-fix-web-components.2",
+  "version": "0.1.0-fix-web-components.3",
   "publishConfig": {
     "access": "public"
   },

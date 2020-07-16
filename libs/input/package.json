@@ -1,6 +1,6 @@
 {
   "name": "@spryker/input",
-  "version": "0.1.0-fix-web-components.0",
+  "version": "0.1.0-fix-web-components.1",
   "publishConfig": {
     "access": "public"
   },

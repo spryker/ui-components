@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.3](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.1.0-fix-web-components.2...@spryker/drawer@0.1.0-fix-web-components.3) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
 # [0.1.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.1.0-fix-web-components.1...@spryker/drawer@0.1.0-fix-web-components.2) (2020-07-16)
 
 

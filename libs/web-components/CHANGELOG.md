@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-fix-web-components.5](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.4...@spryker/web-components@0.2.0-fix-web-components.5) (2020-07-17)
+
+
+### Bug Fixes
+
+* **web-components:** update ngx-element-boundary lib ([616e8a4](https://github.com/spryker/ui-components/commit/616e8a425fd251801eb575ee36bbc3f5c1256132))
+
+
+
+
+
 # [0.2.0-fix-web-components.4](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.3...@spryker/web-components@0.2.0-fix-web-components.4) (2020-07-15)
 
 

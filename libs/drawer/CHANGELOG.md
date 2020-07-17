@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.4](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.1.0-next.5...@spryker/drawer@0.1.0-fix-web-components.4) (2020-07-17)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+* **lib:** update versions for utils and web-componets packages ([6cc01ac](https://github.com/spryker/ui-components/commit/6cc01acfa6ceacb89fd0f61b954ab122a10cac69))
+* **libs:** mark content projection boundaries in some component ([4844e58](https://github.com/spryker/ui-components/commit/4844e58776f0c2e5a7ea956276ae610155a4250d))
+
+
+
+
+
 # [0.1.0-fix-web-components.3](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.1.0-fix-web-components.2...@spryker/drawer@0.1.0-fix-web-components.3) (2020-07-16)
 
 

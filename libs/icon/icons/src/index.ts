@@ -15,3 +15,4 @@ export * from './dots';
 export * from './calendar';
 export * from './minimize';
 export * from './maximize';
+export * from './settings';

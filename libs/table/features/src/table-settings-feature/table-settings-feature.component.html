@@ -1,0 +1,18 @@
+<ng-container *spyTableFeatureTpl="tableFeatureLocation.top">
+  <div>
+    <spy-popover>
+      <spy-button-toggle trigger>
+        <spy-icon [name]="settingsIcon"></spy-icon>
+      </spy-button-toggle>
+      <div id="content">
+        <div
+          cdkDropList
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </spy-popover>
+  </div>
+</ng-container>

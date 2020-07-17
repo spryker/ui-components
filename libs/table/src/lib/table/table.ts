@@ -8,12 +8,9 @@ import { TableActionTriggeredEvent } from '../../lib/types';
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;
   title: string;
-  sortable?: true;
   width?: string;
   multiRenderMode?: boolean;
   multiRenderModeLimit?: number;
-  hideable?: boolean;
-  searchable?: boolean;
   emptyValue?: string;
 }
 

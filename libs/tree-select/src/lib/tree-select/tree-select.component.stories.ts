@@ -95,40 +95,7 @@ export const disabled = () => ({
     placeholder: 'Select option...',
     multiple: true,
     name: 'some-name',
-    search: true,
     disabled: true,
     valueChange: console.log,
   },
 });
-
-// export const withSearch = () => ({
-//   moduleMetadata: { imports: [StoryModule] },
-//   component: TreeSelectComponent,
-//   props: {
-//     options: ['Option 1', 'Option 2', 'Option 3'],
-//     placeholder: 'Select option...',
-//     search: true,
-//   },
-// });
-
-// export const disabled = () => ({
-//   moduleMetadata: { imports: [StoryModule] },
-//   component: TreeSelectComponent,
-//   props: {
-//     options: ['Option 1', 'Option 2', 'Option 3'],
-//     placeholder: 'Select option...',
-//     disabled: true,
-//   },
-// });
-
-// export const withSelectAll = () => ({
-//   moduleMetadata: { imports: [StoryModule] },
-//   component: TreeSelectComponent,
-//   props: {
-//     options: ['Option 1', 'Option 2', 'Option 3'],
-//     placeholder: 'Select option...',
-//     multiple: true,
-//     showSelectAll: true,
-//     selectAllTitle: 'Select All',
-//   },
-// });

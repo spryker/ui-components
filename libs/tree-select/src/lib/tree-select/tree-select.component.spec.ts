@@ -10,7 +10,6 @@ import { TreeSelectComponent } from './tree-select.component';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { JoinModule } from '@spryker/utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { HIGH_CONTRAST_MODE_ACTIVE_CSS_CLASS } from '@angular/cdk/a11y/high-contrast-mode/high-contrast-mode-detector';
 import { By } from '@angular/platform-browser';
 
 describe('TreeSelectComponent', () => {

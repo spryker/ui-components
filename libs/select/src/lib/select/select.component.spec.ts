@@ -1,13 +1,13 @@
 // tslint:disable: no-non-null-assertion
-import { Component, Input, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { IconRemoveModule } from '@spryker/icon/icons';
-
+import { JoinModule } from '@spryker/utils';
 import { SelectComponent } from './select.component';
 
-xdescribe('SelectComponent', () => {
+describe('SelectComponent', () => {
   @Component({
     // tslint:disable-next-line: component-selector
     selector: 'nz-select',
@@ -21,6 +21,7 @@ xdescribe('SelectComponent', () => {
     SelectComponent,
     {
       ngModule: {
+        imports: [JoinModule],
         schemas: [NO_ERRORS_SCHEMA],
         declarations: [MockNzSelectComponent],
       },

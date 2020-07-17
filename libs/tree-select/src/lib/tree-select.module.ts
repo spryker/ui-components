@@ -14,6 +14,7 @@ import { I18nModule } from '@spryker/locale';
     I18nModule,
     JoinModule,
   ],
+  exports: [TreeSelectComponent],
   declarations: [TreeSelectComponent],
 })
 export class TreeSelectModule {}

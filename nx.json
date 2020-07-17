@@ -121,6 +121,9 @@
     },
     "headline": {
       "tags": ["level:atom", "type:component"]
+    },
+    "tree-select": {
+      "tags": ["level:molecule", "type:component"]
     }
   },
   "tasksRunnerOptions": {

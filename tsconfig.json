@@ -187,6 +187,10 @@
       "@spryker/headline": [
         "dist/libs/headline/index.d.ts",
         "libs/headline/src/index.ts"
+      ],
+      "@spryker/tree-select": [
+        "dist/libs/tree-select/index.d.ts",
+        "libs/tree-select/src/index.ts"
       ]
     }
   },

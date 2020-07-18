@@ -1,6 +1,6 @@
 {
   "name": "@spryker/web-components",
-  "version": "0.2.0-fix-web-components.5",
+  "version": "0.2.0-fix-web-components.6",
   "publishConfig": {
     "access": "public"
   },

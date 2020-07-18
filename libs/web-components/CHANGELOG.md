@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-fix-web-components.6](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.5...@spryker/web-components@0.2.0-fix-web-components.6) (2020-07-18)
+
+
+### Bug Fixes
+
+* **web-components:** adjust spySelectComponents directive to wait until components are initialized ([b72f486](https://github.com/spryker/ui-components/commit/b72f486cc2e91ba2ebc31ed7f96d932c3a7c78e9))
+
+
+
+
+
 # [0.2.0-fix-web-components.5](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.4...@spryker/web-components@0.2.0-fix-web-components.5) (2020-07-17)
 
 

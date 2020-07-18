@@ -35,7 +35,9 @@ export abstract class CustomElementModule {
   private register(componentDeclaration: WebComponentDeclaration) {
     customElements.define(
       this.getComponentName(componentDeclaration),
-      createCustomElementFor(componentDeclaration, this.injector),
+      createCustomElementFor(componentDeclaration, this.injector, {
+        timeoutMs: this.options.componentTimeoutMs,
+      }),
     );
   }
 

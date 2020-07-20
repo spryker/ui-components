@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-fix-web-components.1...@spryker/table@0.1.0-fix-web-components.2) (2020-07-20)
+
+
+### Bug Fixes
+
+* **table:** fix spinner position ([e46cd9f](https://github.com/spryker/ui-components/commit/e46cd9f5e1a330a11ccbcc1b82ebc3ef7b62739c))
+
+
+
+
+
 # [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-fix-web-components.0...@spryker/table@0.1.0-fix-web-components.1) (2020-07-16)
 
 

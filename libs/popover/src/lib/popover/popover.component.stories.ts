@@ -1,8 +1,8 @@
 import { PopoverModule } from '../popover.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonToggleModule } from '@spryker/button';
-import {IconModule} from "@spryker/icon";
-import {IconSettingsModule} from "@spryker/icon/icons";
+import { IconModule } from '@spryker/icon';
+import { IconSettingsModule } from '@spryker/icon/icons';
 
 export default {
   title: 'PopoverComponent',
@@ -12,7 +12,13 @@ const mockArray = [...Array(10).keys()];
 
 export const popover = () => ({
   moduleMetadata: {
-    imports: [PopoverModule, ButtonToggleModule, BrowserAnimationsModule, IconModule, IconSettingsModule],
+    imports: [
+      PopoverModule,
+      ButtonToggleModule,
+      BrowserAnimationsModule,
+      IconModule,
+      IconSettingsModule,
+    ],
   },
   template: `
     <spy-popover>

@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { ButtonToggleComponent } from './button-toggle.component';
@@ -44,17 +44,15 @@ describe('ButtonToggleComponent', () => {
     expect(buttonLinkElem.properties.spyApplyAttrs).toBe(mockedAttrs);
   });
 
-  it('should call `clickHandler` method when click event happens', fakeAsync(
-    async () => {
-      const host = await createComponent();
-      spyOn(host.component, 'clickHandler')
-      const buttonElem = host.queryCss('button')!;
-      buttonElem.triggerEventHandler('click', null);
-      tick();
-      host.detectChanges();
-      expect(host.component.clickHandler).toHaveBeenCalled();
-    }
-  ));
+  it('should call `clickHandler` method when click event happens', fakeAsync(async () => {
+    const host = await createComponent();
+    spyOn(host.component, 'clickHandler');
+    const buttonElem = host.queryCss('button')!;
+    buttonElem.triggerEventHandler('click', null);
+    tick();
+    host.detectChanges();
+    expect(host.component.clickHandler).toHaveBeenCalled();
+  }));
 
   describe('@Input(disabled)', () => {
     it('should by default have value `false`', async () => {

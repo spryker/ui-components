@@ -1,8 +1,8 @@
 import { boolean, select } from '@storybook/addon-knobs';
 
 import { ButtonToggleModule } from './button-toggle.module';
-import { IconModule } from "@spryker/icon";
-import { IconSettingsModule } from "@spryker/icon/icons";
+import { IconModule } from '@spryker/icon';
+import { IconSettingsModule } from '@spryker/icon/icons';
 
 export default {
   title: 'ButtonToggleComponent',

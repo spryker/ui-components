@@ -1,9 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import {PopoverComponent, PopoverPosition} from "@spryker/popover";
+import { PopoverComponent, PopoverPosition } from '@spryker/popover';
 import { NzPopoverComponent } from 'ng-zorro-antd/popover';
-import exp = require("constants");
+import exp = require('constants');
 
 // tslint:disable: no-non-null-assertion
 
@@ -26,16 +26,18 @@ describe('PopoverComponent', () => {
   });
 
   it('should render opened <spy-popover>', async () => {
-    const host = await createComponent({open: true});
+    const host = await createComponent({ open: true });
     host.detectChanges();
     const popoverElem = host.queryCss('span[nz-popover]');
     expect(popoverElem?.properties.nzPopoverVisible).toBeTruthy();
   });
 
   it('should render <spy-popover> with changed position', async () => {
-    const host = await createComponent({position: PopoverPosition.Top});
+    const host = await createComponent({ position: PopoverPosition.Top });
     host.detectChanges();
     const popoverElem = host.queryCss('span[nz-popover]');
-    expect(popoverElem?.properties.nzPopoverPlacement).toBe(PopoverPosition.Top);
+    expect(popoverElem?.properties.nzPopoverPlacement).toBe(
+      PopoverPosition.Top,
+    );
   });
 });

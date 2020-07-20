@@ -2,8 +2,6 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { PopoverComponent, PopoverPosition } from '@spryker/popover';
-import { NzPopoverComponent } from 'ng-zorro-antd/popover';
-import exp = require('constants');
 
 // tslint:disable: no-non-null-assertion
 

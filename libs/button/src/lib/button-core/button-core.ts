@@ -33,7 +33,7 @@ export class ButtonCoreInputs {
 })
 export class ButtonCore extends ButtonCoreInputs
   implements AfterViewInit, OnChanges {
-  @ViewChild('buttonRef') buttonRef?: ElementRef;
+  @ViewChild('buttonRef') buttonRef?: ElementRef<HTMLElement>;
 
   protected buttonClassName = '';
 
@@ -59,17 +59,24 @@ export class ButtonCore extends ButtonCoreInputs
     }
   }
 
+  click() {
+    this.buttonRef?.nativeElement.click();
+  }
+
   private setClassList(): void {
     this.renderer.addClass(this.elemRef.nativeElement, this.buttonClassName);
     this.renderer.addClass(this.elemRef.nativeElement, buttonClassName);
-    this.renderer.addClass(
-      this.buttonRef?.nativeElement,
-      `${this.buttonClassName}__btn`,
-    );
-    this.renderer.addClass(
-      this.buttonRef?.nativeElement,
-      `${buttonClassName}__btn`,
-    );
+
+    if (this.buttonRef) {
+      this.renderer.addClass(
+        this.buttonRef.nativeElement,
+        `${this.buttonClassName}__btn`,
+      );
+      this.renderer.addClass(
+        this.buttonRef.nativeElement,
+        `${buttonClassName}__btn`,
+      );
+    }
 
     this.changeClassName(this.shape);
     this.changeClassName(this.size);

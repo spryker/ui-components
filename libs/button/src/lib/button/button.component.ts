@@ -26,8 +26,4 @@ export class ButtonComponent extends ButtonCore {
   @Input() loading?: Boolean;
 
   protected buttonClassName = 'spy-button';
-
-  click(): void {
-    this.buttonRef?.nativeElement.click();
-  }
 }

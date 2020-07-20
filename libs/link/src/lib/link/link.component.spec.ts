@@ -39,7 +39,7 @@ describe('LinkComponent', () => {
     expect(iconElem).toBeTruthy();
   });
 
-  it('should render not `spy-icon` element if @Input(icon) is not defined', () => {
+  it('should not render `spy-icon` element if @Input(icon) is not defined', () => {
     fixture.detectChanges();
     const iconElem = fixture.debugElement.query(By.css('spy-icon'));
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/link@0.1.0-fix-web-components.0...@spryker/link@0.1.0-fix-web-components.1) (2020-07-20)
+
+
+### Bug Fixes
+
+* **link:** update peer dependencies tags ([302e30e](https://github.com/spryker/ui-components/commit/302e30e932b1c6e3e5ae0e756815edadc70f6332))
+
+
+
+
+
 # [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/link@0.1.0-next.0...@spryker/link@0.1.0-fix-web-components.0) (2020-07-20)
 
 **Note:** Version bump only for package @spryker/link

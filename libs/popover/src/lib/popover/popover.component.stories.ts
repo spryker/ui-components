@@ -3,6 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonToggleModule } from '@spryker/button';
 import { IconModule } from '@spryker/icon';
 import { IconSettingsModule } from '@spryker/icon/icons';
+import { boolean } from '@storybook/addon-knobs';
+import { open } from 'fs';
 
 export default {
   title: 'PopoverComponent',
@@ -21,8 +23,8 @@ export const popover = () => ({
     ],
   },
   template: `
-    <spy-popover>
-      <spy-button-toggle trigger>
+    <spy-popover (openChange)="buttonToggled = !buttonToggled">
+      <spy-button-toggle trigger [toggled]="buttonToggled">
         <spy-icon name="settings"></spy-icon>
       </spy-button-toggle>
       <ul>
@@ -32,5 +34,6 @@ export const popover = () => ({
   `,
   props: {
     mockData: mockArray,
+    buttonToggled: false,
   },
 });

@@ -9,6 +9,8 @@ import { ButtonComponent } from './button.component';
 // tslint:disable: no-non-null-assertion
 
 describe('ButtonComponent', () => {
+  const buttonCls = 'spy-button';
+
   const { testModule, createComponent } = getTestingForComponent(
     ButtonComponent,
     {
@@ -20,25 +22,35 @@ describe('ButtonComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
 
   it('should render <button>', async () => {
-    const host = await createComponent();
-
-    host.detectChanges();
-
-    const buttonElem = host.queryCss('button');
+    const host = await createComponent({}, true);
+    const buttonElem = host.queryCss('button')!;
 
     expect(buttonElem).toBeTruthy();
   });
 
   it('should render projected content inside <button>', async () => {
-    const host = await createComponent();
+    const host = await createComponent({}, true);
     const buttonElem = host.queryCss('button')!;
-
-    host.detectChanges();
 
     expect(buttonElem.nativeElement.textContent).toMatch('Content');
   });
 
-  it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the `<button>`', async () => {
+  it('should add static classes to host element', async () => {
+    const host = await createComponent({}, true);
+
+    expect(host.element.classes[buttonClassName]).toBeTruthy();
+    expect(host.element.classes[buttonCls]).toBeTruthy();
+  });
+
+  it('should add static classes to `button` element', async () => {
+    const host = await createComponent({}, true);
+    const buttonElem = host.queryCss('button')!;
+
+    expect(buttonElem.classes[`${buttonClassName}__btn`]).toBeTruthy();
+    expect(buttonElem.classes[`${buttonCls}__btn`]).toBeTruthy();
+  });
+
+  it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the host', async () => {
     const host = await createComponent(
       {
         variant: ButtonVariant.Critical,
@@ -47,16 +59,24 @@ describe('ButtonComponent', () => {
       },
       true,
     );
-    const buttonElem = host.queryCss('button')!;
 
     expect(
-      buttonElem.classes[`${buttonClassName}--${ButtonVariant.Critical}`],
+      host.element.classes[`${buttonClassName}--${ButtonVariant.Critical}`],
     ).toBeTruthy();
     expect(
-      buttonElem.classes[`${buttonClassName}--${ButtonShape.Circle}`],
+      host.element.classes[`${buttonCls}--${ButtonVariant.Critical}`],
     ).toBeTruthy();
     expect(
-      buttonElem.classes[`${buttonClassName}--${ButtonSize.Large}`],
+      host.element.classes[`${buttonClassName}--${ButtonShape.Circle}`],
+    ).toBeTruthy();
+    expect(
+      host.element.classes[`${buttonCls}--${ButtonShape.Circle}`],
+    ).toBeTruthy();
+    expect(
+      host.element.classes[`${buttonClassName}--${ButtonSize.Large}`],
+    ).toBeTruthy();
+    expect(
+      host.element.classes[`${buttonCls}--${ButtonSize.Large}`],
     ).toBeTruthy();
   });
 

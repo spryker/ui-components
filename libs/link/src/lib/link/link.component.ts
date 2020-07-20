@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Input,
+  ElementRef,
 } from '@angular/core';
 
 @Component({
@@ -13,10 +14,15 @@ import {
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'spy-link',
+    role: 'button',
   },
 })
 export class LinkComponent {
   @Input() icon?: string;
 
-  click(): void {}
+  constructor(private element: ElementRef) {}
+
+  click(): void {
+    this.element.nativeElement.click();
+  }
 }

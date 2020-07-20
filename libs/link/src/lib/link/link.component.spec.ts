@@ -32,15 +32,18 @@ describe('LinkComponent', () => {
   });
 
   it('should render `spy-icon` element if @Input(icon) is defined', () => {
-    let iconElem = fixture.debugElement.query(By.css('spy-icon'));
-
-    expect(iconElem).toBeFalsy();
-
     component.icon = 'icon';
     fixture.detectChanges();
-    iconElem = fixture.debugElement.query(By.css('spy-icon'));
+    const iconElem = fixture.debugElement.query(By.css('spy-icon'));
 
     expect(iconElem).toBeTruthy();
+  });
+
+  it('should render not `spy-icon` element if @Input(icon) is not defined', () => {
+    fixture.detectChanges();
+    const iconElem = fixture.debugElement.query(By.css('spy-icon'));
+
+    expect(iconElem).toBeFalsy();
   });
 
   it('should render default slot after `spy-icon` element', () => {

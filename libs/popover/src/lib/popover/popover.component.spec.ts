@@ -1,24 +1,41 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import {PopoverComponent, PopoverPosition} from "@spryker/popover";
+import { NzPopoverComponent } from 'ng-zorro-antd/popover';
+import exp = require("constants");
 
-import { PopoverComponent } from './popover.component';
+// tslint:disable: no-non-null-assertion
 
 describe('PopoverComponent', () => {
-  let component: PopoverComponent;
-  let fixture: ComponentFixture<PopoverComponent>;
+  const { testModule, createComponent } = getTestingForComponent(
+    PopoverComponent,
+    {
+      ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+      projectContent: 'Content',
+    },
+  );
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [PopoverComponent],
-    }).compileComponents();
-  }));
+  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PopoverComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should render <spy-popover>', async () => {
+    const host = await createComponent();
+    host.detectChanges();
+    const popoverElem = host.queryCss('span[nz-popover]');
+    expect(popoverElem).toBeTruthy();
   });
 
-  xit('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render opened <spy-popover>', async () => {
+    const host = await createComponent({open: true});
+    host.detectChanges();
+    const popoverElem = host.queryCss('span[nz-popover]');
+    expect(popoverElem?.properties.nzPopoverVisible).toBeTruthy();
+  });
+
+  it('should render <spy-popover> with changed position', async () => {
+    const host = await createComponent({position: PopoverPosition.Top});
+    host.detectChanges();
+    const popoverElem = host.queryCss('span[nz-popover]');
+    expect(popoverElem?.properties.nzPopoverPlacement).toBe(PopoverPosition.Top);
   });
 });

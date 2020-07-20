@@ -1,6 +1,8 @@
 import { boolean, select } from '@storybook/addon-knobs';
 
 import { ButtonToggleModule } from './button-toggle.module';
+import { IconModule } from "@spryker/icon";
+import { IconSettingsModule } from "@spryker/icon/icons";
 
 export default {
   title: 'ButtonToggleComponent',
@@ -8,30 +10,16 @@ export default {
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [ButtonToggleModule],
+    imports: [ButtonToggleModule, IconModule, IconSettingsModule],
   },
   template: `
     <spy-button-toggle
       [disabled]="disabled"
     >
+        <spy-icon name="settings"></spy-icon>
     </spy-button-toggle>
   `,
   props: {
-    variant: select(
-      'Variant',
-      { Primary: 'primary', Secondary: 'secondary', Critical: 'critical' },
-      'primary',
-    ),
-    size: select(
-      'Size',
-      { Large: 'lg', Medium: 'md', Small: 'sm', ExtraSmall: 'xs' },
-      'lg',
-    ),
-    shape: select(
-      'Shape',
-      { Default: 'default', Round: 'round', Circle: 'circle' },
-      'default',
-    ),
     disabled: boolean('Disabled', false),
   },
 });

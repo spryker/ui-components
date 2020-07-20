@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-fix-web-components.1...@spryker/button@0.1.0-fix-web-components.2) (2020-07-20)
+
+
+### Bug Fixes
+
+* **button:** allow buttons to be sized from host element ([d6a53d6](https://github.com/spryker/ui-components/commit/d6a53d60c3aa9c134cd53a80b588b9eb52b7d774))
+
+
+
+
+
 # [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-fix-web-components.0...@spryker/button@0.1.0-fix-web-components.1) (2020-07-16)
 
 

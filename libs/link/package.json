@@ -1,0 +1,13 @@
+{
+  "name": "@spryker/link",
+  "version": "0.1.0-next.0",
+  "peerDependencies": {
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
+    "@spryker/icon": "^0.0.1-next.16",
+    "tslib": "^1.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

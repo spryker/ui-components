@@ -187,7 +187,8 @@
       "@spryker/headline": [
         "dist/libs/headline/index.d.ts",
         "libs/headline/src/index.ts"
-      ]
+      ],
+      "@spryker/link": ["dist/libs/link/index.d.ts", "libs/link/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

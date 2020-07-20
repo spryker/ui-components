@@ -11,6 +11,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.1.0-next.79](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.78...@spryker/styles@0.1.0-next.79) (2020-07-20)
+
+
+### Features
+
+* **link:** add link component ([2a263c7](https://github.com/spryker/ui-components/commit/2a263c7856e21de435c0f0d0e9803f7e2e67546d))
+
+
+
+
+
 # [0.1.0-next.78](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.77...@spryker/styles@0.1.0-next.78) (2020-07-13)
 
 **Note:** Version bump only for package @spryker/styles

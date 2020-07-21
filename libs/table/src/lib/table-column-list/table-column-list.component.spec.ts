@@ -42,8 +42,13 @@ const mockContextWithSimpleValue: any = {
 };
 
 const mockContextWithMultiple: any = {
-  ...mockContextWithSimpleValue,
+  ...mockContext,
   value: ['test value', 'test', 'test'],
+};
+
+const mockContextWithMultipleNoLimit: any = {
+  ...mockContext,
+  value: ['test value'],
 };
 
 const mockTransformedData = { name: 'name', sku: 'test value' };
@@ -91,6 +96,20 @@ describe('TableColumnListComponent', () => {
         mockContextWithMultiple.value.length,
     ).toBeTruthy();
     expect(popoverElem).toBeTruthy();
+  });
+
+  it('should not render `spy-popover` element if values.length less or equal than valueLimit', async () => {
+    const host = await createComponent(
+      { config: mockConfig, context: mockContextWithMultipleNoLimit },
+      true,
+    );
+    const popoverElem = host.queryCss('spy-popover');
+
+    expect(
+      mockContext.config.typeOptions.limit >=
+        mockContextWithMultipleNoLimit.value.length,
+    ).toBeTruthy();
+    expect(popoverElem).toBeFalsy();
   });
 
   it('should render `.spy-table-column-list__trigger` width values.length if values.length more than valueLimit', async () => {

@@ -7,7 +7,7 @@
   line-height: 1;
   margin: -@table-column-list-indent;
 
-  .@{popover-prefix-cls},
+  .@{popover-spryker-prefix-cls},
   &__holder {
     padding: @table-column-list-indent;
   }
@@ -31,7 +31,7 @@
       background: @gray-lighter;
     }
 
-    &:focus {
+    .@{popover-prefix-cls}-open & {
       box-shadow: @table-column-list-trigger-box-shadow;
       background: @gray-lighter;
       color: @green-dark;

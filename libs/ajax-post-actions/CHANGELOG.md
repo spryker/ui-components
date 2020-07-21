@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/ajax-post-actions@0.2.0-next.1...@spryker/ajax-post-actions@0.2.0-next.2) (2020-07-21)
+
+
+### Bug Fixes
+
+* **ajax-post-actions:** fix version range of dropdown peer dependency ([b248d80](https://github.com/spryker/ui-components/commit/b248d80e160c90dc5b590b1a41bb9b8bb3af81db))
+
+
+
+
+
 # [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/ajax-post-actions@0.2.0-next.0...@spryker/ajax-post-actions@0.2.0-next.1) (2020-07-21)
 
 

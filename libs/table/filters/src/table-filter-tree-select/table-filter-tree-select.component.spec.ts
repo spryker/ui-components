@@ -64,9 +64,11 @@ describe('TableFilterTreeSelectComponent', () => {
       );
       const selectElem = host.queryCss('spy-tree-select');
       const token = 'table.filter:title';
+
       expect(service.getLocaleData(token, 'title')).toBe(
         mockTreeSelectConfig.title,
       );
+      expect(selectElem!.properties.placeholder).toBe(token);
     });
 
     it('`config.typeOptions.multiselect` must be bound to placeholder multiple of the `spy-tree-select` element', async () => {

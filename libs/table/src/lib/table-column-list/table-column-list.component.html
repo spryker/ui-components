@@ -1,15 +1,24 @@
-<div class="ant-table-column-list">
+<div class="spy-table-column-list">
   <ng-container
     [ngTemplateOutlet]="valuesTpl"
     [ngTemplateOutletContext]="{ $implicit: valuesLimited }"
   ></ng-container>
 
-  <!--TODO: add popover-->
+  <spy-popover *ngIf="valuesLimited.length < values.length">
+    <span trigger class="spy-table-column-list__trigger"
+      >({{ values.length }})</span
+    >
+
+    <ng-container
+      [ngTemplateOutlet]="valuesTpl"
+      [ngTemplateOutletContext]="{ $implicit: values }"
+    ></ng-container>
+  </spy-popover>
 </div>
 
 <ng-template #valuesTpl let-values>
   <div
-    class="ant-table-column-list-holder"
+    class="spy-table-column-list__holder"
     *ngFor="let value of values; index as i"
   >
     <spy-table-column-renderer

@@ -71,6 +71,16 @@ describe('TableColumnListComponent', () => {
     expect(columnElem).toBeTruthy();
   });
 
+  it('should render `spy-table-column-renderer` element', async () => {
+    const host = await createComponent(
+      { config: mockConfig, context: mockContext },
+      true,
+    );
+    const columnElem = host.queryCss('spy-table-column-renderer');
+
+    expect(columnElem).toBeTruthy();
+  });
+
   it('`spy-table-column-renderer` element should bind transformed `config` to the input `config`', async () => {
     const host = await createComponent(
       { config: mockConfig, context: mockContext },
@@ -89,5 +99,15 @@ describe('TableColumnListComponent', () => {
     const columnElem = host.queryCss('spy-table-column-renderer');
 
     expect(columnElem!.properties.data).toEqual(mockTransformedData);
+  });
+
+  it('should render `spy-table-column-renderer` element', async () => {
+    const host = await createComponent(
+      { config: mockConfig, context: mockContext },
+      true,
+    );
+    const columnElem = host.queryCss('spy-table-column-renderer');
+
+    expect(columnElem).toBeTruthy();
   });
 });

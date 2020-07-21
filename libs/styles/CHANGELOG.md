@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.0...@spryker/styles@0.2.0-next.1) (2020-07-21)
+
+
+### Features
+
+* **tree-select:** created component ([62687b3](https://github.com/spryker/ui-components/commit/62687b3e6adcf4019b447d1af3ffdf74c2c3768c))
+* **tree-select:** fixed tests and functionality ([b83de3d](https://github.com/spryker/ui-components/commit/b83de3d732299dc813801de5ba382c416316c4a8))
+
+
+
+
+
 # [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-fix-web-components.0...@spryker/styles@0.2.0-next.0) (2020-07-21)
 
 

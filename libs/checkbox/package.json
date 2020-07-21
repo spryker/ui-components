@@ -1,6 +1,6 @@
 {
   "name": "@spryker/checkbox",
-  "version": "0.1.0-next.8",
+  "version": "0.2.0-next.0",
   "dependencies": {
     "ng-zorro-antd": "9.1.1"
   },

@@ -1,4 +1,5 @@
-<nz-header ngClass="ctx-spy-bg-white">
-  <slot></slot>
-  <ng-content></ng-content>
+<nz-header spyApplyContexts="spy-bg-white">
+  <span spyCustomElementBoundary>
+    <ng-content></ng-content>
+  </span>
 </nz-header>

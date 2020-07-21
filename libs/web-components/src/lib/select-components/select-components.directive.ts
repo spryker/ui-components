@@ -2,19 +2,29 @@ import { ContentObserver } from '@angular/cdk/observers';
 import {
   Directive,
   ElementRef,
-  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   Output,
   SimpleChanges,
   Type,
 } from '@angular/core';
-import { EMPTY, Observable, ReplaySubject, Subject } from 'rxjs';
-import { debounceTime, startWith, switchAll, takeUntil } from 'rxjs/operators';
+import { EMPTY, forkJoin, Observable, ReplaySubject, Subject } from 'rxjs';
+import {
+  debounceTime,
+  map,
+  mapTo,
+  shareReplay,
+  startWith,
+  switchAll,
+  switchMap,
+} from 'rxjs/operators';
 
-import { isNgWebComponentOf, NgWebComponent } from '../ng-web-component';
+import {
+  isNgWebComponent,
+  isNgWebComponentOf,
+  NgWebComponent,
+} from '../ng-web-component';
 
 /**
  * Directive allows to select WebComponents that are {@link NgWebComponent}
@@ -36,7 +46,7 @@ import { isNgWebComponentOf, NgWebComponent } from '../ng-web-component';
   selector: '[spySelectComponents]',
 })
 export class SelectComponentsDirective<T = unknown>
-  implements OnInit, OnChanges, OnDestroy {
+  implements OnChanges, OnDestroy {
   /**
    * Angular component type that {@link NgWebComponent} should be instance of
    */
@@ -50,26 +60,35 @@ export class SelectComponentsDirective<T = unknown>
    */
   @Input() spySelectComponentsSkipWaiting = false;
 
+  private destroyed$ = new Subject<void>();
+  private setObserver$ = new ReplaySubject<Observable<any>>(1);
+
+  private observations$: Observable<Observable<any>> = this.setObserver$.pipe(
+    switchAll(),
+    startWith(null),
+    debounceTime(0),
+  );
+
+  private elements$ = this.observations$.pipe(
+    switchMap(() => this.findElements()),
+  );
+
+  private components$ = this.elements$.pipe(
+    switchMap(elements => this.findComponentsIn(elements)),
+  );
+
   /**
    * Emits every time it performs search of components in DOM
    */
-  @Output() spySelectComponentsFound = new EventEmitter<T[]>();
-
-  private destroyed$ = new Subject<void>();
-  private setObserver$ = new ReplaySubject<Observable<any>>();
-
-  private observations$ = this.setObserver$.pipe(switchAll());
+  @Output() spySelectComponentsFound: Observable<T[]> = this.components$.pipe(
+    map(components => this.findInstancesIn(components)),
+    shareReplay({ refCount: true, bufferSize: 1 }),
+  );
 
   constructor(
     private elemRef: ElementRef<Element>,
     private observer: ContentObserver,
   ) {}
-
-  ngOnInit(): void {
-    this.observations$
-      .pipe(startWith(null), debounceTime(0), takeUntil(this.destroyed$))
-      .subscribe(() => this.findComponents());
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('spySelectComponentsObserve' in changes) {
@@ -84,27 +103,44 @@ export class SelectComponentsDirective<T = unknown>
     this.destroyed$.next();
   }
 
-  private async findComponents() {
+  private findElements(): Promise<Element[]> {
+    const children = Array.from(this.elemRef.nativeElement.children);
+
+    if (this.spySelectComponentsSkipWaiting) {
+      return Promise.resolve(children);
+    }
+
+    const allElementsDefined = children.map(element =>
+      customElements
+        .whenDefined(element.tagName.toLowerCase())
+        // Catch errors when ran on non custom elements
+        .catch(() => void 0 as void),
+    );
+
+    return Promise.all(allElementsDefined).then(() => children);
+  }
+
+  private findComponentsIn(
+    elements: Element[],
+  ): Observable<NgWebComponent<unknown>[]> {
+    const components: NgWebComponent<unknown>[] = elements.filter(element =>
+      isNgWebComponent(element),
+    ) as any;
+
+    return forkJoin(
+      components.map(component => component.whenInit().pipe(mapTo(component))),
+    );
+  }
+
+  private findInstancesIn(components: NgWebComponent<unknown>[]): T[] {
     if (!this.spySelectComponents) {
-      return;
+      return [];
     }
 
-    const children = Array.from<unknown>(this.elemRef.nativeElement.children);
-
-    if (!this.spySelectComponentsSkipWaiting) {
-      const allDefined = (children as Element[]).map(c =>
-        customElements.whenDefined(c.tagName.toLowerCase()),
-      );
-
-      await Promise.all(allDefined);
-    }
-
-    const webComponents = children.filter(
+    const ngWebComponents = components.filter(
       isNgWebComponentOf(this.spySelectComponents),
     );
 
-    const ngComponent = webComponents.map(c => c.getSuper());
-
-    this.spySelectComponentsFound.emit(ngComponent);
+    return ngWebComponents.map(c => c.getSuper());
   }
 }

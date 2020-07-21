@@ -1,4 +1,158 @@
-.@{btn-prefix-cls}-core {
+@btn-prefix-core-cls: ~'@{btn-prefix-cls}-core';
+@btn-prefix-core-btn-cls: ~'@{btn-prefix-core-cls}__btn';
+
+.@{btn-prefix-core-cls} {
+  display: inline-block;
+
+  &--primary {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-primary-bg;
+      border-color: @btn-primary-bg;
+
+      &:hover {
+        color: @btn-primary-color;
+        box-shadow: @btn-primary-shadow-hover;
+      }
+
+      &:focus {
+        color: @btn-primary-color;
+        box-shadow: @btn-shadow-default-size transparent;
+
+        &::after {
+          box-shadow: @btn-shadow-default-size @btn-primary-bg;
+        }
+      }
+
+      &:active {
+        color: @btn-primary-color;
+        background: @btn-primary-active-bg;
+        border-color: @btn-primary-active-bg;
+
+        &::after {
+          box-shadow: @btn-shadow-default-size transparent;
+        }
+      }
+    }
+  }
+
+  &--secondary {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      color: @btn-default-color;
+      border-color: @btn-default-border;
+
+      &:hover {
+        background: @btn-default-bg;
+        color: @btn-default-color;
+        border-color: @btn-default-border-hover;
+        box-shadow: @btn-default-shadow-hover;
+      }
+
+      &:focus,
+      &:active {
+        background: @btn-default-bg;
+        color: @btn-default-color;
+        border-color: @btn-default-border-active;
+      }
+
+      &:focus {
+        box-shadow: @btn-shadow-default-size transparent;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
+      }
+    }
+  }
+
+  &--critical {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-danger-bg;
+      border-color: @btn-danger-bg;
+
+      &:hover {
+        box-shadow: @btn-danger-shadow-hover;
+      }
+
+      &:focus,
+      &:active {
+        color: @btn-danger-color;
+        background: @btn-danger-active-bg;
+        border-color: @btn-danger-active-bg;
+      }
+
+      &:focus {
+        box-shadow: @btn-shadow-default-size transparent;
+
+        &::after {
+          box-shadow: @btn-shadow-default-size @btn-danger-bg;
+        }
+      }
+
+      &:active::after {
+        box-shadow: @btn-shadow-default-size transparent;
+      }
+    }
+  }
+
+  &--lg {
+    .@{btn-prefix-core-btn-cls} {
+      min-width: @btn-min-width-lg;
+      line-height: @btn-line-height-lg;
+      padding: 0 @btn-horizontal-padding-base-lg;
+
+      &.loading {
+        padding: @btn-padding-with-loading-lg;
+      }
+
+      .@{spin-prefix-cls} {
+        &-nested-loading {
+          left: @btn-loading-spin-offset-lg;
+        }
+      }
+    }
+  }
+
+  &--md {
+    .@{btn-prefix-core-btn-cls} {
+      min-width: @btn-min-width-md;
+      line-height: @btn-line-height-md;
+      padding: 0 @btn-horizontal-padding-base-md;
+
+      &.loading {
+        padding: @btn-padding-with-loading-md;
+      }
+    }
+  }
+
+  &--xs,
+  &--sm {
+    .@{btn-prefix-core-btn-cls} {
+      min-width: @btn-min-width-sm;
+      line-height: @btn-line-height-sm;
+    }
+  }
+
+  &--xs {
+    .@{btn-prefix-core-btn-cls} {
+      line-height: @btn-line-height-xs;
+    }
+  }
+
+  &--circle {
+    .@{btn-prefix-core-btn-cls} {
+      border-radius: @btn-border-radius-circle;
+    }
+  }
+
+  &--round {
+    .@{btn-prefix-core-btn-cls} {
+      border-radius: @btn-border-radius-round;
+    }
+  }
+}
+
+.@{btn-prefix-core-btn-cls} {
   .transition-mixin(all);
   display: inline-flex;
   align-items: center;
@@ -15,9 +169,8 @@
   color: @btn-primary-color;
   cursor: pointer;
   position: relative;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: inline-block;
+  width: 100%;
 
   &.loading {
     padding: @btn-padding-with-loading-sm;
@@ -59,135 +212,6 @@
 
   &:active {
     transform: scaleX(0.9);
-  }
-
-  &--primary {
-    background: @btn-primary-bg;
-    border-color: @btn-primary-bg;
-
-    &:hover {
-      color: @btn-primary-color;
-      box-shadow: @btn-primary-shadow-hover;
-    }
-
-    &:focus {
-      color: @btn-primary-color;
-      box-shadow: @btn-shadow-default-size transparent;
-
-      &::after {
-        box-shadow: @btn-shadow-default-size @btn-primary-bg;
-      }
-    }
-
-    &:active {
-      color: @btn-primary-color;
-      background: @btn-primary-active-bg;
-      border-color: @btn-primary-active-bg;
-
-      &::after {
-        box-shadow: @btn-shadow-default-size transparent;
-      }
-    }
-  }
-
-  &--secondary {
-    background: @btn-default-bg;
-    color: @btn-default-color;
-    border-color: @btn-default-border;
-
-    &:hover {
-      background: @btn-default-bg;
-      color: @btn-default-color;
-      border-color: @btn-default-border-hover;
-      box-shadow: @btn-default-shadow-hover;
-    }
-
-    &:focus,
-    &:active {
-      background: @btn-default-bg;
-      color: @btn-default-color;
-      border-color: @btn-default-border-active;
-    }
-
-    &:focus {
-      box-shadow: @btn-shadow-default-size transparent;
-    }
-
-    &:active {
-      background: @btn-default-bg-active;
-    }
-  }
-
-  &--critical {
-    background: @btn-danger-bg;
-    border-color: @btn-danger-bg;
-
-    &:hover {
-      box-shadow: @btn-danger-shadow-hover;
-    }
-
-    &:focus,
-    &:active {
-      color: @btn-danger-color;
-      background: @btn-danger-active-bg;
-      border-color: @btn-danger-active-bg;
-    }
-
-    &:focus {
-      box-shadow: @btn-shadow-default-size transparent;
-
-      &::after {
-        box-shadow: @btn-shadow-default-size @btn-danger-bg;
-      }
-    }
-
-    &:active::after {
-      box-shadow: @btn-shadow-default-size transparent;
-    }
-  }
-
-  &--lg {
-    min-width: @btn-min-width-lg;
-    line-height: @btn-line-height-lg;
-    padding: 0 @btn-horizontal-padding-base-lg;
-
-    &.loading {
-      padding: @btn-padding-with-loading-lg;
-    }
-
-    .@{spin-prefix-cls} {
-      &-nested-loading {
-        left: @btn-loading-spin-offset-lg;
-      }
-    }
-  }
-
-  &--md {
-    min-width: @btn-min-width-md;
-    line-height: @btn-line-height-md;
-    padding: 0 @btn-horizontal-padding-base-md;
-
-    &.loading {
-      padding: @btn-padding-with-loading-md;
-    }
-  }
-
-  &--xs,
-  &--sm {
-    min-width: @btn-min-width-sm;
-    line-height: @btn-line-height-sm;
-  }
-
-  &--xs {
-    line-height: @btn-line-height-xs;
-  }
-
-  &--circle {
-    border-radius: @btn-border-radius-circle;
-  }
-
-  &--round {
-    border-radius: @btn-border-radius-round;
   }
 
   &[disabled] {

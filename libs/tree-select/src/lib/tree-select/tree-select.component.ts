@@ -1,14 +1,22 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
   Output,
   EventEmitter,
   ViewEncapsulation,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { ToBoolean, ToJson } from '@spryker/utils';
 import { TreeSelectItem, TreeSelectValue } from './types';
+
+/**
+ * Interface extends {@link TreeSelectItem} and adds 'key' property as it is required by ant-design
+ */
+interface TreeSelectItemWithKey extends TreeSelectItem {
+  key: TreeSelectValue;
+}
 
 @Component({
   selector: 'spy-tree-select',
@@ -17,7 +25,7 @@ import { TreeSelectItem, TreeSelectValue } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TreeSelectComponent implements OnInit {
+export class TreeSelectComponent implements OnChanges {
   @Input() @ToJson() items?: TreeSelectItem[];
   @Input() @ToJson() value?: TreeSelectValue | TreeSelectValue[];
   @Input() @ToBoolean() search = false;
@@ -35,33 +43,42 @@ export class TreeSelectComponent implements OnInit {
   mappedItems?: TreeSelectItem[];
   mappedValue?: TreeSelectValue | TreeSelectValue[];
 
-  ngOnInit() {
-    this.updateItems();
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('items' in changes) {
+      this.updateItems();
+    }
   }
 
   private updateItems(): void {
     this.mappedItems = this.items?.map(item => this.mapTreeItems(item));
   }
 
-  private mapTreeItems(item: TreeSelectItem): TreeSelectItem {
+  private mapTreeItems(item: TreeSelectItem): TreeSelectItemWithKey {
     return {
       ...item,
       key: item.value,
-      children:
-        Array.isArray(item.children) && item.children.length
-          ? item.children.map(childItem => this.mapTreeItems(childItem))
-          : [],
-    } as TreeSelectItem;
+      children: Array.isArray(item.children)
+        ? item.children.map(childItem => this.mapTreeItems(childItem))
+        : [],
+    };
   }
 
+  /**
+   * @param value {@link TreeSelectValue}
+   * Check if item value equal to the selected value or includes in selected values array if mode is multiple
+   */
   checkSelectedState(value: TreeSelectValue): boolean {
-    if (this.mappedValue && Array.isArray(this.mappedValue)) {
+    if (this.multiple && this.mappedValue && Array.isArray(this.mappedValue)) {
       return this.mappedValue.includes(value);
     }
 
     return value === this.mappedValue;
   }
 
+  /**
+   * @param value {@link TreeSelectValue}
+   * Emits valueChange output
+   */
   handleValueChange(value: TreeSelectValue | TreeSelectValue[]): void {
     this.mappedValue = value;
     this.valueChange.emit(value);

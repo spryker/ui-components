@@ -1,15 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
-  ViewEncapsulation,
   Injector,
-  OnInit,
-  OnDestroy,
   Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AjaxActionService } from '@spryker/ajax-action';
-import { ButtonCoreInputs } from '../button-core/button-core';
 import { merge, of, Subject } from 'rxjs';
 import {
   catchError,
@@ -19,6 +19,9 @@ import {
   switchMap,
   takeUntil,
 } from 'rxjs/operators';
+
+import { ButtonCoreInputs } from '../button-core/button-core';
+import { ButtonComponent } from '../button/button.component';
 
 export enum ButtonAjaxMethod {
   Get = 'GET',
@@ -37,6 +40,8 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
   @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
   @Input() url?: string;
 
+  @ViewChild(ButtonComponent) buttonComponent?: ButtonComponent;
+
   private click$ = new Subject<void>();
   private request$ = this.click$.pipe(
     filter(() => Boolean(this.url)),
@@ -50,7 +55,7 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
   );
   private destroyed$ = new Subject<void>();
 
-  private isLoading$ = merge(
+  isLoading$ = merge(
     this.click$.pipe(mapTo(true)),
     this.request$.pipe(mapTo(false)),
   );
@@ -72,11 +77,14 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
   }
 
   ngOnDestroy(): void {
-    /** clearing stream to prevent memory leak */
     this.destroyed$.next();
   }
 
   click(): void {
+    this.buttonComponent?.click();
+  }
+
+  handleClick() {
     this.click$.next();
   }
 }

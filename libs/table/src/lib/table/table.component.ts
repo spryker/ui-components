@@ -82,6 +82,9 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
     TableDatasourceService,
     TableActionsService,
   ],
+  host: {
+    class: 'spy-table',
+  },
 })
 export class CoreTableComponent
   implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy {

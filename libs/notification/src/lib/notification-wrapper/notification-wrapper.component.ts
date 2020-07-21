@@ -12,7 +12,7 @@ import { ToastPackage, ToastrService } from 'ngx-toastr';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'spy-notification-wrapper ctx-spy-bg-gray',
+    class: 'spy-notification-wrapper',
   },
 })
 export class NotificationWrapperComponent {

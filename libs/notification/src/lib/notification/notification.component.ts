@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
@@ -11,10 +10,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconRemoveModule } from '@spryker/icon/icons';
-import { applyContexts, ToBoolean } from '@spryker/utils';
+import { ApplyContextsDirective, ToBoolean } from '@spryker/utils';
 import { NzAlertComponent } from 'ng-zorro-antd/alert';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'spy-notification',
@@ -25,6 +23,7 @@ import { takeUntil } from 'rxjs/operators';
   host: {
     class: 'spy-notification',
   },
+  providers: [ApplyContextsDirective],
 })
 export class NotificationComponent implements OnInit, OnDestroy {
   @Input() type: 'info' | 'error' | 'warning' | 'success' = 'info';
@@ -38,12 +37,10 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   private destroyed$ = new Subject<void>();
 
-  constructor(private elemRef: ElementRef) {}
+  constructor(private applyContextsDirective: ApplyContextsDirective) {}
 
   ngOnInit(): void {
-    applyContexts(this.elemRef.nativeElement)
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe();
+    this.applyContextsDirective.ngOnInit();
   }
 
   ngOnDestroy(): void {

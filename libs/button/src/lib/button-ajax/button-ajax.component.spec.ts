@@ -13,7 +13,7 @@ import { ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
 
 // tslint:disable: no-non-null-assertion
 
-describe('ButtonComponent', () => {
+describe('ButtonAjaxComponent', () => {
   let httpTestingController: HttpTestingController;
 
   const { testModule, createComponent } = getTestingForComponent(

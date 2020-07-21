@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/ajax-post-actions@0.2.0-next.0...@spryker/ajax-post-actions@0.2.0-next.1) (2020-07-21)
+
+
+### Bug Fixes
+
+* **ajax-post-actions:** add button lib to peer dependencies ([5ff2510](https://github.com/spryker/ui-components/commit/5ff251029c80404cd9e97131d6f3debd376c67fc))
+
+
+
+
+
 # [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/ajax-post-actions@0.2.0-fix-web-components.0...@spryker/ajax-post-actions@0.2.0-next.0) (2020-07-21)
 
 

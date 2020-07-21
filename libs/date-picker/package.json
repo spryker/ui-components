@@ -1,6 +1,6 @@
 {
   "name": "@spryker/date-picker",
-  "version": "0.1.0-fix-web-components.1",
+  "version": "0.2.0-fix-web-components.0",
   "publishConfig": {
     "access": "public"
   },

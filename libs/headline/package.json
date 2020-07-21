@@ -1,6 +1,6 @@
 {
   "name": "@spryker/headline",
-  "version": "0.1.0-fix-web-components.1",
+  "version": "0.2.0-fix-web-components.0",
   "peerDependencies": {
     "@angular/common": "^9.1.2",
     "@angular/core": "^9.1.2",

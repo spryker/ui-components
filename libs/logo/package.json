@@ -10,6 +10,6 @@
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
-    "@spryker/styles": "^0.1.0-fix-web-components.0"
+    "@spryker/styles": "^0.1.0-next.0"
   }
 }

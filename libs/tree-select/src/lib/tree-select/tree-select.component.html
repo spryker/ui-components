@@ -45,5 +45,5 @@
 </ng-template>
 
 <ng-template #tagPlaceholder let-selectedList>{{
-  selectedList | spyJoin: ', '
+  selectedList | treeSelectExtract | spyJoin: ', '
 }}</ng-template>

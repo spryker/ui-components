@@ -1,16 +1,13 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed,
-  async,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { TreeSelectComponent } from './tree-select.component';
-import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
+import { TreeSelectExtractPipe } from './tree-select-extract.pipe';
+import {
+  NzTreeSelectModule,
+  NzTreeSelectComponent,
+} from 'ng-zorro-antd/tree-select';
 import { JoinModule } from '@spryker/utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { HIGH_CONTRAST_MODE_ACTIVE_CSS_CLASS } from '@angular/cdk/a11y/high-contrast-mode/high-contrast-mode-detector';
 import { By } from '@angular/platform-browser';
 
 describe('TreeSelectComponent', () => {
@@ -20,6 +17,7 @@ describe('TreeSelectComponent', () => {
       ngModule: {
         schemas: [NO_ERRORS_SCHEMA],
         imports: [NzTreeSelectModule, JoinModule],
+        declarations: [TreeSelectExtractPipe],
       },
     },
   );
@@ -92,9 +90,9 @@ describe('TreeSelectComponent', () => {
         true,
       );
 
-      const treeSelect = host.queryCss(nzTreeSelect);
+      const treeSelect = host.queryComponent(NzTreeSelectComponent);
 
-      expect(treeSelect?.attributes['ng-reflect-nz-show-search']).toBeTruthy();
+      expect(treeSelect?.nzShowSearch).toBeTruthy();
     });
 
     it('Input disasbled should be bound to nzDisabled of nz-tree-select and disabled property of select', async () => {
@@ -103,10 +101,10 @@ describe('TreeSelectComponent', () => {
         true,
       );
 
-      const treeSelect = host.queryCss(nzTreeSelect);
+      const treeSelect = host.queryComponent(NzTreeSelectComponent);
       const select = host.queryCss(nativeSelect);
 
-      expect(treeSelect?.attributes['ng-reflect-nz-disabled']).toBeTruthy();
+      expect(treeSelect?.nzDisabled).toBeTruthy();
       expect(select?.properties.disabled).toBeTruthy();
     });
 
@@ -116,11 +114,9 @@ describe('TreeSelectComponent', () => {
         true,
       );
 
-      const treeSelect = host.queryCss(nzTreeSelect);
+      const treeSelect = host.queryComponent(NzTreeSelectComponent);
 
-      expect(treeSelect?.attributes['ng-reflect-nz-place-holder']).toBe(
-        mockedPlaceholder,
-      );
+      expect(treeSelect?.nzPlaceHolder).toBe(mockedPlaceholder);
     });
 
     it('Input name should be bound to HTML select', async () => {
@@ -140,11 +136,9 @@ describe('TreeSelectComponent', () => {
         true,
       );
 
-      const treeSelect = host.queryCss(nzTreeSelect);
+      const treeSelect = host.queryComponent(NzTreeSelectComponent);
 
-      expect(treeSelect?.attributes['ng-reflect-nz-not-found-content']).toBe(
-        mockedNoOptionsText,
-      );
+      expect(treeSelect?.nzNotFoundContent).toBe(mockedNoOptionsText);
     });
 
     it('Input disableClear should be bound to nzAllowClear of nz-tree-select', async () => {
@@ -153,17 +147,15 @@ describe('TreeSelectComponent', () => {
         true,
       );
 
-      const treeSelect = host.queryCss(nzTreeSelect);
+      const treeSelect = host.queryComponent(NzTreeSelectComponent);
 
-      expect(treeSelect?.attributes['ng-reflect-nz-allow-clear']).toBe('false');
+      expect(treeSelect?.nzAllowClear).toBeFalsy();
     });
   });
 
   describe('@Output', () => {
     it('Output valueChange should be emitted every time when the ngModelChange emits on nz-tree-select', async () => {
       const host = await createComponent({ items: mockItems }, true);
-
-      host.hostComponent.valueChange = jest.fn();
 
       const treeSelect = host.queryCss(nzTreeSelect);
 

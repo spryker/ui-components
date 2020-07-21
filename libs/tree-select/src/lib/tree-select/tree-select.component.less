@@ -1,0 +1,213 @@
+@import './tree-select.component.theme.less';
+
+@tree-select-arrow-down-base64-url: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjFweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgMjEgMTQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5kcm9wZG93biBhcnJvd0AyeDwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJzdHlsZWd1aWRlIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iSWNvbnMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03NzQuMDAwMDAwLCAtMTA2MC4wMDAwMDApIiBmaWxsPSIjOWVhMWE3Ij4KICAgICAgICAgICAgPGcgaWQ9ImRyb3Bkb3duLWFycm93IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3NzMuMDAwMDAwLCAxMDU5LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTIuNjIxMDA0NCw1LjI4MTk2OTQzIEwxMy4zNDI5MjA4LDUuNDc3ODExNTMgQzE0Ljc3MjQ5MjUsNS41MDM5MjM1IDE1LjkyNTExNDMsNi42NTY1NDUzMSAxNS45NTEyMjYzLDguMDg2MTE3MDYgTDE1Ljk1MjMxMjgsOC4xNDU2MDM1NyBDMTUuOTc3ODA0NSw5LjU0MTIxMjUzIDE0Ljg2NzEwNDksMTAuNjkzMjQyMiAxMy40NzE0OTU5LDEwLjcxODczMzggQzEzLjQ0MDcyNzQsMTAuNzE5Mjk1OCAxMy40MDk5NTEyLDEwLjcxOTI5NTggMTMuMzc5MTgyNiwxMC43MTg3MzM4IEwyLjY1NzI2NjI3LDEwLjUyMjg5MTcgQzEuMjI3Njk0NTIsMTAuNDk2Nzc5NyAwLjA3NTA3MjcxMDQsOS4zNDQxNTc5IDAuMDQ4OTYwNzQyLDcuOTE0NTg2MTUgTDAuMDQ3ODc0MTg2MSw3Ljg1NTA5OTY0IEMwLjAyMjM4MjU2ODEsNi40NTk0OTA2OCAxLjEzMzA4MjEzLDUuMzA3NDYxMDQgMi41Mjg2OTEwOSw1LjI4MTk2OTQzIEMyLjU1OTQ1OTYzLDUuMjgxNDA3NDIgMi41OTAyMzU4Nyw1LjI4MTQwNzQyIDIuNjIxMDA0NCw1LjI4MTk2OTQzIFoiIGlkPSJSZWN0YW5nbGUtQ29weSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOC4wMDAwOTQsIDguMDAwMzUyKSByb3RhdGUoLTEzNS4wMDAwMDApIHRyYW5zbGF0ZSgtOC4wMDAwOTQsIC04LjAwMDM1MikgIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTUuMjU4NDgyNiwwLjA0Nzg3NDE4NjEgTDE1LjMxNzk2OTEsMC4wNDg5NjA3NDIgQzE2Ljc0NzU0MDgsMC4wNzUwNzI3MTA0IDE3LjkwMDE2MjcsMS4yMjc2OTQ1MiAxNy45MjYyNzQ2LDIuNjU3MjY2MjcgTDE4LjEyMjExNjcsMTMuMzc5MTgyNiBDMTguMTQ3NjA4MywxNC43NzQ3OTE2IDE3LjAzNjkwODgsMTUuOTI2ODIxMiAxNS42NDEyOTk4LDE1Ljk1MjMxMjggQzE1LjYxMDUzMTMsMTUuOTUyODc0OCAxNS41Nzk3NTUxLDE1Ljk1Mjg3NDggMTUuNTQ4OTg2NSwxNS45NTIzMTI4IEwxNS40ODk1LDE1Ljk1MTIyNjMgQzE0LjA1OTkyODMsMTUuOTI1MTE0MyAxMi45MDczMDY0LDE0Ljc3MjQ5MjUgMTIuODgxMTk0NSwxMy4zNDI5MjA4IEwxMi42ODUzNTI0LDIuNjIxMDA0NCBDMTIuNjU5ODYwOCwxLjIyNTM5NTQ0IDEzLjc3MDU2MDMsMC4wNzMzNjU4MDQxIDE1LjE2NjE2OTMsMC4wNDc4NzQxODYxIEMxNS4xOTY5Mzc4LDAuMDQ3MzEyMTgwNiAxNS4yMjc3MTQxLDAuMDQ3MzEyMTgwNiAxNS4yNTg0ODI2LDAuMDQ3ODc0MTg2MSBaIiBpZD0iUmVjdGFuZ2xlLUNvcHktMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUuNDAzNzM1LCA4LjAwMDA5NCkgcm90YXRlKC0xMzUuMDAwMDAwKSB0cmFuc2xhdGUoLTE1LjQwMzczNSwgLTguMDAwMDk0KSAiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==';
+@tree-select-checkbox-ideterminate-base64-url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='18px' height='18px' viewBox='0 0 18 18' version='1.1'%3E%3Ctitle%3ECheckbox / Single Unchecked / Enabled%3C/title%3E%3Cdefs%3E%3Crect id='path-1' x='0' y='0' width='18' height='18' rx='4'/%3E%3Crect id='path-3' x='0.333333333' y='0.666666667' width='13.3333333' height='2.66666667' rx='1.33333333'/%3E%3C/defs%3E%3Cg id='select' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Select-/-Hierarchy-select-/-Dropdown-/-Option-Expanded-/-Partially-selected' transform='translate(-95.000000, -11.000000)'%3E%3Cg id='Group' transform='translate(68.000000, 0.000000)'%3E%3Cg id='Group-3' transform='translate(27.000000, 11.000000)'%3E%3Cg id='Helper-/-Container-/-10px-radious'%3E%3Cmask id='mask-2' fill='white'%3E%3Cuse xlink:href='%23path-1'/%3E%3C/mask%3E%3Cuse id='Mask' fill='%23D8D8D8' xlink:href='%23path-1'/%3E%3Cg id='Group' mask='url(%23mask-2)' fill='%231BBEA0'%3E%3Cg id='Colours-/-Blue-/-Base'%3E%3Crect id='Green-/-base' x='0' y='0' width='18' height='18'/%3E%3Crect id='Green-/-base' x='0' y='0' width='18' height='18'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Cg id='Icon-/-action-/-minus' transform='translate(2.000000, 7.000000)'%3E%3Cmask id='mask-4' fill='white'%3E%3Cuse xlink:href='%23path-3'/%3E%3C/mask%3E%3Cuse id='Mask' fill='%23FFFFFF' xlink:href='%23path-3'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
+@tree-select-remove-default-base64-url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24px' height='24px' viewBox='0 0 24 24' version='1.1'%3E%3Ctitle%3ESelect / Accesories / Search - Remove icon / Default%3C/title%3E%3Cdefs%3E%3Ccircle id='path-1' cx='12' cy='12' r='12'/%3E%3Cpath d='M2.58352821,0.857476925 L5,3.274 L7.41647179,0.857476925 C7.89310769,0.380841025 8.66588717,0.380841025 9.14252307,0.857476925 C9.61915898,1.33411283 9.61915898,2.10689231 9.14252307,2.58352821 L6.726,5 L9.14252307,7.41647179 C9.61915898,7.89310769 9.61915898,8.66588717 9.14252307,9.14252307 C8.66588717,9.61915898 7.89310769,9.61915898 7.41647179,9.14252307 L5,6.726 L2.58352821,9.14252307 C2.10689231,9.61915898 1.33411283,9.61915898 0.857476925,9.14252307 C0.380841025,8.66588717 0.380841025,7.89310769 0.857476925,7.41647179 L3.274,5 L0.857476925,2.58352821 C0.380841025,2.10689231 0.380841025,1.33411283 0.857476925,0.857476925 C1.33411283,0.380841025 2.10689231,0.380841025 2.58352821,0.857476925 Z' id='path-3'/%3E%3C/defs%3E%3Cg id='styleguide' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Selects' transform='translate(-833.000000, -1047.000000)'%3E%3Cg id='Icon-/-action-/-dropdown-arrow' transform='translate(833.000000, 1047.000000)'%3E%3Cg id='Colours-/-Blue-/-Base'%3E%3Cmask id='mask-2' fill='white'%3E%3Cuse xlink:href='%23path-1'/%3E%3C/mask%3E%3Cuse id='Mask' fill='%23D8D8D8' xlink:href='%23path-1'/%3E%3Cg id='Group' mask='url(%23mask-2)' fill='%23EFEEEE'%3E%3Cg id='Colours-/-Blue-/-Base'%3E%3Crect id='Colour-/-Grey-/-Light' x='0' y='0' width='24' height='24'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Cg id='Icon-/-action-/-remove' transform='translate(7.000000, 7.000000)'%3E%3Cmask id='mask-4' fill='white'%3E%3Cuse xlink:href='%23path-3'/%3E%3C/mask%3E%3Cuse id='Mask' fill='%239EA1A7' xlink:href='%23path-3'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
+@tree-select-remove-hovered-base64-url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24px' height='24px' viewBox='0 0 24 24' version='1.1'%3E%3Ctitle%3ESelect / Accesories / Search - Remove icon / Hovered%3C/title%3E%3Cdefs%3E%3Ccircle id='path-1' cx='12' cy='12' r='12'/%3E%3Cpath d='M2.58352821,0.857476925 L5,3.274 L7.41647179,0.857476925 C7.89310769,0.380841025 8.66588717,0.380841025 9.14252307,0.857476925 C9.61915898,1.33411283 9.61915898,2.10689231 9.14252307,2.58352821 L6.726,5 L9.14252307,7.41647179 C9.61915898,7.89310769 9.61915898,8.66588717 9.14252307,9.14252307 C8.66588717,9.61915898 7.89310769,9.61915898 7.41647179,9.14252307 L5,6.726 L2.58352821,9.14252307 C2.10689231,9.61915898 1.33411283,9.61915898 0.857476925,9.14252307 C0.380841025,8.66588717 0.380841025,7.89310769 0.857476925,7.41647179 L3.274,5 L0.857476925,2.58352821 C0.380841025,2.10689231 0.380841025,1.33411283 0.857476925,0.857476925 C1.33411283,0.380841025 2.10689231,0.380841025 2.58352821,0.857476925 Z' id='path-3'/%3E%3C/defs%3E%3Cg id='styleguide' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Selects' transform='translate(-833.000000, -1088.000000)'%3E%3Cg id='Icon-/-action-/-dropdown-arrow' transform='translate(833.000000, 1088.000000)'%3E%3Cg id='Colours-/-Blue-/-Base'%3E%3Cmask id='mask-2' fill='white'%3E%3Cuse xlink:href='%23path-1'/%3E%3C/mask%3E%3Cuse id='Mask' fill='%23D8D8D8' xlink:href='%23path-1'/%3E%3Cg id='Group' mask='url(%23mask-2)' fill='%23EFEEEE'%3E%3Cg id='Colours-/-Blue-/-Base'%3E%3Crect id='Colour-/-Grey-/-Light' x='0' y='0' width='24' height='24'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Cg id='Icon-/-action-/-remove' transform='translate(7.000000, 7.000000)'%3E%3Cmask id='mask-4' fill='white'%3E%3Cuse xlink:href='%23path-3'/%3E%3C/mask%3E%3Cuse id='Mask' fill='%2371747C' xlink:href='%23path-3'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
+
+.@{select-prefix-cls} {
+  display: block;
+  height: @select-component-height;
+  width: @select-component-width;
+  position: relative;
+
+  &-multiple,
+  &-single {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: @select-arrow-right;
+      width: @select-arrow-size;
+      height: @select-arrow-size;
+      background: url(@tree-select-arrow-down-base64-url) no-repeat center/
+        @select-arrow-size;
+      pointer-events: none;
+    }
+
+    .@{select-prefix-cls}-selector {
+      background-color: @white;
+
+      .@{select-prefix-cls}-selection-placeholder {
+        color: @gray-dark;
+        opacity: 1;
+      }
+    }
+  }
+
+  &-disabled {
+    .@{select-prefix-cls}-selector {
+      background-color: @gray-lighter;
+      color: @gray-dark;
+    }
+  }
+
+  &-multiple {
+    .@{select-prefix-cls}-selector {
+      padding: @select-multiple-padding-vertical
+        @select-multiple-padding-horizontal;
+      border-color: @gray-light;
+      flex-wrap: nowrap;
+
+      &:hover {
+        border-color: @gray;
+      }
+    }
+
+    .@{select-prefix-cls}-selection-item {
+      background: none;
+      border: none;
+      color: @ink;
+    }
+  }
+
+  &-arrow {
+    display: none;
+  }
+
+  &-open {
+    .@{select-prefix-cls}-selection-item {
+      display: none;
+    }
+
+    .@{select-prefix-cls}-selection-search {
+      display: block;
+    }
+  }
+
+  &.@{select-prefix-cls}-single {
+    .@{select-prefix-cls}-selector {
+      border-color: @gray-light;
+
+      &:hover {
+        border-color: @gray;
+      }
+    }
+  }
+
+  &-native {
+    display: none;
+  }
+
+  &,
+  &-dropdown {
+    font: @font-weight-medium @font-size-base @font-family;
+  }
+
+  &-dropdown {
+    position: relative;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border-radius: @select-border-radius;
+    margin: @select-menu-horizontal-margin 0;
+    padding: 0;
+    background-color: @white;
+    box-shadow: @tree-select-dropdown-box-shadow;
+
+    .cdk-virtual-scroll-content-wrapper {
+      width: 100%;
+    }
+  }
+
+  &-tree {
+    & &-treenode {
+      height: @tree-select-tree-treenode-height;
+      padding: @tree-select-tree-treenode-padding;
+      border: @tree-select-tree-treenode-border;
+      box-sizing: border-box;
+
+      &-selected {
+        background-color: @green-lighter;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: @gray-lighter;
+      }
+
+      &:focus {
+        border-color: @green;
+      }
+    }
+
+    &-treenode-checkbox-indeterminate,
+    &-treenode-checkbox-checked {
+      background-color: @green-lighter;
+    }
+
+    & &-checkbox {
+      margin-top: @tree-select-tree-checkbox-margin-top;
+
+      &-inner {
+        height: @checkbox-icon-size;
+        width: @checkbox-icon-size;
+        border-radius: @checkbox-icon-border-radius;
+      }
+
+      &-indeterminate {
+        .@{select-prefix-cls}-tree-checkbox-inner {
+          background-color: @green;
+          border-color: @green;
+
+          &::after {
+            background: url(@tree-select-checkbox-ideterminate-base64-url)
+              no-repeat center;
+            background-size: 18px;
+          }
+        }
+      }
+    }
+
+    & &-switcher,
+    & &-node-content-wrapper {
+      line-height: @tree-select-tree-node-content-wrapper-line-height;
+    }
+
+    & &-node {
+      &-content-wrapper {
+        color: @ink;
+
+        &.@{select-prefix-cls}-tree-node-selected {
+          background-color: transparent;
+        }
+      }
+    }
+
+    & &-switcher {
+      &-icon {
+        font-size: @tree-select-tree-switcher-icon;
+      }
+    }
+  }
+
+  &-clear {
+    width: @tree-select-clear-button-size;
+    height: @tree-select-clear-button-size;
+    top: 25%;
+
+    &::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      box-sizing: border-box;
+      height: @tree-select-clear-button-size;
+      width: @tree-select-clear-button-size;
+      right: @tree-select-clear-button-right;
+      top: @tree-select-clear-button-top;
+      background: url(@tree-select-remove-default-base64-url) no-repeat center;
+      background-size: @tree-select-clear-button-size;
+    }
+
+    &:hover {
+      &::after {
+        background: url(@tree-select-remove-hovered-base64-url) no-repeat center;
+      }
+    }
+
+    .@{select-prefix-cls}-close-icon {
+      display: none;
+    }
+  }
+}

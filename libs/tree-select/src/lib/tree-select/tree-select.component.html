@@ -1,0 +1,49 @@
+<nz-tree-select
+  [nzNodes]="mappedItems"
+  [nzShowSearch]="search"
+  [nzDisabled]="disabled"
+  [nzMultiple]="multiple"
+  [nzPlaceHolder]="placeholder"
+  [nzNotFoundContent]="noOptionsText"
+  [nzAllowClear]="!disableClear"
+  [nzMaxTagCount]="0"
+  [nzMaxTagPlaceholder]="tagPlaceholder"
+  nzCheckable
+  [(ngModel)]="value"
+  (ngModelChange)="handleValueChange($event)"
+></nz-tree-select>
+
+<select
+  *ngIf="multiple; else singleSelectTpl"
+  multiple
+  class="ant-select-native"
+  [attr.name]="name"
+  [disabled]="disabled"
+>
+  <option></option>
+  <option
+    *ngFor="let item of mappedItems"
+    [value]="item.value"
+    [selected]="checkSelectedState(item.value)"
+  >
+    {{ item.label }}
+  </option>
+</select>
+
+<ng-template #singleSelectTpl>
+  <select
+    class="ant-select-native"
+    [ngModel]="mappedValue"
+    [attr.name]="name"
+    [disabled]="disabled"
+  >
+    <option></option>
+    <option *ngFor="let item of mappedItems" [value]="item.value">
+      {{ item.label }}
+    </option>
+  </select>
+</ng-template>
+
+<ng-template #tagPlaceholder let-selectedList>{{
+  selectedList | treeSelectExtractKeys | spyJoin: ', '
+}}</ng-template>

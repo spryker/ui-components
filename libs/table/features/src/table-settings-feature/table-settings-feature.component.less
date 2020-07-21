@@ -1,0 +1,43 @@
+@import 'themes/default/theme.less';
+
+.@{table-settings-feature-prefix-cls} {
+  background: @gray-lighter;
+  min-width: 268px;
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    padding: @table-settings-feature-item-padding;
+    background: @white;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: @table-settings-feature-item-bottom-margin;
+    }
+
+    &:hover {
+      background: @green-lighter;
+    }
+  }
+
+  &__item-name {
+    padding-top: 3px;
+    flex-grow: 1;
+    margin: 0 @table-settings-feature-item-name-side-margin;
+    color: @ink;
+  }
+
+  &__item-check {
+    margin-top: 2px;
+  }
+
+  &__icon {
+    color: @gray;
+    flex-shrink: 0;
+
+    svg {
+      width: @table-settings-feature-icon-size;
+      height: @table-settings-feature-icon-size;
+    }
+  }
+}

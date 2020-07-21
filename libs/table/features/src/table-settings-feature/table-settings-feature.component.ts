@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 import {
   TableFeatureComponent,
   TableFeatureConfig,
@@ -29,6 +29,7 @@ interface TableSettingsConfig extends TableFeatureConfig {
   templateUrl: './table-settings-feature.component.html',
   styleUrls: ['./table-settings-feature.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: TableFeatureComponent,
@@ -44,15 +45,42 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   tableFeatureLocation = TableFeatureLocation;
 
   movies = [
-    'Episode I - The Phantom Menace',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi',
-    'Episode IX – The Rise of Skywalker',
+    {
+      disabled: true,
+      title: 'Episode I - The Phantom Menace',
+    },
+    {
+      disabled: false,
+      title: 'Episode II - Attack of the Clones',
+    },
+    {
+      disabled: false,
+      title: 'Episode III - Revenge of the Sith',
+    },
+    {
+      disabled: false,
+      title: 'Episode IV - A New Hope',
+    },
+    {
+      disabled: true,
+      title: 'Episode V - The Empire Strikes Back',
+    },
+    {
+      disabled: false,
+      title: 'Episode VI - Return of the Jedi',
+    },
+    {
+      disabled: false,
+      title: 'Episode VII - The Force Awakens',
+    },
+    {
+      disabled: false,
+      title: 'Episode VIII - The Last Jedi',
+    },
+    {
+      disabled: true,
+      title: 'Episode IX – The Rise of Skywalker',
+    },
   ];
 
   drop(event: CdkDragDrop<string[]>) {

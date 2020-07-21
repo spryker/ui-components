@@ -8,23 +8,23 @@
 
   &__title {
     background: @white;
-    margin: -12px -16px 0;
-    padding: 12px 20px;
+    margin: @table-settings-feature-header-margin;
+    padding: @table-settings-feature-header-footer-padding;
     font: @font-weight-medium @font-size-base @font-family;
     color: @ink;
-    box-shadow: 0 2px 16px 0 rgba(33, 43, 54, 0.05);
+    box-shadow: @table-settings-feature-title-shadow;
     position: relative;
-    z-index: 2;
+    z-index: @table-settings-feature-header-footer-z-index;
   }
 
   &__footer {
     background: @white;
-    margin: 0 -16px -12px;
-    padding: 12px 20px;
+    margin: @table-settings-feature-footer-margin;
+    padding: @table-settings-feature-header-footer-padding;
     text-align: right;
-    box-shadow: 0px -11px 10px 0px rgba(33, 43, 54, 0.05);
+    box-shadow: @table-settings-feature-footer-shadow;
     position: relative;
-    z-index: 2;
+    z-index: @table-settings-feature-header-footer-z-index;
   }
 
   &__item {
@@ -44,14 +44,14 @@
   }
 
   &__item-name {
-    padding-top: 3px;
+    padding-top: @table-settings-feature-item-name-top-padding;
     flex-grow: 1;
     margin: 0 @table-settings-feature-item-name-side-margin;
     color: @ink;
   }
 
   &__item-check {
-    margin-top: 2px;
+    margin-top: @table-settings-feature-item-checkbox-top-margin;
   }
 
   &__icon {
@@ -66,7 +66,7 @@
 }
 
 .cdk-drag-preview {
-  box-shadow: 0 10px 12px 0 rgb(235, 235, 236);
+  box-shadow: @table-settings-feature-cdk-drag-preview-shadow;
   background: @green-lighter;
   font: @font-size-base @font-family;
 }

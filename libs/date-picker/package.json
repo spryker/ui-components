@@ -1,6 +1,6 @@
 {
   "name": "@spryker/date-picker",
-  "version": "0.1.0-next.16",
+  "version": "0.1.0-fix-web-components.1",
   "publishConfig": {
     "access": "public"
   },
@@ -8,10 +8,10 @@
     "@angular/common": "^9.1.0",
     "@angular/core": "^9.1.0",
     "@angular/forms": "^9.1.6",
-    "@spryker/icon": "^0.0.1-next.11",
-    "@spryker/locale": "^0.1.0-next.4",
-    "@spryker/styles": "^0.1.0-next.11",
-    "@spryker/utils": "^0.1.0-next.16",
+    "@spryker/icon": "^0.1.0-next.0",
+    "@spryker/locale": "^0.1.0-next.0",
+    "@spryker/styles": "^0.1.0-next.0",
+    "@spryker/utils": "^0.1.0-next.0",
     "tslib": "^1.10.0"
   },
   "dependencies": {

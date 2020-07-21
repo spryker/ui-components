@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-fix-web-components.6](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.5...@spryker/web-components@0.2.0-fix-web-components.6) (2020-07-18)
+
+
+### Bug Fixes
+
+* **web-components:** adjust spySelectComponents directive to wait until components are initialized ([b72f486](https://github.com/spryker/ui-components/commit/b72f486cc2e91ba2ebc31ed7f96d932c3a7c78e9))
+
+
+
+
+
+# [0.2.0-fix-web-components.5](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.4...@spryker/web-components@0.2.0-fix-web-components.5) (2020-07-17)
+
+
+### Bug Fixes
+
+* **web-components:** update ngx-element-boundary lib ([616e8a4](https://github.com/spryker/ui-components/commit/616e8a425fd251801eb575ee36bbc3f5c1256132))
+
+
+
+
+
+# [0.2.0-fix-web-components.4](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.3...@spryker/web-components@0.2.0-fix-web-components.4) (2020-07-15)
+
+
+### Bug Fixes
+
+* **web-components:** update ngx-element-boundary lib ([8a3d242](https://github.com/spryker/ui-components/commit/8a3d242d40a36bc3b485f0f08d37d4490b3c191b))
+
+
+
+
+
+# [0.2.0-fix-web-components.3](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.2...@spryker/web-components@0.2.0-fix-web-components.3) (2020-07-15)
+
+
+### Bug Fixes
+
+* **web-components:** update ngx-element-boundary lib ([e3ee712](https://github.com/spryker/ui-components/commit/e3ee71226da31964edc48593f65215b5628f6637))
+
+
+
+
+
+# [0.2.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.1...@spryker/web-components@0.2.0-fix-web-components.2) (2020-07-14)
+
+
+### Bug Fixes
+
+* **web-components:** update ngx-element-boundary lib ([77ab39b](https://github.com/spryker/ui-components/commit/77ab39b12f94c062e67d80757b6b0629a440e696))
+
+
+
+
+
+# [0.2.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-fix-web-components.0...@spryker/web-components@0.2.0-fix-web-components.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* **web-components:** expose `CustomElementOptions` as public API ([c2ee999](https://github.com/spryker/ui-components/commit/c2ee9998f14f5d9f59c7d9194ca28ed76a4a16e0))
+
+
+
+
+
+# [0.2.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.0-next.3...@spryker/web-components@0.2.0-fix-web-components.0) (2020-07-10)
+
+
+### Bug Fixes
+
+* **libs:** mark content projection boundaries in some component ([4844e58](https://github.com/spryker/ui-components/commit/4844e58776f0c2e5a7ea956276ae610155a4250d))
+* **web-components:** allow to inherit injectors for custom elements ([4b5f637](https://github.com/spryker/ui-components/commit/4b5f6374a476c44acf3f0b6ecae312ecbd54ee00))
+
+
+
+
+
 # 0.2.0-next.3 (2020-06-22)
 
 

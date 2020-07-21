@@ -1,6 +1,6 @@
 {
   "name": "@spryker/sidebar",
-  "version": "0.1.0-next.13",
+  "version": "0.1.0-fix-web-components.2",
   "publishConfig": {
     "access": "public"
   },
@@ -13,6 +13,7 @@
     "@spryker/icon": "^0.1.0-next.0",
     "@spryker/styles": "^0.1.0-next.0",
     "@spryker/utils": "^0.1.0-next.0",
+    "@spryker/web-components": "^0.2.0-next.0",
     "tslib": "^1.10.0"
   }
 }

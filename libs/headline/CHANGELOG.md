@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/headline@0.1.0-fix-web-components.0...@spryker/headline@0.1.0-fix-web-components.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/headline@0.1.0-next.2...@spryker/headline@0.1.0-fix-web-components.0) (2020-07-16)
+
+**Note:** Version bump only for package @spryker/headline
+
+
+
+
+
 # [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/headline@0.1.0-next.1...@spryker/headline@0.1.0-next.2) (2020-07-01)
 
 **Note:** Version bump only for package @spryker/headline

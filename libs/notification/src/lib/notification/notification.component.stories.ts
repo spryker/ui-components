@@ -79,11 +79,15 @@ export const inWhiteBackground = () => ({
 export const inGrayBackground = () => ({
   moduleMetadata: { imports: [StoryModule, ApplyContextsModule] },
   template: `
-    <div spyApplyContexts="spy-bg-gray" style="padding: 100px">
-      <spy-notification>
-        <span title>Title...</span>
-        <span description>Description...</span>
-      </spy-notification>
+    <div spyApplyContexts="spy-bg-gray">
+      <div spyApplyContexts="spy-bg-white">
+        <div spyApplyContexts="spy-bg-gray" style="padding: 100px">
+          <spy-notification>
+            <span title>Title...</span>
+            <span description>Description...</span>
+          </spy-notification>
+        </div>
+    </div>
     </div>
   `,
 });

@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-fix-web-components.1...@spryker/button@0.1.0-fix-web-components.2) (2020-07-20)
+
+
+### Bug Fixes
+
+* **button:** allow buttons to be sized from host element ([d6a53d6](https://github.com/spryker/ui-components/commit/d6a53d60c3aa9c134cd53a80b588b9eb52b7d774))
+
+
+
+
+
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-fix-web-components.0...@spryker/button@0.1.0-fix-web-components.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.17...@spryker/button@0.1.0-fix-web-components.0) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update fixed libs versions ([7a1fc0a](https://github.com/spryker/ui-components/commit/7a1fc0aaf1b949ef0886f7e2b8c54591f4867a77))
+
+
+
+
+
 # [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/button@0.1.0-next.16...@spryker/button@0.1.0-next.17) (2020-07-15)
 
 **Note:** Version bump only for package @spryker/button

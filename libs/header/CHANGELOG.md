@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/header@0.1.0-fix-web-components.1...@spryker/header@0.1.0-fix-web-components.2) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/header@0.1.0-fix-web-components.0...@spryker/header@0.1.0-fix-web-components.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* **lib:** update versions for utils and web-componets packages ([6cc01ac](https://github.com/spryker/ui-components/commit/6cc01acfa6ceacb89fd0f61b954ab122a10cac69))
+
+
+
+
+
+# 0.1.0-fix-web-components.0 (2020-07-10)
+
+
+### Bug Fixes
+
+* **libs:** mark content projection boundaries in some component ([4844e58](https://github.com/spryker/ui-components/commit/4844e58776f0c2e5a7ea956276ae610155a4250d))
+* **libs:** use directive for applying context classes ([e439b36](https://github.com/spryker/ui-components/commit/e439b36b578a5c83024e9625bf93284fe9e9cd8f))
+
+
+
+
+
 # 0.1.0-next.9 (2020-05-15)
 
 **Note:** Version bump only for package @spryker/header

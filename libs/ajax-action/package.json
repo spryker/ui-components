@@ -1,13 +1,13 @@
 {
   "name": "@spryker/ajax-action",
-  "version": "0.1.0-next.5",
+  "version": "0.1.0-fix-web-components.1",
   "peerDependencies": {
     "@angular/common": "^9.1.2",
     "@angular/core": "^9.1.2",
-    "@spryker/drawer": "^0.1.0-next.1",
-    "@spryker/icon": "^0.1.0-next.16",
-    "@spryker/notification": "^0.1.0-next.7",
-    "@spryker/utils": "^0.1.0-next.15",
+    "@spryker/drawer": "^0.1.0-next.0",
+    "@spryker/icon": "^0.1.0-next.0",
+    "@spryker/notification": "^0.1.0-next.0",
+    "@spryker/utils": "^0.1.0-next.0",
     "tslib": "^1.10.0"
   },
   "publishConfig": {

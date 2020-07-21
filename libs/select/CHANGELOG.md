@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-fix-web-components.0...@spryker/select@0.1.0-fix-web-components.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.30...@spryker/select@0.1.0-fix-web-components.0) (2020-07-16)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
 # [0.1.0-next.30](https://github.com/spryker/ui-components/compare/@spryker/select@0.1.0-next.29...@spryker/select@0.1.0-next.30) (2020-07-14)
 
 **Note:** Version bump only for package @spryker/select

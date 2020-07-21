@@ -7,10 +7,25 @@
       <div id="content">
         <div
           cdkDropList
-          class="example-list"
+          class="spy-table-settings-feature"
           (cdkDropListDropped)="drop($event)"
         >
-          <ng-content></ng-content>
+          <div
+            cdkDrag
+            *ngFor="let movie of movies"
+            class="spy-table-settings-feature__item"
+          >
+            <spy-checkbox
+              class="spy-table-settings-feature__item-check"
+            ></spy-checkbox>
+            <span class="spy-table-settings-feature__item-name">{{
+              movie.title
+            }}</span>
+            <spy-icon
+              class="spy-table-settings-feature__icon"
+              name="drag"
+            ></spy-icon>
+          </div>
         </div>
       </div>
     </spy-popover>

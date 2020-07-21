@@ -16,6 +16,9 @@ import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 import { TableSettingsFeatureModule } from './table-settings-feature.module';
 import { TableTotalFeatureModule } from '@spryker/table/features';
+import { CheckboxModule } from '@spryker/checkbox';
+import { IconModule } from '@spryker/icon';
+import { IconDragModule } from '@spryker/icon/icons';
 
 export default {
   title: 'TableSettingsFeature',
@@ -29,9 +32,9 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 export const viaHtml = getTotalStory(
   `
-
     <spy-table [config]="config" [mockHttp]="mockHttp">
-        <spy-table-settings-feature spy-table-feature></spy-table-settings-feature>
+        <spy-table-settings-feature spy-table-feature>
+        </spy-table-settings-feature>
     </spy-table>
   `,
   [TableSettingsFeatureModule, TableTotalFeatureModule],
@@ -56,6 +59,9 @@ function getTotalStory(
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
         EnLocaleModule,
         DefaultContextSerializationModule,
+        CheckboxModule,
+        IconModule,
+        IconDragModule,
         ...extraNgModules,
       ],
       providers: [

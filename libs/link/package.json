@@ -1,6 +1,6 @@
 {
   "name": "@spryker/link",
-  "version": "0.2.0-fix-web-components.0",
+  "version": "0.2.0-next.0",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",

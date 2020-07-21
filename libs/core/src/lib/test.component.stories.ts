@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   Injector,
   Input,
   NgModule,
@@ -14,6 +15,7 @@ import {
   NgWebComponent,
   SelectComponentsModule,
   WebComponentDefs,
+  WebComponentsModule,
 } from '@spryker/web-components';
 import { IStory } from '@storybook/angular';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -121,6 +123,57 @@ export function crossComponentCommunication(): IStory {
         <a-b title="lol2">tab2</a-b>
         <my-b title="lol3">tab3</my-b>
       </a-a>
+    `,
+  };
+}
+
+export function customElementsExample(): IStory {
+  @Component({
+    selector: `spy-a`,
+    template: `
+      AComponent
+      <ng-content></ng-content>
+    `,
+  })
+  class AComponent {}
+
+  @Component({
+    selector: `spy-b`,
+    template: `
+      BComponent
+      <ng-content></ng-content>
+    `,
+  })
+  class BComponent {}
+
+  @NgModule({
+    imports: [WebComponentsModule.forRoot()],
+    declarations: [AComponent, BComponent],
+    entryComponents: [AComponent, BComponent],
+  })
+  class StoryModule extends CustomElementModule {
+    components: WebComponentDefs = [
+      { component: AComponent, isRoot: true },
+      BComponent,
+    ];
+
+    constructor(injector: Injector) {
+      super(injector);
+      super.ngDoBootstrap();
+    }
+  }
+
+  return {
+    moduleMetadata: {
+      imports: [StoryModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    },
+    template: `
+      <web-spy-a>
+        <web-spy-b>
+          Content here...
+        </web-spy-b>
+      </web-spy-a>
     `,
   };
 }

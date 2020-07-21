@@ -1,15 +1,14 @@
 import {
   AfterViewInit,
   ElementRef,
-  Injectable,
   Input,
   OnChanges,
   Renderer2,
   SimpleChanges,
   ViewChild,
+  Directive,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
-
 import {
   ButtonAttributes,
   ButtonShape,
@@ -19,7 +18,9 @@ import {
 
 export const buttonClassName = 'spy-button-core';
 
-@Injectable()
+@Directive({
+  selector: '[spyButtonCoreInputs]',
+})
 export class ButtonCoreInputs {
   @Input() shape: ButtonShape = ButtonShape.Default;
   @Input() size: ButtonSize = ButtonSize.Medium;
@@ -27,14 +28,16 @@ export class ButtonCoreInputs {
   @Input() @ToJson() attrs?: ButtonAttributes;
 }
 
-@Injectable()
-export abstract class ButtonCore extends ButtonCoreInputs
+@Directive({
+  selector: '[spyButtonCore]',
+})
+export class ButtonCore extends ButtonCoreInputs
   implements AfterViewInit, OnChanges {
-  @ViewChild('buttonRef') buttonRef?: ElementRef;
+  @ViewChild('buttonRef') buttonRef?: ElementRef<HTMLElement>;
 
-  protected abstract buttonClassName: string;
+  protected buttonClassName = '';
 
-  constructor(public renderer: Renderer2) {
+  constructor(protected renderer: Renderer2, protected elemRef: ElementRef) {
     super();
   }
 
@@ -43,10 +46,6 @@ export abstract class ButtonCore extends ButtonCoreInputs
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!this.buttonRef) {
-      return;
-    }
-
     if ('shape' in changes) {
       this.changeClassName(this.shape, changes.shape.previousValue);
     }
@@ -60,13 +59,25 @@ export abstract class ButtonCore extends ButtonCoreInputs
     }
   }
 
+  click() {
+    this.buttonRef?.nativeElement.click();
+  }
+
   private setClassList(): void {
-    if (!this.buttonRef) {
-      return;
+    this.renderer.addClass(this.elemRef.nativeElement, this.buttonClassName);
+    this.renderer.addClass(this.elemRef.nativeElement, buttonClassName);
+
+    if (this.buttonRef) {
+      this.renderer.addClass(
+        this.buttonRef.nativeElement,
+        `${this.buttonClassName}__btn`,
+      );
+      this.renderer.addClass(
+        this.buttonRef.nativeElement,
+        `${buttonClassName}__btn`,
+      );
     }
 
-    this.renderer.addClass(this.buttonRef.nativeElement, this.buttonClassName);
-    this.renderer.addClass(this.buttonRef.nativeElement, buttonClassName);
     this.changeClassName(this.shape);
     this.changeClassName(this.size);
     this.changeClassName(this.variant);
@@ -75,21 +86,21 @@ export abstract class ButtonCore extends ButtonCoreInputs
   private changeClassName(type: string, previousValue?: string): void {
     if (previousValue) {
       this.renderer.removeClass(
-        this.buttonRef?.nativeElement,
+        this.elemRef.nativeElement,
         `${this.buttonClassName}--${previousValue}`,
       );
       this.renderer.removeClass(
-        this.buttonRef?.nativeElement,
+        this.elemRef.nativeElement,
         `${buttonClassName}--${previousValue}`,
       );
     }
 
     this.renderer.addClass(
-      this.buttonRef?.nativeElement,
+      this.elemRef.nativeElement,
       `${this.buttonClassName}--${type}`,
     );
     this.renderer.addClass(
-      this.buttonRef?.nativeElement,
+      this.elemRef.nativeElement,
       `${buttonClassName}--${type}`,
     );
   }

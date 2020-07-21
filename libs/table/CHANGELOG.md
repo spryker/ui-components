@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-fix-web-components.0...@spryker/table@0.2.0-next.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **libs:** update versions for next release ([9998cae](https://github.com/spryker/ui-components/commit/9998cae9b2ab631607c0d33fa546363313bfd6aa))
+
+
+
+
+
+# [0.1.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-fix-web-components.1...@spryker/table@0.1.0-fix-web-components.2) (2020-07-20)
+
+
+### Bug Fixes
+
+* **table:** fix spinner position ([e46cd9f](https://github.com/spryker/ui-components/commit/e46cd9f5e1a330a11ccbcc1b82ebc3ef7b62739c))
+
+
+
+
+
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-fix-web-components.0...@spryker/table@0.1.0-fix-web-components.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.68...@spryker/table@0.1.0-fix-web-components.0) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update fixed libs versions ([7a1fc0a](https://github.com/spryker/ui-components/commit/7a1fc0aaf1b949ef0886f7e2b8c54591f4867a77))
+
+
+
+
+
+# [0.1.0-next.68](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.67...@spryker/table@0.1.0-next.68) (2020-07-15)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.1.0-next.67](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.66...@spryker/table@0.1.0-next.67) (2020-07-15)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
 # [0.1.0-next.66](https://github.com/spryker/ui-components/compare/@spryker/table@0.1.0-next.65...@spryker/table@0.1.0-next.66) (2020-07-14)
 
 **Note:** Version bump only for package @spryker/table

@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.0-fix-web-components.0...@spryker/notification@0.2.0-next.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **libs:** update versions for next release ([9998cae](https://github.com/spryker/ui-components/commit/9998cae9b2ab631607c0d33fa546363313bfd6aa))
+
+
+
+
+
+# [0.1.0-fix-web-components.3](https://github.com/spryker/ui-components/compare/@spryker/notification@0.1.0-fix-web-components.2...@spryker/notification@0.1.0-fix-web-components.3) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
+# [0.1.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/notification@0.1.0-fix-web-components.1...@spryker/notification@0.1.0-fix-web-components.2) (2020-07-16)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.1.0-fix-web-components.0...@spryker/notification@0.1.0-fix-web-components.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* **lib:** update versions for utils and web-componets packages ([6cc01ac](https://github.com/spryker/ui-components/commit/6cc01acfa6ceacb89fd0f61b954ab122a10cac69))
+
+
+
+
+
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.1.0-next.10...@spryker/notification@0.1.0-fix-web-components.0) (2020-07-10)
+
+
+### Bug Fixes
+
+* **libs:** use directive for applying context classes ([e439b36](https://github.com/spryker/ui-components/commit/e439b36b578a5c83024e9625bf93284fe9e9cd8f))
+* **utils:** filter out contexts by groups in `ApplyContextsDirective` ([bd04f2b](https://github.com/spryker/ui-components/commit/bd04f2b77948b68eedace02513b0502352ea3b5f))
+
+
+
+
+
 # [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/notification@0.1.0-next.10...@spryker/notification@0.1.0-next.11) (2020-06-24)
 
 **Note:** Version bump only for package @spryker/notification

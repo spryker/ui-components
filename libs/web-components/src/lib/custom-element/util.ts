@@ -36,7 +36,7 @@ function isWebComponentType(c: WebComponentDef): c is WebComponentType {
 function isWebComponentDeclaration(
   c: WebComponentDef,
 ): c is WebComponentDeclaration {
-  return !!c && !!(c as any).component;
+  return !!c && !!(c as WebComponentDeclaration).component;
 }
 
 export function createGetSet<T>(prop: string, obj: any) {

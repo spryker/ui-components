@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-fix-web-components.0...@spryker/styles@0.2.0-next.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **libs:** update versions for next release ([9998cae](https://github.com/spryker/ui-components/commit/9998cae9b2ab631607c0d33fa546363313bfd6aa))
+
+
+
+
+
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.79...@spryker/styles@0.1.0-fix-web-components.1) (2020-07-20)
+
+
+### Bug Fixes
+
+* **table:** fix spinner position ([e46cd9f](https://github.com/spryker/ui-components/commit/e46cd9f5e1a330a11ccbcc1b82ebc3ef7b62739c))
+
+
+
+
+
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.78...@spryker/styles@0.1.0-fix-web-components.0) (2020-07-16)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.1.0-next.79](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.78...@spryker/styles@0.1.0-next.79) (2020-07-20)
+
+
+### Features
+
+* **link:** add link component ([2a263c7](https://github.com/spryker/ui-components/commit/2a263c7856e21de435c0f0d0e9803f7e2e67546d))
+
+
+
+
+
 # [0.1.0-next.78](https://github.com/spryker/ui-components/compare/@spryker/styles@0.1.0-next.77...@spryker/styles@0.1.0-next.78) (2020-07-13)
 
 **Note:** Version bump only for package @spryker/styles

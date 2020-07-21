@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/core@0.2.0-fix-web-components.0...@spryker/core@0.2.0-next.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **libs:** update versions for next release ([9998cae](https://github.com/spryker/ui-components/commit/9998cae9b2ab631607c0d33fa546363313bfd6aa))
+
+
+
+
+
+## 0.1.2-fix-web-components.0 (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+* **web-components:** allow to inherit injectors for custom elements ([4b5f637](https://github.com/spryker/ui-components/commit/4b5f6374a476c44acf3f0b6ecae312ecbd54ee00))
+
+
+
+
+
 ## 0.1.2-next.5 (2020-05-15)
 
 **Note:** Version bump only for package @spryker/core

@@ -1,3 +1,5 @@
-<nz-layout class="ctx-spy-bg-white">
-  <ng-content></ng-content>
+<nz-layout spyApplyContexts="spy-bg-white">
+  <span spyCustomElementBoundary>
+    <ng-content></ng-content>
+  </span>
 </nz-layout>

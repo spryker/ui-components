@@ -3,12 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.2.0-fix-web-components.0...@spryker/card@0.2.0-next.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **libs:** update versions for next release ([9998cae](https://github.com/spryker/ui-components/commit/9998cae9b2ab631607c0d33fa546363313bfd6aa))
+
+
+
+
+
+# [0.1.0-fix-web-components.3](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-fix-web-components.2...@spryker/card@0.1.0-fix-web-components.3) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
+# [0.1.0-fix-web-components.2](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-fix-web-components.1...@spryker/card@0.1.0-fix-web-components.2) (2020-07-16)
+
+
+### Features
+
+* **headline:** add implementation ([83ba904](https://github.com/spryker/ui-components/commit/83ba90461c73e48ff7ab4d24b25bb3ddeef5895c))
+
+
+
+
+
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-fix-web-components.0...@spryker/card@0.1.0-fix-web-components.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* **lib:** update versions for utils and web-componets packages ([6cc01ac](https://github.com/spryker/ui-components/commit/6cc01acfa6ceacb89fd0f61b954ab122a10cac69))
+
+
+
+
+
 # [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-next.16...@spryker/card@0.1.0-next.17) (2020-06-30)
 
 
 ### Features
 
 * **headline:** add implementation ([83ba904](https://github.com/spryker/ui-components/commit/83ba90461c73e48ff7ab4d24b25bb3ddeef5895c))
+
+
+
+
+
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.1.0-next.15...@spryker/card@0.1.0-fix-web-components.0) (2020-07-10)
+
+
+### Bug Fixes
+
+* **libs:** mark content projection boundaries in some component ([4844e58](https://github.com/spryker/ui-components/commit/4844e58776f0c2e5a7ea956276ae610155a4250d))
+* **libs:** use directive for applying context classes ([e439b36](https://github.com/spryker/ui-components/commit/e439b36b578a5c83024e9625bf93284fe9e9cd8f))
 
 
 

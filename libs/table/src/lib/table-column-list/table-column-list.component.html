@@ -4,7 +4,10 @@
     [ngTemplateOutletContext]="{ $implicit: valuesLimited }"
   ></ng-container>
 
-  <spy-popover *ngIf="valuesLimited.length < values.length" position="rightTop">
+  <spy-popover
+    *ngIf="valuesLimited.length < values.length"
+    [position]="popoverPosition"
+  >
     <span trigger class="spy-table-column-list__trigger"
       >({{ values.length }})</span
     >

@@ -9,8 +9,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { TableFilterComponent } from '@spryker/table/features';
-import { TableFilterTreeSelect, TableFilterTreeSelectValue } from './types';
-import { TreeSelectItem } from '@spryker/tree-select';
+import {
+  TableFilterTreeSelect,
+  TableFilterTreeSelectValue,
+  TableFilterTreeSelectOptionsValue,
+} from './types';
 
 /**
  * Component represents tree-select filter feature for the main table component
@@ -27,15 +30,14 @@ export class TableFilterTreeSelectComponent
   @Input() config?: TableFilterTreeSelect;
   @Input() value?: TableFilterTreeSelectValue;
   @Output() valueChange = new EventEmitter<TableFilterTreeSelectValue>();
-  treeSelectOptions: TreeSelectItem[] = [];
+  treeSelectOptions: TableFilterTreeSelectOptionsValue[] = [];
 
   /**
    * Every time config changes provide update to the inner Tree Select Options
    */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config) {
-      this.treeSelectOptions = this.config?.typeOptions
-        ?.values as TreeSelectItem[];
+      this.treeSelectOptions = this.config?.typeOptions?.values || [];
     }
   }
 }

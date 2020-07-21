@@ -9,10 +9,12 @@
       >({{ values.length }})</span
     >
 
-    <ng-container
-      [ngTemplateOutlet]="valuesTpl"
-      [ngTemplateOutletContext]="{ $implicit: values }"
-    ></ng-container>
+    <div class="spy-table-column-list__popover">
+      <ng-container
+        [ngTemplateOutlet]="valuesTpl"
+        [ngTemplateOutletContext]="{ $implicit: values }"
+      ></ng-container>
+    </div>
   </spy-popover>
 </div>
 

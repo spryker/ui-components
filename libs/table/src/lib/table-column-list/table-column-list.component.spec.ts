@@ -6,7 +6,6 @@ import {
 } from './table-column-list.component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TableColumnTplContext } from '../table/table';
 
 const mockConfig: TableColumnListConfig = {
   limit: 2,
@@ -16,7 +15,7 @@ const mockConfig: TableColumnListConfig = {
   },
 };
 
-const mockContext: TableColumnTplContext = {
+const mockContext = {
   $implicit: 'test value',
   config: {
     id: 'sku',
@@ -34,8 +33,17 @@ const mockContext: TableColumnTplContext = {
     name: 'name',
     sku: 'non transformed value',
   },
-  value: 'test value',
   i: 0,
+};
+
+const mockContextWithSimpleValue: any = {
+  ...mockContext,
+  value: 'test value',
+};
+
+const mockContextWithMultiple: any = {
+  ...mockContextWithSimpleValue,
+  value: ['test value', 'test', 'test'],
 };
 
 const mockTransformedData = { name: 'name', sku: 'test value' };
@@ -63,7 +71,7 @@ describe('TableColumnListComponent', () => {
 
   it('should render `spy-table-column-renderer` element', async () => {
     const host = await createComponent(
-      { config: mockConfig, context: mockContext },
+      { config: mockConfig, context: mockContextWithSimpleValue },
       true,
     );
     const columnElem = host.queryCss('spy-table-column-renderer');
@@ -71,9 +79,40 @@ describe('TableColumnListComponent', () => {
     expect(columnElem).toBeTruthy();
   });
 
+  it('should render `spy-popover` element if values.length more than valueLimit', async () => {
+    const host = await createComponent(
+      { config: mockConfig, context: mockContextWithMultiple },
+      true,
+    );
+    const popoverElem = host.queryCss('spy-popover');
+
+    expect(
+      mockContext.config.typeOptions.limit <
+        mockContextWithMultiple.value.length,
+    ).toBeTruthy();
+    expect(popoverElem).toBeTruthy();
+  });
+
+  it('should render `.spy-table-column-list__trigger` width values.length if values.length more than valueLimit', async () => {
+    const host = await createComponent(
+      { config: mockConfig, context: mockContextWithMultiple },
+      true,
+    );
+    const triggerElem = host.queryCss('.spy-table-column-list__trigger');
+
+    expect(
+      mockContext.config.typeOptions.limit <
+        mockContextWithMultiple.value.length,
+    ).toBeTruthy();
+    expect(triggerElem).toBeTruthy();
+    expect(triggerElem?.nativeElement.textContent).toContain(
+      mockContextWithMultiple.value.length,
+    );
+  });
+
   it('should render `spy-table-column-renderer` element', async () => {
     const host = await createComponent(
-      { config: mockConfig, context: mockContext },
+      { config: mockConfig, context: mockContextWithSimpleValue },
       true,
     );
     const columnElem = host.queryCss('spy-table-column-renderer');
@@ -83,7 +122,7 @@ describe('TableColumnListComponent', () => {
 
   it('`spy-table-column-renderer` element should bind transformed `config` to the input `config`', async () => {
     const host = await createComponent(
-      { config: mockConfig, context: mockContext },
+      { config: mockConfig, context: mockContextWithSimpleValue },
       true,
     );
     const columnElem = host.queryCss('spy-table-column-renderer');
@@ -93,7 +132,7 @@ describe('TableColumnListComponent', () => {
 
   it('`spy-table-column-renderer` element should bind transformed `data` to the input `data`', async () => {
     const host = await createComponent(
-      { config: mockConfig, context: mockContext },
+      { config: mockConfig, context: mockContextWithSimpleValue },
       true,
     );
     const columnElem = host.queryCss('spy-table-column-renderer');
@@ -103,7 +142,7 @@ describe('TableColumnListComponent', () => {
 
   it('should render `spy-table-column-renderer` element', async () => {
     const host = await createComponent(
-      { config: mockConfig, context: mockContext },
+      { config: mockConfig, context: mockContextWithSimpleValue },
       true,
     );
     const columnElem = host.queryCss('spy-table-column-renderer');

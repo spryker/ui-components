@@ -5,7 +5,7 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { FormsModule } from '@angular/forms';
 import { JoinModule } from '@spryker/utils';
 import { I18nModule } from '@spryker/locale';
-import { TreeSelectExtractPipe } from './tree-select/tree-select-extract.pipe';
+import { TreeSelectExtractKeysPipe } from './tree-select/tree-select-extract.pipe';
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { TreeSelectExtractPipe } from './tree-select/tree-select-extract.pipe';
     JoinModule,
   ],
   exports: [TreeSelectComponent],
-  declarations: [TreeSelectComponent, TreeSelectExtractPipe],
+  declarations: [TreeSelectComponent, TreeSelectExtractKeysPipe],
 })
 export class TreeSelectModule {}

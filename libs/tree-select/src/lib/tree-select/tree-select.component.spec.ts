@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { TreeSelectComponent } from './tree-select.component';
-import { TreeSelectExtractPipe } from './tree-select-extract.pipe';
+import { TreeSelectExtractKeysPipe } from './tree-select-extract.pipe';
 import {
   NzTreeSelectModule,
   NzTreeSelectComponent,
@@ -17,7 +17,7 @@ describe('TreeSelectComponent', () => {
       ngModule: {
         schemas: [NO_ERRORS_SCHEMA],
         imports: [NzTreeSelectModule, JoinModule],
-        declarations: [TreeSelectExtractPipe],
+        declarations: [TreeSelectExtractKeysPipe],
       },
     },
   );

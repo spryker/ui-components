@@ -5,6 +5,7 @@
         <spy-icon [name]="settingsIcon"></spy-icon>
       </spy-button-toggle>
       <div id="content">
+        <div class="spy-table-settings-feature__title">Table settings</div>
         <div
           cdkDropList
           class="spy-table-settings-feature"
@@ -14,8 +15,10 @@
             cdkDrag
             *ngFor="let movie of movies"
             class="spy-table-settings-feature__item"
+            [cdkDragDisabled]="movie.disabled"
           >
             <spy-checkbox
+              [disabled]="movie.disabled"
               class="spy-table-settings-feature__item-check"
             ></spy-checkbox>
             <span class="spy-table-settings-feature__item-name">{{
@@ -26,6 +29,9 @@
               name="drag"
             ></spy-icon>
           </div>
+        </div>
+        <div class="spy-table-settings-feature__footer">
+          <button>Reset</button>
         </div>
       </div>
     </spy-popover>

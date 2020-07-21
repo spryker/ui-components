@@ -67,7 +67,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
       title: 'Episode IV - A New Hope',
     },
     {
-      disabled: true,
+      disabled: false,
       title: 'Episode V - The Empire Strikes Back',
     },
     {
@@ -83,7 +83,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
       title: 'Episode VIII - The Last Jedi',
     },
     {
-      disabled: true,
+      disabled: false,
       title: 'Episode IX – The Rise of Skywalker',
     },
   ];

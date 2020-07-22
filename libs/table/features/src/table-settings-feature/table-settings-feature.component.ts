@@ -10,7 +10,7 @@ import {
   TableColumn,
   TableFeatureLocation,
 } from '@spryker/table';
-import { IconSettingsModule } from '@spryker/icon/icons';
+import { IconSettingsModule, IconResetModule } from '@spryker/icon/icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 
@@ -47,43 +47,53 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 > {
   name = 'columnConfigurator';
   settingsIcon = IconSettingsModule.icon;
+  resetIcon = IconResetModule.icon;
   tableFeatureLocation = TableFeatureLocation;
 
   movies = [
     {
-      disabled: true,
+      hideable: false,
+      hidden: false,
       title: 'Episode I - The Phantom Menace',
     },
     {
-      disabled: false,
+      hideable: true,
+      hidden: false,
       title: 'Episode II - Attack of the Clones',
     },
     {
-      disabled: false,
+      hideable: true,
+      hidden: false,
       title: 'Episode III - Revenge of the Sith',
     },
     {
-      disabled: false,
+      hideable: true,
+      hidden: false,
       title: 'Episode IV - A New Hope',
     },
     {
-      disabled: false,
+      hideable: true,
+      hidden: false,
       title: 'Episode V - The Empire Strikes Back',
     },
     {
-      disabled: false,
+      hideable: true,
+      hidden: false,
       title: 'Episode VI - Return of the Jedi',
     },
     {
-      disabled: false,
+      hideable: true,
+      hidden: false,
       title: 'Episode VII - The Force Awakens',
     },
     {
-      disabled: false,
+      hideable: true,
+      hidden: false,
       title: 'Episode VIII - The Last Jedi',
     },
     {
-      disabled: false,
+      hideable: true,
+      hidden: false,
       title: 'Episode IX – The Rise of Skywalker',
     },
   ];

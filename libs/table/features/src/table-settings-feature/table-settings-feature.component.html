@@ -15,10 +15,15 @@
             cdkDrag
             *ngFor="let movie of movies"
             class="spy-table-settings-feature__item"
-            [cdkDragDisabled]="movie.disabled"
+            [cdkDragDisabled]="!movie.hideable"
           >
+            <div
+              class="spy-table-settings-feature__drag-placeholder"
+              *cdkDragPlaceholder
+            ></div>
             <spy-checkbox
-              [disabled]="movie.disabled"
+              [checked]="!movie.hidden"
+              [disabled]="!movie.hideable"
               class="spy-table-settings-feature__item-check"
             ></spy-checkbox>
             <span class="spy-table-settings-feature__item-name">{{
@@ -31,7 +36,13 @@
           </div>
         </div>
         <div class="spy-table-settings-feature__footer">
-          <button>Reset</button>
+          <button class="spy-table-settings-feature__reset-button">
+            <spy-icon
+              class="spy-table-settings-feature__reset-button-icon"
+              [name]="resetIcon"
+            ></spy-icon>
+            Reset
+          </button>
         </div>
       </div>
     </spy-popover>

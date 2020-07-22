@@ -17,3 +17,4 @@ export * from './minimize';
 export * from './maximize';
 export * from './settings';
 export * from './drag';
+export * from './reset';

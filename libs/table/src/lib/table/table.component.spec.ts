@@ -1,5 +1,5 @@
 // tslint:disable: no-non-null-assertion
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick, flush } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -149,6 +149,17 @@ describe('TableComponent', () => {
 
       expect(tableHeadElem).toBeTruthy();
       expect(tableHeadElem!.attributes.nzSortFn).toBe('true');
+    }));
+  });
+
+  describe('Host', () => {
+    it('should have class `spy-table`', fakeAsync(async () => {
+      const host = await createComponent({ config: mockConfig }, true);
+
+      flush();
+
+      // Using native element to assert class presence
+      expect(host.htmlElement.classList.contains('spy-table')).toBeTruthy();
     }));
   });
 

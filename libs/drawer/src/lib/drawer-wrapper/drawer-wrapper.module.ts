@@ -6,6 +6,7 @@ import {
   IconMinimizeModule,
   IconRemoveModule,
 } from '@spryker/icon/icons';
+import { CustomElementBoundaryModule } from '@spryker/web-components';
 
 import { DrawerWrapperComponent } from './drawer-wrapper.component';
 
@@ -16,6 +17,7 @@ import { DrawerWrapperComponent } from './drawer-wrapper.component';
     IconMaximizeModule,
     IconRemoveModule,
     IconMinimizeModule,
+    CustomElementBoundaryModule,
   ],
   exports: [DrawerWrapperComponent],
   declarations: [DrawerWrapperComponent],

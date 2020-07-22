@@ -124,6 +124,12 @@
     },
     "popover": {
       "tags": ["level:molecule", "type:component"]
+    },
+    "tree-select": {
+      "tags": ["level:molecule", "type:component"]
+    },
+    "link": {
+      "tags": ["level:atom", "type:component"]
     }
   },
   "tasksRunnerOptions": {

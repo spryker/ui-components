@@ -16,6 +16,7 @@ import { TreeSelectItem, TreeSelectValue } from './types';
  */
 interface TreeSelectItemWithKey extends TreeSelectItem {
   key: TreeSelectValue;
+  isLeaf: boolean;
 }
 
 /**
@@ -63,6 +64,7 @@ export class TreeSelectComponent implements OnChanges {
       children: Array.isArray(item.children)
         ? item.children.map(childItem => this.mapTreeItems(childItem))
         : [],
+      isLeaf: !Array.isArray(item.children),
     };
   }
 

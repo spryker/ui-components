@@ -7,11 +7,7 @@ import {
   startWith,
 } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-
-interface PersistenceStrategy {
-  save(key: string, value: unknown): Observable<void>;
-  retrieve(key: string): Observable<unknown>;
-}
+import { PersistenceStrategy } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class UrlPersistenceStrategy implements PersistenceStrategy {

@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'ajax-post-actions',
+  name: 'ajax-action.post-action.redirect',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/libs/ajax-post-actions',
+  coverageDirectory: '../../coverage/libs/ajax-action.post-action.redirect',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

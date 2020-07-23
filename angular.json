@@ -2144,6 +2144,237 @@
         }
       }
     },
+    "ajax-action.post-action.close-overlay": {
+      "projectType": "library",
+      "root": "libs/ajax-action.post-action.close-overlay",
+      "sourceRoot": "libs/ajax-action.post-action.close-overlay/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ajax-action.post-action.close-overlay/tsconfig.lib.json",
+            "project": "libs/ajax-action.post-action.close-overlay/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ajax-action.post-action.close-overlay/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ajax-action.post-action.close-overlay/tsconfig.lib.json",
+              "libs/ajax-action.post-action.close-overlay/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ajax-action.post-action.close-overlay/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ajax-action.post-action.close-overlay/jest.config.js",
+            "tsConfig": "libs/ajax-action.post-action.close-overlay/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ajax-action.post-action.close-overlay/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ajax-action.post-action.close-overlay/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/ajax-action.post-action.close-overlay",
+            "config": {
+              "configFolder": "libs/ajax-action.post-action.close-overlay/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "ajax-action.post-action.redirect": {
+      "projectType": "library",
+      "root": "libs/ajax-action.post-action.redirect",
+      "sourceRoot": "libs/ajax-action.post-action.redirect/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ajax-action.post-action.redirect/tsconfig.lib.json",
+            "project": "libs/ajax-action.post-action.redirect/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ajax-action.post-action.redirect/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ajax-action.post-action.redirect/tsconfig.lib.json",
+              "libs/ajax-action.post-action.redirect/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ajax-action.post-action.redirect/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ajax-action.post-action.redirect/jest.config.js",
+            "tsConfig": "libs/ajax-action.post-action.redirect/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ajax-action.post-action.redirect/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ajax-action.post-action.redirect/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/ajax-action.post-action.redirect",
+            "config": {
+              "configFolder": "libs/ajax-action.post-action.redirect/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "ajax-action.post-action.refresh-table": {
+      "projectType": "library",
+      "root": "libs/ajax-action.post-action.refresh-table",
+      "sourceRoot": "libs/ajax-action.post-action.refresh-table/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ajax-action.post-action.refresh-table/tsconfig.lib.json",
+            "project": "libs/ajax-action.post-action.refresh-table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ajax-action.post-action.refresh-table/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ajax-action.post-action.refresh-table/tsconfig.lib.json",
+              "libs/ajax-action.post-action.refresh-table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ajax-action.post-action.refresh-table/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ajax-action.post-action.refresh-table/jest.config.js",
+            "tsConfig": "libs/ajax-action.post-action.refresh-table/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ajax-action.post-action.refresh-table/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ajax-action.post-action.refresh-table/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/ajax-action.post-action.refresh-table",
+            "config": {
+              "configFolder": "libs/ajax-action.post-action.refresh-table/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
     "html-renderer": {
       "projectType": "library",
       "root": "libs/html-renderer",
@@ -2357,50 +2588,6 @@
             "ci": {
               "quiet": true
             }
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      }
-    },
-    "ajax-post-actions": {
-      "projectType": "library",
-      "root": "libs/ajax-post-actions",
-      "sourceRoot": "libs/ajax-post-actions/src",
-      "prefix": "spy",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/ajax-post-actions/tsconfig.lib.json",
-            "project": "libs/ajax-post-actions/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/ajax-post-actions/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/ajax-post-actions/tsconfig.lib.json",
-              "libs/ajax-post-actions/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/ajax-post-actions/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/ajax-post-actions/jest.config.js",
-            "tsConfig": "libs/ajax-post-actions/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/ajax-post-actions/src/test-setup.ts"
           }
         }
       },

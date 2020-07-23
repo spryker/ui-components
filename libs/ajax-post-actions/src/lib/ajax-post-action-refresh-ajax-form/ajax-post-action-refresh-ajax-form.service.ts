@@ -5,7 +5,7 @@ import { AjaxFormComponent } from '@spryker/ajax-form';
 import { AjaxPostActionRefreshAjaxForm } from './types';
 
 /**
- * Refresh the table via {@link TableDataConfiguratorService}
+ * Refresh the ajax form via {@link AjaxFormComponent}
  */
 @Injectable({
   providedIn: 'root',

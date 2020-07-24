@@ -138,7 +138,7 @@ describe('AjaxFormComponent', () => {
     fixture.detectChanges();
 
     const staticHtml = fixture.debugElement.query(
-      By.css('spy-html-renderer span'),
+      By.css('spy-html-renderer [spyCustomElementBoundary]'),
     );
 
     expect(staticHtml.nativeElement.innerHTML).toBe(mockFirstResponse.form);
@@ -162,7 +162,7 @@ describe('AjaxFormComponent', () => {
     fixture.detectChanges();
 
     const staticHtml = fixture.debugElement.query(
-      By.css('spy-html-renderer span'),
+      By.css('spy-html-renderer [spyCustomElementBoundary]'),
     );
 
     expect(staticHtml.nativeElement.innerHTML).toBe(mockFirstResponse.form);

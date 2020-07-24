@@ -78,7 +78,7 @@
       "tags": ["pkg:primary", "level:molecule", "type:component-service"]
     },
     "table": {
-      "tags": ["pkg:primary", "level:organism", "type:component"]
+      "tags": ["pkg:primary", "level:organism", "type:component-service"]
     },
     "pagination": {
       "tags": ["pkg:primary", "level:molecule", "type:component"]

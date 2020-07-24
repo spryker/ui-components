@@ -59,14 +59,14 @@ export class DrawerContainerComponent implements OnDestroy {
       return;
     }
 
-    const drawerRecordTest = this.drawerRecord.portal;
+    const drawerRecord = this.drawerRecord.portal;
 
     this.drawerRecord.portal = undefined;
     this.cdr.markForCheck();
 
     setTimeout(() => {
       // tslint:disable-next-line: no-non-null-assertion
-      this.drawerRecord!.portal = drawerRecordTest;
+      this.drawerRecord!.portal = drawerRecord;
       this.cdr.markForCheck();
       this.applicationRef.tick();
     }, 0);

@@ -110,6 +110,10 @@ export class DrawerComponent extends DrawerComponentInputs
     this.drawerRef?.minimize();
   }
 
+  refreshDrawer(): void {
+    this.drawerRef?.refreshDrawer();
+  }
+
   close() {
     this.closed$.next();
 

@@ -33,7 +33,7 @@ describe('StaticHtmlRendererDirective', () => {
 
   it('should render @Input(html) inside of `spy-html-renderer`', () => {
     const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer'),
+      By.css('spy-html-renderer .spy-html-renderer-content'),
     );
 
     component.html = mockHtmlTemplate;
@@ -45,7 +45,7 @@ describe('StaticHtmlRendererDirective', () => {
   it('should render html inside `spy-html-renderer` when @Input(html) was changes', async () => {
     const mockRerenderHtml = `<p>Rerendered!!!</p>`;
     const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer'),
+      By.css('spy-html-renderer .spy-html-renderer-content'),
     );
 
     component.html = mockHtmlTemplate;

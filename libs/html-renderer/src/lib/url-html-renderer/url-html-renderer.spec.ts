@@ -48,7 +48,7 @@ describe('UrlHtmlRendererDirective', () => {
 
   it('should render html response inside of `spy-html-renderer`', () => {
     const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer'),
+      By.css('spy-html-renderer .spy-html-renderer-content'),
     );
     component.urlHtml = mockUrl;
     fixture.detectChanges();
@@ -66,7 +66,7 @@ describe('UrlHtmlRendererDirective', () => {
     const mockRerenderHtml = `<p>Rerendered!!!</p>`;
     const mockRerenderUrl = '/new-html-request';
     const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer'),
+      By.css('spy-html-renderer .spy-html-renderer-content'),
     );
 
     component.urlHtml = mockUrl;

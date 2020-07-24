@@ -48,7 +48,9 @@ describe('HtmlRendererComponent', () => {
 
   it('should render html inside `spy-html-renderer`', async () => {
     const host = await createComponent({}, true);
-    const htmlRendererElem = host.queryCss('spy-html-renderer')!;
+    const htmlRendererElem = host.queryCss(
+      'spy-html-renderer [spyCustomElementBoundary]',
+    )!;
 
     testHtmlRendererProvider.html$.next(mockHtmlTemplate);
     host.detectChanges();
@@ -59,7 +61,9 @@ describe('HtmlRendererComponent', () => {
   it('should render html inside `spy-html-renderer` when html was changes', async () => {
     const mockRerenderHtml = `<p>Rerendered!!!</p>`;
     const host = await createComponent({}, true);
-    const htmlRendererElem = host.queryCss('spy-html-renderer')!;
+    const htmlRendererElem = host.queryCss(
+      'spy-html-renderer [spyCustomElementBoundary]',
+    )!;
 
     testHtmlRendererProvider.html$.next(mockHtmlTemplate);
     host.detectChanges();

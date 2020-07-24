@@ -1,16 +1,18 @@
 import {
-  Component,
+  AfterViewInit,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
-  Output,
+  Component,
   ElementRef,
-  Renderer2,
   EventEmitter,
-  OnInit,
   OnDestroy,
+  Output,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { HtmlRendererProvider } from './html-renderer.provider';
 import { Subscription } from 'rxjs';
+
+import { HtmlRendererProvider } from './html-renderer.provider';
 
 @Component({
   selector: 'spy-html-renderer',
@@ -22,7 +24,9 @@ import { Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class HtmlRendererComponent implements OnInit, OnDestroy {
+export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
+  @ViewChild('htmlRendererContent', { static: false })
+  htmlRendererContent?: ElementRef<HTMLElement>;
   @Output() htmlRendered = new EventEmitter<ElementRef>();
 
   htmlRenderer$ = this.htmlRendererProvider.getHtml();
@@ -31,18 +35,17 @@ export class HtmlRendererComponent implements OnInit, OnDestroy {
   constructor(
     private htmlRendererProvider: HtmlRendererProvider,
     private renderer: Renderer2,
-    private elemRef: ElementRef<HTMLElement>,
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.subscription = this.htmlRenderer$.subscribe({
       next: html => {
         this.renderer.setProperty(
-          this.elemRef.nativeElement,
+          this.htmlRendererContent?.nativeElement,
           'innerHTML',
           html,
         );
-        this.htmlRendered.emit(this.elemRef);
+        this.htmlRendered.emit(this.htmlRendererContent);
       },
     });
   }

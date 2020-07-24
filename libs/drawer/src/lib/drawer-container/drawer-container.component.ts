@@ -10,6 +10,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
   ViewChild,
+  ApplicationRef,
 } from '@angular/core';
 
 import { DrawerOptions } from '../drawer-options';
@@ -30,7 +31,7 @@ import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.compone
   },
 })
 export class DrawerContainerComponent implements OnDestroy {
-  drawerRecord?: { drawer: DrawerRef; portal: Portal<any> };
+  drawerRecord?: { drawer: DrawerRef; portal?: Portal<any> };
 
   private afterClosed$ = new ReplaySubject<void>();
   private destroyed = false;
@@ -38,7 +39,11 @@ export class DrawerContainerComponent implements OnDestroy {
   @ViewChild(DrawerWrapperComponent)
   private drawerWrapperComponent?: DrawerWrapperComponent;
 
-  constructor(private vcr: ViewContainerRef, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private vcr: ViewContainerRef,
+    private cdr: ChangeDetectorRef,
+    private applicationRef: ApplicationRef,
+  ) {}
 
   ngOnDestroy(): void {
     this.destroyed = true;
@@ -47,6 +52,24 @@ export class DrawerContainerComponent implements OnDestroy {
 
   trackByIndex(idx: number): number {
     return idx;
+  }
+
+  refreshDrawer(): void {
+    if (!this.drawerRecord) {
+      return;
+    }
+
+    const drawerRecordTest = this.drawerRecord.portal;
+
+    this.drawerRecord.portal = undefined;
+    this.cdr.markForCheck();
+
+    setTimeout(() => {
+      // tslint:disable-next-line: no-non-null-assertion
+      this.drawerRecord!.portal = drawerRecordTest;
+      this.cdr.markForCheck();
+      this.applicationRef.tick();
+    }, 0);
   }
 
   openComponent(compType: Type<any>, options: DrawerOptions): DrawerRef {
@@ -100,6 +123,7 @@ export class DrawerContainerComponent implements OnDestroy {
       () => this.removeDrawer(drawerRef),
       () => this.maximize(),
       () => this.minimize(),
+      () => this.refreshDrawer(),
     );
 
     return drawerRef;

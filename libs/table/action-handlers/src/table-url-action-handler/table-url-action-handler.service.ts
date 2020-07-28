@@ -7,7 +7,7 @@ import { AjaxActionService, AjaxActionResponse } from '@spryker/ajax-action';
 import { TableUrlAction } from './types';
 
 /**
- * Handles url request via {@link HttpClient} and sends response to the {@link TableActionTriggeredEvent}
+ * Handles url request via {@link HttpClient} and sends response to the {@link AjaxActionService}
  */
 @Injectable({
   providedIn: 'root',
@@ -15,10 +15,6 @@ import { TableUrlAction } from './types';
 export class TableUrlActionHandlerService
   implements TableActionHandler<TableUrlAction>, OnDestroy {
   private destroyed$ = new Subject<void>();
-  private request$ = new Observable<AjaxActionResponse>().pipe(
-    takeUntil(this.destroyed$),
-    shareReplay({ bufferSize: 1, refCount: true }),
-  );
 
   constructor(
     private http: HttpClient,
@@ -30,20 +26,22 @@ export class TableUrlActionHandlerService
     injector: Injector,
   ): Observable<unknown> {
     const actionData = actionEvent.action.typeOptions;
-
-    this.request$ = this.http
+    const request$ = this.http
       .request<AjaxActionResponse>(
         actionData.method || 'GET',
         actionData.url,
         {},
       )
-      .pipe(catchError(response => of(response)));
+      .pipe(
+        catchError(response => of(response)),
+        shareReplay({ bufferSize: 1, refCount: true }),
+      );
 
-    this.request$.subscribe(response =>
-      this.ajaxActionService.handle(response, injector),
-    );
+    request$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(response => this.ajaxActionService.handle(response, injector));
 
-    return this.request$;
+    return request$;
   }
 
   ngOnDestroy(): void {

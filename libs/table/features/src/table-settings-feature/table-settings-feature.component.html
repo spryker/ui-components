@@ -1,47 +1,64 @@
-<ng-container *spyTableFeatureTpl="tableFeatureLocation.top">
+<ng-container
+  *spyTableFeatureTpl="
+    tableFeatureLocation.beforeTable;
+    styles: { order: '2', flexGrow: 1 }
+  "
+>
   <div>
-    <spy-popover>
+    <spy-popover style="float: right" [position]="popoverPosition">
       <spy-button-toggle trigger>
         <spy-icon [name]="settingsIcon"></spy-icon>
       </spy-button-toggle>
       <div id="content">
-        <div class="spy-table-settings-feature__title">Table settings</div>
-        <div
-          cdkDropList
-          class="spy-table-settings-feature"
-          (cdkDropListDropped)="drop($event)"
-        >
-          <div
-            cdkDrag
-            *ngFor="let movie of movies"
-            class="spy-table-settings-feature__item"
-            [cdkDragDisabled]="!movie.hideable"
-          >
-            <div
-              class="spy-table-settings-feature__drag-placeholder"
-              *cdkDragPlaceholder
-            ></div>
-            <spy-checkbox
-              [checked]="!movie.hidden"
-              [disabled]="!movie.hideable"
-              class="spy-table-settings-feature__item-check"
-            ></spy-checkbox>
-            <span class="spy-table-settings-feature__item-name">{{
-              movie.title
-            }}</span>
-            <spy-icon
-              class="spy-table-settings-feature__icon"
-              name="drag"
-            ></spy-icon>
-          </div>
+        <div class="spy-table-settings-feature__title">
+          {{ 'table.table-settings' | spyI18n | async }}
         </div>
+        <ng-container *ngIf="columns$ | async as tableColumns">
+          <ng-container *ngIf="popoverColumns$ | async as popoverColumns">
+            <div
+              cdkDropList
+              class="spy-table-settings-feature"
+              (cdkDropListDropped)="drop($event, popoverColumns, tableColumns)"
+            >
+              <div
+                cdkDrag
+                *ngFor="let column of popoverColumns"
+                class="spy-table-settings-feature__item"
+                [cdkDragDisabled]="!column.hideable"
+              >
+                <div
+                  class="spy-table-settings-feature__drag-placeholder"
+                  *cdkDragPlaceholder
+                ></div>
+                <spy-checkbox
+                  [disabled]="!column.hideable"
+                  [checked]="!column.hidden"
+                  (checkedChange)="
+                    handleCheckChange(column, popoverColumns, tableColumns)
+                  "
+                  class="spy-table-settings-feature__item-check"
+                ></spy-checkbox>
+                <span class="spy-table-settings-feature__item-name">{{
+                  column.title
+                }}</span>
+                <spy-icon
+                  class="spy-table-settings-feature__icon"
+                  name="drag"
+                ></spy-icon>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
         <div class="spy-table-settings-feature__footer">
-          <button class="spy-table-settings-feature__reset-button">
+          <button
+            class="spy-table-settings-feature__reset-button"
+            (click)="resetChoice()"
+          >
             <spy-icon
               class="spy-table-settings-feature__reset-button-icon"
               [name]="resetIcon"
             ></spy-icon>
-            Reset
+            {{ 'table.reset' | spyI18n | async }}
           </button>
         </div>
       </div>

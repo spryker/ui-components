@@ -80,9 +80,9 @@ function getTotalStory(
           url: '/data-request',
         },
         columns: [
-          { id: 'col1', title: 'Column #1' },
-          { id: 'col2', title: 'Column #2' },
-          { id: 'col3', title: 'Column #3' },
+          { id: 'col1', title: 'Column #1', hideable: true },
+          { id: 'col2', title: 'Column #2', hideable: true },
+          { id: 'col3', title: 'Column #3', hideable: true },
         ],
         setting: {
           enabled: true, // This will enable feature via config

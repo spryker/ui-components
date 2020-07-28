@@ -3,8 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonToggleModule } from '@spryker/button';
 import { IconModule } from '@spryker/icon';
 import { IconSettingsModule } from '@spryker/icon/icons';
-import { boolean } from '@storybook/addon-knobs';
-import { open } from 'fs';
 
 export default {
   title: 'PopoverComponent',

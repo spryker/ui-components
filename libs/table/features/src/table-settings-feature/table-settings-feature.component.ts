@@ -1,33 +1,22 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  Injector,
 } from '@angular/core';
 import {
   TableFeatureComponent,
-  TableFeatureConfig,
-  TableColumn,
   TableFeatureLocation,
+  TableColumns,
+  TableColumnsResolverService,
+  TableColumn,
 } from '@spryker/table';
 import { IconSettingsModule, IconResetModule } from '@spryker/icon/icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Observable } from 'rxjs';
-
-declare module '@spryker/table' {
-  interface TableColumn {
-    id: string;
-    hideable?: boolean; // by default `true`
-  }
-
-  interface TableConfig {
-    columnConfigurator?: TableSettingsConfig;
-  }
-}
-
-interface TableSettingsConfig extends TableFeatureConfig {
-  tableId?: string;
-}
+import { TableSettingsConfig } from './types';
+import { switchMap, pluck, tap, withLatestFrom, map } from 'rxjs/operators';
+import { ReplaySubject, of, Observable, merge, combineLatest } from 'rxjs';
+import { LocalStoragePersistenceStrategy } from '@spryker/utils';
 
 @Component({
   selector: 'spy-table-settings-feature',
@@ -49,56 +38,183 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   settingsIcon = IconSettingsModule.icon;
   resetIcon = IconResetModule.icon;
   tableFeatureLocation = TableFeatureLocation;
+  popoverPosition = 'bottomRight';
 
-  movies = [
-    {
-      hideable: false,
-      hidden: false,
-      title: 'Episode I - The Phantom Menace',
-    },
-    {
-      hideable: true,
-      hidden: false,
-      title: 'Episode II - Attack of the Clones',
-    },
-    {
-      hideable: true,
-      hidden: false,
-      title: 'Episode III - Revenge of the Sith',
-    },
-    {
-      hideable: true,
-      hidden: false,
-      title: 'Episode IV - A New Hope',
-    },
-    {
-      hideable: true,
-      hidden: false,
-      title: 'Episode V - The Empire Strikes Back',
-    },
-    {
-      hideable: true,
-      hidden: false,
-      title: 'Episode VI - Return of the Jedi',
-    },
-    {
-      hideable: true,
-      hidden: false,
-      title: 'Episode VII - The Force Awakens',
-    },
-    {
-      hideable: true,
-      hidden: false,
-      title: 'Episode VIII - The Last Jedi',
-    },
-    {
-      hideable: true,
-      hidden: false,
-      title: 'Episode IX – The Rise of Skywalker',
-    },
-  ];
+  originalColumnsArr?: TableColumns;
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+  setColumns$ = new ReplaySubject<TableColumns>(1);
+  setInitialColumns$ = new ReplaySubject<TableColumns>(1);
+
+  tableId$ = this.config$.pipe(
+    pluck('tableId'),
+    switchMap(tableId => {
+      if (tableId) {
+        return of(tableId);
+      }
+
+      return this.table$.pipe(switchMap(table => table.tableId$));
+    }),
+  );
+
+  storageState$ = this.tableId$.pipe(
+    switchMap(tableId =>
+      this.localStoragePersistenceStrategy.retrieve(tableId),
+    ),
+  ) as Observable<TableColumns>;
+
+  initialColumns$ = combineLatest([
+    this.storageState$,
+    this.setInitialColumns$,
+  ]).pipe(
+    map(([storageColumns, initialColumns]) => storageColumns || initialColumns),
+  );
+
+  columns$ = merge(this.setColumns$, this.initialColumns$).pipe(
+    withLatestFrom(this.tableId$),
+    tap(([columns, tableId]) =>
+      this.localStoragePersistenceStrategy.save(tableId, columns),
+    ),
+    map(([columns]) => columns),
+  );
+
+  setPopoverColumns$ = new ReplaySubject<TableColumns>(1);
+  popoverColumns$ = merge(this.initialColumns$, this.setPopoverColumns$);
+
+  constructor(
+    private localStoragePersistenceStrategy: LocalStoragePersistenceStrategy,
+    injector: Injector,
+  ) {
+    super(injector);
+  }
+
+  setColumnsResolverService(service: TableColumnsResolverService): void {
+    super.setColumnsResolverService(service);
+
+    const transformer = (columnsArr: TableColumns) => {
+      this.originalColumnsArr = columnsArr;
+
+      this.setInitialColumns$.next([...columnsArr]);
+      return this.columns$;
+    };
+
+    service.addTransformer(transformer);
+  }
+
+  drop(
+    event: CdkDragDrop<string[]>,
+    popoverColumns: TableColumns,
+    tableColumns: TableColumns,
+  ): void {
+    moveItemInArray(popoverColumns, event.previousIndex, event.currentIndex);
+    const sortedTableColumns = this.moveItemInTableColumnsArray(
+      popoverColumns,
+      tableColumns,
+    );
+
+    this.setPopoverColumns$.next(popoverColumns);
+    this.setColumns$.next(sortedTableColumns);
+  }
+
+  resetChoice(): void {
+    this.setColumns$.next(this.originalColumnsArr);
+    this.setPopoverColumns$.next(this.originalColumnsArr);
+  }
+
+  handleCheckChange(
+    checkedColumn: TableColumn,
+    popoverColumns: TableColumns,
+    tableColumns: TableColumns,
+  ): void {
+    const popoverColumn = popoverColumns.find(
+      column => column.id === checkedColumn.id,
+    );
+    const tableColumnElem = tableColumns.find(
+      elem => elem.id === checkedColumn.id,
+    );
+
+    if (checkedColumn.hidden) {
+      this.showColumn(
+        this.findIndexToInsert(
+          checkedColumn,
+          popoverColumns,
+          tableColumns,
+        ) as number,
+        checkedColumn,
+        tableColumns,
+      );
+    } else {
+      this.hideColumn(
+        tableColumns.indexOf(tableColumnElem as TableColumn),
+        tableColumns,
+      );
+    }
+
+    if (popoverColumn) {
+      popoverColumn.hidden = !popoverColumn.hidden;
+    }
+
+    this.setColumns$.next(tableColumns);
+  }
+
+  private showColumn(
+    index: number,
+    column: TableColumn,
+    tableColumns: TableColumns,
+  ): void {
+    tableColumns.splice(index, 0, column);
+  }
+
+  private hideColumn(index: number, tableColumns: TableColumns): void {
+    tableColumns.splice(index, 1);
+  }
+
+  private findIndexToInsert(
+    column: TableColumn,
+    popoverColumns: TableColumns,
+    tableColumns: TableColumns,
+  ): number | void {
+    const popoverColumnIndex = popoverColumns.indexOf(column);
+    return !popoverColumnIndex
+      ? popoverColumnIndex
+      : this.findNewColumnPosition(
+          popoverColumnIndex,
+          popoverColumns,
+          tableColumns,
+        );
+  }
+
+  private findNewColumnPosition(
+    index: number,
+    popoverColumns: TableColumns,
+    tableColumns: TableColumns,
+  ): number | void {
+    if (!index) {
+      return 0;
+    }
+
+    const previousElem = popoverColumns[index - 1];
+    const tableColumnsElement =
+      previousElem && tableColumns.find(elem => elem.id === previousElem.id);
+
+    if (tableColumnsElement) {
+      return tableColumns.indexOf(tableColumnsElement) + 1;
+    }
+
+    this.findNewColumnPosition(index - 1, popoverColumns, tableColumns);
+  }
+
+  private moveItemInTableColumnsArray(
+    popoverColumns: TableColumns,
+    tableColumns: TableColumns,
+  ): TableColumns {
+    const newTableColumnsArr: TableColumns = [];
+
+    popoverColumns.forEach(column => {
+      if (tableColumns.find(tableColumn => tableColumn.id === column.id)) {
+        newTableColumnsArr.push(column);
+      }
+    });
+
+    return newTableColumnsArr;
   }
 }

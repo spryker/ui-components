@@ -8,6 +8,7 @@ import { IconResetModule, IconSettingsModule } from '@spryker/icon/icons';
 import { IconModule } from '@spryker/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
+import { I18nModule } from '@spryker/locale';
 
 @NgModule({
   declarations: [TableSettingsFeatureComponent],
@@ -21,6 +22,7 @@ import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
     ButtonToggleModule,
     DragDropModule,
     TableFeatureModule,
+    I18nModule,
   ],
   exports: [TableSettingsFeatureComponent],
 })

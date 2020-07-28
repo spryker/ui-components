@@ -15,6 +15,7 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
   sortable?: boolean;
   hideable?: boolean;
   searchable?: boolean;
+  hidden?: boolean;
 }
 
 export interface TableColumnTypeDef {

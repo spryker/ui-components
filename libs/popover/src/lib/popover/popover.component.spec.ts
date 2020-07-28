@@ -23,13 +23,6 @@ describe('PopoverComponent', () => {
     expect(popoverElem).toBeTruthy();
   });
 
-  it('should render opened <spy-popover>', async () => {
-    const host = await createComponent({ open: true });
-    host.detectChanges();
-    const popoverElem = host.queryCss('span[nz-popover]');
-    expect(popoverElem?.properties.nzPopoverVisible).toBeTruthy();
-  });
-
   it('should render <spy-popover> with changed position', async () => {
     const host = await createComponent({ position: PopoverPosition.Top });
     host.detectChanges();

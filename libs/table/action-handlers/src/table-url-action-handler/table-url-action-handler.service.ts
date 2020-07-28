@@ -1,6 +1,6 @@
 import { Injectable, Injector, OnDestroy } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { takeUntil, catchError } from 'rxjs/operators';
+import { takeUntil, catchError, shareReplay } from 'rxjs/operators';
 import { TableActionHandler, TableActionTriggeredEvent } from '@spryker/table';
 import { HttpClient } from '@angular/common/http';
 import { AjaxActionService, AjaxActionResponse } from '@spryker/ajax-action';
@@ -17,6 +17,7 @@ export class TableUrlActionHandlerService
   private destroyed$ = new Subject<void>();
   private request$ = new Observable<AjaxActionResponse>().pipe(
     takeUntil(this.destroyed$),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   constructor(
@@ -42,7 +43,7 @@ export class TableUrlActionHandlerService
       this.ajaxActionService.handle(response, injector),
     );
 
-    return of([]);
+    return this.request$;
   }
 
   ngOnDestroy(): void {

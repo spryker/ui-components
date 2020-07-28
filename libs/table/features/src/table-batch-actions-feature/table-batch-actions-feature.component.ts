@@ -232,7 +232,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
       },
       items: batchAction.selectedRows,
     };
-
+    console.log(batchTypeOptions);
     this.tableActionService.trigger(batchEvent);
   }
 }

@@ -1,9 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import {
-  TableHtmlOverlayAction,
-  TableHtmlOverlayOptions,
-  TableHtmlOverlayDrawerRefData,
-} from './types';
+import { TableHtmlOverlayAction, TableHtmlOverlayOptions } from './types';
 import { Observable, merge, ReplaySubject, of } from 'rxjs';
 import { DrawerRef, DrawerService } from '@spryker/drawer';
 import { TableHtmlOverlayActionHandlerComponent } from './table-html-overlay-action-handler.component';

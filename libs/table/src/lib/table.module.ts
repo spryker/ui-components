@@ -31,6 +31,7 @@ import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
 import { I18nModule } from '@spryker/locale';
 import { TableActionsDeclaration } from './types';
 import { provideTableActionsServices } from './tokens';
+import { PopoverModule } from '@spryker/popover';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { provideTableActionsServices } from './tokens';
     IconNoFilteredDataModule,
     NzSpinModule,
     I18nModule,
+    PopoverModule,
   ],
   declarations: [
     CoreTableComponent,

@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.2.0-fix-web-components.0...@spryker/ajax-form@0.2.0-next.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **libs:** update versions for next release ([9998cae](https://github.com/spryker/ui-components/commit/9998cae9b2ab631607c0d33fa546363313bfd6aa))
+
+
+
+
+
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.1.0-fix-web-components.0...@spryker/ajax-form@0.1.0-fix-web-components.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.1.0-next.7...@spryker/ajax-form@0.1.0-fix-web-components.0) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update fixed libs versions ([7a1fc0a](https://github.com/spryker/ui-components/commit/7a1fc0aaf1b949ef0886f7e2b8c54591f4867a77))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.1.0-next.6...@spryker/ajax-form@0.1.0-next.7) (2020-06-23)
 
 **Note:** Version bump only for package @spryker/ajax-form

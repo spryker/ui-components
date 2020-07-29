@@ -11,5 +11,7 @@ export default {
     'selected:number': '{{ number }} ausgewählt',
     'total:number': '{{ number }} ergebnisse',
     'filter:title': 'Wählen {{ title }}',
+    'table-settings': 'Tisch Einstellungen',
+    reset: 'Zurücksetzen',
   },
 } as I18nLocaleDataPackage;

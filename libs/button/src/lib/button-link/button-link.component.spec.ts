@@ -8,7 +8,9 @@ import { ButtonLinkComponent } from './button-link.component';
 
 // tslint:disable: no-non-null-assertion
 
-describe('ButtonComponent', () => {
+describe('ButtonLinkComponent', () => {
+  const buttonLinkCls = 'spy-button-link';
+
   const { testModule, createComponent } = getTestingForComponent(
     ButtonLinkComponent,
     {
@@ -38,6 +40,21 @@ describe('ButtonComponent', () => {
     expect(buttonElem.nativeElement.textContent).toMatch('Content');
   });
 
+  it('should add static classes to host element', async () => {
+    const host = await createComponent({}, true);
+
+    expect(host.element.classes[buttonClassName]).toBeTruthy();
+    expect(host.element.classes[buttonLinkCls]).toBeTruthy();
+  });
+
+  it('should add static classes to `a` element', async () => {
+    const host = await createComponent({}, true);
+    const linkElem = host.queryCss('a')!;
+
+    expect(linkElem.classes[`${buttonClassName}__btn`]).toBeTruthy();
+    expect(linkElem.classes[`${buttonLinkCls}__btn`]).toBeTruthy();
+  });
+
   describe('@Inputs', () => {
     it('should bind input url to href of <a>', async () => {
       const host = await createComponent({ url: 'someUrl' as any }, true);
@@ -46,7 +63,7 @@ describe('ButtonComponent', () => {
       expect(buttonLinkElem.properties.href).toBe('someUrl');
     });
 
-    it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the `<a>`', async () => {
+    it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the host', async () => {
       const host = await createComponent(
         {
           variant: ButtonVariant.Critical,
@@ -55,16 +72,24 @@ describe('ButtonComponent', () => {
         },
         true,
       );
-      const buttonLinkElem = host.queryCss('a')!;
 
       expect(
-        buttonLinkElem.classes[`${buttonClassName}--${ButtonVariant.Critical}`],
+        host.element.classes[`${buttonClassName}--${ButtonVariant.Critical}`],
       ).toBeTruthy();
       expect(
-        buttonLinkElem.classes[`${buttonClassName}--${ButtonShape.Circle}`],
+        host.element.classes[`${buttonLinkCls}--${ButtonVariant.Critical}`],
       ).toBeTruthy();
       expect(
-        buttonLinkElem.classes[`${buttonClassName}--${ButtonSize.Large}`],
+        host.element.classes[`${buttonClassName}--${ButtonShape.Circle}`],
+      ).toBeTruthy();
+      expect(
+        host.element.classes[`${buttonLinkCls}--${ButtonShape.Circle}`],
+      ).toBeTruthy();
+      expect(
+        host.element.classes[`${buttonClassName}--${ButtonSize.Large}`],
+      ).toBeTruthy();
+      expect(
+        host.element.classes[`${buttonLinkCls}--${ButtonSize.Large}`],
       ).toBeTruthy();
     });
 

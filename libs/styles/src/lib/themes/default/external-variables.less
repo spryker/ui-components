@@ -328,6 +328,18 @@
 @checkbox-multi-select-checked-line-height: 21px;
 @checkbox-multi-select-checked-icon-size: 12px;
 
+// Tree Select
+@tree-select-dropdown-box-shadow: 0px 2px 16px 0px rgb(239, 238, 238);
+@tree-select-tree-treenode-height: 40px;
+@tree-select-tree-treenode-padding: 0px;
+@tree-select-tree-treenode-border: 2px solid transparent;
+@tree-select-tree-checkbox-margin-top: 10px;
+@tree-select-tree-node-content-wrapper-line-height: 36px;
+@tree-select-clear-button-size: 24px;
+@tree-select-clear-button-top: 3px;
+@tree-select-clear-button-right: -3px;
+@tree-select-tree-switcher-icon: 13px;
+
 // Checkbox
 @checkbox-prefix-cls: ~'@{ant-prefix}-checkbox';
 
@@ -399,6 +411,7 @@
 
 // Table
 @table-prefix-cls: ~'@{ant-prefix}-table';
+@table-prefix-spryker-cls: ~'@{spryker-prefix}-table';
 
 @table-header-icon-color: @gray;
 @table-column-body-color: @gray-dark;
@@ -479,10 +492,28 @@
 
 // Table Settings Feature
 @table-settings-feature-prefix-cls: ~'@{spryker-prefix}-table-settings-feature';
+@table-settings-feature-width: 268px;
+@table-settings-feature-height: 371px;
+@table-settings-feature-padding: 24px 0;
 @table-settings-feature-icon-size: 24px;
 @table-settings-feature-item-padding: 8px 12px;
 @table-settings-feature-item-bottom-margin: 5px;
 @table-settings-feature-item-name-side-margin: 7px;
+@table-settings-feature-title-shadow: 0 2px 16px 0 rgba(33, 43, 54, 0.05);
+@table-settings-feature-footer-shadow: 0px -11px 10px 0px rgba(33, 43, 54, 0.05);
+@table-settings-feature-header-footer-padding: 12px 20px;
+@table-settings-feature-header-margin: -12px -16px 0;
+@table-settings-feature-footer-margin: 0 -16px -12px;
+@table-settings-feature-header-footer-z-index: 2px;
+@table-settings-feature-item-name-top-padding: 3px;
+@table-settings-feature-item-checkbox-top-margin: 2px;
+@table-settings-feature-cdk-drag-preview-shadow: 0 10px 12px 0
+  rgb(235, 235, 236);
+@table-settings-feature-reset-icon-size: 16px;
+@table-settings-feature-reset-icon-spacing: 8px;
+@table-settings-feature-drag-placeholder-height: 60px;
+@table-settings-feature-drag-transform-transition: transform 300ms
+  cubic-bezier(0, 0, 0.2, 1);
 
 // Table Form Overlay Action Handler
 @table-form-overlay-action-handler-prefix-cls: ~'@{spryker-prefix}-table-form-overlay-action-handler';
@@ -621,9 +652,13 @@
 @btn-toggle-settings-icon-size: 24px;
 @btn-toggle-settings-border-radius: 4px;
 
-//popover
+//Popover
 @popover-prefix-cls: ~'@{ant-prefix}-popover';
 @popover-spryker-prefix-cls: ~'@{spryker-prefix}-popover';
 @popover-border-radius: 4px;
 @popover-side-padding: 20px;
 @popover-title-vertical-padding: 9px;
+
+// Link
+@link-prefix-cls: ~'@{spryker-prefix}-link';
+@link-icon-padding-right: 8px;

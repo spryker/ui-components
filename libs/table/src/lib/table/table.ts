@@ -17,6 +17,10 @@ export interface TableColumn extends Partial<TableColumnTypeDef> {
   searchable?: boolean;
 }
 
+export interface TableColumnWithHiddenProp extends TableColumn {
+  hidden?: boolean;
+}
+
 export interface TableColumnTypeDef {
   type?: TableColumnType;
   typeOptions?: TableColumnTypeOptions;

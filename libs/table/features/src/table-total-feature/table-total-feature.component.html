@@ -1,8 +1,7 @@
 <ng-container
   *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { order: '0' }"
 >
-  <ng-container *ngIf="data$ | async | pluck: 'length'"
-    >x
+  <ng-container *ngIf="data$ | async | pluck: 'length'">
     <span *ngIf="isDataResolved$ | async" class="table-total-feature">
       <ng-container *ngIf="selected$ | async as selected">
         {{ 'table.selected:number' | spyI18n: { number: selected } | async }} /

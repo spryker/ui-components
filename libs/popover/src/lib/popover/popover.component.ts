@@ -1,13 +1,11 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Input,
   Output,
   EventEmitter,
 } from '@angular/core';
-import { NzPopoverComponent } from 'ng-zorro-antd/popover';
 
 export enum PopoverPosition {
   TopLeft = 'topLeft',
@@ -37,14 +35,10 @@ export enum PopoverPosition {
     class: 'spy-popover',
   },
 })
-export class PopoverComponent implements OnInit {
+export class PopoverComponent {
   @Input() open?: boolean;
   @Input() position?: PopoverPosition = PopoverPosition.Bottom;
   @Output() openChange = new EventEmitter<boolean>();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   openChangeEvent(isOpen: boolean): void {
     this.open = isOpen;

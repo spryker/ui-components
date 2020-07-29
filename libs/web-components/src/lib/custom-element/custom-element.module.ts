@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 
 import { createCustomElementFor } from './custom-element-factory';
+import { CustomElementOptions } from './custom-element-options';
 import { WebComponentDeclaration, WebComponentDefs } from './types';
 import { componentDefsToDeclarations, isDeclarationLazy } from './util';
 
@@ -13,12 +14,14 @@ import { componentDefsToDeclarations, isDeclarationLazy } from './util';
 export abstract class CustomElementModule {
   protected abstract components: WebComponentDefs;
 
+  private options = this.injector.get(CustomElementOptions);
+
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
     // Initialize all web components within Angular Zone
     // so all change detections are handled by the Angular
-    this.injector.get(NgZone).runGuarded(() => this.initComponents());
+    this.injector.get(NgZone).run(() => this.initComponents());
   }
 
   private initComponents() {
@@ -32,21 +35,25 @@ export abstract class CustomElementModule {
   private register(componentDeclaration: WebComponentDeclaration) {
     customElements.define(
       this.getComponentName(componentDeclaration),
-      createCustomElementFor(componentDeclaration, this.injector),
+      createCustomElementFor(componentDeclaration, this.injector, {
+        timeoutMs: this.options.componentTimeoutMs,
+      }),
     );
   }
 
   private getComponentName(componentDeclaration: WebComponentDeclaration) {
+    let name: string;
+
     if (isDeclarationLazy(componentDeclaration)) {
-      return componentDeclaration.selector;
+      name = componentDeclaration.selector;
+    } else if (componentDeclaration.selector) {
+      name = componentDeclaration.selector;
+    } else {
+      name = this.injector
+        .get(ComponentFactoryResolver)
+        .resolveComponentFactory(componentDeclaration.component).selector;
     }
 
-    if (componentDeclaration.selector) {
-      return componentDeclaration.selector;
-    }
-
-    return this.injector
-      .get(ComponentFactoryResolver)
-      .resolveComponentFactory(componentDeclaration.component).selector;
+    return `${this.options.prefix}${name}`;
   }
 }

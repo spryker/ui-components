@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -43,7 +42,6 @@ export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
   constructor(
     private htmlRendererProvider: HtmlRendererProvider,
     private renderer: Renderer2,
-    private cdr: ChangeDetectorRef,
   ) {}
 
   ngAfterViewInit(): void {

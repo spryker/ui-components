@@ -8,6 +8,7 @@
   >
     <ng-container *ngIf="alwaysRender || active">
       <ng-content></ng-content>
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
     </ng-container>
   </nz-collapse-panel>
 </nz-collapse>

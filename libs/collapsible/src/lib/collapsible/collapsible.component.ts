@@ -20,6 +20,7 @@ export class CollapsibleComponent {
   @Input() titleIcon = '';
   @Input() @ToBoolean() active = false;
   @Input() @ToBoolean() disabled = false;
+  @Input() @ToBoolean() alwaysRender = true;
 
   @Output() activeChange = new EventEmitter<boolean>();
 

@@ -1,5 +1,7 @@
 <span
   spyCustomElementBoundary
   #htmlRendererContent
-  class="spy-html-renderer-content"
+  class="spy-html-renderer__content"
 ></span>
+
+<nz-spin nzSize="small" *ngIf="isLoading$ | async"></nz-spin>

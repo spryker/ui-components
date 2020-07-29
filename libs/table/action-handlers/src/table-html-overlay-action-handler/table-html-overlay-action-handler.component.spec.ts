@@ -122,7 +122,7 @@ describe('TableHtmlOverlayActionHandlerComponent', () => {
     fixture.detectChanges();
 
     const staticHtmlElem = fixture.debugElement.query(
-      By.css('spy-html-renderer .spy-html-renderer-content'),
+      By.css('spy-html-renderer .spy-html-renderer__content'),
     );
 
     expect(staticHtmlElem.nativeElement.innerHTML).toBe(mockedResponse.html);
@@ -132,18 +132,22 @@ describe('TableHtmlOverlayActionHandlerComponent', () => {
     component.action = mockUrl;
     fixture.detectChanges();
 
-    let nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+    const htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    let nzSpinElem = fixture.debugElement.query(
+      By.css('.spy-table-html-overlay-action-handler-empty-state'),
+    );
 
     expect(nzSpinElem).toBeTruthy();
-
-    const htmlResponse = httpTestingController.expectOne(mockUrl);
 
     htmlResponse.flush(mockedResponse);
 
     tick();
     fixture.detectChanges();
 
-    nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+    nzSpinElem = fixture.debugElement.query(
+      By.css('.spy-table-html-overlay-action-handler-empty-state'),
+    );
 
     expect(nzSpinElem).toBeFalsy();
   }));

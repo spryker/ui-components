@@ -1,6 +1,6 @@
 import { Directive, Input, OnChanges } from '@angular/core';
 import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, EMPTY } from 'rxjs';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
@@ -21,6 +21,10 @@ export class StaticHtmlRendererDirective
 
   ngOnChanges(): void {
     this.html$.next(this.html);
+  }
+
+  isLoading(): Observable<void> {
+    return EMPTY;
   }
 
   getHtml(): Observable<string> {

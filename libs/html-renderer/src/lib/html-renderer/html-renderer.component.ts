@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -9,12 +10,11 @@ import {
   Renderer2,
   ViewChild,
   ViewEncapsulation,
-  ChangeDetectorRef,
 } from '@angular/core';
-import { BehaviorSubject, Subscription, merge } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
+import { mapTo, shareReplay } from 'rxjs/operators';
 
 import { HtmlRendererProvider } from './html-renderer.provider';
-import { mapTo, startWith, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'spy-html-renderer',

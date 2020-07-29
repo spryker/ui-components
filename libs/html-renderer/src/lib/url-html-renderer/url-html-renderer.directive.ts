@@ -1,23 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import {
   Directive,
+  EventEmitter,
   Input,
   OnChanges,
   Output,
-  EventEmitter,
 } from '@angular/core';
+import { EMPTY, Observable, ReplaySubject } from 'rxjs';
+import { catchError, switchMap, tap } from 'rxjs/operators';
+
 import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
-import { Observable, ReplaySubject, EMPTY } from 'rxjs';
-import {
-  switchMap,
-  tap,
-  catchError,
-  mapTo,
-  filter,
-  shareReplay,
-  publishReplay,
-  refCount,
-} from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 
 @Directive({
   // tslint:disable-next-line: directive-selector

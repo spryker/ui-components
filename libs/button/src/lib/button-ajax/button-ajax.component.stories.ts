@@ -27,6 +27,7 @@ export const primary = () => ({
       NotificationModule.forRoot(),
       MockHttpModule,
     ],
+    declaration: [NotificationWrapperComponent],
     entryComponents: [NotificationWrapperComponent],
   },
   template: `

@@ -48,6 +48,10 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
     }
   }
 
+  refreshForm(): void {
+    this.fetchForm();
+  }
+
   private fetchForm(): void {
     if (this.action) {
       this.isLoading = true;

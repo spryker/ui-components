@@ -9,6 +9,8 @@ import { NzTreeNode } from 'ng-zorro-antd/tree';
 })
 export class TreeSelectExtractKeysPipe implements PipeTransform {
   transform(value?: NzTreeNode[]): string[] {
-    return value ? value.map((nodeVal: NzTreeNode) => nodeVal.key) : [];
+    return value
+      ? value.map((nodeVal: NzTreeNode) => nodeVal.origin.title)
+      : [];
   }
 }

@@ -10,7 +10,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { HtmlRendererProvider } from './html-renderer.provider';
 
@@ -31,6 +31,7 @@ export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
 
   htmlRenderer$ = this.htmlRendererProvider.getHtml();
   subscription = new Subscription();
+  isLoading$ = new BehaviorSubject<boolean>(true);
 
   constructor(
     private htmlRendererProvider: HtmlRendererProvider,
@@ -40,6 +41,7 @@ export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     this.subscription = this.htmlRenderer$.subscribe({
       next: html => {
+        setTimeout(() => this.isLoading$.next(false), 0);
         this.renderer.setProperty(
           this.htmlRendererContent?.nativeElement,
           'innerHTML',

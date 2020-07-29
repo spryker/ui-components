@@ -10,6 +10,7 @@ import {
   TableColumns,
   TableColumnsResolverService,
   TableColumn,
+  TableColumnWithHiddenProp,
 } from '@spryker/table';
 import { IconSettingsModule, IconResetModule } from '@spryker/icon/icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -40,7 +41,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   tableFeatureLocation = TableFeatureLocation;
   popoverPosition = 'bottomRight';
 
-  originalColumnsArr?: TableColumns;
+  originalColumnsArr: TableColumns = [];
 
   setColumns$ = new ReplaySubject<TableColumns>(1);
   setInitialColumns$ = new ReplaySubject<TableColumns>(1);
@@ -77,7 +78,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     map(([columns]) => columns),
   );
 
-  setPopoverColumns$ = new ReplaySubject<TableColumns>(1);
+  setPopoverColumns$ = new ReplaySubject<TableColumnWithHiddenProp[]>(1);
   popoverColumns$ = merge(this.initialColumns$, this.setPopoverColumns$);
 
   constructor(
@@ -96,7 +97,6 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
       this.setInitialColumns$.next([...columnsArr]);
       return this.columns$;
     };
-
     service.addTransformer(transformer);
   }
 
@@ -116,13 +116,13 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   resetChoice(): void {
-    this.setColumns$.next(this.originalColumnsArr);
-    this.setPopoverColumns$.next(this.originalColumnsArr);
+    this.setColumns$.next([...this.originalColumnsArr]);
+    this.setPopoverColumns$.next([...this.originalColumnsArr]);
   }
 
   handleCheckChange(
-    checkedColumn: TableColumn,
-    popoverColumns: TableColumns,
+    checkedColumn: TableColumnWithHiddenProp,
+    popoverColumns: TableColumnWithHiddenProp[],
     tableColumns: TableColumns,
   ): void {
     const popoverColumn = popoverColumns.find(
@@ -143,10 +143,9 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
         tableColumns,
       );
     } else {
-      this.hideColumn(
-        tableColumns.indexOf(tableColumnElem as TableColumn),
-        tableColumns,
-      );
+      if (tableColumnElem) {
+        this.hideColumn(tableColumns.indexOf(tableColumnElem), tableColumns);
+      }
     }
 
     if (popoverColumn) {
@@ -161,7 +160,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     column: TableColumn,
     tableColumns: TableColumns,
   ): void {
-    tableColumns.splice(index, 0, column);
+    tableColumns.splice(index, 0, column as any);
   }
 
   private hideColumn(index: number, tableColumns: TableColumns): void {
@@ -169,11 +168,15 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   private findIndexToInsert(
-    column: TableColumn,
+    checkedColumn: TableColumn,
     popoverColumns: TableColumns,
     tableColumns: TableColumns,
   ): number | void {
-    const popoverColumnIndex = popoverColumns.indexOf(column);
+    const popoverColumn = popoverColumns.find(
+      column => column.id === checkedColumn.id,
+    );
+    const popoverColumnIndex =
+      popoverColumn && popoverColumns.indexOf(popoverColumn);
     return !popoverColumnIndex
       ? popoverColumnIndex
       : this.findNewColumnPosition(

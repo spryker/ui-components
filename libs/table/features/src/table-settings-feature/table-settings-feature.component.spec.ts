@@ -19,16 +19,25 @@ import { TableSettingsFeatureComponent } from './table-settings-feature.componen
 
 import { LocalStoragePersistenceStrategy } from '@spryker/utils';
 import { By } from '@angular/platform-browser';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject, of } from 'rxjs';
 import {
   TableColumnsResolverService,
   TableDataConfiguratorService,
   TableDatasourceService,
   TableData,
+  TableColumns,
+  TableDataConfig,
 } from '@spryker/table';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TestLocaleModule, I18nTestService } from '@spryker/locale/testing';
+import { IconSettingsModule } from '@spryker/icon/icons';
+import { IconModule } from '@spryker/icon';
+
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 
 // tslint:disable: no-non-null-assertion
 
@@ -36,6 +45,15 @@ class MockLocalStoragePersistenceStrategy {
   save = jest.fn();
   retrieveSubject$ = new Subject();
   retrieve = jest.fn().mockReturnValue(this.retrieveSubject$);
+}
+
+class MockTableDataConfiguratorService {
+  readonly config$ = new ReplaySubject<TableDataConfig>(1);
+}
+
+class MockTableColumnsResolverService {
+  addTransformer = jest.fn();
+  resolve = (columns: TableColumns) => of(columns);
 }
 
 @Component({
@@ -55,16 +73,34 @@ describe('TableSettingsFeatureComponent', () => {
   let testLocalStoragePersistenceStrategy: MockLocalStoragePersistenceStrategy;
   let testLocaleService: I18nTestService;
   let mockData: TableData;
+  let columns: TableColumns;
+  let httpTestingController: HttpTestingController;
 
   const popoverComponent = 'spy-popover';
+  const buttonToggle = 'spy-button-toggle';
+  const icon = '.spy-icon-settings';
 
   function queryPopover(): DebugElement {
     return fixture.debugElement.query(By.css(popoverComponent));
   }
 
+  function queryButtonToggle(): DebugElement {
+    return fixture.debugElement.query(By.css(buttonToggle));
+  }
+
+  function queryIcon(): DebugElement {
+    return fixture.debugElement.query(By.css(icon));
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DragDropModule, TestLocaleModule],
+      imports: [
+        DragDropModule,
+        TestLocaleModule,
+        IconModule,
+        IconSettingsModule,
+        HttpClientTestingModule,
+      ],
       declarations: [
         TestTableFeatureTplDirective,
         TableSettingsFeatureComponent,
@@ -73,13 +109,22 @@ describe('TableSettingsFeatureComponent', () => {
       ],
       providers: [
         {
-          provide: TableColumnsResolverService,
-          useValue: 'TableColumnsResolverService',
-        },
-        {
           provide: TableDatasourceService,
           useValue: 'TableDatasourceService',
         },
+        {
+          provide: LocalStoragePersistenceStrategy,
+          useExisting: MockLocalStoragePersistenceStrategy,
+        },
+        {
+          provide: TableDataConfiguratorService,
+          useExisting: MockTableDataConfiguratorService,
+        },
+        {
+          provide: TableColumnsResolverService,
+          useExisting: MockTableColumnsResolverService,
+        },
+
         {
           provide: TestTableFeatureMocks,
           useValue: {
@@ -88,12 +133,9 @@ describe('TableSettingsFeatureComponent', () => {
             },
           },
         },
-        {
-          provide: LocalStoragePersistenceStrategy,
-          useExisting: MockLocalStoragePersistenceStrategy,
-        },
-        TableDataConfiguratorService,
+        MockTableDataConfiguratorService,
         MockLocalStoragePersistenceStrategy,
+        MockTableColumnsResolverService,
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -111,6 +153,8 @@ describe('TableSettingsFeatureComponent', () => {
       MockLocalStoragePersistenceStrategy,
     );
 
+    httpTestingController = TestBed.inject(HttpTestingController);
+
     mockData = {
       data: [{}],
       page: 3,
@@ -118,52 +162,38 @@ describe('TableSettingsFeatureComponent', () => {
       total: 10,
     };
 
+    columns = [
+      { id: 'col1', title: 'Column #1', hideable: true },
+      { id: 'col2', title: 'Column #2', hideable: true },
+      { id: 'col3', title: 'Column #3', hideable: true },
+    ];
+
+    TestBed.inject(MockTableColumnsResolverService).resolve(columns);
+
     fixture.detectChanges();
     tick();
 
     testTableFeature.featureMocks?.table.data$?.next(mockData);
+
+    testTableFeature.featureMocks?.table.columns$?.next(columns);
+
     fixture.detectChanges();
   }));
 
-  it('should render `spy-dropdown`', fakeAsync(() => {
+  afterEach(() => {
+    httpTestingController.verify();
+  });
+
+  it('should render `spy-popover`', fakeAsync(() => {
     expect(queryPopover()).toBeTruthy();
   }));
 
-  // it('If dataConfiguratorService config was updated, save merhod of urlPersistanceStrategy has to be called', fakeAsync(() => {
-  //   const dataConfiguratorService = new MockTableDataConfiguratorService();
-  //   const mockedConfig = { page: 1 };
-  //   const mockedValue = 'mockTableId';
+  it('should render `spy-button-toggle` with [trigger] attribute', fakeAsync(() => {
+    const spyButtonToggle = queryButtonToggle();
+    expect(spyButtonToggle.attributes.trigger).toBe('');
+  }));
 
-  //   testTableFeature.feature!.setDataConfiguratorService(
-  //     dataConfiguratorService,
-  //   );
-
-  //   fixture.detectChanges();
-
-  //   dataConfiguratorService.config$.next(mockedConfig);
-
-  //   expect(testUrlPersistenceStrategyService.save).toHaveBeenCalledWith(
-  //     mockedValue,
-  //     mockedConfig,
-  //   );
-  // }));
-
-  // it('If retrieve merhod of urlPersistanceStrategy was called, dataConfiguratorService reset method has to be called', fakeAsync(() => {
-  //   const dataConfiguratorService = new MockTableDataConfiguratorService();
-  //   const mockedValue = '123';
-  //   const mockedKey = 'mockTableId';
-
-  //   testTableFeature.feature!.setDataConfiguratorService(
-  //     dataConfiguratorService,
-  //   );
-
-  //   fixture.detectChanges();
-
-  //   testUrlPersistenceStrategyService.retrieveSubject$.next(mockedValue);
-
-  //   expect(testUrlPersistenceStrategyService.retrieve).toHaveBeenCalledWith(
-  //     mockedKey,
-  //   );
-  //   expect(dataConfiguratorService.reset).toHaveBeenCalledWith(mockedValue);
-  // }));
+  it('should render `spy-icon` for spy-button-toggle', fakeAsync(() => {
+    expect(queryIcon()).toBeTruthy();
+  }));
 });

@@ -44,7 +44,7 @@ export function setMockHttp(responses: MockHttpResponse[]) {
 export class MockHttpDirective implements DoCheck, OnDestroy {
   private static options: Required<MockHttpOptions> = {
     delay: 'random',
-    maxDelay: 8000,
+    maxDelay: 2500,
     errorRate: 0,
   };
 

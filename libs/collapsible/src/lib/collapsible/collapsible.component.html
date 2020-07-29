@@ -6,7 +6,7 @@
     [nzShowArrow]="false"
     (nzActiveChange)="updateActive($event)"
   >
-    <ng-container *ngIf="alwaysRender || (!alwaysRender && active)">
+    <ng-container *ngIf="alwaysRender || active">
       <ng-content></ng-content>
     </ng-container>
   </nz-collapse-panel>

@@ -9,10 +9,12 @@ import {
   Renderer2,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, merge } from 'rxjs';
 
 import { HtmlRendererProvider } from './html-renderer.provider';
+import { mapTo, startWith, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'spy-html-renderer',
@@ -29,19 +31,24 @@ export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
   htmlRendererContent?: ElementRef<HTMLElement>;
   @Output() htmlRendered = new EventEmitter<ElementRef>();
 
-  htmlRenderer$ = this.htmlRendererProvider.getHtml();
+  htmlRenderer$ = this.htmlRendererProvider
+    .getHtml()
+    .pipe(shareReplay({ bufferSize: 1, refCount: true }));
   subscription = new Subscription();
-  isLoading$ = new BehaviorSubject<boolean>(true);
+  isLoading$ = merge(
+    this.htmlRenderer$.pipe(mapTo(false)),
+    this.htmlRendererProvider.isLoading().pipe(mapTo(true)),
+  );
 
   constructor(
     private htmlRendererProvider: HtmlRendererProvider,
     private renderer: Renderer2,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngAfterViewInit(): void {
     this.subscription = this.htmlRenderer$.subscribe({
       next: html => {
-        setTimeout(() => this.isLoading$.next(false), 0);
         this.renderer.setProperty(
           this.htmlRendererContent?.nativeElement,
           'innerHTML',

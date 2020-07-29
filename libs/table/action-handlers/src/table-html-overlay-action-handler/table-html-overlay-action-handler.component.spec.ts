@@ -120,8 +120,6 @@ describe('TableHtmlOverlayActionHandlerComponent', () => {
 
     tick();
     fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
 
     const staticHtmlElem = fixture.debugElement.query(
       By.css('spy-html-renderer .spy-html-renderer__content'),
@@ -144,8 +142,6 @@ describe('TableHtmlOverlayActionHandlerComponent', () => {
 
     htmlResponse.flush(mockedResponse);
 
-    tick();
-    fixture.detectChanges();
     tick();
     fixture.detectChanges();
 

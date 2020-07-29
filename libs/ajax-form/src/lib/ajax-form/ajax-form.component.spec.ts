@@ -122,8 +122,6 @@ describe('AjaxFormComponent', () => {
 
     tick();
     fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
 
     nzSpinElem = fixture.debugElement.query(
       By.css('.spy-ajax-form-container + nz-spin'),
@@ -140,8 +138,6 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockFirstResponse);
 
-    tick();
-    fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
@@ -166,8 +162,6 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockFirstResponse);
 
-    tick();
-    fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
@@ -196,8 +190,6 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockSecondResponse);
 
-    tick();
-    fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
@@ -246,8 +238,6 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockSecondResponse);
 
-    tick();
-    fixture.detectChanges();
     tick();
     fixture.detectChanges();
 

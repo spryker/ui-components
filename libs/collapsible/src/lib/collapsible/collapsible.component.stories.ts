@@ -11,7 +11,7 @@ export const primary = () => ({
   },
   template: `
     <spy-collapsible title="Collapsible Title">
-       <div>Collapse Content</div> 
+       <div>Collapse Content</div>
     </spy-collapsible>
   `,
 });

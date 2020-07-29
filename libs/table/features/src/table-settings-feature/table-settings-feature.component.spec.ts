@@ -19,7 +19,7 @@ import { TableSettingsFeatureComponent } from './table-settings-feature.componen
 
 import { LocalStoragePersistenceStrategy } from '@spryker/utils';
 import { By } from '@angular/platform-browser';
-import { Subject, ReplaySubject, of } from 'rxjs';
+import { Subject, ReplaySubject, of, Observable } from 'rxjs';
 import {
   TableColumnsResolverService,
   TableDataConfiguratorService,
@@ -43,17 +43,12 @@ import {
 
 class MockLocalStoragePersistenceStrategy {
   save = jest.fn();
-  retrieveSubject$ = new Subject();
+  retrieveSubject$ = new ReplaySubject(1);
   retrieve = jest.fn().mockReturnValue(this.retrieveSubject$);
 }
 
 class MockTableDataConfiguratorService {
   readonly config$ = new ReplaySubject<TableDataConfig>(1);
-}
-
-class MockTableColumnsResolverService {
-  addTransformer = jest.fn();
-  resolve = (columns: TableColumns) => of(columns);
 }
 
 @Component({
@@ -72,13 +67,32 @@ describe('TableSettingsFeatureComponent', () => {
   let injector: Injector;
   let testLocalStoragePersistenceStrategy: MockLocalStoragePersistenceStrategy;
   let testLocaleService: I18nTestService;
-  let mockData: TableData;
-  let columns: TableColumns;
   let httpTestingController: HttpTestingController;
+  let columnsObs$: Observable<TableColumns>;
+
+  const columns: TableColumns = [
+    { id: 'col1', title: 'Column #1', hideable: true },
+    { id: 'col2', title: 'Column #2', hideable: true },
+    { id: 'col3', title: 'Column #3', hideable: true },
+  ];
+
+  const expectedColumnsUncheckResult: TableColumns = [
+    { id: 'col2', title: 'Column #2', hideable: true },
+    { id: 'col3', title: 'Column #3', hideable: true },
+  ];
+
+  const expectedColumnsDragResult = [
+    { id: 'col2', title: 'Column #2', hideable: true },
+    { id: 'col1', title: 'Column #1', hideable: true },
+    { id: 'col3', title: 'Column #3', hideable: true },
+  ];
 
   const popoverComponent = 'spy-popover';
   const buttonToggle = 'spy-button-toggle';
   const icon = '.spy-icon-settings';
+  const settingsFeature = '.spy-table-settings-feature';
+  const checkbox = 'spy-checkbox';
+  const resetBtn = '.spy-table-settings-feature__reset-button';
 
   function queryPopover(): DebugElement {
     return fixture.debugElement.query(By.css(popoverComponent));
@@ -90,6 +104,18 @@ describe('TableSettingsFeatureComponent', () => {
 
   function queryIcon(): DebugElement {
     return fixture.debugElement.query(By.css(icon));
+  }
+
+  function querySettings(): DebugElement {
+    return fixture.debugElement.query(By.css(settingsFeature));
+  }
+
+  function queryCheckbox(): DebugElement {
+    return fixture.debugElement.query(By.css(checkbox));
+  }
+
+  function queryReset(): DebugElement {
+    return fixture.debugElement.query(By.css(resetBtn));
   }
 
   beforeEach(() => {
@@ -121,11 +147,6 @@ describe('TableSettingsFeatureComponent', () => {
           useExisting: MockTableDataConfiguratorService,
         },
         {
-          provide: TableColumnsResolverService,
-          useExisting: MockTableColumnsResolverService,
-        },
-
-        {
           provide: TestTableFeatureMocks,
           useValue: {
             config: {
@@ -135,7 +156,7 @@ describe('TableSettingsFeatureComponent', () => {
         },
         MockTableDataConfiguratorService,
         MockLocalStoragePersistenceStrategy,
-        MockTableColumnsResolverService,
+        TableColumnsResolverService,
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -155,27 +176,9 @@ describe('TableSettingsFeatureComponent', () => {
 
     httpTestingController = TestBed.inject(HttpTestingController);
 
-    mockData = {
-      data: [{}],
-      page: 3,
-      pageSize: 30,
-      total: 10,
-    };
+    columnsObs$ = TestBed.inject(TableColumnsResolverService).resolve(columns);
 
-    columns = [
-      { id: 'col1', title: 'Column #1', hideable: true },
-      { id: 'col2', title: 'Column #2', hideable: true },
-      { id: 'col3', title: 'Column #3', hideable: true },
-    ];
-
-    TestBed.inject(MockTableColumnsResolverService).resolve(columns);
-
-    fixture.detectChanges();
-    tick();
-
-    testTableFeature.featureMocks?.table.data$?.next(mockData);
-
-    testTableFeature.featureMocks?.table.columns$?.next(columns);
+    testLocalStoragePersistenceStrategy.retrieveSubject$.next(null);
 
     fixture.detectChanges();
   }));
@@ -195,5 +198,81 @@ describe('TableSettingsFeatureComponent', () => {
 
   it('should render `spy-icon` for spy-button-toggle', fakeAsync(() => {
     expect(queryIcon()).toBeTruthy();
+  }));
+
+  it('component should render `spy-table-settings-feature__item` elements', fakeAsync(() => {
+    columnsObs$.subscribe();
+    fixture.detectChanges();
+    tick();
+
+    const columnsArr = fixture.nativeElement.querySelectorAll(
+      '.spy-table-settings-feature__item',
+    );
+    expect(columnsArr.length).toBe(columns.length);
+  }));
+
+  it('component should be able to drag and drop elements in list of columns', fakeAsync(() => {
+    const subsctiptionCallbackSpy = jest.fn();
+
+    columnsObs$.subscribe(subsctiptionCallbackSpy);
+    fixture.detectChanges();
+    tick();
+
+    const columnsArr = querySettings();
+
+    columnsArr.triggerEventHandler('cdkDropListDropped', {
+      previousIndex: 1,
+      currentIndex: 0,
+    });
+
+    fixture.detectChanges();
+    tick();
+
+    expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(
+      expectedColumnsDragResult,
+    );
+  }));
+
+  it('component should be able to remove element from list of columns', fakeAsync(() => {
+    const subsctiptionCallbackSpy = jest.fn();
+
+    columnsObs$.subscribe(subsctiptionCallbackSpy);
+    fixture.detectChanges();
+    tick();
+
+    const checkboxElem = queryCheckbox();
+
+    checkboxElem.triggerEventHandler('checkedChange', {});
+
+    fixture.detectChanges();
+    tick();
+
+    expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(
+      expectedColumnsUncheckResult,
+    );
+  }));
+
+  it('Reset button should reset columns list to the default state', fakeAsync(() => {
+    const subsctiptionCallbackSpy = jest.fn();
+
+    columnsObs$.subscribe(subsctiptionCallbackSpy);
+    fixture.detectChanges();
+    tick();
+
+    const checkboxElem = queryCheckbox();
+
+    checkboxElem.triggerEventHandler('checkedChange', {});
+
+    fixture.detectChanges();
+    tick();
+
+    const resetBtnElem = queryReset();
+
+    resetBtnElem.triggerEventHandler('click', {});
+
+    fixture.detectChanges();
+    tick();
+
+    expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(columns);
   }));
 });

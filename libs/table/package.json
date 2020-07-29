@@ -5,7 +5,7 @@
     "@orchestrator/core": "^0.2.0",
     "@orchestrator/layout": "^0.1.0",
     "ng-dynamic-component": "^6.1.0",
-    "ng-zorro-antd": "9.3.0"
+    "ng-zorro-antd": "9.1.1"
   },
   "peerDependencies": {
     "@angular/common": "^9.0.0",

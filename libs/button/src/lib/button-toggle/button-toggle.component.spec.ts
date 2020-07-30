@@ -39,20 +39,32 @@ describe('ButtonToggleComponent', () => {
   it('should bind attrs to spyApplyAttrs properties of <button>', async () => {
     const mockedAttrs = { mockAttr: 'mockAttr' };
     const host = await createComponent({ attrs: mockedAttrs }, true);
-    const buttonLinkElem = host.queryCss('button')!;
+    const buttonElem = host.queryCss('button')!;
 
-    expect(buttonLinkElem.properties.spyApplyAttrs).toBe(mockedAttrs);
+    expect(buttonElem.properties.spyApplyAttrs).toBe(mockedAttrs);
   });
 
-  it('should call `clickHandler` method when click event happens', fakeAsync(async () => {
+  it('toggledChange must be emited after click event happened on button', async () => {
     const host = await createComponent();
-    spyOn(host.component, 'clickHandler');
-    const buttonElem = host.queryCss('button')!;
-    buttonElem.triggerEventHandler('click', null);
-    tick();
+    const buttonElem = host.queryCss('button');
+    spyOn(host.component.toggledChange, 'emit');
+
+    buttonElem!.triggerEventHandler('click', {});
+
     host.detectChanges();
-    expect(host.component.clickHandler).toHaveBeenCalled();
-  }));
+    expect(host.component.toggledChange.emit).toHaveBeenCalledWith(true);
+  });
+
+  it('class `spy-btn-toggle--toggled` should be added after click event happened', async () => {
+    const host = await createComponent({ toggled: true });
+    const buttonElem = host.queryCss('button');
+
+    buttonElem!.triggerEventHandler('click', {});
+
+    host.detectChanges();
+
+    expect(buttonElem?.classes['spy-btn-toggle--toggled']).toBeTruthy();
+  });
 
   describe('@Input(disabled)', () => {
     it('should by default have value `false`', async () => {

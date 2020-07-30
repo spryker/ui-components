@@ -1,18 +1,18 @@
 @import 'themes/default/theme.less';
 
-.@{btn-setting-prefix-cls} {
+.@{btn-toggle-prefix-cls} {
   background: @white;
-  border: 1px solid @gray-light;
-  width: @btn-toggle-settings-size;
-  height: @btn-toggle-settings-size;
+  border: @btn-toggle-border;
+  width: @btn-toggle-size;
+  height: @btn-toggle-size;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: @gray-dark;
-  border-radius: @btn-toggle-settings-border-radius;
+  border-radius: @btn-toggle-border-radius;
+  font-size: @btn-toggle-icon-size;
   cursor: pointer;
-  transition: color 0.3s linear, border-color 0.3s linear,
-    background-color 0.3s linear;
+  .transition-mixin(border background color);
 
   &:hover {
     color: @gray-darker;
@@ -34,11 +34,6 @@
     border-color: @gray-lighter;
     color: @gray-dark;
     cursor: not-allowed;
-  }
-
-  svg {
-    width: @btn-toggle-settings-icon-size;
-    height: @btn-toggle-settings-icon-size;
   }
 
   &--toggled {

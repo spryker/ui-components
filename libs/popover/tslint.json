@@ -1,9 +1,6 @@
 {
   "extends": "../../tslint.json",
-  "rules": {
-    "directive-selector": [true, "attribute", "spy", "camelCase"],
-    "component-selector": [true, "element", "spy", "kebab-case"]
-  },
+  "rules": {},
   "linterOptions": {
     "exclude": ["!**/*"]
   }

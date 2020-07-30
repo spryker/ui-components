@@ -172,13 +172,7 @@ function getFeaturesStory(
           url: '/data-request',
         },
         columns: [
-          {
-            id: 'col1',
-            title: 'Column #1',
-            sortable: true,
-            hideable: true,
-            hidden: false,
-          },
+          { id: 'col1', title: 'Column #1', sortable: true, hideable: true },
           { id: 'col2', title: 'Column #2', hideable: true },
           { id: 'col3', title: 'Column #3', hideable: true },
           { id: 'col4', title: 'Column #4', hideable: true },

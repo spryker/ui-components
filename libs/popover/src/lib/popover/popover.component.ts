@@ -36,7 +36,7 @@ export enum PopoverPosition {
   },
 })
 export class PopoverComponent {
-  @Input() open?: boolean;
+  @Input() open = false;
   @Input() position?: PopoverPosition = PopoverPosition.Bottom;
   @Output() openChange = new EventEmitter<boolean>();
 

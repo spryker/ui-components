@@ -5,11 +5,14 @@
   "
 >
   <div>
-    <spy-popover style="float: right" [position]="popoverPosition">
+    <spy-popover
+      class="spy-table-settings-feature-popover"
+      [position]="popoverPosition"
+    >
       <spy-button-toggle trigger>
         <spy-icon [name]="settingsIcon"></spy-icon>
       </spy-button-toggle>
-      <div id="content">
+      <div>
         <div class="spy-table-settings-feature__title">
           {{ 'table.table-settings' | spyI18n | async }}
         </div>
@@ -25,6 +28,7 @@
                 *ngFor="let column of popoverColumns"
                 class="spy-table-settings-feature__item"
                 [cdkDragDisabled]="!column.hideable"
+                cdkDragPreviewClass="spy-table-settings-feature-drag"
               >
                 <div
                   class="spy-table-settings-feature__drag-placeholder"

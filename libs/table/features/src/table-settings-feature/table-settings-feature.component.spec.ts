@@ -76,7 +76,13 @@ describe('TableSettingsFeatureComponent', () => {
     { id: 'col3', title: 'Column #3', hideable: true },
   ];
 
-  const expectedColumnsUncheckResult: TableColumns = [
+  const expectedColumnsUncheckResult = [
+    { id: 'col2', title: 'Column #2', hideable: true },
+    { id: 'col3', title: 'Column #3', hideable: true },
+  ];
+
+  const expectedColumnsCheckResult = [
+    { id: 'col1', title: 'Column #1', hideable: true, hidden: true },
     { id: 'col2', title: 'Column #2', hideable: true },
     { id: 'col3', title: 'Column #3', hideable: true },
   ];
@@ -249,6 +255,30 @@ describe('TableSettingsFeatureComponent', () => {
 
     expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(
       expectedColumnsUncheckResult,
+    );
+  }));
+
+  it('component should be able to move element back to the correct position to list of columns', fakeAsync(() => {
+    const subsctiptionCallbackSpy = jest.fn();
+
+    columnsObs$.subscribe(subsctiptionCallbackSpy);
+    fixture.detectChanges();
+    tick();
+
+    const checkboxElem = queryCheckbox();
+
+    checkboxElem.triggerEventHandler('checkedChange', {});
+
+    fixture.detectChanges();
+    tick();
+
+    checkboxElem.triggerEventHandler('checkedChange', {});
+
+    fixture.detectChanges();
+    tick();
+
+    expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(
+      expectedColumnsCheckResult,
     );
   }));
 

@@ -10,14 +10,18 @@ import {
   TableColumns,
   TableColumnsResolverService,
   TableColumn,
-  TableColumnWithHiddenProp,
 } from '@spryker/table';
 import { IconSettingsModule, IconResetModule } from '@spryker/icon/icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TableSettingsConfig } from './types';
 import { switchMap, pluck, tap, withLatestFrom, map } from 'rxjs/operators';
 import { ReplaySubject, of, Observable, merge, combineLatest } from 'rxjs';
-import { LocalStoragePersistenceStrategy } from '@spryker/utils';
+import { PersistenceService } from '@spryker/utils';
+import { PopoverPosition } from '@spryker/popover';
+
+export interface TableColumnWithHiddenProp extends TableColumn {
+  hidden?: boolean;
+}
 
 @Component({
   selector: 'spy-table-settings-feature',
@@ -39,7 +43,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   settingsIcon = IconSettingsModule.icon;
   resetIcon = IconResetModule.icon;
   tableFeatureLocation = TableFeatureLocation;
-  popoverPosition = 'bottomRight';
+  popoverPosition = PopoverPosition.BottomRight;
 
   originalColumnsArr: TableColumns = [];
 
@@ -48,19 +52,15 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   tableId$ = this.config$.pipe(
     pluck('tableId'),
-    switchMap(tableId => {
-      if (tableId) {
-        return of(tableId);
-      }
-
-      return this.table$.pipe(switchMap(table => table.tableId$));
-    }),
+    switchMap(tableId =>
+      tableId
+        ? of(tableId)
+        : this.table$.pipe(switchMap(table => table.tableId$)),
+    ),
   );
 
   storageState$ = this.tableId$.pipe(
-    switchMap(tableId =>
-      this.localStoragePersistenceStrategy.retrieve(tableId),
-    ),
+    switchMap(tableId => this.persistenceService.retrieve(tableId)),
   ) as Observable<TableColumns>;
 
   initialColumns$ = combineLatest([
@@ -70,19 +70,20 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     map(([storageColumns, initialColumns]) => storageColumns || initialColumns),
   );
 
-  columns$ = merge(this.setColumns$, this.initialColumns$).pipe(
-    withLatestFrom(this.tableId$),
-    tap(([columns, tableId]) =>
-      this.localStoragePersistenceStrategy.save(tableId, columns),
-    ),
-    map(([columns]) => columns),
+  columns$ = merge(
+    this.setColumns$,
+    this.initialColumns$.pipe(map(columns => [...columns])),
   );
 
   setPopoverColumns$ = new ReplaySubject<TableColumnWithHiddenProp[]>(1);
-  popoverColumns$ = merge(this.initialColumns$, this.setPopoverColumns$);
+  popoverColumns$ = merge(this.initialColumns$, this.setPopoverColumns$).pipe(
+    withLatestFrom(this.tableId$),
+    tap(([columns, tableId]) => this.persistenceService.save(tableId, columns)),
+    map(([columns]) => columns),
+  );
 
   constructor(
-    private localStoragePersistenceStrategy: LocalStoragePersistenceStrategy,
+    private persistenceService: PersistenceService,
     injector: Injector,
   ) {
     super(injector);
@@ -91,13 +92,12 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   setColumnsResolverService(service: TableColumnsResolverService): void {
     super.setColumnsResolverService(service);
 
-    const transformer = (columnsArr: TableColumns) => {
+    service.addTransformer(columnsArr => {
       this.originalColumnsArr = columnsArr;
 
       this.setInitialColumns$.next([...columnsArr]);
       return this.columns$;
-    };
-    service.addTransformer(transformer);
+    });
   }
 
   drop(
@@ -125,6 +125,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableColumnWithHiddenProp[],
     tableColumns: TableColumns,
   ): void {
+    console.log(popoverColumns === tableColumns);
+
     const popoverColumn = popoverColumns.find(
       column => column.id === checkedColumn.id,
     );
@@ -132,20 +134,16 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
       elem => elem.id === checkedColumn.id,
     );
 
-    if (checkedColumn.hidden) {
+    if (checkedColumn.hidden && !tableColumnElem) {
       this.showColumn(
-        this.findIndexToInsert(
-          checkedColumn,
-          popoverColumns,
-          tableColumns,
-        ) as number,
+        this.findIndexToInsert(checkedColumn, popoverColumns, tableColumns),
         checkedColumn,
         tableColumns,
       );
-    } else {
-      if (tableColumnElem) {
-        this.hideColumn(tableColumns.indexOf(tableColumnElem), tableColumns);
-      }
+    }
+
+    if (tableColumnElem) {
+      this.hideColumn(tableColumns.indexOf(tableColumnElem), tableColumns);
     }
 
     if (popoverColumn) {
@@ -153,6 +151,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     }
 
     this.setColumns$.next(tableColumns);
+    this.setPopoverColumns$.next(popoverColumns);
   }
 
   private showColumn(
@@ -171,53 +170,50 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     checkedColumn: TableColumn,
     popoverColumns: TableColumns,
     tableColumns: TableColumns,
-  ): number | void {
+  ): number {
     const popoverColumn = popoverColumns.find(
       column => column.id === checkedColumn.id,
     );
     const popoverColumnIndex =
       popoverColumn && popoverColumns.indexOf(popoverColumn);
-    return !popoverColumnIndex
-      ? popoverColumnIndex
-      : this.findNewColumnPosition(
-          popoverColumnIndex,
+
+    return popoverColumnIndex !== 0
+      ? this.findNewColumnPosition(
           popoverColumns,
           tableColumns,
-        );
+          popoverColumnIndex,
+        )
+      : popoverColumnIndex;
   }
 
   private findNewColumnPosition(
-    index: number,
     popoverColumns: TableColumns,
     tableColumns: TableColumns,
-  ): number | void {
+    index?: number,
+  ): number {
     if (!index) {
       return 0;
     }
 
-    const previousElem = popoverColumns[index - 1];
-    const tableColumnsElement =
-      previousElem && tableColumns.find(elem => elem.id === previousElem.id);
+    for (let i = index; i >= 0; i--) {
+      const previousElem = popoverColumns[i];
+      const tableColumnsElement =
+        previousElem && tableColumns.find(elem => elem.id === previousElem.id);
 
-    if (tableColumnsElement) {
-      return tableColumns.indexOf(tableColumnsElement) + 1;
+      if (tableColumnsElement) {
+        return tableColumns.indexOf(tableColumnsElement) + 1;
+      }
     }
 
-    this.findNewColumnPosition(index - 1, popoverColumns, tableColumns);
+    return 0;
   }
 
   private moveItemInTableColumnsArray(
     popoverColumns: TableColumns,
     tableColumns: TableColumns,
   ): TableColumns {
-    const newTableColumnsArr: TableColumns = [];
-
-    popoverColumns.forEach(column => {
-      if (tableColumns.find(tableColumn => tableColumn.id === column.id)) {
-        newTableColumnsArr.push(column);
-      }
-    });
-
-    return newTableColumnsArr;
+    return popoverColumns.filter(column =>
+      tableColumns.find(tableColumn => tableColumn.id === column.id),
+    );
   }
 }

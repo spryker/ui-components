@@ -512,6 +512,8 @@
 @table-settings-feature-reset-icon-size: 16px;
 @table-settings-feature-reset-icon-spacing: 8px;
 @table-settings-feature-drag-placeholder-height: 60px;
+@table-settings-feature-drag-placeholder-transition: transform 250ms
+  cubic-bezier(0, 0, 0.2, 1);
 @table-settings-feature-drag-transform-transition: transform 300ms
   cubic-bezier(0, 0, 0.2, 1);
 
@@ -647,10 +649,11 @@
 @headline-col-spacing: 10px;
 
 // Settings button
-@btn-setting-prefix-cls: ~'@{spryker-prefix}-btn-toggle-settings';
-@btn-toggle-settings-size: 38px;
-@btn-toggle-settings-icon-size: 24px;
-@btn-toggle-settings-border-radius: 4px;
+@btn-toggle-prefix-cls: ~'@{spryker-prefix}-btn-toggle';
+@btn-toggle-border: 1px solid @gray-light;
+@btn-toggle-size: 38px;
+@btn-toggle-icon-size: 24px;
+@btn-toggle-border-radius: 4px;
 
 //Popover
 @popover-prefix-cls: ~'@{ant-prefix}-popover';

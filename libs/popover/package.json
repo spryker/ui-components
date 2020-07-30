@@ -8,5 +8,8 @@
   "dependencies": {
     "tslib": "^1.10.0",
     "ng-zorro-antd": "9.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

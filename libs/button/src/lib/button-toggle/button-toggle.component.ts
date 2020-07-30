@@ -25,8 +25,9 @@ import { ButtonAttributes } from '../..';
 export class ButtonToggleComponent {
   @Input() @ToBoolean() disabled = false;
   @Input() @ToBoolean() toggled = false;
-  @Output() toggledChange = new EventEmitter<boolean>();
   @Input() @ToJson() attrs?: ButtonAttributes;
+  @Output() toggledChange = new EventEmitter<boolean>();
+
   @ViewChild('buttonRef') buttonRef?: ElementRef;
 
   click(): void {

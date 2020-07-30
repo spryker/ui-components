@@ -10,6 +10,7 @@
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
+    "@angular/cdk": "^9.2.3",
     "@spryker/ajax-action": "^0.1.0-next.2",
     "@spryker/ajax-form": "^0.1.0-next.2",
     "@spryker/checkbox": "^0.0.1-next.6",

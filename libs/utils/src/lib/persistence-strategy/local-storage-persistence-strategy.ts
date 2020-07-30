@@ -1,4 +1,4 @@
-import { Observable, EMPTY, Subject, fromEvent, of } from 'rxjs';
+import { Observable, EMPTY, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { PersistenceStrategy } from './types';
 

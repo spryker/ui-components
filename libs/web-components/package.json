@@ -11,6 +11,6 @@
     "@angular/elements": "^9.0.0"
   },
   "dependencies": {
-    "ngx-element-boundary": "^1.0.9"
+    "ngx-element-boundary": "^1.0.10"
   }
 }

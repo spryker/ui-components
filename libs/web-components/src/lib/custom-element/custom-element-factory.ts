@@ -105,6 +105,8 @@ export function createCustomElementForStatic<T>(
     }
 
     disconnectedCallback() {
+      super.disconnectedCallback();
+
       this.destroyed$.next();
     }
 

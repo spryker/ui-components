@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.1-next.1...@spryker/web-components@0.2.1-next.2) (2020-07-30)
+
+**Note:** Version bump only for package @spryker/web-components
+
+
+
+
+
 ## [0.2.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.1-next.0...@spryker/web-components@0.2.1-next.1) (2020-07-29)
 
 

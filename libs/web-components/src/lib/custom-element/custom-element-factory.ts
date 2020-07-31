@@ -7,7 +7,7 @@ import {
 } from 'ngx-element-boundary';
 import { DefaultElementBoundaryNgElementStrategyFactory } from 'ngx-element-boundary/element-strategy/default';
 import { Observable, Subject } from 'rxjs';
-import { mapTo, take, takeUntil } from 'rxjs/operators';
+import { mapTo, take, takeUntil, shareReplay } from 'rxjs/operators';
 
 import { NgWebComponent } from '../ng-web-component';
 import { getElementMethodsOf } from './custom-element-method';
@@ -72,6 +72,13 @@ export function createCustomElementForStatic<T>(
 
     private ngComponent: any;
     private ngElementStrategy?: CrossBoundaryNgElementStrategy;
+    private whenInit$ = elementBoundaryService
+      .whenBoundaryExist(this as any, timeoutMs)
+      .pipe(
+        take(1),
+        mapTo(void 0),
+        shareReplay({ refCount: true, bufferSize: 1 }),
+      );
 
     getNgType() {
       return componentType;
@@ -82,9 +89,7 @@ export function createCustomElementForStatic<T>(
     }
 
     whenInit(): Observable<void> {
-      return elementBoundaryService
-        .whenBoundaryExist(this as any, timeoutMs)
-        .pipe(take(1), mapTo(void 0));
+      return this.whenInit$;
     }
 
     connectedCallback() {
@@ -149,6 +154,13 @@ export function createCustomElementForLazy<T>(
 
     private ngComponent: any;
     private ngElementStrategy?: CrossBoundaryNgElementStrategy;
+    private whenInit$ = elementBoundaryService
+      .whenBoundaryExist(this as any, timeoutMs)
+      .pipe(
+        take(1),
+        mapTo(void 0),
+        shareReplay({ refCount: true, bufferSize: 1 }),
+      );
 
     constructor() {
       super();
@@ -169,9 +181,7 @@ export function createCustomElementForLazy<T>(
     }
 
     whenInit(): Observable<void> {
-      return elementBoundaryService
-        .whenBoundaryExist(this as any, timeoutMs)
-        .pipe(take(1), mapTo(void 0));
+      return this.whenInit$;
     }
 
     private __init(type: NgElementConstructor<T>) {

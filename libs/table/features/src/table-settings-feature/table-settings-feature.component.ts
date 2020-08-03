@@ -11,7 +11,11 @@ import {
   TableColumnsResolverService,
   TableColumn,
 } from '@spryker/table';
-import { IconSettingsModule, IconResetModule } from '@spryker/icon/icons';
+import {
+  IconSettingsModule,
+  IconResetModule,
+  IconDragModule,
+} from '@spryker/icon/icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TableSettingsConfig } from './types';
 import { switchMap, pluck, tap, withLatestFrom, map } from 'rxjs/operators';
@@ -42,6 +46,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   name = 'columnConfigurator';
   settingsIcon = IconSettingsModule.icon;
   resetIcon = IconResetModule.icon;
+  dragIcon = IconDragModule.icon;
   tableFeatureLocation = TableFeatureLocation;
   popoverPosition = PopoverPosition.BottomRight;
 
@@ -125,8 +130,6 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableColumnWithHiddenProp[],
     tableColumns: TableColumns,
   ): void {
-    console.log(popoverColumns === tableColumns);
-
     const popoverColumn = popoverColumns.find(
       column => column.id === checkedColumn.id,
     );

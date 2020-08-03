@@ -5,7 +5,7 @@
     "access": "public"
   },
   "dependencies": {
-    "ng-zorro-antd": "9.1.1"
+    "ng-zorro-antd": "9.3.0"
   },
   "peerDependencies": {
     "@angular/common": "^9.0.0-rc.11",

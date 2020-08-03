@@ -43,7 +43,8 @@
     }
 
     &:not(.cdk-drag-placeholder) {
-      transition: @table-settings-feature-drag-transform-transition;
+      .transition-mixin(@table-settings-feature-drag-transform-transition);
+      // transition: @table-settings-feature-drag-transform-transition;
     }
 
     &:not(:last-child) {
@@ -92,9 +93,9 @@
   }
 
   &__drag-placeholder {
+    .transition-mixin(@table-settings-feature-drag-placeholder-transition);
     background: @green-lighter;
     min-height: @table-settings-feature-drag-placeholder-height;
-    .transition-mixin(@table-settings-feature-drag-placeholder-transition);
   }
 
   &-drag {

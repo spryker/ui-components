@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 
 import { ToBoolean, ToJson } from '@spryker/utils';
-import { ButtonAttributes } from '../..';
+import { ButtonAttributes } from '../button-core/types';
 
 @Component({
   selector: 'spy-button-toggle',
@@ -20,6 +20,7 @@ import { ButtonAttributes } from '../..';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'spy-button-toggle',
+    role: 'button',
   },
 })
 export class ButtonToggleComponent {

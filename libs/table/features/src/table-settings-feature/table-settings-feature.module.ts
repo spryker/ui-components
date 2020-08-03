@@ -4,7 +4,11 @@ import { TableSettingsFeatureComponent } from './table-settings-feature.componen
 import { PopoverModule } from '@spryker/popover';
 import { CheckboxModule } from '@spryker/checkbox';
 import { ButtonToggleModule } from '@spryker/button';
-import { IconResetModule, IconSettingsModule } from '@spryker/icon/icons';
+import {
+  IconResetModule,
+  IconSettingsModule,
+  IconDragModule,
+} from '@spryker/icon/icons';
 import { IconModule } from '@spryker/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
@@ -17,6 +21,7 @@ import { I18nModule } from '@spryker/locale';
     IconModule,
     IconSettingsModule,
     IconResetModule,
+    IconDragModule,
     PopoverModule,
     CheckboxModule,
     ButtonToggleModule,

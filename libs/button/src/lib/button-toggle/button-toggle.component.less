@@ -1,6 +1,7 @@
 @import 'themes/default/theme.less';
 
 .@{btn-toggle-prefix-cls} {
+  .transition-mixin(border background color);
   background: @white;
   border: @btn-toggle-border;
   width: @btn-toggle-size;
@@ -12,7 +13,6 @@
   border-radius: @btn-toggle-border-radius;
   font-size: @btn-toggle-icon-size;
   cursor: pointer;
-  .transition-mixin(border background color);
 
   &:hover {
     color: @gray-darker;

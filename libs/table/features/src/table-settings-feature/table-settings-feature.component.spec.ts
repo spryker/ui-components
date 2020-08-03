@@ -19,12 +19,11 @@ import { TableSettingsFeatureComponent } from './table-settings-feature.componen
 
 import { LocalStoragePersistenceStrategy } from '@spryker/utils';
 import { By } from '@angular/platform-browser';
-import { Subject, ReplaySubject, of, Observable } from 'rxjs';
+import { ReplaySubject, Observable } from 'rxjs';
 import {
   TableColumnsResolverService,
   TableDataConfiguratorService,
   TableDatasourceService,
-  TableData,
   TableColumns,
   TableDataConfig,
 } from '@spryker/table';
@@ -38,6 +37,7 @@ import {
   HttpTestingController,
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
+import { TableSettingsColumn } from './types';
 
 // tslint:disable: no-non-null-assertion
 
@@ -70,24 +70,24 @@ describe('TableSettingsFeatureComponent', () => {
   let httpTestingController: HttpTestingController;
   let columnsObs$: Observable<TableColumns>;
 
-  const columns: TableColumns = [
+  const columns: TableSettingsColumn[] = [
     { id: 'col1', title: 'Column #1', hideable: true },
     { id: 'col2', title: 'Column #2', hideable: true },
     { id: 'col3', title: 'Column #3', hideable: true },
   ];
 
-  const expectedColumnsUncheckResult = [
+  const expectedColumnsUncheckResult: TableSettingsColumn[] = [
     { id: 'col2', title: 'Column #2', hideable: true },
     { id: 'col3', title: 'Column #3', hideable: true },
   ];
 
-  const expectedColumnsCheckResult = [
+  const expectedColumnsCheckResult: TableSettingsColumn[] = [
     { id: 'col1', title: 'Column #1', hideable: true, hidden: true },
     { id: 'col2', title: 'Column #2', hideable: true },
     { id: 'col3', title: 'Column #3', hideable: true },
   ];
 
-  const expectedColumnsDragResult = [
+  const expectedColumnsDragResult: TableSettingsColumn[] = [
     { id: 'col2', title: 'Column #2', hideable: true },
     { id: 'col1', title: 'Column #1', hideable: true },
     { id: 'col3', title: 'Column #3', hideable: true },
@@ -182,7 +182,9 @@ describe('TableSettingsFeatureComponent', () => {
 
     httpTestingController = TestBed.inject(HttpTestingController);
 
-    columnsObs$ = TestBed.inject(TableColumnsResolverService).resolve(columns);
+    columnsObs$ = TestBed.inject(TableColumnsResolverService).resolve(
+      columns as any,
+    );
 
     testLocalStoragePersistenceStrategy.retrieveSubject$.next(null);
 

@@ -9,7 +9,6 @@ import {
   TableFeatureLocation,
   TableColumns,
   TableColumnsResolverService,
-  TableColumn,
 } from '@spryker/table';
 import {
   IconSettingsModule,
@@ -17,15 +16,15 @@ import {
   IconDragModule,
 } from '@spryker/icon/icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { TableSettingsConfig } from './types';
+import {
+  TableSettingsConfig,
+  TableSettingsColumn,
+  TableSettingsColumns,
+} from './types';
 import { switchMap, pluck, tap, withLatestFrom, map } from 'rxjs/operators';
 import { ReplaySubject, of, Observable, merge, combineLatest } from 'rxjs';
 import { PersistenceService } from '@spryker/utils';
 import { PopoverPosition } from '@spryker/popover';
-
-export interface TableColumnWithHiddenProp extends TableColumn {
-  hidden?: boolean;
-}
 
 @Component({
   selector: 'spy-table-settings-feature',
@@ -50,10 +49,10 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   tableFeatureLocation = TableFeatureLocation;
   popoverPosition = PopoverPosition.BottomRight;
 
-  originalColumnsArr: TableColumns = [];
+  originalColumnsArr: TableSettingsColumns = [];
 
-  setColumns$ = new ReplaySubject<TableColumns>(1);
-  setInitialColumns$ = new ReplaySubject<TableColumns>(1);
+  setColumns$ = new ReplaySubject<TableSettingsColumns>(1);
+  setInitialColumns$ = new ReplaySubject<TableSettingsColumns>(1);
 
   tableId$ = this.config$.pipe(
     pluck('tableId'),
@@ -66,7 +65,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   storageState$ = this.tableId$.pipe(
     switchMap(tableId => this.persistenceService.retrieve(tableId)),
-  ) as Observable<TableColumns>;
+  ) as Observable<TableSettingsColumns>;
 
   initialColumns$ = combineLatest([
     this.storageState$,
@@ -80,7 +79,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     this.initialColumns$.pipe(map(columns => [...columns])),
   );
 
-  setPopoverColumns$ = new ReplaySubject<TableColumnWithHiddenProp[]>(1);
+  setPopoverColumns$ = new ReplaySubject<TableSettingsColumns>(1);
   popoverColumns$ = merge(this.initialColumns$, this.setPopoverColumns$).pipe(
     withLatestFrom(this.tableId$),
     tap(([columns, tableId]) => this.persistenceService.save(tableId, columns)),
@@ -98,17 +97,17 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     super.setColumnsResolverService(service);
 
     service.addTransformer(columnsArr => {
-      this.originalColumnsArr = columnsArr;
+      this.originalColumnsArr = columnsArr as TableSettingsColumns;
 
-      this.setInitialColumns$.next([...columnsArr]);
-      return this.columns$;
+      this.setInitialColumns$.next([...(columnsArr as TableSettingsColumns)]);
+      return this.columns$ as Observable<TableColumns>;
     });
   }
 
   drop(
     event: CdkDragDrop<string[]>,
-    popoverColumns: TableColumns,
-    tableColumns: TableColumns,
+    popoverColumns: TableSettingsColumns,
+    tableColumns: TableSettingsColumns,
   ): void {
     moveItemInArray(popoverColumns, event.previousIndex, event.currentIndex);
     const sortedTableColumns = this.moveItemInTableColumnsArray(
@@ -126,9 +125,9 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   handleCheckChange(
-    checkedColumn: TableColumnWithHiddenProp,
-    popoverColumns: TableColumnWithHiddenProp[],
-    tableColumns: TableColumns,
+    checkedColumn: TableSettingsColumn,
+    popoverColumns: TableSettingsColumns,
+    tableColumns: TableSettingsColumns,
   ): void {
     const popoverColumn = popoverColumns.find(
       column => column.id === checkedColumn.id,
@@ -159,20 +158,20 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   private showColumn(
     index: number,
-    column: TableColumn,
-    tableColumns: TableColumns,
+    column: TableSettingsColumn,
+    tableColumns: TableSettingsColumns,
   ): void {
     tableColumns.splice(index, 0, column as any);
   }
 
-  private hideColumn(index: number, tableColumns: TableColumns): void {
+  private hideColumn(index: number, tableColumns: TableSettingsColumns): void {
     tableColumns.splice(index, 1);
   }
 
   private findIndexToInsert(
-    checkedColumn: TableColumn,
-    popoverColumns: TableColumns,
-    tableColumns: TableColumns,
+    checkedColumn: TableSettingsColumn,
+    popoverColumns: TableSettingsColumns,
+    tableColumns: TableSettingsColumns,
   ): number {
     const popoverColumn = popoverColumns.find(
       column => column.id === checkedColumn.id,
@@ -190,8 +189,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   private findNewColumnPosition(
-    popoverColumns: TableColumns,
-    tableColumns: TableColumns,
+    popoverColumns: TableSettingsColumns,
+    tableColumns: TableSettingsColumns,
     index?: number,
   ): number {
     if (!index) {
@@ -212,9 +211,9 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   private moveItemInTableColumnsArray(
-    popoverColumns: TableColumns,
-    tableColumns: TableColumns,
-  ): TableColumns {
+    popoverColumns: TableSettingsColumns,
+    tableColumns: TableSettingsColumns,
+  ): TableSettingsColumns {
     return popoverColumns.filter(column =>
       tableColumns.find(tableColumn => tableColumn.id === column.id),
     );

@@ -48,7 +48,7 @@ export class DrawerContainerComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.destroyed = true;
-    this.drawerRecord = undefined;
+    this.removeDrawer();
   }
 
   trackByIndex(idx: number): number {
@@ -116,23 +116,23 @@ export class DrawerContainerComponent implements OnDestroy {
   private createDrawerRef(options: DrawerOptions): DrawerRef {
     const drawerRef: DrawerRef = new DrawerRef(
       options,
-      () => this.removeDrawer(drawerRef),
+      () => this.removeDrawer(),
       () => this.maximize(),
       () => this.minimize(),
       () => this.refreshDrawer(),
+      this.afterClosed(),
     );
 
     return drawerRef;
   }
 
-  private removeDrawer(drawer: DrawerRef): void {
-    if (this.destroyed) {
-      return;
-    }
-
+  private removeDrawer(): void {
     this.drawerRecord = undefined;
-    this.cdr.detectChanges();
     this.emitClosed();
+
+    if (!this.destroyed) {
+      this.cdr.detectChanges();
+    }
   }
 
   private createDrawerInjector(drawerRef: DrawerRef): Injector {

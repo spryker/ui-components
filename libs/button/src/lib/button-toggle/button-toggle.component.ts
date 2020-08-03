@@ -20,7 +20,6 @@ import { ButtonAttributes } from '../button-core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'spy-button-toggle',
-    role: 'button',
   },
 })
 export class ButtonToggleComponent {

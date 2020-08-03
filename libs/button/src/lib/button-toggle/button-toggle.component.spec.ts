@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { ButtonToggleComponent } from './button-toggle.component';
@@ -47,12 +47,11 @@ describe('ButtonToggleComponent', () => {
   it('toggledChange must be emited after click event happened on button', async () => {
     const host = await createComponent();
     const buttonElem = host.queryCss('button');
-    spyOn(host.component.toggledChange, 'emit');
 
     buttonElem!.triggerEventHandler('click', {});
 
     host.detectChanges();
-    expect(host.component.toggledChange.emit).toHaveBeenCalledWith(true);
+    expect(host.hostComponent.toggledChange).toHaveBeenCalledWith(true);
   });
 
   it('class `spy-btn-toggle--toggled` should be added after click event happened', async () => {

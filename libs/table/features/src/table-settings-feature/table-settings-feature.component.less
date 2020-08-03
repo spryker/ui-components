@@ -43,8 +43,11 @@
     }
 
     &:not(.cdk-drag-placeholder) {
-      .transition-mixin(@table-settings-feature-drag-transform-transition);
-      // transition: @table-settings-feature-drag-transform-transition;
+      .transition-mixin(
+        transform,
+        @common-transition-time,
+        @table-settings-feature-drag-transition-function
+      );
     }
 
     &:not(:last-child) {
@@ -93,7 +96,11 @@
   }
 
   &__drag-placeholder {
-    .transition-mixin(@table-settings-feature-drag-placeholder-transition);
+    .transition-mixin(
+      transform,
+      @common-transition-time,
+      @table-settings-feature-drag-transition-function
+    );
     background: @green-lighter;
     min-height: @table-settings-feature-drag-placeholder-height;
   }

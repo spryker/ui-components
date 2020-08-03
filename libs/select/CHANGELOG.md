@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.0...@spryker/select@0.2.0-next.1) (2020-07-22)
+
+
+### Features
+
+* **tree-select-filter:** added tree-select filter for table ([c602fb5](https://github.com/spryker/ui-components/commit/c602fb5932eb0509af0df33d18762592ac94dafb))
+
+
+
+
+
 # [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-fix-web-components.0...@spryker/select@0.2.0-next.0) (2020-07-21)
 
 

@@ -1,12 +1,15 @@
 <nz-collapse>
   <nz-collapse-panel
     [nzHeader]="titleTmpl"
-    [nzActive]="active"
+    [(nzActive)]="active"
     [nzDisabled]="disabled"
     [nzShowArrow]="false"
     (nzActiveChange)="updateActive($event)"
   >
-    <ng-content></ng-content>
+    <ng-container *ngIf="alwaysRender || active">
+      <ng-content></ng-content>
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </ng-container>
   </nz-collapse-panel>
 </nz-collapse>
 

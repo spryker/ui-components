@@ -59,6 +59,10 @@
       background: none;
       border: none;
       color: @ink;
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
 
@@ -73,6 +77,11 @@
 
     .@{select-prefix-cls}-selection-search {
       display: block;
+
+      &-input,
+      &-mirror {
+        color: @ink;
+      }
     }
   }
 
@@ -129,6 +138,10 @@
 
       &:focus {
         border-color: @green;
+      }
+
+      .font-highlight {
+        color: @green-dark;
       }
     }
 

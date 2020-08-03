@@ -10,6 +10,7 @@ export class DrawerRef<D = DrawerData> {
     private closeFn: () => void,
     private maximizeFn: () => void,
     private minimizeFn: () => void,
+    private refreshDrawerFn: () => void,
   ) {}
 
   close(): void {
@@ -28,5 +29,9 @@ export class DrawerRef<D = DrawerData> {
 
   maximize(): void {
     this.maximizeFn();
+  }
+
+  refreshDrawer(): void {
+    this.refreshDrawerFn();
   }
 }

@@ -61,7 +61,6 @@ class StoryComponent {
     this.ajaxActionService.handle(actionObject, this.injector);
   }
 }
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,

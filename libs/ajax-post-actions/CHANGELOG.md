@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/ajax-post-actions@0.2.0-next.4...@spryker/ajax-post-actions@0.2.0-next.5) (2020-07-24)
+
+**Note:** Version bump only for package @spryker/ajax-post-actions
+
+
+
+
+
+# [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/ajax-post-actions@0.2.0-next.3...@spryker/ajax-post-actions@0.2.0-next.4) (2020-07-23)
+
+**Note:** Version bump only for package @spryker/ajax-post-actions
+
+
+
+
+
+# [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/ajax-post-actions@0.2.0-next.2...@spryker/ajax-post-actions@0.2.0-next.3) (2020-07-23)
+
+**Note:** Version bump only for package @spryker/ajax-post-actions
+
+
+
+
+
 # [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/ajax-post-actions@0.2.0-next.1...@spryker/ajax-post-actions@0.2.0-next.2) (2020-07-21)
 
 

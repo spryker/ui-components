@@ -1,4 +1,4 @@
-import { ComponentPortal, Portal, TemplatePortal } from '@angular/cdk/portal';
+import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -7,16 +7,16 @@ import {
   OnDestroy,
   TemplateRef,
   Type,
+  ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
-  ViewChild,
 } from '@angular/core';
+import { Observable, ReplaySubject } from 'rxjs';
 
 import { DrawerOptions } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
-import { DrawerTemplateContext } from '../types';
-import { ReplaySubject, Observable } from 'rxjs';
 import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.component';
+import { DrawerTemplateContext } from '../types';
 
 /** @internal */
 @Component({
@@ -30,7 +30,13 @@ import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.compone
   },
 })
 export class DrawerContainerComponent implements OnDestroy {
-  drawerRecord?: { drawer: DrawerRef; portal: Portal<any> };
+  drawerRecord?: {
+    class?: Type<any>;
+    injector?: Injector;
+    template?: TemplateRef<DrawerTemplateContext>;
+    context?: DrawerTemplateContext;
+  };
+  drawerRef?: DrawerRef;
 
   private afterClosed$ = new ReplaySubject<void>();
   private destroyed = false;
@@ -49,16 +55,33 @@ export class DrawerContainerComponent implements OnDestroy {
     return idx;
   }
 
+  refreshDrawer(): void {
+    if (!this.drawerRecord) {
+      return;
+    }
+
+    const drawerRecordClass = this.drawerRecord.class;
+    const drawerRecordTemplate = this.drawerRecord.template;
+
+    this.drawerRecord.class = undefined;
+    this.drawerRecord.template = undefined;
+    this.cdr.markForCheck();
+
+    setTimeout(() => {
+      // tslint:disable-next-line: no-non-null-assertion
+      this.drawerRecord!.class = drawerRecordClass;
+      // tslint:disable-next-line: no-non-null-assertion
+      this.drawerRecord!.template = drawerRecordTemplate;
+      this.cdr.markForCheck();
+    }, 0);
+  }
+
   openComponent(compType: Type<any>, options: DrawerOptions): DrawerRef {
     const drawerRef = this.createDrawerRef(options);
+    const injector = this.createDrawerInjector(drawerRef);
 
-    const portal = new ComponentPortal(
-      compType,
-      this.vcr,
-      this.createDrawerInjector(drawerRef),
-    );
-
-    this.addDrawer(drawerRef, portal);
+    this.drawerRef = drawerRef;
+    this.drawerRecord = { class: compType, injector };
 
     return drawerRef;
   }
@@ -68,14 +91,10 @@ export class DrawerContainerComponent implements OnDestroy {
     options: DrawerOptions,
   ): DrawerRef {
     const drawerRef = this.createDrawerRef(options);
+    const context = this.createDrawerContext(drawerRef);
 
-    const portal = new TemplatePortal(
-      templateRef,
-      this.vcr,
-      this.createDrawerContext(drawerRef),
-    );
-
-    this.addDrawer(drawerRef, portal);
+    this.drawerRef = drawerRef;
+    this.drawerRecord = { template: templateRef, context };
 
     return drawerRef;
   }
@@ -100,13 +119,10 @@ export class DrawerContainerComponent implements OnDestroy {
       () => this.removeDrawer(drawerRef),
       () => this.maximize(),
       () => this.minimize(),
+      () => this.refreshDrawer(),
     );
 
     return drawerRef;
-  }
-
-  private addDrawer(drawer: DrawerRef, portal: Portal<any>): void {
-    this.drawerRecord = { drawer, portal };
   }
 
   private removeDrawer(drawer: DrawerRef): void {

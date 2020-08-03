@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.3...@spryker/table@0.2.0-next.4) (2020-08-03)
+
+
+### Features
+
+* **table-setting:** fixed tests, code style ([c0efbd9](https://github.com/spryker/ui-components/commit/c0efbd91b548df101953f8c6176fd0fecc2696f8))
+* **table-settings:** added basic tests ([e9194bb](https://github.com/spryker/ui-components/commit/e9194bbbd516e0a26bcbb17565e611dccc4e8e4d))
+* **table-settings:** added drag-n-drop ([c69a0db](https://github.com/spryker/ui-components/commit/c69a0db7c4d14fdeaa805b73754dadb1ad5ee02a))
+* **table-settings:** added unit-tests ([dae382d](https://github.com/spryker/ui-components/commit/dae382d395695d71eefa9435fd77b06ba0ef7db7))
+* **table-settings:** added variables for styling ([7942491](https://github.com/spryker/ui-components/commit/7942491bf8b630bdeb31171b4e1227e36ebc959e))
+* **table-settings:** added variables for styling ([35ab2be](https://github.com/spryker/ui-components/commit/35ab2be0ce81a824da13d6b96ed94021514a4b3d))
+* **table-settings:** ant version update ([8d602dd](https://github.com/spryker/ui-components/commit/8d602dd90d90ea6e1be316bf12511a0b636b6864))
+* **table-settings:** fix formatting ([3d141e7](https://github.com/spryker/ui-components/commit/3d141e731613158f55770e6107cbe0cda559335f))
+* **table-settings:** fixed tests ([e84045a](https://github.com/spryker/ui-components/commit/e84045a7657f39d7f4ef3bf4a6eda53d8345f0b7))
+* **table-settings:** fixed types ([b75dbab](https://github.com/spryker/ui-components/commit/b75dbab98819a0d2721ba37bb8fc917c704d4559))
+* **table-settings:** removed commented code ([4555130](https://github.com/spryker/ui-components/commit/455513006c1734d5d99b02b40bf3fc573fa6dd2b))
+* table-settings ([4dce6db](https://github.com/spryker/ui-components/commit/4dce6dbfc046ad6fa72e072222868183b217390c))
+* table-settings ([e1b0a43](https://github.com/spryker/ui-components/commit/e1b0a433e9f0a42b12666c7ba89b6a11822e8f0b))
+* **table-settings:** start implementation ([c2bf0e8](https://github.com/spryker/ui-components/commit/c2bf0e8530de75bac4f29a3c5d9d849ce4175960))
+* **table-settings:** start implementation ([ff72ede](https://github.com/spryker/ui-components/commit/ff72edefb0b79c9573ba3d8daaffb51a9b431cb5))
+* **table-settings:** storybook + drag-n-drop implementation ([7bc65af](https://github.com/spryker/ui-components/commit/7bc65afa992bd248f811c88a8ce305cd86e54ef1))
+
+
+
+
+
 # [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.2...@spryker/table@0.2.0-next.3) (2020-07-29)
 
 **Note:** Version bump only for package @spryker/table

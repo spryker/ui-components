@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.0...@spryker/utils@0.2.0-next.1) (2020-08-03)
+
+
+### Features
+
+* **table-setting:** fixed tests, code style ([c0efbd9](https://github.com/spryker/ui-components/commit/c0efbd91b548df101953f8c6176fd0fecc2696f8))
+* **table-settings:** added local-storage persistence strategy ([5cfa957](https://github.com/spryker/ui-components/commit/5cfa957fdadde8ff11c15bd8bdb9943f98b9da53))
+* **table-settings:** fixed tests ([e84045a](https://github.com/spryker/ui-components/commit/e84045a7657f39d7f4ef3bf4a6eda53d8345f0b7))
+* table-settings ([e1b0a43](https://github.com/spryker/ui-components/commit/e1b0a433e9f0a42b12666c7ba89b6a11822e8f0b))
+
+
+
+
+
 # [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-fix-web-components.0...@spryker/utils@0.2.0-next.0) (2020-07-21)
 
 

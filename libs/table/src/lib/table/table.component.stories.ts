@@ -35,7 +35,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
-  col4: 'col4',
+  col4: ['col4', 'col3', 'col2', 'col1'],
 });
 
 @Injectable({ providedIn: 'root' })

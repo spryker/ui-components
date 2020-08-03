@@ -146,14 +146,14 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
 
       if (noActionsMessage) {
         return {
-          order: 1,
+          order: 3,
           width: '100%',
           paddingTop: '30px',
           marginBottom: '-30px',
         };
       }
 
-      return { order: 1 };
+      return { order: 3 };
     }),
   );
 

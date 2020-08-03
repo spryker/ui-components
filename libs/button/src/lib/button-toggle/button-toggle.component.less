@@ -1,0 +1,59 @@
+@import 'themes/default/theme.less';
+
+.@{btn-toggle-prefix-cls} {
+  .transition-mixin(border background color);
+  background: @white;
+  border: @btn-toggle-border;
+  width: @btn-toggle-size;
+  height: @btn-toggle-size;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: @gray-dark;
+  border-radius: @btn-toggle-border-radius;
+  font-size: @btn-toggle-icon-size;
+  cursor: pointer;
+
+  &:hover {
+    color: @gray-darker;
+  }
+
+  &:focus {
+    color: @gray-dark;
+    border-color: @green;
+  }
+
+  &:active {
+    background: @gray-lighter;
+    color: @gray-darker;
+    border-color: @gray;
+  }
+
+  &:disabled {
+    background: @gray-lighter;
+    border-color: @gray-lighter;
+    color: @gray-dark;
+    cursor: not-allowed;
+  }
+
+  &--toggled {
+    color: @green;
+    border-color: currentColor;
+
+    &:focus {
+      color: @green;
+      border-color: @green-dark;
+    }
+
+    &:active {
+      background: @green-lighter;
+      color: @green-dark;
+      border-color: @green;
+    }
+
+    &:hover {
+      color: @green-dark;
+      border-color: currentColor;
+    }
+  }
+}

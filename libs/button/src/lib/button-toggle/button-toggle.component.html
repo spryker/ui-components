@@ -1,0 +1,10 @@
+<button
+  [disabled]="disabled"
+  [spyApplyAttrs]="attrs"
+  class="spy-btn-toggle"
+  [class.spy-btn-toggle--toggled]="toggled"
+  (click)="clickHandler()"
+  #buttonRef
+>
+  <ng-content></ng-content>
+</button>

@@ -11,5 +11,7 @@ export default {
     'selected:number': '{{ number }} selected',
     'total:number': '{{ number }} results',
     'filter:title': 'Select {{ title }}',
+    'table-settings': 'Table settings',
+    reset: 'Reset',
   },
 } as I18nLocaleDataPackage;

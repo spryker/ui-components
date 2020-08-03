@@ -1,0 +1,117 @@
+@import 'themes/default/theme.less';
+
+.@{table-settings-feature-prefix-cls} {
+  min-width: @table-settings-feature-width;
+  max-height: @table-settings-feature-height;
+  overflow-y: auto;
+  padding: @table-settings-feature-padding;
+
+  &-popover {
+    float: right;
+  }
+
+  &__title {
+    background: @white;
+    margin: @table-settings-feature-header-margin;
+    padding: @table-settings-feature-header-footer-padding;
+    font: @font-weight-medium @font-size-base @font-family;
+    color: @ink;
+    box-shadow: @table-settings-feature-title-shadow;
+    position: relative;
+    z-index: @table-settings-feature-header-footer-z-index;
+  }
+
+  &__footer {
+    background: @white;
+    margin: @table-settings-feature-footer-margin;
+    padding: @table-settings-feature-header-footer-padding;
+    text-align: right;
+    box-shadow: @table-settings-feature-footer-shadow;
+    position: relative;
+    z-index: @table-settings-feature-header-footer-z-index;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    padding: @table-settings-feature-item-padding;
+    background: @white;
+    cursor: pointer;
+
+    &.cdk-drag-disabled {
+      cursor: not-allowed;
+    }
+
+    &:not(.cdk-drag-placeholder) {
+      .transition-mixin(
+        transform,
+        @common-transition-time,
+        @table-settings-feature-drag-transition-function
+      );
+    }
+
+    &:not(:last-child) {
+      margin-bottom: @table-settings-feature-item-bottom-margin;
+    }
+
+    &:hover {
+      background: @green-lighter;
+    }
+  }
+
+  &__item-name {
+    padding-top: @table-settings-feature-item-name-top-padding;
+    flex-grow: 1;
+    margin: 0 @table-settings-feature-item-name-side-margin;
+    color: @ink;
+  }
+
+  &__item-check {
+    margin-top: @table-settings-feature-item-checkbox-top-margin;
+  }
+
+  &__icon {
+    color: @gray;
+    flex-shrink: 0;
+    font-size: @table-settings-feature-icon-size;
+  }
+
+  &__reset-button {
+    background: none;
+    display: inline-flex;
+    padding: 0;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: @gray-darker;
+    }
+  }
+
+  &__reset-button-icon {
+    margin-right: @table-settings-feature-reset-icon-spacing;
+    width: @table-settings-feature-reset-icon-size;
+    height: @table-settings-feature-reset-icon-size;
+  }
+
+  &__drag-placeholder {
+    .transition-mixin(
+      transform,
+      @common-transition-time,
+      @table-settings-feature-drag-transition-function
+    );
+    background: @green-lighter;
+    min-height: @table-settings-feature-drag-placeholder-height;
+  }
+
+  &-drag {
+    box-shadow: @table-settings-feature-cdk-drag-preview-shadow;
+    background: @green-lighter;
+    font: @font-size-base @font-family;
+
+    .@{table-settings-feature-prefix-cls}__icon {
+      color: @gray-dark;
+    }
+  }
+}

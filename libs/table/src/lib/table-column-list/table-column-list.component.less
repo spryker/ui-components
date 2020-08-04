@@ -7,7 +7,6 @@
   line-height: 1;
   margin: -@table-column-list-indent;
 
-  .@{popover-spryker-prefix-cls},
   &__holder {
     padding: @table-column-list-indent;
   }
@@ -39,6 +38,16 @@
   }
 
   &__popover {
+    padding: @table-column-list-popover-padding;
     width: @table-column-list-popover-width;
+    background: @white;
+
+    .@{table-column-list-prefix-cls}__holder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: @table-column-list-popover-items-padding;
+      min-height: @table-column-list-popover-items-min-height;
+    }
   }
 }

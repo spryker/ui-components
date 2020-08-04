@@ -18,7 +18,7 @@ import { ToBoolean } from '@spryker/utils';
   encapsulation: ViewEncapsulation.None,
 })
 export class CollapsibleComponent {
-  @Input() title = '';
+  @Input() spyTitle = '';
   @Input() titleIcon = '';
   @Input() @ToBoolean() active = false;
   @Input() @ToBoolean() disabled = false;

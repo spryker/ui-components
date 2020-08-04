@@ -14,7 +14,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class CardComponent {
-  @Input() title: string | TemplateRef<void> = '';
+  @Input() spyTitle: string | TemplateRef<void> = '';
   @Input() extra: TemplateRef<void> | undefined;
   @Input() actions: TemplateRef<void>[] | undefined[] = [];
   @Input() titlePosition: 'left' | 'center' | 'right' = 'left';

@@ -40,6 +40,9 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
   col4: 'col4',
   col5: 'col5',
+  col6: 'col6',
+  col7: 'col7',
+  col8: 'col8',
   _actionIds: availableActions(i),
 });
 
@@ -173,10 +176,13 @@ function getFeaturesStory(
         },
         columns: [
           { id: 'col1', title: 'Column #1', sortable: true, hideable: true },
-          { id: 'col2', title: 'Column #2', hideable: true },
+          { id: 'col2', title: 'Column #2', hideable: false },
           { id: 'col3', title: 'Column #3', hideable: true },
           { id: 'col4', title: 'Column #4', hideable: true },
           { id: 'col5', title: 'Column #5', hideable: true },
+          { id: 'col6', title: 'Column #6', hideable: true },
+          { id: 'col7', title: 'Column #7', hideable: true },
+          { id: 'col8', title: 'Column #8', hideable: true },
         ],
         batchActions: {
           enabled: true, // This will enable feature via config

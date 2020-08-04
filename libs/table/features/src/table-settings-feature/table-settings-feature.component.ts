@@ -48,6 +48,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   dragIcon = IconDragModule.icon;
   tableFeatureLocation = TableFeatureLocation;
   popoverPosition = PopoverPosition.BottomRight;
+  isResetDisabled = false;
 
   originalColumnsArr: TableSettingsColumns = [];
 
@@ -109,6 +110,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableSettingsColumns,
     tableColumns: TableSettingsColumns,
   ): void {
+    this.isResetDisabled = false;
+
     moveItemInArray(popoverColumns, event.previousIndex, event.currentIndex);
     const sortedTableColumns = this.moveItemInTableColumnsArray(
       popoverColumns,
@@ -120,6 +123,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   resetChoice(): void {
+    this.isResetDisabled = true;
     this.setColumns$.next([...this.originalColumnsArr]);
     this.setPopoverColumns$.next([...this.originalColumnsArr]);
   }
@@ -129,6 +133,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableSettingsColumns,
     tableColumns: TableSettingsColumns,
   ): void {
+    this.isResetDisabled = false;
+
     const popoverColumn = popoverColumns.find(
       column => column.id === checkedColumn.id,
     );

@@ -2,7 +2,8 @@
 @btn-prefix-core-btn-cls: ~'@{btn-prefix-core-cls}__btn';
 
 .@{btn-prefix-core-cls} {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
 
   &--primary {
     .@{btn-prefix-core-btn-cls} {
@@ -98,8 +99,9 @@
   &--lg {
     .@{btn-prefix-core-btn-cls} {
       min-width: @btn-min-width-lg;
-      line-height: @btn-line-height-lg;
-      padding: 0 @btn-horizontal-padding-base-lg;
+      padding-left: @btn-horizontal-padding-base-lg;
+      padding-right: @btn-horizontal-padding-base-lg;
+      min-height: @btn-height-lg;
 
       &.loading {
         padding: @btn-padding-with-loading-lg;
@@ -116,8 +118,9 @@
   &--md {
     .@{btn-prefix-core-btn-cls} {
       min-width: @btn-min-width-md;
-      line-height: @btn-line-height-md;
-      padding: 0 @btn-horizontal-padding-base-md;
+      min-height: @btn-height-md;
+      padding-left: @btn-horizontal-padding-base-md;
+      padding-right: @btn-horizontal-padding-base-md;
 
       &.loading {
         padding: @btn-padding-with-loading-md;
@@ -129,13 +132,18 @@
   &--sm {
     .@{btn-prefix-core-btn-cls} {
       min-width: @btn-min-width-sm;
-      line-height: @btn-line-height-sm;
+    }
+  }
+
+  &--sm {
+    .@{btn-prefix-core-btn-cls} {
+      min-height: @btn-height-sm;
     }
   }
 
   &--xs {
     .@{btn-prefix-core-btn-cls} {
-      line-height: @btn-line-height-xs;
+      min-height: @btn-height-xs;
     }
   }
 
@@ -158,10 +166,9 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  line-height: @btn-line-height-base;
-  padding: 0 @btn-horizontal-padding-base;
+  padding: @btn-horizontal-vertical-base @btn-horizontal-padding-base;
   box-shadow: @btn-shadow-default-size transparent;
-  font: @font-weight-medium @font-size-base @font-family;
+  font: @font-weight-medium @font-size-base / @btn-line-height-base @font-family;
   text-align: center;
   border-radius: @btn-border-radius;
   border: @btn-border-width solid transparent;
@@ -169,7 +176,6 @@
   color: @btn-primary-color;
   cursor: pointer;
   position: relative;
-  display: inline-block;
   width: 100%;
 
   &.loading {

@@ -48,7 +48,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   dragIcon = IconDragModule.icon;
   tableFeatureLocation = TableFeatureLocation;
   popoverPosition = PopoverPosition.BottomRight;
-  isResetDisabled = false;
+  isResetDisabled = true;
 
   originalColumnsArr: TableSettingsColumns = [];
 
@@ -77,7 +77,14 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   columns$ = merge(
     this.setColumns$,
-    this.initialColumns$.pipe(map(columns => [...columns])),
+    this.initialColumns$.pipe(
+      map(columns => {
+        const filteredColumns = [...columns.filter(column => !column.hidden)];
+        this.isResetDisabled = filteredColumns.length === columns.length;
+
+        return filteredColumns;
+      }),
+    ),
   );
 
   setPopoverColumns$ = new ReplaySubject<TableSettingsColumns>(1);

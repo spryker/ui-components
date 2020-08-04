@@ -10,7 +10,7 @@ describe('CardComponent', () => {
 
   @Component({
     template: `
-      <spy-card [title]="title" [extra]="extra" [actions]="[button]">
+      <spy-card [spyTitle]="title" [extra]="extra" [actions]="[button]">
         Card Content
       </spy-card>
       <ng-template #button>

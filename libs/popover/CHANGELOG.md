@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/popover@0.1.0-next.0...@spryker/popover@0.1.0-next.1) (2020-08-05)
+
+
+### Features
+
+* **table-settings:** fixed styles and behavior ([aab478a](https://github.com/spryker/ui-components/commit/aab478afae467447439ed318aa06c55144cd6bf5))
+
+
+
+
+
 # 0.1.0-next.0 (2020-08-03)
 
 

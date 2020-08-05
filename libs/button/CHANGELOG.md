@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-next.2...@spryker/button@0.2.0-next.3) (2020-08-05)
+
+
+### Features
+
+* **table-settings:** fixed styles and behavior ([aab478a](https://github.com/spryker/ui-components/commit/aab478afae467447439ed318aa06c55144cd6bf5))
+
+
+
+
+
 # [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-next.1...@spryker/button@0.2.0-next.2) (2020-08-04)
 
 **Note:** Version bump only for package @spryker/button

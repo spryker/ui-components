@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.4...@spryker/table@0.2.0-next.5) (2020-08-05)
+
+
+### Features
+
+* **table-settings:** fixed icons and arr method ([1226c17](https://github.com/spryker/ui-components/commit/1226c17bf4e402adb28069c1d32db0d6e33ae0e4))
+* **table-settings:** fixed icons and tests ([dfff841](https://github.com/spryker/ui-components/commit/dfff841bc83971a388f5c4030ef31278ad810d8b))
+* **table-settings:** fixed logic ([71a81fa](https://github.com/spryker/ui-components/commit/71a81faf5fba665f1a0ccb9f87179663c422998e))
+* **table-settings:** fixed reset behavior ([9463e7a](https://github.com/spryker/ui-components/commit/9463e7a6667a02c33208a12227f7192370bd982f))
+* **table-settings:** fixed styles and behavior ([aab478a](https://github.com/spryker/ui-components/commit/aab478afae467447439ed318aa06c55144cd6bf5))
+
+
+
+
+
 # [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.3...@spryker/table@0.2.0-next.4) (2020-08-03)
 
 

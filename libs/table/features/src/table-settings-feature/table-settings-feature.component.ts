@@ -80,7 +80,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     this.initialColumns$.pipe(
       map(columns => {
         const filteredColumns = columns.filter(column => !column.hidden);
-        this.isResetDisabled = filteredColumns.every(
+        this.isResetDisabled = !filteredColumns.some(
           (column, index) => column.id !== this.originalColumnsArr[index].id,
         );
 

@@ -3,7 +3,6 @@ import { provideIcons } from '@spryker/icon';
 
 const svg = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" version="1.1">
-    <title>Reset</title>
     <g stroke="none" stroke-width="1" fill-rule="evenodd">
         <g transform="translate(-1.000000, -1.000000)">
             <g transform="translate(1.000000, 0.000000)">

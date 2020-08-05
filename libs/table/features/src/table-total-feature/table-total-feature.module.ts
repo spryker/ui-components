@@ -4,9 +4,16 @@ import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
 import { PluckModule } from '@spryker/utils';
 import { I18nModule } from '@spryker/locale';
 import { TableTotalFeatureComponent } from './table-total-feature.component';
+import { ChipsModule } from '@spryker/chips';
 
 @NgModule({
-  imports: [CommonModule, TableFeatureModule, PluckModule, I18nModule],
+  imports: [
+    CommonModule,
+    TableFeatureModule,
+    PluckModule,
+    I18nModule,
+    ChipsModule,
+  ],
   exports: [TableTotalFeatureComponent],
   declarations: [TableTotalFeatureComponent],
   entryComponents: [TableTotalFeatureComponent],

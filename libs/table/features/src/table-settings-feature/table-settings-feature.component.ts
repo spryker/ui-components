@@ -79,8 +79,12 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     this.setColumns$,
     this.initialColumns$.pipe(
       map(columns => {
-        const filteredColumns = [...columns.filter(column => !column.hidden)];
-        this.isResetDisabled = filteredColumns.length === columns.length;
+        const filteredColumns = columns.filter(column => !column.hidden);
+        this.isResetDisabled = !Boolean(
+          filteredColumns.find(
+            (column, index) => column.id !== this.originalColumnsArr[index].id,
+          ),
+        );
 
         return filteredColumns;
       }),
@@ -107,7 +111,9 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     service.addTransformer(columnsArr => {
       this.originalColumnsArr = columnsArr as TableSettingsColumns;
 
-      this.setInitialColumns$.next([...(columnsArr as TableSettingsColumns)]);
+      this.setInitialColumns$.next(
+        columnsArr.map(column => ({ ...column })) as TableSettingsColumns,
+      );
       return this.columns$ as Observable<TableColumns>;
     });
   }

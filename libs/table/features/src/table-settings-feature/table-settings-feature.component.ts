@@ -48,6 +48,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   dragIcon = IconDragModule.icon;
   tableFeatureLocation = TableFeatureLocation;
   popoverPosition = PopoverPosition.BottomRight;
+  isResetDisabled = true;
 
   originalColumnsArr: TableSettingsColumns = [];
 
@@ -76,7 +77,16 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   columns$ = merge(
     this.setColumns$,
-    this.initialColumns$.pipe(map(columns => [...columns])),
+    this.initialColumns$.pipe(
+      map(columns => {
+        const filteredColumns = columns.filter(column => !column.hidden);
+        this.isResetDisabled = !filteredColumns.some(
+          (column, index) => column.id !== this.originalColumnsArr[index].id,
+        );
+
+        return filteredColumns;
+      }),
+    ),
   );
 
   setPopoverColumns$ = new ReplaySubject<TableSettingsColumns>(1);
@@ -99,7 +109,9 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     service.addTransformer(columnsArr => {
       this.originalColumnsArr = columnsArr as TableSettingsColumns;
 
-      this.setInitialColumns$.next([...(columnsArr as TableSettingsColumns)]);
+      this.setInitialColumns$.next(
+        columnsArr.map(column => ({ ...column })) as TableSettingsColumns,
+      );
       return this.columns$ as Observable<TableColumns>;
     });
   }
@@ -109,6 +121,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableSettingsColumns,
     tableColumns: TableSettingsColumns,
   ): void {
+    this.isResetDisabled = false;
+
     moveItemInArray(popoverColumns, event.previousIndex, event.currentIndex);
     const sortedTableColumns = this.moveItemInTableColumnsArray(
       popoverColumns,
@@ -120,6 +134,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   resetChoice(): void {
+    this.isResetDisabled = true;
     this.setColumns$.next([...this.originalColumnsArr]);
     this.setPopoverColumns$.next([...this.originalColumnsArr]);
   }
@@ -129,6 +144,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableSettingsColumns,
     tableColumns: TableSettingsColumns,
   ): void {
+    this.isResetDisabled = false;
+
     const popoverColumn = popoverColumns.find(
       column => column.id === checkedColumn.id,
     );

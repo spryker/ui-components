@@ -27,7 +27,6 @@
                 cdkDrag
                 *ngFor="let column of popoverColumns"
                 class="spy-table-settings-feature__item"
-                [cdkDragDisabled]="!column.hideable"
                 cdkDragPreviewClass="spy-table-settings-feature-drag"
               >
                 <div
@@ -56,6 +55,9 @@
         <div class="spy-table-settings-feature__footer">
           <button
             class="spy-table-settings-feature__reset-button"
+            [class.spy-table-settings-feature__reset-button--disabled]="
+              isResetDisabled
+            "
             (click)="resetChoice()"
           >
             <spy-icon

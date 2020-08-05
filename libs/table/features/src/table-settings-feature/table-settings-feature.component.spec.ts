@@ -82,7 +82,7 @@ describe('TableSettingsFeatureComponent', () => {
   ];
 
   const expectedColumnsCheckResult: TableSettingsColumn[] = [
-    { id: 'col1', title: 'Column #1', hideable: true, hidden: true },
+    { id: 'col1', title: 'Column #1', hideable: true, hidden: false },
     { id: 'col2', title: 'Column #2', hideable: true },
     { id: 'col3', title: 'Column #3', hideable: true },
   ];

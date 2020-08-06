@@ -20,6 +20,7 @@ import { DrawerContainerComponent } from '../../../../drawer/src/lib/drawer-cont
 import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
 import { AjaxFormResponse } from '@spryker/ajax-form';
 import { NotificationWrapperComponent } from '../../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
+import { NotificationDataType } from '@spryker/notification';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
@@ -90,7 +91,7 @@ const tableResponse = (request: TestRequest): AjaxFormResponse => ({
     request.request.method === 'POST'
       ? [
           {
-            type: 'info',
+            type: NotificationDataType.Info,
             message: 'message',
           },
         ]

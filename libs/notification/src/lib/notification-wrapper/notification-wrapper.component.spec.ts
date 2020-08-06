@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NotificationWrapperComponent } from './notification-wrapper.component';
-import { ToastPackage, ToastrService } from 'ngx-toastr';
+import { ToastPackage, ToastrService, ToastRef } from 'ngx-toastr';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('NotificationWrapperComponent', () => {
   let component: NotificationWrapperComponent;
@@ -14,22 +15,26 @@ describe('NotificationWrapperComponent', () => {
   const mockedMessage = 'mockedMessage';
   const mockedToastId = 'mockedToastId';
 
-  class MockToastPackage {
-    toastType = mockedType;
-    config = mockedConfig;
-    title = mockedTitle;
-    message = mockedMessage;
-    toastId = mockedToastId;
-  }
+  const MockToastPackage = {
+    toastId: mockedToastId,
+    toastType: mockedType,
+    afterActivate: jest.fn(),
+    config: mockedConfig,
+    message: mockedMessage,
+    title: mockedTitle,
+    toastRef: new ToastRef(null as any),
+  };
 
   class MockToastrService {
     remove = jest.fn();
   }
 
   beforeEach(async(() => {
+    // initMockProviders();
     TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule],
       providers: [
-        { provide: ToastPackage, useClass: MockToastPackage },
+        { provide: ToastPackage, useValue: MockToastPackage },
         { provide: ToastrService, useExisting: MockToastrService },
         MockToastrService,
       ],

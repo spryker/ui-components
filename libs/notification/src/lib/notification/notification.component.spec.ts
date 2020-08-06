@@ -140,7 +140,7 @@ describe('NotificationComponent', () => {
       fixture.detectChanges();
 
       const closeBtn = fixture.debugElement.query(
-        By.css('.ant-alert-close-icon'),
+        By.css('.ant-alert-close-icon spy-icon'),
       );
       expect(closeBtn).toBeTruthy();
 

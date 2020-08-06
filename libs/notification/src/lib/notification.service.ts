@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NotificationData } from './types';
+import { NotificationData, NotificationDataType } from './types';
 import { ToastrService, IndividualConfig } from 'ngx-toastr';
 import { NotificationRef } from './notification-ref';
 import { mapDataToConfig } from './util';
@@ -15,10 +15,12 @@ export class NotificationService {
       easeTime: 300,
       easing: 'ease-in',
       positionClass: 'topRight',
-      timeOut: 5000,
+      disableTimeOut: data.type !== NotificationDataType.Success,
+      tapToDismiss: false,
+      timeOut: 3000,
       closeButton: true,
     };
-    const type = data.type || 'info';
+    const type = data.type || NotificationDataType.Info;
 
     individualConfig.closeButton =
       data.closeable ?? individualConfig.closeButton;
@@ -33,6 +35,7 @@ export class NotificationService {
       ),
       this.toastrService,
     );
+
     return notificationRef;
   }
 

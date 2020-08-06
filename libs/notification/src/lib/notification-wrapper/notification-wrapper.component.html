@@ -3,8 +3,9 @@
     [type]="toastPackage.toastType"
     [closeable]="toastPackage.config.closeButton"
     (closed)="closeHandler()"
+    floating="true"
   >
-    <span title>{{ toastPackage.title }}</span>
-    <span description>{{ toastPackage.message }}</span>
+    <span title>{{ title }}</span>
+    <span description>{{ message }}</span>
   </spy-notification>
 </span>

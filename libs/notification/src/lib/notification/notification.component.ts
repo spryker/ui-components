@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   ViewChild,
@@ -12,7 +11,8 @@ import {
 import { IconRemoveModule } from '@spryker/icon/icons';
 import { ApplyContextsDirective, ToBoolean } from '@spryker/utils';
 import { NzAlertComponent } from 'ng-zorro-antd/alert';
-import { Subject } from 'rxjs';
+
+import { NotificationDataType } from '../types';
 
 @Component({
   selector: 'spy-notification',
@@ -25,17 +25,17 @@ import { Subject } from 'rxjs';
   },
   providers: [ApplyContextsDirective],
 })
-export class NotificationComponent implements OnInit, OnDestroy {
-  @Input() type: 'info' | 'error' | 'warning' | 'success' = 'info';
+export class NotificationComponent implements OnInit {
+  @Input() type: NotificationDataType = NotificationDataType.Info;
   @Input() @ToBoolean() closeable = false;
+  @Input() @ToBoolean() floating = false;
 
   @Output() closed = new EventEmitter<void>();
 
   @ViewChild(NzAlertComponent) nzAlertComponent?: NzAlertComponent;
 
   removeIcon = IconRemoveModule.icon;
-
-  private destroyed$ = new Subject<void>();
+  isClosed = false;
 
   constructor(private applyContextsDirective: ApplyContextsDirective) {}
 
@@ -43,8 +43,12 @@ export class NotificationComponent implements OnInit, OnDestroy {
     this.applyContextsDirective.ngOnInit();
   }
 
-  ngOnDestroy(): void {
-    this.destroyed$.next();
+  onCloseHandler(event: Event) {
+    if (this.floating) {
+      event.stopPropagation();
+    }
+
+    this.closed.emit();
   }
 
   close(): boolean {

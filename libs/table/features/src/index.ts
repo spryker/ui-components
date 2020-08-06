@@ -7,3 +7,4 @@ export * from './table-pagination-feature';
 export * from './table-row-actions-feature';
 export * from './table-batch-actions-feature';
 export * from './table-settings-feature';
+export * from './table-title-feature';

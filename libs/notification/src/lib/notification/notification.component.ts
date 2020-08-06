@@ -35,7 +35,6 @@ export class NotificationComponent implements OnInit {
   @ViewChild(NzAlertComponent) nzAlertComponent?: NzAlertComponent;
 
   removeIcon = IconRemoveModule.icon;
-  isClosed = false;
 
   constructor(private applyContextsDirective: ApplyContextsDirective) {}
 

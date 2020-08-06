@@ -30,7 +30,6 @@ describe('NotificationWrapperComponent', () => {
   }
 
   beforeEach(async(() => {
-    // initMockProviders();
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule],
       providers: [

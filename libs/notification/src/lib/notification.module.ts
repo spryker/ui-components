@@ -15,6 +15,7 @@ import { GlobalConfig, ToastContainerModule, ToastrModule } from 'ngx-toastr';
 import { NotificationWrapperComponent } from './notification-wrapper/notification-wrapper.component';
 import { NotificationViewComponent } from './notification-view/notification-view.component';
 import { NotificationComponent } from './notification/notification.component';
+import { NotificationInputs } from './notification-inputs';
 import { NotificationGlobalConfig } from './types';
 import { mapDataToConfig } from './util';
 
@@ -36,6 +37,7 @@ import { mapDataToConfig } from './util';
     NotificationComponent,
     NotificationViewComponent,
     NotificationWrapperComponent,
+    NotificationInputs,
   ],
   exports: [NotificationViewComponent, NotificationComponent],
 })

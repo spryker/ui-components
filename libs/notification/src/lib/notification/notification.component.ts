@@ -4,14 +4,16 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { ToJson } from '@spryker/utils';
 
 import { NotificationInputs } from '../notification-inputs';
 import { NotificationRef } from '../notification-ref';
+import { NotificationViewComponent } from '../notification-view/notification-view.component';
 import { NotificationService } from '../notification.service';
 import { NotificationConfig } from '../types';
-import { ToJson } from '@spryker/utils';
 
 @Component({
   selector: 'spy-notification',
@@ -28,6 +30,9 @@ export class NotificationComponent extends NotificationInputs
   @Input() title = '';
   @Input() description = '';
   @Input() @ToJson() floatingConfig?: NotificationConfig;
+
+  @ViewChild(NotificationViewComponent)
+  notificationViewComponent?: NotificationViewComponent;
 
   private notificationRef?: NotificationRef;
 
@@ -52,5 +57,12 @@ export class NotificationComponent extends NotificationInputs
 
   ngOnDestroy(): void {
     this.notificationRef?.close();
+  }
+
+  close(): boolean {
+    this.notificationRef?.close();
+    this.notificationViewComponent?.close();
+
+    return this.closeable;
   }
 }

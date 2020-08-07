@@ -5,11 +5,9 @@ import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
 
 @NgModule({
   declarations: [TableTitleFeatureComponent],
-  imports: [
-    CommonModule,
-    TableFeatureModule
-  ],
-  exports: [TableTitleFeatureComponent]
+  imports: [CommonModule, TableFeatureModule],
+  exports: [TableTitleFeatureComponent],
+  entryComponents: [TableTitleFeatureComponent],
 })
 export class TableTitleFeatureModule implements ModuleWithFeature {
   featureComponent = TableTitleFeatureComponent;

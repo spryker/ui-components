@@ -1,3 +1,5 @@
-<span *spyTableFeatureTpl="tableFeatureLocation.beforeTable">
-    {{ title$ | async }}
-</span>
+<span
+  *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { order: '0' }"
+  class="spy-table-title-feature"
+  >{{ title$ | async }}</span
+>

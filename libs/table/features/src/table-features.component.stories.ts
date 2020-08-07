@@ -29,6 +29,7 @@ import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 import { TableBatchActionsFeatureModule } from './table-batch-actions-feature';
+import { TableTitleFeatureModule } from './table-title-feature';
 
 export default {
   title: 'TableFeaturesComponent',
@@ -73,6 +74,7 @@ export const viaHtml = getFeaturesStory(
       <spy-table-total-feature spy-table-feature></spy-table-total-feature>
       <spy-table-settings-feature spy-table-feature></spy-table-settings-feature>
       <spy-table-batch-actions-feature spy-table-feature></spy-table-batch-actions-feature>
+      <spy-table-title-feature spy-table-feature></spy-table-title-feature>
     </spy-table>
   `,
   [
@@ -85,6 +87,7 @@ export const viaHtml = getFeaturesStory(
     TableTotalFeatureModule,
     TableSettingsFeatureModule,
     TableBatchActionsFeatureModule,
+    TableTitleFeatureModule,
   ],
 );
 
@@ -126,6 +129,8 @@ export const viaConfig = getFeaturesStory(
         import('./table-batch-actions-feature').then(
           m => m.TableBatchActionsFeatureModule,
         ),
+      title: () =>
+        import('./table-title-feature').then(m => m.TableTitleFeatureModule),
     }),
   ],
 );
@@ -275,6 +280,10 @@ function getFeaturesStory(
           enabled: true,
         },
         settings: {
+          enabled: true,
+        },
+        title: {
+          title: 'Table title',
           enabled: true,
         },
       },

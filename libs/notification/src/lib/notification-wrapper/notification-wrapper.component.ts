@@ -59,14 +59,11 @@ export class NotificationWrapperComponent extends Toast {
   @HostBinding('@flyInOut')
   state = {
     value: 'inactive',
-    params: {
-      easeTime: this.toastPackage.config.easeTime,
-      easing: this.toastPackage.config.easing,
-    },
+    params: this.toastPackage.config,
   };
 
   constructor(
-    public toastPackage: ToastPackage,
+    toastPackage: ToastPackage,
     protected toastrService: ToastrService,
   ) {
     super(toastrService, toastPackage);

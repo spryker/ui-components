@@ -1,93 +1,50 @@
+import { boolean, select, text, object } from '@storybook/addon-knobs';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ApplyContextsModule } from '@spryker/utils';
 
 import { NotificationModule } from '../notification.module';
+import { NotificationWrapperComponent } from '../notification-wrapper/notification-wrapper.component';
 
 export default {
   title: 'NotificationComponent',
 };
 
 @NgModule({
-  imports: [BrowserAnimationsModule],
+  imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
   exports: [NotificationModule],
+  entryComponents: [NotificationWrapperComponent],
 })
 class StoryModule {}
 
 export const primary = () => ({
   moduleMetadata: { imports: [StoryModule] },
   template: `
-    <spy-notification>
-      <span title>Title...</span>
-      <span description>Description...</span>
+    <spy-notification
+      [type]="type"
+      [closeable]="closeable"
+      [floating]="floating"
+      [title]="title"
+      [description]="description"
+      [floatingConfig]="floatingConfig"
+    >
     </spy-notification>
   `,
-});
-
-export const closeable = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
-    <spy-notification closeable>
-      <span title>Title...</span>
-      <span description>Description...</span>
-    </spy-notification>
-  `,
-});
-
-export const error = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
-    <spy-notification type="error">
-      <span title>Title...</span>
-      <span description>Description...</span>
-    </spy-notification>
-  `,
-});
-
-export const warning = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
-    <spy-notification type="warning">
-      <span title>Title...</span>
-      <span description>Description...</span>
-    </spy-notification>
-  `,
-});
-
-export const success = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
-    <spy-notification type="success">
-      <span title>Title...</span>
-      <span description>Description...</span>
-    </spy-notification>
-  `,
-});
-
-export const inWhiteBackground = () => ({
-  moduleMetadata: { imports: [StoryModule, ApplyContextsModule] },
-  template: `
-    <div spyApplyContexts="spy-bg-white" style="padding: 100px">
-      <spy-notification>
-        <span title>Title...</span>
-        <span description>Description...</span>
-      </spy-notification>
-    </div>
-  `,
-});
-
-export const inGrayBackground = () => ({
-  moduleMetadata: { imports: [StoryModule, ApplyContextsModule] },
-  template: `
-    <div spyApplyContexts="spy-bg-gray">
-      <div spyApplyContexts="spy-bg-white">
-        <div spyApplyContexts="spy-bg-gray" style="padding: 100px">
-          <spy-notification>
-            <span title>Title...</span>
-            <span description>Description...</span>
-          </spy-notification>
-        </div>
-    </div>
-    </div>
-  `,
+  props: {
+    type: select(
+      'Type',
+      { Info: 'info', Error: 'error', Warning: 'warning', Success: 'success' },
+      'info',
+    ),
+    closeable: boolean('Closeable', false),
+    floating: boolean('Floating', true),
+    title: text('Title', 'Title...'),
+    description: text('Description', 'Description...'),
+    floatingConfig: object('FloatingConfig', {
+      timeOut: 3000,
+      position: 'topRight',
+      easing: 'ease-in',
+      easeTime: 300,
+      disableTimeOut: undefined,
+    }),
+  },
 });

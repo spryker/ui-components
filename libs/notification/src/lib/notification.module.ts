@@ -13,6 +13,7 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { GlobalConfig, ToastContainerModule, ToastrModule } from 'ngx-toastr';
 
 import { NotificationWrapperComponent } from './notification-wrapper/notification-wrapper.component';
+import { NotificationViewComponent } from './notification-view/notification-view.component';
 import { NotificationComponent } from './notification/notification.component';
 import { NotificationGlobalConfig } from './types';
 import { mapDataToConfig } from './util';
@@ -31,8 +32,12 @@ import { mapDataToConfig } from './util';
     ToastrModule,
     ToastContainerModule,
   ],
-  declarations: [NotificationComponent, NotificationWrapperComponent],
-  exports: [NotificationComponent],
+  declarations: [
+    NotificationComponent,
+    NotificationViewComponent,
+    NotificationWrapperComponent,
+  ],
+  exports: [NotificationViewComponent, NotificationComponent],
 })
 export class NotificationModule {
   static forRoot(config?: NotificationGlobalConfig): ModuleWithProviders {

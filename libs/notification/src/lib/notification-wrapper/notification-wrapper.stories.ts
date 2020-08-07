@@ -1,9 +1,9 @@
 import { NgModule, Component, Input, OnChanges } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NotificationModule } from './notification.module';
-import { NotificationService } from './notification.service';
-import { NotificationWrapperComponent } from './notification-wrapper/notification-wrapper.component';
+import { NotificationModule } from '../notification.module';
+import { NotificationService } from '../notification.service';
+import { NotificationWrapperComponent } from './notification-wrapper.component';
 
 import { select, text, boolean } from '@storybook/addon-knobs';
 

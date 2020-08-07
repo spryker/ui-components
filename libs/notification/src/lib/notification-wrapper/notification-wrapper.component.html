@@ -1,11 +1,11 @@
 <span spyApplyContexts="spy-bg-gray">
-  <spy-notification
+  <spy-notification-view
     [type]="toastPackage.toastType"
     [closeable]="toastPackage.config.closeButton"
     (closed)="closeHandler()"
-    floating="true"
+    [floating]="true"
   >
     <span title>{{ title }}</span>
     <span description>{{ message }}</span>
-  </spy-notification>
+  </spy-notification-view>
 </span>

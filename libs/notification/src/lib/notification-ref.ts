@@ -8,6 +8,7 @@ export class NotificationRef {
   ) {}
 
   close(): void {
+    console.log(this.activeToast);
     this.toastrService.remove(this.activeToast.toastId);
   }
 

@@ -1,187 +1,167 @@
-import { Component, ViewChild } from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { Component, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { NzAlertComponent } from 'ng-zorro-antd/alert';
 
-import { NotificationModule } from '../notification.module';
+import { NotificationService } from '../notification.service';
 import { NotificationComponent } from './notification.component';
 
-describe('NotificationComponent', () => {
-  @Component({
-    // tslint:disable-next-line: component-selector
-    selector: 'test',
-    template: `
-      <spy-notification
-        [type]="type"
-        [closeable]="closeable"
-        (closed)="changeSpy()"
-      >
-        <span title>
-          <span class="test-title">Title...</span>
-        </span>
-        <span description>
-          <span class="test-description">Description...</span>
-        </span>
-      </spy-notification>
-    `,
-  })
-  class TestComponent {
-    closeable = false;
-    type = 'info';
-    changeSpy = jest.fn();
-    @ViewChild(NotificationComponent) notification!: NotificationComponent;
-  }
+@Component({
+  selector: 'spy-test-component',
+  template: `
+    <spy-notification
+      [type]="type"
+      [closeable]="closeable"
+      [title]="title"
+      [description]="description"
+      [floating]="floating"
+      (closed)="closed()"
+      [floatingConfig]="floatingConfig"
+    ></spy-notification>
+  `,
+})
+class TestComponent {
+  type: any;
+  closeable: any;
+  closed = jest.fn();
+  title: any;
+  description: any;
+  floating: any;
+  floatingConfig: any;
 
+  @ViewChild(NotificationComponent)
+  notification!: NotificationComponent;
+}
+
+describe('NotificationWrapperComponent', () => {
   let component: TestComponent;
-  let notificationComponent: NotificationComponent;
   let fixture: ComponentFixture<TestComponent>;
+  let notificationService: NotificationService;
+  const mockedType = 'mockedType';
+  const mockedClosable = true;
+  const mockedConfig = { position: 'topLeft' };
+  const mockedTitle = 'mockedTitle';
+  const mockedDescription = 'mockedDescription';
+
+  class MockNotificationService {
+    show = jest.fn();
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NotificationModule, NoopAnimationsModule],
-      declarations: [TestComponent],
+      imports: [NoopAnimationsModule],
+      providers: [
+        MockNotificationService,
+        {
+          provide: NotificationService,
+          useExisting: MockNotificationService,
+        },
+      ],
+      declarations: [TestComponent, NotificationComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
+    notificationService = TestBed.inject(NotificationService);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
-
-    fixture.detectChanges();
-
-    notificationComponent = component.notification;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should render nz-alert', () => {
-    const alert = fixture.debugElement.query(By.css('nz-alert'));
-
-    expect(alert).toBeTruthy();
-  });
-
-  it('should render title with icon in nzMessage', () => {
-    const alertMessage = fixture.debugElement.query(
-      By.css('.ant-alert-message'),
-    );
-
-    expect(alertMessage).toBeTruthy();
-
-    const messageIcon = alertMessage.query(By.css('spy-icon'));
-    const messageTitle = alertMessage.query(By.css('.test-title'));
-
-    expect(messageIcon).toBeTruthy();
-    expect(messageTitle).toBeTruthy();
-  });
-
-  it('should render description in nzDescription', () => {
-    const alertDescription = fixture.debugElement.query(
-      By.css('.ant-alert-description'),
-    );
-
-    expect(alertDescription).toBeTruthy();
-
-    const descriptionContent = alertDescription.query(
-      By.css('.test-description'),
-    );
-
-    expect(descriptionContent).toBeTruthy();
-  });
-
-  it('should render close icon in nzCloseText', () => {
-    component.closeable = true;
-    fixture.detectChanges();
-
-    const closeLink = fixture.debugElement.query(
-      By.css('.ant-alert-close-icon'),
-    );
-
-    expect(closeLink).toBeTruthy();
-
-    const closeIcon = closeLink.query(By.css('spy-icon'));
-
-    expect(closeIcon).toBeTruthy();
-  });
-
-  describe('Inputs must be bound to internal nz-alert', () => {
-    it('should bound type to nzType', () => {
-      const type = 'success';
-
-      component.type = type;
+  describe('NonFloating', () => {
+    it('should render <spy-notification-view>', async () => {
       fixture.detectChanges();
 
-      const nzAlert = fixture.debugElement.query(By.css('nz-alert'));
+      const notificationElem = fixture.debugElement.query(
+        By.css('spy-notification-view'),
+      );
 
-      expect(nzAlert.attributes['ng-reflect-nz-type']).toEqual(type);
+      expect(notificationElem).toBeTruthy();
     });
 
-    it('should bound closeable to nzCloseable', () => {
-      component.closeable = true;
+    it('should bound `@Input(type)` to the input `type` of <spy-notification-view> component', async () => {
+      component.type = mockedType;
       fixture.detectChanges();
 
-      const nzAlert = fixture.debugElement.query(By.css('nz-alert'));
+      const notificationElem = fixture.debugElement.query(
+        By.css('spy-notification-view'),
+      );
 
-      expect(nzAlert.attributes['ng-reflect-nz-closeable']).toEqual('true');
+      expect(notificationElem.properties.type).toBe(mockedType);
+    });
+
+    it('should bound `@Input(closeable)` to the input `closeable` of <spy-notification-view> component', async () => {
+      component.closeable = mockedClosable;
+      fixture.detectChanges();
+
+      const notificationElem = fixture.debugElement.query(
+        By.css('spy-notification-view'),
+      );
+
+      expect(notificationElem.properties.closeable).toBe(mockedClosable);
+    });
+
+    it('should render `@Input(title)` in the <spy-notification-view> component', async () => {
+      component.title = mockedTitle;
+      fixture.detectChanges();
+
+      const notificationElem = fixture.debugElement.query(
+        By.css('spy-notification-view'),
+      );
+
+      expect(notificationElem.nativeElement.textContent).toContain(mockedTitle);
+    });
+
+    it('should render `@Input(description)` in the <spy-notification-view> component', async () => {
+      component.description = mockedDescription;
+      fixture.detectChanges();
+
+      const notificationElem = fixture.debugElement.query(
+        By.css('spy-notification-view'),
+      );
+
+      expect(notificationElem.nativeElement.textContent).toContain(
+        mockedDescription,
+      );
+    });
+
+    it('should trigger `closed` callback when `closed` from <spy-notification-view> was triggered', async () => {
+      fixture.detectChanges();
+
+      const notificationElem = fixture.debugElement.query(
+        By.css('spy-notification-view'),
+      );
+
+      notificationElem.triggerEventHandler('closed', null);
+
+      expect(component.closed).toHaveBeenCalled();
     });
   });
 
-  describe('Closeable functionality', () => {
-    it('should emit closed on alert close', fakeAsync(() => {
-      component.closeable = true;
+  describe('Floating', () => {
+    it('should call `NotificationService.show` with appropriate data if `floating` is `true` and does not render <spy-notification-view>', async () => {
+      const data = {
+        ...mockedConfig,
+        description: mockedDescription,
+        type: mockedType,
+        title: mockedTitle,
+        closeable: mockedClosable,
+      };
+
+      component.floating = true;
+      component.type = mockedType;
+      component.closeable = mockedClosable;
+      component.title = mockedTitle;
+      component.description = mockedDescription;
+      component.floatingConfig = mockedConfig;
       fixture.detectChanges();
 
-      const closeBtn = fixture.debugElement.query(
-        By.css('.ant-alert-close-icon spy-icon'),
+      const notificationElem = fixture.debugElement.query(
+        By.css('spy-notification-view'),
       );
-      expect(closeBtn).toBeTruthy();
 
-      closeBtn.triggerEventHandler('click', null);
-
-      fixture.detectChanges();
-
-      tick();
-      expect(component.changeSpy).toHaveBeenCalled();
-    }));
-
-    it('close method should return current closeable value and call `NzAlertComponent.closeAlert()`', fakeAsync(() => {
-      const nzAlertElem = fixture.debugElement.query(
-        By.directive(NzAlertComponent),
-      );
-
-      expect(nzAlertElem).toBeTruthy();
-
-      const nzAlert = nzAlertElem.componentInstance as NzAlertComponent;
-
-      const closeSpy = spyOn(nzAlert, 'closeAlert');
-
-      let currentCloseable = notificationComponent.close();
-
-      expect(currentCloseable).toBeFalsy();
-
-      component.closeable = true;
-
-      fixture.detectChanges();
-      tick();
-
-      expect(closeSpy).toHaveBeenCalledTimes(1);
-
-      currentCloseable = notificationComponent.close();
-
-      expect(currentCloseable).toBeTruthy();
-
-      fixture.detectChanges();
-      tick();
-
-      expect(closeSpy).toHaveBeenCalledTimes(2);
-    }));
+      expect(notificationService.show).toHaveBeenCalledWith(data);
+      expect(notificationElem).toBeFalsy();
+    });
   });
 });

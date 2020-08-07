@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NotificationWrapperComponent } from './notification-wrapper.component';
 import { ToastPackage, ToastrService, ToastRef } from 'ngx-toastr';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('NotificationWrapperComponent', () => {
   let component: NotificationWrapperComponent;
@@ -31,7 +31,7 @@ describe('NotificationWrapperComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule],
+      imports: [NoopAnimationsModule],
       providers: [
         { provide: ToastPackage, useValue: MockToastPackage },
         { provide: ToastrService, useExisting: MockToastrService },
@@ -48,25 +48,27 @@ describe('NotificationWrapperComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should render <spy-notification>', async () => {
+  it('should render <spy-notification-view>', async () => {
     const notificationElem = fixture.debugElement.query(
-      By.css('spy-notification'),
+      By.css('spy-notification-view'),
     );
+
+    console.log(fixture.nativeElement.innerHTML);
 
     expect(notificationElem).toBeTruthy();
   });
 
-  it('should bind toastPackage.toastType to type of <spy-notification>', async () => {
+  it('should bind toastPackage.toastType to type of <spy-notification-view>', async () => {
     const notificationElem = fixture.debugElement.query(
-      By.css('spy-notification'),
+      By.css('spy-notification-view'),
     );
 
     expect(notificationElem.properties.type).toBe(mockedType);
   });
 
-  it('should bind toastPackage.closeButton to closeable of <spy-notification>', async () => {
+  it('should bind toastPackage.closeButton to closeable of <spy-notification-view>', async () => {
     const notificationElem = fixture.debugElement.query(
-      By.css('spy-notification'),
+      By.css('spy-notification-view'),
     );
 
     expect(notificationElem.properties.closeable).toBe(
@@ -74,10 +76,10 @@ describe('NotificationWrapperComponent', () => {
     );
   });
 
-  it('closed output of <spy-notification> should call toastrService.remove', async () => {
+  it('closed output of <spy-notification-view> should call toastrService.remove', async () => {
     const mockToastrService = TestBed.inject(MockToastrService);
     const notificationElem = fixture.debugElement.query(
-      By.css('spy-notification'),
+      By.css('spy-notification-view'),
     );
 
     notificationElem.triggerEventHandler('closed', {});

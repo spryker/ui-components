@@ -11,6 +11,7 @@ export interface NotificationConfig {
     | 'bottomFullWidth';
   easing?: string;
   easeTime?: number;
+  disableTimeOut?: boolean;
 }
 
 export interface NotificationGlobalConfig extends NotificationConfig {
@@ -18,7 +19,7 @@ export interface NotificationGlobalConfig extends NotificationConfig {
   newestOnTop?: boolean;
 }
 
-export enum NotificationDataType {
+export enum NotificationType {
   Info = 'info',
   Error = 'error',
   Warning = 'warning',
@@ -26,7 +27,7 @@ export enum NotificationDataType {
 }
 
 export interface NotificationData extends NotificationConfig {
-  type?: NotificationDataType;
+  type?: NotificationType;
   title: string;
   description?: string;
   closeable?: boolean;

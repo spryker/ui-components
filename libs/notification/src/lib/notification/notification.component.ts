@@ -1,18 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
-  Output,
-  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { IconRemoveModule } from '@spryker/icon/icons';
-import { ApplyContextsDirective, ToBoolean } from '@spryker/utils';
-import { NzAlertComponent } from 'ng-zorro-antd/alert';
 
-import { NotificationDataType } from '../types';
+import { NotificationInputs } from '../notification-inputs';
+import { NotificationRef } from '../notification-ref';
+import { NotificationService } from '../notification.service';
+import { NotificationConfig } from '../types';
+import { ToJson } from '@spryker/utils';
 
 @Component({
   selector: 'spy-notification',
@@ -23,36 +22,35 @@ import { NotificationDataType } from '../types';
   host: {
     class: 'spy-notification',
   },
-  providers: [ApplyContextsDirective],
 })
-export class NotificationComponent implements OnInit {
-  @Input() type: NotificationDataType = NotificationDataType.Info;
-  @Input() @ToBoolean() closeable = false;
-  @Input() @ToBoolean() floating = false;
+export class NotificationComponent extends NotificationInputs
+  implements OnInit, OnDestroy {
+  @Input() title = '';
+  @Input() description = '';
+  @Input() @ToJson() floatingConfig?: NotificationConfig;
 
-  @Output() closed = new EventEmitter<void>();
+  private notificationRef?: NotificationRef;
 
-  @ViewChild(NzAlertComponent) nzAlertComponent?: NzAlertComponent;
-
-  removeIcon = IconRemoveModule.icon;
-
-  constructor(private applyContextsDirective: ApplyContextsDirective) {}
+  constructor(public notificationService: NotificationService) {
+    super();
+  }
 
   ngOnInit(): void {
-    this.applyContextsDirective.ngOnInit();
-  }
+    const floating = this.floating;
+    const data = {
+      ...this.floatingConfig,
+      description: this.description,
+      type: this.type,
+      title: this.title,
+      closeable: this.closeable,
+    };
 
-  onCloseHandler(event: Event) {
-    if (this.floating) {
-      event.stopPropagation();
+    if (floating) {
+      this.notificationRef = this.notificationService.show(data);
     }
-
-    this.closed.emit();
   }
 
-  close(): boolean {
-    this.nzAlertComponent?.closeAlert();
-
-    return this.closeable;
+  ngOnDestroy(): void {
+    this.notificationRef?.close();
   }
 }

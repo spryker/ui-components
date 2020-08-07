@@ -11,7 +11,9 @@ import {
   HostBinding,
   ViewEncapsulation,
 } from '@angular/core';
-import { Toast, ToastPackage, ToastrService } from 'ngx-toastr';
+import { Toast } from 'ngx-toastr';
+
+import { NotificationRef } from '../notification-ref';
 
 @Component({
   selector: 'spy-notification-wrapper',
@@ -62,14 +64,9 @@ export class NotificationWrapperComponent extends Toast {
     params: this.toastPackage.config,
   };
 
-  constructor(
-    toastPackage: ToastPackage,
-    protected toastrService: ToastrService,
-  ) {
-    super(toastrService, toastPackage);
-  }
+  notificationRef?: NotificationRef;
 
   closeHandler(): void {
-    this.toastrService.remove(this.toastPackage.toastId);
+    this.toastPackage.toastRef.close();
   }
 }

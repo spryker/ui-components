@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { NotificationData, NotificationType } from './types';
-import { ToastrService, IndividualConfig } from 'ngx-toastr';
+import { ActiveToast, IndividualConfig, ToastrService } from 'ngx-toastr';
+
 import { NotificationRef } from './notification-ref';
+import { NotificationWrapperComponent } from './notification-wrapper/notification-wrapper.component';
+import { NotificationData, NotificationType } from './types';
 import { mapDataToConfig } from './util';
 
 @Injectable({
@@ -12,6 +14,7 @@ export class NotificationService {
 
   show(data: NotificationData): NotificationRef {
     let individualConfig: Partial<IndividualConfig> = {
+      toastComponent: NotificationWrapperComponent,
       easeTime: 300,
       easing: 'ease-in',
       positionClass: 'topRight',
@@ -26,16 +29,16 @@ export class NotificationService {
       data.closeable ?? individualConfig.closeButton;
     individualConfig = mapDataToConfig(data, individualConfig);
 
-    const notificationRef = new NotificationRef(
-      this.toastrService.show(
-        data.description,
-        data.title,
-        individualConfig,
-        type,
-      ),
-      this.toastrService,
-    );
+    const activeToast = this.toastrService.show(
+      data.description,
+      data.title,
+      individualConfig,
+      type,
+    ) as ActiveToast<NotificationWrapperComponent>;
 
+    const notificationRef = new NotificationRef(activeToast);
+
+    activeToast.portal.instance.notificationRef = notificationRef;
     return notificationRef;
   }
 

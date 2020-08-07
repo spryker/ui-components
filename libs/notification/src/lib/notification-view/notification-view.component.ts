@@ -1,18 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
   OnInit,
-  Output,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { IconRemoveModule } from '@spryker/icon/icons';
-import { ApplyContextsDirective, ToBoolean } from '@spryker/utils';
+import { ApplyContextsDirective } from '@spryker/utils';
 import { NzAlertComponent } from 'ng-zorro-antd/alert';
 
-import { NotificationType } from '../types';
 import { NotificationInputs } from '../notification-inputs';
 
 @Component({

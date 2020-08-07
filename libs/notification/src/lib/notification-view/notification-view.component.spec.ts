@@ -140,12 +140,13 @@ describe('NotificationViewComponent', () => {
       component.closeable = true;
       fixture.detectChanges();
 
+      const event = new Event('click');
       const closeBtn = fixture.debugElement.query(
         By.css('.ant-alert-close-icon spy-icon'),
       );
       expect(closeBtn).toBeTruthy();
 
-      closeBtn.triggerEventHandler('click', null);
+      closeBtn.triggerEventHandler('click', event);
 
       fixture.detectChanges();
 

@@ -1,9 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { NotificationWrapperComponent } from './notification-wrapper.component';
-import { ToastPackage, ToastrService, ToastRef } from 'ngx-toastr';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastPackage, ToastRef, ToastrService } from 'ngx-toastr';
+
+import { NotificationWrapperComponent } from './notification-wrapper.component';
 
 describe('NotificationWrapperComponent', () => {
   let component: NotificationWrapperComponent;

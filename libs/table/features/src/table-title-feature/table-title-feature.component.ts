@@ -26,8 +26,5 @@ export class TableTitleFeatureComponent extends TableFeatureComponent<
   name = 'title';
   tableFeatureLocation = TableFeatureLocation;
 
-  title$ = this.config$.pipe(
-    pluck('title'),
-    map(title => title ?? ''),
-  );
+  title$ = this.config$.pipe(pluck('title'));
 }

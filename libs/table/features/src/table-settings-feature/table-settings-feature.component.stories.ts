@@ -30,7 +30,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const viaHtml = getTotalStory(
+export const viaHtml = getSettingsStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
         <spy-table-settings-feature spy-table-feature>
@@ -40,7 +40,21 @@ export const viaHtml = getTotalStory(
   [TableSettingsFeatureModule, TableTotalFeatureModule],
 );
 
-function getTotalStory(
+export const viaConfig = getSettingsStory(
+  `
+    <spy-table [config]="config" [mockHttp]="mockHttp">
+  `,
+  [
+    TableModule.withFeatures({
+      search: () =>
+        import('./table-settings-feature.module').then(
+          m => m.TableSettingsFeatureModule,
+        ),
+    }),
+  ],
+);
+
+function getSettingsStory(
   template: string,
   extraNgModules: any[] = [],
 ): () => IStory {

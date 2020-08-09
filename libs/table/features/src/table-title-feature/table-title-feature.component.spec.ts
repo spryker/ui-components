@@ -40,8 +40,9 @@ describe('TableTitleFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
+  const tableTitle = 'Table Title';
 
-  const spanSelector = 'span';
+  const spanSelector = '.spy-table-title-feature';
 
   function querySpan(): DebugElement {
     return fixture.debugElement.query(By.css(spanSelector));
@@ -75,7 +76,7 @@ describe('TableTitleFeatureComponent', () => {
           useValue: {
             config: {
               enabled: true,
-              title: 'Table Title',
+              title: tableTitle,
             },
           },
         },
@@ -107,9 +108,8 @@ describe('TableTitleFeatureComponent', () => {
 
   it('should render `span` with table title', fakeAsync(() => {
     fixture.detectChanges();
-    const expectedValue = 'Table Title';
 
     const spanPlaceholder = querySpan().nativeElement.innerHTML;
-    expect(spanPlaceholder).toBe(expectedValue);
+    expect(spanPlaceholder).toBe(tableTitle);
   }));
 });

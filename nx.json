@@ -130,6 +130,9 @@
     },
     "link": {
       "tags": ["level:atom", "type:component"]
+    },
+    "modal": {
+      "tags": ["level:molecule", "type:component-service"]
     }
   },
   "tasksRunnerOptions": {

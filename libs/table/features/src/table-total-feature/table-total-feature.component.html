@@ -2,11 +2,14 @@
   *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { order: '1' }"
 >
   <ng-container *ngIf="data$ | async | pluck: 'length'">
-    <span *ngIf="isDataResolved$ | async" class="table-total-feature">
-      <ng-container *ngIf="selected$ | async as selected">
-        {{ 'table.selected:number' | spyI18n: { number: selected } | async }} /
-      </ng-container>
-      {{ 'table.total:number' | spyI18n: { number: total$ | async } | async }}
+    <span *ngIf="isDataResolved$ | async" class="spy-table-total-feature">
+      <spy-chips color="grey" maxWidth="200px">
+        <ng-container *ngIf="selected$ | async as selected">
+          {{ 'table.selected:number' | spyI18n: { number: selected } | async }}
+          /
+        </ng-container>
+        {{ 'table.total:number' | spyI18n: { number: total$ | async } | async }}
+      </spy-chips>
     </span>
   </ng-container>
 </ng-container>

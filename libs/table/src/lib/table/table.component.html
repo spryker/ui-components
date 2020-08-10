@@ -46,7 +46,9 @@
           let-feature
         >
           <th [ngStyle]="feature.featureStyles$ | async">
-            <ng-template [spyTableRenderFeature]="feature"></ng-template>
+            <div class="ant-table-column-inner">
+              <ng-template [spyTableRenderFeature]="feature"></ng-template>
+            </div>
           </th>
         </ng-template>
 
@@ -61,7 +63,9 @@
           "
           [nzWidth]="column.width"
         >
-          {{ column.title }}
+          <div class="ant-table-column-inner">
+            {{ column.title }}
+          </div>
         </th>
 
         <ng-template
@@ -70,7 +74,9 @@
           let-feature
         >
           <th [ngStyle]="feature.featureStyles$ | async">
-            <ng-template [spyTableRenderFeature]="feature"></ng-template>
+            <div class="ant-table-column-inner">
+              <ng-template [spyTableRenderFeature]="feature"></ng-template>
+            </div>
           </th>
         </ng-template>
 

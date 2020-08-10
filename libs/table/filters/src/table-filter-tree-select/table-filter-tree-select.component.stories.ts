@@ -106,7 +106,16 @@ function getFiltersStory(
                 multiselect: true,
                 values: [
                   { value: 1, title: 'Option_1' },
-                  { value: 2, title: 'Option_2' },
+                  {
+                    value: 2,
+                    title: 'Option_2',
+                    children: [
+                      { value: 9, title: 'Option_9' },
+                      { value: 10, title: 'Option_10' },
+                      { value: 11, title: 'Option_11' },
+                      { value: 12, title: 'Option_12' },
+                    ],
+                  },
                   { value: 3, title: 'Option_3' },
                   { value: 4, title: 'Option_4' },
                   { value: 5, title: 'Option_5' },

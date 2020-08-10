@@ -1,27 +1,20 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { IStory } from '@storybook/angular';
 import { TableModule } from '@spryker/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableTitleFeatureModule } from './table-title-feature.module';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
-import { IStory } from '@storybook/angular';
-
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
-import { LocaleModule } from '@spryker/locale';
-import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { TableSettingsFeatureModule } from './table-settings-feature.module';
-import { TableTotalFeatureModule } from '@spryker/table/features';
-import { CheckboxModule } from '@spryker/checkbox';
-import { IconModule } from '@spryker/icon';
-import { IconDragModule } from '@spryker/icon/icons';
 
 export default {
-  title: 'TableSettingsFeature',
+  title: 'TableTitleFeatureComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
@@ -30,31 +23,30 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col3: 'col3',
 });
 
-export const viaHtml = getSettingsStory(
+export const viaHtml = getTitleStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
-        <spy-table-settings-feature spy-table-feature>
-        </spy-table-settings-feature>
+      <spy-table-title-feature spy-table-feature></spy-table-title-feature>
     </spy-table>
   `,
-  [TableSettingsFeatureModule, TableTotalFeatureModule],
+  [TableTitleFeatureModule],
 );
 
-export const viaConfig = getSettingsStory(
+export const viaConfig = getTitleStory(
   `
     <spy-table [config]="config" [mockHttp]="mockHttp">
   `,
   [
     TableModule.withFeatures({
       search: () =>
-        import('./table-settings-feature.module').then(
-          m => m.TableSettingsFeatureModule,
+        import('./table-title-feature.module').then(
+          m => m.TableTitleFeatureModule,
         ),
     }),
   ],
 );
 
-function getSettingsStory(
+function getTitleStory(
   template: string,
   extraNgModules: any[] = [],
 ): () => IStory {
@@ -68,14 +60,7 @@ function getSettingsStory(
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
         }),
-        TableTotalFeatureModule,
-        TableSettingsFeatureModule,
-        LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-        EnLocaleModule,
         DefaultContextSerializationModule,
-        CheckboxModule,
-        IconModule,
-        IconDragModule,
         ...extraNgModules,
       ],
       providers: [
@@ -94,12 +79,13 @@ function getSettingsStory(
           url: '/data-request',
         },
         columns: [
-          { id: 'col1', title: 'Column #1', hideable: true },
-          { id: 'col2', title: 'Column #2', hideable: true },
-          { id: 'col3', title: 'Column #3', hideable: true },
+          { id: 'col1', title: 'Column #1' },
+          { id: 'col2', title: 'Column #2' },
+          { id: 'col3', title: 'Column #3' },
         ],
-        setting: {
+        title: {
           enabled: true, // This will enable feature via config
+          title: 'Table title',
         },
       },
       mockHttp: setMockHttp([

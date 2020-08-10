@@ -37,7 +37,7 @@ describe('TableTotalFeatureComponent', () => {
   let mockData: TableData;
   let service: I18nTestService;
 
-  const totalContainer = '.table-total-feature';
+  const totalContainer = '.spy-table-total-feature';
 
   function queryTotal(): DebugElement {
     return fixture.debugElement.query(By.css(totalContainer));

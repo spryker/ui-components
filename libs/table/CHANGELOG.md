@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.5...@spryker/table@0.2.0-next.6) (2020-08-10)
+
+
+### Features
+
+* **table-tile:** added title to table ([de132dc](https://github.com/spryker/ui-components/commit/de132dcb5797e99863647d660725ffd169cbc42e))
+* **table-title:** fixed storybook and tests ([f043036](https://github.com/spryker/ui-components/commit/f043036a28c912ebda1322046daef46bb0d0ae62))
+
+
+
+
+
 # [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.4...@spryker/table@0.2.0-next.5) (2020-08-05)
 
 

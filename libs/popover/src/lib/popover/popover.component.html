@@ -3,7 +3,7 @@
   [nzPopoverPlacement]="position"
   [nzPopoverVisible]="open"
   [nzPopoverContent]="content"
-  nzPopoverTrigger="click"
+  [nzPopoverTrigger]="popoverTrigger"
   (nzPopoverVisibleChange)="openChangeEvent($event)"
 >
   <ng-content select="[trigger]"></ng-content>

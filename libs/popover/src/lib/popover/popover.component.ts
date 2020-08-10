@@ -25,6 +25,12 @@ export enum PopoverPosition {
   LeftBottom = 'leftBottom',
 }
 
+export enum PopoverTrigger {
+  Click = 'click',
+  Hover = 'hover',
+  Focus = 'focus',
+}
+
 @Component({
   selector: 'spy-popover',
   templateUrl: './popover.component.html',
@@ -37,6 +43,7 @@ export enum PopoverPosition {
 })
 export class PopoverComponent {
   @Input() open = false;
+  @Input() popoverTrigger = PopoverTrigger.Click;
   @Input() position?: PopoverPosition = PopoverPosition.Bottom;
   @Output() openChange = new EventEmitter<boolean>();
 

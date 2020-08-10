@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.6...@spryker/table@0.2.0-next.7) (2020-08-10)
+
+
+### Features
+
+* **table-total:** total number in chip ([c2be70b](https://github.com/spryker/ui-components/commit/c2be70b14e1a78c192e1a502c42a8ee1520b27b3))
+
+
+
+
+
 # [0.2.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.5...@spryker/table@0.2.0-next.6) (2020-08-10)
 
 

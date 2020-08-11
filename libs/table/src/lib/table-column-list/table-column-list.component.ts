@@ -14,7 +14,7 @@ import {
   TableColumnTypeDef,
 } from '../table/table';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
-import { PopoverPosition } from '@spryker/popover';
+import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
 
 declare module '../table/table' {
   interface TableColumnTypeRegistry {
@@ -54,6 +54,7 @@ export class TableColumnListComponent
   valuesLimited: unknown[] = [];
   configs: TableColumn[] = [];
   popoverPosition = PopoverPosition.RightTop;
+  popoverTrigger = PopoverTrigger.Focus;
 
   ngOnInit(): void {
     this.updateValues();

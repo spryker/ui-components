@@ -7,6 +7,7 @@
   <spy-popover
     *ngIf="valuesLimited.length < values.length"
     [position]="popoverPosition"
+    [popoverTrigger]="popoverTrigger"
   >
     <span trigger class="spy-table-column-list__trigger"
       >({{ values.length }})</span

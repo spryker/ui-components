@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.8...@spryker/table@0.2.0-next.9) (2020-08-12)
+
+
+### Bug Fixes
+
+* **popover:** fixed hardcode value ([c28ce6e](https://github.com/spryker/ui-components/commit/c28ce6ed13ec8aacbe6e1930f13bd76044805b60))
+
+
+
+
+
 # [0.2.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.7...@spryker/table@0.2.0-next.8) (2020-08-12)
 
 **Note:** Version bump only for package @spryker/table

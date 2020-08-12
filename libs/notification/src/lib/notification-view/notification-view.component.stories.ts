@@ -56,7 +56,7 @@ export const inGrayBackground = () => ({
             <span description>Description...</span>
           </spy-notification-view>
         </div>
-    </div>
+      </div>
     </div>
   `,
 });

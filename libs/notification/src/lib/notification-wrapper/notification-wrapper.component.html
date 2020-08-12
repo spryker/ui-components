@@ -5,7 +5,20 @@
     (closed)="closeHandler()"
     [floating]="true"
   >
-    <span title>{{ title }}</span>
-    <span description>{{ message }}</span>
+    <span *ngIf="isString(title)" title>{{ title }}</span>
+    <ng-container
+      *ngIf="!isString(title)"
+      title
+      [ngTemplateOutlet]="title"
+      [ngTemplateOutletContext]="{ $implicit: notificationRef }"
+    ></ng-container>
+
+    <span *ngIf="isString(message)" description>{{ message }} </span>
+    <ng-container
+      *ngIf="!isString(message)"
+      description
+      [ngTemplateOutlet]="message"
+      [ngTemplateOutletContext]="{ $implicit: notificationRef }"
+    ></ng-container>
   </spy-notification-view>
 </span>

@@ -1,3 +1,7 @@
+import { Observable } from 'rxjs';
+import { TemplateRef } from '@angular/core';
+import { NotificationRef } from './notification-ref';
+
 export interface NotificationConfig {
   timeOut?: number;
   position?:
@@ -19,6 +23,10 @@ export interface NotificationGlobalConfig extends NotificationConfig {
   newestOnTop?: boolean;
 }
 
+export interface NotificationContext {
+  $implicit: NotificationRef;
+}
+
 export enum NotificationType {
   Info = 'info',
   Error = 'error',
@@ -28,7 +36,7 @@ export enum NotificationType {
 
 export interface NotificationData extends NotificationConfig {
   type?: NotificationType;
-  title: string;
-  description?: string;
+  title: string | TemplateRef<NotificationContext>;
+  description?: string | TemplateRef<NotificationContext>;
   closeable?: boolean;
 }

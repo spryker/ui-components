@@ -6,33 +6,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationService } from '../notification.service';
 import { NotificationComponent } from './notification.component';
 
-@Component({
-  selector: 'spy-test-component',
-  template: `
-    <spy-notification
-      [type]="type"
-      [closeable]="closeable"
-      [title]="title"
-      [description]="description"
-      [floating]="floating"
-      (closed)="closed()"
-      [floatingConfig]="floatingConfig"
-    ></spy-notification>
-  `,
-})
-class TestComponent {
-  type: any;
-  closeable: any;
-  closed = jest.fn();
-  title: any;
-  description: any;
-  floating: any;
-  floatingConfig: any;
-
-  @ViewChild(NotificationComponent)
-  notification!: NotificationComponent;
-}
-
 describe('NotificationWrapperComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
@@ -42,6 +15,32 @@ describe('NotificationWrapperComponent', () => {
   const mockedConfig = { position: 'topLeft' };
   const mockedTitle = 'mockedTitle';
   const mockedDescription = 'mockedDescription';
+
+  @Component({
+    selector: 'spy-test-component',
+    template: `
+      <spy-notification
+        [type]="type"
+        [closeable]="closeable"
+        [floating]="floating"
+        (closed)="closed()"
+        [floatingConfig]="floatingConfig"
+      >
+        <span title>{{ mockedTitle }}</span>
+        <span description>{{ mockedDescription }}</span>
+      </spy-notification>
+    `,
+  })
+  class TestComponent {
+    type: any;
+    closeable: any;
+    closed = jest.fn();
+    floating: any;
+    floatingConfig: any;
+
+    @ViewChild(NotificationComponent)
+    notification!: NotificationComponent;
+  }
 
   class MockNotificationService {
     show = jest.fn();
@@ -69,7 +68,7 @@ describe('NotificationWrapperComponent', () => {
   });
 
   describe('NonFloating', () => {
-    it('should render <spy-notification-view>', async () => {
+    it('should render <spy-notification-view>', () => {
       fixture.detectChanges();
 
       const notificationElem = fixture.debugElement.query(
@@ -79,7 +78,7 @@ describe('NotificationWrapperComponent', () => {
       expect(notificationElem).toBeTruthy();
     });
 
-    it('should bound `@Input(type)` to the input `type` of <spy-notification-view> component', async () => {
+    it('should bound `@Input(type)` to the input `type` of <spy-notification-view> component', () => {
       component.type = mockedType;
       fixture.detectChanges();
 
@@ -90,7 +89,7 @@ describe('NotificationWrapperComponent', () => {
       expect(notificationElem.properties.type).toBe(mockedType);
     });
 
-    it('should bound `@Input(closeable)` to the input `closeable` of <spy-notification-view> component', async () => {
+    it('should bound `@Input(closeable)` to the input `closeable` of <spy-notification-view> component', () => {
       component.closeable = mockedClosable;
       fixture.detectChanges();
 
@@ -101,8 +100,7 @@ describe('NotificationWrapperComponent', () => {
       expect(notificationElem.properties.closeable).toBe(mockedClosable);
     });
 
-    it('should render `@Input(title)` in the <spy-notification-view> component', async () => {
-      component.title = mockedTitle;
+    it('should render `title` in the <spy-notification-view> component', () => {
       fixture.detectChanges();
 
       const notificationElem = fixture.debugElement.query(
@@ -112,8 +110,7 @@ describe('NotificationWrapperComponent', () => {
       expect(notificationElem.nativeElement.textContent).toContain(mockedTitle);
     });
 
-    it('should render `@Input(description)` in the <spy-notification-view> component', async () => {
-      component.description = mockedDescription;
+    it('should render `@Input(description)` in the <spy-notification-view> component', () => {
       fixture.detectChanges();
 
       const notificationElem = fixture.debugElement.query(
@@ -125,7 +122,7 @@ describe('NotificationWrapperComponent', () => {
       );
     });
 
-    it('should trigger `closed` callback when `closed` from <spy-notification-view> was triggered', async () => {
+    it('should trigger `closed` callback when `closed` from <spy-notification-view> was triggered', () => {
       fixture.detectChanges();
 
       const notificationElem = fixture.debugElement.query(
@@ -139,7 +136,7 @@ describe('NotificationWrapperComponent', () => {
   });
 
   describe('Floating', () => {
-    it('should call `NotificationService.show` with appropriate data if `floating` is `true` and does not render <spy-notification-view>', async () => {
+    it('should call `NotificationService.show` with appropriate data if `floating` is `true` and does not render <spy-notification-view>', () => {
       const data = {
         ...mockedConfig,
         description: mockedDescription,
@@ -151,8 +148,6 @@ describe('NotificationWrapperComponent', () => {
       component.floating = true;
       component.type = mockedType;
       component.closeable = mockedClosable;
-      component.title = mockedTitle;
-      component.description = mockedDescription;
       component.floatingConfig = mockedConfig;
       fixture.detectChanges();
 

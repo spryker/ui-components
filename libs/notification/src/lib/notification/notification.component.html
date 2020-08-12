@@ -4,6 +4,14 @@
   (closed)="closed.emit()"
   *ngIf="!floating"
 >
-  <span title>{{ title }}</span>
-  <span description>{{ description }}</span>
+  <span #titleHolder title></span>
+  <span #descriptionHolder description></span>
 </spy-notification-view>
+
+<div #descriptionElem style="display: none;">
+  <ng-content select="[description]"></ng-content>
+</div>
+
+<div #titleElem style="display: none;">
+  <ng-content select="[title]"></ng-content>
+</div>

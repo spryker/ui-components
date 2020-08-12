@@ -30,8 +30,8 @@ export class NotificationService {
     individualConfig = mapDataToConfig(data, individualConfig);
 
     const activeToast = this.toastrService.show(
-      data.description,
-      data.title,
+      data.description as any,
+      data.title as any,
       individualConfig,
       type,
     ) as ActiveToast<NotificationWrapperComponent>;

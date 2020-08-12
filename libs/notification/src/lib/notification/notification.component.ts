@@ -1,13 +1,18 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
+  ElementRef,
   Input,
   OnDestroy,
-  OnInit,
+  Renderer2,
+  TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { NotificationInputs } from '../notification-inputs';
 import { NotificationRef } from '../notification-ref';
@@ -26,43 +31,74 @@ import { NotificationConfig } from '../types';
   },
 })
 export class NotificationComponent extends NotificationInputs
-  implements OnInit, OnDestroy {
-  @Input() title = '';
-  @Input() description = '';
+  implements OnDestroy {
   @Input() @ToJson() floatingConfig?: NotificationConfig;
 
   @ViewChild(NotificationViewComponent)
   notificationViewComponent?: NotificationViewComponent;
+  @ViewChild('titleHolder')
+  titleHolder?: ElementRef<HTMLElement>;
+  @ViewChild('descriptionHolder')
+  descriptionHolder?: ElementRef<HTMLElement>;
+  @ContentChild('titleTpl') titleTpl?: TemplateRef<NotificationRef>;
+  @ContentChild('descriptionTpl') descriptionTpl?: TemplateRef<NotificationRef>;
+  @ViewChild('titleElem') titleElem?: ElementRef<HTMLElement>;
+  @ViewChild('descriptionElem') descriptionElem?: ElementRef<HTMLElement>;
 
   private notificationRef?: NotificationRef;
+  private destroyed$ = new Subject<void>();
 
-  constructor(public notificationService: NotificationService) {
+  constructor(
+    public notificationService: NotificationService,
+    private renderer: Renderer2,
+  ) {
     super();
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     const floating = this.floating;
-    const data = {
-      ...this.floatingConfig,
-      description: this.description,
-      type: this.type,
-      title: this.title,
-      closeable: this.closeable,
-    };
+    const descriptionSlot = this.descriptionElem?.nativeElement;
+    const titleSlot = this.titleElem?.nativeElement;
 
     if (floating) {
+      const data = {
+        ...this.floatingConfig,
+        description:
+          (this.descriptionTpl as any) ?? descriptionSlot?.textContent,
+        type: this.type,
+        title: (this.titleTpl as any) ?? titleSlot?.textContent,
+        closeable: this.closeable,
+      };
+
       this.notificationRef = this.notificationService.show(data);
+      this.notificationRef
+        .afterClose()
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe(() => this.closed.emit());
+    }
+
+    if (!floating) {
+      this.renderer.setProperty(
+        this.titleHolder?.nativeElement,
+        'innerHTML',
+        titleSlot?.innerHTML,
+      );
+
+      this.renderer.setProperty(
+        this.descriptionHolder?.nativeElement,
+        'innerHTML',
+        descriptionSlot?.innerHTML,
+      );
     }
   }
 
   ngOnDestroy(): void {
     this.notificationRef?.close();
+    this.destroyed$.next();
   }
 
-  close(): boolean {
+  close(): void {
     this.notificationRef?.close();
     this.notificationViewComponent?.close();
-
-    return this.closeable;
   }
 }

@@ -67,6 +67,10 @@ export class NotificationWrapperComponent extends Toast {
   notificationRef?: NotificationRef;
 
   closeHandler(): void {
-    this.toastPackage.toastRef.close();
+    this.notificationRef?.close();
+  }
+
+  isString(value: any): boolean {
+    return typeof value === 'string';
   }
 }

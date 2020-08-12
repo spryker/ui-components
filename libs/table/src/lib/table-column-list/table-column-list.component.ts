@@ -54,7 +54,7 @@ export class TableColumnListComponent
   valuesLimited: unknown[] = [];
   configs: TableColumn[] = [];
   popoverPosition = PopoverPosition.RightTop;
-  popoverTrigger = PopoverTrigger.Focus;
+  popoverTrigger = PopoverTrigger.Hover;
 
   ngOnInit(): void {
     this.updateValues();

@@ -26,6 +26,7 @@ import {
   TableDatasourceService,
   TableColumns,
   TableDataConfig,
+  TableData,
 } from '@spryker/table';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -69,6 +70,7 @@ describe('TableSettingsFeatureComponent', () => {
   let testLocaleService: I18nTestService;
   let httpTestingController: HttpTestingController;
   let columnsObs$: Observable<TableColumns>;
+  let mockData: TableData;
 
   const columns: TableSettingsColumn[] = [
     { id: 'col1', title: 'Column #1', hideable: true },
@@ -186,7 +188,19 @@ describe('TableSettingsFeatureComponent', () => {
       columns as any,
     );
 
+    mockData = {
+      data: [{}],
+      page: 0,
+      pageSize: 0,
+      total: 10,
+    };
+
     testLocalStoragePersistenceStrategy.retrieveSubject$.next(null);
+
+    fixture.detectChanges();
+    tick();
+
+    testTableFeature.featureMocks?.table.data$?.next(mockData);
 
     fixture.detectChanges();
   }));

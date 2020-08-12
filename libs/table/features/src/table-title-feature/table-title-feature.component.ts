@@ -5,7 +5,14 @@ import {
 } from '@angular/core';
 import { TableFeatureLocation, TableFeatureComponent } from '@spryker/table';
 import { TableTitleConfig } from './types';
-import { pluck, map } from 'rxjs/operators';
+import {
+  pluck,
+  map,
+  switchMap,
+  shareReplay,
+  mapTo,
+  take,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'spy-table-title-feature',
@@ -27,4 +34,11 @@ export class TableTitleFeatureComponent extends TableFeatureComponent<
   tableFeatureLocation = TableFeatureLocation;
 
   title$ = this.config$.pipe(pluck('title'));
+
+  tableData$ = this.table$.pipe(
+    switchMap(table => table.data$),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+
+  isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
 }

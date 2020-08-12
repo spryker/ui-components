@@ -21,7 +21,16 @@ import {
   TableSettingsColumn,
   TableSettingsColumns,
 } from './types';
-import { switchMap, pluck, tap, withLatestFrom, map } from 'rxjs/operators';
+import {
+  switchMap,
+  pluck,
+  tap,
+  withLatestFrom,
+  map,
+  shareReplay,
+  mapTo,
+  take,
+} from 'rxjs/operators';
 import { ReplaySubject, of, Observable, merge, combineLatest } from 'rxjs';
 import { PersistenceService } from '@spryker/utils';
 import { PopoverPosition } from '@spryker/popover';
@@ -96,6 +105,13 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     map(([columns]) => columns),
   );
 
+  tableData$ = this.table$.pipe(
+    switchMap(table => table.data$),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+
+  isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
+
   constructor(
     private persistenceService: PersistenceService,
     injector: Injector,
@@ -110,7 +126,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
       this.originalColumnsArr = columnsArr as TableSettingsColumns;
 
       this.setInitialColumns$.next(
-        columnsArr.map(column => ({ ...column })) as TableSettingsColumns,
+        this.makeDeepClone(columnsArr) as TableSettingsColumns,
       );
       return this.columns$ as Observable<TableColumns>;
     });
@@ -135,8 +151,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   resetChoice(): void {
     this.isResetDisabled = true;
-    this.setColumns$.next([...this.originalColumnsArr]);
-    this.setPopoverColumns$.next([...this.originalColumnsArr]);
+    this.setColumns$.next(this.makeDeepClone(this.originalColumnsArr));
+    this.setPopoverColumns$.next(this.makeDeepClone(this.originalColumnsArr));
   }
 
   handleCheckChange(
@@ -171,6 +187,10 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
     this.setColumns$.next(tableColumns);
     this.setPopoverColumns$.next(popoverColumns);
+  }
+
+  private makeDeepClone(columns: TableSettingsColumns): TableSettingsColumns {
+    return columns.map(column => ({ ...column }));
   }
 
   private showColumn(

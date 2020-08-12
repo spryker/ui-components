@@ -4,7 +4,7 @@
     styles: { order: '2', flexGrow: 1 }
   "
 >
-  <div>
+  <div *ngIf="isDataResolved$ | async">
     <spy-popover
       class="spy-table-settings-feature-popover"
       [position]="popoverPosition"

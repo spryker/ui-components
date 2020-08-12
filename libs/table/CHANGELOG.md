@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.9...@spryker/table@0.2.0-next.10) (2020-08-12)
+
+
+### Bug Fixes
+
+* **table-settings:** fixed clonning ([58aa2ce](https://github.com/spryker/ui-components/commit/58aa2ce3941468e2421aeeaa2db3ed10c75a716c))
+* **table-settings:** fixed dirrectory usage ([81c6cd2](https://github.com/spryker/ui-components/commit/81c6cd2fde7cb476665962ed81190152165fd2e8))
+* **table-settings:** fixed naming ([87c75b0](https://github.com/spryker/ui-components/commit/87c75b00a015d2c3951457a9dcf077d12061986c))
+* **table-settings:** fixed unit-test ([e7d8143](https://github.com/spryker/ui-components/commit/e7d8143de2fdcb020d1a37ae42a5d9f143e3a85b))
+
+
+
+
+
 # [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.8...@spryker/table@0.2.0-next.9) (2020-08-12)
 
 

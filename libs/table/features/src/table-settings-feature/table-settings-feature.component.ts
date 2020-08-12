@@ -126,7 +126,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
       this.originalColumnsArr = columnsArr as TableSettingsColumns;
 
       this.setInitialColumns$.next(
-        this.makeDeepClone(columnsArr) as TableSettingsColumns,
+        this.cloneColumns(columnsArr) as TableSettingsColumns,
       );
       return this.columns$ as Observable<TableColumns>;
     });
@@ -151,8 +151,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   resetChoice(): void {
     this.isResetDisabled = true;
-    this.setColumns$.next(this.makeDeepClone(this.originalColumnsArr));
-    this.setPopoverColumns$.next(this.makeDeepClone(this.originalColumnsArr));
+    this.setColumns$.next(this.cloneColumns(this.originalColumnsArr));
+    this.setPopoverColumns$.next(this.cloneColumns(this.originalColumnsArr));
   }
 
   handleCheckChange(
@@ -189,7 +189,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     this.setPopoverColumns$.next(popoverColumns);
   }
 
-  private makeDeepClone(columns: TableSettingsColumns): TableSettingsColumns {
+  private cloneColumns(columns: TableSettingsColumns): TableSettingsColumns {
     return columns.map(column => ({ ...column }));
   }
 

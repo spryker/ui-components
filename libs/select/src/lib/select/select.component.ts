@@ -15,16 +15,12 @@ import {
   IconRemoveModule,
 } from '@spryker/icon/icons';
 import { ToBoolean, ToJson } from '@spryker/utils';
-
-export type SelectValue = string | number;
-export type SelectValueSelected = SelectValue | SelectValue[];
-export type SelectOption = SelectValue | SelectOptionItem;
-
-export interface SelectOptionItem {
-  label: string;
-  value: SelectValue;
-  isDisabled?: boolean;
-}
+import {
+  SelectOption,
+  SelectValueSelected,
+  SelectValue,
+  SelectOptionItem,
+} from './types';
 
 @Component({
   selector: 'spy-select',
@@ -56,6 +52,7 @@ export class SelectComponent implements OnInit, OnChanges {
   mappedOptions: SelectOptionItem[] = [];
   mappedValue?: SelectValueSelected;
   selectAllValue = 'select-all';
+  selectedList: string[] = [];
 
   ngOnInit() {
     this.updateOptions();
@@ -74,15 +71,26 @@ export class SelectComponent implements OnInit, OnChanges {
       value = this.getValueArrayForSelectAllAction(value);
     }
 
+    this.updateTitlesArrayForSelectedValues(value);
     this.mappedValue = value;
     this.valueChange.emit(value);
+  }
+
+  private updateTitlesArrayForSelectedValues(
+    value: SelectValue | SelectValue[],
+  ): void {
+    if (Array.isArray(value)) {
+      this.selectedList = this.mappedOptions
+        .filter(option => value.includes(option.value))
+        .map(selectOption => selectOption.title);
+    }
   }
 
   private updateOptions(): void {
     this.mappedOptions =
       this.options?.map(option =>
         typeof option !== 'object'
-          ? ({ value: option, label: option } as SelectOptionItem)
+          ? ({ value: option, title: option } as SelectOptionItem)
           : option,
       ) ?? [];
 

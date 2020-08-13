@@ -34,7 +34,7 @@ export default {
 const tableDataGenerator: TableDataMockGenerator = i => ({
   col1: `col1 #${i}`,
   col2: 'col2',
-  col3: 'col3',
+  col3: ['col3', 'col3', 'col3'],
   col4: ['col4', 'col3', 'col2', 'col1'],
 });
 
@@ -109,13 +109,17 @@ export const withFeatures = (): IStory => ({
         {
           id: 'col3',
           title: 'Column #3',
-          type: 'test',
+          type: 'list',
           typeOptions: {
-            text: '${value}',
-          },
-          typeOptionsMappings: {
-            text: { col3: 'Active', false: 'Inactive' },
-            color: { col3: 'green' },
+            limit: 0,
+            type: 'test',
+            typeOptions: {
+              text: '${value}',
+            },
+            typeOptionsMappings: {
+              text: { col3: 'Active', false: 'Inactive' },
+              color: { col3: 'green' },
+            },
           },
         },
         {
@@ -123,7 +127,7 @@ export const withFeatures = (): IStory => ({
           title: 'Column #4',
           type: 'list',
           typeOptions: {
-            limit: 2,
+            limit: 1,
             type: 'test',
             typeOptions: {
               text: '${value} in ${row.col1}',

@@ -64,10 +64,7 @@ export class NotificationWrapperComponent extends Toast {
     params: this.toastPackage.config,
   };
 
-  constructor(
-    protected toastrService: ToastrService,
-    toastPackage: ToastPackage,
-  ) {
+  constructor(toastrService: ToastrService, toastPackage: ToastPackage) {
     super(toastrService, toastPackage);
   }
 

@@ -1,18 +1,10 @@
-import { Component, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { Subject } from 'rxjs';
 
 import { NotificationService } from '../notification.service';
 import { NotificationComponent } from './notification.component';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { Subject, EMPTY } from 'rxjs';
 
 describe('NotificationWrapperComponent', () => {
   let notificationService: MockNotificationService;

@@ -11,7 +11,7 @@ import {
   HostBinding,
   ViewEncapsulation,
 } from '@angular/core';
-import { Toast } from 'ngx-toastr';
+import { Toast, ToastPackage, ToastrService } from 'ngx-toastr';
 
 import { NotificationRef } from '../notification-ref';
 
@@ -63,6 +63,13 @@ export class NotificationWrapperComponent extends Toast {
     value: 'inactive',
     params: this.toastPackage.config,
   };
+
+  constructor(
+    protected toastrService: ToastrService,
+    public toastPackage: ToastPackage,
+  ) {
+    super(toastrService, toastPackage);
+  }
 
   notificationRef?: NotificationRef;
 

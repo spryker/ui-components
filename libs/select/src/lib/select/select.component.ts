@@ -71,29 +71,19 @@ export class SelectComponent implements OnInit, OnChanges {
       value = this.getValueArrayForSelectAllAction(value);
     }
 
-    this.getTitlesArrayForSelectedValues(value);
+    this.updateTitlesArrayForSelectedValues(value);
     this.mappedValue = value;
     this.valueChange.emit(value);
   }
 
-  private getTitlesArrayForSelectedValues(
+  private updateTitlesArrayForSelectedValues(
     value: SelectValue | SelectValue[],
-  ): string | string[] {
+  ): void {
     if (Array.isArray(value)) {
-      this.selectedList = [];
-
-      value.forEach(val => {
-        const option = this.mappedOptions.find(opt => opt.value === val);
-
-        if (option) {
-          this.selectedList.push(option.title);
-        }
-      });
-
-      return this.selectedList;
+      this.selectedList = this.mappedOptions
+        .filter(option => value.includes(option.value))
+        .map(selectOption => selectOption.title);
     }
-
-    return value as string;
   }
 
   private updateOptions(): void {

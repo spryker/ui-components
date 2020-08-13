@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.2...@spryker/select@0.2.0-next.3) (2020-08-13)
+
+
+### Bug Fixes
+
+* **select:** fixed array methods usage ([9535c51](https://github.com/spryker/ui-components/commit/9535c51311e35c72cddc3296b0603c7a59050a9a))
+
+
+
+
+
 # [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.1...@spryker/select@0.2.0-next.2) (2020-08-03)
 
 

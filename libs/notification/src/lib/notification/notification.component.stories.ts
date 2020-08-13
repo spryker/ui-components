@@ -32,10 +32,10 @@ export const primary = () => ({
     </spy-notification>
   `,
   props: {
-    type: 'info',
+    type: 'success',
     closeable: true,
     floatingConfig: {
-      timeOut: 3000,
+      timeOut: 2000,
       position: 'topRight',
       easing: 'ease-in',
       easeTime: 300,

@@ -41,6 +41,13 @@ import { NotificationRef } from '../notification-ref';
         }),
       ),
       state(
+        'removed',
+        style({
+          opacity: 0,
+          transform: 'translateX(100%)',
+        }),
+      ),
+      state(
         'active',
         style({
           transform: 'translateX(0)',
@@ -52,8 +59,8 @@ import { NotificationRef } from '../notification-ref';
         'inactive => active',
         animate('{{ easeTime }}ms {{ easing }}'),
       ),
-
       transition('active => void', animate('{{ easeTime }}ms {{ easing }}')),
+      transition('active => removed', animate('{{ easeTime }}ms {{ easing }}')),
     ]),
   ],
 })

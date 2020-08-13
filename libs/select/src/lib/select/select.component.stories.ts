@@ -58,6 +58,20 @@ export const multiSelect = () => ({
   },
 });
 
+export const multiSelectWithoutOptionsMapping = () => ({
+  moduleMetadata: { imports: [StoryModule] },
+  component: SelectComponent,
+  props: {
+    options: [
+      { value: 1, title: 'Option 1' },
+      { value: 2, title: 'Option 2' },
+      { value: 3, title: 'Option 3' },
+    ],
+    placeholder: 'Select option...',
+    multiple: true,
+  },
+});
+
 export const withSearch = () => ({
   moduleMetadata: { imports: [StoryModule] },
   component: SelectComponent,

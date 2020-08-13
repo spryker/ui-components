@@ -5,20 +5,26 @@
     (closed)="closeHandler()"
     [floating]="true"
   >
-    <span *ngIf="isString(title)" title>{{ title }}</span>
-    <ng-container
-      *ngIf="!isString(title)"
-      title
-      [ngTemplateOutlet]="title"
-      [ngTemplateOutletContext]="{ $implicit: notificationRef }"
-    ></ng-container>
+    <ng-container title>
+      <span *ngIf="title | ofType: 'string'; else titleTmpl">{{ title }}</span>
+      <ng-template #titleTmpl>
+        <ng-template
+          [ngTemplateOutlet]="title"
+          [ngTemplateOutletContext]="{ $implicit: notificationRef }"
+        ></ng-template>
+      </ng-template>
+    </ng-container>
 
-    <span *ngIf="isString(message)" description>{{ message }} </span>
-    <ng-container
-      *ngIf="!isString(message)"
-      description
-      [ngTemplateOutlet]="message"
-      [ngTemplateOutletContext]="{ $implicit: notificationRef }"
-    ></ng-container>
+    <ng-container description>
+      <span *ngIf="message | ofType: 'string'; else descriptionTmpl"
+        >{{ message }}
+      </span>
+      <ng-template #descriptionTmpl>
+        <ng-template
+          [ngTemplateOutlet]="message"
+          [ngTemplateOutletContext]="{ $implicit: notificationRef }"
+        ></ng-template>
+      </ng-template>
+    </ng-container>
   </spy-notification-view>
 </span>

@@ -2,10 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ElementRef,
   Input,
   OnDestroy,
-  Renderer2,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
@@ -36,37 +34,31 @@ export class NotificationComponent extends NotificationInputs
 
   @ViewChild(NotificationViewComponent)
   notificationViewComponent?: NotificationViewComponent;
-  @ViewChild('titleHolder')
-  titleHolder?: ElementRef<HTMLElement>;
-  @ViewChild('descriptionHolder')
-  descriptionHolder?: ElementRef<HTMLElement>;
+
   @ContentChild('titleTpl') titleTpl?: TemplateRef<NotificationRef>;
   @ContentChild('descriptionTpl') descriptionTpl?: TemplateRef<NotificationRef>;
-  @ViewChild('titleElem') titleElem?: ElementRef<HTMLElement>;
-  @ViewChild('descriptionElem') descriptionElem?: ElementRef<HTMLElement>;
+  @ViewChild('titleInnerTpl') titleInnerTpl?: TemplateRef<HTMLElement>;
+  @ViewChild('descriptionInnerTpl') descriptionInnerTpl?: TemplateRef<
+    HTMLElement
+  >;
 
   private notificationRef?: NotificationRef;
   private destroyed$ = new Subject<void>();
 
-  constructor(
-    public notificationService: NotificationService,
-    private renderer: Renderer2,
-  ) {
+  constructor(public notificationService: NotificationService) {
     super();
   }
 
   ngAfterViewInit(): void {
     const floating = this.floating;
-    const descriptionSlot = this.descriptionElem?.nativeElement;
-    const titleSlot = this.titleElem?.nativeElement;
 
     if (floating) {
       const data = {
         ...this.floatingConfig,
         description:
-          (this.descriptionTpl as any) ?? descriptionSlot?.textContent,
+          (this.descriptionTpl as any) ?? (this.descriptionInnerTpl as any),
         type: this.type,
-        title: (this.titleTpl as any) ?? titleSlot?.textContent,
+        title: (this.titleTpl as any) ?? (this.titleInnerTpl as any),
         closeable: this.closeable,
       };
 
@@ -75,20 +67,6 @@ export class NotificationComponent extends NotificationInputs
         .afterClose()
         .pipe(takeUntil(this.destroyed$))
         .subscribe(() => this.closed.emit());
-    }
-
-    if (!floating) {
-      this.renderer.setProperty(
-        this.titleHolder?.nativeElement,
-        'innerHTML',
-        titleSlot?.innerHTML,
-      );
-
-      this.renderer.setProperty(
-        this.descriptionHolder?.nativeElement,
-        'innerHTML',
-        descriptionSlot?.innerHTML,
-      );
     }
   }
 

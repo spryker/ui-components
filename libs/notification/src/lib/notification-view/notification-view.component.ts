@@ -46,5 +46,6 @@ export class NotificationViewComponent extends NotificationInputs
 
   close(): void {
     this.nzAlertComponent?.closeAlert();
+    this.closed.emit();
   }
 }

@@ -8,7 +8,7 @@ import {
   IconSuccessModule,
   IconWarningModule,
 } from '@spryker/icon/icons';
-import { ApplyContextsModule } from '@spryker/utils';
+import { ApplyContextsModule, OfTypePipeModule } from '@spryker/utils';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { GlobalConfig, ToastContainerModule, ToastrModule } from 'ngx-toastr';
 
@@ -32,6 +32,7 @@ import { mapDataToConfig } from './util';
     IconRemoveModule,
     ToastrModule,
     ToastContainerModule,
+    OfTypePipeModule,
   ],
   declarations: [
     NotificationComponent,

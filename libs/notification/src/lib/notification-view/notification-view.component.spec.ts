@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
@@ -98,7 +98,7 @@ describe('NotificationViewComponent', () => {
   });
 
   describe('Closeable functionality', () => {
-    xit('should emit closed on alert close', async () => {
+    it('should emit closed on alert close', async () => {
       const host = await createComponent(
         {
           closeable: true,
@@ -115,12 +115,15 @@ describe('NotificationViewComponent', () => {
       expect(host.hostComponent.closed).toHaveBeenCalled();
     });
 
-    // TODO fix unit test
-    xit('should emit closed when method `closed` was executed', async () => {
-      const host = await createComponent({}, true);
+    it('should emit closed when method `closed` was executed', async () => {
+      const host = await createComponent(
+        {
+          closeable: true,
+        },
+        true,
+      );
 
       host.component.close();
-      host.detectChanges();
 
       expect(host.hostComponent.closed).toHaveBeenCalled();
     });

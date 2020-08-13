@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastPackage, ToastRef, ToastrService } from 'ngx-toastr';
+import { OfTypePipeModule } from '@spryker/utils';
 
 import { NotificationWrapperComponent } from './notification-wrapper.component';
 
@@ -26,12 +27,17 @@ describe('NotificationWrapperComponent', () => {
     toastRef: new ToastRef(null as any),
   };
 
+  class MockToastrService {
+    remove = jest.fn();
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule],
+      imports: [NoopAnimationsModule, OfTypePipeModule],
       providers: [
         { provide: ToastPackage, useValue: MockToastPackage },
-        { provide: ToastrService, useValue: 'MockToastrService' },
+        { provide: ToastrService, useExisting: MockToastrService },
+        MockToastrService,
       ],
       declarations: [NotificationWrapperComponent],
       schemas: [NO_ERRORS_SCHEMA],
@@ -41,6 +47,8 @@ describe('NotificationWrapperComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NotificationWrapperComponent);
     component = fixture.componentInstance;
+    component.title = 'title';
+    component.message = 'message';
     fixture.detectChanges();
   });
 

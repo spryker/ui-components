@@ -55,9 +55,9 @@ export class NotificationComponent extends NotificationInputs
     if (floating) {
       const data = {
         ...this.floatingConfig,
-        description: this.descriptionTpl ?? (this.descriptionInnerTpl as any),
+        description: (this.descriptionTpl ?? this.descriptionInnerTpl) as any,
         type: this.type,
-        title: this.titleTpl ?? (this.titleInnerTpl as any),
+        title: (this.titleTpl ?? this.titleInnerTpl) as any,
         closeable: this.closeable,
       };
 

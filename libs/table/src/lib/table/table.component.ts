@@ -12,6 +12,7 @@ import {
   QueryList,
   SimpleChanges,
   TemplateRef,
+  ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
@@ -29,6 +30,7 @@ import {
 } from 'rxjs';
 import {
   catchError,
+  debounceTime,
   distinctUntilChanged,
   map,
   mapTo,
@@ -41,18 +43,23 @@ import {
   tap,
 } from 'rxjs/operators';
 
+import { TableActionsService } from '../table-actions.service';
+import { TableConfigService } from '../table-config/table-config.service';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureLoaderService } from '../table-feature-loader/table-feature-loader.service';
 import { TableFeatureEventBus } from '../table-feature/table-feature-event-bus';
+import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableFeatureDirective } from '../table-feature/table-feature.directive';
 import { TableFeaturesRendererService } from '../table-features-renderer/table-features-renderer.service';
 import { ColTplDirective } from './col-tpl.directive';
 import { TableColumnsResolverService } from './columns-resolver.service';
 import { TableDataConfiguratorService } from './data-configurator.service';
+import { TableDatasourceService } from './datasource.service';
 import {
   SortingCriteria,
   TableColumn,
+  TableColumnContext,
   TableColumnTplContext,
   TableComponent,
   TableConfig,
@@ -62,9 +69,15 @@ import {
   TableRowClickEvent,
 } from './table';
 import { TableEventBus } from './table-event-bus';
-import { TableConfigService } from '../table-config/table-config.service';
-import { TableDatasourceService } from './datasource.service';
-import { TableActionsService } from '../table-actions.service';
+
+export interface TableCellRenderingContext {
+  $implicit: TemplateRef<
+    TableCellRenderingContext & TableColumnContext & TableFeatureTplContext
+  >;
+  context: TableCellRenderingContext &
+    TableColumnContext &
+    TableFeatureTplContext;
+}
 
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   shareReplay({ bufferSize: 1, refCount: true });
@@ -99,6 +112,8 @@ export class CoreTableComponent
    * }
    */
   @Input() events: Record<string, ((data: unknown) => void) | undefined> = {};
+
+  @ViewChild('cellTpl') cellTpl?: TemplateRef<TableColumnContext>;
 
   @ContentChildren(ColTplDirective) set slotTemplates(
     val: QueryList<ColTplDirective>,
@@ -201,6 +216,67 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
+  featureCells$ = this.features$.pipe(
+    switchMap(features =>
+      this.tableFeaturesRendererService.trackFeatureRecords(
+        features,
+        TableFeatureLocation.cell,
+      ),
+    ),
+    startWith([] as never),
+  );
+
+  featureCellTpls$ = this.featureCells$.pipe(
+    map(features => features.map(feature => feature.featureTemplate)),
+  );
+
+  featureCellCtxs$ = this.featureCells$.pipe(
+    switchMap(features =>
+      combineLatest(
+        features.map(feature => feature.featureContext$ ?? of(undefined)),
+      ),
+    ),
+    startWith([] as never),
+    debounceTime(0),
+  );
+
+  featureCellContext$ = combineLatest([
+    this.featureCellTpls$,
+    this.featureCellCtxs$,
+  ]).pipe(
+    debounceTime(0),
+    map(
+      ([templates, contexts]) => (
+        config: TableColumn,
+        row: TableDataRow,
+        i: number,
+      ) => {
+        const cellContext: TableColumnContext = {
+          config,
+          row,
+          i,
+          value: row[config.id],
+        };
+
+        return templates.reduceRight<TableCellRenderingContext>(
+          (prevCtx, template, j) => ({
+            $implicit: template as any,
+            context: {
+              ...cellContext,
+              ...contexts[j],
+              ...prevCtx,
+            },
+          }),
+          {
+            $implicit: this.cellTpl,
+            context: cellContext,
+          } as any,
+        );
+      },
+    ),
+    shareReplaySafe(),
+  );
+
   isLoading$ = merge(
     this.dataConfiguratorService.config$.pipe(mapTo(true)),
     this.data$.pipe(mapTo(false)),
@@ -290,6 +366,7 @@ export class CoreTableComponent
     private featureLoaderService: TableFeatureLoaderService,
     private configService: TableConfigService,
     private datasourceService: TableDatasourceService,
+    private tableFeaturesRendererService: TableFeaturesRendererService,
   ) {}
 
   ngOnInit(): void {

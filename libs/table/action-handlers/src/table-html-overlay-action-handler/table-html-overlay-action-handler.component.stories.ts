@@ -19,6 +19,7 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { DrawerContainerComponent } from '../../../../drawer/src/lib/drawer-container/drawer-container.component';
 import { TableHtmlOverlayActionHandlerComponent } from './table-html-overlay-action-handler.component';
 import { NotificationWrapperComponent } from 'libs/notification/src/lib/notification-wrapper/notification-wrapper.component';
+import { NotificationType } from '@spryker/notification';
 import { TableHtmlOverlayResponse } from './types';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
@@ -90,7 +91,7 @@ const tableResponse = (request: TestRequest): TableHtmlOverlayResponse => ({
     request.request.method === 'POST'
       ? [
           {
-            type: 'info',
+            type: NotificationType.Info,
             message: 'message',
           },
         ]

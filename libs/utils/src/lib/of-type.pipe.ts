@@ -2,11 +2,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'ofType' })
 export class OfTypePipe implements PipeTransform {
-  transform<T, F = never>(
+  transform<T = boolean, F = boolean>(
     value: any,
     type: string,
-    trueCallback: T,
-    falseCallback?: F,
+    trueCallback: T = true as any,
+    falseCallback: F = false as any,
   ): T | F | undefined {
     if (typeof value === type) {
       return trueCallback;

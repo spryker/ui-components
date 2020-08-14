@@ -1,29 +1,20 @@
-<nz-alert
-  [nzType]="type"
-  [nzMessage]="titleTpl"
-  [nzCloseable]="closeable"
-  [nzDescription]="descriptionTpl"
-  [nzCloseText]="closeable ? closeIconTpl : null"
-  (nzOnClose)="closed.emit($event)"
-></nz-alert>
+<spy-notification-view
+  [type]="type"
+  [closeable]="closeable"
+  (closed)="closed.emit()"
+  *ngIf="!floating"
+>
+  <ng-container title *ngTemplateOutlet="titleInnerTpl"></ng-container>
+  <ng-container
+    description
+    *ngTemplateOutlet="descriptionInnerTpl"
+  ></ng-container>
+</spy-notification-view>
 
-<ng-template #titleTpl>
-  <div class="ant-alert__icon-wrapper">
-    <span class="ant-alert__icon ant-alert__icon--{{ type }}">
-      <span class="ant-alert__inner">
-        <spy-icon [name]="type"></spy-icon>
-      </span>
-    </span>
-  </div>
-  <div class="ant-alert__title">
-    <ng-content select="[title]"></ng-content>
-  </div>
-</ng-template>
-
-<ng-template #descriptionTpl>
+<ng-template #descriptionInnerTpl>
   <ng-content select="[description]"></ng-content>
 </ng-template>
 
-<ng-template #closeIconTpl>
-  <spy-icon [name]="removeIcon"></spy-icon>
+<ng-template #titleInnerTpl>
+  <ng-content select="[title]"></ng-content>
 </ng-template>

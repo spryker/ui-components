@@ -1,14 +1,11 @@
-import { ActiveToast, ToastrService } from 'ngx-toastr';
+import { ActiveToast } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
 export class NotificationRef {
-  constructor(
-    private activeToast: ActiveToast<any>,
-    private toastrService: ToastrService,
-  ) {}
+  constructor(private activeToast: ActiveToast<any>) {}
 
   close(): void {
-    this.toastrService.remove(this.activeToast.toastId);
+    this.activeToast.toastRef.close();
   }
 
   afterClose(): Observable<void> {

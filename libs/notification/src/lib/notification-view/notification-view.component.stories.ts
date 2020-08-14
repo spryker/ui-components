@@ -1,60 +1,27 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { NotificationModule } from '../notification.module';
-import { NotificationWrapperComponent } from '../notification-wrapper/notification-wrapper.component';
 import { ApplyContextsModule } from '@spryker/utils';
 
+import { NotificationModule } from '../notification.module';
+
 export default {
-  title: 'NotificationComponent',
+  title: 'NotificationViewComponent',
 };
 
 @NgModule({
-  imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
+  imports: [BrowserAnimationsModule],
   exports: [NotificationModule],
-  entryComponents: [NotificationWrapperComponent],
 })
 class StoryModule {}
 
 export const primary = () => ({
   moduleMetadata: { imports: [StoryModule] },
   template: `
-    <spy-notification
-      [type]="type"
-      [closeable]="closeable"
-      [floatingConfig]="floatingConfig"
-    >
-      <div description style="color: red">  Description...</div>
-      <ng-template #titleTpl>
-       <div style="color: red"> Title Template</div>
-      </ng-template>
-    </spy-notification>
-  `,
-  props: {
-    type: 'success',
-    closeable: true,
-    floatingConfig: {
-      timeOut: 2000,
-      position: 'topRight',
-      easing: 'ease-in',
-      easeTime: 300,
-      disableTimeOut: undefined,
-    },
-  },
-});
-
-export const staticNotification = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
-    <spy-notification
-      [type]="type"
-      [closeable]="closeable"
-      floating="false"
-    >
-      <div description style="color: red">  Description...</div>
-      <div title style="color: green">Title...</div>
-    </spy-notification>
+    <spy-notification-view [type]="type" [closeable]="closeable">
+      <span title>Title...</span>
+      <span description>Description...</span>
+    </spy-notification-view>
   `,
   props: {
     type: select(
@@ -70,10 +37,10 @@ export const inWhiteBackground = () => ({
   moduleMetadata: { imports: [StoryModule, ApplyContextsModule] },
   template: `
     <div spyApplyContexts="spy-bg-white" style="padding: 100px">
-      <spy-notification floating="false">
+      <spy-notification-view>
         <span title>Title...</span>
         <span description>Description...</span>
-      </spy-notification>
+      </spy-notification-view>
     </div>
   `,
 });
@@ -84,10 +51,10 @@ export const inGrayBackground = () => ({
     <div spyApplyContexts="spy-bg-gray">
       <div spyApplyContexts="spy-bg-white">
         <div spyApplyContexts="spy-bg-gray" style="padding: 100px">
-          <spy-notification floating="false">
+          <spy-notification-view>
             <span title>Title...</span>
             <span description>Description...</span>
-          </spy-notification>
+          </spy-notification-view>
         </div>
       </div>
     </div>

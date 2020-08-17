@@ -15,22 +15,23 @@ stages:
 before_script:
   # Configure Git to fetch all branches and fetch master
   - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
-  - git fetch origin master:remotes/origin/master
-  - git fetch origin next:remotes/origin/next
+  - git fetch origin master
+  - git fetch origin next
+  - git checkout $TRAVIS_BRANCH
 jobs:
   include:
     - stage: test-branch
       script:
         - npm run format:check
-        - npm run affected:lint -- --base=remotes/origin/next --parallel
-        - COVERAGE=true npm run affected:test -- --base=remotes/origin/next --parallel
+        - npm run affected:lint -- --base=next --parallel
+        - COVERAGE=true npm run affected:test -- --base=next --parallel
         - npm run build-non-libs
-        - npm run affected:build -- --base=remotes/origin/next --parallel
+        - npm run affected:build -- --base=next --parallel
     - stage: test-next
       script:
         - npm run format:check
-        - npm run affected:lint -- --base=remotes/origin/master --parallel
-        - COVERAGE=true npm run affected:test -- --base=remotes/origin/master --parallel
+        - npm run affected:lint -- --base=master --parallel
+        - COVERAGE=true npm run affected:test -- --base=master --parallel
     - stage: test-master
       script:
         - npm run format:check

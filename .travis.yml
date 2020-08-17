@@ -10,9 +10,9 @@ jobs:
     - stage: test
       script:
         - npm run format:check
-        - npm run lint
-        - COVERAGE=true npm run test:ci
-        - npm run build
+        - npm run affected:lint
+        - COVERAGE=true npm run affected:test
+        - npm run affected:build
       before_deploy:
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git

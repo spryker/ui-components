@@ -12,6 +12,7 @@ before_script:
   - git fetch origin next
   - git branch -tf master origin/master
   - git branch -tf next origin/next
+  - 'echo "Parent branch is: $(tools/scripts/git-parent-branch.sh)"'
 jobs:
   include:
     - stage: test

@@ -5,6 +5,13 @@ cache:
   npm: true
 stages:
   - test
+before_script:
+  # Configure Git to fetch all branches and fetch master
+  - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+  - git fetch origin master
+  - git fetch origin next
+  - git branch -tf master origin/master
+  - git branch -tf next origin/next
 jobs:
   include:
     - stage: test

@@ -67,6 +67,7 @@ import {
   TableDataRow,
   TableFeatureLocation,
   TableRowClickEvent,
+  TableHeaderContext,
 } from './table';
 import { TableEventBus } from './table-event-bus';
 
@@ -106,6 +107,10 @@ export class CoreTableComponent
 
   @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<
     TableColumnContext
+  >;
+
+  @ViewChild('headerTpl', { static: true }) headerTpl!: TemplateRef<
+    TableHeaderContext
   >;
 
   @ContentChildren(ColTplDirective) set slotTemplates(
@@ -207,6 +212,13 @@ export class CoreTableComponent
     map(allFeatures => allFeatures.flat()),
     tap(features => features.forEach(feature => this.initFeature(feature))),
     shareReplaySafe(),
+  );
+
+  featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
+    this.features$,
+    TableFeatureLocation.header,
+    () => this.headerTpl,
+    (config: TableColumn, i: number): TableHeaderContext => ({ config, i }),
   );
 
   featureCellContext$ = this.tableFeaturesRendererService.chainFeatureContexts(

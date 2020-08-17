@@ -38,6 +38,11 @@ export interface TableColumnTypeRegistry {
 
 export type TableColumnType = keyof TableColumnTypeRegistry;
 
+export interface TableHeaderContext {
+  config: TableColumn;
+  i: number;
+}
+
 export interface TableColumnContext {
   value: TableDataValue;
   row: TableDataRow;
@@ -109,11 +114,15 @@ export interface TableComponent {
 export enum TableFeatureLocation {
   top = 'top',
   beforeTable = 'before-table',
+  header = 'header',
   headerExt = 'header-ext',
+  beforeRows = 'before-rows',
   beforeColsHeader = 'before-cols-header',
   beforeCols = 'before-cols',
-  afterColsHeader = 'after-cols-header',
+  cell = 'cell',
   afterCols = 'after-cols',
+  afterColsHeader = 'after-cols-header',
+  afterRows = 'after-rows',
   afterTable = 'after-table',
   bottom = 'bottom',
   hidden = 'hidden',

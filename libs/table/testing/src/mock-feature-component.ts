@@ -49,10 +49,22 @@ import {
       After Cols Header Feature
     </div>
     <div
+      *spyTableFeatureTpl="tableFeatureLocation.header"
+      class="header-feature"
+    >
+      Header Feature
+    </div>
+    <div
       *spyTableFeatureTpl="tableFeatureLocation.headerExt"
       class="header-ext-header-feature"
     >
       Header Ext Feature
+    </div>
+    <div
+      *spyTableFeatureTpl="tableFeatureLocation.beforeRows"
+      class="before-rows-feature"
+    >
+      Before Rows Feature
     </div>
     <div
       *spyTableFeatureTpl="tableFeatureLocation.beforeCols"
@@ -60,11 +72,20 @@ import {
     >
       Before Cols Feature
     </div>
+    <div *spyTableFeatureTpl="tableFeatureLocation.cell" class="cell-feature">
+      Cell Feature
+    </div>
     <div
       *spyTableFeatureTpl="tableFeatureLocation.afterCols"
       class="after-cols-feature"
     >
       After Cols Feature
+    </div>
+    <div
+      *spyTableFeatureTpl="tableFeatureLocation.afterRows"
+      class="after-rows-feature"
+    >
+      After Rows Feature
     </div>
   `,
 })

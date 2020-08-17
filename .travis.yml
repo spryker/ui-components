@@ -12,15 +12,36 @@ before_script:
   - git fetch origin next
   - git branch -tf master origin/master
   - git branch -tf next origin/next
-  - 'echo "Parent branch is: $(tools/scripts/git-parent-branch.sh)"'
 jobs:
   include:
-    - stage: test
+    - stage: test-branch
+      on:
+        condition: branch NOT IN (master, next)
+      script:
+        - npm run format:check
+        - npm run affected:lint -- --base=next
+        - COVERAGE=true npm run affected:test -- --base=next
+        - npm run affected:build -- --base=next
+        - npm run build-non-libs
+    - stage: test-next
+      on:
+        condition: branch = next
       script:
         - npm run format:check
         - npm run affected:lint
         - COVERAGE=true npm run affected:test
-        - npm run affected:build
+    - stage: test-master
+      on:
+        condition: branch = master
+      script:
+        - npm run format:check
+        - npm run lint
+        - COVERAGE=true npm run test:ci
+    - stage: deploy
+      on:
+        condition: branch IN (master, next)
+      script:
+        - npm run build
       before_deploy:
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
@@ -35,13 +56,11 @@ jobs:
           keep_history: true
           on:
             tags: false
-            all_branches: true
-            condition: '$TRAVIS_BRANCH =~ ^(master)$'
+            condition: branch IN (master)
         - provider: script
           script: npm run release-tag
           skip_cleanup: true
           keep_history: true
           on:
             tags: false
-            all_branches: true
-            condition: '$TRAVIS_BRANCH =~ ^(next)$'
+            condition: branch NOT IN (master)

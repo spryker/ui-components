@@ -4,7 +4,14 @@ node_js: lts/*
 cache:
   npm: true
 stages:
-  - test
+  - name: test-branch
+    if: branch NOT IN (master, next)
+  - name: test-next
+    if: branch = next
+  - name: test-master
+    if: branch = master
+  - name: deploy
+    if: branch IN (master, next)
 before_script:
   # Configure Git to fetch all branches and fetch master
   - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
@@ -15,8 +22,6 @@ before_script:
 jobs:
   include:
     - stage: test-branch
-      on:
-        condition: branch NOT IN (master, next)
       script:
         - npm run format:check
         - npm run affected:lint -- --base=next
@@ -24,22 +29,16 @@ jobs:
         - npm run affected:build -- --base=next
         - npm run build-non-libs
     - stage: test-next
-      on:
-        condition: branch = next
       script:
         - npm run format:check
         - npm run affected:lint
         - COVERAGE=true npm run affected:test
     - stage: test-master
-      on:
-        condition: branch = master
       script:
         - npm run format:check
         - npm run lint
         - COVERAGE=true npm run test:ci
     - stage: deploy
-      on:
-        condition: branch IN (master, next)
       script:
         - npm run build
       before_deploy:

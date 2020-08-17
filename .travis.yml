@@ -22,20 +22,20 @@ jobs:
     - stage: test-branch
       script:
         - npm run format:check
-        - npm run affected:lint -- --base=remotes/origin/next
-        - COVERAGE=true npm run affected:test -- --base=remotes/origin/next
-        - npm run affected:build -- --base=remotes/origin/next
+        - npm run affected:lint -- --base=remotes/origin/next --parallel
+        - COVERAGE=true npm run affected:test -- --base=remotes/origin/next --parallel
         - npm run build-non-libs
+        - npm run affected:build -- --base=remotes/origin/next --parallel
     - stage: test-next
       script:
         - npm run format:check
-        - npm run affected:lint -- --base=remotes/origin/master
-        - COVERAGE=true npm run affected:test -- --base=remotes/origin/master
+        - npm run affected:lint -- --base=remotes/origin/master --parallel
+        - COVERAGE=true npm run affected:test -- --base=remotes/origin/master --parallel
     - stage: test-master
       script:
         - npm run format:check
-        - npm run lint
-        - COVERAGE=true npm run test:ci
+        - npm run affected:lint -- --all --parallel
+        - COVERAGE=true npm run npm run affected:test -- --all --parallel
     - stage: deploy
       script:
         - npm run build

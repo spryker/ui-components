@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.2...@spryker/utils@0.2.0-next.3) (2020-08-17)
+
+
+### Features
+
+* **utils:** add `InvokePipe` to invoke fucntions from Angular templates ([8a1fc48](https://github.com/spryker/ui-components/commit/8a1fc485c88ff79443f1270291588c47efa54386))
+
+
+
+
+
 # [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.1...@spryker/utils@0.2.0-next.2) (2020-08-14)
 
 **Note:** Version bump only for package @spryker/utils

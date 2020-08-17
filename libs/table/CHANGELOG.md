@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.12...@spryker/table@0.2.0-next.13) (2020-08-17)
+
+
+### Features
+
+* **table:** add `header` feature location ([7645f24](https://github.com/spryker/ui-components/commit/7645f244a8a665cb6ff71182108b59f40616f718))
+* **table:** add new table feature locations ([74848e6](https://github.com/spryker/ui-components/commit/74848e6477694b821188edcb07b41163ba66ce76))
+
+
+
+
+
 # [0.2.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.11...@spryker/table@0.2.0-next.12) (2020-08-13)
 
 **Note:** Version bump only for package @spryker/table

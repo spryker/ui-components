@@ -70,15 +70,6 @@ import {
 } from './table';
 import { TableEventBus } from './table-event-bus';
 
-export interface TableCellRenderingContext {
-  $implicit: TemplateRef<
-    TableCellRenderingContext & TableColumnContext & TableFeatureTplContext
-  >;
-  context: TableCellRenderingContext &
-    TableColumnContext &
-    TableFeatureTplContext;
-}
-
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   shareReplay({ bufferSize: 1, refCount: true });
 
@@ -113,7 +104,9 @@ export class CoreTableComponent
    */
   @Input() events: Record<string, ((data: unknown) => void) | undefined> = {};
 
-  @ViewChild('cellTpl') cellTpl?: TemplateRef<TableColumnContext>;
+  @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<
+    TableColumnContext
+  >;
 
   @ContentChildren(ColTplDirective) set slotTemplates(
     val: QueryList<ColTplDirective>,
@@ -216,65 +209,15 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
-  featureCells$ = this.features$.pipe(
-    switchMap(features =>
-      this.tableFeaturesRendererService.trackFeatureRecords(
-        features,
-        TableFeatureLocation.cell,
-      ),
-    ),
-    startWith([] as never),
-  );
-
-  featureCellTpls$ = this.featureCells$.pipe(
-    map(features => features.map(feature => feature.featureTemplate)),
-  );
-
-  featureCellCtxs$ = this.featureCells$.pipe(
-    switchMap(features =>
-      combineLatest(
-        features.map(feature => feature.featureContext$ ?? of(undefined)),
-      ),
-    ),
-    startWith([] as never),
-    debounceTime(0),
-  );
-
-  featureCellContext$ = combineLatest([
-    this.featureCellTpls$,
-    this.featureCellCtxs$,
-  ]).pipe(
-    debounceTime(0),
-    map(
-      ([templates, contexts]) => (
-        config: TableColumn,
-        row: TableDataRow,
-        i: number,
-      ) => {
-        const cellContext: TableColumnContext = {
-          config,
-          row,
-          i,
-          value: row[config.id],
-        };
-
-        return templates.reduceRight<TableCellRenderingContext>(
-          (prevCtx, template, j) => ({
-            $implicit: template as any,
-            context: {
-              ...cellContext,
-              ...contexts[j],
-              ...prevCtx,
-            },
-          }),
-          {
-            $implicit: this.cellTpl,
-            context: cellContext,
-          } as any,
-        );
-      },
-    ),
-    shareReplaySafe(),
+  featureCellContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
+    this.features$,
+    TableFeatureLocation.cell,
+    () => this.cellTpl,
+    (
+      config: TableColumn,
+      row: TableDataRow,
+      i: number,
+    ): TableColumnContext => ({ config, row, i, value: row[config.id] }),
   );
 
   isLoading$ = merge(

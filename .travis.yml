@@ -53,11 +53,13 @@ jobs:
           keep_history: true
           on:
             tags: false
-            condition: branch IN (master)
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(master)$'
         - provider: script
           script: npm run release-tag
           skip_cleanup: true
           keep_history: true
           on:
             tags: false
-            condition: branch NOT IN (master)
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(next)$'

@@ -12,6 +12,7 @@
     "build-non-libs": "run-s build:*",
     "build:themes": "npm run compile:themes",
     "build:i18n": "rollup --config libs/locale/data/rollup.config.js",
+    "build:docs": "npm run docs:json",
     "build:storybook": "ng run storybook:compile",
     "pretest": "npm run clean:dist",
     "test": "npm run run:all -- test",

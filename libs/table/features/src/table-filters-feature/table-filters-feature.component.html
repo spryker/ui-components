@@ -9,7 +9,7 @@
       <div
         *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
         class="spy-table-filters-feature__item"
-        [class.spy-table-filters-feature__item--range]="
+        [class.spy-table-filters-feature__item--date-range]="
           filter.type === 'date-range'
         "
       >

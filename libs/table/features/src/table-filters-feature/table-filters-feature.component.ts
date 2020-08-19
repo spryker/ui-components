@@ -5,7 +5,6 @@ import {
   Inject,
   Injector,
   ViewEncapsulation,
-  ChangeDetectorRef,
 } from '@angular/core';
 import {
   TableFeatureComponent,
@@ -120,7 +119,6 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     @Inject(TABLE_FILTERS_TOKEN)
     private tableFilterToken: TableFiltersDeclaration[],
     injector: Injector,
-    private cdr: ChangeDetectorRef,
   ) {
     super(injector);
   }

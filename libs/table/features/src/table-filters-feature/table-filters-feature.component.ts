@@ -4,6 +4,7 @@ import {
   forwardRef,
   Inject,
   Injector,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   TableFeatureComponent,
@@ -15,9 +16,8 @@ import {
   distinctUntilChanged,
   map,
   pluck,
-  startWith,
-  tap,
   shareReplay,
+  startWith,
   switchMap,
 } from 'rxjs/operators';
 
@@ -43,6 +43,7 @@ export interface TableFiltersConfig extends TableFeatureConfig {
   templateUrl: './table-filters-feature.component.html',
   styleUrls: ['./table-filters-feature.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: TableFeatureComponent,

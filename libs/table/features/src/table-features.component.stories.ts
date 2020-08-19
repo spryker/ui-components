@@ -148,7 +148,7 @@ function getFeaturesStory(
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
           select: TableFilterSelectComponent,
-          range: TableFilterDateRangeComponent,
+          'date-range': TableFilterDateRangeComponent,
         } as any),
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
@@ -261,7 +261,7 @@ function getFeaturesStory(
             {
               id: 'range',
               title: 'Range',
-              type: 'range',
+              type: 'date-range',
               typeOptions: {
                 placeholderFrom: 'from',
                 format: 'yyyy-MM-dd',
@@ -270,7 +270,7 @@ function getFeaturesStory(
             {
               id: 'range2',
               title: 'Range',
-              type: 'range',
+              type: 'date-range',
               typeOptions: {
                 placeholderFrom: 'from',
                 format: 'yyyy-MM-dd',
@@ -279,7 +279,7 @@ function getFeaturesStory(
             {
               id: 'range2',
               title: 'Range',
-              type: 'range',
+              type: 'date-range',
               typeOptions: {
                 placeholderFrom: 'from',
                 format: 'yyyy-MM-dd',

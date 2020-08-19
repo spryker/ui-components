@@ -64,7 +64,7 @@ function getFiltersStory(
         MockHttpModule,
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
-          range: TableFilterDateRangeComponent,
+          'date-range': TableFilterDateRangeComponent,
         } as any),
         DefaultContextSerializationModule,
         TableModule.withDatasourceTypes({
@@ -101,7 +101,7 @@ function getFiltersStory(
             {
               id: 'range',
               title: 'Range',
-              type: 'range',
+              type: 'date-range',
               typeOptions: {
                 placeholderFrom: 'from',
                 placeholderTo: 'to',

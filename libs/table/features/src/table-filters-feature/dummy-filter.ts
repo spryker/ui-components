@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TableFilterComponent } from '@spryker/table/features';
+import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'spy-table-filter',
@@ -16,6 +17,7 @@ export class TableDummyFilterComponent
   @Input() config?: any;
   valueChange: any;
   value = '';
+  classes = EMPTY;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config) {

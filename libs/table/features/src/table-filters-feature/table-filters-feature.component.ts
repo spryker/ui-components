@@ -56,6 +56,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
 > {
   name = 'filters';
   tableFeatureLocation = TableFeatureLocation;
+  filterClasses: Record<string, string | string[]> = {};
 
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
   filterComponentMap: Record<
@@ -124,6 +125,10 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
 
   updateFilterValue(id: string, value: unknown): void {
     this.updateFiltersValue$.next({ [id]: value });
+  }
+
+  updateFilterClasses(id: string, classes: string | string[]): void {
+    setTimeout(() => (this.filterClasses[id] = classes), 0);
   }
 
   trackByFilter(index: number, filter: TableFilterBase): string {

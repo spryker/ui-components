@@ -9,9 +9,7 @@
       <div
         *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
         class="spy-table-filters-feature__item"
-        [class.spy-table-filters-feature__item--date-range]="
-          filter.type === 'date-range'
-        "
+        [ngClass]="filterClasses[filter.id]"
       >
         <span class="spy-table-filters-feature__item-title">{{
           filter.title
@@ -25,6 +23,10 @@
           [ndcDynamicOutputs]="{
             valueChange: {
               handler: updateFilterValue.bind(this),
+              args: [filter.id, '$event']
+            },
+            classes: {
+              handler: updateFilterClasses.bind(this),
               args: [filter.id, '$event']
             }
           }"

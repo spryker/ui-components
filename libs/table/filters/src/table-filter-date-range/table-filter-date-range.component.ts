@@ -31,6 +31,7 @@ export class TableFilterDateRangeComponent
   @Input() config?: TableFilterDateRange;
   @Input() value?: DateRangeValueInput = {};
   @Output() valueChange = new EventEmitter<DateRangeValueInput>();
+  @Output() classes = of('spy-table-filter-date-range');
 
   placeholderFrom$?: Observable<string>;
   placeholderTo$?: Observable<string>;

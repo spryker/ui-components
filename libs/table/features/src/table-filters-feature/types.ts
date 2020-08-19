@@ -1,6 +1,7 @@
 /* tslint:disable:no-empty-interface */
 import { EventEmitter } from '@angular/core';
 import { Distribute } from '@spryker/utils';
+import { Observable } from 'rxjs';
 
 export interface TableFilterBase<V = unknown> {
   __capturedValue: V;
@@ -26,6 +27,7 @@ export interface TableFilterComponent<C extends TableFilterBase> {
   config?: C; // @Input
   value?: C['__capturedValue']; // @Input
   valueChange: EventEmitter<C['__capturedValue']>; // @Output
+  classes: Observable<string | string[]>; // @Output
 }
 
 export type FindTableFilter<

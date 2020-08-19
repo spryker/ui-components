@@ -5,6 +5,7 @@ import {
   Inject,
   Injector,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   TableFeatureComponent,
@@ -56,6 +57,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
 > {
   name = 'filters';
   tableFeatureLocation = TableFeatureLocation;
+  filterClasses: Record<string, string | string[]> = {};
 
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
   filterComponentMap: Record<
@@ -118,12 +120,17 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     @Inject(TABLE_FILTERS_TOKEN)
     private tableFilterToken: TableFiltersDeclaration[],
     injector: Injector,
+    private cdr: ChangeDetectorRef,
   ) {
     super(injector);
   }
 
   updateFilterValue(id: string, value: unknown): void {
     this.updateFiltersValue$.next({ [id]: value });
+  }
+
+  updateFilterClasses(id: string, classes: string | string[]): void {
+    setTimeout(() => (this.filterClasses[id] = classes), 0);
   }
 
   trackByFilter(index: number, filter: TableFilterBase): string {

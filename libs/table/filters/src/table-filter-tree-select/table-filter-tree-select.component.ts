@@ -14,6 +14,7 @@ import {
   TableFilterTreeSelectValue,
   TableFilterTreeSelectOptionsValue,
 } from './types';
+import { EMPTY } from 'rxjs';
 
 /**
  * Component represents tree-select filter feature for the main table component
@@ -30,6 +31,7 @@ export class TableFilterTreeSelectComponent
   @Input() config?: TableFilterTreeSelect;
   @Input() value?: TableFilterTreeSelectValue;
   @Output() valueChange = new EventEmitter<TableFilterTreeSelectValue>();
+  @Output() classes = EMPTY;
   treeSelectOptions: TableFilterTreeSelectOptionsValue[] = [];
 
   /**

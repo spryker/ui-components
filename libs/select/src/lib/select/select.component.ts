@@ -95,7 +95,6 @@ export class SelectComponent implements OnInit, OnChanges {
       ) ?? [];
 
     this.allValues = this.mappedOptions.map(option => option.value);
-
     this.updateValue();
   }
 
@@ -106,6 +105,10 @@ export class SelectComponent implements OnInit, OnChanges {
         : this.isValueExist(this.value)
         ? this.value
         : undefined;
+
+    if (this.mappedValue) {
+      this.updateTitlesArrayForSelectedValues(this.mappedValue);
+    }
   }
 
   private isValueExist(value?: any): boolean {

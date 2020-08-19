@@ -9,6 +9,7 @@
       <div
         *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
         class="spy-table-filters-feature__item"
+        [class.spy-table-filters-feature__item--range]="filter.type === 'range'"
       >
         <span class="spy-table-filters-feature__item-title">{{
           filter.title

@@ -37,7 +37,7 @@ export const primary = () => ({
       'Option 10',
     ],
     placeholder: 'Select option...',
-    value: '',
+    value: 'Option 1',
     name: 'some-name',
     valueChange: console.log,
   },
@@ -64,11 +64,12 @@ export const multiSelectWithoutOptionsMapping = () => ({
   props: {
     options: [
       { value: 1, title: 'Option 1' },
-      { value: 2, title: 'Option 2' },
-      { value: 3, title: 'Option 3' },
+      { value: '2', title: 'Option 2' },
+      { value: '3', title: 'Option 3' },
     ],
     placeholder: 'Select option...',
     multiple: true,
+    value: [1, '2'],
   },
 });
 

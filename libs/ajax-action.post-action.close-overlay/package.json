@@ -7,5 +7,8 @@
     "@spryker/drawer": "^0.1.0-next.0",
     "@spryker/ajax-action": "^0.1.0-next.0",
     "tslib": "^1.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

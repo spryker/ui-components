@@ -20,7 +20,7 @@ import { IconModule } from '@spryker/icon';
 import { IconDragModule } from '@spryker/icon/icons';
 
 export default {
-  title: 'TableSettingsFeature',
+  title: 'TableSettingsFeatureComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
@@ -31,7 +31,7 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 export const viaHtml = getSettingsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [mockHttp]="mockHttp" [tableId]="tableId">
         <spy-table-settings-feature spy-table-feature>
         </spy-table-settings-feature>
     </spy-table>
@@ -41,11 +41,11 @@ export const viaHtml = getSettingsStory(
 
 export const viaConfig = getSettingsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [mockHttp]="mockHttp" [tableId]="tableId">
   `,
   [
     TableModule.withFeatures({
-      setting: () =>
+      settings: () =>
         import('./table-settings-feature.module').then(
           m => m.TableSettingsFeatureModule,
         ),
@@ -86,6 +86,7 @@ function getSettingsStory(
     },
     template,
     props: {
+      tableId: 'tableID',
       config: {
         dataSource: {
           type: 'http',
@@ -96,7 +97,7 @@ function getSettingsStory(
           { id: 'col2', title: 'Column #2', hideable: true },
           { id: 'col3', title: 'Column #3', hideable: true },
         ],
-        setting: {
+        settings: {
           enabled: true, // This will enable feature via config
         },
       },

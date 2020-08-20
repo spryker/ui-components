@@ -1,4 +1,4 @@
-import { TableFilterBase } from '@spryker/table/features';
+import { TableFilterBase } from '@spryker/table.feature.filters';
 
 export interface TableFilterSelect
   extends TableFilterBase<TableFilterSelectValue> {

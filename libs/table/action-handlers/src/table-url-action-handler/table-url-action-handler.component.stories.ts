@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
-import { TableDatasourceHttpService } from '@spryker/table/datasources';
+import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,
@@ -48,7 +48,7 @@ class StoryComponent {
     }),
     TableModule.withFeatures({
       rowActions: () =>
-        import('@spryker/table/features').then(
+        import('@spryker/table.feature.row-actions').then(
           m => m.TableRowActionsFeatureModule,
         ),
     }),

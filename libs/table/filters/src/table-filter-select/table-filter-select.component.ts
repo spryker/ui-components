@@ -10,10 +10,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { TableFilterSelect, TableFilterSelectValue } from './types';
-import { TableFilterComponent } from '@spryker/table/features';
+import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { EMPTY } from 'rxjs';
 
-declare module '@spryker/table/features' {
+declare module '@spryker/table.feature.filters' {
   interface TableFiltersRegistry {
     select: TableFilterSelect;
   }

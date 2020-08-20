@@ -17,7 +17,7 @@ import {
   generateMockTableDataFor,
   TableDataMockGenerator,
 } from '../../../../table/testing/src';
-import { TableDatasourceHttpService } from '../../../datasources/src';
+import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';

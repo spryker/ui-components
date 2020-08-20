@@ -7,13 +7,13 @@ import {
   EventEmitter,
   SimpleChanges,
 } from '@angular/core';
-import { TableFilterComponent } from '@spryker/table/features';
+import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { TableFilterDateRange } from './types';
 import { DateRangeValueInput } from '@spryker/date-picker';
 import { Observable, of } from 'rxjs';
 import { I18nService } from '@spryker/locale';
 
-declare module '@spryker/table/features' {
+declare module '@spryker/table.feature.filters' {
   interface TableFiltersRegistry {
     dateRange: TableFilterDateRange;
   }

@@ -1,38 +1,40 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { NotificationModule } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
+import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
+import { TableBatchActionsFeatureModule } from '@spryker/table.feature.batch-actions';
+import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
+import { TablePaginationFeatureModule } from '@spryker/table.feature.pagination';
+import { TableRowActionsFeatureModule } from '@spryker/table.feature.row-actions';
+import { TableSearchFeatureModule } from '@spryker/table.feature.search';
+import { TableSelectableFeatureModule } from '@spryker/table.feature.selectable';
+import { TableSettingsFeatureModule } from '@spryker/table.feature.settings';
+import { TableSyncStateFeatureModule } from '@spryker/table.feature.sync-state';
+import { TableTitleFeatureModule } from '@spryker/table.feature.title';
+import { TableTotalFeatureModule } from '@spryker/table.feature.total';
 import {
-  TableFilterSelectComponent,
-  TableFilterSelectModule,
   TableFilterDateRangeComponent,
   TableFilterDateRangeModule,
+  TableFilterSelectComponent,
+  TableFilterSelectModule,
 } from '@spryker/table/filters';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
-
-import { TableFiltersFeatureModule } from './table-filters-feature';
-import { TablePaginationFeatureModule } from './table-pagination-feature';
-import { TableSettingsFeatureModule } from './table-settings-feature';
-import { TableRowActionsFeatureModule } from './table-row-actions-feature';
-import { TableSearchFeatureModule } from './table-search-feature';
-import { TableSelectableFeatureModule } from './table-selectable-feature';
-import { TableSyncStateFeatureModule } from './table-sync-state-feature';
-import { TableTotalFeatureModule } from './table-total-feature';
-import { TableDatasourceHttpService } from '../../datasources/src/table.datasource.http';
-import { LocaleModule } from '@spryker/locale';
-import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { TableBatchActionsFeatureModule } from './table-batch-actions-feature';
-import { TableTitleFeatureModule } from './table-title-feature';
+import { IStory } from '@storybook/angular';
+
+import { NotificationWrapperComponent } from '../../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 
 export default {
-  title: 'TableFeaturesComponent',
+  title: 'TableWithFeaturesComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
@@ -98,39 +100,45 @@ export const viaConfig = getFeaturesStory(
   [
     TableModule.withFeatures({
       filters: () =>
-        import('./table-filters-feature').then(
+        import('@spryker/table.feature.filters').then(
           m => m.TableFiltersFeatureModule,
         ),
       pagination: () =>
-        import('./table-pagination-feature').then(
+        import('@spryker/table.feature.pagination').then(
           m => m.TablePaginationFeatureModule,
         ),
       rowActions: () =>
-        import('./table-row-actions-feature').then(
+        import('@spryker/table.feature.row-actions').then(
           m => m.TableRowActionsFeatureModule,
         ),
       search: () =>
-        import('./table-search-feature').then(m => m.TableSearchFeatureModule),
+        import('@spryker/table.feature.search').then(
+          m => m.TableSearchFeatureModule,
+        ),
       syncStateUrl: () =>
-        import('./table-sync-state-feature').then(
+        import('@spryker/table.feature.sync-state').then(
           m => m.TableSyncStateFeatureModule,
         ),
       total: () =>
-        import('./table-total-feature').then(m => m.TableTotalFeatureModule),
+        import('@spryker/table.feature.total').then(
+          m => m.TableTotalFeatureModule,
+        ),
       itemSelection: () =>
-        import('./table-selectable-feature').then(
+        import('@spryker/table.feature.selectable').then(
           m => m.TableSelectableFeatureModule,
         ),
       settings: () =>
-        import('./table-settings-feature').then(
+        import('@spryker/table.feature.settings').then(
           m => m.TableSettingsFeatureModule,
         ),
       batchActions: () =>
-        import('./table-batch-actions-feature').then(
+        import('@spryker/table.feature.batch-actions').then(
           m => m.TableBatchActionsFeatureModule,
         ),
       title: () =>
-        import('./table-title-feature').then(m => m.TableTitleFeatureModule),
+        import('@spryker/table.feature.title').then(
+          m => m.TableTitleFeatureModule,
+        ),
     }),
   ],
 );
@@ -145,6 +153,7 @@ function getFeaturesStory(
         HttpClientTestingModule,
         BrowserAnimationsModule,
         MockHttpModule,
+        NotificationModule.forRoot(),
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
           select: TableFilterSelectComponent,
@@ -171,6 +180,7 @@ function getFeaturesStory(
           multi: true,
         },
       ],
+      entryComponents: [NotificationWrapperComponent],
     },
     template,
     props: {

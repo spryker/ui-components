@@ -3,7 +3,7 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@spryker/table';
-import { TableFiltersFeatureModule } from '@spryker/table/features';
+import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
 import {
   TableFilterDateRangeComponent,
   TableFilterDateRangeModule,
@@ -45,7 +45,7 @@ export const viaConfig = getFiltersStory(
   [
     TableModule.withFeatures({
       filters: () =>
-        import('@spryker/table/features').then(
+        import('@spryker/table.feature.filters').then(
           m => m.TableFiltersFeatureModule,
         ),
     }),

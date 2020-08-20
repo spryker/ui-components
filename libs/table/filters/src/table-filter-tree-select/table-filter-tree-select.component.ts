@@ -8,7 +8,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { TableFilterComponent } from '@spryker/table/features';
+import { TableFilterComponent } from '@spryker/table.feature.filters';
 import {
   TableFilterTreeSelect,
   TableFilterTreeSelectValue,

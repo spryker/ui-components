@@ -10,7 +10,7 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { TableDatasourceHttpService } from '../../../datasources/src/table.datasource.http';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {

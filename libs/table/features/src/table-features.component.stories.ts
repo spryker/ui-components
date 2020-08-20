@@ -24,7 +24,7 @@ import { TableSearchFeatureModule } from './table-search-feature';
 import { TableSelectableFeatureModule } from './table-selectable-feature';
 import { TableSyncStateFeatureModule } from './table-sync-state-feature';
 import { TableTotalFeatureModule } from './table-total-feature';
-import { TableDatasourceHttpService } from '../../datasources/src/table-datasource-http';
+import { TableDatasourceHttpService } from '../../datasources/src/table.datasource.http';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';

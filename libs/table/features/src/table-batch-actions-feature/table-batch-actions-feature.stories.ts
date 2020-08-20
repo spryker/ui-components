@@ -12,7 +12,7 @@ import { IStory } from '@storybook/angular';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 import { TableBatchActionsFeatureModule } from './table-batch-actions-feature.module';
-import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { TableDatasourceHttpService } from '../../../datasources/src/table.datasource.http';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { TableSelectableFeatureModule } from '../table-selectable-feature';

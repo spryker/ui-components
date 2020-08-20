@@ -299,6 +299,40 @@
         "type:service",
         "pkg:extension"
       ]
+    },
+    "table.datasource.http": {
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
+    },
+    "table.column.chip": {
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
+    },
+    "table.column.date": {
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
+    },
+    "table.column.image": {
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
+    },
+    "table.column.text": {
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
     }
   },
   "tasksRunnerOptions": {

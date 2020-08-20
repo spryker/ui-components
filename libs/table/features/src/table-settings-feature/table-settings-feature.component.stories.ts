@@ -10,7 +10,7 @@ import {
 } from '@spryker/table/testing';
 import { IStory } from '@storybook/angular';
 
-import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { TableDatasourceHttpService } from '../../../datasources/src/table.datasource.http';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';

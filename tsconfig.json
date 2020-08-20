@@ -21,7 +21,14 @@
       "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"],
       "@spryker/ajax-action.post-action.refresh-drawer": [
         "libs/ajax-action.post-action.refresh-drawer/src/index.ts"
-      ]
+      ],
+      "@spryker/table.datasource.http": [
+        "libs/table.datasource.http/src/index.ts"
+      ],
+      "@spryker/table.column.chip": ["libs/table.column.chip/src/index.ts"],
+      "@spryker/table.column.date": ["libs/table.column.date/src/index.ts"],
+      "@spryker/table.column.image": ["libs/table.column.image/src/index.ts"],
+      "@spryker/table.column.text": ["libs/table.column.text/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

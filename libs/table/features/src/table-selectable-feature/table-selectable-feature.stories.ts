@@ -13,7 +13,7 @@ import { IStory } from '@storybook/angular';
 
 import { TableSelectionChangeEvent } from './table-selectable-feature.component';
 import { TableSelectableFeatureModule } from './table-selectable-feature.module';
-import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { TableDatasourceHttpService } from '../../../datasources/src/table.datasource.http';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {

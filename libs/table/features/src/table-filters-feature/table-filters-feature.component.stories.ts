@@ -11,7 +11,7 @@ import {
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableDummyFilterComponent } from './dummy-filter';
-import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { TableDatasourceHttpService } from '../../../datasources/src/table.datasource.http';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {

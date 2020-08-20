@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/ajax-action",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "whitelistedNonPeerDependencies": ["ng-zorro-antd"]
+  }
 }

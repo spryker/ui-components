@@ -2892,6 +2892,83 @@
           "style": "less"
         }
       }
+    },
+    "ajax-action.post-action.refresh-drawer": {
+      "projectType": "library",
+      "root": "libs/ajax-action.post-action.refresh-drawer",
+      "sourceRoot": "libs/ajax-action.post-action.refresh-drawer/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ajax-action.post-action.refresh-drawer/tsconfig.lib.json",
+            "project": "libs/ajax-action.post-action.refresh-drawer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ajax-action.post-action.refresh-drawer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ajax-action.post-action.refresh-drawer/tsconfig.lib.json",
+              "libs/ajax-action.post-action.refresh-drawer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ajax-action.post-action.refresh-drawer/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ajax-action.post-action.refresh-drawer/jest.config.js",
+            "tsConfig": "libs/ajax-action.post-action.refresh-drawer/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ajax-action.post-action.refresh-drawer/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ajax-action.post-action.refresh-drawer/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/ajax-action.post-action.refresh-drawer",
+            "config": {
+              "configFolder": "libs/ajax-action.post-action.refresh-drawer/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

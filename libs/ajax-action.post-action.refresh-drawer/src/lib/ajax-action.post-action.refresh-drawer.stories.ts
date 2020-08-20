@@ -1,27 +1,14 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-  Injector,
-  NgModule,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { AjaxActionModule } from '@spryker/ajax-action';
 import { ButtonAjaxComponent, ButtonAjaxModule } from '@spryker/button';
-import {
-  DrawerComponentInputs,
-  DrawerModule,
-  DrawerService,
-} from '@spryker/drawer';
+import { DrawerModule, DrawerService } from '@spryker/drawer';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule } from '@spryker/notification';
-import {
-  CustomElementModule,
-  WebComponentDefs,
-  WebComponentsModule,
-} from '@spryker/web-components';
+import { WebComponentsModule } from '@spryker/web-components';
 import { IStory } from '@storybook/angular';
 
-import { DrawerContainerComponent } from '../../../../drawer/src/lib/drawer-container/drawer-container.component';
+import { DrawerContainerComponent } from '../../../drawer/src/lib/drawer-container/drawer-container.component';
 import { AjaxPostActionRefreshDrawerService } from './ajax-post-action-refresh-drawer.service';
 
 export default {

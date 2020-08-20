@@ -18,7 +18,10 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
+      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"],
+      "@spryker/ajax-action.post-action.refresh-drawer": [
+        "libs/ajax-action.post-action.refresh-drawer/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

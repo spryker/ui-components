@@ -1,27 +1,26 @@
 {
-  "name": "@spryker/ajax-action.post-action.close-overlay",
-  "version": "0.1.0-next.0",
-  "dependencies": {
-    "ng-zorro-antd": "9.3.0"
-  },
+  "name": "@spryker/ajax-action.post-action.refresh-drawer",
+  "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^9.1.2",
-    "@angular/core": "^9.1.2",
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
     "@spryker/drawer": "^0.1.0-next.0",
     "@spryker/ajax-action": "^0.1.0-next.0",
-    "tslib": "^1.10.0",
     "@spryker/notification": "0.2.0-next.2",
     "@spryker/utils": "0.2.0-next.3",
     "rxjs": "^6.5.4",
     "deepmerge": "^4.2.2",
     "@angular/cdk": "^9.2.3",
     "@spryker/icon": "0.2.0-next.2",
+    "ng-zorro-antd": "9.3.0",
     "@angular/platform-browser": "^9.1.12",
     "ngx-toastr": "^12.1.0",
     "@angular/animations": "^9.1.12",
+    "@spryker/button": "0.2.0-next.3",
     "@spryker/web-components": "0.2.1-next.3",
     "@angular/elements": "^9.1.12",
-    "ngx-element-boundary": "^1.0.10"
+    "ngx-element-boundary": "^1.0.10",
+    "tslib": "^1.10.0"
   },
   "publishConfig": {
     "access": "public"

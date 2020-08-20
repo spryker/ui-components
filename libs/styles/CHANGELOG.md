@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.12...@spryker/styles@0.2.0-next.13) (2020-08-20)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed titles ([4f6e0be](https://github.com/spryker/ui-components/commit/4f6e0be007950e068a6ad62ee1ec45860e1b5417))
+
+
+
+
+
 # [0.2.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.11...@spryker/styles@0.2.0-next.12) (2020-08-19)
 
 **Note:** Version bump only for package @spryker/styles

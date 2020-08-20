@@ -3312,6 +3312,767 @@
           "style": "less"
         }
       }
+    },
+    "table.feature.pagination": {
+      "projectType": "library",
+      "root": "libs/table.feature.pagination",
+      "sourceRoot": "libs/table.feature.pagination/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.pagination/tsconfig.lib.json",
+            "project": "libs/table.feature.pagination/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.pagination/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.pagination/tsconfig.lib.json",
+              "libs/table.feature.pagination/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table.feature.pagination/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.pagination/jest.config.js",
+            "tsConfig": "libs/table.feature.pagination/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.pagination/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.pagination/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.pagination",
+            "config": {
+              "configFolder": "libs/table.feature.pagination/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "table.feature.total": {
+      "projectType": "library",
+      "root": "libs/table.feature.total",
+      "sourceRoot": "libs/table.feature.total/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.total/tsconfig.lib.json",
+            "project": "libs/table.feature.total/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.total/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.total/tsconfig.lib.json",
+              "libs/table.feature.total/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/table.feature.total/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.total/jest.config.js",
+            "tsConfig": "libs/table.feature.total/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.total/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.total/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.total",
+            "config": {
+              "configFolder": "libs/table.feature.total/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "table.feature.title": {
+      "projectType": "library",
+      "root": "libs/table.feature.title",
+      "sourceRoot": "libs/table.feature.title/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.title/tsconfig.lib.json",
+            "project": "libs/table.feature.title/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.title/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.title/tsconfig.lib.json",
+              "libs/table.feature.title/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/table.feature.title/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.title/jest.config.js",
+            "tsConfig": "libs/table.feature.title/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.title/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.title/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.title",
+            "config": {
+              "configFolder": "libs/table.feature.title/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "table.feature.filters": {
+      "projectType": "library",
+      "root": "libs/table.feature.filters",
+      "sourceRoot": "libs/table.feature.filters/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.filters/tsconfig.lib.json",
+            "project": "libs/table.feature.filters/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.filters/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.filters/tsconfig.lib.json",
+              "libs/table.feature.filters/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table.feature.filters/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.filters/jest.config.js",
+            "tsConfig": "libs/table.feature.filters/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.filters/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.filters/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.filters",
+            "config": {
+              "configFolder": "libs/table.feature.filters/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "table.feature.settings": {
+      "projectType": "library",
+      "root": "libs/table.feature.settings",
+      "sourceRoot": "libs/table.feature.settings/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.settings/tsconfig.lib.json",
+            "project": "libs/table.feature.settings/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.settings/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.settings/tsconfig.lib.json",
+              "libs/table.feature.settings/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table.feature.settings/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.settings/jest.config.js",
+            "tsConfig": "libs/table.feature.settings/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.settings/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.settings/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.settings",
+            "config": {
+              "configFolder": "libs/table.feature.settings/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "table.feature.selectable": {
+      "projectType": "library",
+      "root": "libs/table.feature.selectable",
+      "sourceRoot": "libs/table.feature.selectable/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.selectable/tsconfig.lib.json",
+            "project": "libs/table.feature.selectable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.selectable/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.selectable/tsconfig.lib.json",
+              "libs/table.feature.selectable/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table.feature.selectable/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.selectable/jest.config.js",
+            "tsConfig": "libs/table.feature.selectable/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.selectable/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.selectable/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.selectable",
+            "config": {
+              "configFolder": "libs/table.feature.selectable/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "table.feature.search": {
+      "projectType": "library",
+      "root": "libs/table.feature.search",
+      "sourceRoot": "libs/table.feature.search/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.search/tsconfig.lib.json",
+            "project": "libs/table.feature.search/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.search/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.search/tsconfig.lib.json",
+              "libs/table.feature.search/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/table.feature.search/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.search/jest.config.js",
+            "tsConfig": "libs/table.feature.search/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.search/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.search/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.search",
+            "config": {
+              "configFolder": "libs/table.feature.search/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "table.feature.sync-state": {
+      "projectType": "library",
+      "root": "libs/table.feature.sync-state",
+      "sourceRoot": "libs/table.feature.sync-state/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.sync-state/tsconfig.lib.json",
+            "project": "libs/table.feature.sync-state/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.sync-state/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.sync-state/tsconfig.lib.json",
+              "libs/table.feature.sync-state/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table.feature.sync-state/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.sync-state/jest.config.js",
+            "tsConfig": "libs/table.feature.sync-state/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.sync-state/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.sync-state/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.sync-state",
+            "config": {
+              "configFolder": "libs/table.feature.sync-state/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "table.feature.batch-actions": {
+      "projectType": "library",
+      "root": "libs/table.feature.batch-actions",
+      "sourceRoot": "libs/table.feature.batch-actions/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.batch-actions/tsconfig.lib.json",
+            "project": "libs/table.feature.batch-actions/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.batch-actions/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.batch-actions/tsconfig.lib.json",
+              "libs/table.feature.batch-actions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table.feature.batch-actions/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.batch-actions/jest.config.js",
+            "tsConfig": "libs/table.feature.batch-actions/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.batch-actions/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.batch-actions/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.batch-actions",
+            "config": {
+              "configFolder": "libs/table.feature.batch-actions/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "table.feature.row-actions": {
+      "projectType": "library",
+      "root": "libs/table.feature.row-actions",
+      "sourceRoot": "libs/table.feature.row-actions/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.row-actions/tsconfig.lib.json",
+            "project": "libs/table.feature.row-actions/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.row-actions/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.row-actions/tsconfig.lib.json",
+              "libs/table.feature.row-actions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table.feature.row-actions/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.row-actions/jest.config.js",
+            "tsConfig": "libs/table.feature.row-actions/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.row-actions/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.row-actions/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.row-actions",
+            "config": {
+              "configFolder": "libs/table.feature.row-actions/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

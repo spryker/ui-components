@@ -11,7 +11,7 @@ import { I18nModule } from '@spryker/locale';
 import { InvokeModule, PluckModule } from '@spryker/utils';
 import { of } from 'rxjs';
 
-import { TableDatasourceHttpService } from '../../../datasources/src/table.datasource.http';
+import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import { TableDatasourceTypesToken } from '../datasource-type/tokens';
 import { TableFeaturesRegistryToken } from '../table-feature-loader/tokens';
 import { TableFeaturesRendererComponent } from '../table-features-renderer/table-features-renderer.component';

@@ -28,7 +28,33 @@
       "@spryker/table.column.chip": ["libs/table.column.chip/src/index.ts"],
       "@spryker/table.column.date": ["libs/table.column.date/src/index.ts"],
       "@spryker/table.column.image": ["libs/table.column.image/src/index.ts"],
-      "@spryker/table.column.text": ["libs/table.column.text/src/index.ts"]
+      "@spryker/table.column.text": ["libs/table.column.text/src/index.ts"],
+      "@spryker/table.feature.pagination": [
+        "libs/table.feature.pagination/src/index.ts"
+      ],
+      "@spryker/table.feature.total": ["libs/table.feature.total/src/index.ts"],
+      "@spryker/table.feature.title": ["libs/table.feature.title/src/index.ts"],
+      "@spryker/table.feature.filters": [
+        "libs/table.feature.filters/src/index.ts"
+      ],
+      "@spryker/table.feature.settings": [
+        "libs/table.feature.settings/src/index.ts"
+      ],
+      "@spryker/table.feature.selectable": [
+        "libs/table.feature.selectable/src/index.ts"
+      ],
+      "@spryker/table.feature.search": [
+        "libs/table.feature.search/src/index.ts"
+      ],
+      "@spryker/table.feature.sync-state": [
+        "libs/table.feature.sync-state/src/index.ts"
+      ],
+      "@spryker/table.feature.batch-actions": [
+        "libs/table.feature.batch-actions/src/index.ts"
+      ],
+      "@spryker/table.feature.row-actions": [
+        "libs/table.feature.row-actions/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

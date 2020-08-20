@@ -181,6 +181,10 @@
     & &-node {
       &-content-wrapper {
         color: @ink;
+        max-width: @tree-select-tree-node-content-wrapper-max-width;
+        &:hover {
+          background-color: transparent;
+        }
 
         &.@{select-prefix-cls}-tree-node-selected {
           background-color: transparent;
@@ -222,5 +226,15 @@
     .@{select-prefix-cls}-close-icon {
       display: none;
     }
+  }
+}
+
+.@{tree-prefix-cls} {
+  &-title {
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
   }
 }

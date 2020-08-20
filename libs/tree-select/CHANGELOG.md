@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.3...@spryker/tree-select@0.1.0-next.4) (2020-08-20)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed titles ([4f6e0be](https://github.com/spryker/ui-components/commit/4f6e0be007950e068a6ad62ee1ec45860e1b5417))
+
+
+
+
+
 # [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.2...@spryker/tree-select@0.1.0-next.3) (2020-08-13)
 
 **Note:** Version bump only for package @spryker/tree-select

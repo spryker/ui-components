@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { TableFilterSelect, TableFilterSelectValue } from './types';
 import { TableFilterComponent } from '@spryker/table/features';
+import { EMPTY } from 'rxjs';
 
 declare module '@spryker/table/features' {
   interface TableFiltersRegistry {
@@ -30,12 +31,13 @@ export class TableFilterSelectComponent
   @Input() config?: TableFilterSelect;
   @Input() value?: TableFilterSelectValue;
   @Output() valueChange = new EventEmitter<TableFilterSelectValue>();
+  @Output() classes = EMPTY;
   selectOptions: SelectOptionItem[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.config) {
       this.selectOptions = this.config?.typeOptions?.values.map(
-        ({ value, title: label }) => ({ label, value }),
+        ({ value, title }) => ({ value, title }),
       ) as SelectOptionItem[];
     }
   }

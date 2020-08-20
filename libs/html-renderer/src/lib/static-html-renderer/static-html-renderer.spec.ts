@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { StaticHtmlRendererModule } from './static-html-renderer.module';
@@ -23,6 +23,7 @@ describe('StaticHtmlRendererDirective', () => {
     TestBed.configureTestingModule({
       imports: [StaticHtmlRendererModule],
       declarations: [TestComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
@@ -33,7 +34,7 @@ describe('StaticHtmlRendererDirective', () => {
 
   it('should render @Input(html) inside of `spy-html-renderer`', () => {
     const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer'),
+      By.css('spy-html-renderer .spy-html-renderer__content'),
     );
 
     component.html = mockHtmlTemplate;
@@ -45,7 +46,7 @@ describe('StaticHtmlRendererDirective', () => {
   it('should render html inside `spy-html-renderer` when @Input(html) was changes', async () => {
     const mockRerenderHtml = `<p>Rerendered!!!</p>`;
     const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer'),
+      By.css('spy-html-renderer .spy-html-renderer__content'),
     );
 
     component.html = mockHtmlTemplate;

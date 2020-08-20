@@ -26,7 +26,7 @@
     [value]="item.value"
     [selected]="checkSelectedState(item.value)"
   >
-    {{ item.label }}
+    {{ item.title }}
   </option>
 </select>
 
@@ -39,7 +39,7 @@
   >
     <option></option>
     <option *ngFor="let item of mappedItems" [value]="item.value">
-      {{ item.label }}
+      {{ item.title }}
     </option>
   </select>
 </ng-template>

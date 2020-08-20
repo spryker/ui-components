@@ -30,6 +30,9 @@ import {
   styleUrls: ['./table-html-overlay-action-handler.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'spy-table-html-overlay-action-handler',
+  },
 })
 export class TableHtmlOverlayActionHandlerComponent {
   data$ = this.drawerRef.options.data || EMPTY;

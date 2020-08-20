@@ -3,23 +3,21 @@ import { ReplaySubject, Observable } from 'rxjs';
 import { DrawerOptions, DrawerData } from './drawer-options';
 
 export class DrawerRef<D = DrawerData> {
-  private afterClosed$ = new ReplaySubject<void>();
-
   constructor(
     public options: DrawerOptions<D>,
     private closeFn: () => void,
     private maximizeFn: () => void,
     private minimizeFn: () => void,
+    private refreshDrawerFn: () => void,
+    private afterClosed$: Observable<void>,
   ) {}
 
   close(): void {
     this.closeFn();
-    this.afterClosed$.next();
-    this.afterClosed$.complete();
   }
 
   afterClosed(): Observable<void> {
-    return this.afterClosed$.asObservable();
+    return this.afterClosed$;
   }
 
   minimize(): void {
@@ -28,5 +26,9 @@ export class DrawerRef<D = DrawerData> {
 
   maximize(): void {
     this.maximizeFn();
+  }
+
+  refreshDrawer(): void {
+    this.refreshDrawerFn();
   }
 }

@@ -1,23 +1,24 @@
 // tslint:disable: no-non-null-assertion
-import { TestBed, fakeAsync, tick, flush } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { PluckModule } from '@spryker/utils';
-import { CoreTableComponent } from './table.component';
-import { TableConfig, TableColumns } from './table';
-import { TableFeaturesRendererDirective } from '../table-features-renderer/table-features-renderer.directive';
-import { TableRenderFeatureDirective } from '../table-features-renderer/table-render-feature.directive';
+import { I18nModule } from '@spryker/locale';
+import { InvokeModule, PluckModule } from '@spryker/utils';
+import { of } from 'rxjs';
+
+import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
+import { TableDatasourceTypesToken } from '../datasource-type/tokens';
 import { TableFeaturesRegistryToken } from '../table-feature-loader/tokens';
 import { TableFeaturesRendererComponent } from '../table-features-renderer/table-features-renderer.component';
-import { of } from 'rxjs';
-import { TableDatasourceTypesToken } from '../datasource-type/tokens';
-import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
-import { I18nModule } from '@spryker/locale';
+import { TableFeaturesRendererDirective } from '../table-features-renderer/table-features-renderer.directive';
+import { TableRenderFeatureDirective } from '../table-features-renderer/table-render-feature.directive';
+import { TableColumns, TableConfig } from './table';
+import { CoreTableComponent } from './table.component';
 
 const mockDataUrl = 'https://test-data-url.com';
 const mockColUrl = 'https://test-col-url.com';
@@ -87,7 +88,12 @@ describe('TableComponent', () => {
     CoreTableComponent,
     {
       ngModule: {
-        imports: [HttpClientTestingModule, PluckModule, I18nModule],
+        imports: [
+          HttpClientTestingModule,
+          PluckModule,
+          I18nModule,
+          InvokeModule,
+        ],
         declarations: [
           TableFeaturesRendererComponent,
           TableFeaturesRendererDirective,
@@ -124,13 +130,18 @@ describe('TableComponent', () => {
 
     it('must render `nz-table`', fakeAsync(async () => {
       const host = await createComponent({ config: mockConfig }, true);
+
       tick();
-      const dataRes = httpTestingController.expectOne(req =>
-        req.url.includes(mockDataUrl),
-      );
-      dataRes.flush(mockData);
       host.detectChanges();
-      const columnsRes = httpTestingController.expectOne(mockColUrl);
+      tick();
+      host.detectChanges();
+
+      verifyDataRequest();
+      host.detectChanges();
+
+      verifyColumnsRequest();
+      host.detectChanges();
+
       const tableElem = host.queryCss('nz-table');
 
       expect(tableElem).toBeTruthy();
@@ -138,13 +149,18 @@ describe('TableComponent', () => {
 
     it('must render `thead` with input `nzSortFn` must be `true`', fakeAsync(async () => {
       const host = await createComponent({ config: mockConfig }, true);
+
       tick();
-      const dataRes = httpTestingController.expectOne(req =>
-        req.url.includes(mockDataUrl),
-      );
-      dataRes.flush(mockData);
       host.detectChanges();
-      const columnsRes = httpTestingController.expectOne(mockColUrl);
+      tick();
+      host.detectChanges();
+
+      verifyDataRequest();
+      host.detectChanges();
+
+      verifyColumnsRequest();
+      host.detectChanges();
+
       const tableHeadElem = host.queryCss('thead');
 
       expect(tableHeadElem).toBeTruthy();
@@ -155,6 +171,11 @@ describe('TableComponent', () => {
   describe('Host', () => {
     it('should have class `spy-table`', fakeAsync(async () => {
       const host = await createComponent({ config: mockConfig }, true);
+
+      tick();
+      host.detectChanges();
+      tick();
+      host.detectChanges();
 
       flush();
 
@@ -182,6 +203,14 @@ describe('TableComponent', () => {
       });
     });
 
+    beforeEach(() => {
+      httpTestingController = TestBed.inject(HttpTestingController);
+    });
+
+    afterEach(() => {
+      httpTestingController.verify();
+    });
+
     it('must render features in the appropriate blocks', fakeAsync(async () => {
       const host = await createComponent({ config: mockConfig }, true);
       host.component.tableData$ = of([{}]);
@@ -189,6 +218,12 @@ describe('TableComponent', () => {
       tick();
       host.detectChanges();
       tick();
+      host.detectChanges();
+
+      verifyDataRequest();
+      host.detectChanges();
+
+      verifyColumnsRequest();
       host.detectChanges();
 
       const topFeaturesElem = host.queryCss(
@@ -212,14 +247,26 @@ describe('TableComponent', () => {
       const beforeColsHeaderFeaturesElem = host.queryCss(
         'thead th:first-child .before-cols-header-feature',
       );
+      const headerFeaturesElems = host.fixture.debugElement.queryAll(
+        By.css('thead th .header-feature'),
+      );
       const afterColsHeaderFeaturesElem = host.queryCss(
-        'thead th:nth-child(2) .after-cols-header-feature',
+        'thead th:nth-child(5) .after-cols-header-feature',
+      );
+      const beforeRowsFeaturesElem = host.queryCss(
+        'tbody tr:nth-child(1) .before-rows-feature',
       );
       const beforeColsFeaturesElem = host.queryCss(
-        'tbody tr:first-child td:first-child .before-cols-feature',
+        'tbody tr:nth-child(2) td:first-child .before-cols-feature',
+      );
+      const cellFeaturesElems = host.fixture.debugElement.queryAll(
+        By.css('tbody tr:nth-child(2) td .cell-feature'),
       );
       const afterColsFeaturesElem = host.queryCss(
-        'tbody tr:first-child td:nth-child(2) .after-cols-feature',
+        'tbody tr:nth-child(2) td:nth-child(5) .after-cols-feature',
+      );
+      const afterRowsFeaturesElem = host.queryCss(
+        'tbody tr:nth-child(3) .after-rows-feature',
       );
 
       expect(topFeaturesElem).toBeTruthy();
@@ -229,9 +276,13 @@ describe('TableComponent', () => {
       expect(hiddenFeaturesElem).toBeTruthy();
       expect(headerExtFeaturesElem).toBeTruthy();
       expect(beforeColsHeaderFeaturesElem).toBeTruthy();
+      expect(headerFeaturesElems.length).toBe(3);
       expect(afterColsHeaderFeaturesElem).toBeTruthy();
+      expect(beforeRowsFeaturesElem).toBeTruthy();
       expect(beforeColsFeaturesElem).toBeTruthy();
+      expect(cellFeaturesElems.length).toBe(3);
       expect(afterColsFeaturesElem).toBeTruthy();
+      expect(afterRowsFeaturesElem).toBeTruthy();
     }));
   });
 
@@ -248,18 +299,18 @@ describe('TableComponent', () => {
       it('returned columns$ Observable should match the right data with `columnsUrl key`', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const callback = jest.fn();
+
         tick();
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-        dataRes.flush(mockData);
         host.detectChanges();
-        const columnsRes = httpTestingController.expectOne(mockColUrl);
-
-        expect(columnsRes.request.method).toBe('GET');
-
-        columnsRes.flush(mockCols);
+        tick();
         host.detectChanges();
+
+        verifyDataRequest();
+        host.detectChanges();
+
+        verifyColumnsRequest();
+        host.detectChanges();
+
         host.component.columns$.subscribe(callback);
 
         expect(callback).toHaveBeenCalledWith(mockCols);
@@ -268,12 +319,15 @@ describe('TableComponent', () => {
       it('returned columns$ Observable should match the right data with `columns` key', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfigCols }, true);
         const callback = jest.fn();
-        tick();
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
 
+        tick();
         host.detectChanges();
+        tick();
+        host.detectChanges();
+
+        verifyDataRequest();
+        host.detectChanges();
+
         host.component.columns$.subscribe(callback);
 
         expect(callback).toHaveBeenCalledWith(mockCols);
@@ -282,17 +336,18 @@ describe('TableComponent', () => {
       it('returned data$ Observable should match the right data', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
         const callback = jest.fn();
+
         tick();
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-        dataRes.flush(mockData);
         host.detectChanges();
-        const columnsRes = httpTestingController.expectOne(mockColUrl);
-
-        expect(dataRes.request.method).toBe('GET');
-
+        tick();
         host.detectChanges();
+
+        verifyDataRequest();
+        host.detectChanges();
+
+        verifyColumnsRequest();
+        host.detectChanges();
+
         host.component.data$.subscribe(callback);
 
         expect(callback).toHaveBeenCalledWith(mockData);
@@ -300,15 +355,16 @@ describe('TableComponent', () => {
 
       it('prop data$ must be mapped into tbody and render spy-table-column-renderer at each td', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
-        tick();
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-        dataRes.flush(mockData);
-        host.detectChanges();
-        const columnsRes = httpTestingController.expectOne(mockColUrl);
 
-        columnsRes.flush(mockCols);
+        tick();
+        host.detectChanges();
+        tick();
+        host.detectChanges();
+
+        verifyDataRequest();
+        host.detectChanges();
+
+        verifyColumnsRequest();
         host.detectChanges();
 
         const columnElement = host.queryCss(
@@ -325,15 +381,16 @@ describe('TableComponent', () => {
 
       it('prop columns$ must be mapped into thead and create with tr and each th of the table', fakeAsync(async () => {
         const host = await createComponent({ config: mockConfig }, true);
-        tick();
-        const dataRes = httpTestingController.expectOne(req =>
-          req.url.includes(mockDataUrl),
-        );
-        dataRes.flush(mockData);
-        host.detectChanges();
-        const columnsRes = httpTestingController.expectOne(mockColUrl);
 
-        columnsRes.flush(mockCols);
+        tick();
+        host.detectChanges();
+        tick();
+        host.detectChanges();
+
+        verifyDataRequest();
+        host.detectChanges();
+
+        verifyColumnsRequest();
         host.detectChanges();
 
         const thElements = host.fixture.debugElement.queryAll(By.css('tr th'));
@@ -348,4 +405,24 @@ describe('TableComponent', () => {
       }));
     });
   });
+
+  function verifyColumnsRequest() {
+    const columnsReq = httpTestingController.expectOne(mockColUrl);
+
+    expect(columnsReq.request.method).toBe('GET');
+
+    columnsReq.flush(mockCols);
+    tick();
+  }
+
+  function verifyDataRequest() {
+    const dataReq = httpTestingController.expectOne(req =>
+      req.url.includes(mockDataUrl),
+    );
+
+    expect(dataReq.request.method).toBe('GET');
+
+    dataReq.flush(mockData);
+    tick();
+  }
 });

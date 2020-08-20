@@ -21,6 +21,27 @@
         @select-arrow-size;
       pointer-events: none;
     }
+
+    .@{select-prefix-cls}-selector {
+      padding: @select-multiple-padding-vertical
+        @select-multiple-padding-horizontal;
+      border-color: @gray-light;
+      flex-wrap: nowrap;
+
+      &:hover {
+        border-color: @gray;
+      }
+    }
+
+    .@{select-prefix-cls}-selection-item {
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      background: none;
+      border: none;
+      color: @ink;
+    }
   }
 
   &-open {
@@ -221,25 +242,6 @@
 
     &-icon {
       vertical-align: middle;
-    }
-  }
-
-  &-multiple {
-    .@{select-prefix-cls}-selector {
-      padding: @select-multiple-padding-vertical
-        @select-multiple-padding-horizontal;
-      border-color: @gray-light;
-      flex-wrap: nowrap;
-
-      &:hover {
-        border-color: @gray;
-      }
-    }
-
-    .@{select-prefix-cls}-selection-item {
-      background: none;
-      border: none;
-      color: @ink;
     }
   }
 

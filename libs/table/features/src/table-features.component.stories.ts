@@ -18,6 +18,7 @@ import { LayoutFlatHostComponent } from '@orchestrator/layout';
 
 import { TableFiltersFeatureModule } from './table-filters-feature';
 import { TablePaginationFeatureModule } from './table-pagination-feature';
+import { TableSettingsFeatureModule } from './table-settings-feature';
 import { TableRowActionsFeatureModule } from './table-row-actions-feature';
 import { TableSearchFeatureModule } from './table-search-feature';
 import { TableSelectableFeatureModule } from './table-selectable-feature';
@@ -27,6 +28,8 @@ import { TableDatasourceHttpService } from '../../datasources/src/table-datasour
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { TableBatchActionsFeatureModule } from './table-batch-actions-feature';
+import { TableTitleFeatureModule } from './table-title-feature';
 
 export default {
   title: 'TableFeaturesComponent',
@@ -36,7 +39,28 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
+  col4: 'col4',
+  col5: 'col5',
+  col6: 'col6',
+  col7: 'col7',
+  col8: 'col8',
+  _actionIds: availableActions(i),
 });
+
+const availableActions = (index: number): string[] | undefined => {
+  switch (index) {
+    case 1:
+      return ['update-offer'];
+    case 2:
+      return ['ship'];
+    case 3:
+      return [];
+    case 4:
+      return undefined;
+    default:
+      return ['update-offer', 'ship'];
+  }
+};
 
 export const viaHtml = getFeaturesStory(
   `
@@ -48,6 +72,9 @@ export const viaHtml = getFeaturesStory(
       <spy-table-selectable-feature spy-table-feature></spy-table-selectable-feature>
       <spy-table-sync-state-feature spy-table-feature></spy-table-sync-state-feature>
       <spy-table-total-feature spy-table-feature></spy-table-total-feature>
+      <spy-table-settings-feature spy-table-feature></spy-table-settings-feature>
+      <spy-table-batch-actions-feature spy-table-feature></spy-table-batch-actions-feature>
+      <spy-table-title-feature spy-table-feature></spy-table-title-feature>
     </spy-table>
   `,
   [
@@ -58,6 +85,9 @@ export const viaHtml = getFeaturesStory(
     TableSyncStateFeatureModule,
     TableSelectableFeatureModule,
     TableTotalFeatureModule,
+    TableSettingsFeatureModule,
+    TableBatchActionsFeatureModule,
+    TableTitleFeatureModule,
   ],
 );
 
@@ -91,6 +121,16 @@ export const viaConfig = getFeaturesStory(
         import('./table-selectable-feature').then(
           m => m.TableSelectableFeatureModule,
         ),
+      settings: () =>
+        import('./table-settings-feature').then(
+          m => m.TableSettingsFeatureModule,
+        ),
+      batchActions: () =>
+        import('./table-batch-actions-feature').then(
+          m => m.TableBatchActionsFeatureModule,
+        ),
+      title: () =>
+        import('./table-title-feature').then(m => m.TableTitleFeatureModule),
     }),
   ],
 );
@@ -108,7 +148,7 @@ function getFeaturesStory(
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
           select: TableFilterSelectComponent,
-          range: TableFilterDateRangeComponent,
+          'date-range': TableFilterDateRangeComponent,
         } as any),
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
@@ -140,10 +180,41 @@ function getFeaturesStory(
           url: '/data-request',
         },
         columns: [
-          { id: 'col1', title: 'Column #1', sortable: true },
-          { id: 'col2', title: 'Column #2' },
-          { id: 'col3', title: 'Column #3' },
+          { id: 'col1', title: 'Column #1', sortable: true, hideable: true },
+          { id: 'col2', title: 'Column #2', hideable: false },
+          { id: 'col3', title: 'Column #3', hideable: true },
+          { id: 'col4', title: 'Column #4', hideable: true },
+          { id: 'col5', title: 'Column #5', hideable: true },
+          { id: 'col6', title: 'Column #6', hideable: true },
+          { id: 'col7', title: 'Column #7', hideable: true },
+          { id: 'col8', title: 'Column #8', hideable: true },
         ],
+        batchActions: {
+          enabled: true, // This will enable feature via config
+          noActionsMessage: 'No available actions for selected rows',
+          availableActionsPath: '_actionIds',
+          rowIdPath: 'sku',
+          actions: [
+            {
+              id: 'update-offer',
+              title: 'Update Offer(s)',
+              type: 'form-overlay',
+              typeOptions: {
+                url: 'https://.../?ids=${rowIds}',
+                method: 'GET',
+              },
+            },
+            {
+              id: 'ship',
+              title: 'Ship',
+              type: 'html-overlay',
+              typeOptions: {
+                url: 'https://.../?ids=${rowIds}',
+                method: 'GET',
+              },
+            },
+          ],
+        },
         filters: {
           enabled: true,
           items: [
@@ -174,9 +245,41 @@ function getFeaturesStory(
               },
             },
             {
+              id: 'select3',
+              title: 'Select',
+              type: 'select',
+              typeOptions: {
+                multiselect: true,
+                values: [
+                  { value: 1, title: 'Option_1' },
+                  { value: 2, title: 'Option_2' },
+                  { value: 3, title: 'Option_3' },
+                  { value: 4, title: 'Option_4' },
+                ],
+              },
+            },
+            {
               id: 'range',
               title: 'Range',
-              type: 'range',
+              type: 'date-range',
+              typeOptions: {
+                placeholderFrom: 'from',
+                format: 'yyyy-MM-dd',
+              },
+            },
+            {
+              id: 'range2',
+              title: 'Range',
+              type: 'date-range',
+              typeOptions: {
+                placeholderFrom: 'from',
+                format: 'yyyy-MM-dd',
+              },
+            },
+            {
+              id: 'range2',
+              title: 'Range',
+              type: 'date-range',
               typeOptions: {
                 placeholderFrom: 'from',
                 format: 'yyyy-MM-dd',
@@ -206,6 +309,13 @@ function getFeaturesStory(
           enabled: true,
         },
         total: {
+          enabled: true,
+        },
+        settings: {
+          enabled: true,
+        },
+        title: {
+          title: 'Table title',
           enabled: true,
         },
       },

@@ -5,12 +5,17 @@ import {
   LayoutFlatHostComponent,
   LayoutFlatHostModule,
 } from '@orchestrator/layout';
-import { ContextModule } from '@spryker/utils';
+import { IconModule } from '@spryker/icon';
+import { I18nModule } from '@spryker/locale';
+import { PopoverModule } from '@spryker/popover';
+import { ContextModule, InvokeModule, PluckModule } from '@spryker/utils';
 import { SelectComponentsModule } from '@spryker/web-components';
-import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTableModule } from 'ng-zorro-antd/table';
+
 import { provideTableColumnComponents } from './column-type/tokens';
 import { provideTableDatasourceServices } from './datasource-type/tokens';
+import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
 import { provideTableFeatures } from './table-feature-loader/tokens';
@@ -25,12 +30,8 @@ import {
   TableDatasourceTypesDeclaration,
 } from './table/table';
 import { CoreTableComponent } from './table/table.component';
-import { PluckModule } from '@spryker/utils';
-import { IconModule } from '@spryker/icon';
-import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
-import { I18nModule } from '@spryker/locale';
-import { TableActionsDeclaration } from './types';
 import { provideTableActionsServices } from './tokens';
+import { TableActionsDeclaration } from './types';
 
 @NgModule({
   imports: [
@@ -47,6 +48,8 @@ import { provideTableActionsServices } from './tokens';
     IconNoFilteredDataModule,
     NzSpinModule,
     I18nModule,
+    PopoverModule,
+    InvokeModule,
   ],
   declarations: [
     CoreTableComponent,

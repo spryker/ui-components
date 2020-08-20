@@ -1,0 +1,73 @@
+<ng-container
+  *spyTableFeatureTpl="
+    tableFeatureLocation.beforeTable;
+    styles: { order: '2', flexGrow: 1 }
+  "
+>
+  <div *ngIf="isDataResolved$ | async">
+    <spy-popover
+      class="spy-table-settings-feature-popover"
+      [position]="popoverPosition"
+    >
+      <spy-button-toggle trigger>
+        <spy-icon [name]="settingsIcon"></spy-icon>
+      </spy-button-toggle>
+      <div>
+        <div class="spy-table-settings-feature__title">
+          {{ 'table.table-settings' | spyI18n | async }}
+        </div>
+        <ng-container *ngIf="columns$ | async as tableColumns">
+          <ng-container *ngIf="popoverColumns$ | async as popoverColumns">
+            <div
+              cdkDropList
+              class="spy-table-settings-feature"
+              (cdkDropListDropped)="drop($event, popoverColumns, tableColumns)"
+            >
+              <div
+                cdkDrag
+                *ngFor="let column of popoverColumns"
+                class="spy-table-settings-feature__item"
+                cdkDragPreviewClass="spy-table-settings-feature-drag"
+              >
+                <div
+                  class="spy-table-settings-feature__drag-placeholder"
+                  *cdkDragPlaceholder
+                ></div>
+                <spy-checkbox
+                  [disabled]="!column.hideable"
+                  [checked]="!column.hidden"
+                  (checkedChange)="
+                    handleCheckChange(column, popoverColumns, tableColumns)
+                  "
+                  class="spy-table-settings-feature__item-check"
+                ></spy-checkbox>
+                <span class="spy-table-settings-feature__item-name">{{
+                  column.title
+                }}</span>
+                <spy-icon
+                  class="spy-table-settings-feature__icon"
+                  [name]="dragIcon"
+                ></spy-icon>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+        <div class="spy-table-settings-feature__footer">
+          <button
+            class="spy-table-settings-feature__reset-button"
+            [class.spy-table-settings-feature__reset-button--disabled]="
+              isResetDisabled
+            "
+            (click)="resetChoice()"
+          >
+            <spy-icon
+              class="spy-table-settings-feature__reset-button-icon"
+              [name]="resetIcon"
+            ></spy-icon>
+            {{ 'table.reset' | spyI18n | async }}
+          </button>
+        </div>
+      </div>
+    </spy-popover>
+  </div>
+</ng-container>

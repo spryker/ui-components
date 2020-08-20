@@ -110,7 +110,9 @@ describe('AjaxFormComponent', () => {
     component.action = mockUrl;
     fixture.detectChanges();
 
-    let nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+    let nzSpinElem = fixture.debugElement.query(
+      By.css('.spy-ajax-form-container + nz-spin'),
+    );
 
     expect(nzSpinElem).toBeTruthy();
 
@@ -121,7 +123,9 @@ describe('AjaxFormComponent', () => {
     tick();
     fixture.detectChanges();
 
-    nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+    nzSpinElem = fixture.debugElement.query(
+      By.css('.spy-ajax-form-container + nz-spin'),
+    );
 
     expect(nzSpinElem).toBeFalsy();
   }));
@@ -137,7 +141,9 @@ describe('AjaxFormComponent', () => {
     tick();
     fixture.detectChanges();
 
-    const staticHtml = fixture.debugElement.query(By.css('spy-html-renderer'));
+    const staticHtml = fixture.debugElement.query(
+      By.css('spy-html-renderer .spy-html-renderer__content'),
+    );
 
     expect(staticHtml.nativeElement.innerHTML).toBe(mockFirstResponse.form);
   }));
@@ -159,7 +165,9 @@ describe('AjaxFormComponent', () => {
     tick();
     fixture.detectChanges();
 
-    const staticHtml = fixture.debugElement.query(By.css('spy-html-renderer'));
+    const staticHtml = fixture.debugElement.query(
+      By.css('spy-html-renderer .spy-html-renderer__content'),
+    );
 
     expect(staticHtml.nativeElement.innerHTML).toBe(mockFirstResponse.form);
 
@@ -216,8 +224,12 @@ describe('AjaxFormComponent', () => {
     tick();
     fixture.detectChanges();
 
-    const staticHtml = fixture.debugElement.query(By.css('spy-html-renderer'));
-    let nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+    const staticHtml = fixture.debugElement.query(
+      By.css('spy-html-renderer .spy-html-renderer__content'),
+    );
+    let nzSpinElem = fixture.debugElement.query(
+      By.css('.spy-ajax-form-container + nz-spin'),
+    );
 
     htmlResponse = httpTestingController.expectOne(mockUrl);
 
@@ -229,7 +241,9 @@ describe('AjaxFormComponent', () => {
     tick();
     fixture.detectChanges();
 
-    nzSpinElem = fixture.debugElement.query(By.css('nz-spin'));
+    nzSpinElem = fixture.debugElement.query(
+      By.css('.spy-ajax-form-container + nz-spin'),
+    );
 
     expect(nzSpinElem).toBeFalsy();
     expect(staticHtml.nativeElement.innerHTML).toBe(mockSecondResponse.form);

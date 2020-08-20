@@ -21,11 +21,11 @@ const mockSelectValues = [
 
 const mockTransformedSelectValues: SelectOptionItem[] = [
   {
-    label: 'Option 1',
+    title: 'Option 1',
     value: 'value_1',
   },
   {
-    label: 'Option 2',
+    title: 'Option 2',
     value: 'value_2',
   },
 ];

@@ -1,8 +1,8 @@
 import { Type, Injector } from '@angular/core';
-import { NotificationDataType } from '@spryker/notification';
+import { NotificationType } from '@spryker/notification';
 
 export interface AjaxActionNotification {
-  type: NotificationDataType;
+  type: NotificationType;
   message: string;
 }
 

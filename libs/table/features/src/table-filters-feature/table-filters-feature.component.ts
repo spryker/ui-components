@@ -4,6 +4,7 @@ import {
   forwardRef,
   Inject,
   Injector,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   TableFeatureComponent,
@@ -15,9 +16,8 @@ import {
   distinctUntilChanged,
   map,
   pluck,
-  startWith,
-  tap,
   shareReplay,
+  startWith,
   switchMap,
 } from 'rxjs/operators';
 
@@ -43,6 +43,7 @@ export interface TableFiltersConfig extends TableFeatureConfig {
   templateUrl: './table-filters-feature.component.html',
   styleUrls: ['./table-filters-feature.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: TableFeatureComponent,
@@ -55,6 +56,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
 > {
   name = 'filters';
   tableFeatureLocation = TableFeatureLocation;
+  filterClasses: Record<string, string | string[]> = {};
 
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
   filterComponentMap: Record<
@@ -123,6 +125,10 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
 
   updateFilterValue(id: string, value: unknown): void {
     this.updateFiltersValue$.next({ [id]: value });
+  }
+
+  updateFilterClasses(id: string, classes: string | string[]): void {
+    setTimeout(() => (this.filterClasses[id] = classes), 0);
   }
 
   trackByFilter(index: number, filter: TableFilterBase): string {

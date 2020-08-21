@@ -2,33 +2,33 @@ import {
   ChangeDetectionStrategy,
   Component,
   Injector,
-  ViewEncapsulation,
   OnDestroy,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
+import { IconActionModule } from '@spryker/icon/icons';
 import {
+  TableActionBase,
+  TableActionsService,
+  TableActionTriggeredEvent,
   TableDataRow,
   TableFeatureComponent,
   TableFeatureConfig,
   TableFeatureLocation,
-  TableActionTriggeredEvent,
-  TableActionsService,
   TableRowClickEvent,
-  TableActionBase,
 } from '@spryker/table';
-import {
-  pluck,
-  map,
-  shareReplay,
-  takeUntil,
-  switchMap,
-  withLatestFrom,
-  take,
-} from 'rxjs/operators';
-import { DropdownItem } from '@spryker/dropdown';
-import { Observable, Subject, combineLatest, EMPTY } from 'rxjs';
-import { IconActionModule } from '@spryker/icon/icons';
 import { ContextService } from '@spryker/utils';
+import { combineLatest, EMPTY, Subject } from 'rxjs';
+import {
+  map,
+  pluck,
+  shareReplay,
+  switchMap,
+  take,
+  takeUntil,
+  withLatestFrom,
+} from 'rxjs/operators';
+
 import { TableRowActionBase, TableRowActionContext } from './types';
 
 declare module '@spryker/table' {

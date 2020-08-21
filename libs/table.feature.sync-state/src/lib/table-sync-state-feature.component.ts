@@ -1,21 +1,21 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
   ChangeDetectorRef,
+  Component,
   Injector,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
-  TableFeatureComponent,
-  TableDataConfiguratorService,
-  TableFeatureLocation,
   DefaultInitialDataStrategy,
   TableDataConfig,
-  TableFeatureConfig,
+  TableDataConfiguratorService,
+  TableFeatureComponent,
+  TableFeatureLocation,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/utils';
-import { tap, take, switchMap, pluck } from 'rxjs/operators';
-import { merge, Observable, of, combineLatest } from 'rxjs';
+import { combineLatest, merge, Observable, of } from 'rxjs';
+import { pluck, switchMap, take, tap } from 'rxjs/operators';
+
 import { TableSyncStateConfig } from './types';
 
 @Component({

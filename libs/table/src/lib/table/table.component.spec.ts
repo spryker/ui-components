@@ -8,10 +8,10 @@ import { fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { I18nModule } from '@spryker/locale';
+import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import { InvokeModule, PluckModule } from '@spryker/utils';
 import { of } from 'rxjs';
 
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import { TableDatasourceTypesToken } from '../datasource-type/tokens';
 import { TableFeaturesRegistryToken } from '../table-feature-loader/tokens';
 import { TableFeaturesRendererComponent } from '../table-features-renderer/table-features-renderer.component';

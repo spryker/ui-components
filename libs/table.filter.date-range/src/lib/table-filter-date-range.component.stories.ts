@@ -4,10 +4,8 @@ import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@spryker/table';
 import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
-import {
-  TableFilterTreeSelectComponent,
-  TableFilterTreeSelectModule,
-} from './index';
+import { TableFilterDateRangeComponent } from './table-filter-date-range.component';
+import { TableFilterDateRangeModule } from './table-filter-date-range.module';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
   generateMockTableDataFor,
@@ -20,7 +18,7 @@ import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
-  title: 'TableFilterTreeSelectComponent',
+  title: 'TableFilterDateRangeComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
@@ -64,13 +62,13 @@ function getFiltersStory(
         MockHttpModule,
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
-          'tree-select': TableFilterTreeSelectComponent,
+          'date-range': TableFilterDateRangeComponent,
         } as any),
         DefaultContextSerializationModule,
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
         }),
-        TableFilterTreeSelectModule,
+        TableFilterDateRangeModule,
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
         EnLocaleModule,
         ...extraNgModules,
@@ -78,7 +76,7 @@ function getFiltersStory(
       providers: [
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: [LayoutFlatHostComponent, TableFilterTreeSelectComponent],
+          useValue: [LayoutFlatHostComponent, TableFilterDateRangeComponent],
           multi: true,
         },
       ],
@@ -99,28 +97,12 @@ function getFiltersStory(
           enabled: true, // This will enable feature via config
           items: [
             {
-              id: 'tree-select',
-              title: 'TreeSelect',
-              type: 'tree-select',
+              id: 'range',
+              title: 'Range',
+              type: 'date-range',
               typeOptions: {
-                multiselect: true,
-                values: [
-                  { value: 1, title: 'Option_1' },
-                  {
-                    value: 2,
-                    title: 'Option_2',
-                    children: [
-                      { value: 9, title: 'Option_9' },
-                      { value: 10, title: 'Option_10' },
-                      { value: 11, title: 'Option_11' },
-                      { value: 12, title: 'Option_12' },
-                    ],
-                  },
-                  { value: 3, title: 'Option_3' },
-                  { value: 4, title: 'Option_4' },
-                  { value: 5, title: 'Option_5' },
-                  { value: 0, title: 'Option_0' },
-                ],
+                placeholderFrom: 'from',
+                placeholderTo: 'to',
               },
             },
           ],

@@ -54,6 +54,13 @@
       ],
       "@spryker/table.feature.row-actions": [
         "libs/table.feature.row-actions/src/index.ts"
+      ],
+      "@spryker/table.filter.select": ["libs/table.filter.select/src/index.ts"],
+      "@spryker/table.filter.date-range": [
+        "libs/table.filter.date-range/src/index.ts"
+      ],
+      "@spryker/table.filter.tree-select": [
+        "libs/table.filter.tree-select/src/index.ts"
       ]
     }
   },

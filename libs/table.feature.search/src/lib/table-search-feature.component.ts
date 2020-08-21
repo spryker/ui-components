@@ -1,30 +1,26 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
+  Component,
   OnDestroy,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
+import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
 import {
   TableFeatureComponent,
-  TableFeatureLocation,
-  TableDataConfiguratorService,
   TableFeatureConfig,
-  TableDataConfig,
+  TableFeatureLocation,
 } from '@spryker/table';
+import { combineLatest, merge, Subject } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
-  takeUntil,
-  pluck,
   map,
-  switchMap,
+  pluck,
   shareReplay,
-  mapTo,
-  startWith,
+  switchMap,
+  takeUntil,
 } from 'rxjs/operators';
-import { Subject, Observable, merge, combineLatest } from 'rxjs';
-import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
 
 declare module '@spryker/table' {
   interface TableConfig {

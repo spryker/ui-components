@@ -4,10 +4,8 @@ import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@spryker/table';
 import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
-import {
-  TableFilterDateRangeComponent,
-  TableFilterDateRangeModule,
-} from './index';
+import { TableFilterSelectComponent } from './table-filter-select.component';
+import { TableFilterSelectModule } from './table-filter-select.module';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
   generateMockTableDataFor,
@@ -20,7 +18,7 @@ import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
-  title: 'TableFilterDateRangeComponent',
+  title: 'TableFiltersSelectComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
@@ -64,13 +62,13 @@ function getFiltersStory(
         MockHttpModule,
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
-          'date-range': TableFilterDateRangeComponent,
-        } as any),
+          select: TableFilterSelectComponent as any,
+        }),
         DefaultContextSerializationModule,
         TableModule.withDatasourceTypes({
           http: TableDatasourceHttpService,
         }),
-        TableFilterDateRangeModule,
+        TableFilterSelectModule,
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
         EnLocaleModule,
         ...extraNgModules,
@@ -78,7 +76,7 @@ function getFiltersStory(
       providers: [
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: [LayoutFlatHostComponent, TableFilterDateRangeComponent],
+          useValue: [LayoutFlatHostComponent, TableFilterSelectComponent],
           multi: true,
         },
       ],
@@ -99,12 +97,45 @@ function getFiltersStory(
           enabled: true, // This will enable feature via config
           items: [
             {
-              id: 'range',
-              title: 'Range',
-              type: 'date-range',
+              id: 'select1',
+              title: 'Column 1',
+              type: 'select',
               typeOptions: {
-                placeholderFrom: 'from',
-                placeholderTo: 'to',
+                multiselect: false,
+                values: [
+                  { value: 1, title: 'Option_1' },
+                  { value: 2, title: 'Option_2' },
+                  { value: 0, title: 'Option_0' },
+                ],
+              },
+            },
+            {
+              id: 'select2',
+              title: 'Column 2',
+              type: 'select',
+              typeOptions: {
+                multiselect: true,
+                values: [
+                  { value: 1, title: 'Option_1' },
+                  { value: 2, title: 'Option_2' },
+                  { value: 3, title: 'Option_3' },
+                  { value: 4, title: 'Option_4' },
+                  { value: 5, title: 'Option_5' },
+                  { value: 0, title: 'Option_0' },
+                ],
+              },
+            },
+            {
+              id: 'select3',
+              title: 'Column 3',
+              type: 'select',
+              typeOptions: {
+                multiselect: false,
+                values: [
+                  { value: 1, title: 'Option_1' },
+                  { value: 2, title: 'Option_2' },
+                  { value: 0, title: 'Option_0' },
+                ],
               },
             },
           ],

@@ -12,27 +12,12 @@ import {
   TableData,
   TableDataRow,
   TableFeatureComponent,
-  TableFeatureConfig,
   TableFeatureLocation,
 } from '@spryker/table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-declare module '@spryker/table' {
-  interface TableConfig {
-    itemSelection?: TableSelectableConfig;
-  }
-}
-
-// tslint:disable-next-line: no-empty-interface
-export interface TableSelectableConfig extends TableFeatureConfig {}
-
-export interface TableSelectionRow {
-  data: TableDataRow;
-  index: number;
-}
-
-export type TableSelectionChangeEvent = TableSelectionRow[];
+import { TableSelectableConfig } from './types';
 
 @Component({
   selector: 'spy-table-selectable-feature',

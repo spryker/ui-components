@@ -13,12 +13,6 @@ import { TableFilterSelect, TableFilterSelectValue } from './types';
 import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { EMPTY } from 'rxjs';
 
-declare module '@spryker/table.feature.filters' {
-  interface TableFiltersRegistry {
-    select: TableFilterSelect;
-  }
-}
-
 @Component({
   selector: 'spy-table-filter-select',
   templateUrl: './table-filter-select.component.html',

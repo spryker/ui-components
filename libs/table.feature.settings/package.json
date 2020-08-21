@@ -12,6 +12,7 @@
     "@spryker/icon": "^0.2.0-next.0",
     "@spryker/locale": "^0.2.0-next.0",
     "@spryker/popover": "^0.1.0-next.0",
+    "@spryker/styles": "^0.2.0-next.0",
     "tslib": "^1.10.0"
   },
   "publishConfig": {

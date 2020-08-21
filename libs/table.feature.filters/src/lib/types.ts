@@ -2,6 +2,17 @@
 import { EventEmitter } from '@angular/core';
 import { Distribute } from '@spryker/utils';
 import { Observable } from 'rxjs';
+import { TableFeatureConfig } from '@spryker/table';
+
+declare module '@spryker/table' {
+  interface TableConfig {
+    filters?: TableFiltersConfig;
+  }
+}
+
+export interface TableFiltersConfig extends TableFeatureConfig {
+  items: TableFilterBase[];
+}
 
 export interface TableFilterBase<V = unknown> {
   __capturedValue: V;

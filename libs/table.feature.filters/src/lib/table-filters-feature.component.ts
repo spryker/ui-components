@@ -6,11 +6,7 @@ import {
   Injector,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  TableFeatureComponent,
-  TableFeatureConfig,
-  TableFeatureLocation,
-} from '@spryker/table';
+import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -25,18 +21,9 @@ import { TABLE_FILTERS_TOKEN } from './tokens';
 import {
   TableFilterBase,
   TableFilterComponent,
+  TableFiltersConfig,
   TableFiltersDeclaration,
 } from './types';
-
-declare module '@spryker/table' {
-  interface TableConfig {
-    filters?: TableFiltersConfig;
-  }
-}
-
-export interface TableFiltersConfig extends TableFeatureConfig {
-  items: TableFilterBase[];
-}
 
 @Component({
   selector: 'spy-table-filters-feature',

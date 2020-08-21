@@ -13,7 +13,6 @@ import {
   TableActionTriggeredEvent,
   TableDataRow,
   TableFeatureComponent,
-  TableFeatureConfig,
   TableFeatureLocation,
   TableRowClickEvent,
 } from '@spryker/table';
@@ -29,20 +28,11 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 
-import { TableRowActionBase, TableRowActionContext } from './types';
-
-declare module '@spryker/table' {
-  interface TableConfig {
-    rowActions?: TableRowActionsConfig;
-  }
-}
-
-export interface TableRowActionsConfig extends TableFeatureConfig {
-  actions?: TableRowActionBase[];
-  click?: string;
-  rowIdPath?: string;
-  availableActionsPath?: string;
-}
+import {
+  TableRowActionBase,
+  TableRowActionContext,
+  TableRowActionsConfig,
+} from './types';
 
 @Component({
   selector: 'spy-table-row-actions-feature',

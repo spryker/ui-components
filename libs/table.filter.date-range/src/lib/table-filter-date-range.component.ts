@@ -13,12 +13,6 @@ import { DateRangeValueInput } from '@spryker/date-picker';
 import { Observable, of } from 'rxjs';
 import { I18nService } from '@spryker/locale';
 
-declare module '@spryker/table.feature.filters' {
-  interface TableFiltersRegistry {
-    dateRange: TableFilterDateRange;
-  }
-}
-
 @Component({
   selector: 'spy-table-filter-date-range',
   templateUrl: './table-filter-date-range.component.html',

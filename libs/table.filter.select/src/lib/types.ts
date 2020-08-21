@@ -1,5 +1,11 @@
 import { TableFilterBase } from '@spryker/table.feature.filters';
 
+declare module '@spryker/table.feature.filters' {
+  interface TableFiltersRegistry {
+    select: TableFilterSelect;
+  }
+}
+
 export interface TableFilterSelect
   extends TableFilterBase<TableFilterSelectValue> {
   type: 'select';

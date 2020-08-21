@@ -1,25 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import {
-  TableData,
-  TableDataConfig,
-  TableDatasourceConfig,
-} from '@spryker/table';
+import { Injectable } from '@angular/core';
+import { TableData, TableDataConfig } from '@spryker/table';
+import { JsonHttpUrlEncodingCodec } from '@spryker/utils';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { JsonHttpUrlEncodingCodec } from '@spryker/utils';
+
+import { TableDatasourceHttpConfig } from './types';
 
 // Add http datasource type to registry
-declare module '@spryker/table' {
-  interface TableDatasourceTypeRegistry {
-    http: TableDatasourceHttpConfig;
-  }
-}
-
-export interface TableDatasourceHttpConfig extends TableDatasourceConfig {
-  url: string;
-}
-
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceHttpService {
   constructor(private http: HttpClient) {}

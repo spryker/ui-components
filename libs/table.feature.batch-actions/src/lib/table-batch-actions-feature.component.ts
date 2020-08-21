@@ -5,13 +5,15 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  TableActionBase,
   TableActionsService,
   TableActionTriggeredEvent,
   TableFeatureComponent,
-  TableFeatureConfig,
   TableFeatureLocation,
 } from '@spryker/table';
+import {
+  TableSelectionChangeEvent,
+  TableSelectionRow,
+} from '@spryker/table.feature.selectable';
 import { ContextService, multipleIntersectionOfString } from '@spryker/utils';
 import { combineLatest, Observable } from 'rxjs';
 import {
@@ -21,40 +23,14 @@ import {
   switchMap,
   withLatestFrom,
 } from 'rxjs/operators';
-
 import {
-  TableSelectionChangeEvent,
-  TableSelectionRow,
-} from '@spryker/table.feature.selectable';
-
-declare module '@spryker/table' {
-  interface TableConfig {
-    batchActions?: TableBatchActionsConfig;
-  }
-}
-
-export interface TableBatchActionsConfig extends TableFeatureConfig {
-  actions: TableBatchAction[];
-  rowIdPath: string;
-  noActionsMessage?: string;
-  availableActionsPath?: string;
-}
-
-export interface TableBatchAction extends TableActionBase {
-  title: string;
-}
-
-export interface TableBatchActionContext {
-  rowIds: string[];
-}
+  TableBatchActionsConfig,
+  TableItemActions,
+  TableBatchAction,
+  TableBatchActionContext,
+} from './types';
 
 interface SelectedRows extends Record<string, unknown>, TableSelectionRow {}
-
-export interface TableItemActions {
-  actions: TableBatchAction[];
-  rowIdPath: string;
-  selectedRows: SelectedRows[];
-}
 
 /**
  * Component hooks into the Table Selectable Feature and renders Bulk Action Buttons for selected rows based on the Table Configuration.

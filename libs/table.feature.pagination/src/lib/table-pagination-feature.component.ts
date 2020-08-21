@@ -3,22 +3,10 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  TableFeatureComponent,
-  TableFeatureConfig,
-  TableFeatureLocation,
-} from '@spryker/table';
+import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 
-declare module '@spryker/table' {
-  interface TableConfig {
-    pagination?: TablePaginationConfig;
-  }
-}
-
-export interface TablePaginationConfig extends TableFeatureConfig {
-  sizes: number[];
-}
+import { TablePaginationConfig } from './types';
 
 @Component({
   selector: 'spy-table-pagination-feature',

@@ -425,6 +425,26 @@
         "type:component",
         "pkg:extension"
       ]
+    },
+    "table.action-handler.form-overlay": {
+      "tags": [
+        "level:molecule",
+        "type:component-service",
+        "pkg:extension"
+      ]
+    },
+    "table.action-handler.html-overlay": {
+      "tags": [
+        "level:molecule",
+        "type:component-service",
+        "pkg:extension"
+      ]
+    },
+    "table.action-handler.url": {
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     }
   },
   "tasksRunnerOptions": {

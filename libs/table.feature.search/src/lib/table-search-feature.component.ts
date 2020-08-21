@@ -6,11 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
-import {
-  TableFeatureComponent,
-  TableFeatureConfig,
-  TableFeatureLocation,
-} from '@spryker/table';
+import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { combineLatest, merge, Subject } from 'rxjs';
 import {
   debounceTime,
@@ -22,15 +18,7 @@ import {
   takeUntil,
 } from 'rxjs/operators';
 
-declare module '@spryker/table' {
-  interface TableConfig {
-    search?: TableSearchConfig;
-  }
-}
-
-export interface TableSearchConfig extends TableFeatureConfig {
-  placeholder?: string;
-}
+import { TableSearchConfig } from './types';
 
 @Component({
   selector: 'spy-table-search-feature',

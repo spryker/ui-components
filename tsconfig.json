@@ -61,6 +61,15 @@
       ],
       "@spryker/table.filter.tree-select": [
         "libs/table.filter.tree-select/src/index.ts"
+      ],
+      "@spryker/table.action-handler.form-overlay": [
+        "libs/table.action-handler.form-overlay/src/index.ts"
+      ],
+      "@spryker/table.action-handler.html-overlay": [
+        "libs/table.action-handler.html-overlay/src/index.ts"
+      ],
+      "@spryker/table.action-handler.url": [
+        "libs/table.action-handler.url/src/index.ts"
       ]
     }
   },

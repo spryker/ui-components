@@ -9,7 +9,7 @@ import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
   TestTableFeatureTplDirective,
-} from '@spryker/table/features/testing';
+} from '@spryker/table/testing';
 import { TableSyncStateFeatureComponent } from './table-sync-state-feature.component';
 
 import { UrlPersistenceStrategy } from '@spryker/utils';

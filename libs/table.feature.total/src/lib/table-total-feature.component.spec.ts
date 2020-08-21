@@ -10,7 +10,7 @@ import {
   TestTableFeatureTplDirective,
   TestTableFeatureComponent,
   TestTableFeatureMocks,
-} from '@spryker/table/features/testing';
+} from '@spryker/table/testing';
 import { TableTotalFeatureComponent } from './table-total-feature.component';
 import {
   TableColumnsResolverService,

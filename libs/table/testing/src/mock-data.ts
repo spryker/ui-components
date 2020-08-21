@@ -14,11 +14,28 @@ export type TableDataMockGenerator<T extends TableDataRow = TableDataRow> = (
 
 export function generateMockTableDataFor<T extends TableDataRow>(
   request: TestRequest,
-  dataGenerator?: TableDataMockGenerator<T>,
+  dataGenerator: TableDataMockGenerator<T>,
 ): TableData<T> {
-  const page = +(request.request.params.get('page') || 1);
-  const pageSize = +(request.request.params.get('pageSize') || 10);
-  const total = pageSize + 100;
+  const page = request.request.params.get('page');
+  const pageSize = request.request.params.get('pageSize');
+
+  return generateMockTableDataForOptions(
+    {
+      page: page != null ? +page : undefined,
+      pageSize: pageSize != null ? +pageSize : undefined,
+    },
+    dataGenerator,
+  );
+}
+
+export function generateMockTableDataForOptions<T extends TableDataRow>(
+  {
+    page = 1,
+    pageSize = 10,
+    total = pageSize + 100,
+  }: Partial<TableDataMockGeneratorOptions>,
+  dataGenerator: TableDataMockGenerator<T>,
+): TableData<T> {
   const data = generateMockTableData({ page, pageSize, total }, dataGenerator);
 
   return {

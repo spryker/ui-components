@@ -10,7 +10,7 @@ import {
   TestTableFeatureTplDirective,
   TestTableFeatureComponent,
   TestTableFeatureMocks,
-} from '@spryker/table/features/testing';
+} from '@spryker/table/testing';
 import { TableBatchActionsFeatureComponent } from './table-batch-actions-feature.component';
 import {
   TableColumnsResolverService,

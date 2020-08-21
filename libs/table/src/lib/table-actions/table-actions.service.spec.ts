@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Injector } from '@angular/core';
 import { TableActionsService } from './table-actions.service';
-import { TableModule } from './table.module';
+import { TableModule } from '../table.module';
 
 const mockActionsHandleType = 'mock';
 

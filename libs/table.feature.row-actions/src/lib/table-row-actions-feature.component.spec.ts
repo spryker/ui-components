@@ -16,7 +16,7 @@ import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
   TestTableFeatureTplContext,
-} from '@spryker/table/features/testing';
+} from '@spryker/table/testing';
 import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
 import { FilterAvailableActionsPipe } from './table-row-actions.pipe';
 import {

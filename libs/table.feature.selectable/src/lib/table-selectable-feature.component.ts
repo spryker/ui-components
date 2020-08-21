@@ -17,7 +17,11 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { TableSelectableConfig } from './types';
+import {
+  TableSelectableConfig,
+  TableSelectionRow,
+  TableSelectionChangeEvent,
+} from './types';
 
 @Component({
   selector: 'spy-table-selectable-feature',

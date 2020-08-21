@@ -15,7 +15,7 @@ import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
   TestTableFeatureTplDirective,
-} from '@spryker/table/features/testing';
+} from '@spryker/table/testing';
 import {
   TableColumnsResolverService,
   TableData,

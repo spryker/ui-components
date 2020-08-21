@@ -28,9 +28,8 @@ import {
   TableItemActions,
   TableBatchAction,
   TableBatchActionContext,
+  SelectedRows,
 } from './types';
-
-interface SelectedRows extends Record<string, unknown>, TableSelectionRow {}
 
 /**
  * Component hooks into the Table Selectable Feature and renders Bulk Action Buttons for selected rows based on the Table Configuration.

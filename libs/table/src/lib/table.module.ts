@@ -18,8 +18,10 @@ import { provideTableDatasourceServices } from './datasource-type/tokens';
 import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
-import { provideTableFeatures } from './table-feature-loader/tokens';
-import { TableFeaturesRegistry } from './table-feature-loader/types';
+import {
+  provideTableFeatures,
+  TableFeaturesRegistry,
+} from './table-feature-loader';
 import { TableFeatureModule } from './table-feature/table-feature.module';
 import { TableFeaturesRendererComponent } from './table-features-renderer/table-features-renderer.component';
 import { TableFeaturesRendererDirective } from './table-features-renderer/table-features-renderer.directive';
@@ -30,8 +32,10 @@ import {
   TableDatasourceTypesDeclaration,
 } from './table/table';
 import { CoreTableComponent } from './table/table.component';
-import { provideTableActionsServices } from './tokens';
-import { TableActionsDeclaration } from './types';
+import {
+  provideTableActionsServices,
+  TableActionsDeclaration,
+} from './table-actions';
 
 @NgModule({
   imports: [

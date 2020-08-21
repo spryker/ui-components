@@ -22,6 +22,10 @@ export interface TableBatchActionContext {
   rowIds: string[];
 }
 
+export interface SelectedRows
+  extends Record<string, unknown>,
+    TableSelectionRow {}
+
 export interface TableItemActions {
   actions: TableBatchAction[];
   rowIdPath: string;

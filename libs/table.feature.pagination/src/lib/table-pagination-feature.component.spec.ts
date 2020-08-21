@@ -10,7 +10,7 @@ import {
   TestTableFeatureTplDirective,
   TestTableFeatureComponent,
   TestTableFeatureMocks,
-} from '@spryker/table/features/testing';
+} from '@spryker/table/testing';
 import { TablePaginationFeatureComponent } from './table-pagination-feature.component';
 import {
   TableColumnsResolverService,

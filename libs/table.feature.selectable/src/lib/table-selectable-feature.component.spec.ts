@@ -18,7 +18,7 @@ import {
   TestTableFeatureMocks,
   TestTableFeatureTplDirective,
   TestTableFeatureTplContext,
-} from '@spryker/table/features/testing';
+} from '@spryker/table/testing';
 
 import { TableSelectableFeatureComponent } from './table-selectable-feature.component';
 

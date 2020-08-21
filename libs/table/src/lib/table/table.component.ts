@@ -43,7 +43,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { TableActionsService } from '../table-actions.service';
+import { TableActionsService } from '../table-actions/table-actions.service';
 import { TableConfigService } from '../table-config/table-config.service';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureLoaderService } from '../table-feature-loader/table-feature-loader.service';

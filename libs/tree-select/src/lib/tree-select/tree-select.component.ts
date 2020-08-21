@@ -58,7 +58,8 @@ export class TreeSelectComponent implements OnChanges {
   }
 
   private mapTreeItems(item: TreeSelectItem): TreeSelectItemWithKey {
-    const isChildrenExist = Array.isArray(item.children);
+    const isChildrenExist =
+      Array.isArray(item.children) && item.children.length;
 
     return {
       ...item,

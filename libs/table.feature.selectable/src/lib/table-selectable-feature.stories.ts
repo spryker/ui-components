@@ -11,7 +11,7 @@ import {
 } from '@spryker/table/testing';
 import { IStory } from '@storybook/angular';
 
-import { TableSelectionChangeEvent } from './table-selectable-feature.component';
+import { TableSelectionChangeEvent } from './types';
 import { TableSelectableFeatureModule } from './table-selectable-feature.module';
 import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import { DefaultContextSerializationModule } from '@spryker/utils';

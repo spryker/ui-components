@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Type, Injector } from '@angular/core';
-import { TableDataRow } from './table/table';
+import { TableDataRow } from '../table/table';
 
 // tslint:disable-next-line: no-empty-interface
 export interface TableActionRegistry {

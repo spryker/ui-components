@@ -87,9 +87,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     this.storageState$,
     this.setInitialColumns$,
   ]).pipe(
-    map(([storageColumns, initialColumns]) => {
-      return storageColumns || initialColumns;
-    }),
+    map(([storageColumns, initialColumns]) => storageColumns || initialColumns),
   );
 
   columns$ = merge(

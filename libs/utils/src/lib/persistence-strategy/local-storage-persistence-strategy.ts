@@ -5,8 +5,8 @@ import { PersistenceStrategy } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStoragePersistenceStrategy implements PersistenceStrategy {
-  items: Record<string, BehaviorSubject<any> | undefined> = {};
-  refCounts: Record<string, number> = {};
+  private items: Record<string, BehaviorSubject<any> | undefined> = {};
+  private refCounts: Record<string, number> = {};
 
   save(key: string, value: unknown): Observable<void> {
     const convertedValue = JSON.stringify(value);

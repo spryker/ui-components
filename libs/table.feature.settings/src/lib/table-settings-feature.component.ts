@@ -58,6 +58,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   tableFeatureLocation = TableFeatureLocation;
   popoverPosition = PopoverPosition.BottomRight;
   isResetDisabled = true;
+  isColumnsRetrieved = false;
 
   originalColumnsArr: TableSettingsColumns = [];
 
@@ -74,20 +75,28 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   );
 
   storageState$ = this.tableId$.pipe(
-    switchMap(tableId => this.persistenceService.retrieve(tableId)),
+    switchMap(tableId =>
+      this.persistenceService.retrieve<TableSettingsColumns>(tableId),
+    ),
+    tap(() => {
+      this.isColumnsRetrieved = true;
+    }),
   ) as Observable<TableSettingsColumns>;
 
   initialColumns$ = combineLatest([
     this.storageState$,
     this.setInitialColumns$,
   ]).pipe(
-    map(([storageColumns, initialColumns]) => storageColumns || initialColumns),
+    map(([storageColumns, initialColumns]) => {
+      return storageColumns || initialColumns;
+    }),
   );
 
   columns$ = merge(
     this.setColumns$,
     this.initialColumns$.pipe(
       map(columns => {
+        // console.log('columns$', columns);
         const filteredColumns = columns.filter(column => !column.hidden);
         this.isResetDisabled = !filteredColumns.some(
           (column, index) => column.id !== this.originalColumnsArr[index].id,
@@ -101,7 +110,13 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   setPopoverColumns$ = new ReplaySubject<TableSettingsColumns>(1);
   popoverColumns$ = merge(this.initialColumns$, this.setPopoverColumns$).pipe(
     withLatestFrom(this.tableId$),
-    tap(([columns, tableId]) => this.persistenceService.save(tableId, columns)),
+    tap(([columns, tableId]) => {
+      if (!this.isColumnsRetrieved) {
+        this.persistenceService.save(tableId, columns);
+      } else {
+        this.isColumnsRetrieved = false;
+      }
+    }),
     map(([columns]) => columns),
   );
 

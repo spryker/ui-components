@@ -120,8 +120,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     super(injector);
   }
 
-  openPopover(): void {
-    this.popoverOpened = !this.popoverOpened;
+  togglePopover(event: boolean): void {
+    this.popoverOpened = event;
   }
 
   setColumnsResolverService(service: TableColumnsResolverService): void {

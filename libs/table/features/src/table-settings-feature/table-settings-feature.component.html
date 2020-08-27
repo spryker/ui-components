@@ -8,7 +8,7 @@
     <spy-popover
       class="spy-table-settings-feature-popover"
       [position]="popoverPosition"
-      (openChange)="openPopover()"
+      (openChange)="togglePopover($event)"
     >
       <spy-button-toggle trigger [toggled]="popoverOpened">
         <spy-icon [name]="settingsIcon"></spy-icon>

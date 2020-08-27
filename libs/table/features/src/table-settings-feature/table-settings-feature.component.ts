@@ -57,6 +57,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   dragIcon = IconDragModule.icon;
   tableFeatureLocation = TableFeatureLocation;
   popoverPosition = PopoverPosition.BottomRight;
+  popoverOpened = false;
   isResetDisabled = true;
 
   originalColumnsArr: TableSettingsColumns = [];
@@ -117,6 +118,10 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     injector: Injector,
   ) {
     super(injector);
+  }
+
+  openPopover(): void {
+    this.popoverOpened = !this.popoverOpened;
   }
 
   setColumnsResolverService(service: TableColumnsResolverService): void {

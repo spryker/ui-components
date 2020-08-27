@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.16...@spryker/table@0.2.0-next.17) (2020-08-27)
+
+
+### Bug Fixes
+
+* **table:** settings and checkbox styles ([dee37f8](https://github.com/spryker/ui-components/commit/dee37f87fa92af2c22456b355f0c7ce5505c68b7))
+* **table-settings:** fixed naming ([0a26366](https://github.com/spryker/ui-components/commit/0a26366f12a0086b450eeeb91649ee990e421b69))
+* **table-settings:** fixed open popover ([fb12e38](https://github.com/spryker/ui-components/commit/fb12e382f89f07e45d3e97e7a29b482d4ae22d1d))
+
+
+
+
+
 # [0.2.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.15...@spryker/table@0.2.0-next.16) (2020-08-19)
 
 **Note:** Version bump only for package @spryker/table

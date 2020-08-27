@@ -1,5 +1,5 @@
 {
-  "name": "@spryker/table-column-text",
+  "name": "@spryker/table.column.text",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",

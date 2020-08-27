@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'table-column-text',
+  name: 'table.column.text',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/libs/table-column-text',
+  coverageDirectory: '../../coverage/libs/table.column.text',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

@@ -1,7 +1,7 @@
-import { Observable, EMPTY, of, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
+
 import { PersistenceStrategy } from './types';
-import { shareReplay, share, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStoragePersistenceStrategy implements PersistenceStrategy {
@@ -11,9 +11,6 @@ export class LocalStoragePersistenceStrategy implements PersistenceStrategy {
   save(key: string, value: unknown): Observable<void> {
     const convertedValue = JSON.stringify(value);
     localStorage.setItem(key, convertedValue);
-
-    // console.log(this.items[key]);
-
     this.items[key]?.next(value);
 
     return EMPTY;

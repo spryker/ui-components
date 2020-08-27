@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { TableFilterComponent } from '../../src';
+import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { EMPTY } from 'rxjs';
 
 @Component({

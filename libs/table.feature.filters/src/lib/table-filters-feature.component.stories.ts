@@ -10,7 +10,7 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { TableDummyFilterComponent } from './dummy-filter';
+import { TableDummyFilterComponent } from '../../testing/src';
 import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 

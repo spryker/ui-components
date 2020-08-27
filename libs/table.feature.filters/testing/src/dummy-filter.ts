@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { TableFilterComponent } from './types';
+import { TableFilterComponent } from '../../src';
 import { EMPTY } from 'rxjs';
 
 @Component({

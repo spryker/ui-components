@@ -25,7 +25,7 @@ import {
 } from '@spryker/table';
 import { TableFiltersFeatureComponent } from './table-filters-feature.component';
 import { PluckModule } from '@spryker/utils';
-import { TableDummyFilterComponent } from './dummy-filter';
+import { TableDummyFilterComponent } from '../../testing/src';
 import { TABLE_FILTERS_TOKEN } from './tokens';
 import { ReplaySubject } from 'rxjs';
 

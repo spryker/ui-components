@@ -17,7 +17,7 @@ import { TableDatasourceService } from '../table/datasource.service';
 import { TableComponent } from '../table/table';
 import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
-import { TableActionsService } from '../table-actions.service';
+import { TableActionsService } from '../table-actions/table-actions.service';
 
 @Component({
   // This is abstract component so selector is ignored

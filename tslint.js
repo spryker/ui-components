@@ -103,6 +103,16 @@ module.exports = {
       {
         allow: [],
         depConstraints: [
+          // package rules START
+          {
+            sourceTag: 'pkg:primary',
+            onlyDependOnLibsWithTags: ['pkg:primary'],
+          },
+          {
+            sourceTag: 'pkg:extension',
+            onlyDependOnLibsWithTags: ['pkg:primary', 'pkg:extension'],
+          },
+          // package rules END
           // type rules START
           {
             sourceTag: 'type:meta',

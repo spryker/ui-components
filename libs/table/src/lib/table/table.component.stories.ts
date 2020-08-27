@@ -2,7 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, Injectable, Input, NgModule, OnInit } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { MockHttpModule } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import {
@@ -14,10 +14,10 @@ import {
 import { IStory } from '@storybook/angular';
 
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '../../../../table/testing/src';
-import { TableDatasourceHttpService } from '../../../datasources/src';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
@@ -25,8 +25,8 @@ import { TableModule } from '../table.module';
 import {
   TableColumnComponent,
   TableColumnContext,
-  TableFeatureLocation,
   TableConfig,
+  TableFeatureLocation,
 } from './table';
 
 export default {
@@ -42,9 +42,9 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 const tableConfig: TableConfig = {
   dataSource: {
-    type: 'http' as never,
-    url: '/data-request',
-  },
+    type: 'mock-data',
+    dataGenerator: tableDataGenerator,
+  } as MockTableDatasourceConfig,
   columns: [
     { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
     { id: 'col2', sortable: true, title: 'Column #2', width: '20%' },
@@ -110,7 +110,7 @@ class TableColumnTestComponent
       test: TableColumnTestComponent,
     } as any),
     TableModule.withDatasourceTypes({
-      http: TableDatasourceHttpService,
+      'mock-data': MockTableDatasourceService,
     }),
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
     EnLocaleModule,
@@ -130,19 +130,13 @@ class StoryModule {}
 export const primary = (): IStory => ({
   moduleMetadata: { imports: [StoryModule] },
   template: `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config">
       <div *spyColTpl="'col1'; let col1">spyColTpl: {{ col1 }}</div>
       <ng-template spyColTpl="col2" let-col2>spyColTpl Template: {{ col2 }}</ng-template>
     </spy-table>
   `,
   props: {
     config: tableConfig,
-    mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
-      },
-    ]),
   },
 });
 
@@ -234,19 +228,13 @@ function getFeatureStory(location: TableFeatureLocation): IStory {
       declarations: [CustomFeatureComponent],
     },
     template: `
-      <spy-table [config]="config" [mockHttp]="mockHttp">
+      <spy-table [config]="config">
         <spy-custom-feature spy-table-feature [location]="location"></spy-custom-feature>
       </spy-table>
     `,
     props: {
       location,
       config: tableConfig,
-      mockHttp: setMockHttp([
-        {
-          url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
-        },
-      ]),
     },
   };
 }

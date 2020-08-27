@@ -1,0 +1,17 @@
+{
+  "name": "@spryker/table.action-handler.form-overlay",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
+    "@spryker/styles": "^0.2.0-next.0",
+    "@spryker/utils": "^0.2.0-next.0",
+    "@spryker/drawer": "^0.2.0-next.0",
+    "@spryker/table": "^0.2.0-next.0",
+    "@spryker/ajax-form": "^0.2.0-next.0",
+    "tslib": "^1.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

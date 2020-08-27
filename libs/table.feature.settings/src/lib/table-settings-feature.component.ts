@@ -59,6 +59,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   popoverPosition = PopoverPosition.BottomRight;
   popoverOpened = false;
   isResetDisabled = true;
+  isColumnsRetrieved = false;
 
   originalColumnsArr: TableSettingsColumns = [];
 
@@ -75,7 +76,12 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   );
 
   storageState$ = this.tableId$.pipe(
-    switchMap(tableId => this.persistenceService.retrieve(tableId)),
+    switchMap(tableId =>
+      this.persistenceService.retrieve<TableSettingsColumns>(tableId),
+    ),
+    tap(() => {
+      this.isColumnsRetrieved = true;
+    }),
   ) as Observable<TableSettingsColumns>;
 
   initialColumns$ = combineLatest([
@@ -102,7 +108,13 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   setPopoverColumns$ = new ReplaySubject<TableSettingsColumns>(1);
   popoverColumns$ = merge(this.initialColumns$, this.setPopoverColumns$).pipe(
     withLatestFrom(this.tableId$),
-    tap(([columns, tableId]) => this.persistenceService.save(tableId, columns)),
+    tap(([columns, tableId]) => {
+      if (!this.isColumnsRetrieved) {
+        this.persistenceService.save(tableId, columns);
+      } else {
+        this.isColumnsRetrieved = false;
+      }
+    }),
     map(([columns]) => columns),
   );
 

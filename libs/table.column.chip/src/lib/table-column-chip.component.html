@@ -1,3 +1,6 @@
-<spy-chips [color]="config.color | context: context">
+<spy-chips
+  [color]="config.color | context: context"
+  [title]="config.text | context: context"
+>
   {{ config.text | context: context }}
 </spy-chips>

@@ -8,6 +8,11 @@ import { TableDatasourceStaticConfig } from './types';
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceStaticService {
   resolve(datasource: TableDatasourceStaticConfig): Observable<TableData> {
-    return of(datasource.data);
+    return of({
+      data: datasource.data,
+      total: datasource.data.length,
+      page: 1,
+      pageSize: datasource.data.length,
+    });
   }
 }

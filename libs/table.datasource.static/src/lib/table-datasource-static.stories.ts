@@ -55,10 +55,14 @@ export const withTable = (): IStory => ({
     config: {
       dataSource: {
         type: 'static',
-        data: generateMockTableDataForOptions(
-          { page: 1, pageSize: 10, total: 100 },
-          tableDataGenerator,
-        ),
+        data: [
+          {
+            col1: `col1 #`,
+            col2: 'col 2',
+            col3: 'col3',
+            col4: 'col4',
+          },
+        ],
       },
       columns: [
         { id: 'col1', title: 'Column #1', width: '20%' },

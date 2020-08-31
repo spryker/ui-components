@@ -1,4 +1,4 @@
-import { TableDatasourceConfig, TableData } from '@spryker/table';
+import { TableDatasourceConfig, TableDataRow } from '@spryker/table';
 
 declare module '@spryker/table' {
   interface TableDatasourceTypeRegistry {
@@ -7,5 +7,5 @@ declare module '@spryker/table' {
 }
 
 export interface TableDatasourceStaticConfig extends TableDatasourceConfig {
-  data: TableData;
+  data: TableDataRow[];
 }

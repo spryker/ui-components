@@ -1,0 +1,34 @@
+<div class="spy-onboarding-radio__group" *ngIf="radios$ | async as radios">
+  <div class="spy-onboarding-radio__title">
+    <spy-icon [name]="onboardingIcon"></spy-icon>
+    <div class="spy-onboarding-radio__title-text">
+      {{
+        'radio.title:number'
+          | spyI18n: { number: radios.length | spyNumberTransform: 'roman' }
+          | async
+      }}
+    </div>
+  </div>
+
+  <nz-radio-group
+    [(ngModel)]="value"
+    (ngModelChange)="valueChange.emit($event)"
+  >
+    <label
+      nz-radio
+      *ngFor="let radio of radios"
+      [nzValue]="radio.value"
+      [nzDisabled]="radio.disabled"
+    >
+      <ng-container *ngTemplateOutlet="radio.template"></ng-container>
+    </label>
+  </nz-radio-group>
+</div>
+
+<span
+  [spySelectComponents]="radioReference"
+  (spySelectComponentsFound)="radiosFound($event)"
+  ngClass="spy-onboarding-radio__projected-content"
+>
+  <ng-content></ng-content>
+</span>

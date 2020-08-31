@@ -70,7 +70,8 @@
       ],
       "@spryker/table.action-handler.url": [
         "libs/table.action-handler.url/src/index.ts"
-      ]
+      ],
+      "@spryker/onboarding-radio": ["libs/onboarding-radio/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

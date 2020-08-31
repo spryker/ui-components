@@ -1,0 +1,21 @@
+{
+  "name": "@spryker/onboarding-radio",
+  "version": "0.0.1",
+  "dependencies": {
+    "ng-zorro-antd": "9.3.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
+    "@angular/forms": "^9.0.0",
+    "@spryker/icon": "^0.0.1-next.14",
+    "@spryker/locale": "^0.1.0-next.4",
+    "@spryker/styles": "^0.0.1-next.48",
+    "@spryker/utils": "^0.1.0-next.16",
+    "@spryker/web-components": "^0.2.0-next.2",
+    "tslib": "^1.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

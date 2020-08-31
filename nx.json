@@ -205,6 +205,9 @@
     },
     "onboarding-radio": {
       "tags": ["level:molecule", "type:component", "pkg:primary"]
+    },
+    "table.datasource.static": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

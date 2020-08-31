@@ -31,7 +31,7 @@ export class NumberTransformPipe implements PipeTransform {
     };
     let roman = '';
 
-    for (let i in lookup) {
+    for (const i of Object.keys(lookup)) {
       while (number >= lookup[i]) {
         roman += i;
         number -= lookup[i];

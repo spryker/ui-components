@@ -19,8 +19,12 @@ export function deLocaleFactory() {
           extraData: extra.default,
         })),
       ant: () =>
-        import('ng-zorro-antd/esm5/i18n/languages/de_DE' as any).then(m => ({
-          data: m.default,
+        Promise.all([
+          import('ng-zorro-antd/esm5/i18n/languages/de_DE' as any),
+          import('date-fns/locale/de'),
+        ]).then(([data, date]) => ({
+          data: data.default,
+          dateData: date.default,
         })),
       spryker: () =>
         import('@spryker/locale/data/de' as any).then(m => ({

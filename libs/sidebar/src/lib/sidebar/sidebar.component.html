@@ -1,7 +1,7 @@
 <nz-sider
   [nzWidth]="width"
   [nzCollapsedWidth]="collapsedWidth"
-  [nzCollapsed]="collapsed"
+  [nzCollapsed]="collapsed$ | async"
   [nzTrigger]="trigger || triggerButton"
   [nzReverseArrow]="true"
   (nzCollapsedChange)="updateCollapse($event)"

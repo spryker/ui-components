@@ -6,11 +6,12 @@ import {
   Output,
   TemplateRef,
   ViewEncapsulation,
+  SimpleChanges,
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService, ToBoolean } from '@spryker/utils';
-import { of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { of, ReplaySubject, merge } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'spy-sidebar',
@@ -20,39 +21,59 @@ import { switchMap } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent {
+  private static SidebarId = 'spy-sidebar-is-collapsed';
+
   @Input() width = 250;
   @Input() collapsedWidth = 62;
   @Input() trigger: undefined | TemplateRef<void>;
   @Input() @ToBoolean() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
 
-  private sidebarId = 'spy-sidebar-is-collapsed';
+  isCollapsedStateRetrieved = false;
   arrowIcon = IconArrowDownModule.icon;
 
-  collapsed$ = of(this.collapsed).pipe(
-    switchMap(isCollapsed => {
-      this.persistenceService.save(this.sidebarId, isCollapsed);
+  setCollapsedState$ = new ReplaySubject<boolean>();
+  initialState$ = this.persistenceService
+    .retrieve(SidebarComponent.SidebarId)
+    .pipe(
+      tap(() => {
+        this.isCollapsedStateRetrieved = true;
+      }),
+    );
 
-      return this.persistenceService.retrieve(this.sidebarId);
+  collapsed$ = merge(this.initialState$, this.setCollapsedState$).pipe(
+    tap(isCollapsed => {
+      console.log(isCollapsed);
+      if (this.isCollapsedStateRetrieved) {
+        this.isCollapsedStateRetrieved = false;
+      } else {
+        this.persistenceService.save(SidebarComponent.SidebarId, isCollapsed);
+      }
     }),
   );
 
   constructor(private persistenceService: PersistenceService) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('collapsed' in changes) {
+      this.setCollapsedState$.next(this.isCollapsed());
+    }
+  }
+
   updateCollapse(isCollapsed: boolean): void {
     this.collapsed = isCollapsed;
-    this.persistenceService.save(this.sidebarId, this.isCollapsed());
+    this.setCollapsedState$.next(this.isCollapsed());
     this.collapsedChange.emit(this.isCollapsed());
   }
 
   collapse(): void {
     this.collapsed = true;
-    this.persistenceService.save(this.sidebarId, this.isCollapsed());
+    this.setCollapsedState$.next(this.isCollapsed());
   }
 
   expand(): void {
     this.collapsed = false;
-    this.persistenceService.save(this.sidebarId, this.isCollapsed());
+    this.setCollapsedState$.next(this.isCollapsed());
   }
 
   toggle(): boolean {
@@ -61,8 +82,6 @@ export class SidebarComponent {
     } else {
       this.collapse();
     }
-
-    this.persistenceService.save('isCollapsed', this.isCollapsed());
 
     return this.isCollapsed();
   }

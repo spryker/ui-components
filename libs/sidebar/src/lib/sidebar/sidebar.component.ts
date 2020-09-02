@@ -13,7 +13,8 @@ import {
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService, ToBoolean } from '@spryker/utils';
 import { merge, ReplaySubject, of } from 'rxjs';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap, map, withLatestFrom, expand } from 'rxjs/operators';
+import { constructor } from 'deepmerge';
 
 @Component({
   selector: 'spy-sidebar',
@@ -23,8 +24,6 @@ import { tap, switchMap } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent implements OnChanges, OnInit {
-  private static PersistenceKey = 'spy-sidebar-is-collapsed';
-
   @Input() width = 250;
   @Input() collapsedWidth = 62;
   @Input() spyId?: string;
@@ -32,16 +31,17 @@ export class SidebarComponent implements OnChanges, OnInit {
   @Input() @ToBoolean() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
 
-  private persistenceKey?: string;
   private isCollapsedStateRetrieved = false;
   arrowIcon = IconArrowDownModule.icon;
 
   setCollapsedState$ = new ReplaySubject<boolean>();
-  initialState$ = of(this.persistenceKey).pipe(
+  spyId$ = new ReplaySubject<string>();
+  persistenceKey$ = this.spyId$.pipe(
+    map(spyId => `spy-sidebar-${spyId ?? ''}-is-collapsed`),
+  );
+  initialState$ = this.persistenceKey$.pipe(
     switchMap(persistenceKey => {
-      const key = persistenceKey ?? SidebarComponent.PersistenceKey;
-
-      return this.persistenceService.retrieve(key);
+      return this.persistenceService.retrieve(persistenceKey);
     }),
     tap(() => {
       this.isCollapsedStateRetrieved = true;
@@ -49,28 +49,30 @@ export class SidebarComponent implements OnChanges, OnInit {
   );
 
   collapsed$ = merge(this.initialState$, this.setCollapsedState$).pipe(
-    tap(isCollapsed => {
+    withLatestFrom(this.persistenceKey$),
+    tap(([isCollapsed, persistenceKey]) => {
       if (this.isCollapsedStateRetrieved) {
         this.isCollapsedStateRetrieved = false;
       } else {
-        const key = this.persistenceKey ?? SidebarComponent.PersistenceKey;
-
-        this.persistenceService.save(key, isCollapsed);
+        this.persistenceService.save(persistenceKey, isCollapsed);
       }
     }),
+    map(([isCollapsed]) => isCollapsed),
   );
 
   constructor(private persistenceService: PersistenceService) {}
 
   ngOnInit(): void {
-    if (this.spyId) {
-      this.persistenceKey = `spy-sidebar-${this.spyId}-is-collapsed`;
-    }
+    this.spyId$.next(this.spyId);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('collapsed' in changes) {
       this.setCollapsedState$.next(this.collapsed);
+    }
+
+    if ('spyId' in changes && !changes.spyId.firstChange) {
+      this.spyId$.next(this.spyId);
     }
   }
 

@@ -2735,6 +2735,83 @@
           "style": "less"
         }
       }
+    },
+    "table.feature.editable": {
+      "projectType": "library",
+      "root": "libs/table.feature.editable",
+      "sourceRoot": "libs/table.feature.editable/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.feature.editable/tsconfig.lib.json",
+            "project": "libs/table.feature.editable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.feature.editable/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.feature.editable/tsconfig.lib.json",
+              "libs/table.feature.editable/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table.feature.editable/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.feature.editable/jest.config.js",
+            "tsConfig": "libs/table.feature.editable/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.feature.editable/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.feature.editable/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.feature.editable",
+            "config": {
+              "configFolder": "libs/table.feature.editable/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

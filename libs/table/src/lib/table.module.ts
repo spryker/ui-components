@@ -60,7 +60,12 @@ import { TableActionsDeclaration } from './types';
     TableRenderFeatureDirective,
     TableColumnListComponent,
   ],
-  exports: [CoreTableComponent, ColTplDirective, TableFeatureModule],
+  exports: [
+    CoreTableComponent,
+    ColTplDirective,
+    TableFeatureModule,
+    TableColumnRendererComponent,
+  ],
 })
 export class TableModule {
   static forRoot(): ModuleWithProviders<TableModule> {

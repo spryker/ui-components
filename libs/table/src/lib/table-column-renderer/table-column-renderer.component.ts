@@ -29,6 +29,7 @@ export class TableColumnRendererComponent implements OnChanges {
   @Input() data?: TableDataRow;
   @Input() template?: TemplateRef<TableColumnTplContext>;
   @Input() i?: number;
+  @Input() j?: number;
 
   itemConfig?: OrchestratorConfigItem;
   originalConfig?: TableColumn;
@@ -89,6 +90,8 @@ export class TableColumnRendererComponent implements OnChanges {
       value: this.value,
       // tslint:disable-next-line: no-non-null-assertion
       i: this.i!,
+      // tslint:disable-next-line: no-non-null-assertion
+      j: this.j!,
     };
   }
 

@@ -130,6 +130,9 @@
     },
     "link": {
       "tags": ["level:atom", "type:component"]
+    },
+    "table.feature.editable": {
+      "tags": ["type:component", "level:molecule"]
     }
   },
   "tasksRunnerOptions": {

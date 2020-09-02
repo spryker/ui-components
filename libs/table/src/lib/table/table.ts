@@ -48,6 +48,7 @@ export interface TableColumnContext {
   row: TableDataRow;
   config: TableColumn;
   i: number;
+  j: number;
 }
 
 export interface TableColumnTplContext extends TableColumnContext {

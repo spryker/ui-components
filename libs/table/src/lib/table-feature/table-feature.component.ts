@@ -10,6 +10,7 @@ import {
 import { Observable, ReplaySubject } from 'rxjs';
 import { filter, map, shareReplay, startWith, switchAll } from 'rxjs/operators';
 
+import { TableActionsService } from '../table-actions.service';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
@@ -17,7 +18,6 @@ import { TableDatasourceService } from '../table/datasource.service';
 import { TableComponent } from '../table/table';
 import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
-import { TableActionsService } from '../table-actions.service';
 
 @Component({
   // This is abstract component so selector is ignored
@@ -81,7 +81,7 @@ export abstract class TableFeatureComponent<
     .find([])
     .create<TableFeatureTplDirective>();
 
-  constructor(private injector: Injector) {}
+  constructor(protected injector: Injector) {}
 
   ngAfterViewInit(): void {
     if (!this.tplDirectives) {

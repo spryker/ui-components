@@ -196,7 +196,10 @@
         "dist/libs/tree-select/index.d.ts",
         "libs/tree-select/src/index.ts"
       ],
-      "@spryker/link": ["dist/libs/link/index.d.ts", "libs/link/src/index.ts"]
+      "@spryker/link": ["dist/libs/link/index.d.ts", "libs/link/src/index.ts"],
+      "@spryker/table.feature.editable": [
+        "libs/table.feature.editable/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

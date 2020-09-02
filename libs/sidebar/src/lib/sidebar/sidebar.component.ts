@@ -12,8 +12,8 @@ import {
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService, ToBoolean } from '@spryker/utils';
-import { merge, ReplaySubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { merge, ReplaySubject, of } from 'rxjs';
+import { tap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'spy-sidebar',
@@ -23,7 +23,7 @@ import { tap } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent implements OnChanges, OnInit {
-  private static SidebarId = 'spy-sidebar-is-collapsed';
+  private static PersistenceKey = 'spy-sidebar-is-collapsed';
 
   @Input() width = 250;
   @Input() collapsedWidth = 62;
@@ -32,24 +32,30 @@ export class SidebarComponent implements OnChanges, OnInit {
   @Input() @ToBoolean() collapsed = false;
   @Output() collapsedChange = new EventEmitter<boolean>();
 
+  private persistenceKey?: string;
   private isCollapsedStateRetrieved = false;
   arrowIcon = IconArrowDownModule.icon;
 
   setCollapsedState$ = new ReplaySubject<boolean>();
-  initialState$ = this.persistenceService
-    .retrieve(SidebarComponent.SidebarId)
-    .pipe(
-      tap(() => {
-        this.isCollapsedStateRetrieved = true;
-      }),
-    );
+  initialState$ = of(this.persistenceKey).pipe(
+    switchMap(persistenceKey => {
+      const key = persistenceKey ?? SidebarComponent.PersistenceKey;
+
+      return this.persistenceService.retrieve(key);
+    }),
+    tap(() => {
+      this.isCollapsedStateRetrieved = true;
+    }),
+  );
 
   collapsed$ = merge(this.initialState$, this.setCollapsedState$).pipe(
     tap(isCollapsed => {
       if (this.isCollapsedStateRetrieved) {
         this.isCollapsedStateRetrieved = false;
       } else {
-        this.persistenceService.save(SidebarComponent.SidebarId, isCollapsed);
+        const key = this.persistenceKey ?? SidebarComponent.PersistenceKey;
+
+        this.persistenceService.save(key, isCollapsed);
       }
     }),
   );
@@ -58,7 +64,7 @@ export class SidebarComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     if (this.spyId) {
-      SidebarComponent.SidebarId = `spy-sidebar-${this.spyId}-is-collapsed`;
+      this.persistenceKey = `spy-sidebar-${this.spyId}-is-collapsed`;
     }
   }
 

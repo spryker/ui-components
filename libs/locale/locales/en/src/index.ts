@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { LocaleRecord, provideLocaleRecordsFactory } from '@spryker/locale';
-import { enUS } from 'date-fns/locale';
 
 export const EN_LOCALE = 'en';
 

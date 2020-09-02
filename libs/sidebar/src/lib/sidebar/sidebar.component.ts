@@ -12,9 +12,8 @@ import {
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService, ToBoolean } from '@spryker/utils';
-import { merge, ReplaySubject, of } from 'rxjs';
-import { tap, switchMap, map, withLatestFrom, expand } from 'rxjs/operators';
-import { constructor } from 'deepmerge';
+import { merge, ReplaySubject } from 'rxjs';
+import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'spy-sidebar',

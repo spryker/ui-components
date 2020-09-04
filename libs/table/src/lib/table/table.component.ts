@@ -16,7 +16,6 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { DropdownItem } from '@spryker/dropdown';
 import { ToJson } from '@spryker/utils';
 import {
   BehaviorSubject,
@@ -30,7 +29,6 @@ import {
 } from 'rxjs';
 import {
   catchError,
-  debounceTime,
   distinctUntilChanged,
   map,
   mapTo,
@@ -48,7 +46,6 @@ import { TableConfigService } from '../table-config/table-config.service';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureLoaderService } from '../table-feature-loader/table-feature-loader.service';
 import { TableFeatureEventBus } from '../table-feature/table-feature-event-bus';
-import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableFeatureDirective } from '../table-feature/table-feature.directive';
 import { TableFeaturesRendererService } from '../table-features-renderer/table-features-renderer.service';
@@ -275,7 +272,6 @@ export class CoreTableComponent
   templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
   features: TableFeatureComponent[] = [];
   rowClasses: Record<string, Record<string, boolean>> = {};
-  actions?: DropdownItem[];
 
   private destroyed$ = new Subject<void>();
 

@@ -1,9 +1,9 @@
 import { I18nLocaleDataPackage } from '@spryker/locale';
 
 export default {
-  name: 'table',
+  name: 'table.feature.settings',
   data: {
-    'table-settings': 'Table settings',
+    title: 'Table settings',
     reset: 'Reset',
   },
 } as I18nLocaleDataPackage;

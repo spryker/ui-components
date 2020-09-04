@@ -1,7 +1,7 @@
 import { I18nLocaleDataPackage } from '@spryker/locale';
 
 export default {
-  name: 'table',
+  name: 'table.filter.select',
   data: {
     'filter:title': 'Wählen {{ title }}',
   },

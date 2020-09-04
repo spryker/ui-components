@@ -15,7 +15,7 @@
       </spy-button-toggle>
       <div>
         <div class="spy-table-settings-feature__title">
-          {{ 'table.table-settings' | spyI18n | async }}
+          {{ 'table.feature.settings.title' | spyI18n | async }}
         </div>
         <ng-container *ngIf="columns$ | async as tableColumns">
           <ng-container *ngIf="popoverColumns$ | async as popoverColumns">
@@ -65,7 +65,7 @@
               class="spy-table-settings-feature__reset-button-icon"
               [name]="resetIcon"
             ></spy-icon>
-            {{ 'table.reset' | spyI18n | async }}
+            {{ 'table.feature.settings.reset' | spyI18n | async }}
           </button>
         </div>
       </div>

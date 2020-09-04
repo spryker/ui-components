@@ -1,9 +1,9 @@
 import { I18nLocaleDataPackage } from '@spryker/locale';
 
 export default {
-  name: 'table',
+  name: 'table.filter.date-range',
   data: {
-    'date-range-picker-from': 'From',
-    'date-range-picker-to': 'To',
+    from: 'From',
+    to: 'To',
   },
 } as I18nLocaleDataPackage;

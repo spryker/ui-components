@@ -75,7 +75,7 @@ describe('TableFilterSelectComponent', () => {
         true,
       );
       const selectElem = host.queryCss('spy-select');
-      const token = 'table.filter:title';
+      const token = 'table.filter.select.filter:title';
       expect(service.getLocaleData(token, 'title')).toBe(
         mockSelectConfig.title,
       );

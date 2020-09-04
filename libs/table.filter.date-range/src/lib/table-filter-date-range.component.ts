@@ -45,11 +45,11 @@ export class TableFilterDateRangeComponent
     if ('config' in changes) {
       this.placeholderFrom$ = this.updatePlaceholder(
         'placeholderFrom',
-        'table.date-range-picker-from',
+        'table.filter.date-range.from',
       );
       this.placeholderTo$ = this.updatePlaceholder(
         'placeholderTo',
-        'table.date-range-picker-to',
+        'table.filter.date-range.to',
       );
     }
 

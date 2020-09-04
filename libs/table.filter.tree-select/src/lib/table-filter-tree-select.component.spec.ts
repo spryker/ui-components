@@ -63,7 +63,7 @@ describe('TableFilterTreeSelectComponent', () => {
         true,
       );
       const selectElem = host.queryCss('spy-tree-select');
-      const token = 'table.filter:title';
+      const token = 'table.filter.tree-select.filter:title';
 
       expect(service.getLocaleData(token, 'title')).toBe(
         mockTreeSelectConfig.title,

@@ -32,7 +32,10 @@ export class InterceptionComposerImplementation
   implements InterceptionComposer, OnDestroy {
   private static NO_SERVICE = { __noService: true };
 
-  private factories = this.injector.get(InterceptionComposableFactoriesToken);
+  private factories = this.injector.get(
+    InterceptionComposableFactoriesToken,
+    [],
+  );
   private token = this.injector.get(InterceptionComposableToken);
 
   private servicesInjector?: DestructibleInjector;

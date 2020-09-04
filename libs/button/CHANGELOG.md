@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-next.2...@spryker/button@0.2.0-next.3) (2020-08-05)
+
+
+### Features
+
+* **table-settings:** fixed styles and behavior ([aab478a](https://github.com/spryker/ui-components/commit/aab478afae467447439ed318aa06c55144cd6bf5))
+
+
+
+
+
+# [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-next.1...@spryker/button@0.2.0-next.2) (2020-08-04)
+
+**Note:** Version bump only for package @spryker/button
+
+
+
+
+
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-next.0...@spryker/button@0.2.0-next.1) (2020-08-03)
+
+
+### Features
+
+* **table-setting:** fixed tests, code style ([c0efbd9](https://github.com/spryker/ui-components/commit/c0efbd91b548df101953f8c6176fd0fecc2696f8))
+* **table-settings:** ant version update ([8d602dd](https://github.com/spryker/ui-components/commit/8d602dd90d90ea6e1be316bf12511a0b636b6864))
+* **table-settings:** fixed tests ([e84045a](https://github.com/spryker/ui-components/commit/e84045a7657f39d7f4ef3bf4a6eda53d8345f0b7))
+* **table-settings:** formatting fix ([3dc8b5b](https://github.com/spryker/ui-components/commit/3dc8b5b181845563b0d327f184f9d2c6cc027b7b))
+* **table-settings:** start implementation ([31ba11e](https://github.com/spryker/ui-components/commit/31ba11e7506c7899f186afa789207b6ea7f212a5))
+* **table-settings:** start implementation ([ff72ede](https://github.com/spryker/ui-components/commit/ff72edefb0b79c9573ba3d8daaffb51a9b431cb5))
+* **table-settings:** unit tests ([023a29e](https://github.com/spryker/ui-components/commit/023a29eed3415364877a87d4e64db47c57833588))
+
+
+
+
+
 # [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-fix-web-components.0...@spryker/button@0.2.0-next.0) (2020-07-21)
 
 

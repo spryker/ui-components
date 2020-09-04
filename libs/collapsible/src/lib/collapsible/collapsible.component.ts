@@ -5,6 +5,8 @@ import {
   Output,
   ViewEncapsulation,
   EventEmitter,
+  ContentChild,
+  TemplateRef,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 
@@ -16,12 +18,15 @@ import { ToBoolean } from '@spryker/utils';
   encapsulation: ViewEncapsulation.None,
 })
 export class CollapsibleComponent {
-  @Input() title = '';
+  @Input() spyTitle = '';
   @Input() titleIcon = '';
   @Input() @ToBoolean() active = false;
   @Input() @ToBoolean() disabled = false;
+  @Input() @ToBoolean() alwaysRender = true;
 
   @Output() activeChange = new EventEmitter<boolean>();
+
+  @ContentChild(TemplateRef) contentTemplate?: TemplateRef<any>;
 
   collapse(): void {
     this.active = false;

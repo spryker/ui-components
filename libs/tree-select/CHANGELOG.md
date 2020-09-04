@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.5...@spryker/tree-select@0.1.0-next.6) (2020-09-04)
+
+**Note:** Version bump only for package @spryker/tree-select
+
+
+
+
+
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.4...@spryker/tree-select@0.1.0-next.5) (2020-08-21)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed leaf ([112c97d](https://github.com/spryker/ui-components/commit/112c97d780146739892221342bd611e0344c6d50))
+
+
+
+
+
+# [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.3...@spryker/tree-select@0.1.0-next.4) (2020-08-20)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed titles ([4f6e0be](https://github.com/spryker/ui-components/commit/4f6e0be007950e068a6ad62ee1ec45860e1b5417))
+
+
+
+
+
+# [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.2...@spryker/tree-select@0.1.0-next.3) (2020-08-13)
+
+**Note:** Version bump only for package @spryker/tree-select
+
+
+
+
+
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.1...@spryker/tree-select@0.1.0-next.2) (2020-08-03)
+
+
+### Features
+
+* **table-settings:** ant version update ([8d602dd](https://github.com/spryker/ui-components/commit/8d602dd90d90ea6e1be316bf12511a0b636b6864))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.0...@spryker/tree-select@0.1.0-next.1) (2020-07-22)
 
 

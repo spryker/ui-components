@@ -10,7 +10,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
+import { mapTo, shareReplay } from 'rxjs/operators';
 
 import { HtmlRendererProvider } from './html-renderer.provider';
 
@@ -29,8 +30,14 @@ export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
   htmlRendererContent?: ElementRef<HTMLElement>;
   @Output() htmlRendered = new EventEmitter<ElementRef>();
 
-  htmlRenderer$ = this.htmlRendererProvider.getHtml();
+  htmlRenderer$ = this.htmlRendererProvider
+    .getHtml()
+    .pipe(shareReplay({ bufferSize: 1, refCount: true }));
   subscription = new Subscription();
+  isLoading$ = merge(
+    this.htmlRenderer$.pipe(mapTo(false)),
+    this.htmlRendererProvider.isLoading().pipe(mapTo(true)),
+  );
 
   constructor(
     private htmlRendererProvider: HtmlRendererProvider,

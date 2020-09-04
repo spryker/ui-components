@@ -5,22 +5,16 @@ import * as inlineData from './data/data';
 export const data = Object.values<I18nLocaleDataPackageModuleInlined>(
   inlineData as any,
 )
-  .filter(function(d) {
-    return d.data;
-  })
+  .filter(d => d.data)
   .reduce(
-    function(acc, d) {
-      return {
-        ...acc,
-        ...Object.fromEntries(
-          Object.entries(d.data).map(function(entries) {
-            const key = d.name + '.' + entries[0];
-            const value = entries[1];
-
-            return [key, value];
-          }),
-        ),
-      };
-    },
+    (acc, d) => ({
+      ...acc,
+      ...Object.fromEntries(
+        Object.entries(d.data).map(([key, value]) => [
+          `${d.name}.${key}`,
+          value,
+        ]),
+      ),
+    }),
     { locale: 'de' },
   );

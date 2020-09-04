@@ -15,8 +15,12 @@ export function enLocaleFactory() {
           data: m.default,
         })),
       ant: () =>
-        import('ng-zorro-antd/esm5/i18n/languages/en_US' as any).then(m => ({
-          data: m.default,
+        Promise.all([
+          import('ng-zorro-antd/esm5/i18n/languages/en_US' as any),
+          import('date-fns/locale/en-US'),
+        ]).then(([data, date]) => ({
+          data: data.default,
+          dateData: date.default,
         })),
       spryker: () =>
         import('@spryker/locale/data/en' as any).then(m => ({

@@ -25,7 +25,7 @@
   <nz-option
     *ngFor="let option of mappedOptions"
     [nzValue]="option.value"
-    [nzLabel]="option.label"
+    [nzLabel]="option.title"
     [nzDisabled]="option.isDisabled"
     [nzCustomContent]="true"
   >
@@ -34,7 +34,7 @@
       [class.ant-select-item-option-content-wrapper-selected]="
         checkSelectedState(option.value)
       "
-      [title]="option.label"
+      [title]="option.title"
     >
       <ng-container
         *ngTemplateOutlet="
@@ -43,7 +43,7 @@
       >
       </ng-container>
       <span class="ant-select-item-option-content-label">
-        {{ option.label }}
+        {{ option.title }}
       </span>
     </div>
   </nz-option>
@@ -62,7 +62,7 @@
     [value]="option.value"
     [selected]="checkSelectedState(option.value)"
   >
-    {{ option.label }}
+    {{ option.title }}
   </option>
 </select>
 
@@ -75,7 +75,7 @@
   >
     <option></option>
     <option *ngFor="let option of mappedOptions" [value]="option.value">
-      {{ option.label }}
+      {{ option.title }}
     </option>
   </select>
 </ng-template>
@@ -115,6 +115,4 @@
   ></spy-icon>
 </ng-template>
 
-<ng-template #tagPlaceholder let-selectedList>{{
-  selectedList | spyJoin: ', '
-}}</ng-template>
+<ng-template #tagPlaceholder>{{ selectedList | spyJoin: ', ' }}</ng-template>

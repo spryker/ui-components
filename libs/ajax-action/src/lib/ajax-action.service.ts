@@ -1,13 +1,9 @@
-import { Inject, Injector, Optional, Injectable } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { NotificationService } from '@spryker/notification';
 import { InjectionTokenType } from '@spryker/utils';
 
 import { AjaxPostActionsToken } from './tokens';
-import {
-  AjaxActionResponse,
-  AjaxPostActionHandler,
-  AjaxPostActionsDeclaration,
-} from './types';
+import { AjaxActionResponse, AjaxPostActionsDeclaration } from './types';
 
 /**
  * Invokes appropriate {@link AjaxPostActionHandler} from all registered handlers in {@link AjaxPostActionsToken}

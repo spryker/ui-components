@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/icon@0.2.0-next.1...@spryker/icon@0.2.0-next.2) (2020-08-05)
+
+
+### Features
+
+* **table-settings:** fixed icons and arr method ([1226c17](https://github.com/spryker/ui-components/commit/1226c17bf4e402adb28069c1d32db0d6e33ae0e4))
+* **table-settings:** fixed icons and tests ([dfff841](https://github.com/spryker/ui-components/commit/dfff841bc83971a388f5c4030ef31278ad810d8b))
+* **table-settings:** fixed logic ([71a81fa](https://github.com/spryker/ui-components/commit/71a81faf5fba665f1a0ccb9f87179663c422998e))
+* **table-settings:** fixed styles and behavior ([aab478a](https://github.com/spryker/ui-components/commit/aab478afae467447439ed318aa06c55144cd6bf5))
+
+
+
+
+
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/icon@0.2.0-next.0...@spryker/icon@0.2.0-next.1) (2020-08-03)
+
+
+### Features
+
+* **table-settings:** added variables for styling ([7942491](https://github.com/spryker/ui-components/commit/7942491bf8b630bdeb31171b4e1227e36ebc959e))
+* **table-settings:** ant version update ([8d602dd](https://github.com/spryker/ui-components/commit/8d602dd90d90ea6e1be316bf12511a0b636b6864))
+* **table-settings:** start implementation ([ff72ede](https://github.com/spryker/ui-components/commit/ff72edefb0b79c9573ba3d8daaffb51a9b431cb5))
+* **table-settings:** storybook + drag-n-drop implementation ([7bc65af](https://github.com/spryker/ui-components/commit/7bc65afa992bd248f811c88a8ce305cd86e54ef1))
+* **table-settings:** updated iconss ([aed56c4](https://github.com/spryker/ui-components/commit/aed56c4ee821d97ff02e1dc49c259867b318c6d1))
+* table-settings ([4dce6db](https://github.com/spryker/ui-components/commit/4dce6dbfc046ad6fa72e072222868183b217390c))
+
+
+
+
+
 # [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/icon@0.2.0-fix-web-components.0...@spryker/icon@0.2.0-next.0) (2020-07-21)
 
 

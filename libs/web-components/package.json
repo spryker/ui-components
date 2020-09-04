@@ -1,6 +1,6 @@
 {
   "name": "@spryker/web-components",
-  "version": "0.2.1-next.0",
+  "version": "0.2.1-next.3",
   "publishConfig": {
     "access": "public"
   },
@@ -11,6 +11,6 @@
     "@angular/elements": "^9.0.0"
   },
   "dependencies": {
-    "ngx-element-boundary": "^1.0.7"
+    "ngx-element-boundary": "^1.0.10"
   }
 }

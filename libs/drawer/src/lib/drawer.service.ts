@@ -3,12 +3,12 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import {
   Injectable,
   OnDestroy,
+  Optional,
   TemplateRef,
   Type,
-  Optional,
 } from '@angular/core';
 import { merge, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { filter, take, takeUntil } from 'rxjs/operators';
 
 import { DrawerContainerComponent } from './drawer-container/drawer-container.component';
 import { DrawerOptions } from './drawer-options';
@@ -95,14 +95,17 @@ export class DrawerService implements OnDestroy {
       container: drawerContainerRef.instance.container,
     };
 
-    const containerEmpty$ = record.container.afterClosed();
+
+    const containerEmpty$ = record.container.afterClosed().pipe(take(1));
 
     merge(
       overlay.backdropClick(),
       overlay.keydownEvents().pipe(filter(e => e.key === 'Escape')),
     )
       .pipe(takeUntil(merge(containerEmpty$, this.allClosed$)))
-      .subscribe(() => this.removeDrawerRecord(record));
+      .subscribe(() => {
+        this.removeDrawerRecord(record);
+      });
 
     containerEmpty$
       .pipe(takeUntil(this.allClosed$))

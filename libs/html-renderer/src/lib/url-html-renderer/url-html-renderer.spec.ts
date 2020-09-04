@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import {
   HttpTestingController,
@@ -33,6 +33,7 @@ describe('UrlHtmlRendererDirective', () => {
     TestBed.configureTestingModule({
       imports: [UrlHtmlRendererModule, HttpClientTestingModule],
       declarations: [TestComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
@@ -48,7 +49,7 @@ describe('UrlHtmlRendererDirective', () => {
 
   it('should render html response inside of `spy-html-renderer`', () => {
     const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer .spy-html-renderer-content'),
+      By.css('spy-html-renderer .spy-html-renderer__content'),
     );
     component.urlHtml = mockUrl;
     fixture.detectChanges();
@@ -66,7 +67,7 @@ describe('UrlHtmlRendererDirective', () => {
     const mockRerenderHtml = `<p>Rerendered!!!</p>`;
     const mockRerenderUrl = '/new-html-request';
     const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer .spy-html-renderer-content'),
+      By.css('spy-html-renderer .spy-html-renderer__content'),
     );
 
     component.urlHtml = mockUrl;

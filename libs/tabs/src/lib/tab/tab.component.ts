@@ -21,7 +21,7 @@ import { IconErrorModule } from '@spryker/icon/icons';
 })
 export class TabComponent {
   iconErrorReference = IconErrorModule;
-  @Input() title = '';
+  @Input() spyTitle = '';
   @Input() @ToBoolean() disabled = false;
   private _hasWarning = false;
   @Input()

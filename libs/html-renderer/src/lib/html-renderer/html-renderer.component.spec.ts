@@ -1,8 +1,10 @@
-import { async, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { Observable, ReplaySubject, EMPTY } from 'rxjs';
+
 import { HtmlRendererComponent } from './html-renderer.component';
 import { HtmlRendererProvider } from './html-renderer.provider';
-import { ReplaySubject, Observable } from 'rxjs';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 // tslint:disable: no-non-null-assertion
 
@@ -12,9 +14,14 @@ const mockHtmlTemplate = `
 
 class MockHtmlRendererProvider {
   html$ = new ReplaySubject<string>(1);
+  isLoading$ = new ReplaySubject<void>(1);
 
   getHtml(): Observable<string> {
-    return this.html$.asObservable();
+    return this.html$;
+  }
+
+  isLoading(): Observable<void> {
+    return this.isLoading$;
   }
 }
 
@@ -23,6 +30,9 @@ describe('HtmlRendererComponent', () => {
 
   const { testModule, createComponent } = getTestingForComponent(
     HtmlRendererComponent,
+    {
+      ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+    },
   );
 
   beforeEach(async(() => {
@@ -49,7 +59,7 @@ describe('HtmlRendererComponent', () => {
   it('should render html inside `spy-html-renderer`', async () => {
     const host = await createComponent({}, true);
     const htmlRendererElem = host.queryCss(
-      'spy-html-renderer .spy-html-renderer-content',
+      'spy-html-renderer .spy-html-renderer__content',
     )!;
 
     testHtmlRendererProvider.html$.next(mockHtmlTemplate);
@@ -58,11 +68,47 @@ describe('HtmlRendererComponent', () => {
     expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
   });
 
+  it('should render `nz-spin` if `isLoading$` signal invokes', async () => {
+    const host = await createComponent({}, true);
+    testHtmlRendererProvider.isLoading$.next();
+    host.detectChanges();
+
+    const spinElem = host.queryCss('nz-spin')!;
+
+    expect(spinElem).toBeTruthy();
+  });
+
+  it('should not render `nz-spin` if `isLoading$` signal does not invoke', async () => {
+    const host = await createComponent({}, true);
+    host.detectChanges();
+
+    const spinElem = host.queryCss('nz-spin')!;
+
+    expect(spinElem).toBeFalsy();
+  });
+
+  it('should not render `nz-spin` if `html$` signal invokes', async () => {
+    const host = await createComponent({}, true);
+    testHtmlRendererProvider.isLoading$.next();
+    host.detectChanges();
+
+    let spinElem = host.queryCss('nz-spin')!;
+
+    expect(spinElem).toBeTruthy();
+
+    testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+    host.detectChanges();
+
+    spinElem = host.queryCss('nz-spin')!;
+
+    expect(spinElem).toBeFalsy();
+  });
+
   it('should render html inside `spy-html-renderer` when html was changes', async () => {
     const mockRerenderHtml = `<p>Rerendered!!!</p>`;
     const host = await createComponent({}, true);
     const htmlRendererElem = host.queryCss(
-      'spy-html-renderer .spy-html-renderer-content',
+      'spy-html-renderer .spy-html-renderer__content',
     )!;
 
     testHtmlRendererProvider.html$.next(mockHtmlTemplate);

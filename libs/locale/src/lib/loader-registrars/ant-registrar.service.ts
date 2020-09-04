@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NzI18nInterface, NzI18nService } from 'ng-zorro-antd/i18n';
+import { NzI18nInterface, NzI18nService, DateLocale } from 'ng-zorro-antd/i18n';
 import { Observable, of } from 'rxjs';
 
 import { LocaleLoaderRegistrar } from '../types';
@@ -12,6 +12,7 @@ declare module '../types' {
 
 export interface AntLocaleData {
   data: NzI18nInterface;
+  dateData: DateLocale;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -33,6 +34,7 @@ export class AntRegistrarService
 
     if (data) {
       this.nzI18nService.setLocale(data.data);
+      this.nzI18nService.setDateLocale(data.dateData);
     }
 
     return of(null);

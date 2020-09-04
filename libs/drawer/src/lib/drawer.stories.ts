@@ -2,7 +2,7 @@ import { Component, Input, TemplateRef } from '@angular/core';
 import { boolean, text } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
-import { DrawerContainerComponent } from './drawer-container/drawer-container.component';
+import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 import { DrawerModule } from './drawer.module';
 import { DrawerService } from './drawer.service';
 import { DrawerComponentInputs } from './drawer/drawer.component';
@@ -82,7 +82,7 @@ class SimpleDrawerComponent extends DrawerComponentInputs {
 export const primary = (): IStory => ({
   moduleMetadata: {
     imports: [DrawerModule],
-    entryComponents: [DrawerContainerComponent],
+    entryComponents: [DrawerContainerProxyComponent],
   },
   component: SimpleDrawerComponent,
   props: {
@@ -96,7 +96,7 @@ export const primary = (): IStory => ({
 export const widthMultipleDrawers = (): IStory => ({
   moduleMetadata: {
     imports: [DrawerModule],
-    entryComponents: [DrawerContainerComponent],
+    entryComponents: [DrawerContainerProxyComponent],
   },
   component: MultipleDrawersComponent,
   props: {

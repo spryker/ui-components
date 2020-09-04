@@ -25,10 +25,11 @@ import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.direc
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableFeaturesRendererService } from './table-features-renderer.service';
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
+import { TableFeatureLocation } from '../table/table';
 
 export class TableFeaturesRendererDirectiveInputs {
   /** Location of the feature */
-  @Input() spyTableFeaturesRenderer?: string;
+  @Input() spyTableFeaturesRenderer?: TableFeatureLocation;
   @Input() spyTableFeaturesRendererFeatures?: TableFeatureComponent[];
   @Input() spyTableFeaturesRendererMaxFeatures?: number;
   @Input() spyTableFeaturesRendererContext?: TableFeatureTplContext;

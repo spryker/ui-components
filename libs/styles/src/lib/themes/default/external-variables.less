@@ -58,16 +58,14 @@
 @btn-min-width-lg: 105px;
 @btn-min-width-md: 90px;
 @btn-min-width-sm: 85px;
-@btn-height-base: 42px;
-@btn-line-height-base: 42px;
 @btn-height-lg: 48px;
-@btn-line-height-lg: 46px;
 @btn-height-md: 42px;
-@btn-line-height-md: 40px;
 @btn-height-sm: 38px;
-@btn-line-height-sm: 36px;
-@btn-line-height-xs: 24px;
+@btn-height-xs: 26px;
+@btn-height-base: @btn-height-md;
+@btn-line-height-base: 1.3;
 
+@btn-horizontal-vertical-base: 3px;
 @btn-horizontal-padding-base: 16px;
 @btn-horizontal-padding-base-lg: 22px;
 @btn-horizontal-padding-base-md: 19px;
@@ -111,6 +109,12 @@
 @btn-default-shadow-hover: @btn-shadow-hover-size rgba(@normal-color, 0.3);
 
 @btn-disable-border: @gray-light;
+
+@btn-toggle-prefix-cls: ~'@{spryker-prefix}-btn-toggle';
+@btn-toggle-border: 1px solid @gray-light;
+@btn-toggle-size: 38px;
+@btn-toggle-icon-size: 24px;
+@btn-toggle-border-radius: 4px;
 
 // Card
 @card-prefix-cls: ~'@{ant-prefix}-card';
@@ -214,6 +218,7 @@
 // Notification
 @notification-prefix-cls: ~'@{ant-prefix}-alert';
 @notification-spryker-prefix-cls: ~'@{spryker-prefix}-notification';
+@notification-view-spryker-prefix-cls: ~'@{spryker-prefix}-notification-view';
 @notification-wrapper-prefix-cls: ~'@{notification-spryker-prefix-cls}-wrapper';
 @notification-toast-prefix-cls: ~'toast';
 @notification-toast-top-right-prefix-cls: ~'@{notification-toast-prefix-cls}-top-right';
@@ -294,6 +299,7 @@
 @select-component-width: 100%;
 @select-component-height: 42px;
 
+@select-dropdown-menu-max-height: 320px;
 @select-dropdown-menu-item-height: 40px;
 @select-dropdown-menu-item-line-height: 36px;
 @select-dropdown-menu-item-font-weight: 500;
@@ -329,12 +335,15 @@
 @checkbox-multi-select-checked-icon-size: 12px;
 
 // Tree Select
+@tree-prefix-cls: ~'@{ant-prefix}-tree';
+@tree-spryker-prefix-cls: ~'@{spryker-prefix}-tree-select';
 @tree-select-dropdown-box-shadow: 0px 2px 16px 0px rgb(239, 238, 238);
 @tree-select-tree-treenode-height: 40px;
 @tree-select-tree-treenode-padding: 0px;
 @tree-select-tree-treenode-border: 2px solid transparent;
 @tree-select-tree-checkbox-margin-top: 10px;
 @tree-select-tree-node-content-wrapper-line-height: 36px;
+@tree-select-tree-node-content-wrapper-max-width: 90%;
 @tree-select-clear-button-size: 24px;
 @tree-select-clear-button-top: 3px;
 @tree-select-clear-button-right: -3px;
@@ -428,7 +437,7 @@
 
 @table-selection-column-min-height: 70px;
 
-@table-head-padding-vertical: 17px;
+@table-head-padding-vertical: 0px;
 @table-body-padding-top: 10px;
 @table-body-padding-bottom: 12.5px;
 @table-body-margin-vertical: 3px;
@@ -444,6 +453,7 @@
 @table-head-checkbox-wrapper-bg: @gray-light;
 
 @table-row-height: 70px;
+@table-row-head-height: 45px;
 
 @table-dropdown-trigger-size: 50px;
 @table-dropdown-trigger-icon-size: 18px;
@@ -459,9 +469,18 @@
 @table-empty-icon-margin-bottom: 20px;
 
 // Table Column List
-@table-column-list-prefix-cls: ~'@{ant-prefix}-table-column-list';
+@table-column-list-prefix-cls: ~'@{spryker-prefix}-table-column-list';
 
 @table-column-list-indent: 3px;
+@table-column-list-trigger-padding-x: 10px;
+@table-column-list-trigger-margin-bottom: 2px;
+@table-column-list-trigger-box-shadow: 0 0 2px @green;
+@table-column-list-trigger-line-height: 1.7;
+@table-column-list-popover-width: 200px;
+@table-column-list-popover-max-height: 330px;
+@table-column-list-popover-padding: 18px 24px;
+@table-column-list-popover-items-padding: 6px 0;
+@table-column-list-popover-items-min-height: 36px;
 
 // Table Column Image
 @table-column-image-prefix-cls: ~'@{ant-prefix}-table-column-image';
@@ -485,6 +504,36 @@
 @table-filters-feature-item-padding: 7px;
 @table-filters-feature-item-min-width: 200px;
 @table-filters-feature-item-title-margin-bottom: 5px;
+
+// Table Total Feature
+@table-total-feature-prefix-cls: ~'@{spryker-prefix}-table-total-feature';
+
+// Table Title Feature
+@table-title-feature-prefix-cls: ~'@{spryker-prefix}-table-title-feature';
+@table-title-feature-margin-right: 20px;
+
+// Table Settings Feature
+@table-settings-feature-prefix-cls: ~'@{spryker-prefix}-table-settings-feature';
+@table-settings-feature-min-width: 268px;
+@table-settings-feature-width: 320px;
+@table-settings-feature-height: 371px;
+@table-settings-feature-padding: 24px 20px;
+@table-settings-feature-icon-size: 18px;
+@table-settings-feature-item-padding: 8px 12px;
+@table-settings-feature-item-bottom-margin: 5px;
+@table-settings-feature-item-name-side-margin: 7px;
+@table-settings-feature-title-shadow: 0 2px 16px 0 rgba(33, 43, 54, 0.05);
+@table-settings-feature-footer-shadow: 0px -11px 10px 0px rgba(33, 43, 54, 0.05);
+@table-settings-feature-header-footer-padding: 12px 20px;
+@table-settings-feature-header-footer-z-index: 2px;
+@table-settings-feature-item-name-top-padding: 3px;
+@table-settings-feature-item-checkbox-top-margin: 2px;
+@table-settings-feature-cdk-drag-preview-shadow: 0 10px 12px 0
+  rgb(235, 235, 236);
+@table-settings-feature-reset-icon-size: 16px;
+@table-settings-feature-reset-icon-spacing: 8px;
+@table-settings-feature-drag-placeholder-height: 60px;
+@table-settings-feature-drag-transition-function: cubic-bezier(0, 0, 0.2, 1);
 
 // Table Form Overlay Action Handler
 @table-form-overlay-action-handler-prefix-cls: ~'@{spryker-prefix}-table-form-overlay-action-handler';
@@ -514,6 +563,9 @@
 
 @table-batch-actions-feature-min-height: @btn-height-sm;
 @table-batch-actions-feature-grid-padding: 5px;
+
+// Table Filter Date Range
+@table-filter-date-range-prefix-cls: ~'@{spryker-prefix}-table-filter-date-range';
 
 // Date Picker
 @calendar-prefix-cls: ~'@{ant-prefix}-picker';
@@ -577,6 +629,7 @@
 // Date Range Picker
 @range-calendar-prefix-cls: ~'@{ant-prefix}-range-picker';
 
+@range-min-width: 290px;
 @range-calendar-indents: 3px;
 
 // Spin
@@ -617,6 +670,18 @@
 @headline-title-letter-spacing: 0.2px;
 @headline-col-spacing: 10px;
 
+//Popover
+@popover-prefix-cls: ~'@{ant-prefix}-popover';
+@popover-spryker-prefix-cls: ~'@{spryker-prefix}-popover';
+@popover-border-radius: 4px;
+@popover-side-padding: 20px;
+@popover-title-vertical-padding: 9px;
+
 // Link
 @link-prefix-cls: ~'@{spryker-prefix}-link';
 @link-icon-padding-right: 8px;
+
+// Html Renderer
+@html-renderer-prefix-cls: ~'@{spryker-prefix}-html-renderer';
+
+@html-renderer-loader-height: 40px;

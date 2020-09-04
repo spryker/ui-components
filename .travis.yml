@@ -4,14 +4,40 @@ node_js: lts/*
 cache:
   npm: true
 stages:
-  - test
+  - name: test-branch
+    if: branch NOT IN (master, next)
+  - name: test-next
+    if: branch = next
+  - name: test-master
+    if: branch = master
+  - name: deploy
+    if: branch IN (master, next)
+before_script:
+  # Configure Git to fetch all branches and fetch master
+  - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
 jobs:
   include:
-    - stage: test
+    - stage: test-branch
+      script:
+        - git fetch origin next
+        - npm run format:check
+        - npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --all --parallel
+        - COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --all --parallel
+        - npm run build-non-libs
+        - npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --all --parallel
+    - stage: test-next
+      script:
+        - git fetch origin master
+        - npm run format:check
+        - npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --all --parallel
+        - COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --all --parallel
+    - stage: test-master
       script:
         - npm run format:check
-        - npm run lint
-        - COVERAGE=true npm run test:ci
+        - npm run affected:lint -- --all --parallel
+        - COVERAGE=true npm run npm run affected:test -- --all --parallel
+    - stage: deploy
+      script:
         - npm run build
       before_deploy:
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc

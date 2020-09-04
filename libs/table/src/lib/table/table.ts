@@ -3,18 +3,17 @@ import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 import { Injector, Type } from '@angular/core';
 import { TableFeatureConfig } from '../table-config/types';
-import { TableActionTriggeredEvent } from '../../lib/types';
+import { TableActionTriggeredEvent } from '../../lib/table-actions';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;
   title: string;
-  sortable?: true;
   width?: string;
   multiRenderMode?: boolean;
   multiRenderModeLimit?: number;
-  hideable?: boolean;
-  searchable?: boolean;
   emptyValue?: string;
+  sortable?: boolean;
+  searchable?: boolean;
 }
 
 export interface TableColumnTypeDef {
@@ -38,6 +37,11 @@ export interface TableColumnTypeRegistry {
 }
 
 export type TableColumnType = keyof TableColumnTypeRegistry;
+
+export interface TableHeaderContext {
+  config: TableColumn;
+  i: number;
+}
 
 export interface TableColumnContext {
   value: TableDataValue;
@@ -110,11 +114,15 @@ export interface TableComponent {
 export enum TableFeatureLocation {
   top = 'top',
   beforeTable = 'before-table',
+  header = 'header',
   headerExt = 'header-ext',
+  beforeRows = 'before-rows',
   beforeColsHeader = 'before-cols-header',
   beforeCols = 'before-cols',
-  afterColsHeader = 'after-cols-header',
+  cell = 'cell',
   afterCols = 'after-cols',
+  afterColsHeader = 'after-cols-header',
+  afterRows = 'after-rows',
   afterTable = 'after-table',
   bottom = 'bottom',
   hidden = 'hidden',

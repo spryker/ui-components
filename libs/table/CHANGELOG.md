@@ -3,6 +3,229 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.20](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.19...@spryker/table@0.2.0-next.20) (2020-09-04)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.2.0-next.19](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.18...@spryker/table@0.2.0-next.19) (2020-08-27)
+
+
+### Bug Fixes
+
+* **libs:** update peer deps to next NPM tag ([e2ffd6e](https://github.com/spryker/ui-components/commit/e2ffd6ef417c02bd618e43bb6b5b2761eb0f7d41))
+* **libs:** update versions for next release ([9998cae](https://github.com/spryker/ui-components/commit/9998cae9b2ab631607c0d33fa546363313bfd6aa))
+* **table:** fix spinner position ([e46cd9f](https://github.com/spryker/ui-components/commit/e46cd9f5e1a330a11ccbcc1b82ebc3ef7b62739c))
+
+
+### Features
+
+* **html-overlay:** added action handler for table ([b03b1e8](https://github.com/spryker/ui-components/commit/b03b1e8cb031c0d8c4390772a5697733a68bf1f1))
+* **html-overlay:** added loading state ([5af1040](https://github.com/spryker/ui-components/commit/5af10405efdb125c9b627e13c3e6f5b6648609da))
+* **html-overlay:** added unit-tests ([c5bf200](https://github.com/spryker/ui-components/commit/c5bf200bc3cb4d7b7710a11a303de58728345f73))
+* **html-overlay:** changed behavior ([7dcee12](https://github.com/spryker/ui-components/commit/7dcee12efb7578d8eb6ce378dd7a0fe718706072))
+* **html-overlay:** fixed markup ([f378688](https://github.com/spryker/ui-components/commit/f3786883a65b11cb6ef8c89a02f235b4255363aa))
+* **html-overlay:** removed code ([5c59c03](https://github.com/spryker/ui-components/commit/5c59c0308c9a995e3abb92c2dcdccb2a03f9ec6a))
+* **tree-select-filter:** added docs and fixes for code ([641f298](https://github.com/spryker/ui-components/commit/641f298bc1faf4fe8a0db9e2e641798b2aaa1486))
+* **tree-select-filter:** added tree-select filter for table ([c602fb5](https://github.com/spryker/ui-components/commit/c602fb5932eb0509af0df33d18762592ac94dafb))
+* **tree-select-filter:** fixed types ([a66a3bc](https://github.com/spryker/ui-components/commit/a66a3bce4b9ce2c415838f935501dc5ee13ba33d))
+
+
+
+
+
+# [0.2.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.17...@spryker/table@0.2.0-next.18) (2020-08-27)
+
+
+### Bug Fixes
+
+* **truncated-item:** fixed allignment with chip[ ([1c4d24d](https://github.com/spryker/ui-components/commit/1c4d24d6c236736235c71fc997df08d83ca17033))
+
+
+
+
+
+# [0.2.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.16...@spryker/table@0.2.0-next.17) (2020-08-27)
+
+
+### Bug Fixes
+
+* **table:** settings and checkbox styles ([dee37f8](https://github.com/spryker/ui-components/commit/dee37f87fa92af2c22456b355f0c7ce5505c68b7))
+* **table-settings:** fixed naming ([0a26366](https://github.com/spryker/ui-components/commit/0a26366f12a0086b450eeeb91649ee990e421b69))
+* **table-settings:** fixed open popover ([fb12e38](https://github.com/spryker/ui-components/commit/fb12e382f89f07e45d3e97e7a29b482d4ae22d1d))
+
+
+
+
+
+# [0.2.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.15...@spryker/table@0.2.0-next.16) (2020-08-19)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.2.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.14...@spryker/table@0.2.0-next.15) (2020-08-19)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.2.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.13...@spryker/table@0.2.0-next.14) (2020-08-19)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.12...@spryker/table@0.2.0-next.13) (2020-08-17)
+
+
+### Features
+
+* **table:** add `header` feature location ([7645f24](https://github.com/spryker/ui-components/commit/7645f244a8a665cb6ff71182108b59f40616f718))
+* **table:** add new table feature locations ([74848e6](https://github.com/spryker/ui-components/commit/74848e6477694b821188edcb07b41163ba66ce76))
+
+
+
+
+
+# [0.2.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.11...@spryker/table@0.2.0-next.12) (2020-08-13)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.2.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.10...@spryker/table@0.2.0-next.11) (2020-08-13)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.2.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.9...@spryker/table@0.2.0-next.10) (2020-08-12)
+
+
+### Bug Fixes
+
+* **table-settings:** fixed clonning ([58aa2ce](https://github.com/spryker/ui-components/commit/58aa2ce3941468e2421aeeaa2db3ed10c75a716c))
+* **table-settings:** fixed dirrectory usage ([81c6cd2](https://github.com/spryker/ui-components/commit/81c6cd2fde7cb476665962ed81190152165fd2e8))
+* **table-settings:** fixed naming ([87c75b0](https://github.com/spryker/ui-components/commit/87c75b00a015d2c3951457a9dcf077d12061986c))
+* **table-settings:** fixed unit-test ([e7d8143](https://github.com/spryker/ui-components/commit/e7d8143de2fdcb020d1a37ae42a5d9f143e3a85b))
+
+
+
+
+
+# [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.8...@spryker/table@0.2.0-next.9) (2020-08-12)
+
+
+### Bug Fixes
+
+* **popover:** fixed hardcode value ([c28ce6e](https://github.com/spryker/ui-components/commit/c28ce6ed13ec8aacbe6e1930f13bd76044805b60))
+
+
+
+
+
+# [0.2.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.7...@spryker/table@0.2.0-next.8) (2020-08-12)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.2.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.6...@spryker/table@0.2.0-next.7) (2020-08-10)
+
+
+### Features
+
+* **table-total:** total number in chip ([c2be70b](https://github.com/spryker/ui-components/commit/c2be70b14e1a78c192e1a502c42a8ee1520b27b3))
+
+
+
+
+
+# [0.2.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.5...@spryker/table@0.2.0-next.6) (2020-08-10)
+
+
+### Features
+
+* **table-tile:** added title to table ([de132dc](https://github.com/spryker/ui-components/commit/de132dcb5797e99863647d660725ffd169cbc42e))
+* **table-title:** fixed storybook and tests ([f043036](https://github.com/spryker/ui-components/commit/f043036a28c912ebda1322046daef46bb0d0ae62))
+
+
+
+
+
+# [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.4...@spryker/table@0.2.0-next.5) (2020-08-05)
+
+
+### Features
+
+* **table-settings:** fixed icons and arr method ([1226c17](https://github.com/spryker/ui-components/commit/1226c17bf4e402adb28069c1d32db0d6e33ae0e4))
+* **table-settings:** fixed icons and tests ([dfff841](https://github.com/spryker/ui-components/commit/dfff841bc83971a388f5c4030ef31278ad810d8b))
+* **table-settings:** fixed logic ([71a81fa](https://github.com/spryker/ui-components/commit/71a81faf5fba665f1a0ccb9f87179663c422998e))
+* **table-settings:** fixed reset behavior ([9463e7a](https://github.com/spryker/ui-components/commit/9463e7a6667a02c33208a12227f7192370bd982f))
+* **table-settings:** fixed styles and behavior ([aab478a](https://github.com/spryker/ui-components/commit/aab478afae467447439ed318aa06c55144cd6bf5))
+
+
+
+
+
+# [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.3...@spryker/table@0.2.0-next.4) (2020-08-03)
+
+
+### Features
+
+* **table-setting:** fixed tests, code style ([c0efbd9](https://github.com/spryker/ui-components/commit/c0efbd91b548df101953f8c6176fd0fecc2696f8))
+* **table-settings:** added basic tests ([e9194bb](https://github.com/spryker/ui-components/commit/e9194bbbd516e0a26bcbb17565e611dccc4e8e4d))
+* **table-settings:** added drag-n-drop ([c69a0db](https://github.com/spryker/ui-components/commit/c69a0db7c4d14fdeaa805b73754dadb1ad5ee02a))
+* **table-settings:** added unit-tests ([dae382d](https://github.com/spryker/ui-components/commit/dae382d395695d71eefa9435fd77b06ba0ef7db7))
+* **table-settings:** added variables for styling ([7942491](https://github.com/spryker/ui-components/commit/7942491bf8b630bdeb31171b4e1227e36ebc959e))
+* **table-settings:** added variables for styling ([35ab2be](https://github.com/spryker/ui-components/commit/35ab2be0ce81a824da13d6b96ed94021514a4b3d))
+* **table-settings:** ant version update ([8d602dd](https://github.com/spryker/ui-components/commit/8d602dd90d90ea6e1be316bf12511a0b636b6864))
+* **table-settings:** fix formatting ([3d141e7](https://github.com/spryker/ui-components/commit/3d141e731613158f55770e6107cbe0cda559335f))
+* **table-settings:** fixed tests ([e84045a](https://github.com/spryker/ui-components/commit/e84045a7657f39d7f4ef3bf4a6eda53d8345f0b7))
+* **table-settings:** fixed types ([b75dbab](https://github.com/spryker/ui-components/commit/b75dbab98819a0d2721ba37bb8fc917c704d4559))
+* **table-settings:** removed commented code ([4555130](https://github.com/spryker/ui-components/commit/455513006c1734d5d99b02b40bf3fc573fa6dd2b))
+* table-settings ([4dce6db](https://github.com/spryker/ui-components/commit/4dce6dbfc046ad6fa72e072222868183b217390c))
+* table-settings ([e1b0a43](https://github.com/spryker/ui-components/commit/e1b0a433e9f0a42b12666c7ba89b6a11822e8f0b))
+* **table-settings:** start implementation ([c2bf0e8](https://github.com/spryker/ui-components/commit/c2bf0e8530de75bac4f29a3c5d9d849ce4175960))
+* **table-settings:** start implementation ([ff72ede](https://github.com/spryker/ui-components/commit/ff72edefb0b79c9573ba3d8daaffb51a9b431cb5))
+* **table-settings:** storybook + drag-n-drop implementation ([7bc65af](https://github.com/spryker/ui-components/commit/7bc65afa992bd248f811c88a8ce305cd86e54ef1))
+
+
+
+
+
+# [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.2...@spryker/table@0.2.0-next.3) (2020-07-29)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.1...@spryker/table@0.2.0-next.2) (2020-07-28)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
 # [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.0...@spryker/table@0.2.0-next.1) (2020-07-21)
 
 

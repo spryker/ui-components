@@ -107,8 +107,12 @@
     margin: @select-menu-horizontal-margin 0;
     padding: 0;
 
-    .cdk-virtual-scroll-content-wrapper {
-      width: 100%;
+    .cdk-virtual-scroll-viewport {
+      max-height: @select-dropdown-menu-max-height !important;
+
+      &-wrapper {
+        width: 100%;
+      }
     }
   }
 

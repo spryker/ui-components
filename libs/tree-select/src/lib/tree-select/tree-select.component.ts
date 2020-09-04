@@ -28,6 +28,9 @@ interface TreeSelectItemWithKey extends TreeSelectItem {
   styleUrls: ['./tree-select.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'spy-tree-select',
+  },
 })
 export class TreeSelectComponent implements OnChanges {
   @Input() @ToJson() items?: TreeSelectItem[];

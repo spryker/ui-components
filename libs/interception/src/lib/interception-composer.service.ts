@@ -4,24 +4,22 @@ import {
   InjectFlags,
   InjectionToken,
   Injector,
-  NgModuleRef,
   OnDestroy,
+  OnInit,
   Optional,
   SkipSelf,
   Type,
-  OnInit,
 } from '@angular/core';
 
 import {
   InterceptionComposableFactoriesToken,
   InterceptionComposableToken,
 } from './interception-composable.token';
-import { InterceptionComposer } from './types';
+import { DestructibleInjector, InterceptionComposer } from './types';
 
-interface DestructibleInjector
-  extends Injector,
-    Pick<NgModuleRef<any>, 'destroy'> {}
-
+/**
+ * allows any service to be attached to any component in view at runtime which means components do not have to know about them at compile time. Attached services MUST represent the same logical tree as component view does.
+ */
 @Injectable()
 export class InterceptionComposerImplementation
   implements InterceptionComposer, OnDestroy, OnInit {

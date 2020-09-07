@@ -9,6 +9,10 @@ import {
   InterceptorDispatcher,
 } from './types';
 
+/**
+ * allows to dispatch any kind of events from one entity and then be intercepted from another entity to control it’s timing and/or cancel them.
+ * implements {@link InterceptorDispatcherService} and  {@link InterceptorService} and acts as a mediator between the entities in play
+ */
 @Injectable({ providedIn: 'root' })
 export class InterceptionService implements InterceptorDispatcher, Interceptor {
   private handlersMap = new Map<any, InterceptionHandler<any>[]>();
@@ -50,6 +54,9 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
   }
 }
 
+/**
+ * is used by the entities that wants to expose events for others to be intercepted
+ */
 @Injectable({ providedIn: 'root', useExisting: InterceptionService })
 export abstract class InterceptorDispatcherService
   implements InterceptorDispatcher {
@@ -59,6 +66,9 @@ export abstract class InterceptorDispatcherService
   ): Observable<void>;
 }
 
+/**
+ * is used by the entities that want to intercept given events
+ */
 @Injectable({ providedIn: 'root', useExisting: InterceptionService })
 export abstract class InterceptorService implements Interceptor {
   abstract intercept<D>(

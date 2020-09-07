@@ -23,8 +23,8 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
 
     return handlers
       .reduce(
-        // tslint:disable-next-line: no-shadowed-variable
-        (prev$, handler) => prev$.pipe(switchMap(data => handler(data))),
+        (prev$, handler) =>
+          prev$.pipe(switchMap(handlerData => handler(handlerData))),
         of(data),
       )
       .pipe(take(1));
@@ -39,11 +39,11 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
       this.handlersMap.set(event, [...handlers, handler]);
 
       return () => {
-        // tslint:disable-next-line: no-shadowed-variable
-        const handlers = this.handlersMap.get(event) || [];
+        const updatedHandlers = this.handlersMap.get(event) || [];
+
         this.handlersMap.set(
           event,
-          handlers.filter(h => h !== handler),
+          updatedHandlers.filter(h => h !== handler),
         );
       };
     });
@@ -69,7 +69,7 @@ export abstract class InterceptorService implements Interceptor {
 
 export function provideInterceptionService(): Provider[] {
   return [
-    { provide: InterceptionService, useClass: InterceptionService },
+    InterceptionService,
     {
       provide: InterceptorDispatcherService,
       useExisting: InterceptionService,

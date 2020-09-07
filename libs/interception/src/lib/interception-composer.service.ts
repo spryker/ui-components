@@ -9,19 +9,14 @@ import {
   Optional,
   SkipSelf,
   Type,
+  OnInit,
 } from '@angular/core';
 
 import {
   InterceptionComposableFactoriesToken,
   InterceptionComposableToken,
 } from './interception-composable.token';
-
-export interface InterceptionComposer {
-  getService<T>(
-    token: Type<T> | AbstractType<T> | InjectionToken<T>,
-    skipSelf?: boolean,
-  ): T | undefined;
-}
+import { InterceptionComposer } from './types';
 
 interface DestructibleInjector
   extends Injector,
@@ -29,7 +24,7 @@ interface DestructibleInjector
 
 @Injectable()
 export class InterceptionComposerImplementation
-  implements InterceptionComposer, OnDestroy {
+  implements InterceptionComposer, OnDestroy, OnInit {
   private static NO_SERVICE = { __noService: true };
 
   private factories = this.injector.get(
@@ -52,7 +47,7 @@ export class InterceptionComposerImplementation
     this.servicesInjector = undefined;
   }
 
-  init() {
+  ngOnInit(): void {
     const applicableFactories = this.factories.filter(factory =>
       factory.canApply(this.token),
     );
@@ -75,8 +70,7 @@ export class InterceptionComposerImplementation
   getService<T, N = undefined>(
     token: Type<T> | AbstractType<T> | InjectionToken<T>,
     skipSelf: boolean = false,
-    notFoundValue?: N,
-  ): T | N {
+  ): T | undefined {
     const resolvers = [(t: any) => this.getServiceFromParent(t)];
 
     if (!skipSelf) {
@@ -91,7 +85,7 @@ export class InterceptionComposerImplementation
       }
     }
 
-    return notFoundValue as N;
+    return undefined;
   }
 
   private getServiceFromLocal<T>(
@@ -115,11 +109,7 @@ export class InterceptionComposerImplementation
       return this.getServiceFromGlobal(token);
     }
 
-    return this.parent.getService(
-      token,
-      false,
-      InterceptionComposerImplementation.NO_SERVICE,
-    );
+    return this.parent.getService(token, false);
   }
 
   private getServiceFromGlobal<T>(

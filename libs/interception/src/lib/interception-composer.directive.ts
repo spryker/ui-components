@@ -1,4 +1,4 @@
-import { Directive, Provider } from '@angular/core';
+import { Directive, Provider, OnInit } from '@angular/core';
 
 import { InterceptionComposableToken } from './interception-composable.token';
 import {
@@ -18,11 +18,13 @@ export const InterceptionComposerProviders: Provider[] = [
   selector: '[spyInterceptionComposer]',
   providers: [...InterceptionComposerProviders],
 })
-export class InterceptionComposerDirective {
+export class InterceptionComposerDirective implements OnInit {
   constructor(
     private interceptionComposer: InterceptionComposerImplementation,
-  ) {
-    this.interceptionComposer.init();
+  ) {}
+
+  ngOnInit(): void {
+    this.interceptionComposer.ngOnInit();
   }
 }
 

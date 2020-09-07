@@ -6,7 +6,7 @@ import { provideRootGuard } from './guard-root.token';
 import { UnsavedChangesGuardService } from './guard.service';
 import { UnsavedChangesGuardToken } from './guard.token';
 import { UnsavedChangesFormMonitorDirective } from './monitor-form';
-import { InterceptionModule } from '../interception/interception.module';
+import { InterceptionModule } from '@spryker/interception';
 import { UnsavedChangesDrawerGuardComposableFactory } from './guard-drawer';
 
 @NgModule({

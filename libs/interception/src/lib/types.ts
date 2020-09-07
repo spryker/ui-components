@@ -1,5 +1,5 @@
 import { AbstractType, InjectionToken, Provider, Type } from '@angular/core';
-import { Observable, ObservableInput } from 'rxjs';
+import { ObservableInput, Observable } from 'rxjs';
 
 export abstract class InterceptionEvent<D = never> {
   private __capturedData: D = undefined as any;
@@ -29,4 +29,11 @@ export interface InterceptionComposableFactory {
   canApply(token: unknown): boolean;
   getServiceProviders(): Provider[];
   getServiceToken(): Type<any> | AbstractType<any> | InjectionToken<any>;
+}
+
+export interface InterceptionComposer {
+  getService<T>(
+    token: Type<T> | AbstractType<T> | InjectionToken<T>,
+    skipSelf?: boolean,
+  ): T | undefined;
 }

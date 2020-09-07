@@ -7,9 +7,7 @@ import { InterceptionComposableFactoriesToken } from './interception-composable.
 
 @NgModule({
   imports: [CommonModule],
-  exports: [],
   declarations: [InterceptionComposerDirective],
-  providers: [],
 })
 export class InterceptionModule {
   static withComposable(

@@ -4,6 +4,7 @@ import {
   InjectFlags,
   InjectionToken,
   Injector,
+  NgModuleRef,
   OnDestroy,
   OnInit,
   Optional,
@@ -15,10 +16,18 @@ import {
   InterceptionComposableFactoriesToken,
   InterceptionComposableToken,
 } from './interception-composable.token';
-import { DestructibleInjector, InterceptionComposer } from './types';
+import { InterceptionComposer } from './types';
 
 /**
- * allows any service to be attached to any component in view at runtime which means components do not have to know about them at compile time. Attached services MUST represent the same logical tree as component view does.
+ * Represents an Angular's {@link Injector} container in Ivy that supports destruction of all created entities by it.
+ */
+interface DestructibleInjector
+  extends Injector,
+    Pick<NgModuleRef<any>, 'destroy'> {}
+
+/**
+ * Allows any service to be attached to any component in view at runtime which means components do not have to know about them at compile time.
+ * Attached services represent the same logical tree as component view does.
  */
 @Injectable()
 export class InterceptionComposerImplementation
@@ -68,7 +77,8 @@ export class InterceptionComposerImplementation
   getService<T, N = undefined>(
     token: Type<T> | AbstractType<T> | InjectionToken<T>,
     skipSelf: boolean = false,
-  ): T | undefined {
+    notFoundValue?: N,
+  ): T | N {
     const resolvers = [(t: any) => this.getServiceFromParent(t)];
 
     if (!skipSelf) {
@@ -83,7 +93,7 @@ export class InterceptionComposerImplementation
       }
     }
 
-    return undefined;
+    return notFoundValue as N;
   }
 
   private getServiceFromLocal<T>(
@@ -107,7 +117,11 @@ export class InterceptionComposerImplementation
       return this.getServiceFromGlobal(token);
     }
 
-    return this.parent.getService(token, false);
+    return this.parent.getService(
+      token,
+      false,
+      InterceptionComposerImplementation.NO_SERVICE,
+    );
   }
 
   private getServiceFromGlobal<T>(

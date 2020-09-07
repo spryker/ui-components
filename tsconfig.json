@@ -18,60 +18,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"],
-      "@spryker/ajax-action.post-action.refresh-drawer": [
-        "libs/ajax-action.post-action.refresh-drawer/src/index.ts"
-      ],
-      "@spryker/table.datasource.http": [
-        "libs/table.datasource.http/src/index.ts"
-      ],
-      "@spryker/table.column.chip": ["libs/table.column.chip/src/index.ts"],
-      "@spryker/table.column.date": ["libs/table.column.date/src/index.ts"],
-      "@spryker/table.column.image": ["libs/table.column.image/src/index.ts"],
-      "@spryker/table.column.text": ["libs/table.column.text/src/index.ts"],
-      "@spryker/table.feature.pagination": [
-        "libs/table.feature.pagination/src/index.ts"
-      ],
-      "@spryker/table.feature.total": ["libs/table.feature.total/src/index.ts"],
-      "@spryker/table.feature.title": ["libs/table.feature.title/src/index.ts"],
-      "@spryker/table.feature.filters": [
-        "libs/table.feature.filters/src/index.ts"
-      ],
-      "@spryker/table.feature.settings": [
-        "libs/table.feature.settings/src/index.ts"
-      ],
-      "@spryker/table.feature.selectable": [
-        "libs/table.feature.selectable/src/index.ts"
-      ],
-      "@spryker/table.feature.search": [
-        "libs/table.feature.search/src/index.ts"
-      ],
-      "@spryker/table.feature.sync-state": [
-        "libs/table.feature.sync-state/src/index.ts"
-      ],
-      "@spryker/table.feature.batch-actions": [
-        "libs/table.feature.batch-actions/src/index.ts"
-      ],
-      "@spryker/table.feature.row-actions": [
-        "libs/table.feature.row-actions/src/index.ts"
-      ],
-      "@spryker/table.filter.select": ["libs/table.filter.select/src/index.ts"],
-      "@spryker/table.filter.date-range": [
-        "libs/table.filter.date-range/src/index.ts"
-      ],
-      "@spryker/table.filter.tree-select": [
-        "libs/table.filter.tree-select/src/index.ts"
-      ],
-      "@spryker/table.action-handler.form-overlay": [
-        "libs/table.action-handler.form-overlay/src/index.ts"
-      ],
-      "@spryker/table.action-handler.html-overlay": [
-        "libs/table.action-handler.html-overlay/src/index.ts"
-      ],
-      "@spryker/table.action-handler.url": [
-        "libs/table.action-handler.url/src/index.ts"
-      ],
-      "@spryker/interception": ["libs/interception/src/index.ts"]
+      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

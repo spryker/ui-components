@@ -1,11 +1,4 @@
-import {
-  AbstractType,
-  InjectionToken,
-  Injector,
-  NgModuleRef,
-  Provider,
-  Type,
-} from '@angular/core';
+import { AbstractType, InjectionToken, Provider, Type } from '@angular/core';
 import { Observable, ObservableInput } from 'rxjs';
 
 export abstract class InterceptionEvent<D = never> {
@@ -44,7 +37,3 @@ export interface InterceptionComposer {
     skipSelf?: boolean,
   ): T | undefined;
 }
-
-export interface DestructibleInjector
-  extends Injector,
-    Pick<NgModuleRef<any>, 'destroy'> {}

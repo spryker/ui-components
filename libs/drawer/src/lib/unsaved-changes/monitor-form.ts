@@ -38,7 +38,7 @@ export class UnsavedChangesFormMonitorDirective
     private formRef: ElementRef<HTMLFormElement>,
     private renderer: Renderer2,
     @Optional()
-    private interceptionComposerService?: InterceptionComposerService, // @Optional() // private unsavedChangesGuard?: UnsavedChangesGuardToken,
+    private interceptionComposerService?: InterceptionComposerService,
   ) {}
 
   ngOnInit(): void {

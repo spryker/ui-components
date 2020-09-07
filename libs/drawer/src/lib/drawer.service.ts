@@ -95,7 +95,6 @@ export class DrawerService implements OnDestroy {
       container: drawerContainerRef.instance.container,
     };
 
-
     const containerEmpty$ = record.container.afterClosed().pipe(take(1));
 
     merge(

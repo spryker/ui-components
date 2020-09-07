@@ -30,3 +30,10 @@ export interface InterceptionComposableFactory {
   getServiceProviders(): Provider[];
   getServiceToken(): Type<any> | AbstractType<any> | InjectionToken<any>;
 }
+
+export interface InterceptionComposer {
+  getService<T>(
+    token: Type<T> | AbstractType<T> | InjectionToken<T>,
+    skipSelf?: boolean,
+  ): T | undefined;
+}

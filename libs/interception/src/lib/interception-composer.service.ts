@@ -6,6 +6,7 @@ import {
   Injector,
   NgModuleRef,
   OnDestroy,
+  OnInit,
   Optional,
   SkipSelf,
   Type,
@@ -15,21 +16,22 @@ import {
   InterceptionComposableFactoriesToken,
   InterceptionComposableToken,
 } from './interception-composable.token';
+import { InterceptionComposer } from './types';
 
-export interface InterceptionComposer {
-  getService<T>(
-    token: Type<T> | AbstractType<T> | InjectionToken<T>,
-    skipSelf?: boolean,
-  ): T | undefined;
-}
-
+/**
+ * Represents an Angular's {@link Injector} container in Ivy that supports destruction of all created entities by it.
+ */
 interface DestructibleInjector
   extends Injector,
     Pick<NgModuleRef<any>, 'destroy'> {}
 
+/**
+ * Allows any service to be attached to any component in view at runtime which means components do not have to know about them at compile time.
+ * Attached services represent the same logical tree as component view does.
+ */
 @Injectable()
 export class InterceptionComposerImplementation
-  implements InterceptionComposer, OnDestroy {
+  implements InterceptionComposer, OnDestroy, OnInit {
   private static NO_SERVICE = { __noService: true };
 
   private factories = this.injector.get(
@@ -52,7 +54,7 @@ export class InterceptionComposerImplementation
     this.servicesInjector = undefined;
   }
 
-  init() {
+  ngOnInit(): void {
     const applicableFactories = this.factories.filter(factory =>
       factory.canApply(this.token),
     );

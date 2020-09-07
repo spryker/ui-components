@@ -1,4 +1,4 @@
-import { InterceptionEvent } from '@spryker/inteception';
+import { InterceptionEvent } from '@spryker/interception';
 
 export class DrawerCloseInterceptionEvent extends InterceptionEvent {}
 

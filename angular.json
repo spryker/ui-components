@@ -4532,6 +4532,50 @@
           "style": "less"
         }
       }
+    },
+    "interception": {
+      "projectType": "library",
+      "root": "libs/interception",
+      "sourceRoot": "libs/interception/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/interception/tsconfig.lib.json",
+            "project": "libs/interception/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/interception/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/interception/tsconfig.lib.json",
+              "libs/interception/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/interception/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/interception/jest.config.js",
+            "tsConfig": "libs/interception/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/interception/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

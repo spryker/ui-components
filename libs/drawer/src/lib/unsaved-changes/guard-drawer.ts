@@ -13,7 +13,7 @@ import { DrawerCloseInterceptionEvent } from '../drawer-interception';
 import {
   InterceptionComposableFactory,
   InterceptorService,
-} from '../interception';
+} from '@spryker/interception';
 import { UnsavedChangesGuardBase } from './guard-base';
 import { UnsavedChangesGuardToken } from './guard.token';
 

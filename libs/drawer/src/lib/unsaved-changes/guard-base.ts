@@ -8,7 +8,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { InterceptionComposerService } from '../interception/interception-composer.service';
+import { InterceptionComposerService } from '@spryker/interception';
 import { UnsavedChangesGuard } from './guard';
 import { UnsavedChangesGuardToken } from './guard.token';
 import { UnsavedChangesMonitor, UnsavedChangesMonitorStatus } from './monitor';

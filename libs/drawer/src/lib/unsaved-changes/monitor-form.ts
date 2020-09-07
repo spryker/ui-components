@@ -11,7 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { UnsavedChangesGuardToken } from './guard.token';
 import { UnsavedChangesMonitor, UnsavedChangesMonitorStatus } from './monitor';
 import { UnsavedChangesMonitorToken } from './monitor.token';
-import { InterceptionComposerService } from '../interception/interception-composer.service';
+import { InterceptionComposerService } from '@spryker/interception';
 
 @Directive({
   selector: 'form[spyUnsavedChangesFormMonitor]',
@@ -38,9 +38,8 @@ export class UnsavedChangesFormMonitorDirective
     private formRef: ElementRef<HTMLFormElement>,
     private renderer: Renderer2,
     @Optional()
-    private interceptionComposerService?: InterceptionComposerService, // @Optional()
-  ) // private unsavedChangesGuard?: UnsavedChangesGuardToken,
-  {}
+    private interceptionComposerService?: InterceptionComposerService,
+  ) {}
 
   ngOnInit(): void {
     console.log('UnsavedChangesFormMonitorDirective', this);

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { DrawerWrapperModule } from '../drawer-wrapper/drawer-wrapper.module';
-import { InterceptionModule } from '../interception/interception.module';
+import { InterceptionModule } from '@spryker/interception';
 import { DrawerContainerProxyComponent } from './drawer-container-proxy.component';
 import {
   DrawerComposerDirective,

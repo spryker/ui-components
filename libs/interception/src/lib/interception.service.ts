@@ -9,6 +9,10 @@ import {
   InterceptorDispatcher,
 } from './types';
 
+/**
+ * Allows to dispatch any kind of events from one entity and then be intercepted from another entity to control it’s timing and/or cancel them.
+ * Implements {@link InterceptorDispatcherService} and  {@link InterceptorService} and acts as a mediator between the entities in play.
+ */
 @Injectable({ providedIn: 'root' })
 export class InterceptionService implements InterceptorDispatcher, Interceptor {
   private handlersMap = new Map<any, InterceptionHandler<any>[]>();
@@ -23,8 +27,8 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
 
     return handlers
       .reduce(
-        // tslint:disable-next-line: no-shadowed-variable
-        (prev$, handler) => prev$.pipe(switchMap(data => handler(data))),
+        (prev$, handler) =>
+          prev$.pipe(switchMap(handlerData => handler(handlerData))),
         of(data),
       )
       .pipe(take(1));
@@ -39,17 +43,20 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
       this.handlersMap.set(event, [...handlers, handler]);
 
       return () => {
-        // tslint:disable-next-line: no-shadowed-variable
-        const handlers = this.handlersMap.get(event) || [];
+        const updatedHandlers = this.handlersMap.get(event) || [];
+
         this.handlersMap.set(
           event,
-          handlers.filter(h => h !== handler),
+          updatedHandlers.filter(h => h !== handler),
         );
       };
     });
   }
 }
 
+/**
+ * Allows to dispatch events for others to be intercepted.
+ */
 @Injectable({ providedIn: 'root', useExisting: InterceptionService })
 export abstract class InterceptorDispatcherService
   implements InterceptorDispatcher {
@@ -59,6 +66,9 @@ export abstract class InterceptorDispatcherService
   ): Observable<void>;
 }
 
+/**
+ * Allows to intercept dispatched events.
+ */
 @Injectable({ providedIn: 'root', useExisting: InterceptionService })
 export abstract class InterceptorService implements Interceptor {
   abstract intercept<D>(
@@ -69,7 +79,7 @@ export abstract class InterceptorService implements Interceptor {
 
 export function provideInterceptionService(): Provider[] {
   return [
-    { provide: InterceptionService, useClass: InterceptionService },
+    InterceptionService,
     {
       provide: InterceptorDispatcherService,
       useExisting: InterceptionService,

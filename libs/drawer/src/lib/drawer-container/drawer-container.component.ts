@@ -28,11 +28,9 @@ import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.compone
 import {
   InterceptorDispatcherService,
   provideInterceptionService,
-} from '../interception';
-import {
   InterceptionComposerDirective,
   provideInterceptionComposerToken,
-} from '../interception/interception-composer.directive';
+} from '@spryker/interception';
 import { DrawerTemplateContext } from '../types';
 
 @Directive({

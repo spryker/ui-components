@@ -20,7 +20,6 @@ import {
   TableSettingsConfig,
   TableSettingsColumn,
   TableSettingsColumns,
-  TableSettingsStorageData,
 } from './types';
 import {
   switchMap,
@@ -35,6 +34,11 @@ import {
 import { ReplaySubject, of, Observable, merge, combineLatest } from 'rxjs';
 import { PersistenceService } from '@spryker/utils';
 import { PopoverPosition } from '@spryker/popover';
+
+interface TableSettingsStorageData {
+  hiddenColumns: string[];
+  columnsOrder: string[];
+}
 
 @Component({
   selector: 'spy-table-settings-feature',
@@ -101,9 +105,10 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     this.initialColumns$.pipe(
       map(columns => {
         const filteredColumns = columns.filter(column => !column.hidden);
-        this.isResetDisabled = !filteredColumns.some(
-          (column, index) => column.id !== this.originalColumnsArr[index].id,
-        );
+        this.isResetDisabled =
+          !filteredColumns.some(
+            (column, index) => column.id !== this.originalColumnsArr[index].id,
+          ) && filteredColumns.length === this.originalColumnsArr.length;
 
         return filteredColumns;
       }),
@@ -284,20 +289,21 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   private generateStorageData(
     columns: TableSettingsColumns,
   ): TableSettingsStorageData {
-    const storageData: TableSettingsStorageData = {
-      hiddenColumns: [],
-      columnsOrder: [],
-    };
+    return columns.reduce(
+      (accumulator: TableSettingsStorageData, column: TableSettingsColumn) => {
+        if (column.hidden) {
+          accumulator.hiddenColumns = [...accumulator.hiddenColumns, column.id];
+        }
 
-    columns.map(column => {
-      if (column.hidden) {
-        storageData.hiddenColumns.push(column.id);
-      }
+        accumulator.columnsOrder = [...accumulator.columnsOrder, column.id];
 
-      storageData.columnsOrder.push(column.id);
-    });
-
-    return storageData;
+        return accumulator;
+      },
+      {
+        hiddenColumns: [],
+        columnsOrder: [],
+      },
+    );
   }
 
   private applyStorageSettings(
@@ -310,7 +316,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
     const mappedColumns: TableSettingsColumns = [];
 
-    storageData.columnsOrder.map(id => {
+    storageData.columnsOrder.forEach(id => {
       const nextColumn = columns.find(column => column.id === id);
 
       if (nextColumn) {

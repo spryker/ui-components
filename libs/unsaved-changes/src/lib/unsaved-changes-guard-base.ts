@@ -1,25 +1,30 @@
 import { Injectable, Injector, OnDestroy } from '@angular/core';
+import { InterceptionComposerService } from '@spryker/interception';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import {
   distinctUntilChanged,
   map,
   shareReplay,
   switchMap,
-  tap,
 } from 'rxjs/operators';
 
-import { InterceptionComposerService } from '@spryker/interception';
-import { UnsavedChangesGuard } from './guard';
-import { UnsavedChangesGuardToken } from './guard.token';
-import { UnsavedChangesMonitor, UnsavedChangesMonitorStatus } from './monitor';
+import { UnsavedChangesGuard } from './types';
+import { UnsavedChangesGuardToken } from './unsaved-changes-guard.token';
+import {
+  UnsavedChangesMonitor,
+  UnsavedChangesMonitorStatus,
+} from './unsaved-changes-monitor';
 
+/**
+ * Common behavior for all guards in a form of Angular Service that implements registry of monitors as well as their propagation within the tree.
+ * Exposes stream of all monitors aggregated state that may be used to determine if guard should take action on destructive event.
+ */
 @Injectable()
 export abstract class UnsavedChangesGuardBase
   implements OnDestroy, UnsavedChangesGuard {
   protected monitors$ = new BehaviorSubject<UnsavedChangesMonitor[]>([]);
 
   protected monitorStatuses$ = this.monitors$.pipe(
-    tap(monitors => console.log('monitors', monitors)),
     switchMap(monitors =>
       monitors.length
         ? combineLatest(
@@ -32,11 +37,9 @@ export abstract class UnsavedChangesGuardBase
   );
 
   protected hasDirtyStatus$ = this.monitorStatuses$.pipe(
-    tap(statuses => console.log('statuses', statuses)),
     map(statuses =>
       statuses.some(status => status === UnsavedChangesMonitorStatus.Dirty),
     ),
-    tap(hasDirtyStatus => console.log('hasDirtyStatus', hasDirtyStatus)),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
@@ -55,7 +58,6 @@ export abstract class UnsavedChangesGuardBase
   }
 
   attachMonitor(monitor: UnsavedChangesMonitor): void {
-    console.log('attachMonitor', monitor);
     this.monitors$.getValue().push(monitor);
     this.monitors$.next(this.monitors$.getValue());
 
@@ -63,7 +65,6 @@ export abstract class UnsavedChangesGuardBase
   }
 
   detachMonitor(monitor: UnsavedChangesMonitor): void {
-    console.log('detachMonitor', monitor);
     const idx = this.monitors$.getValue().indexOf(monitor);
 
     if (idx !== -1) {

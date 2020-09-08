@@ -1,18 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 
-import { UnsavedChangesGuard } from './guard';
-import { provideRootGuard } from './guard-root.token';
-import { UnsavedChangesGuardService } from './guard.service';
-import { UnsavedChangesGuardToken } from './guard.token';
-import { UnsavedChangesFormMonitorDirective } from './monitor-form';
-import { InterceptionModule } from '@spryker/interception';
-import { UnsavedChangesDrawerGuardComposableFactory } from './guard-drawer';
+import { UnsavedChangesGuard } from './types';
+import { provideRootGuard } from './unsaved-changes-guard-root.token';
+import { UnsavedChangesGuardService } from './unsaved-changes-guard.service';
+import { UnsavedChangesGuardToken } from './unsaved-changes-guard.token';
 
 @NgModule({
   imports: [CommonModule],
-  exports: [UnsavedChangesFormMonitorDirective],
-  declarations: [UnsavedChangesFormMonitorDirective],
 })
 export class UnsavedChangesModule {
   static forRoot(): ModuleWithProviders<UnsavedChangesModule> {
@@ -23,9 +18,6 @@ export class UnsavedChangesModule {
           provide: UnsavedChangesGuardToken,
           useExisting: UnsavedChangesGuardService,
         },
-        InterceptionModule.withComposable(
-          UnsavedChangesDrawerGuardComposableFactory,
-        ).providers || [],
       ],
     };
   }

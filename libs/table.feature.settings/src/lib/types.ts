@@ -16,3 +16,8 @@ export interface TableSettingsColumn extends TableColumn {
 }
 
 export type TableSettingsColumns = TableSettingsColumn[];
+
+export type TableSettingsStorageData = {
+  hiddenColumns: string[];
+  columnsOrder: string[];
+};

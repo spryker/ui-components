@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
+import { DrawerModule, DrawerRef, DrawerService } from '@spryker/drawer';
+import { UnsavedChangesModule } from '@spryker/unsaved-changes';
+import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
+import { UnsavedChangesFormMonitorModule } from '@spryker/unsaved-changes.monitor.form';
 import { IStory } from '@storybook/angular';
 
-import { DrawerRef } from '../drawer-ref';
-import { DrawerModule } from '../drawer.module';
-import { DrawerService } from '../drawer.service';
-import { UnsavedChangesBrowserGuard } from './guard-browser';
-import { UnsavedChangesModule } from './unsaved-changes.module';
+import { UnsavedChangesDrawerGuardModule } from './unsaved-changes-drawer-guard.module';
 
 export default {
-  title: 'UnsavedChanges',
+  title: 'UnsavedChangesGuardDrawer',
 };
 
 @Component({
@@ -49,7 +49,9 @@ export const primary = (): IStory => ({
   moduleMetadata: {
     imports: [
       DrawerModule,
+      UnsavedChangesFormMonitorModule,
       UnsavedChangesModule.forRoot(),
+      UnsavedChangesDrawerGuardModule.forRoot(),
       UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
     ],
     declarations: [StoryComponent, DrawerContentComponent],

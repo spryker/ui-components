@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { UnsavedChangesGuardBase } from './guard-base';
-import { UnsavedChangesRootGuardsToken } from './guard-root.token';
-import { UnsavedChangesMonitor } from './monitor';
+import { UnsavedChangesGuardBase } from './unsaved-changes-guard-base';
+import { UnsavedChangesRootGuardsToken } from './unsaved-changes-guard-root.token';
+import { UnsavedChangesMonitor } from './unsaved-changes-monitor';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesGuardService extends UnsavedChangesGuardBase {

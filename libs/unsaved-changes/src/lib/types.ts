@@ -1,4 +1,4 @@
-import { UnsavedChangesMonitor } from './monitor';
+import { UnsavedChangesMonitor } from './unsaved-changes-monitor';
 
 export interface UnsavedChangesGuard {
   attachMonitor(monitor: UnsavedChangesMonitor): void;

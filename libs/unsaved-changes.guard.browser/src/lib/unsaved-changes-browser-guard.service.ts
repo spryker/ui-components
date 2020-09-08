@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { UnsavedChangesGuardBase } from './guard-base';
+import { UnsavedChangesGuardBase } from '@spryker/unsaved-changes';
 
+/**
+ * Responsible to listen to beforeunload event of browser’s Window object and if it’s monitors has dirty status - trigger confirmation dialog before page will be unloaded.
+ */
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesBrowserGuard extends UnsavedChangesGuardBase {
   private destroyed$ = new Subject<void>();
@@ -30,12 +33,12 @@ export class UnsavedChangesBrowserGuard extends UnsavedChangesGuardBase {
     window.removeEventListener('beforeunload', this.beforeUnload);
   }
 
-  private beforeUnload(e: Event) {
+  private beforeUnload(event: Event) {
     if (!this.hasDirtyStatus) {
       return;
     }
 
-    e.preventDefault();
-    (e as any).returnValue = '';
+    event.preventDefault();
+    (event as any).returnValue = '';
   }
 }

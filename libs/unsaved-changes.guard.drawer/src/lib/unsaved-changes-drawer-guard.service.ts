@@ -8,15 +8,22 @@ import {
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { DrawerContainerComponent } from '../drawer-container/drawer-container.component';
-import { DrawerCloseInterceptionEvent } from '../drawer-interception';
+import {
+  DrawerCloseInterceptionEvent,
+  DrawerContainerComponent,
+} from '@spryker/drawer';
 import {
   InterceptionComposableFactory,
   InterceptorService,
 } from '@spryker/interception';
-import { UnsavedChangesGuardBase } from './guard-base';
-import { UnsavedChangesGuardToken } from './guard.token';
+import {
+  UnsavedChangesGuardBase,
+  UnsavedChangesGuardToken,
+} from '@spryker/unsaved-changes';
 
+/**
+ * Dynamically provides it for the drawer component.
+ */
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesDrawerGuardComposableFactory
   implements InterceptionComposableFactory {
@@ -26,10 +33,7 @@ export class UnsavedChangesDrawerGuardComposableFactory
 
   getServiceProviders(): Provider[] {
     return [
-      {
-        provide: UnsavedChangesDrawerGuard,
-        useClass: UnsavedChangesDrawerGuard,
-      },
+      UnsavedChangesDrawerGuard,
       {
         provide: UnsavedChangesGuardToken,
         useExisting: UnsavedChangesDrawerGuard,
@@ -42,6 +46,9 @@ export class UnsavedChangesDrawerGuardComposableFactory
   }
 }
 
+/**
+ *  Responsible to intercept close events from the drawer component and if it’s monitors has dirty status - prompt a user to confirm to close the drawer in the form of a modal.
+ */
 @Injectable()
 export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
   private destroyed$ = new Subject<void>();
@@ -55,6 +62,7 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
       .intercept(DrawerCloseInterceptionEvent, () =>
         this.hasDirtyStatus$.pipe(filter(hasDirtyStatus => !hasDirtyStatus)),
       )
+      // TODO update with ModalService.openConfirm() according to tech spec
       .pipe(takeUntil(this.destroyed$))
       .subscribe();
   }

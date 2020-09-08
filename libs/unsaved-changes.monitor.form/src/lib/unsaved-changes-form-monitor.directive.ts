@@ -8,11 +8,17 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { UnsavedChangesGuardToken } from './guard.token';
-import { UnsavedChangesMonitor, UnsavedChangesMonitorStatus } from './monitor';
-import { UnsavedChangesMonitorToken } from './monitor.token';
+import {
+  UnsavedChangesGuardToken,
+  UnsavedChangesMonitorToken,
+  UnsavedChangesMonitor,
+  UnsavedChangesMonitorStatus,
+} from '@spryker/unsaved-changes';
 import { InterceptionComposerService } from '@spryker/interception';
 
+/**
+ * Responsible to track interactions of a user with the form it is attached to.
+ */
 @Directive({
   selector: 'form[spyUnsavedChangesFormMonitor]',
   providers: [
@@ -42,7 +48,6 @@ export class UnsavedChangesFormMonitorDirective
   ) {}
 
   ngOnInit(): void {
-    console.log('UnsavedChangesFormMonitorDirective', this);
     this.unsavedChangesGuard?.attachMonitor(this);
 
     this.disposeChangeEvent = this.renderer.listen(

@@ -8,7 +8,7 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
-import { UnsavedChangesGuard } from './types';
+import { UnsavedChangesGuard } from './unsaved-changes-guard';
 import { UnsavedChangesGuardToken } from './unsaved-changes-guard.token';
 import {
   UnsavedChangesMonitor,

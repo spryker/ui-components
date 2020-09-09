@@ -1,4 +1,4 @@
-import { UnsavedChangesGuard } from './types';
+import { UnsavedChangesGuard } from './unsaved-changes-guard';
 import { UnsavedChangesMonitor } from './unsaved-changes-monitor';
 
 /**

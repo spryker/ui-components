@@ -1,6 +1,6 @@
 import { InjectionToken, Provider, Type } from '@angular/core';
 
-import { UnsavedChangesGuard } from './types';
+import { UnsavedChangesGuard } from './unsaved-changes-guard';
 
 export const UnsavedChangesRootGuardsToken = new InjectionToken<
   UnsavedChangesGuard[]

@@ -1,18 +1,7 @@
-import { Directive, Provider, OnInit } from '@angular/core';
+import { Directive, OnInit } from '@angular/core';
 
-import { InterceptionComposableToken } from './interception-composable.token';
-import {
-  InterceptionComposerImplementation,
-  InterceptionComposerService,
-} from './interception-composer.service';
-
-export const InterceptionComposerProviders: Provider[] = [
-  InterceptionComposerImplementation,
-  {
-    provide: InterceptionComposerService,
-    useExisting: InterceptionComposerImplementation,
-  },
-];
+import { InterceptionComposerProviders } from './interception-composable.token';
+import { InterceptionComposerImplementation } from './interception-composer.service';
 
 @Directive({
   selector: '[spyInterceptionComposer]',
@@ -26,14 +15,4 @@ export class InterceptionComposerDirective implements OnInit {
   ngOnInit(): void {
     this.interceptionComposer.ngOnInit();
   }
-}
-
-export function provideInterceptionComposerToken(token: unknown): Provider[] {
-  return [
-    ...InterceptionComposerProviders,
-    {
-      provide: InterceptionComposableToken,
-      useExisting: token,
-    },
-  ];
 }

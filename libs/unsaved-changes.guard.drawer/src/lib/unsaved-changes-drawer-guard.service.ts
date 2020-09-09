@@ -22,7 +22,7 @@ import {
 } from '@spryker/unsaved-changes';
 
 /**
- * Dynamically provides it for the drawer component.
+ * Dynamically provides {@link UnsavedChangesDrawerGuard} for the drawer component.
  */
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesDrawerGuardComposableFactory

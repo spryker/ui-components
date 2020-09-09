@@ -44,7 +44,6 @@ import { DrawerTemplateContext } from '../types';
 })
 export class DrawerComposerDirective extends InterceptionComposerDirective {}
 
-/** @internal */
 @Component({
   selector: 'spy-drawer-container',
   templateUrl: './drawer-container.component.html',

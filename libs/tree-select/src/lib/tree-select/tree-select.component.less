@@ -106,26 +106,13 @@
     &-clear {
       width: @tree-select-clear-button-size;
       height: @tree-select-clear-button-size;
-      top: 25%;
-
-      &::before {
-        content: '';
-        position: absolute;
-        pointer-events: none;
-        box-sizing: border-box;
-        height: @tree-select-clear-button-size;
-        width: @tree-select-clear-button-size;
-        right: @tree-select-clear-button-right;
-        top: @tree-select-clear-button-top;
-        background: url(@tree-select-remove-default-base64-url) no-repeat center;
-        background-size: @tree-select-clear-button-size;
-      }
+      background: url(@tree-select-remove-default-base64-url) no-repeat center;
+      background-size: @tree-select-clear-button-size;
+      margin-top: @tree-select-clear-button-margin-top;
+      right: @tree-select-clear-button-right;
 
       &:hover {
-        &::before {
-          background: url(@tree-select-remove-hovered-base64-url) no-repeat
-            center;
-        }
+        background: url(@tree-select-remove-hovered-base64-url) no-repeat center;
       }
 
       .@{select-prefix-cls}-close-icon {
@@ -227,6 +214,10 @@
           color: @ink;
           min-width: 0;
           flex: 1;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+
           &:hover {
             background-color: transparent;
           }
@@ -246,8 +237,9 @@
             height: @checkbox-icon-size;
             background: url(@tree-select-checbox-unchecked-base64-url) no-repeat
               center;
-            position: absolute;
-            margin-top: @tree-select-tree-checkbox-margin-top;
+            position: relative;
+            display: inline-block;
+            top: @tree-select-tree-checkbox-top;
           }
 
           .@{tree-prefix-cls}-title {

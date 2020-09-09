@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, ReplaySubject } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
+import { Observable, of, ReplaySubject, BehaviorSubject } from 'rxjs';
+import { switchMap, take, map } from 'rxjs/operators';
 
 import {
   InterceptionEventType,
@@ -15,8 +15,9 @@ import {
  */
 @Injectable({ providedIn: 'root' })
 export class InterceptionService implements InterceptorDispatcher, Interceptor {
-  private handlersMap = new Map<any, InterceptionHandler<any>[]>();
-  private handlers$ = new ReplaySubject<InterceptionHandler<any>[]>();
+  private handlersMap$ = new BehaviorSubject(
+    new Map<any, InterceptionHandler<any>[]>(),
+  );
 
   dispatch<D>(event: InterceptionEventType<D>, data: D): Observable<D>;
   dispatch<D extends never>(event: InterceptionEventType<D>): Observable<void>;
@@ -24,8 +25,9 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
     event: InterceptionEventType<unknown>,
     data?: unknown,
   ): Observable<unknown> {
-    return this.handlers$
+    return this.handlersMap$
       .pipe(
+        map(handlersMap => handlersMap.get(event) || []),
         switchMap(h => {
           return h.reduce(
             (prev$, handler) =>
@@ -42,16 +44,18 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
     handler: InterceptionHandler<D>,
   ): Observable<void> {
     return new Observable(subscriber => {
-      const handlers = this.handlersMap.get(event) || [];
-      this.handlersMap.set(event, [...handlers, handler]);
-      this.handlers$.next([...handlers, handler]);
+      const handlers = this.handlersMap$.getValue().get(event) || [];
+      this.handlersMap$.next(
+        this.handlersMap$.getValue().set(event, [...handlers, handler]),
+      );
 
       return () => {
-        const updatedHandlers = this.handlersMap.get(event) || [];
+        const updatedHandlers = this.handlersMap$.getValue().get(event) || [];
         const filteredHandlers = updatedHandlers.filter(h => h !== handler);
 
-        this.handlers$.next(filteredHandlers);
-        this.handlersMap.set(event, filteredHandlers);
+        this.handlersMap$.next(
+          this.handlersMap$.getValue().set(event, filteredHandlers),
+        );
       };
     });
   }

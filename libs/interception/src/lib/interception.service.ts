@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { map, switchMap, take, distinctUntilChanged } from 'rxjs/operators';
 
 import {
   InterceptionEventType,
@@ -28,6 +28,7 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
     return this.handlersMap$
       .pipe(
         map(handlersMap => handlersMap.get(event) || []),
+        distinctUntilChanged(),
         switchMap(h => {
           return h.reduce(
             (prev$, handler) =>

@@ -4606,6 +4606,265 @@
           "style": "less"
         }
       }
+    },
+    "interception": {
+      "projectType": "library",
+      "root": "libs/interception",
+      "sourceRoot": "libs/interception/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/interception/tsconfig.lib.json",
+            "project": "libs/interception/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/interception/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/interception/tsconfig.lib.json",
+              "libs/interception/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/interception/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/interception/jest.config.js",
+            "tsConfig": "libs/interception/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/interception/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "unsaved-changes": {
+      "projectType": "library",
+      "root": "libs/unsaved-changes",
+      "sourceRoot": "libs/unsaved-changes/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/unsaved-changes/tsconfig.lib.json",
+            "project": "libs/unsaved-changes/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/unsaved-changes/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/unsaved-changes/tsconfig.lib.json",
+              "libs/unsaved-changes/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/unsaved-changes/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/unsaved-changes/jest.config.js",
+            "tsConfig": "libs/unsaved-changes/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/unsaved-changes/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "unsaved-changes.monitor.form": {
+      "projectType": "library",
+      "root": "libs/unsaved-changes.monitor.form",
+      "sourceRoot": "libs/unsaved-changes.monitor.form/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/unsaved-changes.monitor.form/tsconfig.lib.json",
+            "project": "libs/unsaved-changes.monitor.form/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/unsaved-changes.monitor.form/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/unsaved-changes.monitor.form/tsconfig.lib.json",
+              "libs/unsaved-changes.monitor.form/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/unsaved-changes.monitor.form/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/unsaved-changes.monitor.form/jest.config.js",
+            "tsConfig": "libs/unsaved-changes.monitor.form/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/unsaved-changes.monitor.form/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "unsaved-changes.guard.browser": {
+      "projectType": "library",
+      "root": "libs/unsaved-changes.guard.browser",
+      "sourceRoot": "libs/unsaved-changes.guard.browser/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/unsaved-changes.guard.browser/tsconfig.lib.json",
+            "project": "libs/unsaved-changes.guard.browser/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/unsaved-changes.guard.browser/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/unsaved-changes.guard.browser/tsconfig.lib.json",
+              "libs/unsaved-changes.guard.browser/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/unsaved-changes.guard.browser/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/unsaved-changes.guard.browser/jest.config.js",
+            "tsConfig": "libs/unsaved-changes.guard.browser/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/unsaved-changes.guard.browser/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "unsaved-changes.guard.drawer": {
+      "projectType": "library",
+      "root": "libs/unsaved-changes.guard.drawer",
+      "sourceRoot": "libs/unsaved-changes.guard.drawer/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/unsaved-changes.guard.drawer/tsconfig.lib.json",
+            "project": "libs/unsaved-changes.guard.drawer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/unsaved-changes.guard.drawer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/unsaved-changes.guard.drawer/tsconfig.lib.json",
+              "libs/unsaved-changes.guard.drawer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/unsaved-changes.guard.drawer/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/unsaved-changes.guard.drawer/jest.config.js",
+            "tsConfig": "libs/unsaved-changes.guard.drawer/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/unsaved-changes.guard.drawer/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/unsaved-changes.guard.drawer/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/unsaved-changes.guard.drawer",
+            "config": {
+              "configFolder": "libs/unsaved-changes.guard.drawer/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

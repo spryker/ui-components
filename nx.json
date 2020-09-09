@@ -205,6 +205,21 @@
     },
     "modal": {
       "tags": ["level:molecule", "type:component-service"]
+    },
+    "interception": {
+      "tags": ["type:service", "pkg:primary"]
+    },
+    "unsaved-changes": {
+      "tags": ["type:component-service", "pkg:primary"]
+    },
+    "unsaved-changes.monitor.form": {
+      "tags": ["type:component-service", "pkg:extension"]
+    },
+    "unsaved-changes.guard.browser": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "unsaved-changes.guard.drawer": {
+      "tags": ["type:component-service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

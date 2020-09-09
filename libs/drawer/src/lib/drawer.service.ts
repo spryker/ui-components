@@ -14,6 +14,7 @@ import { DrawerContainerComponent } from './drawer-container/drawer-container.co
 import { DrawerOptions } from './drawer-options';
 import { DrawerRef } from './drawer-ref';
 import { DrawerTemplateContext } from './types';
+import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 
 interface DrawerRecord {
   options: DrawerOptions;
@@ -85,19 +86,16 @@ export class DrawerService implements OnDestroy {
     );
 
     const drawerContainerRef = overlay.attach(
-      new ComponentPortal(DrawerContainerComponent),
+      new ComponentPortal(DrawerContainerProxyComponent),
     );
 
     const record: DrawerRecord = {
       options,
       overlay,
-      container: drawerContainerRef.instance,
+      container: drawerContainerRef.instance.container,
     };
 
-    const containerEmpty$ = drawerContainerRef.instance
-      .afterClosed()
-      .pipe(take(1));
-    const overlayClosed$ = new Subject<void>();
+    const containerEmpty$ = record.container.afterClosed().pipe(take(1));
 
     merge(
       overlay.backdropClick(),
@@ -105,12 +103,11 @@ export class DrawerService implements OnDestroy {
     )
       .pipe(takeUntil(merge(containerEmpty$, this.allClosed$)))
       .subscribe(() => {
-        overlayClosed$.next();
         this.removeDrawerRecord(record);
       });
 
     containerEmpty$
-      .pipe(takeUntil(merge(overlayClosed$, this.allClosed$)))
+      .pipe(takeUntil(this.allClosed$))
       .subscribe(() => this.removeDrawerRecord(record));
 
     return record;

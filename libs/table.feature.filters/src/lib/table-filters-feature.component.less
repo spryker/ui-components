@@ -1,0 +1,31 @@
+@import 'themes/default/theme.less';
+
+.@{table-filters-feature-prefix-cls} {
+  margin-top: @table-filters-feature-margin-top;
+  margin-bottom: @table-filters-feature-margin-bottom;
+  padding: @table-filters-feature-padding;
+  width: 100%;
+  background-color: @white;
+  border-radius: @table-filters-feature-border-radius;
+  flex-grow: 1;
+  flex-shrink: 0;
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -@table-filters-feature-item-padding;
+  }
+
+  &__item {
+    min-width: @table-filters-feature-item-min-width;
+    flex-basis: 100% / 6;
+    padding: @table-filters-feature-item-padding;
+
+    &-title {
+      display: block;
+      font: @font-weight-medium @font-size-sm @font-family;
+      margin-bottom: @table-filters-feature-item-title-margin-bottom;
+      text-transform: uppercase;
+    }
+  }
+}

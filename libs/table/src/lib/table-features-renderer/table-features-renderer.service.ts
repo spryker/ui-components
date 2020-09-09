@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, TemplateRef } from '@angular/core';
 import { combineLatest, EMPTY, Observable, of } from 'rxjs';
 import {
   debounceTime,
@@ -6,10 +6,18 @@ import {
   shareReplay,
   switchMap,
   take,
+  startWith,
 } from 'rxjs/operators';
 
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { FeatureRecord } from './types';
+import { TableFeatureConfig } from '../table-config/types';
+import { TableFeatureLocation } from '../table/table';
+
+export interface TableChainedContext<TContext = never> {
+  $implicit: TemplateRef<TableChainedContext<TContext> & TContext>;
+  context: TableChainedContext<TContext> & TContext;
+}
 
 @Injectable()
 export class TableFeaturesRendererService implements OnDestroy {
@@ -74,7 +82,7 @@ export class TableFeaturesRendererService implements OnDestroy {
 
   trackFeatureRecords(
     features?: TableFeatureComponent[],
-    location?: string,
+    location?: TableFeatureLocation,
   ): Observable<FeatureRecord[]> {
     if (!features || !location) {
       return of([]);
@@ -84,6 +92,57 @@ export class TableFeaturesRendererService implements OnDestroy {
       features,
       location,
       this.featureLocationStore.resolve(features),
+    );
+  }
+
+  chainFeatureContexts<TContext, TArgs extends any[]>(
+    features$: Observable<TableFeatureComponent<TableFeatureConfig>[]>,
+    location: TableFeatureLocation,
+    templateGetter: (context: TContext) => TemplateRef<TContext>,
+    contextGetter: (...args: TArgs) => TContext,
+  ) {
+    const featuresInLocation$ = features$.pipe(
+      switchMap(features => this.trackFeatureRecords(features, location)),
+      // tslint:disable-next-line: deprecation
+      startWith([] as never),
+    );
+
+    const featureTemplates$ = featuresInLocation$.pipe(
+      map(features => features.map(feature => feature.featureTemplate)),
+    );
+
+    const featureContexts$ = featuresInLocation$.pipe(
+      switchMap(features =>
+        combineLatest(
+          features.map(feature => feature.featureContext$ ?? of(undefined)),
+        ),
+      ),
+      // tslint:disable-next-line: deprecation
+      startWith([] as never),
+      debounceTime(0),
+    );
+
+    return combineLatest([featureTemplates$, featureContexts$]).pipe(
+      debounceTime(0),
+      map(([templates, contexts]) => (...args: TArgs) => {
+        const context = contextGetter(...args);
+
+        return templates.reduceRight<TableChainedContext<TContext>>(
+          (prevCtx, template, j) => ({
+            $implicit: template as any,
+            context: {
+              ...context,
+              ...contexts[j],
+              ...prevCtx,
+            },
+          }),
+          {
+            $implicit: templateGetter(context),
+            context,
+          } as any,
+        );
+      }),
+      shareReplay({ bufferSize: 1, refCount: true }),
     );
   }
 }

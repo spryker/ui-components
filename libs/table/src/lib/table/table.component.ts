@@ -12,10 +12,10 @@ import {
   QueryList,
   SimpleChanges,
   TemplateRef,
+  ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { DropdownItem } from '@spryker/dropdown';
 import { ToJson } from '@spryker/utils';
 import {
   BehaviorSubject,
@@ -41,6 +41,8 @@ import {
   tap,
 } from 'rxjs/operators';
 
+import { TableActionsService } from '../table-actions/table-actions.service';
+import { TableConfigService } from '../table-config/table-config.service';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureLoaderService } from '../table-feature-loader/table-feature-loader.service';
 import { TableFeatureEventBus } from '../table-feature/table-feature-event-bus';
@@ -50,9 +52,11 @@ import { TableFeaturesRendererService } from '../table-features-renderer/table-f
 import { ColTplDirective } from './col-tpl.directive';
 import { TableColumnsResolverService } from './columns-resolver.service';
 import { TableDataConfiguratorService } from './data-configurator.service';
+import { TableDatasourceService } from './datasource.service';
 import {
   SortingCriteria,
   TableColumn,
+  TableColumnContext,
   TableColumnTplContext,
   TableComponent,
   TableConfig,
@@ -60,11 +64,9 @@ import {
   TableDataRow,
   TableFeatureLocation,
   TableRowClickEvent,
+  TableHeaderContext,
 } from './table';
 import { TableEventBus } from './table-event-bus';
-import { TableConfigService } from '../table-config/table-config.service';
-import { TableDatasourceService } from './datasource.service';
-import { TableActionsService } from '../table-actions.service';
 
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   shareReplay({ bufferSize: 1, refCount: true });
@@ -99,6 +101,14 @@ export class CoreTableComponent
    * }
    */
   @Input() events: Record<string, ((data: unknown) => void) | undefined> = {};
+
+  @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<
+    TableColumnContext
+  >;
+
+  @ViewChild('headerTpl', { static: true }) headerTpl!: TemplateRef<
+    TableHeaderContext
+  >;
 
   @ContentChildren(ColTplDirective) set slotTemplates(
     val: QueryList<ColTplDirective>,
@@ -201,6 +211,24 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
+  featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
+    this.features$,
+    TableFeatureLocation.header,
+    () => this.headerTpl,
+    (config: TableColumn, i: number): TableHeaderContext => ({ config, i }),
+  );
+
+  featureCellContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
+    this.features$,
+    TableFeatureLocation.cell,
+    () => this.cellTpl,
+    (
+      config: TableColumn,
+      row: TableDataRow,
+      i: number,
+    ): TableColumnContext => ({ config, row, i, value: row[config.id] }),
+  );
+
   isLoading$ = merge(
     this.dataConfiguratorService.config$.pipe(mapTo(true)),
     this.data$.pipe(mapTo(false)),
@@ -244,7 +272,6 @@ export class CoreTableComponent
   templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
   features: TableFeatureComponent[] = [];
   rowClasses: Record<string, Record<string, boolean>> = {};
-  actions?: DropdownItem[];
 
   private destroyed$ = new Subject<void>();
 
@@ -290,6 +317,7 @@ export class CoreTableComponent
     private featureLoaderService: TableFeatureLoaderService,
     private configService: TableConfigService,
     private datasourceService: TableDatasourceService,
+    private tableFeaturesRendererService: TableFeaturesRendererService,
   ) {}
 
   ngOnInit(): void {

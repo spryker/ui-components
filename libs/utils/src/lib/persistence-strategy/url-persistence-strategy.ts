@@ -30,7 +30,7 @@ export class UrlPersistenceStrategy implements PersistenceStrategy {
     return EMPTY;
   }
 
-  retrieve(key: string): Observable<unknown> {
+  retrieve<T>(key: string): Observable<T> {
     return this.urlSearch$.pipe(
       distinctUntilChanged(),
       switchMap(urlSearch => {

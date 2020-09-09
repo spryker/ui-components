@@ -1,18 +1,22 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
+  ContentChild,
   Input,
   OnDestroy,
-  OnInit,
-  Output,
+  TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { IconRemoveModule } from '@spryker/icon/icons';
-import { ApplyContextsDirective, ToBoolean } from '@spryker/utils';
-import { NzAlertComponent } from 'ng-zorro-antd/alert';
+import { ToJson } from '@spryker/utils';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { NotificationInputs } from '../notification-inputs';
+import { NotificationRef } from '../notification-ref';
+import { NotificationViewComponent } from '../notification-view/notification-view.component';
+import { NotificationService } from '../notification.service';
+import { NotificationConfig } from '../types';
 
 @Component({
   selector: 'spy-notification',
@@ -23,33 +27,55 @@ import { Subject } from 'rxjs';
   host: {
     class: 'spy-notification',
   },
-  providers: [ApplyContextsDirective],
 })
-export class NotificationComponent implements OnInit, OnDestroy {
-  @Input() type: 'info' | 'error' | 'warning' | 'success' = 'info';
-  @Input() @ToBoolean() closeable = false;
+export class NotificationComponent extends NotificationInputs
+  implements OnDestroy {
+  @Input() @ToJson() floatingConfig?: NotificationConfig;
 
-  @Output() closed = new EventEmitter<void>();
+  @ViewChild(NotificationViewComponent)
+  notificationViewComponent?: NotificationViewComponent;
 
-  @ViewChild(NzAlertComponent) nzAlertComponent?: NzAlertComponent;
+  @ContentChild('titleTpl') titleTpl?: TemplateRef<NotificationRef>;
+  @ContentChild('descriptionTpl') descriptionTpl?: TemplateRef<NotificationRef>;
+  @ViewChild('titleInnerTpl') titleInnerTpl?: TemplateRef<HTMLElement>;
+  @ViewChild('descriptionInnerTpl') descriptionInnerTpl?: TemplateRef<
+    HTMLElement
+  >;
 
-  removeIcon = IconRemoveModule.icon;
-
+  private notificationRef?: NotificationRef;
   private destroyed$ = new Subject<void>();
 
-  constructor(private applyContextsDirective: ApplyContextsDirective) {}
+  constructor(public notificationService: NotificationService) {
+    super();
+  }
 
-  ngOnInit(): void {
-    this.applyContextsDirective.ngOnInit();
+  ngAfterViewInit(): void {
+    const floating = this.floating;
+
+    if (floating) {
+      const data = {
+        ...this.floatingConfig,
+        description: (this.descriptionTpl ?? this.descriptionInnerTpl) as any,
+        type: this.type,
+        title: (this.titleTpl ?? this.titleInnerTpl) as any,
+        closeable: this.closeable,
+      };
+
+      this.notificationRef = this.notificationService.show(data);
+      this.notificationRef
+        .afterClose()
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe(() => this.closed.emit());
+    }
   }
 
   ngOnDestroy(): void {
+    this.notificationRef?.close();
     this.destroyed$.next();
   }
 
-  close(): boolean {
-    this.nzAlertComponent?.closeAlert();
-
-    return this.closeable;
+  close(): void {
+    this.notificationRef?.close();
+    this.notificationViewComponent?.close();
   }
 }

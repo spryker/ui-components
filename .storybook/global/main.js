@@ -2,5 +2,5 @@ const config = require('../main');
 
 module.exports = {
   ...config,
-  stories: ['../../**/*.stories.ts'],
+  stories: config.stories.map(path => `../${path}`),
 };

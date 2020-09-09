@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.14...@spryker/styles@0.2.0-next.15) (2020-09-04)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.2.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.13...@spryker/styles@0.2.0-next.14) (2020-08-27)
+
+
+### Bug Fixes
+
+* **truncated-item:** fixed allignment with chip[ ([1c4d24d](https://github.com/spryker/ui-components/commit/1c4d24d6c236736235c71fc997df08d83ca17033))
+
+
+
+
+
+# [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.12...@spryker/styles@0.2.0-next.13) (2020-08-20)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed titles ([4f6e0be](https://github.com/spryker/ui-components/commit/4f6e0be007950e068a6ad62ee1ec45860e1b5417))
+
+
+
+
+
+# [0.2.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.11...@spryker/styles@0.2.0-next.12) (2020-08-19)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.2.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.10...@spryker/styles@0.2.0-next.11) (2020-08-14)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.2.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.9...@spryker/styles@0.2.0-next.10) (2020-08-12)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.8...@spryker/styles@0.2.0-next.9) (2020-08-10)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
 # [0.2.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.7...@spryker/styles@0.2.0-next.8) (2020-08-10)
 
 

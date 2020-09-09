@@ -203,6 +203,9 @@
     "table.action-handler.url": {
       "tags": ["type:service", "pkg:extension"]
     },
+    "modal": {
+      "tags": ["level:molecule", "type:component-service"]
+    },
     "interception": {
       "tags": ["type:service", "pkg:primary"]
     },

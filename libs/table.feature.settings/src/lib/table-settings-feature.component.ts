@@ -70,7 +70,6 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   setColumns$ = new ReplaySubject<TableSettingsColumns>(1);
   setInitialColumns$ = new ReplaySubject<TableSettingsColumns>(1);
-  updateResetButtonState$ = new ReplaySubject<TableSettingsColumns>(1);
 
   tableId$ = this.config$.pipe(
     pluck('tableId'),
@@ -106,14 +105,13 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     this.initialColumns$.pipe(
       map(columns => {
         const filteredColumns = columns.filter(column => !column.hidden);
-        this.updateResetButtonState$.next(filteredColumns);
 
         return filteredColumns;
       }),
     ),
-  );
+  ).pipe(shareReplay({ bufferSize: 1, refCount: true }));
 
-  isResetButtonDisabled$ = this.updateResetButtonState$.pipe(
+  isResetButtonDisabled$ = this.columns$.pipe(
     map(
       columns =>
         columns.length === this.originalColumnsArr.length &&
@@ -181,14 +179,11 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
       tableColumns,
     );
 
-    this.updateResetButtonState$.next(sortedTableColumns);
-
     this.setPopoverColumns$.next(popoverColumns);
     this.setColumns$.next(sortedTableColumns);
   }
 
   resetChoice(): void {
-    this.updateResetButtonState$.next(this.originalColumnsArr);
     this.setColumns$.next(this.cloneColumns(this.originalColumnsArr));
     this.setPopoverColumns$.next(this.cloneColumns(this.originalColumnsArr));
   }
@@ -221,7 +216,6 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
       popoverColumn.hidden = !popoverColumn.hidden;
     }
 
-    this.updateResetButtonState$.next(popoverColumns);
     this.setColumns$.next(tableColumns);
     this.setPopoverColumns$.next(popoverColumns);
   }

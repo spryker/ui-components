@@ -1,0 +1,24 @@
+<ng-template #title
+  ><h1>{{ data.title }}</h1></ng-template
+>
+<div class="ant-modal-description" *ngIf="data?.description">
+  {{ data?.description }}
+</div>
+
+<ng-template #footer let-modal="modalRef">
+  <div class="ant-modal-confirm-actions">
+    <div class="ant-modal-confirm-col">
+      <spy-button
+        size="sm"
+        variant="secondary"
+        (click)="modalRef.close(false)"
+        >{{ data.cancelText }}</spy-button
+      >
+    </div>
+    <div class="ant-modal-confirm-col">
+      <spy-button size="sm" variant="critical" (click)="modalRef.close(true)">{{
+        data.okText
+      }}</spy-button>
+    </div>
+  </div>
+</ng-template>

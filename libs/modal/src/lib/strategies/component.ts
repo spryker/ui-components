@@ -33,11 +33,11 @@ class ComponentModalRenderingRefImpl<T extends ComponentModal>
   implements ComponentModalRenderingRef<T> {
   constructor(private componentRef: ComponentRef<T>) {}
 
-  getComponentRef() {
+  getComponentRef(): ComponentRef<T> {
     return this.componentRef;
   }
 
-  getComponent() {
+  getComponent(): T {
     return this.componentRef.instance;
   }
 

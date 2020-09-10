@@ -86,7 +86,10 @@ export class HtmlModalStrategy<T> implements ModalStrategy<T, HtmlModalExtras> {
 
   constructor(private options: HtmlModalStrategyOptions<T>) {}
 
-  render(vcr: ViewContainerRef, modalRef: ModalRef<T>) {
+  render(
+    vcr: ViewContainerRef,
+    modalRef: ModalRef<T>,
+  ): HtmlModalRenderingRef<T> {
     const renderElement: HTMLElement = vcr.element.nativeElement;
     const parentElement = renderElement.parentNode;
 

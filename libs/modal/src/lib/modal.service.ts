@@ -11,16 +11,14 @@ import {
   ComponentModal,
   ComponentModalStrategy,
   ComponentModalStrategyOptions,
-} from './strategies/component';
-import {
+  ComponentModalExtras,
   ConfirmModalComponent,
   ConfirmModalStrategy,
   ConfirmModalStrategyOptions,
-} from './strategies/confirm';
-import {
   TemplateModalContext,
   TemplateModalStrategy,
-} from './strategies/template';
+  TemplateModalExtras,
+} from './strategies';
 import { ModalOptionsToken, ModalWrapperFactoryToken } from './tokens';
 import { AnyModal, ModalOptions, ModalRef, ModalStrategy } from './types';
 
@@ -82,20 +80,20 @@ export class ModalService implements OnDestroy {
   openComponent<T extends ComponentModal>(
     component: Type<T>,
     options?: ModalOptions<T> & ComponentModalStrategyOptions,
-  ) {
+  ): ModalRef<T, ComponentModalExtras<T>> {
     return this.open(new ComponentModalStrategy(component, options), options);
   }
 
   openTemplate<T extends AnyModal>(
     template: TemplateRef<TemplateModalContext<T>>,
     options?: ModalOptions<T>,
-  ) {
+  ): ModalRef<T, TemplateModalExtras<T>> {
     return this.open(new TemplateModalStrategy(template), options);
   }
 
   openConfirm(
     options?: ModalOptions<ConfirmModalComponent> & ConfirmModalStrategyOptions,
-  ) {
+  ): ModalRef<AnyModal, ComponentModalExtras<ConfirmModalComponent>> {
     return this.open(new ConfirmModalStrategy(options), options);
   }
 

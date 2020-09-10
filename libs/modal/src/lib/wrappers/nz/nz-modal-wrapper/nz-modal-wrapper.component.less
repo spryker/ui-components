@@ -1,0 +1,64 @@
+@import './nz-modal-wrapper.component.theme.less';
+
+.@{modal-prefix-cls} {
+  width: 100%;
+  top: 0;
+
+  &--confirmation {
+    max-width: @modal-confirmation-max-width;
+  }
+
+  &-mask {
+    background: @modal-backdrop-background;
+  }
+
+  &-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: @modal-wrapper-padding;
+  }
+
+  &-content {
+    font: @font-weight-medium @font-size-base @font-family;
+    padding: @modal-content-padding;
+    color: @gray-darker;
+  }
+
+  &-body,
+  &-header,
+  &-footer {
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    background: none;
+  }
+
+  &-footer {
+    margin: @modal-footer-margin-top 0 0 0;
+  }
+
+  &-header {
+    margin: -@modal-content-padding -@modal-content-padding
+      @modal-header-indent-y;
+    padding: @modal-header-indent-y @modal-content-padding;
+    border-bottom: @modal-header-border-width solid @gray-light;
+    font-size: @heading-5-font-size;
+    color: @ink;
+    font-weight: @font-weight-semi-bold;
+  }
+
+  &-description {
+    line-height: @modal-description-line-height;
+  }
+
+  &-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 -@modal-confirmation-actions-padding-x;
+  }
+
+  &-confirm-col {
+    padding: 0 @modal-confirmation-actions-padding-x;
+  }
+}

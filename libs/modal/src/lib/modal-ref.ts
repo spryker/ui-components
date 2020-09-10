@@ -29,14 +29,14 @@ export class ModalRefImpl<T> extends ModalRef<T, any> {
     super();
   }
 
-  setRenderingRef(renderingRef: ModalRenderingRef<T, any>) {
+  setRenderingRef(renderingRef: ModalRenderingRef<T, any>): void {
     this.assertDisposed();
 
     this.renderingRef = renderingRef;
     this.extras = renderingRef.getExtras();
   }
 
-  getData() {
+  getData(): InferModalData<T> | undefined {
     this.assertDisposed();
 
     return this.data;
@@ -79,11 +79,11 @@ export class ModalRefImpl<T> extends ModalRef<T, any> {
     this.setRenderingRef(this.renderFn(this));
   }
 
-  dispose() {
+  dispose(): void {
     this.close();
   }
 
-  private destroy() {
+  private destroy(): void {
     // Refs cleanup requires assignment to `undefined`
     // tslint:disable: no-non-null-assertion
 
@@ -103,7 +103,7 @@ export class ModalRefImpl<T> extends ModalRef<T, any> {
     // tslint:enable: no-non-null-assertion
   }
 
-  private assertDisposed() {
+  private assertDisposed(): never | void {
     if (this.disposed) {
       throw new Error('ModalRef was already disposed!');
     }

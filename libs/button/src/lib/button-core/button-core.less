@@ -45,23 +45,21 @@
       &:hover {
         background: @btn-default-bg;
         color: @btn-default-color;
-        border-color: @btn-default-border-hover;
+        border-color: @btn-default-border;
         box-shadow: @btn-default-shadow-hover;
       }
 
       &:focus,
-      &:active {
-        background: @btn-default-bg;
+      &:active,
+      &:focus:active {
+        background: @btn-default-bg-active;
         color: @btn-default-color;
-        border-color: @btn-default-border-active;
+        border-color: @btn-default-border;
       }
 
       &:focus {
+        border-color: @btn-default-border-focus;
         box-shadow: @btn-shadow-default-size transparent;
-      }
-
-      &:active {
-        background: @btn-default-bg-active;
       }
     }
   }

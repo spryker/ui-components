@@ -41,7 +41,7 @@ export class OverlayModalWrapperRef implements ModalWrapperRef {
     return this.componentRef.instance.contentVcr;
   }
 
-  getInstance() {
+  getInstance(): ModalWrapperComponent {
     return this.componentRef.instance;
   }
 

@@ -1,5 +1,9 @@
 import { Injectable, TemplateRef, ViewContainerRef } from '@angular/core';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import {
+  NzModalRef,
+  NzModalService,
+  ModalOptions as NzModalOptions,
+} from 'ng-zorro-antd/modal';
 
 import {
   AnyModal,
@@ -10,6 +14,24 @@ import {
 } from '../../types';
 import { NzModalWrapperComponent } from './nz-modal-wrapper/nz-modal-wrapper.component';
 
+function getNzOptions(options: ModalOptions<AnyModal>): NzModalOptions {
+  return {
+    nzTitle: options.title,
+    nzFooter: options.footer ?? null,
+    nzCloseIcon: options.closeIcon as string | TemplateRef<void>,
+    nzWidth: options.width,
+    nzClosable: options.closeable,
+    nzMask: options.backdrop,
+    nzMaskStyle: {
+      background: options.backdrop ? (undefined as any) : 'none',
+    },
+    nzClassName: options.class,
+    nzWrapClassName: options.wrapperClass,
+    nzContent: NzModalWrapperComponent,
+    nzAutofocus: null,
+  };
+}
+
 export class NzModalWrapperRef implements ModalWrapperRef {
   private onDispose = () => {};
 
@@ -18,17 +40,7 @@ export class NzModalWrapperRef implements ModalWrapperRef {
   setModalRef(modalRef: ModalRef<any, any>): void {}
 
   addModalOptions(options: ModalOptions<AnyModal>): void {
-    const nzOptions = {
-      nzTitle: options.title,
-      nzFooter: options.footer,
-      nzCloseIcon: options.closeIcon as string | TemplateRef<void>,
-      nzWidth: options.width,
-      nzClosable: options.closeable,
-      nzMask: options.backdrop,
-      nzClassName: options.class,
-      nzWrapClassName: options.wrapperClass,
-      nzContent: NzModalWrapperComponent,
-    };
+    const nzOptions = getNzOptions(options);
     this.nzModalRef.updateConfig(nzOptions);
   }
 
@@ -59,17 +71,7 @@ export class NzModalWrapperFactory implements ModalWrapperFactory {
   constructor(private nzModalService: NzModalService) {}
 
   createWrapper(options: ModalOptions<AnyModal>): ModalWrapperRef {
-    const nzModalRef = this.nzModalService.create({
-      nzTitle: options.title,
-      nzFooter: options.footer,
-      nzCloseIcon: options.closeIcon as string | TemplateRef<void>,
-      nzWidth: options.width,
-      nzClosable: options.closeable,
-      nzMask: options.backdrop,
-      nzClassName: options.class,
-      nzWrapClassName: options.wrapperClass,
-      nzContent: NzModalWrapperComponent,
-    });
+    const nzModalRef = this.nzModalService.create(getNzOptions(options));
 
     return new NzModalWrapperRef(nzModalRef);
   }

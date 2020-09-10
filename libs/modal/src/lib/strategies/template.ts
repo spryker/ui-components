@@ -22,7 +22,7 @@ export class TemplateModalRenderingRef<T>
     TemplateModalExtras<T> {
   constructor(private viewRef: EmbeddedViewRef<TemplateModalContext<T>>) {}
 
-  getViewRef() {
+  getViewRef(): EmbeddedViewRef<TemplateModalContext<T>> {
     return this.viewRef;
   }
 
@@ -50,7 +50,10 @@ export class TemplateModalStrategy<T>
   implements ModalStrategy<T, TemplateModalExtras<T>> {
   constructor(private template: TemplateRef<TemplateModalContext<T>>) {}
 
-  render(vcr: ViewContainerRef, modalRef: ModalRef<T>) {
+  render(
+    vcr: ViewContainerRef,
+    modalRef: ModalRef<T>,
+  ): TemplateModalRenderingRef<T> {
     const viewRef = vcr.createEmbeddedView<TemplateModalContext<T>>(
       this.template,
       { $implicit: modalRef.getData(), modalRef },

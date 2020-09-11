@@ -35,6 +35,11 @@ import { ReplaySubject, of, Observable, merge, combineLatest } from 'rxjs';
 import { PersistenceService } from '@spryker/utils';
 import { PopoverPosition } from '@spryker/popover';
 
+interface TableSettingsStorageData {
+  hiddenColumns: string[];
+  columnsOrder: string[];
+}
+
 @Component({
   selector: 'spy-table-settings-feature',
   templateUrl: './table-settings-feature.component.html',
@@ -77,18 +82,22 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   storageState$ = this.tableId$.pipe(
     switchMap(tableId =>
-      this.persistenceService.retrieve<TableSettingsColumns>(tableId),
+      this.persistenceService.retrieve<TableSettingsStorageData>(tableId),
     ),
-    tap(() => {
-      this.isColumnsRetrieved = true;
+    tap(storageData => {
+      if (storageData) {
+        this.isColumnsRetrieved = true;
+      }
     }),
-  ) as Observable<TableSettingsColumns>;
+  ) as Observable<TableSettingsStorageData>;
 
   initialColumns$ = combineLatest([
     this.storageState$,
     this.setInitialColumns$,
   ]).pipe(
-    map(([storageColumns, initialColumns]) => storageColumns || initialColumns),
+    map(([storageData, initialColumns]) =>
+      this.applyStorageSettings(storageData, initialColumns),
+    ),
   );
 
   columns$ = merge(
@@ -96,12 +105,19 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     this.initialColumns$.pipe(
       map(columns => {
         const filteredColumns = columns.filter(column => !column.hidden);
-        this.isResetDisabled = !filteredColumns.some(
-          (column, index) => column.id !== this.originalColumnsArr[index].id,
-        );
 
         return filteredColumns;
       }),
+    ),
+  ).pipe(shareReplay({ bufferSize: 1, refCount: true }));
+
+  isResetButtonDisabled$ = this.columns$.pipe(
+    map(
+      columns =>
+        columns.length === this.originalColumnsArr.length &&
+        !columns.some(
+          (column, index) => column.id !== this.originalColumnsArr[index].id,
+        ),
     ),
   );
 
@@ -110,7 +126,10 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     withLatestFrom(this.tableId$),
     tap(([columns, tableId]) => {
       if (!this.isColumnsRetrieved) {
-        this.persistenceService.save(tableId, columns);
+        this.persistenceService.save(
+          tableId,
+          this.generateStorageData(columns),
+        );
       } else {
         this.isColumnsRetrieved = false;
       }
@@ -154,8 +173,6 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableSettingsColumns,
     tableColumns: TableSettingsColumns,
   ): void {
-    this.isResetDisabled = false;
-
     moveItemInArray(popoverColumns, event.previousIndex, event.currentIndex);
     const sortedTableColumns = this.moveItemInTableColumnsArray(
       popoverColumns,
@@ -167,7 +184,6 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   resetChoice(): void {
-    this.isResetDisabled = true;
     this.setColumns$.next(this.cloneColumns(this.originalColumnsArr));
     this.setPopoverColumns$.next(this.cloneColumns(this.originalColumnsArr));
   }
@@ -177,8 +193,6 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableSettingsColumns,
     tableColumns: TableSettingsColumns,
   ): void {
-    this.isResetDisabled = false;
-
     const popoverColumn = popoverColumns.find(
       column => column.id === checkedColumn.id,
     );
@@ -271,5 +285,56 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     return popoverColumns.filter(column =>
       tableColumns.find(tableColumn => tableColumn.id === column.id),
     );
+  }
+
+  private generateStorageData(
+    columns: TableSettingsColumns,
+  ): TableSettingsStorageData {
+    return columns.reduce(
+      (accumulator: TableSettingsStorageData, column: TableSettingsColumn) => {
+        if (column.hidden) {
+          accumulator.hiddenColumns = [...accumulator.hiddenColumns, column.id];
+        }
+
+        accumulator.columnsOrder = [...accumulator.columnsOrder, column.id];
+
+        return accumulator;
+      },
+      {
+        hiddenColumns: [],
+        columnsOrder: [],
+      },
+    );
+  }
+
+  private applyStorageSettings(
+    storageData: TableSettingsStorageData,
+    columns: TableSettingsColumns,
+  ): TableSettingsColumns {
+    if (!storageData) {
+      return columns;
+    }
+
+    const mappedColumns: TableSettingsColumns = [];
+
+    storageData.columnsOrder.forEach(id => {
+      const nextColumn = columns.find(column => column.id === id);
+
+      if (nextColumn) {
+        nextColumn.hidden = storageData.hiddenColumns.includes(nextColumn.id);
+
+        mappedColumns.push(nextColumn);
+      }
+    });
+
+    if (storageData.columnsOrder.length !== columns.length) {
+      columns.map(column => {
+        if (!storageData.columnsOrder.includes(column.id)) {
+          mappedColumns.push(column);
+        }
+      });
+    }
+
+    return mappedColumns;
   }
 }

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.7...@spryker/tree-select@0.1.0-next.8) (2020-09-09)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed styles ([734dc15](https://github.com/spryker/ui-components/commit/734dc151c54a23adb056c7bb46cdb50d32571060))
+
+
+
+
+
+# [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.6...@spryker/tree-select@0.1.0-next.7) (2020-09-08)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed variables ([8c25b82](https://github.com/spryker/ui-components/commit/8c25b8218407a6405770f2902bf3b00517e350e4))
+* **tree-select:** removed nzCheck attribute ([8588af3](https://github.com/spryker/ui-components/commit/8588af3e01095364ba678e7e5a5979d96ff955ec))
+
+
+
+
+
 # [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0-next.5...@spryker/tree-select@0.1.0-next.6) (2020-09-04)
 
 **Note:** Version bump only for package @spryker/tree-select

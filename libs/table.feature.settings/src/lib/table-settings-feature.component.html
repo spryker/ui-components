@@ -57,7 +57,7 @@
           <button
             class="spy-table-settings-feature__reset-button"
             [class.spy-table-settings-feature__reset-button--disabled]="
-              isResetDisabled
+              isResetButtonDisabled$ | async
             "
             (click)="resetChoice()"
           >

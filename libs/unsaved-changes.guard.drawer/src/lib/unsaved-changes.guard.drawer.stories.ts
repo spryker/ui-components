@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DrawerModule, DrawerRef, DrawerService } from '@spryker/drawer';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { ModalModule } from '@spryker/modal';
 import { UnsavedChangesModule } from '@spryker/unsaved-changes';
 import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
 import { UnsavedChangesFormMonitorModule } from '@spryker/unsaved-changes.monitor.form';
@@ -53,6 +57,10 @@ export const primary = (): IStory => ({
       UnsavedChangesModule.forRoot(),
       UnsavedChangesDrawerGuardModule.forRoot(),
       UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
+      ModalModule.forRoot(),
+      BrowserAnimationsModule,
+      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+      EnLocaleModule,
     ],
     declarations: [StoryComponent, DrawerContentComponent],
   },

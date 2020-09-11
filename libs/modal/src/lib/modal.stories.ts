@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ModalModule } from './modal.module';
 import { ModalService } from './modal.service';
-import { HtmlModalStrategy } from './strategies/html';
+import { HtmlModalStrategy } from './strategies/html.strategy';
 
 export default {
   title: 'ModalComponent',

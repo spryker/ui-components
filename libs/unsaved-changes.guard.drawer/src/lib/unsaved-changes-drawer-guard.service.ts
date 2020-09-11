@@ -5,9 +5,6 @@ import {
   Provider,
   Type,
 } from '@angular/core';
-import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
-
 import {
   DrawerCloseInterceptionEvent,
   DrawerContainerComponent,
@@ -16,10 +13,14 @@ import {
   InterceptionComposableFactory,
   InterceptorService,
 } from '@spryker/interception';
+import { I18nService } from '@spryker/locale';
+import { ModalService } from '@spryker/modal';
 import {
   UnsavedChangesGuardBase,
   UnsavedChangesGuardToken,
 } from '@spryker/unsaved-changes';
+import { combineLatest, EMPTY, of, Subject } from 'rxjs';
+import { switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
 
 /**
  * Dynamically provides {@link UnsavedChangesDrawerGuard} for the drawer component.
@@ -51,18 +52,38 @@ export class UnsavedChangesDrawerGuardComposableFactory
  */
 @Injectable()
 export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
-  private destroyed$ = new Subject<void>();
-
   private interceptorService = this.injector.get(InterceptorService);
+  private modalService = this.injector.get(ModalService);
+  private i18nService = this.injector.get(I18nService);
+
+  private destroyed$ = new Subject<void>();
+  private translations$ = combineLatest([
+    this.i18nService.translate('unsaved-changes.guard.drawer.title'),
+    this.i18nService.translate('unsaved-changes.guard.drawer.ok'),
+    this.i18nService.translate('unsaved-changes.guard.drawer.cancel'),
+  ]);
 
   init(): void {
     super.init();
 
     this.interceptorService
       .intercept(DrawerCloseInterceptionEvent, () =>
-        this.hasDirtyStatus$.pipe(filter(hasDirtyStatus => !hasDirtyStatus)),
+        this.hasDirtyStatus$.pipe(
+          withLatestFrom(this.translations$),
+          switchMap(([hasDirtyStatus, [title, okText, cancelText]]) => {
+            return hasDirtyStatus
+              ? this.modalService
+                  .openConfirm({
+                    title,
+                    okText,
+                    cancelText,
+                  })
+                  .afterDismissed()
+                  .pipe(switchMap(isDiscard => (isDiscard ? of(null) : EMPTY)))
+              : of(null);
+          }),
+        ),
       )
-      // TODO update with ModalService.openConfirm() according to tech spec
       .pipe(takeUntil(this.destroyed$))
       .subscribe();
   }

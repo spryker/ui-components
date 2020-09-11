@@ -7,7 +7,7 @@ import {
   ModalRef,
   ModalTemplateContext,
 } from '../../types';
-import { ComponentModal, ComponentModalExtras } from '../component';
+import { ComponentModal, ComponentModalExtras } from '../component.strategy';
 import { ConfirmModalData } from './types';
 
 @Component({

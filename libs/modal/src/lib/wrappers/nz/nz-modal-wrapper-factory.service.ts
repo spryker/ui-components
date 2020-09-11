@@ -14,22 +14,52 @@ import {
 } from '../../types';
 import { NzModalWrapperComponent } from './nz-modal-wrapper/nz-modal-wrapper.component';
 
-function getNzOptions(options: ModalOptions<AnyModal>): NzModalOptions {
-  return {
-    nzTitle: options.title,
-    nzFooter: options.footer ?? null,
-    nzCloseIcon: options.closeIcon as string | TemplateRef<void>,
-    nzWidth: options.width,
-    nzClosable: options.closeable,
-    nzMask: options.backdrop,
-    nzMaskStyle: {
-      background: options.backdrop ? (undefined as any) : 'none',
-    },
-    nzClassName: options.class,
-    nzWrapClassName: options.wrapperClass,
+function mapNzOptions(options: ModalOptions<AnyModal>): NzModalOptions {
+  const nzOptions: NzModalOptions = {
     nzContent: NzModalWrapperComponent,
     nzAutofocus: null,
+    nzMaskStyle: {
+      background: 'none',
+    },
+    nzCloseIcon: undefined,
   };
+
+  if (options.title) {
+    nzOptions.nzTitle = options.title;
+  }
+
+  if (options.footer) {
+    nzOptions.nzFooter = options.footer;
+  }
+
+  if (options.closeIcon) {
+    nzOptions.nzCloseIcon = options.closeIcon as string | TemplateRef<void>;
+  }
+
+  if (options.width) {
+    nzOptions.nzWidth = options.width;
+  }
+
+  if (options.closeable) {
+    nzOptions.nzClosable = options.closeable;
+  }
+
+  if (options.backdrop) {
+    nzOptions.nzMask = options.backdrop;
+    nzOptions.nzMaskStyle = {
+      background: undefined as any,
+    };
+  }
+
+  if (options.class) {
+    nzOptions.nzClassName = options.class;
+  }
+
+  if (options.wrapperClass) {
+    nzOptions.nzWrapClassName = options.wrapperClass;
+  }
+
+  return nzOptions;
 }
 
 export class NzModalWrapperRef implements ModalWrapperRef {
@@ -40,8 +70,16 @@ export class NzModalWrapperRef implements ModalWrapperRef {
   setModalRef(modalRef: ModalRef<any, any>): void {}
 
   addModalOptions(options: ModalOptions<AnyModal>): void {
-    const nzOptions = getNzOptions(options);
-    this.nzModalRef.updateConfig(nzOptions);
+    const nzMappedOptions = mapNzOptions(options);
+    const nzOptions = this.nzModalRef.getConfig();
+
+    this.nzModalRef.updateConfig({
+      ...nzOptions,
+      ...nzMappedOptions,
+      nzMaskStyle: {
+        background: nzOptions.nzMask ? (undefined as any) : 'none',
+      },
+    });
   }
 
   getModalVcr(): ViewContainerRef {
@@ -71,7 +109,7 @@ export class NzModalWrapperFactory implements ModalWrapperFactory {
   constructor(private nzModalService: NzModalService) {}
 
   createWrapper(options: ModalOptions<AnyModal>): ModalWrapperRef {
-    const nzModalRef = this.nzModalService.create(getNzOptions(options));
+    const nzModalRef = this.nzModalService.create(mapNzOptions(options));
 
     return new NzModalWrapperRef(nzModalRef);
   }

@@ -17,7 +17,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { ModalService } from '../modal.service';
-import { ComponentModal } from '../strategies/component';
+import { ComponentModal } from '../strategies/component.strategy';
 import { ModalRef, ModalTemplateContext } from '../types';
 
 @Component({
@@ -90,6 +90,7 @@ export class ModalComponent implements OnChanges, OnDestroy {
       data: this.data,
     });
     this.visibleChange.emit(true);
+    this.visible = true;
 
     this.modalRef
       .afterClosed()
@@ -104,6 +105,8 @@ export class ModalComponent implements OnChanges, OnDestroy {
     if (this.modalRef) {
       this.modalRef.close();
       this.modalRef = undefined;
+      this.visible = false;
+      this.visibleChange.emit(false);
     }
   }
 

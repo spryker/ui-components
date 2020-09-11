@@ -4,7 +4,7 @@ import {
   ComponentModalExtras,
   ComponentModalRenderingRef,
   ComponentModalStrategy,
-} from '..';
+} from '../component.strategy';
 import { ModalOptions, ModalRef } from '../../types';
 import { ConfirmModalComponent } from './confirm.component';
 import { ConfirmModalData, ConfirmModalStrategyOptions } from './types';
@@ -19,7 +19,6 @@ export class ConfirmModalRenderingRef
     const component = this.renderingRef.getExtras().getComponent();
 
     return {
-      ...component.defaultData,
       class: component.defaultData?.class ?? 'ant-modal--confirmation',
       title: component.title,
       footer: component.footer,

@@ -13,11 +13,11 @@ import {
   ComponentModalStrategyOptions,
   ComponentModalExtras,
   ConfirmModalComponent,
-  ConfirmModalStrategy,
   ConfirmModalStrategyOptions,
   TemplateModalContext,
   TemplateModalStrategy,
   TemplateModalExtras,
+  ConfirmModalStrategy,
 } from './strategies';
 import { ModalOptionsToken, ModalWrapperFactoryToken } from './tokens';
 import { AnyModal, ModalOptions, ModalRef, ModalStrategy } from './types';

@@ -39,6 +39,8 @@ import {
   switchMap,
   takeUntil,
   tap,
+  skip,
+  take,
 } from 'rxjs/operators';
 
 import { TableActionsService } from '../table-actions/table-actions.service';
@@ -211,6 +213,8 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
+  private featuresLoaded$ = this.features$.pipe(skip(1), take(1));
+
   featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
     this.features$,
     TableFeatureLocation.header,
@@ -321,7 +325,9 @@ export class CoreTableComponent
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => this.dataConfiguratorService.triggerInitialData(), 0);
+    this.featuresLoaded$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(() => this.dataConfiguratorService.triggerInitialData());
     this.tableActionsService._setEventBus(this.tableEventBus);
   }
 

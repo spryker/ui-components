@@ -39,6 +39,8 @@ import {
   switchMap,
   takeUntil,
   tap,
+  skip,
+  take,
 } from 'rxjs/operators';
 
 import { TableActionsService } from '../table-actions/table-actions.service';
@@ -201,13 +203,17 @@ export class CoreTableComponent
   );
 
   projectedFeatures$ = new BehaviorSubject<TableFeatureComponent[]>([]);
+  private isFeaturesLoaded$ = new ReplaySubject<void>();
 
   features$ = combineLatest([
     this.configFeatures$,
     this.projectedFeatures$,
   ]).pipe(
     map(allFeatures => allFeatures.flat()),
-    tap(features => features.forEach(feature => this.initFeature(feature))),
+    tap(features => {
+      features.forEach(feature => this.initFeature(feature));
+      this.isFeaturesLoaded$.next();
+    }),
     shareReplaySafe(),
   );
 
@@ -321,7 +327,14 @@ export class CoreTableComponent
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => this.dataConfiguratorService.triggerInitialData(), 0);
+    this.isFeaturesLoaded$
+      .pipe(
+        skip(1),
+        take(1),
+        tap(() => this.dataConfiguratorService.triggerInitialData()),
+        takeUntil(this.destroyed$),
+      )
+      .subscribe();
     this.tableActionsService._setEventBus(this.tableEventBus);
   }
 

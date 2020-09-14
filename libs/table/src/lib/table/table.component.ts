@@ -203,19 +203,17 @@ export class CoreTableComponent
   );
 
   projectedFeatures$ = new BehaviorSubject<TableFeatureComponent[]>([]);
-  private isFeaturesLoaded$ = new ReplaySubject<void>();
 
   features$ = combineLatest([
     this.configFeatures$,
     this.projectedFeatures$,
   ]).pipe(
     map(allFeatures => allFeatures.flat()),
-    tap(features => {
-      features.forEach(feature => this.initFeature(feature));
-      this.isFeaturesLoaded$.next();
-    }),
+    tap(features => features.forEach(feature => this.initFeature(feature))),
     shareReplaySafe(),
   );
+
+  private featuresLoaded$ = this.features$.pipe(skip(1), take(1));
 
   featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
     this.features$,
@@ -327,14 +325,9 @@ export class CoreTableComponent
   ) {}
 
   ngOnInit(): void {
-    this.isFeaturesLoaded$
-      .pipe(
-        skip(1),
-        take(1),
-        tap(() => this.dataConfiguratorService.triggerInitialData()),
-        takeUntil(this.destroyed$),
-      )
-      .subscribe();
+    this.featuresLoaded$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(() => this.dataConfiguratorService.triggerInitialData());
     this.tableActionsService._setEventBus(this.tableEventBus);
   }
 

@@ -202,6 +202,9 @@
     },
     "table.action-handler.url": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "table-integration-internal": {
+      "tags": ["type:meta"]
     }
   },
   "tasksRunnerOptions": {

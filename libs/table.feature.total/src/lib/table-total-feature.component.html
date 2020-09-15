@@ -3,7 +3,7 @@
 >
   <ng-container *ngIf="data$ | async | pluck: 'length'">
     <span *ngIf="isDataResolved$ | async" class="spy-table-total-feature">
-      <spy-chips color="grey" maxWidth="200px" style="margin-top: 5px">
+      <spy-chips color="grey" maxWidth="200px">
         <ng-container *ngIf="selected$ | async as selected">
           {{
             'table.feature.total.selected:number'

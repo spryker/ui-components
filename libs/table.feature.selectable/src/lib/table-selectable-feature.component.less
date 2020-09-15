@@ -1,0 +1,16 @@
+@import 'themes/default/theme.less';
+
+.@{table-prefix-cls} {
+  &-tbody > tr {
+    &.@{table-prefix-cls}-row--selected
+      > td
+      .@{table-prefix-cls}-column-inner::after {
+      background: @table-body-selected-row-bg;
+    }
+  }
+
+  .@{checkbox-prefix-cls}:not(.@{checkbox-prefix-cls}-checked)
+    .@{checkbox-prefix-cls}-inner {
+    background: @white;
+  }
+}

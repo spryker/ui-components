@@ -1,23 +1,23 @@
 // tslint:disable: no-non-null-assertion
+import { HttpClient } from '@angular/common/http';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
 import { fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { I18nModule } from '@spryker/locale';
 import { InvokeModule, PluckModule } from '@spryker/utils';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
-import { TableDatasourceHttpService } from '../../../datasources/src/table-datasource-http';
 import { TableDatasourceTypesToken } from '../datasource-type/tokens';
 import { TableFeaturesRegistryToken } from '../table-feature-loader/tokens';
 import { TableFeaturesRendererComponent } from '../table-features-renderer/table-features-renderer.component';
 import { TableFeaturesRendererDirective } from '../table-features-renderer/table-features-renderer.directive';
 import { TableRenderFeatureDirective } from '../table-features-renderer/table-render-feature.directive';
-import { TableColumns, TableConfig } from './table';
+import { TableColumns, TableConfig, TableData } from './table';
 import { CoreTableComponent } from './table.component';
 
 const mockDataUrl = 'https://test-data-url.com';
@@ -40,7 +40,6 @@ const mockCols: TableColumns = [
     sortable: true,
   },
 ];
-
 const mockData = {
   data: [
     {
@@ -81,6 +80,15 @@ const mockConfigCols: TableConfig = {
   columns: mockCols,
 };
 
+@Injectable({ providedIn: 'root' })
+class MockTableDatasourceHttpService {
+  constructor(private http: HttpClient) {}
+
+  resolve(datasource: Record<string, string>): Observable<TableData> {
+    return this.http.get<TableData>(datasource.url);
+  }
+}
+
 describe('TableComponent', () => {
   let httpTestingController: HttpTestingController;
 
@@ -111,7 +119,7 @@ describe('TableComponent', () => {
         {
           provide: TableDatasourceTypesToken,
           useValue: {
-            http: TableDatasourceHttpService,
+            http: MockTableDatasourceHttpService,
           },
           multi: true,
         },

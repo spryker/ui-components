@@ -3,7 +3,7 @@ import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 import { Injector, Type } from '@angular/core';
 import { TableFeatureConfig } from '../table-config/types';
-import { TableActionTriggeredEvent } from '../../lib/types';
+import { TableActionTriggeredEvent } from '../../lib/table-actions';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;

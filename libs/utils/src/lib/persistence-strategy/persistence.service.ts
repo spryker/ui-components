@@ -10,5 +10,5 @@ import { LocalStoragePersistenceStrategy } from './local-storage-persistence-str
 export abstract class PersistenceService implements PersistenceStrategy {
   abstract save(key: string, value: unknown): Observable<void>;
 
-  abstract retrieve(key: string): Observable<unknown>;
+  abstract retrieve<T>(key: string): Observable<T>;
 }

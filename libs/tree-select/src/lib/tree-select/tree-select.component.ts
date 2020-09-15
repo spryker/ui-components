@@ -28,6 +28,9 @@ interface TreeSelectItemWithKey extends TreeSelectItem {
   styleUrls: ['./tree-select.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'spy-tree-select',
+  },
 })
 export class TreeSelectComponent implements OnChanges {
   @Input() @ToJson() items?: TreeSelectItem[];
@@ -58,7 +61,8 @@ export class TreeSelectComponent implements OnChanges {
   }
 
   private mapTreeItems(item: TreeSelectItem): TreeSelectItemWithKey {
-    const isChildrenExist = Array.isArray(item.children);
+    const isChildrenExist =
+      Array.isArray(item.children) && item.children.length;
 
     return {
       ...item,

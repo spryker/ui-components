@@ -1,0 +1,11 @@
+<spy-select
+  [options]="selectOptions"
+  [(value)]="value"
+  (valueChange)="valueChange.emit($event)"
+  [multiple]="config?.typeOptions?.multiselect"
+  [placeholder]="
+    'table.filter.select.filter:title'
+      | spyI18n: { title: config?.title }
+      | async
+  "
+></spy-select>

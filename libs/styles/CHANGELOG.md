@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.16...@spryker/styles@0.2.0-next.17) (2020-09-09)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed styles ([734dc15](https://github.com/spryker/ui-components/commit/734dc151c54a23adb056c7bb46cdb50d32571060))
+
+
+
+
+
+# [0.2.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.15...@spryker/styles@0.2.0-next.16) (2020-09-08)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed variables ([8c25b82](https://github.com/spryker/ui-components/commit/8c25b8218407a6405770f2902bf3b00517e350e4))
+
+
+
+
+
+# [0.2.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.14...@spryker/styles@0.2.0-next.15) (2020-09-04)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.2.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.13...@spryker/styles@0.2.0-next.14) (2020-08-27)
+
+
+### Bug Fixes
+
+* **truncated-item:** fixed allignment with chip[ ([1c4d24d](https://github.com/spryker/ui-components/commit/1c4d24d6c236736235c71fc997df08d83ca17033))
+
+
+
+
+
+# [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.12...@spryker/styles@0.2.0-next.13) (2020-08-20)
+
+
+### Bug Fixes
+
+* **tree-select:** fixed titles ([4f6e0be](https://github.com/spryker/ui-components/commit/4f6e0be007950e068a6ad62ee1ec45860e1b5417))
+
+
+
+
+
 # [0.2.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.11...@spryker/styles@0.2.0-next.12) (2020-08-19)
 
 **Note:** Version bump only for package @spryker/styles

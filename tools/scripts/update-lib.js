@@ -9,18 +9,18 @@ const copyfilesAsync = promisify(copyfiles);
 
 const cwd = process.cwd();
 
-const tasks = [updateVersion(cwd), updateChangelog(cwd)];
+const tasks = [updatePackage(cwd), updateChangelog(cwd)];
 
 Promise.all(tasks).catch(err => {
   console.error(err);
   process.exit(1);
 });
 
-async function updateVersion(libPath) {
+async function updatePackage(libPath) {
   const packagePath = path.resolve(libPath, 'package.json');
   const packageDistPath = path.resolve(libPath, 'dist/package.json');
 
-  console.log(`Updating version from ${packagePath} to ${packageDistPath}`);
+  console.log(`Updating package from ${packagePath} to ${packageDistPath}`);
 
   try {
     await fsStat(packageDistPath);
@@ -29,10 +29,11 @@ async function updateVersion(libPath) {
     return;
   }
 
-  const packageVersion = require(packagePath).version;
+  const package = require(packagePath);
   const packageDist = require(packageDistPath);
 
-  packageDist.version = packageVersion;
+  packageDist.version = package.version;
+  packageDist.dependencies = package.dependencies;
 
   await fsWriteFile(packageDistPath, JSON.stringify(packageDist, null, 2));
 }

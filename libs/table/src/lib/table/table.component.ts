@@ -203,6 +203,7 @@ export class CoreTableComponent
   );
 
   projectedFeatures$ = new ReplaySubject<TableFeatureComponent[]>();
+  private projectedFeaturesEmitted = false;
 
   features$ = combineLatest([
     this.configFeatures$,
@@ -213,7 +214,6 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
-  private projectedFeaturesEmitted = false;
   private featuresLoaded$ = this.features$.pipe(delay(0), skip(1), take(1));
 
   featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(

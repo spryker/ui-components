@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
+import { merge, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import {
   scan,
   shareReplay,
   startWith,
-  switchMap,
   switchAll,
+  switchMap,
 } from 'rxjs/operators';
+
 import { TableDataConfig } from './table';
 
 export interface InitialDataStrategy {
@@ -16,14 +17,14 @@ export interface InitialDataStrategy {
 @Injectable()
 export class TableDataConfiguratorService {
   private internalConfig$ = new Subject<TableDataConfig>();
-  private resetConfig$ = new Subject<TableDataConfig>();
+  private resetConfig$ = new ReplaySubject<TableDataConfig>();
   private initialDataStrategy: InitialDataStrategy = new DefaultInitialDataStrategy();
-  private initialData$ = new Subject<Observable<TableDataConfig>>();
+  private initialData$ = new ReplaySubject<Observable<TableDataConfig>>(1);
 
-  readonly config$: Observable<TableDataConfig> = this.resetConfig$.pipe(
-    startWith({}),
-    switchMap(() => this.initialData$),
-    switchAll(),
+  readonly config$: Observable<TableDataConfig> = merge(
+    this.initialData$.pipe(switchAll()),
+    this.resetConfig$,
+  ).pipe(
     switchMap(internalConfig =>
       this.internalConfig$.pipe(
         startWith(internalConfig),

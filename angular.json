@@ -4539,18 +4539,6 @@
       "sourceRoot": "libs/table-integration-internal/src",
       "prefix": "spy",
       "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/table-integration-internal/tsconfig.lib.json",
-            "project": "libs/table-integration-internal/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/table-integration-internal/tsconfig.lib.prod.json"
-            }
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {

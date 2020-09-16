@@ -216,7 +216,7 @@
       "tags": ["type:component-service", "pkg:primary"]
     },
     "unsaved-changes.monitor.form": {
-      "tags": ["type:component-service", "pkg:extension"]
+      "tags": ["type:component-service", "pkg:primary"]
     },
     "unsaved-changes.guard.browser": {
       "tags": ["type:service", "pkg:extension"]

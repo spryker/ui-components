@@ -4865,6 +4865,71 @@
           "style": "less"
         }
       }
+    },
+    "table-integration-internal": {
+      "projectType": "library",
+      "root": "libs/table-integration-internal",
+      "sourceRoot": "libs/table-integration-internal/src",
+      "prefix": "spy",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table-integration-internal/tsconfig.lib.json",
+              "libs/table-integration-internal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table-integration-internal/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table-integration-internal/jest.config.js",
+            "tsConfig": "libs/table-integration-internal/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table-integration-internal/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table-integration-internal/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table-integration-internal",
+            "config": {
+              "configFolder": "libs/table-integration-internal/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

@@ -203,6 +203,9 @@
     "table.action-handler.url": {
       "tags": ["type:service", "pkg:extension"]
     },
+    "table-integration-internal": {
+      "tags": ["type:meta"]
+    },
     "modal": {
       "tags": ["level:molecule", "type:component-service", "pkg:primary"]
     },

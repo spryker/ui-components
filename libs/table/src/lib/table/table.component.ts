@@ -203,6 +203,7 @@ export class CoreTableComponent
   );
 
   projectedFeatures$ = new ReplaySubject<TableFeatureComponent[]>();
+  private projectedFeaturesEmitted = false;
 
   features$ = combineLatest([
     this.configFeatures$,
@@ -214,7 +215,6 @@ export class CoreTableComponent
   );
 
   private featuresLoaded$ = this.features$.pipe(delay(0), skip(1), take(1));
-  private isInitialEmitted = false;
 
   featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
     this.features$,
@@ -374,11 +374,11 @@ export class CoreTableComponent
 
   /** @internal */
   updateFeatures(features: TableFeatureComponent[]): void {
-    if (this.isInitialEmitted && !this.featuresDiffer.diff(features)) {
+    if (!this.featuresDiffer.diff(features) && this.projectedFeaturesEmitted) {
       return;
     }
 
-    this.isInitialEmitted = true;
+    this.projectedFeaturesEmitted = true;
     this.projectedFeatures$.next(features);
   }
 

@@ -11,4 +11,5 @@ import {
 export abstract class UnsavedChangesMonitorToken
   implements UnsavedChangesMonitor {
   abstract getStatus(): Observable<UnsavedChangesMonitorStatus>;
+  abstract reset(): void;
 }

@@ -11,4 +11,5 @@ export enum UnsavedChangesMonitorStatus {
  */
 export abstract class UnsavedChangesMonitor {
   abstract getStatus(): Observable<UnsavedChangesMonitorStatus>;
+  abstract reset(): void;
 }

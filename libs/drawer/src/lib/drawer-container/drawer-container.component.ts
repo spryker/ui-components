@@ -1,4 +1,3 @@
-import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
@@ -14,8 +13,15 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
+import {
+  InterceptionComposerDirective,
+  InterceptorDispatcherService,
+  provideInterceptionComposerToken,
+  provideInterceptionService,
+} from '@spryker/interception';
 import { EMPTY, Observable, ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { HookableInjector } from '@spryker/utils';
 
 import {
   DrawerCloseInterceptionEvent,
@@ -25,12 +31,6 @@ import {
 import { DrawerOptions } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.component';
-import {
-  InterceptorDispatcherService,
-  provideInterceptionService,
-  InterceptionComposerDirective,
-  provideInterceptionComposerToken,
-} from '@spryker/interception';
 import { DrawerTemplateContext } from '../types';
 
 @Directive({
@@ -181,10 +181,16 @@ export class DrawerContainerComponent implements OnDestroy {
   }
 
   private createDrawerInjector(drawerRef: DrawerRef): Injector {
+    const hookableInjector = new HookableInjector(this.vcr.injector);
+
+    if (drawerRef.options.injector) {
+      hookableInjector.hook(drawerRef.options.injector);
+    }
+
     return Injector.create({
       name: 'DrawerInjector',
       providers: [{ provide: DrawerRef, useValue: drawerRef }],
-      parent: drawerRef.options.injector ?? this.vcr.injector,
+      parent: hookableInjector,
     });
   }
 

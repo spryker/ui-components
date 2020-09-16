@@ -68,7 +68,11 @@ export class UnsavedChangesFormMonitorDirective
     return this.status$.asObservable();
   }
 
-  private formChanged() {
+  reset(): void {
+    this.status$.next(UnsavedChangesMonitorStatus.Clean);
+  }
+
+  private formChanged(): void {
     this.status$.next(UnsavedChangesMonitorStatus.Dirty);
   }
 }

@@ -18,7 +18,6 @@ import {
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import {
-  BehaviorSubject,
   combineLatest,
   EMPTY,
   merge,
@@ -29,14 +28,17 @@ import {
 } from 'rxjs';
 import {
   catchError,
+  delay,
   distinctUntilChanged,
   map,
   mapTo,
   pairwise,
   pluck,
   shareReplay,
+  skip,
   startWith,
   switchMap,
+  take,
   takeUntil,
   tap,
 } from 'rxjs/operators';
@@ -63,8 +65,8 @@ import {
   TableDataConfig,
   TableDataRow,
   TableFeatureLocation,
-  TableRowClickEvent,
   TableHeaderContext,
+  TableRowClickEvent,
 } from './table';
 import { TableEventBus } from './table-event-bus';
 
@@ -200,16 +202,19 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
-  projectedFeatures$ = new BehaviorSubject<TableFeatureComponent[]>([]);
+  projectedFeatures$ = new ReplaySubject<TableFeatureComponent[]>();
 
   features$ = combineLatest([
     this.configFeatures$,
-    this.projectedFeatures$,
+    this.projectedFeatures$.pipe(startWith([])),
   ]).pipe(
     map(allFeatures => allFeatures.flat()),
     tap(features => features.forEach(feature => this.initFeature(feature))),
     shareReplaySafe(),
   );
+
+  private featuresLoaded$ = this.features$.pipe(delay(0), skip(1), take(1));
+  private isInitialEmitted = false;
 
   featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
     this.features$,
@@ -321,7 +326,9 @@ export class CoreTableComponent
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => this.dataConfiguratorService.triggerInitialData(), 0);
+    this.featuresLoaded$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(() => this.dataConfiguratorService.triggerInitialData());
     this.tableActionsService._setEventBus(this.tableEventBus);
   }
 
@@ -367,10 +374,11 @@ export class CoreTableComponent
 
   /** @internal */
   updateFeatures(features: TableFeatureComponent[]): void {
-    if (!this.featuresDiffer.diff(features)) {
+    if (this.isInitialEmitted && !this.featuresDiffer.diff(features)) {
       return;
     }
 
+    this.isInitialEmitted = true;
     this.projectedFeatures$.next(features);
   }
 

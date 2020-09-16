@@ -1,10 +1,16 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import {
+  ANALYZE_FOR_ENTRY_COMPONENTS,
+  Component,
+  Input,
+  TemplateRef,
+} from '@angular/core';
 import { IStory } from '@storybook/angular';
 import { boolean } from '@storybook/addon-knobs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ModalModule } from './modal.module';
 import { ModalService } from './modal.service';
+import { NzModalWrapperComponent } from './wrappers';
 import { HtmlModalStrategy } from './strategies/html.strategy';
 
 export default {
@@ -82,6 +88,13 @@ class StoryComponent {
 export const primary = (): IStory => ({
   moduleMetadata: {
     imports: [ModalModule.forRoot(), BrowserAnimationsModule],
+    providers: [
+      {
+        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+        useValue: [NzModalWrapperComponent],
+        multi: true,
+      },
+    ],
   },
   component: StoryComponent,
   props: {
@@ -109,6 +122,13 @@ class SimpleModalComponent {
 export const viaModalComponent = (): IStory => ({
   moduleMetadata: {
     imports: [ModalModule.forRoot(), BrowserAnimationsModule],
+    providers: [
+      {
+        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+        useValue: [NzModalWrapperComponent],
+        multi: true,
+      },
+    ],
   },
   component: SimpleModalComponent,
   props: {},
@@ -155,6 +175,13 @@ class ConfirmationComponent {
 export const confirmation = (): IStory => ({
   moduleMetadata: {
     imports: [ModalModule.forRoot(), BrowserAnimationsModule],
+    providers: [
+      {
+        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+        useValue: [NzModalWrapperComponent],
+        multi: true,
+      },
+    ],
   },
   component: ConfirmationComponent,
   props: {

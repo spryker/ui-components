@@ -2,6 +2,7 @@ import {
   AbstractType,
   Injectable,
   InjectionToken,
+  Injector,
   Provider,
   Type,
 } from '@angular/core';
@@ -34,7 +35,11 @@ export class UnsavedChangesDrawerGuardComposableFactory
 
   getServiceProviders(): Provider[] {
     return [
-      UnsavedChangesDrawerGuard,
+      {
+        provide: UnsavedChangesDrawerGuard,
+        useClass: UnsavedChangesDrawerGuard,
+        deps: [Injector],
+      },
       {
         provide: UnsavedChangesGuardToken,
         useExisting: UnsavedChangesDrawerGuard,
@@ -70,8 +75,8 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
       .intercept(DrawerCloseInterceptionEvent, () =>
         this.hasDirtyStatus$.pipe(
           withLatestFrom(this.translations$),
-          switchMap(([hasDirtyStatus, [title, okText, cancelText]]) => {
-            return hasDirtyStatus
+          switchMap(([hasDirtyStatus, [title, okText, cancelText]]) =>
+            hasDirtyStatus
               ? this.modalService
                   .openConfirm({
                     title,
@@ -80,8 +85,8 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
                   })
                   .afterDismissed()
                   .pipe(switchMap(isDiscard => (isDiscard ? of(null) : EMPTY)))
-              : of(null);
-          }),
+              : of(null),
+          ),
         ),
       )
       .pipe(takeUntil(this.destroyed$))

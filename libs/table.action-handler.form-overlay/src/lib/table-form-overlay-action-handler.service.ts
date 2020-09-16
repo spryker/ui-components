@@ -3,6 +3,7 @@ import { DrawerRef, DrawerService } from '@spryker/drawer';
 import { TableActionHandler, TableActionTriggeredEvent } from '@spryker/table';
 import { merge, Observable, ReplaySubject } from 'rxjs';
 import { skip, take } from 'rxjs/operators';
+import { HookableInjector } from '@spryker/utils';
 
 import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
 import { TableFormOverlayAction, TableFormOverlayOptions } from './types';
@@ -34,7 +35,12 @@ export class TableFormOverlayActionHandlerService
     if (!this.drawerRef) {
       this.drawerRef = this.drawerService.openComponent(
         TableFormOverlayActionHandlerComponent,
-        { data: this.drawerData$, injector },
+        {
+          data: this.drawerData$,
+          injector: (new HookableInjector(injector).hook(
+            injector,
+          ) as unknown) as Injector,
+        },
       );
 
       this.drawerRef.afterClosed().subscribe({

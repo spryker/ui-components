@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
+import { NgModule } from '@angular/core';
 import { AjaxFormModule } from '@spryker/ajax-form';
-import { PluckModule } from '@spryker/utils';
 import { DrawerModule } from '@spryker/drawer';
+import { PluckModule } from '@spryker/utils';
+
+import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
 
 @NgModule({
-  declarations: [TableFormOverlayActionHandlerComponent],
   imports: [CommonModule, AjaxFormModule, PluckModule, DrawerModule],
+  declarations: [TableFormOverlayActionHandlerComponent],
   exports: [TableFormOverlayActionHandlerComponent],
 })
 export class TableFormOverlayActionHandlerModule {}

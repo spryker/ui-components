@@ -13,11 +13,14 @@ import {
   ModalWrapperRef,
 } from '../../types';
 import { NzModalWrapperComponent } from './nz-modal-wrapper/nz-modal-wrapper.component';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 function mapNzOptions(options: ModalOptions<AnyModal>): NzModalOptions {
   const nzOptions: NzModalOptions = {
     nzContent: NzModalWrapperComponent,
     nzAutofocus: null,
+    nzFooter: null,
     nzMaskStyle: {
       background: 'none',
     },
@@ -63,9 +66,14 @@ function mapNzOptions(options: ModalOptions<AnyModal>): NzModalOptions {
 }
 
 export class NzModalWrapperRef implements ModalWrapperRef {
+  private destroyed$ = new Subject<void>();
   private onDispose = () => {};
 
-  constructor(private nzModalRef: NzModalRef) {}
+  constructor(private nzModalRef: NzModalRef) {
+    nzModalRef.afterClose
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(() => this.onDispose());
+  }
 
   setModalRef(modalRef: ModalRef<any, any>): void {}
 
@@ -91,6 +99,7 @@ export class NzModalWrapperRef implements ModalWrapperRef {
   }
 
   dispose(): void {
+    this.destroyed$.next();
     this.nzModalRef.destroy();
   }
 

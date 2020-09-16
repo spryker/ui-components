@@ -18,7 +18,8 @@ import { takeUntil } from 'rxjs/operators';
 
 import { ModalService } from '../modal.service';
 import { ComponentModal } from '../strategies/component.strategy';
-import { ModalRef, ModalTemplateContext } from '../types';
+import { ModalRef } from '../types';
+import { TemplateModalContext } from '../strategies/template.strategy';
 
 @Component({
   selector: 'spy-modal',
@@ -28,16 +29,16 @@ import { ModalRef, ModalTemplateContext } from '../types';
   encapsulation: ViewEncapsulation.None,
 })
 export class ModalComponent implements OnChanges, OnDestroy {
-  @Input() visible?: boolean;
+  @Input() visible = false;
   @Input() data?: unknown;
   @Input() component?: Type<ComponentModal>;
 
   @Output() visibleChange = new EventEmitter<boolean>();
 
-  @ViewChild('contentTpl') contentTpl?: TemplateRef<any>;
+  @ViewChild('contentTpl') contentTpl?: TemplateRef<TemplateModalContext<any>>;
 
   @ContentChild(TemplateRef) templateRef?: TemplateRef<
-    ModalTemplateContext<any>
+    TemplateModalContext<any>
   >;
 
   private modalRef?: ModalRef<any, any>;
@@ -48,13 +49,9 @@ export class ModalComponent implements OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('visible' in changes) {
-      const isVisible = changes.visible.currentValue;
-
-      if (isVisible) {
-        this.open(true);
-      }
-
-      if (!isVisible) {
+      if (this.visible) {
+        this.open();
+      } else {
         this.close();
       }
     }

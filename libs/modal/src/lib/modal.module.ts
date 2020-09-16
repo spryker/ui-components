@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
+import { ModalComponent } from './modal/modal.component';
 import { ConfirmModalModule } from './strategies/confirm';
 import { NzModalWrapperModule } from './wrappers';
-import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   imports: [CommonModule, NzModalWrapperModule, ConfirmModalModule],

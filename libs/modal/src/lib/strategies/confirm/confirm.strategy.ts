@@ -17,9 +17,13 @@ export class ConfirmModalRenderingRef
 
   getModalOptions(): ModalOptions<ConfirmModalComponent> {
     const component = this.renderingRef.getExtras().getComponent();
+    const defaultClassName = 'ant-modal--confirmation';
+    const className = component.defaultData?.class
+      ? `${component.defaultData?.class} ${defaultClassName}`
+      : defaultClassName;
 
     return {
-      class: component.defaultData?.class ?? 'ant-modal--confirmation',
+      class: className,
       title: component.title,
       footer: component.footer,
     };

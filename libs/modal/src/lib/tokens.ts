@@ -21,7 +21,7 @@ export const ModalOptionsToken = new InjectionToken<ModalOptions<any>>(
   },
 );
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export abstract class ModalWrapperFactoryToken implements ModalWrapperFactory {
   abstract createWrapper(options: ModalOptions<AnyModal>): ModalWrapperRef;
 }

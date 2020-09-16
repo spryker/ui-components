@@ -78,7 +78,7 @@ describe('ModalComponent', () => {
     expect(modalElem).toBeTruthy();
   });
 
-  it('should call `openTemplate` method from modalService if `modal` method has been triggered', () => {
+  it('should call `openTemplate` method from modalService if `open` method has been triggered', () => {
     const mockData = { test: 'data' };
     component.data = mockData;
     fixture.detectChanges();
@@ -94,21 +94,36 @@ describe('ModalComponent', () => {
     );
   });
 
-  it('should call `openComponent` method from modalService if `component` input assigned and `modal` method has been triggered', () => {
+  it('should call `openComponent` method from modalService if @Input(component) assigned and `open` method has been triggered', () => {
     const mockData = { test: 'data' };
     component.data = mockData;
     component.component = TestModalComponent;
     fixture.detectChanges();
-    const modalElem = fixture.debugElement.query(By.css('spy-modal'));
 
-    modalElem.componentInstance.open();
+    expect(service.openComponent).toHaveBeenCalledWith(TestModalComponent, {
+      data: mockData,
+    });
+  });
 
-    expect(service.openComponent).toHaveBeenCalledWith(
-      modalElem.componentInstance.component,
-      {
-        data: mockData,
-      },
-    );
+  it('should reopen modal when @Input(component) has been changed', () => {
+    const mockData = { test: 'data' };
+    const reAssignedMockData = { new: 'data' };
+    const mockComponent = { component: 'component' };
+    component.data = mockData;
+    component.component = mockComponent;
+    fixture.detectChanges();
+
+    expect(service.openComponent).toHaveBeenCalledWith(mockComponent, {
+      data: mockData,
+    });
+
+    component.data = reAssignedMockData;
+    component.component = TestModalComponent;
+    fixture.detectChanges();
+
+    expect(service.openComponent).toHaveBeenCalledWith(TestModalComponent, {
+      data: reAssignedMockData,
+    });
   });
 
   it('should change `visible` prop to `true` when `open` method has been triggered', () => {
@@ -158,17 +173,6 @@ describe('ModalComponent', () => {
 
     expect(service.modalRef.close).toHaveBeenCalled();
     expect(modalElem.componentInstance.modalRef).toBeFalsy();
-  });
-
-  it('should call `close` method from `modalRef` and reassign `modalRef` when `modalRef` exist and `open` method with `true` parameter has been invoked', () => {
-    fixture.detectChanges();
-    const modalElem = fixture.debugElement.query(By.css('spy-modal'));
-
-    modalElem.componentInstance.open();
-    modalElem.componentInstance.open(true);
-
-    expect(service.modalRef.close).toHaveBeenCalled();
-    expect(modalElem.componentInstance.modalRef).toBeTruthy();
   });
 
   it('should emit @Output(visibleChange) with `false` parameter when and assign `modalRef` to `undefined` when `modalRef.afterClosed$` has been triggered', () => {

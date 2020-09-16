@@ -1,0 +1,14 @@
+<spy-select
+  [value]="context.value | context: context"
+  [options]="context.options | context: context"
+  [multiple]="context.multiple | context: context"
+  [search]="context.search | context: context"
+  [disableClear]="context.disableClear | context: context"
+  [placeholder]="context.placeholder | context: context"
+  [showSelectAll]="context.showSelectAll | context: context"
+  [selectAllTitle]="context.selectAllTitle | context: context"
+  [noOptionsText]="context.noOptionsText | context: context"
+  (valueChange)="valueChangeHandler(value)"
+></spy-select>
+
+<!-- (valueChange)="tableEditableService.updateValue(value, context.config | context: context)" -->

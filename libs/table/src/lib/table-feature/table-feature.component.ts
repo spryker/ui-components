@@ -10,7 +10,6 @@ import {
 import { Observable, ReplaySubject } from 'rxjs';
 import { filter, map, shareReplay, startWith, switchAll } from 'rxjs/operators';
 
-import { TableActionsService } from '../table-actions.service';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';

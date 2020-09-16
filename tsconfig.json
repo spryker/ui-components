@@ -73,7 +73,9 @@
       ],
       "@spryker/table.feature.editable": [
         "libs/table.feature.editable/src/index.ts"
-      ]
+      ],
+      "@spryker/table.column.input": ["libs/table.column.input/src/index.ts"],
+      "@spryker/table.column.select": ["libs/table.column.select/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

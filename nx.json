@@ -205,6 +205,12 @@
     },
     "table.action-handler.url": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "table.column.input": {
+      "tags": ["type:component", "level:atom", "pkg:extension"]
+    },
+    "table.column.select": {
+      "tags": ["type:component", "level:molecule", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

@@ -1,0 +1,12 @@
+<spy-input
+  [value]="context.value | context: context"
+  [type]="context.type | context: context"
+  [placeholder]="context.placeholder | context: context"
+  [prefix]="context.prefix | context: context"
+  [suffix]="context.suggix | context: context"
+  [outerPrefix]="context.outerPrefix | context: context"
+  [outerSuffix]="context.outerSuffix | context: context"
+  (valueChange)="valueChangeHandler(value, context.config)"
+></spy-input>
+
+<!-- (valueChange)="tableEditableService.updateValue(value, context.config | context: context)" -->

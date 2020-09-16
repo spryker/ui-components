@@ -70,6 +70,9 @@
       ],
       "@spryker/table.action-handler.url": [
         "libs/table.action-handler.url/src/index.ts"
+      ],
+      "@spryker/table-integration-internal": [
+        "libs/table-integration-internal/src/index.ts"
       ]
     }
   },

@@ -19,9 +19,9 @@ import {
   provideInterceptionComposerToken,
   provideInterceptionService,
 } from '@spryker/interception';
+import { HookableInjector } from '@spryker/utils';
 import { EMPTY, Observable, ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { HookableInjector } from '@spryker/utils';
 
 import {
   DrawerCloseInterceptionEvent,

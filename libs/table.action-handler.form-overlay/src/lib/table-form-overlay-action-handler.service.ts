@@ -1,8 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
 import { DrawerRef, DrawerService } from '@spryker/drawer';
 import { TableActionHandler, TableActionTriggeredEvent } from '@spryker/table';
-import { merge, Observable, ReplaySubject } from 'rxjs';
-import { skip, take } from 'rxjs/operators';
+import { Observable, ReplaySubject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
 import { TableFormOverlayAction, TableFormOverlayOptions } from './types';
@@ -18,6 +18,7 @@ export class TableFormOverlayActionHandlerService
   implements TableActionHandler<TableFormOverlayAction> {
   drawerData$ = new ReplaySubject<TableFormOverlayOptions>(1);
   drawerRef?: DrawerRef;
+  drawerRef$ = new ReplaySubject<DrawerRef>();
 
   constructor(private drawerService: DrawerService) {}
 
@@ -31,6 +32,25 @@ export class TableFormOverlayActionHandlerService
   ): Observable<unknown> {
     this.drawerData$.next(actionEvent.action.typeOptions);
 
+    if (this.drawerRef) {
+      this.drawerRef$.next(this.drawerRef);
+      this.drawerRef.close().subscribe(() => {
+        const drawerRef = this.drawerService.openComponent(
+          TableFormOverlayActionHandlerComponent,
+          {
+            data: this.drawerData$,
+            injector,
+          },
+        );
+        this.drawerRef = drawerRef;
+        this.drawerRef$.next(drawerRef);
+
+        this.drawerRef
+          .afterClosed()
+          .subscribe(() => (this.drawerRef = undefined));
+      });
+    }
+
     if (!this.drawerRef) {
       this.drawerRef = this.drawerService.openComponent(
         TableFormOverlayActionHandlerComponent,
@@ -39,15 +59,14 @@ export class TableFormOverlayActionHandlerService
           injector,
         },
       );
-
-      this.drawerRef.afterClosed().subscribe({
-        next: () => (this.drawerRef = undefined),
-      });
+      this.drawerRef$.next(this.drawerRef);
+      this.drawerRef
+        .afterClosed()
+        .subscribe(() => (this.drawerRef = undefined));
     }
 
-    return merge(
-      this.drawerRef.afterClosed(),
-      this.drawerData$.pipe(skip(1), take(1)),
+    return this.drawerRef$.pipe(
+      switchMap(drawerRef => drawerRef.afterClosed()),
     );
   }
 }

@@ -21,7 +21,7 @@ import {
   UnsavedChangesGuardToken,
 } from '@spryker/unsaved-changes';
 import { combineLatest, EMPTY, of, Subject } from 'rxjs';
-import { switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
 
 /**
  * Dynamically provides {@link UnsavedChangesDrawerGuard} for the drawer component.
@@ -74,6 +74,7 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
     this.interceptorService
       .intercept(DrawerCloseInterceptionEvent, () =>
         this.hasDirtyStatus$.pipe(
+          take(1),
           withLatestFrom(this.translations$),
           switchMap(([hasDirtyStatus, [title, okText, cancelText]]) =>
             hasDirtyStatus

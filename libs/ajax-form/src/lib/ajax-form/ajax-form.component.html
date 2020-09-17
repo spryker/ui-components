@@ -2,7 +2,12 @@
   class="spy-ajax-form-container"
   [class.spy-ajax-form-container--loading]="isLoading"
 >
-  <form #submitForm *ngIf="form" (submit)="submitHandler(submitForm, $event)">
+  <form
+    #submitForm
+    *ngIf="form"
+    (submit)="submitHandler(submitForm, $event)"
+    spyUnsavedChangesFormMonitor
+  >
     <spy-html-renderer [html]="form"></spy-html-renderer>
   </form>
 </div>

@@ -2,12 +2,26 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { DrawerContainerComponent } from './drawer-container.component';
 import { DrawerWrapperModule } from '../drawer-wrapper/drawer-wrapper.module';
+import { InterceptionModule } from '@spryker/interception';
+import { DrawerContainerProxyComponent } from './drawer-container-proxy.component';
+import {
+  DrawerComposerDirective,
+  DrawerContainerComponent,
+} from './drawer-container.component';
 
 @NgModule({
-  imports: [CommonModule, DrawerWrapperModule, PortalModule],
-  exports: [DrawerContainerComponent],
-  declarations: [DrawerContainerComponent],
+  imports: [
+    CommonModule,
+    PortalModule,
+    DrawerWrapperModule,
+    InterceptionModule,
+  ],
+  exports: [InterceptionModule],
+  declarations: [
+    DrawerContainerComponent,
+    DrawerContainerProxyComponent,
+    DrawerComposerDirective,
+  ],
 })
 export class DrawerContainerModule {}

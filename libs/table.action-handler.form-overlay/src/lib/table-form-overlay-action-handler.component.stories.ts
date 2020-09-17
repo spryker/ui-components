@@ -1,27 +1,35 @@
-import { Component, NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { TableFormOverlayActionHandlerModule } from './table-form-overlay-action-handler.module';
-import { TableFormOverlayActionHandlerService } from './table-form-overlay-action-handler.service';
-import { TableModule } from '@spryker/table';
-import { NotificationModule } from '@spryker/notification';
 import {
   HttpClientTestingModule,
   TestRequest,
 } from '@angular/common/http/testing';
+import {
+  ANALYZE_FOR_ENTRY_COMPONENTS,
+  Component,
+  NgModule,
+} from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AjaxFormResponse } from '@spryker/ajax-form';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { ModalModule, NzModalWrapperComponent } from '@spryker/modal';
+import { NotificationModule, NotificationType } from '@spryker/notification';
+import { TableModule } from '@spryker/table';
 import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import {
   generateMockTableDataFor,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { DrawerContainerComponent } from '../../../drawer/src/lib/drawer-container/drawer-container.component';
-import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
-import { AjaxFormResponse } from '@spryker/ajax-form';
-import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
-import { NotificationType } from '@spryker/notification';
+import { UnsavedChangesModule } from '@spryker/unsaved-changes';
+import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
+import { UnsavedChangesDrawerGuardModule } from '@spryker/unsaved-changes.guard.drawer';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+
+import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
+import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
+import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
+import { TableFormOverlayActionHandlerModule } from './table-form-overlay-action-handler.module';
+import { TableFormOverlayActionHandlerService } from './table-form-overlay-action-handler.service';
 
 export default {
   title: 'TableFormOverlayActionHandlerComponent',
@@ -56,12 +64,19 @@ class StoryComponent {}
     MockHttpModule,
     TableFormOverlayActionHandlerModule,
     DefaultContextSerializationModule,
+    UnsavedChangesModule.forRoot(),
+    UnsavedChangesDrawerGuardModule.forRoot(),
+    UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
+    ModalModule.forRoot(),
+    LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+    EnLocaleModule,
   ],
   providers: [
     {
       provide: ANALYZE_FOR_ENTRY_COMPONENTS,
       useValue: [
-        DrawerContainerComponent,
+        NzModalWrapperComponent,
+        DrawerContainerProxyComponent,
         TableFormOverlayActionHandlerComponent,
         NotificationWrapperComponent,
       ],

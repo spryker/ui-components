@@ -1,13 +1,15 @@
 @import 'themes/default/theme.less';
 
-.@{table-prefix-cls} {
-  .@{table-total-feature-prefix-cls} {
-    font: @font-weight-medium @font-size-base @font-family;
-    color: @gray-dark;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    padding-left: 0;
+.@{table-total-feature-prefix-cls} {
+  font: @font-weight-medium @font-size-base @font-family;
+  color: @gray-dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  padding-left: 0;
+
+  .@{chips-prefix-cls} {
+    margin-top: @table-total-feature-chips-margin-top;
   }
 }

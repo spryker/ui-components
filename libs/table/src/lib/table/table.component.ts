@@ -18,7 +18,6 @@ import {
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import {
-  BehaviorSubject,
   combineLatest,
   EMPTY,
   merge,
@@ -29,18 +28,19 @@ import {
 } from 'rxjs';
 import {
   catchError,
+  delay,
   distinctUntilChanged,
   map,
   mapTo,
   pairwise,
   pluck,
   shareReplay,
+  skip,
   startWith,
   switchMap,
+  take,
   takeUntil,
   tap,
-  skip,
-  take,
 } from 'rxjs/operators';
 
 import { TableActionsService } from '../table-actions/table-actions.service';
@@ -65,8 +65,8 @@ import {
   TableDataConfig,
   TableDataRow,
   TableFeatureLocation,
-  TableRowClickEvent,
   TableHeaderContext,
+  TableRowClickEvent,
 } from './table';
 import { TableEventBus } from './table-event-bus';
 
@@ -202,18 +202,19 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
-  projectedFeatures$ = new BehaviorSubject<TableFeatureComponent[]>([]);
+  projectedFeatures$ = new ReplaySubject<TableFeatureComponent[]>();
+  private projectedFeaturesEmitted = false;
 
   features$ = combineLatest([
     this.configFeatures$,
-    this.projectedFeatures$,
+    this.projectedFeatures$.pipe(startWith([])),
   ]).pipe(
     map(allFeatures => allFeatures.flat()),
     tap(features => features.forEach(feature => this.initFeature(feature))),
     shareReplaySafe(),
   );
 
-  private featuresLoaded$ = this.features$.pipe(skip(1), take(1));
+  private featuresLoaded$ = this.features$.pipe(delay(0), skip(1), take(1));
 
   featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
     this.features$,
@@ -374,10 +375,11 @@ export class CoreTableComponent
 
   /** @internal */
   updateFeatures(features: TableFeatureComponent[]): void {
-    if (!this.featuresDiffer.diff(features)) {
+    if (!this.featuresDiffer.diff(features) && this.projectedFeaturesEmitted) {
       return;
     }
 
+    this.projectedFeaturesEmitted = true;
     this.projectedFeatures$.next(features);
   }
 

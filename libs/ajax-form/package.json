@@ -10,6 +10,7 @@
     "@spryker/icon": "^0.1.0-next.0",
     "@spryker/notification": "^0.1.0-next.0",
     "@spryker/utils": "^0.1.0-next.0",
+    "@spryker/unsaved-changes.monitor.form": "^0.1.0-next.0",
     "tslib": "^1.10.0"
   },
   "publishConfig": {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.17...@spryker/styles@0.2.0-next.18) (2020-09-16)
+
+
+### Bug Fixes
+
+* **table-total:** fixed chip allignment ([1f1e0f3](https://github.com/spryker/ui-components/commit/1f1e0f3ed4cc9f152ebf9f9455a70682cd0ad237))
+
+
+
+
+
 # [0.2.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.16...@spryker/styles@0.2.0-next.17) (2020-09-09)
 
 

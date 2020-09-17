@@ -1,19 +1,31 @@
-import { ReplaySubject, Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
+import { shareReplay, switchAll } from 'rxjs/operators';
 
-import { DrawerOptions, DrawerData } from './drawer-options';
+import { DrawerData, DrawerOptions } from './drawer-options';
 
 export class DrawerRef<D = DrawerData> {
+  private setClose$ = new ReplaySubject<Observable<void>>(1);
+  private afterClosed$ = this.setClose$.pipe(
+    switchAll(),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+
   constructor(
     public options: DrawerOptions<D>,
-    private closeFn: () => void,
+    private closeFn: () => Observable<void>,
     private maximizeFn: () => void,
     private minimizeFn: () => void,
     private refreshDrawerFn: () => void,
-    private afterClosed$: Observable<void>,
   ) {}
 
-  close(): void {
-    this.closeFn();
+  close(): Observable<void> {
+    const close$ = this.closeFn().pipe(
+      shareReplay({ bufferSize: 1, refCount: true }),
+    );
+
+    this.setClose$.next(close$);
+
+    return close$;
   }
 
   afterClosed(): Observable<void> {

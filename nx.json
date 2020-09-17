@@ -138,7 +138,7 @@
       "tags": ["pkg:primary", "level:atom", "type:component"]
     },
     "table.feature.editable": {
-      "tags": ["type:component", "level:molecule"]
+      "tags": ["type:component", "level:molecule", "pkg:extension"]
     },
     "ajax-action.post-action.refresh-drawer": {
       "tags": ["type:service", "pkg:extension"]
@@ -204,6 +204,27 @@
       "tags": ["level:molecule", "type:component-service", "pkg:extension"]
     },
     "table.action-handler.url": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "table-integration-internal": {
+      "tags": ["type:meta"]
+    },
+    "modal": {
+      "tags": ["level:molecule", "type:component-service", "pkg:primary"]
+    },
+    "interception": {
+      "tags": ["type:service", "pkg:primary"]
+    },
+    "unsaved-changes": {
+      "tags": ["type:component-service", "pkg:primary"]
+    },
+    "unsaved-changes.monitor.form": {
+      "tags": ["type:component-service", "pkg:primary"]
+    },
+    "unsaved-changes.guard.browser": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "unsaved-changes.guard.drawer": {
       "tags": ["type:service", "pkg:extension"]
     }
   },

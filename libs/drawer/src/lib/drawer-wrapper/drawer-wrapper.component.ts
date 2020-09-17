@@ -5,10 +5,10 @@ import {
   EventEmitter,
   HostBinding,
   Input,
-  Output,
-  ViewEncapsulation,
   OnChanges,
+  Output,
   SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   IconMaximizeModule,

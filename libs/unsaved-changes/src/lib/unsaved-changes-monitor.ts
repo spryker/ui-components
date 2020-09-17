@@ -9,7 +9,7 @@ export enum UnsavedChangesMonitorStatus {
  * Responsible for tracking changes to the data from a user.
  * Attaches to the elements in the view that represent the data.
  */
-export abstract class UnsavedChangesMonitor {
-  abstract getStatus(): Observable<UnsavedChangesMonitorStatus>;
-  abstract reset(): void;
+export interface UnsavedChangesMonitor {
+  getStatus(): Observable<UnsavedChangesMonitorStatus>;
+  reset(): void;
 }

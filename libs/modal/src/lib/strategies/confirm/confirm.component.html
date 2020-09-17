@@ -2,9 +2,7 @@
   <ng-template
     [ngTemplateOutlet]="genericTemplate"
     [ngTemplateOutletContext]="{
-      context: {
-        $implicit: modalRef
-      },
+      context: modalContext,
       $implicit: data.title
     }"
   ></ng-template>
@@ -14,9 +12,7 @@
   <ng-template
     [ngTemplateOutlet]="genericTemplate"
     [ngTemplateOutletContext]="{
-      context: {
-        $implicit: modalRef
-      },
+      context: modalContext,
       $implicit: data.description
     }"
   ></ng-template>
@@ -29,9 +25,7 @@
         <ng-template
           [ngTemplateOutlet]="genericTemplate"
           [ngTemplateOutletContext]="{
-            context: {
-              $implicit: modalRef
-            },
+            context: modalContext,
             $implicit: data.cancelText
           }"
         ></ng-template>
@@ -43,9 +37,7 @@
         ><ng-template
           [ngTemplateOutlet]="genericTemplate"
           [ngTemplateOutletContext]="{
-            context: {
-              $implicit: modalRef
-            },
+            context: modalContext,
             $implicit: data.okText
           }"
         ></ng-template

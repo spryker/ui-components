@@ -29,6 +29,9 @@ export class ConfirmModalComponent extends asModal<ConfirmModalData, boolean>()
   >;
   defaultData?: ConfirmModalData;
   data?: ConfirmModalData;
+  modalContext = {
+    $implicit: this.modalRef,
+  };
 
   setDefaultData(data?: InferModalData<ConfirmModalComponent>): void {
     this.defaultData = data;

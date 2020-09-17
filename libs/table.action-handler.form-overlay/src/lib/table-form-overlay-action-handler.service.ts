@@ -22,6 +22,18 @@ export class TableFormOverlayActionHandlerService
 
   constructor(private drawerService: DrawerService) {}
 
+  private openDrawer(injector: Injector): void {
+    this.drawerRef = this.drawerService.openComponent(
+      TableFormOverlayActionHandlerComponent,
+      {
+        data: this.drawerData$,
+        injector,
+      },
+    );
+    this.drawerRef$.next(this.drawerRef);
+    this.drawerRef.afterClosed().subscribe(() => (this.drawerRef = undefined));
+  }
+
   /**
    * Opens the drawer with the ajax form component in it
    * and also reuse that opened drawer for next action triggers
@@ -34,35 +46,11 @@ export class TableFormOverlayActionHandlerService
 
     if (this.drawerRef) {
       this.drawerRef$.next(this.drawerRef);
-      this.drawerRef.close().subscribe(() => {
-        const drawerRef = this.drawerService.openComponent(
-          TableFormOverlayActionHandlerComponent,
-          {
-            data: this.drawerData$,
-            injector,
-          },
-        );
-        this.drawerRef = drawerRef;
-        this.drawerRef$.next(drawerRef);
-
-        this.drawerRef
-          .afterClosed()
-          .subscribe(() => (this.drawerRef = undefined));
-      });
+      this.drawerRef.close().subscribe(() => this.openDrawer(injector));
     }
 
     if (!this.drawerRef) {
-      this.drawerRef = this.drawerService.openComponent(
-        TableFormOverlayActionHandlerComponent,
-        {
-          data: this.drawerData$,
-          injector,
-        },
-      );
-      this.drawerRef$.next(this.drawerRef);
-      this.drawerRef
-        .afterClosed()
-        .subscribe(() => (this.drawerRef = undefined));
+      this.openDrawer(injector);
     }
 
     return this.drawerRef$.pipe(

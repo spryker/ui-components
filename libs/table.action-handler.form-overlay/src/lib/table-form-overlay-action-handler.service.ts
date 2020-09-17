@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { DrawerRef, DrawerService } from '@spryker/drawer';
 import { TableActionHandler, TableActionTriggeredEvent } from '@spryker/table';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
@@ -16,17 +16,19 @@ import { TableFormOverlayAction, TableFormOverlayOptions } from './types';
 })
 export class TableFormOverlayActionHandlerService
   implements TableActionHandler<TableFormOverlayAction> {
-  drawerData$ = new ReplaySubject<TableFormOverlayOptions>(1);
   drawerRef?: DrawerRef;
   drawerRef$ = new ReplaySubject<DrawerRef>();
 
   constructor(private drawerService: DrawerService) {}
 
-  private openDrawer(injector: Injector): void {
+  private openDrawer(
+    injector: Injector,
+    data: Observable<TableFormOverlayOptions>,
+  ): void {
     this.drawerRef = this.drawerService.openComponent(
       TableFormOverlayActionHandlerComponent,
       {
-        data: this.drawerData$,
+        data,
         injector,
       },
     );
@@ -42,15 +44,17 @@ export class TableFormOverlayActionHandlerService
     actionEvent: TableActionTriggeredEvent<TableFormOverlayAction>,
     injector: Injector,
   ): Observable<unknown> {
-    this.drawerData$.next(actionEvent.action.typeOptions);
+    const drawerData = of(actionEvent.action.typeOptions);
 
     if (this.drawerRef) {
       this.drawerRef$.next(this.drawerRef);
-      this.drawerRef.close().subscribe(() => this.openDrawer(injector));
+      this.drawerRef
+        .close()
+        .subscribe(() => this.openDrawer(injector, drawerData));
     }
 
     if (!this.drawerRef) {
-      this.openDrawer(injector);
+      this.openDrawer(injector, drawerData);
     }
 
     return this.drawerRef$.pipe(

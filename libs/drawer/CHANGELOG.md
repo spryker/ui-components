@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.2.0-next.3...@spryker/drawer@0.2.0-next.4) (2020-09-17)
+
+
+### Features
+
+* **interception:** add lib ([ba8aa7b](https://github.com/spryker/ui-components/commit/ba8aa7b3e65f7b463aa8f93d8c9eeabe53f45909))
+* **unsaved-changes:** add libs ([e1d6f8c](https://github.com/spryker/ui-components/commit/e1d6f8c798237a58bea31023b49b9dd7ba334893))
+
+
+
+
+
 # [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.2.0-next.2...@spryker/drawer@0.2.0-next.3) (2020-08-03)
 
 **Note:** Version bump only for package @spryker/drawer

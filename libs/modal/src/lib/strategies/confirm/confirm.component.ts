@@ -46,6 +46,9 @@ export class ConfirmModalComponent extends asModal<ConfirmModalData, boolean>()
   ): void {
     this.modalRef = modalRef;
     this.data = { ...this.defaultData, ...modalRef.getData() };
+    this.modalContext = {
+      $implicit: this.modalRef,
+    };
   }
 
   updateModalData(data: InferModalData<ConfirmModalComponent>): void {

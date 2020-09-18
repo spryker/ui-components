@@ -54,10 +54,11 @@ export class NotificationComponent extends NotificationInputs
     NotificationContext
   >;
 
-  @ViewChild('titleInnerTpl') innerTitleTpl?: TemplateRef<NotificationContext>;
-  @ViewChild('descriptionInnerTpl') innerDescriptionTpl?: TemplateRef<
+  @ViewChild('titleInnerTpl', { static: true }) innerTitleTpl?: TemplateRef<
     NotificationContext
   >;
+  @ViewChild('descriptionInnerTpl', { static: true })
+  innerDescriptionTpl?: TemplateRef<NotificationContext>;
 
   get titleTpl() {
     return this.contentTitleTpl ?? this.innerTitleTpl;

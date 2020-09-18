@@ -92,6 +92,19 @@ describe('NotificationWrapperComponent', () => {
       expect(notificationElem?.properties.closeable).toBe(mockedClosable);
     });
 
+    it('should bind `@Input(floating)` to `false` of <spy-notification-view> component', async () => {
+      const host = await createComponent(
+        {
+          floating: false,
+          closeable: mockedClosable,
+        },
+        true,
+      );
+      const notificationElem = host.queryCss('spy-notification-view');
+
+      expect(notificationElem?.properties.floating).toBe(false);
+    });
+
     it('should render `title` in the `spy-notification-view` component', async () => {
       const host = await createComponent(
         {

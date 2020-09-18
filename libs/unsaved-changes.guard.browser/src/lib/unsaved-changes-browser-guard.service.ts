@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -12,6 +12,10 @@ export class UnsavedChangesBrowserGuard extends UnsavedChangesGuardBase {
   private destroyed$ = new Subject<void>();
 
   private hasDirtyStatus = false;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
   init(): void {
     super.init();

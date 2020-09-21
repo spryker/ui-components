@@ -1,5 +1,10 @@
-import { NotificationGlobalConfig, NotificationData } from './types';
 import { GlobalConfig } from 'ngx-toastr';
+
+import {
+  NotificationData,
+  NotificationGlobalConfig,
+  NotificationPosition,
+} from './types';
 
 export function mapDataToConfig(
   config: NotificationGlobalConfig | NotificationData,
@@ -8,24 +13,18 @@ export function mapDataToConfig(
   mappedConfig.timeOut = config.timeOut ?? mappedConfig.timeOut;
   mappedConfig.easing = config.easing ?? mappedConfig.easing;
   mappedConfig.easeTime = config.easeTime ?? mappedConfig.easeTime;
-  mappedConfig.positionClass = mapPositionClass(config.position as string);
+  mappedConfig.positionClass = mapPositionClass(config.position);
 
   return mappedConfig;
 }
 
-function mapPositionClass(position: string): string {
-  let mappedValue = 'toast-top-right';
-  switch (position) {
-    case 'topLeft':
-      mappedValue = 'toast-top-left';
-      break;
-    case 'bottomRight':
-      mappedValue = 'toast-bottom-right';
-      break;
-    case 'bottomLeft':
-      mappedValue = 'toast-bottom-left';
-      break;
-  }
+const positionMap = {
+  [NotificationPosition.TopLeft]: 'toast-top-left',
+  [NotificationPosition.BottomRight]: 'toast-bottom-right',
+  [NotificationPosition.BottomLeft]: 'toast-bottom-left',
+} as Record<NotificationPosition, string | undefined>;
 
-  return mappedValue;
+function mapPositionClass(position?: NotificationPosition): string {
+  const mappedPosition = position ? positionMap[position] : undefined;
+  return mappedPosition ?? 'toast-top-right';
 }

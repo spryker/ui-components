@@ -5,7 +5,8 @@ import { NotificationModule } from '../notification.module';
 import { NotificationService } from '../notification.service';
 import { NotificationWrapperComponent } from './notification-wrapper.component';
 
-import { select, text, boolean } from '@storybook/addon-knobs';
+import { select, text, boolean, number } from '@storybook/addon-knobs';
+import { NotificationData, NotificationType } from '../types';
 
 export default {
   title: 'NotificationWrapperComponent',
@@ -15,25 +16,29 @@ export default {
   // tslint:disable-next-line: component-selector
   selector: 'story-selector',
   template: `
-    <button (click)="notificationService.show(data)">TestButton</button>
+    <button (click)="notificationService.show(data)">
+      Show Notification
+    </button>
   `,
 })
 class StoryComponent implements OnChanges {
   constructor(public notificationService: NotificationService) {}
-  @Input() type?: string;
-  @Input() title?: string;
+  @Input() title = '';
+  @Input() type?: NotificationType;
   @Input() description?: string;
   @Input() closeable?: boolean;
+  @Input() timeOut?: number;
 
-  data: any;
+  data: NotificationData = {
+    title: this.title,
+  };
 
   ngOnChanges() {
-    this.data = {
-      description: this.description,
-      type: this.type,
-      title: this.title,
-      closeable: this.closeable,
-    };
+    this.data.type = this.type;
+    this.data.title = this.title;
+    this.data.description = this.description;
+    this.data.closeable = this.closeable;
+    this.data.timeOut = this.timeOut;
   }
 }
 
@@ -51,13 +56,10 @@ export const primary = () => ({
   },
   component: StoryComponent,
   props: {
-    type: select(
-      'Type',
-      { Info: 'info', Error: 'error', Warning: 'warning', Success: 'success' },
-      'info',
-    ),
+    type: select('Type', NotificationType, NotificationType.Info),
     title: text('Text', 'Test Title'),
     description: text('Description', 'Test Description'),
     closeable: boolean('Closeable', true),
+    timeOut: number('Timeout (ms)', 3000),
   },
 });

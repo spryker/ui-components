@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.0-next.1...@spryker/notification@0.2.0-next.3) (2020-09-21)
+
+
+### Bug Fixes
+
+* **notification:** reopen floating notification on inputs change ([ad46b8f](https://github.com/spryker/ui-components/commit/ad46b8fe450c6e35763f00ec2a65e267ee1c289c))
+* **notification:** set inner template queries to static ([71aed92](https://github.com/spryker/ui-components/commit/71aed92877353610cb2a534add7433689ace775b))
+
+
+
+
+
 # [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.0-next.1...@spryker/notification@0.2.0-next.2) (2020-08-14)
 
 **Note:** Version bump only for package @spryker/notification

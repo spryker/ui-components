@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.5...@spryker/utils@0.2.0-next.6) (2020-09-21)
+
+
+### Bug Fixes
+
+* **utils:** remove old code from `@ToBoolean` decorator ([9daefe2](https://github.com/spryker/ui-components/commit/9daefe2486140fc245bdcda72116e35048db1db3))
+
+
+
+
+
+# [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.4...@spryker/utils@0.2.0-next.5) (2020-09-17)
+
+**Note:** Version bump only for package @spryker/utils
+
+
+
+
+
 # [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.3...@spryker/utils@0.2.0-next.4) (2020-08-27)
 
 **Note:** Version bump only for package @spryker/utils

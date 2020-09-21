@@ -1,8 +1,10 @@
-import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import {
+  ApplicationRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Directive,
+  forwardRef,
   Injector,
   OnDestroy,
   TemplateRef,
@@ -11,14 +13,37 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import {
+  InterceptionComposerDirective,
+  InterceptorDispatcherService,
+  provideInterceptionComposerToken,
+  provideInterceptionService,
+} from '@spryker/interception';
+import { HookableInjector } from '@spryker/utils';
+import { EMPTY, Observable, ReplaySubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
+import {
+  DrawerCloseInterceptionEvent,
+  DrawerMaximizeInterceptionEvent,
+  DrawerMinimizeInterceptionEvent,
+} from '../drawer-interception';
 import { DrawerOptions } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.component';
 import { DrawerTemplateContext } from '../types';
 
-/** @internal */
+@Directive({
+  // tslint:disable-next-line: directive-selector
+  selector: 'spy-drawer-container',
+  providers: [
+    ...provideInterceptionComposerToken(
+      forwardRef(() => DrawerContainerComponent),
+    ),
+  ],
+})
+export class DrawerComposerDirective extends InterceptionComposerDirective {}
+
 @Component({
   selector: 'spy-drawer-container',
   templateUrl: './drawer-container.component.html',
@@ -28,6 +53,7 @@ import { DrawerTemplateContext } from '../types';
   host: {
     class: 'spy-drawer-container',
   },
+  providers: [...provideInterceptionService()],
 })
 export class DrawerContainerComponent implements OnDestroy {
   drawerRecord?: {
@@ -44,7 +70,12 @@ export class DrawerContainerComponent implements OnDestroy {
   @ViewChild(DrawerWrapperComponent)
   private drawerWrapperComponent?: DrawerWrapperComponent;
 
-  constructor(private vcr: ViewContainerRef, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private vcr: ViewContainerRef,
+    private cdr: ChangeDetectorRef,
+    private applicationRef: ApplicationRef,
+    private interceptorDispatcherService: InterceptorDispatcherService,
+  ) {}
 
   ngOnDestroy(): void {
     this.destroyed = true;
@@ -100,13 +131,21 @@ export class DrawerContainerComponent implements OnDestroy {
   }
 
   maximize(): void {
-    this.drawerWrapperComponent?.maximize();
-    this.cdr.markForCheck();
+    this.interceptorDispatcherService
+      .dispatch(DrawerMaximizeInterceptionEvent)
+      .subscribe(() => {
+        this.drawerWrapperComponent?.maximize();
+        this.cdr.markForCheck();
+      });
   }
 
   minimize(): void {
-    this.drawerWrapperComponent?.minimize();
-    this.cdr.markForCheck();
+    this.interceptorDispatcherService
+      .dispatch(DrawerMinimizeInterceptionEvent)
+      .subscribe(() => {
+        this.drawerWrapperComponent?.minimize();
+        this.cdr.markForCheck();
+      });
   }
 
   afterClosed(): Observable<void> {
@@ -120,26 +159,38 @@ export class DrawerContainerComponent implements OnDestroy {
       () => this.maximize(),
       () => this.minimize(),
       () => this.refreshDrawer(),
-      this.afterClosed(),
     );
 
     return drawerRef;
   }
 
-  private removeDrawer(): void {
-    this.drawerRecord = undefined;
-    this.emitClosed();
-
-    if (!this.destroyed) {
-      this.cdr.detectChanges();
+  private removeDrawer(): Observable<void> {
+    if (this.destroyed) {
+      return EMPTY;
     }
+
+    return this.interceptorDispatcherService
+      .dispatch(DrawerCloseInterceptionEvent)
+      .pipe(
+        tap(() => {
+          this.drawerRecord = undefined;
+          this.cdr.detectChanges();
+          this.emitClosed();
+        }),
+      );
   }
 
   private createDrawerInjector(drawerRef: DrawerRef): Injector {
+    const hookableInjector = new HookableInjector(this.vcr.injector);
+
+    if (drawerRef.options.injector) {
+      hookableInjector.hook(drawerRef.options.injector);
+    }
+
     return Injector.create({
       name: 'DrawerInjector',
       providers: [{ provide: DrawerRef, useValue: drawerRef }],
-      parent: drawerRef.options.injector ?? this.vcr.injector,
+      parent: hookableInjector,
     });
   }
 

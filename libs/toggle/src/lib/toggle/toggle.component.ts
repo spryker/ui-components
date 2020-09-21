@@ -29,7 +29,7 @@ export class ToggleComponent {
   @Output() valueChange = new EventEmitter<boolean>();
 
   onChangeHandler(event: boolean): void {
-    const inputEvent = document.createEvent('Event');
+    const inputEvent = new Event('input');
 
     inputEvent.initEvent('input', true, true);
     this.valueChange.emit(event);

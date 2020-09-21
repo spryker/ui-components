@@ -74,7 +74,7 @@ export class SelectComponent implements OnInit, OnChanges {
     if (Array.isArray(value) && this.isSelectAllAction(value)) {
       value = this.getValueArrayForSelectAllAction(value);
     }
-    const inputEvent = document.createEvent('Event');
+    const inputEvent = new Event('input');
 
     inputEvent.initEvent('input', true, true);
     this.updateTitlesArrayForSelectedValues(value);

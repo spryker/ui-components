@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   Output,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
@@ -19,8 +21,18 @@ import { ToBoolean } from '@spryker/utils';
   },
 })
 export class ToggleComponent {
+  @ViewChild('inputRef') inputRef?: ElementRef<HTMLInputElement>;
+
   @Input() @ToBoolean() value = false;
   @Input() @ToBoolean() disabled = false;
   @Input() name?: string;
   @Output() valueChange = new EventEmitter<boolean>();
+
+  onChangeHandler(event: boolean): void {
+    const inputEvent = document.createEvent('Event');
+
+    inputEvent.initEvent('input', true, true);
+    this.valueChange.emit(event);
+    this.inputRef?.nativeElement.dispatchEvent(inputEvent);
+  }
 }

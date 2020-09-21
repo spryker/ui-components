@@ -1,12 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -30,6 +32,8 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class SelectComponent implements OnInit, OnChanges {
+  @ViewChild('selectRef') selectRef?: ElementRef<HTMLInputElement>;
+
   @Input() @ToJson() options?: SelectOption[];
   @Input() @ToJson() value?: SelectValueSelected;
   @Input() @ToBoolean() search = false;
@@ -70,10 +74,13 @@ export class SelectComponent implements OnInit, OnChanges {
     if (Array.isArray(value) && this.isSelectAllAction(value)) {
       value = this.getValueArrayForSelectAllAction(value);
     }
+    const inputEvent = document.createEvent('Event');
 
+    inputEvent.initEvent('input', true, true);
     this.updateTitlesArrayForSelectedValues(value);
     this.mappedValue = value;
     this.valueChange.emit(value);
+    this.selectRef?.nativeElement.dispatchEvent(inputEvent);
   }
 
   private updateTitlesArrayForSelectedValues(

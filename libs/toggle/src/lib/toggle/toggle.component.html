@@ -9,7 +9,7 @@
 <nz-switch
   [nzDisabled]="disabled"
   [(ngModel)]="value"
-  (ngModelChange)="valueChange.emit($event)"
+  (ngModelChange)="onChangeHandler($event)"
 >
 </nz-switch>
 <input
@@ -18,4 +18,5 @@
   [ngModel]="value"
   [disabled]="disabled"
   style="display: none"
+  #inputRef
 />

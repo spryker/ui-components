@@ -29,9 +29,8 @@ export class ToggleComponent {
   @Output() valueChange = new EventEmitter<boolean>();
 
   onChangeHandler(event: boolean): void {
-    const inputEvent = new Event('input');
+    const inputEvent = new Event('input', { bubbles: true });
 
-    inputEvent.initEvent('input', true, true);
     this.valueChange.emit(event);
     this.inputRef?.nativeElement.dispatchEvent(inputEvent);
   }

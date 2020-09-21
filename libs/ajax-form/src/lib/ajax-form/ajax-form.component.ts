@@ -29,7 +29,7 @@ import { AjaxFormResponse } from '../types';
 })
 export class AjaxFormComponent implements OnDestroy, OnChanges {
   @ViewChild(UnsavedChangesFormMonitorDirective)
-  unsavedChangesFormMonitorDirective?: UnsavedChangesFormMonitorDirective; // First
+  unsavedChangesFormMonitorDirective?: UnsavedChangesFormMonitorDirective;
 
   @Input() action?: string;
   @Input() method = 'POST';

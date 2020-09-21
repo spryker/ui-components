@@ -8,9 +8,8 @@ describe('TableEditableFeatureComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableEditableFeatureComponent ]
-    })
-    .compileComponents();
+      declarations: [TableEditableFeatureComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import {
-  distinctUntilChanged,
-  map,
-  shareReplay,
-  switchMap,
-  take,
-} from 'rxjs/operators';
+import { distinctUntilChanged, map, switchMap, take } from 'rxjs/operators';
 
 import {
   InterceptionEventType,

@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { distinctUntilChanged, map, switchMap, take } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  map,
+  shareReplay,
+  switchMap,
+  take,
+} from 'rxjs/operators';
 
 import {
   InterceptionEventType,
@@ -25,19 +31,18 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
     event: InterceptionEventType<unknown>,
     data?: unknown,
   ): Observable<unknown> {
-    return this.handlersMap$
-      .pipe(
-        map(handlersMap => handlersMap.get(event) || []),
-        distinctUntilChanged(),
-        switchMap(h =>
-          h.reduce(
-            (prev$, handler) =>
-              prev$.pipe(switchMap(handlerData => handler(handlerData))),
-            of(data),
-          ),
+    return this.handlersMap$.pipe(
+      take(1),
+      map(handlersMap => handlersMap.get(event) || []),
+      distinctUntilChanged(),
+      switchMap(h =>
+        h.reduce(
+          (prev$, handler) =>
+            prev$.pipe(switchMap(handlerData => handler(handlerData))),
+          of(data),
         ),
-      )
-      .pipe(take(1));
+      ),
+    );
   }
 
   intercept<D>(

@@ -3,6 +3,13 @@
 .@{modal-prefix-cls} {
   top: 0;
 
+  .ie-styles-only-mixin({margin: 0;});
+
+  &.zoom-appear,
+  &.zoom-enter {
+    .ie-styles-only-mixin({opacity: 1;});
+  }
+
   &--confirmation {
     width: 100%;
     max-width: @modal-confirmation-max-width;

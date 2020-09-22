@@ -52,10 +52,6 @@
     height: @table-row-height;
   }
 
-  &-column-sorters {
-    padding: 0;
-  }
-
   &-column-sorter-up,
   &-column-sorter-down {
     font-size: @table-column-title-font-size;
@@ -71,6 +67,7 @@
     }
 
     & > tr > th {
+      white-space: nowrap;
       color: @table-header-color;
       background: transparent;
       border-bottom: none;
@@ -103,17 +100,19 @@
         font-size: @table-column-title-font-size;
       }
 
-      .@{table-prefix-cls}-column-inner {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        z-index: 0;
+      .ant-checkbox-wrapper {
+        position: relative;
 
-        .ie-styles-only-mixin({position: relative;});
-
-        &--align-right {
-          align-items: flex-end;
+        &::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: @table-head-checkbox-wrapper-size;
+          height: @table-head-checkbox-wrapper-size;
+          background: @table-head-checkbox-wrapper-bg;
+          border-radius: @checkbox-border-radius;
         }
       }
     }
@@ -143,66 +142,7 @@
     }
 
     th.@{table-prefix-cls}-column-has-sorters,
-    > th {
-      padding: @table-head-padding-vertical @table-padding-horizontal;
-      color: @table-column-head-color;
-      white-space: nowrap;
-      font-size: @table-column-title-font-size;
-
-      &:hover {
-        background: none;
-      }
-
-      .ant-checkbox-wrapper {
-        position: relative;
-
-        &::before {
-          content: '';
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: @table-head-checkbox-wrapper-size;
-          height: @table-head-checkbox-wrapper-size;
-          background: @table-head-checkbox-wrapper-bg;
-          border-radius: @checkbox-border-radius;
-        }
-      }
-    }
-
-    th.@{table-prefix-cls}-column-has-sorters,
     > th,
-    > td {
-      .@{table-prefix-cls}-column-inner {
-        &::after {
-          content: '';
-          position: absolute;
-          top: @table-body-margin-vertical;
-          bottom: @table-body-margin-vertical;
-          left: 0;
-          width: 100%;
-          background: @table-body-row-bg;
-          border-top: @table-border-radius-base solid transparent;
-          border-bottom: @table-border-radius-base solid transparent;
-          transition: background @common-transition-time
-              @common-transition-function,
-            border @common-transition-time @common-transition-function,
-            box-shadow @common-transition-time @common-transition-function;
-          z-index: -1;
-        }
-      }
-
-      &:first-child .@{table-prefix-cls}-column-inner::after {
-        border-radius: @border-radius-base 0 0 @border-radius-base;
-        border-left: @table-border-radius-base solid transparent;
-      }
-
-      &:last-child .@{table-prefix-cls}-column-inner::after {
-        border-radius: 0 @border-radius-base @border-radius-base 0;
-        border-right: @table-border-radius-base solid transparent;
-      }
-    }
-
     > td {
       padding: 0;
       border-bottom: none;
@@ -223,8 +163,94 @@
 
         .ie-styles-only-mixin({position: relative;});
 
+        &::after {
+          content: '';
+          position: absolute;
+          top: @table-body-margin-vertical;
+          bottom: @table-body-margin-vertical;
+          left: 0;
+          width: 100%;
+          background: @table-body-row-bg;
+          border-top: @table-border-radius-base solid transparent;
+          border-bottom: @table-border-radius-base solid transparent;
+          transition: background @common-transition-time
+              @common-transition-function,
+            border @common-transition-time @common-transition-function,
+            box-shadow @common-transition-time @common-transition-function;
+          z-index: -1;
+        }
+
         &--align-right {
           align-items: flex-end;
+        }
+      }
+
+      &:first-child .@{table-prefix-cls}-column-inner::after {
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+        border-left: @table-border-radius-base solid transparent;
+      }
+
+      &:last-child .@{table-prefix-cls}-column-inner::after {
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+        border-right: @table-border-radius-base solid transparent;
+      }
+    }
+
+    th.@{table-prefix-cls}-column-has-sorters,
+    > th {
+      &:hover {
+        background: none;
+      }
+
+      .@{table-prefix-cls}-column-inner {
+        padding: @table-head-padding-vertical @table-padding-horizontal;
+        color: @table-column-head-color;
+        font-size: @table-column-title-font-size;
+      }
+    }
+
+    th.@{table-prefix-cls}-column-has-sorters {
+      .@{table-prefix-cls}-column-sorters {
+        width: 100%;
+        padding: @table-head-padding-vertical @table-padding-horizontal;
+
+        .ie-styles-only-mixin({position: relative;});
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: @table-body-margin-vertical;
+          bottom: @table-body-margin-vertical;
+          left: 0;
+          width: 100%;
+          background: @table-body-row-bg;
+          border-top: @table-border-radius-base solid transparent;
+          border-bottom: @table-border-radius-base solid transparent;
+          transition: background @common-transition-time
+              @common-transition-function,
+            border @common-transition-time @common-transition-function,
+            box-shadow @common-transition-time @common-transition-function;
+          z-index: -1;
+        }
+      }
+
+      &:first-child .@{table-prefix-cls}-column-sorters::after {
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+        border-left: @table-border-radius-base solid transparent;
+      }
+
+      &:last-child .@{table-prefix-cls}-column-sorters::after {
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+        border-right: @table-border-radius-base solid transparent;
+      }
+
+      .@{table-prefix-cls}-column-inner {
+        padding: 0;
+
+        .ie-styles-only-mixin({position: static;});
+
+        &::after {
+          display: none;
         }
       }
     }

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.23](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.22...@spryker/table@0.2.0-next.23) (2020-09-23)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
 # [0.2.0-next.22](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.21...@spryker/table@0.2.0-next.22) (2020-09-15)
 
 **Note:** Version bump only for package @spryker/table

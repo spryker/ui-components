@@ -82,7 +82,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
         this.dataConfiguratorService?.update(filters);
       }
 
-      return filter;
+      return parsedFilter;
     }),
     distinctUntilChanged(),
     shareReplay({ refCount: true, bufferSize: 1 }),

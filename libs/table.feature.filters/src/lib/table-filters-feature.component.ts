@@ -66,7 +66,16 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
   ]).pipe(
     map(([filterValues, updatedValue]) => {
       const filter = { ...filterValues, ...updatedValue };
-      const filters = { filter };
+      const parsedFilter = Object.fromEntries(
+        Object.entries(filter).map(([key, value]) => {
+          const parsedValue = !isNaN(value as any)
+            ? JSON.stringify(value)
+            : value;
+
+          return [key, parsedValue];
+        }),
+      );
+      const filters = { filter: parsedFilter };
 
       if (updatedValue) {
         this.updateFiltersValue$.next(null);

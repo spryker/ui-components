@@ -9,9 +9,11 @@ import {
   SimpleChanges,
   ViewEncapsulation,
   Injector,
+  ViewChild,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { Subscription } from 'rxjs';
+import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
 
 import { AjaxFormResponse } from '../types';
 
@@ -26,6 +28,9 @@ import { AjaxFormResponse } from '../types';
   },
 })
 export class AjaxFormComponent implements OnDestroy, OnChanges {
+  @ViewChild(UnsavedChangesFormMonitorDirective)
+  unsavedChangesFormMonitorDirective?: UnsavedChangesFormMonitorDirective;
+
   @Input() action?: string;
   @Input() method = 'POST';
 
@@ -96,6 +101,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
       this.form = response.form;
     }
 
+    this.unsavedChangesFormMonitorDirective?.reset();
     this.isLoading = false;
     this.ajaxActionService.handle(response, this.injector);
     // TODO: investigate ExpressionChangedAfterItHasBeenCheckedError

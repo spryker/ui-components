@@ -1,6 +1,6 @@
 {
   "name": "@spryker/ajax-action.post-action.close-overlay",
-  "version": "0.1.0-next.1",
+  "version": "0.1.0-next.2",
   "peerDependencies": {
     "@angular/common": "^9.1.2",
     "@angular/core": "^9.1.2",

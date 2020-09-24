@@ -68,21 +68,20 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
       const filter = { ...filterValues, ...updatedValue };
       const parsedFilter = Object.fromEntries(
         Object.entries(filter).map(([key, value]) => {
-          const parsedValue = !isNaN(value as any)
-            ? JSON.stringify(value)
-            : value;
+          const parsedValue =
+            value && !isNaN(value as any) ? JSON.stringify(value) : value;
 
           return [key, parsedValue];
         }),
       );
-      const filters = { filter: parsedFilter };
+      const filters = { filter };
 
       if (updatedValue) {
         this.updateFiltersValue$.next(null);
         this.dataConfiguratorService?.update(filters);
       }
 
-      return filter;
+      return parsedFilter;
     }),
     distinctUntilChanged(),
     shareReplay({ refCount: true, bufferSize: 1 }),

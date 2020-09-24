@@ -101,9 +101,19 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
       this.form = response.form;
     }
 
-    this.unsavedChangesFormMonitorDirective?.reset();
+    const injector = Injector.create({
+      name: 'UnsavedChangesFormMonitorDirective',
+      providers: [
+        {
+          provide: UnsavedChangesFormMonitorDirective,
+          useValue: this.unsavedChangesFormMonitorDirective,
+        },
+      ],
+      parent: this.injector,
+    });
+
     this.isLoading = false;
-    this.ajaxActionService.handle(response, this.injector);
+    this.ajaxActionService.handle(response, injector);
     // TODO: investigate ExpressionChangedAfterItHasBeenCheckedError
     this.cdr.markForCheck();
   }

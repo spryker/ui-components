@@ -13,3 +13,11 @@ export function provideRootGuard(guard: Type<UnsavedChangesGuard>): Provider {
     multi: true,
   };
 }
+
+export const UnsavedChangesRootToken = new InjectionToken(
+  'UnsavedChangesRoot',
+  {
+    providedIn: 'root',
+    factory: () => 'root',
+  },
+);

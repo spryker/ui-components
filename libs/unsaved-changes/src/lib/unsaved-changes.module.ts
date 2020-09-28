@@ -1,10 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule, Type } from '@angular/core';
+import {
+  InjectionToken,
+  ModuleWithProviders,
+  NgModule,
+  Type,
+} from '@angular/core';
 
 import { UnsavedChangesGuard } from './unsaved-changes-guard';
-import { provideRootGuard } from './unsaved-changes-guard-root.token';
+import {
+  provideRootGuard,
+  UnsavedChangesRootToken,
+} from './unsaved-changes-guard-root.token';
 import { UnsavedChangesGuardService } from './unsaved-changes-guard.service';
 import { UnsavedChangesGuardToken } from './unsaved-changes-guard.token';
+import { provideInterceptionComposerToken } from '@spryker/interception';
 
 @NgModule({
   imports: [CommonModule],
@@ -18,6 +27,7 @@ export class UnsavedChangesModule {
           provide: UnsavedChangesGuardToken,
           useExisting: UnsavedChangesGuardService,
         },
+        ...provideInterceptionComposerToken(UnsavedChangesRootToken),
       ],
     };
   }

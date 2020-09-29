@@ -9,16 +9,14 @@ import {
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-
+import { InterceptionComposerService } from '@spryker/interception';
 import {
   UnsavedChangesGuardToken,
-  UnsavedChangesMonitorToken,
   UnsavedChangesMonitor,
   UnsavedChangesMonitorStatus,
+  UnsavedChangesMonitorToken,
 } from '@spryker/unsaved-changes';
-import { InterceptionComposerService } from '@spryker/interception';
-import { ToBoolean } from '@spryker/utils';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 /**
  * Responsible to track interactions of a user with the form it is attached to.
@@ -34,6 +32,9 @@ import { ToBoolean } from '@spryker/utils';
 })
 export class UnsavedChangesFormMonitorDirective
   implements UnsavedChangesMonitor, OnInit, OnDestroy, OnChanges {
+  /**
+   * Allows attaching / detaching monitor
+   */
   @Input() spyUnsavedChangesFormMonitor = true;
 
   private disposeChangeEvent?: () => void;

@@ -80,7 +80,6 @@ export abstract class UnsavedChangesGuardBase
   dispose(): void {
     this.monitors$.getValue().clear();
     this.monitors$.complete();
-    this.monitors$.next(this.monitors$.getValue());
   }
 
   ngOnDestroy(): void {

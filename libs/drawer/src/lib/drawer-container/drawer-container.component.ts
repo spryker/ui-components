@@ -181,10 +181,12 @@ export class DrawerContainerComponent implements OnDestroy {
   }
 
   private createDrawerInjector(drawerRef: DrawerRef): Injector {
-    const hookableInjector = new HookableInjector(this.vcr.injector);
+    const hookableInjector = new HookableInjector(
+      drawerRef.options.injector ?? this.vcr.injector,
+    );
 
     if (drawerRef.options.injector) {
-      hookableInjector.hook(drawerRef.options.injector);
+      hookableInjector.hook(this.vcr.injector);
     }
 
     return Injector.create({

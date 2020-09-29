@@ -127,10 +127,15 @@ export class InterceptionComposerImplementation
   private getServiceFromGlobal<T>(
     token: Type<T> | AbstractType<T> | InjectionToken<T>,
   ): any {
-    return this.injector.get(
-      token,
-      InterceptionComposerImplementation.NO_SERVICE as never,
-    );
+    // To avoid circular dependency
+    try {
+      return this.injector.get(
+        token,
+        InterceptionComposerImplementation.NO_SERVICE as never,
+      );
+    } catch {
+      return InterceptionComposerImplementation.NO_SERVICE;
+    }
   }
 }
 

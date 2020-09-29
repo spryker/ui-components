@@ -1,20 +1,22 @@
 import {
   Directive,
   ElementRef,
+  Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Optional,
   Renderer2,
+  SimpleChanges,
 } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-
+import { InterceptionComposerService } from '@spryker/interception';
 import {
   UnsavedChangesGuardToken,
-  UnsavedChangesMonitorToken,
   UnsavedChangesMonitor,
   UnsavedChangesMonitorStatus,
+  UnsavedChangesMonitorToken,
 } from '@spryker/unsaved-changes';
-import { InterceptionComposerService } from '@spryker/interception';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 /**
  * Responsible to track interactions of a user with the form it is attached to.
@@ -29,7 +31,12 @@ import { InterceptionComposerService } from '@spryker/interception';
   ],
 })
 export class UnsavedChangesFormMonitorDirective
-  implements UnsavedChangesMonitor, OnInit, OnDestroy {
+  implements UnsavedChangesMonitor, OnInit, OnDestroy, OnChanges {
+  /**
+   * Allows attaching / detaching monitor
+   */
+  @Input() spyUnsavedChangesFormMonitor = true;
+
   private disposeChangeEvent?: () => void;
 
   private status$ = new BehaviorSubject<UnsavedChangesMonitorStatus>(
@@ -48,13 +55,28 @@ export class UnsavedChangesFormMonitorDirective
   ) {}
 
   ngOnInit(): void {
-    this.unsavedChangesGuard?.attachMonitor(this);
+    if (this.spyUnsavedChangesFormMonitor !== false) {
+      this.unsavedChangesGuard?.attachMonitor(this);
+    }
 
     this.disposeChangeEvent = this.renderer.listen(
       this.formRef.nativeElement,
       'input',
       () => this.formChanged(),
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (
+      'spyUnsavedChangesFormMonitor' in changes &&
+      !changes.spyUnsavedChangesFormMonitor.firstChange
+    ) {
+      if (this.spyUnsavedChangesFormMonitor !== false) {
+        this.unsavedChangesGuard?.attachMonitor(this);
+      } else {
+        this.unsavedChangesGuard?.detachMonitor(this);
+      }
+    }
   }
 
   ngOnDestroy(): void {

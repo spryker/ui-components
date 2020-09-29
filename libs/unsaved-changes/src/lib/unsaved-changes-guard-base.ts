@@ -22,13 +22,13 @@ import {
 @Injectable()
 export abstract class UnsavedChangesGuardBase
   implements OnDestroy, UnsavedChangesGuard {
-  protected monitors$ = new BehaviorSubject<UnsavedChangesMonitor[]>([]);
+  protected monitors$ = new BehaviorSubject(new Set<UnsavedChangesMonitor>());
 
   protected monitorStatuses$ = this.monitors$.pipe(
     switchMap(monitors =>
-      monitors.length
+      monitors.size
         ? combineLatest(
-            monitors.map(monitor =>
+            [...monitors].map(monitor =>
               monitor.getStatus().pipe(distinctUntilChanged()),
             ),
           )
@@ -58,17 +58,17 @@ export abstract class UnsavedChangesGuardBase
   }
 
   attachMonitor(monitor: UnsavedChangesMonitor): void {
-    this.monitors$.getValue().push(monitor);
+    this.monitors$.getValue().add(monitor);
     this.monitors$.next(this.monitors$.getValue());
 
     this.parentGuard?.attachMonitor(monitor);
   }
 
   detachMonitor(monitor: UnsavedChangesMonitor): void {
-    const idx = this.monitors$.getValue().indexOf(monitor);
+    const isMonitorExist = this.monitors$.getValue().has(monitor);
 
-    if (idx !== -1) {
-      this.monitors$.getValue().splice(idx, 1);
+    if (isMonitorExist) {
+      this.monitors$.getValue().delete(monitor);
       this.monitors$.next(this.monitors$.getValue());
     }
 

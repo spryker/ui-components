@@ -26,6 +26,7 @@ import { IStory } from '@storybook/angular';
 
 import { TableEditableFeatureModule } from './table-editable-feature.module';
 import { TableEditableConfig, TableEditableEvent } from './types';
+import { NotificationModule } from '@spryker/notification';
 
 export default {
   title: 'TableEditableFeatureComponent',
@@ -49,16 +50,25 @@ const tableConfig = {
     { id: 'col3', title: 'Column #3' },
     { id: 'col4', title: 'Column #4' },
   ] as TableColumns,
-  editable: {
-    urls: { create: '', update: '' },
-    columns: [
-      { id: 'col1', type: 'edit' as any },
-      { id: 'col2', type: 'edit' as any },
-      { id: 'col3', type: 'edit' as any },
-      { id: 'col4', type: 'edit' as any },
-    ],
-    addRowButton: { title: 'Add new row' },
-  } as TableEditableConfig,
+  create: {
+    addButton: { title: 'Add Price', icon: 'plus' },
+    cancelButton: { title: 'Add Price', icon: 'plus' },
+    formInputName: 'form-input-name',
+    initialData: {
+      data: [{ col3: 'value' } as any],
+      // errors: {
+      //   [rowIdx]: {
+      //     rowError: 'message',
+      //     columnErrors: { [columnId]: 'errorMessage' },
+      //   },
+      // },
+    },
+  },
+  update: {
+    url: 'test-url',
+    saveButton: { title: 'Add Price', icon: 'plus' },
+    cancelButton: { title: 'Add Price', icon: 'plus' },
+  },
 };
 
 @Injectable({ providedIn: 'root' })
@@ -109,6 +119,7 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
     }),
     TableModule.withColumnComponents({ edit: EditColumnComponent } as any),
     DefaultContextSerializationModule,
+    NotificationModule.forRoot(),
   ],
   exports: [TableModule],
   declarations: [EditColumnComponent],

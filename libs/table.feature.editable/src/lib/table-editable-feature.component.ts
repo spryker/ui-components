@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
@@ -19,10 +18,18 @@ import {
   TableFeatureComponent,
   TableFeatureLocation,
 } from '@spryker/table';
-import { provideInvokeContext } from '@spryker/utils';
 import { map, pluck, switchMap } from 'rxjs/operators';
 
-import { TableEditableConfig, TableEditableEvent } from './types';
+import {
+  TableEditableColumn,
+  TableEditableColumnTypeOptions,
+  TableEditableConfig,
+  TableEditableEvent,
+} from './types';
+
+import { provideInvokeContext, ContextService } from '@spryker/utils';
+import { AjaxActionService } from '@spryker/ajax-action';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'spy-table-editable-feature',
@@ -38,9 +45,9 @@ import { TableEditableConfig, TableEditableEvent } from './types';
     provideInvokeContext(TableEditableFeatureComponent),
   ],
 })
-export class TableEditableFeatureComponent
-  extends TableFeatureComponent<TableEditableConfig>
-  implements OnInit {
+export class TableEditableFeatureComponent extends TableFeatureComponent<
+  TableEditableConfig
+> {
   name = 'editable';
   editIcon = IconActionModule.icon;
   checkIcon = IconCheckModule.icon;
@@ -52,6 +59,9 @@ export class TableEditableFeatureComponent
   popoverPosition = PopoverPosition;
 
   private cdr = this.injector.get(ChangeDetectorRef);
+  private ajaxActionService = this.injector.get(AjaxActionService);
+  private contextService = this.injector.get(ContextService);
+  private httpClient = this.injector.get(HttpClient);
 
   isAddingMode = false;
   isAddingInProgress = false;
@@ -80,20 +90,57 @@ export class TableEditableFeatureComponent
     pluck('columns'),
     map(columns => columns ?? []),
   );
-  addRowButton$ = this.config$.pipe(
-    pluck('addRowButton'),
-    map(btn => ({ icon: this.checkIcon, title: '', ...btn })),
-  );
-  submitRowButton$ = this.config$.pipe(
-    pluck('submitRowButton'),
-    map(btn => ({ title: 'Submit', icon: '', ...btn })),
-  );
-  cancelRowButton$ = this.config$.pipe(
-    pluck('cancelRowButton'),
-    map(btn => ({ title: 'Cancel', icon: '', ...btn })),
+
+  createConfig$ = this.config$.pipe(
+    pluck('create'),
+    map(data => ({
+      formInputName: data?.formInputName,
+      initialData: data?.initialData,
+      addButton: data?.addButton,
+      cancelButton: data?.cancelButton,
+    })),
   );
 
-  ngOnInit(): void {}
+  updateConfig$ = this.config$.pipe(
+    pluck('update'),
+    map(data => ({
+      url: data?.url,
+      saveButton: data?.saveButton,
+      cancelButton: data?.cancelButton,
+    })),
+  );
+
+  addButton$ = this.createConfig$.pipe(
+    pluck('addButton'),
+    map((button: any) => ({
+      icon: button?.icon,
+      title: button?.title,
+    })),
+  );
+
+  cancelButtonCreate$ = this.createConfig$.pipe(
+    pluck('cancelButton'),
+    map((button: any) => ({
+      icon: button?.icon,
+      title: button?.title,
+    })),
+  );
+
+  saveButtonUpdate$ = this.updateConfig$.pipe(
+    pluck('saveButton'),
+    map((button: any) => ({
+      icon: button?.icon,
+      title: button?.title,
+    })),
+  );
+
+  cancelButtonUpdate$ = this.updateConfig$.pipe(
+    pluck('cancelButton'),
+    map((button: any) => ({
+      icon: button?.icon,
+      title: button?.title,
+    })),
+  );
 
   toggleAddMode(isAdding: boolean) {
     this.isAddingMode = isAdding;
@@ -104,11 +151,40 @@ export class TableEditableFeatureComponent
     this.cdr.markForCheck();
   }
 
-  getEditColumn(column: TableColumn, editColumns: TableColumns): TableColumn {
-    return editColumns.find(c => c.id === column.id) ?? column;
+  getEditColumn(
+    column: TableColumn,
+    editColumns: TableColumns,
+    errors?: Record<string, string>,
+  ): TableColumn {
+    const editColumn = editColumns.find(c => c.id === column.id) ?? column;
+
+    if (errors && errors[column.id]) {
+      const cloneEditColumn = { ...editColumn };
+      const cloneTypeOptions: TableEditableColumnTypeOptions = {
+        ...cloneEditColumn.typeOptions,
+      };
+
+      cloneTypeOptions.editableError = errors[column.id];
+      cloneEditColumn.typeOptions = cloneTypeOptions;
+
+      return cloneEditColumn;
+    }
+
+    return editColumn;
   }
 
-  onAddUpdated({ detail }: TableEditableEvent) {
+  // onAddUpdated({ detail }: TableEditableEvent) {
+  //   if (detail.value) {
+  //     this.addModel[detail.colId] = detail.value;
+  //   } else {
+  //     delete this.addModel[detail.colId];
+  //   }
+
+  //   this.addModelValid = Object.keys(this.addModel).length > 0;
+  //   console.log('onCellUpdated', this.addModel);
+  // }
+
+  onAddUpdated({ detail }: TableEditableEvent) { // MUST update the value of current cell in Sync Input that contains JSON stringified array
     if (detail.value) {
       this.addModel[detail.colId] = detail.value;
     } else {
@@ -200,5 +276,9 @@ export class TableEditableFeatureComponent
     }
 
     this.toggleEditCell(false, i, j);
+  }
+
+  checkIfIdExtists(config: any, columns: TableEditableColumn[]) {
+    return columns.find(column => column.id === config.id);
   }
 }

@@ -5,7 +5,7 @@ import {
   Injectable,
   ViewEncapsulation,
 } from '@angular/core';
-import { TableEditableService } from '@spryker/table.feature.editable';
+import { TableEditableColumn, TableEditableService } from '@spryker/table.feature.editable';
 import {
   ColumnTypeOption,
   TableColumnContext,
@@ -33,6 +33,7 @@ export class TableColumnInputConfig {
   outerPrefix?: string;
   @ColumnTypeOption()
   outerSuffix?: string;
+  editableError?: string;
 }
 
 @Component({
@@ -41,7 +42,7 @@ export class TableColumnInputConfig {
   styleUrls: ['./table-column-input.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [TableEditableService]
+  providers: [TableEditableService],
 })
 @TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent
@@ -49,9 +50,9 @@ export class TableColumnInputComponent
   @Input() config?: TableColumnInputConfig;
   @Input() context?: TableColumnContext;
 
-  constructor(tableEditableService: TableEditableService) {}
+  constructor(private tableEditableService: TableEditableService) {}
 
-  valueChangeHandler(value: any, configa?: any) {
-    console.log(value, configa);
+  valueChangeHandler(inputValue: string, contextConfig: TableEditableColumn) {
+    this.tableEditableService.updateValue(inputValue, contextConfig);
   }
 }

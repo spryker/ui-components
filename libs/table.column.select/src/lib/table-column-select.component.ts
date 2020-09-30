@@ -13,7 +13,7 @@ import {
   ColumnTypeOptionsType,
 } from '@spryker/table';
 import { SelectOption, SelectValue } from '@spryker/select';
-import { TableEditableService } from '@spryker/table.feature.editable';
+import { TableEditableColumn, TableEditableService } from '@spryker/table.feature.editable';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
@@ -57,6 +57,7 @@ export class TableColumnSelectConfig {
   selectAllTitle?: string;
   @ColumnTypeOption()
   noOptionsText?: string;
+  editableError?: string;
 }
 
 @Component({
@@ -65,7 +66,7 @@ export class TableColumnSelectConfig {
   styleUrls: ['./table-column-select.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [TableEditableService]
+  providers: [TableEditableService],
 })
 @TableColumnTypeComponent(TableColumnSelectConfig)
 export class TableColumnSelectComponent
@@ -73,9 +74,9 @@ export class TableColumnSelectComponent
   @Input() config?: TableColumnSelectConfig;
   @Input() context?: TableColumnContext;
 
-  constructor(tableEditableService: TableEditableService) {}
+  constructor(private tableEditableService: TableEditableService) {}
 
-  valueChangeHandler(value: any, configa?: any) {
-    console.log(value, configa);
+  valueChangeHandler(inputValue: string, contextConfig: TableEditableColumn) {
+    this.tableEditableService.updateValue(inputValue, contextConfig);
   }
 }

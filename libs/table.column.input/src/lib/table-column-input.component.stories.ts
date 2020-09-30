@@ -24,9 +24,7 @@ export default {
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
   col1: `col1 #${i}`,
-  col2: 'very looooooooooooooooooooooooooooooooooong col',
-  col3: 'col3',
-  col4: 'col4',
+  col2: 'col2',
 });
 
 export const primary = (): IStory => ({
@@ -37,7 +35,6 @@ export const primary = (): IStory => ({
   props: {
     config: object('Config', {}),
     context: object('Context', {
-      value: 'Value for testing',
       placeholder: '123',
     }),
   },

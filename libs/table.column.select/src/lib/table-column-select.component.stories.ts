@@ -19,14 +19,12 @@ import {
 import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 
 export default {
-  title: 'TableColumnInputComponent',
+  title: 'TableColumnSelectComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
   col1: `col1 #${i}`,
-  col2: 'very looooooooooooooooooooooooooooooooooong col',
-  col3: 'col3',
-  col4: 'col4',
+  col2: 'col2',
 });
 
 export const primary = (): IStory => ({
@@ -49,7 +47,6 @@ export const primary = (): IStory => ({
         'Option 9',
         'Option 10',
       ],
-      multiple: false,
       placeholder: '123',
     }),
   },

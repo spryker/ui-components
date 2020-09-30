@@ -90,7 +90,7 @@ describe('AjaxFormComponent', () => {
     expect(htmlResponse.request.method).toBe('GET');
   });
 
-  it('component should not render html-renderer if response doesn`t have form property', fakeAsync(() => {
+  it('component should not render spy-html-renderer if response doesn`t have form property', fakeAsync(() => {
     component.action = mockUrl;
     fixture.detectChanges();
 
@@ -102,7 +102,7 @@ describe('AjaxFormComponent', () => {
     fixture.detectChanges();
 
     const htmlRendererElem = fixture.debugElement.query(
-      By.css('html-renderer'),
+      By.css('spy-html-renderer'),
     );
 
     expect(htmlRendererElem).toBeFalsy();

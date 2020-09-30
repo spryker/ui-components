@@ -9,7 +9,8 @@ import {
   SimpleChanges,
   ViewEncapsulation,
   Injector,
-  ViewChild,, AfterViewInit
+  ViewChild,
+  AfterViewInit,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { Subscription } from 'rxjs';

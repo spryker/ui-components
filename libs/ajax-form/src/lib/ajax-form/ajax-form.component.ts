@@ -9,7 +9,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
   Injector,
-  ViewChild,
+  ViewChild,, AfterViewInit
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { Subscription } from 'rxjs';
@@ -27,7 +27,7 @@ import { AjaxFormResponse } from '../types';
     class: 'spy-ajax-form',
   },
 })
-export class AjaxFormComponent implements OnDestroy, OnChanges {
+export class AjaxFormComponent implements OnDestroy, OnChanges, AfterViewInit {
   @ViewChild(UnsavedChangesFormMonitorDirective)
   unsavedChangesFormMonitorDirective?: UnsavedChangesFormMonitorDirective;
 
@@ -40,12 +40,27 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
   form?: string;
   isLoading = false;
 
+  private ajaxFormComponentInjector?: Injector;
+
   constructor(
     private ajaxActionService: AjaxActionService,
     private http: HttpClient,
     private cdr: ChangeDetectorRef,
     private injector: Injector,
   ) {}
+
+  ngAfterViewInit(): void {
+    this.ajaxFormComponentInjector = Injector.create({
+      name: 'AjaxFormComponent_Injector',
+      providers: [
+        {
+          provide: UnsavedChangesFormMonitorDirective,
+          useValue: this.unsavedChangesFormMonitorDirective,
+        },
+      ],
+      parent: this.injector,
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('action' in changes) {
@@ -101,19 +116,8 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
       this.form = response.form;
     }
 
-    const injector = Injector.create({
-      name: 'UnsavedChangesFormMonitorDirective',
-      providers: [
-        {
-          provide: UnsavedChangesFormMonitorDirective,
-          useValue: this.unsavedChangesFormMonitorDirective,
-        },
-      ],
-      parent: this.injector,
-    });
-
     this.isLoading = false;
-    this.ajaxActionService.handle(response, injector);
+    this.ajaxActionService.handle(response, this.ajaxFormComponentInjector);
     // TODO: investigate ExpressionChangedAfterItHasBeenCheckedError
     this.cdr.markForCheck();
   }

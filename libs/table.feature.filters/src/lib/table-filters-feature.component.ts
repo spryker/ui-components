@@ -66,6 +66,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
   ]).pipe(
     map(([filterValues, updatedValue]) => {
       const filter = { ...filterValues, ...updatedValue };
+      // encodes number as a string to a double string for proper decoding in components via @ToJson decorator.
       const parsedFilter = Object.fromEntries(
         Object.entries(filter).map(([key, value]) => {
           const parsedValue =

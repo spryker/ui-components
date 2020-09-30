@@ -52,7 +52,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
 
   ngOnInit(): void {
     this.ajaxFormComponentInjector = Injector.create({
-      name: 'UnsavedChangesFormMonitorDirective',
+      name: 'AjaxFormComponent_Injector',
       providers: [
         {
           provide: UnsavedChangesFormMonitorDirective,

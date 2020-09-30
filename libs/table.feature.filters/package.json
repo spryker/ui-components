@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table.feature.filters",
-  "version": "0.0.2-next.2",
+  "version": "0.0.2-next.3",
   "dependencies": {
     "ng-dynamic-component": "^6.1.0"
   },

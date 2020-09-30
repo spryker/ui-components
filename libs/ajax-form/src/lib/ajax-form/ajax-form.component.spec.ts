@@ -90,7 +90,7 @@ describe('AjaxFormComponent', () => {
     expect(htmlResponse.request.method).toBe('GET');
   });
 
-  it('component should not render form if response doesn`t have form property', fakeAsync(() => {
+  it('component should not render html-renderer if response doesn`t have form property', fakeAsync(() => {
     component.action = mockUrl;
     fixture.detectChanges();
 
@@ -101,9 +101,11 @@ describe('AjaxFormComponent', () => {
     tick();
     fixture.detectChanges();
 
-    const formElem = fixture.debugElement.query(By.css('form'));
+    const htmlRendererElem = fixture.debugElement.query(
+      By.css('html-renderer'),
+    );
 
-    expect(formElem).toBeFalsy();
+    expect(htmlRendererElem).toBeFalsy();
   }));
 
   it('component should render loading state nz-spin while request is in progress', fakeAsync(() => {

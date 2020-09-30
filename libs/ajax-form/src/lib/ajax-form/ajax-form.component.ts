@@ -10,7 +10,7 @@ import {
   ViewEncapsulation,
   Injector,
   ViewChild,
-  AfterViewInit,
+  OnInit,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { Subscription } from 'rxjs';
@@ -28,8 +28,8 @@ import { AjaxFormResponse } from '../types';
     class: 'spy-ajax-form',
   },
 })
-export class AjaxFormComponent implements OnDestroy, OnChanges, AfterViewInit {
-  @ViewChild(UnsavedChangesFormMonitorDirective)
+export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
+  @ViewChild(UnsavedChangesFormMonitorDirective, { static: true })
   unsavedChangesFormMonitorDirective?: UnsavedChangesFormMonitorDirective;
 
   @Input() action?: string;
@@ -50,7 +50,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, AfterViewInit {
     private injector: Injector,
   ) {}
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.ajaxFormComponentInjector = Injector.create({
       name: 'AjaxFormComponent_Injector',
       providers: [

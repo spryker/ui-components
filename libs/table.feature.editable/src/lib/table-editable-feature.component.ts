@@ -40,9 +40,21 @@ import {
   TableEditableColumn,
   TableEditableColumnTypeOptions,
   TableEditableConfig,
+  TableEditableConfigDataErrors,
   TableEditableConfigUrl,
   TableEditableEvent,
 } from './types';
+
+interface TableEditCellModel {
+  [rowIdx: string]: {
+    [columnId: string]:
+      | {
+          isEditMode?: boolean;
+          value?: unknown;
+        }
+      | undefined;
+  };
+}
 
 @Component({
   selector: 'spy-table-editable-feature',
@@ -80,8 +92,8 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   stringifiedSyncInput?: string;
   url?: TableEditableConfigUrl;
 
-  editingModel: any = {};
-  cellErrors?: any;
+  editingModel: TableEditCellModel = {};
+  cellErrors?: TableEditableConfigDataErrors;
 
   tableColumns$ = this.table$.pipe(switchMap(table => table.columns$));
   mockRowData$ = this.tableColumns$.pipe(
@@ -123,7 +135,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     column: TableColumn,
     editColumns: TableColumns,
     index?: number,
-    errors?: Record<any, Record<string, string>>,
+    errors?: TableEditableConfigDataErrors,
   ): TableColumn {
     const editColumn = editColumns.find(c => c.id === column.id) ?? column;
 
@@ -177,22 +189,22 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   }
 
   checkIfIdExtists(
-    config: any,
+    config: TableColumn,
     columns: TableEditableColumn[],
   ): TableEditableColumn | undefined {
     return columns.find(column => column.id === config.id);
   }
 
   isEditingCell(
-    editingModel: any,
+    editingModel: TableEditCellModel,
     rowIndex: number,
     cellIndex: number,
   ): boolean {
-    return editingModel?.[rowIndex]?.[cellIndex]?.isEditMode;
+    return Boolean(editingModel?.[rowIndex]?.[cellIndex]?.isEditMode);
   }
 
   isDisabledSubmit(rowIndex: number, cellIndex: number): boolean {
-    return this.editingModel?.[rowIndex]?.[cellIndex].value === undefined;
+    return this.editingModel?.[rowIndex]?.[cellIndex]?.value === undefined;
   }
 
   toggleEditCell(
@@ -213,7 +225,8 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
         this.editingModel[rowIndex][cellIndex] = {};
       }
 
-      this.editingModel[rowIndex][cellIndex].isEditMode = isEditing;
+      // tslint:disable-next-line: no-non-null-assertion
+      this.editingModel[rowIndex][cellIndex]!.isEditMode = isEditing;
     }
 
     this.editingModel = { ...this.editingModel };
@@ -235,7 +248,8 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
       this.editingModel[rowIndex][cellIndex] = {};
     }
 
-    this.editingModel[rowIndex][cellIndex].value = value;
+    // tslint:disable-next-line: no-non-null-assertion
+    this.editingModel[rowIndex][cellIndex]!.value = value;
     this.editingModel = { ...this.editingModel };
     this.cdr.markForCheck();
   }

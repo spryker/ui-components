@@ -45,13 +45,13 @@ export interface TableEditableConfigCreateData {
 
 export interface TableEditableConfigDataErrors {
   [rowIdx: string]: {
-    [columnId: string]: string; // errorMsg
+    [columnId: string]: string;
   };
 }
 
 export interface TableEditableConfigUrlObject {
   url: string;
-  method?: string; // by default - 'GET'
+  method?: string;
 }
 
 export type TableEditableConfigUrl = string | TableEditableConfigUrlObject;

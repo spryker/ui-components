@@ -10,6 +10,7 @@ import {
 import { PopoverModule } from '@spryker/popover';
 import { ModuleWithFeature, TableModule } from '@spryker/table';
 import { InvokeModule } from '@spryker/utils';
+import { FormsModule } from '@angular/forms';
 
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
 
@@ -24,6 +25,7 @@ import { TableEditableFeatureComponent } from './table-editable-feature.componen
     ButtonModule,
     PopoverModule,
     TableModule,
+    FormsModule,
   ],
   exports: [TableEditableFeatureComponent],
   declarations: [TableEditableFeatureComponent],

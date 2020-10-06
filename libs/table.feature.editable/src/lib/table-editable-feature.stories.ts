@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { NotificationModule } from '@spryker/notification';
 import {
   TableColumnComponent,
   TableColumnContext,
@@ -25,8 +26,7 @@ import { DefaultContextSerializationModule } from '@spryker/utils';
 import { IStory } from '@storybook/angular';
 
 import { TableEditableFeatureModule } from './table-editable-feature.module';
-import { TableEditableConfig, TableEditableEvent } from './types';
-import { NotificationModule } from '@spryker/notification';
+import { TableEditableEvent } from './types';
 
 export default {
   title: 'TableEditableFeatureComponent',
@@ -50,24 +50,38 @@ const tableConfig = {
     { id: 'col3', title: 'Column #3' },
     { id: 'col4', title: 'Column #4' },
   ] as TableColumns,
-  create: {
-    addButton: { title: 'Add Price', icon: 'plus' },
-    cancelButton: { title: 'Add Price', icon: 'plus' },
-    formInputName: 'form-input-name',
-    initialData: {
-      data: [{ col3: 'value' } as any],
-      // errors: {
-      //   [rowIdx]: {
-      //     rowError: 'message',
-      //     columnErrors: { [columnId]: 'errorMessage' },
-      //   },
-      // },
+  editable: {
+    columns: [
+      { id: 'col1', type: 'edit' as any },
+
+      { id: 'col3', type: 'edit' as any },
+      { id: 'col4', type: 'edit' as any },
+    ] as TableColumns,
+    create: {
+      addButton: { title: 'addButton', icon: 'plus' },
+      cancelButton: { title: 'cancelButton', icon: 'plus' },
+      formInputName: 'form-input-name',
+      initialData: {
+        data: [
+          { col3: 'value' } as any,
+          { col1: 'value' } as any,
+          { col1: 'value' } as any,
+          { col2: 'value' } as any,
+          { col2: 'value', col3: 'value' } as any,
+          { col2: 'value', col4: 'value' } as any,
+        ],
+        errors: {
+          2: {
+            col1: 'errorMessage',
+          },
+        },
+      },
     },
-  },
-  update: {
-    url: 'test-url',
-    saveButton: { title: 'Add Price', icon: 'plus' },
-    cancelButton: { title: 'Add Price', icon: 'plus' },
+    update: {
+      url: 'test-url',
+      saveButton: { title: 'saveButton', icon: 'plus' },
+      cancelButton: { title: 'cancelButton', icon: 'plus' },
+    },
   },
 };
 

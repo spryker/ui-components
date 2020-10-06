@@ -263,9 +263,9 @@
     [spyTableFeaturesRendererContext]="context"
     let-feature
   >
-    <tr [ngStyle]="feature.featureStyles$ | async">
+    <ng-container [ngStyle]="feature.featureStyles$ | async">
       <ng-template [spyTableRenderFeature]="feature"></ng-template>
-    </tr>
+    </ng-container>
   </ng-template>
 </ng-template>
 

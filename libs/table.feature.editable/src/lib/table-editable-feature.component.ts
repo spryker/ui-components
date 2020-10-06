@@ -1,8 +1,15 @@
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
+  Injector,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
@@ -41,6 +48,7 @@ import {
   TableEditableColumnTypeOptions,
   TableEditableConfig,
   TableEditableConfigDataErrors,
+  TableEditableConfigUpdate,
   TableEditableConfigUrl,
   TableEditableEvent,
 } from './types';
@@ -51,6 +59,7 @@ interface TableEditCellModel {
       | {
           isEditMode?: boolean;
           value?: unknown;
+          overlayRef?: any;
         }
       | undefined;
   };
@@ -73,6 +82,11 @@ interface TableEditCellModel {
 export class TableEditableFeatureComponent extends TableFeatureComponent<
   TableEditableConfig
 > {
+  @ViewChild('editableCell') editableCell?: TemplateRef<any>;
+
+  overlayRef?: OverlayRef | null;
+  test?: any;
+
   name = 'editable';
   editIcon = IconActionModule.icon;
   checkIcon = IconCheckModule.icon;
@@ -83,10 +97,17 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   popoverTrigger = PopoverTrigger;
   popoverPosition = PopoverPosition;
 
-  private cdr = this.injector.get(ChangeDetectorRef);
-  private ajaxActionService = this.injector.get(AjaxActionService);
-  private contextService = this.injector.get(ContextService);
-  private httpClient = this.injector.get(HttpClient);
+  constructor(
+    injector: Injector,
+    private cdr: ChangeDetectorRef,
+    private ajaxActionService: AjaxActionService,
+    private contextService: ContextService,
+    private httpClient: HttpClient,
+    private overlay: Overlay,
+    public viewContainerRef: ViewContainerRef,
+  ) {
+    super(injector);
+  }
 
   syncInput: TableDataRow[] = [];
   stringifiedSyncInput?: string;
@@ -207,30 +228,80 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     return this.editingModel?.[rowIndex]?.[cellIndex]?.value === undefined;
   }
 
-  toggleEditCell(
-    isEditing: boolean,
+  openEditableCell(
     rowIndex: number,
     cellIndex: number,
+    updateConfig: TableEditableConfigUpdate,
+    row: TableColumn[],
+    cellContext: TableColumnContext,
+    editColumns: TableColumn[],
+    elementRef: ElementRef,
   ): void {
-    if (!isEditing) {
-      this.editingModel[rowIndex][cellIndex] = undefined;
-    }
+    const config = this.getEditColumn(
+      cellContext.config,
+      editColumns,
+      rowIndex,
+      this.cellErrors,
+    );
+    const positionStrategy = this.overlay
+      .position()
+      // .connectedTo(
+      //   elementRef,
+      //   { originX: 'start', originY: 'center' },
+      //   {
+      //     overlayX: 'start',
+      //     overlayY: 'center',
+      //   },
+      // )
+      .flexibleConnectedTo(elementRef)
+      .withPositions([
+        {
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'start',
+          overlayY: 'center',
+        },
+      ])
+      .withLockedPosition(true);
 
-    if (isEditing) {
-      if (!this.editingModel[rowIndex]) {
-        this.editingModel[rowIndex] = {};
-      }
+    const overlayRef = this.overlay.create({
+      positionStrategy,
+      scrollStrategy: this.overlay.scrollStrategies.reposition({
+        scrollThrottle: 10,
+      }),
+    });
 
-      if (!this.editingModel[rowIndex][cellIndex]) {
-        this.editingModel[rowIndex][cellIndex] = {};
-      }
-
+    overlayRef.attach(
       // tslint:disable-next-line: no-non-null-assertion
-      this.editingModel[rowIndex][cellIndex]!.isEditMode = isEditing;
+      new TemplatePortal(this.editableCell!, this.viewContainerRef, {
+        $implicit: updateConfig,
+        i: rowIndex,
+        j: cellIndex,
+        row,
+        cellContext,
+        config,
+      }),
+    );
+
+    this.modelCreation(rowIndex, cellIndex);
+    // tslint:disable-next-line: no-non-null-assertion
+    this.editingModel[rowIndex][cellIndex]!.overlayRef = overlayRef;
+  }
+
+  modelCreation(rowIndex: number, cellIndex: number): void {
+    if (!this.editingModel[rowIndex]) {
+      this.editingModel[rowIndex] = {};
     }
 
-    this.editingModel = { ...this.editingModel };
-    this.cdr.markForCheck();
+    if (!this.editingModel[rowIndex][cellIndex]) {
+      this.editingModel[rowIndex][cellIndex] = {};
+    }
+  }
+
+  closeEditableCell(rowIndex: number, cellIndex: number): void {
+    // tslint:disable-next-line: no-non-null-assertion
+    this.editingModel[rowIndex][cellIndex]!.overlayRef.detach();
+    this.editingModel[rowIndex][cellIndex] = undefined;
   }
 
   onEditUpdated(
@@ -240,18 +311,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   ): void {
     const { value } = event.detail;
 
-    if (!this.editingModel[rowIndex]) {
-      this.editingModel[rowIndex] = {};
-    }
-
-    if (!this.editingModel[rowIndex][cellIndex]) {
-      this.editingModel[rowIndex][cellIndex] = {};
-    }
-
+    this.modelCreation(rowIndex, cellIndex);
     // tslint:disable-next-line: no-non-null-assertion
     this.editingModel[rowIndex][cellIndex]!.value = value;
-    this.editingModel = { ...this.editingModel };
-    this.cdr.markForCheck();
   }
 
   submitEdit(cellContext: TableColumnContext): void {
@@ -273,6 +335,8 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
           this.ajaxActionService.handle(response, this.injector);
         },
         error => {
+          // tslint:disable-next-line: no-non-null-assertion
+          this.editingModel[cellContext.i][cellContext.j]!.value = undefined;
           this.cellErrors = {
             [cellContext.j]: {
               [cellContext.config.id]: error,

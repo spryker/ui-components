@@ -13,7 +13,10 @@ import {
   ColumnTypeOptionsType,
 } from '@spryker/table';
 import { SelectOption, SelectValue } from '@spryker/select';
-import { TableEditableColumn, TableEditableService } from '@spryker/table.feature.editable';
+import {
+  TableEditableColumn,
+  TableEditableService,
+} from '@spryker/table.feature.editable';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {

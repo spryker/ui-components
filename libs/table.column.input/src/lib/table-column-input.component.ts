@@ -5,7 +5,10 @@ import {
   Injectable,
   ViewEncapsulation,
 } from '@angular/core';
-import { TableEditableColumn, TableEditableService } from '@spryker/table.feature.editable';
+import {
+  TableEditableColumn,
+  TableEditableService,
+} from '@spryker/table.feature.editable';
 import {
   ColumnTypeOption,
   TableColumnContext,

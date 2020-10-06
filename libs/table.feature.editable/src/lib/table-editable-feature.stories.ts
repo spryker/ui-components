@@ -63,11 +63,11 @@ const tableConfig = {
       formInputName: 'form-input-name',
       initialData: {
         data: [
-          { col3: 'value' } as any,
-          { col1: 'value' } as any,
-          { col1: 'value' } as any,
-          { col2: 'value' } as any,
-          { col2: 'value', col3: 'value' } as any,
+          // { col3: 'value' } as any,
+          // { col1: 'value' } as any,
+          // { col1: 'value' } as any,
+          // { col2: 'value' } as any,
+          // { col2: 'value', col3: 'value' } as any,
           { col2: 'value', col4: 'value' } as any,
         ],
         errors: {

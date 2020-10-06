@@ -324,6 +324,7 @@ export class CoreTableComponent
     private configService: TableConfigService,
     private datasourceService: TableDatasourceService,
     private tableFeaturesRendererService: TableFeaturesRendererService,
+    private viewContainerRef: ViewContainerRef,
   ) {}
 
   ngOnInit(): void {
@@ -358,6 +359,12 @@ export class CoreTableComponent
         takeUntil(this.destroyed$),
       )
       .subscribe(features => this.updateFeatures(features));
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    console.log(this.viewContainerRef);
   }
 
   ngOnDestroy(): void {

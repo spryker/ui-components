@@ -57,9 +57,8 @@ interface TableEditCellModel {
   [rowIdx: string]: {
     [columnId: string]:
       | {
-          isEditMode?: boolean;
           value?: unknown;
-          overlayRef?: any;
+          overlayRef?: OverlayRef;
         }
       | undefined;
   };
@@ -83,9 +82,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   TableEditableConfig
 > {
   @ViewChild('editableCell') editableCell?: TemplateRef<any>;
-
-  overlayRef?: OverlayRef | null;
-  test?: any;
 
   name = 'editable';
   editIcon = IconActionModule.icon;
@@ -175,10 +171,24 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     return editColumn;
   }
 
+  updateOverlayPosition(): void {
+    setTimeout(() => {
+      Object.entries(this.editingModel).forEach(([rowKey, rowValue]) => {
+        if (rowValue) {
+          Object.entries(rowValue).forEach(([cellKey, cellValue]) => {
+            console.log(cellValue);
+            cellValue?.overlayRef?.updatePosition();
+          });
+        }
+      });
+    }, 0);
+  }
+
   addRow(mockRowData: TableDataRow): void {
     this.syncInput = [mockRowData, ...this.syncInput];
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
+    this.updateOverlayPosition();
   }
 
   updateRows(event: TableEditableEvent, index: number): void {
@@ -206,6 +216,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     this.syncInput = [...syncInput];
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
+    this.updateOverlayPosition();
     this.cdr.markForCheck();
   }
 
@@ -214,14 +225,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     columns: TableEditableColumn[],
   ): TableEditableColumn | undefined {
     return columns.find(column => column.id === config.id);
-  }
-
-  isEditingCell(
-    editingModel: TableEditCellModel,
-    rowIndex: number,
-    cellIndex: number,
-  ): boolean {
-    return Boolean(editingModel?.[rowIndex]?.[cellIndex]?.isEditMode);
   }
 
   isDisabledSubmit(rowIndex: number, cellIndex: number): boolean {
@@ -262,13 +265,11 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
           overlayY: 'center',
         },
       ])
-      .withLockedPosition(true);
+      .withLockedPosition(false);
 
     const overlayRef = this.overlay.create({
       positionStrategy,
-      scrollStrategy: this.overlay.scrollStrategies.reposition({
-        scrollThrottle: 10,
-      }),
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
     });
 
     overlayRef.attach(
@@ -299,8 +300,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   }
 
   closeEditableCell(rowIndex: number, cellIndex: number): void {
-    // tslint:disable-next-line: no-non-null-assertion
-    this.editingModel[rowIndex][cellIndex]!.overlayRef.detach();
+    this.editingModel[rowIndex][cellIndex]?.overlayRef?.detach();
     this.editingModel[rowIndex][cellIndex] = undefined;
   }
 

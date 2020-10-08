@@ -14,12 +14,7 @@ import {
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
-import {
-  IconActionModule,
-  IconCheckModule,
-  IconRemoveModule,
-} from '@spryker/icon/icons';
-import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
+import { IconEditModule, IconWarningModule } from '@spryker/icon/icons';
 import {
   TableColumn,
   TableColumnContext,
@@ -35,6 +30,7 @@ import {
 } from '@spryker/utils';
 import { Subject } from 'rxjs';
 import {
+  distinctUntilChanged,
   map,
   pluck,
   shareReplay,
@@ -84,14 +80,11 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   @ViewChild('editableCell') editableCell?: TemplateRef<any>;
 
   name = 'editable';
-  editIcon = IconActionModule.icon;
-  checkIcon = IconCheckModule.icon;
-  removeIcon = IconRemoveModule.icon;
+  editIcon = IconEditModule.icon;
+  warningIcon = IconWarningModule.icon;
   tableLocation = TableFeatureLocation;
   buttonSize = ButtonSize;
   buttonVariant = ButtonVariant;
-  popoverTrigger = PopoverTrigger;
-  popoverPosition = PopoverPosition;
 
   constructor(
     injector: Injector,
@@ -111,6 +104,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
 
   editingModel: TableEditCellModel = {};
   cellErrors?: TableEditableConfigDataErrors;
+  rowErrors?: TableEditableConfigDataErrors;
 
   tableColumns$ = this.table$.pipe(switchMap(table => table.columns$));
   mockRowData$ = this.tableColumns$.pipe(
@@ -132,18 +126,24 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   );
 
   initialData$ = this.createConfig$.pipe(
-    pluck('initialData', 'data'),
-    tap(data => {
-      if (data) {
-        this.syncInput = [...(data as TableDataRow[])];
-        this.stringifiedSyncInput = JSON.stringify(this.syncInput);
+    map(createConfig => {
+      if (createConfig?.initialData?.errors) {
+        this.rowErrors = { ...createConfig.initialData.errors };
       }
+
+      return createConfig?.initialData?.data ?? [];
+    }),
+    tap(data => {
+      this.syncInput = [...(data as TableDataRow[])];
+      this.stringifiedSyncInput = JSON.stringify(this.syncInput);
+      this.cdr.detectChanges();
     }),
   );
   updateRows$ = new Subject<TableDataRow[]>();
 
   createDataRows$ = this.initialData$.pipe(
     switchMap(initialData => this.updateRows$.pipe(startWith(initialData))),
+    distinctUntilChanged((prev, curr) => prev?.length === curr?.length),
     map(rows => ((rows as TableDataRow[]).length ? rows : null)),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
@@ -156,13 +156,13 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   ): TableColumn {
     const editColumn = editColumns.find(c => c.id === column.id) ?? column;
 
-    if (index !== undefined && errors?.[index]?.[column.id]) {
+    if (index !== undefined && errors?.[index]?.columnErrors?.[column.id]) {
       const cloneEditColumn = { ...editColumn };
       const cloneTypeOptions: TableEditableColumnTypeOptions = {
         ...cloneEditColumn.typeOptions,
       };
 
-      cloneTypeOptions.editableError = errors[index][column.id];
+      cloneTypeOptions.editableError = errors[index]?.columnErrors?.[column.id];
       cloneEditColumn.typeOptions = cloneTypeOptions;
 
       return cloneEditColumn;
@@ -176,7 +176,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
       Object.entries(this.editingModel).forEach(([rowKey, rowValue]) => {
         if (rowValue) {
           Object.entries(rowValue).forEach(([cellKey, cellValue]) => {
-            console.log(cellValue);
             cellValue?.overlayRef?.updatePosition();
           });
         }
@@ -189,14 +188,13 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.updateOverlayPosition();
+    this.increaseRowErrorsKeys();
+    this.cdr.markForCheck();
   }
 
   updateRows(event: TableEditableEvent, index: number): void {
     const { colId, value } = event.detail;
-    this.syncInput[index] = {
-      ...this.syncInput[index],
-      [colId]: value,
-    };
+    this.syncInput[index][colId] = value;
 
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
@@ -217,7 +215,36 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.updateOverlayPosition();
+    this.decreaseRowErrorsKeys(index);
     this.cdr.markForCheck();
+  }
+
+  increaseRowErrorsKeys(): void {
+    if (this.rowErrors) {
+      this.rowErrors = Object.fromEntries(
+        Object.entries(this.rowErrors).map(([key, value]) => [
+          Number(key) + 1,
+          value,
+        ]),
+      );
+    }
+  }
+
+  decreaseRowErrorsKeys(index: number): void {
+    if (this.rowErrors?.[index]) {
+      delete this.rowErrors[index];
+
+      return;
+    }
+
+    if (this.rowErrors) {
+      this.rowErrors = Object.fromEntries(
+        Object.entries(this.rowErrors).map(([key, value]) => [
+          index < Number(key) ? Number(key) - 1 : key,
+          value,
+        ]),
+      );
+    }
   }
 
   checkIfIdExtists(
@@ -227,8 +254,13 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     return columns.find(column => column.id === config.id);
   }
 
+  // ADD comment
   isDisabledSubmit(rowIndex: number, cellIndex: number): boolean {
     return this.editingModel?.[rowIndex]?.[cellIndex]?.value === undefined;
+  }
+
+  getRowError(rowIndex: number): string | undefined {
+    return this.rowErrors?.[rowIndex]?.rowError;
   }
 
   openEditableCell(
@@ -248,15 +280,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     );
     const positionStrategy = this.overlay
       .position()
-      // .connectedTo(
-      //   elementRef,
-      //   { originX: 'start', originY: 'center' },
-      //   {
-      //     overlayX: 'start',
-      //     overlayY: 'center',
-      //   },
-      // )
       .flexibleConnectedTo(elementRef)
+      .withFlexibleDimensions(false)
+      .withLockedPosition(true)
       .withPositions([
         {
           originX: 'start',
@@ -264,8 +290,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
           overlayX: 'start',
           overlayY: 'center',
         },
-      ])
-      .withLockedPosition(false);
+      ]);
 
     const overlayRef = this.overlay.create({
       positionStrategy,
@@ -339,14 +364,26 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
           this.editingModel[cellContext.i][cellContext.j]!.value = undefined;
           this.cellErrors = {
             [cellContext.j]: {
-              [cellContext.config.id]: error,
+              columnErrors: {
+                [cellContext.config.id]: error,
+              },
             },
           };
         },
       );
   }
 
-  trackNewRowByIndex(index: number): number {
-    return index;
+  trackNewColumnsById(index: number, item: any): number {
+    return item.id;
+  }
+
+  ngOnDestroy(): void {
+    Object.entries(this.editingModel).forEach(([rowKey, rowValue]) => {
+      if (rowValue) {
+        Object.entries(rowValue).forEach(([cellKey, cellValue]) => {
+          cellValue?.overlayRef?.detach();
+        });
+      }
+    });
   }
 }

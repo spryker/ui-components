@@ -1,5 +1,6 @@
 import { boolean, select } from '@storybook/addon-knobs';
 
+import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonModule } from './button.module';
 
 export default {
@@ -25,21 +26,9 @@ export const primary = () => ({
     >Button</spy-button>
   `,
   props: {
-    variant: select(
-      'Variant',
-      { Primary: 'primary', Secondary: 'secondary', Critical: 'critical' },
-      'primary',
-    ),
-    size: select(
-      'Size',
-      { Large: 'lg', Medium: 'md', Small: 'sm', ExtraSmall: 'xs' },
-      'lg',
-    ),
-    shape: select(
-      'Shape',
-      { Default: 'default', Round: 'round', Circle: 'circle' },
-      'default',
-    ),
+    variant: select('Variant', ButtonVariant, ButtonVariant.Primary),
+    size: select('Size', ButtonSize, ButtonSize.Large),
+    shape: select('Shape', ButtonShape, ButtonShape.Default),
     disabled: boolean('Disabled', false),
   },
 });

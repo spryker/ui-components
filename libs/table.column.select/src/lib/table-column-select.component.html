@@ -9,9 +9,7 @@
     [showSelectAll]="config?.showSelectAll | context: context"
     [selectAllTitle]="config?.selectAllTitle | context: context"
     [noOptionsText]="config?.noOptionsText | context: context"
-    (valueChange)="
-      valueChangeHandler((context.value = $event), context?.config)
-    "
+    (valueChange)="valueChangeHandler($event)"
     control
   ></spy-select>
 </spy-form-item>

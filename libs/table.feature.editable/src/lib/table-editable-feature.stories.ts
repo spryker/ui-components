@@ -18,6 +18,14 @@ import {
   TableModule,
 } from '@spryker/table';
 import {
+  TableColumnInputComponent,
+  TableColumnInputModule,
+} from '@spryker/table.column.input';
+import {
+  TableColumnSelectComponent,
+  TableColumnSelectModule,
+} from '@spryker/table.column.select';
+import {
   MockTableDatasourceConfig,
   MockTableDatasourceService,
   TableDataMockGenerator,
@@ -52,35 +60,55 @@ const tableConfig = {
   ] as TableColumns,
   editable: {
     columns: [
-      { id: 'col1', type: 'edit' as any },
+      { id: 'col1', type: 'input' as any },
 
-      { id: 'col3', type: 'edit' as any },
-      { id: 'col4', type: 'edit' as any },
+      {
+        id: 'col3',
+        type: 'select' as any,
+        typeOptions: {
+          options: [
+            'Option 1',
+            'Option 2',
+            'Option 3',
+            'Option 4',
+            'Option 5',
+            'Option 6',
+            'Option 7',
+            'Option 8',
+            'Option 9',
+            'Option 10',
+          ],
+        },
+      },
+      { id: 'col4', type: 'input' as any },
     ] as TableColumns,
     create: {
-      addButton: { title: 'addButton', icon: 'plus' },
-      cancelButton: { title: 'cancelButton', icon: 'plus' },
+      addButton: { title: 'addButton', icon: 'warning' },
+      cancelButton: { title: 'Cancel', icon: 'plus' },
       formInputName: 'form-input-name',
       initialData: {
         data: [
-          // { col3: 'value' } as any,
-          // { col1: 'value' } as any,
-          // { col1: 'value' } as any,
-          // { col2: 'value' } as any,
-          // { col2: 'value', col3: 'value' } as any,
-          { col2: 'value', col4: 'value' } as any,
+          { col3: 'value' } as any,
+          { col1: 'value' } as any,
+          { col1: 'value', col3: 'Option 1', col4: 'value' } as any,
+          { col2: 'value' } as any,
+          { col2: 'value', col3: 'value' } as any,
+          { col1: 'value', col3: 'Option 1', col4: 'value' } as any,
         ],
         errors: {
           2: {
-            col1: 'errorMessage',
+            rowError: 'message',
+            columnErrors: {
+              col1: 'errorMessage errorMessage errorMessage',
+            },
           },
         },
       },
     },
     update: {
       url: 'test-url',
-      saveButton: { title: 'saveButton', icon: 'plus' },
-      cancelButton: { title: 'cancelButton', icon: 'plus' },
+      saveButton: { title: 'Save', icon: 'plus' },
+      cancelButton: { title: 'Cancel', icon: 'plus' },
     },
   },
 };
@@ -131,13 +159,24 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
     TableModule.withDatasourceTypes({
       'mock-data': MockTableDatasourceService,
     }),
-    TableModule.withColumnComponents({ edit: EditColumnComponent } as any),
+    TableModule.withColumnComponents({
+      edit: EditColumnComponent,
+      input: TableColumnInputComponent,
+      select: TableColumnSelectComponent,
+    } as any),
     DefaultContextSerializationModule,
     NotificationModule.forRoot(),
+    TableColumnInputModule,
+    TableColumnSelectModule,
   ],
   exports: [TableModule],
   declarations: [EditColumnComponent],
-  entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
+  entryComponents: [
+    LayoutFlatHostComponent,
+    EditColumnComponent,
+    TableColumnInputComponent,
+    TableColumnSelectComponent,
+  ],
 })
 class StoryModule {}
 
@@ -169,7 +208,9 @@ export function viaConfig(): IStory {
       ],
     },
     template: `
+    <div id="content-container">
       <spy-table [config]="config"></spy-table>
+      </div>
     `,
     props: {
       config: tableConfig,

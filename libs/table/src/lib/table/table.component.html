@@ -41,7 +41,11 @@
     <ng-container *ngIf="tableData$ | async as tableData">
       <ng-container *ngIf="columns$ | async as columns">
         <ng-container *ngIf="tableData.length">
-          <nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
+          <nz-table
+            nzFrontPagination="false"
+            [nzLoading]="isLoading$ | async"
+            [redirectedCdkScrollable]="'.ant-table-content'"
+          >
             <thead nzSortFn="true" (nzSortOrderChange)="updateSorting($event)">
               <tr>
                 <ng-container

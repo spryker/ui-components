@@ -45,7 +45,8 @@ export interface TableEditableConfigCreateData {
 
 export interface TableEditableConfigDataErrors {
   [rowIdx: string]: {
-    [columnId: string]: string;
+    rowError?: string;
+    columnErrors?: { [columnId: string]: string };
   };
 }
 

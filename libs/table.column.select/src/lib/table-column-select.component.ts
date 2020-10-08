@@ -20,7 +20,7 @@ import {
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
-    input: TableColumnSelectConfig;
+    select: TableColumnSelectConfig;
   }
 }
 
@@ -43,7 +43,17 @@ export class TableColumnSelectConfig {
   @ColumnTypeOption({
     required: true,
     type: ColumnTypeOptionsType.AnyOf,
-    value: [String, Number, ColumnSelectOptionItem],
+    value: [
+      { type: ColumnTypeOptionsType.ArrayOf, value: String },
+      {
+        type: ColumnTypeOptionsType.ArrayOf,
+        value: Number,
+      },
+      {
+        type: ColumnTypeOptionsType.ArrayOf,
+        value: ColumnSelectOptionItem,
+      },
+    ],
   })
   options: (SelectOption | ColumnSelectOptionItem)[] = [];
   @ColumnTypeOption()
@@ -70,6 +80,9 @@ export class TableColumnSelectConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [TableEditableService],
+  host: {
+    class: 'spy-table-column-select',
+  },
 })
 @TableColumnTypeComponent(TableColumnSelectConfig)
 export class TableColumnSelectComponent
@@ -79,7 +92,10 @@ export class TableColumnSelectComponent
 
   constructor(private tableEditableService: TableEditableService) {}
 
-  valueChangeHandler(inputValue: string, contextConfig: TableEditableColumn) {
-    this.tableEditableService.updateValue(inputValue, contextConfig);
+  valueChangeHandler(inputValue: string) {
+    // tslint:disable-next-line: no-non-null-assertion
+    this.context!.value = inputValue;
+    // tslint:disable-next-line: no-non-null-assertion
+    this.tableEditableService.updateValue(inputValue, this.context!.config);
   }
 }

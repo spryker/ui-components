@@ -4,6 +4,7 @@ import {
   Input,
   Injectable,
   ViewEncapsulation,
+  SimpleChanges,
 } from '@angular/core';
 import {
   TableEditableColumn,
@@ -25,9 +26,9 @@ declare module '@spryker/table' {
 @Injectable({ providedIn: 'root' })
 export class TableColumnInputConfig {
   @ColumnTypeOption()
-  type?: string;
+  type = 'text';
   @ColumnTypeOption()
-  placeholder?: string;
+  placeholder = '';
   @ColumnTypeOption()
   prefix?: string;
   @ColumnTypeOption()
@@ -46,6 +47,9 @@ export class TableColumnInputConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [TableEditableService],
+  host: {
+    class: 'spy-table-column-input',
+  },
 })
 @TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent
@@ -54,6 +58,12 @@ export class TableColumnInputComponent
   @Input() context?: TableColumnContext;
 
   constructor(private tableEditableService: TableEditableService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    // console.log(this.config?.editableError);
+  }
 
   valueChangeHandler(inputValue: string, contextConfig: TableEditableColumn) {
     this.tableEditableService.updateValue(inputValue, contextConfig);

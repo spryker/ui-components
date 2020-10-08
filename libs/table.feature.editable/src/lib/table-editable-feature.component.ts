@@ -240,7 +240,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     config: TableColumn,
     columns: TableEditableColumn[],
   ): TableEditableColumn | undefined {
-    return columns.find(column => column.id === config.id);
+    return columns.find(column => column.id === config?.id);
   }
 
   // Disables submit button if value of appropriate cell is undefined

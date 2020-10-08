@@ -32,13 +32,13 @@
   <ng-container *ngIf="createDataRows$ | async">
     <ng-container *ngIf="createConfig.cancelButton">
       <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader">
-        <th class="ant-table-cell">
+        <th class="ant-table-cell spy-table-editable-feature__th">
           <div class="ant-table-column-inner"></div>
         </th>
       </ng-container>
 
       <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterCols">
-        <td class="ant-table-cell">
+        <td class="ant-table-cell spy-table-editable-feature__td">
           <div class="ant-table-column-inner"></div>
         </td>
       </ng-container>
@@ -96,7 +96,7 @@
 
         <ng-container *ngIf="getRowError | spyInvoke: i as rowError">
           <tr>
-            <td [colSpan]="columns.length">
+            <td [colSpan]="columns?.length">
               <span class="spy-table-editable-feature__error">
                 <spy-icon
                   class="spy-table-editable-feature__error-icon"

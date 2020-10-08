@@ -28,16 +28,8 @@ import {
   ContextService,
   provideInvokeContext,
 } from '@spryker/utils';
-import { Subject } from 'rxjs';
-import {
-  distinctUntilChanged,
-  map,
-  pluck,
-  shareReplay,
-  startWith,
-  switchMap,
-  tap,
-} from 'rxjs/operators';
+import { merge, Subject } from 'rxjs';
+import { map, pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 import {
   TableEditableColumn,
@@ -82,7 +74,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   name = 'editable';
   editIcon = IconEditModule.icon;
   warningIcon = IconWarningModule.icon;
-  tableLocation = TableFeatureLocation;
+  tableFeatureLocation = TableFeatureLocation;
   buttonSize = ButtonSize;
   buttonVariant = ButtonVariant;
 
@@ -131,19 +123,17 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
         this.rowErrors = { ...createConfig.initialData.errors };
       }
 
-      return createConfig?.initialData?.data ?? [];
-    }),
-    tap(data => {
+      const data = createConfig?.initialData?.data ?? [];
+
       this.syncInput = [...(data as TableDataRow[])];
       this.stringifiedSyncInput = JSON.stringify(this.syncInput);
-      this.cdr.detectChanges();
+
+      return data;
     }),
   );
   updateRows$ = new Subject<TableDataRow[]>();
 
-  createDataRows$ = this.initialData$.pipe(
-    switchMap(initialData => this.updateRows$.pipe(startWith(initialData))),
-    distinctUntilChanged((prev, curr) => prev?.length === curr?.length),
+  createDataRows$ = merge(this.initialData$, this.updateRows$).pipe(
     map(rows => ((rows as TableDataRow[]).length ? rows : null)),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
@@ -184,7 +174,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   }
 
   addRow(mockRowData: TableDataRow): void {
-    this.syncInput = [mockRowData, ...this.syncInput];
+    this.syncInput = [{ ...mockRowData }, ...this.syncInput];
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.updateOverlayPosition();
@@ -194,14 +184,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
 
   updateRows(event: TableEditableEvent, index: number): void {
     const { colId, value } = event.detail;
-    // this.syncInput[index][colId] = value;
-    // this.syncInput = [...this.syncInput];
 
-    this.syncInput[index] = {
-      ...this.syncInput[index],
-      [colId]: value,
-    };
-
+    this.syncInput = [...this.syncInput];
+    this.syncInput[index][colId] = value;
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.cdr.markForCheck();
@@ -217,7 +202,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     const syncInput = [...this.syncInput];
     syncInput.splice(index, 1);
 
-    this.syncInput = [...syncInput];
+    this.syncInput = syncInput;
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.updateOverlayPosition();
@@ -239,8 +224,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   decreaseRowErrorsKeys(index: number): void {
     if (this.rowErrors?.[index]) {
       delete this.rowErrors[index];
-
-      return;
     }
 
     if (this.rowErrors) {
@@ -260,7 +243,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     return columns.find(column => column.id === config.id);
   }
 
-  // ADD comment
+  // Disables submit button if value of appropriate cell is undefined
   isDisabledSubmit(rowIndex: number, cellIndex: number): boolean {
     return this.editingModel?.[rowIndex]?.[cellIndex]?.value === undefined;
   }
@@ -379,10 +362,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
       );
   }
 
-  trackNewColumnsById(index: number, item: any): number {
-    return item.id;
-  }
-
   ngOnDestroy(): void {
     Object.entries(this.editingModel).forEach(([rowKey, rowValue]) => {
       if (rowValue) {
@@ -391,5 +370,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
         });
       }
     });
+  }
+
+  trackNewColumnsById(index: number, item: TableColumn): string {
+    return item.id;
   }
 }

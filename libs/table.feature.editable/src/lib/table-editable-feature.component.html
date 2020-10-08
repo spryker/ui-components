@@ -7,8 +7,12 @@
 
   <ng-container
     *spyTableFeatureTpl="
-      tableLocation.beforeTable;
-      styles: { order: '3', flexGrow: 1 }
+      tableFeatureLocation.beforeTable;
+      styles: {
+        order: '3',
+        marginLeft: 'auto',
+        paddingLeft: '15px'
+      }
     "
   >
     <ng-container *ngIf="createConfig?.addButton as addButton">
@@ -27,13 +31,13 @@
 
   <ng-container *ngIf="createDataRows$ | async">
     <ng-container *ngIf="createConfig.cancelButton">
-      <ng-container *spyTableFeatureTpl="tableLocation.afterColsHeader">
+      <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader">
         <th class="ant-table-cell">
           <div class="ant-table-column-inner"></div>
         </th>
       </ng-container>
 
-      <ng-container *spyTableFeatureTpl="tableLocation.afterCols">
+      <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterCols">
         <td class="ant-table-cell">
           <div class="ant-table-column-inner"></div>
         </td>
@@ -42,7 +46,7 @@
   </ng-container>
 
   <ng-container
-    *spyTableFeatureTpl="tableLocation.beforeRows; let columns = columns"
+    *spyTableFeatureTpl="tableFeatureLocation.beforeRows; let columns = columns"
   >
     <ng-container *ngIf="editColumns$ | async as editColumns">
       <ng-container *ngFor="let row of createDataRows$ | async; let i = index">
@@ -115,7 +119,7 @@
 <ng-container *ngIf="updateConfig$ | async as updateConfig">
   <ng-container
     *spyTableFeatureTpl="
-      tableLocation.cell;
+      tableFeatureLocation.cell;
       let cellTpl;
       let cellContext = context;
       let config = config;
@@ -198,6 +202,7 @@
           >
             <spy-icon
               class="spy-button-core__btn-icon"
+              *ngIf="saveButton?.icon"
               [name]="saveButton?.icon"
             ></spy-icon>
             {{ saveButton.title }}
@@ -214,6 +219,7 @@
           >
             <spy-icon
               class="spy-button-core__btn-icon"
+              *ngIf="cancelButton?.icon"
               [name]="cancelButton?.icon"
             ></spy-icon>
             {{ cancelButton?.title }}

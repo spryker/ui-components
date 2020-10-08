@@ -7,9 +7,7 @@
     [suffix]="config?.suffix | context: context"
     [outerPrefix]="config?.outerPrefix | context: context"
     [outerSuffix]="config?.outerSuffix | context: context"
-    (valueChange)="
-      valueChangeHandler((context.value = $event), context?.config)
-    "
+    (valueChange)="valueChangeHandler($event)"
     control
   ></spy-input>
 </spy-form-item>

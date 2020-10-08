@@ -1,13 +1,13 @@
 // tslint:disable: no-non-null-assertion
 import { TestBed } from '@angular/core/testing';
-import { TableColumnInputComponent } from './table-column-input.component';
-import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { InputComponent, InputModule } from '@spryker/input';
-import { FormItemComponent, FormItemModule } from '@spryker/form-item';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { FormItemComponent, FormItemModule } from '@spryker/form-item';
+import { InputComponent, InputModule } from '@spryker/input';
 import { TableEditableService } from '@spryker/table.feature.editable';
-import { ElementRef } from '@angular/core';
+import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
+
+import { TableColumnInputComponent } from './table-column-input.component';
 
 const configMock: any = [
   {
@@ -24,6 +24,9 @@ const configMock: any = [
 
 const context: any = {
   value: 'testValue',
+  config: {
+    id: 'id',
+  },
 };
 
 class MockTableEditableService {
@@ -41,25 +44,29 @@ describe('TableColumnInputComponent', () => {
           DefaultContextSerializationModule,
           NoopAnimationsModule,
         ],
+
         declarations: [ContextPipe],
       },
     },
   );
-  let tableEditableService: TableEditableService;
+  let tableEditableService: MockTableEditableService;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [testModule],
-      providers: [
-        MockTableEditableService,
-        {
-          provide: TableEditableService,
-          useExisting: MockTableEditableService,
-        },
-      ],
+      providers: [MockTableEditableService],
+    }).overrideComponent(TableColumnInputComponent, {
+      set: {
+        providers: [
+          {
+            provide: TableEditableService,
+            useExisting: MockTableEditableService,
+          },
+        ],
+      },
     });
 
-    tableEditableService = TestBed.inject(MockTableEditableService) as any;
+    tableEditableService = TestBed.inject(MockTableEditableService);
   });
 
   it('Template must render spy-form-item node', async () => {
@@ -174,13 +181,15 @@ describe('TableColumnInputComponent', () => {
         { config: configMock[0], context },
         true,
       );
+      const mockValue = 'value';
       const inputElem = host.queryCss('spy-input');
 
-      inputElem!.triggerEventHandler('valueChange', new Event('input'));
+      inputElem!.triggerEventHandler('valueChange', mockValue);
 
-      host.detectChanges();
-
-      expect(tableEditableService.updateValue).toHaveBeenCalled();
+      expect(tableEditableService.updateValue).toHaveBeenCalledWith(
+        mockValue,
+        context.config,
+      );
     });
   });
 });

@@ -45,21 +45,24 @@ describe('TableColumnSelectComponent', () => {
       },
     },
   );
-  let tableEditableService: TableEditableService;
+  let tableEditableService: MockTableEditableService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [testModule],
-      providers: [
-        MockTableEditableService,
-        {
-          provide: TableEditableService,
-          useExisting: MockTableEditableService,
-        },
-      ],
+      providers: [MockTableEditableService],
+    }).overrideComponent(TableColumnSelectComponent, {
+      set: {
+        providers: [
+          {
+            provide: TableEditableService,
+            useExisting: MockTableEditableService,
+          },
+        ],
+      },
     });
 
-    tableEditableService = TestBed.inject(MockTableEditableService) as any;
+    tableEditableService = TestBed.inject(MockTableEditableService);
   });
 
   it('Template must render spy-form-item node', async () => {
@@ -184,13 +187,17 @@ describe('TableColumnSelectComponent', () => {
         { config: configMock[0], context },
         true,
       );
+      const mockValue = 'value';
       const selectElem = host.queryCss('spy-select');
 
-      selectElem!.triggerEventHandler('valueChange', new Event('select'));
+      selectElem!.triggerEventHandler('valueChange', mockValue);
 
       host.detectChanges();
 
-      expect(tableEditableService.updateValue).toHaveBeenCalled();
+      expect(tableEditableService.updateValue).toHaveBeenCalledWith(
+        mockValue,
+        context.config,
+      );
     });
   });
 });

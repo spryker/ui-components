@@ -59,13 +59,10 @@ export class TableColumnInputComponent
 
   constructor(private tableEditableService: TableEditableService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    // console.log(this.config?.editableError);
-  }
-
-  valueChangeHandler(inputValue: string, contextConfig: TableEditableColumn) {
-    this.tableEditableService.updateValue(inputValue, contextConfig);
+  valueChangeHandler(inputValue: string) {
+    // tslint:disable-next-line: no-non-null-assertion
+    this.context!.value = inputValue;
+    // tslint:disable-next-line: no-non-null-assertion
+    this.tableEditableService.updateValue(inputValue, this.context!.config);
   }
 }

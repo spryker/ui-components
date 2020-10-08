@@ -84,7 +84,7 @@ const tableConfig = {
     ] as TableColumns,
     create: {
       addButton: { title: 'addButton', icon: 'warning' },
-      cancelButton: { title: 'Cancel', icon: 'plus' },
+      cancelButton: { title: 'Cancel' },
       formInputName: 'form-input-name',
       initialData: {
         data: [
@@ -108,7 +108,7 @@ const tableConfig = {
     update: {
       url: 'test-url',
       saveButton: { title: 'Save', icon: 'plus' },
-      cancelButton: { title: 'Cancel', icon: 'plus' },
+      cancelButton: { title: 'Cancel' },
     },
   },
 };

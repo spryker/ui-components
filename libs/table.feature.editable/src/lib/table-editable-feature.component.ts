@@ -194,7 +194,13 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
 
   updateRows(event: TableEditableEvent, index: number): void {
     const { colId, value } = event.detail;
-    this.syncInput[index][colId] = value;
+    // this.syncInput[index][colId] = value;
+    // this.syncInput = [...this.syncInput];
+
+    this.syncInput[index] = {
+      ...this.syncInput[index],
+      [colId]: value,
+    };
 
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);

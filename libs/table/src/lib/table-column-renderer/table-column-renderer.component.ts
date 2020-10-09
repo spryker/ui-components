@@ -49,14 +49,22 @@ export class TableColumnRendererComponent implements OnChanges {
       this.config = { ...this.originalConfig } as TableColumn;
     }
 
-    if (changes.config || changes.data) {
+    if (changes.config || changes.data || changes.i) {
       this.updateValues();
     } else if (changes.i) {
+      this.updateDataValues();
       this.updateTplContext();
     }
   }
 
   private updateValues(): void {
+    this.updateDataValues();
+    this.updateTplContext();
+    this.updateConfig();
+    this.updateItemConfig();
+  }
+
+  private updateDataValues(): void {
     if (!this.config) {
       return;
     }
@@ -64,10 +72,6 @@ export class TableColumnRendererComponent implements OnChanges {
     this.emptyValue = this.config.emptyValue || this.defaultEmptyValue;
     this.value = this.data?.[this.config.id];
     this.isValueUndefined = this.value === undefined || this.value === null;
-
-    this.updateTplContext();
-    this.updateConfig();
-    this.updateItemConfig();
   }
 
   private updateConfig(): void {

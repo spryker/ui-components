@@ -1,132 +1,236 @@
-<ng-container *ngIf="addRowButton$ | async as addRowButton">
+<ng-container *ngIf="createConfig$ | async as createConfig">
+  <input
+    type="hidden"
+    [name]="createConfig.formInputName"
+    [ngModel]="stringifiedSyncInput"
+  />
+
   <ng-container
     *spyTableFeatureTpl="
-      tableLocation.beforeTable;
-      styles: { display: 'flex', width: '100%' }
+      tableFeatureLocation.beforeTable;
+      styles: {
+        order: '3',
+        marginLeft: 'auto',
+        paddingLeft: '15px'
+      }
     "
   >
-    <div style="flex-grow: 1;"></div>
-    <spy-button [size]="buttonSize.Small" (click)="toggleAddMode(true)">
-      <spy-icon *ngIf="addRowButton.icon" [name]="addRowButton.icon"></spy-icon>
-      {{ addRowButton.title }}
-    </spy-button>
+    <ng-container *ngIf="createConfig?.addButton as addButton">
+      <ng-container *ngIf="mockRowData$ | async as mockRowData">
+        <spy-button
+          class="spy-table-editable-feature__create-row"
+          [size]="buttonSize.Medium"
+          (click)="addRow(mockRowData)"
+        >
+          <spy-icon
+            class="spy-button-core__btn-icon"
+            *ngIf="addButton?.icon"
+            [name]="addButton?.icon"
+          ></spy-icon>
+          {{ addButton?.title }}
+        </spy-button>
+      </ng-container>
+    </ng-container>
   </ng-container>
-</ng-container>
 
-<ng-container *ngIf="mockColumnData$ | async as mockColumnData">
-  <ng-container *ngIf="editColumns$ | async as editColumns">
-    <ng-container *ngIf="isAddingMode">
-      <ng-container
-        *spyTableFeatureTpl="
-          tableLocation.beforeRows;
-          let columns = columns;
-          let data = data
-        "
-      >
-        <td *ngFor="let column of columns; let j = index">
-          <spy-table-column-renderer
-            [config]="getEditColumn | spyInvoke: column:editColumns"
-            [data]="mockColumnData"
-            [i]="0"
-            [j]="j"
-            (spy-table-editable)="onAddUpdated($event)"
-          ></spy-table-column-renderer>
-        </td>
-        <td>
-          <spy-button
-            *ngIf="submitRowButton$ | async as submitRowButton"
-            [size]="buttonSize.Small"
-            [disabled]="isAddingInProgress || !addModelValid"
-            (click)="submitAdd()"
-          >
-            <spy-icon
-              *ngIf="submitRowButton.icon"
-              [name]="submitRowButton.icon"
-            ></spy-icon>
-            {{ submitRowButton.title }}
-          </spy-button>
-          <spy-button
-            *ngIf="cancelRowButton$ | async as cancelRowButton"
-            [size]="buttonSize.Small"
-            [variant]="buttonVariant.Secondary"
-            [disabled]="isAddingInProgress"
-            (click)="cancelAdd()"
-          >
-            <spy-icon
-              *ngIf="cancelRowButton.icon"
-              [name]="cancelRowButton.icon"
-            ></spy-icon>
-            {{ cancelRowButton.title }}
-          </spy-button>
+  <ng-container *ngIf="createDataRows$ | async">
+    <ng-container *ngIf="createConfig.cancelButton">
+      <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader">
+        <th class="ant-table-cell spy-table-editable-feature__th">
+          <div class="ant-table-column-inner"></div>
+        </th>
+      </ng-container>
+
+      <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterCols">
+        <td class="ant-table-cell spy-table-editable-feature__td">
+          <div class="ant-table-column-inner"></div>
         </td>
       </ng-container>
     </ng-container>
+  </ng-container>
 
-    <ng-container
-      *spyTableFeatureTpl="
-        tableLocation.cell;
-        let cellTpl;
-        let cellContext = context;
-        let config = config;
-        let row = row;
-        let value = value;
-        let i = i;
-        let j = j
-      "
-    >
-      <div class="table-editable-container">
-        <spy-popover
-          [open]="isEditingCell | spyInvoke: editingCell:i:j"
-          [position]="popoverPosition.Bottom"
-          [popoverTrigger]="popoverTrigger.Click"
-          (openChange)="toggleEditCell($event, i, j)"
+  <ng-container
+    *spyTableFeatureTpl="tableFeatureLocation.beforeRows; let columns = columns"
+  >
+    <ng-container *ngIf="editColumns$ | async as editColumns">
+      <ng-container *ngFor="let row of createDataRows$ | async; let i = index">
+        <tr
+          class="ant-table-row spy-table-editable-feature__row"
+          [class.ant-table-row--with-errors]="getRowError | spyInvoke: i"
         >
+          <td
+            class="ant-table-cell spy-table-editable-feature__cell"
+            *ngFor="
+              let column of columns;
+              let j = index;
+              trackBy: trackNewColumnsById
+            "
+          >
+            <div class="ant-table-column-inner">
+              <spy-table-column-renderer
+                [config]="
+                  getEditColumn | spyInvoke: column:editColumns:i:rowErrors
+                "
+                [data]="row"
+                [i]="i"
+                [j]="j"
+                (spy-table-editable)="updateRows($event, i)"
+              ></spy-table-column-renderer>
+            </div>
+          </td>
+          <ng-container *ngIf="createConfig?.cancelButton as cancelButton">
+            <td class="ant-table-cell">
+              <div class="ant-table-column-inner">
+                <spy-button
+                  class="spy-table-editable-feature__cancel-row"
+                  [variant]="buttonVariant.Link"
+                  [size]="buttonSize.Medium"
+                  (click)="cancelAddRow(i)"
+                >
+                  <spy-icon
+                    class="spy-button-core__btn-icon"
+                    *ngIf="cancelButton?.icon"
+                    [name]="cancelButton?.icon"
+                  ></spy-icon>
+                  {{ cancelButton?.title }}
+                </spy-button>
+              </div>
+            </td>
+          </ng-container>
+        </tr>
+
+        <ng-container *ngIf="getRowError | spyInvoke: i as rowError">
+          <tr>
+            <td [colSpan]="columns.length">
+              <span class="spy-table-editable-feature__error">
+                <spy-icon
+                  class="spy-table-editable-feature__error-icon"
+                  [name]="warningIcon"
+                ></spy-icon>
+                {{ rowError }}
+              </span>
+            </td>
+
+            <ng-container *ngIf="createConfig?.cancelButton">
+              <td></td>
+            </ng-container>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="updateConfig$ | async as updateConfig">
+  <ng-container
+    *spyTableFeatureTpl="
+      tableFeatureLocation.cell;
+      let cellTpl;
+      let cellContext = context;
+      let config = config;
+      let row = row;
+      let value = value;
+      let i = i;
+      let j = j
+    "
+  >
+    <ng-container *ngIf="editColumns$ | async as editColumns">
+      <ng-container
+        *ngIf="
+          checkIfIdExtists | spyInvoke: config:editColumns;
+          else defaultCell
+        "
+      >
+        <span class="spy-table-editable-feature__overlay">
           <span
-            trigger
-            class="table-editable-wrapper"
-            [class.editing]="isEditingCell | spyInvoke: editingCell:i:j"
-            (click)="toggleEditCell(true, i, j)"
+            #editableOriginRef
+            class="spy-table-editable-feature__wrapper"
+            (click)="
+              openEditableCell(
+                i,
+                j,
+                updateConfig,
+                row,
+                cellContext,
+                editColumns,
+                editableOriginRef
+              )
+            "
           >
             <ng-container
               *ngTemplateOutlet="cellTpl; context: cellContext"
             ></ng-container>
-            <spy-icon [name]="editIcon"></spy-icon>
+            <spy-icon
+              class="spy-table-editable-feature__wrapper-icon"
+              [name]="editIcon"
+            ></spy-icon>
           </span>
-          <div class="table-editable-content">
-            <spy-table-column-renderer
-              [config]="getEditColumn | spyInvoke: config:editColumns"
-              [data]="row"
-              [i]="i"
-              [j]="j"
-              (spy-table-editable)="onEditUpdated($event, i)"
-            ></spy-table-column-renderer>
-            <div class="table-editable-actions">
-              <spy-button
-                [size]="buttonSize.Small"
-                [disabled]="isEditingInProgress || !editingModelValid"
-                (click)="submitEdit(row, i, j)"
-              >
-                <spy-icon
-                  class="table-editable-action"
-                  [name]="checkIcon"
-                ></spy-icon>
-              </spy-button>
+        </span>
+      </ng-container>
 
-              <spy-button
-                [size]="buttonSize.Small"
-                [variant]="buttonVariant.Secondary"
-                [disabled]="isEditingInProgress"
-                (click)="cancelEdit(i, j)"
-              >
-                <spy-icon
-                  class="table-editable-action"
-                  [name]="removeIcon"
-                ></spy-icon>
-              </spy-button>
-            </div>
-          </div>
-        </spy-popover>
-      </div>
+      <ng-template #defaultCell>
+        <ng-container
+          *ngTemplateOutlet="cellTpl; context: cellContext"
+        ></ng-container>
+      </ng-template>
     </ng-container>
   </ng-container>
 </ng-container>
+
+<ng-template
+  #editableCell
+  let-updateConfig
+  let-i="i"
+  let-j="j"
+  let-row="row"
+  let-cellContext="cellContext"
+  let-config="config"
+>
+  <div class="spy-table-editable-feature__float-cell">
+    <div class="spy-table-editable-feature__float-grid">
+      <div class="spy-table-editable-feature__float-col">
+        <spy-table-column-renderer
+          [config]="config"
+          [data]="row"
+          [i]="i"
+          [j]="j"
+          (spy-table-editable)="onEditUpdated($event, i, j)"
+        ></spy-table-column-renderer>
+      </div>
+
+      <ng-container *ngIf="updateConfig?.saveButton as saveButton">
+        <div class="spy-table-editable-feature__float-col">
+          <spy-button
+            [size]="buttonSize.Medium"
+            [disabled]="isDisabledSubmit(i, j)"
+            (click)="submitEdit(cellContext)"
+          >
+            <spy-icon
+              class="spy-button-core__btn-icon"
+              *ngIf="saveButton?.icon"
+              [name]="saveButton?.icon"
+            ></spy-icon>
+            {{ saveButton.title }}
+          </spy-button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="updateConfig?.cancelButton as cancelButton">
+        <div class="spy-table-editable-feature__float-col">
+          <spy-button
+            [size]="buttonSize.Medium"
+            [variant]="buttonVariant.Link"
+            (click)="closeEditableCell(i, j)"
+          >
+            <spy-icon
+              class="spy-button-core__btn-icon"
+              *ngIf="cancelButton?.icon"
+              [name]="cancelButton?.icon"
+            ></spy-icon>
+            {{ cancelButton?.title }}
+          </spy-button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>

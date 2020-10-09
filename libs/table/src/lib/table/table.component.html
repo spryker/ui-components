@@ -41,7 +41,11 @@
     <ng-container *ngIf="tableData$ | async as tableData">
       <ng-container *ngIf="columns$ | async as columns">
         <ng-container *ngIf="tableData.length">
-          <nz-table nzFrontPagination="false" [nzLoading]="isLoading$ | async">
+          <nz-table
+            nzFrontPagination="false"
+            [nzLoading]="isLoading$ | async"
+            [redirectedCdkScrollable]="'.ant-table-content'"
+          >
             <thead nzSortFn="true" (nzSortOrderChange)="updateSorting($event)">
               <tr>
                 <ng-container
@@ -263,9 +267,9 @@
     [spyTableFeaturesRendererContext]="context"
     let-feature
   >
-    <tr [ngStyle]="feature.featureStyles$ | async">
+    <ng-container [ngStyle]="feature.featureStyles$ | async">
       <ng-template [spyTableRenderFeature]="feature"></ng-template>
-    </tr>
+    </ng-container>
   </ng-template>
 </ng-template>
 

@@ -1,12 +1,12 @@
-import { boolean, select } from '@storybook/addon-knobs';
-
-import { ButtonAjaxModule } from './button-ajax.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { NotificationModule } from '@spryker/notification';
+import { select } from '@storybook/addon-knobs';
 
 import { NotificationWrapperComponent } from '../../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NotificationModule } from '@spryker/notification';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
+import { ButtonAjaxModule } from './button-ajax.module';
 
 // tslint:disable: no-non-null-assertion
 
@@ -41,21 +41,9 @@ export const primary = () => ({
     >Button</spy-button-ajax>
   `,
   props: {
-    variant: select(
-      'Variant',
-      { Primary: 'primary', Secondary: 'secondary', Critical: 'critical' },
-      'primary',
-    ),
-    size: select(
-      'Size',
-      { Large: 'lg', Medium: 'md', Small: 'sm', ExtraSmall: 'xs' },
-      'lg',
-    ),
-    shape: select(
-      'Shape',
-      { Default: 'default', Round: 'round', Circle: 'circle' },
-      'default',
-    ),
+    variant: select('Variant', ButtonVariant, ButtonVariant.Primary),
+    size: select('Size', ButtonSize, ButtonSize.Large),
+    shape: select('Shape', ButtonShape, ButtonShape.Default),
     mockHttp: setMockHttp([
       {
         url: '/html-request',

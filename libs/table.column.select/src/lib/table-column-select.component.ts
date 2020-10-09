@@ -13,11 +13,14 @@ import {
   ColumnTypeOptionsType,
 } from '@spryker/table';
 import { SelectOption, SelectValue } from '@spryker/select';
-import { TableEditableService } from '@spryker/table.feature.editable';
+import {
+  TableEditableColumn,
+  TableEditableService,
+} from '@spryker/table.feature.editable';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
-    input: TableColumnSelectConfig;
+    select: TableColumnSelectConfig;
   }
 }
 
@@ -40,7 +43,17 @@ export class TableColumnSelectConfig {
   @ColumnTypeOption({
     required: true,
     type: ColumnTypeOptionsType.AnyOf,
-    value: [String, Number, ColumnSelectOptionItem],
+    value: [
+      { type: ColumnTypeOptionsType.ArrayOf, value: String },
+      {
+        type: ColumnTypeOptionsType.ArrayOf,
+        value: Number,
+      },
+      {
+        type: ColumnTypeOptionsType.ArrayOf,
+        value: ColumnSelectOptionItem,
+      },
+    ],
   })
   options: (SelectOption | ColumnSelectOptionItem)[] = [];
   @ColumnTypeOption()
@@ -57,6 +70,7 @@ export class TableColumnSelectConfig {
   selectAllTitle?: string;
   @ColumnTypeOption()
   noOptionsText?: string;
+  editableError?: string;
 }
 
 @Component({
@@ -65,7 +79,10 @@ export class TableColumnSelectConfig {
   styleUrls: ['./table-column-select.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [TableEditableService]
+  providers: [TableEditableService],
+  host: {
+    class: 'spy-table-column-select',
+  },
 })
 @TableColumnTypeComponent(TableColumnSelectConfig)
 export class TableColumnSelectComponent
@@ -73,9 +90,12 @@ export class TableColumnSelectComponent
   @Input() config?: TableColumnSelectConfig;
   @Input() context?: TableColumnContext;
 
-  constructor(tableEditableService: TableEditableService) {}
+  constructor(private tableEditableService: TableEditableService) {}
 
-  valueChangeHandler(value: any, configa?: any) {
-    console.log(value, configa);
+  valueChangeHandler(inputValue: string) {
+    // tslint:disable-next-line: no-non-null-assertion
+    this.context!.value = inputValue;
+    // tslint:disable-next-line: no-non-null-assertion
+    this.tableEditableService.updateValue(inputValue, this.context!.config);
   }
 }

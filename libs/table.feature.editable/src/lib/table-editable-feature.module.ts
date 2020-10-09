@@ -1,13 +1,11 @@
+import { OverlayModule } from '@angular/cdk/overlay';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ButtonModule } from '@spryker/button';
 import { IconModule } from '@spryker/icon';
-import {
-  IconActionModule,
-  IconCheckModule,
-  IconRemoveModule,
-} from '@spryker/icon/icons';
-import { PopoverModule } from '@spryker/popover';
+import { IconEditModule, IconWarningModule } from '@spryker/icon/icons';
 import { ModuleWithFeature, TableModule } from '@spryker/table';
 import { InvokeModule } from '@spryker/utils';
 
@@ -18,12 +16,13 @@ import { TableEditableFeatureComponent } from './table-editable-feature.componen
     CommonModule,
     InvokeModule,
     IconModule,
-    IconCheckModule,
-    IconActionModule,
-    IconRemoveModule,
+    IconEditModule,
     ButtonModule,
-    PopoverModule,
     TableModule,
+    FormsModule,
+    OverlayModule,
+    ScrollingModule,
+    IconWarningModule,
   ],
   exports: [TableEditableFeatureComponent],
   declarations: [TableEditableFeatureComponent],

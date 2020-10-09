@@ -1,28 +1,56 @@
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  OnInit,
+  ElementRef,
+  Injector,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
-import {
-  IconActionModule,
-  IconCheckModule,
-  IconRemoveModule,
-} from '@spryker/icon/icons';
-import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
+import { IconEditModule, IconWarningModule } from '@spryker/icon/icons';
 import {
   TableColumn,
+  TableColumnContext,
   TableColumns,
   TableDataRow,
   TableFeatureComponent,
   TableFeatureLocation,
 } from '@spryker/table';
-import { provideInvokeContext } from '@spryker/utils';
-import { map, pluck, switchMap } from 'rxjs/operators';
+import {
+  AnyContext,
+  ContextService,
+  provideInvokeContext,
+} from '@spryker/utils';
+import { merge, Subject } from 'rxjs';
+import { map, pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
 
-import { TableEditableConfig, TableEditableEvent } from './types';
+import {
+  TableEditableColumn,
+  TableEditableColumnTypeOptions,
+  TableEditableConfig,
+  TableEditableConfigDataErrors,
+  TableEditableConfigUpdate,
+  TableEditableConfigUrl,
+  TableEditableEvent,
+} from './types';
+
+interface TableEditCellModel {
+  [rowIdx: string]: {
+    [columnId: string]:
+      | {
+          value?: unknown;
+          overlayRef?: OverlayRef;
+        }
+      | undefined;
+  };
+}
 
 @Component({
   selector: 'spy-table-editable-feature',
@@ -38,167 +66,314 @@ import { TableEditableConfig, TableEditableEvent } from './types';
     provideInvokeContext(TableEditableFeatureComponent),
   ],
 })
-export class TableEditableFeatureComponent
-  extends TableFeatureComponent<TableEditableConfig>
-  implements OnInit {
+export class TableEditableFeatureComponent extends TableFeatureComponent<
+  TableEditableConfig
+> {
+  @ViewChild('editableCell') editableCell?: TemplateRef<any>;
+
   name = 'editable';
-  editIcon = IconActionModule.icon;
-  checkIcon = IconCheckModule.icon;
-  removeIcon = IconRemoveModule.icon;
-  tableLocation = TableFeatureLocation;
+  editIcon = IconEditModule.icon;
+  warningIcon = IconWarningModule.icon;
+  tableFeatureLocation = TableFeatureLocation;
   buttonSize = ButtonSize;
   buttonVariant = ButtonVariant;
-  popoverTrigger = PopoverTrigger;
-  popoverPosition = PopoverPosition;
 
-  private cdr = this.injector.get(ChangeDetectorRef);
+  constructor(
+    injector: Injector,
+    private cdr: ChangeDetectorRef,
+    private ajaxActionService: AjaxActionService,
+    private contextService: ContextService,
+    private httpClient: HttpClient,
+    private overlay: Overlay,
+    public viewContainerRef: ViewContainerRef,
+  ) {
+    super(injector);
+  }
 
-  isAddingMode = false;
-  isAddingInProgress = false;
-  addModelValid = false;
-  canAddRow = false;
-  addModel: any = {};
+  syncInput: TableDataRow[] = [];
+  stringifiedSyncInput?: string;
+  url?: TableEditableConfigUrl;
 
-  editingCell: boolean[][] = [];
-  editingModel: { value?: any; colId?: string; i?: number } = {};
-  isEditingInProgress = false;
-  editingModelValid = false;
+  editingModel: TableEditCellModel = {};
+  cellErrors?: TableEditableConfigDataErrors;
+  rowErrors?: TableEditableConfigDataErrors;
 
   tableColumns$ = this.table$.pipe(switchMap(table => table.columns$));
-
-  mockColumnData$ = this.tableColumns$.pipe(
+  mockRowData$ = this.tableColumns$.pipe(
     map(columns =>
-      columns.reduce(
-        (acc, column) => ({ ...acc, [column.id]: '' }),
-        {} as Record<TableColumn['id'], string>,
-      ),
+      columns.reduce((acc, column) => ({ ...acc, [column.id]: '' }), {}),
     ),
   );
 
-  urls$ = this.config$.pipe(pluck('urls'));
-  editColumns$ = this.config$.pipe(
-    pluck('columns'),
-    map(columns => columns ?? []),
+  editColumns$ = this.config$.pipe(pluck('columns'));
+
+  createConfig$ = this.config$.pipe(
+    pluck('create'),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
-  addRowButton$ = this.config$.pipe(
-    pluck('addRowButton'),
-    map(btn => ({ icon: this.checkIcon, title: '', ...btn })),
-  );
-  submitRowButton$ = this.config$.pipe(
-    pluck('submitRowButton'),
-    map(btn => ({ title: 'Submit', icon: '', ...btn })),
-  );
-  cancelRowButton$ = this.config$.pipe(
-    pluck('cancelRowButton'),
-    map(btn => ({ title: 'Cancel', icon: '', ...btn })),
+  updateConfig$ = this.config$.pipe(
+    pluck('update'),
+    tap(config => (this.url = config?.url)),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
 
-  ngOnInit(): void {}
+  initialData$ = this.createConfig$.pipe(
+    map(createConfig => {
+      if (createConfig?.initialData?.errors) {
+        this.rowErrors = { ...createConfig.initialData.errors };
+      }
 
-  toggleAddMode(isAdding: boolean) {
-    this.isAddingMode = isAdding;
-    this.isAddingInProgress = false;
-    this.addModelValid = false;
-    this.canAddRow = false;
-    this.addModel = {};
+      const data = createConfig?.initialData?.data ?? [];
+
+      this.syncInput = [...(data as TableDataRow[])];
+      this.stringifiedSyncInput = JSON.stringify(this.syncInput);
+      // Fix ExpressionChangedAfterItHasBeenCheckedError error
+      this.cdr.detectChanges();
+
+      return data;
+    }),
+  );
+  updateRows$ = new Subject<TableDataRow[]>();
+
+  createDataRows$ = merge(this.initialData$, this.updateRows$).pipe(
+    map(rows => ((rows as TableDataRow[]).length ? rows : null)),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+
+  getEditColumn(
+    column: TableColumn,
+    editColumns: TableColumns,
+    index?: number,
+    errors?: TableEditableConfigDataErrors,
+  ): TableColumn {
+    const editColumn = editColumns.find(c => c.id === column.id) ?? column;
+
+    if (index !== undefined && errors?.[index]?.columnErrors?.[column.id]) {
+      const cloneEditColumn = { ...editColumn };
+      const cloneTypeOptions: TableEditableColumnTypeOptions = {
+        ...cloneEditColumn.typeOptions,
+      };
+
+      cloneTypeOptions.editableError = errors[index]?.columnErrors?.[column.id];
+      cloneEditColumn.typeOptions = cloneTypeOptions;
+
+      return cloneEditColumn;
+    }
+
+    return editColumn;
+  }
+
+  updateOverlayPosition(): void {
+    setTimeout(() => {
+      Object.entries(this.editingModel).forEach(([rowKey, rowValue]) => {
+        if (rowValue) {
+          Object.entries(rowValue).forEach(([cellKey, cellValue]) => {
+            cellValue?.overlayRef?.updatePosition();
+          });
+        }
+      });
+    }, 0);
+  }
+
+  addRow(mockRowData: TableDataRow): void {
+    this.syncInput = [{ ...mockRowData }, ...this.syncInput];
+    this.stringifiedSyncInput = JSON.stringify(this.syncInput);
+    this.updateRows$.next(this.syncInput);
+    this.updateOverlayPosition();
+    this.increaseRowErrorsKeys();
     this.cdr.markForCheck();
   }
 
-  getEditColumn(column: TableColumn, editColumns: TableColumns): TableColumn {
-    return editColumns.find(c => c.id === column.id) ?? column;
-  }
+  updateRows(event: TableEditableEvent, index: number): void {
+    const { colId, value } = event.detail;
 
-  onAddUpdated({ detail }: TableEditableEvent) {
-    if (detail.value) {
-      this.addModel[detail.colId] = detail.value;
-    } else {
-      delete this.addModel[detail.colId];
-    }
-
-    this.addModelValid = Object.keys(this.addModel).length > 0;
-    console.log('onCellUpdated', this.addModel);
-  }
-
-  submitAdd() {
-    if (this.isAddingInProgress || !this.addModelValid) {
-      return;
-    }
-
-    this.isAddingInProgress = true;
-    console.log('Submitting new row', this.addModel);
-
-    setTimeout(() => {
-      this.isAddingInProgress = false;
-      this.toggleAddMode(false);
-      this.dataConfiguratorService?.update({});
-    }, 1000);
-  }
-
-  cancelAdd() {
-    if (this.isAddingInProgress) {
-      return;
-    }
-
-    this.toggleAddMode(false);
-  }
-
-  isEditingCell(editingCell: number[][], i: number, j: number) {
-    return editingCell[i]?.[j];
-  }
-
-  toggleEditCell(isEditing: boolean, i: number, j: number) {
-    if (!isEditing) {
-      this.editingModel.i = undefined;
-      this.editingModel.colId = undefined;
-      this.editingModel.value = undefined;
-      this.isEditingInProgress = false;
-      this.editingModelValid = false;
-    }
-
-    if (!this.editingCell[i]) {
-      this.editingCell[i] = [];
-    }
-
-    this.editingCell[i][j] = isEditing;
-    this.editingCell = [...this.editingCell];
-
+    this.syncInput = [...this.syncInput];
+    this.syncInput[index][colId] = value;
+    this.stringifiedSyncInput = JSON.stringify(this.syncInput);
+    this.updateRows$.next(this.syncInput);
     this.cdr.markForCheck();
   }
 
-  onEditUpdated({ detail }: TableEditableEvent, i: number) {
-    if (this.editingModel.i !== i && this.editingModel.colId !== detail.colId) {
-      this.editingModel.value = undefined;
-    }
+  cancelAddRow(index: number): void {
+    const isExistItems = this.syncInput?.[index];
 
-    this.editingModel.i = i;
-    this.editingModel.colId = detail.colId;
-    this.editingModel.value = detail.value;
-
-    this.editingModelValid = !!detail.value;
-
-    console.log('onEditUpdated', this.editingModel);
-  }
-
-  submitEdit(data: TableDataRow, i: number, j: number) {
-    if (this.isEditingInProgress || !this.editingModelValid) {
+    if (!isExistItems) {
       return;
     }
 
-    this.isEditingInProgress = true;
-    console.log('Submitting edited row', this.editingModel, data);
+    const syncInput = [...this.syncInput];
+    syncInput.splice(index, 1);
 
-    setTimeout(() => {
-      this.isEditingInProgress = false;
-      this.toggleEditCell(false, i, j);
-      this.dataConfiguratorService?.update({});
-    }, 1000);
+    this.syncInput = syncInput;
+    this.stringifiedSyncInput = JSON.stringify(this.syncInput);
+    this.updateRows$.next(this.syncInput);
+    this.updateOverlayPosition();
+    this.decreaseRowErrorsKeys(index);
+    this.cdr.markForCheck();
   }
 
-  cancelEdit(i: number, j: number) {
-    if (this.isEditingInProgress) {
-      return;
+  increaseRowErrorsKeys(): void {
+    if (this.rowErrors) {
+      this.rowErrors = Object.fromEntries(
+        Object.entries(this.rowErrors).map(([key, value]) => [
+          Number(key) + 1,
+          value,
+        ]),
+      );
+    }
+  }
+
+  decreaseRowErrorsKeys(index: number): void {
+    if (this.rowErrors?.[index]) {
+      delete this.rowErrors[index];
     }
 
-    this.toggleEditCell(false, i, j);
+    if (this.rowErrors) {
+      this.rowErrors = Object.fromEntries(
+        Object.entries(this.rowErrors).map(([key, value]) => [
+          index < Number(key) ? Number(key) - 1 : key,
+          value,
+        ]),
+      );
+    }
+  }
+
+  checkIfIdExtists(
+    config: TableColumn,
+    columns: TableEditableColumn[],
+  ): TableEditableColumn | undefined {
+    return columns.find(column => column.id === config.id);
+  }
+
+  // Disables submit button if value of appropriate cell is undefined
+  isDisabledSubmit(rowIndex: number, cellIndex: number): boolean {
+    return this.editingModel?.[rowIndex]?.[cellIndex]?.value === undefined;
+  }
+
+  getRowError(rowIndex: number): string | undefined {
+    return this.rowErrors?.[rowIndex]?.rowError;
+  }
+
+  openEditableCell(
+    rowIndex: number,
+    cellIndex: number,
+    updateConfig: TableEditableConfigUpdate,
+    row: TableColumn[],
+    cellContext: TableColumnContext,
+    editColumns: TableColumn[],
+    elementRef: ElementRef,
+  ): void {
+    console.log('clicked');
+    const config = this.getEditColumn(
+      cellContext.config,
+      editColumns,
+      rowIndex,
+      this.cellErrors,
+    );
+    const positionStrategy = this.overlay
+      .position()
+      .flexibleConnectedTo(elementRef)
+      .withPositions([
+        {
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'start',
+          overlayY: 'center',
+        },
+      ]);
+
+    const overlayRef = this.overlay.create({
+      positionStrategy,
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
+    });
+
+    overlayRef.attach(
+      // tslint:disable-next-line: no-non-null-assertion
+      new TemplatePortal(this.editableCell!, this.viewContainerRef, {
+        $implicit: updateConfig,
+        i: rowIndex,
+        j: cellIndex,
+        row,
+        cellContext,
+        config,
+      }),
+    );
+
+    this.modelCreation(rowIndex, cellIndex);
+    // tslint:disable-next-line: no-non-null-assertion
+    this.editingModel[rowIndex][cellIndex]!.overlayRef = overlayRef;
+  }
+
+  modelCreation(rowIndex: number, cellIndex: number): void {
+    if (!this.editingModel[rowIndex]) {
+      this.editingModel[rowIndex] = {};
+    }
+
+    if (!this.editingModel[rowIndex][cellIndex]) {
+      this.editingModel[rowIndex][cellIndex] = {};
+    }
+  }
+
+  closeEditableCell(rowIndex: number, cellIndex: number): void {
+    this.editingModel[rowIndex][cellIndex]?.overlayRef?.detach();
+    this.editingModel[rowIndex][cellIndex] = undefined;
+  }
+
+  onEditUpdated(
+    event: TableEditableEvent,
+    rowIndex: number,
+    cellIndex: number,
+  ): void {
+    const { value } = event.detail;
+
+    this.modelCreation(rowIndex, cellIndex);
+    // tslint:disable-next-line: no-non-null-assertion
+    this.editingModel[rowIndex][cellIndex]!.value = value;
+  }
+
+  submitEdit(cellContext: TableColumnContext): void {
+    // tslint:disable-next-line: no-non-null-assertion
+    const url = typeof this.url === 'string' ? this.url : this.url!.url;
+    const method = typeof this.url === 'string' ? 'GET' : this.url?.method;
+    const parsedUrl = this.contextService.interpolate(
+      url,
+      (cellContext as unknown) as AnyContext,
+    );
+
+    this.httpClient
+      // tslint:disable-next-line: no-non-null-assertion
+      .request(method!, parsedUrl, {
+        body: { columnId: cellContext.config.id, value: cellContext.value },
+      })
+      .subscribe(
+        response => {
+          this.ajaxActionService.handle(response, this.injector);
+        },
+        error => {
+          // tslint:disable-next-line: no-non-null-assertion
+          this.editingModel[cellContext.i][cellContext.j]!.value = undefined;
+          this.cellErrors = {
+            [cellContext.j]: {
+              columnErrors: {
+                [cellContext.config.id]: error,
+              },
+            },
+          };
+        },
+      );
+  }
+
+  ngOnDestroy(): void {
+    Object.entries(this.editingModel).forEach(([rowKey, rowValue]) => {
+      if (rowValue) {
+        Object.entries(rowValue).forEach(([cellKey, cellValue]) => {
+          cellValue?.overlayRef?.detach();
+        });
+      }
+    });
+  }
+
+  trackNewColumnsById(index: number, item: TableColumn): string {
+    return item.id;
   }
 }

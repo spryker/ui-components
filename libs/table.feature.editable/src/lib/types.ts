@@ -1,4 +1,9 @@
-import { TableColumn, TableFeatureConfig } from '@spryker/table';
+import {
+  TableFeatureConfig,
+  TableColumn,
+  TableDataRow,
+  TableColumnTypeOptions,
+} from '@spryker/table';
 
 declare module '@spryker/table' {
   interface TableConfig {
@@ -6,38 +11,64 @@ declare module '@spryker/table' {
   }
 }
 
+export interface TableEditableColumn extends TableColumn {
+  typeOptions?: TableEditableColumnTypeOptions;
+}
+
+export interface TableEditableColumnTypeOptions extends TableColumnTypeOptions {
+  editableError?: string;
+}
+
 export interface TableEditableConfig extends TableFeatureConfig {
-  urls: TableEditableUrls;
-  columns: Partial<TableColumn>[];
-  addRowButton?: TableEditableButton;
-  submitRowButton?: TableEditableButton;
-  cancelRowButton?: TableEditableButton;
+  columns: TableEditableColumn[];
+  create?: TableEditableConfigCreate;
+  update?: TableEditableConfigUpdate;
 }
 
-export interface TableEditableUrls {
-  create: TableEditableUrl;
-  update: TableEditableUrl;
+export interface TableEditableConfigCreate {
+  formInputName: string;
+  initialData?: TableEditableConfigCreateData;
+  addButton?: TableEditableConfigButton;
+  cancelButton?: TableEditableConfigButton;
 }
 
-export interface TableEditableUrlConfig {
+export interface TableEditableConfigUpdate {
+  url: TableEditableConfigUrl;
+  saveButton?: TableEditableConfigButton;
+  cancelButton?: TableEditableConfigButton;
+}
+
+export interface TableEditableConfigCreateData {
+  data: TableDataRow[];
+  errors?: TableEditableConfigDataErrors;
+}
+
+export interface TableEditableConfigDataErrors {
+  [rowIdx: string]: {
+    rowError?: string;
+    columnErrors?: { [columnId: string]: string };
+  };
+}
+
+export interface TableEditableConfigUrlObject {
   url: string;
   method?: string;
 }
 
-type TableEditableUrl = string | TableEditableUrlConfig;
+export type TableEditableConfigUrl = string | TableEditableConfigUrlObject;
 
-export interface TableEditableButtonText
-  extends Partial<TableEditableButtonIcon> {
-  title: string;
-}
-
-export interface TableEditableButtonIcon {
+export interface TableEditableConfigButtonIcon {
   icon: string;
 }
 
-export type TableEditableButton =
-  | TableEditableButtonText
-  | TableEditableButtonIcon;
+export interface TableEditableConfigButtonText
+  extends Partial<TableEditableConfigButtonIcon> {
+  title: string;
+}
+
+export type TableEditableConfigButton =
+  | TableEditableConfigButtonText
+  | TableEditableConfigButtonIcon;
 
 export interface TableEditableEventData<T = unknown> {
   colId: string;

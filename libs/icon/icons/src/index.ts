@@ -18,3 +18,4 @@ export * from './maximize';
 export * from './settings';
 export * from './drag';
 export * from './reset';
+export * from './edit';

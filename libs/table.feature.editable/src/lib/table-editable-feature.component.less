@@ -1,37 +1,88 @@
-.table-editable {
-  &-wrapper {
+@import 'themes/default/theme.less';
+
+.@{table-editable-feature-prefix-cls} {
+  &__float {
+    &-cell {
+      margin-left: -@table-editable-feature-float-cell-x-padding;
+      padding: @table-editable-feature-float-cell-y-padding
+        @table-editable-feature-float-cell-x-padding;
+      background: @white;
+      box-shadow: @table-editable-feature-float-cell-shadow;
+      border-radius: @table-editable-feature-float-border-radius;
+    }
+
+    &-grid {
+      display: flex;
+      align-items: center;
+      margin: 0 -@table-editable-feature-float-col-x-padding;
+    }
+
+    &-col {
+      padding: 0 @table-editable-feature-float-col-x-padding;
+
+      .@{btn-prefix-cls}-core .@{btn-prefix-cls}-core__btn {
+        min-width: @table-editable-feature-float-btn-min-width;
+      }
+    }
+  }
+
+  &__wrapper {
+    display: inline-block;
+    position: relative;
+    padding: @table-editable-feature-wrapper-padding;
+    z-index: 0;
     cursor: text;
 
-    spy-icon {
-      margin-left: 5px;
+    &::before {
+      .transition-mixin(background);
+      content: '';
+      position: absolute;
+      top: @table-editable-feature-wrapper-bg-y-indents;
+      bottom: @table-editable-feature-wrapper-bg-y-indents;
+      left: 0;
+      right: 0;
+      background: transparent;
+      z-index: -1;
+      border-radius: @table-editable-feature-wrapper-border-radius;
+    }
+
+    &-icon {
+      .transition-mixin(opacity);
       opacity: 0;
+      position: absolute;
+      right: @table-editable-feature-wrapper-right-position;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: @table-editable-feature-wrapper-icon-size;
+      line-height: 0;
+      color: @gray-dark;
     }
 
     &:hover {
-      background-color: #ccc;
+      &::before {
+        background: @gray-lighter;
+      }
 
-      spy-icon {
+      .spy-table-editable-feature__wrapper-icon {
         opacity: 1;
       }
     }
-
-    &.editing {
-      cursor: default;
-      spy-icon {
-        opacity: 0;
-      }
-    }
   }
 
-  &-content {
+  &__error {
     display: flex;
-  }
+    align-items: center;
+    padding: @table-editable-feature-error-padding;
+    font-size: @table-editable-feature-error-size;
+    color: @red;
 
-  &-action {
-    cursor: pointer;
-
-    &:hover {
-      color: grey;
+    &-icon {
+      padding-right: @table-editable-feature-error-icon-right-padding;
+      font-size: @table-editable-feature-error-icon-size;
     }
   }
+}
+
+body {
+  background: #f8f8f8;
 }

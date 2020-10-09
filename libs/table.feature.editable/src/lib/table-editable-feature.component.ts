@@ -127,6 +127,8 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
 
       this.syncInput = [...(data as TableDataRow[])];
       this.stringifiedSyncInput = JSON.stringify(this.syncInput);
+      // Fix ExpressionChangedAfterItHasBeenCheckedError error
+      this.cdr.detectChanges();
 
       return data;
     }),
@@ -240,7 +242,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     config: TableColumn,
     columns: TableEditableColumn[],
   ): TableEditableColumn | undefined {
-    return columns.find(column => column.id === config?.id);
+    return columns.find(column => column.id === config.id);
   }
 
   // Disables submit button if value of appropriate cell is undefined
@@ -261,6 +263,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     editColumns: TableColumn[],
     elementRef: ElementRef,
   ): void {
+    console.log('clicked');
     const config = this.getEditColumn(
       cellContext.config,
       editColumns,
@@ -270,8 +273,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     const positionStrategy = this.overlay
       .position()
       .flexibleConnectedTo(elementRef)
-      .withFlexibleDimensions(false)
-      .withLockedPosition(true)
       .withPositions([
         {
           originX: 'start',

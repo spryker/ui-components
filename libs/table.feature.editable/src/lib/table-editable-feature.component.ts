@@ -263,7 +263,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     editColumns: TableColumn[],
     elementRef: ElementRef,
   ): void {
-    console.log('clicked');
     const config = this.getEditColumn(
       cellContext.config,
       editColumns,

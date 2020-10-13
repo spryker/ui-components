@@ -18,10 +18,6 @@ import {
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 import { IStory } from '@storybook/angular';
-import {
-  TableColumnInputComponent,
-  TableColumnInputModule,
-} from '@spryker/table.column.input';
 
 import { TableEditableFeatureModule } from './table-editable-feature.module';
 import { TableEditableService } from './table-editable-feature.service';
@@ -138,19 +134,14 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
       'mock-data': MockTableDatasourceService,
     }),
     TableModule.withColumnComponents({
-      edit: TableColumnInputComponent,
+      edit: EditColumnComponent,
     } as any),
     DefaultContextSerializationModule,
     NotificationModule.forRoot(),
-    TableColumnInputModule,
   ],
   exports: [TableModule],
   declarations: [EditColumnComponent],
-  entryComponents: [
-    LayoutFlatHostComponent,
-    EditColumnComponent,
-    TableColumnInputComponent,
-  ],
+  entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
 })
 class StoryModule {}
 

@@ -9,6 +9,9 @@ import {
 import { fromEvent, Observable, ReplaySubject, Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
+/**
+ * Adds custom querySelector that acts as a scrolling container.
+ */
 @Directive({
   selector: '[spyRedirectedCdkScrollable]',
 })
@@ -34,8 +37,8 @@ export class RedirectedCdkScrollableDirective extends CdkScrollable
 
   ngOnChanges(changes: SimpleChanges): void {
     if (
-      'redirectedCdkScrollable' in changes &&
-      !changes.redirectedCdkScrollable.firstChange
+      'spyRedirectedCdkScrollable' in changes &&
+      !changes.spyRedirectedCdkScrollable.firstChange
     ) {
       this.updateElementRef();
     }

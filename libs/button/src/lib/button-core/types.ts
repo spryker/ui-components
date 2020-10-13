@@ -2,6 +2,7 @@ export enum ButtonVariant {
   Primary = 'primary',
   Secondary = 'secondary',
   Critical = 'critical',
+  Link = 'link',
 }
 
 export enum ButtonShape {

@@ -8,8 +8,8 @@ import {
   IconRemoveModule,
 } from '@spryker/icon/icons';
 import { I18nModule } from '@spryker/locale';
-import { NzSelectModule } from 'ng-zorro-antd/select';
 import { JoinModule } from '@spryker/utils';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import { SelectComponent } from './select/select.component';
 

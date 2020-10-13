@@ -15,7 +15,12 @@
     [nzValidatingTip]="hint"
   >
     <ng-template #errorMessage>
-      <i nz-icon nzType="info-circle" nzTheme="outline"></i> {{ error }}
+      <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+      <span
+        class="ant-form-item-explain-text"
+        [attr.title]="withErrorTitle ? error : null"
+        >{{ error }}</span
+      >
     </ng-template>
     <ng-content select="[control]"></ng-content>
   </nz-form-control>

@@ -231,7 +231,8 @@ export class CoreTableComponent
       config: TableColumn,
       row: TableDataRow,
       i: number,
-    ): TableColumnContext => ({ config, row, i, value: row[config.id] }),
+      j: number,
+    ): TableColumnContext => ({ config, row, i, j, value: row[config.id] }),
   );
 
   isLoading$ = merge(

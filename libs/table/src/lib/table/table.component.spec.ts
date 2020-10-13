@@ -234,6 +234,9 @@ describe('TableComponent', () => {
       verifyColumnsRequest();
       host.detectChanges();
 
+      tick();
+      host.detectChanges();
+
       const topFeaturesElem = host.queryCss(
         '.ant-table-features--top .top-feature',
       );
@@ -262,7 +265,7 @@ describe('TableComponent', () => {
         'thead th:nth-child(5) .after-cols-header-feature',
       );
       const beforeRowsFeaturesElem = host.queryCss(
-        'tbody tr:nth-child(1) .before-rows-feature',
+        'tbody tr:nth-child(1).before-rows-feature',
       );
       const beforeColsFeaturesElem = host.queryCss(
         'tbody tr:nth-child(2) td:first-child .before-cols-feature',
@@ -274,7 +277,7 @@ describe('TableComponent', () => {
         'tbody tr:nth-child(2) td:nth-child(5) .after-cols-feature',
       );
       const afterRowsFeaturesElem = host.queryCss(
-        'tbody tr:nth-child(3) .after-rows-feature',
+        'tbody tr:nth-child(3).after-rows-feature',
       );
 
       expect(topFeaturesElem).toBeTruthy();
@@ -286,10 +289,10 @@ describe('TableComponent', () => {
       expect(beforeColsHeaderFeaturesElem).toBeTruthy();
       expect(headerFeaturesElems.length).toBe(3);
       expect(afterColsHeaderFeaturesElem).toBeTruthy();
-      expect(beforeRowsFeaturesElem).toBeTruthy();
       expect(beforeColsFeaturesElem).toBeTruthy();
       expect(cellFeaturesElems.length).toBe(3);
       expect(afterColsFeaturesElem).toBeTruthy();
+      expect(beforeRowsFeaturesElem).toBeTruthy();
       expect(afterRowsFeaturesElem).toBeTruthy();
     }));
   });

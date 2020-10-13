@@ -81,7 +81,7 @@ export abstract class TableFeatureComponent<
     .find([])
     .create<TableFeatureTplDirective>();
 
-  constructor(private injector: Injector) {}
+  constructor(protected injector: Injector) {}
 
   ngAfterViewInit(): void {
     if (!this.tplDirectives) {

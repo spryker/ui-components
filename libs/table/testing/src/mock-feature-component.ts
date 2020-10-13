@@ -60,12 +60,12 @@ import {
     >
       Header Ext Feature
     </div>
-    <div
+    <tr
       *spyTableFeatureTpl="tableFeatureLocation.beforeRows"
       class="before-rows-feature"
     >
-      Before Rows Feature
-    </div>
+      <td>Before Rows Feature</td>
+    </tr>
     <div
       *spyTableFeatureTpl="tableFeatureLocation.beforeCols"
       class="before-cols-feature"
@@ -81,12 +81,12 @@ import {
     >
       After Cols Feature
     </div>
-    <div
+    <tr
       *spyTableFeatureTpl="tableFeatureLocation.afterRows"
       class="after-rows-feature"
     >
-      After Rows Feature
-    </div>
+      <td>After Rows Feature</td>
+    </tr>
   `,
 })
 export class MockFeatureComponent extends TableFeatureComponent {

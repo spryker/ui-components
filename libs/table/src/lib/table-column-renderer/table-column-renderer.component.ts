@@ -29,6 +29,7 @@ export class TableColumnRendererComponent implements OnChanges {
   @Input() data?: TableDataRow;
   @Input() template?: TemplateRef<TableColumnTplContext>;
   @Input() i?: number;
+  @Input() j?: number;
 
   itemConfig?: OrchestratorConfigItem;
   originalConfig?: TableColumn;
@@ -51,11 +52,19 @@ export class TableColumnRendererComponent implements OnChanges {
     if (changes.config || changes.data) {
       this.updateValues();
     } else if (changes.i) {
+      this.updateDataValues();
       this.updateTplContext();
     }
   }
 
   private updateValues(): void {
+    this.updateDataValues();
+    this.updateTplContext();
+    this.updateConfig();
+    this.updateItemConfig();
+  }
+
+  private updateDataValues(): void {
     if (!this.config) {
       return;
     }
@@ -63,10 +72,6 @@ export class TableColumnRendererComponent implements OnChanges {
     this.emptyValue = this.config.emptyValue || this.defaultEmptyValue;
     this.value = this.data?.[this.config.id];
     this.isValueUndefined = this.value === undefined || this.value === null;
-
-    this.updateTplContext();
-    this.updateConfig();
-    this.updateItemConfig();
   }
 
   private updateConfig(): void {
@@ -89,6 +94,8 @@ export class TableColumnRendererComponent implements OnChanges {
       value: this.value,
       // tslint:disable-next-line: no-non-null-assertion
       i: this.i!,
+      // tslint:disable-next-line: no-non-null-assertion
+      j: this.j!,
     };
   }
 

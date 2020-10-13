@@ -8,7 +8,12 @@ import {
 import { IconModule } from '@spryker/icon';
 import { I18nModule } from '@spryker/locale';
 import { PopoverModule } from '@spryker/popover';
-import { ContextModule, InvokeModule, PluckModule } from '@spryker/utils';
+import {
+  ContextModule,
+  InvokeModule,
+  PluckModule,
+  RedirectedCdkScrollableModule,
+} from '@spryker/utils';
 import { SelectComponentsModule } from '@spryker/web-components';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -54,6 +59,7 @@ import {
     I18nModule,
     PopoverModule,
     InvokeModule,
+    RedirectedCdkScrollableModule,
   ],
   declarations: [
     CoreTableComponent,
@@ -64,7 +70,12 @@ import {
     TableRenderFeatureDirective,
     TableColumnListComponent,
   ],
-  exports: [CoreTableComponent, ColTplDirective, TableFeatureModule],
+  exports: [
+    CoreTableComponent,
+    ColTplDirective,
+    TableFeatureModule,
+    TableColumnRendererComponent,
+  ],
 })
 export class TableModule {
   static forRoot(): ModuleWithProviders<TableModule> {

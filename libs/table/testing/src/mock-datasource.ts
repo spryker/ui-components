@@ -17,7 +17,7 @@ import {
   TableDataMockGenerator,
   generateMockTableDataForOptions,
 } from './mock-data';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, delay } from 'rxjs/operators';
 import { InjectionTokenType } from '@spryker/utils';
 
 export const MockTableDatasourceToken = new InjectionToken<
@@ -46,6 +46,7 @@ export class MockTableDatasourceService
       datasource.dataGenerator ?? this.dataGenerator ?? (() => ({}));
 
     return dataConfig$.pipe(
+      delay(0),
       switchMap(config =>
         of(
           generateMockTableDataForOptions(

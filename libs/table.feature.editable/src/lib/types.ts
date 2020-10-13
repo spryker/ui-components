@@ -43,11 +43,13 @@ export interface TableEditableConfigCreateData {
   errors?: TableEditableConfigDataErrors;
 }
 
+export interface TableEditableConfigDataErrorsFields {
+  rowError?: string;
+  columnErrors?: { [columnId: string]: string | undefined };
+}
+
 export interface TableEditableConfigDataErrors {
-  [rowIdx: string]: {
-    rowError?: string;
-    columnErrors?: { [columnId: string]: string };
-  };
+  [rowIdx: string]: TableEditableConfigDataErrorsFields;
 }
 
 export interface TableEditableConfigUrlObject {

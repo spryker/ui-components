@@ -240,6 +240,16 @@
           border-color: @table-row-border-color-with-errors;
         }
       }
+
+      .@{form-item-prefix-cls} {
+        &-has-error {
+          padding-top: 21px;
+        }
+
+        &-explain {
+          white-space: nowrap;
+        }
+      }
     }
 
     &:first-child > td .@{table-prefix-cls}-column-inner::after {

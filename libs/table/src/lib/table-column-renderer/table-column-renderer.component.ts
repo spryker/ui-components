@@ -49,7 +49,7 @@ export class TableColumnRendererComponent implements OnChanges {
       this.config = { ...this.originalConfig } as TableColumn;
     }
 
-    if (changes.config || changes.data || changes.i) {
+    if (changes.config || changes.data) {
       this.updateValues();
     } else if (changes.i) {
       this.updateDataValues();

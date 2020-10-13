@@ -137,7 +137,7 @@
     <ng-container *ngIf="editColumns$ | async as editColumns">
       <ng-container
         *ngIf="
-          checkIfIdExtists | spyInvoke: config:editColumns;
+          findColumnByColumn | spyInvoke: config:editColumns;
           else defaultCell
         "
       >
@@ -147,6 +147,7 @@
             class="spy-table-editable-feature__wrapper"
             (click)="
               openEditableCell(
+                $event,
                 i,
                 j,
                 updateConfig,
@@ -220,7 +221,7 @@
           <spy-button
             [size]="buttonSize.Medium"
             [variant]="buttonVariant.Link"
-            (click)="closeEditableCell(i, j)"
+            (click)="closeEditableCell(i, j, config.id)"
           >
             <spy-icon
               class="spy-button-core__btn-icon"

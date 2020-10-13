@@ -1,4 +1,7 @@
-<spy-form-item [error]="config?.editableError | context: context">
+<spy-form-item
+  [error]="config?.editableError | context: context"
+  withErrorTitle="true"
+>
   <spy-input
     [value]="context?.value | context: context"
     [type]="config?.type | context: context"

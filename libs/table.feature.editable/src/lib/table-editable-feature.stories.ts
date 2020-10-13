@@ -1,12 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  Component,
-  ElementRef,
-  Injectable,
-  Input,
-  NgModule,
-} from '@angular/core';
+import { Component, Injectable, Input, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { NotificationModule } from '@spryker/notification';
@@ -24,9 +18,13 @@ import {
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 import { IStory } from '@storybook/angular';
+import {
+  TableColumnInputComponent,
+  TableColumnInputModule,
+} from '@spryker/table.column.input';
 
 import { TableEditableFeatureModule } from './table-editable-feature.module';
-import { TableEditableEvent } from './types';
+import { TableEditableService } from './table-editable-feature.service';
 
 export default {
   title: 'TableEditableFeatureComponent',
@@ -102,32 +100,31 @@ class EditColumnConfig {
   selector: 'spy-edit-column',
   template: `
     Edit Column {{ context.config.id }}
-    <p>
+    <div>
       <input
         [type]="config?.type"
         [value]="context?.value"
         (input)="updateValue(input.value)"
-        [ngStyle]="{ border: '1px solid red' }"
+        [ngStyle]="{ border: '1px solid black' }"
         #input
       />
-    </p>
+      <div>
+        {{ config?.editableError }}
+      </div>
+    </div>
   `,
+  providers: [TableEditableService],
 })
 @TableColumnTypeComponent(EditColumnConfig)
 class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
   @Input() config?: EditColumnConfig;
   @Input() context?: TableColumnContext;
 
-  constructor(private elemRef: ElementRef<HTMLElement>) {}
+  constructor(private tableEditableService: TableEditableService) {}
 
   updateValue(value: string) {
-    const editableEvent = new TableEditableEvent({
-      value,
-      // tslint:disable-next-line: no-non-null-assertion
-      colId: this.context?.config.id!,
-    });
-
-    this.elemRef.nativeElement.dispatchEvent(editableEvent);
+    // tslint:disable-next-line: no-non-null-assertion
+    this.tableEditableService.updateValue(value, this.context!.config);
   }
 }
 
@@ -141,14 +138,19 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
       'mock-data': MockTableDatasourceService,
     }),
     TableModule.withColumnComponents({
-      edit: EditColumnComponent,
+      edit: TableColumnInputComponent,
     } as any),
     DefaultContextSerializationModule,
     NotificationModule.forRoot(),
+    TableColumnInputModule,
   ],
   exports: [TableModule],
   declarations: [EditColumnComponent],
-  entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
+  entryComponents: [
+    LayoutFlatHostComponent,
+    EditColumnComponent,
+    TableColumnInputComponent,
+  ],
 })
 class StoryModule {}
 

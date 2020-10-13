@@ -23,6 +23,7 @@ export class FormItemComponent implements OnInit, OnChanges {
   @Input() @ToBoolean() required = false;
   @Input() @ToBoolean() noSpaces = false;
   @Input() @ToBoolean() noLabel = false;
+  @Input() @ToBoolean() withErrorTitle = false;
   currentValidationStatus = '';
 
   ngOnInit() {

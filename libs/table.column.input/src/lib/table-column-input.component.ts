@@ -1,21 +1,17 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  Input,
+  Component,
   Injectable,
+  Input,
   ViewEncapsulation,
-  SimpleChanges,
 } from '@angular/core';
 import {
-  TableEditableColumn,
-  TableEditableService,
-} from '@spryker/table.feature.editable';
-import {
   ColumnTypeOption,
-  TableColumnContext,
   TableColumnComponent,
+  TableColumnContext,
   TableColumnTypeComponent,
 } from '@spryker/table';
+import { TableEditableService } from '@spryker/table.feature.editable';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
@@ -37,6 +33,7 @@ export class TableColumnInputConfig {
   outerPrefix?: string;
   @ColumnTypeOption()
   outerSuffix?: string;
+  @ColumnTypeOption()
   editableError?: string;
 }
 

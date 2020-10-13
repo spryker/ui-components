@@ -70,6 +70,7 @@ export class TableColumnSelectConfig {
   selectAllTitle?: string;
   @ColumnTypeOption()
   noOptionsText?: string;
+  @ColumnTypeOption()
   editableError?: string;
 }
 

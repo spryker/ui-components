@@ -1,4 +1,4 @@
-import { OverlayModule } from '@angular/cdk/overlay';
+import { OverlayModule, Overlay } from '@angular/cdk/overlay';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import {
@@ -29,6 +29,11 @@ import {
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
 
 const mockColumns = { id: 'col1', title: 'col1' };
+const mockUpdateConfig = {
+  url: 'test-url',
+  saveButton: { title: 'Save' },
+  cancelButton: { title: 'Cancel Update' },
+};
 
 const mockConfig = {
   columns: [{ id: 'col1', type: 'edit' }],
@@ -48,12 +53,30 @@ const mockConfig = {
       },
     },
   },
-  update: {
-    url: 'test-url',
-    saveButton: { title: 'Save' },
-    cancelButton: { title: 'Cancel Update' },
-  },
+  update: mockUpdateConfig,
 };
+
+class MockWithPositions {
+  withPositions = jest.fn().mockReturnValue('withPositions');
+}
+class MockFlexibleConnectedTo {
+  flexibleConnectedTo = jest.fn().mockReturnValue(new MockWithPositions());
+}
+
+class MockOverlayRef {
+  attach = jest.fn();
+  dispose = jest.fn();
+}
+
+class MockOverlayService {
+  mockOverlayRef = new MockOverlayRef();
+
+  create = jest.fn().mockReturnValue(this.mockOverlayRef);
+  position = jest.fn().mockReturnValue(new MockFlexibleConnectedTo());
+  scrollStrategies = {
+    reposition: jest.fn().mockReturnValue('repositionScrollStrategies'),
+  };
+}
 
 @Component({
   selector: 'spy-test-host',
@@ -68,6 +91,7 @@ class TestHostComponent {}
 describe('TableEditableFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
+  let overlayService: MockOverlayService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -116,6 +140,11 @@ describe('TableEditableFeatureComponent', () => {
             },
           },
         },
+        {
+          provide: Overlay,
+          useExisting: MockOverlayService,
+        },
+        MockOverlayService,
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -132,6 +161,7 @@ describe('TableEditableFeatureComponent', () => {
 
     testTableFeature.featureMocks?.table.columns$?.next([mockColumns]);
 
+    overlayService = TestBed.inject(MockOverlayService);
     fixture.detectChanges();
   }));
 
@@ -254,6 +284,98 @@ describe('TableEditableFeatureComponent', () => {
       fixture.detectChanges();
 
       expect(featureElem.componentInstance.openEditableCell).toHaveBeenCalled();
+    });
+
+    it('should invoke `overlayService.create` method when `spy-table-editable-feature__wrapper` has been clicked', async () => {
+      const featureElem = fixture.debugElement.query(
+        By.css('spy-table-editable-feature'),
+      );
+
+      const mockOpenEditableCellArguments = {
+        event: new Event('click'),
+        rowIndex: 0,
+        cellIndex: 0,
+        updateConfig: mockUpdateConfig,
+        row: { col1: 'col1' },
+        cellContext: {
+          config: { id: 'col1', title: 'Column #1' },
+          i: 0,
+          j: 0,
+          row: { col1: '0 col1' },
+          value: '0 col1',
+        },
+        editColumns: [{ id: 'col1', type: 'edit' }],
+      };
+
+      featureElem.componentInstance.openEditableCell(
+        mockOpenEditableCellArguments.event,
+        mockOpenEditableCellArguments.rowIndex,
+        mockOpenEditableCellArguments.cellIndex,
+        mockOpenEditableCellArguments.updateConfig,
+        mockOpenEditableCellArguments.row,
+        mockOpenEditableCellArguments.cellContext,
+        mockOpenEditableCellArguments.editColumns,
+      );
+      fixture.detectChanges();
+
+      expect(overlayService.create).toHaveBeenCalledWith({
+        positionStrategy: 'withPositions',
+        scrollStrategy: 'repositionScrollStrategies',
+      });
+    });
+
+    it('should invoke `overlayRef.attach` method when `spy-table-editable-feature__wrapper` has been clicked', async () => {
+      const featureElem = fixture.debugElement.query(
+        By.css('spy-table-editable-feature'),
+      );
+      const featureInstance = featureElem.componentInstance;
+
+      const mockOpenEditableCellArguments = {
+        event: new Event('click'),
+        rowIndex: 0,
+        cellIndex: 0,
+        updateConfig: mockUpdateConfig,
+        row: { col1: 'col1' },
+        cellContext: {
+          config: { id: 'col1', title: 'Column #1' },
+          i: 0,
+          j: 0,
+          row: { col1: '0 col1' },
+          value: '0 col1',
+        },
+        editColumns: [{ id: 'col1', type: 'edit' }],
+      };
+
+      featureInstance.openEditableCell(
+        mockOpenEditableCellArguments.event,
+        mockOpenEditableCellArguments.rowIndex,
+        mockOpenEditableCellArguments.cellIndex,
+        mockOpenEditableCellArguments.updateConfig,
+        mockOpenEditableCellArguments.row,
+        mockOpenEditableCellArguments.cellContext,
+        mockOpenEditableCellArguments.editColumns,
+      );
+      fixture.detectChanges();
+      const mockCellConfig = featureInstance.getEditColumn(
+        mockOpenEditableCellArguments.cellContext.config,
+        mockOpenEditableCellArguments.editColumns,
+        mockOpenEditableCellArguments.rowIndex,
+        featureInstance.cellErrors,
+      );
+
+      expect(overlayService.mockOverlayRef.attach).toHaveBeenCalledWith(
+        expect.objectContaining({
+          templateRef: featureInstance.editableCell,
+          context: {
+            $implicit: mockOpenEditableCellArguments.updateConfig,
+            i: mockOpenEditableCellArguments.rowIndex,
+            j: mockOpenEditableCellArguments.cellIndex,
+            row: mockOpenEditableCellArguments.row,
+            cellContext: mockOpenEditableCellArguments.cellContext,
+            config: mockCellConfig,
+          },
+        }),
+      );
     });
   });
 });

@@ -10,11 +10,11 @@ import { fromEvent, Observable, ReplaySubject, Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
 @Directive({
-  selector: '[spy-redirected-cdk-scrollable], [redirectedCdkScrollable]',
+  selector: '[spyRedirectedCdkScrollable]',
 })
 export class RedirectedCdkScrollableDirective extends CdkScrollable
   implements AfterViewInit {
-  @Input() redirectedCdkScrollable = 'body';
+  @Input() spyRedirectedCdkScrollable?: string;
 
   private queryElement$ = new ReplaySubject<ElementRef<HTMLElement>>();
   private destroyed$ = new Subject<void>();
@@ -42,13 +42,17 @@ export class RedirectedCdkScrollableDirective extends CdkScrollable
   }
 
   updateElementRef(): void {
+    if (!this.spyRedirectedCdkScrollable) {
+      return;
+    }
+
     const customElementRef = this.elementRef.nativeElement.querySelector(
-      this.redirectedCdkScrollable,
+      this.spyRedirectedCdkScrollable,
     );
 
     if (!customElementRef) {
       throw new Error(
-        `redirected element does not exist with selector ${this.redirectedCdkScrollable}`,
+        `RedirectedCdkScrollableDirective: Element does not exist with selector ${this.spyRedirectedCdkScrollable}`,
       );
     }
 

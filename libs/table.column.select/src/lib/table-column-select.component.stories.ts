@@ -29,7 +29,11 @@ const tableDataGenerator: TableDataMockGenerator = i => ({
 
 export const primary = (): IStory => ({
   moduleMetadata: {
-    imports: [TableColumnSelectModule, DefaultContextSerializationModule],
+    imports: [
+      TableColumnSelectModule,
+      DefaultContextSerializationModule,
+      BrowserAnimationsModule,
+    ],
   },
   component: TableColumnSelectComponent,
   props: {

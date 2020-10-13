@@ -1,6 +1,9 @@
 import { Injectable, ElementRef } from '@angular/core';
 import { TableEditableColumn, TableEditableEvent } from './types';
 
+/**
+ * Dispatches custom {@link TableEditableEvent} with custom values arguments
+ */
 @Injectable()
 export class TableEditableService {
   constructor(private elementRef: ElementRef) {}

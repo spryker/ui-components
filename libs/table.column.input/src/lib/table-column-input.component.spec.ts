@@ -9,18 +9,16 @@ import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
 
 import { TableColumnInputComponent } from './table-column-input.component';
 
-const configMock: any = [
-  {
-    placeholder: 'testPlaceholder',
-    value: 'testValue',
-    type: 'testType',
-    prefix: 'testPrefix',
-    suffix: 'testSuffix',
-    outerPrefix: 'testOuterPrefix',
-    outerSuffix: 'testOuterSuffix',
-    editableError: 'testError',
-  },
-];
+const configMock: any = {
+  placeholder: 'testPlaceholder',
+  value: 'testValue',
+  type: 'testType',
+  prefix: 'testPrefix',
+  suffix: 'testSuffix',
+  outerPrefix: 'testOuterPrefix',
+  outerSuffix: 'testOuterSuffix',
+  editableError: 'testError',
+};
 
 const context: any = {
   value: 'testValue',
@@ -70,31 +68,22 @@ describe('TableColumnInputComponent', () => {
   });
 
   it('Template must render spy-form-item node', async () => {
-    const host = await createComponent(
-      { config: configMock[0], context },
-      true,
-    );
+    const host = await createComponent({ config: configMock, context }, true);
     const formItemElem = host.queryCss('spy-form-item');
 
     expect(formItemElem).toBeTruthy();
   });
 
   it('Input error MUST be bound to config.editableError', async () => {
-    const host = await createComponent(
-      { config: configMock[0], context },
-      true,
-    );
+    const host = await createComponent({ config: configMock, context }, true);
     const formItemElem = host.queryComponent(FormItemComponent);
 
-    expect(formItemElem?.error).toBe(configMock[0].editableError);
+    expect(formItemElem?.error).toBe(configMock.editableError);
   });
 
   it('Template must render spy-input node as [control]', async () => {
-    const host = await createComponent(
-      { config: configMock[0], context },
-      true,
-    );
-    const inputElem = host.queryCss('spy-input');
+    const host = await createComponent({ config: configMock, context }, true);
+    const inputElem = host.queryCss('spy-input[control]');
 
     expect(inputElem).toBeTruthy();
 
@@ -105,82 +94,58 @@ describe('TableColumnInputComponent', () => {
 
   describe('@Input()', () => {
     it('`prefix` must be bound to `prefix` input of the `spy-input` element', async () => {
-      const host = await createComponent(
-        { config: configMock[0], context },
-        true,
-      );
+      const host = await createComponent({ config: configMock, context }, true);
       const inputElem = host.queryComponent(InputComponent);
 
-      expect(inputElem?.prefix).toBe(configMock[0].prefix);
+      expect(inputElem?.prefix).toBe(configMock.prefix);
     });
 
     it('`suffix` must be bound to `suffix` input of the `spy-input` element', async () => {
-      const host = await createComponent(
-        { config: configMock[0], context },
-        true,
-      );
+      const host = await createComponent({ config: configMock, context }, true);
       const inputElem = host.queryComponent(InputComponent);
 
-      expect(inputElem?.suffix).toBe(configMock[0].suffix);
+      expect(inputElem?.suffix).toBe(configMock.suffix);
     });
 
     it('`outerPrefix` must be bound to `outerPrefix` input of the `spy-input` element', async () => {
-      const host = await createComponent(
-        { config: configMock[0], context },
-        true,
-      );
+      const host = await createComponent({ config: configMock, context }, true);
       const inputElem = host.queryComponent(InputComponent);
 
-      expect(inputElem?.outerPrefix).toBe(configMock[0].outerPrefix);
+      expect(inputElem?.outerPrefix).toBe(configMock.outerPrefix);
     });
 
     it('`outerSuffix` must be bound to `outerSuffix` input of the `spy-input` element', async () => {
-      const host = await createComponent(
-        { config: configMock[0], context },
-        true,
-      );
+      const host = await createComponent({ config: configMock, context }, true);
       const inputElem = host.queryComponent(InputComponent);
 
-      expect(inputElem?.outerSuffix).toBe(configMock[0].outerSuffix);
+      expect(inputElem?.outerSuffix).toBe(configMock.outerSuffix);
     });
 
     it('`value` must be bound to `value` input of the `spy-input` element', async () => {
-      const host = await createComponent(
-        { config: configMock[0], context },
-        true,
-      );
+      const host = await createComponent({ config: configMock, context }, true);
       const inputElem = host.queryComponent(InputComponent);
 
-      expect(inputElem?.value).toBe(configMock[0].value);
+      expect(inputElem?.value).toBe(configMock.value);
     });
 
     it('`type` must be bound to `type` input of the `spy-input` element', async () => {
-      const host = await createComponent(
-        { config: configMock[0], context },
-        true,
-      );
+      const host = await createComponent({ config: configMock, context }, true);
       const inputElem = host.queryComponent(InputComponent);
 
-      expect(inputElem?.type).toBe(configMock[0].type);
+      expect(inputElem?.type).toBe(configMock.type);
     });
 
     it('`placeholder` must be bound to `placeholder` input of the `spy-input` element', async () => {
-      const host = await createComponent(
-        { config: configMock[0], context },
-        true,
-      );
+      const host = await createComponent({ config: configMock, context }, true);
       const inputElem = host.queryComponent(InputComponent);
 
-      expect(inputElem?.placeholder).toBe(configMock[0].placeholder);
+      expect(inputElem?.placeholder).toBe(configMock.placeholder);
     });
   });
 
   describe('@Output()', () => {
-    it('must be triggered on `valueChange` output of the `spy-input` element', async () => {
-      const host = await createComponent(
-        { config: configMock[0], context },
-        true,
-      );
+    it('`valueChange` of the `spy-input` element should trigger `TableEditableService.updateValue()`', async () => {
+      const host = await createComponent({ config: configMock, context }, true);
       const mockValue = 'value';
       const inputElem = host.queryCss('spy-input');
 
@@ -190,6 +155,16 @@ describe('TableColumnInputComponent', () => {
         mockValue,
         context.config,
       );
+    });
+
+    it('`valueChange` of the `spy-input` element should update `context.value`', async () => {
+      const host = await createComponent({ config: configMock, context }, true);
+      const mockValue = 'value';
+      const inputElem = host.queryCss('spy-input');
+
+      inputElem!.triggerEventHandler('valueChange', mockValue);
+
+      expect(host.component.context?.value).toBe(mockValue);
     });
   });
 });

@@ -44,7 +44,7 @@
           <nz-table
             nzFrontPagination="false"
             [nzLoading]="isLoading$ | async"
-            [redirectedCdkScrollable]="'.ant-table-content'"
+            [spyRedirectedCdkScrollable]="'.ant-table-content'"
           >
             <thead nzSortFn="true" (nzSortOrderChange)="updateSorting($event)">
               <tr>

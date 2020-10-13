@@ -10,7 +10,7 @@ import { fromEvent, Observable, ReplaySubject, Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
 /**
- * Adds custom querySelector that acts as a scrolling container.
+ * Tracks scroll events in the children element by selector using {@link CdkScrollable} directive
  */
 @Directive({
   selector: '[spyRedirectedCdkScrollable]',

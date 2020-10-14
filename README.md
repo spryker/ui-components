@@ -254,6 +254,34 @@ These are the release branches (`git branch` => `@npm tag`):
 
 - `master` => `@latest`
 - `next` => `@next`
+- `beta` => `@beta`
+
+### Release Recovery
+
+#### NPM
+
+Sometimes publishing to NPM may fail due to several reasons:
+
+- NPM services experience outages
+- Configuration of certain packages prevent them from being published by NPM
+  (ex. public access is not explicitly set)
+
+This may result in some or all packages not published even when version
+and changelogs were updated and pushed back to git.
+
+In this case you need to:
+
+1. Make sure that the issue that prevented packages from publishing is resolved
+2. Merge the branch that failed into related `recovery` branch (add to name postfix `/republish`)
+
+**Recovery branches for republishing:**
+
+- `master` => `mater/republish`
+- `next` => `next/republish`
+- `beta` => `beta/republish`
+
+After branch is pushed to CI it will attempt to find unpublished packages in NPM
+and try to publish them again with the same versions.
 
 ---
 

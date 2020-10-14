@@ -56,6 +56,14 @@ jobs:
             all_branches: true
             condition: '$TRAVIS_BRANCH =~ ^(master)$'
         - provider: script
+          script: npm run release from-package
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(master/republish)$'
+        - provider: script
           script: npm run release-next
           skip_cleanup: true
           keep_history: true
@@ -64,6 +72,14 @@ jobs:
             all_branches: true
             condition: '$TRAVIS_BRANCH =~ ^(next)$'
         - provider: script
+          script: npm run release-next from-package
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(next/republish)$'
+        - provider: script
           script: npm run release-tag
           skip_cleanup: true
           keep_history: true
@@ -71,3 +87,11 @@ jobs:
             tags: false
             all_branches: true
             condition: '$TRAVIS_BRANCH =~ ^(beta)$'
+        - provider: script
+          script: npm run release-tag from-package
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(beta/republish)$'

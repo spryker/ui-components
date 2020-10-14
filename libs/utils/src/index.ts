@@ -21,5 +21,5 @@ export * from './lib/regex';
 export * from './lib/to-iso-date-format';
 export * from './lib/intersection-of-string';
 export * from './lib/invoke';
-export * from './lib/hookable-injector';
 export * from './lib/redirected-cdk-scrollable';
+export * from './lib/hookable-injector';

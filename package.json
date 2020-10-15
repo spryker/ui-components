@@ -92,8 +92,8 @@
     "@angular/compiler-cli": "^9.1.12",
     "@angular/language-service": "^9.1.12",
     "@babel/core": "^7.8.4",
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@compodoc/compodoc": "^1.1.11",
     "@nrwl/angular": "^9.2.3",
     "@nrwl/jest": "^9.2.3",
@@ -113,13 +113,13 @@
     "@webcomponents/webcomponentsjs": "^2.4.2",
     "babel-loader": "^8.1.0",
     "codelyzer": "^5.2.2",
-    "commitizen": "^4.0.3",
+    "commitizen": "^4.2.1",
     "copyfiles": "^2.2.0",
     "cz-conventional-changelog": "^3.1.0",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "fast-glob": "^3.1.1",
-    "firebase-tools": "^7.13.1",
+    "firebase-tools": "^8.12.1",
     "globby": "^11.0.0",
     "husky": "^4.2.1",
     "jest": "^25.2.4",
@@ -154,8 +154,7 @@
   },
   "lint-staged": {
     "*.{jsx?,tsx?,json,s?css,less,html}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "husky": {

@@ -4,7 +4,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
-import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
+import {
+  map,
+  pluck,
+  shareReplay,
+  switchMap,
+  withLatestFrom,
+} from 'rxjs/operators';
 
 import { TablePaginationConfig } from './types';
 
@@ -33,14 +39,18 @@ export class TablePaginationFeatureComponent extends TableFeatureComponent<
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
-  total$ = this.tableData$.pipe(pluck('total'));
-  pageSize$ = this.tableData$.pipe(pluck('pageSize'));
-  page$ = this.tableData$.pipe(pluck('page'));
-  data$ = this.tableData$.pipe(pluck('data'));
   sizes$ = this.config$.pipe(
     pluck('sizes'),
     map(sizes => sizes ?? this.defaultSizes),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
+  total$ = this.tableData$.pipe(pluck('total'));
+  pageSize$ = this.tableData$.pipe(pluck('pageSize')).pipe(
+    withLatestFrom(this.sizes$),
+    map(([pageSize, sizes]) => pageSize ?? sizes[0]),
+  );
+  page$ = this.tableData$.pipe(pluck('page'));
+  data$ = this.tableData$.pipe(pluck('data'));
 
   updatePagination(page: number): void {
     this.dataConfiguratorService?.changePage(page);

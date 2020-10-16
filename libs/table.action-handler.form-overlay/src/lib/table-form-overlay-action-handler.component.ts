@@ -1,11 +1,10 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   ViewEncapsulation,
 } from '@angular/core';
 import { DrawerRef } from '@spryker/drawer';
 import { TableFormOverlayOptions } from './types';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'spy-table-form-overlay-action-handler',
@@ -18,9 +17,7 @@ import { Observable } from 'rxjs';
   },
 })
 export class TableFormOverlayActionHandlerComponent {
-  data$ = this.drawerRef.options.data;
+  data$ = this.drawerRef.data$;
 
-  constructor(
-    private drawerRef: DrawerRef<Observable<TableFormOverlayOptions>>,
-  ) {}
+  constructor(private drawerRef: DrawerRef<TableFormOverlayOptions>) {}
 }

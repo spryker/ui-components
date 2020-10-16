@@ -89,14 +89,14 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
         this.isColumnsRetrieved = true;
       }
     }),
-  ) as Observable<TableSettingsStorageData>;
+  );
 
   initialColumns$ = combineLatest([
     this.storageState$,
     this.setInitialColumns$,
   ]).pipe(
     map(([storageData, initialColumns]) =>
-      this.applyStorageSettings(storageData, initialColumns),
+      this.applyStorageSettings(initialColumns, storageData),
     ),
   );
 
@@ -308,8 +308,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   private applyStorageSettings(
-    storageData: TableSettingsStorageData,
     columns: TableSettingsColumns,
+    storageData?: TableSettingsStorageData,
   ): TableSettingsColumns {
     if (!storageData) {
       return columns;

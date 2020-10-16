@@ -1,25 +1,26 @@
-import { Observable, fromEvent, of, EMPTY } from 'rxjs';
-import {
-  switchMap,
-  shareReplay,
-  distinctUntilChanged,
-  map,
-  startWith,
-} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { EMPTY, fromEvent, Observable } from 'rxjs';
+import { map, shareReplay, startWith, tap } from 'rxjs/operators';
 import { PersistenceStrategy } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class UrlPersistenceStrategy implements PersistenceStrategy {
   private urlSearch$ = fromEvent(window, 'popstate').pipe(
     map(event => location.search),
+    // Trigger CD in next tick
+    tap(() => setTimeout(() => null)),
     startWith(location.search),
   );
 
   save(key: string, value: unknown): Observable<void> {
     const convertedValue = JSON.stringify(value);
     const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set(key, convertedValue);
+
+    if (convertedValue) {
+      urlParams.set(key, convertedValue);
+    } else {
+      urlParams.delete(key);
+    }
 
     const urlPathName = window.location.pathname;
     const urlHash = window.location.hash && `#${window.location.hash}`;
@@ -30,14 +31,13 @@ export class UrlPersistenceStrategy implements PersistenceStrategy {
     return EMPTY;
   }
 
-  retrieve<T>(key: string): Observable<T> {
+  retrieve<T>(key: string): Observable<T | undefined> {
     return this.urlSearch$.pipe(
-      distinctUntilChanged(),
-      switchMap(urlSearch => {
+      map(urlSearch => {
         const urlParams = new URLSearchParams(urlSearch);
         const value = urlParams.get(key);
 
-        return value ? of(JSON.parse(value)) : of(undefined);
+        return value ? (JSON.parse(value) as T) : undefined;
       }),
       shareReplay({ bufferSize: 1, refCount: true }),
     );

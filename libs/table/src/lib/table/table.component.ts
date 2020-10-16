@@ -285,13 +285,7 @@ export class CoreTableComponent
   private setTableId$ = new ReplaySubject<string>();
   tableId$ = this.setTableId$.pipe(
     startWith(undefined),
-    map(tableId => {
-      if (!tableId) {
-        tableId = `tableId-${this.count}`;
-      }
-
-      return tableId;
-    }),
+    map(tableId => tableId ?? `tableId-${this.count}`),
     shareReplay({ bufferSize: 1, refCount: false }),
   );
 

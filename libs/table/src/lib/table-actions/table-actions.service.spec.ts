@@ -62,15 +62,17 @@ describe('TableActionsService', () => {
   });
 
   it('should call `emit` of TableEventBus if actionHandler undefined', () => {
-    tableActionsService._setEventBus(new MockTableEventBus() as any);
+    const mockTableEventBus = new MockTableEventBus();
+
+    tableActionsService._setEventBus(mockTableEventBus as any);
     tableActionsService.trigger(mockActionWithoutType as any);
 
-    expect(tableActionsService.tableEventBus?.emit).toHaveBeenCalledWith(
+    expect(mockTableEventBus.emit).toHaveBeenCalledWith(
       'table',
       mockActionWithoutType,
       mockActionWithoutType.action.type,
     );
-    expect(tableActionsService.tableEventBus?.emit).toHaveBeenCalledWith(
+    expect(mockTableEventBus.emit).toHaveBeenCalledWith(
       'table',
       mockActionWithoutType,
     );

@@ -24,6 +24,7 @@ import { UnsavedChangesModule } from '@spryker/unsaved-changes';
 import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
 import { UnsavedChangesDrawerGuardModule } from '@spryker/unsaved-changes.guard.drawer';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { TableRowActionsFeatureModule } from '@spryker/table.feature.row-actions';
 
 import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
 import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
@@ -45,6 +46,7 @@ class StoryComponent {}
 
 @NgModule({
   imports: [
+    TableRowActionsFeatureModule, // To compile in Ivy
     BrowserAnimationsModule,
     TableModule.withActions({
       'form-overlay': TableFormOverlayActionHandlerService,
@@ -88,18 +90,20 @@ class StoryComponent {}
 class StoryModule {}
 
 const tableDataGenerator: TableDataMockGenerator = i => ({
+  _id: `row-${i}`,
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
 });
 
-const mockHtmlTemplate = () => `
+const mockHtmlTemplate = (request: TestRequest) => `
+  <h1>Row Id: ${request.request.url.match('\\?id=(.*)')?.[1]}</h1>
   <input type="text" name="name">
   <button type="submit">Submit</button>
 `;
 
 const tableResponse = (request: TestRequest): AjaxFormResponse => ({
-  form: mockHtmlTemplate(),
+  form: mockHtmlTemplate(request),
   notifications:
     request.request.method === 'POST'
       ? [
@@ -135,7 +139,7 @@ export const primary = () => ({
             title: '123',
             type: 'form-overlay',
             typeOptions: {
-              url: '/mock-url?${row.col1}',
+              url: '/mock-url?id=${row._id}',
               method: 'POST',
             },
           },

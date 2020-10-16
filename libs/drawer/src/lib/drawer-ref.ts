@@ -10,13 +10,22 @@ export class DrawerRef<D = DrawerData> {
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
+  private _data$ = new ReplaySubject<D>();
+  readonly data$ = this._data$.asObservable();
+
   constructor(
     public options: DrawerOptions<D>,
     private closeFn: () => Observable<void>,
     private maximizeFn: () => void,
     private minimizeFn: () => void,
     private refreshDrawerFn: () => void,
-  ) {}
+  ) {
+    this.updateData(options.data);
+  }
+
+  updateData(data?: D) {
+    this._data$.next(data);
+  }
 
   close(): Observable<void> {
     const close$ = this.closeFn().pipe(

@@ -29,6 +29,9 @@ export interface TableActionTriggeredEvent<
 export interface TableActionHandler<
   A extends TableActionBase = TableActionBase
 > {
+  tableInit?(injector: Injector): void;
+  tableDispose?(injector: Injector): void;
+
   handleAction(
     actionEvent: TableActionTriggeredEvent<A>,
     injector: Injector,

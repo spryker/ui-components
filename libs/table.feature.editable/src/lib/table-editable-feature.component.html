@@ -15,21 +15,26 @@
       }
     "
   >
-    <ng-container *ngIf="createConfig?.addButton as addButton">
-      <ng-container *ngIf="mockRowData$ | async as mockRowData">
-        <spy-button
-          class="spy-table-editable-feature__create-row"
-          [size]="buttonSize.Medium"
-          (click)="addRow(mockRowData)"
+    <ng-container *ngIf="mockRowData$ | async as mockRowData">
+      <spy-button
+        class="spy-table-editable-feature__create-row"
+        [size]="buttonSize.Medium"
+        (click)="addRow(mockRowData)"
+      >
+        <spy-icon
+          class="spy-button-core__btn-icon"
+          [name]="createConfig?.addButton?.icon || addRowIcon"
+        ></spy-icon>
+        <ng-container
+          *ngIf="createConfig?.addButton?.title; else defaultAddButtonText"
         >
-          <spy-icon
-            class="spy-button-core__btn-icon"
-            *ngIf="addButton?.icon"
-            [name]="addButton?.icon"
-          ></spy-icon>
-          {{ addButton?.title }}
-        </spy-button>
-      </ng-container>
+          {{ createConfig?.addButton?.title }}
+        </ng-container>
+
+        <ng-template #defaultAddButtonText>
+          {{ 'table.feature.editable.add-button-title' | spyI18n | async }}
+        </ng-template>
+      </spy-button>
     </ng-container>
   </ng-container>
 
@@ -78,25 +83,39 @@
               ></spy-table-column-renderer>
             </div>
           </td>
-          <ng-container *ngIf="createConfig?.cancelButton as cancelButton">
-            <td class="ant-table-cell">
-              <div class="ant-table-column-inner">
-                <spy-button
-                  class="spy-table-editable-feature__cancel-row"
-                  [variant]="buttonVariant.Link"
-                  [size]="buttonSize.Medium"
-                  (click)="cancelAddRow(i)"
+          <td class="ant-table-cell">
+            <div class="ant-table-column-inner">
+              <spy-button
+                class="spy-table-editable-feature__cancel-row"
+                [variant]="buttonVariant.Link"
+                [size]="buttonSize.Medium"
+                (click)="cancelAddRow(i)"
+              >
+                <spy-icon
+                  class="spy-button-core__btn-icon"
+                  *ngIf="createConfig?.cancelButton?.icon"
+                  [name]="createConfig?.cancelButton?.icon"
+                ></spy-icon>
+
+                <ng-container
+                  *ngIf="
+                    createConfig?.cancelButton?.title;
+                    else defaultCancelButtonText
+                  "
                 >
-                  <spy-icon
-                    class="spy-button-core__btn-icon"
-                    *ngIf="cancelButton?.icon"
-                    [name]="cancelButton?.icon"
-                  ></spy-icon>
-                  {{ cancelButton?.title }}
-                </spy-button>
-              </div>
-            </td>
-          </ng-container>
+                  {{ createConfig?.cancelButton?.title }}
+                </ng-container>
+
+                <ng-template #defaultCancelButtonText>
+                  {{
+                    'table.feature.editable.cancel-button-title'
+                      | spyI18n
+                      | async
+                  }}
+                </ng-template>
+              </spy-button>
+            </div>
+          </td>
         </tr>
 
         <ng-container *ngIf="getRowError | spyInvoke: i as rowError">
@@ -199,39 +218,58 @@
         ></spy-table-column-renderer>
       </div>
 
-      <ng-container *ngIf="updateConfig?.saveButton as saveButton">
-        <div class="spy-table-editable-feature__float-col">
-          <spy-button
-            [size]="buttonSize.Medium"
-            [disabled]="isDisabledSubmit(i, j)"
-            (click)="submitEdit(cellContext)"
-          >
-            <spy-icon
-              class="spy-button-core__btn-icon"
-              *ngIf="saveButton?.icon"
-              [name]="saveButton?.icon"
-            ></spy-icon>
-            {{ saveButton.title }}
-          </spy-button>
-        </div>
-      </ng-container>
+      <div class="spy-table-editable-feature__float-col">
+        <spy-button
+          [size]="buttonSize.Medium"
+          [disabled]="isDisabledSubmit(i, j)"
+          (click)="submitEdit(cellContext)"
+        >
+          <spy-icon
+            class="spy-button-core__btn-icon"
+            *ngIf="updateConfig?.saveButton?.icon"
+            [name]="updateConfig?.saveButton?.icon"
+          ></spy-icon>
 
-      <ng-container *ngIf="updateConfig?.cancelButton as cancelButton">
-        <div class="spy-table-editable-feature__float-col">
-          <spy-button
-            [size]="buttonSize.Medium"
-            [variant]="buttonVariant.Link"
-            (click)="closeEditableCell(i, j, config.id)"
+          <ng-container
+            *ngIf="updateConfig?.saveButton?.title; else defaultSaveButtonText"
           >
-            <spy-icon
-              class="spy-button-core__btn-icon"
-              *ngIf="cancelButton?.icon"
-              [name]="cancelButton?.icon"
-            ></spy-icon>
-            {{ cancelButton?.title }}
-          </spy-button>
-        </div>
-      </ng-container>
+            {{ updateConfig?.saveButton?.title }}
+          </ng-container>
+
+          <ng-template #defaultSaveButtonText>
+            {{ 'table.feature.editable.save-updates-title' | spyI18n | async }}
+          </ng-template>
+        </spy-button>
+      </div>
+
+      <div class="spy-table-editable-feature__float-col">
+        <spy-button
+          [size]="buttonSize.Medium"
+          [variant]="buttonVariant.Link"
+          (click)="closeEditableCell(i, j, config.id)"
+        >
+          <spy-icon
+            class="spy-button-core__btn-icon"
+            *ngIf="updateConfig?.cancelButton?.icon"
+            [name]="updateConfig?.cancelButton?.icon"
+          ></spy-icon>
+
+          <ng-container
+            *ngIf="
+              updateConfig?.cancelButton?.title;
+              else defaultCancelUpdatesButtonText
+            "
+          >
+            {{ updateConfig?.cancelButton?.title }}
+          </ng-container>
+
+          <ng-template #defaultCancelUpdatesButtonText>
+            {{
+              'table.feature.editable.cancel-updates-title' | spyI18n | async
+            }}
+          </ng-template>
+        </spy-button>
+      </div>
     </div>
   </div>
 </ng-template>

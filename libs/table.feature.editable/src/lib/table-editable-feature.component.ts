@@ -14,7 +14,11 @@ import {
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
-import { IconEditModule, IconWarningModule } from '@spryker/icon/icons';
+import {
+  IconEditModule,
+  IconWarningModule,
+  IconPlusModule,
+} from '@spryker/icon/icons';
 import {
   TableColumn,
   TableColumnContext,
@@ -75,6 +79,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   name = 'editable';
   editIcon = IconEditModule.icon;
   warningIcon = IconWarningModule.icon;
+  addRowIcon = IconPlusModule.icon;
   tableFeatureLocation = TableFeatureLocation;
   buttonSize = ButtonSize;
   buttonVariant = ButtonVariant;

@@ -25,6 +25,7 @@ import {
   DefaultContextSerializationModule,
   InvokeModule,
 } from '@spryker/utils';
+import { TestLocaleModule } from '@spryker/locale/testing';
 
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
 
@@ -100,6 +101,7 @@ describe('TableEditableFeatureComponent', () => {
         HttpClientTestingModule,
         DefaultContextSerializationModule,
         OverlayModule,
+        TestLocaleModule,
       ],
       declarations: [
         TestTableFeatureTplDirective,

@@ -3,6 +3,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, Injectable, Input, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { NotificationModule } from '@spryker/notification';
 import {
   TableColumnComponent,
@@ -51,8 +53,8 @@ const tableConfig = {
       { id: 'col4', type: 'edit' as any },
     ] as TableColumns,
     create: {
-      addButton: { title: 'addButton', icon: 'warning' },
-      cancelButton: { title: 'Cancel' },
+      addButton: {},
+      cancelButton: {},
       formInputName: 'form-input-name',
       initialData: {
         data: [
@@ -81,8 +83,8 @@ const tableConfig = {
     },
     update: {
       url: 'test-url',
-      saveButton: { title: 'Save' },
-      cancelButton: { title: 'Cancel' },
+      saveButton: {},
+      cancelButton: {},
     },
   },
 };
@@ -138,6 +140,8 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
     } as any),
     DefaultContextSerializationModule,
     NotificationModule.forRoot(),
+    LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+    EnLocaleModule,
   ],
   exports: [TableModule],
   declarations: [EditColumnComponent],

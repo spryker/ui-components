@@ -1,15 +1,15 @@
 {
   "name": "@spryker/table.feature.editable",
-  "version": "0.0.2-next.1",
+  "version": "0.0.2-next.2",
   "peerDependencies": {
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
     "@angular/forms": "^9.1.12",
     "@spryker/ajax-action": "^0.0.1-next.0",
-    "@spryker/locale": "^0.2.0-next.0",
     "@spryker/button": "^0.0.1-next.0",
     "@spryker/icon": "^0.0.1-next.0",
+    "@spryker/locale": "^0.2.0-next.0",
     "@spryker/table": "^0.0.1-next.0",
     "@spryker/utils": "^0.0.1-next.0"
   },

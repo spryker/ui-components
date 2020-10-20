@@ -154,12 +154,10 @@ export const withTable = (): IStory => ({
           date: {
             type: 'range',
             columns: 'col3',
-            preprocess: 'date',
           },
           date1: {
             type: 'range',
             columns: ['col3', 'col4'],
-            preprocess: 'date',
           },
         },
         search: {

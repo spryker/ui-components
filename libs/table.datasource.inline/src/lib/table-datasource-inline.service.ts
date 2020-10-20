@@ -16,6 +16,9 @@ import {
   TableDatasourceInlineConfigPreprocessor,
 } from './types';
 
+/**
+ * Returns data straight from the table configuration data to the table for rendering
+ */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceInlineService
   implements TableDatasource<TableDatasourceInlineConfig> {

@@ -4,6 +4,9 @@ import { InjectionTokenType } from '@spryker/utils';
 import { TableDatasourceProcessorsToken } from './tokens';
 import { TableDatasourceProcessorsDeclaration } from './types';
 
+/**
+ * Collects {@link TableDatasourceProcessorsDeclaration} by {@link TableDatasourceProcessorsToken} and invoke methods.
+ */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceProcessorService {
   private processorTypes: TableDatasourceProcessorsDeclaration = this.datasourceProcessors?.reduce(

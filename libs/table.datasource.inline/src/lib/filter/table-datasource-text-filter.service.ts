@@ -9,6 +9,9 @@ import {
   TableDatasourceInlineConfigPreprocessor,
 } from '../types';
 
+/**
+ * Filters data by value included in the column.
+ */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceTextFilter implements TableDatasourceFilter {
   constructor(private datasourceProcessor: TableDatasourceProcessorService) {}

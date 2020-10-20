@@ -3,6 +3,9 @@ import { toIsoDateFormat } from '@spryker/utils';
 
 import { TableDatasourceProcessor } from '../types';
 
+/**
+ * Processes date value.
+ */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceDateProcessor implements TableDatasourceProcessor {
   preprocess(value: string): number {

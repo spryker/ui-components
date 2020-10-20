@@ -14,6 +14,9 @@ export interface TableDatasourceRangeFilterValue {
   to: number | Date;
 }
 
+/**
+ * Filters data by value that is in range.
+ */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceRangeFilter implements TableDatasourceFilter {
   constructor(private datasourceProcessor: TableDatasourceProcessorService) {}

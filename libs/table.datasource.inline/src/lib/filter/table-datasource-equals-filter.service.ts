@@ -9,6 +9,9 @@ import {
   TableDatasourceInlineConfigPreprocessor,
 } from '../types';
 
+/**
+ * Filters data by value that matches the column value.
+ */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceEqualsFilter implements TableDatasourceFilter {
   constructor(private datasourceProcessor: TableDatasourceProcessorService) {}

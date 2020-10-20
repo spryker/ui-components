@@ -10,6 +10,9 @@ import {
   TableDatasourceInlineConfigPreprocessor,
 } from './types';
 
+/**
+ * Collects {@link TableDatasourceFiltersDeclaration} by {@link TableDatasourceFiltersToken} and invoke filter method.
+ */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceFilterService {
   private filterTypes: TableDatasourceFiltersDeclaration = this.datasourceFilters?.reduce(

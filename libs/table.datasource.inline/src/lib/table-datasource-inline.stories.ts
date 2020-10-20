@@ -23,10 +23,11 @@ import {
 import { IStory } from '@storybook/angular';
 
 import {
-  TableFiltrationEqualsService,
-  TableFiltrationRangeService,
-  TableFiltrationTextService,
-} from './filtration';
+  TableDatasourceEqualsFilter,
+  TableDatasourceRangeFilter,
+  TableDatasourceTextFilter,
+} from './filter';
+import { TableDatasourceDateProcessor } from './processor';
 import { TableDatasourceInlineModule } from './table-datasource-inline.module';
 import { TableDatasourceInlineService } from './table-datasource-inline.service';
 
@@ -70,10 +71,13 @@ export const withTable = (): IStory => ({
         'date-range': TableFilterDateRangeComponent,
       } as any),
       TableFilterSelectModule,
-      TableDatasourceInlineModule.withFiltration({
-        equals: TableFiltrationEqualsService,
-        text: TableFiltrationTextService,
-        range: TableFiltrationRangeService,
+      TableDatasourceInlineModule.withFilters({
+        equals: TableDatasourceEqualsFilter,
+        text: TableDatasourceTextFilter,
+        range: TableDatasourceRangeFilter,
+      }),
+      TableDatasourceInlineModule.withProcessors({
+        date: TableDatasourceDateProcessor,
       }),
       TableFilterDateRangeModule,
       DefaultContextSerializationModule,
@@ -162,6 +166,10 @@ export const withTable = (): IStory => ({
           type: 'text',
           columns: ['col1', 'col2'],
         },
+        columnProcessors: {
+          col3: 'date',
+          col4: 'date',
+        },
       },
       columns: [
         { id: 'col1', title: 'Column #1', width: '20%', sortable: true },
@@ -189,7 +197,7 @@ export const withTable = (): IStory => ({
               values: [
                 { value: 1, title: 1 },
                 { value: 2, title: 2 },
-                { value: 0, title: 3 },
+                { value: 3, title: 3 },
               ],
             },
           },

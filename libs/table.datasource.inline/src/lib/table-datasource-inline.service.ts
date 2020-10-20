@@ -4,86 +4,153 @@ import {
   TableData,
   TableDataConfig,
   TableDataRow,
+  TableDatasource,
 } from '@spryker/table';
-import { TablePaginationConfig } from '@spryker/table.feature.pagination';
 import { Observable } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { delay, map, withLatestFrom } from 'rxjs/operators';
 
-import { TableFiltrationService } from './table-filtration.service';
-import { TableDatasourceInlineConfig } from './types';
+import { TableDatasourceFilterService } from './table-datasource-filter.service';
+import { TableDatasourceProcessorService } from './table-datasource-processor.service';
+import {
+  TableDatasourceInlineConfig,
+  TableDatasourceInlineConfigPreprocessor,
+} from './types';
 
-// Add inline datasource type to registry
 @Injectable({ providedIn: 'root' })
-export class TableDatasourceInlineService {
-  constructor(private filtrationService: TableFiltrationService) {}
+export class TableDatasourceInlineService
+  implements TableDatasource<TableDatasourceInlineConfig> {
+  constructor(
+    private datasourceFilter: TableDatasourceFilterService,
+    private datasourceProcessor: TableDatasourceProcessorService,
+  ) {}
 
   resolve(
     datasource: TableDatasourceInlineConfig,
     dataConfig$: Observable<TableDataConfig>,
     injector: Injector,
   ): Observable<TableData> {
+    const tableComponent = injector.get(CoreTableComponent);
+
     return dataConfig$.pipe(
-      map(config => {
-        const tableComponent = injector.get(CoreTableComponent);
-        // tslint:disable-next-line: no-non-null-assertion
-        const paginationConfig = tableComponent.config!
-          .pagination as TablePaginationConfig;
-        const pageSize =
-          (config.pageSize as number) ?? paginationConfig.sizes[0];
+      withLatestFrom(tableComponent.config$),
+      map(([config, tableConfig]) => {
+        const paginationConfig = tableConfig.pagination as any;
+        const defaultPaginationSize = paginationConfig
+          ? paginationConfig.sizes[0]
+          : undefined;
+        const pageSize = (config.pageSize as number) ?? defaultPaginationSize;
         const page = config.page as number;
+        const withPreprocessing =
+          datasource.columnProcessors &&
+          (config.filter ||
+            config.search ||
+            (config.sortBy && config.sortDirection));
         let data = [...datasource.data];
-        let total = datasource.data.length;
 
-        if (config.filter) {
-          Object.entries(datasource.filter).forEach(([key, value]) => {
-            const filterByValue = (config.filter as any)[key];
-
-            if (filterByValue !== null && filterByValue !== undefined) {
-              data = this.filtrationService.filtration(
-                value.type,
-                data,
-                value,
-                filterByValue,
-              );
-              total = data.length;
-            }
-          });
+        if (withPreprocessing) {
+          data = this.preprocessData(datasource.columnProcessors, data);
         }
 
-        if (config.search) {
-          data = this.filtrationService.filtration(
-            'text',
-            data,
-            datasource.search,
-            config.search,
-          );
-          total = data.length;
-        }
+        data = this.filterData(datasource, config, data);
+
+        const total = data.length;
 
         if (pageSize) {
-          data = this.dataWithPageSize(page, pageSize, data);
+          data = this.paginateData(page, pageSize, data);
         }
 
         if (config.sortBy && config.sortDirection) {
-          data.sort((a, b) => this.sort(a, b, config.sortBy as string));
+          data.sort((a, b) => {
+            const comparison = this.sortData(a, b, config.sortBy as string);
 
-          if (config.sortDirection === 'desc') {
-            data.reverse();
-          }
+            return config.sortDirection === 'desc'
+              ? comparison * -1
+              : comparison;
+          });
+        }
+
+        if (withPreprocessing) {
+          data = this.postprocessData(datasource.columnProcessors, data);
         }
 
         return {
-          data: data,
-          total: total,
-          page: page,
-          pageSize: pageSize,
+          data,
+          total,
+          page,
+          pageSize: pageSize ?? data.length,
         };
       }),
       delay(0),
     );
   }
 
-  private sort(a: any, b: any, sortBy: string): number {
+  private postprocessData(
+    columnProcessors: TableDatasourceInlineConfigPreprocessor,
+    data: TableDataRow[],
+  ): TableDataRow[] {
+    Object.entries(columnProcessors).forEach(([colId, type]) => {
+      data = data.map(row => {
+        const columnValue = row[colId];
+        row[colId] = this.datasourceProcessor.postprocess(type, columnValue);
+
+        return row;
+      });
+    });
+
+    return data;
+  }
+
+  private preprocessData(
+    columnProcessors: TableDatasourceInlineConfigPreprocessor,
+    data: TableDataRow[],
+  ): TableDataRow[] {
+    Object.entries(columnProcessors).forEach(([colId, type]) => {
+      data = data.map(row => {
+        const columnValue = row[colId];
+        row[colId] = this.datasourceProcessor.preprocess(type, columnValue);
+
+        return row;
+      });
+    });
+
+    return data;
+  }
+
+  private filterData(
+    datasource: TableDatasourceInlineConfig,
+    config: TableDataConfig,
+    data: TableDataRow[],
+  ): TableDataRow[] {
+    if (config.filter) {
+      Object.entries(datasource.filter).forEach(([key, options]) => {
+        const byValue = (config.filter as any)[key];
+
+        if (byValue !== null && byValue !== undefined) {
+          data = this.datasourceFilter.filter(
+            options.type,
+            data,
+            options,
+            byValue,
+            datasource.columnProcessors,
+          );
+        }
+      });
+    }
+
+    if (config.search) {
+      data = this.datasourceFilter.filter(
+        'text',
+        data,
+        datasource.search,
+        config.search,
+        datasource.columnProcessors,
+      );
+    }
+
+    return data;
+  }
+
+  private sortData(a: any, b: any, sortBy: string): number {
     if (a[sortBy] < b[sortBy]) {
       return -1;
     }
@@ -94,7 +161,7 @@ export class TableDatasourceInlineService {
     return 0;
   }
 
-  private dataWithPageSize(
+  private paginateData(
     page: number,
     pageSize: number,
     data: TableDataRow[],

@@ -7,30 +7,47 @@ declare module '@spryker/table' {
   }
 }
 
-export interface TableFiltrationOptions {
+export interface TableDatasourceFilterOptions {
   type: string;
   columns: string[];
   preprocess?: string;
 }
 
-export type TableFiltrationByValue = any;
+export interface TableDatasourceInlineConfigFilter {
+  [filterId: string]: TableDatasourceFilterOptions;
+}
+
+export type TableDatasourceFilterValue = unknown | unknown[];
+
+export interface TableDatasourceInlineConfigPreprocessor {
+  [columnId: string]: string;
+}
 
 export interface TableDatasourceInlineConfig extends TableDatasourceConfig {
   data: TableDataRow[];
-  filter: {
-    [key: string]: TableFiltrationOptions;
-  };
-  search: TableFiltrationOptions;
+  filter: TableDatasourceInlineConfigFilter;
+  search: TableDatasourceFilterOptions;
+  columnProcessors: TableDatasourceInlineConfigPreprocessor;
 }
 
-export interface TableFiltration {
-  filtration(
+export interface TableDatasourceFilter {
+  filter(
     data: TableDataRow[],
-    filtrationOptions: TableFiltrationOptions,
-    filtrationByValue: TableFiltrationByValue,
+    options: TableDatasourceFilterOptions,
+    byValue: TableDatasourceFilterValue,
+    columnProcessors: TableDatasourceInlineConfigPreprocessor,
   ): TableDataRow[];
 }
 
-export interface TableFiltrationTypesDeclaration {
-  [type: string]: Type<TableFiltration>;
+export interface TableDatasourceFiltersDeclaration {
+  [type: string]: Type<TableDatasourceFilter>;
+}
+
+export interface TableDatasourceProcessor {
+  preprocess(value: unknown): unknown;
+  postprocess(value: unknown): unknown;
+}
+
+export interface TableDatasourceProcessorsDeclaration {
+  [type: string]: Type<TableDatasourceProcessor>;
 }

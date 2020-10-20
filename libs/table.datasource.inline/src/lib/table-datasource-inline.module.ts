@@ -1,18 +1,31 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { provideTableFiltrationServices } from './tokens';
+import {
+  provideTableDatasourceFilters,
+  provideTableDatasourceProcessors,
+} from './tokens';
+import { TableDatasourceFiltersDeclaration } from './types';
 
 @NgModule({
   imports: [CommonModule],
 })
 export class TableDatasourceInlineModule {
-  static withFiltration(
-    filterParsers: TableDatasourceInlineModule,
+  static withFilters(
+    filters: TableDatasourceFiltersDeclaration,
   ): ModuleWithProviders<TableDatasourceInlineModule> {
     return {
       ngModule: TableDatasourceInlineModule,
-      providers: [provideTableFiltrationServices(filterParsers)],
+      providers: [provideTableDatasourceFilters(filters)],
+    };
+  }
+
+  static withProcessors(
+    processors: any,
+  ): ModuleWithProviders<TableDatasourceInlineModule> {
+    return {
+      ngModule: TableDatasourceInlineModule,
+      providers: [provideTableDatasourceProcessors(processors)],
     };
   }
 }

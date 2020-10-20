@@ -4,6 +4,7 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
+  Injector,
   Input,
   IterableDiffers,
   OnChanges,
@@ -324,6 +325,7 @@ export class CoreTableComponent
     private configService: TableConfigService,
     private datasourceService: TableDatasourceService,
     private tableFeaturesRendererService: TableFeaturesRendererService,
+    public injector: Injector,
   ) {}
 
   ngOnInit(): void {

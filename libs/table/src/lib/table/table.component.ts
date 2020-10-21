@@ -1,6 +1,3 @@
-import { Optional } from '@angular/core';
-import { Injector } from '@angular/core';
-import { SkipSelf } from '@angular/core';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -18,6 +15,9 @@ import {
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
+  SkipSelf,
+  Injector,
+  Optional,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import {

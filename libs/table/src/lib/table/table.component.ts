@@ -1,3 +1,6 @@
+import { Optional } from '@angular/core';
+import { Injector } from '@angular/core';
+import { SkipSelf } from '@angular/core';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -324,6 +327,10 @@ export class CoreTableComponent
     private configService: TableConfigService,
     private datasourceService: TableDatasourceService,
     private tableFeaturesRendererService: TableFeaturesRendererService,
+    public injector: Injector,
+    @Optional()
+    @SkipSelf()
+    public parentTable: CoreTableComponent,
   ) {}
 
   ngOnInit(): void {

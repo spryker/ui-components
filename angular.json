@@ -5185,6 +5185,53 @@
           "style": "less"
         }
       }
+    },
+    "ajax-action.post-action.refresh-parent-table": {
+      "projectType": "library",
+      "root": "libs/ajax-action.post-action.refresh-parent-table",
+      "sourceRoot": "libs/ajax-action.post-action.refresh-parent-table/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ajax-action.post-action.refresh-parent-table/tsconfig.lib.json",
+            "project": "libs/ajax-action.post-action.refresh-parent-table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ajax-action.post-action.refresh-parent-table/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ajax-action.post-action.refresh-parent-table/tsconfig.lib.json",
+              "libs/ajax-action.post-action.refresh-parent-table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ajax-action.post-action.refresh-parent-table/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ajax-action.post-action.refresh-parent-table/jest.config.js",
+            "tsConfig": "libs/ajax-action.post-action.refresh-parent-table/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ajax-action.post-action.refresh-parent-table/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

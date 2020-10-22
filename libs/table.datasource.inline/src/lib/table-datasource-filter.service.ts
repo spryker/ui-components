@@ -16,7 +16,7 @@ import {
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceFilterService {
   private filterTypes: TableDatasourceFiltersDeclaration = this.datasourceFilters?.reduce(
-    (filterTypes, filterType) => ({ ...filterTypes, ...filterType }),
+    (allFilterTypes, filterType) => ({ ...allFilterTypes, ...filterType }),
     {},
   );
 
@@ -36,15 +36,15 @@ export class TableDatasourceFilterService {
     byValue: TableDatasourceFilterValue,
     columnProcessors: TableDatasourceInlineConfigPreprocessor,
   ): TableDataRow[] {
-    const filterClass = this.filterTypes[type];
+    const filterType = this.filterTypes[type];
 
-    if (!filterClass) {
+    if (!filterType) {
       throw new Error(
         `TableDatasourceFilterService: Filter type '${type}' is not registered!`,
       );
     }
 
-    const filterService = this.injector.get(filterClass);
+    const filterService = this.injector.get(filterType);
 
     return filterService.filter(data, options, byValue, columnProcessors);
   }

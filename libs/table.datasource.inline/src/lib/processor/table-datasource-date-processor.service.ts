@@ -4,15 +4,15 @@ import { toIsoDateFormat } from '@spryker/utils';
 import { TableDatasourceProcessor } from '../types';
 
 /**
- * Processes date value.
+ * Processes value as date and returns it's Unix time.
  */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceDateProcessor implements TableDatasourceProcessor {
-  preprocess(value: string): number {
-    return new Date(value).getTime();
+  preprocess(value: unknown): number {
+    return new Date(String(value)).getTime();
   }
 
-  postprocess(value: string): string {
-    return toIsoDateFormat(value);
+  postprocess(value: number): string {
+    return toIsoDateFormat(new Date(value));
   }
 }

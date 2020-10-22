@@ -2,7 +2,10 @@ import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 
 import { TableDatasourceProcessorsToken } from './tokens';
-import { TableDatasourceProcessorsDeclaration } from './types';
+import {
+  TableDatasourceProcessor,
+  TableDatasourceProcessorsDeclaration,
+} from './types';
 
 /**
  * Collects {@link TableDatasourceProcessorsDeclaration} by {@link TableDatasourceProcessorsToken} and invoke methods.
@@ -10,9 +13,9 @@ import { TableDatasourceProcessorsDeclaration } from './types';
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceProcessorService {
   private processorTypes: TableDatasourceProcessorsDeclaration = this.datasourceProcessors?.reduce(
-    (processorTypes, preprocessorType) => ({
+    (allProcessorTypes, processorTypes) => ({
+      ...allProcessorTypes,
       ...processorTypes,
-      ...preprocessorType,
     }),
     {},
   );
@@ -38,15 +41,15 @@ export class TableDatasourceProcessorService {
     return processorService.postprocess(value);
   }
 
-  private getProcessorService(type: string): any {
-    const processorClass = this.processorTypes[type];
+  private getProcessorService(type: string): TableDatasourceProcessor {
+    const processorType = this.processorTypes[type];
 
-    if (!processorClass) {
+    if (!processorType) {
       throw new Error(
         `TableDatasourceProcessorService: Preprocessor type '${type}' is not registered!`,
       );
     }
 
-    return this.injector.get(processorClass);
+    return this.injector.get(processorType);
   }
 }

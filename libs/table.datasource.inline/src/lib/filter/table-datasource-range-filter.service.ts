@@ -10,12 +10,12 @@ import {
 } from '../types';
 
 export interface TableDatasourceRangeFilterValue {
-  from: number | Date;
-  to: number | Date;
+  from?: any;
+  to?: any;
 }
 
 /**
- * Filters data by value that is in range.
+ * Filters data by value that is in range with the column value.
  */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceRangeFilter implements TableDatasourceFilter {
@@ -27,83 +27,84 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
     byValue: TableDatasourceFilterValue,
     columnProcessors: TableDatasourceInlineConfigPreprocessor,
   ): TableDataRow[] {
-    if (this.isFilterValue(byValue)) {
-      const columnsArray = Array.isArray(options.columns)
-        ? options.columns
-        : [options.columns];
-      const columnFrom = columnsArray[0];
-      const columnTo =
-        columnsArray.length !== 1 ? columnsArray[1] : columnsArray[0];
-      let byValueFrom = byValue.from;
-      let byValueTo = byValue.to;
-      let isValuePreprocessed = false;
+    if (!this.isFilterValue(byValue)) {
+      return data;
+    }
 
-      if (byValue.from && byValueTo) {
-        return data.filter(row => {
-          const columnsFromData = row[columnFrom] as Date | string;
-          const columnsToData = row[columnTo] as Date | string;
+    const columns = Array.isArray(options.columns)
+      ? options.columns
+      : [options.columns];
+    const columnFrom = columns[0];
+    const columnTo = columns.length !== 1 ? columns[1] : columns[0];
+    const processedValuesByColumns: Record<
+      string,
+      TableDatasourceRangeFilterValue[]
+    > = columns.reduce((allColumns, column) => {
+      const processedValues = columnProcessors[column]
+        ? byValue.map(valueToCompare =>
+            Object.fromEntries(
+              Object.entries(valueToCompare).map(([key, value]) => {
+                console.log(value);
+                const preprocessedValue = this.datasourceProcessor.preprocess(
+                  columnProcessors[column],
+                  value,
+                );
 
-          if (!isValuePreprocessed) {
-            if (columnProcessors?.[columnFrom]) {
-              byValueFrom = this.datasourceProcessor.preprocess(
-                columnProcessors[columnFrom],
-                byValueFrom,
-              ) as number | Date;
-            }
+                return [key, preprocessedValue];
+              }),
+            ),
+          )
+        : byValue;
 
-            if (columnProcessors?.[columnTo]) {
-              byValueTo = this.datasourceProcessor.preprocess(
-                columnProcessors[columnTo],
-                byValueTo,
-              ) as number | Date;
-            }
+      return {
+        ...allColumns,
+        [column]: processedValues,
+      };
+    }, {});
+    const isValueFrom = processedValuesByColumns?.[columnFrom].some(
+      byProccessedValue => byProccessedValue.from,
+    );
+    const isValueTo = processedValuesByColumns?.[columnFrom].some(
+      byProccessedValue => byProccessedValue.to,
+    );
 
-            isValuePreprocessed = true;
-          }
+    if (isValueFrom && isValueTo) {
+      return data.filter(row => {
+        const columnsFromData = row[columnFrom] as any;
+        const columnsToData = row[columnTo] as any;
 
-          return columnsFromData >= byValueFrom && columnsToData <= byValueTo;
-        });
-      }
+        return processedValuesByColumns?.[columnFrom].some(
+          byProccessedValue =>
+            columnsFromData >= byProccessedValue.from &&
+            columnsToData <= byProccessedValue.to,
+        );
+      });
+    }
 
-      if (byValueFrom) {
-        return data.filter(row => {
-          const columnsData = row[columnFrom] as Date | number;
+    if (isValueFrom) {
+      return data.filter(row => {
+        const columnsData = row[columnFrom] as any;
 
-          if (!isValuePreprocessed && columnProcessors?.[columnFrom]) {
-            byValueFrom = this.datasourceProcessor.preprocess(
-              columnProcessors[columnFrom],
-              byValueFrom,
-            ) as number | Date;
+        return processedValuesByColumns?.[columnFrom].some(
+          byProccessedValue => columnsData >= byProccessedValue.from,
+        );
+      });
+    }
 
-            isValuePreprocessed = true;
-          }
+    if (isValueTo) {
+      return data.filter(row => {
+        const columnsData = row[columnTo] as any;
 
-          return columnsData >= byValueFrom;
-        });
-      }
-
-      if (byValueTo) {
-        return data.filter(row => {
-          const columnsData = row[columnTo] as Date | number;
-
-          if (!isValuePreprocessed && columnProcessors?.[columnTo]) {
-            byValueTo = this.datasourceProcessor.preprocess(
-              columnProcessors[columnTo],
-              byValueTo,
-            ) as number | Date;
-
-            isValuePreprocessed = true;
-          }
-
-          return columnsData <= byValueTo;
-        });
-      }
+        return processedValuesByColumns?.[columnFrom].some(
+          byProccessedValue => columnsData <= byProccessedValue.to,
+        );
+      });
     }
 
     return data;
   }
 
-  private isFilterValue(arg: any): arg is TableDatasourceRangeFilterValue {
-    return arg && ('from' in arg || 'to' in arg);
+  private isFilterValue(args: any): args is TableDatasourceRangeFilterValue[] {
+    return args.every((arg: any) => arg && ('from' in arg || 'to' in arg));
   }
 }

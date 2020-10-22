@@ -10,7 +10,7 @@ import {
 } from '../types';
 
 /**
- * Filters data by value included in the column.
+ * Filters data by value that matches with the column value.
  */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceTextFilter implements TableDatasourceFilter {
@@ -25,24 +25,31 @@ export class TableDatasourceTextFilter implements TableDatasourceFilter {
     const columns = Array.isArray(options.columns)
       ? options.columns
       : [options.columns];
-    let byValueToCompare = byValue;
-    let isValuePreprocessed = false;
+    const processedValuesByColumns: Record<string, unknown[]> = columns.reduce(
+      (allColumns, column) => {
+        const processedValues = columnProcessors[column]
+          ? byValue.map(valueToCompare =>
+              this.datasourceProcessor.preprocess(
+                columnProcessors[column],
+                valueToCompare,
+              ),
+            )
+          : byValue;
 
-    return data.filter(row => {
-      const filteredRows = columns.some(column => {
-        if (!isValuePreprocessed && columnProcessors?.[column]) {
-          byValueToCompare = this.datasourceProcessor.preprocess(
-            columnProcessors[column],
-            byValueToCompare,
-          );
+        return {
+          ...allColumns,
+          [column]: processedValues,
+        };
+      },
+      {},
+    );
 
-          isValuePreprocessed = true;
-        }
-
-        return (row[column] as any).toString().includes(byValueToCompare);
-      });
-
-      return filteredRows;
-    });
+    return data.filter(row =>
+      columns.some(column => {
+        return processedValuesByColumns?.[column].some(byProccessedValue =>
+          String(row[column]).includes(String(byProccessedValue)),
+        );
+      }),
+    );
   }
 }

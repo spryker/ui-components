@@ -5,7 +5,10 @@ import {
   provideTableDatasourceFilters,
   provideTableDatasourceProcessors,
 } from './tokens';
-import { TableDatasourceFiltersDeclaration } from './types';
+import {
+  TableDatasourceFiltersDeclaration,
+  TableDatasourceProcessorsDeclaration,
+} from './types';
 
 @NgModule({
   imports: [CommonModule],
@@ -21,7 +24,7 @@ export class TableDatasourceInlineModule {
   }
 
   static withProcessors(
-    processors: any,
+    processors: TableDatasourceProcessorsDeclaration,
   ): ModuleWithProviders<TableDatasourceInlineModule> {
     return {
       ngModule: TableDatasourceInlineModule,

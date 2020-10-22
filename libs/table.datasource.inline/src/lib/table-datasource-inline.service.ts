@@ -12,12 +12,14 @@ import { delay, map, withLatestFrom } from 'rxjs/operators';
 import { TableDatasourceFilterService } from './table-datasource-filter.service';
 import { TableDatasourceProcessorService } from './table-datasource-processor.service';
 import {
+  TableDatasourceFilterValue,
   TableDatasourceInlineConfig,
   TableDatasourceInlineConfigPreprocessor,
 } from './types';
 
 /**
  * Returns data straight from the table configuration data to the table for rendering
+ * and supports sorting, filtering and pagination.
  */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceInlineService
@@ -91,32 +93,42 @@ export class TableDatasourceInlineService
     columnProcessors: TableDatasourceInlineConfigPreprocessor,
     data: TableDataRow[],
   ): TableDataRow[] {
-    Object.entries(columnProcessors).forEach(([colId, type]) => {
-      data = data.map(row => {
+    return data.map(row => {
+      row = { ...row };
+
+      Object.entries(columnProcessors).forEach(([colId, type]) => {
         const columnValue = row[colId];
-        row[colId] = this.datasourceProcessor.postprocess(type, columnValue);
+        const postprocessedCol = this.datasourceProcessor.postprocess(
+          type,
+          columnValue,
+        );
 
-        return row;
+        row[colId] = postprocessedCol;
       });
-    });
 
-    return data;
+      return row;
+    });
   }
 
   private preprocessData(
     columnProcessors: TableDatasourceInlineConfigPreprocessor,
     data: TableDataRow[],
   ): TableDataRow[] {
-    Object.entries(columnProcessors).forEach(([colId, type]) => {
-      data = data.map(row => {
+    return data.map(row => {
+      row = { ...row };
+
+      Object.entries(columnProcessors).forEach(([colId, type]) => {
         const columnValue = row[colId];
-        row[colId] = this.datasourceProcessor.preprocess(type, columnValue);
+        const preprocessedCol = this.datasourceProcessor.preprocess(
+          type,
+          columnValue,
+        );
 
-        return row;
+        row[colId] = preprocessedCol;
       });
-    });
 
-    return data;
+      return row;
+    });
   }
 
   private filterData(
@@ -127,13 +139,14 @@ export class TableDatasourceInlineService
     if (config.filter) {
       Object.entries(datasource.filter).forEach(([key, options]) => {
         const byValue = (config.filter as any)[key];
+        const byValueToCompare = Array.isArray(byValue) ? byValue : [byValue];
 
         if (byValue !== null && byValue !== undefined) {
           data = this.datasourceFilter.filter(
             options.type,
             data,
             options,
-            byValue,
+            byValueToCompare,
             datasource.columnProcessors,
           );
         }
@@ -145,7 +158,7 @@ export class TableDatasourceInlineService
         'text',
         data,
         datasource.search,
-        config.search,
+        [config.search],
         datasource.columnProcessors,
       );
     }

@@ -10,14 +10,13 @@ declare module '@spryker/table' {
 export interface TableDatasourceFilterOptions {
   type: string;
   columns: string[];
-  preprocess?: string;
 }
 
 export interface TableDatasourceInlineConfigFilter {
   [filterId: string]: TableDatasourceFilterOptions;
 }
 
-export type TableDatasourceFilterValue = unknown | unknown[];
+export type TableDatasourceFilterValue = unknown[];
 
 export interface TableDatasourceInlineConfigPreprocessor {
   [columnId: string]: string;

@@ -10,7 +10,7 @@ import {
 } from '../types';
 
 /**
- * Filters data by value that matches the column value.
+ * Filters data by value that strictly equals to the column value.
  */
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceEqualsFilter implements TableDatasourceFilter {
@@ -25,30 +25,33 @@ export class TableDatasourceEqualsFilter implements TableDatasourceFilter {
     const columns = Array.isArray(options.columns)
       ? options.columns
       : [options.columns];
-    let byValueToCompare = Array.isArray(byValue) ? byValue : [byValue];
-    let isValuePreprocessed = false;
+    const processedColumns: Record<string, unknown[]> = columns.reduce(
+      (allColumns, column) => {
+        const processedValue = columnProcessors[column]
+          ? byValue.map(valueToCompare =>
+              this.datasourceProcessor.preprocess(
+                columnProcessors[column],
+                valueToCompare,
+              ),
+            )
+          : byValue;
 
-    return data.filter(row => {
-      const filteredRows = columns.filter(column => {
-        if (!byValueToCompare.length) {
+        return {
+          ...allColumns,
+          [column]: processedValue,
+        };
+      },
+      {},
+    );
+
+    return data.filter(row =>
+      columns.some(column => {
+        if (!byValue.length) {
           return true;
         }
 
-        if (!isValuePreprocessed && columnProcessors?.[column]) {
-          byValueToCompare = byValueToCompare.map(valueToCompare =>
-            this.datasourceProcessor.preprocess(
-              columnProcessors[column],
-              valueToCompare,
-            ),
-          );
-
-          isValuePreprocessed = true;
-        }
-
-        return byValueToCompare.includes(row[column]);
-      });
-
-      return filteredRows.length;
-    });
+        return processedColumns?.[column].includes(row[column]);
+      }),
+    );
   }
 }

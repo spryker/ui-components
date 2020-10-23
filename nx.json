@@ -12,229 +12,515 @@
   },
   "projects": {
     "core": {
-      "tags": ["pkg:primary", "type:util", "core"]
+      "tags": [
+        "pkg:primary",
+        "type:util",
+        "core"
+      ]
     },
     "styles": {
-      "tags": ["pkg:primary", "type:style"]
+      "tags": [
+        "pkg:primary",
+        "type:style"
+      ]
     },
     "utils": {
-      "tags": ["pkg:primary", "type:util"]
+      "tags": [
+        "pkg:primary",
+        "type:util"
+      ]
     },
     "storybook": {
-      "tags": ["pkg:primary", "type:meta"]
+      "tags": [
+        "pkg:primary",
+        "type:meta"
+      ]
     },
     "web-components": {
-      "tags": ["pkg:primary", "type:util"]
+      "tags": [
+        "pkg:primary",
+        "type:util"
+      ]
     },
     "button": {
-      "tags": ["pkg:primary", "type:component", "level:atom"]
+      "tags": [
+        "pkg:primary",
+        "type:component",
+        "level:atom"
+      ]
     },
     "logo": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "card": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "form-item": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "input": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "alert": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "layout": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "header": {
-      "tags": ["pkg:primary", "level:organism", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:organism",
+        "type:component"
+      ]
     },
     "navigation": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "icon": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "sidebar": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "textarea": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "toggle": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "checkbox": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "collapsible": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "select": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "notification": {
-      "tags": ["pkg:primary", "level:molecule", "type:component-service"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component-service"
+      ]
     },
     "table": {
-      "tags": ["pkg:primary", "level:organism", "type:component-service"]
+      "tags": [
+        "pkg:primary",
+        "level:organism",
+        "type:component-service"
+      ]
     },
     "pagination": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "dropdown": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "tabs": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "label": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "internal-utils": {
-      "tags": ["pkg:primary", "type:meta"]
+      "tags": [
+        "pkg:primary",
+        "type:meta"
+      ]
     },
     "locale": {
-      "tags": ["pkg:primary", "type:util"]
+      "tags": [
+        "pkg:primary",
+        "type:util"
+      ]
     },
     "chips": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "date-picker": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "ajax-action": {
-      "tags": ["pkg:primary", "type:service"]
+      "tags": [
+        "pkg:primary",
+        "type:service"
+      ]
     },
     "ajax-action.post-action.close-overlay": {
-      "tags": ["pkg:extension", "type:service"]
+      "tags": [
+        "pkg:extension",
+        "type:service"
+      ]
     },
     "ajax-action.post-action.redirect": {
-      "tags": ["pkg:extension", "type:service"]
+      "tags": [
+        "pkg:extension",
+        "type:service"
+      ]
     },
     "ajax-action.post-action.refresh-table": {
-      "tags": ["pkg:extension", "type:service"]
+      "tags": [
+        "pkg:extension",
+        "type:service"
+      ]
     },
     "html-renderer": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "drawer": {
-      "tags": ["pkg:primary", "level:molecule", "type:component-service"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component-service"
+      ]
     },
     "ajax-form": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "headline": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "popover": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "tree-select": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "link": {
-      "tags": ["pkg:primary", "level:atom", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ]
     },
     "table.feature.editable": {
-      "tags": ["type:component", "level:molecule", "pkg:extension"]
+      "tags": [
+        "type:component",
+        "level:molecule",
+        "pkg:extension"
+      ]
     },
     "ajax-action.post-action.refresh-drawer": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "table.datasource.http": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "table.column.chip": {
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.column.date": {
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.column.image": {
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.column.text": {
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.pagination": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.total": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.title": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.filters": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.settings": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.selectable": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.search": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.sync-state": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.batch-actions": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.row-actions": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.filter.select": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.filter.date-range": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.filter.tree-select": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.action-handler.form-overlay": {
-      "tags": ["level:molecule", "type:component-service", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component-service",
+        "pkg:extension"
+      ]
     },
     "table.action-handler.html-overlay": {
-      "tags": ["level:molecule", "type:component-service", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component-service",
+        "pkg:extension"
+      ]
     },
     "table.action-handler.url": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "table-integration-internal": {
-      "tags": ["type:meta"]
+      "tags": [
+        "type:meta"
+      ]
     },
     "modal": {
-      "tags": ["level:molecule", "type:component-service", "pkg:primary"]
+      "tags": [
+        "level:molecule",
+        "type:component-service",
+        "pkg:primary"
+      ]
     },
     "interception": {
-      "tags": ["type:service", "pkg:primary"]
+      "tags": [
+        "type:service",
+        "pkg:primary"
+      ]
     },
     "unsaved-changes": {
-      "tags": ["type:component-service", "pkg:primary"]
+      "tags": [
+        "type:component-service",
+        "pkg:primary"
+      ]
     },
     "unsaved-changes.monitor.form": {
-      "tags": ["type:component-service", "pkg:primary"]
+      "tags": [
+        "type:component-service",
+        "pkg:primary"
+      ]
     },
     "unsaved-changes.guard.browser": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "unsaved-changes.guard.drawer": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "table.column.input": {
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      "tags": [
+        "type:component",
+        "level:atom",
+        "pkg:extension"
+      ]
     },
     "table.column.select": {
-      "tags": ["type:component", "level:molecule", "pkg:extension"]
+      "tags": [
+        "type:component",
+        "level:molecule",
+        "pkg:extension"
+      ]
     },
     "ajax-action.post-action.refresh-parent-table": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
+    },
+    "onboarding-radio": {
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:primary"
+      ]
     }
   },
   "tasksRunnerOptions": {

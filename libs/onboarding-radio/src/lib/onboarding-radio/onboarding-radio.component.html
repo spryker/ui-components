@@ -1,0 +1,30 @@
+<div class="ant-radio" *ngIf="radios$ | async as radios">
+  <div class="ant-radio__title">
+    <spy-icon [name]="radioIcon"></spy-icon>
+    <span class="ant-radio__title-secondary">
+      {{
+      'onboarding-radio.title:number'
+        | spyI18n: { number: radios.length | numberToRomanStyle: 'roman' }
+        | async
+      }}
+    </span>
+  </div>
+
+  <nz-radio-group [(ngModel)]="value" (ngModelChange)="checkedChange.emit($event)">
+    <label
+      *ngFor="let radio of radios"
+      [nzValue]="radio.value"
+      [nzDisabled]="radio.disabled"
+      nz-radio>
+      <ng-container *ngTemplateOutlet="radio.template"></ng-container>
+    </label>
+  </nz-radio-group>
+</div>
+
+<span
+  [spySelectComponents]="radioReference"
+  (spySelectComponentsFound)="radiosFound($event)"
+  style="display: none"
+>
+  <ng-content></ng-content>
+</span>

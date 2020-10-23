@@ -1,0 +1,11 @@
+{
+  "@spryker/onboarding-radio": [
+    "dist/libs/onboarding-radio/index.d.ts",
+    "libs/onboarding-radio/src/index.ts"
+  ],
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "jest"]
+  },
+  "include": ["**/*.ts"]
+}

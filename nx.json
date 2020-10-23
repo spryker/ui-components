@@ -233,6 +233,9 @@
     "table.column.select": {
       "tags": ["type:component", "level:molecule", "pkg:extension"]
     },
+    "table.datasource.inline": {
+      "tags": ["type:service", "pkg:extension"]
+    },
     "ajax-action.post-action.refresh-parent-table": {
       "tags": ["type:service", "pkg:extension"]
     }

@@ -4,10 +4,13 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { I18nTestService, TestLocaleModule } from '@spryker/locale/testing';
 import { By } from '@angular/platform-browser';
 
-import { OnboardingRadioComponent, OnboardingRadioItemComponent } from '@spryker/onboarding-radio';
+import {
+  OnboardingRadioComponent,
+  OnboardingRadioItemComponent,
+} from '@spryker/onboarding-radio';
 
 @Pipe({
-  name: 'numberToRomanStyle'
+  name: 'numberToRomanStyle',
 })
 export class NumberToRomanStylePipe implements PipeTransform {
   transform(value: number, key?: string): number | string {
@@ -53,10 +56,14 @@ describe('OnboardingRadioComponent', () => {
     const token = 'onboarding-radio.title:number';
     const host = await createComponent({}, true);
     const titleElement = host.queryCss('.ant-radio__title-secondary');
-    const labelElement = host.fixture.debugElement.queryAll(By.css('label[nz-radio]'));
+    const labelElement = host.fixture.debugElement.queryAll(
+      By.css('label[nz-radio]'),
+    );
 
     expect(titleElement?.nativeElement.textContent).toContain(token);
-    expect(mockService.getLocaleData(token, 'number')).toBe(labelElement.length);
+    expect(mockService.getLocaleData(token, 'number')).toBe(
+      labelElement.length,
+    );
   });
 
   it('should render <nz-radio-group>', async () => {
@@ -68,9 +75,12 @@ describe('OnboardingRadioComponent', () => {
 
   it('should bind value to ngModel of nz-radio-group', async () => {
     const mockValue = 'A';
-    const host = await createComponent({
-      value: mockValue
-    }, true);
+    const host = await createComponent(
+      {
+        value: mockValue,
+      },
+      true,
+    );
     const radiosElement = host.queryCss('nz-radio-group');
 
     expect(radiosElement?.properties.ngModel).toBe(mockValue);

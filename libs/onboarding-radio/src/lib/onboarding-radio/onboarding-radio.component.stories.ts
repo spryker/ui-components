@@ -1,22 +1,29 @@
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
-import { CustomElementModule, WebComponentDefs, WebComponentsModule } from '@spryker/web-components';
+import {
+  CustomElementModule,
+  WebComponentDefs,
+  WebComponentsModule,
+} from '@spryker/web-components';
 
-import { OnboardingRadioComponent, OnboardingRadioItemComponent } from '@spryker/onboarding-radio';
+import {
+  OnboardingRadioComponent,
+  OnboardingRadioItemComponent,
+} from '@spryker/onboarding-radio';
 import { OnboardingRadioModule } from '@spryker/onboarding-radio';
 
 export default {
-  title: 'OnboardingRadioComponent'
-}
+  title: 'OnboardingRadioComponent',
+};
 
 export const primary = () => ({
   moduleMetadata: {
     imports: [
       OnboardingRadioModule,
       LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-      EnLocaleModule
-    ]
+      EnLocaleModule,
+    ],
   },
   template: `
     <spy-onboarding-radio value="C">
@@ -25,21 +32,23 @@ export const primary = () => ({
       <spy-onboarding-radio-item value="C">Radio 3...</spy-onboarding-radio-item>
     </spy-onboarding-radio>
   `,
-  props: {
-  }
-})
+  props: {},
+});
 
 @NgModule({
   imports: [
     WebComponentsModule.forRoot(),
     OnboardingRadioModule,
     LocaleModule.forRoot(),
-    EnLocaleModule
+    EnLocaleModule,
   ],
   entryComponents: [OnboardingRadioComponent, OnboardingRadioItemComponent],
 })
 class StoryModule extends CustomElementModule {
-  components: WebComponentDefs = [OnboardingRadioComponent, OnboardingRadioItemComponent];
+  components: WebComponentDefs = [
+    OnboardingRadioComponent,
+    OnboardingRadioItemComponent,
+  ];
 
   constructor(injector: Injector) {
     super(injector);

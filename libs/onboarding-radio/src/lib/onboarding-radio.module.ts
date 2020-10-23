@@ -20,7 +20,7 @@ import { SelectComponentsModule } from '@spryker/web-components';
     I18nModule,
     NumberToRomanStyleModule,
     FormsModule,
-    SelectComponentsModule
+    SelectComponentsModule,
   ],
   declarations: [OnboardingRadioComponent, OnboardingRadioItemComponent],
   exports: [OnboardingRadioComponent, OnboardingRadioItemComponent],

@@ -4,7 +4,6 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  Injector,
   Input,
   IterableDiffers,
   OnChanges,
@@ -16,6 +15,9 @@ import {
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
+  SkipSelf,
+  Injector,
+  Optional,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import {
@@ -326,6 +328,9 @@ export class CoreTableComponent
     private datasourceService: TableDatasourceService,
     private tableFeaturesRendererService: TableFeaturesRendererService,
     public injector: Injector,
+    @Optional()
+    @SkipSelf()
+    public parentTable: CoreTableComponent,
   ) {}
 
   ngOnInit(): void {

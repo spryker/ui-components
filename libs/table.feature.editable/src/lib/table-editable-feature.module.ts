@@ -5,9 +5,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from '@spryker/button';
 import { IconModule } from '@spryker/icon';
-import { IconEditModule, IconWarningModule } from '@spryker/icon/icons';
+import {
+  IconEditModule,
+  IconWarningModule,
+  IconPlusModule,
+} from '@spryker/icon/icons';
 import { ModuleWithFeature, TableModule } from '@spryker/table';
 import { InvokeModule } from '@spryker/utils';
+import { I18nModule } from '@spryker/locale';
 
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
 
@@ -23,6 +28,8 @@ import { TableEditableFeatureComponent } from './table-editable-feature.componen
     OverlayModule,
     ScrollingModule,
     IconWarningModule,
+    I18nModule,
+    IconPlusModule,
   ],
   exports: [TableEditableFeatureComponent],
   declarations: [TableEditableFeatureComponent],

@@ -41,19 +41,16 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
       TableDatasourceRangeFilterValue[]
     > = columns.reduce((allColumns, column) => {
       const processedValues = columnProcessors[column]
-        ? byValue.map(valueToCompare =>
-            Object.fromEntries(
-              Object.entries(valueToCompare).map(([key, value]) => {
-                console.log(value);
-                const preprocessedValue = this.datasourceProcessor.preprocess(
-                  columnProcessors[column],
-                  value,
-                );
-
-                return [key, preprocessedValue];
-              }),
+        ? byValue.map(valueToCompare => ({
+            from: this.datasourceProcessor.preprocess(
+              columnProcessors[column],
+              valueToCompare.from,
             ),
-          )
+            to: this.datasourceProcessor.preprocess(
+              columnProcessors[column],
+              valueToCompare.to,
+            ),
+          }))
         : byValue;
 
       return {
@@ -64,7 +61,7 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
     const isValueFrom = processedValuesByColumns?.[columnFrom].some(
       byProccessedValue => byProccessedValue.from,
     );
-    const isValueTo = processedValuesByColumns?.[columnFrom].some(
+    const isValueTo = processedValuesByColumns?.[columnTo].some(
       byProccessedValue => byProccessedValue.to,
     );
 
@@ -73,10 +70,13 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
         const columnsFromData = row[columnFrom] as any;
         const columnsToData = row[columnTo] as any;
 
-        return processedValuesByColumns?.[columnFrom].some(
-          byProccessedValue =>
-            columnsFromData >= byProccessedValue.from &&
-            columnsToData <= byProccessedValue.to,
+        return (
+          processedValuesByColumns?.[columnFrom].some(
+            byProccessedValue => columnsFromData >= byProccessedValue.from,
+          ) &&
+          processedValuesByColumns?.[columnTo].some(
+            byProccessedValue => columnsToData <= byProccessedValue.to,
+          )
         );
       });
     }
@@ -95,7 +95,7 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
       return data.filter(row => {
         const columnsData = row[columnTo] as any;
 
-        return processedValuesByColumns?.[columnFrom].some(
+        return processedValuesByColumns?.[columnTo].some(
           byProccessedValue => columnsData <= byProccessedValue.to,
         );
       });

@@ -10,8 +10,8 @@ import {
 } from '../types';
 
 export interface TableDatasourceRangeFilterValue {
-  from?: any;
-  to?: any;
+  from?: unknown;
+  to?: unknown;
 }
 
 /**
@@ -72,10 +72,11 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
 
         return (
           processedValuesByColumns?.[columnFrom].some(
-            byProccessedValue => columnsFromData >= byProccessedValue.from,
+            byProccessedValue =>
+              columnsFromData >= (byProccessedValue.from as any),
           ) &&
           processedValuesByColumns?.[columnTo].some(
-            byProccessedValue => columnsToData <= byProccessedValue.to,
+            byProccessedValue => columnsToData <= (byProccessedValue.to as any),
           )
         );
       });
@@ -86,7 +87,7 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
         const columnsData = row[columnFrom] as any;
 
         return processedValuesByColumns?.[columnFrom].some(
-          byProccessedValue => columnsData >= byProccessedValue.from,
+          byProccessedValue => columnsData >= (byProccessedValue.from as any),
         );
       });
     }
@@ -96,7 +97,7 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
         const columnsData = row[columnTo] as any;
 
         return processedValuesByColumns?.[columnTo].some(
-          byProccessedValue => columnsData <= byProccessedValue.to,
+          byProccessedValue => columnsData <= (byProccessedValue.to as any),
         );
       });
     }

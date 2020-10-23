@@ -104,7 +104,9 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
     return data;
   }
 
-  private isFilterValue(args: any): args is TableDatasourceRangeFilterValue[] {
+  private isFilterValue(
+    args: unknown[],
+  ): args is TableDatasourceRangeFilterValue[] {
     return args.every((arg: any) => arg && ('from' in arg || 'to' in arg));
   }
 }

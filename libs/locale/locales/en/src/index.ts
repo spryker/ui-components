@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { LocaleRecord, provideLocaleRecordsFactory } from '@spryker/locale';
 
-// Locales version update 3
+// Locales version update 4
 
 export const EN_LOCALE = 'en';
 

@@ -238,6 +238,9 @@
     },
     "ajax-action.post-action.refresh-parent-table": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "table.datasource.static": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

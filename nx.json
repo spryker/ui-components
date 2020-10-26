@@ -237,7 +237,7 @@
       "tags": ["type:service", "pkg:extension"]
     },
     "unsaved-changes.guard.navigation": {
-      "tags": ["type:service"]
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

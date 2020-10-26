@@ -50,7 +50,10 @@ export class InterceptionComposerImplementation
   ) {}
 
   ngOnDestroy(): void {
-    this.servicesInjector?.destroy();
+    if (typeof this.servicesInjector?.destroy === 'function') {
+      this.servicesInjector.destroy();
+    }
+
     this.servicesInjector = undefined;
   }
 

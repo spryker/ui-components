@@ -11,7 +11,7 @@ import { combineLatest, EMPTY, of, Subject } from 'rxjs';
 import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
 
 /**
- *  Responsible to intercept close events from the drawer component and if it’s monitors has dirty status - prompt a user to confirm to close the drawer in the form of a modal.
+ *  Responsible to intercept redirect events from the navigation component and if it’s monitors has dirty status - prompt a user to confirm to close the drawer in the form of a modal.
  */
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesNavigationGuard extends UnsavedChangesGuardBase {
@@ -21,9 +21,9 @@ export class UnsavedChangesNavigationGuard extends UnsavedChangesGuardBase {
 
   private destroyed$ = new Subject<void>();
   private translations$ = combineLatest([
-    this.i18nService.translate('unsaved-changes.guard.navigation.title'),
-    this.i18nService.translate('unsaved-changes.guard.navigation.ok'),
-    this.i18nService.translate('unsaved-changes.guard.navigation.cancel'),
+    this.i18nService.translate('unsaved-changes.confirmation-title'),
+    this.i18nService.translate('unsaved-changes.confirmation-ok'),
+    this.i18nService.translate('unsaved-changes.confirmation-cancel'),
   ]);
 
   init(): void {

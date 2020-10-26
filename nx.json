@@ -51,7 +51,7 @@
       "tags": ["pkg:primary", "level:organism", "type:component"]
     },
     "navigation": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": ["pkg:primary", "level:molecule", "type:component-service"]
     },
     "icon": {
       "tags": ["pkg:primary", "level:atom", "type:component"]
@@ -235,6 +235,9 @@
     },
     "ajax-action.post-action.refresh-parent-table": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "unsaved-changes.guard.navigation": {
+      "tags": ["type:service"]
     }
   },
   "tasksRunnerOptions": {

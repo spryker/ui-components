@@ -9,4 +9,5 @@ export abstract class UnsavedChangesGuardToken implements UnsavedChangesGuard {
   abstract detachMonitor(monitor: UnsavedChangesMonitor): void;
   abstract init(): void;
   abstract dispose(): void;
+  abstract resetMonitors(): void;
 }

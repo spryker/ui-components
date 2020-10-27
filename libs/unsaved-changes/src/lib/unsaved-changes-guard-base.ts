@@ -75,6 +75,10 @@ export abstract class UnsavedChangesGuardBase
     this.parentGuard?.detachMonitor(monitor);
   }
 
+  resetMonitors(): void {
+    this.monitors$.getValue().forEach(monitor => monitor.reset());
+  }
+
   init(): void {}
 
   dispose(): void {

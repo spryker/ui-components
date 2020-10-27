@@ -1,62 +1,20 @@
-import {
-  AbstractType,
-  Injectable,
-  InjectionToken,
-  Injector,
-  Provider,
-  Type,
-} from '@angular/core';
-import {
-  DrawerCloseInterceptionEvent,
-  DrawerContainerComponent,
-} from '@spryker/drawer';
-import {
-  InterceptionComposableFactory,
-  InterceptorService,
-} from '@spryker/interception';
+import { Injectable } from '@angular/core';
+import { InterceptorService } from '@spryker/interception';
 import { I18nService } from '@spryker/locale';
 import { ModalService } from '@spryker/modal';
+import { NavigationRedirectInterceptionEvent } from '@spryker/navigation';
 import {
   UnsavedChangesGuardBase,
-  UnsavedChangesGuardToken,
+  UnsavedChangesGuardService,
 } from '@spryker/unsaved-changes';
 import { combineLatest, EMPTY, of, Subject } from 'rxjs';
 import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
 
 /**
- * Dynamically provides {@link UnsavedChangesDrawerGuard} for the drawer component.
+ *  Responsible to intercept redirect events from the navigation component and if any monitor has dirty status - prompt a user to confirm to navigate away.
  */
 @Injectable({ providedIn: 'root' })
-export class UnsavedChangesDrawerGuardComposableFactory
-  implements InterceptionComposableFactory {
-  canApply(token: unknown): boolean {
-    return token && token instanceof DrawerContainerComponent;
-  }
-
-  getServiceProviders(): Provider[] {
-    return [
-      {
-        provide: UnsavedChangesDrawerGuard,
-        useClass: UnsavedChangesDrawerGuard,
-        deps: [Injector],
-      },
-      {
-        provide: UnsavedChangesGuardToken,
-        useExisting: UnsavedChangesDrawerGuard,
-      },
-    ];
-  }
-
-  getServiceToken(): Type<any> | AbstractType<any> | InjectionToken<any> {
-    return UnsavedChangesDrawerGuard;
-  }
-}
-
-/**
- *  Responsible to intercept close events from the drawer component and if it’s monitors has dirty status - prompt a user to confirm to close the drawer in the form of a modal.
- */
-@Injectable()
-export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
+export class UnsavedChangesNavigationGuard extends UnsavedChangesGuardBase {
   private interceptorService = this.injector.get(InterceptorService);
   private modalService = this.injector.get(ModalService);
   private i18nService = this.injector.get(I18nService);
@@ -72,7 +30,7 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
     super.init();
 
     this.interceptorService
-      .intercept(DrawerCloseInterceptionEvent, () =>
+      .intercept(NavigationRedirectInterceptionEvent, () =>
         this.hasDirtyStatus$.pipe(
           take(1),
           withLatestFrom(this.translations$),
@@ -85,7 +43,19 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
                     cancelText,
                   })
                   .afterDismissed()
-                  .pipe(switchMap(isDiscard => (isDiscard ? of(null) : EMPTY)))
+                  .pipe(
+                    switchMap(isDiscard => {
+                      if (!isDiscard) {
+                        return EMPTY;
+                      }
+
+                      this.injector
+                        .get(UnsavedChangesGuardService)
+                        .resetMonitors();
+
+                      return of(null);
+                    }),
+                  )
               : of(null),
           ),
         ),

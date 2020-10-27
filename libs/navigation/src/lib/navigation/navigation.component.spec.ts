@@ -3,12 +3,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NavigationModule } from '../navigation.module';
 import { NavigationComponent } from './navigation.component';
 
 const mockedData = [
   {
     title: 'Dashboard Dashboard Dashboard Dashboard Dashboard',
+    url: '',
   },
   {
     title: 'Orders Orders Orders Orders Orders Orders Orders',
@@ -18,10 +18,11 @@ const mockedData = [
     subItems: [
       {
         title: 'Dashboard2',
+        url: 'url',
       },
       {
         title: 'Dashboard2',
-        url: '',
+        url: 'url',
         icon: '',
         isActive: false,
         subItems: [],
@@ -48,8 +49,8 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, NavigationModule],
-      declarations: [TestComponent],
+      imports: [NoopAnimationsModule],
+      declarations: [TestComponent, NavigationComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
@@ -161,7 +162,7 @@ describe('NavigationComponent', () => {
 
       const ulElem = fixture.debugElement.query(By.css('ul[nz-menu]'));
 
-      expect(ulElem.attributes['ng-reflect-nz-inline-collapsed']).toBe('false');
+      expect(ulElem.properties.nzInlineCollapsed).toBe(false);
     });
 
     it('should update binding when changed', () => {
@@ -171,7 +172,7 @@ describe('NavigationComponent', () => {
 
       const ulElem = fixture.debugElement.query(By.css('ul[nz-menu]'));
 
-      expect(ulElem.attributes['ng-reflect-nz-inline-collapsed']).toBe('false');
+      expect(ulElem.properties.nzInlineCollapsed).toBe(false);
 
       component.collapsed = true;
 
@@ -179,9 +180,7 @@ describe('NavigationComponent', () => {
 
       const updatedUlElem = fixture.debugElement.query(By.css('ul[nz-menu]'));
 
-      expect(updatedUlElem.attributes['ng-reflect-nz-inline-collapsed']).toBe(
-        'true',
-      );
+      expect(ulElem.properties.nzInlineCollapsed).toBe(true);
     });
   });
 

@@ -11,7 +11,7 @@ import { combineLatest, EMPTY, of, Subject } from 'rxjs';
 import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
 
 /**
- *  Responsible to intercept redirect events from the navigation component and if it’s monitors has dirty status - prompt a user to confirm to close the drawer in the form of a modal.
+ *  Responsible to intercept redirect events from the navigation component and if any monitor has dirty status - prompt a user to confirm to navigate away.
  */
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesNavigationGuard extends UnsavedChangesGuardBase {

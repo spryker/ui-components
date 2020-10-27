@@ -34,6 +34,7 @@ describe('UrlHtmlRendererDirective', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let httpTestingController: HttpTestingController;
+  let ajaxActionService: MockAjaxActionService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -44,7 +45,7 @@ describe('UrlHtmlRendererDirective', () => {
         MockAjaxActionService,
         {
           provide: AjaxActionService,
-          useClass: MockAjaxActionService,
+          useExisting: MockAjaxActionService,
         },
       ],
     }).compileComponents();
@@ -54,6 +55,7 @@ describe('UrlHtmlRendererDirective', () => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     httpTestingController = TestBed.inject(HttpTestingController);
+    ajaxActionService = TestBed.inject(MockAjaxActionService);
   });
 
   afterEach(() => {
@@ -136,5 +138,28 @@ describe('UrlHtmlRendererDirective', () => {
     fixture.detectChanges();
 
     expect(component.urlHtmlLoading).toHaveBeenCalledWith(false);
+  });
+
+  it('should call `AjaxActionService` with response object', () => {
+    const mockResponse = {
+      html: mockHtmlTemplate,
+      postActions: [
+        {
+          type: 'mock',
+          addProperty: 'addProperty',
+        },
+      ],
+    };
+
+    component.urlHtml = mockUrl;
+    fixture.detectChanges();
+    const htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    expect(htmlResponse.request.method).toBe('GET');
+
+    htmlResponse.flush(mockResponse);
+    fixture.detectChanges();
+
+    expect(ajaxActionService.handle).toHaveBeenCalledWith(mockResponse);
   });
 });

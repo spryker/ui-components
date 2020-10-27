@@ -103,7 +103,12 @@
       display: none;
     }
 
+    &-selection-item ~ .@{select-prefix-cls}-clear {
+      display: block;
+    }
+
     &-clear {
+      display: none;
       width: @tree-select-clear-button-size;
       height: @tree-select-clear-button-size;
       background: url(@tree-select-remove-default-base64-url) no-repeat center;

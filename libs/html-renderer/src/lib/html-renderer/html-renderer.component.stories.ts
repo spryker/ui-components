@@ -1,8 +1,13 @@
-import { StaticHtmlRendererModule } from '../static-html-renderer/static-html-renderer.module';
-import { UrlHtmlRendererModule } from '../url-html-renderer/url-html-renderer.module';
-import { IStory } from '@storybook/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Injectable } from '@angular/core';
+import { AjaxActionModule } from '@spryker/ajax-action';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { NotificationModule } from '@spryker/notification';
+import { IStory } from '@storybook/angular';
+
+import { StaticHtmlRendererModule } from '../static-html-renderer/static-html-renderer.module';
+import { UrlHtmlRendererResponse } from '../url-html-renderer/url-html-renderer.directive';
+import { UrlHtmlRendererModule } from '../url-html-renderer/url-html-renderer.module';
 
 const mockHtmlTemplate = (template: string) => `
   <head>
@@ -34,8 +39,35 @@ const mockHtmlTemplate = (template: string) => `
   </body>
 `;
 
-function generateMockHtmlPage(template: string): string {
-  return mockHtmlTemplate(template);
+@Injectable({
+  providedIn: 'root',
+})
+class AjaxPostActionMockService {
+  constructor() {}
+
+  handleAction(action: any): void {
+    // tslint:disable-next-line: no-non-null-assertion
+    document.getElementById(
+      'test-id',
+    )!.innerHTML += `<div>${action.random}</div>`;
+  }
+}
+
+function generateMockHtmlPage(
+  template: string,
+  withPost = false,
+): UrlHtmlRendererResponse {
+  return {
+    html: mockHtmlTemplate(template),
+    postActions: withPost
+      ? [
+          {
+            type: 'mock',
+            random: Math.random().toFixed(4),
+          },
+        ]
+      : [],
+  };
 }
 
 export default {
@@ -56,7 +88,12 @@ export const withStaticHtml = (): IStory => ({
 
 export const withUrlHtml = (): IStory => ({
   moduleMetadata: {
-    imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
+    imports: [
+      UrlHtmlRendererModule,
+      MockHttpModule,
+      HttpClientTestingModule,
+      NotificationModule.forRoot(),
+    ],
   },
   template: `
     <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>
@@ -66,6 +103,32 @@ export const withUrlHtml = (): IStory => ({
       {
         url: '/html-request',
         dataFn: () => generateMockHtmlPage('Url'),
+      },
+    ]),
+  },
+});
+
+export const withUrlHtmlPostActions = (): IStory => ({
+  moduleMetadata: {
+    imports: [
+      UrlHtmlRendererModule,
+      MockHttpModule,
+      HttpClientTestingModule,
+      NotificationModule.forRoot(),
+      AjaxActionModule.withActions({
+        mock: AjaxPostActionMockService,
+      }),
+    ],
+  },
+  template: `
+    <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>
+    <h2 id="test-id"></h2>
+  `,
+  props: {
+    mockHttp: setMockHttp([
+      {
+        url: '/html-request',
+        dataFn: () => generateMockHtmlPage('Url', true),
       },
     ]),
   },

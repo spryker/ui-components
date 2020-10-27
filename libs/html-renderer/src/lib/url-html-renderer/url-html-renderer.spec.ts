@@ -1,14 +1,20 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import {
-  HttpTestingController,
   HttpClientTestingModule,
+  HttpTestingController,
 } from '@angular/common/http/testing';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { AjaxActionService } from '@spryker/ajax-action';
+
 import { UrlHtmlRendererModule } from './url-html-renderer.module';
 
 const mockHtmlTemplate = `<p>Hello World!!!</p>`;
 const mockUrl = '/html-request';
+
+class MockAjaxActionService {
+  handle = jest.fn();
+}
 
 @Component({
   selector: 'spy-test',
@@ -34,6 +40,13 @@ describe('UrlHtmlRendererDirective', () => {
       imports: [UrlHtmlRendererModule, HttpClientTestingModule],
       declarations: [TestComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        MockAjaxActionService,
+        {
+          provide: AjaxActionService,
+          useClass: MockAjaxActionService,
+        },
+      ],
     }).compileComponents();
   }));
 
@@ -57,7 +70,9 @@ describe('UrlHtmlRendererDirective', () => {
 
     expect(htmlResponse.request.method).toBe('GET');
 
-    htmlResponse.flush(mockHtmlTemplate);
+    htmlResponse.flush({
+      html: mockHtmlTemplate,
+    });
     fixture.detectChanges();
 
     expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
@@ -74,7 +89,9 @@ describe('UrlHtmlRendererDirective', () => {
     fixture.detectChanges();
     let htmlResponse = httpTestingController.expectOne(mockUrl);
 
-    htmlResponse.flush(mockHtmlTemplate);
+    htmlResponse.flush({
+      html: mockHtmlTemplate,
+    });
     fixture.detectChanges();
 
     expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
@@ -83,7 +100,9 @@ describe('UrlHtmlRendererDirective', () => {
     fixture.detectChanges();
     htmlResponse = httpTestingController.expectOne(mockRerenderUrl);
 
-    htmlResponse.flush(mockRerenderHtml);
+    htmlResponse.flush({
+      html: mockRerenderHtml,
+    });
     fixture.detectChanges();
 
     expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml);
@@ -97,7 +116,9 @@ describe('UrlHtmlRendererDirective', () => {
 
     const htmlResponse = httpTestingController.expectOne(mockUrl);
 
-    htmlResponse.flush(mockHtmlTemplate);
+    htmlResponse.flush({
+      html: mockHtmlTemplate,
+    });
     fixture.detectChanges();
 
     expect(component.urlHtmlLoading).toHaveBeenCalledWith(false);

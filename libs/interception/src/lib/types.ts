@@ -16,6 +16,11 @@ export type InterceptionHandler<D> = (data: D) => ObservableInput<any>;
 export interface InterceptorDispatcher {
   dispatch<D>(event: InterceptionEventType<D>, data: D): Observable<D>;
   dispatch<D extends never>(event: InterceptionEventType<D>): Observable<void>;
+
+  dispatchToAll<D>(event: InterceptionEventType<D>, data: D): Observable<D>;
+  dispatchToAll<D extends never>(
+    event: InterceptionEventType<D>,
+  ): Observable<void>;
 }
 
 export interface Interceptor {

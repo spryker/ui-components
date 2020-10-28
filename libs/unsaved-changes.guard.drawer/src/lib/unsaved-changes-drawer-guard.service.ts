@@ -63,9 +63,9 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
 
   private destroyed$ = new Subject<void>();
   private translations$ = combineLatest([
-    this.i18nService.translate('unsaved-changes.guard.drawer.title'),
-    this.i18nService.translate('unsaved-changes.guard.drawer.ok'),
-    this.i18nService.translate('unsaved-changes.guard.drawer.cancel'),
+    this.i18nService.translate('unsaved-changes.confirmation-title'),
+    this.i18nService.translate('unsaved-changes.confirmation-ok'),
+    this.i18nService.translate('unsaved-changes.confirmation-cancel'),
   ]);
 
   init(): void {

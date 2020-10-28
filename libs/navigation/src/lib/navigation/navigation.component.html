@@ -11,7 +11,7 @@
         [nzPaddingLeft]="0"
         [nzSelected]="item.isActive"
       >
-        <a [href]="item.url">
+        <a [href]="item.url" (click)="clickHandler($event, item.url)">
           <ng-container *ngTemplateOutlet="titleTpl"></ng-container>
         </a>
       </li>

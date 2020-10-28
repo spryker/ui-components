@@ -1,9 +1,8 @@
 import { Inject, Injectable, Injector } from '@angular/core';
-import { InjectionTokenType } from '@spryker/utils';
 import { AjaxPostActionHandler } from '@spryker/ajax-action';
 import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
+import { InjectionTokenType, WindowToken } from '@spryker/utils';
 
-import { WindowToken } from './tokens';
 import { AjaxPostActionRedirect } from './types';
 
 /**

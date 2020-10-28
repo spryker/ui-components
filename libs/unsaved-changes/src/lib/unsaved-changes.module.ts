@@ -1,10 +1,6 @@
 import { CommonModule } from '@angular/common';
-import {
-  InjectionToken,
-  ModuleWithProviders,
-  NgModule,
-  Type,
-} from '@angular/core';
+import { ModuleWithProviders, NgModule, Type } from '@angular/core';
+import { provideInterceptionComposerToken } from '@spryker/interception';
 
 import { UnsavedChangesGuard } from './unsaved-changes-guard';
 import {
@@ -13,7 +9,6 @@ import {
 } from './unsaved-changes-guard-root.token';
 import { UnsavedChangesGuardService } from './unsaved-changes-guard.service';
 import { UnsavedChangesGuardToken } from './unsaved-changes-guard.token';
-import { provideInterceptionComposerToken } from '@spryker/interception';
 
 @NgModule({
   imports: [CommonModule],

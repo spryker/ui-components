@@ -14,7 +14,7 @@ import { ToBoolean } from '@spryker/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OnboardingRadioItemComponent {
-  @ViewChild('contentTpl') template!: TemplateRef<void>;
   @Input() value?: string | number;
   @Input() @ToBoolean() disabled = false;
+  @ViewChild('contentTpl') template!: TemplateRef<void>;
 }

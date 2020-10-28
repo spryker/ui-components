@@ -20,7 +20,7 @@ export class NumberToRomanStylePipe implements PipeTransform {
 
 // tslint:disable: no-non-null-assertion
 describe('OnboardingRadioComponent', () => {
-  let mockService: I18nTestService;
+  let i18nTestService: I18nTestService;
   const projectedContent = `
     <spy-onboarding-radio-item value="A">Radio 1...</spy-onboarding-radio-item>
     <spy-onboarding-radio-item value="B" disabled>Radio 2...</spy-onboarding-radio-item>
@@ -42,7 +42,7 @@ describe('OnboardingRadioComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [testModule] });
-    mockService = TestBed.inject(I18nTestService);
+    i18nTestService = TestBed.inject(I18nTestService);
   });
 
   it('should render <spy-icon>', async () => {
@@ -61,7 +61,7 @@ describe('OnboardingRadioComponent', () => {
     );
 
     expect(titleElement?.nativeElement.textContent).toContain(token);
-    expect(mockService.getLocaleData(token, 'number')).toBe(
+    expect(i18nTestService.getLocaleData(token, 'number')).toBe(
       labelElement.length,
     );
   });
@@ -86,15 +86,15 @@ describe('OnboardingRadioComponent', () => {
     expect(radiosElement?.properties.ngModel).toBe(mockValue);
   });
 
-  it('checkedChange must be emitted every time ngModelChange emits from nz-radio-group', async () => {
+  it('valueChange must be emitted every time ngModelChange emits from nz-radio-group', async () => {
     const host = await createComponent({}, true);
     const nzRadioGroupElem = host.queryCss('nz-radio-group');
 
     expect(nzRadioGroupElem).toBeTruthy();
 
-    nzRadioGroupElem!.triggerEventHandler('ngModelChange', []);
+    nzRadioGroupElem!.triggerEventHandler('ngModelChange', 2);
     host.detectChanges();
 
-    expect(host.hostComponent.checkedChange).toHaveBeenCalled();
+    expect(host.hostComponent.valueChange).toHaveBeenCalledWith(2);
   });
 });

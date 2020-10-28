@@ -17,14 +17,17 @@ import { OnboardingRadioItemComponent } from '../onboarding-radio-item/onboardin
   templateUrl: './onboarding-radio.component.html',
   styleUrls: ['./onboarding-radio.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'spy-onboarding-radio',
+  },
 })
 export class OnboardingRadioComponent {
   @Input() value?: string | number;
-  @Output() checkedChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() valueChange = new EventEmitter<boolean>();
 
   radioIcon = IconRadioModule.icon;
   radios$ = new BehaviorSubject<OnboardingRadioItemComponent[]>([]);
-  radioReference = OnboardingRadioItemComponent;
+  radioItemComponentType = OnboardingRadioItemComponent;
 
   @ContentChildren(OnboardingRadioItemComponent)
   set radios(radio: QueryList<OnboardingRadioItemComponent>) {

@@ -5,11 +5,7 @@ import { romanize } from './number-to-roman-style-function';
   name: 'numberToRomanStyle',
 })
 export class NumberToRomanStylePipe implements PipeTransform {
-  transform(value: number, key?: string): number | string {
-    if (key === 'roman') {
-      return romanize(value);
-    }
-
-    return value;
+  transform(value: number): number | string {
+    return romanize(value);
   }
 }

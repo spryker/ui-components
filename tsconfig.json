@@ -18,8 +18,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"],
-      "@spryker/onboarding-radio": ["libs/onboarding-radio/src/index.ts"]
+      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

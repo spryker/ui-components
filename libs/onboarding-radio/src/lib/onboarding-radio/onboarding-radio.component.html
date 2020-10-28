@@ -12,7 +12,7 @@
 
   <nz-radio-group
     [(ngModel)]="value"
-    (ngModelChange)="checkedChange.emit($event)"
+    (ngModelChange)="valueChange.emit($event)"
   >
     <label
       *ngFor="let radio of radios"
@@ -26,7 +26,7 @@
 </div>
 
 <span
-  [spySelectComponents]="radioReference"
+  [spySelectComponents]="radioItemComponentType"
   (spySelectComponentsFound)="radiosFound($event)"
   style="display: none"
 >

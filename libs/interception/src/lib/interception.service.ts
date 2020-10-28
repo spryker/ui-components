@@ -1,6 +1,12 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { distinctUntilChanged, map, switchMap, take } from 'rxjs/operators';
+import { Injectable, Optional, SkipSelf } from '@angular/core';
+import { BehaviorSubject, Observable, of, zip } from 'rxjs';
+import {
+  distinctUntilChanged,
+  map,
+  mapTo,
+  switchMap,
+  take,
+} from 'rxjs/operators';
 
 import {
   InterceptionEventType,
@@ -15,9 +21,25 @@ import {
  */
 @Injectable({ providedIn: 'root' })
 export class InterceptionService implements InterceptorDispatcher, Interceptor {
+  constructor(
+    @Optional()
+    @SkipSelf()
+    private parentInterceptionService?: InterceptionService,
+  ) {}
+
   private handlersMap$ = new BehaviorSubject(
     new Map<any, InterceptionHandler<any>[]>(),
   );
+
+  private getHandlersForEvent(
+    event: InterceptionEventType<unknown>,
+  ): Observable<InterceptionHandler<any>[]> {
+    return this.handlersMap$.pipe(
+      take(1),
+      map(handlersMap => handlersMap.get(event) || []),
+      distinctUntilChanged(),
+    );
+  }
 
   dispatch<D>(event: InterceptionEventType<D>, data: D): Observable<D>;
   dispatch<D extends never>(event: InterceptionEventType<D>): Observable<void>;
@@ -25,10 +47,7 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
     event: InterceptionEventType<unknown>,
     data?: unknown,
   ): Observable<unknown> {
-    return this.handlersMap$.pipe(
-      take(1),
-      map(handlersMap => handlersMap.get(event) || []),
-      distinctUntilChanged(),
+    return this.getHandlersForEvent(event).pipe(
       switchMap(h =>
         h.reduce(
           (prev$, handler) =>
@@ -36,6 +55,21 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
           of(data),
         ),
       ),
+    );
+  }
+
+  dispatchToAll<D>(event: InterceptionEventType<D>, data: D): Observable<D>;
+  dispatchToAll<D extends never>(
+    event: InterceptionEventType<D>,
+  ): Observable<void>;
+  dispatchToAll(
+    event: InterceptionEventType<unknown>,
+    data?: unknown,
+  ): Observable<unknown> {
+    return zip(
+      this.parentInterceptionService?.dispatchToAll(event, data) ??
+        this.getHandlersForEvent(event).pipe(mapTo(null)),
+      this.dispatch(event, data),
     );
   }
 
@@ -69,6 +103,14 @@ export abstract class InterceptorDispatcherService
   implements InterceptorDispatcher {
   abstract dispatch<D>(event: InterceptionEventType<D>, data: D): Observable<D>;
   abstract dispatch<D extends never>(
+    event: InterceptionEventType<D>,
+  ): Observable<void>;
+
+  abstract dispatchToAll<D>(
+    event: InterceptionEventType<D>,
+    data: D,
+  ): Observable<D>;
+  abstract dispatchToAll<D extends never>(
     event: InterceptionEventType<D>,
   ): Observable<void>;
 }

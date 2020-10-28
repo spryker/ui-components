@@ -5310,6 +5310,83 @@
         }
       }
     },
+    "unsaved-changes.guard.navigation": {
+      "projectType": "library",
+      "root": "libs/unsaved-changes.guard.navigation",
+      "sourceRoot": "libs/unsaved-changes.guard.navigation/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/unsaved-changes.guard.navigation/tsconfig.lib.json",
+            "project": "libs/unsaved-changes.guard.navigation/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/unsaved-changes.guard.navigation/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/unsaved-changes.guard.navigation/tsconfig.lib.json",
+              "libs/unsaved-changes.guard.navigation/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/unsaved-changes.guard.navigation/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/unsaved-changes.guard.navigation/jest.config.js",
+            "tsConfig": "libs/unsaved-changes.guard.navigation/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/unsaved-changes.guard.navigation/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/unsaved-changes.guard.navigation/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/unsaved-changes.guard.navigation",
+            "config": {
+              "configFolder": "libs/unsaved-changes.guard.navigation/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
     "table.datasource.static": {
       "projectType": "library",
       "root": "libs/table.datasource.static",

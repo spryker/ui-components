@@ -2,7 +2,6 @@ import { TableDatasourceStaticModule } from '@spryker/table.datasource.static';
 import { TableModule } from '@spryker/table';
 import { TableDatasourceStaticService } from './table-datasource-static.service';
 import { IStory } from '@storybook/angular';
-import { MockHttpModule } from '@spryker/internal-utils';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -19,7 +18,6 @@ export const withTable = (): IStory => ({
       TableDatasourceStaticModule,
       DefaultContextSerializationModule,
       TableModule.forRoot(),
-      MockHttpModule,
       TableModule.withDatasourceTypes({
         static: TableDatasourceStaticService,
       }),

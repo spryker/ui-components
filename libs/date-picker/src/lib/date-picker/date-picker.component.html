@@ -5,10 +5,13 @@
   [nzFormat]="format"
   [nzPlaceHolder]="placeholder"
   [nzDisabledDate]="disabledDate"
+  [nzDisabledTime]="disabledTime"
   [nzShowToday]="false"
+  [nzShowTime]="time"
   (ngModelChange)="dateChange.emit($event)"
   (nzOnOpenChange)="openChangeEvent($event)"
   [nzSuffixIcon]="suffixTpl"
+  [attr.data-time-title]="'date-picker.time-title' | spyI18n | async"
   *spyLocaleRender
   #datePicker
 >

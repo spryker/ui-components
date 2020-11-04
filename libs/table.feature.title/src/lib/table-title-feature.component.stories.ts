@@ -14,7 +14,7 @@ import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
-  title: 'TableSearchFeatureComponent',
+  title: 'TableTitleFeatureComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = i => ({

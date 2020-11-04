@@ -3,12 +3,12 @@
   [nzPrefix]="prefix"
   [nzAddOnBefore]="outerPrefix"
   [nzAddOnAfter]="outerSuffix"
-  (mouseover)="isHovered = true"
-  (mouseout)="isHovered = false"
   [class.ant-input-container--hover]="isHovered"
   [class.ant-input-container--focus]="isFocused"
   [class.ant-input-affix-wrapper--suffix]="suffix"
   [class.ant-input-affix-wrapper--prefix]="prefix"
+  (mouseover)="isHovered = true"
+  (mouseout)="isHovered = false"
 >
   <input
     nz-input

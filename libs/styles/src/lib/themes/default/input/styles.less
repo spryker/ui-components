@@ -66,7 +66,15 @@
 
     input.@{ant-input} {
       height: 100%;
-      padding: @input-padding-vertical-base @input-affix-padding;
+      padding: @input-padding-vertical-base @input-padding-horizontal-base;
+    }
+
+    &--suffix input.@{ant-input} {
+      padding-right: @input-affix-padding;
+    }
+
+    &--prefix input.@{ant-input} {
+      padding-left: @input-affix-padding;
     }
 
     .@{ant-input} {

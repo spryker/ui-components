@@ -49,8 +49,9 @@ export class DateRangePickerComponent {
       date = new Date(date);
     }
 
-    // TODO: Add condition when input time is falsy when time feature will be added
-    date.setHours(hour, min, sec);
+    if (!this.time) {
+      date.setHours(hour, min, sec);
+    }
 
     return date;
   }

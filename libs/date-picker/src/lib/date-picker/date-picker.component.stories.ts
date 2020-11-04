@@ -18,10 +18,24 @@ export const primary = () => ({
   },
   template: `
     <spy-date-picker
+      [enableTime]="enableTimeObj"
       placeholder="yyyy.mm.dd hh:mm"
       time="HH:mm"
       format="yyyy.MM.dd HH:mm">
     </spy-date-picker>
   `,
-  props: {},
+  props: {
+    enableTimeObj: {
+      onlyWorkHours: false,
+      from: new Date().setHours(9, 0),
+      to: new Date().setHours(18, 0),
+    },
+    enableTimeFunc: () => {
+      return {
+        hours: () => [10, 11, 12, 13, 14, 15, 16, 17],
+        minutes: () => new Array(60).fill(null).map((_, index) => index),
+        seconds: () => new Array(60).fill(null).map((_, index) => index),
+      };
+    },
+  },
 });

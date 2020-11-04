@@ -431,7 +431,7 @@
 
     .@{calendar-prefix-cls}-time-panel-column {
       border: none;
-      width: 50px;
+      width: @calendar-time-cell-width;
     }
 
     .@{calendar-prefix-cls}-time-panel-cell-inner {
@@ -439,22 +439,19 @@
       line-height: @calendar-time-cell-height !important;
     }
 
+    .@{calendar-prefix-cls}-time-panel-cell-disabled {
+      pointer-events: none;
+
+      .@{calendar-prefix-cls}-time-panel-cell-inner {
+        background-color: @gray-lighter !important;
+        color: @gray !important;
+      }
+    }
+
     .@{calendar-prefix-cls}-time-panel-cell-selected .@{calendar-prefix-cls}-time-panel-cell-inner {
       background: @primary-color !important;
       color: @white !important;
     }
-
-    //.@{calendar-prefix-cls}-header {
-      //height: @calendar-time-title-height;
-      //line-height: @calendar-time-title-height;
-      //color: @gray-dark;
-      //font-weight: @font-weight-default;
-
-      //&:before {
-      //  content: 'Time';
-      //  margin: 0 auto;
-      //}
-    //}
 
     .@{calendar-prefix-cls}-header-view {
       height: @calendar-time-title-height;

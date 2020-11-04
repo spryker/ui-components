@@ -32,8 +32,8 @@ export const primary = () => ({
   `,
   props: {
     dates: {
-      from: new Date('2012-12-15 9:05'),
-      to: new Date('2012-12-18 18:00'),
+      from: new Date('2012-12-15'),
+      to: new Date('2012-12-18'),
     },
   },
 });

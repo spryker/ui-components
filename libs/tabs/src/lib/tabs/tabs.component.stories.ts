@@ -18,13 +18,13 @@ export const primary = () => ({
   },
   template: `
     <spy-tabs>
-      <spy-tab spy-title="Test Title 1">
+      <spy-tab spyTitle="Test Title 1">
         Tab Content 1
       </spy-tab>
-      <spy-tab spy-title="Test Title 2" disabled="true">
+      <spy-tab spyTitle="Test Title 2" disabled="true">
         Tab Content 2
       </spy-tab>
-      <spy-tab spy-title="Test Title 3" hasWarning="true">
+      <spy-tab spyTitle="Test Title 3" hasWarning="true">
         Tab Content 3
       </spy-tab>
     </spy-tabs>

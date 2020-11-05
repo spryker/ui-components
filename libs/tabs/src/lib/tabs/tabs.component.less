@@ -5,7 +5,7 @@
 
   &-bar {
     border-bottom: none;
-    margin-bottom: 16px;
+    margin-bottom: @tabs-margin-bottom;
   }
 
   &-ink-bar {
@@ -27,11 +27,12 @@
   }
 
   &-custom-tab {
+    .transition-mixin(all);
     position: relative;
-    padding: @tabs-vertical-padding @tabs-horizontal-padding;
-    transition: all @common-transition-time;
+    padding: @tabs-padding;
 
     &::after {
+      .transition-mixin(background);
       content: '';
       position: absolute;
       bottom: -@tabs-boarder-width;
@@ -39,7 +40,6 @@
       width: 100%;
       height: @tabs-boarder-width;
       background: transparent;
-      transition: background @common-transition-time;
     }
 
     &:hover {
@@ -57,15 +57,15 @@
     &-icon {
       position: absolute;
       top: 50%;
-      left: 20px;
+      left: @tabs-icon-shift-left;
       transform: translate(0, -50%);
       display: flex;
-      padding-right: 6px;
+      padding-right: @tabs-icon-padding-right;
       font-size: @font-size-lg;
     }
 
     &-warning {
-      padding-left: @tabs-horizontal-padding + 13px;
+      padding-left: @tabs-warning-padding-left;
       color: @red;
 
       &:hover {
@@ -80,7 +80,7 @@
 
   &-nav {
     width: 100%;
-    border-bottom: @tabs-boarder-width @border-style-base @gray-light;
+    border-bottom: @tabs-nav-border-bottom;
 
     .@{tab-prefix-cls}-tab {
       padding: 0;

@@ -25,7 +25,7 @@
 }
 
 .@{toggle-prefix-cls} {
-  border: @toggle-border-width solid transparent;
+  border: @toggle-border;
 
   &:hover,
   &:focus {
@@ -34,7 +34,7 @@
 
   &:focus {
     border-color: @white;
-    box-shadow: @btn-shadow-default-size @gray-darker;
+    box-shadow: @toggle-focus-box-shadow;
   }
 
   &-checked {
@@ -44,7 +44,7 @@
     }
 
     &:focus {
-      box-shadow: @btn-shadow-default-size @green;
+      box-shadow: @toggle-checked-focus-box-shadow;
     }
 
     &:hover {

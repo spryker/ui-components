@@ -24,7 +24,7 @@ export const primary = () => ({
     declarations: [StoryComponent],
   },
   template: `
-    <spy-collapsible alwaysRender="false" title="Collapsible Title">
+    <spy-collapsible alwaysRender="false" spyTitle="Collapsible Title">
       <spy-story></spy-story>
     </spy-collapsible>
   `,
@@ -36,7 +36,7 @@ export const withTemplate = () => ({
     declarations: [StoryComponent],
   },
   template: `
-    <spy-collapsible alwaysRender="false" title="Collapsible Template Title">
+    <spy-collapsible alwaysRender="false" spyTitle="Collapsible Template Title">
       <ng-template>
         <spy-story></spy-story>
       </ng-template>

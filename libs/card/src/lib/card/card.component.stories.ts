@@ -11,7 +11,7 @@ export const primary = () => ({
     imports: [NzCardModule, CardModule],
   },
   template: `
-    <spy-card title="Card Title" [extra]="extraRef" [actions]="[button, button]">
+    <spy-card spyTitle="Card Title" [extra]="extraRef" [actions]="[button, button]">
       Card content here
     </spy-card>
     <ng-template #extraRef>
@@ -28,8 +28,8 @@ export const withInnerCard = () => ({
     imports: [NzCardModule, CardModule],
   },
   template: `
-    <spy-card title="Card Title" [extra]="extraRef" [actions]="[button, button]">
-      <spy-card title="Card Title">
+    <spy-card spyTitle="Card Title" [extra]="extraRef" [actions]="[button, button]">
+      <spy-card spyTitle="Card Title">
         Card content here
       </spy-card>
     </spy-card>

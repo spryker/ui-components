@@ -341,7 +341,8 @@
       box-sizing: border-box;
       padding: @btn-horizontal-vertical-base @btn-horizontal-padding-base;
       box-shadow: @btn-shadow-default-size transparent;
-      font: @font-weight-medium @font-size-base / @btn-line-height-base @font-family;
+      font: @font-weight-medium @font-size-base / @btn-line-height-base
+        @font-family;
       text-align: center;
       border-radius: @btn-border-radius;
       border: @btn-border-width solid @btn-primary-bg;
@@ -388,7 +389,7 @@
   }
 
   &-footer,
-  &-panel &-footer{
+  &-panel &-footer {
     border: none;
   }
 
@@ -448,7 +449,8 @@
       }
     }
 
-    .@{calendar-prefix-cls}-time-panel-cell-selected .@{calendar-prefix-cls}-time-panel-cell-inner {
+    .@{calendar-prefix-cls}-time-panel-cell-selected
+      .@{calendar-prefix-cls}-time-panel-cell-inner {
       background: @primary-color !important;
       color: @white !important;
     }

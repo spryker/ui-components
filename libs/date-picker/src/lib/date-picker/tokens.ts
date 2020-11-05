@@ -9,7 +9,12 @@ export function getWorkDaysNumbers(): DateWorkDays {
 }
 
 export function getWorkHoursNumbers(): DateWorkHours {
-  return [ [ [9, 0], [18, 0] ] ];
+  return [
+    [
+      [9, 0],
+      [18, 0],
+    ],
+  ];
 }
 
 // Token holds array of number of days in a week and by default includes days from Monday to Friday

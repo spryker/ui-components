@@ -27,8 +27,8 @@ export const primary = () => ({
   props: {
     enableTimeObj: {
       onlyWorkHours: false,
-      from: new Date().setHours(9, 0),
-      to: new Date().setHours(18, 0),
+      from: new Date().setHours(9, 0, 0),
+      to: new Date().setHours(18, 0, 0),
     },
     enableTimeFunc: () => {
       return {

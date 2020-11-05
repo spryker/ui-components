@@ -6,7 +6,8 @@ import {
   HostBinding,
   Inject,
   Input,
-  OnChanges, OnInit,
+  OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
@@ -66,7 +67,8 @@ export type EnableTimeFunction<C = EnableTimeConfig> = (current: Date) => C;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DatePickerComponent implements OnInit, OnChanges, AfterViewChecked {
+export class DatePickerComponent
+  implements OnInit, OnChanges, AfterViewChecked {
   private static DefaultFormat = 'dd.MM.yyyy';
 
   @Input() @ToBoolean() clearButton = true;
@@ -150,24 +152,28 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewChecked 
 
       const nzDisabledHours = () => {
         const hours = new Array(24).fill(null).map((_, index) => index);
-        const enableHours = enableTimeConfig.hours();
+        const enabledHours = enableTimeConfig.hours();
 
-        return hours.filter((hour: number) => !enableHours.includes(hour));
-      }
+        return hours.filter((hour: number) => !enabledHours.includes(hour));
+      };
 
       const nzDisabledMinutes = () => {
         const minutes = new Array(60).fill(null).map((_, index) => index);
-        const enableMinutes = enableTimeConfig.minutes(24);
+        const enabledMinutes = enableTimeConfig.minutes(24);
 
-        return minutes.filter((minute: number) => !enableMinutes.includes(minute));
-      }
+        return minutes.filter(
+          (minute: number) => !enabledMinutes.includes(minute),
+        );
+      };
 
       const nzDisabledSeconds = () => {
         const seconds = new Array(60).fill(null).map((_, index) => index);
-        const enableSeconds = enableTimeConfig.seconds(24, 60);
+        const enabledSeconds = enableTimeConfig.seconds(24, 60);
 
-        return seconds.filter((second: number) => !enableSeconds.includes(second));
-      }
+        return seconds.filter(
+          (second: number) => !enabledSeconds.includes(second),
+        );
+      };
 
       return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds };
     };
@@ -211,9 +217,9 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewChecked 
 
     const convertedEnableTime = this.getConvertedTimeObject(enableTime);
 
-    const enableHours = new Set<number>();
-    const enableMinutes = new Set<number>();
-    const enableSeconds = new Set<number>();
+    const enabledHours = new Set<number>();
+    const enabledMinutes = new Set<number>();
+    const enabledSeconds = new Set<number>();
 
     const fromHours = convertedEnableTime.from?.getHours();
     const fromMinutes = convertedEnableTime.from?.getMinutes();
@@ -227,52 +233,66 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewChecked 
     const minutesFromTo = new Array(60).fill(null).map((_, index) => index);
     const secondsFromTo = new Array(60).fill(null).map((_, index) => index);
 
-    const filteredHoursFromTo = this.getTimeRange(hoursFromTo, fromHours, toHours);
-    const filteredMinutesFromTo = this.getTimeRange(minutesFromTo, fromMinutes, toMinutes);
-    const filteredSecondsFromTo = this.getTimeRange(secondsFromTo, fromSeconds, toSeconds);
+    const filteredHoursFromTo = this.getTimeRange(
+      hoursFromTo,
+      fromHours,
+      toHours,
+    );
+    const filteredMinutesFromTo = this.getTimeRange(
+      minutesFromTo,
+      fromMinutes,
+      toMinutes,
+    );
+    const filteredSecondsFromTo = this.getTimeRange(
+      secondsFromTo,
+      fromSeconds,
+      toSeconds,
+    );
     const filteredOnlyWorkHoursFromTo = this.getTimeRange(
-      hoursFromTo, this.dateWorkHoursToken[0][0][0], this.dateWorkHoursToken[0][1][0]
+      hoursFromTo,
+      this.dateWorkHoursToken[0][0][0],
+      this.dateWorkHoursToken[0][1][0],
     );
     const filteredOnlyWorkMinutesFromTo = this.getTimeRange(
-      minutesFromTo, this.dateWorkHoursToken[0][0][1], this.dateWorkHoursToken[0][1][1]
+      minutesFromTo,
+      this.dateWorkHoursToken[0][0][1],
+      this.dateWorkHoursToken[0][1][1],
     );
 
     if (!convertedEnableTime.onlyWorkHours) {
-      if ([...filteredHoursFromTo].length > 1) {
-        filteredHoursFromTo.forEach((hour: number) => enableHours.add(hour));
-      }
-
-      if ([...filteredMinutesFromTo].length > 1) {
-        filteredMinutesFromTo.forEach((minute: number) => enableMinutes.add(minute));
-      }
-
-      if ([...filteredSecondsFromTo].length > 1) {
-        filteredSecondsFromTo.forEach((second: number) => enableSeconds.add(second));
-      }
+      filteredHoursFromTo.forEach((hour: number) => enabledHours.add(hour));
+      filteredMinutesFromTo.forEach((minute: number) =>
+        enabledMinutes.add(minute),
+      );
+      filteredSecondsFromTo.forEach((second: number) =>
+        enabledSeconds.add(second),
+      );
     } else {
-      if ([...filteredOnlyWorkHoursFromTo].length > 1) {
-        filteredOnlyWorkHoursFromTo.forEach((hour: number) => enableHours.add(hour));
-      }
-
-      if ([...filteredOnlyWorkMinutesFromTo].length > 1) {
-        filteredOnlyWorkMinutesFromTo.forEach((minute: number) => enableMinutes.add(minute));
-      }
+      filteredOnlyWorkHoursFromTo.forEach((hour: number) =>
+        enabledHours.add(hour),
+      );
+      filteredOnlyWorkMinutesFromTo.forEach((minute: number) =>
+        enabledMinutes.add(minute),
+      );
+      filteredSecondsFromTo.forEach((second: number) =>
+        enabledSeconds.add(second),
+      );
     }
 
     const disabledHours = new Array(24)
       .fill(null)
       .map((_, index) => index)
-      .filter((hour: number) => !enableHours.has(hour));
+      .filter((hour: number) => !enabledHours.has(hour));
 
     const disabledMinutes = new Array(60)
       .fill(null)
       .map((_, index) => index)
-      .filter((minute: number) => !enableMinutes.has(minute));
+      .filter((minute: number) => !enabledMinutes.has(minute));
 
     const disabledSeconds = new Array(60)
       .fill(null)
       .map((_, index) => index)
-      .filter((second: number) => !enableSeconds.has(second));
+      .filter((second: number) => !enabledSeconds.has(second));
 
     this.disabledTime = (): NzDisabledTimeConfig => {
       const nzDisabledHours = () => disabledHours;
@@ -280,16 +300,20 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewChecked 
       const nzDisabledSeconds = () => disabledSeconds;
 
       return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds };
-    }
+    };
   }
 
-  private getTimeRange(fromTo: number[], from: number | undefined, to: number | undefined): number[] {
+  private getTimeRange(
+    fromTo: number[],
+    from: number | undefined,
+    to: number | undefined,
+  ): number[] {
     return fromTo.filter((hour: number) => {
-      if (from !== undefined && hour < from) {
+      if (from !== undefined && from !== 0 && hour < from) {
         return false;
       }
 
-      if (to !== undefined && hour > to) {
+      if (to !== undefined && to !== 0 && hour > to) {
         return false;
       }
 
@@ -322,7 +346,10 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewChecked 
   }
 
   private convertValueToTime(): void {
-    if (typeof this.time === 'string' && (this.time !== 'true' && this.time !== 'false')) {
+    if (
+      typeof this.time === 'string' &&
+      this.time !== 'true' && this.time !== 'false'
+    ) {
       this.time = { nzFormat: this.time };
     }
   }

@@ -348,7 +348,8 @@ export class DatePickerComponent
   private convertValueToTime(): void {
     if (
       typeof this.time === 'string' &&
-      this.time !== 'true' && this.time !== 'false'
+      this.time !== 'true' &&
+      this.time !== 'false'
     ) {
       this.time = { nzFormat: this.time };
     }

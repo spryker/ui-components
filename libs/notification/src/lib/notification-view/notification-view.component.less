@@ -16,11 +16,11 @@
 }
 
 .@{notification-prefix-cls} {
-  padding: @notification-padding-y @notification-padding-x;
-  font: @font-weight-medium @font-size-base @font-family;
+  padding: @notification-padding;
+  font: @font-default;
   border-radius: @notification-border-radius;
   border: none;
-  border-left: @notification-border-width solid transparent;
+  border-left: @notification-border;
   margin-bottom: @notification-block-margin-bottom;
 
   &__icon-wrapper {
@@ -70,7 +70,7 @@
   }
 
   &&-no-icon {
-    padding: @notification-padding-y @notification-padding-x;
+    padding: @notification-padding;
   }
 
   &-success {
@@ -98,7 +98,7 @@
     .@{notification-prefix-cls}-message {
       display: flex;
       align-items: center;
-      padding-right: @notification-close-icon-right-position + 5px;
+      padding-right: @notification-with-description-padding-right;
       margin-bottom: 0;
       color: inherit;
       font-size: inherit;

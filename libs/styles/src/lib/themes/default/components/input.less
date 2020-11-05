@@ -21,8 +21,8 @@
 
 .@{ant-input} {
   height: @input-height-base;
-  font: @font-weight-medium @font-size-base @font-family;
-  padding: @input-padding-vertical-base @input-padding-horizontal-base;
+  font: @font-default;
+  padding: @input-padding-padding-base;
 
   &:read-only,
   &-disabled {
@@ -66,7 +66,7 @@
 
     input.@{ant-input} {
       height: 100%;
-      padding: @input-padding-vertical-base @input-padding-horizontal-base;
+      padding: @input-padding-padding-base;
     }
 
     &--suffix input.@{ant-input} {

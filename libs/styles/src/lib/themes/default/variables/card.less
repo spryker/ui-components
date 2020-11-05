@@ -10,7 +10,7 @@
 @card-padding-base: 30px;
 @card-head-y-padding: 19px;
 
-@card-radius: @border-radius-base;
+@card-radius: 0 0 @border-radius-base @border-radius-base;
 
 @card-border-width: 1px;
 
@@ -20,3 +20,8 @@
 @card-inner-padding-y-head: 13px;
 @card-inner-padding-y-base: 15px;
 @card-inner-padding-x-base: 20px;
+
+@card-head-padding-default: @card-inner-padding-y-head
+  @card-inner-padding-x-base;
+@card-body-padding-default: @card-inner-padding-y-base
+  @card-inner-padding-x-base;

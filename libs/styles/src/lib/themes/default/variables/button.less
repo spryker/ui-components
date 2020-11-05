@@ -13,6 +13,8 @@
 @btn-height-xs: 26px;
 @btn-height-base: @btn-height-md;
 @btn-line-height-base: 1.3;
+@btn-active-transform: scaleX(0.9);
+@btn-decoration-size: -2px;
 
 @btn-horizontal-vertical-base: 3px;
 @btn-horizontal-padding-base: 16px;
@@ -22,6 +24,7 @@
 @btn-vertical-padding-base: 10px;
 @btn-vertical-padding-sm: 8px;
 @btn-vertical-padding-lg: 13px;
+@btn-padding-base: @btn-horizontal-vertical-base @btn-horizontal-padding-base;
 @btn-padding-with-loading-lg: 0 8px 0 27px;
 @btn-padding-with-loading-md: 0 8px 0 27px;
 @btn-padding-with-loading-sm: 0 8px 0 25px;
@@ -29,6 +32,7 @@
 @btn-loading-spin-offset-sm: 14px;
 
 @btn-border-width: 1px;
+@btn-border: @btn-border-width solid transparent;
 
 @btn-border-radius: 10px;
 @btn-border-radius-round: 40px;
@@ -36,18 +40,21 @@
 @btn-border-radius-link: 24px;
 
 @btn-shadow-default-size: 0 0 2px;
+@btn-shadow-default: @btn-shadow-default-size transparent;
 @btn-shadow-hover-size: 0 4px 18px;
 @btn-text-shadow: none;
 
 @btn-primary-bg: @primary-color;
 @btn-primary-color: @white;
 @btn-primary-shadow-hover: @btn-shadow-hover-size rgba(@btn-primary-bg, 0.4);
+@btn-primary-shadow-focus: @btn-shadow-default-size @btn-primary-bg;
 @btn-primary-active-bg: @green-dark;
 
 @btn-danger-color: @white;
 @btn-danger-bg: @error-color;
 @btn-danger-border: @btn-danger-bg;
 @btn-danger-shadow-hover: @btn-shadow-hover-size rgba(@btn-danger-bg, 0.5);
+@btn-danger-shadow-focus: @btn-shadow-default-size @btn-danger-bg;
 @btn-danger-active-bg: @red-dark;
 
 @btn-default-color: @gray-darker;

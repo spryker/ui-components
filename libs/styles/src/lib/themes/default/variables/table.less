@@ -10,7 +10,9 @@
 @table-body-hover-row-border-shadow: 2px 2px 4px @gray-light;
 @table-column-head-color: @ink;
 @table-column-title-font-size: 12px;
+@table-column-sorter-down-margin-top: -5px;
 @table-border-width-base: @border-width-base;
+@table-border-base: @table-border-width-base solid transparent;
 @table-bottom-margin: 30px;
 @table-top-features-padding: 5px;
 
@@ -21,6 +23,11 @@
 @table-body-padding-bottom: 12.5px;
 @table-body-margin-vertical: 3px;
 @table-padding-horizontal: 25px;
+@table-column-inner-padding: @table-body-padding-top @table-padding-horizontal
+  @table-body-padding-bottom;
+@table-head-padding: @table-head-padding-vertical @table-padding-horizontal;
+@table-column-first-border-radius: @border-radius-base 0 0 @border-radius-base;
+@table-column-last-border-radius: 0 @border-radius-base @border-radius-base 0;
 
 @table-features-padding-vertical: 30px;
 @table-features-col-padding: 5px;

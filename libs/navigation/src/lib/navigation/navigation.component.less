@@ -5,7 +5,7 @@
 }
 
 .@{menu-prefix-cls} {
-  font: @font-weight-medium @font-size-base @font-family;
+  font: @font-default;
   background: transparent;
 
   .menu-title-text {
@@ -19,11 +19,11 @@
     padding-left: 0 !important;
 
     > a {
+      .transition-mixin(color);
       display: flex;
       align-items: center;
       color: inherit;
       text-decoration: none;
-      transition: color @menu-item-transition-time @common-transition-function;
 
       &:hover {
         color: @menu-highlight-color;
@@ -33,7 +33,7 @@
 
   .menu-title-icon,
   &-item > a {
-    transition: color @menu-item-transition-time @common-transition-function;
+    .transition-mixin(color);
   }
 
   .menu-title-icon {
@@ -102,13 +102,11 @@
       display: flex;
       align-items: center;
       min-height: @menu-item-height;
-      padding: @menu-item-inner-vertical-spacing
-        @menu-item-inner-horizontal-spacing;
+      padding: @menu-subitem-title-padding;
     }
 
     .@{menu-prefix-cls}-submenu-title {
-      padding: @menu-item-inner-vertical-spacing
-        @menu-item-inner-horizontal-spacing !important;
+      padding: @menu-subitem-title-padding !important;
     }
   }
 
@@ -135,7 +133,7 @@
   &-submenu-inline
     > .@{menu-prefix-cls}-submenu-title
     .@{menu-prefix-cls}-submenu-arrow {
-    right: 6px;
+    right: @menu-submenu-arrow-right-shift;
   }
 
   &-sub&-inline {
@@ -156,8 +154,7 @@
 
     .@{menu-prefix-cls}-item > a,
     > .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
-      padding: @menu-item-inner-vertical-spacing
-        @menu-item-inner-horizontal-spacing !important;
+      padding: @menu-subitem-title-padding !important;
       line-height: 0;
 
       .anticon {

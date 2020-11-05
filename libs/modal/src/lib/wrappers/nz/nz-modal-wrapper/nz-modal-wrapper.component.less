@@ -27,7 +27,7 @@
   }
 
   &-content {
-    font: @font-weight-medium @font-size-base @font-family;
+    font: @font-default;
     padding: @modal-content-padding;
     color: @gray-darker;
   }
@@ -42,14 +42,13 @@
   }
 
   &-footer {
-    margin: @modal-footer-margin-top 0 0 0;
+    margin: @modal-footer-margin;
   }
 
   &-header {
-    margin: -@modal-content-padding -@modal-content-padding
-      @modal-header-indent-y;
-    padding: @modal-header-indent-y @modal-content-padding;
-    border-bottom: @modal-header-border-width solid @gray-light;
+    margin: @modal-header-margin;
+    padding: @modal-header-padding;
+    border-bottom: @modal-header-border-bottom;
     font-size: @heading-5-font-size;
     color: @ink;
     font-weight: @font-weight-semi-bold;
@@ -62,10 +61,10 @@
   &-confirm-actions {
     display: flex;
     justify-content: flex-end;
-    margin: 0 -@modal-confirmation-actions-padding-x;
+    margin: @modal-confirmation-actions-margin;
   }
 
   &-confirm-col {
-    padding: 0 @modal-confirmation-actions-padding-x;
+    padding: @modal-confirmation-col-padding;
   }
 }

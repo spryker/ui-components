@@ -29,7 +29,7 @@ describe('LogoComponent', () => {
     component.size = logoImageModifier;
     fixture.detectChanges();
     const logoElement = fixture.debugElement.query(
-      By.css(`.logo--${logoImageModifier}`),
+      By.css(`.spy-logo--${logoImageModifier}`),
     );
     expect(logoElement).toBeTruthy();
   });

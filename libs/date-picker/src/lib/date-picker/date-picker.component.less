@@ -10,7 +10,7 @@
   cursor: pointer;
   padding: 0;
   width: auto;
-  border: solid @calendar-input-border-width @gray-light;
+  border: @calendar-input-border;
 
   &,
   &-dropdown {
@@ -67,6 +67,7 @@
 
     &::after,
     &::before {
+      .transition-mixin(background);
       content: '';
       position: absolute;
       top: 50%;
@@ -76,7 +77,6 @@
       height: @calendar-clear-cross-height;
       border-radius: @calendar-clear-cross-radius;
       background: @gray-dark;
-      transition: background @common-transition-time @common-transition-function;
     }
 
     &::before {
@@ -122,7 +122,7 @@
 
   &-header {
     border-bottom: none;
-    padding: 0 @calendar-body-horizontal-padding;
+    padding: @calendar-header-padding;
     margin-top: @calendar-header-margin-top;
     margin-bottom: @calendar-header-margin-bottom;
 
@@ -206,7 +206,7 @@
         bottom: -1px;
         pointer-events: none;
         background: none;
-        border: @calendar-border-width solid transparent;
+        border: @calendar-tbody-td-border;
         box-shadow: none;
       }
     }

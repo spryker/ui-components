@@ -1,14 +1,14 @@
 @import 'ng-zorro-antd/input/style/index.less';
 @import '../theme.less';
 
-.@{ant-input}-group {
-  .@{ant-input} {
+.@{input-prefix-cls}-group {
+  .@{input-prefix-cls} {
     &:only-child {
       border-radius: @border-radius-base;
     }
   }
 
-  .@{ant-input}-group-addon {
+  .@{input-prefix-cls}-group-addon {
     background: @gray-lighter;
     color: @gray-dark;
     font-family: @font-family;
@@ -19,10 +19,10 @@
   }
 }
 
-.@{ant-input} {
+.@{input-prefix-cls} {
   height: @input-height-base;
-  font: @font-weight-medium @font-size-base @font-family;
-  padding: @input-padding-vertical-base @input-padding-horizontal-base;
+  font: @font-default;
+  padding: @input-padding-padding-base;
 
   &:read-only,
   &-disabled {
@@ -64,20 +64,20 @@
     height: @input-height-base;
     padding: 0;
 
-    input.@{ant-input} {
+    input.@{input-prefix-cls} {
       height: 100%;
-      padding: @input-padding-vertical-base @input-padding-horizontal-base;
+      padding: @input-padding-padding-base;
     }
 
-    &--suffix input.@{ant-input} {
+    &--suffix input.@{input-prefix-cls} {
       padding-right: @input-affix-padding;
     }
 
-    &--prefix input.@{ant-input} {
+    &--prefix input.@{input-prefix-cls} {
       padding-left: @input-affix-padding;
     }
 
-    .@{ant-input} {
+    .@{input-prefix-cls} {
       &-prefix,
       &-suffix {
         position: absolute;
@@ -99,33 +99,33 @@
     }
 
     &:hover {
-      .@{ant-input}-disabled,
-      .@{ant-input}:read-only {
+      .@{input-prefix-cls}-disabled,
+      .@{input-prefix-cls}:read-only {
         border-color: @input-disabled-border;
       }
     }
 
-    &.@{ant-input}-container--hover {
+    &.@{input-prefix-cls}-container--hover {
       border-color: @gray;
     }
 
-    &.@{ant-input}-container--focus {
+    &.@{input-prefix-cls}-container--focus {
       border-color: @primary-color;
     }
   }
 
   &-container {
     &--hover {
-      .@{ant-input}-group-addon,
-      .@{ant-input} {
+      .@{input-prefix-cls}-group-addon,
+      .@{input-prefix-cls} {
         border-color: @gray;
         box-shadow: none;
       }
     }
 
     &--focus {
-      .@{ant-input}-group-addon,
-      .@{ant-input} {
+      .@{input-prefix-cls}-group-addon,
+      .@{input-prefix-cls} {
         border-color: @primary-color;
         border-width: @border-width-base;
         box-shadow: none;
@@ -135,10 +135,10 @@
 }
 
 .@{form-item-prefix-cls}-has-error {
-  .@{ant-input}-affix-wrapper.@{ant-input}-container--hover,
-  .@{ant-input}-affix-wrapper.@{ant-input}-container--focus,
-  .@{ant-input}-group-addon,
-  .@{ant-input} {
+  .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--hover,
+  .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--focus,
+  .@{input-prefix-cls}-group-addon,
+  .@{input-prefix-cls} {
     border-color: @red;
 
     &:focus {
@@ -146,7 +146,7 @@
     }
   }
 
-  .@{ant-input}-group-addon {
+  .@{input-prefix-cls}-group-addon {
     background: @gray-lighter;
     color: @gray-dark;
   }

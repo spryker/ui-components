@@ -4,8 +4,7 @@
   &__float {
     &-cell {
       margin-left: -@table-editable-feature-float-cell-x-padding;
-      padding: @table-editable-feature-float-cell-y-padding
-        @table-editable-feature-float-cell-x-padding;
+      padding: @table-editable-feature-float-cell-padding;
       background: @white;
       box-shadow: @table-editable-feature-float-cell-shadow;
       border-radius: @table-editable-feature-float-border-radius;
@@ -14,11 +13,11 @@
     &-grid {
       display: flex;
       align-items: center;
-      margin: 0 -@table-editable-feature-float-col-x-padding;
+      margin: @table-editable-feature-float-grid-margin;
     }
 
     &-col {
-      padding: 0 @table-editable-feature-float-col-x-padding;
+      padding: @table-editable-feature-float-col-padding;
 
       .@{btn-prefix-cls}-core .@{btn-prefix-cls}-core__btn {
         min-width: @table-editable-feature-float-btn-min-width;

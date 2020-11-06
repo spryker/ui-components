@@ -2,8 +2,7 @@
 
 .@{checkbox-prefix-cls}-wrapper {
   display: inline-flex;
-  font: @font-weight-medium @font-size-base / @checkbox-label-line-height
-    @font-family;
+  font: @font-default;
   color: @checkbox-label-color;
   letter-spacing: @letter-spacing-base;
 
@@ -12,7 +11,7 @@
   }
 
   &.cdk-focused .@{checkbox-prefix-cls}-checked {
-    box-shadow: @checkbox-shadow-default-size @checkbox-color;
+    box-shadow: @checkbox-shadow-focus;
   }
 
   &:hover {
@@ -38,10 +37,10 @@
 .@{checkbox-prefix-cls} {
   align-self: flex-start;
   flex-shrink: 0;
-  top: 1px;
-  border: @checkbox-border-gap-width solid transparent;
+  top: @checkbox-shift-top;
+  border: @checkbox-border;
   border-radius: @checkbox-border-radius;
-  box-shadow: @checkbox-shadow-default-size transparent;
+  box-shadow: @checkbox-shadow-default;
   width: @checkbox-size;
   height: @checkbox-size;
   position: relative;
@@ -75,8 +74,8 @@
 
   &-input {
     &:checked:focus + .@{checkbox-prefix-cls}-inner {
-      transform: scale(0.9) translate(-50%, -50%);
-      transform-origin: top left;
+      transform: @checkbox-transform-focus;
+      transform-origin: @checkbox-transform-origin-focus;
     }
 
     &:focus + .@{checkbox-prefix-cls}-inner {

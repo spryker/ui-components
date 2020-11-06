@@ -7,7 +7,11 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { ToBoolean, ToJson } from '@spryker/utils';
-import { DateRangeValueInput, DateRangeValue } from './types';
+import {
+  DateRangeValueInput,
+  DateRangeValue,
+  TimeRangeValueInput,
+} from './types';
 
 @Component({
   selector: 'spy-date-range-picker',
@@ -18,6 +22,8 @@ import { DateRangeValueInput, DateRangeValue } from './types';
 })
 export class DateRangePickerComponent {
   @Input() @ToJson() dates: DateRangeValueInput = {};
+  @Input() @ToJson() enableTimeFrom: TimeRangeValueInput = {};
+  @Input() @ToJson() enableTimeTo: TimeRangeValueInput = {};
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
   @Input() format?: string;

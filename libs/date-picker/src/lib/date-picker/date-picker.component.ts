@@ -154,26 +154,17 @@ export class DatePickerComponent
         const hours = new Array(24).fill(null).map((_, index) => index);
         const enabledHours = enableTimeConfig.hours();
 
-        return hours.filter((hour: number) => !enabledHours.includes(hour));
+        return hours.filter(hour => !enabledHours.includes(hour));
       };
 
       const nzDisabledMinutes = () => {
         const minutes = new Array(60).fill(null).map((_, index) => index);
         const enabledMinutes = enableTimeConfig.minutes(24);
 
-        return minutes.filter(
-          (minute: number) => !enabledMinutes.includes(minute),
-        );
+        return minutes.filter(minute => !enabledMinutes.includes(minute));
       };
 
-      const nzDisabledSeconds = () => {
-        const seconds = new Array(60).fill(null).map((_, index) => index);
-        const enabledSeconds = enableTimeConfig.seconds(24, 60);
-
-        return seconds.filter(
-          (second: number) => !enabledSeconds.includes(second),
-        );
-      };
+      const nzDisabledSeconds = () => [];
 
       return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds };
     };
@@ -218,89 +209,113 @@ export class DatePickerComponent
     const convertedEnableTime = this.getConvertedTimeObject(enableTime);
 
     const enabledHours = new Set<number>();
-    const enabledMinutes = new Set<number>();
-    const enabledSeconds = new Set<number>();
 
     const fromHours = convertedEnableTime.from?.getHours();
     const fromMinutes = convertedEnableTime.from?.getMinutes();
-    const fromSeconds = convertedEnableTime.from?.getSeconds();
 
     const toHours = convertedEnableTime.to?.getHours();
     const toMinutes = convertedEnableTime.to?.getMinutes();
-    const toSeconds = convertedEnableTime.to?.getSeconds();
 
     const hoursFromTo = new Array(24).fill(null).map((_, index) => index);
     const minutesFromTo = new Array(60).fill(null).map((_, index) => index);
-    const secondsFromTo = new Array(60).fill(null).map((_, index) => index);
+
+    const workHoursRanges = [...this.dateWorkHoursToken];
+
+    if (fromHours !== undefined && toHours !== undefined) {
+      // tslint:disable-next-line:no-non-null-assertion
+      workHoursRanges.push([
+        [fromHours, fromMinutes!],
+        [toHours, toMinutes!],
+      ]);
+    }
 
     const filteredHoursFromTo = this.getTimeRange(
       hoursFromTo,
       fromHours,
       toHours,
     );
-    const filteredMinutesFromTo = this.getTimeRange(
-      minutesFromTo,
-      fromMinutes,
-      toMinutes,
-    );
-    const filteredSecondsFromTo = this.getTimeRange(
-      secondsFromTo,
-      fromSeconds,
-      toSeconds,
-    );
-    const filteredOnlyWorkHoursFromTo = this.getTimeRange(
+    const filteredOnlyWorkHoursFromTo = this.filterHoursRange(
+      workHoursRanges,
       hoursFromTo,
-      this.dateWorkHoursToken[0][0][0],
-      this.dateWorkHoursToken[0][1][0],
-    );
-    const filteredOnlyWorkMinutesFromTo = this.getTimeRange(
-      minutesFromTo,
-      this.dateWorkHoursToken[0][0][1],
-      this.dateWorkHoursToken[0][1][1],
     );
 
     if (!convertedEnableTime.onlyWorkHours) {
-      filteredHoursFromTo.forEach((hour: number) => enabledHours.add(hour));
-      filteredMinutesFromTo.forEach((minute: number) =>
-        enabledMinutes.add(minute),
-      );
-      filteredSecondsFromTo.forEach((second: number) =>
-        enabledSeconds.add(second),
-      );
+      filteredHoursFromTo.forEach(hour => enabledHours.add(hour));
     } else {
-      filteredOnlyWorkHoursFromTo.forEach((hour: number) =>
-        enabledHours.add(hour),
-      );
-      filteredOnlyWorkMinutesFromTo.forEach((minute: number) =>
-        enabledMinutes.add(minute),
-      );
-      filteredSecondsFromTo.forEach((second: number) =>
-        enabledSeconds.add(second),
-      );
+      filteredOnlyWorkHoursFromTo.forEach(hour => enabledHours.add(hour));
     }
 
     const disabledHours = new Array(24)
       .fill(null)
       .map((_, index) => index)
-      .filter((hour: number) => !enabledHours.has(hour));
-
-    const disabledMinutes = new Array(60)
-      .fill(null)
-      .map((_, index) => index)
-      .filter((minute: number) => !enabledMinutes.has(minute));
-
-    const disabledSeconds = new Array(60)
-      .fill(null)
-      .map((_, index) => index)
-      .filter((second: number) => !enabledSeconds.has(second));
+      .filter(hour => !enabledHours.has(hour));
 
     this.disabledTime = (): NzDisabledTimeConfig => {
       const nzDisabledHours = () => disabledHours;
-      const nzDisabledMinutes = () => disabledMinutes;
-      const nzDisabledSeconds = () => disabledSeconds;
+      const nzDisabledMinutes = (hour: number) => {
+        return this.filterMinutesRange(workHoursRanges, hour, minutesFromTo);
+      };
+      const nzDisabledSeconds = () => [];
 
       return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds };
     };
+  }
+
+  private filterMinutesRange(
+    workHoursRanges: number[][][],
+    hour: number,
+    minutesFromTo: number[],
+  ): number[] {
+    const enabledMinutesSet = new Set<number>();
+
+    if (hour === undefined) {
+      return minutesFromTo;
+    }
+
+    workHoursRanges.forEach(range => {
+      let from: number | undefined;
+      let to: number | undefined;
+
+      if (hour === range[0][0]) {
+        from = range[0][1];
+      }
+
+      if (hour === range[1][0]) {
+        to = range[1][1];
+      }
+
+      if (from === undefined && to === undefined) {
+        return;
+      }
+
+      const timeRange = this.getTimeRange(minutesFromTo, from, to);
+
+      timeRange.forEach(minute => enabledMinutesSet.add(minute));
+    });
+
+    if (enabledMinutesSet.size === 0) {
+      return [];
+    }
+
+    return minutesFromTo.filter(minute => !enabledMinutesSet.has(minute));
+  }
+
+  private filterHoursRange(
+    workHoursRanges: number[][][],
+    hoursFromTo: number[],
+  ): number[] {
+    const enabledHoursSet = new Set<number>();
+
+    workHoursRanges.forEach(range => {
+      const from = range[0][0];
+      const to = range[1][0];
+
+      const timeRange = this.getTimeRange(hoursFromTo, from, to);
+
+      timeRange.forEach(hour => enabledHoursSet.add(hour));
+    });
+
+    return hoursFromTo.filter(hour => enabledHoursSet.has(hour));
   }
 
   private getTimeRange(
@@ -309,11 +324,11 @@ export class DatePickerComponent
     to: number | undefined,
   ): number[] {
     return fromTo.filter((hour: number) => {
-      if (from !== undefined && from !== 0 && hour < from) {
+      if (from !== undefined && hour < from) {
         return false;
       }
 
-      if (to !== undefined && to !== 0 && hour > to) {
+      if (to !== undefined && hour > to) {
         return false;
       }
 

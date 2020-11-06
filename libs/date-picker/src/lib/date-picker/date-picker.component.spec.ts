@@ -12,14 +12,13 @@ import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 
 describe('DatePickerComponent', () => {
-  const { testModule, createComponent } = getTestingForComponent(
+  let { testModule, createComponent } = getTestingForComponent(
     DatePickerComponent,
     {
       ngModule: {
         schemas: [NO_ERRORS_SCHEMA],
         imports: [
           TestLocaleModule,
-          NzDatePickerModule,
           NoopAnimationsModule,
           ToIsoDateFormatModule,
         ],
@@ -31,9 +30,30 @@ describe('DatePickerComponent', () => {
   const mockedDate = new Date('2012-12-12');
   const mockedExpectedDate = '2012-12-12T00:00:00.000Z';
   const mockedFormat = 'yyyy-MM-dd';
+  const mockedTimeFormat = 'HH:mm';
   const mockedPlaceholder = 'placeholder';
   const mockedCallValue = 'mockedCallValue';
   const mockedName = 'mockedName';
+  const mockedEnableTimeObject = {
+    onlyWorkHours: false,
+    from: '2020.11.05 8:30',
+    to: '2020.11.05 17:30',
+  };
+  const mockedEnableTimeFunction = () => {
+    return {
+      hours: () => [10, 11, 12, 13, 14, 15, 16, 17],
+      minutes: () => new Array(25).fill(null).map((_, index) => index),
+      seconds: () => [],
+    };
+  };
+  const mockedDisabledTime = () => {
+    return {
+      nzDisabledHours: () => [0, 1, 2, 3, 4, 5, 6, 7, 18, 19, 20, 21, 22, 23],
+      nzDisabledMinutes: () =>
+        new Array(60).fill(null).map((_, index) => index),
+      nzDisabledSeconds: () => [],
+    };
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [testModule] });
@@ -54,7 +74,7 @@ describe('DatePickerComponent', () => {
 
       const datePicker = host.queryCss(nzDatePickerSelector);
 
-      expect(datePicker?.attributes['ng-reflect-nz-allow-clear']).toBe('true');
+      expect(datePicker?.properties.nzAllowClear).toBe(true);
     });
 
     it('Input disabled should be bound to nzDisabled input of nz-date-picker', async () => {
@@ -62,7 +82,7 @@ describe('DatePickerComponent', () => {
 
       const datePicker = host.queryCss(nzDatePickerSelector);
 
-      expect(datePicker?.attributes['ng-reflect-nz-disabled']).toBe('true');
+      expect(datePicker?.properties.nzDisabled).toBe(true);
     });
 
     it('Input date should be bound to ngModel input of `hidden input`', async () => {
@@ -86,7 +106,7 @@ describe('DatePickerComponent', () => {
 
       const datePicker = host.queryCss(nzDatePickerSelector);
 
-      expect(datePicker?.attributes['ng-reflect-nz-format']).toBe(mockedFormat);
+      expect(datePicker?.properties.nzFormat).toBe(mockedFormat);
     });
 
     it('Input name should be bound to name input of `hidden input`', async () => {
@@ -105,9 +125,63 @@ describe('DatePickerComponent', () => {
 
       const datePicker = host.queryCss(nzDatePickerSelector);
 
-      expect(datePicker?.attributes['ng-reflect-nz-place-holder']).toBe(
-        mockedPlaceholder,
+      expect(datePicker?.properties.nzPlaceHolder).toBe(mockedPlaceholder);
+    });
+
+    it('Input disabledTime should be bound to nzDisabledTime input of nz-date-picker as object', async () => {
+      const host = await createComponent(
+        { enableTime: mockedEnableTimeObject },
+        true,
       );
+      const datePicker = host.queryCss(nzDatePickerSelector);
+
+      expect(datePicker?.properties.nzDisabledTime).toBe(
+        host.component.disabledTime,
+      );
+    });
+
+    it('Input disabledTime should be bound to nzDisabledTime input of nz-date-picker as function', async () => {
+      const host = await createComponent(
+        { enableTime: mockedEnableTimeFunction },
+        true,
+      );
+      const datePicker = host.queryCss(nzDatePickerSelector);
+
+      expect(datePicker?.properties.nzDisabledTime).toBe(
+        host.component.disabledTime,
+      );
+    });
+
+    it('disabledTime should return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds }', async () => {
+      const host = await createComponent(
+        { enableTime: mockedEnableTimeObject },
+        true,
+      );
+      const disabledTime = (host.component as any).disabledTime(new Date());
+
+      expect(disabledTime.nzDisabledHours()).toMatchObject(
+        mockedDisabledTime().nzDisabledHours(),
+      );
+      expect(disabledTime.nzDisabledMinutes()).toMatchObject(
+        mockedDisabledTime().nzDisabledMinutes(),
+      );
+      expect(disabledTime.nzDisabledSeconds()).toMatchObject(
+        mockedDisabledTime().nzDisabledSeconds(),
+      );
+    });
+
+    it('Input time should be bound to nzShowTime input of nz-date-picker as boolean', async () => {
+      const host = await createComponent({ time: true }, true);
+      const datePicker = host.queryCss(nzDatePickerSelector);
+
+      expect(datePicker?.properties.nzShowTime).toBe(host.component.time);
+    });
+
+    it('Input time should be bound to nzShowTime input of nz-date-picker as string', async () => {
+      const host = await createComponent({ time: mockedTimeFormat }, true);
+      const datePicker = host.queryCss(nzDatePickerSelector);
+
+      expect(datePicker?.properties.nzShowTime).toBe(host.component.time);
     });
   });
 
@@ -142,6 +216,31 @@ describe('DatePickerComponent', () => {
   });
 
   describe('Methods', () => {
+    const originalTestModule = testModule;
+    const originalCreateComponent = createComponent;
+
+    beforeAll(() => {
+      const testingForComponent = getTestingForComponent(DatePickerComponent, {
+        ngModule: {
+          schemas: [NO_ERRORS_SCHEMA],
+          imports: [
+            TestLocaleModule,
+            NoopAnimationsModule,
+            NzDatePickerModule,
+            ToIsoDateFormatModule,
+          ],
+        },
+      });
+
+      testModule = testingForComponent.testModule;
+      createComponent = testingForComponent.createComponent;
+    });
+
+    afterAll(() => {
+      testModule = originalTestModule;
+      createComponent = originalCreateComponent;
+    });
+
     it('Should apply open class to the host element if input open is true', fakeAsync(async () => {
       const host = await createComponent({ open: true });
 

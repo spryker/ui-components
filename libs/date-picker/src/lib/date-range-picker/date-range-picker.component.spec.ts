@@ -1,4 +1,4 @@
-import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
@@ -22,7 +22,16 @@ describe('DateRangePickerComponent', () => {
   };
   const mockedPlaceholder = 'placeholder';
   const mockedFormat = 'yyyy-MM-dd';
+  const mockedTimeFormat = 'HH:mm';
   const mockedName = 'mockedName';
+  const mockedEnableTimeFrom = {
+    onlyWorkHours: true,
+  };
+  const mockedEnableTimeTo = {
+    onlyWorkHours: false,
+    from: '2020.11.06 11:45',
+    to: '2020.11.06 17:00',
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [testModule] });
@@ -172,6 +181,62 @@ describe('DateRangePickerComponent', () => {
 
       expect(datePickerElemFrom?.properties.format).toBe(mockedFormat);
       expect(datePickerElemTo?.properties.format).toBe(mockedFormat);
+    });
+
+    it('Input time should be bound to time of both date pickers as boolean', async () => {
+      const host = await createComponent(
+        { dates: mockedDates, time: true },
+        true,
+      );
+      const datePickerElemFrom = host.queryCss('spy-date-picker');
+      const datePickerElemTo = host.queryCss(
+        '.ant-range-picker-col:last-child spy-date-picker',
+      );
+
+      expect(datePickerElemFrom?.properties.time).toBe(host.component.time);
+      expect(datePickerElemTo?.properties.time).toBe(host.component.time);
+    });
+
+    it('Input time should be bound to time of both date pickers as string', async () => {
+      const host = await createComponent(
+        { dates: mockedDates, time: mockedTimeFormat },
+        true,
+      );
+      const datePickerElemFrom = host.queryCss('spy-date-picker');
+      const datePickerElemTo = host.queryCss(
+        '.ant-range-picker-col:last-child spy-date-picker',
+      );
+
+      expect(datePickerElemFrom?.properties.time).toBe(host.component.time);
+      expect(datePickerElemTo?.properties.time).toBe(host.component.time);
+    });
+
+    it('Input enableTimeFrom should be bound to enableTime of first date picker', async () => {
+      const host = await createComponent(
+        { dates: mockedDates, enableTimeFrom: mockedEnableTimeFrom },
+        true,
+      );
+
+      const datePickerElemFrom = host.queryCss('spy-date-picker');
+
+      expect(datePickerElemFrom?.properties.enableTime).toBe(
+        host.component.enableTimeFrom,
+      );
+    });
+
+    it('Input enableTimeTo should be bound to enableTime of second date picker', async () => {
+      const host = await createComponent(
+        { dates: mockedDates, enableTimeTo: mockedEnableTimeTo },
+        true,
+      );
+
+      const datePickerElemTo = host.queryCss(
+        '.ant-range-picker-col:last-child spy-date-picker',
+      );
+
+      expect(datePickerElemTo?.properties.enableTime).toBe(
+        host.component.enableTimeTo,
+      );
     });
   });
 

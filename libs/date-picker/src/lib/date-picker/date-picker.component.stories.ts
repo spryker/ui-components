@@ -26,15 +26,15 @@ export const primary = () => ({
   `,
   props: {
     enableTimeObj: {
-      onlyWorkHours: false,
-      from: new Date().setHours(9, 0, 0),
-      to: new Date().setHours(18, 0, 0),
+      onlyWorkHours: true,
+      from: '2020.11.06 20:30',
+      to: '2020.11.06 23:30',
     },
     enableTimeFunc: () => {
       return {
         hours: () => [10, 11, 12, 13, 14, 15, 16, 17],
-        minutes: () => new Array(60).fill(null).map((_, index) => index),
-        seconds: () => new Array(60).fill(null).map((_, index) => index),
+        minutes: () => new Array(25).fill(null).map((_, index) => index),
+        seconds: () => [],
       };
     },
   },

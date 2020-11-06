@@ -49,8 +49,7 @@ describe('DatePickerComponent', () => {
   const mockedDisabledTime = () => {
     return {
       nzDisabledHours: () => [0, 1, 2, 3, 4, 5, 6, 7, 18, 19, 20, 21, 22, 23],
-      nzDisabledMinutes: () =>
-        new Array(60).fill(null).map((_, index) => index),
+      nzDisabledMinutes: () => [],
       nzDisabledSeconds: () => [],
     };
   };

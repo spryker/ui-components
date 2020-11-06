@@ -222,9 +222,10 @@ export class DatePickerComponent
     const workHoursRanges = [...this.dateWorkHoursToken];
 
     if (fromHours !== undefined && toHours !== undefined) {
-      // tslint:disable-next-line:no-non-null-assertion
       workHoursRanges.push([
+        // tslint:disable-next-line:no-non-null-assertion
         [fromHours, fromMinutes!],
+        // tslint:disable-next-line:no-non-null-assertion
         [toHours, toMinutes!],
       ]);
     }
@@ -269,7 +270,7 @@ export class DatePickerComponent
     const enabledMinutesSet = new Set<number>();
 
     if (hour === undefined) {
-      return minutesFromTo;
+      return [];
     }
 
     workHoursRanges.forEach(range => {

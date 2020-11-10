@@ -43,6 +43,7 @@ interface NzDisabledTimeConfig {
   nzDisabledSeconds: (hour?: number, minute?: number) => number[];
 }
 
+/** @dynamic */
 @Component({
   selector: 'spy-date-picker',
   templateUrl: './date-picker.component.html',

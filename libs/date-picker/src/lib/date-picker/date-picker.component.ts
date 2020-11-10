@@ -52,8 +52,8 @@ interface NzDisabledTimeConfig {
 })
 export class DatePickerComponent implements OnChanges, AfterViewChecked {
   private static DefaultFormat = 'dd.MM.yyyy';
-  private static hoursRange = new Array(24).fill(null).map((_, index) => index);
-  private static minutesRange = new Array(60)
+  private static HoursRange = new Array(24).fill(null).map((_, index) => index);
+  private static MinutesRange = new Array(60)
     .fill(null)
     .map((_, index) => index);
 
@@ -142,14 +142,14 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
       const nzDisabledHours = () => {
         const enabledHours = enableTimeConfig.hours();
 
-        return DatePickerComponent.hoursRange.filter(
+        return DatePickerComponent.HoursRange.filter(
           hour => !enabledHours.includes(hour),
         );
       };
       const nzDisabledMinutes = (hour?: number) => {
         const enabledMinutes = enableTimeConfig.minutes(hour);
 
-        return DatePickerComponent.minutesRange.filter(
+        return DatePickerComponent.MinutesRange.filter(
           minute => !enabledMinutes.includes(minute),
         );
       };
@@ -214,7 +214,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
     if (!convertedEnableTime.onlyWorkHours) {
       const filteredHoursFromTo = this.getTimeRange(
-        DatePickerComponent.hoursRange,
+        DatePickerComponent.HoursRange,
         fromHours,
         toHours,
       );
@@ -223,13 +223,13 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     } else {
       const filteredOnlyWorkHoursFromTo = this.filterHoursRange(
         workHoursRanges,
-        DatePickerComponent.hoursRange,
+        DatePickerComponent.HoursRange,
       );
 
       filteredOnlyWorkHoursFromTo.forEach(hour => enabledHours.add(hour));
     }
 
-    const disabledHours = DatePickerComponent.hoursRange.filter(
+    const disabledHours = DatePickerComponent.HoursRange.filter(
       hour => !enabledHours.has(hour),
     );
 
@@ -238,7 +238,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
       const nzDisabledMinutes = (hour?: number) =>
         this.filterMinutesRange(
           workHoursRanges,
-          DatePickerComponent.minutesRange,
+          DatePickerComponent.MinutesRange,
           hour,
         );
       const nzDisabledSeconds = () => [];

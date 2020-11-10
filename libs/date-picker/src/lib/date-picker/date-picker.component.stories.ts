@@ -20,16 +20,37 @@ export const primary = () => ({
     <spy-date-picker
       [enableTime]="enableTimeObj"
       placeholder="yyyy.mm.dd hh:mm"
-      time="HH:mm"
+      time="true"
       format="yyyy.MM.dd HH:mm">
     </spy-date-picker>
   `,
   props: {
     enableTimeObj: {
-      onlyWorkHours: true,
+      onlyWorkHours: false,
       from: '2020.11.06 20:30',
       to: '2020.11.06 23:30',
     },
+  },
+});
+
+export const disabledTimeViaFunction = () => ({
+  moduleMetadata: {
+    imports: [
+      DatePickerModule,
+      BrowserAnimationsModule,
+      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+      EnLocaleModule,
+    ],
+  },
+  template: `
+    <spy-date-picker
+      [enableTime]="enableTimeFunc"
+      placeholder="yyyy.mm.dd hh:mm"
+      time="true"
+      format="yyyy.MM.dd HH:mm">
+    </spy-date-picker>
+  `,
+  props: {
     enableTimeFunc: () => {
       return {
         hours: () => [10, 11, 12, 13, 14, 15, 16, 17],

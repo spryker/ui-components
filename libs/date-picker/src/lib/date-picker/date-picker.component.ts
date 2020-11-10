@@ -7,7 +7,6 @@ import {
   Inject,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
@@ -17,19 +16,14 @@ import { IconCalendarModule } from '@spryker/icon/icons';
 import { InjectionTokenType, ToBoolean, ToJson } from '@spryker/utils';
 
 import { DateWorkDaysToken, DateWorkHoursToken } from './tokens';
-
-interface EnableDateRange {
-  from?: Date | string;
-  to?: Date | string;
-}
-
-interface EnableDate extends EnableDateRange {
-  onlyWorkDays?: boolean;
-}
-
-interface EnableTime extends EnableDateRange {
-  onlyWorkHours?: boolean;
-}
+import {
+  EnableDate,
+  EnableDateFunction,
+  EnableDateOptions,
+  EnableTime,
+  EnableTimeFunction,
+  EnableTimeOptions,
+} from './types';
 
 interface ConvertedEnableDateRange {
   onlyWorkDays?: boolean;
@@ -43,22 +37,11 @@ interface ConvertedEnableTimeRange {
   to?: Date;
 }
 
-interface EnableTimeConfig {
-  hours: () => number[];
-  minutes: (hour: number) => number[];
-  seconds: (hour: number, minute: number) => number[];
-}
-
-interface NzDisabledTimeConfig {
+export interface NzDisabledTimeConfig {
   nzDisabledHours: () => number[];
-  nzDisabledMinutes: (hour: number) => number[];
-  nzDisabledSeconds: (hour: number, minute: number) => number[];
+  nzDisabledMinutes: (hour?: number) => number[];
+  nzDisabledSeconds: (hour?: number, minute?: number) => number[];
 }
-
-export type EnableDateOptions = EnableDate | EnableDateFunction;
-export type EnableTimeOptions = EnableTime | EnableTimeFunction;
-export type EnableDateFunction = (current: Date) => boolean;
-export type EnableTimeFunction<C = EnableTimeConfig> = (current: Date) => C;
 
 @Component({
   selector: 'spy-date-picker',
@@ -67,8 +50,7 @@ export type EnableTimeFunction<C = EnableTimeConfig> = (current: Date) => C;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DatePickerComponent
-  implements OnInit, OnChanges, AfterViewChecked {
+export class DatePickerComponent implements OnChanges, AfterViewChecked {
   private static DefaultFormat = 'dd.MM.yyyy';
 
   @Input() @ToBoolean() clearButton = true;
@@ -76,11 +58,11 @@ export class DatePickerComponent
   @Input() @ToJson() enableDate?: EnableDateOptions;
   @Input() @ToJson() enableTime?: EnableTimeOptions;
   @Input() @ToBoolean() open = false;
+  @Input() @ToBoolean() time?: boolean;
   @Input()
   set date(value: Date | string) {
     this._date = value ? this.convertValueToDate(value) : undefined;
   }
-
   get date(): Date | string {
     return this._date as Date;
   }
@@ -88,17 +70,19 @@ export class DatePickerComponent
   @Input() format = DatePickerComponent.DefaultFormat;
   @Input() placeholder?: string;
   @Input() name?: string;
-  @Input() time?: { nzFormat: string } | string | boolean;
   @Output() dateChange = new EventEmitter<Date>();
   @Output() openChange = new EventEmitter<boolean>();
 
   @ViewChild('datePicker', { static: false }) datePicker?: any;
 
   private _picker?: any;
+  private hoursRange = new Array(24).fill(null).map((_, index) => index);
+  private minutesRange = new Array(60).fill(null).map((_, index) => index);
 
   disabledDate?: EnableDateFunction;
   disabledTime?: (date: Date) => NzDisabledTimeConfig;
   _date?: Date;
+  nzTime?: { nzFormat: string };
   @HostBinding('class.open') isOpen = false;
 
   suffixIcon = IconCalendarModule.icon;
@@ -113,25 +97,29 @@ export class DatePickerComponent
   ngOnChanges(changes: SimpleChanges): void {
     this.updatePicker();
 
+    if ('time' in changes) {
+      this.nzTime = this.convertValueToTime(this.time);
+    }
+
     if ('format' in changes && !this.format) {
       this.format = DatePickerComponent.DefaultFormat;
     }
 
-    if (typeof this.enableDate === 'function') {
-      this.convertEnableDateFuncToFunc(this.enableDate as EnableDateFunction);
-    } else if (typeof this.enableDate === 'object') {
-      this.convertEnableDateObjToFunc(this.enableDate as EnableDate);
+    if ('enableDate' in changes) {
+      if (typeof this.enableDate === 'function') {
+        this.convertEnableDateFuncToFunc(this.enableDate as EnableDateFunction);
+      } else if (typeof this.enableDate === 'object') {
+        this.convertEnableDateObjToFunc(this.enableDate as EnableDate);
+      }
     }
 
-    if (typeof this.enableTime === 'function') {
-      this.convertEnableTimeFuncToFunc(this.enableTime as EnableTimeFunction);
-    } else if (typeof this.enableTime === 'object') {
-      this.convertEnableTimeObjToFunc(this.enableTime as EnableTime);
+    if ('enableTime' in changes) {
+      if (typeof this.enableTime === 'function') {
+        this.convertEnableTimeFuncToFunc(this.enableTime as EnableTimeFunction);
+      } else if (typeof this.enableTime === 'object') {
+        this.convertEnableTimeObjToFunc(this.enableTime as EnableTime);
+      }
     }
-  }
-
-  ngOnInit(): void {
-    this.convertValueToTime();
   }
 
   ngAfterViewChecked(): void {
@@ -151,17 +139,17 @@ export class DatePickerComponent
       const enableTimeConfig = enableTime(date);
 
       const nzDisabledHours = () => {
-        const hours = new Array(24).fill(null).map((_, index) => index);
         const enabledHours = enableTimeConfig.hours();
 
-        return hours.filter(hour => !enabledHours.includes(hour));
+        return this.hoursRange.filter(hour => !enabledHours.includes(hour));
       };
 
-      const nzDisabledMinutes = () => {
-        const minutes = new Array(60).fill(null).map((_, index) => index);
-        const enabledMinutes = enableTimeConfig.minutes(24);
+      const nzDisabledMinutes = (hour?: number) => {
+        const enabledMinutes = enableTimeConfig.minutes(hour);
 
-        return minutes.filter(minute => !enabledMinutes.includes(minute));
+        return this.minutesRange.filter(
+          minute => !enabledMinutes.includes(minute),
+        );
       };
 
       const nzDisabledSeconds = () => [];
@@ -207,18 +195,11 @@ export class DatePickerComponent
     }
 
     const convertedEnableTime = this.getConvertedTimeObject(enableTime);
-
     const enabledHours = new Set<number>();
-
     const fromHours = convertedEnableTime.from?.getHours();
     const fromMinutes = convertedEnableTime.from?.getMinutes();
-
     const toHours = convertedEnableTime.to?.getHours();
     const toMinutes = convertedEnableTime.to?.getMinutes();
-
-    const hoursFromTo = new Array(24).fill(null).map((_, index) => index);
-    const minutesFromTo = new Array(60).fill(null).map((_, index) => index);
-
     const workHoursRanges = [...this.dateWorkHoursToken];
 
     if (fromHours !== undefined && toHours !== undefined) {
@@ -230,32 +211,31 @@ export class DatePickerComponent
       ]);
     }
 
-    const filteredHoursFromTo = this.getTimeRange(
-      hoursFromTo,
-      fromHours,
-      toHours,
-    );
-    const filteredOnlyWorkHoursFromTo = this.filterHoursRange(
-      workHoursRanges,
-      hoursFromTo,
-    );
-
     if (!convertedEnableTime.onlyWorkHours) {
+      const filteredHoursFromTo = this.getTimeRange(
+        this.hoursRange,
+        fromHours,
+        toHours,
+      );
+
       filteredHoursFromTo.forEach(hour => enabledHours.add(hour));
     } else {
+      const filteredOnlyWorkHoursFromTo = this.filterHoursRange(
+        workHoursRanges,
+        this.hoursRange,
+      );
+
       filteredOnlyWorkHoursFromTo.forEach(hour => enabledHours.add(hour));
     }
 
-    const disabledHours = new Array(24)
-      .fill(null)
-      .map((_, index) => index)
-      .filter(hour => !enabledHours.has(hour));
+    const disabledHours = this.hoursRange.filter(
+      hour => !enabledHours.has(hour),
+    );
 
     this.disabledTime = (): NzDisabledTimeConfig => {
       const nzDisabledHours = () => disabledHours;
-      const nzDisabledMinutes = (hour: number) => {
-        return this.filterMinutesRange(workHoursRanges, hour, minutesFromTo);
-      };
+      const nzDisabledMinutes = (hour?: number) =>
+        this.filterMinutesRange(workHoursRanges, this.minutesRange, hour);
       const nzDisabledSeconds = () => [];
 
       return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds };
@@ -264,14 +244,14 @@ export class DatePickerComponent
 
   private filterMinutesRange(
     workHoursRanges: number[][][],
-    hour: number,
     minutesFromTo: number[],
+    hour?: number,
   ): number[] {
-    const enabledMinutesSet = new Set<number>();
-
     if (hour === undefined) {
       return [];
     }
+
+    const enabledMinutesSet = new Set<number>();
 
     workHoursRanges.forEach(range => {
       let from: number | undefined;
@@ -310,7 +290,6 @@ export class DatePickerComponent
     workHoursRanges.forEach(range => {
       const from = range[0][0];
       const to = range[1][0];
-
       const timeRange = this.getTimeRange(hoursFromTo, from, to);
 
       timeRange.forEach(hour => enabledHoursSet.add(hour));
@@ -361,14 +340,12 @@ export class DatePickerComponent
     return value instanceof Date ? value : new Date(value);
   }
 
-  private convertValueToTime(): void {
-    if (
-      typeof this.time === 'string' &&
-      this.time !== 'true' &&
-      this.time !== 'false'
-    ) {
-      this.time = { nzFormat: this.time };
+  private convertValueToTime(value?: boolean) {
+    if (!value) {
+      return undefined;
     }
+
+    return { nzFormat: 'HH:mm' };
   }
 
   private updatePicker(): void {

@@ -30,7 +30,6 @@ describe('DatePickerComponent', () => {
   const mockedDate = new Date('2012-12-12');
   const mockedExpectedDate = '2012-12-12T00:00:00.000Z';
   const mockedFormat = 'yyyy-MM-dd';
-  const mockedTimeFormat = 'HH:mm';
   const mockedPlaceholder = 'placeholder';
   const mockedCallValue = 'mockedCallValue';
   const mockedName = 'mockedName';
@@ -41,15 +40,16 @@ describe('DatePickerComponent', () => {
   };
   const mockedEnableTimeFunction = () => {
     return {
-      hours: () => [10, 11, 12, 13, 14, 15, 16, 17],
-      minutes: () => new Array(25).fill(null).map((_, index) => index),
+      hours: () => [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+      minutes: () => new Array(31).fill(null).map((_, index) => index),
       seconds: () => [],
     };
   };
   const mockedDisabledTime = () => {
     return {
       nzDisabledHours: () => [0, 1, 2, 3, 4, 5, 6, 7, 18, 19, 20, 21, 22, 23],
-      nzDisabledMinutes: () => [],
+      nzDisabledMinutes: () =>
+        new Array(29).fill(null).map((_, index) => 31 + index),
       nzDisabledSeconds: () => [],
     };
   };
@@ -151,17 +151,17 @@ describe('DatePickerComponent', () => {
       );
     });
 
-    it('disabledTime should return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds }', async () => {
+    it('disabledTime should return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds } with object on input', async () => {
       const host = await createComponent(
         { enableTime: mockedEnableTimeObject },
         true,
       );
-      const disabledTime = (host.component as any).disabledTime(new Date());
+      const disabledTime = host.component.disabledTime!(new Date());
 
       expect(disabledTime.nzDisabledHours()).toMatchObject(
         mockedDisabledTime().nzDisabledHours(),
       );
-      expect(disabledTime.nzDisabledMinutes()).toMatchObject(
+      expect(disabledTime.nzDisabledMinutes(17)).toMatchObject(
         mockedDisabledTime().nzDisabledMinutes(),
       );
       expect(disabledTime.nzDisabledSeconds()).toMatchObject(
@@ -169,18 +169,29 @@ describe('DatePickerComponent', () => {
       );
     });
 
-    it('Input time should be bound to nzShowTime input of nz-date-picker as boolean', async () => {
+    it('disabledTime should return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds } with function on input', async () => {
+      const host = await createComponent(
+        { enableTime: mockedEnableTimeFunction },
+        true,
+      );
+      const disabledTime = host.component.disabledTime!(new Date());
+
+      expect(disabledTime.nzDisabledHours()).toMatchObject(
+        mockedDisabledTime().nzDisabledHours(),
+      );
+      expect(disabledTime.nzDisabledMinutes(8)).toMatchObject(
+        mockedDisabledTime().nzDisabledMinutes(),
+      );
+      expect(disabledTime.nzDisabledSeconds()).toMatchObject(
+        mockedDisabledTime().nzDisabledSeconds(),
+      );
+    });
+
+    it('Input time should be bound to nzShowTime input of nz-date-picker', async () => {
       const host = await createComponent({ time: true }, true);
       const datePicker = host.queryCss(nzDatePickerSelector);
 
-      expect(datePicker?.properties.nzShowTime).toBe(host.component.time);
-    });
-
-    it('Input time should be bound to nzShowTime input of nz-date-picker as string', async () => {
-      const host = await createComponent({ time: mockedTimeFormat }, true);
-      const datePicker = host.queryCss(nzDatePickerSelector);
-
-      expect(datePicker?.properties.nzShowTime).toBe(host.component.time);
+      expect(datePicker?.properties.nzShowTime).toBe(host.component.nzTime);
     });
   });
 

@@ -26,7 +26,7 @@ export const primary = () => ({
         [dates]="dates"
         [enableTimeFrom]="enableTimeFrom"
         [enableTimeTo]="enableTimeTo"
-        time="HH:mm"
+        time="true"
         format="yyyy.MM.dd HH:mm"
         placeholderFrom="from"
         placeholderTo="to"

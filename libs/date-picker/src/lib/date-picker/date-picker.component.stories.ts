@@ -56,7 +56,7 @@ export const disabledTimeViaFunction = () => ({
     time: boolean('Enable time', true),
     enableTimeFunc: () => ({
       hours: () => [10, 11, 12, 13, 14, 15, 16, 17],
-      minutes: () => new Array(25).fill(null).map((_, index) => index),
+      minutes: () => [...Array(25).keys()],
       seconds: () => [],
     }),
   },

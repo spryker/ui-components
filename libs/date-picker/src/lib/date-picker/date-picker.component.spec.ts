@@ -41,7 +41,7 @@ describe('DatePickerComponent', () => {
   const mockedEnableTimeFunction = () => {
     return {
       hours: () => [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-      minutes: () => new Array(31).fill(null).map((_, index) => index),
+      minutes: () => [...Array(31).keys()],
       seconds: () => [],
     };
   };
@@ -49,7 +49,7 @@ describe('DatePickerComponent', () => {
     return {
       nzDisabledHours: () => [0, 1, 2, 3, 4, 5, 6, 7, 18, 19, 20, 21, 22, 23],
       nzDisabledMinutes: () =>
-        new Array(29).fill(null).map((_, index) => 31 + index),
+        [...Array(29).keys()].map((_, index) => 31 + index),
       nzDisabledSeconds: () => [],
     };
   };

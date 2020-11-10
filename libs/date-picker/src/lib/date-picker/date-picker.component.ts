@@ -43,7 +43,6 @@ interface NzDisabledTimeConfig {
   nzDisabledSeconds: (hour?: number, minute?: number) => number[];
 }
 
-/** @dynamic */
 @Component({
   selector: 'spy-date-picker',
   templateUrl: './date-picker.component.html',
@@ -53,10 +52,8 @@ interface NzDisabledTimeConfig {
 })
 export class DatePickerComponent implements OnChanges, AfterViewChecked {
   private static DefaultFormat = 'dd.MM.yyyy';
-  private static HoursRange = new Array(24).fill(null).map((_, index) => index);
-  private static MinutesRange = new Array(60)
-    .fill(null)
-    .map((_, index) => index);
+  private static HoursRange = [...Array(24).keys()];
+  private static MinutesRange = [...Array(60).keys()];
 
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;

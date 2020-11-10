@@ -22,7 +22,6 @@ describe('DateRangePickerComponent', () => {
   };
   const mockedPlaceholder = 'placeholder';
   const mockedFormat = 'yyyy-MM-dd';
-  const mockedTimeFormat = 'HH:mm';
   const mockedName = 'mockedName';
   const mockedEnableTimeFrom = {
     onlyWorkHours: true,
@@ -183,23 +182,9 @@ describe('DateRangePickerComponent', () => {
       expect(datePickerElemTo?.properties.format).toBe(mockedFormat);
     });
 
-    it('Input time should be bound to time of both date pickers as boolean', async () => {
+    it('Input time should be bound to time of both date pickers', async () => {
       const host = await createComponent(
         { dates: mockedDates, time: true },
-        true,
-      );
-      const datePickerElemFrom = host.queryCss('spy-date-picker');
-      const datePickerElemTo = host.queryCss(
-        '.ant-range-picker-col:last-child spy-date-picker',
-      );
-
-      expect(datePickerElemFrom?.properties.time).toBe(host.component.time);
-      expect(datePickerElemTo?.properties.time).toBe(host.component.time);
-    });
-
-    it('Input time should be bound to time of both date pickers as string', async () => {
-      const host = await createComponent(
-        { dates: mockedDates, time: mockedTimeFormat },
         true,
       );
       const datePickerElemFrom = host.queryCss('spy-date-picker');

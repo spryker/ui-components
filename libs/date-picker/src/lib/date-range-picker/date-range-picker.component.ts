@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { ToBoolean, ToJson } from '@spryker/utils';
 import { DateRangeValueInput, DateRangeValue } from './types';
+import { EnableTime } from '../date-picker/types';
 
 @Component({
   selector: 'spy-date-range-picker',
@@ -18,8 +19,11 @@ import { DateRangeValueInput, DateRangeValue } from './types';
 })
 export class DateRangePickerComponent {
   @Input() @ToJson() dates: DateRangeValueInput = {};
+  @Input() @ToJson() enableTimeFrom: EnableTime = {};
+  @Input() @ToJson() enableTimeTo: EnableTime = {};
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
+  @Input() @ToBoolean() time?: boolean;
   @Input() format?: string;
   @Input() placeholderFrom?: string;
   @Input() placeholderTo?: string;
@@ -48,8 +52,9 @@ export class DateRangePickerComponent {
       date = new Date(date);
     }
 
-    // TODO: Add condition when input time is falsy when time feature will be added
-    date.setHours(hour, min, sec);
+    if (!this.time) {
+      date.setHours(hour, min, sec);
+    }
 
     return date;
   }

@@ -21,5 +21,5 @@ export type EnableTimeOptions = EnableTime | EnableTimeFunction;
 export type EnableDateFunction = (current: Date) => boolean;
 export type EnableTimeFunction<C = EnableTimeConfig> = (current: Date) => C;
 export type DateWorkDays = number[];
-export type DateHoursPair = [number, number];
-export type DateWorkHours = [DateHoursPair, DateHoursPair][];
+export type DateHoursPair = [number, number]; // [hours, minutes]
+export type DateWorkHours = [DateHoursPair, DateHoursPair][]; // [from, to][]

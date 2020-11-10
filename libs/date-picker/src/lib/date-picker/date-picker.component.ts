@@ -37,7 +37,7 @@ interface ConvertedEnableTimeRange {
   to?: Date;
 }
 
-export interface NzDisabledTimeConfig {
+interface NzDisabledTimeConfig {
   nzDisabledHours: () => number[];
   nzDisabledMinutes: (hour?: number) => number[];
   nzDisabledSeconds: (hour?: number, minute?: number) => number[];
@@ -52,6 +52,10 @@ export interface NzDisabledTimeConfig {
 })
 export class DatePickerComponent implements OnChanges, AfterViewChecked {
   private static DefaultFormat = 'dd.MM.yyyy';
+  private static hoursRange = new Array(24).fill(null).map((_, index) => index);
+  private static minutesRange = new Array(60)
+    .fill(null)
+    .map((_, index) => index);
 
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
@@ -76,8 +80,6 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   @ViewChild('datePicker', { static: false }) datePicker?: any;
 
   private _picker?: any;
-  private hoursRange = new Array(24).fill(null).map((_, index) => index);
-  private minutesRange = new Array(60).fill(null).map((_, index) => index);
 
   disabledDate?: EnableDateFunction;
   disabledTime?: (date: Date) => NzDisabledTimeConfig;
@@ -137,21 +139,20 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   private convertEnableTimeFuncToFunc(enableTime: EnableTimeFunction): void {
     this.disabledTime = (date: Date): NzDisabledTimeConfig => {
       const enableTimeConfig = enableTime(date);
-
       const nzDisabledHours = () => {
         const enabledHours = enableTimeConfig.hours();
 
-        return this.hoursRange.filter(hour => !enabledHours.includes(hour));
+        return DatePickerComponent.hoursRange.filter(
+          hour => !enabledHours.includes(hour),
+        );
       };
-
       const nzDisabledMinutes = (hour?: number) => {
         const enabledMinutes = enableTimeConfig.minutes(hour);
 
-        return this.minutesRange.filter(
+        return DatePickerComponent.minutesRange.filter(
           minute => !enabledMinutes.includes(minute),
         );
       };
-
       const nzDisabledSeconds = () => [];
 
       return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds };
@@ -213,7 +214,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
     if (!convertedEnableTime.onlyWorkHours) {
       const filteredHoursFromTo = this.getTimeRange(
-        this.hoursRange,
+        DatePickerComponent.hoursRange,
         fromHours,
         toHours,
       );
@@ -222,20 +223,24 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     } else {
       const filteredOnlyWorkHoursFromTo = this.filterHoursRange(
         workHoursRanges,
-        this.hoursRange,
+        DatePickerComponent.hoursRange,
       );
 
       filteredOnlyWorkHoursFromTo.forEach(hour => enabledHours.add(hour));
     }
 
-    const disabledHours = this.hoursRange.filter(
+    const disabledHours = DatePickerComponent.hoursRange.filter(
       hour => !enabledHours.has(hour),
     );
 
     this.disabledTime = (): NzDisabledTimeConfig => {
       const nzDisabledHours = () => disabledHours;
       const nzDisabledMinutes = (hour?: number) =>
-        this.filterMinutesRange(workHoursRanges, this.minutesRange, hour);
+        this.filterMinutesRange(
+          workHoursRanges,
+          DatePickerComponent.minutesRange,
+          hour,
+        );
       const nzDisabledSeconds = () => [];
 
       return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds };

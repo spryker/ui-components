@@ -38,7 +38,6 @@ describe('DateRangePickerComponent', () => {
 
   it('should render two <spy-date-picker> elements', async () => {
     const host = await createComponent({ dates: mockedDates }, true);
-
     const datePickerElemFrom = host.queryCss('spy-date-picker');
     const datePickerElemTo = host.queryCss(
       '.ant-range-picker-col:last-child spy-date-picker',
@@ -51,7 +50,6 @@ describe('DateRangePickerComponent', () => {
   describe('@Input', () => {
     it('Input dates.from should be bound to date of first date picker', async () => {
       const host = await createComponent({ dates: mockedDates }, true);
-
       const datePickerElemFrom = host.queryCss('spy-date-picker');
 
       expect(datePickerElemFrom?.properties.date).toBe(mockedDates.from);
@@ -59,7 +57,6 @@ describe('DateRangePickerComponent', () => {
 
     it('Input dates.to should be bound to date of second date picker', async () => {
       const host = await createComponent({ dates: mockedDates }, true);
-
       const datePickerElemTo = host.queryCss(
         '.ant-range-picker-col:last-child spy-date-picker',
       );
@@ -69,7 +66,6 @@ describe('DateRangePickerComponent', () => {
 
     it('Object { to: dates.to } should be bound to enableDate of first date picker', async () => {
       const host = await createComponent({ dates: mockedDates }, true);
-
       const datePickerElemFrom = host.queryCss('spy-date-picker');
 
       expect(datePickerElemFrom?.properties.enableDate.to).toBe(mockedDates.to);
@@ -77,7 +73,6 @@ describe('DateRangePickerComponent', () => {
 
     it('Object { from: dates.from } should be bound to enableDate of second date picker', async () => {
       const host = await createComponent({ dates: mockedDates }, true);
-
       const datePickerElemTo = host.queryCss(
         '.ant-range-picker-col:last-child spy-date-picker',
       );
@@ -92,7 +87,6 @@ describe('DateRangePickerComponent', () => {
         { dates: mockedDates, placeholderFrom: mockedPlaceholder },
         true,
       );
-
       const datePickerElemFrom = host.queryCss('spy-date-picker');
 
       expect(datePickerElemFrom?.properties.placeholder).toBe(
@@ -105,7 +99,6 @@ describe('DateRangePickerComponent', () => {
         { dates: mockedDates, placeholderTo: mockedPlaceholder },
         true,
       );
-
       const datePickerElemTo = host.queryCss(
         '.ant-range-picker-col:last-child spy-date-picker',
       );
@@ -118,7 +111,6 @@ describe('DateRangePickerComponent', () => {
         { dates: mockedDates, nameFrom: mockedName },
         true,
       );
-
       const datePickerElemFrom = host.queryCss('spy-date-picker');
 
       expect(datePickerElemFrom?.properties.name).toBe(mockedName);
@@ -129,7 +121,6 @@ describe('DateRangePickerComponent', () => {
         { dates: mockedDates, nameTo: mockedName },
         true,
       );
-
       const datePickerElemTo = host.queryCss(
         '.ant-range-picker-col:last-child spy-date-picker',
       );
@@ -142,7 +133,6 @@ describe('DateRangePickerComponent', () => {
         { dates: mockedDates, clearButton: true },
         true,
       );
-
       const datePickerElemFrom = host.queryCss('spy-date-picker');
       const datePickerElemTo = host.queryCss(
         '.ant-range-picker-col:last-child spy-date-picker',
@@ -157,7 +147,6 @@ describe('DateRangePickerComponent', () => {
         { dates: mockedDates, disabled: false },
         true,
       );
-
       const datePickerElemFrom = host.queryCss('spy-date-picker');
       const datePickerElemTo = host.queryCss(
         '.ant-range-picker-col:last-child spy-date-picker',
@@ -172,7 +161,6 @@ describe('DateRangePickerComponent', () => {
         { dates: mockedDates, format: mockedFormat },
         true,
       );
-
       const datePickerElemFrom = host.queryCss('spy-date-picker');
       const datePickerElemTo = host.queryCss(
         '.ant-range-picker-col:last-child spy-date-picker',
@@ -201,7 +189,6 @@ describe('DateRangePickerComponent', () => {
         { dates: mockedDates, enableTimeFrom: mockedEnableTimeFrom },
         true,
       );
-
       const datePickerElemFrom = host.queryCss('spy-date-picker');
 
       expect(datePickerElemFrom?.properties.enableTime).toBe(
@@ -214,7 +201,6 @@ describe('DateRangePickerComponent', () => {
         { dates: mockedDates, enableTimeTo: mockedEnableTimeTo },
         true,
       );
-
       const datePickerElemTo = host.queryCss(
         '.ant-range-picker-col:last-child spy-date-picker',
       );

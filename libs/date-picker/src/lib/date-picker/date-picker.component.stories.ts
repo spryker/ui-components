@@ -2,6 +2,7 @@ import { DatePickerModule } from '../date-picker.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
 import { EnLocaleModule, EN_LOCALE } from '@spryker/locale/locales/en';
+import { boolean } from '@storybook/addon-knobs';
 
 export default {
   title: 'DatePickerComponent',
@@ -20,11 +21,12 @@ export const primary = () => ({
     <spy-date-picker
       [enableTime]="enableTimeObj"
       placeholder="yyyy.mm.dd hh:mm"
-      time="true"
+      [time]="time"
       format="yyyy.MM.dd HH:mm">
     </spy-date-picker>
   `,
   props: {
+    time: boolean('Enable time', true),
     enableTimeObj: {
       onlyWorkHours: false,
       from: '2020.11.06 20:30',
@@ -46,17 +48,16 @@ export const disabledTimeViaFunction = () => ({
     <spy-date-picker
       [enableTime]="enableTimeFunc"
       placeholder="yyyy.mm.dd hh:mm"
-      time="true"
+      [time]="time"
       format="yyyy.MM.dd HH:mm">
     </spy-date-picker>
   `,
   props: {
-    enableTimeFunc: () => {
-      return {
-        hours: () => [10, 11, 12, 13, 14, 15, 16, 17],
-        minutes: () => new Array(25).fill(null).map((_, index) => index),
-        seconds: () => [],
-      };
-    },
+    time: boolean('Enable time', true),
+    enableTimeFunc: () => ({
+      hours: () => [10, 11, 12, 13, 14, 15, 16, 17],
+      minutes: () => new Array(25).fill(null).map((_, index) => index),
+      seconds: () => [],
+    }),
   },
 });

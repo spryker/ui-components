@@ -61,7 +61,6 @@ describe('DatePickerComponent', () => {
 
   it('should render nz-date-picker component from Ant Design', async () => {
     const host = await createComponent({}, true);
-
     const datePicker = host.queryCss(nzDatePickerSelector);
 
     expect(datePicker).toBeTruthy();
@@ -70,7 +69,6 @@ describe('DatePickerComponent', () => {
   describe('@Input', () => {
     it('Input clearButton should be bound to nzAllowClear input of nz-date-picker', async () => {
       const host = await createComponent({ clearButton: true }, true);
-
       const datePicker = host.queryCss(nzDatePickerSelector);
 
       expect(datePicker?.properties.nzAllowClear).toBe(true);
@@ -78,7 +76,6 @@ describe('DatePickerComponent', () => {
 
     it('Input disabled should be bound to nzDisabled input of nz-date-picker', async () => {
       const host = await createComponent({ disabled: true }, true);
-
       const datePicker = host.queryCss(nzDatePickerSelector);
 
       expect(datePicker?.properties.nzDisabled).toBe(true);
@@ -86,7 +83,6 @@ describe('DatePickerComponent', () => {
 
     it('Input date should be bound to ngModel input of `hidden input`', async () => {
       const host = await createComponent({ date: mockedDate }, true);
-
       const inputElement = host.queryCss('input[type="hidden"]');
 
       expect(inputElement?.properties.ngModel).toBe(mockedExpectedDate);
@@ -94,7 +90,6 @@ describe('DatePickerComponent', () => {
 
     it('Input date should be bound to ngModel input of nz-date-picker', async () => {
       const host = await createComponent({ date: mockedDate }, true);
-
       const datePicker = host.queryCss(nzDatePickerSelector);
 
       expect(datePicker?.properties.ngModel).toMatchObject(mockedDate);
@@ -102,7 +97,6 @@ describe('DatePickerComponent', () => {
 
     it('Input format should be bound to nzFormat input of nz-date-picker', async () => {
       const host = await createComponent({ format: mockedFormat }, true);
-
       const datePicker = host.queryCss(nzDatePickerSelector);
 
       expect(datePicker?.properties.nzFormat).toBe(mockedFormat);
@@ -110,7 +104,6 @@ describe('DatePickerComponent', () => {
 
     it('Input name should be bound to name input of `hidden input`', async () => {
       const host = await createComponent({ name: mockedName }, true);
-
       const inputElement = host.queryCss('input[type="hidden"]');
 
       expect(inputElement?.properties.name).toBe(mockedName);
@@ -121,7 +114,6 @@ describe('DatePickerComponent', () => {
         { placeholder: mockedPlaceholder },
         true,
       );
-
       const datePicker = host.queryCss(nzDatePickerSelector);
 
       expect(datePicker?.properties.nzPlaceHolder).toBe(mockedPlaceholder);

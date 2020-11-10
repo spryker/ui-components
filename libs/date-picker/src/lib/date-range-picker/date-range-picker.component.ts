@@ -23,12 +23,12 @@ export class DateRangePickerComponent {
   @Input() @ToJson() enableTimeTo: EnableTime = {};
   @Input() @ToBoolean() clearButton = true;
   @Input() @ToBoolean() disabled = false;
+  @Input() @ToBoolean() time?: boolean;
   @Input() format?: string;
   @Input() placeholderFrom?: string;
   @Input() placeholderTo?: string;
   @Input() nameFrom?: string;
   @Input() nameTo?: string;
-  @Input() time?: string | boolean;
   @Output() datesChange = new EventEmitter<DateRangeValue>();
 
   datesChangeHandler(dates: DateRangeValue): void {
@@ -52,7 +52,7 @@ export class DateRangePickerComponent {
       date = new Date(date);
     }
 
-    if (this.time !== null) {
+    if (!this.time) {
       date.setHours(hour, min, sec);
     }
 

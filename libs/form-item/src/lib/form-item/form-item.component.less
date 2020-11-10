@@ -16,8 +16,7 @@
     line-height: 0;
 
     > label {
-      font: @font-weight-medium @form-item-label-font-size /
-        @form-item-label-line-height @font-family;
+      font: @font-default;
       letter-spacing: @letter-spacing-base;
       text-transform: uppercase;
       padding-bottom: @form-item-label-bottom-padding;
@@ -29,7 +28,7 @@
     }
 
     &--required {
-      margin-left: @form-item-label-reuired-margin-left;
+      margin-left: @form-item-label-required-margin-left;
     }
   }
 
@@ -51,10 +50,10 @@
   &-control {
     line-height: 1;
   }
-}
 
-.anticon-info-circle {
-  font-size: @font-size-lg;
-  line-height: 0.95;
-  vertical-align: middle;
+  .anticon-info-circle {
+    font-size: @font-size-lg;
+    line-height: @form-info-icon-line-height;
+    vertical-align: middle;
+  }
 }

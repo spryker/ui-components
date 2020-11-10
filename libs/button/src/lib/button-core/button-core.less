@@ -17,10 +17,10 @@
 
       &:focus {
         color: @btn-primary-color;
-        box-shadow: @btn-shadow-default-size transparent;
+        box-shadow: @btn-shadow-default;
 
         &::after {
-          box-shadow: @btn-shadow-default-size @btn-primary-bg;
+          box-shadow: @btn-primary-shadow-focus;
         }
       }
 
@@ -30,7 +30,7 @@
         border-color: @btn-primary-active-bg;
 
         &::after {
-          box-shadow: @btn-shadow-default-size transparent;
+          box-shadow: @btn-shadow-default;
         }
       }
     }
@@ -59,7 +59,7 @@
 
       &:focus {
         border-color: @btn-default-border-focus;
-        box-shadow: @btn-shadow-default-size transparent;
+        box-shadow: @btn-shadow-default;
       }
     }
   }
@@ -81,15 +81,15 @@
       }
 
       &:focus {
-        box-shadow: @btn-shadow-default-size transparent;
+        box-shadow: @btn-shadow-default;
 
         &::after {
-          box-shadow: @btn-shadow-default-size @btn-danger-bg;
+          box-shadow: @btn-danger-shadow-focus;
         }
       }
 
       &:active::after {
-        box-shadow: @btn-shadow-default-size transparent;
+        box-shadow: @btn-shadow-default;
       }
     }
   }
@@ -206,12 +206,12 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: @btn-horizontal-vertical-base @btn-horizontal-padding-base;
-  box-shadow: @btn-shadow-default-size transparent;
-  font: @font-weight-medium @font-size-base / @btn-line-height-base @font-family;
+  padding: @btn-padding-base;
+  box-shadow: @btn-shadow-default;
+  font: @font-default;
   text-align: center;
   border-radius: @btn-border-radius;
-  border: @btn-border-width solid transparent;
+  border: @btn-border;
   text-decoration: none;
   color: @btn-primary-color;
   cursor: pointer;
@@ -240,12 +240,12 @@
     .transition-mixin(box-shadow);
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    bottom: -2px;
-    right: -2px;
+    top: @btn-decoration-size;
+    left: @btn-decoration-size;
+    bottom: @btn-decoration-size;
+    right: @btn-decoration-size;
     border-radius: inherit;
-    box-shadow: @btn-shadow-default-size transparent;
+    box-shadow: @btn-shadow-default;
     animation: none;
     opacity: 1;
   }
@@ -257,7 +257,7 @@
   }
 
   &:active {
-    transform: scaleX(0.9);
+    transform: @btn-active-transform;
   }
 
   &[disabled] {

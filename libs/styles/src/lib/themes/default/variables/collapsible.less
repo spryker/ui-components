@@ -3,13 +3,22 @@
 @collapse-panel-border-radius: 4px;
 @collapse-panel-border-width: 1px;
 @collapse-header-plus-width: 12px;
-@collapse-header-plus-boarder: 2px;
-
+@collapse-header-plus-border: 2px;
+@collapse-header-plus-translate: translate(
+  0,
+  -(@collapse-header-plus-border / 2)
+);
+@collapse-header-plus-transform-active: @collapse-header-plus-translate
+  rotate(0deg);
+@collapse-header-plus-transform-default: @collapse-header-plus-translate
+  rotate(-90deg);
 @collapse-header-line-height: 15px;
 @collapse-header-icon-size: @collapse-header-line-height;
-
 @collapse-header-padding-y: 10px;
 @collapse-header-padding-x: 18px;
+@collapse-header-padding: @collapse-header-padding-y
+  (@collapse-header-padding-x + @collapse-header-plus-width)
+  @collapse-header-padding-y @collapse-header-padding-x;
 @collapse-content-padding: 10px 18px;
-
-@collapse-header-icon-transition: @common-transition-time;
+@collapse-header-icon-margin-right: 3px;
+@collapse-border: @collapse-panel-border-width solid @gray-light;

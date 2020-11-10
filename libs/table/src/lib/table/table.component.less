@@ -28,7 +28,7 @@
 
 .@{table-prefix-cls} {
   margin-bottom: @table-bottom-margin;
-  font: @font-weight-medium @font-size-base @font-family;
+  font: @font-default;
   background: none;
 
   &-content {
@@ -58,7 +58,7 @@
   }
 
   &-column-sorter-up + &-column-sorter-down {
-    margin-top: -5px;
+    margin-top: @table-column-sorter-down-margin-top;
   }
 
   &-thead {
@@ -152,8 +152,7 @@
       .ie-styles-only-mixin({height: inherit; position: static;});
 
       .@{table-prefix-cls}-column-inner {
-        padding: @table-body-padding-top @table-padding-horizontal
-          @table-body-padding-bottom;
+        padding: @table-column-inner-padding;
         color: @table-column-body-color;
         display: flex;
         flex-direction: column;
@@ -164,6 +163,7 @@
         .ie-styles-only-mixin({position: relative;});
 
         &::after {
+          .transition-mixin(background border box-shadow);
           content: '';
           position: absolute;
           top: @table-body-margin-vertical;
@@ -171,12 +171,8 @@
           left: 0;
           width: 100%;
           background: @table-body-row-bg;
-          border-top: @table-border-radius-base solid transparent;
-          border-bottom: @table-border-radius-base solid transparent;
-          transition: background @common-transition-time
-              @common-transition-function,
-            border @common-transition-time @common-transition-function,
-            box-shadow @common-transition-time @common-transition-function;
+          border-top: @table-border-base;
+          border-bottom: @table-border-base;
           z-index: -1;
         }
 
@@ -186,13 +182,13 @@
       }
 
       &:first-child .@{table-prefix-cls}-column-inner::after {
-        border-radius: @border-radius-base 0 0 @border-radius-base;
-        border-left: @table-border-radius-base solid transparent;
+        border-radius: @table-column-first-border-radius;
+        border-left: @table-border-base;
       }
 
       &:last-child .@{table-prefix-cls}-column-inner::after {
-        border-radius: 0 @border-radius-base @border-radius-base 0;
-        border-right: @table-border-radius-base solid transparent;
+        border-radius: @table-column-last-border-radius;
+        border-right: @table-border-base;
       }
     }
 
@@ -203,7 +199,7 @@
       }
 
       .@{table-prefix-cls}-column-inner {
-        padding: @table-head-padding-vertical @table-padding-horizontal;
+        padding: @table-head-padding;
         color: @table-column-head-color;
         font-size: @table-column-title-font-size;
       }
@@ -212,11 +208,12 @@
     th.@{table-prefix-cls}-column-has-sorters {
       .@{table-prefix-cls}-column-sorters {
         width: 100%;
-        padding: @table-head-padding-vertical @table-padding-horizontal;
+        padding: @table-head-padding;
 
         .ie-styles-only-mixin({position: relative;});
 
         &::after {
+          .transition-mixin(background border box-shadow);
           content: '';
           position: absolute;
           top: @table-body-margin-vertical;
@@ -224,24 +221,20 @@
           left: 0;
           width: 100%;
           background: @table-body-row-bg;
-          border-top: @table-border-width-base solid transparent;
-          border-bottom: @table-border-width-base solid transparent;
-          transition: background @common-transition-time
-              @common-transition-function,
-            border @common-transition-time @common-transition-function,
-            box-shadow @common-transition-time @common-transition-function;
+          border-top: @table-border-base;
+          border-bottom: @table-border-base;
           z-index: -1;
         }
       }
 
       &:first-child .@{table-prefix-cls}-column-sorters::after {
-        border-radius: @border-radius-base 0 0 @border-radius-base;
-        border-left: @table-border-width-base solid transparent;
+        border-radius: @table-column-first-border-radius;
+        border-left: @table-border-base;
       }
 
       &:last-child .@{table-prefix-cls}-column-sorters::after {
-        border-radius: 0 @border-radius-base @border-radius-base 0;
-        border-right: @table-border-width-base solid transparent;
+        border-radius: @table-column-last-border-radius;
+        border-right: @table-border-base;
       }
 
       &.@{table-prefix-cls}-column-sort {
@@ -301,7 +294,7 @@
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-    font: @font-weight-medium @font-size-base @font-family;
+    font: @font-default;
     border-radius: @border-radius-base;
     background: @white;
     padding: @table-empty-container-padding;

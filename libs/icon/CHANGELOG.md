@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/icon@0.2.0-next.4...@spryker/icon@0.2.0-next.5) (2020-11-06)
+
+**Note:** Version bump only for package @spryker/icon
+
+
+
+
+
 # [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/icon@0.2.0-next.3...@spryker/icon@0.2.0-next.4) (2020-10-19)
 
 **Note:** Version bump only for package @spryker/icon

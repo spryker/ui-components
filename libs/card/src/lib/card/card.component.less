@@ -32,7 +32,7 @@
 
   &-actions {
     border-top-width: @card-border-width;
-    border-radius: 0 0 @card-radius @card-radius;
+    border-radius: @card-radius;
     background: transparent;
 
     & > li {
@@ -51,11 +51,11 @@
       font-size: @font-size-base;
       font-weight: @font-weight-medium;
       border-color: @card-inner-head-border-color;
-      padding: @card-inner-padding-y-head @card-inner-padding-x-base;
+      padding: @card-head-padding-default;
     }
 
     .@{card-prefix-cls}-body {
-      padding: @card-inner-padding-y-base @card-inner-padding-x-base;
+      padding: @card-body-padding-default;
     }
   }
 }

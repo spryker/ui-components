@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     position: relative;
-    padding: 0 @pagination-select-width;
+    padding: @pagination-wrapper-padding;
   }
 
   &-select {
@@ -26,8 +26,8 @@
     background-color: @white;
     border: @pagination-link-border;
     border-radius: @pagination-link-border-radius;
-    margin: 0 @pagination-link-margin-between-items;
-    font: @font-weight-medium @font-size-base @font-family;
+    margin: @pagination-item-margin;
+    font: @font-default;
 
     a {
       display: flex;
@@ -104,8 +104,7 @@
   }
 
   &-jump-prev {
-    // horizontal mirror reflection
-    transform: scaleX(-1);
+    transform: @pagination-item-prev-transform;
   }
 
   &-disabled {
@@ -124,7 +123,7 @@
     color: @gray-dark;
 
     .@{pagination-prefix-cls}-prev & {
-      transform: scale(-1, 1);
+      transform: @pagination-item-next-transform;
     }
 
     .@{pagination-prefix-cls}-disabled & {

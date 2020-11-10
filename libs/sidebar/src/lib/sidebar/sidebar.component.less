@@ -1,6 +1,6 @@
 @import './sidebar.component.theme.less';
 
-spy-sidebar .@{layout-prefix-cls}-sider {
+@{layout-sidebar-prefix-cls} .@{layout-prefix-cls}-sider {
   display: block;
   min-height: @layout-sidebar-min-height;
   height: 100%;
@@ -10,24 +10,22 @@ spy-sidebar .@{layout-prefix-cls}-sider {
     .@{layout-prefix-cls}-sider {
       &-trigger {
         &-icon {
-          transform: rotate(-90deg);
+          transform: @layout-trigger-icon-collapsed-transform;
         }
       }
     }
   }
 
   &-trigger {
+    .transition-mixin(border background color);
     position: absolute;
-    right: -15px;
-    bottom: 30px;
+    right: @layout-trigger-right-shift;
+    bottom: @layout-trigger-bottom-shift;
     width: auto !important;
     height: auto;
     border-radius: @layout-trigger-border-radius;
-    border: @layout-trigger-border-size solid @layout-trigger-background;
+    border: @layout-trigger-border;
     color: @gray-dark;
-    transition: border @common-transition-time @common-transition-function,
-      background @common-transition-time @common-transition-function,
-      color @common-transition-time @common-transition-function;
     outline: none;
 
     &:hover {
@@ -47,12 +45,12 @@ spy-sidebar .@{layout-prefix-cls}-sider {
       width: @layout-trigger-inner-size;
       height: @layout-trigger-inner-size;
       border-radius: @layout-trigger-border-radius;
-      box-shadow: 0 2px 4px 0 @gray;
+      box-shadow: @layout-sidebar-inner-box-shadow;
       font-size: @layout-trigger-inner-font-size;
     }
 
     &-icon {
-      transform: rotate(90deg);
+      transform: @layout-trigger-icon-transform;
     }
   }
 

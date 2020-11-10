@@ -3,7 +3,7 @@
 .@{collapse-prefix-cls} {
   display: block;
   font-family: @font-family;
-  border: @collapse-panel-border-width @border-style-base @gray-light;
+  border: @collapse-border;
   border-radius: @collapse-panel-border-radius;
   background: @gray-lighter;
 
@@ -12,9 +12,7 @@
     border: none;
 
     & > .@{collapse-prefix-cls}-header {
-      padding: @collapse-header-padding-y
-        (@collapse-header-padding-x + @collapse-header-plus-width)
-        @collapse-header-padding-y @collapse-header-padding-x;
+      padding: @collapse-header-padding;
       font-size: @font-size-sm;
       font-weight: @font-weight-medium;
       line-height: @collapse-header-line-height;
@@ -43,8 +41,7 @@
           }
 
           &::after {
-            transform: translate(0, -(@collapse-header-plus-boarder / 2))
-              rotate(0deg);
+            transform: @collapse-header-plus-transform-active;
           }
         }
       }
@@ -84,34 +81,33 @@
     }
 
     &-icon {
-      margin-right: 3px;
+      margin-right: @collapse-header-icon-margin-right;
       font-size: @collapse-header-icon-size;
       vertical-align: middle;
     }
 
     &::before,
     &::after {
+      .transition-mixin(all);
       content: '';
       position: absolute;
       top: 50%;
       right: @collapse-header-padding-x;
-      transform: translate(0, -(@collapse-header-plus-boarder / 2));
+      transform: @collapse-header-plus-translate;
       transform-origin: center center;
       background: @gray-dark;
       width: @collapse-header-plus-width;
-      height: @collapse-header-plus-boarder;
-      border-radius: @collapse-header-plus-boarder;
-      transition: all @collapse-header-icon-transition;
+      height: @collapse-header-plus-border;
+      border-radius: @collapse-header-plus-border;
     }
 
     &::after {
-      transform: translate(0, -(@collapse-header-plus-boarder / 2))
-        rotate(-90deg);
+      transform: @collapse-header-plus-transform-default;
     }
   }
 
   &-content {
-    border-top: @collapse-panel-border-width @border-style-base @gray-light;
+    border-top: @collapse-border;
     background: @gray-lighter;
     color: @ink;
   }

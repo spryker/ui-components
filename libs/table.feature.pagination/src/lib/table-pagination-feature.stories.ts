@@ -17,7 +17,7 @@ export default {
   title: 'TablePaginationFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -40,7 +40,7 @@ export const viaConfig = getPaginationStory(
     TableModule.withFeatures({
       pagination: () =>
         import('./table-pagination-feature.module').then(
-          m => m.TablePaginationFeatureModule,
+          (m) => m.TablePaginationFeatureModule,
         ),
     }),
   ],
@@ -91,7 +91,7 @@ function getPaginationStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
     },

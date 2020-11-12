@@ -41,8 +41,8 @@ const localeInputs = Object.fromEntries(
 );
 
 module.exports = locales
-  .filter(locale => localeFiles[locale].length)
-  .map(locale => ({
+  .filter((locale) => localeFiles[locale].length)
+  .map((locale) => ({
     input: localeInputs[locale],
     output: {
       dir: path.resolve(__dirname, locale, 'src/data'),

@@ -38,16 +38,16 @@ export class TableHtmlOverlayActionHandlerComponent {
   data$ = this.drawerRef.options.data || EMPTY;
 
   request$ = this.data$?.pipe(
-    switchMap(data =>
+    switchMap((data) =>
       this.http
         .request<TableHtmlOverlayResponse>(data.method || 'GET', data.url, {})
-        .pipe(catchError(response => of(response))),
+        .pipe(catchError((response) => of(response))),
     ),
-    tap(response => this.ajaxActionService.handle(response, this.injector)),
+    tap((response) => this.ajaxActionService.handle(response, this.injector)),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
-  html$ = this.request$?.pipe(map(response => response.html));
+  html$ = this.request$?.pipe(map((response) => response.html));
 
   isLoading$ = merge(
     this.data$.pipe(mapTo(true)),

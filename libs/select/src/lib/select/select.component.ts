@@ -87,27 +87,27 @@ export class SelectComponent implements OnInit, OnChanges {
   ): void {
     if (Array.isArray(value)) {
       this.selectedList = this.mappedOptions
-        .filter(option => value.includes(option.value))
-        .map(selectOption => selectOption.title);
+        .filter((option) => value.includes(option.value))
+        .map((selectOption) => selectOption.title);
     }
   }
 
   private updateOptions(): void {
     this.mappedOptions =
-      this.options?.map(option =>
+      this.options?.map((option) =>
         typeof option !== 'object'
           ? ({ value: option, title: option } as SelectOptionItem)
           : option,
       ) ?? [];
 
-    this.allValues = this.mappedOptions.map(option => option.value);
+    this.allValues = this.mappedOptions.map((option) => option.value);
     this.updateValue();
   }
 
   private updateValue() {
     this.mappedValue =
       this.multiple && Array.isArray(this.value)
-        ? this.value.filter(value => this.isValueExist(value))
+        ? this.value.filter((value) => this.isValueExist(value))
         : this.isValueExist(this.value)
         ? this.value
         : undefined;

@@ -22,7 +22,7 @@ export default {
   title: 'TableColumnDateComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: new Date('2020-01-01T17:25:00'),
   col3: new Date('2020-01-01T17:25:00'),
@@ -102,7 +102,7 @@ export const withTable = (): IStory => ({
     mockHttp: setMockHttp([
       {
         url: '/data-request',
-        dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
       },
     ]),
   },

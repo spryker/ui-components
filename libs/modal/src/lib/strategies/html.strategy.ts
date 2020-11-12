@@ -77,7 +77,7 @@ export class HtmlModalRenderingRef<T>
   }
 
   private removeElements() {
-    this.elements.forEach(elem => this.parentElement.removeChild(elem));
+    this.elements.forEach((elem) => this.parentElement.removeChild(elem));
   }
 }
 
@@ -97,7 +97,7 @@ export class HtmlModalStrategy<T> implements ModalStrategy<T, HtmlModalExtras> {
       throw new Error(`Unable to render Template without HTML parent!`);
     }
 
-    const render: HtmlModalRenderingFunction = data => {
+    const render: HtmlModalRenderingFunction = (data) => {
       const html = this.resolveHtml(this.options.html, data);
       const nodes = this.createNodes(html);
 

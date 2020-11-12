@@ -99,7 +99,7 @@ export class ApplyContextsDirective implements OnInit, OnChanges, OnDestroy {
     );
 
     return parentContexts.filter(
-      context => this.getContextGroup(context) in contextGroupsHash === false,
+      (context) => this.getContextGroup(context) in contextGroupsHash === false,
     );
   }
 
@@ -108,22 +108,22 @@ export class ApplyContextsDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   private applyContexts(contexts: string[], prevContexts?: string[]) {
-    prevContexts?.forEach(ctx =>
+    prevContexts?.forEach((ctx) =>
       this.renderer.removeClass(this.elemRef.nativeElement, ctx),
     );
 
-    contexts.forEach(ctx =>
+    contexts.forEach((ctx) =>
       this.renderer.addClass(this.elemRef.nativeElement, ctx),
     );
   }
 
   private contextsForHost(contexts: string[]) {
-    return contexts.map(ctx => `${this.options.contextHostPrefix}${ctx}`);
+    return contexts.map((ctx) => `${this.options.contextHostPrefix}${ctx}`);
   }
 
   private normalizeContexts(ctxs: ApplyContextsDirective['spyApplyContexts']) {
     return (Array.isArray(ctxs) ? ctxs : ctxs ? [ctxs] : []).map(
-      ctx => `${this.options.contextPrefix}${ctx}`,
+      (ctx) => `${this.options.contextPrefix}${ctx}`,
     );
   }
 }

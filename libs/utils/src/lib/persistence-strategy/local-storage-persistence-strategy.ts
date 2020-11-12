@@ -17,7 +17,7 @@ export class LocalStoragePersistenceStrategy implements PersistenceStrategy {
   }
 
   retrieve<T>(key: string): Observable<T> {
-    return new Observable<T>(subscriber => {
+    return new Observable<T>((subscriber) => {
       const value = JSON.parse(localStorage.getItem(key) || 'null');
 
       if (!this.items[key]) {

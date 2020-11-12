@@ -20,7 +20,7 @@ export default {
   title: 'TableSelectableFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -43,7 +43,7 @@ export const viaConfig = getSelectableStory(
     TableModule.withFeatures({
       itemSelection: () =>
         import('./table-selectable-feature.module').then(
-          m => m.TableSelectableFeatureModule,
+          (m) => m.TableSelectableFeatureModule,
         ),
     }),
   ],
@@ -94,7 +94,7 @@ function getSelectableStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
       logSelectionChange: (event: TableSelectionChangeEvent) =>

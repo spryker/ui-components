@@ -5,7 +5,7 @@ import * as inlineData from './data/data';
 export const data = Object.values<I18nLocaleDataPackageModuleInlined>(
   inlineData as any,
 )
-  .filter(d => d.data)
+  .filter((d) => d.data)
   .reduce(
     (acc, d) => ({
       ...acc,

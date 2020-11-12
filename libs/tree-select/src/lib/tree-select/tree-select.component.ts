@@ -57,7 +57,7 @@ export class TreeSelectComponent implements OnChanges {
   }
 
   private updateItems(): void {
-    this.mappedItems = this.items?.map(item => this.mapTreeItems(item));
+    this.mappedItems = this.items?.map((item) => this.mapTreeItems(item));
   }
 
   private mapTreeItems(item: TreeSelectItem): TreeSelectItemWithKey {
@@ -68,7 +68,7 @@ export class TreeSelectComponent implements OnChanges {
       ...item,
       key: item.value,
       children: isChildrenExist
-        ? item.children?.map(childItem => this.mapTreeItems(childItem))
+        ? item.children?.map((childItem) => this.mapTreeItems(childItem))
         : [],
       isLeaf: !isChildrenExist,
     };

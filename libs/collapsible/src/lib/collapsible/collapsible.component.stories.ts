@@ -8,9 +8,7 @@ export default {
 
 @Component({
   selector: 'spy-story',
-  template: `
-    Collapse Content
-  `,
+  template: ` Collapse Content `,
 })
 class StoryComponent {
   constructor() {

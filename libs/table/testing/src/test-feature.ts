@@ -94,9 +94,7 @@ export function initFeature<T>(
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'test-table-feature',
-  template: `
-    <ng-content></ng-content>
-  `,
+  template: ` <ng-content></ng-content> `,
 })
 export class TestTableFeatureComponent<T = TableMockComponent>
   implements AfterContentInit {
@@ -132,7 +130,8 @@ export const TestTableFeatureTplContext = new InjectionToken<
 @Directive({
   selector: '[spyTableFeatureTpl]',
 })
-export class TestTableFeatureTplDirective extends TableFeatureTplDirectiveInputs
+export class TestTableFeatureTplDirective
+  extends TableFeatureTplDirectiveInputs
   implements OnChanges {
   constructor(
     public template: TemplateRef<TableFeatureTplContext>,
@@ -154,7 +153,7 @@ export class TestTableFeatureTplDirective extends TableFeatureTplDirectiveInputs
         ? this.spyTableFeatureTpl!
         : [this.spyTableFeatureTpl!];
       this.vcr.clear();
-      locations.forEach(location =>
+      locations.forEach((location) =>
         this.vcr.createEmbeddedView(
           this.template,
           this.locationContext?.[location],

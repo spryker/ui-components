@@ -12,10 +12,10 @@ export default {
 };
 
 const iconsModules = Object.keys(icons).map(
-  name => (icons as any)[name] as Icon,
+  (name) => (icons as any)[name] as Icon,
 );
 
-const iconNames = iconsModules.map(i => i.icon);
+const iconNames = iconsModules.map((i) => i.icon);
 
 export const allIcons = (): IStory => ({
   moduleMetadata: {

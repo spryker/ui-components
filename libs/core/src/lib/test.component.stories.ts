@@ -56,7 +56,7 @@ export function crossComponentCommunication(): IStory {
     tabs?: { tpl: TemplateRef<void>; title?: string }[];
 
     bComponentsFound(components: NgWebComponent<BComponent>[]) {
-      this.tabs = components.map(c => ({
+      this.tabs = components.map((c) => ({
         tpl: c.getTemplate(),
         title: c.title,
       }));

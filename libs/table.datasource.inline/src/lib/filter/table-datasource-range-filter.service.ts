@@ -41,7 +41,7 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
       TableDatasourceRangeFilterValue[]
     > = columns.reduce((allColumns, column) => {
       const processedValues = columnProcessors[column]
-        ? byValue.map(valueToCompare => ({
+        ? byValue.map((valueToCompare) => ({
             from: this.datasourceProcessor.preprocess(
               columnProcessors[column],
               valueToCompare.from,
@@ -59,45 +59,46 @@ export class TableDatasourceRangeFilter implements TableDatasourceFilter {
       };
     }, {});
     const isValueFrom = processedValuesByColumns?.[columnFrom].some(
-      byProccessedValue => byProccessedValue.from,
+      (byProccessedValue) => byProccessedValue.from,
     );
     const isValueTo = processedValuesByColumns?.[columnTo].some(
-      byProccessedValue => byProccessedValue.to,
+      (byProccessedValue) => byProccessedValue.to,
     );
 
     if (isValueFrom && isValueTo) {
-      return data.filter(row => {
+      return data.filter((row) => {
         const columnsFromData = row[columnFrom] as any;
         const columnsToData = row[columnTo] as any;
 
         return (
           processedValuesByColumns?.[columnFrom].some(
-            byProccessedValue =>
+            (byProccessedValue) =>
               columnsFromData >= (byProccessedValue.from as any),
           ) &&
           processedValuesByColumns?.[columnTo].some(
-            byProccessedValue => columnsToData <= (byProccessedValue.to as any),
+            (byProccessedValue) =>
+              columnsToData <= (byProccessedValue.to as any),
           )
         );
       });
     }
 
     if (isValueFrom) {
-      return data.filter(row => {
+      return data.filter((row) => {
         const columnsData = row[columnFrom] as any;
 
         return processedValuesByColumns?.[columnFrom].some(
-          byProccessedValue => columnsData >= (byProccessedValue.from as any),
+          (byProccessedValue) => columnsData >= (byProccessedValue.from as any),
         );
       });
     }
 
     if (isValueTo) {
-      return data.filter(row => {
+      return data.filter((row) => {
         const columnsData = row[columnTo] as any;
 
         return processedValuesByColumns?.[columnTo].some(
-          byProccessedValue => columnsData <= (byProccessedValue.to as any),
+          (byProccessedValue) => columnsData <= (byProccessedValue.to as any),
         );
       });
     }

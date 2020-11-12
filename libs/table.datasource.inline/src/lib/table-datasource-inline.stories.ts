@@ -35,7 +35,7 @@ export default {
   title: 'TableDatasourceInlineService',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col 2',
   col3: 'col3',
@@ -55,15 +55,15 @@ export const withTable = (): IStory => ({
       TableModule.withFeatures({
         pagination: () =>
           import('@spryker/table.feature.pagination').then(
-            m => m.TablePaginationFeatureModule,
+            (m) => m.TablePaginationFeatureModule,
           ),
         filters: () =>
           import('@spryker/table.feature.filters').then(
-            m => m.TableFiltersFeatureModule,
+            (m) => m.TableFiltersFeatureModule,
           ),
         search: () =>
           import('@spryker/table.feature.search').then(
-            m => m.TableSearchFeatureModule,
+            (m) => m.TableSearchFeatureModule,
           ),
       }),
       TableFiltersFeatureModule.withFilterComponents({

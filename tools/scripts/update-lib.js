@@ -11,7 +11,7 @@ const cwd = process.cwd();
 
 const tasks = [updatePackage(cwd), updateChangelog(cwd)];
 
-Promise.all(tasks).catch(err => {
+Promise.all(tasks).catch((err) => {
   console.error(err);
   process.exit(1);
 });

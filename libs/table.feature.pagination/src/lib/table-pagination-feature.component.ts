@@ -35,13 +35,13 @@ export class TablePaginationFeatureComponent extends TableFeatureComponent<
   defaultSizes = [10, 20, 50];
 
   tableData$ = this.table$.pipe(
-    switchMap(table => table.data$),
+    switchMap((table) => table.data$),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   sizes$ = this.config$.pipe(
     pluck('sizes'),
-    map(sizes => sizes ?? this.defaultSizes),
+    map((sizes) => sizes ?? this.defaultSizes),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
   total$ = this.tableData$.pipe(pluck('total'));

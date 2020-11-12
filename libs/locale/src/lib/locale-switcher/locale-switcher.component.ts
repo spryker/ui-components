@@ -19,7 +19,8 @@ export class LocaleSwitcherInputs {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: none' },
 })
-export class LocaleSwitcherComponent extends LocaleSwitcherInputs
+export class LocaleSwitcherComponent
+  extends LocaleSwitcherInputs
   implements OnChanges {
   constructor(private localeService: LocaleService) {
     super();

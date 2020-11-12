@@ -55,8 +55,8 @@ export class TableFeaturesRendererDirective
   >(1);
   private allFeatureRecords$ = this.setAllFeatureRecords$.pipe(
     switchAll(),
-    map(features =>
-      features.map(feature => ({
+    map((features) =>
+      features.map((feature) => ({
         ...feature,
         template: this.templateRef,
         featureContext$: this.context$,
@@ -73,7 +73,7 @@ export class TableFeaturesRendererDirective
   );
 
   private featureChanges$ = this.featureRecords$.pipe(
-    map(features => this.featuresDiffer.diff(features)),
+    map((features) => this.featuresDiffer.diff(features)),
     filter(isNonNullable),
   );
 
@@ -90,7 +90,7 @@ export class TableFeaturesRendererDirective
   ngOnInit(): void {
     this.featureChanges$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(features => this.updateFeatures(features));
+      .subscribe((features) => this.updateFeatures(features));
   }
 
   ngOnChanges(
@@ -123,19 +123,19 @@ export class TableFeaturesRendererDirective
   }
 
   private updateFeatures(changes: IterableChanges<FeatureRecord>): void {
-    changes.forEachAddedItem(record =>
+    changes.forEachAddedItem((record) =>
       // Index always exists when adding feature
       // tslint:disable-next-line: no-non-null-assertion
       this.renderFeatureTpl(record.item, record.currentIndex!),
     );
 
-    changes.forEachMovedItem(record =>
+    changes.forEachMovedItem((record) =>
       // Index always exists when moving feature
       // tslint:disable-next-line: no-non-null-assertion
       this.moveFeature(record.previousIndex!, record.currentIndex!),
     );
 
-    changes.forEachRemovedItem(record =>
+    changes.forEachRemovedItem((record) =>
       // Index always exists when removing feature
       // tslint:disable-next-line: no-non-null-assertion
       this.destroyFeature(record.currentIndex!),

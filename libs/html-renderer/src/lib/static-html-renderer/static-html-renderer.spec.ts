@@ -7,9 +7,7 @@ const mockHtmlTemplate = `<p>Hello World!!!</p>`;
 
 @Component({
   selector: 'spy-test',
-  template: `
-    <spy-html-renderer [html]="html"></spy-html-renderer>
-  `,
+  template: ` <spy-html-renderer [html]="html"></spy-html-renderer> `,
 })
 class TestComponent {
   html: any;

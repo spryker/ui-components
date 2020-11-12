@@ -17,7 +17,7 @@ export default {
   title: 'TableRowActionsFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -41,7 +41,7 @@ export const viaConfig = getRowActionsStory(
     TableModule.withFeatures({
       rowActions: () =>
         import('./table-row-actions-feature.module').then(
-          m => m.TableRowActionsFeatureModule,
+          (m) => m.TableRowActionsFeatureModule,
         ),
     }),
   ],
@@ -100,7 +100,7 @@ function getRowActionsStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
       logActionTriggered: (event: TableActionTriggeredEvent) =>

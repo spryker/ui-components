@@ -47,7 +47,7 @@ export class MockTableDatasourceService
 
     return dataConfig$.pipe(
       delay(0),
-      switchMap(config =>
+      switchMap((config) =>
         of(
           generateMockTableDataForOptions(
             {

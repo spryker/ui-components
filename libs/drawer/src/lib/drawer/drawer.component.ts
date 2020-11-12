@@ -38,7 +38,8 @@ export class DrawerComponentInputs {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class DrawerComponent extends DrawerComponentInputs
+export class DrawerComponent
+  extends DrawerComponentInputs
   implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @Output() isOpenChange = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<void>();
@@ -63,7 +64,7 @@ export class DrawerComponent extends DrawerComponentInputs
   ngOnInit(): void {
     this.afterClosed$
       .pipe(
-        switchMap(afterClosed$ =>
+        switchMap((afterClosed$) =>
           afterClosed$.pipe(take(1), takeUntil(this.closed$)),
         ),
         takeUntil(this.destroyed$),

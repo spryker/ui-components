@@ -15,7 +15,8 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 @Directive({
   selector: '[spyRedirectedCdkScrollable]',
 })
-export class RedirectedCdkScrollableDirective extends CdkScrollable
+export class RedirectedCdkScrollableDirective
+  extends CdkScrollable
   implements AfterViewInit {
   @Input() spyRedirectedCdkScrollable?: string;
 
@@ -23,7 +24,7 @@ export class RedirectedCdkScrollableDirective extends CdkScrollable
   private destroyed$ = new Subject<void>();
 
   private elementScrolled$ = this.queryElement$.pipe(
-    switchMap(queryElement =>
+    switchMap((queryElement) =>
       this.ngZone.runOutsideAngular(() =>
         fromEvent(queryElement.nativeElement, 'scroll'),
       ),

@@ -20,7 +20,7 @@ export default {
   title: 'TableTotalFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -43,7 +43,7 @@ export const viaConfig = getTotalStory(
     TableModule.withFeatures({
       total: () =>
         import('./table-total-feature.module').then(
-          m => m.TableTotalFeatureModule,
+          (m) => m.TableTotalFeatureModule,
         ),
     }),
   ],
@@ -95,7 +95,7 @@ function getTotalStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
     },

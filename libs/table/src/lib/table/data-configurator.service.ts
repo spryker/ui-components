@@ -25,7 +25,7 @@ export class TableDataConfiguratorService {
     this.initialData$.pipe(switchAll()),
     this.resetConfig$,
   ).pipe(
-    switchMap(internalConfig =>
+    switchMap((internalConfig) =>
       this.internalConfig$.pipe(
         startWith(internalConfig),
         scan((config, newConfig) => ({ ...config, ...newConfig })),

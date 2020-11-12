@@ -26,7 +26,7 @@ export class IconModule {
     if (parentIconService && icons) {
       icons
         .flat()
-        .forEach(icon => this.iconsService.addIcon(icon.icon, icon.svg));
+        .forEach((icon) => this.iconsService.addIcon(icon.icon, icon.svg));
     }
   }
 }

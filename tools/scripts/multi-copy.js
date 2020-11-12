@@ -30,13 +30,13 @@ async function main(files) {
 
   info(`Expanded destinations:\n\t${destinations.join('\n\t')}`);
 
-  await chainAsync(destinations, destination => {
+  await chainAsync(destinations, (destination) => {
     info(`Copying files into ${destination}...`);
     return copyfilesAsync([...sources, destination]);
   });
 }
 
-main(process.argv.slice(2)).catch(e => {
+main(process.argv.slice(2)).catch((e) => {
   const msg = e instanceof MultiCopyError ? e.stack : `Unexpected error: ${e}`;
   const exitCode = e instanceof MultiCopyError ? e.code : MultiCopyError.code;
   console.error(msg);
@@ -51,7 +51,8 @@ main(process.argv.slice(2)).catch(e => {
  */
 function chainAsync(values, fn, initialValue) {
   return values.reduce(
-    (prevPromise, value) => prevPromise.then(prevValue => fn(value, prevValue)),
+    (prevPromise, value) =>
+      prevPromise.then((prevValue) => fn(value, prevValue)),
     Promise.resolve(initialValue),
   );
 }

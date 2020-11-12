@@ -17,7 +17,7 @@ export default {
   title: 'TableSearchFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -40,7 +40,7 @@ export const viaConfig = getSearchStory(
     TableModule.withFeatures({
       search: () =>
         import('./table-search-feature.module').then(
-          m => m.TableSearchFeatureModule,
+          (m) => m.TableSearchFeatureModule,
         ),
     }),
   ],
@@ -91,7 +91,7 @@ function getSearchStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
     },

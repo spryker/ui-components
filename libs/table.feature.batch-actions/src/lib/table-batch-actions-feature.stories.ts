@@ -23,7 +23,7 @@ export default {
   title: 'TableBatchActionsFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   sku: `sku#${i}`,
   col2: availableActionsTitle(i),
   _actionIds: availableActions(i),
@@ -77,11 +77,11 @@ export const viaConfig = getTotalStory(
     TableModule.withFeatures({
       batchActions: () =>
         import('./table-batch-actions-feature.module').then(
-          m => m.TableBatchActionsFeatureModule,
+          (m) => m.TableBatchActionsFeatureModule,
         ),
       itemSelection: () =>
         import('@spryker/table.feature.selectable').then(
-          m => m.TableSelectableFeatureModule,
+          (m) => m.TableSelectableFeatureModule,
         ),
     }),
   ],
@@ -160,7 +160,7 @@ function getTotalStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
     },

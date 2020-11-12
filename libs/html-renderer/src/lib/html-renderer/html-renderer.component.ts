@@ -46,7 +46,7 @@ export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.subscription = this.htmlRenderer$.subscribe({
-      next: html => {
+      next: (html) => {
         this.renderer.setProperty(
           this.htmlRendererContent?.nativeElement,
           'innerHTML',

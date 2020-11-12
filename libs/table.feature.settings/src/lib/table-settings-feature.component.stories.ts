@@ -23,7 +23,7 @@ export default {
   title: 'TableSettingsFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -47,7 +47,7 @@ export const viaConfig = getSettingsStory(
     TableModule.withFeatures({
       settings: () =>
         import('./table-settings-feature.module').then(
-          m => m.TableSettingsFeatureModule,
+          (m) => m.TableSettingsFeatureModule,
         ),
     }),
   ],
@@ -104,7 +104,7 @@ function getSettingsStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
     },

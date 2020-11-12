@@ -139,13 +139,13 @@ export class CoreTableComponent
   error$ = new Subject<unknown>();
 
   columnsConfig$ = this.config$.pipe(
-    map(config => config.columns || config.columnsUrl),
+    map((config) => config.columns || config.columnsUrl),
     distinctUntilChanged(),
     shareReplaySafe(),
   );
 
   columns$ = this.columnsConfig$.pipe(
-    switchMap(colsOrUrl =>
+    switchMap((colsOrUrl) =>
       colsOrUrl
         ? this.columnsResolverService
             .resolve(colsOrUrl)
@@ -156,15 +156,15 @@ export class CoreTableComponent
   );
 
   data$ = this.config$.pipe(
-    map(config => config.dataSource),
+    map((config) => config.dataSource),
     distinctUntilChanged(),
-    switchMap(dataSource => this.datasourceService.resolve(dataSource)),
+    switchMap((dataSource) => this.datasourceService.resolve(dataSource)),
     shareReplaySafe(),
   );
 
   tableData$ = this.data$.pipe(pluck('data'));
   sortingData$ = this.dataConfiguratorService.config$.pipe(
-    map(config => {
+    map((config) => {
       const sortBy = config.sortBy;
       let direction = config.sortDirection;
 
@@ -177,11 +177,11 @@ export class CoreTableComponent
   );
 
   featureFactories$ = this.config$.pipe(
-    switchMap(config => this.featureLoaderService.loadFactoriesFor(config)),
+    switchMap((config) => this.featureLoaderService.loadFactoriesFor(config)),
   );
 
   featureRefs$ = this.featureFactories$.pipe(
-    map(featureFactories =>
+    map((featureFactories) =>
       Object.entries(featureFactories).map(([name, featureFactory]) => {
         const featureRef = featureFactory.create(this.vcr.injector);
 
@@ -200,7 +200,7 @@ export class CoreTableComponent
   );
 
   configFeatures$ = this.featureRefs$.pipe(
-    map(featureRefs => featureRefs.map(featureRef => featureRef.instance)),
+    map((featureRefs) => featureRefs.map((featureRef) => featureRef.instance)),
     startWith([]),
     shareReplaySafe(),
   );
@@ -212,8 +212,8 @@ export class CoreTableComponent
     this.configFeatures$,
     this.projectedFeatures$.pipe(startWith([])),
   ]).pipe(
-    map(allFeatures => allFeatures.flat()),
-    tap(features => features.forEach(feature => this.initFeature(feature))),
+    map((allFeatures) => allFeatures.flat()),
+    tap((features) => features.forEach((feature) => this.initFeature(feature))),
     shareReplaySafe(),
   );
 
@@ -245,9 +245,9 @@ export class CoreTableComponent
   ).pipe(startWith(false), shareReplaySafe());
 
   isEmpty$ = combineLatest([
-    this.tableData$.pipe(map(data => Boolean(data.length))),
+    this.tableData$.pipe(map((data) => Boolean(data.length))),
     this.dataConfiguratorService.config$.pipe(
-      map(config => Boolean(Object.keys(config).length)),
+      map((config) => Boolean(Object.keys(config).length)),
     ),
   ]).pipe(
     startWith([true, false]),
@@ -288,7 +288,7 @@ export class CoreTableComponent
   private setTableId$ = new ReplaySubject<string>();
   tableId$ = this.setTableId$.pipe(
     startWith(undefined),
-    map(tableId => {
+    map((tableId) => {
       if (!tableId) {
         tableId = `tableId-${this.count}`;
       }
@@ -361,10 +361,10 @@ export class CoreTableComponent
         startWith(null),
         // featureDirectives were already checked above
         // tslint:disable-next-line: no-non-null-assertion
-        map(() => this.featureDirectives!.map(feature => feature.component)),
+        map(() => this.featureDirectives!.map((feature) => feature.component)),
         takeUntil(this.destroyed$),
       )
-      .subscribe(features => this.updateFeatures(features));
+      .subscribe((features) => this.updateFeatures(features));
   }
 
   ngOnDestroy(): void {

@@ -80,8 +80,8 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
       this.subscription = this.http
         .get<AjaxFormResponse>(this.action)
         .subscribe({
-          next: response => this.responseHandler(response),
-          error: response => this.responseHandler(response),
+          next: (response) => this.responseHandler(response),
+          error: (response) => this.responseHandler(response),
         });
     }
   }
@@ -104,8 +104,8 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
           body: submitForm,
         })
         .subscribe({
-          next: response => this.responseHandler(response),
-          error: response => this.responseHandler(response),
+          next: (response) => this.responseHandler(response),
+          error: (response) => this.responseHandler(response),
         });
     }
   }

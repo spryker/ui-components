@@ -139,8 +139,10 @@ export class TableColumnRendererComponent implements OnChanges {
       );
     }
 
-    // tslint:disable-next-line: no-non-null-assertion
-    const children = config.typeChildren?.map(c => this.mapConfigChildren(c)!);
+    const children = config.typeChildren?.map(
+      // tslint:disable-next-line: no-non-null-assertion
+      (c) => this.mapConfigChildren(c)!,
+    );
 
     return { ...config, typeOptions, typeChildren: children };
   }
@@ -151,7 +153,7 @@ export class TableColumnRendererComponent implements OnChanges {
     return {
       component: config.type || '',
       config: config.typeOptions,
-      items: config.typeChildren?.map(c => this.configColumnToItem(c)),
+      items: config.typeChildren?.map((c) => this.configColumnToItem(c)),
     };
   }
 }

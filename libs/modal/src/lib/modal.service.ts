@@ -36,7 +36,7 @@ export class ModalService implements OnDestroy {
   }
 
   closeAll(): void {
-    this.modals.forEach(modal => modal.close());
+    this.modals.forEach((modal) => modal.close());
     this.modals.clear();
   }
 
@@ -54,7 +54,8 @@ export class ModalService implements OnDestroy {
 
     const vcr = modalWrapperRef.getModalVcr();
 
-    const renderFn: ModalRenderingFn<T> = modal => strategy.render(vcr, modal);
+    const renderFn: ModalRenderingFn<T> = (modal) =>
+      strategy.render(vcr, modal);
 
     const modalRef = new ModalRefImpl<T>(options?.data, renderFn, () => {
       modalWrapperRef.dispose();

@@ -31,7 +31,8 @@ export class ButtonCoreInputs {
 @Directive({
   selector: '[spyButtonCore]',
 })
-export class ButtonCore extends ButtonCoreInputs
+export class ButtonCore
+  extends ButtonCoreInputs
   implements AfterViewInit, OnChanges {
   @ViewChild('buttonRef') buttonRef?: ElementRef<HTMLElement>;
 

@@ -30,7 +30,7 @@ export class TableTitleFeatureComponent extends TableFeatureComponent<
   title$ = this.config$.pipe(pluck('title'));
 
   tableData$ = this.table$.pipe(
-    switchMap(table => table.data$),
+    switchMap((table) => table.data$),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 

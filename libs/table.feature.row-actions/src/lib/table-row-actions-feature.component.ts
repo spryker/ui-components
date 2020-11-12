@@ -56,7 +56,7 @@ export class TableRowActionsFeatureComponent
   availableActionsPath?: string;
 
   actions$ = this.config$.pipe(
-    map(config =>
+    map((config) =>
       (config.actions as TableRowActionBase[]).map(({ id: action, title }) => ({
         action,
         title,
@@ -71,7 +71,7 @@ export class TableRowActionsFeatureComponent
   private destroyed$ = new Subject<void>();
   private configClick$ = this.config$.pipe(pluck('click'));
   private clickAction$ = this.configClick$.pipe(
-    map(actionId => this.getActionById(actionId)),
+    map((actionId) => this.getActionById(actionId)),
   );
   private rowClicks$ = this.tableEventBus$.pipe(
     withLatestFrom(this.clickAction$),
@@ -83,7 +83,7 @@ export class TableRowActionsFeatureComponent
   );
 
   tableData$ = this.table$.pipe(
-    switchMap(table => table.data$),
+    switchMap((table) => table.data$),
     pluck('data'),
   );
 
@@ -98,7 +98,7 @@ export class TableRowActionsFeatureComponent
   ngOnInit(): void {
     this.rowClicks$
       .pipe(
-        o$ => combineLatest([o$, this.clickAction$.pipe(take(1))]),
+        (o$) => combineLatest([o$, this.clickAction$.pipe(take(1))]),
         takeUntil(this.destroyed$),
       )
       .subscribe(([{ row }, action]) => {
@@ -128,7 +128,7 @@ export class TableRowActionsFeatureComponent
 
   private getActionById(actionId?: string): TableRowActionBase | undefined {
     return this.config?.actions?.filter(
-      rowAction => rowAction.id === actionId,
+      (rowAction) => rowAction.id === actionId,
     )[0];
   }
 

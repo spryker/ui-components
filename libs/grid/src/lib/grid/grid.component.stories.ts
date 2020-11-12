@@ -72,6 +72,7 @@ export const alignment = () => ({
       spy-row-direction-{{ direction }}
       spy-row-align-col-{{ alignCol }}
       spy-row-align-row-{{ alignRow }}
+      spy-row-align-content-{{ alignContent }}
     ">
       <div class="spy-col-3 spy-col-gutter-md"><p>spy-col-3</p></div>
       <div class="spy-col-5 spy-col-gutter-md"><p>spy-col-5</p></div>
@@ -121,6 +122,21 @@ export const alignment = () => ({
         'Space evenly (work with row/row-reverse direction)': 'space-evenly',
         Stretch: 'stretch',
         'Baseline (work with column/column-reverse direction)': 'baseline',
+      },
+      'flex-start',
+    ),
+
+    alignContent: select(
+      'Align content',
+      {
+        'Normal (default)': 'normal',
+        'Flex-start': 'flex-start',
+        Center: 'center',
+        'Flex end': 'flex-end',
+        'Space between': 'space-between',
+        'Space around': 'space-around',
+        'Space evenly': 'space-evenly',
+        Stretch: 'stretch',
       },
       'flex-start',
     ),

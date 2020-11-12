@@ -6,12 +6,12 @@ module.exports = async ({ config, mode }) => {
   config.module.rules = config.module.rules || [];
 
   // Extract LESS rule
-  const lessRule = config.module.rules.find(rule =>
+  const lessRule = config.module.rules.find((rule) =>
     rule.test.toString().endsWith('.less$/'),
   );
 
   // Extract LESS loader
-  const lessLoader = lessRule.use.find(l => l.loader.includes('less-loader'));
+  const lessLoader = lessRule.use.find((l) => l.loader.includes('less-loader'));
 
   // Add paths to activate default LESS resolution
   lessLoader.options = lessLoader.options || {};

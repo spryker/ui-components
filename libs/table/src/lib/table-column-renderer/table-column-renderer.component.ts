@@ -139,8 +139,8 @@ export class TableColumnRendererComponent implements OnChanges {
       );
     }
 
-    // tslint:disable-next-line: no-non-null-assertion
     const children = config.typeChildren?.map(
+      // tslint:disable-next-line: no-non-null-assertion
       (c) => this.mapConfigChildren(c)!,
     );
 

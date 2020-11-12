@@ -52,6 +52,10 @@
         flex-basis: @column-value;
         max-width: @column-value;
       }
+
+      &-offset-@{i} {
+        margin-left: @column-value;
+      }
     });
 
     each(@breakpoints, .(@edges, @breakpoint-key) {
@@ -75,6 +79,10 @@
             flex-grow: 0;
             flex-basis: @column-value;
             max-width: @column-value;
+          }
+
+          &-offset-@{breakpoint-key}-@{i} {
+            margin-left: @column-value;
           }
         });
       })

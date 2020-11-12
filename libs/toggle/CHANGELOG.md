@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.2.0-next.3...@spryker/toggle@0.2.0-next.4) (2020-11-12)
+
+**Note:** Version bump only for package @spryker/toggle
+
+
+
+
+
 # [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.2.0-next.2...@spryker/toggle@0.2.0-next.3) (2020-11-06)
 
 **Note:** Version bump only for package @spryker/toggle

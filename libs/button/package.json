@@ -1,6 +1,6 @@
 {
   "name": "@spryker/button",
-  "version": "0.2.0-next.6",
+  "version": "0.2.0-next.7",
   "publishConfig": {
     "access": "public"
   },

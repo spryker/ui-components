@@ -11,9 +11,7 @@ describe('SelectComponent', () => {
   @Component({
     // tslint:disable-next-line: component-selector
     selector: 'nz-select',
-    template: `
-      <ng-content></ng-content>
-    `,
+    template: ` <ng-content></ng-content> `,
   })
   class MockNzSelectComponent {}
 

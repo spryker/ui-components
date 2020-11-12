@@ -28,12 +28,12 @@ export class TableConfigService {
   }
 
   getKnownKeys(config: TableConfig): string[] {
-    return Object.keys(config).filter(key => key in this.knownProperties);
+    return Object.keys(config).filter((key) => key in this.knownProperties);
   }
 
   getFeatureKeys(config: TableConfig): string[] {
     return Object.keys(config).filter(
-      key => key in this.knownProperties === false,
+      (key) => key in this.knownProperties === false,
     );
   }
 
@@ -42,7 +42,7 @@ export class TableConfigService {
   }
 
   private normalizeFeatures(config: TableConfig): void {
-    this.getFeatureKeys(config).forEach(key => {
+    this.getFeatureKeys(config).forEach((key) => {
       if (!config[key] || typeof config[key] !== 'object') {
         config[key] = {};
       }

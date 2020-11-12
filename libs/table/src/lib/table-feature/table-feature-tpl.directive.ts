@@ -14,7 +14,8 @@ export class TableFeatureTplDirectiveInputs {
 @Directive({
   selector: '[spyTableFeatureTpl]',
 })
-export class TableFeatureTplDirective extends TableFeatureTplDirectiveInputs
+export class TableFeatureTplDirective
+  extends TableFeatureTplDirectiveInputs
   implements OnChanges {
   locations$ = new ReplaySubject<string[]>(1);
   styles$ = new ReplaySubject<Record<string, any>>(1);

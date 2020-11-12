@@ -36,7 +36,7 @@ export class TableFeatureLoaderService implements OnDestroy {
       Object.create(null),
     ) ?? Object.create(null);
 
-  private loadedFeatures = this.mapFeatures(this.featuresRegistry, loader =>
+  private loadedFeatures = this.mapFeatures(this.featuresRegistry, (loader) =>
     this.loaderToObservable(loader).pipe(
       shareReplay({ bufferSize: 1, refCount: true }),
     ),
@@ -44,18 +44,18 @@ export class TableFeatureLoaderService implements OnDestroy {
 
   private compiledFeatures = this.mapFeatures(
     this.loadedFeatures,
-    loadedFeature$ =>
+    (loadedFeature$) =>
       loadedFeature$.pipe(
-        switchMap(featureModule => this.compileFeatureModule(featureModule)),
+        switchMap((featureModule) => this.compileFeatureModule(featureModule)),
         shareReplay({ bufferSize: 1, refCount: true }),
       ),
   );
 
   private featureModules = this.mapFeatures(
     this.compiledFeatures,
-    compiledFeature$ =>
+    (compiledFeature$) =>
       compiledFeature$.pipe(
-        map(compiledFeature =>
+        map((compiledFeature) =>
           this.initFeatureModule(compiledFeature.ngModuleFactory),
         ),
         shareReplay({ bufferSize: 1, refCount: true }),
@@ -66,9 +66,9 @@ export class TableFeatureLoaderService implements OnDestroy {
 
   private featureFactories = this.mapFeatures(
     this.featureModules,
-    featureModule$ =>
+    (featureModule$) =>
       featureModule$.pipe(
-        map(featureModule => this.resolveFeatureFactory(featureModule)),
+        map((featureModule) => this.resolveFeatureFactory(featureModule)),
         shareReplay({ bufferSize: 1, refCount: true }),
       ),
   );
@@ -85,7 +85,7 @@ export class TableFeatureLoaderService implements OnDestroy {
 
   ngOnDestroy(): void {
     // Destroy all created module refs
-    this.featureModuleRefs.forEach(featureModule => featureModule.destroy());
+    this.featureModuleRefs.forEach((featureModule) => featureModule.destroy());
 
     // Cleanup refs to modules
     this.featuresRegistries = [];
@@ -97,7 +97,7 @@ export class TableFeatureLoaderService implements OnDestroy {
   ): Observable<Record<string, ComponentFactory<TableFeatureComponent>>> {
     const configNames = Object.keys(config);
     const featureNames = configNames.filter(
-      name =>
+      (name) =>
         name in this.featuresRegistry &&
         (config[name] as TableFeatureConfig).enabled !== false,
     );
@@ -123,7 +123,7 @@ export class TableFeatureLoaderService implements OnDestroy {
   private loaderToObservable(
     loader: TableFeatureLoader,
   ): Observable<Type<ModuleWithFeature>> {
-    return new Observable<Type<ModuleWithFeature>>(subscriber => {
+    return new Observable<Type<ModuleWithFeature>>((subscriber) => {
       const sub = from(loader()).subscribe(subscriber);
       return () => sub.unsubscribe();
     });

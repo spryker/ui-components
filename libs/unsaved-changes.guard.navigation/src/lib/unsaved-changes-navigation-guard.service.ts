@@ -44,7 +44,7 @@ export class UnsavedChangesNavigationGuard extends UnsavedChangesGuardBase {
                   })
                   .afterDismissed()
                   .pipe(
-                    switchMap(isDiscard => {
+                    switchMap((isDiscard) => {
                       if (!isDiscard) {
                         return EMPTY;
                       }

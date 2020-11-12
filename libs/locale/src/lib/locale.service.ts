@@ -48,7 +48,7 @@ export class LocaleService implements OnDestroy {
   private locales: LocaleRecord[] = this.localeRecords?.flat() ?? [];
 
   locale?: string;
-  supportedLocales = this.locales.map(locale => locale.id);
+  supportedLocales = this.locales.map((locale) => locale.id);
 
   private knownLocales = this.locales.reduce<
     Record<string, boolean | undefined>
@@ -61,7 +61,7 @@ export class LocaleService implements OnDestroy {
     ) ?? {};
 
   private loaders = this.locales
-    .filter(locale => !!locale.loaders)
+    .filter((locale) => !!locale.loaders)
     .reduce<Record<string, UnknownLocaleLoaderMap | undefined>>(
       (acc, locale) => ({
         ...acc,
@@ -77,7 +77,7 @@ export class LocaleService implements OnDestroy {
   locale$ = this.setLocale$.pipe(distinctUntilChanged());
 
   private localeLoad$ = this.locale$.pipe(
-    switchMap(locale =>
+    switchMap((locale) =>
       this.loadLocale(locale).pipe(catchError(() => of(locale))),
     ),
     share(),
@@ -111,7 +111,7 @@ export class LocaleService implements OnDestroy {
       this.defaultLocale =
         this.locales.length === 1
           ? this.locales[0].id
-          : this.locales.find(locale => locale.default)?.id ?? null;
+          : this.locales.find((locale) => locale.default)?.id ?? null;
     }
 
     if (this.defaultLocale) {
@@ -175,7 +175,7 @@ export class LocaleService implements OnDestroy {
     const loaderStreams = loadersMap.map(({ loader, registrarType }) =>
       loader
         ? from(loader()).pipe(
-            switchMap(data =>
+            switchMap((data) =>
               registerLocaleIn(registrarType, data).pipe(
                 switchMap(() => changeLocaleIn(registrarType)),
               ),

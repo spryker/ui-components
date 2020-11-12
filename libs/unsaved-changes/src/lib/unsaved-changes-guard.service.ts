@@ -11,19 +11,19 @@ export class UnsavedChangesGuardService extends UnsavedChangesGuardBase {
   attachMonitor(monitor: UnsavedChangesMonitor): void {
     super.attachMonitor(monitor);
 
-    this.rootGuards?.forEach(guard => guard.attachMonitor(monitor));
+    this.rootGuards?.forEach((guard) => guard.attachMonitor(monitor));
   }
 
   detachMonitor(monitor: UnsavedChangesMonitor): void {
     super.detachMonitor(monitor);
 
-    this.rootGuards?.forEach(guard => guard.detachMonitor(monitor));
+    this.rootGuards?.forEach((guard) => guard.detachMonitor(monitor));
   }
 
   dispose(): void {
     super.dispose();
 
-    this.rootGuards?.forEach(guard => guard.dispose());
+    this.rootGuards?.forEach((guard) => guard.dispose());
     this.rootGuards = null;
   }
 }

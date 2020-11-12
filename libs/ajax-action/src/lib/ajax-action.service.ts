@@ -41,7 +41,7 @@ export class AjaxActionService {
       }),
     );
 
-    response.postActions?.forEach(postAction => {
+    response.postActions?.forEach((postAction) => {
       const actionClass = this.actionHandlersObject[postAction.type];
 
       if (!actionClass) {

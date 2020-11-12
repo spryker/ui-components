@@ -15,9 +15,7 @@ import { ModalService } from '../modal.service';
       [data]="data"
       [component]="component"
     >
-      <ng-template>
-        Content
-      </ng-template>
+      <ng-template> Content </ng-template>
     </spy-modal>
   `,
 })

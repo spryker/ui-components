@@ -61,11 +61,11 @@ export class ModalRefImpl<T> extends ModalRef<T, any> {
   }
 
   afterClosed(): Observable<InferModalResult<T>> {
-    return this.closed$.pipe(filter(res => !!res)) as any;
+    return this.closed$.pipe(filter((res) => !!res)) as any;
   }
 
   afterCancelled(): Observable<void> {
-    return this.closed$.pipe(filter(res => !res)) as any;
+    return this.closed$.pipe(filter((res) => !res)) as any;
   }
 
   afterDismissed(): Observable<InferModalResult<T> | undefined> {

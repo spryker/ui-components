@@ -37,9 +37,7 @@ export default {
 
 @Component({
   selector: 'spy-story',
-  template: `
-    <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
-  `,
+  template: ` <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table> `,
 })
 class StoryComponent {}
 
@@ -56,7 +54,7 @@ class StoryComponent {}
     TableModule.withFeatures({
       rowActions: () =>
         import('@spryker/table.feature.row-actions').then(
-          m => m.TableRowActionsFeatureModule,
+          (m) => m.TableRowActionsFeatureModule,
         ),
     }),
     NotificationModule.forRoot(),
@@ -87,7 +85,7 @@ class StoryComponent {}
 })
 class StoryModule {}
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -146,7 +144,7 @@ export const primary = () => ({
     mockHttp: setMockHttp([
       {
         url: '/data-request',
-        dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
       },
       {
         url: /^\/mock-url/,

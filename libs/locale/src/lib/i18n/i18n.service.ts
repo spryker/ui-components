@@ -50,7 +50,7 @@ export class I18nService {
     data?: I18nLocaleInterpolationData,
   ): Observable<string> {
     return this.locale$.pipe(
-      map(locale => locale[token]),
+      map((locale) => locale[token]),
       distinctUntilChanged(),
       this.maybeInterpolateLocale(data),
       shareReplay({ bufferSize: 1, refCount: true }),
@@ -60,7 +60,7 @@ export class I18nService {
   private maybeInterpolateLocale(
     data?: I18nLocaleInterpolationData,
   ): OperatorFunction<string, string> {
-    return data ? map(locale => this.interpolate(locale, data)) : o$ => o$;
+    return data ? map((locale) => this.interpolate(locale, data)) : (o$) => o$;
   }
 
   private interpolate(

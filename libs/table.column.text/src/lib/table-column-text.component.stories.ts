@@ -22,7 +22,7 @@ export default {
   title: 'TableColumnTextComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'very looooooooooooooooooooooooooooooooooong col',
   col3: 'col3',
@@ -112,7 +112,7 @@ export const withTable = (): IStory => ({
     mockHttp: setMockHttp([
       {
         url: '/data-request',
-        dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
       },
     ]),
   },

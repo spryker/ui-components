@@ -39,12 +39,12 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<
 
   tableId$ = this.config$.pipe(
     pluck('tableId'),
-    switchMap(tableId => {
+    switchMap((tableId) => {
       if (tableId) {
         return of(tableId);
       }
 
-      return this.table$.pipe(switchMap(table => table.tableId$));
+      return this.table$.pipe(switchMap((table) => table.tableId$));
     }),
   );
   stateToConfig$?: Observable<unknown>;
@@ -63,7 +63,7 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<
     super.setDataConfiguratorService(service);
 
     const urlState$ = this.tableId$.pipe(
-      switchMap(tableId => this.urlPersistenceStrategy.retrieve(tableId)),
+      switchMap((tableId) => this.urlPersistenceStrategy.retrieve(tableId)),
     ) as Observable<Record<string, unknown>>;
 
     const syncStateInitialData = new SyncStateInitialDataStrategy(urlState$);
@@ -77,7 +77,7 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<
     );
 
     this.stateToConfig$ = urlState$.pipe(
-      tap(state => service.reset(state as Record<string, unknown>)),
+      tap((state) => service.reset(state as Record<string, unknown>)),
     );
 
     this.state$ = merge(this.stateToConfig$, this.configToState$);
@@ -94,7 +94,7 @@ class SyncStateInitialDataStrategy extends DefaultInitialDataStrategy {
   getData(): Observable<TableDataConfig> {
     return this.urlState$.pipe(
       take(1),
-      switchMap(url => (url ? of(url) : super.getData())),
+      switchMap((url) => (url ? of(url) : super.getData())),
     );
   }
 }

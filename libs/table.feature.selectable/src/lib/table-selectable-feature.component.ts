@@ -63,14 +63,14 @@ export class TableSelectableFeatureComponent
 
     table.data$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(data => this.resetCheckedRows(data));
+      .subscribe((data) => this.resetCheckedRows(data));
   }
 
   toggleCheckedAll(): void {
     this.isIndeterminate = false;
 
     Object.keys(this.checkedRows).forEach(
-      i => (this.checkedRows[i] = this.allChecked),
+      (i) => (this.checkedRows[i] = this.allChecked),
     );
 
     this.updateChecks();
@@ -78,7 +78,7 @@ export class TableSelectableFeatureComponent
 
   updateCheckedRows(): void {
     const valuesOfCheckedRows = Object.values(this.checkedRows);
-    const uncheckedRows = valuesOfCheckedRows.filter(checkbox => !checkbox);
+    const uncheckedRows = valuesOfCheckedRows.filter((checkbox) => !checkbox);
     const isUncheckedExist = uncheckedRows.length > 0;
     const checkedArrayLength =
       valuesOfCheckedRows.length - uncheckedRows.length;
@@ -98,7 +98,7 @@ export class TableSelectableFeatureComponent
   }
 
   private updateRowClasses(): void {
-    Object.keys(this.checkedRows).forEach(i =>
+    Object.keys(this.checkedRows).forEach((i) =>
       this.table?.updateRowClasses(i, {
         'ant-table-row--selected': this.checkedRows[i],
       }),
@@ -107,8 +107,8 @@ export class TableSelectableFeatureComponent
 
   private updateCheckedRowsArr(): void {
     this.checkedRowsArr = Object.keys(this.checkedRows)
-      .filter(idx => this.checkedRows[idx])
-      .map(idx => ({
+      .filter((idx) => this.checkedRows[idx])
+      .map((idx) => ({
         data: this.rowsData[Number(idx)],
         index: Number(idx),
       }));

@@ -4,9 +4,7 @@ import { DrawerContainerComponent } from './drawer-container.component';
 
 @Component({
   selector: 'spy-drawer-container-proxy',
-  template: `
-    <spy-drawer-container></spy-drawer-container>
-  `,
+  template: ` <spy-drawer-container></spy-drawer-container> `,
 })
 export class DrawerContainerProxyComponent {
   @ViewChild(DrawerContainerComponent, { static: true })

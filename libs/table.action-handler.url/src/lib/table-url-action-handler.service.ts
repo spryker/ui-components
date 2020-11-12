@@ -33,13 +33,15 @@ export class TableUrlActionHandlerService
         {},
       )
       .pipe(
-        catchError(response => of(response)),
+        catchError((response) => of(response)),
         shareReplay({ bufferSize: 1, refCount: true }),
       );
 
     request$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(response => this.ajaxActionService.handle(response, injector));
+      .subscribe((response) =>
+        this.ajaxActionService.handle(response, injector),
+      );
 
     return request$;
   }

@@ -28,7 +28,7 @@ export default {
   title: 'TableEditableFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `${i} col1`,
   col2: `${i} col2`,
   col3: `${i} col3`,
@@ -171,7 +171,7 @@ export function viaConfig(): IStory {
         TableModule.withFeatures({
           editable: () =>
             import('./table-editable-feature.module').then(
-              m => m.TableEditableFeatureModule,
+              (m) => m.TableEditableFeatureModule,
             ),
         }),
       ],

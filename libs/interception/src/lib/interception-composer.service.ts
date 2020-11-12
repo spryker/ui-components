@@ -55,20 +55,20 @@ export class InterceptionComposerImplementation
   }
 
   ngOnInit(): void {
-    const applicableFactories = this.factories.filter(factory =>
+    const applicableFactories = this.factories.filter((factory) =>
       factory.canApply(this.token),
     );
 
     this.servicesInjector = Injector.create({
       providers: [
         applicableFactories
-          .map(factory => factory.getServiceProviders())
+          .map((factory) => factory.getServiceProviders())
           .flat(),
       ],
       parent: this.injector,
     }) as DestructibleInjector;
 
-    applicableFactories.forEach(factory =>
+    applicableFactories.forEach((factory) =>
       // tslint:disable-next-line: no-non-null-assertion
       this.servicesInjector!.get(factory.getServiceToken()),
     );

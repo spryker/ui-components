@@ -18,7 +18,7 @@ export class TableDatasourceHttpService
     dataConfig$: Observable<TableDataConfig>,
   ): Observable<TableData> {
     return dataConfig$.pipe(
-      switchMap(config => {
+      switchMap((config) => {
         for (const key in config) {
           if (config[key] === undefined) {
             delete config[key];

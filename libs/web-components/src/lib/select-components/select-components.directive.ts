@@ -74,14 +74,14 @@ export class SelectComponentsDirective<T = unknown>
   );
 
   private components$ = this.elements$.pipe(
-    switchMap(elements => this.findComponentsIn(elements)),
+    switchMap((elements) => this.findComponentsIn(elements)),
   );
 
   /**
    * Emits every time it performs search of components in DOM
    */
   @Output() spySelectComponentsFound: Observable<T[]> = this.components$.pipe(
-    map(components => this.findInstancesIn(components)),
+    map((components) => this.findInstancesIn(components)),
     shareReplay({ refCount: true, bufferSize: 1 }),
   );
 
@@ -110,7 +110,7 @@ export class SelectComponentsDirective<T = unknown>
       return Promise.resolve(children);
     }
 
-    const allElementsDefined = children.map(element =>
+    const allElementsDefined = children.map((element) =>
       customElements
         .whenDefined(element.tagName.toLowerCase())
         // Catch errors when ran on non custom elements
@@ -123,12 +123,14 @@ export class SelectComponentsDirective<T = unknown>
   private findComponentsIn(
     elements: Element[],
   ): Observable<NgWebComponent<unknown>[]> {
-    const components: NgWebComponent<unknown>[] = elements.filter(element =>
+    const components: NgWebComponent<unknown>[] = elements.filter((element) =>
       isNgWebComponent(element),
     ) as any;
 
     return forkJoin(
-      components.map(component => component.whenInit().pipe(mapTo(component))),
+      components.map((component) =>
+        component.whenInit().pipe(mapTo(component)),
+      ),
     );
   }
 
@@ -141,6 +143,6 @@ export class SelectComponentsDirective<T = unknown>
       isNgWebComponentOf(this.spySelectComponents),
     );
 
-    return ngWebComponents.map(c => c.getSuper());
+    return ngWebComponents.map((c) => c.getSuper());
   }
 }

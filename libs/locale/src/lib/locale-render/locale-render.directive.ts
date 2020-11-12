@@ -31,7 +31,7 @@ export class LocaleRenderDirective implements OnInit, OnDestroy {
   ngOnInit() {
     this.localeService.localeLoaded$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(locale => this.renderView(locale));
+      .subscribe((locale) => this.renderView(locale));
   }
 
   ngOnDestroy() {

@@ -7,7 +7,7 @@ const EXCLUDED_TAGS = ['type:meta'];
 async function main(args) {
   const projectsToBuild = Object.entries(projects)
     .filter(
-      ([_, p]) => p.tags && !p.tags.some(tag => EXCLUDED_TAGS.includes(tag)),
+      ([_, p]) => p.tags && !p.tags.some((tag) => EXCLUDED_TAGS.includes(tag)),
     )
     .map(([name]) => name);
 
@@ -21,7 +21,7 @@ async function main(args) {
   );
 }
 
-main(process.argv.slice(2)).catch(e => {
+main(process.argv.slice(2)).catch((e) => {
   console.error(e);
   process.exit(1);
 });

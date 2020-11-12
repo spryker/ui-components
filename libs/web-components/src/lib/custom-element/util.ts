@@ -20,7 +20,7 @@ export function componentDefsToDeclarations(
   return [
     ...def.filter(isWebComponentDeclaration),
     ...def.filter(isWebComponentType).map(
-      component =>
+      (component) =>
         ({
           component,
           selector: component.selector,

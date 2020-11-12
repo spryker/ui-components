@@ -36,7 +36,7 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
   ): Observable<InterceptionHandler<any>[]> {
     return this.handlersMap$.pipe(
       take(1),
-      map(handlersMap => handlersMap.get(event) || []),
+      map((handlersMap) => handlersMap.get(event) || []),
       distinctUntilChanged(),
     );
   }
@@ -48,10 +48,10 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
     data?: unknown,
   ): Observable<unknown> {
     return this.getHandlersForEvent(event).pipe(
-      switchMap(h =>
+      switchMap((h) =>
         h.reduce(
           (prev$, handler) =>
-            prev$.pipe(switchMap(handlerData => handler(handlerData))),
+            prev$.pipe(switchMap((handlerData) => handler(handlerData))),
           of(data),
         ),
       ),
@@ -77,7 +77,7 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
     event: InterceptionEventType<D>,
     handler: InterceptionHandler<D>,
   ): Observable<void> {
-    return new Observable(subscriber => {
+    return new Observable((subscriber) => {
       const handlers = this.handlersMap$.getValue().get(event) || [];
       this.handlersMap$.next(
         this.handlersMap$.getValue().set(event, [...handlers, handler]),
@@ -85,7 +85,7 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
 
       return () => {
         const updatedHandlers = this.handlersMap$.getValue().get(event) || [];
-        const filteredHandlers = updatedHandlers.filter(h => h !== handler);
+        const filteredHandlers = updatedHandlers.filter((h) => h !== handler);
 
         this.handlersMap$.next(
           this.handlersMap$.getValue().set(event, filteredHandlers),

@@ -25,10 +25,10 @@ export abstract class UnsavedChangesGuardBase
   protected monitors$ = new BehaviorSubject(new Set<UnsavedChangesMonitor>());
 
   protected monitorStatuses$ = this.monitors$.pipe(
-    switchMap(monitors =>
+    switchMap((monitors) =>
       monitors.size
         ? combineLatest(
-            [...monitors].map(monitor =>
+            [...monitors].map((monitor) =>
               monitor.getStatus().pipe(distinctUntilChanged()),
             ),
           )
@@ -37,8 +37,8 @@ export abstract class UnsavedChangesGuardBase
   );
 
   protected hasDirtyStatus$ = this.monitorStatuses$.pipe(
-    map(statuses =>
-      statuses.some(status => status === UnsavedChangesMonitorStatus.Dirty),
+    map((statuses) =>
+      statuses.some((status) => status === UnsavedChangesMonitorStatus.Dirty),
     ),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
@@ -76,7 +76,7 @@ export abstract class UnsavedChangesGuardBase
   }
 
   resetMonitors(): void {
-    this.monitors$.getValue().forEach(monitor => monitor.reset());
+    this.monitors$.getValue().forEach((monitor) => monitor.reset());
   }
 
   init(): void {}

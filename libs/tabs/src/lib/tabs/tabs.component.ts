@@ -55,7 +55,7 @@ export class TabsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.hasWarning$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(hasWarning => (this.hasWarning = hasWarning));
+      .subscribe((hasWarning) => (this.hasWarning = hasWarning));
   }
 
   ngOnDestroy(): void {

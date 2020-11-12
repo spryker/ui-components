@@ -35,13 +35,13 @@ export class InternalIconService implements IconServiceInterface {
 
     this.icons
       .flat()
-      .filter(icon => !icon.forceInit)
-      .forEach(icon => (this.unresolvedIcons[icon.icon] = icon.svg));
+      .filter((icon) => !icon.forceInit)
+      .forEach((icon) => (this.unresolvedIcons[icon.icon] = icon.svg));
 
     this.icons
       .flat()
-      .filter(icon => icon.forceInit)
-      .forEach(icon => this.addIcon(icon.icon, icon.svg));
+      .filter((icon) => icon.forceInit)
+      .forEach((icon) => this.addIcon(icon.icon, icon.svg));
   }
 
   async resolveIcon(name: string): Promise<string | undefined> {

@@ -27,7 +27,7 @@ export function deLocaleFactory() {
           dateData: date.default,
         })),
       spryker: () =>
-        import('@spryker/locale/data/de' as any).then(m => ({
+        import('@spryker/locale/data/de' as any).then((m) => ({
           data: m.data,
         })),
     },

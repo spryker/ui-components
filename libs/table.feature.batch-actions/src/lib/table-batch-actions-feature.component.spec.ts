@@ -168,7 +168,7 @@ describe('TableBatchActionsFeatureComponent', () => {
 
       const buttonElems = fixture.debugElement.queryAll(By.css('spy-button'));
       const intersectedAction = mockActionsConfig.actions.find(
-        item => item.id === 'update-offer',
+        (item) => item.id === 'update-offer',
       );
 
       expect(buttonElems.length).toBe(1);

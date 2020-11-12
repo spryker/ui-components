@@ -22,7 +22,7 @@ export class UnsavedChangesBrowserGuard extends UnsavedChangesGuardBase {
 
     this.hasDirtyStatus$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(hasDirtyStatus => (this.hasDirtyStatus = hasDirtyStatus));
+      .subscribe((hasDirtyStatus) => (this.hasDirtyStatus = hasDirtyStatus));
 
     this.beforeUnload = this.beforeUnload.bind(this);
 

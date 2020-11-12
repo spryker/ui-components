@@ -35,7 +35,8 @@ export enum ButtonAjaxMethod {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonAjaxComponent extends ButtonCoreInputs
+export class ButtonAjaxComponent
+  extends ButtonCoreInputs
   implements OnInit, OnDestroy {
   @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
   @Input() url?: string;
@@ -49,7 +50,7 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
       this.http
         // tslint:disable-next-line: no-non-null-assertion
         .request(this.method, this.url!)
-        .pipe(catchError(response => of(response))),
+        .pipe(catchError((response) => of(response))),
     ),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
@@ -71,7 +72,7 @@ export class ButtonAjaxComponent extends ButtonCoreInputs
   ngOnInit(): void {
     this.request$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(response =>
+      .subscribe((response) =>
         this.ajaxActionService.handle(response, this.injector),
       );
   }

@@ -58,7 +58,7 @@ export class TableFormOverlayActionHandlerService
     }
 
     return this.drawerRef$.pipe(
-      switchMap(drawerRef => drawerRef.afterClosed()),
+      switchMap((drawerRef) => drawerRef.afterClosed()),
     );
   }
 }

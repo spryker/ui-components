@@ -4,11 +4,11 @@ export function ToBoolean(): PropertyDecorator {
   return (target, key) => {
     const internalKey = `__${key.toString()}-value`;
 
-    const getter = function(this: any) {
+    const getter = function (this: any) {
       return this[internalKey];
     };
 
-    const setter = function(this: any, prop: boolean | string) {
+    const setter = function (this: any, prop: boolean | string) {
       this[internalKey] = coerceBooleanProperty(prop);
     };
 

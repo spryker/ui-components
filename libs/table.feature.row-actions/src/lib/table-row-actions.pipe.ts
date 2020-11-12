@@ -27,6 +27,6 @@ export class FilterAvailableActionsPipe implements PipeTransform {
       return actions;
     }
 
-    return actions.filter(action => availableActions.includes(action.action));
+    return actions.filter((action) => availableActions.includes(action.action));
   }
 }

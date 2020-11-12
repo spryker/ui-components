@@ -27,7 +27,7 @@ export abstract class CustomElementModule {
   private initComponents() {
     const componentDeclarations = componentDefsToDeclarations(this.components);
 
-    componentDeclarations.forEach(componentDeclaration =>
+    componentDeclarations.forEach((componentDeclaration) =>
       this.register(componentDeclaration),
     );
   }

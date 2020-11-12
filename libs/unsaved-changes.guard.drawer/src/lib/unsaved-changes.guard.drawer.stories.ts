@@ -29,9 +29,7 @@ class DrawerContentComponent {}
 
 @Component({
   selector: 'spy-story',
-  template: `
-    <button (click)="toggleDrawer()">Toggle drawer</button>
-  `,
+  template: ` <button (click)="toggleDrawer()">Toggle drawer</button> `,
 })
 class StoryComponent {
   private drawerRef?: DrawerRef;

@@ -28,7 +28,7 @@ export class TableDatasourceEqualsFilter implements TableDatasourceFilter {
     const processedColumns: Record<string, unknown[]> = columns.reduce(
       (allColumns, column) => {
         const processedValue = columnProcessors[column]
-          ? byValue.map(valueToCompare =>
+          ? byValue.map((valueToCompare) =>
               this.datasourceProcessor.preprocess(
                 columnProcessors[column],
                 valueToCompare,
@@ -44,8 +44,8 @@ export class TableDatasourceEqualsFilter implements TableDatasourceFilter {
       {},
     );
 
-    return data.filter(row =>
-      columns.some(column => {
+    return data.filter((row) =>
+      columns.some((column) => {
         if (!byValue.length) {
           return true;
         }

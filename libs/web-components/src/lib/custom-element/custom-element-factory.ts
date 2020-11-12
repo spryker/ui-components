@@ -116,7 +116,7 @@ export function createCustomElementForStatic<T>(
     }
 
     private __init() {
-      elemMethods.forEach(method =>
+      elemMethods.forEach((method) =>
         exposeMethod(
           this,
           this.ngComponent,
@@ -148,7 +148,8 @@ export function createCustomElementForLazy<T>(
     return componentType;
   }
 
-  class LazyWebComponent extends (HTMLElement as any)
+  class LazyWebComponent
+    extends (HTMLElement as any)
     implements NgWebComponent<any> {
     private destroyed$ = new Subject<void>();
 
@@ -166,7 +167,7 @@ export function createCustomElementForLazy<T>(
       super();
 
       if (!componentType) {
-        load().then(type => this.__init(type));
+        load().then((type) => this.__init(type));
       } else {
         this.__init(componentType);
       }
@@ -201,7 +202,7 @@ export function createCustomElementForLazy<T>(
 
           this.ngComponent = this.ngElementStrategy.componentRef.instance;
 
-          elemMethods.forEach(method =>
+          elemMethods.forEach((method) =>
             exposeMethod(
               this,
               this.ngComponent,
@@ -225,7 +226,7 @@ function getComponentMethods(
     return getElementMethodsOf(componentProto);
   }
 
-  return Object.getOwnPropertyNames(componentProto).filter(key => {
+  return Object.getOwnPropertyNames(componentProto).filter((key) => {
     if (key === 'constructor') {
       return false;
     }

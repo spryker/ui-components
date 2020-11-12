@@ -202,7 +202,7 @@ describe('TableComponent', () => {
             useValue: {
               mockFeature: () =>
                 import('../../../testing/src/mock-feature-component').then(
-                  m => m.MockFeatureModule,
+                  (m) => m.MockFeatureModule,
                 ),
             },
             multi: true,
@@ -427,7 +427,7 @@ describe('TableComponent', () => {
   }
 
   function verifyDataRequest() {
-    const dataReq = httpTestingController.expectOne(req =>
+    const dataReq = httpTestingController.expectOne((req) =>
       req.url.includes(mockDataUrl),
     );
 

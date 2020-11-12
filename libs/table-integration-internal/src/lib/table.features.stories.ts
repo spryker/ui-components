@@ -41,7 +41,7 @@ export default {
   title: 'TableFeaturesComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -105,43 +105,43 @@ export const viaConfig = getFeaturesStory(
     TableModule.withFeatures({
       filters: () =>
         import('@spryker/table.feature.filters').then(
-          m => m.TableFiltersFeatureModule,
+          (m) => m.TableFiltersFeatureModule,
         ),
       pagination: () =>
         import('@spryker/table.feature.pagination').then(
-          m => m.TablePaginationFeatureModule,
+          (m) => m.TablePaginationFeatureModule,
         ),
       rowActions: () =>
         import('@spryker/table.feature.row-actions').then(
-          m => m.TableRowActionsFeatureModule,
+          (m) => m.TableRowActionsFeatureModule,
         ),
       search: () =>
         import('@spryker/table.feature.search').then(
-          m => m.TableSearchFeatureModule,
+          (m) => m.TableSearchFeatureModule,
         ),
       syncStateUrl: () =>
         import('@spryker/table.feature.sync-state').then(
-          m => m.TableSyncStateFeatureModule,
+          (m) => m.TableSyncStateFeatureModule,
         ),
       total: () =>
         import('@spryker/table.feature.total').then(
-          m => m.TableTotalFeatureModule,
+          (m) => m.TableTotalFeatureModule,
         ),
       itemSelection: () =>
         import('@spryker/table.feature.selectable').then(
-          m => m.TableSelectableFeatureModule,
+          (m) => m.TableSelectableFeatureModule,
         ),
       batchActions: () =>
         import('@spryker/table.feature.batch-actions').then(
-          m => m.TableBatchActionsFeatureModule,
+          (m) => m.TableBatchActionsFeatureModule,
         ),
       settings: () =>
         import('@spryker/table.feature.settings').then(
-          m => m.TableSettingsFeatureModule,
+          (m) => m.TableSettingsFeatureModule,
         ),
       title: () =>
         import('@spryker/table.feature.title').then(
-          m => m.TableTitleFeatureModule,
+          (m) => m.TableTitleFeatureModule,
         ),
     }),
   ],
@@ -340,7 +340,7 @@ function getFeaturesStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
     },

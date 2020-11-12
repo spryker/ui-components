@@ -1,0 +1,30 @@
+@grid-row-prefix-cls: ~'@{spryker-prefix}-row';
+@grid-col-prefix-cls: ~'@{spryker-prefix}-col';
+
+@grid-gutter: {
+  none: 0;
+  sm: 8px;
+  md: 16px;
+  lg: 24px;
+};
+@grid-columns: 12;
+@grid-directions: row, row-reverse, column, column-reverse;
+@grid-wrap: nowrap, wrap, wrap-reverse;
+@grid-align-content: flex-start, flex-end, center, space-between, space-around,
+  stretch;
+@grid-align-items: flex-start, center, flex-end, baseline, stretch;
+@grid-justify-content: flex-start, center, flex-end, space-between, space-around,
+  space-evenly, stretch;
+
+/**
+ * Returns a map with the list of properties that should generate selectors with breadcrumbs.
+ * Was chosen mixin approach to have opportunity to extend this list on the project level.
+ */
+.breakpoints-map-default() {
+  @gutter: true;
+  @direction: true;
+  @wrap: true;
+  @align-content: true;
+  @align-col: true;
+  @align-row: true;
+}

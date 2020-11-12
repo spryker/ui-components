@@ -1,0 +1,13 @@
+/**
+ * Creates @breakpoint variable with 0 or the first value from the $edges list.
+ * @param {List} @edges. List length must be less than or equal to 2.
+ */
+.breakpoint-edge-min-mixin(@edges) {
+  @breakpoint: if(length(@edges) > 0, extract(@edges, 1), 0);
+}
+
+.breakpoint-media-min-mixin(@min: 0, @rules) {
+  @media only screen and (min-width: @min) {
+    @rules();
+  }
+}

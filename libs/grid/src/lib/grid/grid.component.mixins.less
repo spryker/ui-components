@@ -1,0 +1,132 @@
+/**
+ * Creates @column-value variable with value of column ratio in relation to columns count.
+ * @param {Number} @column
+ * @param {Number} @columns [@grid-columns]
+ */
+.grid-span-mixin(@column, @columns: @grid-columns) {
+  @column-value: (100% / @columns) * @column;
+}
+
+/**
+ * Returns grid selectors depends on breakpoint.
+ * @param {String} @option
+ * @param {String} @variable
+ * @param {Map} @grid-breakpoints-map
+ * @param {String} @selector-modifier [@option]
+ */
+.grid-variant-mixin(
+  @option,
+  @variable,
+  @grid-breakpoints-map,
+  @selector-modifier: @option,
+) {
+  each(@variable, .(@variant)  {
+      &-@{selector-modifier}-@{variant} {
+          @{option}: @variant;
+      }
+  })
+
+  & when (@grid-breakpoints-map[@@selector-modifier] = true) {
+    each(@breakpoints, .(@edges, @key) {
+      .breakpoint-edge-min-mixin(@edges);
+
+      .breakpoint-media-min-mixin(@breakpoint, {
+        each(@variable, .(@variant)  {
+          &-@{key}-@{selector-modifier}-@{variant} {
+            @{option}: @variant;
+          }
+        })
+      })
+    });
+  }
+}
+
+/**
+ * Returns grid gutter selectors depends on breakpoint.
+ * @param {String} @option
+ * @param {String} @variable
+ * @param {Boolean} @with-breakpoints [true]
+ * @param {Boolean} @reverse-value [false]
+ */
+.grid-gutter-mixin(
+  @option,
+  @variable,
+  @with-breakpoints: true,
+  @reverse-value: false
+) {
+  each(@variable, .(@gutter, @gutter-key) {
+    &-gutter-@{gutter-key} {
+      @{option}: (@gutter / 2) * if(@reverse-value, -1, 1);
+    }
+  })
+
+  & when (@with-breakpoints = true) {
+    each(@breakpoints, .(@edges, @breakpoint-key) {
+      .breakpoint-edge-min-mixin(@edges);
+
+      .breakpoint-media-min-mixin(@breakpoint, {
+        each(@variable, .(@gutter, @gutter-key) {
+          &-@{breakpoint-key}-gutter-@{gutter-key} {
+            @{option}: (@gutter / 2) * if(@reverse-value, -1, 1);
+          }
+        })
+      })
+    });
+  }
+}
+
+/**
+ * Returns grid-variant-mixin mixin with appropriate props depends on direction.
+ * @param {String} @direction
+ * @param {Map} @grid-breakpoints-map
+ */
+.grid-align-mixin (@direction, @grid-breakpoints-map) when (@direction = column), (@direction = column-reverse) {
+  &.@{grid-row-prefix-cls} {
+    .grid-variant-mixin(align-items, @grid-justify-content, @grid-breakpoints-map, align-row);
+    .grid-variant-mixin(justify-content, @grid-align-items, @grid-breakpoints-map, align-col);
+  }
+}
+.grid-align-mixin (@direction, @grid-breakpoints-map) when (@direction = row), (@direction = row-reverse) {
+  &.@{grid-row-prefix-cls} {
+    .grid-variant-mixin(justify-content, @grid-justify-content, @grid-breakpoints-map, align-row);
+    .grid-variant-mixin(align-items, @grid-align-items, @grid-breakpoints-map, align-col);
+  }
+}
+
+/**
+ * Returns grid selectors with nested align selectors.
+ * @param {String} @option
+ * @param {String} @variable
+ * @param {Map} @grid-breakpoints-map
+ * @param {String} @selector-modifier [@option]
+ */
+.grid-nested-mixin(
+  @option,
+  @variable,
+  @grid-breakpoints-map,
+  @selector-modifier: @option,
+) {
+  each(@variable, .(@variant)  {
+      &-@{selector-modifier}-@{variant} {
+          @{option}: @variant;
+
+        .grid-align-mixin(@variant, @grid-breakpoints-map);
+      }
+  })
+
+  & when (@grid-breakpoints-map[@@selector-modifier] = true) {
+    each(@breakpoints, .(@edges, @key) {
+      .breakpoint-edge-min-mixin(@edges);
+
+      .breakpoint-media-min-mixin(@breakpoint, {
+        each(@variable, .(@variant)  {
+          &-@{key}-@{selector-modifier}-@{variant} {
+            @{option}: @variant;
+
+            .grid-align-mixin(@variant, @grid-breakpoints-map);
+          }
+        })
+      })
+    });
+  }
+}

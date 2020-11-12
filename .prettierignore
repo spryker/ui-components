@@ -11,3 +11,6 @@
 
 # Generated icons font
 /libs/icon/src/lib/fontello/**/*
+
+# Grid styles
+/libs/grid/src/lib/grid/*.less

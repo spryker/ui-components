@@ -1,0 +1,76 @@
+@import './grid.component.theme.less';
+
+/**
+ * Returns grid selectors.
+ * @param {Map} @grid-breakpoints-prop [@breakpoints]
+ * @param {Map} @grid-gutter-prop [@grid-gutter]
+ * @param {Number} @grid-columns-prop [@grid-columns]
+ * @param {Mixin} @grid-breakpoints-map [.breakpoints-map-default()]
+ *
+ * * **How to extend breakpoints-map-default mixin**
+ * ```less
+ *  .override-breakpoints-map() {
+ *    .breakpoints-map-default();
+ *
+ *    @gutter: false;
+ *  }
+ * ```
+ */
+ .spy-grid-mixin(
+  @grid-breakpoints-prop: @breakpoints,
+  @grid-gutter-prop: @grid-gutter,
+  @grid-columns-prop: @grid-columns,
+  @grid-breakpoints-map: .breakpoints-map-default(),
+) {
+  .@{grid-row-prefix-cls} {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    .grid-gutter-mixin(margin, @grid-gutter, @grid-breakpoints-map[@gutter], true);
+    .grid-nested-mixin(flex-direction, @grid-directions, @grid-breakpoints-map, direction);
+    .grid-variant-mixin(flex-wrap, @grid-wrap, @grid-breakpoints-map, wrap);
+    .grid-variant-mixin(align-content, @grid-align-content, @grid-breakpoints-map);
+
+
+    &:not([class*='-direction']) {
+      .grid-align-mixin(row, @grid-breakpoints-map);
+    }
+  }
+
+  .@{grid-col-prefix-cls} {
+    flex-grow: 1;
+    flex-basis: 0;
+
+    .grid-gutter-mixin(padding, @grid-gutter, @grid-breakpoints-map[@gutter]);
+
+    each(@breakpoints, .(@edges, @key) {
+      .breakpoint-edge-min-mixin(@edges);
+
+      .breakpoint-media-min-mixin(@breakpoint, {
+        &-@{key}-hidden {
+          display: none;
+        }
+
+        &-@{key}-auto {
+          flex-grow: 1;
+          flex-basis: 0;
+          max-width: none;
+        }
+
+        .loop-mixin(@grid-columns, {
+          .grid-span-mixin(@i);
+
+          &-@{key}-@{i} {
+            flex-grow: 0;
+            flex-basis: @column-value;
+            max-width: @column-value;
+          }
+        });
+      })
+    });
+  }
+}
+
+.spy-grid-mixin();

@@ -42,7 +42,8 @@ import {
     class: 'spy-notification',
   },
 })
-export class NotificationComponent extends NotificationInputs
+export class NotificationComponent
+  extends NotificationInputs
   implements OnChanges, OnDestroy {
   @Input() @ToJson() floatingConfig?: NotificationConfig;
 
@@ -87,12 +88,12 @@ export class NotificationComponent extends NotificationInputs
 
   private floatingRef$ = this.floatingData$.pipe(
     filter(() => this.floating),
-    map(data => this.notificationService.show(data)),
+    map((data) => this.notificationService.show(data)),
     share(),
   );
 
   private floatingClosed$ = this.floatingRef$.pipe(
-    switchMap(floatingRef =>
+    switchMap((floatingRef) =>
       floatingRef.afterClose().pipe(take(1), takeUntil(this.closeFloating$)),
     ),
     tap(() => this.close()),

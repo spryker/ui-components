@@ -55,7 +55,7 @@ module.exports = {
     radix: true,
     'space-before-function-paren': {
       options: {
-        anonymous: 'never',
+        anonymous: 'always',
         asyncArrow: 'always',
         constructor: 'never',
         method: 'never',

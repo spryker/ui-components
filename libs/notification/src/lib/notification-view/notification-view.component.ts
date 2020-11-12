@@ -22,7 +22,8 @@ import { NotificationInputs } from '../notification-inputs';
   },
   providers: [ApplyContextsDirective],
 })
-export class NotificationViewComponent extends NotificationInputs
+export class NotificationViewComponent
+  extends NotificationInputs
   implements OnInit {
   @ViewChild(NzAlertComponent) nzAlertComponent?: NzAlertComponent;
 

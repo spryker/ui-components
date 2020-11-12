@@ -93,7 +93,7 @@ export class TableDatasourceInlineService
     columnProcessors: TableDatasourceInlineConfigPreprocessor,
     data: TableDataRow[],
   ): TableDataRow[] {
-    return data.map(row => {
+    return data.map((row) => {
       row = { ...row };
 
       Object.entries(columnProcessors).forEach(([colId, type]) => {
@@ -114,7 +114,7 @@ export class TableDatasourceInlineService
     columnProcessors: TableDatasourceInlineConfigPreprocessor,
     data: TableDataRow[],
   ): TableDataRow[] {
-    return data.map(row => {
+    return data.map((row) => {
       row = { ...row };
 
       Object.entries(columnProcessors).forEach(([colId, type]) => {

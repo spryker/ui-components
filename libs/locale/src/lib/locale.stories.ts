@@ -72,6 +72,6 @@ const locales: LocaleMeta[] = localeModulesLoader.keys().map(
 
 const localeStories = storiesOf('LocaleModule', module);
 
-locales.forEach(locale => {
+locales.forEach((locale) => {
   localeStories.add(locale.name, createStoryFor(locale));
 });

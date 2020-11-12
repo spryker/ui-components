@@ -73,18 +73,18 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   tableId$ = this.config$.pipe(
     pluck('tableId'),
-    switchMap(tableId =>
+    switchMap((tableId) =>
       tableId
         ? of(tableId)
-        : this.table$.pipe(switchMap(table => table.tableId$)),
+        : this.table$.pipe(switchMap((table) => table.tableId$)),
     ),
   );
 
   storageState$ = this.tableId$.pipe(
-    switchMap(tableId =>
+    switchMap((tableId) =>
       this.persistenceService.retrieve<TableSettingsStorageData>(tableId),
     ),
-    tap(storageData => {
+    tap((storageData) => {
       if (storageData) {
         this.isColumnsRetrieved = true;
       }
@@ -103,8 +103,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   columns$ = merge(
     this.setColumns$,
     this.initialColumns$.pipe(
-      map(columns => {
-        const filteredColumns = columns.filter(column => !column.hidden);
+      map((columns) => {
+        const filteredColumns = columns.filter((column) => !column.hidden);
 
         return filteredColumns;
       }),
@@ -113,7 +113,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
   isResetButtonDisabled$ = this.columns$.pipe(
     map(
-      columns =>
+      (columns) =>
         columns.length === this.originalColumnsArr.length &&
         !columns.some(
           (column, index) => column.id !== this.originalColumnsArr[index].id,
@@ -138,7 +138,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   );
 
   tableData$ = this.table$.pipe(
-    switchMap(table => table.data$),
+    switchMap((table) => table.data$),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
@@ -158,7 +158,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   setColumnsResolverService(service: TableColumnsResolverService): void {
     super.setColumnsResolverService(service);
 
-    service.addTransformer(columnsArr => {
+    service.addTransformer((columnsArr) => {
       this.originalColumnsArr = columnsArr as TableSettingsColumns;
 
       this.setInitialColumns$.next(
@@ -194,10 +194,10 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     tableColumns: TableSettingsColumns,
   ): void {
     const popoverColumn = popoverColumns.find(
-      column => column.id === checkedColumn.id,
+      (column) => column.id === checkedColumn.id,
     );
     const tableColumnElem = tableColumns.find(
-      elem => elem.id === checkedColumn.id,
+      (elem) => elem.id === checkedColumn.id,
     );
 
     if (checkedColumn.hidden && !tableColumnElem) {
@@ -221,7 +221,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   }
 
   private cloneColumns(columns: TableSettingsColumns): TableSettingsColumns {
-    return columns.map(column => ({ ...column }));
+    return columns.map((column) => ({ ...column }));
   }
 
   private showColumn(
@@ -242,7 +242,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     tableColumns: TableSettingsColumns,
   ): number {
     const popoverColumn = popoverColumns.find(
-      column => column.id === checkedColumn.id,
+      (column) => column.id === checkedColumn.id,
     );
     const popoverColumnIndex =
       popoverColumn && popoverColumns.indexOf(popoverColumn);
@@ -268,7 +268,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     for (let i = index; i >= 0; i--) {
       const previousElem = popoverColumns[i];
       const tableColumnsElement =
-        previousElem && tableColumns.find(elem => elem.id === previousElem.id);
+        previousElem &&
+        tableColumns.find((elem) => elem.id === previousElem.id);
 
       if (tableColumnsElement) {
         return tableColumns.indexOf(tableColumnsElement) + 1;
@@ -282,8 +283,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableSettingsColumns,
     tableColumns: TableSettingsColumns,
   ): TableSettingsColumns {
-    return popoverColumns.filter(column =>
-      tableColumns.find(tableColumn => tableColumn.id === column.id),
+    return popoverColumns.filter((column) =>
+      tableColumns.find((tableColumn) => tableColumn.id === column.id),
     );
   }
 
@@ -317,8 +318,8 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
     const mappedColumns: TableSettingsColumns = [];
 
-    storageData.columnsOrder.forEach(id => {
-      const nextColumn = columns.find(column => column.id === id);
+    storageData.columnsOrder.forEach((id) => {
+      const nextColumn = columns.find((column) => column.id === id);
 
       if (nextColumn) {
         nextColumn.hidden = storageData.hiddenColumns.includes(nextColumn.id);
@@ -328,7 +329,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     });
 
     if (storageData.columnsOrder.length !== columns.length) {
-      columns.map(column => {
+      columns.map((column) => {
         if (!storageData.columnsOrder.includes(column.id)) {
           mappedColumns.push(column);
         }

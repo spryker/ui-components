@@ -13,7 +13,7 @@ export function enLocaleFactory() {
     id: EN_LOCALE,
     loaders: {
       ng: () =>
-        import('@angular/common/locales/en').then(m => ({
+        import('@angular/common/locales/en').then((m) => ({
           data: m.default,
         })),
       ant: () =>
@@ -25,7 +25,7 @@ export function enLocaleFactory() {
           dateData: date.default,
         })),
       spryker: () =>
-        import('@spryker/locale/data/en' as any).then(m => ({
+        import('@spryker/locale/data/en' as any).then((m) => ({
           data: m.data,
         })),
     },

@@ -33,7 +33,7 @@ export default {
   title: 'TableComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: ['col3', 'col3', 'col3'],
@@ -89,9 +89,7 @@ class TableColumnTestConfig {
 
 @Component({
   selector: 'spy-table-column-test',
-  template: `
-    {{ config.text | context: context }}
-  `,
+  template: ` {{ config.text | context: context }} `,
 })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent

@@ -75,7 +75,7 @@ export class TableColumnListComponent
     const isLimited = this.config && this.config.limit > 0;
     let values = Array.isArray(value) ? value : [value];
     values = Boolean(values.length) ? (values as unknown[]) : [undefined];
-    this.values = values.map(_value => ({
+    this.values = values.map((_value) => ({
       // tslint:disable-next-line: no-non-null-assertion
       ...this.context!.row,
       // tslint:disable-next-line: no-non-null-assertion

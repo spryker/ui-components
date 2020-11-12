@@ -22,7 +22,7 @@ export default {
   title: 'TableColumnChipComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: Math.random() > 0.5 ? 1 : 0,
   col3: 'col3',
@@ -106,7 +106,7 @@ export const withTable = (): IStory => ({
     mockHttp: setMockHttp([
       {
         url: '/data-request',
-        dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
       },
     ]),
   },

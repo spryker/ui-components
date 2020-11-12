@@ -24,13 +24,13 @@ export class TableFeaturesRendererService implements OnDestroy {
   private featureLocationStore = new TokenStore<
     [TableFeatureComponent[]],
     Observable<string[][][]>
-  >(features =>
+  >((features) =>
     combineLatest(
-      features.map(feature =>
+      features.map((feature) =>
         feature.tplDirectives$.pipe(
-          switchMap(tplDirectives =>
+          switchMap((tplDirectives) =>
             combineLatest(
-              tplDirectives.map(tplDirective => tplDirective.locations$),
+              tplDirectives.map((tplDirective) => tplDirective.locations$),
             ),
           ),
           debounceTime(0),
@@ -44,18 +44,18 @@ export class TableFeaturesRendererService implements OnDestroy {
     Observable<FeatureRecord[]>
   >((features, location, featureLocations$) =>
     featureLocations$.pipe(
-      switchMap(featureLocations =>
+      switchMap((featureLocations) =>
         combineLatest(
           features.map((feature, i) =>
             feature.tplDirectives$.pipe(
               // Take only one value as next updated will switch again to this stream
               // But it potentially may have invalid data state because features were updated
               take(1),
-              map(tplDirectives =>
+              map((tplDirectives) =>
                 tplDirectives
                   .filter((_, j) => featureLocations[i][j].includes(location))
                   .map(
-                    tplDirective =>
+                    (tplDirective) =>
                       ({
                         component: feature,
                         template: null, // This will be mapped later
@@ -70,7 +70,7 @@ export class TableFeaturesRendererService implements OnDestroy {
         ),
       ),
       debounceTime(0),
-      map(featureRecords => featureRecords.flat() as any),
+      map((featureRecords) => featureRecords.flat() as any),
       shareReplay({ bufferSize: 1, refCount: true }),
     ),
   );
@@ -102,19 +102,19 @@ export class TableFeaturesRendererService implements OnDestroy {
     contextGetter: (...args: TArgs) => TContext,
   ) {
     const featuresInLocation$ = features$.pipe(
-      switchMap(features => this.trackFeatureRecords(features, location)),
+      switchMap((features) => this.trackFeatureRecords(features, location)),
       // tslint:disable-next-line: deprecation
       startWith([] as never),
     );
 
     const featureTemplates$ = featuresInLocation$.pipe(
-      map(features => features.map(feature => feature.featureTemplate)),
+      map((features) => features.map((feature) => feature.featureTemplate)),
     );
 
     const featureContexts$ = featuresInLocation$.pipe(
-      switchMap(features =>
+      switchMap((features) =>
         combineLatest(
-          features.map(feature => feature.featureContext$ ?? of(undefined)),
+          features.map((feature) => feature.featureContext$ ?? of(undefined)),
         ),
       ),
       // tslint:disable-next-line: deprecation
@@ -156,7 +156,7 @@ class TokenStore<T extends any[], D> {
 
   resolve(...tokens: T): D {
     const args = this.args.find(
-      arg =>
+      (arg) =>
         tokens.length === arg[0].length &&
         tokens.every((token, i) => token === arg[0][i]),
     );

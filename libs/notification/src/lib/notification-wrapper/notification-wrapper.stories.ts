@@ -16,9 +16,7 @@ export default {
   // tslint:disable-next-line: component-selector
   selector: 'story-selector',
   template: `
-    <button (click)="notificationService.show(data)">
-      Show Notification
-    </button>
+    <button (click)="notificationService.show(data)">Show Notification</button>
   `,
 })
 class StoryComponent implements OnChanges {

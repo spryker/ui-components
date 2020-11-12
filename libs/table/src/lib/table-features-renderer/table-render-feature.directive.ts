@@ -28,10 +28,10 @@ export class TableRenderFeatureDirective
   private feature$ = new ReplaySubject<FeatureRecord>(1);
 
   private template$ = this.feature$.pipe(
-    map(feature => feature.featureTemplate),
+    map((feature) => feature.featureTemplate),
   );
   private templateContext$ = this.feature$.pipe(
-    switchMap(feature => feature.featureContext$ ?? of(undefined)),
+    switchMap((feature) => feature.featureContext$ ?? of(undefined)),
     startWith(undefined),
   );
 

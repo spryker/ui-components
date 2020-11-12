@@ -12,7 +12,7 @@ import { PersistenceStrategy } from './types';
 @Injectable({ providedIn: 'root' })
 export class UrlPersistenceStrategy implements PersistenceStrategy {
   private urlSearch$ = fromEvent(window, 'popstate').pipe(
-    map(event => location.search),
+    map((event) => location.search),
     startWith(location.search),
   );
 
@@ -33,7 +33,7 @@ export class UrlPersistenceStrategy implements PersistenceStrategy {
   retrieve<T>(key: string): Observable<T> {
     return this.urlSearch$.pipe(
       distinctUntilChanged(),
-      switchMap(urlSearch => {
+      switchMap((urlSearch) => {
         const urlParams = new URLSearchParams(urlSearch);
         const value = urlParams.get(key);
 

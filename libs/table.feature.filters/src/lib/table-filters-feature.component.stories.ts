@@ -18,7 +18,7 @@ export default {
   title: 'TableFiltersFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -41,7 +41,7 @@ export const viaConfig = getFiltersStory(
     TableModule.withFeatures({
       filters: () =>
         import('./table-filters-feature.module').then(
-          m => m.TableFiltersFeatureModule,
+          (m) => m.TableFiltersFeatureModule,
         ),
     }),
   ],
@@ -105,7 +105,7 @@ function getFiltersStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
     },

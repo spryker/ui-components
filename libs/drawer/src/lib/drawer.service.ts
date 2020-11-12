@@ -58,7 +58,7 @@ export class DrawerService implements OnDestroy {
 
   closeAll(): void {
     this.allClosed$.next();
-    this.drawerStack.forEach(drawer => this.destroyDrawerRecord(drawer));
+    this.drawerStack.forEach((drawer) => this.destroyDrawerRecord(drawer));
     this.drawerStack = [];
   }
 
@@ -99,7 +99,7 @@ export class DrawerService implements OnDestroy {
 
     merge(
       overlay.backdropClick(),
-      overlay.keydownEvents().pipe(filter(e => e.key === 'Escape')),
+      overlay.keydownEvents().pipe(filter((e) => e.key === 'Escape')),
     )
       .pipe(takeUntil(merge(containerEmpty$, this.allClosed$)))
       .subscribe(() => {

@@ -88,9 +88,7 @@ class TableColumnTestConfig {
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'table-column-test',
-  template: `
-    {{ config.text | context: context }}
-  `,
+  template: ` {{ config.text | context: context }} `,
 })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent

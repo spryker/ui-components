@@ -14,9 +14,7 @@ import { DrawerContainerComponent } from './drawer-container.component';
   selector: 'spy-test',
   template: `
     <spy-drawer-container #drawerContainer></spy-drawer-container>
-    <ng-template #drawerTpl let-drawerRef>
-      Content
-    </ng-template>
+    <ng-template #drawerTpl let-drawerRef> Content </ng-template>
   `,
 })
 class TestComponent {

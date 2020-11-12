@@ -141,14 +141,14 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
         const enabledHours = enableTimeConfig.hours();
 
         return DatePickerComponent.HoursRange.filter(
-          hour => !enabledHours.includes(hour),
+          (hour) => !enabledHours.includes(hour),
         );
       };
       const nzDisabledMinutes = (hour?: number) => {
         const enabledMinutes = enableTimeConfig.minutes(hour);
 
         return DatePickerComponent.MinutesRange.filter(
-          minute => !enabledMinutes.includes(minute),
+          (minute) => !enabledMinutes.includes(minute),
         );
       };
       const nzDisabledSeconds = () => [];
@@ -217,18 +217,18 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
         toHours,
       );
 
-      filteredHoursFromTo.forEach(hour => enabledHours.add(hour));
+      filteredHoursFromTo.forEach((hour) => enabledHours.add(hour));
     } else {
       const filteredOnlyWorkHoursFromTo = this.filterHoursRange(
         workHoursRanges,
         DatePickerComponent.HoursRange,
       );
 
-      filteredOnlyWorkHoursFromTo.forEach(hour => enabledHours.add(hour));
+      filteredOnlyWorkHoursFromTo.forEach((hour) => enabledHours.add(hour));
     }
 
     const disabledHours = DatePickerComponent.HoursRange.filter(
-      hour => !enabledHours.has(hour),
+      (hour) => !enabledHours.has(hour),
     );
 
     this.disabledTime = (): NzDisabledTimeConfig => {
@@ -256,7 +256,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
     const enabledMinutesSet = new Set<number>();
 
-    workHoursRanges.forEach(range => {
+    workHoursRanges.forEach((range) => {
       let from: number | undefined;
       let to: number | undefined;
 
@@ -274,14 +274,14 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
       const timeRange = this.getTimeRange(minutesFromTo, from, to);
 
-      timeRange.forEach(minute => enabledMinutesSet.add(minute));
+      timeRange.forEach((minute) => enabledMinutesSet.add(minute));
     });
 
     if (enabledMinutesSet.size === 0) {
       return [];
     }
 
-    return minutesFromTo.filter(minute => !enabledMinutesSet.has(minute));
+    return minutesFromTo.filter((minute) => !enabledMinutesSet.has(minute));
   }
 
   private filterHoursRange(
@@ -290,15 +290,15 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   ): number[] {
     const enabledHoursSet = new Set<number>();
 
-    workHoursRanges.forEach(range => {
+    workHoursRanges.forEach((range) => {
       const from = range[0][0];
       const to = range[1][0];
       const timeRange = this.getTimeRange(hoursFromTo, from, to);
 
-      timeRange.forEach(hour => enabledHoursSet.add(hour));
+      timeRange.forEach((hour) => enabledHoursSet.add(hour));
     });
 
-    return hoursFromTo.filter(hour => enabledHoursSet.has(hour));
+    return hoursFromTo.filter((hour) => enabledHoursSet.has(hour));
   }
 
   private getTimeRange(

@@ -55,20 +55,20 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
   private addRequests$ = new Subject<TestRequest[]>();
 
   private requests$ = this.addRequests$.pipe(
-    map(requests => this.matchRequests(requests)),
-    filter(requests => requests.length > 0),
+    map((requests) => this.matchRequests(requests)),
+    filter((requests) => requests.length > 0),
     mergeAll(),
-    tap(request => console.log('Processing request', request)),
-    mergeMap(request =>
+    tap((request) => console.log('Processing request', request)),
+    mergeMap((request) =>
       this.resolveValueFrom(request).pipe(
-        tap(value => this.flush(request, value)),
+        tap((value) => this.flush(request, value)),
         tap({
-          next: value =>
+          next: (value) =>
             console.log('Request flushed with value', request, value),
-          error: value =>
+          error: (value) =>
             console.log('Request flushed with error', request, value),
         }),
-        catchError(value => {
+        catchError((value) => {
           this.error(request, value);
           return EMPTY;
         }),
@@ -108,9 +108,9 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
 
   private matchRequests(requests: TestRequest[]): MatchedHttpRequest[] {
     return requests
-      .map(request => ({
+      .map((request) => ({
         request,
-        response: this.mockHttp.find(mockHttp =>
+        response: this.mockHttp.find((mockHttp) =>
           typeof mockHttp.url === 'string'
             ? request.request.url.includes(mockHttp.url)
             : mockHttp.url.test(request.request.url),
@@ -123,7 +123,7 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
     const delayMs = this.getDelayFrom(req);
     const isError = this.getIsErrorFrom(req);
     const value$ = isError
-      ? this.getErrorFrom(req).pipe(switchMap(err => throwError(err)))
+      ? this.getErrorFrom(req).pipe(switchMap((err) => throwError(err)))
       : this.getDataFrom(req);
 
     return forkJoin([value$.pipe(take(1)), of(null).pipe(delay(delayMs))]).pipe(

@@ -25,9 +25,7 @@ const mockResponse = () => ({
 
 @Component({
   selector: 'spy-story',
-  template: `
-    <button (click)="clickHandler()">Toggle drawer</button>
-  `,
+  template: ` <button (click)="clickHandler()">Toggle drawer</button> `,
 })
 class SimpleDrawerComponent {
   constructor(private drowerService: DrawerService) {}

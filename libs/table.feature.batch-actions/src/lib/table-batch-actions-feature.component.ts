@@ -59,7 +59,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
 
   actions$ = this.config$.pipe(pluck('actions'));
   itemSelected$ = this.tableEventBus$.pipe(
-    switchMap(tableEventBus =>
+    switchMap((tableEventBus) =>
       tableEventBus.on<TableSelectionChangeEvent>('itemSelection'),
     ),
   );
@@ -91,7 +91,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
     shareReplay({ bufferSize: 1, refCount: true }),
   );
   shouldShowActions$ = this.itemActions$.pipe(
-    map(itemActions =>
+    map((itemActions) =>
       Boolean(itemActions.actions.length && itemActions.selectedRows.length),
     ),
     shareReplay({ bufferSize: 1, refCount: true }),
@@ -164,7 +164,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
       availableActionIds,
     ).reduce((accumulator, value) => ({ ...accumulator, [value]: true }), {});
 
-    return actions.filter(action => intersection[action.id]);
+    return actions.filter((action) => intersection[action.id]);
   }
 
   /**

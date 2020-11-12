@@ -36,10 +36,10 @@ export class SidebarComponent implements OnChanges, OnInit {
   setCollapsedState$ = new ReplaySubject<boolean>();
   spyId$ = new ReplaySubject<string>();
   persistenceKey$ = this.spyId$.pipe(
-    map(spyId => `spy-sidebar-${spyId ?? ''}-is-collapsed`),
+    map((spyId) => `spy-sidebar-${spyId ?? ''}-is-collapsed`),
   );
   initialState$ = this.persistenceKey$.pipe(
-    switchMap(persistenceKey => {
+    switchMap((persistenceKey) => {
       return this.persistenceService.retrieve(persistenceKey);
     }),
     tap(() => {

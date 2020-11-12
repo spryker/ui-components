@@ -29,7 +29,7 @@ export class ContextService {
   );
   private serializationStrategies = this.serializationStrategiesArray
     .flat()
-    .map(strategyType => this.injector.get(strategyType));
+    .map((strategyType) => this.injector.get(strategyType));
 
   constructor(
     private injector: Injector,
@@ -56,7 +56,7 @@ export class ContextService {
   }
 
   private postProcess(value: unknown): string {
-    const strategy = this.serializationStrategies.find(s =>
+    const strategy = this.serializationStrategies.find((s) =>
       s.canSerialize(value),
     );
 

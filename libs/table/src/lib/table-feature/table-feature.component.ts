@@ -96,7 +96,9 @@ export abstract class TableFeatureComponent<
         map(() => this.tplDirectives!.toArray()),
         // Only pass when actual changes were made to directives
         // Otherwise Angular will emit on every re-renders
-        filter(tplDirectives => !!this.tplDirectivesDiffer.diff(tplDirectives)),
+        filter(
+          (tplDirectives) => !!this.tplDirectivesDiffer.diff(tplDirectives),
+        ),
       ),
     );
   }

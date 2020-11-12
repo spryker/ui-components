@@ -22,7 +22,7 @@ export default {
   title: 'TableColumnImageComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'https://images.icecat.biz/img/norm/medium/25904006-8438.jpg',
   col3: 'https://images.icecat.biz/img/gallery_mediums/30663302_6177.jpg',
@@ -100,7 +100,7 @@ export const withTable = (): IStory => ({
     mockHttp: setMockHttp([
       {
         url: '/data-request',
-        dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
       },
     ]),
   },

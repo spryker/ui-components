@@ -46,7 +46,7 @@ export class UrlHtmlRendererDirective
         this.urlHtmlLoading.emit(true);
         this.isLoading$.next();
       }),
-      switchMap(urlHtml =>
+      switchMap((urlHtml) =>
         this.http.get(urlHtml, { responseType: 'text' }).pipe(
           catchError(() => {
             this.urlHtmlLoading.emit(false);

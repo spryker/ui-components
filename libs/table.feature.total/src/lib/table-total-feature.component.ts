@@ -46,7 +46,7 @@ export class TableTotalFeatureComponent extends TableFeatureComponent<
   tableFeatureLocation = TableFeatureLocation;
 
   tableData$ = this.table$.pipe(
-    switchMap(table => table.data$),
+    switchMap((table) => table.data$),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
@@ -56,8 +56,8 @@ export class TableTotalFeatureComponent extends TableFeatureComponent<
   data$ = this.tableData$.pipe(pluck('data'));
 
   selected$ = this.tableEventBus$.pipe(
-    switchMap(eventBus => eventBus.on<any[]>('itemSelection')),
-    map(items => items.length),
+    switchMap((eventBus) => eventBus.on<any[]>('itemSelection')),
+    map((items) => items.length),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 }

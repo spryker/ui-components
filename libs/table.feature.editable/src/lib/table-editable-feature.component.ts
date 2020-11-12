@@ -104,9 +104,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   cellErrors?: TableEditableConfigDataErrors;
   rowErrors: TableEditableConfigDataErrorsFields[] = [];
 
-  tableColumns$ = this.table$.pipe(switchMap(table => table.columns$));
+  tableColumns$ = this.table$.pipe(switchMap((table) => table.columns$));
   mockRowData$ = this.tableColumns$.pipe(
-    map(columns =>
+    map((columns) =>
       columns.reduce((acc, column) => ({ ...acc, [column.id]: '' }), {}),
     ),
   );
@@ -119,12 +119,12 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   );
   updateConfig$ = this.config$.pipe(
     pluck('update'),
-    tap(config => (this.url = config?.url)),
+    tap((config) => (this.url = config?.url)),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   initialData$ = this.createConfig$.pipe(
-    map(createConfig => {
+    map((createConfig) => {
       if (createConfig?.initialData?.errors) {
         Object.entries(createConfig.initialData.errors).map(([key, value]) => {
           this.rowErrors[(key as unknown) as number] = value;
@@ -144,7 +144,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   updateRows$ = new Subject<TableDataRow[]>();
 
   createDataRows$ = merge(this.initialData$, this.updateRows$).pipe(
-    map(rows => ((rows as TableDataRow[]).length ? rows : null)),
+    map((rows) => ((rows as TableDataRow[]).length ? rows : null)),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
@@ -157,7 +157,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     index?: number,
     errors?: TableEditableConfigDataErrors,
   ): TableColumn {
-    const editColumn = editColumns.find(c => c.id === column.id) ?? column;
+    const editColumn = editColumns.find((c) => c.id === column.id) ?? column;
 
     if (index !== undefined && errors?.[index]?.columnErrors?.[column.id]) {
       const cloneEditColumn = { ...editColumn };
@@ -176,9 +176,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
 
   private updateOverlayPosition(): void {
     setTimeout(() => {
-      Object.values(this.editingModel).forEach(rowValue => {
+      Object.values(this.editingModel).forEach((rowValue) => {
         if (rowValue) {
-          Object.values(rowValue).forEach(cellValue => {
+          Object.values(rowValue).forEach((cellValue) => {
             cellValue?.overlayRef?.updatePosition();
           });
         }
@@ -247,7 +247,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     config: TableColumn,
     columns: TableEditableColumn[],
   ): TableEditableColumn | undefined {
-    return columns.find(column => column.id === config.id);
+    return columns.find((column) => column.id === config.id);
   }
 
   /**
@@ -367,7 +367,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
         body: { columnId: cellContext.config.id, value: cellContext.value },
       })
       .subscribe(
-        response => {
+        (response) => {
           this.ajaxActionService.handle(response, this.injector);
           this.closeEditableCell(
             cellContext.i,
@@ -375,7 +375,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
             cellContext.config.id,
           );
         },
-        error => {
+        (error) => {
           // tslint:disable-next-line: no-non-null-assertion
           this.editingModel[cellContext.i][cellContext.j]!.value = undefined;
           this.cellErrors = {
@@ -393,9 +393,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   }
 
   ngOnDestroy(): void {
-    Object.values(this.editingModel).forEach(rowValue => {
+    Object.values(this.editingModel).forEach((rowValue) => {
       if (rowValue) {
-        Object.values(rowValue).forEach(cellValue => {
+        Object.values(rowValue).forEach((cellValue) => {
           cellValue?.overlayRef?.dispose();
         });
       }

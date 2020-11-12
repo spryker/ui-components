@@ -54,7 +54,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     {},
   ) as Record<string, TableFilterComponent<TableFilterBase>>;
   dataConfig$ = this.dataConfiguratorService$.pipe(
-    switchMap(service => service.config$),
+    switchMap((service) => service.config$),
     shareReplay({ refCount: true, bufferSize: 1 }),
   );
   filters$ = this.config$.pipe(pluck('items'));
@@ -88,14 +88,14 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<
     shareReplay({ refCount: true, bufferSize: 1 }),
   );
   data$ = this.table$.pipe(
-    switchMap(table => table.data$),
+    switchMap((table) => table.data$),
     pluck('data'),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
   isVisible$ = combineLatest([
     this.dataConfig$,
     this.data$,
-    this.table$.pipe(switchMap(table => table.isLoading$)),
+    this.table$.pipe(switchMap((table) => table.isLoading$)),
   ]).pipe(
     map(([config, data, isLoading]) => {
       const isFiltered = config?.filter

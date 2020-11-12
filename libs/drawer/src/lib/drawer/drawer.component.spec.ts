@@ -18,9 +18,7 @@ import { DrawerComponent, DrawerComponentInputs } from './drawer.component';
       (isOpenChange)="isOpenChange($event)"
       (closed)="closed()"
     >
-      <ng-template let-drawerRef>
-        Content
-      </ng-template>
+      <ng-template let-drawerRef> Content </ng-template>
     </spy-drawer>
   `,
 })

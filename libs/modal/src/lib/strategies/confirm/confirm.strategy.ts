@@ -64,10 +64,7 @@ export class ConfirmModalStrategy extends ComponentModalStrategy<
   ): ConfirmModalRenderingRef {
     const renderingRef = super.render(vcr, modalRef);
 
-    renderingRef
-      .getExtras()
-      .getComponent()
-      .setDefaultData(this.opts);
+    renderingRef.getExtras().getComponent().setDefaultData(this.opts);
 
     return new ConfirmModalRenderingRef(renderingRef);
   }

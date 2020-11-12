@@ -62,13 +62,13 @@ class StoryComponent {
   openModalHtml() {
     const modal = this.modalService.open(
       new HtmlModalStrategy({
-        html: name => `
+        html: (name) => `
           <h3>Hello ${name}</h3>
           Content from <b>html</b>!
           <button class="close">Close</button>
         `,
         process: (children, modalRef) => {
-          const button = children.find(c =>
+          const button = children.find((c) =>
             (c as HTMLElement).classList?.contains('close'),
           ) as HTMLElement;
           button.addEventListener('click', () => modalRef.close());
@@ -168,7 +168,7 @@ class ConfirmationComponent {
         backdrop: this.hasBackdrop,
       })
       .afterDismissed()
-      .subscribe(isSure => console.log('Was sure?', isSure));
+      .subscribe((isSure) => console.log('Was sure?', isSure));
   }
 }
 

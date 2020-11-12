@@ -85,7 +85,9 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
                     cancelText,
                   })
                   .afterDismissed()
-                  .pipe(switchMap(isDiscard => (isDiscard ? of(null) : EMPTY)))
+                  .pipe(
+                    switchMap((isDiscard) => (isDiscard ? of(null) : EMPTY)),
+                  )
               : of(null),
           ),
         ),

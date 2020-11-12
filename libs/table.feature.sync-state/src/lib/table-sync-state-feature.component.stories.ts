@@ -17,7 +17,7 @@ export default {
   title: 'TableSyncStateFeatureComponent',
 };
 
-const tableDataGenerator: TableDataMockGenerator = i => ({
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
@@ -40,7 +40,7 @@ export const viaConfig = getSyncStateStory(
     TableModule.withFeatures({
       syncStateUrl: () =>
         import('./table-sync-state-feature.module').then(
-          m => m.TableSyncStateFeatureModule,
+          (m) => m.TableSyncStateFeatureModule,
         ),
     }),
   ],
@@ -90,7 +90,7 @@ function getSyncStateStory(
       mockHttp: setMockHttp([
         {
           url: '/data-request',
-          dataFn: req => generateMockTableDataFor(req, tableDataGenerator),
+          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
         },
       ]),
     },

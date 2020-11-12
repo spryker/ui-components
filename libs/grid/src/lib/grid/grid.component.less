@@ -45,15 +45,25 @@
 
     .grid-gutter-mixin(padding, @grid-gutter, @grid-breakpoints-map[@gutter]);
 
-    each(@breakpoints, .(@edges, @key) {
+    .loop-mixin(@grid-columns, {
+      .grid-span-mixin(@i);
+
+      &-@{i} {
+        flex-grow: 0;
+        flex-basis: @column-value;
+        max-width: @column-value;
+      }
+    });
+
+    each(@breakpoints, .(@edges, @breakpoint-key) {
       .breakpoint-edge-min-mixin(@edges);
 
       .breakpoint-media-min-mixin(@breakpoint, {
-        &-@{key}-hidden {
+        &-@{breakpoint-key}-hidden {
           display: none;
         }
 
-        &-@{key}-auto {
+        &-@{breakpoint-key}-auto {
           flex-grow: 1;
           flex-basis: 0;
           max-width: none;
@@ -62,7 +72,7 @@
         .loop-mixin(@grid-columns, {
           .grid-span-mixin(@i);
 
-          &-@{key}-@{i} {
+          &-@{breakpoint-key}-@{i} {
             flex-grow: 0;
             flex-basis: @column-value;
             max-width: @column-value;
@@ -72,5 +82,3 @@
     });
   }
 }
-
-.spy-grid-mixin();

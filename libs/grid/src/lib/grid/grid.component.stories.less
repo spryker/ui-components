@@ -1,0 +1,24 @@
+@import './grid.component.less';
+
+.spy-grid-mixin();
+
+[class^='spy-col'] {
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: @font-default;
+    padding: 10px;
+    height: 100%;
+    background: #ccc;
+  }
+
+  &:nth-child(even) p {
+    background: yellow;
+  }
+}
+
+.grid-with-height {
+  height: 300px;
+  border: 2px solid red;
+}

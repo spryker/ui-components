@@ -46,12 +46,16 @@ export const primary = () => ({
     </div>
   `,
   props: {
-    gutter: select('Gutter', {
-      'None none (default)': 'none',
-      '8px sm': 'sm',
-      '16px md': 'md',
-      '24px lg': 'lg',
-    }, 'none'),
+    gutter: select(
+      'Gutter',
+      {
+        'None none (default)': 'none',
+        '8px sm': 'sm',
+        '16px md': 'md',
+        '24px lg': 'lg',
+      },
+      'none',
+    ),
   },
 });
 
@@ -77,33 +81,48 @@ export const alignment = () => ({
     </div>
   `,
   props: {
-    direction: select('Direction', {
-      'Row (default)': 'row',
-      'Column': 'column',
-      'Row reverse': 'row-reverse',
-      'Column reverse': 'column-reverse',
-    }, 'row'),
+    direction: select(
+      'Direction',
+      {
+        'Row (default)': 'row',
+        Column: 'column',
+        'Row reverse': 'row-reverse',
+        'Column reverse': 'column-reverse',
+      },
+      'row',
+    ),
 
-    alignCol: select('Align col', {
-      'Stretch (default)': 'stretch',
-      'Flex-start': 'flex-start',
-      'Center': 'center',
-      'Flex end': 'flex-end',
-      'Space between (work with column/column-reverse direction)': 'space-between',
-      'Space around (work with column/column-reverse direction)': 'space-around',
-      'Space evenly (work with column/column-reverse direction)': 'space-evenly',
-      'Baseline (work with row/row-reverse direction)': 'baseline',
-    }, 'stretch'),
+    alignCol: select(
+      'Align col',
+      {
+        'Stretch (default)': 'stretch',
+        'Flex-start': 'flex-start',
+        Center: 'center',
+        'Flex end': 'flex-end',
+        'Space between (work with column/column-reverse direction)':
+          'space-between',
+        'Space around (work with column/column-reverse direction)':
+          'space-around',
+        'Space evenly (work with column/column-reverse direction)':
+          'space-evenly',
+        'Baseline (work with row/row-reverse direction)': 'baseline',
+      },
+      'stretch',
+    ),
 
-    alignRow: select('Align row', {
-      'Flex-start (default)': 'flex-start',
-      'Center': 'center',
-      'Flex end': 'flex-end',
-      'Space between (work with row/row-reverse direction)': 'space-between',
-      'Space around (work with row/row-reverse direction)': 'space-around',
-      'Space evenly (work with row/row-reverse direction)': 'space-evenly',
-      'Stretch': 'stretch',
-      'Baseline (work with column/column-reverse direction)': 'baseline',
-    }, 'flex-start'),
+    alignRow: select(
+      'Align row',
+      {
+        'Flex-start (default)': 'flex-start',
+        Center: 'center',
+        'Flex end': 'flex-end',
+        'Space between (work with row/row-reverse direction)': 'space-between',
+        'Space around (work with row/row-reverse direction)': 'space-around',
+        'Space evenly (work with row/row-reverse direction)': 'space-evenly',
+        Stretch: 'stretch',
+        'Baseline (work with column/column-reverse direction)': 'baseline',
+      },
+      'flex-start',
+    ),
   },
-})
+});

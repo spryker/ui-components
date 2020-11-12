@@ -16,7 +16,7 @@
  *  }
  * ```
  */
- .spy-grid-mixin(
+.spy-grid-mixin(
   @grid-breakpoints-prop: @breakpoints,
   @grid-gutter-prop: @grid-gutter,
   @grid-columns-prop: @grid-columns,
@@ -32,7 +32,6 @@
     .grid-nested-mixin(flex-direction, @grid-directions, @grid-breakpoints-map, direction);
     .grid-variant-mixin(flex-wrap, @grid-wrap, @grid-breakpoints-map, wrap);
     .grid-variant-mixin(align-content, @grid-align-content, @grid-breakpoints-map);
-
 
     &:not([class*='-direction']) {
       .grid-align-mixin(row, @grid-breakpoints-map);

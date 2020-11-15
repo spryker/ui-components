@@ -1,24 +1,67 @@
-@import './grid.component.less';
+@import './grid.less';
 
 .spy-grid-mixin();
+
+h3,
+p {
+  font: @font-default;
+}
+
+h3 {
+  font-size: @heading-3-font-size;
+}
+
+strong {
+  font-weight: @font-weight-semi-bold;
+  color: red;
+}
 
 [class^='spy-col'] {
   p {
     display: flex;
     align-items: center;
     justify-content: center;
-    font: @font-default;
+    text-align: center;
     padding: 10px;
-    height: 100%;
+    min-height: 100%;
     background: #ccc;
+  }
+
+  .expander {
+    display: block;
+    height: 100px;
   }
 
   &:nth-child(even) p {
     background: yellow;
   }
+
+  .pic {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    background:#ccc;
+  }
+
+  .no-wrap-text {
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
-.grid-with-height {
+.container-with-height {
   height: 300px;
   border: 2px solid red;
+}
+
+.tight-container {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.card {
+  border: 2px solid red;
+  padding: 10px;
 }

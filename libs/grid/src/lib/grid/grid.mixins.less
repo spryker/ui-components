@@ -1,0 +1,158 @@
+/**
+ * Creates @column-value variable with value of column ratio in relation to columns count.
+ * @param {Number} @column
+ * @param {Number} @columns [@grid-columns]
+ */
+.grid-span-mixin(@column, @columns: @grid-columns) {
+  @column-value: (100% / @columns) * @column;
+}
+
+/**
+ * Returns grid selectors depends on breakpoint.
+ * @param {Map} @breakpoints-prop [@breakpoints]
+ * @param {String} @option
+ * @param {String} @variable
+ * @param {Map} @grid-breakpoints-map
+ * @param {String} @selector-modifier [@option]
+ * @param {String} @nested-breakpoint-key ['']
+ */
+.grid-variant-mixin(
+  @breakpoints-prop: @breakpoints,
+  @option,
+  @variable,
+  @grid-breakpoints-map,
+  @selector-modifier: @option,
+  @nested-breakpoint-key: '',
+) {
+  each(@variable, .(@variant)  {
+    &-@{selector-modifier}-@{variant} {
+        @{option}: @variant;
+    }
+  })
+    &
+    when
+    (@grid-breakpoints-map[@@selector-modifier] = true) {
+    each(@breakpoints-prop, .(@edges, @breakpoint-key) {
+      .breakpoint-edge-min-mixin(@edges);
+
+
+      .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], {
+        each(@variable, .(@variant)  {
+          & when (@nested-breakpoint-key = @breakpoint-key) {
+            &&-@{breakpoint-key}-@{selector-modifier}-@{variant} {
+              @{option}: @variant;
+            }
+          }
+
+          & when not (@nested-breakpoint-key = @breakpoint-key) {
+            &-@{breakpoint-key}-@{selector-modifier}-@{variant} {
+              @{option}: @variant;
+            }
+          }
+        })
+      })
+    });
+  }
+}
+
+/**
+ * Returns grid gutter selectors depends on breakpoint.
+ * @param {Map} @breakpoints-prop [@breakpoints]
+ * @param {String} @option
+ * @param {String} @variable
+ * @param {Boolean} @with-breakpoints [true]
+ * @param {Boolean} @reverse-value [false]
+ */
+.grid-gutter-mixin(
+  @breakpoints-prop: @breakpoints,
+  @option,
+  @variable,
+  @with-breakpoints: true,
+  @reverse-value: false
+) {
+  each(@variable, .(@gutter, @gutter-key) {
+    &-gutter-@{gutter-key} {
+      @{option}: (@gutter / 2) * if(@reverse-value, -1, 1);
+    }
+  })
+    &
+    when
+    (@with-breakpoints = true) {
+    each(@breakpoints-prop, .(@edges, @breakpoint-key) {
+      .breakpoint-edge-min-mixin(@edges);
+
+      .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], {
+        each(@variable, .(@gutter, @gutter-key) {
+          &-@{breakpoint-key}-gutter-@{gutter-key} {
+            @{option}: (@gutter / 2) * if(@reverse-value, -1, 1);
+          }
+        })
+      })
+    });
+  }
+}
+
+/**
+ * Returns grid-variant-mixin mixin with appropriate props depends on direction.
+ * @param {Map} @breakpoints-prop [@breakpoints]
+ * @param {String} @direction
+ * @param {Map} @grid-breakpoints-map
+ * @param {String} @nested-breakpoint-key ['']
+ */
+.grid-align-mixin (@breakpoints-prop: @breakpoints, @direction, @grid-breakpoints-map, @nested-breakpoint-key: '',) when (@direction = column), (@direction = column-reverse) {
+  &.@{grid-row-prefix-cls} {
+    .grid-variant-mixin(@breakpoints-prop, align-items, @grid-align, @grid-breakpoints-map, align-row, @nested-breakpoint-key);
+    .grid-variant-mixin(@breakpoints-prop, justify-content, @grid-align, @grid-breakpoints-map, align-col, @nested-breakpoint-key);
+  }
+}
+.grid-align-mixin (@breakpoints-prop: @breakpoints, @direction, @grid-breakpoints-map, @nested-breakpoint-key: '',) when (@direction = row), (@direction = row-reverse) {
+  &.@{grid-row-prefix-cls} {
+    .grid-variant-mixin(@breakpoints-prop, align-items, @grid-align, @grid-breakpoints-map, align-col, @nested-breakpoint-key);
+    .grid-variant-mixin(@breakpoints-prop, justify-content, @grid-align, @grid-breakpoints-map, align-row, @nested-breakpoint-key);
+  }
+}
+
+/**
+ * Returns grid selectors with nested align selectors.
+ * @param {Map} @breakpoints-prop [@breakpoints]
+ * @param {String} @option
+ * @param {String} @variable
+ * @param {Map} @grid-breakpoints-map
+ * @param {String} @selector-modifier [@option]
+ */
+.grid-nested-mixin(
+  @breakpoints-prop: @breakpoints,
+  @option,
+  @variable,
+  @grid-breakpoints-map,
+  @selector-modifier: @option,
+) {
+  each(@variable, .(@variant)  {
+    &-@{selector-modifier}-@{variant} {
+        @{option}: @variant;
+
+      .grid-align-mixin(@breakpoints-prop, @variant, @grid-breakpoints-map);
+    }
+  })
+    &
+    when
+    (@grid-breakpoints-map[@@selector-modifier] = true) {
+    each(@breakpoints-prop, .(@edges, @breakpoint-key) {
+      .breakpoint-edge-min-mixin(@edges);
+
+      .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], {
+        each(@variable, .(@variant)  {
+          &-@{breakpoint-key}-@{selector-modifier}-@{variant} {
+            @{option}: @variant;
+          }
+        })
+      });
+
+      each(@variable, .(@variant)  {
+        &-@{breakpoint-key}-@{selector-modifier}-@{variant} {
+          .grid-align-mixin(@breakpoints-prop, @variant, @grid-breakpoints-map, @breakpoint-key);
+        }
+      })
+    });
+  }
+}

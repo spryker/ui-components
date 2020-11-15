@@ -12,16 +12,13 @@
 @grid-wrap: nowrap, wrap, wrap-reverse;
 @grid-align-content: normal, flex-start, flex-end, center, space-between,
   space-around, space-evenly, stretch;
-@grid-align-items: flex-start, center, flex-end, space-between, space-around,
-  space-evenly, stretch, baseline;
-@grid-justify-content: flex-start, center, flex-end, space-between, space-around,
+@grid-align: flex-start, center, flex-end, space-between, space-around,
   space-evenly, stretch, baseline;
 
 /**
- * Returns a map with the list of properties that should generate selectors with breadcrumbs.
- * Was chosen mixin approach to have opportunity to extend this list on the project level.
+ * Returns a map with the list of properties that should generate grid selectors with breakpoints.
  */
-.breakpoints-map-default() {
+.grid-breakpoints-config-default() {
   @gutter: true;
   @direction: true;
   @wrap: true;

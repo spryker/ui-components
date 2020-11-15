@@ -5,5 +5,5 @@
     "styleIncludePaths": ["../styles/src/lib"],
     "entryFile": "src/index.ts"
   },
-  "assets": ["./src/lib/grid/grid.component.less"]
+  "assets": ["./src/lib/grid/**/*.less", "./src/lib/grid/**/*[!.stories].less"]
 }

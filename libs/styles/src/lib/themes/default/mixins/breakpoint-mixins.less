@@ -3,11 +3,36 @@
  * @param {List} @edges. List length must be less than or equal to 2.
  */
 .breakpoint-edge-min-mixin(@edges) {
-  @breakpoint: if(length(@edges) > 0, extract(@edges, 1), 0);
+  @breakpoint-edges: {
+    min: if(length(@edges) > 0, extract(@edges, 1), 0);
+    max: if(length(@edges) > 1, extract(@edges, 2), null);
+  };
 }
 
+/**
+ * Sets screen media query with min-width set to @min parameter.
+ * @param @min {Number} [0]
+ * @param @rules Extends mixin with properties for media query.
+ */
 .breakpoint-media-min-mixin(@min: 0, @rules) {
   @media only screen and (min-width: @min) {
     @rules();
+  }
+}
+
+/**
+ * Sets screen media query with breakpoints range passed as parameters.
+ * @param {Number} $min [0]
+ * @param {Number} $max [null]
+ * @param @rules Extends mixin with properties for media query.
+ */
+.breakpoint-media-between-mixin(@min: 0, @max: null, @rules) {
+  & when not (@max = null) {
+    @media only screen and (min-width: @min) and (max-width: @max) {
+      @rules();
+    }
+  }
+  & when (@max = null) {
+    .breakpoint-media-min-mixin(@min, @rules);
   }
 }

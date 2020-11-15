@@ -35,7 +35,6 @@
     each(@breakpoints-prop, .(@edges, @breakpoint-key) {
       .breakpoint-edge-min-mixin(@edges);
 
-
       .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], {
         each(@variable, .(@variant)  {
           & when (@nested-breakpoint-key = @breakpoint-key) {

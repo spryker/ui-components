@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Injector, Type } from '@angular/core';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableActionTriggeredEvent } from '../../lib/table-actions';
+import { TableFeatureComponent } from '../table-feature';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;
@@ -108,6 +109,7 @@ export interface TableComponent {
   data$: Observable<TableData>;
   isLoading$: Observable<boolean>;
   tableId$: Observable<string>;
+  features$: Observable<TableFeatureComponent<TableFeatureConfig>[]>;
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
   setRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
 }

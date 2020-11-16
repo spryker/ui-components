@@ -33,8 +33,9 @@ import {
   ContextService,
   provideInvokeContext,
 } from '@spryker/utils';
-import { combineLatest, merge, Subject } from 'rxjs';
+import { combineLatest, forkJoin, merge, Subject, zip } from 'rxjs';
 import {
+  filter,
   map,
   pluck,
   shareReplay,
@@ -123,8 +124,13 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
         this.tableFeatureLocation.afterCols,
       ),
     ),
-    take(1),
-    map((features) => features.length - 1 > 0),
+    map((features) => {
+      const filteredFeature = features.filter(
+        (feature) => feature.component.name !== this.name,
+      );
+
+      return Boolean(filteredFeature.length);
+    }),
     startWith(false),
   );
   mockRowData$ = this.tableColumns$.pipe(

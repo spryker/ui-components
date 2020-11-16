@@ -325,9 +325,20 @@ export const wrap = () => ({
       <br>
       <br>
       <div class="spy-row spy-row-wrap-{{ wrap }}">
-        <div class="spy-col spy-col-basic-auto"><p>1 spy-col spy-col-basic-auto</p></div>
-        <div class="spy-col spy-col-basic-auto"><p>2 spy-col spy-col-basic-auto</p></div>
-        <div class="spy-col spy-col-basic-auto"><p>3 spy-col spy-col-basic-auto</p></div>
+        <div class="spy-col"><p>1 spy-col</p></div>
+        <div class="spy-col"><p>2 spy-col</p></div>
+        <div class="spy-col"><p>3 spy-col</p></div>
+        <div class="spy-col"><p>4 spy-col</p></div>
+        <div class="spy-col"><p>5 spy-col</p></div>
+        <div class="spy-col"><p>6 spy-col</p></div>
+        <div class="spy-col"><p>7 spy-col</p></div>
+      </div>
+      <br>
+      <br>
+      <div class="spy-row spy-row-wrap-{{ wrap }}">
+        <div class="spy-col spy-col-basis-auto"><p>1 spy-col spy-col-basis-auto</p></div>
+        <div class="spy-col spy-col-basis-auto"><p>2 spy-col spy-col-basis-auto</p></div>
+        <div class="spy-col spy-col-basis-auto"><p>3 spy-col spy-col-basis-auto</p></div>
       </div>
       <br>
       <br>
@@ -347,10 +358,14 @@ export const wrap = () => ({
       </ul>
       <br>
       <br>
-        <div class="spy-row spy-row-md-wrap-wrap spy-row-lg-wrap-nowrap spy-row-xl-wrap-wrap-reverse">
-        <div class="spy-col spy-col-basic-auto"><p>1 spy-col spy-col-basic-auto</p></div>
-        <div class="spy-col spy-col-basic-auto"><p>2 spy-col spy-col-basic-auto</p></div>
-        <div class="spy-col spy-col-basic-auto"><p>3 spy-col spy-col-basic-auto</p></div>
+      <div class="spy-row spy-row-md-wrap-wrap spy-row-lg-wrap-nowrap spy-row-xl-wrap-wrap-reverse">
+        <div class="spy-col"><p>1 spy-col</p></div>
+        <div class="spy-col"><p>2 spy-col</p></div>
+        <div class="spy-col"><p>3 spy-col</p></div>
+        <div class="spy-col"><p>4 spy-col</p></div>
+        <div class="spy-col"><p>5 spy-col</p></div>
+        <div class="spy-col"><p>6 spy-col</p></div>
+        <div class="spy-col"><p>7 spy-col</p></div>
       </div>
     </div>
   `,

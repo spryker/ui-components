@@ -1,0 +1,28 @@
+@grid-row-prefix-cls: ~'@{spryker-prefix}-row';
+@grid-col-prefix-cls: ~'@{spryker-prefix}-col';
+
+@grid-gutter: {
+  none: 0;
+  sm: 8px;
+  md: 16px;
+  lg: 24px;
+};
+@grid-columns: 12;
+@grid-directions: row, row-reverse, column, column-reverse;
+@grid-wrap: nowrap, wrap, wrap-reverse;
+@grid-align-content: normal, flex-start, flex-end, center, space-between,
+  space-around, space-evenly, stretch;
+@grid-align: flex-start, center, flex-end, space-between, space-around,
+  space-evenly, stretch, baseline;
+
+/**
+ * Returns a map with the list of properties that should generate grid selectors with breakpoints.
+ */
+.grid-breakpoints-config-default() {
+  @gutter: true;
+  @direction: true;
+  @wrap: true;
+  @align-content: true;
+  @align-col: true;
+  @align-row: true;
+}

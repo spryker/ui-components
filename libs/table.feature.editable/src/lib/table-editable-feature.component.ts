@@ -33,8 +33,16 @@ import {
   ContextService,
   provideInvokeContext,
 } from '@spryker/utils';
-import { merge, Subject } from 'rxjs';
-import { map, pluck, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import { combineLatest, merge, Subject } from 'rxjs';
+import {
+  map,
+  pluck,
+  shareReplay,
+  startWith,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 
 import {
   TableEditableColumn,
@@ -159,6 +167,15 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   createDataRows$ = merge(this.initialData$, this.updateRows$).pipe(
     map((rows) => ((rows as TableDataRow[]).length ? rows : null)),
     shareReplay({ bufferSize: 1, refCount: true }),
+  );
+  shouldAddAdditionalCells$ = combineLatest([
+    this.createDataRows$,
+    this.isCellFeatureExist$.pipe(startWith(false)),
+  ]).pipe(
+    map(
+      ([createDataRows, isCellFeatureExist]) =>
+        createDataRows?.length && !isCellFeatureExist,
+    ),
   );
 
   /**
@@ -298,7 +315,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     const positionStrategy = this.overlay
       .position()
       .flexibleConnectedTo(elementRef)
-      // .withLockedPosition(true)
       .withPositions([
         {
           originX: 'start',

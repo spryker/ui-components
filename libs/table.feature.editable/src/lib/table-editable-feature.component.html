@@ -38,7 +38,7 @@
     </ng-container>
   </ng-container>
 
-  <ng-container *ngIf="shouldAddAdditionalCells$ | async">
+  <ng-container *ngIf="shouldAddAfterCols$ | async">
     <ng-container *ngIf="createConfig.cancelButton">
       <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader">
         <th class="ant-table-cell spy-table-editable-feature__th">

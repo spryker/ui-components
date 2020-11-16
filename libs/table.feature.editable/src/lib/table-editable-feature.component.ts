@@ -115,7 +115,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   rowErrors: TableEditableConfigDataErrorsFields[] = [];
 
   tableColumns$ = this.table$.pipe(switchMap((table) => table.columns$));
-  isCellFeatureExist$ = this.table$.pipe(
+  isAfterColsFeaturesExist$ = this.table$.pipe(
     switchMap((table) => table.features$),
     switchMap((features) =>
       this.tableFeaturesRendererService.trackFeatureRecords(
@@ -125,6 +125,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     ),
     take(1),
     map((features) => features.length - 1 > 0),
+    startWith(false),
   );
   mockRowData$ = this.tableColumns$.pipe(
     map((columns) =>
@@ -168,13 +169,13 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     map((rows) => ((rows as TableDataRow[]).length ? rows : null)),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
-  shouldAddAdditionalCells$ = combineLatest([
+  shouldAddAfterCols$ = combineLatest([
     this.createDataRows$,
-    this.isCellFeatureExist$.pipe(startWith(false)),
+    this.isAfterColsFeaturesExist$,
   ]).pipe(
     map(
-      ([createDataRows, isCellFeatureExist]) =>
-        createDataRows?.length && !isCellFeatureExist,
+      ([createDataRows, isAfterColsFeaturesExist]) =>
+        createDataRows?.length && !isAfterColsFeaturesExist,
     ),
   );
 

@@ -16,8 +16,8 @@ import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
 import {
   IconEditModule,
-  IconWarningModule,
   IconPlusModule,
+  IconWarningModule,
 } from '@spryker/icon/icons';
 import {
   TableColumn,
@@ -26,14 +26,23 @@ import {
   TableDataRow,
   TableFeatureComponent,
   TableFeatureLocation,
+  TableFeaturesRendererService,
 } from '@spryker/table';
 import {
   AnyContext,
   ContextService,
   provideInvokeContext,
 } from '@spryker/utils';
-import { merge, Subject } from 'rxjs';
-import { map, pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { combineLatest, merge, Subject } from 'rxjs';
+import {
+  map,
+  pluck,
+  shareReplay,
+  startWith,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 
 import {
   TableEditableColumn,
@@ -92,6 +101,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     private httpClient: HttpClient,
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef,
+    private tableFeaturesRendererService: TableFeaturesRendererService,
   ) {
     super(injector);
   }
@@ -105,6 +115,18 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   rowErrors: TableEditableConfigDataErrorsFields[] = [];
 
   tableColumns$ = this.table$.pipe(switchMap((table) => table.columns$));
+  isAfterColsFeaturesExist$ = this.table$.pipe(
+    switchMap((table) => table.features$),
+    switchMap((features) =>
+      this.tableFeaturesRendererService.trackFeatureRecords(
+        features,
+        this.tableFeatureLocation.afterCols,
+      ),
+    ),
+    take(1),
+    map((features) => features.length - 1 > 0),
+    startWith(false),
+  );
   mockRowData$ = this.tableColumns$.pipe(
     map((columns) =>
       columns.reduce((acc, column) => ({ ...acc, [column.id]: '' }), {}),
@@ -146,6 +168,15 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   createDataRows$ = merge(this.initialData$, this.updateRows$).pipe(
     map((rows) => ((rows as TableDataRow[]).length ? rows : null)),
     shareReplay({ bufferSize: 1, refCount: true }),
+  );
+  shouldAddAfterCols$ = combineLatest([
+    this.createDataRows$,
+    this.isAfterColsFeaturesExist$,
+  ]).pipe(
+    map(
+      ([createDataRows, isAfterColsFeaturesExist]) =>
+        createDataRows?.length && !isAfterColsFeaturesExist,
+    ),
   );
 
   /**
@@ -364,7 +395,14 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     this.httpClient
       // tslint:disable-next-line: no-non-null-assertion
       .request(method!, parsedUrl, {
-        body: { columnId: cellContext.config.id, value: cellContext.value },
+        body: {
+          data: {
+            // tslint:disable-next-line: no-non-null-assertion
+            [cellContext.config.id]: this.editingModel[cellContext.i][
+              cellContext.j
+            ]!.value,
+          },
+        },
       })
       .subscribe(
         (response) => {

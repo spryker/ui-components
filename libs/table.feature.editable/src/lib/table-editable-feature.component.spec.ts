@@ -14,6 +14,7 @@ import {
   TableDataConfiguratorService,
   TableDatasourceService,
   TableFeatureLocation,
+  TableFeaturesRendererService,
 } from '@spryker/table';
 import {
   TestTableFeatureComponent,
@@ -110,6 +111,7 @@ describe('TableEditableFeatureComponent', () => {
         TestHostComponent,
       ],
       providers: [
+        TableFeaturesRendererService,
         {
           provide: TableColumnsResolverService,
           useValue: 'TableColumnsResolverService',

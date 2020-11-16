@@ -25,6 +25,7 @@ import {
   TableFeatureTplDirectiveInputs,
   TableEventBus,
   TableComponent,
+  TableFeatureConfig,
 } from '@spryker/table';
 import { ReplaySubject, BehaviorSubject } from 'rxjs';
 import { InjectionTokenType, TypedSimpleChanges } from '@spryker/utils';
@@ -40,6 +41,7 @@ export class TableMockComponent implements TableComponent {
   setRowClasses = jest.fn();
   eventHandler = jest.fn();
   eventBus = new TableEventBus(this.eventHandler);
+  features$ = new ReplaySubject<TableFeatureComponent<TableFeatureConfig>[]>(1);
 }
 
 export interface TableFeatureMocks<T = TableMockComponent> {

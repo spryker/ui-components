@@ -33,15 +33,13 @@ import {
   ContextService,
   provideInvokeContext,
 } from '@spryker/utils';
-import { combineLatest, forkJoin, merge, Subject, zip } from 'rxjs';
+import { combineLatest, merge, Subject } from 'rxjs';
 import {
-  filter,
   map,
   pluck,
   shareReplay,
   startWith,
   switchMap,
-  take,
   tap,
 } from 'rxjs/operators';
 

@@ -122,13 +122,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
         this.tableFeatureLocation.afterCols,
       ),
     ),
-    map((features) => {
-      const filteredFeature = features.filter(
-        (feature) => feature.component.name !== this.name,
-      );
-
-      return Boolean(filteredFeature.length);
-    }),
+    map((features) => features.some(
+      (feature) => feature.component.name !== this.name,
+    )),
     startWith(false),
   );
   mockRowData$ = this.tableColumns$.pipe(

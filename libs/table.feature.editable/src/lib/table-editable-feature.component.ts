@@ -40,7 +40,6 @@ import {
   shareReplay,
   startWith,
   switchMap,
-  take,
   tap,
 } from 'rxjs/operators';
 
@@ -123,8 +122,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
         this.tableFeatureLocation.afterCols,
       ),
     ),
-    take(1),
-    map((features) => features.length - 1 > 0),
+    map((features) =>
+      features.some((feature) => feature.component.name !== this.name),
+    ),
     startWith(false),
   );
   mockRowData$ = this.tableColumns$.pipe(

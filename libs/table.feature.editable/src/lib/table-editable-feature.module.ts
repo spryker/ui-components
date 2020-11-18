@@ -1,5 +1,3 @@
-import { OverlayModule } from '@angular/cdk/overlay';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +9,7 @@ import {
   IconPlusModule,
 } from '@spryker/icon/icons';
 import { ModuleWithFeature, TableModule } from '@spryker/table';
-import { InvokeModule } from '@spryker/utils';
+import { InvokeModule, AfterContentInitModule } from '@spryker/utils';
 import { I18nModule } from '@spryker/locale';
 
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
@@ -25,11 +23,10 @@ import { TableEditableFeatureComponent } from './table-editable-feature.componen
     ButtonModule,
     TableModule,
     FormsModule,
-    OverlayModule,
-    ScrollingModule,
     IconWarningModule,
     I18nModule,
     IconPlusModule,
+    AfterContentInitModule,
   ],
   exports: [TableEditableFeatureComponent],
   declarations: [TableEditableFeatureComponent],

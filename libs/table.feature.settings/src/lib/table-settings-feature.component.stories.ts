@@ -45,7 +45,7 @@ export const viaConfig = getSettingsStory(
   `,
   [
     TableModule.withFeatures({
-      settings: () =>
+      columnConfigurator: () =>
         import('./table-settings-feature.module').then(
           (m) => m.TableSettingsFeatureModule,
         ),
@@ -97,7 +97,7 @@ function getSettingsStory(
           { id: 'col2', title: 'Column #2', hideable: true },
           { id: 'col3', title: 'Column #3', hideable: true },
         ],
-        settings: {
+        columnConfigurator: {
           enabled: true, // This will enable feature via config
         },
       },

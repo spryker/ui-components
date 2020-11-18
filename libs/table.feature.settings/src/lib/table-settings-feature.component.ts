@@ -20,6 +20,7 @@ import {
   TableSettingsConfig,
   TableSettingsColumn,
   TableSettingsColumns,
+  TableSettingsChangeEvent,
 } from './types';
 import {
   switchMap,
@@ -173,6 +174,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
     popoverColumns: TableSettingsColumns,
     tableColumns: TableSettingsColumns,
   ): void {
+    console.log(event);
     moveItemInArray(popoverColumns, event.previousIndex, event.currentIndex);
     const sortedTableColumns = this.moveItemInTableColumnsArray(
       popoverColumns,
@@ -181,6 +183,10 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
     this.setPopoverColumns$.next(popoverColumns);
     this.setColumns$.next(sortedTableColumns);
+    this.tableEventBus?.emit<TableSettingsChangeEvent>({
+      tableColumns: sortedTableColumns,
+      popoverColumns,
+    });
   }
 
   resetChoice(): void {
@@ -218,6 +224,11 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
 
     this.setColumns$.next(tableColumns);
     this.setPopoverColumns$.next(popoverColumns);
+    this.tableEventBus?.emit<TableSettingsChangeEvent>({
+      tableColumns,
+      popoverColumns,
+      visibilityChanged: checkedColumn.id,
+    });
   }
 
   private cloneColumns(columns: TableSettingsColumns): TableSettingsColumns {

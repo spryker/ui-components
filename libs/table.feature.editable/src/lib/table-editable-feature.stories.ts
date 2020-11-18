@@ -41,15 +41,17 @@ const tableConfig = {
     dataGenerator: tableDataGenerator,
   } as MockTableDatasourceConfig,
   columns: [
-    { id: 'col1', title: 'Column #1' },
-    { id: 'col2', title: 'Column #2' },
-    { id: 'col3', title: 'Column #3' },
-    { id: 'col4', title: 'Column #4' },
-  ] as TableColumns,
+    { id: 'col1', title: 'Column #1', hideable: true },
+    { id: 'col2', title: 'Column #2', hideable: true },
+    { id: 'col3', title: 'Column #3', hideable: true },
+    { id: 'col4', title: 'Column #4', hideable: true },
+  ] as any,
+  columnConfigurator: true,
   editable: {
     columns: [
       { id: 'col1', type: 'edit' as any },
       { id: 'col2', type: 'edit' as any },
+      { id: 'col3', type: 'edit' as any },
       { id: 'col4', type: 'edit' as any },
     ] as TableColumns,
     create: {
@@ -59,11 +61,11 @@ const tableConfig = {
       initialData: {
         data: [
           { col3: 'Option 1' },
-          { col1: 'value' },
-          { col1: 'value', col3: 'Option 1', col4: 'value' },
-          { col2: 'value' },
-          { col2: 'value', col3: 'value' },
-          { col1: 'value', col3: 'Option 1', col4: 'value' },
+          // { col1: 'value' },
+          // { col1: 'value', col3: 'Option 1', col4: 'value' },
+          // { col2: 'value' },
+          // { col2: 'value', col3: 'value' },
+          // { col1: 'value', col3: 'Option 1', col4: 'value' },
         ],
         errors: {
           2: {
@@ -172,6 +174,10 @@ export function viaConfig(): IStory {
           editable: () =>
             import('./table-editable-feature.module').then(
               (m) => m.TableEditableFeatureModule,
+            ),
+          columnConfigurator: () =>
+            import('@spryker/table.feature.settings').then(
+              (m) => m.TableSettingsFeatureModule,
             ),
         }),
       ],

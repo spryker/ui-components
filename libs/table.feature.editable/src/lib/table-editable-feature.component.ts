@@ -1,5 +1,3 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
 import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
@@ -7,6 +5,8 @@ import {
   Component,
   ElementRef,
   Injector,
+  OnDestroy,
+  OnInit,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -33,6 +33,7 @@ import {
   ContextService,
   provideInvokeContext,
 } from '@spryker/utils';
+import { TableSettingsChangeEvent } from '@spryker/table.feature.settings';
 import { combineLatest, merge, Subject } from 'rxjs';
 import {
   map,
@@ -40,6 +41,7 @@ import {
   shareReplay,
   startWith,
   switchMap,
+  takeUntil,
   tap,
 } from 'rxjs/operators';
 
@@ -58,8 +60,10 @@ interface TableEditCellModel {
   [rowIdx: string]: {
     [columnId: string]:
       | {
+          cellElement?: HTMLElement;
+          leftCellOffset?: string;
           value?: unknown;
-          overlayRef?: OverlayRef;
+          isUpdating?: boolean;
         }
       | undefined;
   };
@@ -79,9 +83,9 @@ interface TableEditCellModel {
     provideInvokeContext(TableEditableFeatureComponent),
   ],
 })
-export class TableEditableFeatureComponent extends TableFeatureComponent<
-  TableEditableConfig
-> {
+export class TableEditableFeatureComponent
+  extends TableFeatureComponent<TableEditableConfig>
+  implements OnInit, OnDestroy {
   @ViewChild('editableCell') editableCell?: TemplateRef<any>;
 
   name = 'editable';
@@ -98,8 +102,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     private ajaxActionService: AjaxActionService,
     private contextService: ContextService,
     private httpClient: HttpClient,
-    private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef,
     private tableFeaturesRendererService: TableFeaturesRendererService,
   ) {
     super(injector);
@@ -108,7 +110,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
   syncInput: TableDataRow[] = [];
   stringifiedSyncInput?: string;
   url?: TableEditableConfigUrl;
-
   editingModel: TableEditCellModel = {};
   cellErrors?: TableEditableConfigDataErrors;
   rowErrors: TableEditableConfigDataErrorsFields[] = [];
@@ -132,9 +133,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
       columns.reduce((acc, column) => ({ ...acc, [column.id]: '' }), {}),
     ),
   );
-
   editColumns$ = this.config$.pipe(pluck('columns'));
-
   createConfig$ = this.config$.pipe(
     pluck('create'),
     shareReplay({ bufferSize: 1, refCount: true }),
@@ -144,7 +143,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     tap((config) => (this.url = config?.url)),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
-
   initialData$ = this.createConfig$.pipe(
     map((createConfig) => {
       if (createConfig?.initialData?.errors) {
@@ -164,7 +162,6 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     }),
   );
   updateRows$ = new Subject<TableDataRow[]>();
-
   createDataRows$ = merge(this.initialData$, this.updateRows$).pipe(
     map((rows) => ((rows as TableDataRow[]).length ? rows : null)),
     shareReplay({ bufferSize: 1, refCount: true }),
@@ -178,6 +175,52 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
         createDataRows?.length && !isAfterColsFeaturesExist,
     ),
   );
+  private destroyed$ = new Subject<void>();
+
+  ngOnInit() {
+    this.tableEventBus$
+      .pipe(
+        switchMap((eventBus) =>
+          eventBus.on<TableSettingsChangeEvent>('columnConfigurator'),
+        ),
+        takeUntil(this.destroyed$),
+      )
+      .subscribe((data) => {
+        const { visibilityChanged } = data;
+
+        if (visibilityChanged === undefined) {
+          this.updateFloatCellPosition();
+
+          return;
+        }
+
+        this.changeColsVisibilityAfterColumnConfigurator(visibilityChanged);
+        this.updateFloatCellPosition();
+      });
+  }
+
+  private changeColsVisibilityAfterColumnConfigurator(id: string): void {
+    const transformedModel = Object.entries(this.editingModel).reduce(
+      (rows, [rowKey, rowValues]) => {
+        if (!rowValues) {
+          return rows;
+        }
+
+        const transformedRow = {
+          ...rowValues,
+          [id]: undefined,
+        };
+
+        return {
+          ...rows,
+          [rowKey]: transformedRow,
+        };
+      },
+      {},
+    );
+
+    this.editingModel = transformedModel;
+  }
 
   /**
    * Creates and return custom edit column.
@@ -205,16 +248,26 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     return editColumn;
   }
 
-  private updateOverlayPosition(): void {
-    setTimeout(() => {
-      Object.values(this.editingModel).forEach((rowValue) => {
-        if (rowValue) {
-          Object.values(rowValue).forEach((cellValue) => {
-            cellValue?.overlayRef?.updatePosition();
-          });
+  private updateFloatCellPosition(): void {
+    Object.entries(this.editingModel).forEach(([rowKey, rowValue]) => {
+      if (!rowValue) {
+        return;
+      }
+
+      Object.entries(rowValue).forEach(([cellKey, cellValue]) => {
+        if (!cellValue) {
+          return;
         }
+
+        setTimeout(() => {
+          this.setFloatCellPosition(
+            Number(rowKey),
+            cellKey,
+            cellValue?.cellElement,
+          );
+        }, 0);
       });
-    }, 0);
+    });
   }
 
   /**
@@ -224,9 +277,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     this.syncInput = [{ ...mockRowData }, ...this.syncInput];
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
-    this.updateOverlayPosition();
     this.increaseRowErrorsIndex();
     this.cdr.markForCheck();
+    this.updateFloatCellPosition();
   }
 
   /**
@@ -258,9 +311,9 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     this.syncInput = syncInput;
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
-    this.updateOverlayPosition();
     this.decreaseRowErrorsIndex(index);
     this.cdr.markForCheck();
+    this.updateFloatCellPosition();
   }
 
   private increaseRowErrorsIndex(): void {
@@ -292,59 +345,50 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     return this.rowErrors?.[rowIndex]?.rowError;
   }
 
+  getLeftParentOffsetSum(element: HTMLElement) {
+    let left = 0;
+
+    while (!element.classList.contains('ant-table')) {
+      left += element.offsetLeft;
+      element = element.offsetParent as HTMLElement;
+    }
+
+    return left;
+  }
+
+  setFloatCellPosition(
+    rowIndex: number,
+    cellIndex: string,
+    cellElement?: HTMLElement,
+  ) {
+    if (!cellElement) {
+      return;
+    }
+
+    // tslint:disable-next-line: no-non-null-assertion
+    const tableElem = cellElement.closest('table')!;
+    // tslint:disable-next-line: no-non-null-assertion
+    const tdElem = cellElement.closest('td')!;
+    const leftParentOffsetSum = this.getLeftParentOffsetSum(tdElem);
+    const leftCellOffset =
+      leftParentOffsetSum + cellElement.offsetWidth - tableElem.offsetWidth;
+
+    // tslint:disable-next-line: no-non-null-assertion
+    this.editingModel[rowIndex][cellIndex]!.cellElement = cellElement;
+    // tslint:disable-next-line: no-non-null-assertion
+    this.editingModel[rowIndex][cellIndex]!.leftCellOffset =
+      leftCellOffset > 0 ? `-${leftCellOffset}px` : '0';
+
+    this.cdr.markForCheck();
+  }
+
   /**
    * Opens custom editable template via {@link Overlay}.
    */
-  openEditableCell(
-    event: Event,
-    rowIndex: number,
-    cellIndex: number,
-    updateConfig: TableEditableConfigUpdate,
-    row: TableColumn[],
-    cellContext: TableColumnContext,
-    editColumns: TableColumn[],
-    elementRef: ElementRef,
-  ): void {
+  openEditableCell(event: Event, rowIndex: number, cellIndex: number): void {
     event.stopPropagation();
 
-    const config = this.getEditColumn(
-      cellContext.config,
-      editColumns,
-      rowIndex,
-      this.cellErrors,
-    );
-    const positionStrategy = this.overlay
-      .position()
-      .flexibleConnectedTo(elementRef)
-      .withPositions([
-        {
-          originX: 'start',
-          originY: 'center',
-          overlayX: 'start',
-          overlayY: 'center',
-        },
-      ]);
-
-    const overlayRef = this.overlay.create({
-      positionStrategy,
-      scrollStrategy: this.overlay.scrollStrategies.reposition(),
-    });
-
-    overlayRef.attach(
-      // tslint:disable-next-line: no-non-null-assertion
-      new TemplatePortal(this.editableCell!, this.viewContainerRef, {
-        $implicit: updateConfig,
-        i: rowIndex,
-        j: cellIndex,
-        row,
-        cellContext,
-        config,
-      }),
-    );
-
     this.initEditingModel(rowIndex, cellIndex);
-    // tslint:disable-next-line: no-non-null-assertion
-    this.editingModel[rowIndex][cellIndex]!.overlayRef = overlayRef;
   }
 
   private initEditingModel(rowIndex: number, cellIndex: number): void {
@@ -353,13 +397,15 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     }
 
     if (!this.editingModel[rowIndex][cellIndex]) {
-      this.editingModel[rowIndex][cellIndex] = {};
+      this.editingModel[rowIndex][cellIndex] = {
+        isUpdating: true,
+      };
     }
   }
 
-  closeEditableCell(rowIndex: number, cellIndex: number, id: string): void {
-    this.editingModel[rowIndex][cellIndex]?.overlayRef?.dispose();
-    this.editingModel[rowIndex][cellIndex] = undefined;
+  closeEditableCell(rowIndex: number, id: string): void {
+    // tslint:disable-next-line: no-non-null-assertion
+    this.editingModel[rowIndex][id] = undefined;
     this.cellErrors = {
       ...this.cellErrors,
       [rowIndex]: {
@@ -383,6 +429,14 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
     this.editingModel[rowIndex][cellIndex]!.value = value;
   }
 
+  isCellUpdating(rowIndex: number, cellIndex: number): boolean | undefined {
+    return this.editingModel?.[rowIndex]?.[cellIndex]?.isUpdating;
+  }
+
+  getLeftCellOffset(rowIndex: number, cellIndex: number): string | undefined {
+    return this.editingModel?.[rowIndex]?.[cellIndex]?.leftCellOffset;
+  }
+
   submitEdit(cellContext: TableColumnContext): void {
     // tslint:disable-next-line: no-non-null-assertion
     const url = typeof this.url === 'string' ? this.url : this.url!.url;
@@ -399,7 +453,7 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
           data: {
             // tslint:disable-next-line: no-non-null-assertion
             [cellContext.config.id]: this.editingModel[cellContext.i][
-              cellContext.j
+              cellContext.config.id
             ]!.value,
           },
         },
@@ -407,15 +461,13 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
       .subscribe(
         (response) => {
           this.ajaxActionService.handle(response, this.injector);
-          this.closeEditableCell(
-            cellContext.i,
-            cellContext.j,
-            cellContext.config.id,
-          );
+          this.closeEditableCell(cellContext.i, cellContext.config.id);
         },
         (error) => {
           // tslint:disable-next-line: no-non-null-assertion
-          this.editingModel[cellContext.i][cellContext.j]!.value = undefined;
+          this.editingModel[cellContext.i][
+            cellContext.config.id
+          ]!.value = undefined;
           this.cellErrors = {
             ...this.cellErrors,
             [cellContext.j]: {
@@ -430,17 +482,11 @@ export class TableEditableFeatureComponent extends TableFeatureComponent<
       );
   }
 
-  ngOnDestroy(): void {
-    Object.values(this.editingModel).forEach((rowValue) => {
-      if (rowValue) {
-        Object.values(rowValue).forEach((cellValue) => {
-          cellValue?.overlayRef?.dispose();
-        });
-      }
-    });
-  }
-
   trackNewColumnsById(index: number, item: TableColumn): string {
     return item.id;
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
   }
 }

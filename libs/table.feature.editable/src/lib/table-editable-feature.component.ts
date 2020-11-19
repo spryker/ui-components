@@ -183,12 +183,13 @@ export class TableEditableFeatureComponent
         createDataRows?.length && !isAfterColsFeaturesExist,
     ),
   );
-  private updateResizeObserver$ = new Subject<HTMLElement>();
-  private updateTableElement$ = this.updateResizeObserver$.pipe(
+  private updateTableElement$ = new Subject<HTMLElement>();
+  private updateFloatCellsPosition$ = this.updateTableElement$.pipe(
     distinctUntilChanged(),
-    switchMap((element) =>
-      element ? this.resizeObserver.observe(element) : EMPTY,
-    ),
+    switchMap((element) => {
+      console.log(element);
+      return element ? this.resizeObserver.observe(element) : EMPTY;
+    }),
     debounceTime(200),
     map((entries) => entries[0].contentRect.width),
     tap(() => this.zone.run(() => this.updateFloatCellPosition())),
@@ -207,7 +208,7 @@ export class TableEditableFeatureComponent
   );
   private shouldUnsubscribe$ = merge(
     this.destroyed$,
-    this.updateResizeObserver$.pipe(
+    this.updateTableElement$.pipe(
       distinctUntilChanged(),
       skip(1),
       filter((element) => !element),
@@ -215,7 +216,7 @@ export class TableEditableFeatureComponent
   );
 
   ngOnInit() {
-    this.updateTableElement$
+    this.updateFloatCellsPosition$
       .pipe(takeUntil(this.shouldUnsubscribe$))
       .subscribe();
     this.updateFloatCellsPositionOnColumnConfigurator$
@@ -234,7 +235,7 @@ export class TableEditableFeatureComponent
       this.tableElement = undefined;
     }
 
-    this.updateResizeObserver$.next(this.tableElement);
+    this.updateTableElement$.next(this.tableElement);
   }
 
   private changeColsVisibilityAfterColumnConfigurator(id: string): void {

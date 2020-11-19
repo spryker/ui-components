@@ -238,6 +238,9 @@
     },
     "unsaved-changes.guard.navigation": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "grid": {
+      "tags": ["pkg:primary", "type:style"]
     }
   },
   "tasksRunnerOptions": {

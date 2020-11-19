@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.2.0-next.5...@spryker/date-picker@0.2.0-next.6) (2020-11-16)
+
+
+### Features
+
+* **grid:** add grid lib ([3dae793](https://github.com/spryker/ui-components/commit/3dae7937b1e76d097f885bf006f954b1a9867c30))
+
+
+
+
+
 # [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.2.0-next.4...@spryker/date-picker@0.2.0-next.5) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/date-picker

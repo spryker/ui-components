@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table.feature.editable",
-  "version": "0.0.2-next.4",
+  "version": "0.0.2-next.7",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
@@ -10,8 +10,8 @@
     "@spryker/icon": "^0.0.1-next.0",
     "@spryker/locale": "^0.2.0-next.0",
     "@spryker/table": "^0.0.1-next.0",
-    "@spryker/utils": "^0.0.1-next.0",
-    "@spryker/table.feature.settings": "0.0.2-next.5"
+    "@spryker/table.feature.settings": "0.0.2-next.5",
+    "@spryker/utils": "^0.0.1-next.0"
   },
   "dependencies": {
     "tslib": "^1.10.0"

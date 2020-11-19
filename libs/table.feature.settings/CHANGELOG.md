@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-next.6](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.2-next.5...@spryker/table.feature.settings@0.0.2-next.6) (2020-11-19)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
 ## [0.0.2-next.5](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.2-next.4...@spryker/table.feature.settings@0.0.2-next.5) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/table.feature.settings

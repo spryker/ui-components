@@ -247,14 +247,35 @@ export class CoreTableComponent
     this.error$.pipe(mapTo(false)),
   ).pipe(startWith(false), shareReplaySafe());
 
+  featuresInRows$ = this.features$.pipe(
+    switchMap((features) => {
+      return combineLatest([
+        this.tableFeaturesRendererService.trackFeatureRecords(
+          features,
+          TableFeatureLocation.beforeRows,
+        ),
+        this.tableFeaturesRendererService.trackFeatureRecords(
+          features,
+          TableFeatureLocation.afterRows,
+        ),
+      ]);
+    }),
+    map((features) => features.flat()),
+    shareReplaySafe(),
+  );
+
   isEmpty$ = combineLatest([
     this.tableData$.pipe(map((data) => Boolean(data.length))),
     this.dataConfiguratorService.config$.pipe(
       map((config) => Boolean(Object.keys(config).length)),
     ),
+    this.featuresInRows$.pipe(map((features) => Boolean(features.length))),
   ]).pipe(
-    startWith([true, false]),
-    map(([isTableData, isConfig]) => !isTableData && isConfig),
+    startWith([true, false, true]),
+    map(
+      ([isTableData, isConfig, isFeatures]) =>
+        !isTableData && !isFeatures && isConfig,
+    ),
     shareReplaySafe(),
   );
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.9...@spryker/utils@0.2.0-next.10) (2020-11-19)
+
+**Note:** Version bump only for package @spryker/utils
+
+
+
+
+
 # [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.8...@spryker/utils@0.2.0-next.9) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/utils

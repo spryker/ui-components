@@ -51,7 +51,6 @@ const tableConfig = {
     columns: [
       { id: 'col1', type: 'edit' as any },
       { id: 'col2', type: 'edit' as any },
-      { id: 'col3', type: 'edit' as any },
       { id: 'col4', type: 'edit' as any },
     ] as TableColumns,
     create: {
@@ -61,11 +60,11 @@ const tableConfig = {
       initialData: {
         data: [
           { col3: 'Option 1' },
-          // { col1: 'value' },
-          // { col1: 'value', col3: 'Option 1', col4: 'value' },
-          // { col2: 'value' },
-          // { col2: 'value', col3: 'value' },
-          // { col1: 'value', col3: 'Option 1', col4: 'value' },
+          { col1: 'value' },
+          { col1: 'value', col3: 'Option 1', col4: 'value' },
+          { col2: 'value' },
+          { col2: 'value', col3: 'value' },
+          { col1: 'value', col3: 'Option 1', col4: 'value' },
         ],
         errors: {
           2: {
@@ -174,10 +173,6 @@ export function viaConfig(): IStory {
           editable: () =>
             import('./table-editable-feature.module').then(
               (m) => m.TableEditableFeatureModule,
-            ),
-          columnConfigurator: () =>
-            import('@spryker/table.feature.settings').then(
-              (m) => m.TableSettingsFeatureModule,
             ),
         }),
       ],

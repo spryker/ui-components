@@ -5,6 +5,7 @@ import {
   Component,
   ContentChild,
   Directive,
+  ElementRef,
   Inject,
   InjectionToken,
   Injector,
@@ -30,6 +31,10 @@ import {
 import { ReplaySubject, BehaviorSubject } from 'rxjs';
 import { InjectionTokenType, TypedSimpleChanges } from '@spryker/utils';
 
+class MockElementRef {
+  nativeElement = {};
+}
+
 export class TableMockComponent implements TableComponent {
   // cast any because of ts error of `TableConfig` paths conflict
   config$ = new ReplaySubject<any>(1);
@@ -40,6 +45,7 @@ export class TableMockComponent implements TableComponent {
   updateRowClasses = jest.fn();
   setRowClasses = jest.fn();
   eventHandler = jest.fn();
+  tableElementRef = new MockElementRef() as ElementRef<HTMLElement>;
   eventBus = new TableEventBus(this.eventHandler);
   features$ = new ReplaySubject<TableFeatureComponent<TableFeatureConfig>[]>(1);
 }

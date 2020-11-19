@@ -3,13 +3,12 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef,
   Injector,
+  NgZone,
   OnDestroy,
   OnInit,
   TemplateRef,
   ViewChild,
-  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
@@ -28,14 +27,16 @@ import {
   TableFeatureLocation,
   TableFeaturesRendererService,
 } from '@spryker/table';
+import { TableSettingsChangeEvent } from '@spryker/table.feature.settings';
 import {
   AnyContext,
   ContextService,
   provideInvokeContext,
 } from '@spryker/utils';
-import { TableSettingsChangeEvent } from '@spryker/table.feature.settings';
+import { NzResizeObserver } from 'ng-zorro-antd/core/resize-observers';
 import { combineLatest, merge, Subject } from 'rxjs';
 import {
+  debounceTime,
   map,
   pluck,
   shareReplay,
@@ -51,7 +52,6 @@ import {
   TableEditableConfig,
   TableEditableConfigDataErrors,
   TableEditableConfigDataErrorsFields,
-  TableEditableConfigUpdate,
   TableEditableConfigUrl,
   TableEditableEvent,
 } from './types';
@@ -103,6 +103,8 @@ export class TableEditableFeatureComponent
     private contextService: ContextService,
     private httpClient: HttpClient,
     private tableFeaturesRendererService: TableFeaturesRendererService,
+    private resizeObserver: NzResizeObserver,
+    private zone: NgZone,
   ) {
     super(injector);
   }
@@ -113,7 +115,10 @@ export class TableEditableFeatureComponent
   editingModel: TableEditCellModel = {};
   cellErrors?: TableEditableConfigDataErrors;
   rowErrors: TableEditableConfigDataErrorsFields[] = [];
+  private tableElement?: HTMLElement;
+  private isResizeObserverInited = false;
 
+  private destroyed$ = new Subject<void>();
   tableColumns$ = this.table$.pipe(switchMap((table) => table.columns$));
   isAfterColsFeaturesExist$ = this.table$.pipe(
     switchMap((table) => table.features$),
@@ -175,28 +180,54 @@ export class TableEditableFeatureComponent
         createDataRows?.length && !isAfterColsFeaturesExist,
     ),
   );
-  private destroyed$ = new Subject<void>();
-
-  ngOnInit() {
-    this.tableEventBus$
-      .pipe(
-        switchMap((eventBus) =>
-          eventBus.on<TableSettingsChangeEvent>('columnConfigurator'),
-        ),
-        takeUntil(this.destroyed$),
-      )
-      .subscribe((data) => {
-        const { visibilityChanged } = data;
-
-        if (visibilityChanged === undefined) {
-          this.updateFloatCellPosition();
-
-          return;
-        }
-
-        this.changeColsVisibilityAfterColumnConfigurator(visibilityChanged);
+  updateResizeObserver$ = new Subject<HTMLElement>();
+  updateFloatCellsPosition$ = this.updateResizeObserver$.pipe(
+    switchMap((element) => this.resizeObserver.observe(element)),
+    map((entries) => entries[0].contentRect.width),
+    debounceTime(200),
+    tap((entries) => {
+      this.zone.run(() => {
         this.updateFloatCellPosition();
       });
+    }),
+    takeUntil(this.destroyed$),
+  );
+  updateFloatCellsPositionOnColumnConfigurator$ = this.tableEventBus$.pipe(
+    switchMap((eventBus) =>
+      eventBus.on<TableSettingsChangeEvent>('columnConfigurator'),
+    ),
+    tap((data) => {
+      const { visibilityChanged } = data;
+
+      if (visibilityChanged !== undefined) {
+        this.changeColsVisibilityAfterColumnConfigurator(visibilityChanged);
+      }
+
+      this.updateFloatCellPosition();
+    }),
+    takeUntil(this.destroyed$),
+  );
+
+  ngOnInit() {
+    this.updateFloatCellsPosition$.subscribe();
+    this.updateFloatCellsPositionOnColumnConfigurator$.subscribe();
+  }
+
+  ngAfterViewChecked(): void {
+    if (!this.tableElement) {
+      this.tableElement = this.table?.tableElementRef?.nativeElement?.querySelector(
+        'table',
+      ) as HTMLElement;
+    }
+
+    if (this.tableElement && !this.isResizeObserverInited) {
+      this.isResizeObserverInited = true;
+      this.updateResizeObserver$.next(this.tableElement);
+    }
+
+    if (!this.tableElement && this.isResizeObserverInited) {
+      this.destroyed$.next();
+    }
   }
 
   private changeColsVisibilityAfterColumnConfigurator(id: string): void {
@@ -249,23 +280,23 @@ export class TableEditableFeatureComponent
   }
 
   private updateFloatCellPosition(): void {
-    Object.entries(this.editingModel).forEach(([rowKey, rowValue]) => {
-      if (!rowValue) {
-        return;
-      }
-
-      Object.entries(rowValue).forEach(([cellKey, cellValue]) => {
-        if (!cellValue) {
+    setTimeout(() => {
+      Object.entries(this.editingModel).forEach(([rowKey, rowValue]) => {
+        if (!Object.keys(rowValue).length) {
           return;
         }
 
-        setTimeout(() => {
+        Object.entries(rowValue).forEach(([cellKey, cellValue]) => {
+          if (!cellValue) {
+            return;
+          }
+
           this.setFloatCellPosition(
             Number(rowKey),
             cellKey,
             cellValue?.cellElement,
           );
-        }, 0);
+        });
       });
     });
   }
@@ -279,7 +310,6 @@ export class TableEditableFeatureComponent
     this.updateRows$.next(this.syncInput);
     this.increaseRowErrorsIndex();
     this.cdr.markForCheck();
-    this.updateFloatCellPosition();
   }
 
   /**
@@ -313,7 +343,6 @@ export class TableEditableFeatureComponent
     this.updateRows$.next(this.syncInput);
     this.decreaseRowErrorsIndex(index);
     this.cdr.markForCheck();
-    this.updateFloatCellPosition();
   }
 
   private increaseRowErrorsIndex(): void {
@@ -361,17 +390,17 @@ export class TableEditableFeatureComponent
     cellIndex: string,
     cellElement?: HTMLElement,
   ) {
-    if (!cellElement) {
+    if (!cellElement || !this.tableElement) {
       return;
     }
 
     // tslint:disable-next-line: no-non-null-assertion
-    const tableElem = cellElement.closest('table')!;
-    // tslint:disable-next-line: no-non-null-assertion
     const tdElem = cellElement.closest('td')!;
     const leftParentOffsetSum = this.getLeftParentOffsetSum(tdElem);
     const leftCellOffset =
-      leftParentOffsetSum + cellElement.offsetWidth - tableElem.offsetWidth;
+      leftParentOffsetSum +
+      cellElement.offsetWidth -
+      this.tableElement.offsetWidth;
 
     // tslint:disable-next-line: no-non-null-assertion
     this.editingModel[rowIndex][cellIndex]!.cellElement = cellElement;

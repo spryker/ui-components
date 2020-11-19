@@ -11,7 +11,6 @@ export class AfterContentInitDirective implements AfterContentInit {
   spyAfterContentInit = new EventEmitter<void>();
 
   ngAfterContentInit(): void {
-    // timeout helps prevent unexpected change errors
     setTimeout(() => this.spyAfterContentInit.next());
   }
 }

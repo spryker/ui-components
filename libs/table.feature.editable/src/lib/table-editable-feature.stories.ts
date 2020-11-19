@@ -41,12 +41,11 @@ const tableConfig = {
     dataGenerator: tableDataGenerator,
   } as MockTableDatasourceConfig,
   columns: [
-    { id: 'col1', title: 'Column #1', hideable: true },
-    { id: 'col2', title: 'Column #2', hideable: true },
-    { id: 'col3', title: 'Column #3', hideable: true },
-    { id: 'col4', title: 'Column #4', hideable: true },
-  ] as any,
-  columnConfigurator: true,
+    { id: 'col1', title: 'Column #1' },
+    { id: 'col2', title: 'Column #2' },
+    { id: 'col3', title: 'Column #3' },
+    { id: 'col4', title: 'Column #4' },
+  ] as TableColumns,
   editable: {
     columns: [
       { id: 'col1', type: 'edit' as any },

@@ -32,6 +32,7 @@ import {
   AnyContext,
   ContextService,
   provideInvokeContext,
+  getElementOffset,
 } from '@spryker/utils';
 import { NzResizeObserver } from 'ng-zorro-antd/core/resize-observers';
 import { combineLatest, merge, Subject } from 'rxjs';
@@ -185,7 +186,7 @@ export class TableEditableFeatureComponent
     switchMap((element) => this.resizeObserver.observe(element)),
     map((entries) => entries[0].contentRect.width),
     debounceTime(200),
-    tap((entries) => {
+    tap(() => {
       this.zone.run(() => {
         this.updateFloatCellPosition();
       });
@@ -215,9 +216,13 @@ export class TableEditableFeatureComponent
 
   ngAfterViewChecked(): void {
     if (!this.tableElement) {
-      this.tableElement = this.table?.tableElementRef?.nativeElement?.querySelector(
-        'table',
-      ) as HTMLElement;
+      const nativeTableElement = this.table?.tableElementRef?.nativeElement;
+
+      if (typeof nativeTableElement?.querySelector === 'function') {
+        this.tableElement = nativeTableElement?.querySelector(
+          'table',
+        ) as HTMLElement;
+      }
     }
 
     if (this.tableElement && !this.isResizeObserverInited) {
@@ -374,17 +379,6 @@ export class TableEditableFeatureComponent
     return this.rowErrors?.[rowIndex]?.rowError;
   }
 
-  getLeftParentOffsetSum(element: HTMLElement) {
-    let left = 0;
-
-    while (!element.classList.contains('ant-table')) {
-      left += element.offsetLeft;
-      element = element.offsetParent as HTMLElement;
-    }
-
-    return left;
-  }
-
   setFloatCellPosition(
     rowIndex: number,
     cellIndex: string,
@@ -396,7 +390,7 @@ export class TableEditableFeatureComponent
 
     // tslint:disable-next-line: no-non-null-assertion
     const tdElem = cellElement.closest('td')!;
-    const leftParentOffsetSum = this.getLeftParentOffsetSum(tdElem);
+    const { left: leftParentOffsetSum } = getElementOffset(tdElem, 'ant-table');
     const leftCellOffset =
       leftParentOffsetSum +
       cellElement.offsetWidth -

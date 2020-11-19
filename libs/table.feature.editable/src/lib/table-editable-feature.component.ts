@@ -186,10 +186,9 @@ export class TableEditableFeatureComponent
   private updateTableElement$ = new Subject<HTMLElement>();
   private updateFloatCellsPosition$ = this.updateTableElement$.pipe(
     distinctUntilChanged(),
-    switchMap((element) => {
-      console.log(element);
-      return element ? this.resizeObserver.observe(element) : EMPTY;
-    }),
+    switchMap((element) =>
+      element ? this.resizeObserver.observe(element) : EMPTY,
+    ),
     debounceTime(200),
     map((entries) => entries[0].contentRect.width),
     tap(() => this.zone.run(() => this.updateFloatCellPosition())),

@@ -32,7 +32,9 @@ import { ReplaySubject, BehaviorSubject } from 'rxjs';
 import { InjectionTokenType, TypedSimpleChanges } from '@spryker/utils';
 
 class MockElementRef {
-  nativeElement = {};
+  nativeElement = {
+    querySelector: () => jest.fn(),
+  };
 }
 
 export class TableMockComponent implements TableComponent {
@@ -45,7 +47,9 @@ export class TableMockComponent implements TableComponent {
   updateRowClasses = jest.fn();
   setRowClasses = jest.fn();
   eventHandler = jest.fn();
-  tableElementRef = new MockElementRef() as ElementRef<HTMLElement>;
+  tableElementRef = (new MockElementRef() as unknown) as ElementRef<
+    HTMLElement
+  >;
   eventBus = new TableEventBus(this.eventHandler);
   features$ = new ReplaySubject<TableFeatureComponent<TableFeatureConfig>[]>(1);
 }

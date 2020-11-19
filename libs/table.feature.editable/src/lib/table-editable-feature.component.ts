@@ -35,12 +35,15 @@ import {
   getElementOffset,
 } from '@spryker/utils';
 import { NzResizeObserver } from 'ng-zorro-antd/core/resize-observers';
-import { combineLatest, merge, Subject } from 'rxjs';
+import { combineLatest, EMPTY, merge, Subject } from 'rxjs';
 import {
   debounceTime,
+  distinctUntilChanged,
+  filter,
   map,
   pluck,
   shareReplay,
+  skip,
   startWith,
   switchMap,
   takeUntil,
@@ -117,11 +120,8 @@ export class TableEditableFeatureComponent
   cellErrors?: TableEditableConfigDataErrors;
   rowErrors: TableEditableConfigDataErrorsFields[] = [];
   private tableElement?: HTMLElement;
-  private isResizeObserverInited = false;
 
   private destroyed$ = new Subject<void>();
-  private isTableExist$ = new Subject<void>();
-  private shouldUnsubscribe$ = merge(this.destroyed$, this.isTableExist$);
   tableColumns$ = this.table$.pipe(switchMap((table) => table.columns$));
   isAfterColsFeaturesExist$ = this.table$.pipe(
     switchMap((table) => table.features$),
@@ -183,14 +183,17 @@ export class TableEditableFeatureComponent
         createDataRows?.length && !isAfterColsFeaturesExist,
     ),
   );
-  updateResizeObserver$ = new Subject<HTMLElement>();
-  updateFloatCellsPosition$ = this.updateResizeObserver$.pipe(
-    switchMap((element) => this.resizeObserver.observe(element)),
+  private updateResizeObserver$ = new Subject<HTMLElement>();
+  private updateTableElement$ = this.updateResizeObserver$.pipe(
+    distinctUntilChanged(),
+    switchMap((element) =>
+      element ? this.resizeObserver.observe(element) : EMPTY,
+    ),
     debounceTime(200),
     map((entries) => entries[0].contentRect.width),
     tap(() => this.zone.run(() => this.updateFloatCellPosition())),
   );
-  updateFloatCellsPositionOnColumnConfigurator$ = this.tableEventBus$.pipe(
+  private updateFloatCellsPositionOnColumnConfigurator$ = this.tableEventBus$.pipe(
     switchMap((eventBus) =>
       eventBus.on<TableSettingsChangeEvent>('columnConfigurator'),
     ),
@@ -202,9 +205,17 @@ export class TableEditableFeatureComponent
       this.updateFloatCellPosition();
     }),
   );
+  private shouldUnsubscribe$ = merge(
+    this.destroyed$,
+    this.updateResizeObserver$.pipe(
+      distinctUntilChanged(),
+      skip(1),
+      filter((element) => !element),
+    ),
+  );
 
   ngOnInit() {
-    this.updateFloatCellsPosition$
+    this.updateTableElement$
       .pipe(takeUntil(this.shouldUnsubscribe$))
       .subscribe();
     this.updateFloatCellsPositionOnColumnConfigurator$
@@ -213,24 +224,17 @@ export class TableEditableFeatureComponent
   }
 
   ngAfterViewChecked(): void {
-    if (!this.tableElement) {
-      const nativeTableElement = this.table?.tableElementRef?.nativeElement;
-
-      if (typeof nativeTableElement?.querySelector === 'function') {
-        this.tableElement = nativeTableElement?.querySelector(
-          'table',
-        ) as HTMLElement;
-      }
+    if (!this.tableElement && this.table?.tableElementRef) {
+      this.tableElement = this.table?.tableElementRef?.nativeElement?.querySelector(
+        'table',
+      ) as HTMLElement;
     }
 
-    if (this.tableElement && !this.isResizeObserverInited) {
-      this.isResizeObserverInited = true;
-      this.updateResizeObserver$.next(this.tableElement);
+    if (this.tableElement && !this.table?.tableElementRef) {
+      this.tableElement = undefined;
     }
 
-    if (!this.tableElement && this.isResizeObserverInited) {
-      this.isTableExist$.next();
-    }
+    this.updateResizeObserver$.next(this.tableElement);
   }
 
   private changeColsVisibilityAfterColumnConfigurator(id: string): void {
@@ -456,7 +460,7 @@ export class TableEditableFeatureComponent
     colId: string,
     editingModel: TableEditCellModel,
   ): boolean | undefined {
-    return this.editingModel?.[rowIndex]?.[colId]?.isUpdating;
+    return editingModel?.[rowIndex]?.[colId]?.isUpdating;
   }
 
   getLeftCellOffset(
@@ -464,7 +468,7 @@ export class TableEditableFeatureComponent
     colId: string,
     editingModel: TableEditCellModel,
   ): string | undefined {
-    return this.editingModel?.[rowIndex]?.[colId]?.leftCellOffset;
+    return editingModel?.[rowIndex]?.[colId]?.leftCellOffset;
   }
 
   submitEdit(cellContext: TableColumnContext): void {

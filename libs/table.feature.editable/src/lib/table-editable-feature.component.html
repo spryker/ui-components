@@ -189,6 +189,7 @@
           <div
             #editableCellRef
             class="spy-table-editable-feature__float-cell"
+            (click)="$event.stopPropagation()"
             [ngStyle]="{
               left: getLeftCellOffset | spyInvoke: i:config.id:editingModel
             }"
@@ -269,7 +270,7 @@
       <spy-button
         [size]="buttonSize.Medium"
         [variant]="buttonVariant.Link"
-        (click)="closeEditableCell(i, config.id)"
+        (click)="closeEditableCell(i, config.id, $event)"
       >
         <spy-icon
           class="spy-button-core__btn-icon"

@@ -429,7 +429,9 @@ export class TableEditableFeatureComponent
     }
   }
 
-  closeEditableCell(rowIndex: number, id: string): void {
+  closeEditableCell(rowIndex: number, id: string, event?: Event): void {
+    event?.stopPropagation();
+
     this.editingModel = { ...this.editingModel };
     this.editingModel[rowIndex][id] = undefined;
     this.cellErrors = {

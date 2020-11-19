@@ -275,7 +275,7 @@ export class CoreTableComponent
     startWith([true, false, true]),
     map(
       ([isTableData, isConfig, isFeaturesInRows]) =>
-        !isTableData && !isFeatures && isConfig,
+        !isTableData && !isFeaturesInRows && isConfig,
     ),
     shareReplaySafe(),
   );

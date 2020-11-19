@@ -405,9 +405,6 @@ export class TableEditableFeatureComponent
     this.cdr.markForCheck();
   }
 
-  /**
-   * Opens custom editable template via {@link Overlay}.
-   */
   openEditableCell(event: Event, rowIndex: number, cellIndex: number): void {
     event.stopPropagation();
 

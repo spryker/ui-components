@@ -176,7 +176,7 @@
         </span>
 
         <ng-container
-          *ngIf="isCellUpdating(i, config.id)"
+          *ngIf="isCellUpdating | spyInvoke: i:config.id:editingModel"
           (spyAfterContentInit)="
             setFloatCellPosition(i, config.id, editableCellRef)
           "
@@ -185,7 +185,7 @@
             #editableCellRef
             class="spy-table-editable-feature__float-cell"
             [ngStyle]="{
-              left: getLeftCellOffset(i, config.id)
+              left: getLeftCellOffset | spyInvoke: i:config.id:editingModel
             }"
           >
             <ng-container

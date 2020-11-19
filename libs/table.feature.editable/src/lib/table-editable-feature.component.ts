@@ -120,6 +120,8 @@ export class TableEditableFeatureComponent
   private isResizeObserverInited = false;
 
   private destroyed$ = new Subject<void>();
+  private isTableExist$ = new Subject<void>();
+  private shouldUnsubscribe$ = merge(this.destroyed$, this.isTableExist$);
   tableColumns$ = this.table$.pipe(switchMap((table) => table.columns$));
   isAfterColsFeaturesExist$ = this.table$.pipe(
     switchMap((table) => table.features$),
@@ -184,34 +186,30 @@ export class TableEditableFeatureComponent
   updateResizeObserver$ = new Subject<HTMLElement>();
   updateFloatCellsPosition$ = this.updateResizeObserver$.pipe(
     switchMap((element) => this.resizeObserver.observe(element)),
-    map((entries) => entries[0].contentRect.width),
     debounceTime(200),
-    tap(() => {
-      this.zone.run(() => {
-        this.updateFloatCellPosition();
-      });
-    }),
-    takeUntil(this.destroyed$),
+    map((entries) => entries[0].contentRect.width),
+    tap(() => this.zone.run(() => this.updateFloatCellPosition())),
   );
   updateFloatCellsPositionOnColumnConfigurator$ = this.tableEventBus$.pipe(
     switchMap((eventBus) =>
       eventBus.on<TableSettingsChangeEvent>('columnConfigurator'),
     ),
-    tap((data) => {
-      const { visibilityChanged } = data;
-
+    tap(({ visibilityChanged }) => {
       if (visibilityChanged !== undefined) {
         this.changeColsVisibilityAfterColumnConfigurator(visibilityChanged);
       }
 
       this.updateFloatCellPosition();
     }),
-    takeUntil(this.destroyed$),
   );
 
   ngOnInit() {
-    this.updateFloatCellsPosition$.subscribe();
-    this.updateFloatCellsPositionOnColumnConfigurator$.subscribe();
+    this.updateFloatCellsPosition$
+      .pipe(takeUntil(this.shouldUnsubscribe$))
+      .subscribe();
+    this.updateFloatCellsPositionOnColumnConfigurator$
+      .pipe(takeUntil(this.shouldUnsubscribe$))
+      .subscribe();
   }
 
   ngAfterViewChecked(): void {
@@ -231,7 +229,7 @@ export class TableEditableFeatureComponent
     }
 
     if (!this.tableElement && this.isResizeObserverInited) {
-      this.destroyed$.next();
+      this.isTableExist$.next();
     }
   }
 
@@ -388,6 +386,8 @@ export class TableEditableFeatureComponent
       return;
     }
 
+    this.editingModel = { ...this.editingModel };
+
     // tslint:disable-next-line: no-non-null-assertion
     const tdElem = cellElement.closest('td')!;
     const { left: leftParentOffsetSum } = getElementOffset(tdElem, 'ant-table');
@@ -412,6 +412,8 @@ export class TableEditableFeatureComponent
   }
 
   private initEditingModel(rowIndex: number, cellIndex: number): void {
+    this.editingModel = { ...this.editingModel };
+
     if (!this.editingModel[rowIndex]) {
       this.editingModel[rowIndex] = {};
     }
@@ -424,7 +426,7 @@ export class TableEditableFeatureComponent
   }
 
   closeEditableCell(rowIndex: number, id: string): void {
-    // tslint:disable-next-line: no-non-null-assertion
+    this.editingModel = { ...this.editingModel };
     this.editingModel[rowIndex][id] = undefined;
     this.cellErrors = {
       ...this.cellErrors,
@@ -441,20 +443,28 @@ export class TableEditableFeatureComponent
   onEditUpdated(
     event: TableEditableEvent,
     rowIndex: number,
-    cellIndex: number,
+    colId: string,
   ): void {
     const { value } = event.detail;
 
     // tslint:disable-next-line: no-non-null-assertion
-    this.editingModel[rowIndex][cellIndex]!.value = value;
+    this.editingModel[rowIndex][colId]!.value = value;
   }
 
-  isCellUpdating(rowIndex: number, cellIndex: number): boolean | undefined {
-    return this.editingModel?.[rowIndex]?.[cellIndex]?.isUpdating;
+  isCellUpdating(
+    rowIndex: number,
+    colId: string,
+    editingModel: TableEditCellModel,
+  ): boolean | undefined {
+    return this.editingModel?.[rowIndex]?.[colId]?.isUpdating;
   }
 
-  getLeftCellOffset(rowIndex: number, cellIndex: number): string | undefined {
-    return this.editingModel?.[rowIndex]?.[cellIndex]?.leftCellOffset;
+  getLeftCellOffset(
+    rowIndex: number,
+    colId: string,
+    editingModel: TableEditCellModel,
+  ): string | undefined {
+    return this.editingModel?.[rowIndex]?.[colId]?.leftCellOffset;
   }
 
   submitEdit(cellContext: TableColumnContext): void {
@@ -484,6 +494,7 @@ export class TableEditableFeatureComponent
           this.closeEditableCell(cellContext.i, cellContext.config.id);
         },
         (error) => {
+          this.editingModel = { ...this.editingModel };
           // tslint:disable-next-line: no-non-null-assertion
           this.editingModel[cellContext.i][
             cellContext.config.id

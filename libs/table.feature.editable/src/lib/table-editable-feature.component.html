@@ -162,20 +162,8 @@
       >
         <span class="spy-table-editable-feature__overlay">
           <span
-            #editableOriginRef
             class="spy-table-editable-feature__wrapper"
-            (click)="
-              openEditableCell(
-                $event,
-                i,
-                j,
-                updateConfig,
-                row,
-                cellContext,
-                editColumns,
-                editableOriginRef
-              )
-            "
+            (click)="openEditableCell($event, i, config.id)"
           >
             <ng-container
               *ngTemplateOutlet="cellTpl; context: cellContext"
@@ -186,6 +174,37 @@
             ></spy-icon>
           </span>
         </span>
+
+        <ng-container
+          *ngIf="isCellUpdating | spyInvoke: i:config.id:editingModel"
+          (spyAfterContentInit)="
+            setFloatCellPosition(i, config.id, editableCellRef)
+          "
+        >
+          <div
+            #editableCellRef
+            class="spy-table-editable-feature__float-cell"
+            [ngStyle]="{
+              left: getLeftCellOffset | spyInvoke: i:config.id:editingModel
+            }"
+          >
+            <ng-container
+              *ngTemplateOutlet="
+                editableCell;
+                context: {
+                  updateConfig: updateConfig,
+                  i: i,
+                  j: j,
+                  row: row,
+                  cellContext: cellContext,
+                  config:
+                    getEditColumn
+                    | spyInvoke: cellContext.config:editColumns:i:cellErrors
+                }
+              "
+            ></ng-container>
+          </div>
+        </ng-container>
       </ng-container>
 
       <ng-template #defaultCell>
@@ -206,70 +225,66 @@
   let-cellContext="cellContext"
   let-config="config"
 >
-  <div class="spy-table-editable-feature__float-cell">
-    <div class="spy-table-editable-feature__float-grid">
-      <div class="spy-table-editable-feature__float-col">
-        <spy-table-column-renderer
-          [config]="config"
-          [data]="row"
-          [i]="i"
-          [j]="j"
-          (spy-table-editable)="onEditUpdated($event, i, j)"
-        ></spy-table-column-renderer>
-      </div>
+  <div class="spy-table-editable-feature__float-grid">
+    <div class="spy-table-editable-feature__float-col">
+      <spy-table-column-renderer
+        [config]="config"
+        [data]="row"
+        [i]="i"
+        [j]="j"
+        (spy-table-editable)="onEditUpdated($event, i, config.id)"
+      ></spy-table-column-renderer>
+    </div>
 
-      <div class="spy-table-editable-feature__float-col">
-        <spy-button
-          [size]="buttonSize.Medium"
-          [disabled]="isDisabledSubmit(i, j)"
-          (click)="submitEdit(cellContext)"
+    <div class="spy-table-editable-feature__float-col">
+      <spy-button
+        [size]="buttonSize.Medium"
+        [disabled]="isDisabledSubmit(i, config.id)"
+        (click)="submitEdit(cellContext)"
+      >
+        <spy-icon
+          class="spy-button-core__btn-icon"
+          *ngIf="updateConfig?.saveButton?.icon"
+          [name]="updateConfig?.saveButton?.icon"
+        ></spy-icon>
+
+        <ng-container
+          *ngIf="updateConfig?.saveButton?.title; else defaultSaveButtonText"
         >
-          <spy-icon
-            class="spy-button-core__btn-icon"
-            *ngIf="updateConfig?.saveButton?.icon"
-            [name]="updateConfig?.saveButton?.icon"
-          ></spy-icon>
+          {{ updateConfig?.saveButton?.title }}
+        </ng-container>
 
-          <ng-container
-            *ngIf="updateConfig?.saveButton?.title; else defaultSaveButtonText"
-          >
-            {{ updateConfig?.saveButton?.title }}
-          </ng-container>
+        <ng-template #defaultSaveButtonText>
+          {{ 'table.feature.editable.save-updates-title' | spyI18n | async }}
+        </ng-template>
+      </spy-button>
+    </div>
 
-          <ng-template #defaultSaveButtonText>
-            {{ 'table.feature.editable.save-updates-title' | spyI18n | async }}
-          </ng-template>
-        </spy-button>
-      </div>
+    <div class="spy-table-editable-feature__float-col">
+      <spy-button
+        [size]="buttonSize.Medium"
+        [variant]="buttonVariant.Link"
+        (click)="closeEditableCell(i, config.id)"
+      >
+        <spy-icon
+          class="spy-button-core__btn-icon"
+          *ngIf="updateConfig?.cancelButton?.icon"
+          [name]="updateConfig?.cancelButton?.icon"
+        ></spy-icon>
 
-      <div class="spy-table-editable-feature__float-col">
-        <spy-button
-          [size]="buttonSize.Medium"
-          [variant]="buttonVariant.Link"
-          (click)="closeEditableCell(i, j, config.id)"
+        <ng-container
+          *ngIf="
+            updateConfig?.cancelButton?.title;
+            else defaultCancelUpdatesButtonText
+          "
         >
-          <spy-icon
-            class="spy-button-core__btn-icon"
-            *ngIf="updateConfig?.cancelButton?.icon"
-            [name]="updateConfig?.cancelButton?.icon"
-          ></spy-icon>
+          {{ updateConfig?.cancelButton?.title }}
+        </ng-container>
 
-          <ng-container
-            *ngIf="
-              updateConfig?.cancelButton?.title;
-              else defaultCancelUpdatesButtonText
-            "
-          >
-            {{ updateConfig?.cancelButton?.title }}
-          </ng-container>
-
-          <ng-template #defaultCancelUpdatesButtonText>
-            {{
-              'table.feature.editable.cancel-updates-title' | spyI18n | async
-            }}
-          </ng-template>
-        </spy-button>
-      </div>
+        <ng-template #defaultCancelUpdatesButtonText>
+          {{ 'table.feature.editable.cancel-updates-title' | spyI18n | async }}
+        </ng-template>
+      </spy-button>
     </div>
   </div>
 </ng-template>

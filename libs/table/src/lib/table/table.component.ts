@@ -18,6 +18,7 @@ import {
   SkipSelf,
   Injector,
   Optional,
+  ElementRef,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import {
@@ -114,6 +115,8 @@ export class CoreTableComponent
   @ViewChild('headerTpl', { static: true }) headerTpl!: TemplateRef<
     TableHeaderContext
   >;
+  @ViewChild('tableElementRef', { read: ElementRef })
+  tableElementRef!: ElementRef<HTMLElement>;
 
   @ContentChildren(ColTplDirective) set slotTemplates(
     val: QueryList<ColTplDirective>,

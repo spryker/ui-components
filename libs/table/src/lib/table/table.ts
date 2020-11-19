@@ -1,7 +1,7 @@
 /* tslint:disable:no-empty-interface */
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
-import { Injector, Type } from '@angular/core';
+import { ElementRef, Injector, Type } from '@angular/core';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableActionTriggeredEvent } from '../../lib/table-actions';
 import { TableFeatureComponent } from '../table-feature';
@@ -110,6 +110,7 @@ export interface TableComponent {
   isLoading$: Observable<boolean>;
   tableId$: Observable<string>;
   features$: Observable<TableFeatureComponent<TableFeatureConfig>[]>;
+  tableElementRef: ElementRef<HTMLElement>;
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
   setRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
 }

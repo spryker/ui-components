@@ -3,11 +3,15 @@
 .@{table-editable-feature-prefix-cls} {
   &__float {
     &-cell {
-      margin-left: -@table-editable-feature-float-cell-x-padding;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
       padding: @table-editable-feature-float-cell-padding;
       background: @white;
       box-shadow: @table-editable-feature-float-cell-shadow;
       border-radius: @table-editable-feature-float-border-radius;
+      z-index: 1;
     }
 
     &-grid {

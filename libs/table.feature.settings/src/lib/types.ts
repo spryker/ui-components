@@ -15,4 +15,10 @@ export interface TableSettingsColumn extends TableColumn {
   hideable?: boolean;
 }
 
+export interface TableSettingsChangeEvent {
+  tableColumns: TableSettingsColumn[];
+  popoverColumns: TableSettingsColumn[];
+  visibilityChanged?: string;
+}
+
 export type TableSettingsColumns = TableSettingsColumn[];

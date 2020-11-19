@@ -248,8 +248,8 @@ export class CoreTableComponent
   ).pipe(startWith(false), shareReplaySafe());
 
   featuresInRows$ = this.features$.pipe(
-    switchMap((features) => {
-      return combineLatest([
+    switchMap((features) =>
+      combineLatest([
         this.tableFeaturesRendererService.trackFeatureRecords(
           features,
           TableFeatureLocation.beforeRows,
@@ -258,8 +258,8 @@ export class CoreTableComponent
           features,
           TableFeatureLocation.afterRows,
         ),
-      ]);
-    }),
+      ]),
+    ),
     map((features) => features.flat()),
     startWith([]),
     shareReplaySafe(),

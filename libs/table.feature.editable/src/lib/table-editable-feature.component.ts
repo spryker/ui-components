@@ -387,7 +387,6 @@ export class TableEditableFeatureComponent
     cellIndex: string,
     cellElement?: HTMLElement,
   ) {
-    console.log(!this.tableElement);
     if (!cellElement || !this.tableElement) {
       return;
     }

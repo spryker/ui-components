@@ -261,6 +261,7 @@ export class CoreTableComponent
       ]);
     }),
     map((features) => features.flat()),
+    startWith([]),
     shareReplaySafe(),
   );
 

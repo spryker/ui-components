@@ -146,7 +146,7 @@ describe('TableEditableFeatureComponent', () => {
         By.css('input[type=hidden]'),
       );
 
-      expect(inputElem.properties.name).toBe(mockConfig.create.formInputName);
+      expect(inputElem.attributes.name).toBe(mockConfig.create.formInputName);
     });
 
     it('should sync `config.create.initialData.data` to `ngModel` of the `input[type=hidden]` element`', () => {

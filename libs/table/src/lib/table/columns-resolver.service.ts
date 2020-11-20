@@ -1,12 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { TableColumns, ColumnsTransformer } from './table';
 import { switchMap } from 'rxjs/operators';
+
+import { ColumnsTransformer, TableColumns } from './table';
 
 @Injectable()
 export class TableColumnsResolverService {
-  private transformers$ = new BehaviorSubject<ColumnsTransformer[]>([]);
+  private transformers$ = new BehaviorSubject(new Set<ColumnsTransformer>());
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +19,7 @@ export class TableColumnsResolverService {
 
     return combineLatest([colsObservable, this.transformers$]).pipe(
       switchMap(([columns, transformers]) =>
-        transformers.reduce(
+        [...transformers].reduce(
           (columns$, transformer) => columns$.pipe(switchMap(transformer)),
           of(columns),
         ),
@@ -27,6 +28,15 @@ export class TableColumnsResolverService {
   }
 
   addTransformer(transformer: ColumnsTransformer): void {
-    this.transformers$.next([...this.transformers$.getValue(), transformer]);
+    const transformers = this.transformers$.getValue();
+    const originalSize = transformers.size;
+
+    transformers.add(transformer);
+
+    if (originalSize === transformers.size) {
+      return;
+    }
+
+    this.transformers$.next(transformers);
   }
 }

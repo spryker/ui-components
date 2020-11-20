@@ -4,21 +4,21 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
+  ElementRef,
+  Injector,
   Input,
   IterableDiffers,
   OnChanges,
   OnDestroy,
   OnInit,
+  Optional,
   QueryList,
   SimpleChanges,
+  SkipSelf,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
-  SkipSelf,
-  Injector,
-  Optional,
-  ElementRef,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import {
@@ -462,6 +462,7 @@ export class CoreTableComponent
   }
 
   private initFeature(feature: TableFeatureComponent): void {
+    // FIXME: features init double time
     feature.setConfig(this.config?.[feature.name] as TableFeatureConfig);
     feature.setTableComponent(this);
     feature.setTableEventBus(

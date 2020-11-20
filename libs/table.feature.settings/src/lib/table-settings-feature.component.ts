@@ -159,15 +159,18 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<
   setColumnsResolverService(service: TableColumnsResolverService): void {
     super.setColumnsResolverService(service);
 
-    service.addTransformer((columnsArr) => {
-      this.originalColumnsArr = columnsArr as TableSettingsColumns;
-
-      this.setInitialColumns$.next(
-        this.cloneColumns(columnsArr) as TableSettingsColumns,
-      );
-      return this.columns$ as Observable<TableColumns>;
-    });
+    service.addTransformer(this.settingsTransformer);
   }
+
+  settingsTransformer = (columnsArr: TableColumns) => {
+    this.originalColumnsArr = columnsArr as TableSettingsColumns;
+
+    this.setInitialColumns$.next(
+      this.cloneColumns(columnsArr) as TableSettingsColumns,
+    );
+
+    return this.columns$ as Observable<TableColumns>;
+  };
 
   drop(
     event: CdkDragDrop<string[]>,

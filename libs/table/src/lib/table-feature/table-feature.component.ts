@@ -8,8 +8,16 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { filter, map, shareReplay, startWith, switchAll } from 'rxjs/operators';
+import {
+  filter,
+  map,
+  publishBehavior,
+  refCount,
+  startWith,
+  switchAll,
+} from 'rxjs/operators';
 
+import { TableActionsService } from '../table-actions/table-actions.service';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableColumnsResolverService } from '../table/columns-resolver.service';
 import { TableDataConfiguratorService } from '../table/data-configurator.service';
@@ -17,7 +25,6 @@ import { TableDatasourceService } from '../table/datasource.service';
 import { TableComponent } from '../table/table';
 import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
-import { TableActionsService } from '../table-actions/table-actions.service';
 
 @Component({
   // This is abstract component so selector is ignored
@@ -73,7 +80,8 @@ export abstract class TableFeatureComponent<
   >(1);
   tplDirectives$ = this.setTplDirectives$.pipe(
     switchAll(),
-    shareReplay({ bufferSize: 1, refCount: true }),
+    publishBehavior([] as TableFeatureTplDirective[]),
+    refCount(),
   );
 
   private iterableDiffers = this.injector.get(IterableDiffers);

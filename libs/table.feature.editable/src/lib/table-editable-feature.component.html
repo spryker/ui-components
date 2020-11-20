@@ -1,55 +1,57 @@
 <ng-container *ngIf="createConfig$ | async as createConfig">
   <input
     type="hidden"
-    [name]="createConfig.formInputName"
+    [attr.name]="createConfig.formInputName"
     [ngModel]="stringifiedSyncInput"
   />
 
-  <ng-container
-    *spyTableFeatureTpl="
-      tableFeatureLocation.beforeTable;
-      styles: {
-        order: '3',
-        marginLeft: 'auto',
-        paddingLeft: '15px'
-      }
-    "
-  >
-    <ng-container *ngIf="mockRowData$ | async as mockRowData">
-      <spy-button
-        class="spy-table-editable-feature__create-row"
-        [size]="buttonSize.Medium"
-        (click)="addRow(mockRowData)"
-      >
-        <spy-icon
-          class="spy-button-core__btn-icon"
-          [name]="createConfig?.addButton?.icon || addRowIcon"
-        ></spy-icon>
-        <ng-container
-          *ngIf="createConfig?.addButton?.title; else defaultAddButtonText"
+  <ng-container *ngIf="createConfig?.addButton as addButton">
+    <ng-container
+      *spyTableFeatureTpl="
+        tableFeatureLocation.beforeTable;
+        styles: {
+          order: '3',
+          marginLeft: 'auto',
+          paddingLeft: '15px'
+        }
+      "
+    >
+      <ng-container *ngIf="mockRowData$ | async as mockRowData">
+        <spy-button
+          class="spy-table-editable-feature__create-row"
+          [size]="buttonSize.Medium"
+          (click)="addRow(mockRowData)"
         >
-          {{ createConfig?.addButton?.title }}
+          <spy-icon
+            class="spy-button-core__btn-icon"
+            [name]="addButton.icon || addRowIcon"
+          ></spy-icon>
+          <ng-container *ngIf="addButton.title; else defaultAddButtonText">
+            {{ addButton.title }}
+          </ng-container>
+
+          <ng-template #defaultAddButtonText>
+            {{ 'table.feature.editable.add-button-title' | spyI18n | async }}
+          </ng-template>
+        </spy-button>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="shouldAddAfterCols$ | async">
+      <ng-container *ngIf="createConfig.cancelButton">
+        <ng-container
+          *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader"
+        >
+          <th class="ant-table-cell spy-table-editable-feature__th">
+            <div class="ant-table-column-inner"></div>
+          </th>
         </ng-container>
 
-        <ng-template #defaultAddButtonText>
-          {{ 'table.feature.editable.add-button-title' | spyI18n | async }}
-        </ng-template>
-      </spy-button>
-    </ng-container>
-  </ng-container>
-
-  <ng-container *ngIf="shouldAddAfterCols$ | async">
-    <ng-container *ngIf="createConfig.cancelButton">
-      <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader">
-        <th class="ant-table-cell spy-table-editable-feature__th">
-          <div class="ant-table-column-inner"></div>
-        </th>
-      </ng-container>
-
-      <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterCols">
-        <td class="ant-table-cell spy-table-editable-feature__td">
-          <div class="ant-table-column-inner"></div>
-        </td>
+        <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterCols">
+          <td class="ant-table-cell spy-table-editable-feature__td">
+            <div class="ant-table-column-inner"></div>
+          </td>
+        </ng-container>
       </ng-container>
     </ng-container>
   </ng-container>

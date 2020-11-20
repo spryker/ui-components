@@ -462,6 +462,7 @@ export class CoreTableComponent
   }
 
   private initFeature(feature: TableFeatureComponent): void {
+    // FIXME: features init double time
     feature.setConfig(this.config?.[feature.name] as TableFeatureConfig);
     feature.setTableComponent(this);
     feature.setTableEventBus(

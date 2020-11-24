@@ -481,17 +481,18 @@ export class TableEditableFeatureComponent
       url,
       (cellContext as unknown) as AnyContext,
     );
+    const requestData = {
+      // tslint:disable-next-line: no-non-null-assertion
+      [cellContext.config.id]: this.editingModel[cellContext.i][
+        cellContext.config.id
+      ]!.value,
+    };
 
     this.httpClient
       // tslint:disable-next-line: no-non-null-assertion
       .request(method!, parsedUrl, {
         body: {
-          data: {
-            // tslint:disable-next-line: no-non-null-assertion
-            [cellContext.config.id]: this.editingModel[cellContext.i][
-              cellContext.config.id
-            ]!.value,
-          },
+          data: JSON.stringify(requestData),
         },
       })
       .subscribe(

@@ -111,7 +111,7 @@ export class TableEditableFeatureComponent
     private tableFeaturesRendererService: TableFeaturesRendererService,
     private resizeObserver: NzResizeObserver,
     private zone: NgZone,
-    private DataSerializerService: DataSerializerService,
+    private dataSerializerService: DataSerializerService,
   ) {
     super(injector);
   }
@@ -495,7 +495,7 @@ export class TableEditableFeatureComponent
       // tslint:disable-next-line: no-non-null-assertion
       .request(method!, parsedUrl, {
         body: {
-          data: this.DataSerializerService.serialize(
+          data: this.dataSerializerService.serialize(
             TableEditableEditRequestToken,
             requestData,
           ),

@@ -50,7 +50,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
     private http: HttpClient,
     private cdr: ChangeDetectorRef,
     private injector: Injector,
-    private DataSerializerService: DataSerializerService,
+    private dataSerializerService: DataSerializerService,
   ) {}
 
   ngOnInit(): void {
@@ -104,7 +104,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
       this.submitSubscription?.unsubscribe();
       this.submitSubscription = this.http
         .request<AjaxFormResponse>(this.method || 'POST', this.action, {
-          body: this.DataSerializerService.serialize(
+          body: this.dataSerializerService.serialize(
             AjaxFormRequestToken,
             submitForm,
           ),

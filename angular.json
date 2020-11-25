@@ -5387,6 +5387,50 @@
           "style": "less"
         }
       }
+    },
+    "date-serializer": {
+      "projectType": "library",
+      "root": "libs/date-serializer",
+      "sourceRoot": "libs/date-serializer/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/date-serializer/tsconfig.lib.json",
+            "project": "libs/date-serializer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/date-serializer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/date-serializer/tsconfig.lib.json",
+              "libs/date-serializer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/date-serializer/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/date-serializer/jest.config.js",
+            "tsConfig": "libs/date-serializer/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/date-serializer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

@@ -23,6 +23,7 @@ import { IStory } from '@storybook/angular';
 
 import { TableEditableFeatureModule } from './table-editable-feature.module';
 import { TableEditableService } from './table-editable-feature.service';
+import { TableEditableEditRequestToken } from './tokens';
 
 export default {
   title: 'TableEditableFeatureComponent',
@@ -34,6 +35,12 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col3: `${i} col3`,
   col4: `${i} col4`,
 });
+
+class TableEditableDataSerializer {
+  serialize(data: any): unknown {
+    return JSON.stringify(data);
+  }
+}
 
 const tableConfig = {
   dataSource: {
@@ -146,6 +153,12 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
   exports: [TableModule],
   declarations: [EditColumnComponent],
   entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
+  providers: [
+    {
+      provide: TableEditableEditRequestToken,
+      useClass: TableEditableDataSerializer,
+    },
+  ],
 })
 class StoryModule {}
 

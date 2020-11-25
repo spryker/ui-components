@@ -241,6 +241,9 @@
     },
     "grid": {
       "tags": ["pkg:primary", "type:style"]
+    },
+    "date-serializer": {
+      "tags": ["type:service", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

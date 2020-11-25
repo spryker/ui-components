@@ -12,9 +12,11 @@ import {
   ViewChild,
   OnInit,
 } from '@angular/core';
+import { DateSerializerService } from '@spryker/date-serializer';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { Subscription } from 'rxjs';
 import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
+import { AjaxFormRequestToken } from './tokens';
 
 import { AjaxFormResponse } from '../types';
 
@@ -48,6 +50,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
     private http: HttpClient,
     private cdr: ChangeDetectorRef,
     private injector: Injector,
+    private dateSerializerService: DateSerializerService,
   ) {}
 
   ngOnInit(): void {
@@ -101,7 +104,10 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
       this.submitSubscription?.unsubscribe();
       this.submitSubscription = this.http
         .request<AjaxFormResponse>(this.method || 'POST', this.action, {
-          body: submitForm,
+          body: this.dateSerializerService.serialize(
+            AjaxFormRequestToken,
+            submitForm,
+          ),
         })
         .subscribe({
           next: (response) => this.responseHandler(response),

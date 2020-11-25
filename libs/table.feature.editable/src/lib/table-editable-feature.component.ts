@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
+import { DateSerializerService } from '@spryker/date-serializer';
 import {
   IconEditModule,
   IconPlusModule,
@@ -31,8 +32,8 @@ import { TableSettingsChangeEvent } from '@spryker/table.feature.settings';
 import {
   AnyContext,
   ContextService,
-  provideInvokeContext,
   getElementOffset,
+  provideInvokeContext,
 } from '@spryker/utils';
 import { NzResizeObserver } from 'ng-zorro-antd/core/resize-observers';
 import { combineLatest, EMPTY, merge, Subject } from 'rxjs';
@@ -50,6 +51,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
+import { TableEditableEditRequestToken } from './tokens';
 import {
   TableEditableColumn,
   TableEditableColumnTypeOptions,
@@ -109,6 +111,7 @@ export class TableEditableFeatureComponent
     private tableFeaturesRendererService: TableFeaturesRendererService,
     private resizeObserver: NzResizeObserver,
     private zone: NgZone,
+    private dateSerializerService: DateSerializerService,
   ) {
     super(injector);
   }
@@ -492,7 +495,10 @@ export class TableEditableFeatureComponent
       // tslint:disable-next-line: no-non-null-assertion
       .request(method!, parsedUrl, {
         body: {
-          data: JSON.stringify(requestData),
+          data: this.dateSerializerService.serialize(
+            TableEditableEditRequestToken,
+            requestData,
+          ),
         },
       })
       .subscribe(

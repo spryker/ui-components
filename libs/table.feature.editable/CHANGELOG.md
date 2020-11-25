@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.0.2-next.9...@spryker/table.feature.editable@0.1.0-next.0) (2020-11-25)
+
+
+### Features
+
+* **date-serializer:** add lib ([c76f2c6](https://github.com/spryker/ui-components/commit/c76f2c63ba38e7b0a8f71a283240aaf9bb6ab223))
+
+
+
+
+
 ## [0.0.2-next.9](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.0.2-next.8...@spryker/table.feature.editable@0.0.2-next.9) (2020-11-20)
 
 **Note:** Version bump only for package @spryker/table.feature.editable

@@ -242,7 +242,7 @@
     "grid": {
       "tags": ["pkg:primary", "type:style"]
     },
-    "date-serializer": {
+    "data-serializer": {
       "tags": ["type:service", "pkg:primary"]
     }
   },

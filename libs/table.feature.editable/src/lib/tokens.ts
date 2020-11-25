@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import { DataSerializer } from '@spryker/date-serializer';
+import { DataSerializer } from '@spryker/data-serializer';
 import { TableDataRow } from '@spryker/table';
 
-export const TableEditableEditRequestToken = new InjectionToken<
+export const TableEditableEditRequest = new InjectionToken<
   DataSerializer<TableDataRow>
->('TableEditableEditRequestToken');
+>('TableEditableEditRequest');

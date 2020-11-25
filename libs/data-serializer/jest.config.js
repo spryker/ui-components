@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'date-serializer',
+  name: 'data-serializer',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/libs/date-serializer',
+  coverageDirectory: '../../coverage/libs/data-serializer',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

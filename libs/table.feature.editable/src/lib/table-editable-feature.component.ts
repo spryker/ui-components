@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
-import { DateSerializerService } from '@spryker/date-serializer';
+import { DataSerializerService } from '@spryker/data-serializer';
 import {
   IconEditModule,
   IconPlusModule,
@@ -51,7 +51,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { TableEditableEditRequestToken } from './tokens';
+import { TableEditableEditRequest } from './tokens';
 import {
   TableEditableColumn,
   TableEditableColumnTypeOptions,
@@ -111,7 +111,7 @@ export class TableEditableFeatureComponent
     private tableFeaturesRendererService: TableFeaturesRendererService,
     private resizeObserver: NzResizeObserver,
     private zone: NgZone,
-    private dateSerializerService: DateSerializerService,
+    private DataSerializerService: DataSerializerService,
   ) {
     super(injector);
   }
@@ -495,8 +495,8 @@ export class TableEditableFeatureComponent
       // tslint:disable-next-line: no-non-null-assertion
       .request(method!, parsedUrl, {
         body: {
-          data: this.dateSerializerService.serialize(
-            TableEditableEditRequestToken,
+          data: this.DataSerializerService.serialize(
+            TableEditableEditRequest,
             requestData,
           ),
         },

@@ -1,5 +1,5 @@
 {
-  "name": "@spryker/date-serializer",
+  "name": "@spryker/data-serializer",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",

@@ -23,7 +23,7 @@ import { IStory } from '@storybook/angular';
 
 import { TableEditableFeatureModule } from './table-editable-feature.module';
 import { TableEditableService } from './table-editable-feature.service';
-import { TableEditableEditRequestToken } from './tokens';
+import { TableEditableEditRequest } from './tokens';
 
 export default {
   title: 'TableEditableFeatureComponent',
@@ -155,7 +155,7 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
   entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
   providers: [
     {
-      provide: TableEditableEditRequestToken,
+      provide: TableEditableEditRequest,
       useClass: TableEditableDataSerializer,
     },
   ],

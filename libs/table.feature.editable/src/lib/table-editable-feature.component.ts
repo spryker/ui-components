@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
+import { DataSerializerService } from '@spryker/data-serializer';
 import {
   IconEditModule,
   IconPlusModule,
@@ -31,8 +32,8 @@ import { TableSettingsChangeEvent } from '@spryker/table.feature.settings';
 import {
   AnyContext,
   ContextService,
-  provideInvokeContext,
   getElementOffset,
+  provideInvokeContext,
 } from '@spryker/utils';
 import { NzResizeObserver } from 'ng-zorro-antd/core/resize-observers';
 import { combineLatest, EMPTY, merge, Subject } from 'rxjs';
@@ -50,6 +51,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
+import { TableEditableEditRequestToken } from './tokens';
 import {
   TableEditableColumn,
   TableEditableColumnTypeOptions,
@@ -109,6 +111,7 @@ export class TableEditableFeatureComponent
     private tableFeaturesRendererService: TableFeaturesRendererService,
     private resizeObserver: NzResizeObserver,
     private zone: NgZone,
+    private dataSerializerService: DataSerializerService,
   ) {
     super(injector);
   }
@@ -481,17 +484,21 @@ export class TableEditableFeatureComponent
       url,
       (cellContext as unknown) as AnyContext,
     );
+    const requestData = {
+      // tslint:disable-next-line: no-non-null-assertion
+      [cellContext.config.id]: this.editingModel[cellContext.i][
+        cellContext.config.id
+      ]!.value,
+    };
 
     this.httpClient
       // tslint:disable-next-line: no-non-null-assertion
       .request(method!, parsedUrl, {
         body: {
-          data: {
-            // tslint:disable-next-line: no-non-null-assertion
-            [cellContext.config.id]: this.editingModel[cellContext.i][
-              cellContext.config.id
-            ]!.value,
-          },
+          data: this.dataSerializerService.serialize(
+            TableEditableEditRequestToken,
+            requestData,
+          ),
         },
       })
       .subscribe(

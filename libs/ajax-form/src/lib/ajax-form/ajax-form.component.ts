@@ -16,7 +16,7 @@ import { DataSerializerService } from '@spryker/data-serializer';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { Subscription } from 'rxjs';
 import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
-import { AjaxFormRequest } from './tokens';
+import { AjaxFormRequestToken } from './tokens';
 
 import { AjaxFormResponse } from '../types';
 
@@ -105,7 +105,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
       this.submitSubscription = this.http
         .request<AjaxFormResponse>(this.method || 'POST', this.action, {
           body: this.DataSerializerService.serialize(
-            AjaxFormRequest,
+            AjaxFormRequestToken,
             submitForm,
           ),
         })

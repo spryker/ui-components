@@ -51,7 +51,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { TableEditableEditRequest } from './tokens';
+import { TableEditableEditRequestToken } from './tokens';
 import {
   TableEditableColumn,
   TableEditableColumnTypeOptions,
@@ -496,7 +496,7 @@ export class TableEditableFeatureComponent
       .request(method!, parsedUrl, {
         body: {
           data: this.DataSerializerService.serialize(
-            TableEditableEditRequest,
+            TableEditableEditRequestToken,
             requestData,
           ),
         },

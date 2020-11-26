@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
   ViewChild,
   TemplateRef,
-  ChangeDetectorRef,
+  SimpleChanges,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 import { IconErrorModule } from '@spryker/icon/icons';
@@ -23,24 +23,16 @@ export class TabComponent {
   iconErrorReference = IconErrorModule;
   @Input() spyTitle = '';
   @Input() @ToBoolean() disabled = false;
-  private _hasWarning = false;
-  @Input()
-  @ToBoolean()
-  set hasWarning(value: boolean) {
-    this._hasWarning = value;
-
-    this.hasWarningChange.emit(this._hasWarning);
-    this.cdr.detectChanges();
-  }
-
-  get hasWarning(): boolean {
-    return this._hasWarning;
-  }
+  @Input() @ToBoolean() hasWarning = false;
 
   @Output() hasWarningChange = new EventEmitter<boolean>();
 
   @ViewChild('contentTpl') template!: TemplateRef<void>;
   @ViewChild('titleTpl') titleTemplate!: TemplateRef<void>;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('hasWarning' in changes) {
+      this.hasWarningChange.emit(this.hasWarning);
+    }
+  }
 }

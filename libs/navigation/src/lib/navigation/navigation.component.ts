@@ -57,8 +57,6 @@ export class NavigationComponent implements NavigationComponentMethods {
     this.interceptorDispatcherService
       .dispatchToAll(NavigationRedirectInterceptionEvent)
       .subscribe(() => {
-        console.log('NavigationRedirectInterceptionEvent', 'clickHandler');
-
         this.windowToken.location.href = url;
       });
   }

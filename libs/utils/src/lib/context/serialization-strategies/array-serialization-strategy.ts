@@ -16,26 +16,10 @@ export class ArrayContextSerializationStrategy
   }
 
   serialize(value: Array<any>): string {
-    const serializedValue = this.recursiveMapping(value);
+    const serializedValue = value
+      .map((el) => this.contextSerializationService.serialize(el))
+      .join(',');
 
     return `[${serializedValue}]`;
-  }
-
-  private recursiveMapping(value: unknown) {
-    if (!this.canSerialize(value)) {
-      return this.serialization(value);
-    }
-
-    return value.map((v) => {
-      if (Array.isArray(v)) {
-        this.recursiveMapping(v);
-      }
-
-      return this.serialization(v);
-    });
-  }
-
-  private serialization(value: unknown): string {
-    return this.contextSerializationService.serialize(value);
   }
 }

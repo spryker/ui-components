@@ -19,7 +19,7 @@ export class ContextSerializationService {
 
   serialize(value: unknown): string {
     const strategy = this.serializationStrategies
-      .map((strategyType: any) => this.injector.get(strategyType))
+      .map((strategyType) => this.injector.get(strategyType))
       .find((s) => s.canSerialize(value));
 
     if (!strategy) {

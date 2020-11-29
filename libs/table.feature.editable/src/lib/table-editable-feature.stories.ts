@@ -25,11 +25,6 @@ import { TableEditableFeatureModule } from './table-editable-feature.module';
 import { TableEditableService } from './table-editable-feature.service';
 import { TableEditableEditRequestToken } from './tokens';
 
-import {
-  TableColumnInputModule,
-  TableColumnInputComponent,
-} from '@spryker/table.column.input';
-
 export default {
   title: 'TableEditableFeatureComponent',
 };
@@ -60,7 +55,7 @@ const tableConfig = {
   ] as TableColumns,
   editable: {
     columns: [
-      { id: 'col1', type: 'input' as any },
+      { id: 'col1', type: 'edit' as any },
       { id: 'col2', type: 'edit' as any },
       { id: 'col4', type: 'edit' as any },
     ] as TableColumns,
@@ -70,7 +65,7 @@ const tableConfig = {
       formInputName: 'form-input-name',
       initialData: {
         data: [
-          { col3: 'Option 1', col1: 'test' },
+          { col3: 'Option 1' },
           { col1: 'value' },
           { col1: 'value', col3: 'Option 1', col4: 'value' },
           { col2: 'value' },
@@ -79,6 +74,7 @@ const tableConfig = {
         ],
         errors: {
           2: {
+            rowError: 'message',
             columnErrors: {
               col1: 'errorMessage errorMessage errorMessage',
             },
@@ -86,7 +82,7 @@ const tableConfig = {
           0: {
             rowError: 'message',
             columnErrors: {
-              col1: 'errorMessage errorMessage errorMessage',
+              col3: 'errorMessage errorMessage errorMessage',
             },
           },
         },
@@ -97,18 +93,6 @@ const tableConfig = {
       saveButton: {},
       cancelButton: {},
     },
-  },
-  rowActions: {
-    enabled: true, // This will enable feature via config
-    actions: [
-      { id: '1234', title: '123' },
-      { id: '2345', title: '234' },
-      { id: 'add', title: 'Add' },
-      { id: 'edit', title: 'Edit' },
-      { id: 'delete', title: 'Delete' },
-    ],
-    click: '1234',
-    availableActionsPath: 'availableActions',
   },
 };
 
@@ -155,12 +139,10 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
     BrowserAnimationsModule,
     HttpClientTestingModule,
     TableModule.forRoot(),
-    TableColumnInputModule,
     TableModule.withDatasourceTypes({
       'mock-data': MockTableDatasourceService,
     }),
     TableModule.withColumnComponents({
-      input: TableColumnInputComponent,
       edit: EditColumnComponent,
     } as any),
     DefaultContextSerializationModule,
@@ -170,11 +152,7 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
   ],
   exports: [TableModule],
   declarations: [EditColumnComponent],
-  entryComponents: [
-    LayoutFlatHostComponent,
-    TableColumnInputComponent,
-    EditColumnComponent,
-  ],
+  entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
   providers: [
     {
       provide: TableEditableEditRequestToken,
@@ -207,11 +185,6 @@ export function viaConfig(): IStory {
           editable: () =>
             import('./table-editable-feature.module').then(
               (m) => m.TableEditableFeatureModule,
-            ),
-
-          rowActions: () =>
-            import('@spryker/table.feature.row-actions').then(
-              (m) => m.TableRowActionsFeatureModule,
             ),
         }),
       ],

@@ -68,6 +68,10 @@
           <tr
             class="ant-table-row spy-table-editable-feature__row"
             [class.ant-table-row--with-errors]="getRowError | spyInvoke: i"
+            [class.ant-table-row--with-column-errors]="
+              isColumnsErrors | spyInvoke: i
+            "
+            [class.ant-table-row--editable]="isRowEditable | spyInvoke: i:row"
           >
             <td
               class="ant-table-cell spy-table-editable-feature__cell"

@@ -1,12 +1,8 @@
-import { Injectable, Inject, Injector } from '@angular/core';
-import { InjectionTokenType } from '../types';
-import {
-  ContextSerializationStrategyToken,
-  ContextSerializationStrategy,
-} from './serialization-strategy';
-import { getPropByPath } from '../misc';
+import { Injectable } from '@angular/core';
 
+import { getPropByPath } from '../misc';
 import { escapeRegex } from '../regex';
+import { ContextSerializationService } from './context-serialization.service';
 
 export interface AnyContext {
   [key: string]: AnyContext;
@@ -27,17 +23,10 @@ export class ContextService {
     `${this.interpolationStart}([^${this.interpolationEnd}]+)${this.interpolationEnd}`,
     'g',
   );
-  private serializationStrategies = this.serializationStrategiesArray
-    .flat()
-    .map((strategyType) => this.injector.get(strategyType));
 
   constructor(
-    private injector: Injector,
     private options: ContextOptions,
-    @Inject(ContextSerializationStrategyToken)
-    private serializationStrategiesArray: InjectionTokenType<
-      typeof ContextSerializationStrategyToken
-    >,
+    private contextSerializationService: ContextSerializationService,
   ) {}
 
   interpolate(value: string, ctx: AnyContext): string {
@@ -56,14 +45,6 @@ export class ContextService {
   }
 
   private postProcess(value: unknown): string {
-    const strategy = this.serializationStrategies.find((s) =>
-      s.canSerialize(value),
-    );
-
-    if (!strategy) {
-      return String(value);
-    }
-
-    return strategy.serialize(value);
+    return this.contextSerializationService.serialize(value);
   }
 }

@@ -1,6 +1,7 @@
-import { provideContextSerializationStrategies } from './serialization-strategy';
-import { ArrayContextSerializationStrategy } from './serialization-strategies';
 import { NgModule } from '@angular/core';
+
+import { ArrayContextSerializationStrategy } from './serialization-strategies';
+import { provideContextSerializationStrategies } from './serialization-strategy';
 
 @NgModule({
   providers: [

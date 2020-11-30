@@ -34,7 +34,7 @@ export class TableColumnInputConfig {
   @ColumnTypeOption()
   outerSuffix?: string;
   @ColumnTypeOption()
-  editableError?: string;
+  editableError?: string | boolean;
 }
 
 @Component({

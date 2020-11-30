@@ -10,11 +10,17 @@
   </nz-form-label>
   <nz-form-control
     [nzValidateStatus]="currentValidationStatus"
-    [nzErrorTip]="error | ofType: 'string':errorMessage:error"
+    [nzErrorTip]="
+      error
+        | ofType
+          : 'string'
+          : errorMessageTmpl
+          : (error | ofType: 'boolean':errorBooleanTmpl:error)
+    "
     [nzWarningTip]="warning"
     [nzValidatingTip]="hint"
   >
-    <ng-template #errorMessage>
+    <ng-template #errorMessageTmpl>
       <i nz-icon nzType="info-circle" nzTheme="outline"></i>
       <span
         class="ant-form-item-explain-text"
@@ -22,6 +28,9 @@
         >{{ error }}</span
       >
     </ng-template>
+
+    <ng-template #errorBooleanTmpl></ng-template>
+
     <ng-content select="[control]"></ng-content>
   </nz-form-control>
 </nz-form-item>

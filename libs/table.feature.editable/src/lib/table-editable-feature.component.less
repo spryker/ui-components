@@ -1,5 +1,15 @@
 @import 'themes/default/theme.less';
 
+.@{table-prefix-cls} {
+  &-tbody > tr {
+    &.@{table-prefix-cls}-row--editable
+      > td
+      .@{table-prefix-cls}-column-inner::after {
+      border-color: @green;
+    }
+  }
+}
+
 .@{table-editable-feature-prefix-cls} {
   &__float {
     &-cell {

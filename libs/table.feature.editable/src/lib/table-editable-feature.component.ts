@@ -141,7 +141,9 @@ export class TableEditableFeatureComponent
   );
   mockRowData$ = this.tableColumns$.pipe(
     map((columns) =>
-      columns.reduce((acc, column) => ({ ...acc, [column.id]: '' }), {}),
+      columns.reduce((acc, column) => ({ ...acc, [column.id]: '' }), {
+        editableNewRow: true,
+      }),
     ),
   );
   editColumns$ = this.config$.pipe(pluck('columns'));
@@ -378,6 +380,10 @@ export class TableEditableFeatureComponent
    */
   isDisabledSubmit(rowIndex: number, cellIndex: number): boolean {
     return this.editingModel?.[rowIndex]?.[cellIndex]?.value === undefined;
+  }
+
+  isRowEditable(rowIndex: number, row: TableDataRow): boolean | undefined {
+    return rowIndex === 0 && (row.editableNewRow as boolean);
   }
 
   getRowError(rowIndex: number): string | undefined {

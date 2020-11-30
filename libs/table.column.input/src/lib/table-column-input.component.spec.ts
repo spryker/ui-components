@@ -5,7 +5,11 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { FormItemComponent, FormItemModule } from '@spryker/form-item';
 import { InputComponent, InputModule } from '@spryker/input';
 import { TableEditableService } from '@spryker/table.feature.editable';
-import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
+import {
+  ContextPipe,
+  DefaultContextSerializationModule,
+  InvokeModule,
+} from '@spryker/utils';
 
 import { TableColumnInputComponent } from './table-column-input.component';
 
@@ -41,8 +45,8 @@ describe('TableColumnInputComponent', () => {
           FormItemModule,
           DefaultContextSerializationModule,
           NoopAnimationsModule,
+          InvokeModule,
         ],
-
         declarations: [ContextPipe],
       },
     },

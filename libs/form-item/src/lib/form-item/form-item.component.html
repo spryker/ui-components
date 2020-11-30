@@ -14,13 +14,13 @@
       error
         | ofType
           : 'string'
-          : errorMessageTmpl
-          : (error | ofType: 'boolean':errorBooleanTmpl:error)
+          : errorMessageTpl
+          : (error | ofType: 'boolean':null:error)
     "
     [nzWarningTip]="warning"
     [nzValidatingTip]="hint"
   >
-    <ng-template #errorMessageTmpl>
+    <ng-template #errorMessageTpl>
       <i nz-icon nzType="info-circle" nzTheme="outline"></i>
       <span
         class="ant-form-item-explain-text"
@@ -28,8 +28,6 @@
         >{{ error }}</span
       >
     </ng-template>
-
-    <ng-template #errorBooleanTmpl></ng-template>
 
     <ng-content select="[control]"></ng-content>
   </nz-form-control>

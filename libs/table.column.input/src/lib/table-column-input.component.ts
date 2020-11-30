@@ -7,11 +7,13 @@ import {
 } from '@angular/core';
 import {
   ColumnTypeOption,
+  ColumnTypeOptionsType,
   TableColumnComponent,
   TableColumnContext,
   TableColumnTypeComponent,
 } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
+import { boolean } from '@storybook/addon-knobs';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
@@ -33,7 +35,10 @@ export class TableColumnInputConfig {
   outerPrefix?: string;
   @ColumnTypeOption()
   outerSuffix?: string;
-  @ColumnTypeOption()
+  @ColumnTypeOption({
+    type: ColumnTypeOptionsType.AnyOf,
+    value: [String, Boolean],
+  })
   editableError?: string | boolean;
 }
 
@@ -44,9 +49,6 @@ export class TableColumnInputConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [TableEditableService],
-  host: {
-    class: 'spy-table-column-input',
-  },
 })
 @TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent
@@ -61,5 +63,9 @@ export class TableColumnInputComponent
     this.context!.value = inputValue;
     // tslint:disable-next-line: no-non-null-assertion
     this.tableEditableService.updateValue(inputValue, this.context!.config);
+  }
+
+  getErrorType(error: string | boolean) {
+    return typeof error === 'string';
   }
 }

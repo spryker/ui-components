@@ -1,7 +1,11 @@
 // tslint:disable: no-non-null-assertion
 import { TestBed } from '@angular/core/testing';
 import { TableColumnSelectComponent } from './table-column-select.component';
-import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
+import {
+  ContextPipe,
+  DefaultContextSerializationModule,
+  InvokeModule,
+} from '@spryker/utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { SelectComponent, SelectModule } from '@spryker/select';
 import { FormItemComponent, FormItemModule } from '@spryker/form-item';
@@ -38,6 +42,7 @@ describe('TableColumnSelectComponent', () => {
           FormItemModule,
           DefaultContextSerializationModule,
           NoopAnimationsModule,
+          InvokeModule,
         ],
         declarations: [ContextPipe],
       },

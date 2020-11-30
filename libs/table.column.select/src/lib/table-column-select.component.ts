@@ -1,22 +1,19 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  Input,
+  Component,
   Injectable,
+  Input,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  ColumnTypeOption,
-  TableColumnContext,
-  TableColumnComponent,
-  TableColumnTypeComponent,
-  ColumnTypeOptionsType,
-} from '@spryker/table';
 import { SelectOption, SelectValue } from '@spryker/select';
 import {
-  TableEditableColumn,
-  TableEditableService,
-} from '@spryker/table.feature.editable';
+  ColumnTypeOption,
+  ColumnTypeOptionsType,
+  TableColumnComponent,
+  TableColumnContext,
+  TableColumnTypeComponent,
+} from '@spryker/table';
+import { TableEditableService } from '@spryker/table.feature.editable';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
@@ -70,8 +67,11 @@ export class TableColumnSelectConfig {
   selectAllTitle?: string;
   @ColumnTypeOption()
   noOptionsText?: string;
-  @ColumnTypeOption()
-  editableError?: string;
+  @ColumnTypeOption({
+    type: ColumnTypeOptionsType.AnyOf,
+    value: [String, Boolean],
+  })
+  editableError?: string | boolean;
 }
 
 @Component({
@@ -98,5 +98,9 @@ export class TableColumnSelectComponent
     this.context!.value = inputValue;
     // tslint:disable-next-line: no-non-null-assertion
     this.tableEditableService.updateValue(inputValue, this.context!.config);
+  }
+
+  getErrorType(error: string | boolean) {
+    return typeof error === 'string';
   }
 }

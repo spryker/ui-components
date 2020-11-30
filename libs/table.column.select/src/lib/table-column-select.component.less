@@ -3,5 +3,19 @@
 .@{table-column-select-prefix-cls} {
   .@{form-item-prefix-cls} {
     margin: 0;
+
+    &-explain-text {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  &--error-with-message {
+    .@{form-item-prefix-cls} {
+      &-has-error {
+        padding-top: @table-editable-feature-error-form-item-top-padding;
+      }
+    }
   }
 }

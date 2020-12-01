@@ -13,7 +13,6 @@ import {
   TableColumnTypeComponent,
 } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
-import { boolean } from '@storybook/addon-knobs';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
@@ -40,6 +39,8 @@ export class TableColumnInputConfig {
     value: [String, Boolean],
   })
   editableError?: string | boolean;
+  @ColumnTypeOption()
+  attrs?: Record<string, string>;
 }
 
 @Component({

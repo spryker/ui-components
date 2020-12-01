@@ -23,8 +23,8 @@ export default {
 };
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
-  col1: `col1 #${i}`,
-  col2: 'col2',
+  col1: `col1`,
+  col2: `${i}`,
 });
 
 export const primary = (): IStory => ({
@@ -84,6 +84,12 @@ export const withTable = (): IStory => ({
           id: 'col2',
           title: 'Column #2',
           type: 'input',
+          typeOptions: {
+            type: 'number',
+            attrs: {
+              step: 0.05,
+            },
+          },
         },
       ],
     },

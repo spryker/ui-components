@@ -40,21 +40,21 @@ export class RadioComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     @Optional()
-    public radioGroupComponent: RadioGroupComponent,
+    public radioGroupComponent?: RadioGroupComponent,
   ) {}
 
   ngOnInit(): void {
-    this.registerRadio();
+    this.radioGroupComponent?.registerRadio(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if ('value' in changes) {
-      this.registerRadio();
+      this.radioGroupComponent?.valueChanged(changes.value.previousValue);
     }
   }
 
   ngOnDestroy() {
-    this.unregisterRadio();
+    this.radioGroupComponent?.registerRadio(this);
   }
 
   select() {
@@ -67,37 +67,5 @@ export class RadioComponent implements OnInit, OnChanges, OnDestroy {
     if (this.radioGroupComponent) {
       this.radioGroupComponent.reset();
     }
-  }
-
-  private registerRadio() {
-    if (!this.radioGroupComponent) {
-      return;
-    }
-
-    const radios = this.radioGroupComponent.addRadio$.getValue();
-    const isRadioExist = radios.has(this);
-
-    if (isRadioExist) {
-      radios.delete(this);
-    }
-
-    radios.add(this);
-    this.radioGroupComponent.addRadio$.next(radios);
-  }
-
-  private unregisterRadio() {
-    if (!this.radioGroupComponent) {
-      return;
-    }
-
-    const radios = this.radioGroupComponent.addRadio$.getValue();
-    const isRadioExist = radios.has(this);
-
-    if (!isRadioExist) {
-      return;
-    }
-
-    radios.delete(this);
-    this.radioGroupComponent.addRadio$.next(radios);
   }
 }

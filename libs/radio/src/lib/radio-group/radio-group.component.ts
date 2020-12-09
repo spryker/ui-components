@@ -33,8 +33,7 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
 
   hasError = false;
 
-  addRadio$ = new BehaviorSubject(new Set<RadioComponent>());
-  radios$ = this.addRadio$.pipe(shareReplay({ bufferSize: 1, refCount: true }));
+  radios$ = new BehaviorSubject(new Set<RadioComponent>());
   private destroyed$ = new Subject<void>();
 
   constructor(private cdr: ChangeDetectorRef) {}
@@ -48,12 +47,19 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
       );
   }
 
+  valueChanged(prev: string) {
+    if (this.value === prev) {
+      this.value = undefined;
+      this.selected.emit(this.value);
+    }
+  }
+
   ngOnDestroy(): void {
     this.destroyed$.next();
   }
 
   select(option: string | RadioComponent): void {
-    const radios = this.addRadio$.getValue();
+    const radios = this.radios$.getValue();
 
     if (typeof option === 'string') {
       const isRealValue = [...radios].some(({ value }) => value === option);
@@ -63,6 +69,7 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
       }
 
       this.value = option;
+      this.cdr.detectChanges();
 
       return;
     }
@@ -72,10 +79,33 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
     }
 
     this.value = option.value;
+    this.cdr.detectChanges();
   }
 
   reset(): void {
     this.value = undefined;
     this.cdr.detectChanges();
+  }
+
+  registerRadio(component: RadioComponent) {
+    const radios = this.radios$.getValue();
+
+    if (radios.has(component)) {
+      return;
+    }
+
+    radios.add(component);
+    this.radios$.next(radios);
+  }
+
+  unregisterRadio(component: RadioComponent) {
+    const radios = this.radios$.getValue();
+
+    if (!radios.has(component)) {
+      return;
+    }
+
+    radios.delete(component);
+    this.radios$.next(radios);
   }
 }

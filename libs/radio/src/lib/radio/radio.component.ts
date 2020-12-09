@@ -54,7 +54,7 @@ export class RadioComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.radioGroupComponent?.registerRadio(this);
+    this.radioGroupComponent?.unregisterRadio(this);
   }
 
   select() {

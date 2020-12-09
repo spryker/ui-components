@@ -1,0 +1,19 @@
+<nz-radio-group
+  [(ngModel)]="value"
+  [nzName]="name"
+  (ngModelChange)="selected.emit($event)"
+>
+  <ng-container *ngFor="let radio of radios$ | async">
+    <div
+      class="spy-radio spy-radio-group__item"
+      [class.spy-radio--disabled]="radio.disabled"
+      [class.spy-radio--error]="radio.hasError"
+    >
+      <label nz-radio [nzValue]="radio.value" [nzDisabled]="radio.disabled">
+        <ng-container *ngTemplateOutlet="radio.template"></ng-container>
+      </label>
+    </div>
+  </ng-container>
+</nz-radio-group>
+
+<ng-content></ng-content>

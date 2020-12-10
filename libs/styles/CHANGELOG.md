@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.27](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.26...@spryker/styles@0.2.0-next.27) (2020-12-10)
+
+
+### Features
+
+* **radio:** add lib ([18e1b31](https://github.com/spryker/ui-components/commit/18e1b312531c79928bf1e5e95d94da26273b86c5))
+
+
+
+
+
 # [0.2.0-next.26](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.25...@spryker/styles@0.2.0-next.26) (2020-11-30)
 
 **Note:** Version bump only for package @spryker/styles

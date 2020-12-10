@@ -244,6 +244,9 @@
     },
     "data-serializer": {
       "tags": ["type:service", "pkg:primary"]
+    },
+    "radio": {
+      "tags": ["level:atom", "type:component", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

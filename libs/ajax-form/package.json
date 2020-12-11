@@ -6,6 +6,7 @@
     "@angular/core": "^9.1.2",
     "@spryker/ajax-action": "^0.1.0-next.0",
     "@spryker/drawer": "^0.1.0-next.0",
+    "@spryker/data-serializer": "^0.0.2-next.0",
     "@spryker/html-renderer": "^0.1.0-next.0",
     "@spryker/icon": "^0.1.0-next.0",
     "@spryker/notification": "^0.1.0-next.0",

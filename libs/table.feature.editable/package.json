@@ -7,7 +7,7 @@
     "@angular/forms": "^9.1.12",
     "@spryker/ajax-action": "^0.0.1-next.0",
     "@spryker/button": "^0.0.1-next.0",
-    "@spryker/data-serializer": "^0.0.1-next.0",
+    "@spryker/data-serializer": "^0.0.2-next.0",
     "@spryker/icon": "^0.0.1-next.0",
     "@spryker/locale": "^0.2.0-next.0",
     "@spryker/table": "^0.0.1-next.0",

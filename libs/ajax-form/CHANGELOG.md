@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.2.0-next.9...@spryker/ajax-form@0.2.0-next.10) (2020-12-12)
+
+
+### Bug Fixes
+
+* **data-serializer:** add missing deps and update versions ([a47c05e](https://github.com/spryker/ui-components/commit/a47c05e206f850a5353dfd100f3dc0c6616d85f1))
+
+
+
+
+
 # [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.2.0-next.8...@spryker/ajax-form@0.2.0-next.9) (2020-11-25)
 
 

@@ -30,7 +30,7 @@ export default {
 };
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
-  col1: `${i} col1`,
+  col1: null,
   col2: `${i} col2`,
   col3: `${i} col3`,
   col4: `${i} col4`,

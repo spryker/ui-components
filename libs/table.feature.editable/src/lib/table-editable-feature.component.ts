@@ -468,11 +468,11 @@ export class TableEditableFeatureComponent
   editableRowData(row: TableDataRow): TableDataRow {
     const copiedRow = { ...row };
 
-    Object.entries(copiedRow).forEach(([key, value]) => {
+    for (const [key, value] of Object.entries(copiedRow)) {
       if (copiedRow[key] === null) {
         copiedRow[key] = '';
       }
-    });
+    }
 
     return copiedRow;
   }

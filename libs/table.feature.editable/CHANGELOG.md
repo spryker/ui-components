@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.2...@spryker/table.feature.editable@0.1.0-next.3) (2020-12-23)
+
+
+### Features
+
+* **table.feature.editable:** fix empty editable column data ([7545339](https://github.com/spryker/ui-components/commit/7545339483b1570d87b380f265ba7032983385ea))
+* **table.feature.editable:** fix empty editable column data ([7f0c284](https://github.com/spryker/ui-components/commit/7f0c284d5c0cf7ba743b9088d3b405db07cb9ec9))
+
+
+
+
+
 # [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.1...@spryker/table.feature.editable@0.1.0-next.2) (2020-12-12)
 
 

@@ -461,9 +461,20 @@ export class TableEditableFeatureComponent
     colId: string,
   ): void {
     const { value } = event.detail;
-
     // tslint:disable-next-line: no-non-null-assertion
     this.editingModel[rowIndex][colId]!.value = value;
+  }
+
+  editableRowData(row: TableDataRow): TableDataRow {
+    const copiedRow = { ...row };
+
+    for (const [key, value] of Object.entries(copiedRow)) {
+      if (copiedRow[key] === null) {
+        copiedRow[key] = '';
+      }
+    }
+
+    return copiedRow;
   }
 
   isCellUpdating(

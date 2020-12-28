@@ -468,7 +468,7 @@ export class TableEditableFeatureComponent
   editableRowData(row: TableDataRow, id: TableColumn['id']): TableDataRow {
     const copiedRow = { ...row };
 
-    if (!copiedRow[id]) {
+    if (copiedRow[id] === null || copiedRow[id] === undefined) {
       copiedRow[id] = '';
     }
 

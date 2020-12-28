@@ -465,13 +465,11 @@ export class TableEditableFeatureComponent
     this.editingModel[rowIndex][colId]!.value = value;
   }
 
-  editableRowData(row: TableDataRow): TableDataRow {
+  editableRowData(row: TableDataRow, id: TableColumn['id']): TableDataRow {
     const copiedRow = { ...row };
 
-    for (const [key, value] of Object.entries(copiedRow)) {
-      if (copiedRow[key] === null) {
-        copiedRow[key] = '';
-      }
+    if (!copiedRow[id]) {
+      copiedRow[id] = '';
     }
 
     return copiedRow;

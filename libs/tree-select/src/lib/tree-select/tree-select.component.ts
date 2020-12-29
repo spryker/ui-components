@@ -71,9 +71,9 @@ export class TreeSelectComponent implements OnChanges {
   private mapFlatTreeItems(item: TreeSelectItem): TreeSelectItem[] {
     const childItems =
       item.children?.reduce(
-        (selectItems: TreeSelectItem[], item) => [
+        (selectItems: TreeSelectItem[], childItem) => [
           ...selectItems,
-          ...this.mapFlatTreeItems(item),
+          ...this.mapFlatTreeItems(childItem),
         ],
         [],
       ) ?? [];

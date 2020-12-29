@@ -238,7 +238,7 @@
     <div class="spy-table-editable-feature__float-col">
       <spy-table-column-renderer
         [config]="config"
-        [data]="editableRowData | spyInvoke: row"
+        [data]="editableRowData | spyInvoke: row:config.id"
         [i]="i"
         [j]="j"
         (spy-table-editable)="onEditUpdated($event, i, config.id)"

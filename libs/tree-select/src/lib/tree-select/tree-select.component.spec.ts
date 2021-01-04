@@ -57,7 +57,7 @@ describe('TreeSelectComponent', () => {
   });
 
   describe('@Input', () => {
-    it('should render <option> tags for every @Input(items)', async () => {
+    it('should render <option> tags for every @Input(items) and @Input(items.children)', async () => {
       const host = await createComponent(
         { items: mockItems, value: mockedValue },
         true,
@@ -66,11 +66,19 @@ describe('TreeSelectComponent', () => {
         By.css('select option'),
       );
 
-      expect(optionElems.length).toBe(4); // +1 for empty option
+      expect(optionElems.length).toBe(6); // +1 for empty option
       expect(optionElems[0].properties.value).toBe(undefined);
       expect(optionElems[1].properties.value).toBe(mockItems[0].value);
-      expect(optionElems[2].properties.value).toBe(mockItems[1].value);
-      expect(optionElems[3].properties.value).toBe(mockItems[2].value);
+      expect(optionElems[2].properties.value).toBe(
+        // tslint:disable-next-line: no-non-null-assertion
+        mockItems[0].children![0].value,
+      );
+      expect(optionElems[3].properties.value).toBe(
+        // tslint:disable-next-line: no-non-null-assertion
+        mockItems[0].children![1].value,
+      );
+      expect(optionElems[4].properties.value).toBe(mockItems[1].value);
+      expect(optionElems[5].properties.value).toBe(mockItems[2].value);
     });
 
     it('Input value should be bound to ngModel of nz-tree-select', async () => {

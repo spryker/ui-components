@@ -22,7 +22,7 @@
 >
   <option></option>
   <option
-    *ngFor="let item of mappedItems"
+    *ngFor="let item of mappedFlatItems"
     [value]="item.value"
     [selected]="checkSelectedState(item.value)"
   >
@@ -38,7 +38,7 @@
     [disabled]="disabled"
   >
     <option></option>
-    <option *ngFor="let item of mappedItems" [value]="item.value">
+    <option *ngFor="let item of mappedFlatItems" [value]="item.value">
       {{ item.title }}
     </option>
   </select>

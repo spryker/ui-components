@@ -48,6 +48,7 @@ export class TreeSelectComponent implements OnChanges {
   >();
 
   mappedItems?: TreeSelectItem[];
+  mappedFlatItems?: TreeSelectItem[];
   mappedValue?: TreeSelectValue | TreeSelectValue[];
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -58,6 +59,32 @@ export class TreeSelectComponent implements OnChanges {
 
   private updateItems(): void {
     this.mappedItems = this.items?.map((item) => this.mapTreeItems(item));
+    this.mappedFlatItems = this.items?.reduce(
+      (selectItems: TreeSelectItem[], item) => [
+        ...selectItems,
+        ...this.mapFlatTreeItems(item),
+      ],
+      [],
+    );
+  }
+
+  private mapFlatTreeItems(item: TreeSelectItem): TreeSelectItem[] {
+    const childItems =
+      item.children?.reduce(
+        (selectItems: TreeSelectItem[], childItem) => [
+          ...selectItems,
+          ...this.mapFlatTreeItems(childItem),
+        ],
+        [],
+      ) ?? [];
+
+    return [
+      {
+        value: item.value,
+        title: item.title,
+      },
+      ...childItems,
+    ];
   }
 
   private mapTreeItems(item: TreeSelectItem): TreeSelectItemWithKey {

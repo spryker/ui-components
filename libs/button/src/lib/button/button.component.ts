@@ -23,13 +23,11 @@ export enum ButtonType {
 })
 export class ButtonComponent extends ButtonCore {
   @Input() type: ButtonType = ButtonType.Button;
-  @Input() @ToBoolean() disabled = false;
-  @Input() loading?: Boolean;
-
   @HostBinding('class.spy-button--disabled')
-  get isDisabled(): Boolean {
-    return this.disabled;
-  }
+  @Input()
+  @ToBoolean()
+  disabled = false;
+  @Input() loading?: Boolean;
 
   protected buttonClassName = 'spy-button';
 }

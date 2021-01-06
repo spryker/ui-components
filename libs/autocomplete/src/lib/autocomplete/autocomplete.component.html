@@ -1,0 +1,9 @@
+<nz-autocomplete [nzOverlayClassName]="'new-overlay-className'">
+  <nz-auto-option
+    *ngFor="let option of filteredOptions"
+    [nzDisabled]="option.isDisabled"
+    [nzValue]="option.value"
+  >
+    {{ option.title }}
+  </nz-auto-option>
+</nz-autocomplete>

@@ -1,13 +1,19 @@
 import {
-  Component,
+  AfterContentChecked,
+  AfterContentInit,
   ChangeDetectionStrategy,
-  Input,
-  TemplateRef,
-  Output,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
   EventEmitter,
+  Input,
+  Output,
+  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { AutocompleteComponent } from '@spryker/autocomplete';
 import { ToBoolean, ToJson } from '@spryker/utils';
+import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
 
 @Component({
   selector: 'spy-input',
@@ -16,7 +22,7 @@ import { ToBoolean, ToJson } from '@spryker/utils';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputComponent {
+export class InputComponent implements AfterContentChecked, AfterContentInit {
   @Input() prefix: string | TemplateRef<void> = '';
   @Input() suffix: string | TemplateRef<void> = '';
   @Input() outerPrefix: string | TemplateRef<void> = '';
@@ -32,6 +38,36 @@ export class InputComponent {
   @Input() spyId = '';
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
+  @ContentChild(AutocompleteComponent)
+  autocompleteComponent?: AutocompleteComponent;
+
+  autocompleteReference = AutocompleteComponent;
   isHovered = false;
   isFocused = false;
+  nzAutocompleteComponent?: NzAutocompleteComponent;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngAfterContentInit(): void {
+    this.nzAutocompleteComponent = this.autocompleteComponent?.nzAutocompleteComponent;
+  }
+
+  ngAfterContentChecked(): void {
+    this.cdr.detectChanges();
+  }
+
+  autocompletesFound(autocompletes: AutocompleteComponent[]): void {
+    this.autocompleteComponent = autocompletes[0];
+    this.nzAutocompleteComponent = autocompletes[0]?.nzAutocompleteComponent;
+  }
+
+  onAutocompleteChange(value: string): void {
+    if (this.autocompleteComponent) {
+      this.autocompleteComponent.filteredOptions = this.autocompleteComponent?.options?.filter(
+        (option) => option.title.toLowerCase().includes(value.toLowerCase()),
+      );
+    }
+
+    this.valueChange.emit(value);
+  }
 }

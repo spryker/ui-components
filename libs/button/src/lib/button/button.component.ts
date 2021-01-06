@@ -19,6 +19,9 @@ export enum ButtonType {
   styleUrls: ['./button.component.less'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.spy-button--disabled]': 'disabled',
+  },
 })
 export class ButtonComponent extends ButtonCore {
   @Input() type: ButtonType = ButtonType.Button;

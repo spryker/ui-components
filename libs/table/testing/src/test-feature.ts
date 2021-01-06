@@ -47,6 +47,9 @@ export class TableMockComponent implements TableComponent {
   updateRowClasses = jest.fn();
   setRowClasses = jest.fn();
   eventHandler = jest.fn();
+  on = jest.fn();
+  findFeatureByName = jest.fn();
+  findFeatureByType = jest.fn();
   tableElementRef = (new MockElementRef() as unknown) as ElementRef<
     HTMLElement
   >;

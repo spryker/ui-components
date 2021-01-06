@@ -1,9 +1,10 @@
 /* tslint:disable:no-empty-interface */
+import { ElementRef, Injector, Type } from '@angular/core';
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
-import { ElementRef, Injector, Type } from '@angular/core';
-import { TableFeatureConfig } from '../table-config/types';
+
 import { TableActionTriggeredEvent } from '../../lib/table-actions';
+import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureComponent } from '../table-feature';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
@@ -113,6 +114,11 @@ export interface TableComponent {
   tableElementRef: ElementRef<HTMLElement>;
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
   setRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
+  on(feature: string, eventName?: string): Observable<unknown>;
+  findFeatureByName(name: string): Observable<TableFeatureComponent>;
+  findFeatureByType<T extends TableFeatureComponent>(
+    type: Type<T>,
+  ): Observable<T>;
 }
 
 export enum TableFeatureLocation {

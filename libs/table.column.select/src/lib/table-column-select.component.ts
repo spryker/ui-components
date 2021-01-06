@@ -12,6 +12,7 @@ import {
   TableColumnComponent,
   TableColumnContext,
   TableColumnTypeComponent,
+  TableDatasourceConfig,
 } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
@@ -72,6 +73,8 @@ export class TableColumnSelectConfig {
     value: [String, Boolean],
   })
   editableError?: string | boolean;
+  @ColumnTypeOption()
+  datasource?: TableDatasourceConfig;
 }
 
 @Component({

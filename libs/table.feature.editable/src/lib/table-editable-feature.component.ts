@@ -492,7 +492,6 @@ export class TableEditableFeatureComponent
   }
 
   submitEdit(cellContext: TableColumnContext): void {
-    console.log('submitEdit');
     // tslint:disable-next-line: no-non-null-assertion
     const url = typeof this.url === 'string' ? this.url : this.url!.url;
     const method = typeof this.url === 'string' ? 'GET' : this.url?.method;

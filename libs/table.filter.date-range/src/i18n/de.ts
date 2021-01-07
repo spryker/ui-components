@@ -4,6 +4,6 @@ export default {
   name: 'table.filter.date-range',
   data: {
     from: 'Von',
-    to: 'Zu',
+    to: 'Bis',
   },
 } as I18nLocaleDataPackage;

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostBinding,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -22,7 +23,10 @@ export enum ButtonType {
 })
 export class ButtonComponent extends ButtonCore {
   @Input() type: ButtonType = ButtonType.Button;
-  @Input() @ToBoolean() disabled = false;
+  @HostBinding('class.spy-button--disabled')
+  @Input()
+  @ToBoolean()
+  disabled = false;
   @Input() loading?: Boolean;
 
   protected buttonClassName = 'spy-button';

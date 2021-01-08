@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/locale@0.2.0-next.8...@spryker/locale@0.2.0-next.9) (2021-01-08)
+
+
+### Bug Fixes
+
+* **locale:** move version to main entry ([91393da](https://github.com/spryker/ui-components/commit/91393dad1d9ac64380cd771c141c65083b9a8e91))
+
+
+
+
+
 # [0.2.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/locale@0.2.0-next.7...@spryker/locale@0.2.0-next.8) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/locale

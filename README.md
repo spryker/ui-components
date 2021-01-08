@@ -224,7 +224,7 @@ All of the i18n files are then aggregated into a main package `locale`.
 
 As all separate i18n files are aggregated in single `locale` package
 it's important to understand how to release it correctly
-(read about [Release process](##Release-process)).
+(read about [Release process](#release-process)).
 
 The changes in separate i18n files will **only** trigger publishing of their package
 but the main `locale` package will not be published.

@@ -212,6 +212,27 @@ Generate stories for components via NX CLI with `@nrwl/angular:stories` schemati
 nx g @nrwl/angular:component-story --lib-path libs/<my-lib> --component-path src/lib --component-name <MyComponent> --component-file-name <my.component> --module-file-name <my.module>
 ```
 
+## Localisation / I18N
+
+The localization is provided from each package directly for the package.
+
+The location of i18n files are in: `libs/<my-lib>/src/i18n/`.
+
+All of the i18n files are then aggregated into a main package `locale`.
+
+### Publishing
+
+As all separate i18n files are aggregated in single `locale` package
+it's important to understand how to release it correctly
+(read about [Release process](##Release-process)).
+
+The changes in separate i18n files will **only** trigger publishing of their package
+but the main `locale` package will not be published.
+
+In order to publish `locale` package - go to it's
+[main entry point file](libs/locale/src/index.ts)
+and update the `Locale Version` number in the comment at the top.
+
 ## Commits
 
 All commit messages should follow [conventional commits specification](https://www.conventionalcommits.org/en/v1.0.0/#specification).

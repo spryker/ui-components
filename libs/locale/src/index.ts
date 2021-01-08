@@ -1,3 +1,10 @@
+/**
+ * To publish the locale package - please increment Locale Version
+ *
+ * Locale Version: 1
+ *
+ */
+
 export * from './lib/types';
 export * from './lib/tokens';
 export * from './lib/providers';

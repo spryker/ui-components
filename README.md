@@ -218,7 +218,10 @@ The localization is provided from each package directly for the package.
 
 The location of i18n files are in: `libs/<my-lib>/src/i18n/`.
 
-All of the i18n files are then aggregated into a main package `locale`.
+Then each specific language is placed in it's own file (ex. `en.ts` or `de.ts`)
+and MUST default export an interface [`I18nLocaleDataPackage`](libs/locale/src/lib/i18n/types.ts#L10) from package `locale`.
+
+All of the i18n files are then aggregated into a main package `locale` during a build phase.
 
 ### Publishing
 

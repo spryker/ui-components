@@ -57,6 +57,8 @@ describe('InputComponent', () => {
   });
 
   it('template must render input with [nz-input] from Ant Design inside nz-input-group component', () => {
+    fixture.detectChanges();
+
     const inputGroupElem = fixture.debugElement.query(By.css('nz-input-group'));
     expect(inputGroupElem).toBeTruthy();
 
@@ -66,6 +68,8 @@ describe('InputComponent', () => {
 
   describe('Inputs must be bound to internal input', () => {
     it('should bind placeholder to placeholder of input', () => {
+      fixture.detectChanges();
+
       const inputElem = fixture.debugElement.query(By.css('input'));
       const mockedPlaceholder = 'test placeholder';
 
@@ -77,6 +81,8 @@ describe('InputComponent', () => {
     });
 
     it('should bind value to ngModel of input', () => {
+      fixture.detectChanges();
+
       const inputElem = fixture.debugElement.query(By.css('input'));
       const mockedValue = 'test value';
 
@@ -88,6 +94,8 @@ describe('InputComponent', () => {
     });
 
     it('should bind name to name attribute of input', () => {
+      fixture.detectChanges();
+
       const inputElem = fixture.debugElement.query(By.css('input'));
       const mockedName = 'test name';
 
@@ -99,6 +107,8 @@ describe('InputComponent', () => {
     });
 
     it('should bind type to type of input', () => {
+      fixture.detectChanges();
+
       const inputElem = fixture.debugElement.query(By.css('input'));
       const mockedType = 'text';
 
@@ -110,6 +120,8 @@ describe('InputComponent', () => {
     });
 
     it('should bind disabled to disabled of input', () => {
+      fixture.detectChanges();
+
       const inputElem = fixture.debugElement.query(By.css('input'));
 
       component.disabled = true;
@@ -120,6 +132,8 @@ describe('InputComponent', () => {
     });
 
     it('should bind readOnly to readOnly of input', () => {
+      fixture.detectChanges();
+
       const inputElem = fixture.debugElement.query(By.css('input'));
 
       component.readOnly = true;
@@ -132,6 +146,8 @@ describe('InputComponent', () => {
 
   describe('Input attrs', () => {
     it('should parse and bind `attrs` to the appropriate attributes of input', () => {
+      fixture.detectChanges();
+
       const inputElem = fixture.debugElement.query(By.css('input'));
 
       component.attrs = {
@@ -146,6 +162,8 @@ describe('InputComponent', () => {
     });
 
     it('should `attrs` updates appropriate attributes when changed', () => {
+      fixture.detectChanges();
+
       const inputElem = fixture.debugElement.query(By.css('input'));
 
       component.attrs = {
@@ -222,6 +240,8 @@ describe('InputComponent', () => {
 
   describe('valueChange', () => {
     it('should trigger change callback when ngModelChange was triggered', () => {
+      fixture.detectChanges();
+
       const inputElem = fixture.debugElement.query(By.css('input'));
 
       inputElem.triggerEventHandler('ngModelChange', {});

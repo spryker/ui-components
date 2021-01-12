@@ -249,7 +249,7 @@
       "tags": ["level:atom", "type:component", "pkg:primary"]
     },
     "autocomplete": {
-      "tags": ["level:molecule", "type:type:component", "pkg:primary"]
+      "tags": ["level:molecule", "type:component", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

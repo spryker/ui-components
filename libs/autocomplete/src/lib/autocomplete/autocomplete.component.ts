@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  OnChanges,
   OnInit,
+  SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -17,14 +19,30 @@ import { AutocompleteValue } from './types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AutocompleteComponent implements OnInit {
+export class AutocompleteComponent implements OnInit, OnChanges {
   @Input() @ToJson() options?: AutocompleteValue[];
 
   @ViewChild(NzAutocompleteComponent, { static: true })
   nzAutocompleteComponent?: NzAutocompleteComponent;
   filteredOptions?: AutocompleteValue[];
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('options' in changes) {
+      this.updateFilteredOptions();
+    }
+  }
+
   ngOnInit(): void {
+    this.updateFilteredOptions();
+  }
+
+  updateFilteredOptions(): void {
     this.filteredOptions = this.options ?? [];
+  }
+
+  updateValue(value: string): void {
+    this.filteredOptions = this.options?.filter((option) =>
+      option.title.toLowerCase().includes(value.toLowerCase()),
+    );
   }
 }

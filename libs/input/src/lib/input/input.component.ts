@@ -58,14 +58,12 @@ export class InputComponent implements AfterContentChecked, AfterContentInit {
 
   autocompletesFound(autocompletes: AutocompleteComponent[]): void {
     this.autocompleteComponent = autocompletes[0];
-    this.nzAutocompleteComponent = autocompletes[0]?.nzAutocompleteComponent;
+    this.nzAutocompleteComponent = this.autocompleteComponent?.nzAutocompleteComponent;
   }
 
   onAutocompleteChange(value: string): void {
     if (this.autocompleteComponent) {
-      this.autocompleteComponent.filteredOptions = this.autocompleteComponent?.options?.filter(
-        (option) => option.title.toLowerCase().includes(value.toLowerCase()),
-      );
+      this.autocompleteComponent.updateValue(value);
     }
 
     this.valueChange.emit(value);

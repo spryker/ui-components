@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { AutocompleteComponent } from './autocomplete.component';
 
@@ -8,18 +10,52 @@ describe('AutocompleteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AutocompleteComponent ]
-    })
-    .compileComponents();
+      declarations: [AutocompleteComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AutocompleteComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render `nz-autocomplete` component', () => {
+    const autocompleteElem = fixture.debugElement.query(
+      By.css('nz-autocomplete'),
+    );
+
+    expect(autocompleteElem).toBeTruthy();
+  });
+
+  it('should render `nz-auto-option` mapped from @Input(options)', () => {
+    const mockOptions = [
+      {
+        value: 'Downing Street',
+        title: 'Downing Street Title',
+        isDisabled: true,
+      },
+      {
+        value: 'Wall Street',
+        title: 'Wall Street Title',
+      },
+    ];
+
+    component.options = mockOptions;
+    fixture.detectChanges();
+
+    const autocompleteOptionElems = fixture.debugElement.queryAll(
+      By.css('nz-auto-option'),
+    );
+
+    expect(autocompleteOptionElems.length).toBe(mockOptions.length);
+
+    autocompleteOptionElems.forEach((elem, index) => {
+      expect(elem.properties?.nzDisabled).toBe(mockOptions[index].isDisabled);
+      expect(elem.properties?.nzValue).toBe(mockOptions[index].value);
+      expect(elem.nativeElement.textContent).toContain(
+        mockOptions[index].title,
+      );
+    });
   });
 });

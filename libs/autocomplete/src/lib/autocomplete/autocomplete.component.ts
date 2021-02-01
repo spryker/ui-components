@@ -63,6 +63,8 @@ export class AutocompleteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.updateFilteredOptions();
+
     if (this.autocompleteWrapper && this.nzAutocompleteComponent) {
       this.autocompleteWrapper.initAutocomplete(this.nzAutocompleteComponent);
     }

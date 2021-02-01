@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.0-next.4...@spryker/input@0.2.0-next.5) (2021-02-01)
+
+
+### Features
+
+* **autocomplete:** add autocomplete implementation ([884273f](https://github.com/spryker/ui-components/commit/884273f0b21d275f7f7ae0e3c709595bdf2df8f5))
+
+
+
+
+
 # [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.0-next.3...@spryker/input@0.2.0-next.4) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/input

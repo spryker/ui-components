@@ -47,9 +47,6 @@
   />
 </nz-input-group>
 
-<span
-  [spySelectComponents]="autocompleteReference"
-  (spySelectComponentsFound)="autocompletesFound($event)"
->
+<span spyCustomElementBoundary style="display: none">
   <ng-content></ng-content>
 </span>

@@ -1,15 +1,22 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Inject,
   Input,
-  OnChanges,
   OnInit,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { ToJson } from '@spryker/utils';
+import {
+  AutocompleteWrapperToken,
+  InjectionTokenType,
+  ToJson,
+} from '@spryker/utils';
 import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
+import { of, ReplaySubject } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+
 import { AutocompleteValue } from './types';
 
 @Component({
@@ -19,12 +26,35 @@ import { AutocompleteValue } from './types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AutocompleteComponent implements OnInit, OnChanges {
+export class AutocompleteComponent implements OnInit {
   @Input() @ToJson() options?: AutocompleteValue[];
 
   @ViewChild(NzAutocompleteComponent, { static: true })
   nzAutocompleteComponent?: NzAutocompleteComponent;
-  filteredOptions?: AutocompleteValue[];
+
+  options$ = new ReplaySubject<AutocompleteValue[]>(1);
+  filteredOptions$ = this.options$.pipe(
+    switchMap((options) => {
+      if (!this.autocompleteWrapper?.value$) {
+        return of([]);
+      }
+
+      return this.autocompleteWrapper?.value$.pipe(
+        map((value): AutocompleteValue[] =>
+          options?.filter((option) =>
+            option.title.toLowerCase().includes(value.toLowerCase()),
+          ),
+        ),
+      );
+    }),
+  );
+
+  constructor(
+    @Inject(AutocompleteWrapperToken)
+    private autocompleteWrapper?: InjectionTokenType<
+      typeof AutocompleteWrapperToken
+    >,
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('options' in changes) {
@@ -33,16 +63,12 @@ export class AutocompleteComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.updateFilteredOptions();
+    if (this.autocompleteWrapper && this.nzAutocompleteComponent) {
+      this.autocompleteWrapper.initAutocomplete(this.nzAutocompleteComponent);
+    }
   }
 
   updateFilteredOptions(): void {
-    this.filteredOptions = this.options ?? [];
-  }
-
-  updateValue(value: string): void {
-    this.filteredOptions = this.options?.filter((option) =>
-      option.title.toLowerCase().includes(value.toLowerCase()),
-    );
+    this.options$.next(this.options);
   }
 }

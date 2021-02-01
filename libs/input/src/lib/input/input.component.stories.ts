@@ -1,5 +1,5 @@
-import { InputComponent } from './input.component';
 import { InputModule } from '../input.module';
+import { InputComponent } from './input.component';
 
 export default {
   title: 'InputComponent',

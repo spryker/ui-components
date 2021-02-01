@@ -4,6 +4,7 @@ import {
   fakeAsync,
   TestBed,
   tick,
+  flush,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -108,23 +109,26 @@ describe('TableSearchFeatureComponent', () => {
     testTableFeature.featureMocks?.table.data$?.next(mockData);
     testTableFeature.featureMocks?.table.isLoading$?.next(true);
     TestBed.inject(MockTableDataConfiguratorService).config$.next({});
+  }));
+
+  it('should render `spy-input`', () => {
     fixture.detectChanges();
-  }));
 
-  it('should render `spy-input`', fakeAsync(() => {
     expect(queryInput()).toBeTruthy();
-  }));
+  });
 
-  it('should render `spy-icon`', fakeAsync(() => {
+  it('should render `spy-icon`', () => {
+    fixture.detectChanges();
+
     expect(queryIcon()).toBeTruthy();
-  }));
+  });
 
-  it('should bind placeholder to input', fakeAsync(() => {
+  it('should bind placeholder to input', () => {
     fixture.detectChanges();
     const expectedValue = '123';
 
     const inputPlaceholder = fixture.debugElement.query(By.css('input'))
       .properties.placeholder;
     expect(inputPlaceholder).toBe(expectedValue);
-  }));
+  });
 });

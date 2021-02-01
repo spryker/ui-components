@@ -5505,6 +5505,80 @@
           "style": "less"
         }
       }
+    },
+    "autocomplete": {
+      "projectType": "library",
+      "root": "libs/autocomplete",
+      "sourceRoot": "libs/autocomplete/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/autocomplete/tsconfig.lib.json",
+            "project": "libs/autocomplete/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/autocomplete/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/autocomplete/tsconfig.lib.json",
+              "libs/autocomplete/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/autocomplete/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/autocomplete/jest.config.js",
+            "tsConfig": "libs/autocomplete/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/autocomplete/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/autocomplete/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/autocomplete",
+            "config": {
+              "configFolder": "libs/autocomplete/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

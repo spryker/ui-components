@@ -1,0 +1,39 @@
+@import './autocomplete.component.theme.less';
+
+.@{autocomplete-prefix-cls}__dropdown {
+  &.@{select-prefix-cls}-dropdown {
+    position: relative;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border-radius: @select-border-radius;
+    margin: @select-menu-margin;
+    padding: 0;
+    font: @font-default;
+  }
+
+  .@{select-prefix-cls}-item {
+    height: @select-dropdown-menu-item-height;
+    line-height: @select-dropdown-menu-item-line-height;
+    font-weight: @select-dropdown-menu-item-font-weight;
+    color: @ink;
+    padding: @select-dropdown-menu-item-padding;
+
+    &:hover {
+      &:not(.@{select-prefix-cls}-dropdown-menu-item-disabled) {
+        background-color: @gray-lighter;
+      }
+    }
+
+    &-option {
+      &-disabled {
+        background-color: @disabled-bg;
+        color: @disabled-color;
+      }
+
+      &-content {
+        padding: @autocomplete-item-padding;
+      }
+    }
+  }
+}

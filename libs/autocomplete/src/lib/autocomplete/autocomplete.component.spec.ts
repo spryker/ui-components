@@ -1,11 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  AutocompleteWrapperToken,
-  InjectionTokenType,
-  ToJson,
-} from '@spryker/utils';
+import { AutocompleteWrapperToken } from '@spryker/utils';
 
 import { AutocompleteComponent } from './autocomplete.component';
 

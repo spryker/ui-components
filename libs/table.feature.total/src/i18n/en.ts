@@ -4,6 +4,6 @@ export default {
   name: 'table.feature.total',
   data: {
     'selected:number': '{{ number }} selected',
-    'total:number': '{{ number }} results',
+    'total:number': '{{ number }} Result(s)',
   },
 } as I18nLocaleDataPackage;

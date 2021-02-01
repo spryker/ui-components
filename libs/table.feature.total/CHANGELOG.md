@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-next.6](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.0.2-next.5...@spryker/table.feature.total@0.0.2-next.6) (2021-02-01)
+
+
+### Bug Fixes
+
+* translations - part 2 (BO-2193) ([fc2f4d8](https://github.com/spryker/ui-components/commit/fc2f4d82bca5cc594de7a088578855da8bd33188))
+
+
+
+
+
 ## [0.0.2-next.5](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.0.2-next.4...@spryker/table.feature.total@0.0.2-next.5) (2021-01-07)
 
 

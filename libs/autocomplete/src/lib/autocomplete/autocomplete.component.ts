@@ -35,14 +35,14 @@ export class AutocompleteComponent implements OnInit {
   options$ = new ReplaySubject<AutocompleteValue[]>(1);
   filteredOptions$ = this.options$.pipe(
     switchMap((options) => {
-      if (!this.autocompleteWrapper?.value$) {
-        return of([]);
+      if (!this.autocompleteWrapper?.value$ || !options) {
+        return of(options ?? []);
       }
 
       return this.autocompleteWrapper?.value$.pipe(
-        map((value): AutocompleteValue[] =>
+        map((value) =>
           options?.filter((option) =>
-            option.title.toLowerCase().includes(value.toLowerCase()),
+            option.title.toLowerCase().includes(String(value).toLowerCase()),
           ),
         ),
       );

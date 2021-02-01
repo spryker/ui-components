@@ -69,7 +69,9 @@ export class InputComponent implements AutocompleteWrapper, OnInit, OnChanges {
     this.valueChange.emit(value);
   }
 
-  initAutocomplete(nzAutocomplete: NzAutocompleteComponent): void {
-    this.nzAutocompleteComponent = nzAutocomplete;
+  initAutocomplete(nzAutocomplete: unknown): void {
+    if (nzAutocomplete instanceof NzAutocompleteComponent) {
+      this.nzAutocompleteComponent = nzAutocomplete;
+    }
   }
 }

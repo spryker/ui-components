@@ -1,10 +1,9 @@
 import { InjectionToken } from '@angular/core';
-import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
-import { ReplaySubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export interface AutocompleteWrapper {
-  value$: ReplaySubject<any>;
-  initAutocomplete(nzAutocomplete: NzAutocompleteComponent): void;
+  value$: Observable<unknown>;
+  initAutocomplete(nzAutocomplete: unknown): void;
 }
 
 export const AutocompleteWrapperToken = new InjectionToken<AutocompleteWrapper>(

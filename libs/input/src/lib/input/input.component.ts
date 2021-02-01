@@ -10,7 +10,6 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { AutocompleteComponent } from '@spryker/autocomplete';
 import {
   AutocompleteWrapper,
   AutocompleteWrapperToken,
@@ -49,7 +48,6 @@ export class InputComponent implements AutocompleteWrapper, OnInit, OnChanges {
   @Input() spyId = '';
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  autocompleteReference = AutocompleteComponent;
   isHovered = false;
   isFocused = false;
   nzAutocompleteComponent?: NzAutocompleteComponent;

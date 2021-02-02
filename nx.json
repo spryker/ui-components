@@ -250,6 +250,9 @@
     },
     "autocomplete": {
       "tags": ["level:molecule", "type:component", "pkg:primary"]
+    },
+    "persistence": {
+      "tags": ["type:service", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

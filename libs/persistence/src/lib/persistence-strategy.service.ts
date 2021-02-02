@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
+import { Inject, Injectable, Injector, Optional, Type } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 
 import { PersistenceStrategyTypesToken } from './token';
@@ -6,13 +6,14 @@ import {
   PersistenceStrategy,
   PersistenceStrategyRegistry,
   PersistenceStrategyType,
+  PersistenceStrategyTypesDeclaration,
 } from './types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersistenceStrategyService {
-  strategies = this.strategiesTypes?.reduce(
+  strategies: PersistenceStrategyTypesDeclaration = this.strategiesTypes?.reduce(
     (strategies, strategy) => ({ ...strategies, ...strategy }),
     {},
   );
@@ -21,7 +22,7 @@ export class PersistenceStrategyService {
     private injector: Injector,
     @Optional()
     @Inject(PersistenceStrategyTypesToken)
-    private strategiesTypes?: InjectionTokenType<
+    private strategiesTypes: InjectionTokenType<
       typeof PersistenceStrategyTypesToken
     >,
   ) {}
@@ -35,12 +36,8 @@ export class PersistenceStrategyService {
   }
 
   getAll(): PersistenceStrategy[] {
-    if (!this.strategies) {
-      return [];
-    }
-
-    const strategies = Object.entries(this.strategies).map((key, strategy) =>
-      this.injector.get(strategy),
+    const strategies = Object.entries(this.strategies).map(([key, strategy]) =>
+      this.injector.get(strategy as Type<PersistenceStrategy>),
     );
 
     return strategies;
@@ -49,6 +46,6 @@ export class PersistenceStrategyService {
   private isPersistenceStrategyRegisteredType(
     type: PersistenceStrategyType,
   ): type is keyof PersistenceStrategyRegistry {
-    return Boolean(this.strategies && type in this.strategies);
+    return type in this.strategies;
   }
 }

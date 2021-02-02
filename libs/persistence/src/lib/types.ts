@@ -1,9 +1,8 @@
+/* tslint:disable:no-empty-interface */
 import { Type } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export interface PersistenceStrategyRegistry {
-  // type: PersistenceStrategy;
-}
+export interface PersistenceStrategyRegistry {}
 
 export type PersistenceStrategyType = keyof PersistenceStrategyRegistry extends never
   ? string

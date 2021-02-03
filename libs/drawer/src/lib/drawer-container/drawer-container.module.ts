@@ -1,9 +1,10 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { InterceptionModule } from '@spryker/interception';
+import { DynamicIoModule } from 'ng-dynamic-component';
 
 import { DrawerWrapperModule } from '../drawer-wrapper/drawer-wrapper.module';
-import { InterceptionModule } from '@spryker/interception';
 import { DrawerContainerProxyComponent } from './drawer-container-proxy.component';
 import {
   DrawerComposerDirective,
@@ -14,6 +15,7 @@ import {
   imports: [
     CommonModule,
     PortalModule,
+    DynamicIoModule,
     DrawerWrapperModule,
     InterceptionModule,
   ],

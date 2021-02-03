@@ -5579,6 +5579,50 @@
           "style": "less"
         }
       }
+    },
+    "persistence": {
+      "projectType": "library",
+      "root": "libs/persistence",
+      "sourceRoot": "libs/persistence/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/persistence/tsconfig.lib.json",
+            "project": "libs/persistence/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/persistence/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/persistence/tsconfig.lib.json",
+              "libs/persistence/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/persistence/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/persistence/jest.config.js",
+            "tsConfig": "libs/persistence/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/persistence/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

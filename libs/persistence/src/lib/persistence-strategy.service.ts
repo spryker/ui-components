@@ -20,7 +20,6 @@ export class PersistenceStrategyService {
 
   constructor(
     private injector: Injector,
-    @Optional()
     @Inject(PersistenceStrategyTypesToken)
     private strategiesTypes: InjectionTokenType<
       typeof PersistenceStrategyTypesToken
@@ -36,7 +35,7 @@ export class PersistenceStrategyService {
   }
 
   getAll(): PersistenceStrategy[] {
-    const strategies = Object.entries(this.strategies).map(([key, strategy]) =>
+    const strategies = Object.values(this.strategies).map((strategy) =>
       this.injector.get(strategy as Type<PersistenceStrategy>),
     );
 

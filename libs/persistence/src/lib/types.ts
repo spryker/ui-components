@@ -14,6 +14,6 @@ export type PersistenceStrategyTypesDeclaration = {
 
 export interface PersistenceStrategy {
   save(key: string, value: unknown): Observable<void>;
-  retrieve<T>(key: string): Observable<T>;
+  retrieve<T>(key: string): Observable<T | undefined>;
   remove(key: string): Observable<void>;
 }

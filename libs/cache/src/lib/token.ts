@@ -4,7 +4,7 @@ import { CacheStrategyTypesDeclaration } from './types';
 
 export const CacheStrategyTypesToken = new InjectionToken<
   CacheStrategyTypesDeclaration[]
->('CacheStrategyTypesToken');
+>('CacheStrategyTypes');
 
 export function provideCacheStrategies(
   strategies: CacheStrategyTypesDeclaration,

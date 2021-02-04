@@ -19,7 +19,7 @@ import {
   providedIn: 'root',
 })
 export class CacheService {
-  private caches: CacheStrategyTypesDeclaration = this.cachesTypes?.reduce(
+  private caches: CacheStrategyTypesDeclaration = this.cachesTypes.reduce(
     (caches, cache) => ({ ...caches, ...cache }),
     {},
   );
@@ -40,11 +40,11 @@ export class CacheService {
       throw Error(`CacheService: Unknown cache type ${config.type}`);
     }
 
-    const cacheInstance: CacheStrategy = this.injector.get(
-      this.caches?.[config.type],
+    const cacheStrategy: CacheStrategy = this.injector.get(
+      this.caches[config.type],
     );
 
-    return cacheInstance.getCached(id, config, operation);
+    return cacheStrategy.getCached(id, config, operation);
   }
 
   clearCache(namespace?: string): Observable<void> {

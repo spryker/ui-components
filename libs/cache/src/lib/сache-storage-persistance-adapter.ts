@@ -84,10 +84,7 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
 
         return forkJoin([
           this.persistenceStrategy.save(name, data),
-          this.persistenceStrategy.save(
-            CacheStoragePersistanceAdapter.ManifestId,
-            manifest,
-          ),
+          this.saveManifest(currentManifest),
         ]);
       }),
       mapTo(void 0),
@@ -106,18 +103,16 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
           id,
           namespace,
         );
+        const serializedId = id.serialize();
 
         manifest.set(
           strategyNamespace,
-          configs.filter((config) => config.id !== id.serialize()),
+          configs.filter((config) => config.id !== serializedId),
         );
 
         return forkJoin([
           this.persistenceStrategy.remove(name),
-          this.persistenceStrategy.save(
-            CacheStoragePersistanceAdapter.ManifestId,
-            manifest,
-          ),
+          this.saveManifest(manifest),
         ]);
       }),
       mapTo(void 0),
@@ -142,27 +137,18 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
 
           return forkJoin([
             ...clearStrategies(configs),
-            this.persistenceStrategy.save(
-              CacheStoragePersistanceAdapter.ManifestId,
-              manifest,
-            ),
+            this.saveManifest(manifest),
           ]);
         }
 
-        const strategyClearObservables$ = [...manifest.values()].reduce(
-          (accumulator: Observable<void>[], configs) => {
-            return [...accumulator, ...clearStrategies(configs)];
-          },
-          [],
+        const strategyClearObservables$ = clearStrategies(
+          [...manifest.values()].flat(),
         );
         manifest.clear();
 
         return forkJoin([
           ...strategyClearObservables$,
-          this.persistenceStrategy.save(
-            CacheStoragePersistanceAdapter.ManifestId,
-            manifest,
-          ),
+          this.saveManifest(manifest),
         ]);
       }),
       mapTo(void 0),
@@ -176,9 +162,22 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
   ): ManifestData {
     const strategyNamespace =
       namespace ?? CacheStoragePersistanceAdapter.DefaultNamespace;
-    const name = `${strategyNamespace}.${id.serialize()}`;
+    const name = this.strategyNameGeneration(strategyNamespace, id.serialize());
     const configs = manifest.get(strategyNamespace) ?? [];
 
     return { name, strategyNamespace, configs };
+  }
+
+  private saveManifest(
+    manifest: Map<string, ManifestStrategyConfig[]>,
+  ): Observable<void> {
+    return this.persistenceStrategy.save(
+      CacheStoragePersistanceAdapter.ManifestId,
+      manifest,
+    );
+  }
+
+  private strategyNameGeneration(namespace: string, id: string): string {
+    return `${namespace}.${id}`;
   }
 }

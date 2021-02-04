@@ -4,7 +4,9 @@ import { PersistenceStrategyService } from '@spryker/persistence';
 import { CacheStorage, CacheStrategyConfig } from './types';
 import { CacheStoragePersistanceAdapter } from './сache-storage-persistance-adapter';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CacheStorageFactoryService {
   constructor(private persistenceStrategyService: PersistenceStrategyService) {}
 

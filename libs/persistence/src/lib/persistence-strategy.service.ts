@@ -13,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class PersistenceStrategyService {
-  strategies: PersistenceStrategyTypesDeclaration = this.strategiesTypes?.reduce(
+  private strategies: PersistenceStrategyTypesDeclaration = this.strategiesTypes?.reduce(
     (strategies, strategy) => ({ ...strategies, ...strategy }),
     {},
   );

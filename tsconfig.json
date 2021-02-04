@@ -18,7 +18,8 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
+      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"],
+      "@spryker/cache": ["libs/cache/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -253,6 +253,9 @@
     },
     "persistence": {
       "tags": ["type:service", "pkg:primary"]
+    },
+    "cache": {
+      "tags": ["type:service", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

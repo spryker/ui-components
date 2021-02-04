@@ -1,3 +1,4 @@
+/* tslint:disable:no-empty-interface */
 import { Type } from '@angular/core';
 import { PersistenceStrategyType } from '@spryker/persistence';
 import { Observable } from 'rxjs';

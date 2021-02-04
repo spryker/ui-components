@@ -82,13 +82,13 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
           { id: id.serialize(), name },
         ]);
 
-        return forkJoin(
+        return forkJoin([
           this.persistenceStrategy.save(name, data),
           this.persistenceStrategy.save(
             CacheStoragePersistanceAdapter.ManifestId,
             manifest,
           ),
-        );
+        ]);
       }),
       mapTo(void 0),
     );
@@ -112,13 +112,13 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
           configs.filter((config) => config.id !== id.serialize()),
         );
 
-        return forkJoin(
+        return forkJoin([
           this.persistenceStrategy.remove(name),
           this.persistenceStrategy.save(
             CacheStoragePersistanceAdapter.ManifestId,
             manifest,
           ),
-        );
+        ]);
       }),
       mapTo(void 0),
     );
@@ -140,13 +140,13 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
           const configs = manifest.get(namespace);
           manifest.delete(namespace);
 
-          return forkJoin(
-            clearStrategies(configs),
+          return forkJoin([
+            ...clearStrategies(configs),
             this.persistenceStrategy.save(
               CacheStoragePersistanceAdapter.ManifestId,
               manifest,
             ),
-          );
+          ]);
         }
 
         const strategyClearObservables$ = [...manifest.values()].reduce(
@@ -157,13 +157,13 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
         );
         manifest.clear();
 
-        return forkJoin(
+        return forkJoin([
           ...strategyClearObservables$,
           this.persistenceStrategy.save(
             CacheStoragePersistanceAdapter.ManifestId,
             manifest,
           ),
-        );
+        ]);
       }),
       mapTo(void 0),
     );

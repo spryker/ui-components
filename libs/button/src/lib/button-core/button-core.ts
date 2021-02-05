@@ -22,9 +22,13 @@ export const buttonClassName = 'spy-button-core';
   selector: '[spyButtonCoreInputs]',
 })
 export class ButtonCoreInputs {
-  @Input() shape: ButtonShape = ButtonShape.Default;
-  @Input() size: ButtonSize = ButtonSize.Medium;
-  @Input() variant: ButtonVariant = ButtonVariant.Primary;
+  static shapeDefault = ButtonShape.Default;
+  static sizeDefault = ButtonSize.Medium;
+  static variantDefault = ButtonVariant.Primary;
+
+  @Input() shape: ButtonShape = ButtonCoreInputs.shapeDefault;
+  @Input() size: ButtonSize = ButtonCoreInputs.sizeDefault;
+  @Input() variant: ButtonVariant = ButtonCoreInputs.variantDefault;
   @Input() @ToJson() attrs?: ButtonAttributes;
 }
 
@@ -48,15 +52,24 @@ export class ButtonCore
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('shape' in changes) {
-      this.changeClassName(this.shape, changes.shape.previousValue);
+      this.changeClassName(
+        this.shape ?? ButtonCoreInputs.shapeDefault,
+        changes.shape.previousValue,
+      );
     }
 
     if ('size' in changes) {
-      this.changeClassName(this.size, changes.size.previousValue);
+      this.changeClassName(
+        this.size ?? ButtonCoreInputs.sizeDefault,
+        changes.size.previousValue,
+      );
     }
 
     if ('variant' in changes) {
-      this.changeClassName(this.variant, changes.variant.previousValue);
+      this.changeClassName(
+        this.variant ?? ButtonCoreInputs.variantDefault,
+        changes.variant.previousValue,
+      );
     }
   }
 

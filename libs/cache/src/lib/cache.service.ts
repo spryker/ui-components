@@ -15,6 +15,9 @@ import {
   CacheStrategyTypesDeclaration,
 } from './types';
 
+/**
+ * Provides general capabilities to interact with different caching strategies.
+ */
 @Injectable({
   providedIn: 'root',
 })

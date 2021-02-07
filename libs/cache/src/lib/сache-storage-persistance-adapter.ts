@@ -1,6 +1,6 @@
 import { PersistenceStrategy } from '@spryker/persistence';
 import { forkJoin, Observable, of } from 'rxjs';
-import { map, mapTo, switchMap } from 'rxjs/operators';
+import { map, mapTo, switchMap, tap } from 'rxjs/operators';
 
 import { CacheEntry, CacheId, CacheStorage } from './types';
 
@@ -15,6 +15,10 @@ interface ManifestData {
   configs: ManifestStrategyConfig[];
 }
 
+/**
+ * Wraps many {@link PersistenceStrategy} and operate on them as one.
+ * Uses {@link PersistenceStrategy} as a {@link CacheStorage}.
+ */
 export class CacheStoragePersistanceAdapter implements CacheStorage {
   static ManifestId = 'Persistence_Strategies_Manifest';
   static DefaultNamespace = 'Default_Persistence_Strategies_Namespace';
@@ -162,7 +166,7 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
   ): ManifestData {
     const strategyNamespace =
       namespace ?? CacheStoragePersistanceAdapter.DefaultNamespace;
-    const name = this.strategyNameGeneration(strategyNamespace, id.serialize());
+    const name = this.getCacheName(strategyNamespace, id.serialize());
     const configs = manifest.get(strategyNamespace) ?? [];
 
     return { name, strategyNamespace, configs };
@@ -177,7 +181,7 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
     );
   }
 
-  private strategyNameGeneration(namespace: string, id: string): string {
+  private getCacheName(namespace: string, id: string): string {
     return `${namespace}.${id}`;
   }
 }

@@ -1,6 +1,6 @@
 import { PersistenceStrategy } from '@spryker/persistence';
 import { forkJoin, Observable, of } from 'rxjs';
-import { map, mapTo, switchMap, tap } from 'rxjs/operators';
+import { map, mapTo, switchMap } from 'rxjs/operators';
 
 import { CacheEntry, CacheId, CacheStorage } from './types';
 

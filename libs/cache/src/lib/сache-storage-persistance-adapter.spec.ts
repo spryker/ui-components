@@ -49,15 +49,21 @@ describe('CacheStoragePersistanceAdapter', () => {
     );
   });
 
-  it('has method must check Manifest if the cache entry with namespace is stored in the PersistenceStrategies and return boolean', () => {
+  it('has method must check Manifest if the cache entry with namespace is stored in the PersistenceStrategies and return `true` if strategy exist', (done) => {
     const hasWithStrategyObserver$ = instance.has(mockId, mockNamespace);
+
     hasWithStrategyObserver$.subscribe((isStrategyExist) => {
       expect(isStrategyExist).toBeTruthy();
+      done();
     });
+  });
 
+  it('has method must check Manifest if the cache entry with namespace is stored in the PersistenceStrategies and return `false` if strategy does not exist', (done) => {
     const hasWithoutStrategyObserver$ = instance.has(mockId, 'namespace');
+
     hasWithoutStrategyObserver$.subscribe((isStrategyExist) => {
       expect(isStrategyExist).toBeFalsy();
+      done();
     });
   });
 

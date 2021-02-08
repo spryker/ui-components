@@ -9,6 +9,9 @@ import {
   PersistenceStrategyTypesDeclaration,
 } from './types';
 
+/**
+ * Allows to pick specific Persistence Strategy at runtime and get all available strategies registered in DI.
+ */
 @Injectable({
   providedIn: 'root',
 })

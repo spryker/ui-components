@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, EMPTY } from 'rxjs';
 import { PersistenceStrategy } from './types';
 
+/**
+ * Manages data via runtime storage.
+ */
 @Injectable({
   providedIn: 'root',
 })
-export class InMemoryPersistenceStrategyService implements PersistenceStrategy {
+export class InMemoryPersistenceStrategy implements PersistenceStrategy {
   private items: Record<string, BehaviorSubject<any> | undefined> = {};
 
   save(key: string, value: unknown): Observable<void> {
@@ -14,6 +17,7 @@ export class InMemoryPersistenceStrategyService implements PersistenceStrategy {
 
     return EMPTY;
   }
+
   retrieve<T>(key: string): Observable<T | undefined> {
     return this.initValue(key, undefined).asObservable();
   }

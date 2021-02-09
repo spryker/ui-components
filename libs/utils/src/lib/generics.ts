@@ -1,4 +1,4 @@
-import { AsKeyOf, MapTo } from './types';
+import { AsKeyOf, MapTo, Prepend, Reverse } from './types';
 
 export interface Generics<T extends any[] = any[]> {
   __generics: T;
@@ -15,4 +15,4 @@ export type ExtendGenerics<G extends Generics, T extends any[]> = Omit<
   G,
   '__generics'
 > &
-  Generics<[...G['__generics'], T]>;
+  Generics<Reverse<Prepend<G['__generics'], T>>>;

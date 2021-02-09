@@ -1,4 +1,5 @@
-import { DateAdapterOperators, DateService } from '@spryker/utils/date';
+import { DateService } from '../date/date.service';
+import { DateAdapterOperators } from '../date/types';
 import { TimeDurationData } from './types';
 
 export class TimeDuration {
@@ -27,11 +28,15 @@ export class TimeDuration {
   addTo(date: Date | number): Date {
     const currentDate = date instanceof Date ? date : new Date(date);
 
-    return Object.keys(this.data).reduce((prevValue, currentValue) => {
-      return this.dateService.add[currentValue as keyof DateAdapterOperators](
-        prevValue,
-        ((this as unknown) as Record<string, number>)[currentValue],
-      );
+    return Object.keys(this.data).reduce((prevDate, dataKey) => {
+      const dateType = dataKey as keyof TimeDurationData;
+      const value = this.data[dateType];
+
+      if (!value) {
+        return prevDate;
+      }
+
+      return this.dateService.add[dateType](prevDate, value);
     }, currentDate);
   }
 }

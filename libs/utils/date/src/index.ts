@@ -1,2 +1,2 @@
-export * from './date';
-export * from './time-duration';
+export * from './date/index';
+export * from './time-duration/index';

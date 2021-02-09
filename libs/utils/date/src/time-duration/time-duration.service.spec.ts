@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import {
-  DateAdapter,
-  DateService,
-  TimeDurationData,
-} from '@spryker/utils/date';
 
+import { DateService } from '../date/date.service';
+import { DateAdapter } from '../date/types';
 import { InvalidTimeDuration } from './invalid-time-duration';
 import { TimeDuration } from './time-duration';
 import { TimeDurationService } from './time-duration.service';
+import { TimeDurationData } from './types';
 
 @Injectable({
   providedIn: 'root',

@@ -11,6 +11,7 @@ import { DateAdapter } from './types';
 class MockDateAdapterService implements DateAdapter {
   add = {
     years: jest.fn(),
+    months: jest.fn(),
     days: jest.fn(),
     hours: jest.fn(),
     minutes: jest.fn(),
@@ -19,6 +20,7 @@ class MockDateAdapterService implements DateAdapter {
   };
   sub = {
     years: jest.fn(),
+    months: jest.fn(),
     days: jest.fn(),
     hours: jest.fn(),
     minutes: jest.fn(),

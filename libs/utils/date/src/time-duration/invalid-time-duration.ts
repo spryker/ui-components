@@ -1,4 +1,4 @@
-import { DateService } from '@spryker/utils/date';
+import { DateService } from '../date/date.service';
 import { TimeDuration } from './time-duration';
 import { TimeDurationData } from './types';
 

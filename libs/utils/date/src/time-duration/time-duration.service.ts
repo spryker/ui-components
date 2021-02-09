@@ -23,37 +23,37 @@ export class TimeDurationService {
     const correctOrder = [
       {
         token: this.config.yearToken,
-        key: 'year',
+        key: 'years',
         min: 1,
         max: 999,
       },
       {
         token: this.config.dayToken,
-        key: 'day',
+        key: 'days',
         min: 1,
         max: 365,
       },
       {
         token: this.config.hourToken,
-        key: 'hour',
+        key: 'hours',
         min: 1,
         max: 23,
       },
       {
         token: this.config.minuteToken,
-        key: 'minute',
+        key: 'minutes',
         min: 1,
         max: 59,
       },
       {
         token: this.config.secondToken,
-        key: 'second',
+        key: 'seconds',
         min: 1,
         max: 59,
       },
       {
         token: this.config.millisecondToken,
-        key: 'millisecond',
+        key: 'milliseconds',
         min: 1,
         max: 59,
       },

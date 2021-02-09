@@ -22,19 +22,21 @@ import {
 export class DateFnsDateAdapterService implements DateAdapter {
   add = {
     years: (date: Date, years: number) => addYears(date, years),
-    days: (date: Date, years: number) => addDays(date, years),
-    hours: (date: Date, years: number) => addHours(date, years),
-    minutes: (date: Date, years: number) => addMinutes(date, years),
-    seconds: (date: Date, years: number) => addSeconds(date, years),
-    milliseconds: (date: Date, years: number) => addMilliseconds(date, years),
+    days: (date: Date, days: number) => addDays(date, days),
+    hours: (date: Date, hours: number) => addHours(date, hours),
+    minutes: (date: Date, minutes: number) => addMinutes(date, minutes),
+    seconds: (date: Date, seconds: number) => addSeconds(date, seconds),
+    milliseconds: (date: Date, milliseconds: number) =>
+      addMilliseconds(date, milliseconds),
   };
   sub = {
     years: (date: Date, years: number) => subYears(date, years),
-    days: (date: Date, years: number) => subDays(date, years),
-    hours: (date: Date, years: number) => subHours(date, years),
-    minutes: (date: Date, years: number) => subMinutes(date, years),
-    seconds: (date: Date, years: number) => subSeconds(date, years),
-    milliseconds: (date: Date, years: number) => subMilliseconds(date, years),
+    days: (date: Date, days: number) => subDays(date, days),
+    hours: (date: Date, hours: number) => subHours(date, hours),
+    minutes: (date: Date, minutes: number) => subMinutes(date, minutes),
+    seconds: (date: Date, seconds: number) => subSeconds(date, seconds),
+    milliseconds: (date: Date, milliseconds: number) =>
+      subMilliseconds(date, milliseconds),
   };
 
   parse(date: string): Date {

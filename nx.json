@@ -258,7 +258,7 @@
       "tags": ["type:service", "pkg:primary"]
     },
     "utils.date.adapter.date-fns": {
-      "tags": []
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

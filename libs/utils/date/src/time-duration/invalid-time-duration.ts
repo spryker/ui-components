@@ -4,6 +4,7 @@ import { TimeDurationData } from './types';
 
 export class InvalidTimeDuration extends TimeDuration {
   readonly years?: number;
+  readonly months?: number;
   readonly days?: number;
   readonly hours?: number;
   readonly minutes?: number;
@@ -14,6 +15,7 @@ export class InvalidTimeDuration extends TimeDuration {
     super(data, dateService);
 
     this.years = NaN;
+    this.months = NaN;
     this.days = NaN;
     this.hours = NaN;
     this.minutes = NaN;

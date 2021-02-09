@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import { DateAdapterToken } from './token';
-import { DateOperations } from './types';
+import { DateAdapter } from './types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DateService implements DateOperations {
+export class DateService implements DateAdapter {
   constructor(
     @Inject(DateAdapterToken)
     private dateAdapter: InjectionTokenType<typeof DateAdapterToken>,

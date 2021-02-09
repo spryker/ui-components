@@ -3,6 +3,7 @@ import { TimeDurationData } from './types';
 
 export class TimeDuration {
   readonly years?: number;
+  readonly months?: number;
   readonly days?: number;
   readonly hours?: number;
   readonly minutes?: number;
@@ -15,6 +16,7 @@ export class TimeDuration {
   ) {
     this.dateService = dateService;
     this.years = data.years;
+    this.months = data.months;
     this.days = data.days;
     this.hours = data.hours;
     this.minutes = data.minutes;

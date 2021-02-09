@@ -6,9 +6,10 @@ import { Injectable } from '@angular/core';
 export class TimeDurationConfig {
   separator = ' ';
   yearToken = 'y';
+  monthToken = 'm';
   dayToken = 'd';
   hourToken = 'h';
-  minuteToken = 'm';
+  minuteToken = 'min';
   secondToken = 's';
   millisecondToken = 'ms';
 }

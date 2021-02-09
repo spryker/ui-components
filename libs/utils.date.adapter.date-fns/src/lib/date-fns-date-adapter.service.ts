@@ -5,6 +5,7 @@ import {
   addHours,
   addMilliseconds,
   addMinutes,
+  addMonths,
   addSeconds,
   addYears,
   parseISO,
@@ -12,6 +13,7 @@ import {
   subHours,
   subMilliseconds,
   subMinutes,
+  subMonths,
   subSeconds,
   subYears,
 } from 'date-fns';
@@ -21,22 +23,22 @@ import {
 })
 export class DateFnsDateAdapterService implements DateAdapter {
   add = {
-    years: (date: Date, years: number) => addYears(date, years),
-    days: (date: Date, days: number) => addDays(date, days),
-    hours: (date: Date, hours: number) => addHours(date, hours),
-    minutes: (date: Date, minutes: number) => addMinutes(date, minutes),
-    seconds: (date: Date, seconds: number) => addSeconds(date, seconds),
-    milliseconds: (date: Date, milliseconds: number) =>
-      addMilliseconds(date, milliseconds),
+    years: addYears,
+    months: addMonths,
+    days: addDays,
+    hours: addHours,
+    minutes: addMinutes,
+    seconds: addSeconds,
+    milliseconds: addMilliseconds,
   };
   sub = {
-    years: (date: Date, years: number) => subYears(date, years),
-    days: (date: Date, days: number) => subDays(date, days),
-    hours: (date: Date, hours: number) => subHours(date, hours),
-    minutes: (date: Date, minutes: number) => subMinutes(date, minutes),
-    seconds: (date: Date, seconds: number) => subSeconds(date, seconds),
-    milliseconds: (date: Date, milliseconds: number) =>
-      subMilliseconds(date, milliseconds),
+    years: subYears,
+    months: subMonths,
+    days: subDays,
+    hours: subHours,
+    minutes: subMinutes,
+    seconds: subSeconds,
+    milliseconds: subMilliseconds,
   };
 
   parse(date: string): Date {

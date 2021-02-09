@@ -28,6 +28,12 @@ export class TimeDurationService {
         max: 999,
       },
       {
+        token: this.config.monthToken,
+        key: 'months',
+        min: 1,
+        max: 12,
+      },
+      {
         token: this.config.dayToken,
         key: 'days',
         min: 1,

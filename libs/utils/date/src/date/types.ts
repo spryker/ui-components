@@ -1,5 +1,6 @@
 export interface DateAdapterOperators {
   years(date: Date, years: number): Date;
+  months(date: Date, months: number): Date;
   days(date: Date, days: number): Date;
   hours(date: Date, hours: number): Date;
   minutes(date: Date, minutes: number): Date;

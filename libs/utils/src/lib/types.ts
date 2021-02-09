@@ -1,4 +1,4 @@
-import { InjectionToken } from '@angular/core';
+import { AbstractType, InjectionToken, Type } from '@angular/core';
 
 /**
  * Map type `T` to type `M` if it extends type `E`
@@ -42,3 +42,9 @@ export type FunctionWithArgs<
  * Represents a function without any arguments
  */
 export type FunctionWithoutArgs<R = any> = AnyFunction<R, []>;
+
+export type InjectableType<T> = Type<T> | AbstractType<T> | InjectionToken<T>;
+
+export type MapTo<T, E, M> = T extends E ? M : T;
+
+export type AsKeyOf<K, T> = K extends keyof T ? K : never;

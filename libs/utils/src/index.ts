@@ -27,3 +27,5 @@ export * from './lib/window-token';
 export * from './lib/after-content-init';
 export * from './lib/get-element-offset';
 export * from './lib/autocomplete-wrapper-token';
+export * from './lib/registry';
+export * from './lib/generics';

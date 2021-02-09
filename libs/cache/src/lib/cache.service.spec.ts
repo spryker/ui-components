@@ -51,6 +51,7 @@ describe('CacheService', () => {
   });
 
   it('getCached method returns the result from call CacheStrategy.getCached() with arguments `id` and `config` and `operation`', () => {
+    const mockReturnValue = 'mockReturnValue';
     const mockId = {
       serialize: () => 'id',
     };
@@ -58,6 +59,8 @@ describe('CacheService', () => {
       type: mockStrategyType,
     };
     const mockOperation = () => EMPTY;
+
+    cacheStrategy.getCached.mockReturnValue(mockReturnValue);
     service.getCached(mockId, mockConfig, mockOperation);
 
     expect(cacheStrategy.getCached).toHaveBeenCalledWith(
@@ -65,6 +68,7 @@ describe('CacheService', () => {
       mockConfig,
       mockOperation,
     );
+    expect(cacheStrategy.getCached()).toBe(mockReturnValue);
   });
 
   it('getCached method find the CacheStrategy based on the config.type from CacheStrategyTypesToken, if no CacheStrategy found - throw an error', () => {

@@ -32,7 +32,7 @@ describe('LocalStoragePersistenceStrategy', () => {
     windowToken = TestBed.inject(MockWindowToken);
   });
 
-  it('retrieve method when no value under key must return null', () => {
+  it('retrieve method when no value under key must return undefined', () => {
     let data;
     const retrievedSavedObserver$ = service.retrieve(mockKey);
 
@@ -41,7 +41,7 @@ describe('LocalStoragePersistenceStrategy', () => {
     });
 
     expect(windowToken.localStorage.getItem).toHaveBeenCalledWith(mockKey);
-    expect(data).toBe(null);
+    expect(data).toBe(undefined);
   });
 
   it('retrieve method must return stored value under key from localStorage', () => {
@@ -65,7 +65,7 @@ describe('LocalStoragePersistenceStrategy', () => {
       data = value;
     });
 
-    expect(data).toBe(null);
+    expect(data).toBe(undefined);
 
     service.save(mockKey, mockValue);
 
@@ -84,7 +84,7 @@ describe('LocalStoragePersistenceStrategy', () => {
       data = value;
     });
 
-    expect(data).toBe(null);
+    expect(data).toBe(undefined);
 
     service.save(mockKey, mockValue);
 

@@ -1,5 +1,4 @@
-import { DateService } from '../date/date.service';
-import { DateAdapterOperators } from '../date/types';
+import { DateAdapter } from '../date/types';
 import { TimeDurationData } from './types';
 
 export class TimeDuration {
@@ -13,9 +12,9 @@ export class TimeDuration {
 
   constructor(
     private data: TimeDurationData,
-    private dateService: DateService,
+    private dateAdapter: DateAdapter,
   ) {
-    this.dateService = dateService;
+    this.dateAdapter = dateAdapter;
     this.years = data.years;
     this.months = data.months;
     this.days = data.days;
@@ -36,7 +35,7 @@ export class TimeDuration {
         return prevDate;
       }
 
-      return this.dateService.add[dateType](prevDate, value);
+      return this.dateAdapter.add[dateType](prevDate, value);
     }, currentDate);
   }
 }

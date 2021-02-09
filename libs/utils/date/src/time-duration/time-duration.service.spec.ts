@@ -56,10 +56,7 @@ describe('TimeDurationService', () => {
     let mockValidData: TimeDurationData = { hours: 2, minutes: 30 };
 
     let returnedInstance = service.parse(mockValidDateString);
-    let expectedInstance = new TimeDuration(
-      mockValidData,
-      (mockDateService as unknown) as DateService,
-    );
+    let expectedInstance = new TimeDuration(mockValidData, mockDateService);
 
     expect(returnedInstance).toBeInstanceOf(TimeDuration);
     expect(returnedInstance).toMatchObject(expectedInstance);
@@ -68,10 +65,7 @@ describe('TimeDurationService', () => {
     mockValidData = { days: 1, hours: 14 };
 
     returnedInstance = service.parse(mockValidDateString);
-    expectedInstance = new TimeDuration(
-      mockValidData,
-      (mockDateService as unknown) as DateService,
-    );
+    expectedInstance = new TimeDuration(mockValidData, mockDateService);
 
     expect(returnedInstance).toBeInstanceOf(TimeDuration);
     expect(returnedInstance).toMatchObject(expectedInstance);
@@ -80,10 +74,7 @@ describe('TimeDurationService', () => {
     mockValidData = { years: 2, seconds: 20 };
 
     returnedInstance = service.parse(mockValidDateString);
-    expectedInstance = new TimeDuration(
-      mockValidData,
-      (mockDateService as unknown) as DateService,
-    );
+    expectedInstance = new TimeDuration(mockValidData, mockDateService);
 
     expect(returnedInstance).toBeInstanceOf(TimeDuration);
     expect(returnedInstance).toMatchObject(expectedInstance);
@@ -94,7 +85,7 @@ describe('TimeDurationService', () => {
     const mockInvalidData: TimeDurationData = {};
     const expectedInstance = new InvalidTimeDuration(
       mockInvalidData,
-      (mockDateService as unknown) as DateService,
+      mockDateService,
     );
 
     mockInvalidDateStrings.forEach((interval) => {

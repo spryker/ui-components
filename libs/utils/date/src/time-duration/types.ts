@@ -3,7 +3,7 @@
  *
  * Components:
  *  - 1-999d - Years
- *  - 1-12m, - Months
+ *  - 1-12m - Months
  *  - 1-365d - Days
  *  - 1-23h - Hours
  *  - 1-59min - Minutes

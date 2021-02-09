@@ -1,4 +1,4 @@
-import { DateService } from '../date/date.service';
+import { DateAdapter } from '../date';
 import { TimeDuration } from './time-duration';
 import { TimeDurationData } from './types';
 
@@ -11,7 +11,7 @@ export class InvalidTimeDuration extends TimeDuration {
   readonly seconds?: number;
   readonly milliseconds?: number;
 
-  constructor(data: TimeDurationData, dateService: DateService) {
+  constructor(data: TimeDurationData, dateService: DateAdapter) {
     super(data, dateService);
 
     this.years = NaN;

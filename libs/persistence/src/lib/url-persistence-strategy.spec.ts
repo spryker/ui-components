@@ -24,7 +24,14 @@ class MockWindowToken {
       this.popCallback = callback;
     }
   });
-  removeEventListener = jest.fn();
+  removeEventListener = jest.fn().mockImplementation((name, callback) => {
+    if (
+      name === 'popstate' &&
+      callback.toString() === this.popCallback?.toString()
+    ) {
+      this.popCallback = undefined;
+    }
+  });
 }
 
 describe('UrlPersistenceStrategy', () => {
@@ -51,24 +58,21 @@ describe('UrlPersistenceStrategy', () => {
     }`;
 
   it('retrieve method when no value under key must return `undefined`', () => {
-    let data;
+    const callback = jest.fn();
     const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe((value) => {
-      data = value;
-    });
+    retrievedSavedObserver$.subscribe(callback);
 
-    expect(data).toBe(undefined);
+    expect(callback).toHaveBeenCalledWith(undefined);
   });
 
   it('retrieve method must return stored value under key from URL Query', () => {
-    let data;
+    const callback = jest.fn();
     const retrievedSavedObserver$ = service.retrieve(mockSearchKey);
-    retrievedSavedObserver$.subscribe((value) => {
-      data = value;
-    });
 
-    expect(data).toBe(mockSearchValue);
+    retrievedSavedObserver$.subscribe(callback);
+
+    expect(callback).toHaveBeenCalledWith(mockSearchValue);
   });
 
   it('save method must store `value` under `key` in the URL Query', () => {
@@ -84,13 +88,12 @@ describe('UrlPersistenceStrategy', () => {
   });
 
   it('retrieve method must emit stored value under key from URL Query every time when `popstate` event has been fired', () => {
-    let data;
+    const callback = jest.fn();
     const retrievedSavedObserver$ = service.retrieve(mockSearchKey);
-    retrievedSavedObserver$.subscribe((value) => {
-      data = value;
-    });
 
-    expect(data).toBe(mockSearchValue);
+    retrievedSavedObserver$.subscribe(callback);
+
+    expect(callback).toHaveBeenCalledWith(mockSearchValue);
 
     const newMockValue = `NEW${mockSearchValue}`;
     const newMockSearch = `?${mockSearchKey}="${newMockValue}"`;
@@ -98,7 +101,7 @@ describe('UrlPersistenceStrategy', () => {
     windowToken.location.search = newMockSearch;
     windowToken.popCallback?.({});
 
-    expect(data).toBe(newMockValue);
+    expect(callback).toHaveBeenCalledWith(newMockValue);
   });
 
   it('remove stored value under `key` from URL Query', () => {

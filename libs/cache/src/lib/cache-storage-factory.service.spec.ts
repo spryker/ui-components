@@ -70,7 +70,7 @@ describe('CacheStorageFactoryService', () => {
     const returnedClass = service.create(mockConfig);
     const returnedClassWithSameType = service.create(mockConfig);
 
-    expect(returnedClass).toMatchObject(returnedClassWithSameType);
+    expect(returnedClass).toBe(returnedClassWithSameType);
   });
 
   it('method `getAll` should return array of instances of `CacheStoragePersistanceAdapter` that uses a `PersistenceStrategy`', () => {

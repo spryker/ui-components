@@ -15,4 +15,4 @@ export type ExtendGenerics<G extends Generics, T extends any[]> = Omit<
   G,
   '__generics'
 > &
-  Generics<[...G['__generics'], ...T]>;
+  Generics<[...G['__generics'], T]>;

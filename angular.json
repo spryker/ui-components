@@ -5667,6 +5667,53 @@
           "style": "less"
         }
       }
+    },
+    "utils.date.adapter.date-fns": {
+      "projectType": "library",
+      "root": "libs/utils.date.adapter.date-fns",
+      "sourceRoot": "libs/utils.date.adapter.date-fns/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/utils.date.adapter.date-fns/tsconfig.lib.json",
+            "project": "libs/utils.date.adapter.date-fns/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/utils.date.adapter.date-fns/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/utils.date.adapter.date-fns/tsconfig.lib.json",
+              "libs/utils.date.adapter.date-fns/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/utils.date.adapter.date-fns/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/utils.date.adapter.date-fns/jest.config.js",
+            "tsConfig": "libs/utils.date.adapter.date-fns/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/utils.date.adapter.date-fns/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

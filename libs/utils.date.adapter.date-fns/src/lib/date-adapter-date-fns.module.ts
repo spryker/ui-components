@@ -7,4 +7,4 @@ import { DateFnsDateAdapterService } from './date-fns-date-adapter.service';
 @NgModule({
   imports: [CommonModule, DateModule.withAdapter(DateFnsDateAdapterService)],
 })
-export class UtilsDateAdapterDateFnsModule {}
+export class DateFnsDateAdapterModule {}

@@ -1,26 +1,36 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { InjectionTokenType, WindowToken } from '@spryker/utils';
+import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
 
 import { PersistenceStrategy } from './types';
 
+/**
+ * Manages data via localStorage.
+ */
 @Injectable({
   providedIn: 'root',
 })
-export class LocalStoragePersistenceStrategyService
-  implements PersistenceStrategy {
+export class LocalStoragePersistenceStrategy implements PersistenceStrategy {
   private items: Record<string, BehaviorSubject<any> | undefined> = {};
+
+  constructor(
+    @Inject(WindowToken)
+    private windowToken: InjectionTokenType<typeof WindowToken>,
+  ) {}
 
   save(key: string, value: unknown): Observable<void> {
     const value$ = this.initValue(key, value);
     const convertedValue = JSON.stringify(value);
-    localStorage.setItem(key, convertedValue);
+
+    this.windowToken.localStorage.setItem(key, convertedValue);
     value$.next(value);
 
     return EMPTY;
   }
 
-  retrieve<T>(key: string): Observable<T> {
-    const value = JSON.parse(localStorage.getItem(key) || 'null');
+  retrieve<T>(key: string): Observable<T | undefined> {
+    const storageValue = this.windowToken.localStorage.getItem(key);
+    const value = storageValue ? JSON.parse(storageValue) : undefined;
 
     return this.initValue(key, value).asObservable();
   }
@@ -30,7 +40,7 @@ export class LocalStoragePersistenceStrategyService
       return EMPTY;
     }
 
-    localStorage.removeItem(key);
+    this.windowToken.localStorage.removeItem(key);
     this.items[key]?.next(undefined);
     this.items[key]?.complete();
     delete this.items[key];

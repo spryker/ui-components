@@ -4,7 +4,7 @@ import { PersistenceStrategyTypesDeclaration } from './types';
 
 export const PersistenceStrategyTypesToken = new InjectionToken<
   PersistenceStrategyTypesDeclaration[]
->('PersistenceStrategyTypesToken');
+>('PersistenceStrategyTypes');
 
 export function providePersistenceStrategies(
   strategies: PersistenceStrategyTypesDeclaration,

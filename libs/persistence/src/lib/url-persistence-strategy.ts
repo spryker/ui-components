@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { InjectionTokenType, WindowToken } from '@spryker/utils';
 import { EMPTY, fromEvent, Observable, of } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -10,18 +11,26 @@ import {
 
 import { PersistenceStrategy } from './types';
 
+/**
+ * Manages data via window url.
+ */
 @Injectable({
   providedIn: 'root',
 })
-export class UrlPersistenceStrategyService implements PersistenceStrategy {
-  private urlSearch$ = fromEvent(window, 'popstate').pipe(
-    map((event) => location.search),
-    startWith(location.search),
+export class UrlPersistenceStrategy implements PersistenceStrategy {
+  private urlSearch$ = fromEvent(this.windowToken, 'popstate').pipe(
+    map(() => this.windowToken.location.search),
+    startWith(this.windowToken.location.search),
   );
+
+  constructor(
+    @Inject(WindowToken)
+    private windowToken: InjectionTokenType<typeof WindowToken>,
+  ) {}
 
   save(key: string, value: unknown): Observable<void> {
     const convertedValue = JSON.stringify(value);
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(this.windowToken.location.search);
     urlParams.set(key, convertedValue);
 
     this.pushUrlState(key, urlParams);
@@ -43,7 +52,7 @@ export class UrlPersistenceStrategyService implements PersistenceStrategy {
   }
 
   remove(key: string): Observable<void> {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(this.windowToken.location.search);
     urlParams.delete(key);
 
     this.pushUrlState(key, urlParams);
@@ -52,10 +61,11 @@ export class UrlPersistenceStrategyService implements PersistenceStrategy {
   }
 
   private pushUrlState(key: string, urlParams: URLSearchParams): void {
-    const urlPathName = window.location.pathname;
-    const urlHash = window.location.hash && `#${window.location.hash}`;
+    const urlPathName = this.windowToken.location.pathname;
+    const urlHash =
+      this.windowToken.location.hash && `#${this.windowToken.location.hash}`;
     const queryString = `${urlPathName}?${urlParams.toString() + urlHash}`;
 
-    history.pushState({}, key, queryString);
+    this.windowToken.history.pushState({}, key, queryString);
   }
 }

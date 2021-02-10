@@ -9,11 +9,14 @@ import {
   PersistenceStrategyTypesDeclaration,
 } from './types';
 
+/**
+ * Allows to pick specific Persistence Strategy at runtime and get all available strategies registered in DI.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class PersistenceStrategyService {
-  strategies: PersistenceStrategyTypesDeclaration = this.strategiesTypes?.reduce(
+  private strategies: PersistenceStrategyTypesDeclaration = this.strategiesTypes?.reduce(
     (strategies, strategy) => ({ ...strategies, ...strategy }),
     {},
   );

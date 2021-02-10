@@ -1,9 +1,10 @@
 {
-  "name": "@spryker/persistence",
-  "version": "0.1.0-next.0",
+  "name": "@spryker/cache",
+  "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
+    "@spryker/persistence": "^0.0.1-next.0",
     "@spryker/utils": "^0.1.0-next.0"
   },
   "dependencies": {

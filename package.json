@@ -38,10 +38,8 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "run:all": "nx run-many --all --target",
-    "staged": "run-s staged:*",
-    "staged:global": "lint-staged",
-    "prestaged:libs": "npm run clean:dist",
-    "staged:libs": "lerna exec --concurrency 1 --stream -- lint-staged --config \\$LERNA_ROOT_PATH/lint-staged-libs.config.js",
+    "prestaged": "npm run clean:dist",
+    "staged": "lint-staged",
     "compile:less": "lessc --js",
     "compile:themes": "run-s compile:theme:*",
     "compile:theme:default": "npm run compile:less -- libs/styles/src/lib/themes/default/standalone.less libs/styles/src/lib/themes/default/standalone.css",
@@ -151,11 +149,6 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "*.{jsx?,tsx?,json,s?css,less,html}": [
-      "prettier --write"
     ]
   },
   "husky": {

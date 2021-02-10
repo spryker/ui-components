@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.12...@spryker/utils@0.2.0-next.13) (2021-02-10)
+
+
+### Bug Fixes
+
+* **utils:** use DateAdapter in TimeDuration dependency ([80d6c66](https://github.com/spryker/ui-components/commit/80d6c66912feb417227f132d394327ab59f9a976))
+
+
+### Features
+
+* **utils.date.adapter.date-fns:** add lib ([751148e](https://github.com/spryker/ui-components/commit/751148e252269edac234c4bb3aab262dd3dbda7a))
+* **utils/date:** add date utils services ([3fb9ecd](https://github.com/spryker/ui-components/commit/3fb9ecd2cd79f5a11061bc4f734aca224522ebe7))
+
+
+
+
+
 # [0.2.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.11...@spryker/utils@0.2.0-next.12) (2021-02-01)
 
 **Note:** Version bump only for package @spryker/utils

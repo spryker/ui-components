@@ -32,9 +32,24 @@ const mockManifest = new Map([
   ],
 ]);
 
+const mockStrategyData = new Map([
+  [
+    `${mockNamespace}.${mockId.serialize()}`,
+    {
+      data: 'mockData',
+    },
+  ],
+]);
+
 class MockPersistenceStrategyTypeService {
   save = jest.fn().mockReturnValue(EMPTY);
-  retrieve = jest.fn().mockReturnValue(of(mockManifest));
+  retrieve = jest.fn().mockImplementation((name) => {
+    if (name === CacheStoragePersistanceAdapter.ManifestId) {
+      return of(mockManifest);
+    } else {
+      return of(mockStrategyData.get(name));
+    }
+  });
   remove = jest.fn().mockReturnValue(EMPTY);
 }
 
@@ -49,29 +64,32 @@ describe('CacheStoragePersistanceAdapter', () => {
     );
   });
 
-  it('has method must check Manifest if the cache entry with namespace is stored in the PersistenceStrategies and return `true` if strategy exist', (done) => {
+  it('has method must check Manifest if the cache entry with namespace is stored in the PersistenceStrategies and return `true` if strategy exist', () => {
     const hasWithStrategyObserver$ = instance.has(mockId, mockNamespace);
+    const callback = jest.fn();
 
-    hasWithStrategyObserver$.subscribe((isStrategyExist) => {
-      expect(isStrategyExist).toBeTruthy();
-      done();
-    });
+    hasWithStrategyObserver$.subscribe(callback);
+
+    expect(callback).toHaveBeenCalledWith(true);
   });
 
-  it('has method must check Manifest if the cache entry with namespace is stored in the PersistenceStrategies and return `false` if strategy does not exist', (done) => {
+  it('has method must check Manifest if the cache entry with namespace is stored in the PersistenceStrategies and return `false` if strategy does not exist', () => {
     const hasWithoutStrategyObserver$ = instance.has(mockId, 'namespace');
+    const callback = jest.fn();
 
-    hasWithoutStrategyObserver$.subscribe((isStrategyExist) => {
-      expect(isStrategyExist).toBeFalsy();
-      done();
-    });
+    hasWithoutStrategyObserver$.subscribe(callback);
+
+    expect(callback).toHaveBeenCalledWith(false);
   });
 
   it('get method must return cache entry with namespace from PersistenceStrategies using PersistenceStrategy.retrieve()', () => {
     const getObserver$ = instance.get(mockId, mockNamespace);
-    getObserver$.subscribe();
+    const callback = jest.fn();
+
+    getObserver$.subscribe(callback);
 
     const name = `${mockNamespace}.${mockId.serialize()}`;
+    const getValue = mockStrategyData.get(name);
 
     expect(mockPersistenceStrategyTypeService.retrieve).toHaveBeenCalledWith(
       CacheStoragePersistanceAdapter.ManifestId,
@@ -79,6 +97,7 @@ describe('CacheStoragePersistanceAdapter', () => {
     expect(mockPersistenceStrategyTypeService.retrieve).toHaveBeenCalledWith(
       name,
     );
+    expect(callback).toHaveBeenCalledWith(getValue);
   });
 
   it('set method must save cache entry with namespace in PersistenceStrategies and add cache entry with namespace to the Manifest', () => {

@@ -32,40 +32,34 @@ describe('LocalStoragePersistenceStrategy', () => {
     windowToken = TestBed.inject(MockWindowToken);
   });
 
-  it('retrieve method when no value under key must return null', () => {
-    let data;
+  it('retrieve method when no value under key must return undefined', () => {
+    const callback = jest.fn();
     const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe((value) => {
-      data = value;
-    });
+    retrievedSavedObserver$.subscribe(callback);
 
     expect(windowToken.localStorage.getItem).toHaveBeenCalledWith(mockKey);
-    expect(data).toBe(null);
+    expect(callback).toHaveBeenCalledWith(undefined);
   });
 
   it('retrieve method must return stored value under key from localStorage', () => {
-    let data;
+    const callback = jest.fn();
     service.save(mockKey, mockValue);
     const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe((value) => {
-      data = value;
-    });
+    retrievedSavedObserver$.subscribe(callback);
 
     expect(windowToken.localStorage.getItem).toHaveBeenCalledWith(mockKey);
-    expect(data).toBe(mockValue);
+    expect(callback).toHaveBeenCalledWith(mockValue);
   });
 
   it('save method must store `value` under `key` in the memory and store it to the localStorage', () => {
-    let data;
+    const callback = jest.fn();
     const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe((value) => {
-      data = value;
-    });
+    retrievedSavedObserver$.subscribe(callback);
 
-    expect(data).toBe(null);
+    expect(callback).toHaveBeenCalledWith(undefined);
 
     service.save(mockKey, mockValue);
 
@@ -73,26 +67,24 @@ describe('LocalStoragePersistenceStrategy', () => {
       mockKey,
       JSON.stringify(mockValue),
     );
-    expect(data).toBe(mockValue);
+    expect(callback).toHaveBeenCalledWith(mockValue);
   });
 
   it('remove method must remove stored `value` under `key` from LocalStorage', () => {
-    let data;
+    const callback = jest.fn();
     const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe((value) => {
-      data = value;
-    });
+    retrievedSavedObserver$.subscribe(callback);
 
-    expect(data).toBe(null);
+    expect(callback).toHaveBeenCalledWith(undefined);
 
     service.save(mockKey, mockValue);
 
-    expect(data).toBe(mockValue);
+    expect(callback).toHaveBeenCalledWith(mockValue);
 
     service.remove(mockKey);
 
     expect(windowToken.localStorage.removeItem).toHaveBeenCalledWith(mockKey);
-    expect(data).toBe(undefined);
+    expect(callback).toHaveBeenCalledWith(undefined);
   });
 });

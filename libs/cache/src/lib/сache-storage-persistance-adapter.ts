@@ -16,8 +16,7 @@ interface ManifestData {
 }
 
 /**
- * Wraps many {@link PersistenceStrategy} and operate on them as one.
- * Uses {@link PersistenceStrategy} as a {@link CacheStorage}.
+ * {@link CacheStorage} adapter for a {@link PersistenceStrategy}.
  */
 export class CacheStoragePersistanceAdapter implements CacheStorage {
   static ManifestId = 'Persistence_Strategies_Manifest';

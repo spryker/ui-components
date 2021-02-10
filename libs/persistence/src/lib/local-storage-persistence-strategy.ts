@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { InjectionTokenType, WindowToken } from '@spryker/utils';
-import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
 
 import { PersistenceStrategy } from './types';
 
@@ -28,10 +28,9 @@ export class LocalStoragePersistenceStrategy implements PersistenceStrategy {
     return EMPTY;
   }
 
-  retrieve<T>(key: string): Observable<T> {
-    const value = JSON.parse(
-      this.windowToken.localStorage.getItem(key) || 'null',
-    );
+  retrieve<T>(key: string): Observable<T | undefined> {
+    const storageValue = this.windowToken.localStorage.getItem(key);
+    const value = storageValue ? JSON.parse(storageValue) : undefined;
 
     return this.initValue(key, value).asObservable();
   }

@@ -9,6 +9,8 @@ const mockSearchKey = 'mockSearchKey';
 const mockSearchValue = 'mockSearchValue';
 
 class MockWindowToken {
+  popCallback?: (event: any) => void;
+
   location = {
     search: `?${mockSearchKey}="${mockSearchValue}"`,
     hash: 'hash',
@@ -17,6 +19,16 @@ class MockWindowToken {
   history = {
     pushState: jest.fn(),
   };
+  addEventListener = jest.fn().mockImplementation((name, callback) => {
+    if (name === 'popstate') {
+      this.popCallback = callback;
+    }
+  });
+  removeEventListener = jest.fn().mockImplementation((name, callback) => {
+    if (name === 'popstate' && callback === this.popCallback) {
+      this.popCallback = undefined;
+    }
+  });
 }
 
 describe('UrlPersistenceStrategy', () => {
@@ -43,24 +55,21 @@ describe('UrlPersistenceStrategy', () => {
     }`;
 
   it('retrieve method when no value under key must return `undefined`', () => {
-    let data;
+    const callback = jest.fn();
     const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe((value) => {
-      data = value;
-    });
+    retrievedSavedObserver$.subscribe(callback);
 
-    expect(data).toBe(undefined);
+    expect(callback).toHaveBeenCalledWith(undefined);
   });
 
   it('retrieve method must return stored value under key from URL Query', () => {
-    let data;
+    const callback = jest.fn();
     const retrievedSavedObserver$ = service.retrieve(mockSearchKey);
-    retrievedSavedObserver$.subscribe((value) => {
-      data = value;
-    });
 
-    expect(data).toBe(mockSearchValue);
+    retrievedSavedObserver$.subscribe(callback);
+
+    expect(callback).toHaveBeenCalledWith(mockSearchValue);
   });
 
   it('save method must store `value` under `key` in the URL Query', () => {
@@ -73,6 +82,23 @@ describe('UrlPersistenceStrategy', () => {
       mockKey,
       queryStringGeneration(urlParams),
     );
+  });
+
+  it('retrieve method must emit stored value under key from URL Query every time when `popstate` event has been fired', () => {
+    const callback = jest.fn();
+    const retrievedSavedObserver$ = service.retrieve(mockSearchKey);
+
+    retrievedSavedObserver$.subscribe(callback);
+
+    expect(callback).toHaveBeenCalledWith(mockSearchValue);
+
+    const newMockValue = `NEW${mockSearchValue}`;
+    const newMockSearch = `?${mockSearchKey}="${newMockValue}"`;
+
+    windowToken.location.search = newMockSearch;
+    windowToken.popCallback?.({});
+
+    expect(callback).toHaveBeenCalledWith(newMockValue);
   });
 
   it('remove stored value under `key` from URL Query', () => {

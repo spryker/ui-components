@@ -20,11 +20,11 @@ export class CacheStorageFactoryService {
       config.type,
     );
 
-    const cacheStorageInstance = new CacheStoragePersistanceAdapter(
-      persistenceStrategy,
-    );
-
     if (!this.persistenceStrategies[config.type]) {
+      const cacheStorageInstance = new CacheStoragePersistanceAdapter(
+        persistenceStrategy,
+      );
+
       this.persistenceStrategies[config.type] = cacheStorageInstance;
 
       return cacheStorageInstance;

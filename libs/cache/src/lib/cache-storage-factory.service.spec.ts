@@ -1,12 +1,15 @@
 import { Injectable, Injector } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { PersistenceStrategyService } from '@spryker/persistence';
+import {
+  PersistenceStrategyService,
+  PersistenceStrategy,
+} from '@spryker/persistence';
 import { EMPTY, of } from 'rxjs';
 
 import { CacheStorageFactoryService } from './cache-storage-factory.service';
 import { CacheStoragePersistanceAdapter } from './сache-storage-persistance-adapter';
 
-class MockPersistenceStrategyTypeService {
+class MockPersistenceStrategyTypeService implements PersistenceStrategy {
   save = jest.fn().mockReturnValue(EMPTY);
   retrieve = jest.fn().mockReturnValue(of('mockValue'));
   remove = jest.fn().mockReturnValue(EMPTY);
@@ -60,6 +63,14 @@ describe('CacheStorageFactoryService', () => {
       returnedClass instanceof CacheStoragePersistanceAdapter,
     ).toBeTruthy();
     expect(JSON.stringify(returnedClass)).toBe(JSON.stringify(expectedClass));
+  });
+
+  it('method `create` should sore return `CacheStoragePersistanceAdapter` instance and reuse it for the same type', () => {
+    const mockConfig = { type: 'test' };
+    const returnedClass = service.create(mockConfig);
+    const returnedClassWithSameType = service.create(mockConfig);
+
+    expect(returnedClass).toBe(returnedClassWithSameType);
   });
 
   it('method `getAll` should return array of instances of `CacheStoragePersistanceAdapter` that uses a `PersistenceStrategy`', () => {

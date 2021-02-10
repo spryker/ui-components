@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, EMPTY } from 'rxjs';
 import { PersistenceStrategy } from './types';
 
 /**
- * Manages data via runtime storage.
+ * Manages data via runtime `in-memory` storage.
  */
 @Injectable({
   providedIn: 'root',

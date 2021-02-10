@@ -256,6 +256,9 @@
     },
     "cache": {
       "tags": ["type:service", "pkg:primary"]
+    },
+    "utils.date.adapter.date-fns": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

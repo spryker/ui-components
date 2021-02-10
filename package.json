@@ -38,8 +38,11 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "run:all": "nx run-many --all --target",
-    "prestaged": "npm run clean:dist",
-    "staged": "lint-staged",
+    "hook:commit": "npm run clean:dist && lint-staged",
+    "hook:push": "run-s hook:push:*",
+    "hook:push:format": "format:check",
+    "hook:push:lint": "npm run affected:lint  -- --parallel",
+    "hook:push:test": "npm run affected:test -- --parallel",
     "compile:less": "lessc --js",
     "compile:themes": "run-s compile:theme:*",
     "compile:theme:default": "npm run compile:less -- libs/styles/src/lib/themes/default/standalone.less libs/styles/src/lib/themes/default/standalone.css",
@@ -154,8 +157,8 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run staged",
-      "pre-push": "run-s format:check affected:test affected:lint"
+      "pre-commit": "npm run hook:commit",
+      "pre-push": "npm run hook:push"
     }
   }
 }

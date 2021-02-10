@@ -25,10 +25,7 @@ class MockWindowToken {
     }
   });
   removeEventListener = jest.fn().mockImplementation((name, callback) => {
-    if (
-      name === 'popstate' &&
-      callback.toString() === this.popCallback?.toString()
-    ) {
+    if (name === 'popstate' && callback === this.popCallback) {
       this.popCallback = undefined;
     }
   });

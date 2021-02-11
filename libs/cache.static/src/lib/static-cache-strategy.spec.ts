@@ -42,11 +42,11 @@ class MockTimeDurationService {
   parse = jest.fn();
 }
 
-const mockOperations = (value: string) => () => of(value);
 const mockConfig = {
   type: 'test',
   expiresIn: '2d',
 };
+
 const mockId = {
   serialize: () => 'id',
 };
@@ -86,12 +86,13 @@ describe('StaticCacheStrategy', () => {
   });
 
   it('getCached method should store entry with value and updatedAt current date by id to the storage and return observable with value', () => {
-    const mockValue = 'mockValue';
+    const mockOperations = jest.fn();
     const callback = jest.fn();
+    const mockValue = 'mockValue';
     const getCachedObservable$ = service.getCached(
       mockId,
       mockConfig,
-      mockOperations(mockValue),
+      mockOperations.mockReturnValue(of(mockValue)),
     );
 
     getCachedObservable$.subscribe(callback);
@@ -104,18 +105,23 @@ describe('StaticCacheStrategy', () => {
   });
 
   it('getCached method should cache entry exist in the storage and the date is not expired and return in from cache', () => {
+    const mockOperations = jest.fn();
+    const callback = jest.fn();
+    const mockValue = 'mockValue';
     const today = new Date();
     const tomorrow = new Date(today);
 
     tomorrow.setDate(tomorrow.getDate() + 1);
     timeDuration.addTo.mockReturnValue(tomorrow);
 
-    const mockValue = 'mockValue';
-    const callback = jest.fn();
     const triggerGetCached$ = new ReplaySubject<string>(1);
     const getCachedObservable$ = triggerGetCached$.pipe(
       switchMap((value) =>
-        service.getCached(mockId, mockConfig, mockOperations(value)),
+        service.getCached(
+          mockId,
+          mockConfig,
+          mockOperations.mockReturnValue(of(value)),
+        ),
       ),
     );
 
@@ -133,20 +139,26 @@ describe('StaticCacheStrategy', () => {
     expect(entry).toEqual(cachedEntry);
     expect(callback).toHaveBeenCalledWith(mockValue);
     expect(callback).toHaveBeenCalledTimes(2);
+    expect(mockOperations).toHaveBeenCalledTimes(1);
   });
 
   it('getCached method should return new entry with new value and date if date has been expired', fakeAsync(() => {
+    const mockOperations = jest.fn();
+    const callback = jest.fn();
+    const mockValue = 'mockValue';
     const date = new Date();
 
     timeDuration.addTo.mockReturnValue(date);
 
-    const mockValue = 'mockValue';
     const newMockValue = 'newMockValue';
-    const callback = jest.fn();
     const triggerGetCached$ = new ReplaySubject<string>(1);
     const getCachedObservable$ = triggerGetCached$.pipe(
       switchMap((value) =>
-        service.getCached(mockId, mockConfig, mockOperations(value)),
+        service.getCached(
+          mockId,
+          mockConfig,
+          mockOperations.mockReturnValue(of(value)),
+        ),
       ),
     );
 
@@ -168,5 +180,6 @@ describe('StaticCacheStrategy', () => {
     expect(callback).toHaveBeenCalledWith(newMockValue);
     expect(callback).toHaveBeenCalledTimes(2);
     expect(entry).not.toEqual(cachedEntry);
+    expect(mockOperations).toHaveBeenCalledTimes(2);
   }));
 });

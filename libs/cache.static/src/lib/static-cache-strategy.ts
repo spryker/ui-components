@@ -4,6 +4,7 @@ import {
   CacheOperation,
   CacheStrategy,
   CacheStorageFactoryService,
+  CacheEntry,
 } from '@spryker/cache';
 import { of, Observable } from 'rxjs';
 import { TimeDurationService } from '@spryker/utils/date';
@@ -46,7 +47,7 @@ export class StaticCacheStrategy implements CacheStrategy {
                   switchMap(() =>
                     operation().pipe(
                       switchMap((operationValue) => {
-                        const newEntry = {
+                        const newEntry: CacheEntry = {
                           updatedAt: new Date(),
                           value: operationValue,
                         };
@@ -67,7 +68,7 @@ export class StaticCacheStrategy implements CacheStrategy {
 
         return operation().pipe(
           switchMap((value) => {
-            const entry = {
+            const entry: CacheEntry = {
               updatedAt: new Date(),
               value,
             };

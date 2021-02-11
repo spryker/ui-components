@@ -21,7 +21,7 @@ export class PluckDataTransformerService
     const properties = config.path.split('.');
     let value: object | unknown;
 
-    if (properties.length === 0) {
+    if (!properties.length) {
       return of(undefined);
     }
 

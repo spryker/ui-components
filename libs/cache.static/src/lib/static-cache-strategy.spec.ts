@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { CacheId, CacheStorageFactoryService } from '@spryker/cache';
 import { TimeDurationService } from '@spryker/utils/date';
 import { of, ReplaySubject } from 'rxjs';
@@ -135,7 +135,7 @@ describe('StaticCacheStrategy', () => {
     expect(callback).toHaveBeenCalledTimes(2);
   });
 
-  it('getCached method should return new entry with new value and date if date has been expired', () => {
+  it('getCached method should return new entry with new value and date if date has been expired', fakeAsync(() => {
     const date = new Date();
 
     timeDuration.addTo.mockReturnValue(date);
@@ -155,17 +155,18 @@ describe('StaticCacheStrategy', () => {
 
     const entry = cacheStoragePersistanceAdapter.items.get(mockId.serialize());
 
+    tick(500);
     triggerGetCached$.next(newMockValue);
 
     const cachedEntry = cacheStoragePersistanceAdapter.items.get(
       mockId.serialize(),
     );
 
-    expect(entry).not.toEqual(cachedEntry);
     expect(cachedEntry.value).toBe(newMockValue);
     expect(cachedEntry.updatedAt).toBeInstanceOf(Date);
     expect(callback).toHaveBeenCalledWith(mockValue);
     expect(callback).toHaveBeenCalledWith(newMockValue);
     expect(callback).toHaveBeenCalledTimes(2);
-  });
+    expect(entry).not.toEqual(cachedEntry);
+  }));
 });

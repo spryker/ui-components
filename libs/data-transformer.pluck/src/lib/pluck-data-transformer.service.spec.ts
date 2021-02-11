@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 import { ReplaySubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -17,7 +18,9 @@ describe('PluckDataTransformerService', () => {
   let service: PluckDataTransformerService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [DefaultContextSerializationModule],
+    });
     service = TestBed.inject(PluckDataTransformerService);
   });
 

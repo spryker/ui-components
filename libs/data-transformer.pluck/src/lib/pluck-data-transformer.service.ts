@@ -19,7 +19,7 @@ export class PluckDataTransformerService
     config: PluckDataTransformerConfig,
   ): Observable<PluckDataTransformerDataT> {
     const properties = config.path.split('.');
-    let value: object | unknown;
+    let value = { ...data };
 
     if (!properties.length) {
       return of(undefined);
@@ -27,13 +27,12 @@ export class PluckDataTransformerService
 
     for (let i = 0; i < properties.length; i++) {
       const propertyKey = properties[i] as keyof PluckDataTransformerData;
-      const properObject = typeof value === 'object' && value ? value : data;
 
-      if (!properObject.hasOwnProperty(propertyKey)) {
+      if (!value.hasOwnProperty(propertyKey)) {
         return of(undefined);
       }
 
-      value = properObject[propertyKey];
+      value = value[propertyKey];
     }
 
     return of(value);

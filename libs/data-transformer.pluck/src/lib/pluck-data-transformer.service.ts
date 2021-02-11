@@ -27,13 +27,13 @@ export class PluckDataTransformerService
 
     for (let i = 0; i < properties.length; i++) {
       const propertyKey = properties[i] as keyof PluckDataTransformerData;
-      const propertyValue = typeof value === 'object' && value ? value : data;
+      const properObject = typeof value === 'object' && value ? value : data;
 
-      if (!propertyValue.hasOwnProperty(propertyKey)) {
+      if (!properObject.hasOwnProperty(propertyKey)) {
         return of(undefined);
       }
 
-      value = propertyValue[propertyKey];
+      value = properObject[propertyKey];
     }
 
     return of(value);

@@ -28,20 +28,20 @@ describe('DataTransformerService', () => {
   });
 
   it('transform method returns the result from call DataTransformer.transform() with arguments `data` and `config`', () => {
-    const mockReturnValue = 'mockReturnValue';
+    const mockTransformerValue = 'mockTransformerValue';
     const mockData = 'mockData';
     const mockConfig = {
       type: mockTransformerType,
     };
 
-    dataTransformer.transform.mockReturnValue(mockReturnValue);
-    service.transform(mockData, mockConfig);
+    dataTransformer.transform.mockReturnValue(mockTransformerValue);
+    const serviceValue = service.transform(mockData, mockConfig);
 
     expect(dataTransformer.transform).toHaveBeenCalledWith(
       mockData,
       mockConfig,
     );
-    expect(dataTransformer.transform()).toBe(mockReturnValue);
+    expect(serviceValue).toBe(mockTransformerValue);
   });
 
   it('transform method find the DataTransformer based on the config.type from DataTransformerTypesToken, if no DataTransformer found - throw an error', () => {

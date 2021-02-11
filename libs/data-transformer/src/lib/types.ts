@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 // tslint:disable-next-line: no-empty-interface
 export interface DataTransformerRegistry {
-  // pluck: [D in DataTransformer, DT in DataTransformer]
+  // pluck: DataTransformer
 }
 
 export type DataTransformerType = keyof DataTransformerRegistry extends never
@@ -11,10 +11,7 @@ export type DataTransformerType = keyof DataTransformerRegistry extends never
   : keyof DataTransformerRegistry;
 
 export type DataTransformerTypesDeclaration = {
-  [P in keyof DataTransformerRegistry]?: DataTransformer<
-    DataTransformerRegistry[P][0],
-    DataTransformerRegistry[P][1]
-  >;
+  [P in keyof DataTransformerRegistry]?: DataTransformerRegistry[P];
 };
 
 export interface DataTransformerConfig {

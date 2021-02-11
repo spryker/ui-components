@@ -18,24 +18,49 @@ before_script:
 jobs:
   include:
     - stage: test-branch
+      name: 'Format check'
       script:
         - git fetch origin next
-        - npm run format:check
+        - npm run format:check -- --base=origin/next
+    - name: 'Lint code'
+      script:
+        - git fetch origin next
         - npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --all --parallel
+    - name: 'Unit Tests'
+      script:
+        - git fetch origin next
         - COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --all --parallel
+    - name: 'Build'
+      script:
+        - git fetch origin next
         - npm run build-non-libs
         - npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --all --parallel
+
     - stage: test-next
+      name: 'Format check'
       script:
         - git fetch origin master
-        - npm run format:check
+        - npm run format:check -- --base=origin/master
+    - name: 'Lint code'
+      script:
+        - git fetch origin master
         - npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --all --parallel
+    - name: 'Unit Tests'
+      script:
+        - git fetch origin master
         - COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --all --parallel
+
     - stage: test-master
+      name: 'Format check'
       script:
         - npm run format:check
+    - name: 'Lint code'
+      script:
         - npm run affected:lint -- --all --parallel
-        - COVERAGE=true npm run npm run affected:test -- --all --parallel
+    - name: 'Unit Tests'
+      script:
+        - COVERAGE=true npm run affected:test -- --all --parallel
+
     - stage: deploy
       script:
         - npm run build
@@ -44,8 +69,6 @@ jobs:
         - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
         - git fetch pub $TRAVIS_BRANCH
         - git checkout $TRAVIS_BRANCH
-      after_deploy:
-        - npx lerna exec -- cat ./dist/package.json
       deploy:
         - provider: script
           script: npm run release

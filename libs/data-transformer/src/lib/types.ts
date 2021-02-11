@@ -1,0 +1,28 @@
+import { InjectionToken, ModuleWithProviders } from '@angular/core';
+import { Observable } from 'rxjs';
+
+// tslint:disable-next-line: no-empty-interface
+export interface DataTransformerRegistry {
+  // pluck: [D in DataTransformer, DT in DataTransformer]
+}
+
+export type DataTransformerType = keyof DataTransformerRegistry extends never
+  ? string
+  : keyof DataTransformerRegistry;
+
+export type DataTransformerTypesDeclaration = {
+  [P in keyof DataTransformerRegistry]?: DataTransformer<
+    DataTransformerRegistry[P][0],
+    DataTransformerRegistry[P][1]
+  >;
+};
+
+export interface DataTransformerConfig {
+  type: DataTransformerType;
+  // Reserved for types that may have extra configuration
+  [extraConfig: string]: unknown;
+}
+
+export interface DataTransformer<D, DT> {
+  transform(data: D, config: DataTransformerConfig): Observable<DT>;
+}

@@ -309,6 +309,9 @@
     },
     "cache.static": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer": {
+      "tags": ["type:service", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

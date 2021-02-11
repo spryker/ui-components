@@ -312,6 +312,9 @@
     },
     "data-transformer": {
       "tags": ["type:service", "pkg:primary"]
+    },
+    "data-transformer.pluck": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

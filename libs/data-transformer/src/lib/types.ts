@@ -1,4 +1,3 @@
-import { InjectionToken, ModuleWithProviders } from '@angular/core';
 import { Observable } from 'rxjs';
 
 // tslint:disable-next-line: no-empty-interface

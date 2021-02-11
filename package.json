@@ -40,7 +40,7 @@
     "run:all": "nx run-many --all --target",
     "hook:commit": "npm run clean:dist && lint-staged",
     "hook:push": "run-s hook:push:*",
-    "hook:push:format": "format:check",
+    "hook:push:format": "npm run format:check",
     "hook:push:lint": "npm run affected:lint  -- --parallel",
     "hook:push:test": "npm run affected:test -- --parallel",
     "compile:less": "lessc --js",

@@ -55,7 +55,10 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
     );
   }
 
-  get(id: CacheId, namespace?: string): Observable<CacheEntry | undefined> {
+  get<T>(
+    id: CacheId,
+    namespace?: string,
+  ): Observable<CacheEntry<T> | undefined> {
     return this.manifest$.pipe(
       switchMap((manifest) => {
         if (!manifest) {
@@ -64,7 +67,7 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
 
         const { name } = this.getManifestData(manifest, id, namespace);
 
-        return this.persistenceStrategy.retrieve<CacheEntry>(name);
+        return this.persistenceStrategy.retrieve<CacheEntry<T>>(name);
       }),
     );
   }

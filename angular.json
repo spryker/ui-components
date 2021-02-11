@@ -5714,6 +5714,50 @@
           "style": "less"
         }
       }
+    },
+    "cache.static": {
+      "projectType": "library",
+      "root": "libs/cache.static",
+      "sourceRoot": "libs/cache.static/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/cache.static/tsconfig.lib.json",
+            "project": "libs/cache.static/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/cache.static/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/cache.static/tsconfig.lib.json",
+              "libs/cache.static/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/cache.static/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/cache.static/jest.config.js",
+            "tsConfig": "libs/cache.static/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/cache.static/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

@@ -34,7 +34,10 @@ export interface CacheEntry<T = unknown> {
 
 export interface CacheStorage {
   has(id: CacheId, namespace?: string): Observable<boolean>;
-  get(id: CacheId, namespace?: string): Observable<CacheEntry | undefined>;
+  get<T>(
+    id: CacheId,
+    namespace?: string,
+  ): Observable<CacheEntry<T> | undefined>;
   set(id: CacheId, data: CacheEntry, namespace?: string): Observable<void>;
   remove(id: CacheId, namespace?: string): Observable<void>;
   clear(namespace?: string): Observable<void>;

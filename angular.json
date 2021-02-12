@@ -5758,6 +5758,97 @@
           "style": "less"
         }
       }
+    },
+    "data-transformer": {
+      "projectType": "library",
+      "root": "libs/data-transformer",
+      "sourceRoot": "libs/data-transformer/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/data-transformer/tsconfig.lib.json",
+            "project": "libs/data-transformer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/data-transformer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data-transformer/tsconfig.lib.json",
+              "libs/data-transformer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-transformer/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-transformer/jest.config.js",
+            "tsConfig": "libs/data-transformer/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/data-transformer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "data-transformer.pluck": {
+      "projectType": "library",
+      "root": "libs/data-transformer.pluck",
+      "sourceRoot": "libs/data-transformer.pluck/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/data-transformer.pluck/tsconfig.lib.json",
+            "project": "libs/data-transformer.pluck/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/data-transformer.pluck/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data-transformer.pluck/tsconfig.lib.json",
+              "libs/data-transformer.pluck/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-transformer.pluck/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-transformer.pluck/jest.config.js",
+            "tsConfig": "libs/data-transformer.pluck/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/data-transformer.pluck/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

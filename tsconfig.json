@@ -21,6 +21,9 @@
       "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"],
       "@spryker/data-transformer.chain": [
         "libs/data-transformer.chain/src/index.ts"
+      ],
+      "@spryker/data-transformer.collate": [
+        "libs/data-transformer.collate/src/index.ts"
       ]
     }
   },

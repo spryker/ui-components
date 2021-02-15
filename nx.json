@@ -330,6 +330,9 @@
     },
     "data-transformer.chain": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.collate": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

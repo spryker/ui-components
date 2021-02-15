@@ -3,14 +3,14 @@ import {
   DataTransformer,
   DataTransformerService,
 } from '@spryker/data-transformer';
-import { Observable, of, from } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
+import { reduce, switchAll, switchMap } from 'rxjs/operators';
 
 import {
   ChainDataTransformerConfig,
   ChainDataTransformerData,
   ChainDataTransformerDataT,
 } from './types';
-import { reduce, tap, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -25,14 +25,16 @@ export class ChainDataTransformerService
     config: ChainDataTransformerConfig,
   ): Observable<ChainDataTransformerDataT> {
     return from(config.transformers).pipe(
-      reduce((prevData, currentConfig) => {
-        return prevData.pipe(
-          switchMap((value) =>
-            this.dataTransformerService.transform(value, currentConfig),
+      reduce(
+        (prevData, currentConfig) =>
+          prevData.pipe(
+            switchMap((value) =>
+              this.dataTransformerService.transform(value, currentConfig),
+            ),
           ),
-        );
-      }, of(data)),
-      switchMap((result) => result),
+        of(data),
+      ),
+      switchAll(),
     );
   }
 }

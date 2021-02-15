@@ -315,6 +315,12 @@
     },
     "data-transformer.pluck": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "datasource": {
+      "tags": ["type:service", "pkg:primary"]
+    },
+    "datasource.inline": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

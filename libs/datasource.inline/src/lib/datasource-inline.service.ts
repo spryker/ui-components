@@ -1,45 +1,34 @@
 import { Injectable, Injector } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { withLatestFrom, map, delay } from 'rxjs/operators';
 import {
-  CoreTableComponent,
-  TableData,
-  TableDataConfig,
-  TableDataRow,
-  TableDatasource,
-} from '@spryker/table';
-import { Observable } from 'rxjs';
-import { delay, map, withLatestFrom } from 'rxjs/operators';
-
-import { TableDatasourceFilterService } from './table-datasource-filter.service';
-import { TableDatasourceProcessorService } from './table-datasource-processor.service';
-import {
-  TableDatasourceFilterValue,
-  TableDatasourceInlineConfig,
-  TableDatasourceInlineConfigPreprocessor,
+  DatasourceInlineConfig,
+  DatasourceInlineConfigPreprocessor,
+  DatasourceInlineContext,
 } from './types';
+import { DatasourceProcessorService } from './datasource-processor.service';
+import { DatasourceFilterService } from './datasource-filter.service';
+import { CoreTableComponent } from 'libs/table/src';
 
-/**
- * Returns data straight from the table configuration data to the table for rendering
- * and supports sorting, filtering and pagination.
- */
-@Injectable({ providedIn: 'root' })
-export class TableDatasourceInlineService
-  implements TableDatasource<TableDatasourceInlineConfig> {
+@Injectable({
+  providedIn: 'root',
+})
+export class DatasourceInlineService {
   constructor(
-    private datasourceFilter: TableDatasourceFilterService,
-    private datasourceProcessor: TableDatasourceProcessorService,
+    private datasourceFilter: DatasourceFilterService,
+    private datasourceProcessor: DatasourceProcessorService,
   ) {}
 
   resolve(
-    datasource: TableDatasourceInlineConfig,
-    dataConfig$: Observable<TableDataConfig>,
     injector: Injector,
-  ): Observable<TableData> {
+    config: DatasourceInlineConfig,
+    context?: DatasourceInlineContext,
+  ): Observable<unknown> {
     const tableComponent = injector.get(CoreTableComponent);
 
-    return dataConfig$.pipe(
-      withLatestFrom(tableComponent.config$),
-      map(([config, tableConfig]) => {
-        const paginationConfig = tableConfig.pagination as any;
+    return of(config.data).pipe(
+      map((config) => {
+        const paginationConfig = context?.pagination as any;
         const defaultPaginationSize = paginationConfig
           ? paginationConfig.sizes[0]
           : undefined;
@@ -74,7 +63,6 @@ export class TableDatasourceInlineService
           });
         }
 
-
         if (withPreprocessing) {
           data = this.postprocessData(datasource.columnProcessors, data);
         }
@@ -90,28 +78,10 @@ export class TableDatasourceInlineService
     );
   }
 
-  const data = [
-    {date: ''},
-    {},
-    {}
-  ];
-
-  transformerServic.transform(data, {type: 'arrayMapper', transformer: {
-    type: 'objectMapper', map: {
-      propName: {
-        type: 'date'
-      },
-    }
-  }});
-
-  private arrayMapperTransform(date, config) {
-
-  }
-
   private postprocessData(
-    columnProcessors: TableDatasourceInlineConfigPreprocessor,
-    data: TableDataRow[],
-  ): TableDataRow[] {
+    columnProcessors: DatasourceInlineConfigPreprocessor,
+    data: unknown,
+  ): unknown {
     return data.map((row) => {
       row = { ...row };
 
@@ -130,9 +100,9 @@ export class TableDatasourceInlineService
   }
 
   private preprocessData(
-    columnProcessors: TableDatasourceInlineConfigPreprocessor,
-    data: TableDataRow[],
-  ): TableDataRow[] {
+    columnProcessors: DatasourceInlineConfigPreprocessor,
+    data: DataRow[],
+  ): DataRow[] {
     return data.map((row) => {
       row = { ...row };
 
@@ -151,10 +121,10 @@ export class TableDatasourceInlineService
   }
 
   private filterData(
-    datasource: TableDatasourceInlineConfig,
-    config: TableDataConfig,
-    data: TableDataRow[],
-  ): TableDataRow[] {
+    datasource: DatasourceInlineConfig,
+    config: DataConfig,
+    data: DataRow[],
+  ): DataRow[] {
     if (config.filter) {
       Object.entries(datasource.filter).forEach(([key, options]) => {
         const byValue = (config.filter as any)[key];
@@ -199,8 +169,8 @@ export class TableDatasourceInlineService
   private paginateData(
     page: number,
     pageSize: number,
-    data: TableDataRow[],
-  ): TableDataRow[] {
+    data: DataRow[],
+  ): DataRow[] {
     const slicedData = data.slice((page - 1) * pageSize, page * pageSize);
 
     if (slicedData.length) {

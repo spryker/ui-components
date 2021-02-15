@@ -3,6 +3,7 @@ import {
   DataTransformerConfig,
   DataTransformerService,
 } from '@spryker/data-transformer';
+import { of } from 'rxjs';
 
 import { ObjectMapDataTransformerService } from './object-map-data-transformer.service';
 
@@ -33,14 +34,14 @@ class MockDataTransformerService {
     .fn()
     .mockImplementation((value: string, config: DataTransformerConfig) => {
       if (config.type === mockTestTypeTransformerConfig.type) {
-        return mockTestTypeTransformerConfig.returnValue;
+        return of(mockTestTypeTransformerConfig.returnValue);
       }
 
       if (config.type === mockAnotherTestTypeTransformerConfig.type) {
-        return mockAnotherTestTypeTransformerConfig.returnValue;
+        return of(mockAnotherTestTypeTransformerConfig.returnValue);
       }
 
-      return value;
+      return of(value);
     });
 }
 

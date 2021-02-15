@@ -11,4 +11,4 @@ export interface ObjectMapDataTransformerConfig extends DataTransformerConfig {
 }
 
 export type ObjectMapDataTransformerData = Record<string, unknown>;
-export type ObjectMapDataTransformerDataT = object;
+export type ObjectMapDataTransformerDataT = Record<string, unknown>;

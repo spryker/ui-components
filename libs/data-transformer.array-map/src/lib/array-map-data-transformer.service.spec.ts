@@ -40,17 +40,15 @@ describe('ArrayMapDataTransformerService', () => {
     const callback = jest.fn();
     const transformObservable$ = service.transform(mockData, mockConfig);
 
-    transformObservable$.subscribe((test) => {
-      console.log(test);
-    });
+    transformObservable$.subscribe(callback);
 
-    // mockData.forEach((item) => {
-    //   expect(dataTransformerService.transform).toBeCalledWith(
-    //     item,
-    //     mockConfig.mapItems,
-    //   );
-    // });
-    // expect(callback).toHaveBeenCalledWith(mockReturnedData);
-    // expect(dataTransformerService.transform).toBeCalledTimes(mockData.length);
+    mockData.forEach((item) => {
+      expect(dataTransformerService.transform).toBeCalledWith(
+        item,
+        mockConfig.mapItems,
+      );
+    });
+    expect(callback).toHaveBeenCalledWith(mockReturnedData);
+    expect(dataTransformerService.transform).toBeCalledTimes(mockData.length);
   });
 });

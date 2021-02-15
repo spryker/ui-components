@@ -3,14 +3,14 @@ import {
   DataTransformer,
   DataTransformerService,
 } from '@spryker/data-transformer';
-import { Observable, of, from } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import {
   ObjectMapDataTransformerConfig,
   ObjectMapDataTransformerData,
   ObjectMapDataTransformerDataT,
 } from './types';
-import { scan } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -27,24 +27,21 @@ export class ObjectMapDataTransformerService
     data: ObjectMapDataTransformerData,
     config: ObjectMapDataTransformerConfig,
   ): Observable<ObjectMapDataTransformerDataT> {
-    const dataToTransform = { ...data };
+    return of(Object.entries(data)).pipe(
+      switchMap((dataArray) => {
+        const dataToTransform: ObjectMapDataTransformerDataT = {};
 
-    for (const [propName, value] of Object.entries(dataToTransform)) {
-      if (!config.mapProps.hasOwnProperty(propName)) {
-        continue;
-      }
+        for (const [propName, value] of dataArray) {
+          dataToTransform[propName] = config.mapProps.hasOwnProperty(propName)
+            ? this.dataTransformerService.transform(
+                value,
+                config.mapProps[propName],
+              )
+            : of(value);
+        }
 
-      dataToTransform[propName] = this.dataTransformerService.transform(
-        value,
-        config.mapProps[propName],
-      );
-    }
-    console.log(dataToTransform);
-    return from(Object.entries(dataToTransform)).pipe(
-      scan((acc, curr) => {
-        console.log(acc, curr);
-        return acc;
-      }, data),
+        return forkJoin(dataToTransform);
+      }),
     );
   }
 }

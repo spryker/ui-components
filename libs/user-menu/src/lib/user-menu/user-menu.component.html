@@ -1,0 +1,8 @@
+<spy-popover [position]="popoverPosition" (openChange)="togglePopover($event)">
+  <button trigger class="spy-user-menu__action" [class.spy-user-menu__action--active]="isPopoverOpened">
+    <spy-icon class="spy-user-menu__icon" [name]="icon"></spy-icon>
+  </button>
+<!--  <ng-content class="spy-user-menu__content"></ng-content>-->
+  <div class="spy-user-menu__content">Lorem ipsum dolor sit amet, consectetur
+    adipisicing elit. Cum, quidem.</div>
+</spy-popover>

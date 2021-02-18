@@ -3,8 +3,8 @@ import {
   DataTransformer,
   DataTransformerService,
 } from '@spryker/data-transformer';
-import { from, Observable, of } from 'rxjs';
-import { reduce, switchAll, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import {
   ChainDataTransformerConfig,

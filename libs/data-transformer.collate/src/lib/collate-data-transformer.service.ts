@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { DataTransformer } from '@spryker/data-transformer';
-import { from, Observable, of } from 'rxjs';
-import { map, reduce, switchAll, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, switchAll, switchMap } from 'rxjs/operators';
 
 import { CollateDataConfiguratorService } from './collate-data-configurator.service';
 import { CollateFilterService } from './collate-filter.service';

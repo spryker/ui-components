@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { DataTransformerService } from '@spryker/data-transformer';
-import { LensDataTransformerService } from './lens-data-transformer.service';
-import { of } from 'rxjs';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { of } from 'rxjs';
+
+import { LensDataTransformerService } from './lens-data-transformer.service';
 
 const mockReturnedValue = 'mockReturnValue';
 

@@ -24,17 +24,14 @@ export class ChainDataTransformerService
     data: ChainDataTransformerData,
     config: ChainDataTransformerConfig,
   ): Observable<ChainDataTransformerDataT> {
-    return from(config.transformers).pipe(
-      reduce(
-        (prevData$, currentConfig) =>
-          prevData$.pipe(
-            switchMap((value) =>
-              this.dataTransformerService.transform(value, currentConfig),
-            ),
+    return config.transformers.reduce(
+      (prevData$, currentConfig) =>
+        prevData$.pipe(
+          switchMap((currentData) =>
+            this.dataTransformerService.transform(currentData, currentConfig),
           ),
-        of(data),
-      ),
-      switchAll(),
+        ),
+      of(data),
     );
   }
 }

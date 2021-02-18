@@ -32,10 +32,11 @@ export class CollateDataTransformerService
     return this.collateDataConfigurator
       .resolve(config.configurator, injector)
       .pipe(
-        map((configurator) => {
-          return this.filterData(config, configurator, data).pipe(
+        map((configurator) =>
+          this.filterData(config, configurator, data).pipe(
             map((filteredData) => {
               const sortingConfig = configurator.sorting;
+              const total = filteredData.length;
               let copiedData = [...filteredData];
 
               if (configurator.pageSize && configurator.page) {
@@ -60,10 +61,15 @@ export class CollateDataTransformerService
                 });
               }
 
-              return copiedData;
+              return {
+                data: copiedData,
+                total,
+                page: configurator.page ?? 1,
+                pageSize: configurator.pageSize ?? copiedData.length,
+              };
             }),
-          );
-        }),
+          ),
+        ),
         switchAll(),
       );
   }
@@ -78,43 +84,49 @@ export class CollateDataTransformerService
         ? Object.entries(collateConfig.filter)
         : [];
 
-    return from(filters).pipe(
-      reduce((prevData$, [key, options]) => {
-        const byValue = (configuratorConfig.filter as any)[key];
-        const byValueToCompare = Array.isArray(byValue) ? byValue : [byValue];
+    return filters
+      .reduce((prevData$, [key, options]) => {
+        return prevData$.pipe(
+          switchMap((currentData) => {
+            const byValue = (configuratorConfig.filter as any)[key];
+            const byValueToCompare = Array.isArray(byValue)
+              ? byValue
+              : [byValue];
 
-        if (byValue !== null && byValue !== undefined) {
-          return prevData$.pipe(
-            switchMap((newData) =>
-              this.collateFilter.filter(
-                options.type,
-                newData,
-                options,
-                byValueToCompare,
-                collateConfig.transformerByPropName,
-              ),
-            ),
-          );
-        }
+            if (byValue !== null && byValue !== undefined) {
+              return prevData$.pipe(
+                switchMap((newData) =>
+                  this.collateFilter.filter(
+                    options.type,
+                    newData,
+                    options,
+                    byValueToCompare,
+                    collateConfig.transformerByPropName,
+                  ),
+                ),
+              );
+            }
 
-        return prevData$;
-      }, of(data)),
-      switchAll(),
-      map((filteredData) => {
-        if (!configuratorConfig.search || !collateConfig.search) {
-          return of(filteredData);
-        }
-
-        return this.collateFilter.filter(
-          'text',
-          filteredData,
-          collateConfig.search as CollateFilterConfig,
-          [configuratorConfig.search],
-          collateConfig.transformerByPropName,
+            return prevData$;
+          }),
         );
-      }),
-      switchAll(),
-    );
+      }, of(data))
+      .pipe(
+        map((filteredData) => {
+          if (!configuratorConfig.search || !collateConfig.search) {
+            return of(filteredData);
+          }
+
+          return this.collateFilter.filter(
+            'text',
+            filteredData,
+            collateConfig.search as CollateFilterConfig,
+            [configuratorConfig.search],
+            collateConfig.transformerByPropName,
+          );
+        }),
+        switchAll(),
+      );
   }
 
   private sortData(a: any, b: any, sortBy: string): number {

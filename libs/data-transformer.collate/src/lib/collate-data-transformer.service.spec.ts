@@ -51,6 +51,8 @@ class MockCollateDataConfiguratorService {
         [mockAnotherIdFilter]: '2',
       },
       search: 'test',
+      page: 3,
+      pageSize: 2,
     }),
   );
 }
@@ -106,6 +108,11 @@ describe('CollateDataTransformerService', () => {
 
     serviceObservable$.subscribe(callback);
 
-    expect(callback).toHaveBeenCalledWith([mockData[0]]);
+    expect(callback).toHaveBeenCalledWith({
+      data: [mockData[0]],
+      page: 3,
+      pageSize: 2,
+      total: 1,
+    });
   });
 });

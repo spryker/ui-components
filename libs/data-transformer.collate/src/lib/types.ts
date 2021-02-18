@@ -50,7 +50,13 @@ export interface CollateFilterConfig {
 }
 
 export type CollateDataTransformerData = Record<string, unknown>[];
-export type CollateDataTransformerDataT = Record<string, unknown>[];
+
+export interface CollateDataTransformerDataT {
+  data: Record<string, unknown>[];
+  total: number;
+  page: number;
+  pageSize: number;
+}
 
 export interface CollateFilter {
   filter(

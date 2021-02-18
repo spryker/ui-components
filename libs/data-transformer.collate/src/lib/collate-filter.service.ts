@@ -7,7 +7,11 @@ import {
   CollateFiltersDeclaration,
   CollateFiltersRegistry,
   CollateFiltersRegistryType,
+  CollateFilterData,
+  CollateFilterByValue,
+  CollateTransformerByPropName,
 } from './types';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CollateFilterService {
@@ -24,20 +28,18 @@ export class CollateFilterService {
 
   filter(
     type: string,
-    data: Record<string, unknown>[],
+    data: CollateFilterData,
     options: CollateFilterConfig,
-    byValue: unknown[],
-    byValueTransformer: {
-      [propName: string]: string;
-    },
-  ): Record<string, unknown>[] {
+    byValue: CollateFilterByValue,
+    transformerByPropName?: CollateTransformerByPropName,
+  ): Observable<CollateFilterData> {
     if (!this.isFilterRegisteredType(type)) {
       throw Error(`CollateFilterService: Unknown filter type ${type}`);
     }
 
     const filterService = this.injector.get(this.filters[type]);
 
-    return filterService.filter(data, options, byValue, byValueTransformer);
+    return filterService.filter(data, options, byValue, transformerByPropName);
   }
 
   private isFilterRegisteredType(

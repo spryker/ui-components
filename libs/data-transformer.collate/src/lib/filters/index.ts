@@ -1,3 +1,3 @@
-export * from './table-datasource-equals-filter.service';
-export * from './table-datasource-range-filter.service';
-export * from './table-datasource-text-filter.service';
+export * from './collate-equals-filter.service';
+export * from './collate-range-filter.service';
+export * from './collate-text-filter.service';

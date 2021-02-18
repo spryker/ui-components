@@ -26,8 +26,8 @@ export class ChainDataTransformerService
   ): Observable<ChainDataTransformerDataT> {
     return from(config.transformers).pipe(
       reduce(
-        (prevData, currentConfig) =>
-          prevData.pipe(
+        (prevData$, currentConfig) =>
+          prevData$.pipe(
             switchMap((value) =>
               this.dataTransformerService.transform(value, currentConfig),
             ),

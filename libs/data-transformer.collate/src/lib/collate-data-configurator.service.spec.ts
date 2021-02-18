@@ -13,6 +13,7 @@ class MockCollateDataConfigurator {
 describe('CollateFilterService', () => {
   let service: CollateDataConfiguratorService;
   let collateDataConfigurator: MockCollateDataConfigurator;
+  let injector: Injector;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,6 +27,7 @@ describe('CollateFilterService', () => {
 
     service = TestBed.inject(CollateDataConfiguratorService);
     collateDataConfigurator = TestBed.inject(MockCollateDataConfigurator);
+    injector = TestBed.inject(Injector);
   });
 
   it('resolve method returns the result from call CollateDataConfigurator.resolve() with injector props', () => {
@@ -35,9 +37,9 @@ describe('CollateFilterService', () => {
     };
 
     collateDataConfigurator.resolve.mockReturnValue(mockTransformerValue);
-    const serviceValue = service.resolve(mockConfig);
+    const serviceValue = service.resolve(mockConfig, injector);
 
-    expect(collateDataConfigurator.resolve).toHaveBeenCalled();
+    expect(collateDataConfigurator.resolve).toHaveBeenCalledWith(injector);
     expect(serviceValue).toBe(mockTransformerValue);
   });
 
@@ -47,7 +49,7 @@ describe('CollateFilterService', () => {
     };
 
     expect(() => {
-      service.resolve(mockConfig);
+      service.resolve(mockConfig, injector);
     }).toThrow();
   });
 });

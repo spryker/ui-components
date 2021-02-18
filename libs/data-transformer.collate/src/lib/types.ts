@@ -8,9 +8,8 @@ declare module '@spryker/data-transformer' {
   }
 }
 
-export interface CollateDataConfiguratorRegistry {
-  // type: CollateDataConfigurator;
-}
+// tslint:disable-next-line: no-empty-interface
+export interface CollateDataConfiguratorRegistry {}
 
 export type CollateDataConfiguratorType = keyof CollateDataConfiguratorRegistry extends never
   ? string
@@ -22,10 +21,14 @@ export interface CollateDataConfiguratorConfig {
 }
 
 export interface CollateDataConfig {
-  // sorting?: ...;
-  // filtering?: ...;
-  // page?: number;
-  // pageNumber?: number;
+  filter?: unknown;
+  search?: unknown;
+  sorting?: {
+    sortBy?: string;
+    sortDirection?: string;
+  };
+  page?: number;
+  pageSize?: number;
 }
 
 export interface CollateDataConfigurator {
@@ -38,11 +41,12 @@ export interface CollateDataTransformerConfig extends DataTransformerConfig {
     [filterId: string]: CollateFilterConfig;
   };
   search?: CollateFilterConfig;
+  transformerByPropName?: CollateTransformerByPropName;
 }
 
 export interface CollateFilterConfig {
   type: string;
-  propNames: string;
+  propNames: string[];
 }
 
 export type CollateDataTransformerData = Record<string, unknown>[];
@@ -50,11 +54,11 @@ export type CollateDataTransformerDataT = Record<string, unknown>[];
 
 export interface CollateFilter {
   filter(
-    data: Record<string, unknown>[],
+    data: CollateFilterData,
     options: CollateFilterConfig,
-    byValue: unknown[],
-    byValueTransformer: Record<string, string>,
-  ): Record<string, unknown>[];
+    byValue: CollateFilterByValue,
+    transformerByPropName?: CollateTransformerByPropName,
+  ): Observable<CollateFilterData>;
 }
 
 export interface CollateFiltersDeclaration {
@@ -71,3 +75,9 @@ export interface CollateFiltersRegistry {}
 export type CollateFiltersRegistryType = keyof CollateFiltersRegistry extends never
   ? string
   : keyof CollateFiltersRegistry;
+
+export type CollateFilterData = Record<string, unknown>[];
+
+export type CollateFilterByValue = unknown[];
+
+export type CollateTransformerByPropName = Record<string, string>;

@@ -22,7 +22,6 @@ export class CollateDataConfiguratorService {
   );
 
   constructor(
-    private injector: Injector,
     @Inject(CollateDataConfiguratorTypesToken)
     private dataConfiguratorsTypes: InjectionTokenType<
       typeof CollateDataConfiguratorTypesToken
@@ -31,6 +30,7 @@ export class CollateDataConfiguratorService {
 
   resolve(
     config: CollateDataConfiguratorConfig,
+    injector: Injector,
   ): Observable<CollateDataConfig> {
     if (!this.isDataConfiguratorRegisteredType(config.type)) {
       throw Error(
@@ -38,11 +38,9 @@ export class CollateDataConfiguratorService {
       );
     }
 
-    const dataConfigurator = this.injector.get(
-      this.dataConfigurators[config.type],
-    );
+    const dataConfigurator = injector.get(this.dataConfigurators[config.type]);
 
-    return dataConfigurator.resolve(this.injector);
+    return dataConfigurator.resolve(injector);
   }
 
   private isDataConfiguratorRegisteredType(

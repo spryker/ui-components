@@ -31,7 +31,7 @@ describe('CollateFilterService', () => {
     const mockData = [{ mockData: 'mockData' }];
     const mockOptions = {
       type: 'type',
-      propNames: 'value',
+      propNames: ['value'],
     };
     const mockByValue = ['value'];
     const mockByValueTransformer = { test: 'value' };
@@ -61,7 +61,7 @@ describe('CollateFilterService', () => {
     const mockType = 'invalidType';
     const mockOptions = {
       type: 'type',
-      propNames: 'value',
+      propNames: ['value'],
     };
     const mockByValue = ['value'];
     const mockByValueTransformer = { test: 'value' };

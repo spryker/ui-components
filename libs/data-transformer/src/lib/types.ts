@@ -1,3 +1,4 @@
+import { Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 
 // tslint:disable-next-line: no-empty-interface
@@ -20,5 +21,9 @@ export interface DataTransformerConfig {
 }
 
 export interface DataTransformer<D, DT> {
-  transform(data: D, config: DataTransformerConfig): Observable<DT>;
+  transform(
+    data: D,
+    config: DataTransformerConfig,
+    injector?: Injector,
+  ): Observable<DT>;
 }

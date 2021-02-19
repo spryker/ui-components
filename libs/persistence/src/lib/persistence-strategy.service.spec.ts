@@ -12,10 +12,6 @@ class MockPersistenceStrategy {
   remove = jest.fn();
 }
 
-class MockInjector {
-  get = jest.fn;
-}
-
 describe('PersistenceStrategyService', () => {
   let service: PersistenceStrategyService;
   let persistenceStrategy: MockPersistenceStrategy;

@@ -1,50 +1,30 @@
 import { TestBed } from '@angular/core/testing';
-import { DataTransformerService } from '@spryker/data-transformer';
 
 import { DatasourceInlineService } from './datasource-inline.service';
 
-class MockDataTransformerService {
-  transform = jest.fn();
-}
-
 describe('DatasourceInlineService', () => {
   let service: DatasourceInlineService;
-  let dataTransformerService: MockDataTransformerService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        MockDataTransformerService,
-        {
-          provide: DataTransformerService,
-          useExisting: MockDataTransformerService,
-        },
-      ],
-    });
+    TestBed.configureTestingModule({});
     service = TestBed.inject(DatasourceInlineService);
-    dataTransformerService = TestBed.inject(MockDataTransformerService);
   });
 
-  it('resolve method should return value of DataTransformerService.transform', () => {
+  it('resolve method should return value from config.data as observable', () => {
+    const mockReturnedValue = 'mockReturnedValue';
     const mockConfig = {
       type: 'inline',
-      data: 'test',
+      data: mockReturnedValue,
       transform: {
         type: 'test',
       },
     };
     const mockInjector = {} as any;
-    const mockReturnedValue = 'mockReturnedValue';
+    const callback = jest.fn();
+    const serviceObservable$ = service.resolve(mockInjector, mockConfig);
 
-    dataTransformerService.transform.mockReturnValue(mockReturnedValue);
+    serviceObservable$.subscribe(callback);
 
-    const returnedValue = service.resolve(mockInjector, mockConfig);
-
-    expect(returnedValue).toBe(mockReturnedValue);
-    expect(dataTransformerService.transform).toHaveBeenCalledWith(
-      mockConfig.data,
-      mockConfig.transform,
-      mockInjector,
-    );
+    expect(callback).toHaveBeenCalledWith(mockReturnedValue);
   });
 });

@@ -1,4 +1,5 @@
 import { Inject, Injectable, Injector } from '@angular/core';
+import { DataTransformerService } from '@spryker/data-transformer';
 import { InjectionTokenType } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
@@ -10,6 +11,7 @@ import {
   DatasourceType,
   DatasourceTypesDeclaration,
 } from './types';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +25,7 @@ export class DatasourceService {
   constructor(
     @Inject(DatasourceTypesToken)
     private dataSourceTypes: InjectionTokenType<typeof DatasourceTypesToken>,
+    private dataTransformerService: DataTransformerService,
   ) {}
 
   resolve(
@@ -34,13 +37,21 @@ export class DatasourceService {
       throw Error(`DatasourceService: Unknown datasource type ${config.type}`);
     }
 
-    const dataSource: Datasource<
-      DatasourceConfig,
-      unknown,
-      unknown
-    > = injector.get(this.dataSources[config.type]);
+    const dataSource: Datasource<unknown, unknown> = injector.get(
+      this.dataSources[config.type],
+    );
 
-    return dataSource.resolve(injector, config, context);
+    return dataSource
+      .resolve(injector, config, context)
+      .pipe(
+        switchMap((data) =>
+          this.dataTransformerService.transform(
+            data,
+            config.transform,
+            injector,
+          ),
+        ),
+      );
   }
 
   private isDatasourceRegisteredType(

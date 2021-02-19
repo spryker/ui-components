@@ -1,5 +1,4 @@
 import { InjectionToken, Provider } from '@angular/core';
-import { InjectableType } from '@spryker/utils';
 
 import { DatasourceTypesDeclaration } from './types';
 
@@ -8,7 +7,7 @@ export const DatasourceTypesToken = new InjectionToken<
 >('DatasourceTypes');
 
 export function provideDatasources(
-  datasources: InjectableType<DatasourceTypesDeclaration>,
+  datasources: DatasourceTypesDeclaration,
 ): Provider {
   return {
     provide: DatasourceTypesToken,

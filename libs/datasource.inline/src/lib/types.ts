@@ -1,4 +1,3 @@
-import { DataTransformerConfig } from '@spryker/data-transformer';
 import { DatasourceConfig } from '@spryker/datasource';
 
 import { DatasourceInlineService } from './datasource-inline.service';
@@ -11,5 +10,4 @@ declare module '@spryker/datasource' {
 
 export interface DatasourceInlineConfig extends DatasourceConfig {
   data: unknown;
-  transform: DataTransformerConfig;
 }

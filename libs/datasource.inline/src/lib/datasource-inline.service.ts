@@ -1,23 +1,17 @@
 import { Injectable, Injector } from '@angular/core';
-import { DataTransformerService } from '@spryker/data-transformer';
-import { Observable } from 'rxjs';
+import { Datasource } from '@spryker/datasource';
+import { Observable, of } from 'rxjs';
 
 import { DatasourceInlineConfig } from './types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DatasourceInlineService {
-  constructor(private dataTransformerService: DataTransformerService) {}
-
+export class DatasourceInlineService implements Datasource {
   resolve(
     injector: Injector,
     config: DatasourceInlineConfig,
   ): Observable<unknown> {
-    return this.dataTransformerService.transform(
-      config.data,
-      config.transform,
-      injector,
-    );
+    return of(config.data);
   }
 }

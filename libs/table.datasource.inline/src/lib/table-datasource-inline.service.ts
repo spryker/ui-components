@@ -74,7 +74,6 @@ export class TableDatasourceInlineService
           });
         }
 
-
         if (withPreprocessing) {
           data = this.postprocessData(datasource.columnProcessors, data);
         }
@@ -88,24 +87,6 @@ export class TableDatasourceInlineService
       }),
       delay(0),
     );
-  }
-
-  const data = [
-    {date: ''},
-    {},
-    {}
-  ];
-
-  transformerServic.transform(data, {type: 'arrayMapper', transformer: {
-    type: 'objectMapper', map: {
-      propName: {
-        type: 'date'
-      },
-    }
-  }});
-
-  private arrayMapperTransform(date, config) {
-
   }
 
   private postprocessData(

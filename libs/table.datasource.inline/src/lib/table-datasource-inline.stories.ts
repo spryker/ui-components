@@ -28,8 +28,8 @@ import {
   TableDatasourceTextFilter,
 } from './filter';
 import { TableDatasourceDateProcessor } from './processor';
-import { TableDatasourceInlineModule } from './table-datasource.inline.module';
-import { TableDatasourceInlineService } from './table-datasource.inline.service';
+import { TableDatasourceInlineModule } from './table-datasource-inline.module';
+import { TableDatasourceInlineService } from './table-datasource-inline.service';
 
 export default {
   title: 'TableDatasourceInlineService',

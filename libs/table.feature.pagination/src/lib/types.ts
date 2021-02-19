@@ -8,5 +8,4 @@ declare module '@spryker/table' {
 
 export interface TablePaginationConfig extends TableFeatureConfig {
   sizes: number[];
-  pageSize: number;
 }

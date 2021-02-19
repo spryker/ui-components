@@ -14,10 +14,11 @@ describe('UserMenuItemComponent', () => {
 
   beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
 
-  it('should render <spy-user-menu-item>', async () => {
+  it('should render <spy-user-menu-item> with default slot', async () => {
     const host = await createComponent({}, true);
     const userMenuItemElem = host.queryCss('spy-user-menu-item');
 
     expect(userMenuItemElem).toBeTruthy();
+    expect(userMenuItemElem?.nativeElement.textContent).toMatch('Content');
   });
 });

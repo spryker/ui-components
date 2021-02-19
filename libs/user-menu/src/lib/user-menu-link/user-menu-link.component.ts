@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Input,
-  Inject,
   HostListener,
 } from '@angular/core';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
@@ -21,23 +20,20 @@ export enum UserMenuLinkType {
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'spy-user-menu-link',
-    '[class.spy-user-menu-link--danger]': 'typeDanger',
+    '[class.spy-user-menu-link--danger]': 'isTypeDanger',
   },
 })
 export class UserMenuLinkComponent {
   @Input() type?: UserMenuLinkType = UserMenuLinkType.Default;
 
   @HostListener('click', ['$event'])
-  onClick() {
-    this.userMenuComponent?.togglePopover(false);
+  onClick(): void {
+    this.userMenuComponent.togglePopover(false);
   }
 
-  constructor(
-    @Inject(UserMenuComponent)
-    private userMenuComponent?: UserMenuComponent,
-  ) {}
+  constructor(private userMenuComponent: UserMenuComponent) {}
 
-  get typeDanger(): boolean {
+  get isTypeDanger(): boolean {
     return this.type === UserMenuLinkType.Danger;
   }
 }

@@ -22,7 +22,7 @@ describe('UserMenuComponent', () => {
     expect(userMenuElem).toBeTruthy();
   });
 
-  it('should render <spy-user-menu> with icon input', async () => {
+  it('should render <spy-user-menu> with `icon` input', async () => {
     const host = await createComponent({ icon: IconUserModule.icon }, true);
     const userMenuIconElem = host.queryCss('spy-icon');
 
@@ -37,10 +37,11 @@ describe('UserMenuComponent', () => {
     expect(popoverElem).toBeTruthy();
   });
 
-  it('should render <button>', async () => {
+  it('should render <button> with `trigger` attribute', async () => {
     const host = await createComponent({}, true);
     const buttonElem = host.queryCss('button');
 
     expect(buttonElem).toBeTruthy();
+    expect(buttonElem?.attributes.trigger).toBeDefined();
   });
 });

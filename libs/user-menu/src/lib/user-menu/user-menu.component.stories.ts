@@ -4,12 +4,12 @@ import { UserMenuModule } from '../user-menu.module';
 import { UserMenuLinkType } from '../user-menu-link/user-menu-link.component';
 
 export default {
-  title: 'UserMenuComponent'
-}
+  title: 'UserMenuComponent',
+};
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [UserMenuModule, BrowserAnimationsModule, IconUserModule]
+    imports: [UserMenuModule, BrowserAnimationsModule, IconUserModule],
   },
   template: `
     <spy-user-menu [icon]="icon">
@@ -21,5 +21,5 @@ export const primary = () => ({
   props: {
     icon: IconUserModule.icon,
     type: UserMenuLinkType.Danger,
-  }
-})
+  },
+});

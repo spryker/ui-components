@@ -3,7 +3,8 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Input,
-  Inject, HostListener
+  Inject,
+  HostListener,
 } from '@angular/core';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
 

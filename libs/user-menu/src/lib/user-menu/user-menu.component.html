@@ -1,5 +1,13 @@
-<spy-popover [position]="popoverPosition" [open]="isPopoverOpened" (openChange)="togglePopover($event)">
-  <button trigger class="spy-user-menu__action" [class.spy-user-menu__action--active]="isPopoverOpened">
+<spy-popover
+  [position]="popoverPosition"
+  [open]="isPopoverOpened"
+  (openChange)="togglePopover($event)"
+>
+  <button
+    trigger
+    class="spy-user-menu__action"
+    [class.spy-user-menu__action--active]="isPopoverOpened"
+  >
     <spy-icon class="spy-user-menu__icon" [name]="icon"></spy-icon>
   </button>
   <div class="spy-user-menu__content">

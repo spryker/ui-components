@@ -1,12 +1,15 @@
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { UserMenuLinkComponent, UserMenuLinkType } from './user-menu-link.component';
+import {
+  UserMenuLinkComponent,
+  UserMenuLinkType,
+} from './user-menu-link.component';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
 
 @Component({
   selector: 'spy-test',
-  template: 'test'
+  template: 'test',
 })
 class MockTestComponent {
   togglePopover = jest.fn();
@@ -31,10 +34,10 @@ describe('UserMenuLinkComponent', () => {
       providers: [
         {
           provide: UserMenuComponent,
-          useExisting: MockTestComponent
+          useExisting: MockTestComponent,
         },
         MockTestComponent,
-      ]
+      ],
     });
     userMenuComponent = TestBed.inject(MockTestComponent);
   });

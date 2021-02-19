@@ -315,6 +315,9 @@
     },
     "data-transformer.pluck": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "actions": {
+      "tags": ["type:service", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

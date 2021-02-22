@@ -20,7 +20,7 @@ import { TableFormOverlayAction, TableFormOverlayOptions } from './types';
 })
 export class TableFormOverlayActionHandlerService
   implements TableActionHandler<TableFormOverlayAction> {
-  private drawersData = new Map<
+  private drawerRefs = new Map<
     CoreTableComponent,
     BehaviorSubject<DrawerRef>
   >();
@@ -40,8 +40,8 @@ export class TableFormOverlayActionHandlerService
       },
     );
 
-    this.drawersData.set(table, new BehaviorSubject(drawerRef));
-    drawerRef.afterClosed().subscribe(() => this.drawersData.delete(table));
+    this.drawerRefs.set(table, new BehaviorSubject(drawerRef));
+    drawerRef.afterClosed().subscribe(() => this.drawerRefs.delete(table));
   }
 
   /**
@@ -54,12 +54,14 @@ export class TableFormOverlayActionHandlerService
   ): Observable<unknown> {
     const drawerData = of(actionEvent.action.typeOptions);
     const table = injector.get(CoreTableComponent);
-    const isDrawerRefExist = this.drawersData.has(table);
+    const isDrawerRefExist = this.drawerRefs.has(table);
 
     if (isDrawerRefExist) {
       // tslint:disable-next-line: no-non-null-assertion
-      const drawerRef = this.drawersData.get(table)!.getValue();
+      const drawerRef$ = this.drawerRefs.get(table)!;
+      const drawerRef = drawerRef$.getValue();
 
+      drawerRef$.next(drawerRef);
       drawerRef
         .close()
         .subscribe(() => this.openDrawer(injector, drawerData, table));
@@ -70,7 +72,7 @@ export class TableFormOverlayActionHandlerService
     }
 
     // tslint:disable-next-line: no-non-null-assertion
-    return this.drawersData
+    return this.drawerRefs
       .get(table)!
       .pipe(switchMap((drawerRef) => drawerRef.afterClosed()));
   }

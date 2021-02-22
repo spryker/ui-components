@@ -20,3 +20,4 @@ export * from './drag';
 export * from './reset';
 export * from './edit';
 export * from './plus';
+export * from './user';

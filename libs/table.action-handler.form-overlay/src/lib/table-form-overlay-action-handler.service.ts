@@ -1,7 +1,11 @@
 import { Injectable, Injector } from '@angular/core';
 import { DrawerRef, DrawerService } from '@spryker/drawer';
-import { TableActionHandler, TableActionTriggeredEvent } from '@spryker/table';
-import { Observable, ReplaySubject, of } from 'rxjs';
+import {
+  CoreTableComponent,
+  TableActionHandler,
+  TableActionTriggeredEvent,
+} from '@spryker/table';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { TableFormOverlayActionHandlerComponent } from './table-form-overlay-action-handler.component';
@@ -16,24 +20,28 @@ import { TableFormOverlayAction, TableFormOverlayOptions } from './types';
 })
 export class TableFormOverlayActionHandlerService
   implements TableActionHandler<TableFormOverlayAction> {
-  drawerRef?: DrawerRef;
-  drawerRef$ = new ReplaySubject<DrawerRef>();
+  private drawerRefs = new Map<
+    CoreTableComponent,
+    BehaviorSubject<DrawerRef>
+  >();
 
   constructor(private drawerService: DrawerService) {}
 
   private openDrawer(
     injector: Injector,
     data: Observable<TableFormOverlayOptions>,
+    table: CoreTableComponent,
   ): void {
-    this.drawerRef = this.drawerService.openComponent(
+    const drawerRef = this.drawerService.openComponent(
       TableFormOverlayActionHandlerComponent,
       {
         data,
         injector,
       },
     );
-    this.drawerRef$.next(this.drawerRef);
-    this.drawerRef.afterClosed().subscribe(() => (this.drawerRef = undefined));
+
+    this.drawerRefs.set(table, new BehaviorSubject(drawerRef));
+    drawerRef.afterClosed().subscribe(() => this.drawerRefs.delete(table));
   }
 
   /**
@@ -45,20 +53,27 @@ export class TableFormOverlayActionHandlerService
     injector: Injector,
   ): Observable<unknown> {
     const drawerData = of(actionEvent.action.typeOptions);
+    const table = injector.get(CoreTableComponent);
+    const isDrawerRefExist = this.drawerRefs.has(table);
 
-    if (this.drawerRef) {
-      this.drawerRef$.next(this.drawerRef);
-      this.drawerRef
+    if (isDrawerRefExist) {
+      // tslint:disable-next-line: no-non-null-assertion
+      const drawerRef$ = this.drawerRefs.get(table)!;
+      const drawerRef = drawerRef$.getValue();
+
+      drawerRef$.next(drawerRef);
+      drawerRef
         .close()
-        .subscribe(() => this.openDrawer(injector, drawerData));
+        .subscribe(() => this.openDrawer(injector, drawerData, table));
     }
 
-    if (!this.drawerRef) {
-      this.openDrawer(injector, drawerData);
+    if (!isDrawerRefExist) {
+      this.openDrawer(injector, drawerData, table);
     }
 
-    return this.drawerRef$.pipe(
-      switchMap((drawerRef) => drawerRef.afterClosed()),
-    );
+    // tslint:disable-next-line: no-non-null-assertion
+    return this.drawerRefs
+      .get(table)!
+      .pipe(switchMap((drawerRef) => drawerRef.afterClosed()));
   }
 }

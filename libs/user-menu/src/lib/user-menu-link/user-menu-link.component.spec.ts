@@ -8,10 +8,8 @@ import {
 import { UserMenuComponent } from '../user-menu/user-menu.component';
 
 class MockUserMenuComponent {
-  togglePopover = jest.fn();
+  isPopoverOpened = false;
 }
-
-// tslint:disable no-non-null-assertion
 
 describe('UserMenuLinkComponent', () => {
   let userMenuComponent: MockUserMenuComponent;
@@ -52,11 +50,11 @@ describe('UserMenuLinkComponent', () => {
     expect(userMenuLinkElem?.classes['spy-user-menu-link--danger']).toBe(true);
   });
 
-  it('click event should call parent `togglePopover()` method', async () => {
+  it('click event should set parent `isPopoverOpened` to false', async () => {
     const host = await createComponent({}, true);
     const userMenuLinkElem = host.queryCss('spy-user-menu-link');
-    userMenuLinkElem!.triggerEventHandler('click', null);
+    userMenuLinkElem?.triggerEventHandler('click', null);
 
-    expect(userMenuComponent.togglePopover).toHaveBeenCalledWith(false);
+    expect(userMenuComponent.isPopoverOpened).toBe(false);
   });
 });

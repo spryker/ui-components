@@ -1,7 +1,6 @@
 <spy-popover
   [position]="popoverPosition"
-  [open]="isPopoverOpened"
-  (openChange)="togglePopover($event)"
+  [(open)]="isPopoverOpened"
 >
   <button
     trigger

@@ -44,4 +44,14 @@ describe('UserMenuComponent', () => {
     expect(buttonElem).toBeTruthy();
     expect(buttonElem?.attributes.trigger).toBeDefined();
   });
+
+  it('should add active class to <button> when popover is opened', async () => {
+    const host = await createComponent();
+    const userMenuElem = host.queryCss('spy-popover');
+    const buttonElem = host.queryCss('button');
+    userMenuElem?.triggerEventHandler('openChange', true);
+    host.detectChanges();
+
+    expect(buttonElem?.classes['spy-user-menu__action--active']).toBeTruthy();
+  });
 });

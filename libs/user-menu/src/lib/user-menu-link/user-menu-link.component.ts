@@ -28,7 +28,7 @@ export class UserMenuLinkComponent {
 
   @HostListener('click', ['$event'])
   onClick(): void {
-    this.userMenuComponent.togglePopover(false);
+    this.userMenuComponent.isPopoverOpened = false;
   }
 
   constructor(private userMenuComponent: UserMenuComponent) {}

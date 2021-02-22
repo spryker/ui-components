@@ -22,8 +22,4 @@ export class UserMenuComponent {
 
   popoverPosition = PopoverPosition.BottomRight;
   isPopoverOpened = false;
-
-  togglePopover(event: boolean): void {
-    this.isPopoverOpened = event;
-  }
 }

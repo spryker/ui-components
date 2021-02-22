@@ -9,7 +9,13 @@ import { UserMenuItemComponent } from './user-menu-item/user-menu-item.component
 import { UserMenuLinkComponent } from './user-menu-link/user-menu-link.component';
 
 @NgModule({
-  imports: [CommonModule, PopoverModule, IconModule, IconUserModule, CustomElementBoundaryModule],
+  imports: [
+    CommonModule,
+    PopoverModule,
+    IconModule,
+    IconUserModule,
+    CustomElementBoundaryModule,
+  ],
   declarations: [
     UserMenuComponent,
     UserMenuItemComponent,

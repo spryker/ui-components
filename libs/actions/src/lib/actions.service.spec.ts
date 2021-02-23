@@ -39,7 +39,11 @@ describe('ActionsService', () => {
 
     const serviceValue = service.trigger(mockInjector, mockConfig, mockContext);
 
-    expect(actions.handleAction).toHaveBeenCalledWith(mockInjector, mockConfig, mockContext);
+    expect(actions.handleAction).toHaveBeenCalledWith(
+      mockInjector,
+      mockConfig,
+      mockContext,
+    );
     expect(serviceValue).toBe(mockActionValue);
   });
 

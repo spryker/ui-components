@@ -14,6 +14,6 @@ export class ActionsModule {
     return {
       ngModule: ActionsModule,
       providers: [provideActions(actions)],
-    }
+    };
   }
 }

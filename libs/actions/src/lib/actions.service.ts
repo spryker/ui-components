@@ -7,7 +7,7 @@ import {
   ActionsRegistry,
   ActionType,
   InferActionContext,
-  InferActionReturn
+  InferActionReturn,
 } from './types';
 import { Observable } from 'rxjs';
 
@@ -33,14 +33,13 @@ export class ActionsService {
     context: InferActionContext<C['type']>,
   ): Observable<InferActionReturn<C['type']>> {
     if (!this.isActionRegisteredType(config.type)) {
-      throw Error(
-        `ActionsService: Unknown action type ${config.type}`,
-      );
+      throw Error(`ActionsService: Unknown action type ${config.type}`);
     }
 
-    const actionHandler: ActionHandler<InferActionContext<C['type']>, InferActionReturn<C['type']>> = this.injector.get(
-      this.actionHandlersObject[config.type],
-    );
+    const actionHandler: ActionHandler<
+      InferActionContext<C['type']>,
+      InferActionReturn<C['type']>
+    > = this.injector.get(this.actionHandlersObject[config.type]);
 
     return actionHandler.handleAction(injector, config, context);
   }

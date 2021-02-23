@@ -4,7 +4,7 @@ import { RegistryDeclaration } from '@spryker/utils';
 
 export const ActionTypesToken = new InjectionToken<
   RegistryDeclaration<ActionsRegistry>[]
-  >('ActionsToken');
+>('ActionsToken');
 
 export function provideActions(
   actions: RegistryDeclaration<ActionsRegistry>,

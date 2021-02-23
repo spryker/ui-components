@@ -318,6 +318,9 @@
     },
     "user-menu": {
       "tags": ["level:molecule", "type:component", "pkg:primary"]
+    },
+    "actions.drawer": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

@@ -14,7 +14,7 @@ import {
 })
 export class UnsavedChangesFormMonitorBubblingDirective
   implements OnInit, OnDestroy {
-  private disposeChangeEvent?: () => void;
+  private disposeInputEvent?: () => void;
 
   constructor(
     private elementRef: ElementRef<HTMLElement>,
@@ -22,7 +22,7 @@ export class UnsavedChangesFormMonitorBubblingDirective
   ) {}
 
   ngOnInit(): void {
-    this.disposeChangeEvent = this.renderer.listen(
+    this.disposeInputEvent = this.renderer.listen(
       this.elementRef.nativeElement,
       'input',
       (event) => {
@@ -32,8 +32,8 @@ export class UnsavedChangesFormMonitorBubblingDirective
   }
 
   ngOnDestroy(): void {
-    this.disposeChangeEvent?.();
-    this.disposeChangeEvent = undefined;
+    this.disposeInputEvent?.();
+    this.disposeInputEvent = undefined;
   }
 
   private eventStopPropagation(event: Event) {

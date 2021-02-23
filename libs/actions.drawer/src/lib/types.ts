@@ -11,9 +11,6 @@ export interface DrawerActionComponentsRegistry {
 
 export type DrawerActionComponentType = RegistryType<DrawerActionComponentsRegistry>;
 
-// DI multi-token
-// type DrawerActionComponentTypesToken = InjectionToken<RegistryDeclaration<DrawerActionComponentsRegistry>[]>;
-
 export interface DrawerActionConfigComponent extends ActionConfig {
   component: DrawerActionComponentType | Type<unknown>;
   options?: Partial<DrawerOptionsComponent>;
@@ -25,6 +22,9 @@ export interface DrawerActionConfigTemplate extends ActionConfig {
 }
 
 export type DrawerActionConfig = DrawerActionConfigComponent | DrawerActionConfigTemplate;
+
+// DI multi-token
+// type DrawerActionComponentTypesToken = InjectionToken<RegistryDeclaration<DrawerActionComponentsRegistry>[]>;
 
 // @Injectable() class
 // interface DrawerActionHandlerService extends ActionHandler<unknown, DrawerRef> {

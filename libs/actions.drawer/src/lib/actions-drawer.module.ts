@@ -4,10 +4,10 @@ import { DrawerModule } from '@spryker/drawer';
 import { RegistryDeclaration } from '@spryker/utils';
 import { DrawerActionComponentsRegistry } from './types';
 import { provideDrawerActionType } from './token';
-// import { ActionsModule } from '@spryker/actions';
+import { ActionsModule } from '@spryker/actions';
 
 @NgModule({
-  imports: [CommonModule, DrawerModule],
+  imports: [CommonModule, DrawerModule, ActionsModule],
 })
 export class DrawerActionModule {
   static withComponents(

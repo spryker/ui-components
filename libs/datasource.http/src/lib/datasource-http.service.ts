@@ -66,10 +66,10 @@ export class DatasourceHttpService implements Datasource {
     );
 
     if (config.cache) {
-      const stringToConcatenate = 'http-datasource';
+      const httpDatasourceNamespace = 'http-datasource';
       config.cache.namespace = config.cache.namespace
-        ? `${stringToConcatenate}-${config.cache.namespace}`
-        : stringToConcatenate;
+        ? `${httpDatasourceNamespace}-${config.cache.namespace}`
+        : httpDatasourceNamespace;
       const cacheId = new HttpCacheId(config);
 
       return this.cacheService.getCached(

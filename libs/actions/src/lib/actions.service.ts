@@ -1,11 +1,12 @@
 import { Inject, Injectable, Injector } from '@angular/core';
-import { InjectionTokenType, RegistryDeclaration } from '@spryker/utils';
+import { InjectionTokenType } from '@spryker/utils';
 import { ActionTypesToken } from './token';
 import {
   ActionConfig,
   ActionHandler,
   ActionsRegistry,
   ActionType,
+  ActionTypesDeclaration,
   InferActionContext,
   InferActionReturn,
 } from './types';
@@ -15,8 +16,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ActionsService {
-  private actionHandlersObject: RegistryDeclaration<ActionsRegistry> =
-    this.actionHandlers?.reduce(
+  private actionHandlerTypes: ActionTypesDeclaration =
+    this.actionHandlers.reduce(
       (actions, action) => ({ ...actions, ...action }),
       {},
     ) || {};
@@ -24,7 +25,7 @@ export class ActionsService {
   constructor(
     private injector: Injector,
     @Inject(ActionTypesToken)
-    private actionHandlers?: InjectionTokenType<typeof ActionTypesToken>,
+    private actionHandlers: InjectionTokenType<typeof ActionTypesToken>,
   ) {}
 
   trigger<C extends ActionConfig>(
@@ -39,7 +40,7 @@ export class ActionsService {
     const actionHandler: ActionHandler<
       InferActionContext<C['type']>,
       InferActionReturn<C['type']>
-    > = this.injector.get(this.actionHandlersObject[config.type]);
+    > = this.injector.get(this.actionHandlerTypes[config.type]);
 
     return actionHandler.handleAction(injector, config, context);
   }
@@ -47,6 +48,6 @@ export class ActionsService {
   private isActionRegisteredType(
     type: ActionType,
   ): type is keyof ActionsRegistry {
-    return type in this.actionHandlersObject;
+    return type in this.actionHandlerTypes;
   }
 }

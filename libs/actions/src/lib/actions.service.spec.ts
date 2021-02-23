@@ -8,26 +8,26 @@ const mockActionValue = 'mockActionValue';
 const mockInjector = {} as any;
 const mockContext = {} as any;
 
-class MockActions {
+class MockActionHandler {
   handleAction = jest.fn();
 }
 
 describe('ActionsService', () => {
   let service: ActionsService;
-  let actions: MockActions;
+  let mockActionHandler: MockActionHandler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         ActionsModule.withActions({
-          [mockActionType]: MockActions,
+          [mockActionType]: MockActionHandler,
         }),
       ],
-      providers: [MockActions],
+      providers: [MockActionHandler],
     });
 
     service = TestBed.inject(ActionsService);
-    actions = TestBed.inject(MockActions);
+    mockActionHandler = TestBed.inject(MockActionHandler);
   });
 
   it('trigger method returns the result from call ActionHandler.handleAction() with arguments', () => {
@@ -35,11 +35,11 @@ describe('ActionsService', () => {
       type: mockActionType,
     };
 
-    actions.handleAction.mockReturnValue(mockActionValue);
+    mockActionHandler.handleAction.mockReturnValue(mockActionValue);
 
     const serviceValue = service.trigger(mockInjector, mockConfig, mockContext);
 
-    expect(actions.handleAction).toHaveBeenCalledWith(
+    expect(mockActionHandler.handleAction).toHaveBeenCalledWith(
       mockInjector,
       mockConfig,
       mockContext,

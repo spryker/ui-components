@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.7 (2021-02-22)
+
+
+### Features
+
+* **user-menu:** add lib ([866609b](https://github.com/spryker/ui-components/commit/866609be9cb90224aa09fce773dae7f194f847cf))
+
+
+
+
+
 # [0.2.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/icon@0.2.0-next.5...@spryker/icon@0.2.0-next.6) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/icon

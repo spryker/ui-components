@@ -1,4 +1,10 @@
-import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 
 /**
  * Responsible prevent bubbling of input event.
@@ -6,15 +12,31 @@ import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 @Directive({
   selector: '[spyUnsavedChangesFormMonitorBubbling]',
 })
-export class UnsavedChangesFormMonitorBubblingDirective implements OnInit {
+export class UnsavedChangesFormMonitorBubblingDirective
+  implements OnInit, OnDestroy {
+  private disposeChangeEvent?: () => void;
+
   constructor(
     private elementRef: ElementRef<HTMLElement>,
     private renderer: Renderer2,
   ) {}
 
   ngOnInit(): void {
-    this.renderer.listen(this.elementRef.nativeElement, 'input', (event) => {
-      event.stopImmediatePropagation();
-    });
+    this.disposeChangeEvent = this.renderer.listen(
+      this.elementRef.nativeElement,
+      'input',
+      (event) => {
+        this.eventStopPropagation(event);
+      },
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.disposeChangeEvent?.();
+    this.disposeChangeEvent = undefined;
+  }
+
+  private eventStopPropagation(event: Event) {
+    event.stopImmediatePropagation();
   }
 }

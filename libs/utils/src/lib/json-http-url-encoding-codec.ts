@@ -35,6 +35,8 @@ export class JsonHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
 
 export const DiEncodingCodecToken = new InjectionToken<HttpUrlEncodingCodec>(
   'DiEncodingCodec',
+  {
+    providedIn: 'root',
+    factory: () => new JsonHttpUrlEncodingCodec(),
+  },
 );
-
-// new JsonHttpUrlEncodingCodec()

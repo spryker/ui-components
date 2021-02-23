@@ -60,8 +60,8 @@ export class DatasourceHttpService implements Datasource {
           )
         : undefined;
     const requestStream$ = this.http.request(
-      config.url,
       config.method ?? 'GET',
+      config.url,
       { params, body },
     );
 

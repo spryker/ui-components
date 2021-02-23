@@ -6,6 +6,6 @@ export class HttpCacheId implements CacheId {
   constructor(private config: DatasourceHttpConfig) {}
 
   serialize() {
-    return `${this.config.url}${this.config.method}`;
+    return `${this.config.url}${this.config.method ?? 'GET'}`;
   }
 }

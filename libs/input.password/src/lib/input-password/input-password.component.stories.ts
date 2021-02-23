@@ -1,5 +1,5 @@
 import { InputPasswordModule } from '../input-password.module';
-import {boolean} from "@storybook/addon-knobs";
+import { boolean } from '@storybook/addon-knobs';
 import { InputPasswordComponent } from './input-password.component';
 
 export default {

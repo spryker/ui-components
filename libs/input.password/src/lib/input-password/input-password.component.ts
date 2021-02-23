@@ -43,6 +43,8 @@ export class InputPasswordComponent {
     }
     this.isPasswordHidden = !this.isPasswordHidden;
     this.type = this.isPasswordHidden ? 'password' : 'text';
-    this.iconName = this.isPasswordHidden ? IconOpenEyeModule.icon : IconCrossedEyeModule.icon;
+    this.iconName = this.isPasswordHidden
+      ? IconOpenEyeModule.icon
+      : IconCrossedEyeModule.icon;
   }
 }

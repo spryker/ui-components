@@ -68,7 +68,10 @@ describe('InputPasswordComponent', () => {
 
       it('should bind placeholder to placeholder of `spy-input`', async () => {
         const mockPlaceholder = 'placeholder';
-        const host = await createComponent({ placeholder: mockPlaceholder }, true);
+        const host = await createComponent(
+          { placeholder: mockPlaceholder },
+          true,
+        );
         const inputElem = host.queryCss('spy-input')!;
 
         expect(inputElem.properties.placeholder).toBe(mockPlaceholder);
@@ -76,7 +79,10 @@ describe('InputPasswordComponent', () => {
 
       it('should bind outerPrefix to outerPrefix of `spy-input`', async () => {
         const mockOuterPrefix = 'outerPrefix';
-        const host = await createComponent({ outerPrefix: mockOuterPrefix }, true);
+        const host = await createComponent(
+          { outerPrefix: mockOuterPrefix },
+          true,
+        );
         const inputElem = host.queryCss('spy-input')!;
 
         expect(inputElem.properties.outerPrefix).toBe(mockOuterPrefix);
@@ -84,7 +90,10 @@ describe('InputPasswordComponent', () => {
 
       it('should bind outerSuffix to outerSuffix of `spy-input`', async () => {
         const mockOuterSuffix = 'outerSuffix';
-        const host = await createComponent({ outerSuffix: mockOuterSuffix }, true);
+        const host = await createComponent(
+          { outerSuffix: mockOuterSuffix },
+          true,
+        );
         const inputElem = host.queryCss('spy-input')!;
 
         expect(inputElem.properties.outerSuffix).toBe(mockOuterSuffix);
@@ -160,13 +169,17 @@ describe('InputPasswordComponent', () => {
       const inputPasswordIconElem = host.queryCss('.spy-input-password__icon')!;
       const inputElem = host.queryCss('input')!;
 
-      expect(inputPasswordIconElem.properties.name).toBe(IconOpenEyeModule.icon);
+      expect(inputPasswordIconElem.properties.name).toBe(
+        IconOpenEyeModule.icon,
+      );
       expect(inputElem.properties.type).toBe('password');
 
       inputPasswordIconElem!.triggerEventHandler('click', {});
       host.detectChanges();
 
-      expect(inputPasswordIconElem.properties.name).toBe(IconCrossedEyeModule.icon);
+      expect(inputPasswordIconElem.properties.name).toBe(
+        IconCrossedEyeModule.icon,
+      );
       expect(inputElem.properties.type).toBe('text');
     });
   });

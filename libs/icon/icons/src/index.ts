@@ -20,5 +20,6 @@ export * from './drag';
 export * from './reset';
 export * from './edit';
 export * from './plus';
+export * from './user';
 export * from './crossed-eye';
 export * from './open-eye';

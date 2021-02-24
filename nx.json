@@ -316,6 +316,9 @@
     "data-transformer.pluck": {
       "tags": ["type:service", "pkg:extension"]
     },
+    "user-menu": {
+      "tags": ["level:molecule", "type:component", "pkg:primary"]
+    },
     "input.password": {
       "tags": ["type:component", "level:atom", "pkg:extension"]
     }

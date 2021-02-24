@@ -7,8 +7,7 @@ import { DataTransformerConfigurator } from './types';
 
 const mockDataConfiguratorType = 'mockDataConfiguratorType';
 
-class MockDataTransformerConfigurator
-  implements DataTransformerConfigurator<unknown> {
+class MockDataTransformerConfigurator implements DataTransformerConfigurator {
   resolve = jest.fn();
 }
 

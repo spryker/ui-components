@@ -4,11 +4,12 @@ import { Observable } from 'rxjs';
 
 import { DataTransformerConfiguratorToken } from './token';
 import {
-  DataTransformerConfigurator,
+  DataTransformerConfiguratorConfigT,
   DataTransformerConfiguratorConfig,
   DataTransformerConfiguratorDeclaration,
   DataTransformerConfiguratorRegistry,
   DataTransformerConfiguratorType,
+  DataTransformerConfigurator,
 } from './types';
 
 @Injectable({ providedIn: 'root' })
@@ -31,14 +32,14 @@ export class DataTransformerConfiguratorService {
   resolve(
     config: DataTransformerConfiguratorConfig,
     injector: Injector,
-  ): Observable<unknown> {
+  ): Observable<DataTransformerConfiguratorConfigT> {
     if (!this.isDataConfiguratorRegisteredType(config.type)) {
       throw Error(
         `DataTransformerConfiguratorService: Unknown data configurator type ${config.type}`,
       );
     }
 
-    const dataConfigurator: DataTransformerConfigurator<unknown> = injector.get(
+    const dataConfigurator: DataTransformerConfigurator = injector.get(
       this.dataConfigurators[config.type],
     );
 

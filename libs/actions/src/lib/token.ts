@@ -1,14 +1,11 @@
 import { InjectionToken, Provider } from '@angular/core';
-import { ActionsRegistry } from './types';
-import { RegistryDeclaration } from '@spryker/utils';
+import { ActionTypesDeclaration } from './types';
 
-export const ActionTypesToken = new InjectionToken<
-  RegistryDeclaration<ActionsRegistry>[]
->('ActionsToken');
+export const ActionTypesToken = new InjectionToken<ActionTypesDeclaration[]>(
+  'ActionsToken',
+);
 
-export function provideActions(
-  actions: RegistryDeclaration<ActionsRegistry>,
-): Provider {
+export function provideActions(actions: ActionTypesDeclaration): Provider {
   return {
     provide: ActionTypesToken,
     useValue: actions,

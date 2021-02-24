@@ -1,7 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegistryDeclaration } from '@spryker/utils';
-import { ActionsRegistry } from './types';
+import { ActionTypesDeclaration } from './types';
 import { provideActions } from './token';
 
 @NgModule({
@@ -9,7 +8,7 @@ import { provideActions } from './token';
 })
 export class ActionsModule {
   static withActions(
-    actions: RegistryDeclaration<ActionsRegistry>,
+    actions: ActionTypesDeclaration,
   ): ModuleWithProviders<ActionsModule> {
     return {
       ngModule: ActionsModule,

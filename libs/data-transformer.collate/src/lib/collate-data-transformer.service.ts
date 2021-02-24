@@ -1,16 +1,20 @@
 import { Injectable, Injector } from '@angular/core';
 import { DataTransformer } from '@spryker/data-transformer';
-import { Observable, of } from 'rxjs';
-import { map, switchAll, switchMap } from 'rxjs/operators';
-
-import { CollateDataConfiguratorService } from './collate-data-configurator.service';
-import { CollateFilterService } from './collate-filter.service';
 import {
-  CollateDataConfig,
+  DataTransformerConfiguratorConfigT,
+  DataTransformerConfiguratorService,
+} from '@spryker/data-transformer-configurator';
+import {
+  DataTransformerFilterConfig,
+  DataTransformerFilterService,
+} from '@spryker/data-transformer-filter';
+import { Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+
+import {
   CollateDataTransformerConfig,
   CollateDataTransformerData,
   CollateDataTransformerDataT,
-  CollateFilterConfig,
 } from './types';
 
 @Injectable({
@@ -20,8 +24,8 @@ export class CollateDataTransformerService
   implements
     DataTransformer<CollateDataTransformerData, CollateDataTransformerDataT> {
   constructor(
-    private collateFilter: CollateFilterService,
-    private collateDataConfigurator: CollateDataConfiguratorService,
+    private DataTransformerFilter: DataTransformerFilterService,
+    private collateDataConfigurator: DataTransformerConfiguratorService,
   ) {}
 
   transform(
@@ -32,7 +36,7 @@ export class CollateDataTransformerService
     return this.collateDataConfigurator
       .resolve(config.configurator, injector)
       .pipe(
-        map((configurator) =>
+        switchMap((configurator) =>
           this.filterData(config, configurator, data).pipe(
             map((filteredData) => {
               const sortingConfig = configurator.sorting;
@@ -70,13 +74,12 @@ export class CollateDataTransformerService
             }),
           ),
         ),
-        switchAll(),
       );
   }
 
   private filterData(
     collateConfig: CollateDataTransformerConfig,
-    configuratorConfig: CollateDataConfig,
+    configuratorConfig: DataTransformerConfiguratorConfigT,
     data: CollateDataTransformerData,
   ): Observable<CollateDataTransformerData> {
     const filters =
@@ -87,45 +90,40 @@ export class CollateDataTransformerService
     return filters
       .reduce((prevData$, [key, options]) => {
         return prevData$.pipe(
-          switchMap((currentData) => {
+          switchMap((prevData) => {
             const byValue = (configuratorConfig.filter as any)[key];
             const byValueToCompare = Array.isArray(byValue)
               ? byValue
               : [byValue];
 
             if (byValue !== null && byValue !== undefined) {
-              return prevData$.pipe(
-                switchMap((newData) =>
-                  this.collateFilter.filter(
-                    options.type,
-                    newData,
-                    options,
-                    byValueToCompare,
-                    collateConfig.transformerByPropName,
-                  ),
-                ),
+              return this.DataTransformerFilter.filter(
+                options.type,
+                prevData,
+                options,
+                byValueToCompare,
+                collateConfig.transformerByPropName,
               );
             }
 
-            return prevData$;
+            return of(prevData);
           }),
         );
       }, of(data))
       .pipe(
-        map((filteredData) => {
+        switchMap((filteredData) => {
           if (!configuratorConfig.search || !collateConfig.search) {
             return of(filteredData);
           }
 
-          return this.collateFilter.filter(
+          return this.DataTransformerFilter.filter(
             'text',
             filteredData,
-            collateConfig.search as CollateFilterConfig,
+            collateConfig.search as DataTransformerFilterConfig,
             [configuratorConfig.search],
             collateConfig.transformerByPropName,
           );
         }),
-        switchAll(),
       );
   }
 

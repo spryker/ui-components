@@ -41,6 +41,7 @@ export class InputPasswordComponent {
     if (this.disabled) {
       return;
     }
+
     this.isPasswordHidden = !this.isPasswordHidden;
     this.type = this.isPasswordHidden ? 'password' : 'text';
     this.iconName = this.isPasswordHidden

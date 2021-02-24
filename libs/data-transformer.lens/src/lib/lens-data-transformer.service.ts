@@ -3,7 +3,7 @@ import {
   DataTransformer,
   DataTransformerService,
 } from '@spryker/data-transformer';
-import { ContextService } from '@spryker/utils';
+import { ContextService, mergeDeep } from '@spryker/utils';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -28,7 +28,7 @@ export class LensDataTransformerService
     data: LensDataTransformerData,
     config: LensDataTransformerConfig,
   ): Observable<LensDataTransformerDataT> {
-    const copiedData = JSON.parse(JSON.stringify(data));
+    const copiedData = mergeDeep({}, data);
     const paths = this.contextService.splitPath(config.path);
     const interpolatedData = this.contextService.interpolateExpression(
       config.path,

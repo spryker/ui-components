@@ -11,7 +11,7 @@ class MockDataTransformerService {
   transform = jest.fn().mockReturnValue(of(mockReturnedValue));
 }
 
-describe('ArrayMapDataTransformerService', () => {
+describe('LensDataTransformerService', () => {
   let service: LensDataTransformerService;
   let dataTransformerService: MockDataTransformerService;
 
@@ -52,10 +52,38 @@ describe('ArrayMapDataTransformerService', () => {
 
     serviceObservable$.subscribe(callback);
 
-    expect(dataTransformerService.transform).toBeCalledWith(
+    expect(dataTransformerService.transform).toHaveBeenCalledWith(
       mockInitialValue,
       mockConfig.transformer,
     );
+
+    mockData.test.test2.test3 = mockReturnedValue;
+
+    expect(callback).toHaveBeenCalledWith(mockData);
+  });
+
+  it('transform method should not mutate initial data from props', () => {
+    const mockConfig = {
+      type: 'type',
+      path: 'test.test2.test3',
+      transformer: {
+        type: 'type',
+      },
+    };
+    const mockData = {
+      test: {
+        test2: {
+          test3: 'mockInitialValue',
+        },
+      },
+      test4: 'value',
+    };
+    const callback = jest.fn();
+    const serviceObservable$ = service.transform(mockData, mockConfig);
+
+    serviceObservable$.subscribe(callback);
+
+    expect(callback).not.toHaveBeenCalledWith(mockData);
 
     mockData.test.test2.test3 = mockReturnedValue;
 

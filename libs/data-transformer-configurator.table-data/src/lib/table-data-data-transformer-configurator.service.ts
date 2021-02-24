@@ -1,19 +1,20 @@
 import { Injectable, Injector } from '@angular/core';
-import {
-  DataTransformerConfigurator,
-  DataTransformerConfiguratorConfigT,
-} from '@spryker/data-transformer-configurator';
+import { DataTransformerConfigurator } from '@spryker/data-transformer-configurator';
 import {
   CoreTableComponent,
   TableDataConfiguratorService,
 } from '@spryker/table';
 import { Observable } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
+import { TableDataDataConfiguratorTransformerConfig } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class TableDataDataConfiguratorTransformer
-  implements DataTransformerConfigurator {
-  resolve(injector: Injector): Observable<DataTransformerConfiguratorConfigT> {
+  implements
+    DataTransformerConfigurator<TableDataDataConfiguratorTransformerConfig> {
+  resolve(
+    injector: Injector,
+  ): Observable<TableDataDataConfiguratorTransformerConfig> {
     const tableComponent = injector.get(CoreTableComponent);
     const dataConfig$ = injector.get(TableDataConfiguratorService).config$;
 

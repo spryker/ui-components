@@ -18,17 +18,6 @@ export interface DataTransformerConfiguratorConfig {
   [prop: string]: unknown; // Extra configuration for specific types
 }
 
-export interface DataTransformerConfiguratorConfigT {
-  filter?: unknown;
-  search?: unknown;
-  sorting?: {
-    sortBy?: string;
-    sortDirection?: string;
-  };
-  page?: number;
-  pageSize?: number;
-}
-
-export interface DataTransformerConfigurator {
-  resolve(injector: Injector): Observable<DataTransformerConfiguratorConfigT>;
+export interface DataTransformerConfigurator<D> {
+  resolve(injector: Injector): Observable<D>;
 }

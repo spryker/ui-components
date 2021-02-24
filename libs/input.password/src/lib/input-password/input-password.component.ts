@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { ToBoolean, ToJson } from '../../../../utils/src';
+import { ToBoolean, ToJson } from '@spryker/utils';
 import { IconOpenEyeModule, IconCrossedEyeModule } from '@spryker/icon/icons';
 
 @Component({

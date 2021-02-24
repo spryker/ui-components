@@ -27,8 +27,8 @@ export class ChainDataTransformerService
     return config.transformers.reduce(
       (prevData$, currentConfig) =>
         prevData$.pipe(
-          switchMap((currentData) =>
-            this.dataTransformerService.transform(currentData, currentConfig),
+          switchMap((prevData) =>
+            this.dataTransformerService.transform(prevData, currentConfig),
           ),
         ),
       of(data),

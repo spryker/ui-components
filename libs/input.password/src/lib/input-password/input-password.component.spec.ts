@@ -6,6 +6,8 @@ import { InputPasswordComponent } from './input-password.component';
 import { InputModule } from '@spryker/input';
 import { IconOpenEyeModule, IconCrossedEyeModule } from '@spryker/icon/icons';
 
+// tslint:disable: no-non-null-assertion
+
 describe('InputPasswordComponent', () => {
   describe('Host functionality', () => {
     const { testModule, createComponent } = getTestingForComponent(

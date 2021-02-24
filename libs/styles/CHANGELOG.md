@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.30](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.29...@spryker/styles@0.2.0-next.30) (2021-02-24)
+
+
+### Features
+
+* **input.password:** add lib ([8deba36](https://github.com/spryker/ui-components/commit/8deba365be7c33fef72d8e4878a3d22536e76320))
+
+
+
+
+
 # [0.2.0-next.29](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.28...@spryker/styles@0.2.0-next.29) (2021-02-22)
 
 

@@ -1,7 +1,6 @@
-import { Injector, Type, InjectionToken, TemplateRef } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ActionHandler, ActionConfig } from '@spryker/actions';
-import { DrawerRef, DrawerOptionsComponent, DrawerOptionsTemplate, DrawerTemplateContext } from '@spryker/drawer';
+import { Type, TemplateRef } from '@angular/core';
+import { ActionConfig } from '@spryker/actions';
+import { DrawerOptionsComponent, DrawerOptionsTemplate, DrawerTemplateContext } from '@spryker/drawer';
 import { RegistryType, RegistryDeclaration } from '@spryker/utils';
 
 // tslint:disable-next-line:no-empty-interface
@@ -10,6 +9,8 @@ export interface DrawerActionComponentsRegistry {
 }
 
 export type DrawerActionComponentType = RegistryType<DrawerActionComponentsRegistry>;
+
+export type DrawerActionTypesDeclaration = RegistryDeclaration<DrawerActionComponentsRegistry>;
 
 export interface DrawerActionConfigComponent extends ActionConfig {
   component: DrawerActionComponentType | Type<unknown>;

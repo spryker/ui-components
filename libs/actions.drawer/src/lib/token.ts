@@ -1,13 +1,12 @@
 import { InjectionToken, Provider } from '@angular/core';
-import { DrawerActionComponentsRegistry } from './types';
-import { RegistryDeclaration } from '@spryker/utils';
+import { DrawerActionTypesDeclaration } from './types';
 
 export const DrawerActionComponentTypesToken = new InjectionToken<
-  RegistryDeclaration<DrawerActionComponentsRegistry>[]
+  DrawerActionTypesDeclaration[]
   >('DrawerActionComponentTypesToken');
 
 export function provideDrawerActionType(
-  components: RegistryDeclaration<DrawerActionComponentsRegistry>,
+  components: DrawerActionTypesDeclaration,
 ): Provider {
   return {
     provide: DrawerActionComponentTypesToken,

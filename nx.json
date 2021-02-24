@@ -354,6 +354,15 @@
     },
     "data-transformer-configurator.table-data": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "user-menu": {
+      "tags": ["level:molecule", "type:component", "pkg:primary"]
+    },
+    "actions": {
+      "tags": ["type:service", "pkg:primary"]
+    },
+    "input.password": {
+      "tags": ["type:component", "level:atom", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

@@ -37,7 +37,7 @@ export class UnsavedChangesFormMonitorDirective
    */
   @Input() spyUnsavedChangesFormMonitor = true;
 
-  private disposeChangeEvent?: () => void;
+  private disposeInputEvent?: () => void;
 
   private status$ = new BehaviorSubject<UnsavedChangesMonitorStatus>(
     UnsavedChangesMonitorStatus.Clean,
@@ -59,7 +59,7 @@ export class UnsavedChangesFormMonitorDirective
       this.unsavedChangesGuard?.attachMonitor(this);
     }
 
-    this.disposeChangeEvent = this.renderer.listen(
+    this.disposeInputEvent = this.renderer.listen(
       this.formRef.nativeElement,
       'input',
       () => this.formChanged(),
@@ -82,8 +82,8 @@ export class UnsavedChangesFormMonitorDirective
   ngOnDestroy(): void {
     this.unsavedChangesGuard?.detachMonitor(this);
 
-    this.disposeChangeEvent?.();
-    this.disposeChangeEvent = undefined;
+    this.disposeInputEvent?.();
+    this.disposeInputEvent = undefined;
   }
 
   getStatus(): Observable<UnsavedChangesMonitorStatus> {

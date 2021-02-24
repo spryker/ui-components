@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-next.8...@spryker/button@0.2.0-next.9) (2021-02-24)
+
+
+### Bug Fixes
+
+* **button:** fix button-toggle min-width ([a9d04a4](https://github.com/spryker/ui-components/commit/a9d04a4e387b604e6a212b01fa5b94d6a3852371))
+
+
+
+
+
 # [0.2.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-next.7...@spryker/button@0.2.0-next.8) (2021-01-07)
 
 **Note:** Version bump only for package @spryker/button

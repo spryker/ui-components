@@ -44,6 +44,14 @@ export class ContextService {
     return getPropByPath(ctx, expr, this.options.delimiter);
   }
 
+  splitPath(path: string): string[] {
+    return path.split(this.options.delimiter);
+  }
+
+  cratePath(paths: string[]): string {
+    return paths.join(this.options.delimiter);
+  }
+
   private postProcess(value: unknown): string {
     return this.contextSerializationService.serialize(value);
   }

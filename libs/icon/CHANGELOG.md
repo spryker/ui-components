@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/icon@0.2.0-next.7...@spryker/icon@0.2.0-next.8) (2021-02-24)
+
+
+### Features
+
+* **icon:** add open-eye and crossed-eye icons ([b8841ee](https://github.com/spryker/ui-components/commit/b8841eea03f868e3b83edc8283cee5f53c033dfd))
+
+
+
+
+
 # 0.2.0-next.7 (2021-02-22)
 
 

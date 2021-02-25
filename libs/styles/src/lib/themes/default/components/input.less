@@ -105,6 +105,10 @@
       }
     }
 
+    &-focused {
+      box-shadow: none;
+    }
+
     &.@{input-prefix-cls}-container--hover {
       border-color: @gray;
     }
@@ -117,6 +121,7 @@
   &-container {
     &--hover {
       .@{input-prefix-cls}-group-addon,
+      .@{input-prefix-cls}-affix-wrapper,
       .@{input-prefix-cls} {
         border-color: @gray;
         box-shadow: none;
@@ -125,6 +130,7 @@
 
     &--focus {
       .@{input-prefix-cls}-group-addon,
+      .@{input-prefix-cls}-affix-wrapper,
       .@{input-prefix-cls} {
         border-color: @primary-color;
         border-width: @border-width-base;

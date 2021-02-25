@@ -316,6 +316,39 @@
     "data-transformer.pluck": {
       "tags": ["type:service", "pkg:extension"]
     },
+    "data-transformer.array-map": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.object-map": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.date-parse": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.date-serialize": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.chain": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.collate": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.lens": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.filter.equals": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.filter.text": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.filter.range": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.configurator.table": {
+      "tags": ["type:service", "pkg:extension"]
+    },
     "user-menu": {
       "tags": ["level:molecule", "type:component", "pkg:primary"]
     },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.13...@spryker/utils@0.2.0-next.14) (2021-02-25)
+
+
+### Features
+
+* **data-transformer.lens:** add lib ([7e044ed](https://github.com/spryker/ui-components/commit/7e044ed92fa7a35daca3c70529d0b77a33d2cd0c))
+
+
+
+
+
 # [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.12...@spryker/utils@0.2.0-next.13) (2021-02-10)
 
 

@@ -1,11 +1,11 @@
 {
   "name": "@spryker/data-transformer.configurator.table",
-  "version": "0.0.1",
+  "version": "0.1.0-next.0",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/table": "^0.2.0-next.22",
-    "@spryker/data-transformer.collate": "^0.1.0-next.0"
+    "@spryker/data-transformer.collate": "^0.1.0-next.0",
+    "@spryker/table": "^0.2.0-next.22"
   },
   "dependencies": {
     "tslib": "^1.10.0"

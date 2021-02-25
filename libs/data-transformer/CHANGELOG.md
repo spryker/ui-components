@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer@0.1.0-next.0...@spryker/data-transformer@0.1.0-next.1) (2021-02-25)
+
+
+### Features
+
+* **data-transformer:** add filters and configurators services ([1dfe1b6](https://github.com/spryker/ui-components/commit/1dfe1b6b8c84e5742bea658145c46eeca97b3915))
+* **data-transformer:** adjust types ([69a07ab](https://github.com/spryker/ui-components/commit/69a07abe7920e800b4d102c07bfc01574deb4910))
+* **data-transformer.collate:** add filters ([e7dd812](https://github.com/spryker/ui-components/commit/e7dd81247ba953d38fc44109a45053c930ec9aa0))
+* **data-transformer.collate:** add service implementation ([0a3dc13](https://github.com/spryker/ui-components/commit/0a3dc13739c712c149645635d72154a64eb2f7ec))
+* **data-transformer.lens:** add lib ([7e044ed](https://github.com/spryker/ui-components/commit/7e044ed92fa7a35daca3c70529d0b77a33d2cd0c))
+* **table:** revert changes ([95fadbf](https://github.com/spryker/ui-components/commit/95fadbf21d9676b0c6bc09439b839de5df97a796))
+
+
+
+
+
 # 0.1.0-next.0 (2021-02-12)
 
 

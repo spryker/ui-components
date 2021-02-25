@@ -16,19 +16,16 @@ import {
   SimpleChanges,
   SkipSelf,
   TemplateRef,
-  Type,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { DatasourceService } from '@spryker/datasource';
 import { ToJson } from '@spryker/utils';
 import {
   combineLatest,
   EMPTY,
   merge,
   MonoTypeOperatorFunction,
-  Observable,
   of,
   ReplaySubject,
   Subject,
@@ -37,7 +34,6 @@ import {
   catchError,
   delay,
   distinctUntilChanged,
-  filter,
   map,
   mapTo,
   pairwise,
@@ -62,6 +58,7 @@ import { TableFeaturesRendererService } from '../table-features-renderer/table-f
 import { ColTplDirective } from './col-tpl.directive';
 import { TableColumnsResolverService } from './columns-resolver.service';
 import { TableDataConfiguratorService } from './data-configurator.service';
+import { TableDatasourceService } from './datasource.service';
 import {
   SortingCriteria,
   TableColumn,
@@ -71,7 +68,6 @@ import {
   TableConfig,
   TableDataConfig,
   TableDataRow,
-  TableEvents,
   TableFeatureLocation,
   TableHeaderContext,
   TableRowClickEvent,
@@ -91,7 +87,7 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
     TableDataConfiguratorService,
     TableColumnsResolverService,
     TableFeaturesRendererService,
-    DatasourceService,
+    TableDatasourceService,
     TableActionsService,
   ],
   host: {
@@ -110,7 +106,7 @@ export class CoreTableComponent
    *    'selectable:bla': () => ...,
    * }
    */
-  @Input() @ToJson() events: TableEvents = {};
+  @Input() events: Record<string, ((data: unknown) => void) | undefined> = {};
 
   @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<
     TableColumnContext
@@ -354,7 +350,7 @@ export class CoreTableComponent
     private tableActionsService: TableActionsService,
     private featureLoaderService: TableFeatureLoaderService,
     private configService: TableConfigService,
-    private datasourceService: DatasourceService,
+    private datasourceService: TableDatasourceService,
     private tableFeaturesRendererService: TableFeaturesRendererService,
     public injector: Injector,
     @Optional()
@@ -398,26 +394,6 @@ export class CoreTableComponent
 
   ngOnDestroy(): void {
     this.destroyed$.next();
-  }
-
-  on(feature: string, eventName?: string) {
-    return this.tableEventBus.on(feature, eventName);
-  }
-
-  findFeatureByName(name: string): Observable<TableFeatureComponent> {
-    return this.features$.pipe(
-      map((features) => features.find((feature) => feature.name === name)),
-      filter((feature) => feature !== undefined),
-    ) as Observable<TableFeatureComponent>;
-  }
-
-  findFeatureByType<T extends TableFeatureComponent>(
-    type: Type<T>,
-  ): Observable<T> {
-    return this.features$.pipe(
-      map((features) => features.find((feature) => feature instanceof type)),
-      filter((feature) => feature !== undefined),
-    ) as Observable<T>;
   }
 
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void {

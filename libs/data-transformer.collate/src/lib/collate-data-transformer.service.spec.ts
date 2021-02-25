@@ -2,10 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { CollateDataTransformerService } from './collate-data-transformer.service';
-import {
-  DataTransformerConfiguratorService,
-  DataTransformerFilterService,
-} from '@spryker/data-transformer';
+import { DataTransformerConfiguratorService } from './data-transformer-configurator.service';
+import { DataTransformerFilterService } from './data-transformer-filter.service';
 
 const mockIdFilter = 'idFilter';
 const mockAnotherIdFilter = 'mockAnotherIdFilter';

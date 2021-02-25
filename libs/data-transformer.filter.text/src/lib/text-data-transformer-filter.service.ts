@@ -6,7 +6,7 @@ import {
   DataTransformerFilterByValue,
   DataTransformerFilterConfig,
   DataTransformerFilterData,
-} from '@spryker/data-transformer';
+} from '@spryker/data-transformer.collate';
 import { forkJoin, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 

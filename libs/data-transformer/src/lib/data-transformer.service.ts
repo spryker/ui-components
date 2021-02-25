@@ -2,7 +2,7 @@ import { Inject, Injectable, Injector } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
-import { DataTransformerTypesToken } from './tokens';
+import { DataTransformerTypesToken } from './token';
 import {
   DataTransformer,
   DataTransformerConfig,

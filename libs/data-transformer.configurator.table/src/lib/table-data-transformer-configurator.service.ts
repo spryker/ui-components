@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import {
   DataTransformerConfigurator,
   DataTransformerConfiguratorConfigT,
-} from '@spryker/data-transformer';
+} from '@spryker/data-transformer.collate';
 import {
   CoreTableComponent,
   TableDataConfiguratorService,

@@ -1,9 +1,11 @@
 /* tslint:disable:no-empty-interface */
+import { ElementRef, Type } from '@angular/core';
 import { LayoutFlatConfig } from '@orchestrator/layout';
+import { DatasourceConfig } from '@spryker/datasource';
 import { Observable } from 'rxjs';
-import { ElementRef, Injector, Type } from '@angular/core';
-import { TableFeatureConfig } from '../table-config/types';
+
 import { TableActionTriggeredEvent } from '../../lib/table-actions';
+import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureComponent } from '../table-feature';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
@@ -85,7 +87,7 @@ export interface TableData<T extends TableDataRow = TableDataRow> {
 }
 
 export interface TableConfig {
-  dataSource: TableDatasourceConfig;
+  dataSource: DatasourceConfig;
   columnsUrl?: string;
   columns?: TableColumns;
   // Features may expect it's config under it's namespace
@@ -103,7 +105,12 @@ export interface SortingCriteria {
   sortDirection?: 'asc' | 'desc';
 }
 
+export type TableEvents = Record<string, ((data: unknown) => void) | undefined>;
+
 export interface TableComponent {
+  tableId?: string;
+  config?: TableConfig;
+  events: TableEvents;
   config$: Observable<TableConfig>;
   columns$: Observable<TableColumns>;
   data$: Observable<TableData>;
@@ -113,6 +120,11 @@ export interface TableComponent {
   tableElementRef: ElementRef<HTMLElement>;
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
   setRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
+  on(feature: string, eventName?: string): Observable<unknown>;
+  findFeatureByName(name: string): Observable<TableFeatureComponent>;
+  findFeatureByType<T extends TableFeatureComponent>(
+    type: Type<T>,
+  ): Observable<T>;
 }
 
 export enum TableFeatureLocation {
@@ -131,34 +143,6 @@ export enum TableFeatureLocation {
   bottom = 'bottom',
   hidden = 'hidden',
 }
-
-export interface TableDatasourceRegistry {
-  // http
-  // inline?
-  // etc...
-}
-
-export type TableDatasourceType = keyof TableDatasourceRegistry;
-
-export interface TableDatasourceConfig {
-  type: TableDatasourceType;
-  // Specific datasource types may have custom configs
-  [k: string]: unknown;
-}
-
-export interface TableDatasource<C extends TableDatasourceConfig> {
-  resolve(
-    datasource: C,
-    dataConfig$: Observable<TableDataConfig>,
-    injector: Injector,
-  ): Observable<TableData>;
-}
-
-export type TableDatasourceTypesDeclaration = {
-  [P in keyof TableDatasourceRegistry]?: Type<
-    TableDatasource<TableDatasourceRegistry[P]>
-  >;
-};
 
 export interface TableRowActionRegistry {
   // Key is action string - value is action options type

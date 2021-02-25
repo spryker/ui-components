@@ -1,8 +1,8 @@
 import { Injector } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
+import { CollateDataTransformerModule } from './collate-data-transformer.module';
 import { DataTransformerConfiguratorService } from './data-transformer-configurator.service';
-import { DataTransformerModule } from './data-transformer.module';
 import { DataTransformerConfigurator } from './types';
 
 const mockDataConfiguratorType = 'mockDataConfiguratorType';
@@ -19,7 +19,7 @@ describe('DataTransformerConfiguratorService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DataTransformerModule.withConfigurators({
+        CollateDataTransformerModule.withConfigurators({
           [mockDataConfiguratorType]: MockDataTransformerConfigurator,
         }),
       ],

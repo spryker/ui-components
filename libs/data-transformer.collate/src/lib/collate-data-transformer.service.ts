@@ -1,18 +1,16 @@
 import { Injectable, Injector } from '@angular/core';
-import {
-  DataTransformer,
-  DataTransformerConfiguratorConfigT,
-  DataTransformerConfiguratorService,
-  DataTransformerFilterConfig,
-  DataTransformerFilterService,
-} from '@spryker/data-transformer';
+import { DataTransformer } from '@spryker/data-transformer';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
+import { DataTransformerConfiguratorService } from './data-transformer-configurator.service';
+import { DataTransformerFilterService } from './data-transformer-filter.service';
 import {
   CollateDataTransformerConfig,
   CollateDataTransformerData,
   CollateDataTransformerDataT,
+  DataTransformerConfiguratorConfigT,
+  DataTransformerFilterConfig,
 } from './types';
 
 @Injectable({

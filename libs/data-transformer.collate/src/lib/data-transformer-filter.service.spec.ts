@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
+import { CollateDataTransformerModule } from './collate-data-transformer.module';
 import { DataTransformerFilterService } from './data-transformer-filter.service';
-import { DataTransformerModule } from './data-transformer.module';
 import { DataTransformerFilter } from './types';
 
 const mockFilterType = 'mockFilterType';
@@ -17,7 +17,7 @@ describe('DataTransformerFilterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DataTransformerModule.withFilters({
+        CollateDataTransformerModule.withFilters({
           [mockFilterType]: MockDataTransformerFilter,
         }),
       ],

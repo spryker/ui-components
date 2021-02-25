@@ -5,7 +5,7 @@ import {
   DataTransformerFilterDeclaration,
 } from './types';
 
-export const DataTransformerConfiguratorToken = new InjectionToken<
+export const DataTransformerConfiguratorTypesToken = new InjectionToken<
   DataTransformerConfiguratorDeclaration[]
 >('DataTransformerConfiguratorTypes');
 
@@ -13,7 +13,7 @@ export function provideDataTransformerConfiguratorTypes(
   dataConfigurators: DataTransformerConfiguratorDeclaration,
 ): Provider {
   return {
-    provide: DataTransformerConfiguratorToken,
+    provide: DataTransformerConfiguratorTypesToken,
     useValue: dataConfigurators,
     multi: true,
   };

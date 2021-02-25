@@ -2,7 +2,7 @@ import { Inject, Injectable, Injector } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
-import { DataTransformerConfiguratorToken } from './tokens';
+import { DataTransformerConfiguratorTypesToken } from './tokens';
 import {
   DataTransformerConfiguratorConfigT,
   DataTransformerConfiguratorConfig,
@@ -23,9 +23,9 @@ export class DataTransformerConfiguratorService {
   );
 
   constructor(
-    @Inject(DataTransformerConfiguratorToken)
+    @Inject(DataTransformerConfiguratorTypesToken)
     private dataConfiguratorsTypes: InjectionTokenType<
-      typeof DataTransformerConfiguratorToken
+      typeof DataTransformerConfiguratorTypesToken
     >,
   ) {}
 

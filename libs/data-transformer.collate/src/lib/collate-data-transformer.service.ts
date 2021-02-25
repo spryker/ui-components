@@ -20,7 +20,7 @@ export class CollateDataTransformerService
   implements
     DataTransformer<CollateDataTransformerData, CollateDataTransformerDataT> {
   constructor(
-    private DataTransformerFilter: DataTransformerFilterService,
+    private dataTransformerFilter: DataTransformerFilterService,
     private collateDataConfigurator: DataTransformerConfiguratorService,
   ) {}
 
@@ -93,7 +93,7 @@ export class CollateDataTransformerService
               : [byValue];
 
             if (byValue !== null && byValue !== undefined) {
-              return this.DataTransformerFilter.filter(
+              return this.dataTransformerFilter.filter(
                 options.type,
                 prevData,
                 options,
@@ -112,7 +112,7 @@ export class CollateDataTransformerService
             return of(filteredData);
           }
 
-          return this.DataTransformerFilter.filter(
+          return this.dataTransformerFilter.filter(
             'text',
             filteredData,
             collateConfig.search as DataTransformerFilterConfig,

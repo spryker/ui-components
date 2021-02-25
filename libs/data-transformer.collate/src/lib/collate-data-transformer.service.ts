@@ -1,13 +1,11 @@
 import { Injectable, Injector } from '@angular/core';
-import { DataTransformer } from '@spryker/data-transformer';
 import {
+  DataTransformer,
   DataTransformerConfiguratorConfigT,
   DataTransformerConfiguratorService,
-} from '@spryker/data-transformer-configurator';
-import {
   DataTransformerFilterConfig,
   DataTransformerFilterService,
-} from '@spryker/data-transformer-filter';
+} from '@spryker/data-transformer';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 

@@ -3,9 +3,5 @@
   "compilerOptions": {
     "types": ["node", "jest"]
   },
-  "include": [
-    "**/*.ts",
-    "src/lib/test.spec",
-    "../data-transformer-filter/src/lib/collate-filter.service.spec.ts"
-  ]
+  "include": ["**/*.ts"]
 }

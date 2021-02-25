@@ -337,22 +337,16 @@
     "data-transformer.lens": {
       "tags": ["type:service", "pkg:extension"]
     },
-    "data-transformer-configurator": {
-      "tags": ["type:service", "pkg:primary"]
-    },
-    "data-transformer-filter": {
-      "tags": ["type:service", "pkg:primary"]
-    },
-    "data-transformer-filter.equals": {
+    "data-transformer.filter.equals": {
       "tags": ["type:service", "pkg:extension"]
     },
-    "data-transformer-filter.text": {
+    "data-transformer.filter.text": {
       "tags": ["type:service", "pkg:extension"]
     },
-    "data-transformer-filter.range": {
+    "data-transformer.filter.range": {
       "tags": ["type:service", "pkg:extension"]
     },
-    "data-transformer-configurator.table-data": {
+    "data-transformer.configurator.table": {
       "tags": ["type:service", "pkg:extension"]
     },
     "user-menu": {

@@ -1,9 +1,9 @@
-import { DataTransformerConfig } from '@spryker/data-transformer';
-import { DataTransformerConfiguratorConfig } from '@spryker/data-transformer-configurator';
 import {
   DataFilterTransformerByPropName,
+  DataTransformerConfig,
+  DataTransformerConfiguratorConfig,
   DataTransformerFilterConfig,
-} from '@spryker/data-transformer-filter';
+} from '@spryker/data-transformer';
 
 declare module '@spryker/data-transformer' {
   interface DataTransformerRegistry {

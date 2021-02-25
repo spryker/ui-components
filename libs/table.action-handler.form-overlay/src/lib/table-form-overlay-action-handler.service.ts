@@ -40,7 +40,7 @@ export class TableFormOverlayActionHandlerService
       },
     );
 
-    this.drawerRefs.set(table, new BehaviorSubject(drawerRef));
+    this.drawerRefs.set(table, new BehaviorSubject(drawerRef as DrawerRef));
     drawerRef.afterClosed().subscribe(() => this.drawerRefs.delete(table));
   }
 

@@ -23,17 +23,3 @@ export interface DrawerActionConfigTemplate extends ActionConfig {
 }
 
 export type DrawerActionConfig = DrawerActionConfigComponent | DrawerActionConfigTemplate;
-
-// DI multi-token
-// type DrawerActionComponentTypesToken = InjectionToken<RegistryDeclaration<DrawerActionComponentsRegistry>[]>;
-
-// @Injectable() class
-// interface DrawerActionHandlerService extends ActionHandler<unknown, DrawerRef> {
-//   handleAction<C>(injector: Injector, config: DrawerActionConfig, context: C): Observable<DrawerRef<C>>;
-// }
-//
-// interface DrawerActionModule {
-//   static withComponents(
-//     components: RegistryDeclaration<DrawerActionComponentsRegistry>
-//   ): ModuleWithProviders<DrawerActionModule>;
-// }

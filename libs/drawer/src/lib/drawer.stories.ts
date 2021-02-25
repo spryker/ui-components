@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, TemplateRef } from '@angular/core';
 import { boolean, text } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
@@ -6,6 +6,7 @@ import { DrawerContainerProxyComponent } from './drawer-container/drawer-contain
 import { DrawerModule } from './drawer.module';
 import { DrawerService } from './drawer.service';
 import { DrawerComponentInputs } from './drawer/drawer.component';
+import { DrawerRef } from './drawer-ref';
 
 export default {
   title: 'DrawersComponent',
@@ -79,6 +80,58 @@ class SimpleDrawerComponent extends DrawerComponentInputs {
   openDrawer = false;
 }
 
+@Component({
+  selector: 'spy-drawer-example-component',
+  template: `
+    <h1>Example Component</h1>
+    <p>Input 1: {{ input1 }}</p>
+    <p>Input 2: {{ input2 }}</p>
+    <p>
+      <button (click)="output1.emit('evt1')">Emit Event 1</button>
+      <button (click)="output2.emit('evt2')">Emit Event 2</button>
+    </p>
+  `,
+})
+class DrawerExampleComponent {
+  @Input() input1?: string;
+  @Input() input2? = 'default';
+  @Output() output1 = new EventEmitter<string>();
+  @Output() output2 = new EventEmitter<string>();
+}
+
+@Component({
+  selector: `spy-drawer-with-component`,
+  template: `<button (click)="openDrawer()">Open Drawer</button>`,
+})
+class DrawerWithComponentComponent implements OnDestroy {
+  private drawerRef?: DrawerRef;
+
+  constructor(private drawerService: DrawerService) {}
+
+  ngOnDestroy(): void {
+    this.closeDrawer();
+  }
+
+  openDrawer() {
+    this.closeDrawer();
+    this.drawerRef = this.drawerService.openComponent(DrawerExampleComponent, {
+      inputs: {
+        input1: 'value1',
+        input2: 'value2',
+      },
+      outputs: {
+        output1: (evt) => console.log(`Got output 1: ${evt}`),
+        output2: (evt) => console.log(`Got output 2: ${evt}`),
+      },
+    });
+  }
+
+  private closeDrawer() {
+    this.drawerRef?.close();
+    this.drawerRef = undefined;
+  }
+}
+
 export const primary = (): IStory => ({
   moduleMetadata: {
     imports: [DrawerModule],
@@ -93,7 +146,7 @@ export const primary = (): IStory => ({
   },
 });
 
-export const widthMultipleDrawers = (): IStory => ({
+export const withMultipleDrawers = (): IStory => ({
   moduleMetadata: {
     imports: [DrawerModule],
     entryComponents: [DrawerContainerProxyComponent],
@@ -105,4 +158,14 @@ export const widthMultipleDrawers = (): IStory => ({
     width: text('Width', '50%'),
     hasBackdrop: boolean('Has backdrop', false),
   },
+});
+
+export const withComponent = (): IStory => ({
+  moduleMetadata: {
+    imports: [DrawerModule],
+    declarations: [DrawerExampleComponent],
+    entryComponents: [DrawerContainerProxyComponent, DrawerExampleComponent],
+  },
+  component: DrawerWithComponentComponent,
+  props: {},
 });

@@ -1,5 +1,4 @@
 import {
-  ApplicationRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -22,13 +21,14 @@ import {
 import { HookableInjector } from '@spryker/utils';
 import { EMPTY, Observable, ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { InputsType, OutputsType } from 'ng-dynamic-component';
 
 import {
   DrawerCloseInterceptionEvent,
   DrawerMaximizeInterceptionEvent,
   DrawerMinimizeInterceptionEvent,
 } from '../drawer-interception';
-import { DrawerOptions } from '../drawer-options';
+import { DrawerData, DrawerOptions, DrawerOptionsComponent, DrawerOptionsTemplate } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.component';
 import { DrawerTemplateContext } from '../types';
@@ -59,6 +59,8 @@ export class DrawerContainerComponent implements OnDestroy {
   drawerRecord?: {
     class?: Type<any>;
     injector?: Injector;
+    inputs?: InputsType;
+    outputs?: OutputsType;
     template?: TemplateRef<DrawerTemplateContext>;
     context?: DrawerTemplateContext;
   };
@@ -73,7 +75,6 @@ export class DrawerContainerComponent implements OnDestroy {
   constructor(
     private vcr: ViewContainerRef,
     private cdr: ChangeDetectorRef,
-    private applicationRef: ApplicationRef,
     private interceptorDispatcherService: InterceptorDispatcherService,
   ) {}
 
@@ -107,20 +108,28 @@ export class DrawerContainerComponent implements OnDestroy {
     }, 0);
   }
 
-  openComponent(compType: Type<any>, options: DrawerOptions): DrawerRef {
+  openComponent<D, T>(
+    compType: Type<T>,
+    options: DrawerOptionsComponent<D, T>,
+  ): DrawerRef<D, DrawerOptionsComponent<D, T>> {
     const drawerRef = this.createDrawerRef(options);
     const injector = this.createDrawerInjector(drawerRef);
 
     this.drawerRef = drawerRef;
-    this.drawerRecord = { class: compType, injector };
+    this.drawerRecord = {
+      class: compType,
+      injector,
+      inputs: { ...options.inputs },
+      outputs: { ...options.outputs },
+    };
 
     return drawerRef;
   }
 
-  openTemplate(
-    templateRef: TemplateRef<DrawerTemplateContext>,
-    options: DrawerOptions,
-  ): DrawerRef {
+  openTemplate<D, C>(
+    templateRef: TemplateRef<DrawerTemplateContext & C>,
+    options: DrawerOptionsTemplate<D, C>,
+  ): DrawerRef<D, DrawerOptionsTemplate<D, C>> {
     const drawerRef = this.createDrawerRef(options);
     const context = this.createDrawerContext(drawerRef);
 
@@ -152,8 +161,10 @@ export class DrawerContainerComponent implements OnDestroy {
     return this.afterClosed$.asObservable();
   }
 
-  private createDrawerRef(options: DrawerOptions): DrawerRef {
-    const drawerRef: DrawerRef = new DrawerRef(
+  private createDrawerRef<D, O extends DrawerOptions<D>>(
+    options: O,
+  ): DrawerRef<D, O> {
+    const drawerRef = new DrawerRef<D, O>(
       options,
       () => this.removeDrawer(),
       () => this.maximize(),
@@ -180,7 +191,9 @@ export class DrawerContainerComponent implements OnDestroy {
       );
   }
 
-  private createDrawerInjector(drawerRef: DrawerRef): Injector {
+  private createDrawerInjector(
+    drawerRef: DrawerRef<DrawerData, DrawerOptionsComponent>,
+  ): Injector {
     const hookableInjector = new HookableInjector(
       drawerRef.options.injector ?? this.vcr.injector,
     );
@@ -196,8 +209,10 @@ export class DrawerContainerComponent implements OnDestroy {
     });
   }
 
-  private createDrawerContext(drawerRef: DrawerRef): DrawerTemplateContext {
-    return { $implicit: drawerRef };
+  private createDrawerContext(
+    drawerRef: DrawerRef<DrawerData, DrawerOptionsTemplate>,
+  ): DrawerTemplateContext {
+    return { ...(drawerRef.options.context as object), $implicit: drawerRef };
   }
 
   private emitClosed(): void {

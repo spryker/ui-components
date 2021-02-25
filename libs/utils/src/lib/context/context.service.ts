@@ -40,7 +40,7 @@ export class ContextService {
     return `${this.options.interpolationStart}${value}${this.options.interpolationEnd}`;
   }
 
-  interpolateExpression(expr: string, ctx: AnyContext): unknown {
+  interpolateExpression(expr: string, ctx?: AnyContext): unknown {
     return getPropByPath(ctx, expr, this.options.delimiter);
   }
 

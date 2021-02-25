@@ -4,11 +4,20 @@
   [width]="drawerRef?.options.width"
   (closed)="drawerRef?.close()"
 >
-  <ng-container
-    *ngComponentOutlet="drawerRecord?.class; injector: drawerRecord?.injector"
-  ></ng-container>
+  <ng-container *ngIf="drawerRecord?.class; else template">
+    <ng-container
+      *ngComponentOutlet="
+        drawerRecord.class;
+        injector: drawerRecord.injector;
+        ndcDynamicInputs: drawerRecord.inputs;
+        ndcDynamicOutputs: drawerRecord.outputs
+      "
+    ></ng-container>
+  </ng-container>
 
-  <ng-container
-    *ngTemplateOutlet="drawerRecord?.template; context: drawerRecord?.context"
-  ></ng-container>
+  <ng-template #template>
+    <ng-container
+      *ngTemplateOutlet="drawerRecord?.template; context: drawerRecord?.context"
+    ></ng-container>
+  </ng-template>
 </spy-drawer-wrapper>

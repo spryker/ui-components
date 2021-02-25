@@ -1,7 +1,7 @@
-import { AsKeyOf, MapTo, Prepend, Reverse } from './types';
+import { AsArray, AsKeyOf, MapTo, Prepend, Reverse } from './types';
 
 export interface Generics<T extends any[] = any[]> {
-  __generics: T;
+  __generics?: T;
 }
 export type InferGenerics<T> = T extends Generics<infer G> ? G : never;
 
@@ -15,4 +15,4 @@ export type ExtendGenerics<G extends Generics, T extends any[]> = Omit<
   G,
   '__generics'
 > &
-  Generics<Reverse<Prepend<G['__generics'], T>>>;
+  Generics<Reverse<Prepend<AsArray<G['__generics']>, T>>>;

@@ -3,7 +3,10 @@ import { shareReplay, switchAll } from 'rxjs/operators';
 
 import { DrawerData, DrawerOptions } from './drawer-options';
 
-export class DrawerRef<D = DrawerData> {
+export class DrawerRef<
+  D = DrawerData,
+  O extends DrawerOptions<D> = DrawerOptions<D>
+  > {
   private setClose$ = new ReplaySubject<Observable<void>>(1);
   private afterClosed$ = this.setClose$.pipe(
     switchAll(),
@@ -11,7 +14,7 @@ export class DrawerRef<D = DrawerData> {
   );
 
   constructor(
-    public options: DrawerOptions<D>,
+    public options: O,
     private closeFn: () => Observable<void>,
     private maximizeFn: () => void,
     private minimizeFn: () => void,

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.34](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.33...@spryker/table@0.2.0-next.34) (2021-02-25)
+
+
+### Features
+
+* **datasource.http:** add service implementation ([49d9c77](https://github.com/spryker/ui-components/commit/49d9c778edfb1f2555d655cfd235d1c1eb9f38ec))
+
+
+
+
+
 # [0.2.0-next.33](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.32...@spryker/table@0.2.0-next.33) (2021-01-07)
 
 

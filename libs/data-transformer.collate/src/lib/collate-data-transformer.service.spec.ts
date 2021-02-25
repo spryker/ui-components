@@ -1,9 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 
-import { CollateDataConfiguratorService } from './collate-data-configurator.service';
 import { CollateDataTransformerService } from './collate-data-transformer.service';
-import { CollateFilterService } from './collate-filter.service';
+import {
+  DataTransformerConfiguratorService,
+  DataTransformerFilterService,
+} from '@spryker/data-transformer';
 
 const mockIdFilter = 'idFilter';
 const mockAnotherIdFilter = 'mockAnotherIdFilter';
@@ -29,7 +31,7 @@ const mockData = [
   },
 ];
 
-class MockCollateFilterService {
+class MockDataTransformerFilterService {
   filter = jest.fn().mockImplementation((type) => {
     if (type === mockIdFilter) {
       return of([mockData[1]]);
@@ -43,9 +45,39 @@ class MockCollateFilterService {
   });
 }
 
-class MockCollateDataConfiguratorService {
-  resolve = jest.fn().mockReturnValue(
-    of({
+class MockDataTransformerConfiguratorService {
+  resolve = jest.fn();
+}
+
+const mockInjector = {} as any;
+
+describe('CollateDataTransformerService', () => {
+  let service: CollateDataTransformerService;
+  let dataTransformerConfiguratorService: MockDataTransformerConfiguratorService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        MockDataTransformerFilterService,
+        MockDataTransformerConfiguratorService,
+        {
+          provide: DataTransformerFilterService,
+          useExisting: MockDataTransformerFilterService,
+        },
+        {
+          provide: DataTransformerConfiguratorService,
+          useExisting: MockDataTransformerConfiguratorService,
+        },
+      ],
+    });
+    service = TestBed.inject(CollateDataTransformerService);
+    dataTransformerConfiguratorService = TestBed.inject(
+      MockDataTransformerConfiguratorService,
+    );
+  });
+
+  it('transform should return filtered data by props returned from DataTransformerConfiguratorService', () => {
+    const mockTransformerReturnData = {
       filter: {
         [mockIdFilter]: '2',
         [mockAnotherIdFilter]: '2',
@@ -53,32 +85,7 @@ class MockCollateDataConfiguratorService {
       search: 'test',
       page: 3,
       pageSize: 2,
-    }),
-  );
-}
-
-describe('CollateDataTransformerService', () => {
-  let service: CollateDataTransformerService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        MockCollateFilterService,
-        MockCollateDataConfiguratorService,
-        {
-          provide: CollateFilterService,
-          useExisting: MockCollateFilterService,
-        },
-        {
-          provide: CollateDataConfiguratorService,
-          useExisting: MockCollateDataConfiguratorService,
-        },
-      ],
-    });
-    service = TestBed.inject(CollateDataTransformerService);
-  });
-
-  it('should transform should return filtered data by props returned from CollateDataConfiguratorService', () => {
+    };
     const mockConfig = {
       type: 'data-manipulator',
       configurator: {
@@ -100,19 +107,72 @@ describe('CollateDataTransformerService', () => {
       },
     };
     const callback = jest.fn();
+
+    dataTransformerConfiguratorService.resolve.mockReturnValue(
+      of(mockTransformerReturnData),
+    );
+
     const serviceObservable$ = service.transform(
       mockData,
       mockConfig,
-      {} as any,
+      mockInjector,
     );
 
     serviceObservable$.subscribe(callback);
 
     expect(callback).toHaveBeenCalledWith({
       data: [mockData[0]],
-      page: 3,
-      pageSize: 2,
+      page: mockTransformerReturnData.page,
+      pageSize: mockTransformerReturnData.pageSize,
       total: 1,
+    });
+  });
+
+  it('transform should return updated data when CollateDataConfiguratorService has been emit', () => {
+    const mockTransformerReturnData = {
+      page: 3,
+      pageSize: 10,
+    };
+    const mockConfig = {
+      type: 'data-manipulator',
+      configurator: {
+        type: 'table-data',
+      },
+    };
+    const callback = jest.fn();
+    const mockDataTransformerConfiguratorData$ = new BehaviorSubject(
+      mockTransformerReturnData,
+    );
+
+    dataTransformerConfiguratorService.resolve.mockReturnValue(
+      mockDataTransformerConfiguratorData$,
+    );
+
+    const serviceObservable$ = service.transform(
+      mockData,
+      mockConfig,
+      mockInjector,
+    );
+
+    serviceObservable$.subscribe(callback);
+
+    expect(callback).toHaveBeenCalledWith({
+      data: mockData,
+      page: mockTransformerReturnData.page,
+      pageSize: mockTransformerReturnData.pageSize,
+      total: mockData.length,
+    });
+
+    mockTransformerReturnData.pageSize = 10;
+    mockTransformerReturnData.page = 1;
+
+    mockDataTransformerConfiguratorData$.next(mockTransformerReturnData);
+
+    expect(callback).toHaveBeenCalledWith({
+      data: mockData,
+      page: mockTransformerReturnData.page,
+      pageSize: mockTransformerReturnData.pageSize,
+      total: mockData.length,
     });
   });
 });

@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { toIsoDateFormat } from '@spryker/utils';
 
 import { DateSerializeDataTransformerService } from './date-serialize-data-transformer.service';
 
@@ -15,10 +14,10 @@ describe('DateSerializeDataTransformerService', () => {
     const mockConfig = {
       type: 'type',
     };
-    const mockData = new Date().getTime();
+    const mockData = 1614195833321;
     const callback = jest.fn();
     const transformObservable$ = service.transform(mockData, mockConfig);
-    const mockReturnValue = toIsoDateFormat(new Date(mockData));
+    const mockReturnValue = '2021-02-24T19:43:53.321Z';
 
     transformObservable$.subscribe(callback);
 

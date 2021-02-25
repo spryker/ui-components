@@ -335,7 +335,28 @@
       "tags": ["type:service", "pkg:extension"]
     },
     "data-transformer.lens": {
-      "tags": []
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.filter.equals": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.filter.text": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.filter.range": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "data-transformer.configurator.table": {
+      "tags": ["type:service", "pkg:extension"]
+    },
+    "user-menu": {
+      "tags": ["level:molecule", "type:component", "pkg:primary"]
+    },
+    "actions": {
+      "tags": ["type:service", "pkg:primary"]
+    },
+    "input.password": {
+      "tags": ["type:component", "level:atom", "pkg:extension"]
     },
     "datasource": {
       "tags": ["type:service", "pkg:primary"]

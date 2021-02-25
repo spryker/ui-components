@@ -19,6 +19,13 @@ export const primary = (): IStory => ({
   template: `
     <form spyUnsavedChangesFormMonitor>
       <input type="text" style="border: 1px solid red" />
+
+      <div spyUnsavedChangesFormMonitorBubbling>
+        Prevented Bubbling
+        <input type="text" style="border: 1px solid red" />
+        <input type="text" style="border: 1px solid red" />
+      </div>
+
       <button>Submit</button>
     </form>
   `,

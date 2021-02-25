@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataTransformer } from '@spryker/data-transformer';
+import { DateService } from '@spryker/utils/date';
 import { Observable, of } from 'rxjs';
 
 import {
@@ -17,10 +18,12 @@ export class DateParseDataTransformerService
       DateParseDataTransformerData,
       DateParseDataTransformerDataT
     > {
+  constructor(private dateService: DateService) {}
+
   transform(
     data: DateParseDataTransformerData,
     config: DateParseDataTransformerConfig,
   ): Observable<DateParseDataTransformerDataT> {
-    return of(new Date(data).getTime());
+    return of(this.dateService.parse(data).getTime());
   }
 }

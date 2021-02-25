@@ -4,4 +4,4 @@ import { NgModule } from '@angular/core';
 @NgModule({
   imports: [CommonModule],
 })
-export class DataTransformerArrayMapModule {}
+export class ArrayMapDataTransformerModule {}

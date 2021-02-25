@@ -1,4 +1,5 @@
 import { HttpUrlEncodingCodec } from '@angular/common/http';
+import { InjectionToken } from '@angular/core';
 
 export class JsonHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
   encodeKey(key: string): string {
@@ -31,3 +32,11 @@ export class JsonHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
     }
   }
 }
+
+export const DiEncodingCodecToken = new InjectionToken<HttpUrlEncodingCodec>(
+  'DiEncodingCodec',
+  {
+    providedIn: 'root',
+    factory: () => new JsonHttpUrlEncodingCodec(),
+  },
+);

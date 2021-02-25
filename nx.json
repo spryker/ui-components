@@ -363,6 +363,9 @@
     },
     "datasource.inline": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "datasource.http": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

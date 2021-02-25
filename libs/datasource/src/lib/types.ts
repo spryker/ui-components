@@ -1,11 +1,7 @@
 import { Injector } from '@angular/core';
-import {
-  InjectableType,
-  RegistryType,
-  RegistryDeclaration,
-} from '@spryker/utils';
-import { Observable } from 'rxjs';
 import { DataTransformerConfig } from '@spryker/data-transformer';
+import { RegistryDeclaration, RegistryType } from '@spryker/utils';
+import { Observable } from 'rxjs';
 
 // tslint:disable-next-line: no-empty-interface
 export interface DatasourceRegistry {

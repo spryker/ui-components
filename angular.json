@@ -6267,6 +6267,50 @@
         }
       }
     },
+    "datasource.http": {
+      "projectType": "library",
+      "root": "libs/datasource.http",
+      "sourceRoot": "libs/datasource.http/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/datasource.http/tsconfig.lib.json",
+            "project": "libs/datasource.http/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/datasource.http/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/datasource.http/tsconfig.lib.json",
+              "libs/datasource.http/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/datasource.http/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/datasource.http/jest.config.js",
+            "tsConfig": "libs/datasource.http/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/datasource.http/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
     "data-transformer.filter.equals": {
       "projectType": "library",
       "root": "libs/data-transformer.filter.equals",

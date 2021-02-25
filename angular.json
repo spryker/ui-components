@@ -6179,6 +6179,138 @@
         }
       }
     },
+    "datasource": {
+      "projectType": "library",
+      "root": "libs/datasource",
+      "sourceRoot": "libs/datasource/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/datasource/tsconfig.lib.json",
+            "project": "libs/datasource/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/datasource/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/datasource/tsconfig.lib.json",
+              "libs/datasource/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/datasource/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/datasource/jest.config.js",
+            "tsConfig": "libs/datasource/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/datasource/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "datasource.inline": {
+      "projectType": "library",
+      "root": "libs/datasource.inline",
+      "sourceRoot": "libs/datasource.inline/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/datasource.inline/tsconfig.lib.json",
+            "project": "libs/datasource.inline/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/datasource.inline/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/datasource.inline/tsconfig.lib.json",
+              "libs/datasource.inline/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/datasource.inline/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/datasource.inline/jest.config.js",
+            "tsConfig": "libs/datasource.inline/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/datasource.inline/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
+    "datasource.http": {
+      "projectType": "library",
+      "root": "libs/datasource.http",
+      "sourceRoot": "libs/datasource.http/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/datasource.http/tsconfig.lib.json",
+            "project": "libs/datasource.http/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/datasource.http/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/datasource.http/tsconfig.lib.json",
+              "libs/datasource.http/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/datasource.http/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/datasource.http/jest.config.js",
+            "tsConfig": "libs/datasource.http/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/datasource.http/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
     "data-transformer.filter.equals": {
       "projectType": "library",
       "root": "libs/data-transformer.filter.equals",

@@ -1,0 +1,12 @@
+<spy-popover [position]="popoverPosition" [(open)]="isPopoverOpened">
+  <button
+    trigger
+    class="spy-user-menu__action"
+    [class.spy-user-menu__action--active]="isPopoverOpened"
+  >
+    <spy-icon class="spy-user-menu__icon" [name]="icon"></spy-icon>
+  </button>
+  <div class="spy-user-menu__content" spyCustomElementBoundary>
+    <ng-content></ng-content>
+  </div>
+</spy-popover>

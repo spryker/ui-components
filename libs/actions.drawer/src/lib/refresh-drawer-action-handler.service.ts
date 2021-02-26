@@ -47,14 +47,12 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
       }
     }
 
-    const result = merge(
+    return merge(
       // tslint:disable-next-line:no-non-null-assertion
       this.drawerRef!.afterClosed(),
       this.drawerData$.pipe(skip(1), take(1)),
       // tslint:disable-next-line:no-non-null-assertion
     ).pipe(mapTo(this.drawerRef! as DrawerRef<C>));
-    console.log(result);
-    return result;
   }
 
   private drawerDataComponent(drawerData: DrawerActionConfigComponent, contextService: ContextService, context: any): void {

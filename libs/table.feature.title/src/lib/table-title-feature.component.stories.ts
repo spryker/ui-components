@@ -1,18 +1,18 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { IStory } from '@storybook/angular';
-import { TableModule } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableTitleFeatureModule } from './table-title-feature.module';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { DatasourceModule } from '@spryker/datasource';
+import { TableModule } from '@spryker/table';
 import {
   MockTableDatasourceConfig,
   MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { DatasourceModule } from '@spryker/datasource';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { IStory } from '@storybook/angular';
+
+import { TableTitleFeatureModule } from './table-title-feature.module';
 
 export default {
   title: 'TableTitleFeatureComponent',

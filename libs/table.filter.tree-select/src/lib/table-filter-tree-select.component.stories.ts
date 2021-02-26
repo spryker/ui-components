@@ -1,22 +1,22 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { DatasourceModule } from '@spryker/datasource';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { TableModule } from '@spryker/table';
 import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
-import { TableFilterTreeSelectModule } from './table-filter-tree-select.module';
-import { TableFilterTreeSelectComponent } from './table-filter-tree-select.component';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
   MockTableDatasourceConfig,
   MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { DatasourceModule } from '@spryker/datasource';
-import { LocaleModule } from '@spryker/locale';
-import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { IStory } from '@storybook/angular';
+
+import { TableFilterTreeSelectComponent } from './table-filter-tree-select.component';
+import { TableFilterTreeSelectModule } from './table-filter-tree-select.module';
 
 export default {
   title: 'TableFilterTreeSelectComponent',
@@ -30,7 +30,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const viaHtml = getFiltersStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config">
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
     </spy-table>
   `,
@@ -39,7 +39,7 @@ export const viaHtml = getFiltersStory(
 
 export const viaConfig = getFiltersStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config">
   `,
   [
     TableModule.withFeatures({
@@ -60,7 +60,6 @@ function getFiltersStory(
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        MockHttpModule,
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
           'tree-select': TableFilterTreeSelectComponent,

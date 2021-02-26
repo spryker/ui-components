@@ -7,7 +7,8 @@ import { ContextSerializationStrategyToken } from './serialization-strategy';
   providedIn: 'root',
 })
 export class ContextSerializationService {
-  private serializationStrategies = this.serializationStrategiesArray?.flat() ?? [];
+  private serializationStrategies =
+    this.serializationStrategiesArray?.flat() ?? [];
 
   constructor(
     private injector: Injector,

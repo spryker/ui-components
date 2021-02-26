@@ -5,7 +5,10 @@ import { of } from 'rxjs';
 
 import { DrawerActionHandlerService } from './refresh-drawer-action-handler.service';
 import { DrawerActionModule } from './actions-drawer.module';
-import { DrawerActionConfigComponent, DrawerActionConfigTemplate } from './types';
+import {
+  DrawerActionConfigComponent,
+  DrawerActionConfigTemplate,
+} from './types';
 
 const mockActionType = 'mockActionType';
 const mockActionInvalidType = 'mockActionInvalidType';
@@ -88,7 +91,10 @@ describe('DrawerActionHandlerService', () => {
     mockDrawerService.openComponent.mockReturnValue(mockDrawerRef);
     service.handleAction(mockInjector, mockConfig, mockContext);
 
-    expect(mockDrawerService.openComponent).toHaveBeenCalledWith(MockActionHandler, mockConfig.options);
+    expect(mockDrawerService.openComponent).toHaveBeenCalledWith(
+      MockActionHandler,
+      mockConfig.options,
+    );
   });
 
   it('should call openTemplate() with arguments', () => {
@@ -101,7 +107,10 @@ describe('DrawerActionHandlerService', () => {
     mockDrawerService.openTemplate.mockReturnValue(mockDrawerRef);
     service.handleAction(mockInjector, mockConfig, mockContext);
 
-    expect(mockDrawerService.openTemplate).toHaveBeenCalledWith(mockActionType, mockConfig.options);
+    expect(mockDrawerService.openTemplate).toHaveBeenCalledWith(
+      mockActionType,
+      mockConfig.options,
+    );
   });
 
   it('handleAction() should return callback function with arguments', () => {
@@ -114,7 +123,11 @@ describe('DrawerActionHandlerService', () => {
 
     mockDrawerService.openComponent.mockReturnValue(mockDrawerRef);
 
-    const serviceObservable$ = service.handleAction(mockInjector, mockConfig, mockContext);
+    const serviceObservable$ = service.handleAction(
+      mockInjector,
+      mockConfig,
+      mockContext,
+    );
 
     serviceObservable$.subscribe(callback);
 

@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnDestroy, Output, TemplateRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { boolean, text } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 

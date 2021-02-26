@@ -28,7 +28,12 @@ import {
   DrawerMaximizeInterceptionEvent,
   DrawerMinimizeInterceptionEvent,
 } from '../drawer-interception';
-import { DrawerData, DrawerOptions, DrawerOptionsComponent, DrawerOptionsTemplate } from '../drawer-options';
+import {
+  DrawerData,
+  DrawerOptions,
+  DrawerOptionsComponent,
+  DrawerOptionsTemplate,
+} from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.component';
 import { DrawerTemplateContext } from '../types';

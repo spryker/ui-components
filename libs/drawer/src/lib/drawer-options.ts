@@ -29,7 +29,7 @@ export class DrawerOptionsBase<D = DrawerData> {
 export class DrawerOptionsComponent<
   D = DrawerData,
   T = {}
-  > extends DrawerOptionsBase<D> {
+> extends DrawerOptionsBase<D> {
   readonly injector?: Injector;
   readonly inputs?: Partial<Record<keyof T, unknown>>;
   readonly outputs?: Partial<Record<keyof T, (event?: unknown) => void>>;
@@ -50,7 +50,7 @@ export class DrawerOptionsComponent<
 export class DrawerOptionsTemplate<
   D = DrawerData,
   C = {}
-  > extends DrawerOptionsBase<D> {
+> extends DrawerOptionsBase<D> {
   readonly context?: C;
 
   constructor({

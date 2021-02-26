@@ -3,7 +3,7 @@ import { DrawerActionTypesDeclaration } from './types';
 
 export const DrawerActionComponentTypesToken = new InjectionToken<
   DrawerActionTypesDeclaration[]
-  >('DrawerActionComponentTypesToken');
+>('DrawerActionComponentTypesToken');
 
 export function provideDrawerActionType(
   components: DrawerActionTypesDeclaration,

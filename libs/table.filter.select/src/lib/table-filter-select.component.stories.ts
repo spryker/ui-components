@@ -1,21 +1,22 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableModule } from '@spryker/table';
-import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
-import { TableFilterSelectComponent } from './table-filter-select.component';
-import { TableFilterSelectModule } from './table-filter-select.module';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import {
-  generateMockTableDataFor,
-  TableDataMockGenerator,
-} from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
+import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { TableModule } from '@spryker/table';
+import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
+import {
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { IStory } from '@storybook/angular';
+
+import { TableFilterSelectComponent } from './table-filter-select.component';
+import { TableFilterSelectModule } from './table-filter-select.module';
 
 export default {
   title: 'TableFiltersSelectComponent',
@@ -29,7 +30,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const viaHtml = getFiltersStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config">
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
     </spy-table>
   `,
@@ -38,7 +39,7 @@ export const viaHtml = getFiltersStory(
 
 export const viaConfig = getFiltersStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config">
   `,
   [
     TableModule.withFeatures({
@@ -59,14 +60,13 @@ function getFiltersStory(
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        MockHttpModule,
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
           select: TableFilterSelectComponent as any,
         }),
         DefaultContextSerializationModule,
-        TableModule.withDatasourceTypes({
-          http: TableDatasourceHttpService,
+        DatasourceModule.withDatasources({
+          'mock-data': MockTableDatasourceService,
         }),
         TableFilterSelectModule,
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
@@ -85,9 +85,9 @@ function getFiltersStory(
     props: {
       config: {
         dataSource: {
-          type: 'http',
-          url: '/data-request',
-        },
+          type: 'mock-data',
+          dataGenerator: tableDataGenerator,
+        } as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },
@@ -141,12 +141,6 @@ function getFiltersStory(
           ],
         },
       },
-      mockHttp: setMockHttp([
-        {
-          url: '/data-request',
-          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-        },
-      ]),
     },
   });
 }

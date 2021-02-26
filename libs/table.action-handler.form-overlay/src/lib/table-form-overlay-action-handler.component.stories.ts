@@ -9,20 +9,17 @@ import {
 } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AjaxFormResponse } from '@spryker/ajax-form';
+import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
-import { ModalModule, NzModalWrapperComponent } from '@spryker/modal';
 import { NotificationModule, NotificationType } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
-import { UnsavedChangesModule } from '@spryker/unsaved-changes';
-import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
-import { UnsavedChangesDrawerGuardModule } from '@spryker/unsaved-changes.guard.drawer';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
@@ -48,8 +45,8 @@ class StoryComponent {}
       'form-overlay': TableFormOverlayActionHandlerService,
     }),
     TableModule.forRoot(),
-    TableModule.withDatasourceTypes({
-      http: TableDatasourceHttpService,
+    DatasourceModule.withDatasources({
+      'mock-data': MockTableDatasourceService,
     }),
     TableModule.withFeatures({
       rowActions: () =>
@@ -62,10 +59,6 @@ class StoryComponent {}
     MockHttpModule,
     TableFormOverlayActionHandlerModule,
     DefaultContextSerializationModule,
-    UnsavedChangesModule.forRoot(),
-    UnsavedChangesDrawerGuardModule.forRoot(),
-    UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
-    ModalModule.forRoot(),
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
     EnLocaleModule,
   ],
@@ -73,7 +66,6 @@ class StoryComponent {}
     {
       provide: ANALYZE_FOR_ENTRY_COMPONENTS,
       useValue: [
-        NzModalWrapperComponent,
         DrawerContainerProxyComponent,
         TableFormOverlayActionHandlerComponent,
         NotificationWrapperComponent,
@@ -92,6 +84,8 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 });
 
 const mockHtmlTemplate = () => `
+  Form Overlay
+  <br />
   <input type="text" name="name">
   <button type="submit">Submit</button>
 `;
@@ -117,9 +111,9 @@ export const primary = () => ({
   props: {
     config: {
       dataSource: {
-        type: 'http',
-        url: '/data-request',
-      },
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', title: 'Column #1' },
         { id: 'col2', title: 'Column #2' },
@@ -142,10 +136,6 @@ export const primary = () => ({
       },
     },
     mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-      },
       {
         url: /^\/mock-url/,
         dataFn: tableResponse,

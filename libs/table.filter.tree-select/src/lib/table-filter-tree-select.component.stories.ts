@@ -8,11 +8,12 @@ import { TableFilterTreeSelectModule } from './table-filter-tree-select.module';
 import { TableFilterTreeSelectComponent } from './table-filter-tree-select.component';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
+import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
@@ -65,8 +66,8 @@ function getFiltersStory(
           'tree-select': TableFilterTreeSelectComponent,
         } as any),
         DefaultContextSerializationModule,
-        TableModule.withDatasourceTypes({
-          http: TableDatasourceHttpService,
+        DatasourceModule.withDatasources({
+          'mock-data': MockTableDatasourceService,
         }),
         TableFilterTreeSelectModule,
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
@@ -85,9 +86,9 @@ function getFiltersStory(
     props: {
       config: {
         dataSource: {
-          type: 'http',
-          url: '/data-request',
-        },
+          type: 'mock-data',
+          dataGenerator: tableDataGenerator,
+        } as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },
@@ -124,12 +125,6 @@ function getFiltersStory(
           ],
         },
       },
-      mockHttp: setMockHttp([
-        {
-          url: '/data-request',
-          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-        },
-      ]),
     },
   });
 }

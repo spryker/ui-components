@@ -6,11 +6,12 @@ import { TableModule } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableTitleFeatureModule } from './table-title-feature.module';
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
+import { DatasourceModule } from '@spryker/datasource';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 export default {
@@ -25,7 +26,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const viaHtml = getSearchStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config">
       <spy-table-title-feature spy-table-feature></spy-table-title-feature>
     </spy-table>
   `,
@@ -34,11 +35,11 @@ export const viaHtml = getSearchStory(
 
 export const viaConfig = getSearchStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config">
   `,
   [
     TableModule.withFeatures({
-      search: () =>
+      title: () =>
         import('./table-title-feature.module').then(
           (m) => m.TableTitleFeatureModule,
         ),
@@ -55,10 +56,9 @@ function getSearchStory(
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        MockHttpModule,
         TableModule.forRoot(),
-        TableModule.withDatasourceTypes({
-          http: TableDatasourceHttpService,
+        DatasourceModule.withDatasources({
+          'mock-data': MockTableDatasourceService,
         }),
         DefaultContextSerializationModule,
         ...extraNgModules,
@@ -75,9 +75,9 @@ function getSearchStory(
     props: {
       config: {
         dataSource: {
-          type: 'http',
-          url: '/data-request',
-        },
+          type: 'mock-data',
+          dataGenerator: tableDataGenerator,
+        } as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },
@@ -88,12 +88,6 @@ function getSearchStory(
           title: 'Table title',
         },
       },
-      mockHttp: setMockHttp([
-        {
-          url: '/data-request',
-          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-        },
-      ]),
     },
   });
 }

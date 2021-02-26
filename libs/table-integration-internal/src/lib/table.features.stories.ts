@@ -17,7 +17,8 @@ import {
 } from '@spryker/table.filter.tree-select';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
@@ -30,7 +31,7 @@ import { TableSearchFeatureModule } from '@spryker/table.feature.search';
 import { TableSelectableFeatureModule } from '@spryker/table.feature.selectable';
 import { TableSyncStateFeatureModule } from '@spryker/table.feature.sync-state';
 import { TableTotalFeatureModule } from '@spryker/table.feature.total';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
+import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
@@ -163,8 +164,8 @@ function getFeaturesStory(
           'tree-select': TableFilterTreeSelectComponent,
           range: TableFilterDateRangeComponent,
         } as any),
-        TableModule.withDatasourceTypes({
-          http: TableDatasourceHttpService,
+        DatasourceModule.withDatasources({
+          'mock-data': MockTableDatasourceService,
         }),
         TableFilterDateRangeModule,
         TableFilterSelectModule,
@@ -191,9 +192,9 @@ function getFeaturesStory(
     props: {
       config: {
         dataSource: {
-          type: 'http',
-          url: '/data-request',
-        },
+          type: 'mock-data',
+          dataGenerator: tableDataGenerator,
+        } as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1', sortable: true, hideable: true },
           { id: 'col2', title: 'Column #2', hideable: false },
@@ -337,12 +338,6 @@ function getFeaturesStory(
           enabled: true,
         },
       },
-      mockHttp: setMockHttp([
-        {
-          url: '/data-request',
-          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-        },
-      ]),
     },
   });
 }

@@ -8,17 +8,18 @@ import {
   NgModule,
 } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule, NotificationType } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
-import { DrawerContainerComponent } from '../../../drawer/src/lib/drawer-container/drawer-container.component';
+import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
 import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 import { TableHtmlOverlayActionHandlerComponent } from './table-html-overlay-action-handler.component';
 import { TableHtmlOverlayActionHandlerModule } from './table-html-overlay-action-handler.module';
@@ -42,8 +43,8 @@ class StoryComponent {}
       'html-overlay': TableHtmlOverlayActionHandlerService,
     }),
     TableModule.forRoot(),
-    TableModule.withDatasourceTypes({
-      http: TableDatasourceHttpService,
+    DatasourceModule.withDatasources({
+      'mock-data': MockTableDatasourceService,
     }),
     TableModule.withFeatures({
       rowActions: () =>
@@ -61,7 +62,7 @@ class StoryComponent {}
     {
       provide: ANALYZE_FOR_ENTRY_COMPONENTS,
       useValue: [
-        DrawerContainerComponent,
+        DrawerContainerProxyComponent,
         TableHtmlOverlayActionHandlerComponent,
         NotificationWrapperComponent,
       ],
@@ -79,8 +80,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 });
 
 const mockHtmlTemplate = () => `
-  <input type="text" name="name">
-  <button type="submit">Submit</button>
+  HTML Overlay
 `;
 
 const tableResponse = (request: TestRequest): TableHtmlOverlayResponse => ({
@@ -104,9 +104,9 @@ export const primary = () => ({
   props: {
     config: {
       dataSource: {
-        type: 'http',
-        url: '/data-request',
-      },
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', title: 'Column #1' },
         { id: 'col2', title: 'Column #2' },
@@ -129,10 +129,6 @@ export const primary = () => ({
       },
     },
     mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-      },
       {
         url: /^\/mock-url/,
         dataFn: tableResponse,

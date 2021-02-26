@@ -1,22 +1,23 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { object } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
-import { TableColumnInputComponent } from './table-column-input.component';
-import { TableColumnInputModule } from './table-column-input.module';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { DatasourceModule } from '@spryker/datasource';
+import { TableModule } from '@spryker/table';
+import {
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
 import {
   ContextModule,
   DefaultContextSerializationModule,
 } from '@spryker/utils';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { TableModule } from '@spryker/table';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import {
-  generateMockTableDataFor,
-  TableDataMockGenerator,
-} from '@spryker/table/testing';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
+import { object } from '@storybook/addon-knobs';
+import { IStory } from '@storybook/angular';
+
+import { TableColumnInputComponent } from './table-column-input.component';
+import { TableColumnInputModule } from './table-column-input.module';
 
 export default {
   title: 'TableColumnInputComponent',
@@ -49,14 +50,13 @@ export const withTable = (): IStory => ({
     imports: [
       HttpClientTestingModule,
       ContextModule,
-      MockHttpModule,
       TableColumnInputModule,
       TableModule.forRoot(),
       TableModule.withColumnComponents({
         input: TableColumnInputComponent,
       } as any),
-      TableModule.withDatasourceTypes({
-        http: TableDatasourceHttpService,
+      DatasourceModule.withDatasources({
+        'mock-data': MockTableDatasourceService,
       }),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
@@ -70,14 +70,14 @@ export const withTable = (): IStory => ({
     ],
   },
   template: `
-    <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
+    <spy-table [config]="config"></spy-table>
   `,
   props: {
     config: {
       dataSource: {
-        type: 'http',
-        url: '/data-request',
-      },
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1' },
         {
@@ -93,11 +93,5 @@ export const withTable = (): IStory => ({
         },
       ],
     },
-    mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-      },
-    ]),
   },
 });

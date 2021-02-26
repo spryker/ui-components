@@ -3,18 +3,18 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { CheckboxModule } from '@spryker/checkbox';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
+import { DefaultContextSerializationModule } from '@spryker/utils';
 import { IStory } from '@storybook/angular';
 
-import { TableSelectionChangeEvent } from './types';
 import { TableSelectableFeatureModule } from './table-selectable-feature.module';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
-import { DefaultContextSerializationModule } from '@spryker/utils';
+import { TableSelectionChangeEvent } from './types';
 
 export default {
   title: 'TableSelectableFeatureComponent',
@@ -28,7 +28,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const viaHtml = getSelectableStory(
   `
-    <spy-table [config]="config" [events]="{itemSelection: logSelectionChange}" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [events]="{itemSelection: logSelectionChange}">
       <spy-table-selectable-feature spy-table-feature></spy-table-selectable-feature>
     </spy-table>
   `,
@@ -37,7 +37,7 @@ export const viaHtml = getSelectableStory(
 
 export const viaConfig = getSelectableStory(
   `
-    <spy-table [config]="config" [events]="{itemSelection: logSelectionChange}" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [events]="{itemSelection: logSelectionChange}">
   `,
   [
     TableModule.withFeatures({
@@ -58,11 +58,10 @@ function getSelectableStory(
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        MockHttpModule,
         CheckboxModule,
         TableModule.forRoot(),
-        TableModule.withDatasourceTypes({
-          http: TableDatasourceHttpService,
+        DatasourceModule.withDatasources({
+          'mock-data': MockTableDatasourceService,
         }),
         DefaultContextSerializationModule,
         ...extraNgModules,
@@ -79,9 +78,9 @@ function getSelectableStory(
     props: {
       config: {
         dataSource: {
-          type: 'http',
-          url: '/data-request',
-        },
+          type: 'mock-data',
+          dataGenerator: tableDataGenerator,
+        } as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },
@@ -91,12 +90,7 @@ function getSelectableStory(
           enabled: true, // This will enable feature via config
         },
       },
-      mockHttp: setMockHttp([
-        {
-          url: '/data-request',
-          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-        },
-      ]),
+
       logSelectionChange: (event: TableSelectionChangeEvent) =>
         console.log('SelectionChange', event),
     },

@@ -168,9 +168,6 @@
     "ajax-action.post-action.refresh-drawer": {
       "tags": ["type:service", "pkg:extension"]
     },
-    "table.datasource.http": {
-      "tags": ["type:service", "pkg:extension"]
-    },
     "table.column.chip": {
       "tags": ["level:atom", "type:component", "pkg:extension"]
     },

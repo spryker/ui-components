@@ -16,15 +16,17 @@ import {
   providedIn: 'root',
 })
 export class PersistenceStrategyService {
-  private strategies: PersistenceStrategyTypesDeclaration = this.strategiesTypes?.reduce(
-    (strategies, strategy) => ({ ...strategies, ...strategy }),
-    {},
-  );
+  private strategies: PersistenceStrategyTypesDeclaration =
+    this.strategiesTypes?.reduce(
+      (strategies, strategy) => ({ ...strategies, ...strategy }),
+      {},
+    ) ?? {};
 
   constructor(
     private injector: Injector,
+    @Optional()
     @Inject(PersistenceStrategyTypesToken)
-    private strategiesTypes: InjectionTokenType<
+    private strategiesTypes?: InjectionTokenType<
       typeof PersistenceStrategyTypesToken
     >,
   ) {}

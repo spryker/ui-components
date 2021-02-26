@@ -46,7 +46,7 @@ export class DatasourceHttpService implements Datasource {
     }
 
     const params =
-      config.dataIn === DatasourceHttpConfigDataIn.Params
+      !config.dataIn || config.dataIn === DatasourceHttpConfigDataIn.Params
         ? new HttpParams({
             fromObject: context as any, // any values can be used and custom codec supports it
             encoder: this.diEncodingCodecToken,

@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DynamicIoModule } from 'ng-dynamic-component';
 
 import { DrawerContainerComponent } from './drawer-container.component';
 
@@ -44,7 +45,7 @@ describe('DrawerContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [PortalModule],
+      imports: [PortalModule, DynamicIoModule],
       declarations: [TestComponent, DrawerContainerComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

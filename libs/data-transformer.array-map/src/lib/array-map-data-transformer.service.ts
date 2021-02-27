@@ -3,7 +3,7 @@ import {
   DataTransformer,
   DataTransformerService,
 } from '@spryker/data-transformer';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 
 import {
   ArrayMapDataTransformerConfig,
@@ -23,10 +23,12 @@ export class ArrayMapDataTransformerService
     data: ArrayMapDataTransformerData,
     config: ArrayMapDataTransformerConfig,
   ): Observable<ArrayMapDataTransformerDataT> {
-    return combineLatest(
-      data.map((dataItem) =>
-        this.dataTransformerService.transform(dataItem, config.mapItems),
-      ),
-    );
+    return data.length
+      ? combineLatest(
+          data.map((dataItem) =>
+            this.dataTransformerService.transform(dataItem, config.mapItems),
+          ),
+        )
+      : of(data);
   }
 }

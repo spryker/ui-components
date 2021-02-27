@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 
 import { DataTransformerFiltersTypesToken } from './tokens';
@@ -16,15 +16,17 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataTransformerFilterService {
-  private filters: DataTransformerFilterDeclaration = this.filtersTypes.reduce(
-    (filters, filter) => ({ ...filters, ...filter }),
-    {},
-  );
+  private filters: DataTransformerFilterDeclaration =
+    this.filtersTypes?.reduce(
+      (filters, filter) => ({ ...filters, ...filter }),
+      {},
+    ) ?? {};
 
   constructor(
     private injector: Injector,
+    @Optional()
     @Inject(DataTransformerFiltersTypesToken)
-    private filtersTypes: InjectionTokenType<
+    private filtersTypes?: InjectionTokenType<
       typeof DataTransformerFiltersTypesToken
     >,
   ) {}

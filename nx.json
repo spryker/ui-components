@@ -271,7 +271,7 @@
       "tags": ["type:component", "level:molecule", "pkg:extension"],
       "implicitDependencies": ["locale"]
     },
-    "table.datasource.inline": {
+    "datasource.inline.table": {
       "tags": ["type:service", "pkg:extension"]
     },
     "ajax-action.post-action.refresh-parent-table": {

@@ -13,6 +13,7 @@ import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { ModalModule, NzModalWrapperComponent } from '@spryker/modal';
 import { NotificationModule, NotificationType } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
 import {
@@ -20,6 +21,9 @@ import {
   MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
+import { UnsavedChangesModule } from '@spryker/unsaved-changes';
+import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
+import { UnsavedChangesDrawerGuardModule } from '@spryker/unsaved-changes.guard.drawer';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
@@ -59,6 +63,10 @@ class StoryComponent {}
     MockHttpModule,
     TableFormOverlayActionHandlerModule,
     DefaultContextSerializationModule,
+    UnsavedChangesModule.forRoot(),
+    UnsavedChangesDrawerGuardModule.forRoot(),
+    UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
+    ModalModule.forRoot(),
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
     EnLocaleModule,
   ],
@@ -66,6 +74,7 @@ class StoryComponent {}
     {
       provide: ANALYZE_FOR_ENTRY_COMPONENTS,
       useValue: [
+        NzModalWrapperComponent,
         DrawerContainerProxyComponent,
         TableFormOverlayActionHandlerComponent,
         NotificationWrapperComponent,

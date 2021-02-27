@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
@@ -15,42 +16,29 @@ import {
   TableFilterSelectComponent,
   TableFilterSelectModule,
 } from '@spryker/table.filter.select';
-import { TableDataMockGenerator } from '@spryker/table/testing';
 import {
   ContextModule,
   DefaultContextSerializationModule,
 } from '@spryker/utils';
 import { IStory } from '@storybook/angular';
 
-import {
-  TableDatasourceEqualsFilter,
-  TableDatasourceRangeFilter,
-  TableDatasourceTextFilter,
-} from './filter';
-import { TableDatasourceDateProcessor } from './processor';
-import { TableDatasourceInlineModule } from './table-datasource-inline.module';
 import { TableDatasourceInlineService } from './table-datasource-inline.service';
+import { TableDatasourceInlineModule } from './table-datasource-inline.module';
 
 export default {
   title: 'TableDatasourceInlineService',
 };
 
-const tableDataGenerator: TableDataMockGenerator = (i) => ({
-  col1: `col1 #${i}`,
-  col2: 'col 2',
-  col3: 'col3',
-  col4: 'col4',
-});
-
 export const withTable = (): IStory => ({
   moduleMetadata: {
     imports: [
+      TableDatasourceInlineModule,
       HttpClientTestingModule,
       ContextModule,
       MockHttpModule,
       TableModule.forRoot(),
-      TableModule.withDatasourceTypes({
-        inline: TableDatasourceInlineService,
+      DatasourceModule.withDatasources({
+        'table.inline': TableDatasourceInlineService,
       }),
       TableModule.withFeatures({
         pagination: () =>
@@ -71,14 +59,6 @@ export const withTable = (): IStory => ({
         'date-range': TableFilterDateRangeComponent,
       } as any),
       TableFilterSelectModule,
-      TableDatasourceInlineModule.withFilters({
-        equals: TableDatasourceEqualsFilter,
-        text: TableDatasourceTextFilter,
-        range: TableDatasourceRangeFilter,
-      }),
-      TableDatasourceInlineModule.withProcessors({
-        date: TableDatasourceDateProcessor,
-      }),
       TableFilterDateRangeModule,
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
@@ -103,7 +83,7 @@ export const withTable = (): IStory => ({
   props: {
     config: {
       dataSource: {
-        type: 'inline',
+        type: 'table.inline',
         data: [
           {
             col1: 1,
@@ -145,26 +125,26 @@ export const withTable = (): IStory => ({
         filter: {
           select1: {
             type: 'equals',
-            columns: 'col1',
+            propNames: 'col1',
           },
           select2: {
             type: 'equals',
-            columns: ['col2', 'col1'],
+            propNames: ['col2', 'col1'],
           },
           date: {
             type: 'range',
-            columns: 'col3',
+            propNames: 'col3',
           },
           date1: {
             type: 'range',
-            columns: ['col3', 'col4'],
+            propNames: ['col3', 'col4'],
           },
         },
         search: {
           type: 'text',
-          columns: ['col1', 'col2'],
+          propNames: ['col1', 'col2'],
         },
-        columnProcessors: {
+        transformerByPropName: {
           col3: 'date',
           col4: 'date',
         },

@@ -3,11 +3,17 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
+import { DatasourceHttpService } from '@spryker/datasource.http';
+import { DatasourceInlineService } from '@spryker/datasource.inline';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { NotificationModule } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
+import { TableDatasourceDependableService } from '@spryker/table.feature.editable';
 import {
   MockTableDatasourceConfig,
   MockTableDatasourceService,
   TableDataMockGenerator,
+  generateMockTableDataFor,
 } from '@spryker/table/testing';
 import {
   ContextModule,
@@ -18,6 +24,8 @@ import { IStory } from '@storybook/angular';
 
 import { TableColumnSelectComponent } from './table-column-select.component';
 import { TableColumnSelectModule } from './table-column-select.module';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 
 export default {
   title: 'TableColumnSelectComponent',
@@ -26,11 +34,15 @@ export default {
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: `Option ${i}`,
+  col3: 'col3',
 });
 
 export const primary = (): IStory => ({
   moduleMetadata: {
     imports: [
+      DatasourceModule.withDatasources({
+        'mock-data': MockTableDatasourceService,
+      }),
       TableColumnSelectModule,
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
@@ -119,5 +131,102 @@ export const withTable = (): IStory => ({
         },
       ],
     },
+  },
+});
+
+export const withDependentColumns = (): IStory => ({
+  moduleMetadata: {
+    imports: [
+      HttpClientTestingModule,
+      ContextModule,
+      MockHttpModule,
+      TableColumnSelectModule,
+      TableModule.forRoot(),
+      TableModule.withFeatures({
+        editable: () =>
+          import('@spryker/table.feature.editable').then(
+            (m) => m.TableEditableFeatureModule,
+          ),
+      }),
+      TableModule.withColumnComponents({
+        select: TableColumnSelectComponent,
+      } as any),
+      DatasourceModule.withDatasources({
+        'mock-data': MockTableDatasourceService,
+        inline: DatasourceInlineService,
+        dependable: TableDatasourceDependableService,
+      }),
+      DefaultContextSerializationModule,
+      BrowserAnimationsModule,
+      NotificationModule.forRoot(),
+      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+      EnLocaleModule,
+    ],
+    providers: [
+      {
+        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+        useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
+        multi: true,
+      },
+    ],
+  },
+  template: `
+    <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
+  `,
+  props: {
+    config: {
+      dataSource: {
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as MockTableDatasourceConfig,
+      columns: [
+        { id: 'col1', sortable: true, title: 'Column #1' },
+        {
+          id: 'col2',
+          title: 'Column #2',
+        },
+        {
+          id: 'col3',
+          title: 'Column #3',
+        },
+      ],
+      editable: {
+        columns: [
+          {
+            id: 'col2',
+            type: 'select',
+            typeOptions: {
+              datasource: {
+                type: 'dependable',
+                dependsOn: 'col3',
+                datasource: {
+                  type: 'inline',
+                  data: ['Inline 1', 'Inline 2'],
+                },
+              },
+            },
+          },
+          {
+            id: 'col3',
+            type: 'select',
+            typeOptions: {
+              options: ['Option 1', 'Option 2'],
+            },
+          },
+        ],
+        create: {},
+        update: { url: '/update-cell' },
+      },
+    },
+    mockHttp: setMockHttp([
+      {
+        url: '/data-request',
+        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
+      },
+      {
+        url: '/update-cell',
+        data: {},
+      },
+    ]),
   },
 });

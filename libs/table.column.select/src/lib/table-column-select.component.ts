@@ -5,6 +5,7 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
+import { DatasourceConfig } from '@spryker/datasource';
 import { SelectOption, SelectValue } from '@spryker/select';
 import {
   ColumnTypeOption,
@@ -71,7 +72,10 @@ export class TableColumnSelectConfig {
     type: ColumnTypeOptionsType.AnyOf,
     value: [String, Boolean],
   })
+  @ColumnTypeOption()
   editableError?: string | boolean;
+  @ColumnTypeOption()
+  datasource?: DatasourceConfig;
 }
 
 @Component({

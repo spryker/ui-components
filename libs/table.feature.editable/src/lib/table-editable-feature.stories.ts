@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, Injectable, Input, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { NotificationModule } from '@spryker/notification';
@@ -138,7 +139,7 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
     BrowserAnimationsModule,
     HttpClientTestingModule,
     TableModule.forRoot(),
-    TableModule.withDatasourceTypes({
+    DatasourceModule.withDatasources({
       'mock-data': MockTableDatasourceService,
     }),
     TableModule.withColumnComponents({

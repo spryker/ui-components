@@ -16,8 +16,7 @@
     "@spryker/data-transformer.object-map": "^0.1.0-next.0",
     "@spryker/data-transformer.filter.equals": "^0.1.0-next.0",
     "@spryker/data-transformer.filter.text": "^0.1.0-next.0",
-    "@spryker/data-transformer.filter.range": "^0.1.0-next.0",
-    "@spryker/utils.date.adapter.date-fns": "^0.1.0-next.0"
+    "@spryker/data-transformer.filter.range": "^0.1.0-next.0"
   },
   "dependencies": {
     "tslib": "^1.10.0"

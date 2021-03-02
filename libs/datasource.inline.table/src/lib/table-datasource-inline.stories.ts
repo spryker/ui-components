@@ -20,10 +20,11 @@ import {
   ContextModule,
   DefaultContextSerializationModule,
 } from '@spryker/utils';
+import { DateFnsDateAdapterModule } from '@spryker/utils.date.adapter.date-fns';
 import { IStory } from '@storybook/angular';
 
-import { TableDatasourceInlineService } from './table-datasource-inline.service';
 import { TableDatasourceInlineModule } from './table-datasource-inline.module';
+import { TableDatasourceInlineService } from './table-datasource-inline.service';
 
 export default {
   title: 'TableDatasourceInlineService',
@@ -32,7 +33,8 @@ export default {
 export const withTable = (): IStory => ({
   moduleMetadata: {
     imports: [
-      TableDatasourceInlineModule,
+      DateFnsDateAdapterModule,
+      TableDatasourceInlineModule.withConfig(),
       HttpClientTestingModule,
       ContextModule,
       MockHttpModule,

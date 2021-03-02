@@ -11,7 +11,12 @@ import { merge, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
 
 import { DrawerContainerComponent } from './drawer-container/drawer-container.component';
-import { DrawerOptions } from './drawer-options';
+import {
+  DrawerOptions,
+  DrawerOptionsBase,
+  DrawerOptionsComponent,
+  DrawerOptionsTemplate,
+} from './drawer-options';
 import { DrawerRef } from './drawer-ref';
 import { DrawerTemplateContext } from './types';
 import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
@@ -31,29 +36,29 @@ export class DrawerService implements OnDestroy {
 
   constructor(
     private overlay: Overlay,
-    @Optional() private defaultOptions?: DrawerOptions,
+    @Optional() private defaultOptions?: DrawerOptionsBase,
   ) {}
 
   ngOnDestroy(): void {
     this.closeAll();
   }
 
-  openComponent(
-    compType: Type<any>,
-    options?: Partial<DrawerOptions>,
-  ): DrawerRef {
-    const opts = this.getOptions(options);
+  openComponent<D, T>(
+    compType: Type<T>,
+    options?: Partial<DrawerOptionsComponent<D, T>>,
+  ): DrawerRef<D, DrawerOptionsComponent<D, T>> {
+    const opts = this.getOptionsComponent<D, T>(options);
 
-    return this.getDrawerContainer(opts).openComponent(compType, opts);
+    return this.getDrawerContainer(opts).openComponent<D, T>(compType, opts);
   }
 
-  openTemplate(
-    templateRef: TemplateRef<DrawerTemplateContext>,
-    options?: Partial<DrawerOptions>,
-  ): DrawerRef {
-    const opts = this.getOptions(options);
+  openTemplate<D, C>(
+    templateRef: TemplateRef<DrawerTemplateContext & C>,
+    options?: Partial<DrawerOptionsTemplate<D, C>>,
+  ): DrawerRef<D, DrawerOptionsTemplate<D, C>> {
+    const opts = this.getOptionsTemplate<D, C>(options);
 
-    return this.getDrawerContainer(opts).openTemplate(templateRef, opts);
+    return this.getDrawerContainer(opts).openTemplate<D, C>(templateRef, opts);
   }
 
   closeAll(): void {
@@ -62,8 +67,22 @@ export class DrawerService implements OnDestroy {
     this.drawerStack = [];
   }
 
-  private getOptions(options?: Partial<DrawerOptions>): DrawerOptions {
-    return new DrawerOptions({ ...this.defaultOptions, ...options });
+  private getOptionsComponent<D, T>(
+    options?: Partial<DrawerOptionsComponent<D, T>>,
+  ): DrawerOptionsComponent<D, T> {
+    return new DrawerOptionsComponent<D, T>({
+      ...this.defaultOptions,
+      ...options,
+    } as DrawerOptionsComponent<D, T>);
+  }
+
+  private getOptionsTemplate<D, C>(
+    options?: Partial<DrawerOptionsTemplate<D, C>>,
+  ): DrawerOptionsTemplate<D, C> {
+    return new DrawerOptionsTemplate<D, C>({
+      ...this.defaultOptions,
+      ...options,
+    } as DrawerOptionsTemplate<D, C>);
   }
 
   private getDrawerContainer(options: DrawerOptions): DrawerContainerComponent {

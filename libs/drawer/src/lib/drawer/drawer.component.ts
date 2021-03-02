@@ -20,7 +20,7 @@ import { DrawerData } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerService } from '../drawer.service';
 import { DrawerTemplateContext } from '../types';
-import { Subject, merge, Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 export class DrawerComponentInputs {
   @Input() isOpen?: boolean;

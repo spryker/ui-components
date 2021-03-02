@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-next.4](https://github.com/spryker/ui-components/compare/@spryker/table.action-handler.form-overlay@0.0.2-next.3...@spryker/table.action-handler.form-overlay@0.0.2-next.4) (2021-03-02)
+
+
+### Bug Fixes
+
+* **drawer:** add updates ([1583bbe](https://github.com/spryker/ui-components/commit/1583bbe509770f0659d4cc5b01b3432c23651f41))
+
+
+
+
+
 ## 0.0.2-next.3 (2021-02-22)
 
 

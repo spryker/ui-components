@@ -7,7 +7,7 @@ import {
   TableData,
 } from '@spryker/table';
 import { EMPTY, Observable } from 'rxjs';
-import { map, startWith, switchMap, tap } from 'rxjs/operators';
+import { map, startWith, switchMap } from 'rxjs/operators';
 
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
 import { TableDatasourceDependableConfig } from './types';
@@ -54,7 +54,6 @@ export class TableDatasourceDependableService implements Datasource<TableData> {
           tableColumnContext,
         );
       }),
-      tap((data) => console.log('From datasourse', config.datasource, data)),
     );
   }
 }

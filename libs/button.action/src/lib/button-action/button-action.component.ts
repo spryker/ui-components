@@ -24,6 +24,6 @@ export class ButtonActionComponent {
   ) {}
 
   onClick(): void {
-    this.actionsService.trigger(this.injector, this.action, this.actionContext);
+    this.actionsService.trigger(this.injector, this.action as ActionConfig, this.actionContext);
   }
 }

@@ -12,366 +12,843 @@
   },
   "projects": {
     "core": {
-      "tags": ["pkg:primary", "type:util", "core"]
+      "tags": [
+        "pkg:primary",
+        "type:util",
+        "core"
+      ]
     },
     "styles": {
-      "tags": ["pkg:primary", "type:style"]
+      "tags": [
+        "pkg:primary",
+        "type:style"
+      ]
     },
     "utils": {
-      "tags": ["pkg:primary", "type:util"]
+      "tags": [
+        "pkg:primary",
+        "type:util"
+      ]
     },
     "storybook": {
-      "tags": ["pkg:primary", "type:meta"]
+      "tags": [
+        "pkg:primary",
+        "type:meta"
+      ]
     },
     "web-components": {
-      "tags": ["pkg:primary", "type:util"]
+      "tags": [
+        "pkg:primary",
+        "type:util"
+      ]
     },
     "button": {
-      "tags": ["pkg:primary", "type:component", "level:atom"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "type:component",
+        "level:atom"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "logo": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "card": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "form-item": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "input": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "layout": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "header": {
-      "tags": ["pkg:primary", "level:organism", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:organism",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "navigation": {
-      "tags": ["pkg:primary", "level:molecule", "type:component-service"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component-service"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "icon": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "sidebar": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "textarea": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "toggle": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "checkbox": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "collapsible": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "select": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "notification": {
-      "tags": ["pkg:primary", "level:molecule", "type:component-service"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component-service"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table": {
-      "tags": ["pkg:primary", "level:organism", "type:component-service"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "pkg:primary",
+        "level:organism",
+        "type:component-service"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "pagination": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "dropdown": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "tabs": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "label": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "internal-utils": {
-      "tags": ["pkg:primary", "type:meta"]
+      "tags": [
+        "pkg:primary",
+        "type:meta"
+      ]
     },
     "locale": {
-      "tags": ["pkg:primary", "type:util"]
+      "tags": [
+        "pkg:primary",
+        "type:util"
+      ]
     },
     "chips": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "date-picker": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "ajax-action": {
-      "tags": ["pkg:primary", "type:service"]
+      "tags": [
+        "pkg:primary",
+        "type:service"
+      ]
     },
     "ajax-action.post-action.close-overlay": {
-      "tags": ["pkg:extension", "type:service"]
+      "tags": [
+        "pkg:extension",
+        "type:service"
+      ]
     },
     "ajax-action.post-action.redirect": {
-      "tags": ["pkg:extension", "type:service"]
+      "tags": [
+        "pkg:extension",
+        "type:service"
+      ]
     },
     "ajax-action.post-action.refresh-table": {
-      "tags": ["pkg:extension", "type:service"]
+      "tags": [
+        "pkg:extension",
+        "type:service"
+      ]
     },
     "html-renderer": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "drawer": {
-      "tags": ["pkg:primary", "level:molecule", "type:component-service"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component-service"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "ajax-form": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ]
     },
     "headline": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "popover": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "tree-select": {
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "pkg:primary",
+        "level:molecule",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "link": {
-      "tags": ["pkg:primary", "level:atom", "type:component"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "level:atom",
+        "type:component"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.feature.editable": {
-      "tags": ["type:component", "level:molecule", "pkg:extension"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "type:component",
+        "level:molecule",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "ajax-action.post-action.refresh-drawer": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "table.datasource.http": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "table.column.chip": {
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.column.date": {
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.column.image": {
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.column.text": {
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.pagination": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.feature.total": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "table.feature.title": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.feature.filters": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.feature.settings": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "table.feature.selectable": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.feature.search": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.feature.sync-state": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ]
     },
     "table.feature.batch-actions": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.feature.row-actions": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.filter.select": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["locale"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "locale"
+      ]
     },
     "table.filter.date-range": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "table.filter.tree-select": {
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
-      "implicitDependencies": ["locale"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "locale"
+      ]
     },
     "table.action-handler.form-overlay": {
-      "tags": ["level:molecule", "type:component-service", "pkg:extension"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component-service",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.action-handler.html-overlay": {
-      "tags": ["level:molecule", "type:component-service", "pkg:extension"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component-service",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "table.action-handler.url": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "table-integration-internal": {
-      "tags": ["type:meta"]
+      "tags": [
+        "type:meta"
+      ]
     },
     "modal": {
-      "tags": ["level:molecule", "type:component-service", "pkg:primary"],
-      "implicitDependencies": ["styles", "locale"]
+      "tags": [
+        "level:molecule",
+        "type:component-service",
+        "pkg:primary"
+      ],
+      "implicitDependencies": [
+        "styles",
+        "locale"
+      ]
     },
     "interception": {
-      "tags": ["type:service", "pkg:primary"]
+      "tags": [
+        "type:service",
+        "pkg:primary"
+      ]
     },
     "unsaved-changes": {
-      "tags": ["type:component-service", "pkg:primary"]
+      "tags": [
+        "type:component-service",
+        "pkg:primary"
+      ]
     },
     "unsaved-changes.monitor.form": {
-      "tags": ["type:component-service", "pkg:primary"]
+      "tags": [
+        "type:component-service",
+        "pkg:primary"
+      ]
     },
     "unsaved-changes.guard.browser": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "unsaved-changes.guard.drawer": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "table.column.input": {
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      "tags": [
+        "type:component",
+        "level:atom",
+        "pkg:extension"
+      ]
     },
     "table.column.select": {
-      "tags": ["type:component", "level:molecule", "pkg:extension"],
-      "implicitDependencies": ["locale"]
+      "tags": [
+        "type:component",
+        "level:molecule",
+        "pkg:extension"
+      ],
+      "implicitDependencies": [
+        "locale"
+      ]
     },
     "table.datasource.inline": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "ajax-action.post-action.refresh-parent-table": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "unsaved-changes.guard.navigation": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "grid": {
-      "tags": ["pkg:primary", "type:style"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "pkg:primary",
+        "type:style"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "data-serializer": {
-      "tags": ["type:service", "pkg:primary"]
+      "tags": [
+        "type:service",
+        "pkg:primary"
+      ]
     },
     "radio": {
-      "tags": ["level:atom", "type:component", "pkg:primary"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:atom",
+        "type:component",
+        "pkg:primary"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "autocomplete": {
-      "tags": ["level:molecule", "type:component", "pkg:primary"],
-      "implicitDependencies": ["styles"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:primary"
+      ],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "persistence": {
-      "tags": ["type:service", "pkg:primary"]
+      "tags": [
+        "type:service",
+        "pkg:primary"
+      ]
     },
     "cache": {
-      "tags": ["type:service", "pkg:primary"]
+      "tags": [
+        "type:service",
+        "pkg:primary"
+      ]
     },
     "utils.date.adapter.date-fns": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "cache.static": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer": {
-      "tags": ["type:service", "pkg:primary"]
+      "tags": [
+        "type:service",
+        "pkg:primary"
+      ]
     },
     "data-transformer.pluck": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.array-map": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.object-map": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.date-parse": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.date-serialize": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.chain": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.collate": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.lens": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.filter.equals": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.filter.text": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.filter.range": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "data-transformer.configurator.table": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "user-menu": {
-      "tags": ["level:molecule", "type:component", "pkg:primary"]
+      "tags": [
+        "level:molecule",
+        "type:component",
+        "pkg:primary"
+      ]
     },
     "actions": {
-      "tags": ["type:service", "pkg:primary"]
+      "tags": [
+        "type:service",
+        "pkg:primary"
+      ]
     },
     "actions.drawer": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "input.password": {
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      "tags": [
+        "type:component",
+        "level:atom",
+        "pkg:extension"
+      ]
     },
     "datasource": {
-      "tags": ["type:service", "pkg:primary"]
+      "tags": [
+        "type:service",
+        "pkg:primary"
+      ]
     },
     "datasource.inline": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "datasource.http": {
-      "tags": ["type:service", "pkg:extension"]
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     },
     "button.action": {
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      "tags": [
+        "type:component",
+        "level:atom",
+        "pkg:extension"
+      ]
     }
   },
   "tasksRunnerOptions": {

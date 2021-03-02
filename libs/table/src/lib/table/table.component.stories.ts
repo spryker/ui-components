@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, Injectable, Input, NgModule, OnInit } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
@@ -107,7 +108,7 @@ class TableColumnTestComponent
     TableModule.withColumnComponents({
       test: TableColumnTestComponent,
     } as any),
-    TableModule.withDatasourceTypes({
+    DatasourceModule.withDatasources({
       'mock-data': MockTableDatasourceService,
     }),
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),

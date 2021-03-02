@@ -10,7 +10,7 @@ import { ButtonAttributes, ButtonShape, ButtonSize, ButtonType, ButtonVariant } 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonActionComponent {
-  @Input() action: ActionConfig;
+  @Input() action?: ActionConfig;
   @Input() actionContext?: unknown;
   @Input() type?: ButtonType;
   @Input() variant?: ButtonVariant;

@@ -1,1 +1,12 @@
-<p>button-action works!</p>
+<spy-button
+  [action]="action"
+  [actionContext]="actionContext"
+  [type]="type"
+  [variant]="variant"
+  [shape]="shape"
+  [size]="size"
+  [attrs]="attrs"
+  (click)="onClick()"
+>
+  <ng-content></ng-content>
+</spy-button>

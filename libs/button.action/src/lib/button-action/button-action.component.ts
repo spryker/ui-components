@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, Injector } from '@angular/core';
+import { ActionConfig, ActionsService } from '@spryker/actions';
+import { ButtonAttributes, ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
 
 @Component({
   selector: 'spy-button-action',
@@ -7,11 +9,21 @@ import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonActionComponent implements OnInit {
+export class ButtonActionComponent {
+  @Input() action: ActionConfig;
+  @Input() actionContext?: unknown;
+  @Input() type?: ButtonType;
+  @Input() variant?: ButtonVariant;
+  @Input() shape?: ButtonShape;
+  @Input() size?: ButtonSize;
+  @Input() attrs?: ButtonAttributes;
 
-  constructor() { }
+  constructor(
+    private injector: Injector,
+    private actionsService: ActionsService,
+  ) {}
 
-  ngOnInit(): void {
+  onClick(): void {
+    this.actionsService.trigger(this.injector, this.action, this.actionContext);
   }
-
 }

@@ -62,3 +62,5 @@ export type Reverse<Tuple extends any[], Prefix extends any[] = []> = {
     ? Reverse<Next, Prepend<Prefix, First>>
     : never;
 }[Tuple extends [any, ...any[]] ? 1 : 0];
+
+export type AsArray<T> = T extends any[] ? T : never;

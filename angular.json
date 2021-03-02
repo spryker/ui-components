@@ -6691,6 +6691,50 @@
         }
       }
     },
+    "actions.drawer": {
+      "projectType": "library",
+      "root": "libs/actions.drawer",
+      "sourceRoot": "libs/actions.drawer/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/actions.drawer/tsconfig.lib.json",
+            "project": "libs/actions.drawer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/actions.drawer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/actions.drawer/tsconfig.lib.json",
+              "libs/actions.drawer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/actions.drawer/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/actions.drawer/jest.config.js",
+            "tsConfig": "libs/actions.drawer/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/actions.drawer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
+    },
     "button.action": {
       "projectType": "library",
       "root": "libs/button.action",

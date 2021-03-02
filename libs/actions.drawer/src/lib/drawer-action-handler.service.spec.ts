@@ -3,8 +3,8 @@ import { ContextService } from '@spryker/utils';
 import { DrawerRef, DrawerService } from '@spryker/drawer';
 import { of } from 'rxjs';
 
-import { DrawerActionHandlerService } from './refresh-drawer-action-handler.service';
-import { DrawerActionModule } from './actions-drawer.module';
+import { DrawerActionHandlerService } from './drawer-action-handler.service';
+import { DrawerActionModule } from './drawer-action.module';
 import {
   DrawerActionConfigComponent,
   DrawerActionConfigTemplate,
@@ -77,7 +77,7 @@ describe('DrawerActionHandlerService', () => {
     mockInjector.get.mockReturnValue(mockDrawerService);
   });
 
-  it('should call openComponent() with arguments', () => {
+  it('should call openComponent() with arguments for component config', () => {
     const mockConfig: DrawerActionConfigComponent = {
       type: mockActionType,
       component: mockActionType,
@@ -93,7 +93,7 @@ describe('DrawerActionHandlerService', () => {
     );
   });
 
-  it('should call openTemplate() with arguments', () => {
+  it('should call openTemplate() with arguments for template config', () => {
     const mockConfig: DrawerActionConfigTemplate = {
       type: mockActionType,
       template: mockActionType as any,

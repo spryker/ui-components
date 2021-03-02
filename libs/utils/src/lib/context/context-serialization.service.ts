@@ -14,9 +14,9 @@ export class ContextSerializationService {
     private injector: Injector,
     @Inject(ContextSerializationStrategyToken)
     @Optional()
-    private serializationStrategiesArray: InjectionTokenType<
+    private serializationStrategiesArray?: InjectionTokenType<
       typeof ContextSerializationStrategyToken
-    > | null,
+    >,
   ) {}
 
   serialize(value: unknown): string {

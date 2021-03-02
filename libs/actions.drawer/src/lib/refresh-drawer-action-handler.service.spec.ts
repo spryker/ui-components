@@ -74,11 +74,7 @@ describe('DrawerActionHandlerService', () => {
     mockDrawerService = TestBed.inject(MockDrawerService);
     mockDrawerRef = TestBed.inject(MockDrawerRef);
 
-    mockInjector.get.mockImplementation((instance) => {
-      if (instance.toString() === ContextService.toString()) {
-        return mockDrawerService;
-      }
-    });
+    mockInjector.get.mockReturnValue(mockDrawerService);
   });
 
   it('should call openComponent() with arguments', () => {

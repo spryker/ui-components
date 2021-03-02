@@ -4,7 +4,7 @@
   [width]="drawerRef?.options.width"
   (closed)="drawerRef?.close()"
 >
-  <ng-container *ngIf="drawerRecord?.class; else template">
+  <ng-container *ngIf="drawerRecord?.class; else drawerTemplate">
     <ng-container
       *ngComponentOutlet="
         drawerRecord.class;
@@ -15,7 +15,7 @@
     ></ng-container>
   </ng-container>
 
-  <ng-template #template>
+  <ng-template #drawerTemplate>
     <ng-container
       *ngTemplateOutlet="drawerRecord?.template; context: drawerRecord?.context"
     ></ng-container>

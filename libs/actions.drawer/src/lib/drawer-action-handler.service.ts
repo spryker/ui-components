@@ -58,6 +58,7 @@ export class DrawerActionHandlerService
           drawerData as DrawerActionConfigComponent,
           contextService,
           context,
+          injector,
         );
       }
 
@@ -82,10 +83,12 @@ export class DrawerActionHandlerService
     drawerData: DrawerActionConfigComponent,
     contextService: ContextService,
     context: any,
+    injector: Injector,
   ): void {
     const options = new DrawerOptionsComponent({
       ...drawerData.options,
       inputs: { ...drawerData.options?.inputs },
+      injector,
     });
 
     if (typeof drawerData.component === 'string') {

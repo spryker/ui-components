@@ -75,8 +75,8 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   selectedList: string[] = [];
 
   datasourceOptions$ = new ReplaySubject<Observable<SelectOption[]>>(1);
-  setOptionsText$ = new BehaviorSubject(this.noOptionsText);
-  noOptionsText$ = this.setOptionsText$.pipe(
+  setNoOptionsText$ = new BehaviorSubject(this.noOptionsText);
+  noOptionsText$ = this.setNoOptionsText$.pipe(
     switchMap((noOptionsText) =>
       noOptionsText
         ? of(noOptionsText)
@@ -116,7 +116,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     if (changes.noOptionsText) {
-      this.setOptionsText$.next(this.noOptionsText);
+      this.setNoOptionsText$.next(this.noOptionsText);
     }
   }
 

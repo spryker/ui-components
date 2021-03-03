@@ -2,17 +2,17 @@ import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ButtonActionComponent } from './button-action.component';
-import { ActionsModule, ActionsService } from '@spryker/actions';
+import { ActionsService } from '@spryker/actions';
 
 const mockConfig = {
   type: 'type',
   component: 'component',
   options: {
     inputs: {
-      url: '/html-request'
-    }
-  }
-}
+      url: '/html-request',
+    },
+  },
+};
 const mockContext = {} as any;
 
 class MockInjector implements Injector {
@@ -37,20 +37,18 @@ describe('ButtonActionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        testModule,
-      ],
+      imports: [testModule],
       providers: [
         MockActionService,
         MockInjector,
         {
           provide: ActionsService,
-          useExisting: MockActionService
+          useExisting: MockActionService,
         },
         {
           provide: Injector,
-          useExisting: MockInjector
-        }
+          useExisting: MockInjector,
+        },
       ],
     });
 
@@ -66,7 +64,10 @@ describe('ButtonActionComponent', () => {
   });
 
   it('should call trigger() method by <spy-button> click', async () => {
-    const host = await createComponent({ action: mockConfig, actionContext: mockContext }, true);
+    const host = await createComponent(
+      { action: mockConfig, actionContext: mockContext },
+      true,
+    );
     const buttonElem = host.queryCss('spy-button');
 
     buttonElem?.triggerEventHandler('click', {});

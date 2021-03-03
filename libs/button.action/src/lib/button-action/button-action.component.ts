@@ -1,13 +1,25 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, Injector } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Input,
+  Injector,
+} from '@angular/core';
 import { ActionConfig, ActionsService } from '@spryker/actions';
-import { ButtonAttributes, ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
+import {
+  ButtonAttributes,
+  ButtonShape,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '@spryker/button';
 
 @Component({
   selector: 'spy-button-action',
   templateUrl: './button-action.component.html',
   styleUrls: ['./button-action.component.less'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonActionComponent {
   @Input() action?: ActionConfig;
@@ -24,6 +36,10 @@ export class ButtonActionComponent {
   ) {}
 
   onClick(): void {
-    this.actionsService.trigger(this.injector, this.action as ActionConfig, this.actionContext);
+    this.actionsService.trigger(
+      this.injector,
+      this.action as ActionConfig,
+      this.actionContext,
+    );
   }
 }

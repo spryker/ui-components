@@ -5,8 +5,8 @@ import { select } from '@storybook/addon-knobs';
 import { ButtonActionModule } from '../button-action.module';
 
 export default {
-  title: 'ButtonActionComponent'
-}
+  title: 'ButtonActionComponent',
+};
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,7 @@ export const primary = () => ({
       ButtonActionModule,
       ActionsModule.withActions({
         mock: MockActionService,
-      })
+      }),
     ],
   },
   template: `
@@ -47,12 +47,12 @@ export const primary = () => ({
       component: 'component',
       options: {
         inputs: {
-          url: '/html-request'
-        }
-      }
+          url: '/html-request',
+        },
+      },
     },
     variant: select('Variant', ButtonVariant, ButtonVariant.Primary),
     size: select('Size', ButtonSize, ButtonSize.Large),
     shape: select('Shape', ButtonShape, ButtonShape.Default),
-  }
-})
+  },
+});

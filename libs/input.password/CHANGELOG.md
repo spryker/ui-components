@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/input.password@0.1.0-next.0...@spryker/input.password@0.1.0-next.1) (2021-03-03)
+
+
+### Bug Fixes
+
+* **input.password:** remove unnecessary import input styles ([dec2373](https://github.com/spryker/ui-components/commit/dec2373f96a4332a59ee4854daea499fa42f727b))
+
+
+
+
+
 # 0.1.0-next.0 (2021-02-24)
 
 

@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Injector,
   Input,
   OnChanges,
   OnDestroy,
@@ -11,7 +12,6 @@ import {
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
-  Injector,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import {
@@ -19,9 +19,17 @@ import {
   IconCheckModule,
   IconRemoveModule,
 } from '@spryker/icon/icons';
+import { I18nService } from '@spryker/locale';
 import { ToBoolean, ToJson } from '@spryker/utils';
-import { EMPTY, Observable, ReplaySubject, Subject } from 'rxjs';
-import { map, switchAll, takeUntil } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  EMPTY,
+  Observable,
+  of,
+  ReplaySubject,
+  Subject,
+} from 'rxjs';
+import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
 
 import {
   SelectOption,
@@ -66,13 +74,22 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   selectAllValue = 'select-all';
   selectedList: string[] = [];
 
-  datasourceOptions$ = new ReplaySubject<Observable<SelectOption[]>>();
+  datasourceOptions$ = new ReplaySubject<Observable<SelectOption[]>>(1);
+  setOptionsText$ = new BehaviorSubject(this.noOptionsText);
+  noOptionsText$ = this.setOptionsText$.pipe(
+    switchMap((noOptionsText) =>
+      noOptionsText
+        ? of(noOptionsText)
+        : this.i18nService.translate('select.no-results'),
+    ),
+  );
 
   private destroyed$ = new Subject<void>();
 
   constructor(
     private injector: Injector,
     private datasourceService: DatasourceService,
+    private i18nService: I18nService,
   ) {}
 
   ngOnInit() {
@@ -96,6 +113,10 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
 
     if (changes.datasource && !changes.datasource.firstChange) {
       this.updateDatasource();
+    }
+
+    if (changes.noOptionsText) {
+      this.setOptionsText$.next(this.noOptionsText);
     }
   }
 

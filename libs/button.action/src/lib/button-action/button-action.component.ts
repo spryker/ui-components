@@ -41,10 +41,6 @@ export class ButtonActionComponent {
       return;
     }
 
-    this.actionsService.trigger(
-      this.injector,
-      this.action,
-      this.actionContext,
-    );
+    this.actionsService.trigger(this.injector, this.action, this.actionContext);
   }
 }

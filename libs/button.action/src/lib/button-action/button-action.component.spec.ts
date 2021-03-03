@@ -1,7 +1,12 @@
 import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActionsService } from '@spryker/actions';
-import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
+import {
+  ButtonShape,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '@spryker/button';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ButtonActionComponent } from './button-action.component';
 
@@ -91,7 +96,10 @@ describe('ButtonActionComponent', () => {
     });
 
     it('should bind input `variant` to variant of <spy-button>', async () => {
-      const host = await createComponent({ variant: ButtonVariant.Secondary }, true);
+      const host = await createComponent(
+        { variant: ButtonVariant.Secondary },
+        true,
+      );
       const buttonElem = host.queryCss('spy-button');
 
       expect(buttonElem?.properties.variant).toBe(ButtonVariant.Secondary);

@@ -5,6 +5,7 @@ import {
   Input,
   Injector,
 } from '@angular/core';
+import { ToJson } from '@spryker/utils';
 import { ActionConfig, ActionsService } from '@spryker/actions';
 import {
   ButtonAttributes,
@@ -22,8 +23,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonActionComponent {
-  @Input() action?: ActionConfig;
-  @Input() actionContext?: unknown;
+  @Input() @ToJson() action?: ActionConfig;
+  @Input() @ToJson() actionContext?: unknown;
   @Input() type?: ButtonType;
   @Input() variant?: ButtonVariant;
   @Input() shape?: ButtonShape;
@@ -36,9 +37,13 @@ export class ButtonActionComponent {
   ) {}
 
   onClick(): void {
+    if (!this.action) {
+      return;
+    }
+
     this.actionsService.trigger(
       this.injector,
-      this.action as ActionConfig,
+      this.action,
       this.actionContext,
     );
   }

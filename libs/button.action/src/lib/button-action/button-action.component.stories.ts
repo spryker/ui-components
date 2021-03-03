@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { ActionsModule } from '@spryker/actions';
+import { Injectable, Injector } from '@angular/core';
+import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
 import { ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
 import { select } from '@storybook/addon-knobs';
+import { EMPTY, Observable } from 'rxjs';
 import { ButtonActionModule } from '../button-action.module';
 
 export default {
@@ -11,15 +12,17 @@ export default {
 @Injectable({
   providedIn: 'root',
 })
-class MockActionService {
-  handleAction(injector: any, config: any, context: any): void {
+class MockActionHandlerService implements ActionHandler {
+  handleAction(injector: Injector, config: ActionConfig): Observable<void> {
     const action = document.getElementsByClassName('action')[0];
 
     action.innerHTML = `
       ${config.type}
       ${config.component}
-      ${config.options.inputs.url}
+      ${(config.options as Record<string, string>).url}
     `;
+
+    return EMPTY;
   }
 }
 
@@ -28,7 +31,7 @@ export const primary = () => ({
     imports: [
       ButtonActionModule,
       ActionsModule.withActions({
-        mock: MockActionService,
+        mock: MockActionHandlerService,
       }),
     ],
   },
@@ -38,7 +41,7 @@ export const primary = () => ({
       [shape]="shape"
       [variant]="variant"
       [size]="size"
-    >Show notification</spy-button-action>
+    >Show action config</spy-button-action>
     <div class="action"></div>
   `,
   props: {
@@ -46,9 +49,7 @@ export const primary = () => ({
       type: 'mock',
       component: 'component',
       options: {
-        inputs: {
-          url: '/html-request',
-        },
+        url: '/html-request',
       },
     },
     variant: select('Variant', ButtonVariant, ButtonVariant.Primary),

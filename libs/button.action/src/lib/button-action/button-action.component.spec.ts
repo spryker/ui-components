@@ -1,8 +1,9 @@
 import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { ActionsService } from '@spryker/actions';
+import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ButtonActionComponent } from './button-action.component';
-import { ActionsService } from '@spryker/actions';
 
 const mockConfig = {
   type: 'type',
@@ -79,5 +80,42 @@ describe('ButtonActionComponent', () => {
     const buttonElem = host.queryCss('spy-button');
 
     expect(buttonElem?.nativeElement.textContent).toMatch('Content');
+  });
+
+  describe('@Inputs', () => {
+    it('should bind input `type` to type of <spy-button>', async () => {
+      const host = await createComponent({ type: ButtonType.Submit }, true);
+      const buttonElem = host.queryCss('spy-button');
+
+      expect(buttonElem?.properties.type).toBe(ButtonType.Submit);
+    });
+
+    it('should bind input `variant` to variant of <spy-button>', async () => {
+      const host = await createComponent({ variant: ButtonVariant.Secondary }, true);
+      const buttonElem = host.queryCss('spy-button');
+
+      expect(buttonElem?.properties.variant).toBe(ButtonVariant.Secondary);
+    });
+
+    it('should bind input `shape` to shape of <spy-button>', async () => {
+      const host = await createComponent({ shape: ButtonShape.Round }, true);
+      const buttonElem = host.queryCss('spy-button');
+
+      expect(buttonElem?.properties.shape).toBe(ButtonShape.Round);
+    });
+
+    it('should bind input `size` to size of <spy-button>', async () => {
+      const host = await createComponent({ size: ButtonSize.Small }, true);
+      const buttonElem = host.queryCss('spy-button');
+
+      expect(buttonElem?.properties.size).toBe(ButtonSize.Small);
+    });
+
+    it('should bind input `attrs` to attrs of <spy-button>', async () => {
+      const host = await createComponent({ attrs: { disabled: 'true' } }, true);
+      const buttonElem = host.queryCss('spy-button');
+
+      expect(buttonElem?.properties.attrs).toEqual({ disabled: 'true' });
+    });
   });
 });

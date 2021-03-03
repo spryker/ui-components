@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { DataTransformerService } from '@spryker/data-transformer';
 import { InjectionTokenType } from '@spryker/utils';
 import { Observable, of } from 'rxjs';
@@ -17,15 +17,17 @@ import { switchMap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DatasourceService {
-  dataSources: DatasourceTypesDeclaration = this.dataSourceTypes?.reduce(
-    (dataSources, dataSource) => ({ ...dataSources, ...dataSource }),
-    {},
-  );
+  dataSources: DatasourceTypesDeclaration =
+    this.dataSourceTypes?.reduce(
+      (dataSources, dataSource) => ({ ...dataSources, ...dataSource }),
+      {},
+    ) ?? {};
 
   constructor(
-    @Inject(DatasourceTypesToken)
-    private dataSourceTypes: InjectionTokenType<typeof DatasourceTypesToken>,
     private dataTransformerService: DataTransformerService,
+    @Optional()
+    @Inject(DatasourceTypesToken)
+    private dataSourceTypes?: InjectionTokenType<typeof DatasourceTypesToken>,
   ) {}
 
   resolve<D = unknown>(

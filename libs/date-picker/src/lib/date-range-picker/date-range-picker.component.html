@@ -4,14 +4,14 @@
       #startPicker
       [(date)]="dates.from"
       [enableDate]="{ to: dates?.to }"
-      [enableTime]="enableTimeFrom"
+      [enableTime]="timeFrom"
       [placeholder]="placeholderFrom"
       [clearButton]="clearButton"
       [disabled]="disabled"
       [format]="format"
       [name]="nameFrom"
       [time]="time"
-      (dateChange)="datesChangeHandler(dates)"
+      (dateChange)="dateFromChange(dates)"
     ></spy-date-picker>
   </div>
 
@@ -20,14 +20,14 @@
       #endPicker
       [(date)]="dates.to"
       [enableDate]="{ from: dates?.from }"
-      [enableTime]="enableTimeTo"
+      [enableTime]="timeTo"
       [placeholder]="placeholderTo"
       [clearButton]="clearButton"
       [disabled]="disabled"
       [format]="format"
       [name]="nameTo"
       [time]="time"
-      (dateChange)="datesChangeHandler(dates)"
+      (dateChange)="dateToChange(dates)"
     ></spy-date-picker>
   </div>
 </div>

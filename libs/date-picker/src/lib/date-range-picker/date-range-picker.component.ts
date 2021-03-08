@@ -109,7 +109,6 @@ export class DateRangePickerComponent {
 
   dateToChange(dates: DateRangeValue) {
     this.datesChangeHandler(dates);
-
     this.timeFrom = this.enabledTimeFrom.bind(this);
   }
 

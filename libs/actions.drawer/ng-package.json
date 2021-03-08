@@ -1,9 +1,8 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/drawer",
+  "dest": "../../dist/libs/actions.drawer",
   "lib": {
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../styles/src/lib"]
-  },
-  "whitelistedNonPeerDependencies": ["ng-dynamic-component"]
+  }
 }

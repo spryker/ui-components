@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.15...@spryker/utils@0.2.0-next.16) (2021-03-02)
+
+
+### Bug Fixes
+
+* **actions.drawer:** refactoring after code review ([92f3fc5](https://github.com/spryker/ui-components/commit/92f3fc5125960173fb3418cc9861430e4f5016c5))
+* **drawer:** add updates ([1583bbe](https://github.com/spryker/ui-components/commit/1583bbe509770f0659d4cc5b01b3432c23651f41))
+
+
+
+
+
 # [0.2.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.14...@spryker/utils@0.2.0-next.15) (2021-02-25)
 
 

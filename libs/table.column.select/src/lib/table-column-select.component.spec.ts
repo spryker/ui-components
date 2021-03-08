@@ -1,16 +1,18 @@
 // tslint:disable: no-non-null-assertion
 import { TestBed } from '@angular/core/testing';
-import { TableColumnSelectComponent } from './table-column-select.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { DatasourceModule } from '@spryker/datasource';
+import { FormItemComponent, FormItemModule } from '@spryker/form-item';
+import { SelectComponent, SelectModule } from '@spryker/select';
+import { TableEditableService } from '@spryker/table.feature.editable';
 import {
   ContextPipe,
   DefaultContextSerializationModule,
   InvokeModule,
 } from '@spryker/utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { SelectComponent, SelectModule } from '@spryker/select';
-import { FormItemComponent, FormItemModule } from '@spryker/form-item';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TableEditableService } from '@spryker/table.feature.editable';
+
+import { TableColumnSelectComponent } from './table-column-select.component';
 
 const configMock: any = {
   placeholder: 'testPlaceholder',
@@ -32,6 +34,10 @@ class MockTableEditableService {
   updateValue = jest.fn();
 }
 
+class MockDatasource {
+  resolve = jest.fn();
+}
+
 describe('TableColumnSelectComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(
     TableColumnSelectComponent,
@@ -43,6 +49,9 @@ describe('TableColumnSelectComponent', () => {
           DefaultContextSerializationModule,
           NoopAnimationsModule,
           InvokeModule,
+          DatasourceModule.withDatasources({
+            inline: MockDatasource,
+          }),
         ],
         declarations: [ContextPipe],
       },

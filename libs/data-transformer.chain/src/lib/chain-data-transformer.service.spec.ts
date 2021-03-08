@@ -49,14 +49,23 @@ describe('ChainDataTransformerService', () => {
 
   it('transform method should map config and use transformers sequently for data transformation and return result', () => {
     let mockData = 'value';
+    const mockInjector = {} as any;
     const callback = jest.fn();
-    const transformObservable$ = service.transform(mockData, mockConfig);
+    const transformObservable$ = service.transform(
+      mockData,
+      mockConfig,
+      mockInjector,
+    );
     const transformers = mockConfig.transformers;
     const resultValue = transformers[transformers.length - 1].value;
     transformObservable$.subscribe(callback);
 
     mockConfig.transformers.forEach((config) => {
-      expect(dataTransformerService.transform).toBeCalledWith(mockData, config);
+      expect(dataTransformerService.transform).toBeCalledWith(
+        mockData,
+        config,
+        mockInjector,
+      );
 
       mockData = config.value;
     });

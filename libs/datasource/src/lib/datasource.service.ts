@@ -1,7 +1,7 @@
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { DataTransformerService } from '@spryker/data-transformer';
 import { InjectionTokenType } from '@spryker/utils';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { DatasourceTypesToken } from './token';
 import {
@@ -17,22 +17,24 @@ import { switchMap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DatasourceService {
-  dataSources: DatasourceTypesDeclaration = this.dataSourceTypes?.reduce(
-    (dataSources, dataSource) => ({ ...dataSources, ...dataSource }),
-    {},
-  );
+  dataSources: DatasourceTypesDeclaration =
+    this.dataSourceTypes?.reduce(
+      (dataSources, dataSource) => ({ ...dataSources, ...dataSource }),
+      {},
+    ) ?? {};
 
   constructor(
-    @Inject(DatasourceTypesToken)
-    private dataSourceTypes: InjectionTokenType<typeof DatasourceTypesToken>,
     private dataTransformerService: DataTransformerService,
+    @Optional()
+    @Inject(DatasourceTypesToken)
+    private dataSourceTypes?: InjectionTokenType<typeof DatasourceTypesToken>,
   ) {}
 
-  resolve(
+  resolve<D = unknown>(
     injector: Injector,
     config: DatasourceConfig,
     context?: unknown,
-  ): Observable<unknown> {
+  ): Observable<D> {
     if (!this.isDatasourceRegisteredType(config.type)) {
       throw Error(`DatasourceService: Unknown datasource type ${config.type}`);
     }
@@ -44,12 +46,15 @@ export class DatasourceService {
     return dataSource
       .resolve(injector, config, context)
       .pipe(
-        switchMap((data) =>
-          this.dataTransformerService.transform(
-            data,
-            config.transform,
-            injector,
-          ),
+        switchMap(
+          (data) =>
+            (config.transform
+              ? this.dataTransformerService.transform(
+                  data,
+                  config.transform,
+                  injector,
+                )
+              : of(data)) as Observable<D>,
         ),
       );
   }

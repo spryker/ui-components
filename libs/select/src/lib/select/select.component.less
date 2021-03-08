@@ -226,6 +226,15 @@
         }
       }
     }
+
+    &-empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font: @font-default;
+      height: @select-empty-item-height;
+      color: @ink;
+    }
   }
 
   &-clear {
@@ -253,5 +262,9 @@
     transform: translateY(-50%);
     margin: 0;
     right: @select-arrow-right;
+  }
+
+  &--not-searchable .@{select-prefix-cls}-selection-search {
+    display: none;
   }
 }

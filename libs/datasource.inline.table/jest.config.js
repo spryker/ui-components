@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'table.datasource.inline',
+  name: 'datasource.inline.table',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/libs/table.datasource.inline',
+  coverageDirectory: '../../coverage/libs/datasource.inline.table',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

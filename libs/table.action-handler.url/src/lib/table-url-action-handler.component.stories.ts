@@ -8,12 +8,13 @@ import {
   NgModule,
 } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
@@ -39,8 +40,8 @@ class StoryComponent {}
       url: TableUrlActionHandlerService,
     }),
     TableModule.forRoot(),
-    TableModule.withDatasourceTypes({
-      http: TableDatasourceHttpService,
+    DatasourceModule.withDatasources({
+      'mock-data': MockTableDatasourceService,
     }),
     TableModule.withFeatures({
       rowActions: () =>
@@ -88,9 +89,9 @@ export const primary = () => ({
   props: {
     config: {
       dataSource: {
-        type: 'http',
-        url: '/data-request',
-      },
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', title: 'Column #1' },
         { id: 'col2', title: 'Column #2' },
@@ -120,10 +121,6 @@ export const primary = () => ({
       },
     },
     mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-      },
       {
         url: /^\/mock-url/,
         dataFn: actionResponse,

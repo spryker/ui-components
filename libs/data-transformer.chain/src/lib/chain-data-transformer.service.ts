@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import {
   DataTransformer,
   DataTransformerService,
@@ -23,12 +23,17 @@ export class ChainDataTransformerService
   transform(
     data: ChainDataTransformerData,
     config: ChainDataTransformerConfig,
+    injector: Injector,
   ): Observable<ChainDataTransformerDataT> {
     return config.transformers.reduce(
       (prevData$, currentConfig) =>
         prevData$.pipe(
           switchMap((prevData) =>
-            this.dataTransformerService.transform(prevData, currentConfig),
+            this.dataTransformerService.transform(
+              prevData,
+              currentConfig,
+              injector,
+            ),
           ),
         ),
       of(data),

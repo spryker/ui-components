@@ -168,9 +168,6 @@
     "ajax-action.post-action.refresh-drawer": {
       "tags": ["type:service", "pkg:extension"]
     },
-    "table.datasource.http": {
-      "tags": ["type:service", "pkg:extension"]
-    },
     "table.column.chip": {
       "tags": ["level:atom", "type:component", "pkg:extension"]
     },
@@ -274,7 +271,7 @@
       "tags": ["type:component", "level:molecule", "pkg:extension"],
       "implicitDependencies": ["locale"]
     },
-    "table.datasource.inline": {
+    "datasource.inline.table": {
       "tags": ["type:service", "pkg:extension"]
     },
     "ajax-action.post-action.refresh-parent-table": {

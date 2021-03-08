@@ -3,25 +3,39 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Injector,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import {
   IconArrowDownModule,
   IconCheckModule,
   IconRemoveModule,
 } from '@spryker/icon/icons';
+import { I18nService } from '@spryker/locale';
 import { ToBoolean, ToJson } from '@spryker/utils';
 import {
+  BehaviorSubject,
+  EMPTY,
+  Observable,
+  of,
+  ReplaySubject,
+  Subject,
+} from 'rxjs';
+import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
+
+import {
   SelectOption,
-  SelectValueSelected,
-  SelectValue,
   SelectOptionItem,
+  SelectValue,
+  SelectValueSelected,
 } from './types';
 
 @Component({
@@ -30,8 +44,9 @@ import {
   styleUrls: ['./select.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  providers: [DatasourceService],
 })
-export class SelectComponent implements OnInit, OnChanges {
+export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('selectRef') selectRef?: ElementRef<HTMLInputElement>;
 
   @Input() @ToJson() options?: SelectOption[];
@@ -45,6 +60,7 @@ export class SelectComponent implements OnInit, OnChanges {
   @Input() name = '';
   @Input() noOptionsText = '';
   @Input() @ToBoolean() disableClear = false;
+  @Input() datasource?: DatasourceConfig;
 
   @Output() valueChange = new EventEmitter<SelectValueSelected>();
 
@@ -58,8 +74,34 @@ export class SelectComponent implements OnInit, OnChanges {
   selectAllValue = 'select-all';
   selectedList: string[] = [];
 
+  datasourceOptions$ = new ReplaySubject<Observable<SelectOption[]>>(1);
+  setNoOptionsText$ = new BehaviorSubject(this.noOptionsText);
+  noOptionsText$ = this.setNoOptionsText$.pipe(
+    switchMap((noOptionsText) =>
+      noOptionsText
+        ? of(noOptionsText)
+        : this.i18nService.translate('select.no-results'),
+    ),
+  );
+
+  private destroyed$ = new Subject<void>();
+
+  constructor(
+    private injector: Injector,
+    private datasourceService: DatasourceService,
+    private i18nService: I18nService,
+  ) {}
+
   ngOnInit() {
     this.updateOptions();
+    this.updateDatasource();
+
+    this.datasourceOptions$
+      .pipe(switchAll(), takeUntil(this.destroyed$))
+      .subscribe((options) => {
+        this.options = options;
+        this.updateOptions();
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -68,6 +110,18 @@ export class SelectComponent implements OnInit, OnChanges {
     } else if (changes.value && !changes.value.firstChange) {
       this.updateValue();
     }
+
+    if (changes.datasource && !changes.datasource.firstChange) {
+      this.updateDatasource();
+    }
+
+    if (changes.noOptionsText) {
+      this.setNoOptionsText$.next(this.noOptionsText);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
   }
 
   handleValueChange(value: SelectValue | SelectValue[]): void {
@@ -80,6 +134,22 @@ export class SelectComponent implements OnInit, OnChanges {
     this.mappedValue = value;
     this.valueChange.emit(value);
     this.selectRef?.nativeElement.dispatchEvent(inputEvent);
+  }
+
+  private updateDatasource() {
+    // Reset options before invoking datasource
+    if (this.datasource) {
+      this.options = undefined;
+      this.updateOptions();
+    }
+
+    const options$ = this.datasource
+      ? this.datasourceService
+          ?.resolve(this.injector, this.datasource)
+          .pipe(map((data) => (data as unknown) as SelectOption[]))
+      : EMPTY;
+
+    this.datasourceOptions$.next(options$);
   }
 
   private updateTitlesArrayForSelectedValues(
@@ -101,6 +171,7 @@ export class SelectComponent implements OnInit, OnChanges {
       ) ?? [];
 
     this.allValues = this.mappedOptions.map((option) => option.value);
+
     this.updateValue();
   }
 

@@ -16,6 +16,7 @@ import {
   SimpleChanges,
   SkipSelf,
   TemplateRef,
+  Type,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
@@ -26,6 +27,7 @@ import {
   EMPTY,
   merge,
   MonoTypeOperatorFunction,
+  Observable,
   of,
   ReplaySubject,
   Subject,
@@ -34,6 +36,7 @@ import {
   catchError,
   delay,
   distinctUntilChanged,
+  filter,
   map,
   mapTo,
   pairwise,
@@ -68,6 +71,7 @@ import {
   TableConfig,
   TableDataConfig,
   TableDataRow,
+  TableEvents,
   TableFeatureLocation,
   TableHeaderContext,
   TableRowClickEvent,
@@ -87,8 +91,8 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
     TableDataConfiguratorService,
     TableColumnsResolverService,
     TableFeaturesRendererService,
-    TableDatasourceService,
     TableActionsService,
+    TableDatasourceService,
   ],
   host: {
     class: 'spy-table',
@@ -106,7 +110,7 @@ export class CoreTableComponent
    *    'selectable:bla': () => ...,
    * }
    */
-  @Input() events: Record<string, ((data: unknown) => void) | undefined> = {};
+  @Input() @ToJson() events: TableEvents = {};
 
   @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<
     TableColumnContext
@@ -394,6 +398,26 @@ export class CoreTableComponent
 
   ngOnDestroy(): void {
     this.destroyed$.next();
+  }
+
+  on(feature: string, eventName?: string) {
+    return this.tableEventBus.on(feature, eventName);
+  }
+
+  findFeatureByName(name: string): Observable<TableFeatureComponent> {
+    return this.features$.pipe(
+      map((features) => features.find((feature) => feature.name === name)),
+      filter((feature) => feature !== undefined),
+    ) as Observable<TableFeatureComponent>;
+  }
+
+  findFeatureByType<T extends TableFeatureComponent>(
+    type: Type<T>,
+  ): Observable<T> {
+    return this.features$.pipe(
+      map((features) => features.find((feature) => feature instanceof type)),
+      filter((feature) => feature !== undefined),
+    ) as Observable<T>;
   }
 
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void {

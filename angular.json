@@ -2897,53 +2897,6 @@
         }
       }
     },
-    "table.datasource.http": {
-      "projectType": "library",
-      "root": "libs/table.datasource.http",
-      "sourceRoot": "libs/table.datasource.http/src",
-      "prefix": "spy",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/table.datasource.http/tsconfig.lib.json",
-            "project": "libs/table.datasource.http/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/table.datasource.http/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/table.datasource.http/tsconfig.lib.json",
-              "libs/table.datasource.http/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/table.datasource.http/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/table.datasource.http/jest.config.js",
-            "tsConfig": "libs/table.datasource.http/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/table.datasource.http/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      }
-    },
     "table.column.chip": {
       "projectType": "library",
       "root": "libs/table.column.chip",
@@ -5113,21 +5066,21 @@
         }
       }
     },
-    "table.datasource.inline": {
+    "datasource.inline.table": {
       "projectType": "library",
-      "root": "libs/table.datasource.inline",
-      "sourceRoot": "libs/table.datasource.inline/src",
+      "root": "libs/datasource.inline.table",
+      "sourceRoot": "libs/datasource.inline.table/src",
       "prefix": "spy",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/table.datasource.inline/tsconfig.lib.json",
-            "project": "libs/table.datasource.inline/ng-package.json"
+            "tsConfig": "libs/datasource.inline.table/tsconfig.lib.json",
+            "project": "libs/datasource.inline.table/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/table.datasource.inline/tsconfig.lib.prod.json"
+              "tsConfig": "libs/datasource.inline.table/tsconfig.lib.prod.json"
             }
           }
         },
@@ -5135,22 +5088,22 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/table.datasource.inline/tsconfig.lib.json",
-              "libs/table.datasource.inline/tsconfig.spec.json"
+              "libs/datasource.inline.table/tsconfig.lib.json",
+              "libs/datasource.inline.table/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/table.datasource.inline/**/*"
+              "!libs/datasource.inline.table/**/*"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/table.datasource.inline/jest.config.js",
-            "tsConfig": "libs/table.datasource.inline/tsconfig.spec.json",
+            "jestConfig": "libs/datasource.inline.table/jest.config.js",
+            "tsConfig": "libs/datasource.inline.table/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/table.datasource.inline/src/test-setup.ts"
+            "setupFile": "libs/datasource.inline.table/src/test-setup.ts"
           }
         },
         "storybook": {
@@ -5159,7 +5112,7 @@
             "uiFramework": "@storybook/angular",
             "port": 4400,
             "config": {
-              "configFolder": "libs/table.datasource.inline/.storybook"
+              "configFolder": "libs/datasource.inline.table/.storybook"
             }
           },
           "configurations": {
@@ -5172,9 +5125,9 @@
           "builder": "@nrwl/storybook:build",
           "options": {
             "uiFramework": "@storybook/angular",
-            "outputPath": "dist/storybook/table.datasource.inline",
+            "outputPath": "dist/storybook/datasource.inline.table",
             "config": {
-              "configFolder": "libs/table.datasource.inline/.storybook"
+              "configFolder": "libs/datasource.inline.table/.storybook"
             }
           },
           "configurations": {
@@ -6258,6 +6211,36 @@
             "tsConfig": "libs/datasource.inline/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/datasource.inline/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/datasource.inline/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/datasource.inline",
+            "config": {
+              "configFolder": "libs/datasource.inline/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       },

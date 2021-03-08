@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
@@ -14,17 +14,19 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class DataTransformerConfiguratorService {
-  private dataConfigurators: DataTransformerConfiguratorDeclaration = this.dataConfiguratorsTypes.reduce(
-    (dataConfigurators, dataConfigurator) => ({
-      ...dataConfigurators,
-      ...dataConfigurator,
-    }),
-    {},
-  );
+  private dataConfigurators: DataTransformerConfiguratorDeclaration =
+    this.dataConfiguratorsTypes?.reduce(
+      (dataConfigurators, dataConfigurator) => ({
+        ...dataConfigurators,
+        ...dataConfigurator,
+      }),
+      {},
+    ) ?? {};
 
   constructor(
+    @Optional()
     @Inject(DataTransformerConfiguratorTypesToken)
-    private dataConfiguratorsTypes: InjectionTokenType<
+    private dataConfiguratorsTypes?: InjectionTokenType<
       typeof DataTransformerConfiguratorTypesToken
     >,
   ) {}

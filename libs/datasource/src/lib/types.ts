@@ -18,7 +18,7 @@ export type DatasourceType = RegistryType<DatasourceRegistry>;
 
 export interface DatasourceConfig {
   type: DatasourceType;
-  transform: DataTransformerConfig;
+  transform?: DataTransformerConfig;
   // Specific Datasource types may have custom props
   [k: string]: unknown;
 }

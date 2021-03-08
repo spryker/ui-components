@@ -84,7 +84,7 @@ export type DataTransformerFilterByValue = unknown[];
 
 export interface DataTransformerFilterConfig {
   type: string;
-  propNames: string[];
+  propNames: string | string[];
 }
 
 export type DataFilterTransformerByPropName = Record<string, string>;

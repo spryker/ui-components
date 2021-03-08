@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { CollateDataTransformerService } from './collate-data-transformer.service';
@@ -74,7 +74,7 @@ describe('CollateDataTransformerService', () => {
     );
   });
 
-  it('transform should return filtered data by props returned from DataTransformerConfiguratorService', () => {
+  it('transform should return filtered data by props returned from DataTransformerConfiguratorService', fakeAsync(() => {
     const mockTransformerReturnData = {
       filter: {
         [mockIdFilter]: '2',
@@ -118,15 +118,17 @@ describe('CollateDataTransformerService', () => {
 
     serviceObservable$.subscribe(callback);
 
+    tick();
+
     expect(callback).toHaveBeenCalledWith({
       data: [mockData[0]],
       page: mockTransformerReturnData.page,
       pageSize: mockTransformerReturnData.pageSize,
       total: 1,
     });
-  });
+  }));
 
-  it('transform should return updated data when CollateDataConfiguratorService has been emit', () => {
+  it('transform should return updated data when CollateDataConfiguratorService has been emit', fakeAsync(() => {
     const mockTransformerReturnData = {
       page: 3,
       pageSize: 10,
@@ -154,6 +156,8 @@ describe('CollateDataTransformerService', () => {
 
     serviceObservable$.subscribe(callback);
 
+    tick();
+
     expect(callback).toHaveBeenCalledWith({
       data: mockData,
       page: mockTransformerReturnData.page,
@@ -165,6 +169,7 @@ describe('CollateDataTransformerService', () => {
     mockTransformerReturnData.page = 1;
 
     mockDataTransformerConfiguratorData$.next(mockTransformerReturnData);
+    tick();
 
     expect(callback).toHaveBeenCalledWith({
       data: mockData,
@@ -172,5 +177,5 @@ describe('CollateDataTransformerService', () => {
       pageSize: mockTransformerReturnData.pageSize,
       total: mockData.length,
     });
-  });
+  }));
 });

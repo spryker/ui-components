@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.8 (2021-03-02)
+
+
+### Bug Fixes
+
+* **actions.drawer:** refactoring after code review ([92f3fc5](https://github.com/spryker/ui-components/commit/92f3fc5125960173fb3418cc9861430e4f5016c5))
+* **actions.drawer:** refactoring after code review ([bcc0f5d](https://github.com/spryker/ui-components/commit/bcc0f5d1a1afcad4b07623e1a39694cad8448281))
+* **drawer:** add ng-dynamic-component to whitelistedNonPeerDependencies ([0e26451](https://github.com/spryker/ui-components/commit/0e26451e5457bf3f9ce800f20c5c9df1cce9b8e5))
+* **drawer:** add updates ([1583bbe](https://github.com/spryker/ui-components/commit/1583bbe509770f0659d4cc5b01b3432c23651f41))
+* **drawer:** fix tests ([9a42485](https://github.com/spryker/ui-components/commit/9a424856b0d3fb3adee27242df73f328646b02d1))
+
+
+### Features
+
+* **actions.drawer:** implement refresh-drawer-action-handler service ([247b778](https://github.com/spryker/ui-components/commit/247b7781ada7e766faa4fe61c5f579b52ea63267))
+
+
+
+
+
 # [0.2.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.2.0-next.6...@spryker/drawer@0.2.0-next.7) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/drawer

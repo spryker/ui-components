@@ -1,4 +1,4 @@
-import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActionsService } from '@spryker/actions';
 import {
@@ -21,17 +21,12 @@ const mockConfig = {
 };
 const mockContext = {} as any;
 
-class MockInjector implements Injector {
-  get = jest.fn();
-}
-
 class MockActionService implements Partial<ActionsService> {
   trigger = jest.fn();
 }
 
 describe('ButtonActionComponent', () => {
   let mockActionService: MockActionService;
-  let mockInjector: MockInjector;
 
   const { testModule, createComponent } = getTestingForComponent(
     ButtonActionComponent,
@@ -46,20 +41,14 @@ describe('ButtonActionComponent', () => {
       imports: [testModule],
       providers: [
         MockActionService,
-        MockInjector,
         {
           provide: ActionsService,
           useExisting: MockActionService,
-        },
-        {
-          provide: Injector,
-          useExisting: MockInjector,
         },
       ],
     });
 
     mockActionService = TestBed.inject(MockActionService);
-    mockInjector = TestBed.inject(MockInjector);
   });
 
   it('should render <spy-button-action>', async () => {
@@ -77,7 +66,11 @@ describe('ButtonActionComponent', () => {
     const buttonElem = host.queryCss('spy-button');
 
     buttonElem?.triggerEventHandler('click', {});
-    expect(mockActionService.trigger).toHaveBeenCalled();
+    expect(mockActionService.trigger).toHaveBeenCalledWith(
+      expect.any(Object),
+      mockConfig,
+      mockContext,
+    );
   });
 
   it('should render projected content inside <spy-button>', async () => {

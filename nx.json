@@ -369,6 +369,9 @@
     },
     "datasource.http": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "button.action": {
+      "tags": ["type:component", "level:atom", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

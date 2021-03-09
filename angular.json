@@ -6734,6 +6734,80 @@
           "style": "less"
         }
       }
+    },
+    "button.action": {
+      "projectType": "library",
+      "root": "libs/button.action",
+      "sourceRoot": "libs/button.action/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/button.action/tsconfig.lib.json",
+            "project": "libs/button.action/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/button.action/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/button.action/tsconfig.lib.json",
+              "libs/button.action/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/button.action/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/button.action/jest.config.js",
+            "tsConfig": "libs/button.action/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/button.action/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/button.action/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/button.action",
+            "config": {
+              "configFolder": "libs/button.action/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

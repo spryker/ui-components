@@ -72,7 +72,6 @@ export class TableColumnSelectConfig {
     type: ColumnTypeOptionsType.AnyOf,
     value: [String, Boolean],
   })
-  @ColumnTypeOption()
   editableError?: string | boolean;
   @ColumnTypeOption()
   datasource?: DatasourceConfig;

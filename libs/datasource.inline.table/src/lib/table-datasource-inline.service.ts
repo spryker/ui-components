@@ -1,14 +1,19 @@
 import { Injectable, Injector } from '@angular/core';
 import { DataTransformerService } from '@spryker/data-transformer';
 import { Datasource, DatasourceConfig } from '@spryker/datasource';
+import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { TableData } from '@spryker/table';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { TableDatasourceInlineConfig } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceInlineService implements Datasource<TableData> {
-  constructor(private dataTransformerService: DataTransformerService) {}
+  constructor(
+    private dataTransformerService: DataTransformerService,
+    private datasourceInlineService: DatasourceInlineService,
+  ) {}
 
   resolve(
     injector: Injector,
@@ -64,10 +69,16 @@ export class TableDatasourceInlineService implements Datasource<TableData> {
       transformerByPropName: config.transformerByPropName,
     };
 
-    return this.dataTransformerService.transform(
-      config.data,
-      transformConfig,
-      injector,
-    ) as Observable<TableData>;
+    return this.datasourceInlineService
+      .resolve(injector, config)
+      .pipe(
+        switchMap((data) =>
+          this.dataTransformerService.transform(
+            data,
+            transformConfig,
+            injector,
+          ),
+        ),
+      ) as Observable<TableData>;
   }
 }

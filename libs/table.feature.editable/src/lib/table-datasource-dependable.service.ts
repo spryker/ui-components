@@ -1,9 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
-import { LOCAL_GET_CONTEXT, LocalGetContextToken } from '@orchestrator/core';
 import { Datasource, DatasourceService } from '@spryker/datasource';
 import {
   CoreTableComponent,
-  TableColumnContext,
+  TableColumnService,
   TableData,
 } from '@spryker/table';
 import { EMPTY, Observable } from 'rxjs';
@@ -14,6 +13,8 @@ import { TableDatasourceDependableConfig } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceDependableService implements Datasource<TableData> {
+  constructor(private tableColumnService: TableColumnService) {}
+
   resolve(
     injector: Injector,
     config: TableDatasourceDependableConfig,
@@ -21,10 +22,7 @@ export class TableDatasourceDependableService implements Datasource<TableData> {
   ): Observable<TableData> {
     const datasourceService = injector.get(DatasourceService);
     const tableComponent = injector.get(CoreTableComponent);
-    const getLocalContext = injector.get<LocalGetContextToken>(
-      LOCAL_GET_CONTEXT,
-    );
-    const localContext: TableColumnContext = getLocalContext();
+    const localContext = this.tableColumnService.getContext(injector);
     const editableService$ = tableComponent
       .findFeatureByType(TableEditableFeatureComponent)
       .pipe(map((editableFeature) => editableFeature.tableEditableService));

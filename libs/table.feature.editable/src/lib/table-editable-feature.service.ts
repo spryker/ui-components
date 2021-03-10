@@ -29,11 +29,14 @@ export class TableEditableService implements OnDestroy {
   constructor(private elementRef: ElementRef) {}
 
   ngOnDestroy(): void {
+    this.modelUpdates$.complete();
     this.reset();
   }
 
   reset() {
-    this.model = [];
+    for (let i = this.model.length - 1; i >= 0; i--) {
+      this.removeRow(i);
+    }
   }
 
   addRow(rowModel: Record<string, unknown>) {

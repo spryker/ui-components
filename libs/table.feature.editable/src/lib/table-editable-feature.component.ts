@@ -227,6 +227,7 @@ export class TableEditableFeatureComponent
     private resizeObserver: NzResizeObserver,
     private zone: NgZone,
     private dataSerializerService: DataSerializerService,
+    /** @internal */
     public tableEditableService: TableEditableService,
   ) {
     super(injector);

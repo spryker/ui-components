@@ -110,7 +110,7 @@ export class CoreTableComponent
    *    'selectable:bla': () => ...,
    * }
    */
-  @Input() @ToJson() events: TableEvents = {};
+  @Input() events: TableEvents = {};
 
   @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<
     TableColumnContext

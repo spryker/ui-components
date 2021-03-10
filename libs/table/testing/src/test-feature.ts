@@ -38,8 +38,8 @@ class MockElementRef {
 }
 
 export class TableMockComponent implements TableComponent {
-  // cast any because of ts error of `TableConfig` paths conflict
   events = {};
+  // cast any because of ts error of `TableConfig` paths conflict
   config$ = new ReplaySubject<any>(1);
   columns$ = new ReplaySubject<TableColumns>(1);
   data$ = new ReplaySubject<TableData>(1);

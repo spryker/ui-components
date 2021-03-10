@@ -16,11 +16,11 @@ export class TableDatasourceService {
 
   resolve(config: DatasourceConfig): Observable<TableData> {
     return this.dataConfiguratorService.config$.pipe(
-      switchMap((context) => {
+      switchMap((dataConfig) => {
         return this.datasourceService.resolve<TableData>(
           this.injector,
           config,
-          context,
+          dataConfig,
         );
       }),
     );

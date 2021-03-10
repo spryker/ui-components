@@ -5,3 +5,4 @@ export * from './data-configurator.service';
 export * from './col-tpl.directive';
 export * from './datasource.service';
 export * from './table-event-bus';
+export * from './table-column-context.service';

@@ -1,4 +1,4 @@
-import { InjectionToken, Injectable, Injector } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 import { DataSerializer } from '@spryker/data-serializer';
 import { TableDataRow } from '@spryker/table';
 

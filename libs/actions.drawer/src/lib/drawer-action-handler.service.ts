@@ -2,15 +2,13 @@ import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { ActionHandler } from '@spryker/actions';
 import {
   DrawerRef,
-  DrawerData,
   DrawerService,
   DrawerOptionsComponent,
   DrawerOptionsTemplate,
   DrawerOptions,
 } from '@spryker/drawer';
 import { ContextService, InjectionTokenType } from '@spryker/utils';
-import { merge, Observable, ReplaySubject } from 'rxjs';
-import { mapTo, skip, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import {
   DrawerActionComponentsRegistry,
   DrawerActionComponentType,
@@ -26,7 +24,6 @@ import { DrawerActionComponentTypesToken } from './token';
 })
 export class DrawerActionHandlerService
   implements ActionHandler<unknown, DrawerRef<unknown>> {
-  drawerData$ = new ReplaySubject<DrawerData>(1);
   drawerRef?: DrawerRef<unknown>;
 
   private drawerActionHandlerTypes: DrawerActionTypesDeclaration =
@@ -50,7 +47,6 @@ export class DrawerActionHandlerService
     context: C,
   ): Observable<DrawerRef<C>> {
     return new Observable((subscriber) => {
-      // Open drawer
       const contextService = injector.get(ContextService);
       const drawerData = { ...config } as DrawerActionConfig;
       drawerData.options = { ...drawerData.options };
@@ -71,7 +67,6 @@ export class DrawerActionHandlerService
       subscriber.next(drawerRef as DrawerRef<C, DrawerOptions<C>>);
 
       return () => {
-        // Close drawer
         drawerRef.close();
       };
     });
@@ -118,7 +113,7 @@ export class DrawerActionHandlerService
     );
   }
 
-  private drawerDataTemplate<C>(
+  private drawerDataTemplate(
     drawerData: DrawerActionConfigTemplate,
     contextService: ContextService,
     context: any,

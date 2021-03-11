@@ -22,9 +22,7 @@ export class DrawerRef<
   ) {}
 
   close(): Observable<void> {
-    const close$ = this.closeFn().pipe(
-      shareReplay({ bufferSize: 1, refCount: true }),
-    );
+    const close$ = this.closeFn();
 
     this.setClose$.next(close$);
 

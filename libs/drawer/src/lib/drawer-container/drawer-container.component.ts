@@ -11,6 +11,7 @@ import {
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
+  OnInit,
 } from '@angular/core';
 import {
   InterceptionComposerDirective,
@@ -19,8 +20,8 @@ import {
   provideInterceptionService,
 } from '@spryker/interception';
 import { HookableInjector } from '@spryker/utils';
-import { EMPTY, Observable, ReplaySubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { EMPTY, Observable, ReplaySubject, Subject } from 'rxjs';
+import { tap, shareReplay, mergeAll, takeUntil } from 'rxjs/operators';
 import { InputsType, OutputsType } from 'ng-dynamic-component';
 
 import {
@@ -60,7 +61,7 @@ export class DrawerComposerDirective extends InterceptionComposerDirective {}
   },
   providers: [...provideInterceptionService()],
 })
-export class DrawerContainerComponent implements OnDestroy {
+export class DrawerContainerComponent implements OnInit, OnDestroy {
   drawerRecord?: {
     class?: Type<any>;
     injector?: Injector;
@@ -70,6 +71,10 @@ export class DrawerContainerComponent implements OnDestroy {
     context?: DrawerTemplateContext;
   };
   drawerRef?: DrawerRef;
+
+  destroyed$ = new Subject<void>();
+  addCloseObs$ = new Subject<Observable<void>>();
+  closeObs$ = this.addCloseObs$.pipe(mergeAll());
 
   private afterClosed$ = new ReplaySubject<void>();
   private destroyed = false;
@@ -83,7 +88,12 @@ export class DrawerContainerComponent implements OnDestroy {
     private interceptorDispatcherService: InterceptorDispatcherService,
   ) {}
 
+  ngOnInit(): void {
+    this.closeObs$.pipe(takeUntil(this.destroyed$)).subscribe();
+  }
+
   ngOnDestroy(): void {
+    this.destroyed$.next();
     this.destroyed = true;
     this.removeDrawer();
   }
@@ -185,7 +195,7 @@ export class DrawerContainerComponent implements OnDestroy {
       return EMPTY;
     }
 
-    return this.interceptorDispatcherService
+    const close$ = this.interceptorDispatcherService
       .dispatch(DrawerCloseInterceptionEvent)
       .pipe(
         tap(() => {
@@ -193,7 +203,12 @@ export class DrawerContainerComponent implements OnDestroy {
           this.cdr.detectChanges();
           this.emitClosed();
         }),
+        shareReplay({ bufferSize: 1, refCount: true }),
       );
+
+    this.addCloseObs$.next(close$);
+
+    return close$;
   }
 
   private createDrawerInjector(

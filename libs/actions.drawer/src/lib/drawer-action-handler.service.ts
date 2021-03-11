@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { ActionHandler } from '@spryker/actions';
 import {
   DrawerRef,
@@ -28,17 +28,18 @@ export class DrawerActionHandlerService
   drawerData$ = new ReplaySubject<DrawerData>(1);
   drawerRef?: DrawerRef<unknown>;
 
-  private drawerActionHandlerTypes: DrawerActionTypesDeclaration = this.drawerActionHandlers.reduce(
+  private drawerActionHandlerTypes: DrawerActionTypesDeclaration = this.drawerActionHandlers?.reduce(
     (components, component) => ({ ...components, ...component }),
     {},
-  );
+  ) ?? {};
 
   constructor(
+    private drawerService: DrawerService,
+    @Optional()
     @Inject(DrawerActionComponentTypesToken)
-    private drawerActionHandlers: InjectionTokenType<
+    private drawerActionHandlers?: InjectionTokenType<
       typeof DrawerActionComponentTypesToken
     >,
-    private drawerService: DrawerService,
   ) {}
 
   handleAction<C>(
@@ -69,6 +70,9 @@ export class DrawerActionHandlerService
           context,
         );
       }
+
+      // tslint:disable-next-line:no-non-null-assertion
+      this.drawerRef!.afterClosed().subscribe(() => this.drawerRef = undefined);
     }
 
     return merge(
@@ -116,7 +120,7 @@ export class DrawerActionHandlerService
 
     this.drawerRef = this.drawerService.openComponent(
       drawerData.component as any,
-      drawerData.options,
+      options,
     );
   }
 
@@ -143,7 +147,7 @@ export class DrawerActionHandlerService
 
     this.drawerRef = this.drawerService.openTemplate(
       drawerData.template as any,
-      drawerData.options,
+      options,
     );
   }
 

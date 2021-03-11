@@ -1,17 +1,18 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { IStory } from '@storybook/angular';
-import { TableModule, TableActionTriggeredEvent } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableRowActionsFeatureModule } from './table-row-actions-feature.module';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { DatasourceModule } from '@spryker/datasource';
+import { TableActionTriggeredEvent, TableModule } from '@spryker/table';
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { IStory } from '@storybook/angular';
+
+import { TableRowActionsFeatureModule } from './table-row-actions-feature.module';
 
 export default {
   title: 'TableRowActionsFeatureComponent',
@@ -26,7 +27,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const viaHtml = getRowActionsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp" [events]="{rowActions: logActionTriggered}">
+    <spy-table [config]="config" [events]="{rowActions: logActionTriggered}">
       <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
     </spy-table>
   `,
@@ -35,7 +36,7 @@ export const viaHtml = getRowActionsStory(
 
 export const viaConfig = getRowActionsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp" [events]="{rowActions: logActionTriggered}">
+    <spy-table [config]="config" [events]="{rowActions: logActionTriggered}">
   `,
   [
     TableModule.withFeatures({
@@ -56,10 +57,9 @@ function getRowActionsStory(
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        MockHttpModule,
         TableModule.forRoot(),
-        TableModule.withDatasourceTypes({
-          http: TableDatasourceHttpService,
+        DatasourceModule.withDatasources({
+          'mock-data': MockTableDatasourceService,
         }),
         DefaultContextSerializationModule,
         ...extraNgModules,
@@ -76,9 +76,9 @@ function getRowActionsStory(
     props: {
       config: {
         dataSource: {
-          type: 'http',
-          url: '/data-request',
-        },
+          type: 'mock-data',
+          dataGenerator: tableDataGenerator,
+        } as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },
@@ -97,12 +97,7 @@ function getRowActionsStory(
           availableActionsPath: 'availableActions',
         },
       },
-      mockHttp: setMockHttp([
-        {
-          url: '/data-request',
-          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-        },
-      ]),
+
       logActionTriggered: (event: TableActionTriggeredEvent) =>
         console.log('actionTriggered', event),
     },

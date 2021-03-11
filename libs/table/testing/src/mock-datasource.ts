@@ -5,12 +5,8 @@ import {
   Inject,
   Optional,
 } from '@angular/core';
-import {
-  TableData,
-  TableDataConfig,
-  TableDatasource,
-  TableDatasourceConfig,
-} from '@spryker/table';
+import { TableData, TableDataConfig } from '@spryker/table';
+import { DatasourceConfig, Datasource } from '@spryker/datasource';
 import { Observable, of } from 'rxjs';
 
 import {
@@ -24,13 +20,13 @@ export const MockTableDatasourceToken = new InjectionToken<
   TableDataMockGenerator
 >('MockTableDatasource');
 
-export interface MockTableDatasourceConfig extends TableDatasourceConfig {
+export interface MockTableDatasourceConfig extends DatasourceConfig {
   dataGenerator?: TableDataMockGenerator;
 }
 
 @Injectable({ providedIn: 'root' })
 export class MockTableDatasourceService
-  implements TableDatasource<MockTableDatasourceConfig> {
+  implements Datasource<TableData, TableDataConfig> {
   constructor(
     @Inject(MockTableDatasourceToken)
     @Optional()
@@ -38,14 +34,14 @@ export class MockTableDatasourceService
   ) {}
 
   resolve(
-    datasource: MockTableDatasourceConfig,
-    dataConfig$: Observable<TableDataConfig>,
     injector: Injector,
+    datasource: MockTableDatasourceConfig,
+    context: TableDataConfig,
   ): Observable<TableData> {
     const dataGenerator =
       datasource.dataGenerator ?? this.dataGenerator ?? (() => ({}));
 
-    return dataConfig$.pipe(
+    return of(context).pipe(
       delay(0),
       switchMap((config) =>
         of(

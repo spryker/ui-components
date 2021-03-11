@@ -38,6 +38,7 @@ class MockElementRef {
 }
 
 export class TableMockComponent implements TableComponent {
+  events = {};
   // cast any because of ts error of `TableConfig` paths conflict
   config$ = new ReplaySubject<any>(1);
   columns$ = new ReplaySubject<TableColumns>(1);
@@ -52,6 +53,9 @@ export class TableMockComponent implements TableComponent {
   >;
   eventBus = new TableEventBus(this.eventHandler);
   features$ = new ReplaySubject<TableFeatureComponent<TableFeatureConfig>[]>(1);
+  on = jest.fn();
+  findFeatureByName = jest.fn();
+  findFeatureByType = jest.fn();
 }
 
 export interface TableFeatureMocks<T = TableMockComponent> {

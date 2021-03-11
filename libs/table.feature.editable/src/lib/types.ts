@@ -4,6 +4,8 @@ import {
   TableDataRow,
   TableColumnTypeOptions,
 } from '@spryker/table';
+import { DatasourceConfig, Datasource } from '@spryker/datasource';
+import { TableDatasourceDependableService } from './table-datasource-dependable.service';
 
 declare module '@spryker/table' {
   interface TableConfig {
@@ -90,4 +92,15 @@ export class TableEditableEvent<T = unknown> extends CustomEvent<
       detail,
     });
   }
+}
+declare module '@spryker/datasource' {
+  interface DatasourceRegistry {
+    'table.editable.dependable': TableDatasourceDependableService;
+  }
+}
+
+export interface TableDatasourceDependableConfig extends DatasourceConfig {
+  dependsOn: string;
+  contextKey?: string;
+  datasource: DatasourceConfig;
 }

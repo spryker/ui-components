@@ -3,9 +3,15 @@ import { Component, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { DatasourceModule } from '@spryker/datasource';
 import { IconRemoveModule } from '@spryker/icon/icons';
 import { JoinModule } from '@spryker/utils';
+
 import { SelectComponent } from './select.component';
+
+class MockDatasource {
+  resolve = jest.fn();
+}
 
 describe('SelectComponent', () => {
   @Component({
@@ -19,7 +25,12 @@ describe('SelectComponent', () => {
     SelectComponent,
     {
       ngModule: {
-        imports: [JoinModule],
+        imports: [
+          JoinModule,
+          DatasourceModule.withDatasources({
+            inline: MockDatasource,
+          }),
+        ],
         schemas: [NO_ERRORS_SCHEMA],
         declarations: [MockNzSelectComponent],
       },

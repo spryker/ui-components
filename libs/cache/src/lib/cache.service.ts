@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import { forkJoin, Observable } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
@@ -22,16 +22,18 @@ import {
   providedIn: 'root',
 })
 export class CacheService {
-  private caches: CacheStrategyTypesDeclaration = this.cachesTypes.reduce(
-    (caches, cache) => ({ ...caches, ...cache }),
-    {},
-  );
+  private caches: CacheStrategyTypesDeclaration =
+    this.cachesTypes?.reduce(
+      (caches, cache) => ({ ...caches, ...cache }),
+      {},
+    ) ?? {};
 
   constructor(
     private cacheStorageFactoryService: CacheStorageFactoryService,
     private injector: Injector,
+    @Optional()
     @Inject(CacheStrategyTypesToken)
-    private cachesTypes: InjectionTokenType<typeof CacheStrategyTypesToken>,
+    private cachesTypes?: InjectionTokenType<typeof CacheStrategyTypesToken>,
   ) {}
 
   getCached<T>(

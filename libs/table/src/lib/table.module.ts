@@ -14,8 +14,11 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
 import { provideTableColumnComponents } from './column-type/tokens';
-import { provideTableDatasourceServices } from './datasource-type/tokens';
 import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
+import {
+  provideTableActionsServices,
+  TableActionsDeclaration,
+} from './table-actions';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
 import {
@@ -27,15 +30,8 @@ import { TableFeaturesRendererComponent } from './table-features-renderer/table-
 import { TableFeaturesRendererDirective } from './table-features-renderer/table-features-renderer.directive';
 import { TableRenderFeatureDirective } from './table-features-renderer/table-render-feature.directive';
 import { ColTplDirective } from './table/col-tpl.directive';
-import {
-  TableColumnComponentDeclaration,
-  TableDatasourceTypesDeclaration,
-} from './table/table';
+import { TableColumnComponentDeclaration } from './table/table';
 import { CoreTableComponent } from './table/table.component';
-import {
-  provideTableActionsServices,
-  TableActionsDeclaration,
-} from './table-actions';
 
 @NgModule({
   imports: [
@@ -106,15 +102,6 @@ export class TableModule {
     return {
       ngModule: TableModule,
       providers: [provideTableFeatures(features)],
-    };
-  }
-
-  static withDatasourceTypes(
-    datasourceTypes: TableDatasourceTypesDeclaration,
-  ): ModuleWithProviders<TableModule> {
-    return {
-      ngModule: TableModule,
-      providers: [provideTableDatasourceServices(datasourceTypes)],
     };
   }
 

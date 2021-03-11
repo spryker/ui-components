@@ -1,17 +1,18 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { IStory } from '@storybook/angular';
-import { TableModule } from '@spryker/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableSyncStateFeatureModule } from './table-sync-state-feature.module';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { DatasourceModule } from '@spryker/datasource';
+import { TableModule } from '@spryker/table';
 import {
-  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { IStory } from '@storybook/angular';
+
+import { TableSyncStateFeatureModule } from './table-sync-state-feature.module';
 
 export default {
   title: 'TableSyncStateFeatureComponent',
@@ -25,7 +26,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const viaHtml = getSyncStateStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config">
       <spy-table-sync-state-feature spy-table-feature></spy-table-sync-state-feature>
     </spy-table>
   `,
@@ -34,7 +35,7 @@ export const viaHtml = getSyncStateStory(
 
 export const viaConfig = getSyncStateStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config">
   `,
   [
     TableModule.withFeatures({
@@ -55,10 +56,9 @@ function getSyncStateStory(
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        MockHttpModule,
         TableModule.forRoot(),
-        TableModule.withDatasourceTypes({
-          http: TableDatasourceHttpService,
+        DatasourceModule.withDatasources({
+          'mock-data': MockTableDatasourceService,
         }),
         DefaultContextSerializationModule,
         ...extraNgModules,
@@ -75,9 +75,9 @@ function getSyncStateStory(
     props: {
       config: {
         dataSource: {
-          type: 'http',
-          url: '/data-request',
-        },
+          type: 'mock-data',
+          dataGenerator: tableDataGenerator,
+        } as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1', sortable: true },
           { id: 'col2', title: 'Column #2' },
@@ -87,12 +87,6 @@ function getSyncStateStory(
           enabled: true, // This will enable feature via config
         },
       },
-      mockHttp: setMockHttp([
-        {
-          url: '/data-request',
-          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-        },
-      ]),
     },
   });
 }

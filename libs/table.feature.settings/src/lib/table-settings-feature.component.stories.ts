@@ -2,22 +2,22 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { TableModule } from '@spryker/table';
-import {
-  generateMockTableDataFor,
-  TableDataMockGenerator,
-} from '@spryker/table/testing';
-import { IStory } from '@storybook/angular';
-
-import { TableDatasourceHttpService } from '@spryker/table.datasource.http';
-import { LocaleModule } from '@spryker/locale';
-import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
-import { DefaultContextSerializationModule } from '@spryker/utils';
-import { TableSettingsFeatureModule } from './table-settings-feature.module';
 import { CheckboxModule } from '@spryker/checkbox';
+import { DatasourceModule } from '@spryker/datasource';
 import { IconModule } from '@spryker/icon';
 import { IconDragModule } from '@spryker/icon/icons';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { TableModule } from '@spryker/table';
+import {
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
+import { DefaultContextSerializationModule } from '@spryker/utils';
+import { IStory } from '@storybook/angular';
+
+import { TableSettingsFeatureModule } from './table-settings-feature.module';
 
 export default {
   title: 'TableSettingsFeatureComponent',
@@ -31,7 +31,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const viaHtml = getSettingsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp" [tableId]="tableId">
+    <spy-table [config]="config" [tableId]="tableId">
         <spy-table-settings-feature spy-table-feature>
         </spy-table-settings-feature>
     </spy-table>
@@ -41,7 +41,7 @@ export const viaHtml = getSettingsStory(
 
 export const viaConfig = getSettingsStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp" [tableId]="tableId">
+    <spy-table [config]="config" [tableId]="tableId">
   `,
   [
     TableModule.withFeatures({
@@ -62,10 +62,9 @@ function getSettingsStory(
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        MockHttpModule,
         TableModule.forRoot(),
-        TableModule.withDatasourceTypes({
-          http: TableDatasourceHttpService,
+        DatasourceModule.withDatasources({
+          'mock-data': MockTableDatasourceService,
         }),
         TableSettingsFeatureModule,
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
@@ -89,9 +88,9 @@ function getSettingsStory(
       tableId: 'tableID',
       config: {
         dataSource: {
-          type: 'http',
-          url: '/data-request',
-        },
+          type: 'mock-data',
+          dataGenerator: tableDataGenerator,
+        } as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1', hideable: true },
           { id: 'col2', title: 'Column #2', hideable: true },
@@ -101,12 +100,6 @@ function getSettingsStory(
           enabled: true, // This will enable feature via config
         },
       },
-      mockHttp: setMockHttp([
-        {
-          url: '/data-request',
-          dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-        },
-      ]),
     },
   });
 }

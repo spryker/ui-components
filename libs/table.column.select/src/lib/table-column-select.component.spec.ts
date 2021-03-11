@@ -1,16 +1,19 @@
 // tslint:disable: no-non-null-assertion
 import { TestBed } from '@angular/core/testing';
-import { TableColumnSelectComponent } from './table-column-select.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { DatasourceService } from '@spryker/datasource';
+import { FormItemComponent, FormItemModule } from '@spryker/form-item';
+import { SelectComponent, SelectModule } from '@spryker/select';
+import { TableEditableService } from '@spryker/table.feature.editable';
 import {
   ContextPipe,
   DefaultContextSerializationModule,
   InvokeModule,
 } from '@spryker/utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { SelectComponent, SelectModule } from '@spryker/select';
-import { FormItemComponent, FormItemModule } from '@spryker/form-item';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TableEditableService } from '@spryker/table.feature.editable';
+import { of } from 'rxjs';
+
+import { TableColumnSelectComponent } from './table-column-select.component';
 
 const configMock: any = {
   placeholder: 'testPlaceholder',
@@ -30,6 +33,10 @@ const context: any = {
 
 class MockTableEditableService {
   updateValue = jest.fn();
+}
+
+class MockDatasourceService implements Partial<DatasourceService> {
+  resolve = jest.fn().mockReturnValue(of([]));
 }
 
 describe('TableColumnSelectComponent', () => {
@@ -53,17 +60,28 @@ describe('TableColumnSelectComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [testModule],
-      providers: [MockTableEditableService],
-    }).overrideComponent(TableColumnSelectComponent, {
-      set: {
-        providers: [
-          {
-            provide: TableEditableService,
-            useExisting: MockTableEditableService,
-          },
-        ],
-      },
-    });
+      providers: [MockTableEditableService, MockDatasourceService],
+    })
+      .overrideComponent(TableColumnSelectComponent, {
+        set: {
+          providers: [
+            {
+              provide: TableEditableService,
+              useExisting: MockTableEditableService,
+            },
+          ],
+        },
+      })
+      .overrideComponent(SelectComponent, {
+        set: {
+          providers: [
+            {
+              provide: DatasourceService,
+              useExisting: MockDatasourceService,
+            },
+          ],
+        },
+      });
 
     tableEditableService = TestBed.inject(MockTableEditableService);
   });
@@ -148,6 +166,25 @@ describe('TableColumnSelectComponent', () => {
       const selectElem = host.queryComponent(SelectComponent);
 
       expect(selectElem?.noOptionsText).toBe(configMock.noOptionsText);
+    });
+
+    it('`datasource` must be bound to `datasource` property of the `spy-select` element', async () => {
+      const mockDatasourceConfig = {
+        type: 'inline',
+      };
+      const host = await createComponent(
+        {
+          config: {
+            ...configMock,
+            datasource: mockDatasourceConfig,
+          },
+          context,
+        },
+        true,
+      );
+      const selectElem = host.queryComponent(SelectComponent);
+
+      expect(selectElem?.datasource).toEqual(mockDatasourceConfig);
     });
   });
 

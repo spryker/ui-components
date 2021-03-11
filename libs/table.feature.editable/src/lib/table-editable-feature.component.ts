@@ -61,6 +61,7 @@ import {
   TableEditableConfigUrl,
   TableEditableEvent,
 } from './types';
+import { TableEditableService } from './table-editable-feature.service';
 
 interface TableEditCellModel {
   [rowIdx: string]: {
@@ -87,6 +88,7 @@ interface TableEditCellModel {
       useExisting: TableEditableFeatureComponent,
     },
     provideInvokeContext(TableEditableFeatureComponent),
+    TableEditableService,
   ],
 })
 export class TableEditableFeatureComponent
@@ -102,20 +104,6 @@ export class TableEditableFeatureComponent
   buttonSize = ButtonSize;
   buttonVariant = ButtonVariant;
 
-  constructor(
-    injector: Injector,
-    private cdr: ChangeDetectorRef,
-    private ajaxActionService: AjaxActionService,
-    private contextService: ContextService,
-    private httpClient: HttpClient,
-    private tableFeaturesRendererService: TableFeaturesRendererService,
-    private resizeObserver: NzResizeObserver,
-    private zone: NgZone,
-    private dataSerializerService: DataSerializerService,
-  ) {
-    super(injector);
-  }
-
   syncInput: TableDataRow[] = [];
   stringifiedSyncInput?: string;
   url?: TableEditableConfigUrl;
@@ -125,7 +113,10 @@ export class TableEditableFeatureComponent
   private tableElement?: HTMLElement;
 
   private destroyed$ = new Subject<void>();
+
   tableColumns$ = this.table$.pipe(switchMap((table) => table.columns$));
+  tableData$ = this.table$.pipe(switchMap((table) => table.data$));
+
   isAfterColsFeaturesExist$ = this.table$.pipe(
     switchMap((table) => table.features$),
     switchMap((features) =>
@@ -210,6 +201,13 @@ export class TableEditableFeatureComponent
       this.updateFloatCellPosition();
     }),
   );
+  private updateEditableData$ = this.tableData$.pipe(
+    tap(({ data }) => {
+      this.tableEditableService.reset();
+      this.syncInput.forEach((row) => this.tableEditableService.addRow(row));
+      data.forEach((row) => this.tableEditableService.addRow(row));
+    }),
+  );
   private shouldUnsubscribe$ = merge(
     this.destroyed$,
     this.updateTableElement$.pipe(
@@ -219,6 +217,22 @@ export class TableEditableFeatureComponent
     ),
   );
 
+  constructor(
+    injector: Injector,
+    private cdr: ChangeDetectorRef,
+    private ajaxActionService: AjaxActionService,
+    private contextService: ContextService,
+    private httpClient: HttpClient,
+    private tableFeaturesRendererService: TableFeaturesRendererService,
+    private resizeObserver: NzResizeObserver,
+    private zone: NgZone,
+    private dataSerializerService: DataSerializerService,
+    /** @internal */
+    public tableEditableService: TableEditableService,
+  ) {
+    super(injector);
+  }
+
   ngOnInit() {
     this.updateFloatCellsPosition$
       .pipe(takeUntil(this.shouldUnsubscribe$))
@@ -226,6 +240,7 @@ export class TableEditableFeatureComponent
     this.updateFloatCellsPositionOnColumnConfigurator$
       .pipe(takeUntil(this.shouldUnsubscribe$))
       .subscribe();
+    this.updateEditableData$.pipe(takeUntil(this.destroyed$)).subscribe();
   }
 
   ngAfterViewChecked(): void {
@@ -318,6 +333,7 @@ export class TableEditableFeatureComponent
    */
   addRow(mockRowData: TableDataRow): void {
     this.syncInput = [{ ...mockRowData }, ...this.syncInput];
+    this.tableEditableService.addRow(mockRowData);
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.increaseRowErrorsIndex();
@@ -332,6 +348,7 @@ export class TableEditableFeatureComponent
 
     this.syncInput = [...this.syncInput];
     this.syncInput[index][colId] = value;
+    this.tableEditableService.updateModel(value, colId, index);
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.cdr.markForCheck();
@@ -351,6 +368,7 @@ export class TableEditableFeatureComponent
     syncInput.splice(index, 1);
 
     this.syncInput = syncInput;
+    this.tableEditableService.removeRow(index);
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.decreaseRowErrorsIndex(index);
@@ -499,11 +517,11 @@ export class TableEditableFeatureComponent
       url,
       (cellContext as unknown) as AnyContext,
     );
+    // tslint:disable-next-line: no-non-null-assertion
+    const value = this.editingModel[cellContext.i][cellContext.config.id]!
+      .value;
     const requestData = {
-      // tslint:disable-next-line: no-non-null-assertion
-      [cellContext.config.id]: this.editingModel[cellContext.i][
-        cellContext.config.id
-      ]!.value,
+      [cellContext.config.id]: value,
     };
 
     this.httpClient
@@ -520,6 +538,11 @@ export class TableEditableFeatureComponent
         (response) => {
           this.ajaxActionService.handle(response, this.injector);
           this.closeEditableCell(cellContext.i, cellContext.config.id);
+          this.tableEditableService.updateModel(
+            value,
+            cellContext.config.id,
+            cellContext.i + this.syncInput.length,
+          );
         },
         (error) => {
           this.editingModel = { ...this.editingModel };

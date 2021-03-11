@@ -1,47 +1,28 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
-import {
-  TableData,
-  TableDatasourceTypesDeclaration,
-  TableDatasourceConfig,
-} from './table';
-import { Observable, of } from 'rxjs';
+import { Injectable, Injector } from '@angular/core';
+import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 import { TableDataConfiguratorService } from './data-configurator.service';
-import { TableDatasourceTypesToken } from '../datasource-type/tokens';
-import { TableDatasource } from './table';
+import { TableData } from './table';
 
 @Injectable()
 export class TableDatasourceService {
-  dataSources: TableDatasourceTypesDeclaration = this.dataSourceTypes?.reduce(
-    (dataSources, dataSource) => ({ ...dataSources, ...dataSource }),
-    {},
-  );
-
   constructor(
     private injector: Injector,
     private dataConfiguratorService: TableDataConfiguratorService,
-    @Optional()
-    @Inject(TableDatasourceTypesToken)
-    private dataSourceTypes: TableDatasourceTypesDeclaration[],
+    private datasourceService: DatasourceService,
   ) {}
 
-  resolve(datasource: TableDatasourceConfig): Observable<TableData> {
-    const sourceType = datasource.type;
-    const sourceClass = this.dataSources?.[sourceType];
-
-    if (!sourceType || !sourceClass) {
-      throw Error(
-        `TableDatasourceService: Unknown data source type ${sourceType}`,
-      );
-    }
-
-    const sourceService: TableDatasource<TableDatasourceConfig> = this.injector.get(
-      sourceClass,
-    );
-
-    return sourceService.resolve(
-      datasource,
-      this.dataConfiguratorService.config$,
-      this.injector,
+  resolve(config: DatasourceConfig): Observable<TableData> {
+    return this.dataConfiguratorService.config$.pipe(
+      switchMap((dataConfig) => {
+        return this.datasourceService.resolve<TableData>(
+          this.injector,
+          config,
+          dataConfig,
+        );
+      }),
     );
   }
 }

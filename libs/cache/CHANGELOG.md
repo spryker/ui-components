@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/cache@0.1.0-next.1...@spryker/cache@0.1.0-next.2) (2021-03-11)
+
+
+### Features
+
+* **cache:** add optional injection token ([91cff6f](https://github.com/spryker/ui-components/commit/91cff6f8719b43ebcbcd137bd616a51ef95e99ef))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/cache@0.1.0-next.0...@spryker/cache@0.1.0-next.1) (2021-02-11)
 
 

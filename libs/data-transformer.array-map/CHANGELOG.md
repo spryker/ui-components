@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.array-map@0.1.0-next.0...@spryker/data-transformer.array-map@0.1.0-next.1) (2021-03-11)
+
+
+### Features
+
+* **datasource.inline.table:** add lib ([9a4922a](https://github.com/spryker/ui-components/commit/9a4922abf05f78ecd1f8a723773cd206c077db13))
+
+
+
+
+
 # 0.1.0-next.0 (2021-02-25)
 
 

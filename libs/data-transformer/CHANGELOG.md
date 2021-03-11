@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/data-transformer@0.1.0-next.1...@spryker/data-transformer@0.1.0-next.2) (2021-03-11)
+
+
+### Features
+
+* **data-transformer:** add optional injection token ([ab58c68](https://github.com/spryker/ui-components/commit/ab58c68181dd95e9c7cbf3b284f98a1a9f4e3722))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer@0.1.0-next.0...@spryker/data-transformer@0.1.0-next.1) (2021-02-25)
 
 

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.35](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.34...@spryker/table@0.2.0-next.35) (2021-03-11)
+
+
+### Features
+
+* **table:** add column context seervice ([7ac8962](https://github.com/spryker/ui-components/commit/7ac89626e6d10b07305628b2e75dcf2e41a03d26))
+* **table:** fix story ([2327463](https://github.com/spryker/ui-components/commit/232746369a863131c860235d85953bac57568115))
+* **table:** fix table-column service name ([3f8e8c0](https://github.com/spryker/ui-components/commit/3f8e8c02a9a93b1bbb8288b8e37918fa049edb06))
+* **table:** integrate new datasources ([eefb3b2](https://github.com/spryker/ui-components/commit/eefb3b2604e3b15343c9387ba80add1365109156))
+
+
+
+
+
 # [0.2.0-next.34](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.33...@spryker/table@0.2.0-next.34) (2021-02-25)
 
 

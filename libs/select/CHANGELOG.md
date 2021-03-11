@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.10 (2021-03-11)
+
+
+### Features
+
+* **datasource.inline.table:** add lib ([de8e885](https://github.com/spryker/ui-components/commit/de8e8855e48958daed8515e388d76267f07ed59e))
+
+
+
+
+
 # [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.8...@spryker/select@0.2.0-next.9) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/select

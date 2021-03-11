@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/datasource@0.1.0-next.0...@spryker/datasource@0.1.0-next.1) (2021-03-11)
+
+
+### Features
+
+* **datasource:** add optional token ([0d646b3](https://github.com/spryker/ui-components/commit/0d646b3759bfdaeee6333d2ad94102d09512f7bc))
+* **datasource:** fix implementation without transformers ([a0e1a94](https://github.com/spryker/ui-components/commit/a0e1a94a883a4a0670a419557a2fd4b913205402))
+
+
+
+
+
 # 0.1.0-next.0 (2021-02-25)
 
 

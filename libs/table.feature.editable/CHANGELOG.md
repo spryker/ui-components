@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.4...@spryker/table.feature.editable@0.1.0-next.5) (2021-03-11)
+
+
+### Features
+
+* **datasource.inline.table:** add lib ([de8e885](https://github.com/spryker/ui-components/commit/de8e8855e48958daed8515e388d76267f07ed59e))
+* **table:** fix table-column service name ([3f8e8c0](https://github.com/spryker/ui-components/commit/3f8e8c02a9a93b1bbb8288b8e37918fa049edb06))
+* **table.feature.editable:** improve delete events from model ([53abc50](https://github.com/spryker/ui-components/commit/53abc502026a4a3fc49983c87111bc31e859fd76))
+
+
+
+
+
 # [0.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.3...@spryker/table.feature.editable@0.1.0-next.4) (2020-12-29)
 
 **Note:** Version bump only for package @spryker/table.feature.editable

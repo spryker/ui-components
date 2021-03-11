@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/datasource.inline@0.1.0-next.0...@spryker/datasource.inline@0.1.0-next.1) (2021-03-11)
+
+
+### Features
+
+* **datasource.inline:** add story ([7bf6d9e](https://github.com/spryker/ui-components/commit/7bf6d9ecd355fc316fa09940c77b58260872eda8))
+* **datasource.inline.table:** add lib ([de8e885](https://github.com/spryker/ui-components/commit/de8e8855e48958daed8515e388d76267f07ed59e))
+
+
+
+
+
 # 0.1.0-next.0 (2021-02-25)
 
 

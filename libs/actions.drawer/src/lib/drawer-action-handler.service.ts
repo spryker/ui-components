@@ -49,6 +49,7 @@ export class DrawerActionHandlerService
     return new Observable((subscriber) => {
       const contextService = injector.get(ContextService);
       const drawerData = { ...config } as DrawerActionConfig;
+
       drawerData.options = { ...drawerData.options };
 
       const drawerRef = drawerData.component

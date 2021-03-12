@@ -5,7 +5,7 @@ import {
 import {
   ANALYZE_FOR_ENTRY_COMPONENTS,
   Component, Injector, Input,
-  NgModule,
+  NgModule, OnDestroy, OnInit,
 } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AjaxFormResponse } from '@spryker/ajax-form';
@@ -18,6 +18,8 @@ import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.brows
 import { UnsavedChangesDrawerGuardModule } from '@spryker/unsaved-changes.guard.drawer';
 import { DrawerContainerProxyComponent, DrawerModule } from '@spryker/drawer';
 import { ActionsModule, ActionsService } from '@spryker/actions';
+import { Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { DrawerActionHandlerService } from './drawer-action-handler.service';
 import { DrawerActionConfig } from './types';
@@ -41,7 +43,7 @@ class TestComponent {
   selector: 'spy-story',
   template: `<button (click)="openDrawer()" [mockHttp]="mockHttp">Open drawer</button>`,
 })
-class StoryComponent {
+class StoryComponent implements OnInit, OnDestroy {
   @Input() mockHttp: any;
 
   config: DrawerActionConfig = {
@@ -54,13 +56,34 @@ class StoryComponent {
     }
   }
 
+  triggerAction$ = new Subject<void>();
+  destroyed$ = new Subject<void>();
+
+  action$ = this.triggerAction$.pipe(
+    switchMap(() =>
+      this.actionsService.trigger(
+        this.injector,
+        this.config,
+        {},
+      ),
+    ),
+  );
+
   constructor(
-    private actionService: ActionsService,
+    private actionsService: ActionsService,
     private injector: Injector
   ) {}
 
+  ngOnInit(): void {
+    this.action$.pipe(takeUntil(this.destroyed$)).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+  }
+
   openDrawer() {
-    this.actionService.trigger(this.injector, this.config, {});
+    this.triggerAction$.next();
   }
 }
 

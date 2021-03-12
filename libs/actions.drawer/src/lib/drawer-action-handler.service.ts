@@ -1,15 +1,14 @@
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { ActionHandler } from '@spryker/actions';
 import {
   DrawerRef,
-  DrawerData,
   DrawerService,
   DrawerOptionsComponent,
   DrawerOptionsTemplate,
+  DrawerOptions,
 } from '@spryker/drawer';
 import { ContextService, InjectionTokenType } from '@spryker/utils';
-import { merge, Observable, ReplaySubject } from 'rxjs';
-import { mapTo, skip, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import {
   DrawerActionComponentsRegistry,
   DrawerActionComponentType,
@@ -25,20 +24,21 @@ import { DrawerActionComponentTypesToken } from './token';
 })
 export class DrawerActionHandlerService
   implements ActionHandler<unknown, DrawerRef<unknown>> {
-  drawerData$ = new ReplaySubject<DrawerData>(1);
   drawerRef?: DrawerRef<unknown>;
 
-  private drawerActionHandlerTypes: DrawerActionTypesDeclaration = this.drawerActionHandlers.reduce(
-    (components, component) => ({ ...components, ...component }),
-    {},
-  );
+  private drawerActionHandlerTypes: DrawerActionTypesDeclaration =
+    this.drawerActionHandlers?.reduce(
+      (components, component) => ({ ...components, ...component }),
+      {},
+    ) ?? {};
 
   constructor(
+    private drawerService: DrawerService,
+    @Optional()
     @Inject(DrawerActionComponentTypesToken)
-    private drawerActionHandlers: InjectionTokenType<
+    private drawerActionHandlers?: InjectionTokenType<
       typeof DrawerActionComponentTypesToken
     >,
-    private drawerService: DrawerService,
   ) {}
 
   handleAction<C>(
@@ -46,37 +46,31 @@ export class DrawerActionHandlerService
     config: DrawerActionConfig,
     context: C,
   ): Observable<DrawerRef<C>> {
-    const contextService = injector.get(ContextService);
-    const drawerData = { ...config } as DrawerActionConfig;
-    drawerData.options = { ...drawerData.options };
+    return new Observable((subscriber) => {
+      const contextService = injector.get(ContextService);
+      const drawerData = { ...config } as DrawerActionConfig;
 
-    this.drawerData$.next(drawerData.options?.data);
+      drawerData.options = { ...drawerData.options };
 
-    if (!this.drawerRef) {
-      if (drawerData.component) {
-        this.drawerDataComponent(
-          drawerData as DrawerActionConfigComponent,
-          contextService,
-          context,
-          injector,
-        );
-      }
+      const drawerRef = drawerData.component
+        ? this.drawerDataComponent(
+            drawerData as DrawerActionConfigComponent,
+            contextService,
+            context,
+            injector,
+          )
+        : this.drawerDataTemplate(
+            drawerData as DrawerActionConfigTemplate,
+            contextService,
+            context,
+          );
 
-      if (drawerData.template) {
-        this.drawerDataTemplate(
-          drawerData as DrawerActionConfigTemplate,
-          contextService,
-          context,
-        );
-      }
-    }
+      subscriber.next(drawerRef as DrawerRef<C, DrawerOptions<C>>);
 
-    return merge(
-      // tslint:disable-next-line:no-non-null-assertion
-      this.drawerRef!.afterClosed(),
-      this.drawerData$.pipe(skip(1), take(1)),
-      // tslint:disable-next-line:no-non-null-assertion
-    ).pipe(mapTo(this.drawerRef! as DrawerRef<C>));
+      return () => {
+        drawerRef.close();
+      };
+    });
   }
 
   private drawerDataComponent(
@@ -84,7 +78,7 @@ export class DrawerActionHandlerService
     contextService: ContextService,
     context: any,
     injector: Injector,
-  ): void {
+  ): DrawerRef {
     const options = new DrawerOptionsComponent({
       ...drawerData.options,
       inputs: { ...drawerData.options?.inputs },
@@ -114,9 +108,9 @@ export class DrawerActionHandlerService
       });
     }
 
-    this.drawerRef = this.drawerService.openComponent(
+    return this.drawerService.openComponent(
       drawerData.component as any,
-      drawerData.options,
+      options,
     );
   }
 
@@ -124,7 +118,7 @@ export class DrawerActionHandlerService
     drawerData: DrawerActionConfigTemplate,
     contextService: ContextService,
     context: any,
-  ): void {
+  ): DrawerRef {
     const options = new DrawerOptionsTemplate({
       ...drawerData.options,
       context: { ...drawerData.options?.context },
@@ -141,10 +135,7 @@ export class DrawerActionHandlerService
       });
     }
 
-    this.drawerRef = this.drawerService.openTemplate(
-      drawerData.template as any,
-      drawerData.options,
-    );
+    return this.drawerService.openTemplate(drawerData.template as any, options);
   }
 
   private isDrawerActionRegisteredType(

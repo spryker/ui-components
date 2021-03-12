@@ -1,6 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { ContextService } from '@spryker/utils';
-import { DrawerRef, DrawerService } from '@spryker/drawer';
+import {
+  DrawerOptionsComponent,
+  DrawerOptionsTemplate,
+  DrawerRef,
+  DrawerService,
+} from '@spryker/drawer';
 import { of } from 'rxjs';
 
 import { DrawerActionHandlerService } from './drawer-action-handler.service';
@@ -78,34 +83,51 @@ describe('DrawerActionHandlerService', () => {
   });
 
   it('should call openComponent() with arguments for component config', () => {
+    const callback = jest.fn();
     const mockConfig: DrawerActionConfigComponent = {
       type: mockActionType,
       component: mockActionType,
       options: {},
     };
+    const options = new DrawerOptionsComponent({
+      inputs: {},
+      injector: mockInjector,
+    });
+    const serviceObservable$ = service.handleAction(
+      mockInjector,
+      mockConfig,
+      mockContext,
+    );
 
-    mockDrawerService.openComponent.mockReturnValue(mockDrawerRef);
-    service.handleAction(mockInjector, mockConfig, mockContext);
+    serviceObservable$.subscribe(callback);
 
     expect(mockDrawerService.openComponent).toHaveBeenCalledWith(
       MockActionHandler,
-      mockConfig.options,
+      options,
     );
   });
 
   it('should call openTemplate() with arguments for template config', () => {
+    const callback = jest.fn();
     const mockConfig: DrawerActionConfigTemplate = {
       type: mockActionType,
       template: mockActionType as any,
       options: {},
     };
+    const options = new DrawerOptionsTemplate({
+      context: {},
+    });
+    const serviceObservable$ = service.handleAction(
+      mockInjector,
+      mockConfig,
+      mockContext,
+    );
 
-    mockDrawerService.openTemplate.mockReturnValue(mockDrawerRef);
-    service.handleAction(mockInjector, mockConfig, mockContext);
+    serviceObservable$.subscribe(callback);
 
     expect(mockDrawerService.openTemplate).toHaveBeenCalledWith(
       mockActionType,
-      mockConfig.options,
+      options,
     );
   });
 
@@ -131,13 +153,23 @@ describe('DrawerActionHandlerService', () => {
   });
 
   it('should throw an error if component does not exist', () => {
+    const callback = jest.fn();
     const mockConfig = {
-      type: mockActionInvalidType,
+      type: mockActionType,
       component: mockActionInvalidType,
     };
+    const serviceObservable$ = service.handleAction(
+      mockInjector,
+      mockConfig,
+      mockContext,
+    );
 
-    expect(() => {
-      service.handleAction(mockInjector, mockConfig, mockContext);
-    }).toThrow();
+    serviceObservable$.subscribe({ error: callback });
+
+    expect(callback).toHaveBeenCalledWith(
+      new Error(
+        `DrawerActionHandlerService: ${mockConfig.component} component not found`,
+      ),
+    );
   });
 });

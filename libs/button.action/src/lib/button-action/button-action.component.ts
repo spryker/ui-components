@@ -4,6 +4,8 @@ import {
   ChangeDetectionStrategy,
   Input,
   Injector,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import { ActionConfig, ActionsService } from '@spryker/actions';
@@ -14,6 +16,8 @@ import {
   ButtonType,
   ButtonVariant,
 } from '@spryker/button';
+import { Subject } from 'rxjs';
+import { switchMap, filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'spy-button-action',
@@ -22,7 +26,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonActionComponent {
+export class ButtonActionComponent implements OnInit, OnDestroy {
   @Input() @ToJson() action?: ActionConfig;
   @Input() @ToJson() actionContext?: unknown;
   @Input() type?: ButtonType;
@@ -31,16 +35,35 @@ export class ButtonActionComponent {
   @Input() size?: ButtonSize;
   @Input() attrs?: ButtonAttributes;
 
+  triggerAction$ = new Subject<void>();
+  destroyed$ = new Subject<void>();
+
+  action$ = this.triggerAction$.pipe(
+    filter(() => !!this.action),
+    switchMap(() =>
+      this.actionsService.trigger(
+        this.injector,
+        // tslint:disable-next-line:no-non-null-assertion
+        this.action!,
+        this.actionContext,
+      ),
+    ),
+  );
+
   constructor(
     private injector: Injector,
     private actionsService: ActionsService,
   ) {}
 
-  onClick(): void {
-    if (!this.action) {
-      return;
-    }
+  ngOnInit(): void {
+    this.action$.pipe(takeUntil(this.destroyed$)).subscribe();
+  }
 
-    this.actionsService.trigger(this.injector, this.action, this.actionContext);
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+  }
+
+  onClick(): void {
+    this.triggerAction$.next();
   }
 }

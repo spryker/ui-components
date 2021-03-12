@@ -4,8 +4,12 @@ import {
 } from '@angular/common/http/testing';
 import {
   ANALYZE_FOR_ENTRY_COMPONENTS,
-  Component, Injector, Input,
-  NgModule, OnDestroy, OnInit,
+  Component,
+  Injector,
+  Input,
+  NgModule,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AjaxFormResponse } from '@spryker/ajax-form';
@@ -31,9 +35,7 @@ export default {
 
 @Component({
   selector: 'spy-test-component',
-  template: `
-    Test component with {{ test }} input
-  `,
+  template: ` Test component with {{ test }} input `,
 })
 class TestComponent {
   @Input() test = '';
@@ -41,7 +43,9 @@ class TestComponent {
 
 @Component({
   selector: 'spy-story',
-  template: `<button (click)="openDrawer()" [mockHttp]="mockHttp">Open drawer</button>`,
+  template: `<button (click)="openDrawer()" [mockHttp]="mockHttp">
+    Open drawer
+  </button>`,
 })
 class StoryComponent implements OnInit, OnDestroy {
   @Input() mockHttp: any;
@@ -51,27 +55,23 @@ class StoryComponent implements OnInit, OnDestroy {
     component: TestComponent,
     options: {
       inputs: {
-        test: 'test'
-      }
-    }
-  }
+        test: 'test',
+      },
+    },
+  };
 
   triggerAction$ = new Subject<void>();
   destroyed$ = new Subject<void>();
 
   action$ = this.triggerAction$.pipe(
     switchMap(() =>
-      this.actionsService.trigger(
-        this.injector,
-        this.config,
-        {},
-      ),
+      this.actionsService.trigger(this.injector, this.config, {}),
     ),
   );
 
   constructor(
     private actionsService: ActionsService,
-    private injector: Injector
+    private injector: Injector,
   ) {}
 
   ngOnInit(): void {
@@ -91,7 +91,7 @@ class StoryComponent implements OnInit, OnDestroy {
   imports: [
     BrowserAnimationsModule,
     ActionsModule.withActions({
-      'drawer': DrawerActionHandlerService,
+      drawer: DrawerActionHandlerService,
     }),
     HttpClientTestingModule,
     MockHttpModule,
@@ -125,7 +125,7 @@ const mockHtmlTemplate = () => `
 `;
 
 const formResponse = (request: TestRequest): AjaxFormResponse => ({
-  form: mockHtmlTemplate()
+  form: mockHtmlTemplate(),
 });
 
 export const primary = () => ({

@@ -1,6 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { ContextService } from '@spryker/utils';
-import { DrawerOptionsComponent, DrawerOptionsTemplate, DrawerRef, DrawerService } from '@spryker/drawer';
+import {
+  DrawerOptionsComponent,
+  DrawerOptionsTemplate,
+  DrawerRef,
+  DrawerService,
+} from '@spryker/drawer';
 import { of } from 'rxjs';
 
 import { DrawerActionHandlerService } from './drawer-action-handler.service';
@@ -86,15 +91,19 @@ describe('DrawerActionHandlerService', () => {
     };
     const options = new DrawerOptionsComponent({
       inputs: {},
-      injector: mockInjector
+      injector: mockInjector,
     });
-    const serviceObservable$ = service.handleAction(mockInjector, mockConfig, mockContext);
+    const serviceObservable$ = service.handleAction(
+      mockInjector,
+      mockConfig,
+      mockContext,
+    );
 
     serviceObservable$.subscribe(callback);
 
     expect(mockDrawerService.openComponent).toHaveBeenCalledWith(
       MockActionHandler,
-      options
+      options,
     );
   });
 
@@ -108,7 +117,11 @@ describe('DrawerActionHandlerService', () => {
     const options = new DrawerOptionsTemplate({
       context: {},
     });
-    const serviceObservable$ = service.handleAction(mockInjector, mockConfig, mockContext);
+    const serviceObservable$ = service.handleAction(
+      mockInjector,
+      mockConfig,
+      mockContext,
+    );
 
     serviceObservable$.subscribe(callback);
 
@@ -153,6 +166,10 @@ describe('DrawerActionHandlerService', () => {
 
     serviceObservable$.subscribe({ error: callback });
 
-    expect(callback).toHaveBeenCalledWith(new Error(`DrawerActionHandlerService: ${mockConfig.component} component not found`));
+    expect(callback).toHaveBeenCalledWith(
+      new Error(
+        `DrawerActionHandlerService: ${mockConfig.component} component not found`,
+      ),
+    );
   });
 });

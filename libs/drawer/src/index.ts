@@ -5,5 +5,4 @@ export * from './lib/drawer-options';
 export * from './lib/drawer-interception';
 export * from './lib/drawer/drawer.component';
 export * from './lib/drawer-container/drawer-container.component';
-export * from './lib/drawer-container/drawer-container-proxy.component';
 export * from './lib/types';

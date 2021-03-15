@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.10...@spryker/select@0.2.0-next.11) (2021-03-15)
+
+
+### Features
+
+* **locale:** update locales ([51e0c6f](https://github.com/spryker/ui-components/commit/51e0c6fdb63c98c7592aeb2a0a79ccb0d50da13c))
+* **select:** fix search ([a56d12c](https://github.com/spryker/ui-components/commit/a56d12c2499dc0ff2ceb064307fd1c304a6765d7))
+* **select:** fix select styles ([7b3b3b0](https://github.com/spryker/ui-components/commit/7b3b3b07d03fb33391f76175639d7581d869a1b0))
+
+
+
+
+
 # 0.2.0-next.10 (2021-03-11)
 
 

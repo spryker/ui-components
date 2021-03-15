@@ -8,11 +8,6 @@ export default {
   title: 'DateRangePickerComponent',
 };
 
-const dates = {
-  from: '2012-12-12',
-  to: '2019-12-12',
-};
-
 export const primary = () => ({
   moduleMetadata: {
     imports: [
@@ -24,9 +19,6 @@ export const primary = () => ({
   },
   template: `
     <spy-date-range-picker
-        [dates]="dates"
-        [enableTimeFrom]="enableTimeFrom"
-        [enableTimeTo]="enableTimeTo"
         [time]="time"
         format="yyyy.MM.dd HH:mm"
         placeholderFrom="from"
@@ -35,17 +27,5 @@ export const primary = () => ({
   `,
   props: {
     time: boolean('Enable time', true),
-    dates: {
-      from: new Date('2012-12-15'),
-      to: new Date('2012-12-18'),
-    },
-    enableTimeFrom: {
-      onlyWorkHours: true,
-    },
-    enableTimeTo: {
-      onlyWorkHours: false,
-      from: '2020.11.06 11:45',
-      to: '2020.11.06 17:00',
-    },
   },
 });

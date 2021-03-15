@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import { IconCalendarModule } from '@spryker/icon/icons';
 import { InjectionTokenType, ToBoolean, ToJson } from '@spryker/utils';
+import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 
 import { DateWorkDaysToken, DateWorkHoursToken } from './tokens';
 import {
@@ -75,9 +76,10 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   @Output() dateChange = new EventEmitter<Date>();
   @Output() openChange = new EventEmitter<boolean>();
 
-  @ViewChild('datePicker', { static: false }) datePicker?: any;
+  @ViewChild('datePicker', { static: false })
+  datePicker?: NzDatePickerComponent;
 
-  private _picker?: any;
+  private _picker?: NzDatePickerComponent;
 
   disabledDate?: EnableDateFunction;
   disabledTime?: (date: Date) => NzDisabledTimeConfig;
@@ -113,7 +115,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
       }
     }
 
-    if ('enableTime' in changes) {
+    if ('enableTime' in changes && this.time) {
       if (typeof this.enableTime === 'function') {
         this.convertEnableTimeFuncToFunc(this.enableTime as EnableTimeFunction);
       } else if (typeof this.enableTime === 'object') {
@@ -159,19 +161,29 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
   private convertEnableDateObjToFunc(enableDateObj: EnableDate): void {
     const convertedEnableDate = this.getConvertedDateObject(enableDateObj);
+    const fromDate =
+      convertedEnableDate.from && new Date(convertedEnableDate.from.getTime());
+    const toDate =
+      convertedEnableDate.to && new Date(convertedEnableDate.to.getTime());
+
+    if (fromDate) {
+      fromDate?.setHours(0, 0, 0, 0);
+    }
+
+    if (toDate) {
+      toDate?.setHours(0, 0, 0, 0);
+    }
 
     this.disabledDate = (date: Date): boolean => {
-      if (
-        convertedEnableDate.from &&
-        date.getTime() < convertedEnableDate.from.getTime()
-      ) {
+      const copyDate = new Date(date.getTime());
+
+      copyDate.setHours(0, 0, 0, 0);
+
+      if (fromDate && copyDate.getTime() < fromDate.getTime()) {
         return true;
       }
 
-      if (
-        convertedEnableDate.to &&
-        convertedEnableDate.to.getTime() < date.getTime()
-      ) {
+      if (toDate && toDate.getTime() < copyDate.getTime()) {
         return true;
       }
 

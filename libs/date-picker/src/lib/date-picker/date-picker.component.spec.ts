@@ -145,7 +145,7 @@ describe('DatePickerComponent', () => {
 
     it('disabledTime should return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds } with object on input', async () => {
       const host = await createComponent(
-        { enableTime: mockedEnableTimeObject },
+        { time: true, enableTime: mockedEnableTimeObject },
         true,
       );
       const disabledTime = host.component.disabledTime!(new Date());
@@ -163,7 +163,7 @@ describe('DatePickerComponent', () => {
 
     it('disabledTime should return { nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds } with function on input', async () => {
       const host = await createComponent(
-        { enableTime: mockedEnableTimeFunction },
+        { time: true, enableTime: mockedEnableTimeFunction },
         true,
       );
       const disabledTime = host.component.disabledTime!(new Date());

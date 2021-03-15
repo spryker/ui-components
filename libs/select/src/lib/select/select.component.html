@@ -5,15 +5,16 @@
   [nzShowArrow]="true"
   [nzDisabled]="disabled"
   [nzPlaceHolder]="placeholder"
-  [nzMode]="multiple ? 'tags' : 'default'"
+  [nzMode]="multiple ? 'multiple' : 'default'"
   [nzSuffixIcon]="suffixIconTpl"
-  [nzNotFoundContent]="noOptionsText"
+  [nzNotFoundContent]="notFoundContent"
   [nzOptionHeightPx]="40"
   [nzRemoveIcon]="crossIconTpl"
   [nzAllowClear]="!disableClear"
   [nzClearIcon]="clearIconTpl"
   [nzMaxTagCount]="0"
   [nzMaxTagPlaceholder]="tagPlaceholder"
+  [class.ant-select--not-searchable]="!search"
 >
   <nz-option
     *ngIf="showSelectAll"
@@ -118,3 +119,5 @@
 </ng-template>
 
 <ng-template #tagPlaceholder>{{ selectedList | spyJoin: ', ' }}</ng-template>
+
+<ng-template #notFoundContent>{{ noOptionsText$ | async }}</ng-template>

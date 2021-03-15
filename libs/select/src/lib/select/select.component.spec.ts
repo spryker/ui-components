@@ -128,7 +128,7 @@ describe('SelectComponent', () => {
       const nzSelectElem = host.queryCss('nz-select');
 
       expect(nzSelectElem).toBeTruthy();
-      expect(nzSelectElem!.properties.nzMode).toBe('tags');
+      expect(nzSelectElem!.properties.nzMode).toBe('multiple');
     });
 
     it('should bind placeholder to nzPlaceHolder of nz-select', async () => {

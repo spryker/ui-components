@@ -40,8 +40,10 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
   subscription?: Subscription;
   submitSubscription?: Subscription;
   ajaxFormResponse?: AjaxFormResponse;
-  form?: string;
   isLoading = false;
+  form?: string;
+  formAction?: string;
+  formMethod?: string;
 
   private ajaxFormComponentInjector?: Injector;
 
@@ -103,12 +105,16 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
     if (this.action) {
       this.submitSubscription?.unsubscribe();
       this.submitSubscription = this.http
-        .request<AjaxFormResponse>(this.method || 'POST', this.action, {
-          body: this.dataSerializerService.serialize(
-            AjaxFormRequestToken,
-            submitForm,
-          ),
-        })
+        .request<AjaxFormResponse>(
+          (this.formMethod ?? this.method) || 'POST',
+          this.formAction ?? this.action,
+          {
+            body: this.dataSerializerService.serialize(
+              AjaxFormRequestToken,
+              submitForm,
+            ),
+          },
+        )
         .subscribe({
           next: (response) => this.responseHandler(response),
           error: (response) => this.responseHandler(response),
@@ -122,6 +128,9 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
     if (response.form) {
       this.form = response.form;
     }
+
+    this.formAction = response.action;
+    this.formMethod = response.method;
 
     this.isLoading = false;
     this.ajaxActionService.handle(response, this.ajaxFormComponentInjector);

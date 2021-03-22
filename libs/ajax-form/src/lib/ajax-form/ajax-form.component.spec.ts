@@ -12,24 +12,23 @@ import {
 } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { StaticHtmlRendererModule } from '@spryker/html-renderer';
-
+import { AjaxActionService } from '@spryker/ajax-action';
 import { NotificationModule } from '@spryker/notification';
 
 import { AjaxFormModule } from '../ajax-form.module';
-import { AjaxActionService } from '@spryker/ajax-action';
 
 const mockFirstHtmlTemplate = `
   <input type="text" name="name" id="name">
   <button type="submit">Submit</button>
 `;
 const mockSecondHtmlTemplate = `<p>Hello World!!!</p>`;
+const mockUrl = '/html-request';
 const mockFirstResponse = {
   form: mockFirstHtmlTemplate,
 };
 const mockSecondResponse = {
   form: mockSecondHtmlTemplate,
 };
-const mockUrl = '/html-request';
 
 @Component({
   selector: 'spy-test',
@@ -249,5 +248,38 @@ describe('AjaxFormComponent', () => {
 
     expect(nzSpinElem).toBeFalsy();
     expect(staticHtml.nativeElement.innerHTML).toBe(mockSecondResponse.form);
+  }));
+
+  it('should override `action` and `method` from response', fakeAsync(() => {
+    const mockResponse = {
+      form: mockFirstHtmlTemplate,
+      action: '/html-request-2',
+      method: 'GET',
+    };
+    const event = new MockEvent();
+    const formElem = fixture.debugElement.query(By.css('form'));
+
+    component.action = mockUrl;
+    fixture.detectChanges();
+
+    httpTestingController.expectOne(mockUrl);
+    tick();
+    fixture.detectChanges();
+
+    formElem.triggerEventHandler('submit', event);
+
+    let htmlResponse = httpTestingController.expectOne(mockUrl);
+    htmlResponse.flush(mockResponse);
+    tick();
+    fixture.detectChanges();
+
+    expect(htmlResponse.request.method).toBe('POST');
+
+    formElem.triggerEventHandler('submit', event);
+    htmlResponse = httpTestingController.expectOne(mockResponse.action);
+    tick();
+    fixture.detectChanges();
+
+    expect(htmlResponse.request.method).toBe(mockResponse.method);
   }));
 });

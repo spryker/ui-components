@@ -105,12 +105,16 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
     if (this.action) {
       this.submitSubscription?.unsubscribe();
       this.submitSubscription = this.http
-        .request<AjaxFormResponse>((this.formMethod ?? this.method) || 'POST', this.formAction ?? this.action, {
-          body: this.dataSerializerService.serialize(
-            AjaxFormRequestToken,
-            submitForm,
-          ),
-        })
+        .request<AjaxFormResponse>(
+          (this.formMethod ?? this.method) || 'POST',
+          this.formAction ?? this.action,
+          {
+            body: this.dataSerializerService.serialize(
+              AjaxFormRequestToken,
+              submitForm,
+            ),
+          },
+        )
         .subscribe({
           next: (response) => this.responseHandler(response),
           error: (response) => this.responseHandler(response),

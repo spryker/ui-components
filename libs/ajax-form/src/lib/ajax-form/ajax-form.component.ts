@@ -83,7 +83,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
       this.isLoading = true;
 
       this.subscription = this.http
-        .get<AjaxFormResponse>(this.formAction ?? this.action)
+        .get<AjaxFormResponse>(this.action)
         .subscribe({
           next: (response) => this.responseHandler(response),
           error: (response) => this.responseHandler(response),
@@ -129,13 +129,8 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
       this.form = response.form;
     }
 
-    if (response.action) {
-      this.formAction = response.action;
-    }
-
-    if (response.method) {
-      this.formMethod = response.method;
-    }
+    this.formAction = response.action;
+    this.formMethod = response.method;
 
     this.isLoading = false;
     this.ajaxActionService.handle(response, this.ajaxFormComponentInjector);

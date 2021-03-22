@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.11 (2021-03-22)
+
+
+### Features
+
+* **ajax-form:** add possibility to store `action` and `method` for the next submit call ([69772a5](https://github.com/spryker/ui-components/commit/69772a5f3ee9ce1ee9b47df198be31fdf7ae2bd4))
+
+
+
+
+
 # [0.2.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.2.0-next.9...@spryker/ajax-form@0.2.0-next.10) (2020-12-12)
 
 

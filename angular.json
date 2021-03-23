@@ -6821,6 +6821,83 @@
           "style": "less"
         }
       }
+    },
+    "table.column.autocomplete": {
+      "projectType": "library",
+      "root": "libs/table.column.autocomplete",
+      "sourceRoot": "libs/table.column.autocomplete/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table.column.autocomplete/tsconfig.lib.json",
+            "project": "libs/table.column.autocomplete/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table.column.autocomplete/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table.column.autocomplete/tsconfig.lib.json",
+              "libs/table.column.autocomplete/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table.column.autocomplete/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table.column.autocomplete/jest.config.js",
+            "tsConfig": "libs/table.column.autocomplete/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table.column.autocomplete/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table.column.autocomplete/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table.column.autocomplete",
+            "config": {
+              "configFolder": "libs/table.column.autocomplete/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

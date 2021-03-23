@@ -3,41 +3,43 @@ import {
   Component,
   Injectable,
   Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
+import { AutocompleteValue } from '@spryker/autocomplete';
 import { DatasourceConfig } from '@spryker/datasource';
-import { SelectOption, SelectValue } from '@spryker/select';
 import {
   ColumnTypeOption,
   ColumnTypeOptionsType,
   TableColumnComponent,
   TableColumnContext,
-  TableColumnTypeComponent,
 } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
-    select: TableColumnSelectConfig;
+    autocomplete: TableColumnAutocompleteConfig;
   }
 }
 
 @Injectable({ providedIn: 'root' })
-export class ColumnSelectOptionItem {
+export class ColumnAutocompleteOptionItem {
   @ColumnTypeOption({ required: true })
-  title = '';
+  title?: string;
   @ColumnTypeOption({
     required: true,
     type: ColumnTypeOptionsType.AnyOf,
     value: [String, Number],
   })
-  value?: SelectValue;
+  value?: string | number;
   @ColumnTypeOption()
   isDisabled? = false;
 }
 
 @Injectable({ providedIn: 'root' })
-export class TableColumnSelectConfig {
+export class TableColumnAutocompleteConfig {
   @ColumnTypeOption({
     required: true,
     type: ColumnTypeOptionsType.AnyOf,
@@ -49,52 +51,54 @@ export class TableColumnSelectConfig {
       },
       {
         type: ColumnTypeOptionsType.ArrayOf,
-        value: ColumnSelectOptionItem,
+        value: ColumnAutocompleteOptionItem,
       },
     ],
   })
-  options: (SelectOption | ColumnSelectOptionItem)[] = [];
+  options: AutocompleteValue[] = [];
   @ColumnTypeOption()
-  multiple? = false;
-  @ColumnTypeOption()
-  search? = false;
-  @ColumnTypeOption()
-  disableClear? = false;
+  type = 'text';
   @ColumnTypeOption()
   placeholder = '';
   @ColumnTypeOption()
-  showSelectAll? = false;
+  prefix?: string;
   @ColumnTypeOption()
-  selectAllTitle?: string;
+  suffix?: string;
   @ColumnTypeOption()
-  noOptionsText?: string;
+  outerPrefix?: string;
+  @ColumnTypeOption()
+  outerSuffix?: string;
   @ColumnTypeOption({
     type: ColumnTypeOptionsType.AnyOf,
     value: [String, Boolean],
   })
   editableError?: string | boolean;
   @ColumnTypeOption()
+  attrs?: Record<string, string>;
+  @ColumnTypeOption()
   datasource?: DatasourceConfig;
 }
 
 @Component({
-  selector: 'spy-table-column-select',
-  templateUrl: './table-column-select.component.html',
-  styleUrls: ['./table-column-select.component.less'],
+  selector: 'spy-table-column-autocomplete',
+  templateUrl: './table-column-autocomplete.component.html',
+  styleUrls: ['./table-column-autocomplete.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [TableEditableService],
-  host: {
-    class: 'spy-table-column-select',
-  },
 })
-@TableColumnTypeComponent(TableColumnSelectConfig)
-export class TableColumnSelectComponent
-  implements TableColumnComponent<TableColumnSelectConfig> {
-  @Input() config?: TableColumnSelectConfig;
+export class TableColumnAutocompleteComponent
+  implements
+    TableColumnComponent<TableColumnAutocompleteConfig>,
+    OnInit,
+    OnChanges {
+  @Input() config?: TableColumnAutocompleteConfig;
   @Input() context?: TableColumnContext;
 
-  constructor(private tableEditableService: TableEditableService) {}
+  constructor(
+    private initialConfig: TableColumnAutocompleteConfig,
+    private tableEditableService: TableEditableService,
+  ) {}
 
   valueChangeHandler(inputValue: string) {
     // tslint:disable-next-line: no-non-null-assertion
@@ -105,5 +109,21 @@ export class TableColumnSelectComponent
 
   getErrorType(error: string | boolean) {
     return typeof error === 'string';
+  }
+
+  ngOnInit(): void {
+    this.config = {
+      ...this.initialConfig,
+      ...this.config,
+    };
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.config && !changes.config.firstChange) {
+      this.config = {
+        ...this.initialConfig,
+        ...this.config,
+      };
+    }
   }
 }

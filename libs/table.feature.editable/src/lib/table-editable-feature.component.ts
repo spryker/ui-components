@@ -332,8 +332,9 @@ export class TableEditableFeatureComponent
    * Adds new row to the table.
    */
   addRow(mockRowData: TableDataRow): void {
-    this.syncInput = [{ ...mockRowData }, ...this.syncInput];
-    this.tableEditableService.addRow(mockRowData);
+    const rowData = { ...mockRowData };
+    this.syncInput = [rowData, ...this.syncInput];
+    this.tableEditableService.addRow(rowData);
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.increaseRowErrorsIndex();
@@ -351,7 +352,7 @@ export class TableEditableFeatureComponent
     this.tableEditableService.updateModel(value, colId, index);
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   /**

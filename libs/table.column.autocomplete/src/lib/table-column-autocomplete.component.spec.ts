@@ -73,28 +73,24 @@ describe('TableColumnAutocompleteComponent', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [testModule],
-      providers: [MockTableEditableService, MockDatasourceService],
-    })
-      .overrideComponent(TableColumnAutocompleteComponent, {
-        set: {
-          providers: [
-            {
-              provide: TableEditableService,
-              useExisting: MockTableEditableService,
-            },
-          ],
+      providers: [
+        MockTableEditableService,
+        MockDatasourceService,
+        {
+          provide: DatasourceService,
+          useExisting: MockDatasourceService,
         },
-      })
-      .overrideComponent(AutocompleteComponent, {
-        set: {
-          providers: [
-            {
-              provide: DatasourceService,
-              useExisting: MockDatasourceService,
-            },
-          ],
-        },
-      });
+      ],
+    }).overrideComponent(TableColumnAutocompleteComponent, {
+      set: {
+        providers: [
+          {
+            provide: TableEditableService,
+            useExisting: MockTableEditableService,
+          },
+        ],
+      },
+    });
 
     tableEditableService = TestBed.inject(MockTableEditableService);
   });

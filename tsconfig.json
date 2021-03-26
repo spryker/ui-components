@@ -18,10 +18,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"],
-      "@spryker/table.column.autocomplete": [
-        "libs/table.column.autocomplete/src/index.ts"
-      ]
+      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

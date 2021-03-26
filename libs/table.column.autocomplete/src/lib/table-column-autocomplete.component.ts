@@ -3,18 +3,17 @@ import {
   Component,
   Injectable,
   Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { AutocompleteValue } from '@spryker/autocomplete';
-import { DatasourceConfig } from '@spryker/datasource';
+import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
+import { DataTransformerConfig } from '@spryker/data-transformer';
 import {
   ColumnTypeOption,
   ColumnTypeOptionsType,
   TableColumnComponent,
   TableColumnContext,
+  TableColumnTypeComponent,
 } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
@@ -22,6 +21,14 @@ declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
     autocomplete: TableColumnAutocompleteConfig;
   }
+}
+
+@Injectable({ providedIn: 'root' })
+export class ColumnAutocompleteDatasource {
+  @ColumnTypeOption({ required: true })
+  type?: DatasourceType;
+  @ColumnTypeOption()
+  transform?: DataTransformerConfig;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -59,7 +66,7 @@ export class TableColumnAutocompleteConfig {
   @ColumnTypeOption()
   type = 'text';
   @ColumnTypeOption()
-  placeholder = '';
+  placeholder? = '';
   @ColumnTypeOption()
   prefix?: string;
   @ColumnTypeOption()
@@ -75,7 +82,10 @@ export class TableColumnAutocompleteConfig {
   editableError?: string | boolean;
   @ColumnTypeOption()
   attrs?: Record<string, string>;
-  @ColumnTypeOption()
+  @ColumnTypeOption({
+    type: ColumnTypeOptionsType.Literal,
+    value: ColumnAutocompleteDatasource,
+  })
   datasource?: DatasourceConfig;
 }
 
@@ -87,18 +97,13 @@ export class TableColumnAutocompleteConfig {
   encapsulation: ViewEncapsulation.None,
   providers: [TableEditableService],
 })
+@TableColumnTypeComponent(TableColumnAutocompleteConfig)
 export class TableColumnAutocompleteComponent
-  implements
-    TableColumnComponent<TableColumnAutocompleteConfig>,
-    OnInit,
-    OnChanges {
+  implements TableColumnComponent<TableColumnAutocompleteConfig> {
   @Input() config?: TableColumnAutocompleteConfig;
   @Input() context?: TableColumnContext;
 
-  constructor(
-    private initialConfig: TableColumnAutocompleteConfig,
-    private tableEditableService: TableEditableService,
-  ) {}
+  constructor(private tableEditableService: TableEditableService) {}
 
   valueChangeHandler(inputValue: string) {
     // tslint:disable-next-line: no-non-null-assertion
@@ -109,21 +114,5 @@ export class TableColumnAutocompleteComponent
 
   getErrorType(error: string | boolean) {
     return typeof error === 'string';
-  }
-
-  ngOnInit(): void {
-    this.config = {
-      ...this.initialConfig,
-      ...this.config,
-    };
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.config && !changes.config.firstChange) {
-      this.config = {
-        ...this.initialConfig,
-        ...this.config,
-      };
-    }
   }
 }

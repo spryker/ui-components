@@ -61,7 +61,7 @@ export class TableColumnSelectConfig {
   @ColumnTypeOption()
   disableClear? = false;
   @ColumnTypeOption()
-  placeholder = '';
+  placeholder? = '';
   @ColumnTypeOption()
   showSelectAll? = false;
   @ColumnTypeOption()

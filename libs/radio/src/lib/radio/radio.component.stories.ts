@@ -14,7 +14,7 @@ export const primary = () => ({
     declarations: [RadioComponent],
   },
   template: `
-    <spy-radio [disabled]="disabled" [hasError]="hasError">Label</spy-radio>
+    <spy-radio [disabled]="disabled" [hasError]="hasError" [value]="'Label'">Label</spy-radio>
   `,
   props: {
     disabled: boolean('Disabled', false),

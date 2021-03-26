@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { RadioComponent } from './radio.component';
 import { RadioGroupComponent } from '../radio-group/radio-group.component';
+import { RadioModule } from '../radio.module';
 
 @Component({
   selector: 'spy-test',
@@ -123,6 +124,37 @@ describe('RadioComponent', () => {
       fixture.detectChanges();
 
       expect(component.selectedSpy).toHaveBeenCalledWith(mockValue);
+    });
+  });
+
+  describe('Input element', () => {
+    let component: TestComponent;
+    let fixture: ComponentFixture<TestComponent>;
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [RadioModule],
+        declarations: [TestComponent],
+        schemas: [NO_ERRORS_SCHEMA],
+      }).compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestComponent);
+      component = fixture.componentInstance;
+    });
+
+    it('should set @Input(value) to the input element', () => {
+      const mockValue = 'mockValue';
+
+      component.value = mockValue;
+      fixture.detectChanges();
+
+      const inputElem = fixture.debugElement.query(
+        By.css('label[nz-radio] input'),
+      );
+
+      expect(inputElem.nativeElement.value).toBe(mockValue);
     });
   });
 

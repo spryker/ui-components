@@ -2,22 +2,22 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
+  Injector,
   Input,
   OnInit,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
-  Injector,
 } from '@angular/core';
+import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import {
   AutocompleteWrapperToken,
   InjectionTokenType,
   ToJson,
 } from '@spryker/utils';
 import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
-import { of, ReplaySubject, Observable, Subject, EMPTY } from 'rxjs';
-import { map, switchMap, switchAll, takeUntil } from 'rxjs/operators';
-import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
+import { EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
 
 import { AutocompleteValue } from './types';
 

@@ -6,8 +6,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { AutocompleteValue } from '@spryker/autocomplete';
-import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
 import { DataTransformerConfig } from '@spryker/data-transformer';
+import { DatasourceConfig } from '@spryker/datasource';
 import {
   ColumnTypeOption,
   ColumnTypeOptionsType,
@@ -24,20 +24,20 @@ declare module '@spryker/table' {
 }
 
 @Injectable({ providedIn: 'root' })
-export class ColumnAutocompleteDataTransformer {
+export class ColumnAutocompleteDataTransformer
+  implements DataTransformerConfig {
   @ColumnTypeOption({ required: true })
-  type?: string;
+  type!: string;
+  [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
-export class ColumnAutocompleteDatasource {
+export class ColumnAutocompleteDatasource implements DatasourceConfig {
   @ColumnTypeOption({ required: true })
-  type?: string;
-  @ColumnTypeOption({
-    type: ColumnTypeOptionsType.Literal,
-    value: ColumnAutocompleteDataTransformer,
-  })
-  transform?: DataTransformerConfig;
+  type!: string;
+  @ColumnTypeOption()
+  transform?: ColumnAutocompleteDataTransformer;
+  [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -91,11 +91,8 @@ export class TableColumnAutocompleteConfig {
   editableError?: string | boolean;
   @ColumnTypeOption()
   attrs?: Record<string, string>;
-  @ColumnTypeOption({
-    type: ColumnTypeOptionsType.Literal,
-    value: ColumnAutocompleteDatasource,
-  })
-  datasource?: DatasourceConfig;
+  @ColumnTypeOption()
+  datasource?: ColumnAutocompleteDatasource;
 }
 
 @Component({

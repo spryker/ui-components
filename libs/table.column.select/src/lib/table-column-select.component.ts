@@ -24,20 +24,19 @@ declare module '@spryker/table' {
 }
 
 @Injectable({ providedIn: 'root' })
-export class ColumnSelectDataTransformer {
+export class ColumnSelectDataTransformer implements DataTransformerConfig {
   @ColumnTypeOption({ required: true })
-  type?: string;
+  type!: string;
+  [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
-export class ColumnSelectDatasource {
+export class ColumnSelectDatasource implements DatasourceConfig {
   @ColumnTypeOption({ required: true })
-  type?: string;
-  @ColumnTypeOption({
-    type: ColumnTypeOptionsType.Literal,
-    value: ColumnSelectDataTransformer,
-  })
-  transform?: DataTransformerConfig;
+  type!: string;
+  @ColumnTypeOption()
+  transform?: ColumnSelectDataTransformer;
+  [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -91,11 +90,8 @@ export class TableColumnSelectConfig {
     value: [String, Boolean],
   })
   editableError?: string | boolean;
-  @ColumnTypeOption({
-    type: ColumnTypeOptionsType.Literal,
-    value: ColumnSelectDatasource,
-  })
-  datasource?: DatasourceConfig;
+  @ColumnTypeOption()
+  datasource?: ColumnSelectDatasource;
 }
 
 @Component({

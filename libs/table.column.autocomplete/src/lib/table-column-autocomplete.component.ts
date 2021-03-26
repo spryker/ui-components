@@ -24,10 +24,19 @@ declare module '@spryker/table' {
 }
 
 @Injectable({ providedIn: 'root' })
+export class ColumnAutocompleteDataTransformer {
+  @ColumnTypeOption({ required: true })
+  type?: string;
+}
+
+@Injectable({ providedIn: 'root' })
 export class ColumnAutocompleteDatasource {
   @ColumnTypeOption({ required: true })
-  type?: DatasourceType;
-  @ColumnTypeOption()
+  type?: string;
+  @ColumnTypeOption({
+    type: ColumnTypeOptionsType.Literal,
+    value: ColumnAutocompleteDataTransformer,
+  })
   transform?: DataTransformerConfig;
 }
 

@@ -5,6 +5,7 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
+import { DataTransformerConfig } from '@spryker/data-transformer';
 import { DatasourceConfig } from '@spryker/datasource';
 import { SelectOption, SelectValue } from '@spryker/select';
 import {
@@ -20,6 +21,23 @@ declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
     select: TableColumnSelectConfig;
   }
+}
+
+@Injectable({ providedIn: 'root' })
+export class ColumnSelectDataTransformer {
+  @ColumnTypeOption({ required: true })
+  type?: string;
+}
+
+@Injectable({ providedIn: 'root' })
+export class ColumnSelectDatasource {
+  @ColumnTypeOption({ required: true })
+  type?: string;
+  @ColumnTypeOption({
+    type: ColumnTypeOptionsType.Literal,
+    value: ColumnSelectDataTransformer,
+  })
+  transform?: DataTransformerConfig;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -73,7 +91,10 @@ export class TableColumnSelectConfig {
     value: [String, Boolean],
   })
   editableError?: string | boolean;
-  @ColumnTypeOption()
+  @ColumnTypeOption({
+    type: ColumnTypeOptionsType.Literal,
+    value: ColumnSelectDatasource,
+  })
   datasource?: DatasourceConfig;
 }
 

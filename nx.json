@@ -369,6 +369,9 @@
     },
     "button.action": {
       "tags": ["type:component", "level:atom", "pkg:extension"]
+    },
+    "table.column.autocomplete": {
+      "tags": ["type:component", "level:atom", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

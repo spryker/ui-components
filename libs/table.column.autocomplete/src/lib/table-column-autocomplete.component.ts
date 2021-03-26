@@ -5,9 +5,9 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
+import { AutocompleteValue } from '@spryker/autocomplete';
 import { DataTransformerConfig } from '@spryker/data-transformer';
 import { DatasourceConfig } from '@spryker/datasource';
-import { SelectOption, SelectValue } from '@spryker/select';
 import {
   ColumnTypeOption,
   ColumnTypeOptionsType,
@@ -19,42 +19,43 @@ import { TableEditableService } from '@spryker/table.feature.editable';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
-    select: TableColumnSelectConfig;
+    autocomplete: TableColumnAutocompleteConfig;
   }
 }
 
 @Injectable({ providedIn: 'root' })
-export class ColumnSelectDataTransformer implements DataTransformerConfig {
+export class ColumnAutocompleteDataTransformer
+  implements DataTransformerConfig {
   @ColumnTypeOption({ required: true })
   type!: string;
   [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
-export class ColumnSelectDatasource implements DatasourceConfig {
+export class ColumnAutocompleteDatasource implements DatasourceConfig {
   @ColumnTypeOption({ required: true })
   type!: string;
   @ColumnTypeOption()
-  transform?: ColumnSelectDataTransformer;
+  transform?: ColumnAutocompleteDataTransformer;
   [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
-export class ColumnSelectOptionItem {
+export class ColumnAutocompleteOptionItem {
   @ColumnTypeOption({ required: true })
-  title = '';
+  title?: string;
   @ColumnTypeOption({
     required: true,
     type: ColumnTypeOptionsType.AnyOf,
     value: [String, Number],
   })
-  value?: SelectValue;
+  value?: string | number;
   @ColumnTypeOption()
   isDisabled? = false;
 }
 
 @Injectable({ providedIn: 'root' })
-export class TableColumnSelectConfig {
+export class TableColumnAutocompleteConfig {
   @ColumnTypeOption({
     required: true,
     type: ColumnTypeOptionsType.AnyOf,
@@ -66,49 +67,46 @@ export class TableColumnSelectConfig {
       },
       {
         type: ColumnTypeOptionsType.ArrayOf,
-        value: ColumnSelectOptionItem,
+        value: ColumnAutocompleteOptionItem,
       },
     ],
   })
-  options: (SelectOption | ColumnSelectOptionItem)[] = [];
+  options: AutocompleteValue[] = [];
   @ColumnTypeOption()
-  multiple? = false;
-  @ColumnTypeOption()
-  search? = false;
-  @ColumnTypeOption()
-  disableClear? = false;
+  type = 'text';
   @ColumnTypeOption()
   placeholder? = '';
   @ColumnTypeOption()
-  showSelectAll? = false;
+  prefix?: string;
   @ColumnTypeOption()
-  selectAllTitle?: string;
+  suffix?: string;
   @ColumnTypeOption()
-  noOptionsText?: string;
+  outerPrefix?: string;
+  @ColumnTypeOption()
+  outerSuffix?: string;
   @ColumnTypeOption({
     type: ColumnTypeOptionsType.AnyOf,
     value: [String, Boolean],
   })
   editableError?: string | boolean;
   @ColumnTypeOption()
-  datasource?: ColumnSelectDatasource;
+  attrs?: Record<string, string>;
+  @ColumnTypeOption()
+  datasource?: ColumnAutocompleteDatasource;
 }
 
 @Component({
-  selector: 'spy-table-column-select',
-  templateUrl: './table-column-select.component.html',
-  styleUrls: ['./table-column-select.component.less'],
+  selector: 'spy-table-column-autocomplete',
+  templateUrl: './table-column-autocomplete.component.html',
+  styleUrls: ['./table-column-autocomplete.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [TableEditableService],
-  host: {
-    class: 'spy-table-column-select',
-  },
 })
-@TableColumnTypeComponent(TableColumnSelectConfig)
-export class TableColumnSelectComponent
-  implements TableColumnComponent<TableColumnSelectConfig> {
-  @Input() config?: TableColumnSelectConfig;
+@TableColumnTypeComponent(TableColumnAutocompleteConfig)
+export class TableColumnAutocompleteComponent
+  implements TableColumnComponent<TableColumnAutocompleteConfig> {
+  @Input() config?: TableColumnAutocompleteConfig;
   @Input() context?: TableColumnContext;
 
   constructor(private tableEditableService: TableEditableService) {}

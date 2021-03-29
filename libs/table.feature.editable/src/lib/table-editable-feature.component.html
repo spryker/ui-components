@@ -22,10 +22,7 @@
           [size]="buttonSize.Medium"
           (click)="addRow(mockRowData)"
         >
-          <spy-icon
-            class="spy-button-core__btn-icon"
-            [name]="addButton.icon || addRowIcon"
-          ></spy-icon>
+          <spy-icon [name]="addButton.icon || addRowIcon" icon></spy-icon>
           <ng-container *ngIf="addButton.title; else defaultAddButtonText">
             {{ addButton.title }}
           </ng-container>
@@ -99,9 +96,9 @@
                   (click)="cancelAddRow(i)"
                 >
                   <spy-icon
-                    class="spy-button-core__btn-icon"
                     *ngIf="createConfig?.cancelButton?.icon"
                     [name]="createConfig?.cancelButton?.icon"
+                    icon
                   ></spy-icon>
 
                   <ng-container
@@ -252,9 +249,9 @@
         (click)="submitEdit(cellContext)"
       >
         <spy-icon
-          class="spy-button-core__btn-icon"
           *ngIf="updateConfig?.saveButton?.icon"
           [name]="updateConfig?.saveButton?.icon"
+          icon
         ></spy-icon>
 
         <ng-container
@@ -276,9 +273,9 @@
         (click)="closeEditableCell(i, config.id, $event)"
       >
         <spy-icon
-          class="spy-button-core__btn-icon"
           *ngIf="updateConfig?.cancelButton?.icon"
           [name]="updateConfig?.cancelButton?.icon"
+          icon
         ></spy-icon>
 
         <ng-container

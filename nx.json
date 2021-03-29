@@ -356,7 +356,7 @@
       "tags": ["type:service", "pkg:extension"]
     },
     "input.password": {
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      "tags": ["type:component", "level:atom", "pkg:primary"]
     },
     "datasource": {
       "tags": ["type:service", "pkg:primary"]
@@ -368,13 +368,13 @@
       "tags": ["type:service", "pkg:extension"]
     },
     "button.action": {
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      "tags": ["type:component", "level:atom", "pkg:primary"]
     },
     "table.column.autocomplete": {
       "tags": ["type:component", "level:atom", "pkg:extension"]
     },
     "button.icon": {
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      "tags": ["type:component", "level:atom", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

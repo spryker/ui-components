@@ -1,7 +1,7 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import { ButtonIconModule } from '../button-icon.module';
 import { ButtonIconComponent } from './button-icon.component';
-import { ButtonSize } from '@spryker/button'
+import { ButtonSize } from '@spryker/button';
 import { IconPlusModule } from '@spryker/icon/icons';
 
 export default {

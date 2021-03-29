@@ -15,7 +15,10 @@ describe('ButtonComponent', () => {
     ButtonComponent,
     {
       ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-      projectContent: 'Content',
+      projectContent: `
+        <span class="icon-element" icon></span>
+        Content
+      `,
     },
   );
 
@@ -48,6 +51,15 @@ describe('ButtonComponent', () => {
 
     expect(buttonElem.classes[`${buttonClassName}__btn`]).toBeTruthy();
     expect(buttonElem.classes[`${buttonCls}__btn`]).toBeTruthy();
+  });
+
+  it('should render icon in the `.spy-button-core__btn-icon` element', async () => {
+    const host = await createComponent({}, true);
+    const iconElement = host.queryCss(
+      '.spy-button-core__btn-icon .icon-element',
+    )!;
+
+    expect(iconElement).toBeTruthy();
   });
 
   it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the host', async () => {

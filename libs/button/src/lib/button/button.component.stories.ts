@@ -23,12 +23,15 @@ export const primary = () => ({
       [variant]="variant"
       [size]="size"
       [disabled]="disabled"
-    >Button</spy-button>
+      [loading]="loading"
+    ><span *ngIf="withIcon" icon>&copy;</span>Button</spy-button>
   `,
   props: {
     variant: select('Variant', ButtonVariant, ButtonVariant.Primary),
     size: select('Size', ButtonSize, ButtonSize.Large),
     shape: select('Shape', ButtonShape, ButtonShape.Default),
     disabled: boolean('Disabled', false),
+    loading: boolean('Loading', false),
+    withIcon: boolean('With icon', false),
   },
 });

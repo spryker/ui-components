@@ -148,6 +148,8 @@
   &--circle {
     .@{btn-prefix-core-btn-cls} {
       border-radius: @btn-border-radius-circle;
+      min-width: @btn-min-width-circle;
+      padding: @btn-padding-circle;
     }
   }
 
@@ -269,5 +271,10 @@
 
   &-icon {
     padding-right: @btn-icon-right-padding;
+    line-height: 0;
+
+    &:empty {
+      display: none;
+    }
   }
 }

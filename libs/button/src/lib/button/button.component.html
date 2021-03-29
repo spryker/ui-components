@@ -6,5 +6,11 @@
   #buttonRef
 >
   <nz-spin *ngIf="loading" [nzSize]="'small'"></nz-spin>
+  <span
+    class="spy-button-core__btn-icon"
+    [class.spy-button-core__btn-icon--loading]="loading"
+  >
+    <ng-content select="[icon]"></ng-content>
+  </span>
   <ng-content></ng-content>
 </button>

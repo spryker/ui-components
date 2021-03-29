@@ -23,11 +23,11 @@ import {
 import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
-import { TableColumnSelectComponent } from './table-column-select.component';
-import { TableColumnSelectModule } from './table-column-select.module';
+import { TableColumnAutocompleteComponent } from './table-column-autocomplete.component';
+import { TableColumnAutocompleteModule } from './table-column-autocomplete.module';
 
 export default {
-  title: 'TableColumnSelectComponent',
+  title: 'TableColumnAutocompleteComponent',
 };
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
@@ -42,30 +42,34 @@ export const primary = (): IStory => ({
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
       }),
-      TableColumnSelectModule,
+      TableColumnAutocompleteModule,
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
     ],
   },
-  component: TableColumnSelectComponent,
+  component: TableColumnAutocompleteComponent,
   props: {
     config: object('Config', {
       options: [
-        'Option 1',
-        'Option 2',
-        'Option 3',
-        'Option 4',
-        'Option 5',
-        'Option 6',
-        'Option 7',
-        'Option 8',
-        'Option 9',
-        'Option 10',
+        {
+          value: 'Burns Bay Road',
+          title:
+            'Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road',
+          isDisabled: false,
+        },
+        {
+          value: 'Downing Street',
+          title: 'Downing Street',
+          isDisabled: true,
+        },
+        {
+          value: 'Wall Street',
+          title: 'Wall Street',
+        },
       ],
-      placeholder: '123',
     }),
     context: object('Context', {
-      value: ['Option 1'],
+      value: '',
     }),
   },
 });
@@ -75,10 +79,10 @@ export const withTable = (): IStory => ({
     imports: [
       HttpClientTestingModule,
       ContextModule,
-      TableColumnSelectModule,
+      TableColumnAutocompleteModule,
       TableModule.forRoot(),
       TableModule.withColumnComponents({
-        select: TableColumnSelectComponent,
+        autocomplete: TableColumnAutocompleteComponent,
       } as any),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
@@ -89,7 +93,7 @@ export const withTable = (): IStory => ({
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
+        useValue: [LayoutFlatHostComponent, TableColumnAutocompleteComponent],
         multi: true,
       },
     ],
@@ -104,28 +108,34 @@ export const withTable = (): IStory => ({
         dataGenerator: tableDataGenerator,
       } as MockTableDatasourceConfig,
       columns: [
-        { id: 'col1', sortable: true, title: 'Column #1' },
+        {
+          id: 'col1',
+          sortable: true,
+          title: 'Column #1',
+        },
         {
           id: 'col2',
           title: 'Column #2',
-          type: 'select',
+          type: 'autocomplete',
           typeOptions: {
             options: [
               {
-                title: 'Option 1',
-                value: 'Option 1',
+                value: 'Burns Bay Road',
+                title:
+                  'Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road',
+                isDisabled: false,
               },
               {
-                title: 'Option 2',
-                value: 'Option 2',
+                value: 'Downing Street',
+                title: 'Downing Street',
                 isDisabled: true,
               },
               {
-                title: 'Option 3',
-                value: 'Option 3',
+                value: 'Wall Street',
+                title: 'Wall Street',
               },
             ],
-            placeholder: '123',
+            placeholder: 'Placeholder',
           },
         },
       ],
@@ -139,7 +149,7 @@ export const withDependentColumns = (): IStory => ({
       HttpClientTestingModule,
       ContextModule,
       MockHttpModule,
-      TableColumnSelectModule,
+      TableColumnAutocompleteModule,
       TableModule.forRoot(),
       TableModule.withFeatures({
         editable: () =>
@@ -148,7 +158,7 @@ export const withDependentColumns = (): IStory => ({
           ),
       }),
       TableModule.withColumnComponents({
-        select: TableColumnSelectComponent,
+        autocomplete: TableColumnAutocompleteComponent,
       } as any),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
@@ -164,7 +174,7 @@ export const withDependentColumns = (): IStory => ({
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
+        useValue: [LayoutFlatHostComponent, TableColumnAutocompleteComponent],
         multi: true,
       },
     ],
@@ -179,7 +189,11 @@ export const withDependentColumns = (): IStory => ({
         dataGenerator: tableDataGenerator,
       } as MockTableDatasourceConfig,
       columns: [
-        { id: 'col1', sortable: true, title: 'Column #1' },
+        {
+          id: 'col1',
+          sortable: true,
+          title: 'Column #1',
+        },
         {
           id: 'col2',
           title: 'Column #2',
@@ -193,23 +207,55 @@ export const withDependentColumns = (): IStory => ({
         columns: [
           {
             id: 'col2',
-            type: 'select',
+            type: 'autocomplete',
             typeOptions: {
               datasource: {
                 type: 'dependable',
                 dependsOn: 'col3',
                 datasource: {
                   type: 'inline',
-                  data: ['Inline 1', 'Inline 2'],
+                  data: [
+                    {
+                      value: 'Dependable Option 1',
+                      title: 'Dependable Option 1',
+                      isDisabled: false,
+                    },
+                    {
+                      value: 'Dependable Option 2',
+                      title: 'Dependable Option 2',
+                      isDisabled: true,
+                    },
+                    {
+                      value: 'Dependable Option 3',
+                      title: 'Dependable Option 3',
+                    },
+                  ],
                 },
               },
             },
           },
           {
             id: 'col3',
-            type: 'select',
+            type: 'autocomplete',
             typeOptions: {
-              options: ['Option 1', 'Option 2'],
+              options: [
+                {
+                  value: 'Burns Bay Road',
+                  title:
+                    'Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road',
+                  isDisabled: false,
+                },
+                {
+                  value: 'Downing Street',
+                  title: 'Downing Street',
+                  isDisabled: true,
+                },
+                {
+                  value: 'Wall Street',
+                  title: 'Wall Street',
+                },
+              ],
+              placeholder: 'Col 3 Placeholder',
             },
           },
         ],

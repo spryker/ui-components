@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.32](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.31...@spryker/styles@0.2.0-next.32) (2021-03-26)
+
+
+### Features
+
+* **table.column.autocomplete:** add lib ([cb4c9a7](https://github.com/spryker/ui-components/commit/cb4c9a7ff93219a162dd59c3612c295ec15d74f8))
+
+
+
+
+
 # [0.2.0-next.31](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.30...@spryker/styles@0.2.0-next.31) (2021-03-15)
 
 

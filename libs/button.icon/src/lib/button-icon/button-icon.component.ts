@@ -28,7 +28,7 @@ export class ButtonIconComponent {
   @ToBoolean()
   disabled = false;
 
-  @ViewChild('buttonRef') buttonRef?: ElementRef<HTMLElement>;
+  @ViewChild('buttonRef', { static: true }) buttonRef?: ElementRef<HTMLElement>;
 
   click() {
     this.buttonRef?.nativeElement.click();

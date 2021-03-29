@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/input.password@0.1.0-next.1...@spryker/input.password@0.1.0-next.2) (2021-03-29)
+
+
+### Bug Fixes
+
+* **input.password:** rename theme file ([8d5bf52](https://github.com/spryker/ui-components/commit/8d5bf528ac004e41bdc38b7467c0cfc00bd81a7a))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/input.password@0.1.0-next.0...@spryker/input.password@0.1.0-next.1) (2021-03-03)
 
 

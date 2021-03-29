@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.5...@spryker/table.feature.editable@0.1.0-next.6) (2021-03-29)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** adjust buttons with icon usage ([00afbd6](https://github.com/spryker/ui-components/commit/00afbd6ecd66aed097513776b1d3b2afbb0f85a5))
+
+
+
+
+
 # [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.4...@spryker/table.feature.editable@0.1.0-next.5) (2021-03-11)
 
 

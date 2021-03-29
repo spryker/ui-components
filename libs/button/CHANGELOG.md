@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-next.9...@spryker/button@0.2.0-next.10) (2021-03-29)
+
+
+### Bug Fixes
+
+* **button:** adjust circle variant and template for icon ([d08152b](https://github.com/spryker/ui-components/commit/d08152b1d48188da02b112f1f4483018db30870a))
+
+
+
+
+
 # [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.0-next.8...@spryker/button@0.2.0-next.9) (2021-02-24)
 
 

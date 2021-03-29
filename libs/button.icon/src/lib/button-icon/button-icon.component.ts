@@ -7,7 +7,7 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
-import { ButtonSize, ButtonType, ButtonAttributes } from './types';
+import { ButtonSize, ButtonType, ButtonAttributes } from '@spryker/button';
 import { ToBoolean, ToJson } from '@spryker/utils';
 
 @Component({
@@ -23,8 +23,8 @@ export class ButtonIconComponent {
   @Input() size: ButtonSize = ButtonSize.Large;
   @Input() iconName?: string;
   @Input() @ToJson() attrs?: ButtonAttributes;
-  @HostBinding('class.spy-button-icon--disabled')
   @Input()
+  @HostBinding('class.spy-button-icon--disabled')
   @ToBoolean()
   disabled = false;
 

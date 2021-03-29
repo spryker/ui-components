@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { ButtonIconComponent } from './button-icon.component';
-import { ButtonSize, ButtonType, ButtonAttributes } from './types';
+import { ButtonSize, ButtonType, ButtonAttributes } from '@spryker/button';
 
 // tslint:disable: no-non-null-assertion
 

@@ -66,14 +66,6 @@ export class RadioComponent
     this.updateInputValue();
   }
 
-  updateInputValue(): void {
-    if (!this.nzRadio?.inputElement) {
-      return;
-    }
-
-    this.nzRadio.inputElement.nativeElement.value = this.value ?? '';
-  }
-
   select() {
     if (this.radioGroupComponent) {
       this.radioGroupComponent.select(this);
@@ -84,5 +76,13 @@ export class RadioComponent
     if (this.radioGroupComponent) {
       this.radioGroupComponent.reset();
     }
+  }
+
+  private updateInputValue(): void {
+    if (!this.nzRadio?.inputElement) {
+      return;
+    }
+
+    this.nzRadio.inputElement.nativeElement.value = this.value ?? '';
   }
 }

@@ -55,28 +55,11 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
     this.destroyed$.next();
   }
 
-  updateInputsValue(): void {
-    const radios = [...this.radios$.getValue()];
-
-    if (!radios) {
-      return;
-    }
-
-    this.nzRadios?.map((item, index) => {
-      const inputElement = item.inputElement;
-
-      if (!inputElement) {
-        return;
-      }
-
-      inputElement.nativeElement.value = radios[index].value ?? '';
-    });
-  }
-
   valueChanged(prev: string) {
     if (this.value === prev) {
       this.value = undefined;
       this.selected.emit(this.value);
+      this.updateInputsValue();
     }
   }
 
@@ -133,5 +116,23 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
 
     radios.delete(component);
     this.radios$.next(radios);
+  }
+
+  private updateInputsValue(): void {
+    const radios = [...this.radios$.getValue()];
+
+    if (!radios) {
+      return;
+    }
+
+    this.nzRadios?.map((item, index) => {
+      const inputElement = item.inputElement;
+
+      if (!inputElement) {
+        return;
+      }
+
+      inputElement.nativeElement.value = radios[index].value ?? '';
+    });
   }
 }

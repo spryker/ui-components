@@ -59,8 +59,9 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
     if (this.value === prev) {
       this.value = undefined;
       this.selected.emit(this.value);
-      this.updateInputsValue();
     }
+
+    this.updateInputsValue();
   }
 
   select(option: string | RadioComponent): void {

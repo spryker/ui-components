@@ -8,9 +8,12 @@ import {
   Output,
   ChangeDetectorRef,
   OnDestroy,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { shareReplay, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
+import { NzRadioComponent } from 'ng-zorro-antd/radio';
 import { RadioComponent } from '../radio/radio.component';
 
 @Component({
@@ -30,6 +33,7 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
   @Input() name?: string;
 
   @Output() selected = new EventEmitter<boolean>();
+  @ViewChildren(NzRadioComponent) nzRadios?: QueryList<NzRadioComponent>;
 
   hasError = false;
 
@@ -47,15 +51,17 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
       );
   }
 
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+  }
+
   valueChanged(prev: string) {
     if (this.value === prev) {
       this.value = undefined;
       this.selected.emit(this.value);
     }
-  }
 
-  ngOnDestroy(): void {
-    this.destroyed$.next();
+    this.updateInputsValue();
   }
 
   select(option: string | RadioComponent): void {
@@ -96,6 +102,10 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
 
     radios.add(component);
     this.radios$.next(radios);
+
+    setTimeout(() => {
+      this.updateInputsValue();
+    });
   }
 
   unregisterRadio(component: RadioComponent) {
@@ -107,5 +117,23 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
 
     radios.delete(component);
     this.radios$.next(radios);
+  }
+
+  private updateInputsValue(): void {
+    const radios = [...this.radios$.getValue()];
+
+    if (!radios) {
+      return;
+    }
+
+    this.nzRadios?.map((item, index) => {
+      const inputElement = item.inputElement;
+
+      if (!inputElement) {
+        return;
+      }
+
+      inputElement.nativeElement.value = radios[index].value ?? '';
+    });
   }
 }

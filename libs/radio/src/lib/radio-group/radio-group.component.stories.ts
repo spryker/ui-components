@@ -18,9 +18,9 @@ export const primary = () => ({
     imports: [RadioModule],
   },
   template: `
-    <spy-radio-group>
-      <spy-radio value="A">Label A</spy-radio>
-      <spy-radio value="B">Label B</spy-radio>
+    <spy-radio-group [value]="'A'">
+      <spy-radio [value]="'A'">Label A</spy-radio>
+      <spy-radio [value]="'B'">Label B</spy-radio>
     </spy-radio-group>
   `,
 });
@@ -44,7 +44,7 @@ export const asWebComponents = () => ({
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
   },
   template: `
-    <web-spy-radio-group>
+    <web-spy-radio-group value="A">
       <web-spy-radio value="A">Label A</web-spy-radio>
       <web-spy-radio value="B">Label B</web-spy-radio>
     </web-spy-radio-group>

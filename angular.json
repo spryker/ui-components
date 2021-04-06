@@ -6972,6 +6972,80 @@
           "style": "less"
         }
       }
+    },
+    "carousel": {
+      "projectType": "library",
+      "root": "libs/carousel",
+      "sourceRoot": "libs/carousel/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/carousel/tsconfig.lib.json",
+            "project": "libs/carousel/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/carousel/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/carousel/tsconfig.lib.json",
+              "libs/carousel/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/carousel/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/carousel/jest.config.js",
+            "tsConfig": "libs/carousel/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/carousel/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/carousel/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/carousel",
+            "config": {
+              "configFolder": "libs/carousel/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

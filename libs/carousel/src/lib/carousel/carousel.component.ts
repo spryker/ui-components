@@ -4,11 +4,12 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
+  Input,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
+import SwiperCore, { Navigation, Thumbs, SwiperOptions } from 'swiper/core';
 
 import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
 
@@ -22,6 +23,14 @@ SwiperCore.use([Thumbs, Navigation]);
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselComponent implements OnInit {
+  @Input() config: SwiperOptions = {
+    slidesPerView: 1,
+  };
+  @Input() thumbConfig: SwiperOptions = {
+    slidesPerView: 3,
+    spaceBetween: 100,
+  };
+
   slides$ = new BehaviorSubject(new Set<CarouselSlideComponent>());
   mainSlides$ = this.slides$.pipe(
     map((sildes) => [...sildes].filter((slide) => !slide.isThumb)),

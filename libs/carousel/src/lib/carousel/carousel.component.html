@@ -1,5 +1,5 @@
 <swiper
-  [slidesPerView]="1"
+  [slidesPerView]="config.slidesPerView"
   [navigation]="{ prevEl: prevEl, nextEl: nextEl }"
   [thumbs]="{ swiper: thumbsSwiper }"
 >
@@ -17,8 +17,8 @@
 <br />
 
 <swiper
-  [slidesPerView]="3"
-  [spaceBetween]="100"
+  [slidesPerView]="thumbConfig.slidesPerView"
+  [spaceBetween]="thumbConfig.spaceBetween"
   (swiper)="setThumbsSwiper($event)"
 >
   <ng-template swiperSlide *ngFor="let thumb of thumbSlides$ | async">

@@ -1,11 +1,16 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import SwiperCore, { Thumbs, Navigation } from 'swiper/core';
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { SwiperComponent } from 'swiper/angular';
+import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
+
+import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
 
 SwiperCore.use([Thumbs, Navigation]);
 
@@ -17,12 +22,45 @@ SwiperCore.use([Thumbs, Navigation]);
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselComponent implements OnInit {
-  constructor() {}
+  slides$ = new BehaviorSubject(new Set<CarouselSlideComponent>());
+  mainSlides$ = this.slides$.pipe(
+    map((sildes) => [...sildes].filter((slide) => !slide.isThumb)),
+  );
+  thumbSlides$ = this.slides$.pipe(
+    map((sildes) => [...sildes].filter((slide) => slide.isThumb)),
+  );
+
+  thumbsSwiper?: SwiperComponent;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {}
 
-  thumbsSwiper?: SwiperComponent;
   setThumbsSwiper(swiper: SwiperComponent) {
     this.thumbsSwiper = swiper;
+  }
+
+  registerSlide(component: CarouselSlideComponent) {
+    const slides = this.slides$.getValue();
+
+    if (slides.has(component)) {
+      return;
+    }
+
+    slides.add(component);
+    this.slides$.next(slides);
+    this.cdr.detectChanges();
+  }
+
+  unregisterRadio(component: CarouselSlideComponent) {
+    const slides = this.slides$.getValue();
+
+    if (!slides.has(component)) {
+      return;
+    }
+
+    slides.add(component);
+    this.slides$.next(slides);
+    this.cdr.detectChanges();
   }
 }

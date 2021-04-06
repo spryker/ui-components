@@ -3,12 +3,9 @@
   [navigation]="{ prevEl: prevEl, nextEl: nextEl }"
   [thumbs]="{ swiper: thumbsSwiper }"
 >
-  <ng-template swiperSlide>Slide 1</ng-template>
-  <ng-template swiperSlide>Slide 2</ng-template>
-  <ng-template swiperSlide>Slide 3</ng-template>
-  <ng-template swiperSlide>Slide 4</ng-template>
-  <ng-template swiperSlide>Slide 5</ng-template>
-  <ng-template swiperSlide>Slide 6</ng-template>
+  <ng-template swiperSlide *ngFor="let slide of mainSlides$ | async">
+    <ng-container *ngTemplateOutlet="slide.template"></ng-container>
+  </ng-template>
 </swiper>
 <br />
 <br />
@@ -18,13 +15,15 @@
 <br />
 <br />
 <br />
-<swiper [slidesPerView]="3" (swiper)="setThumbsSwiper($event)">
-  <ng-template swiperSlide>Slide 1</ng-template>
-  <ng-template swiperSlide>Slide 2</ng-template>
-  <ng-template swiperSlide>Slide 3</ng-template>
-  <ng-template swiperSlide>Slide 4</ng-template>
-  <ng-template swiperSlide>Slide 5</ng-template>
-  <ng-template swiperSlide>Slide 6</ng-template>
+
+<swiper
+  [slidesPerView]="3"
+  [spaceBetween]="100"
+  (swiper)="setThumbsSwiper($event)"
+>
+  <ng-template swiperSlide *ngFor="let thumb of thumbSlides$ | async">
+    <ng-container *ngTemplateOutlet="thumb.template"></ng-container>
+  </ng-template>
 </swiper>
 
 <button type="button" #prevEl class="swiper-navigation-next">PREV</button>

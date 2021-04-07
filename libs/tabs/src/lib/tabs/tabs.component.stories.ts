@@ -69,7 +69,11 @@ export const primary = () => ({
     </spy-tabs>
   `,
   props: {
-    tab: select('Selected tab index', [...new Array(tabsData.length).keys()], 0),
+    tab: select(
+      'Selected tab index',
+      [...new Array(tabsData.length).keys()],
+      0,
+    ),
     mode: select('Mode', TabsMode, TabsMode.Card),
     animateSlides: boolean('Animate slides', false),
     tabsDataArray: tabsData,

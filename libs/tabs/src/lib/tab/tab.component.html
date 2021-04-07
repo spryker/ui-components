@@ -6,11 +6,15 @@
   <div
     [ngClass]="{
       'ant-tabs-custom-tab': true,
-      'ant-tabs-custom-tab-warning': hasWarning
+      'ant-tabs-custom-tab-warning': hasWarning,
+      'ant-tabs-custom-tab-has-icon': iconName
     }"
   >
-    <div *ngIf="hasWarning" ngClass="ant-tabs-custom-tab-icon">
+    <div *ngIf="hasWarning && !iconName" ngClass="ant-tabs-custom-tab-icon">
       <spy-icon [name]="iconErrorReference.icon"></spy-icon>
+    </div>
+    <div *ngIf="iconName" ngClass="ant-tabs-custom-tab-icon">
+      <spy-icon [name]="iconName"></spy-icon>
     </div>
     <div>
       {{ spyTitle }}

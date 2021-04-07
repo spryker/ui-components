@@ -5,6 +5,7 @@ import {
   WebComponentDefs,
 } from '@spryker/web-components';
 import { boolean, select } from '@storybook/addon-knobs';
+import { IconCalendarModule, IconUserModule } from '@spryker/icon/icons';
 import { TabsModule } from '../tabs.module';
 import { TabsComponent, TabsMode } from './tabs.component';
 import { TabComponent } from '../tab/tab.component';
@@ -31,14 +32,18 @@ const tabsData = [
   {
     title: 'Test Title 4',
     content: 'Tab Content 4',
+    iconName: 'calendar',
   },
   {
     title: 'Test Title 5',
     content: 'Tab Content 5',
+    iconName: 'user',
   },
   {
     title: 'Test Title 6',
     content: 'Tab Content 6',
+    hasWarning: true,
+    iconName: 'user',
   },
   {
     title: 'Test Title 7',
@@ -48,7 +53,7 @@ const tabsData = [
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [TabsModule],
+    imports: [TabsModule, IconUserModule, IconCalendarModule],
   },
   template: `
     <spy-tabs [tab]="tab" [mode]="mode" [animateSlides]="animateSlides">
@@ -57,6 +62,7 @@ export const primary = () => ({
         spyTitle="{{ tab.title }}"
         disabled="{{ tab.disabled ? tab.disabled : false }}"
         hasWarning="{{ tab.hasWarning ? tab.hasWarning : false }}"
+        iconName="{{ tab.iconName ? tab.iconName : '' }}"
       >
         {{ tab.content }}
       </spy-tab>

@@ -30,6 +30,8 @@
     .transition-mixin(all);
     position: relative;
     padding: @tabs-padding;
+    display: flex;
+    align-items: center;
 
     &::after {
       .transition-mixin(background);
@@ -55,17 +57,12 @@
     }
 
     &-icon {
-      position: absolute;
-      top: 50%;
-      left: @tabs-icon-shift-left;
-      transform: translate(0, -50%);
       display: flex;
       padding-right: @tabs-icon-padding-right;
       font-size: @font-size-lg;
     }
 
     &-warning {
-      padding-left: @tabs-warning-padding-left;
       color: @red;
 
       &:hover {
@@ -84,6 +81,12 @@
 
     .@{tab-prefix-cls}-tab {
       padding: 0;
+      vertical-align: bottom;
+
+      .anticon {
+        margin-right: 0;
+        line-height: 1;
+      }
 
       &-active {
         &:hover {
@@ -207,10 +210,6 @@
 
       &-icon {
         font-size: @tabs-card-tab-icon-size;
-      }
-
-      &-warning {
-        padding-left: @tabs-card-tab-icon-padding-left;
       }
     }
 

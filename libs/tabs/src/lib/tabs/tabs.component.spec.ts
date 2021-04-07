@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { TabsComponent } from './tabs.component';
+import { TabsComponent, TabsMode } from './tabs.component';
 import { TabComponent } from '../tab/tab.component';
 
 // tslint:disable: no-non-null-assertion
@@ -73,7 +73,7 @@ describe('TabsComponent', () => {
     });
 
     it('should bind on nzType of nz-tabset', async () => {
-      const host = await createComponent({ mode: 'card' }, true);
+      const host = await createComponent({ mode: TabsMode.Card }, true);
       const tabsElement = host.queryCss('nz-tabset')!;
 
       expect(tabsElement.properties.nzType).toBe('card');
@@ -91,7 +91,7 @@ describe('TabsComponent', () => {
 
   describe('component.toNextTab', () => {
     it('should increase tab property', async () => {
-      const host = await createComponent({ tab: 0, mode: 'line' }, true);
+      const host = await createComponent({ tab: 0, mode: TabsMode.Line }, true);
 
       host.component.toNextTab();
       host.detectChanges();

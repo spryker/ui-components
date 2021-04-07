@@ -1,6 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { NzTabsModule } from 'ng-zorro-antd';
+import { IconModule } from '@spryker/icon';
+import { By } from '@angular/platform-browser';
 import { TabsComponent, TabsMode } from './tabs.component';
 import { TabComponent } from '../tab/tab.component';
 
@@ -8,13 +11,13 @@ import { TabComponent } from '../tab/tab.component';
 
 describe('TabsComponent', () => {
   const projectedContent = `
-    <spy-tab title="Tab Title 1">
+    <spy-tab title="Tab Title 1" iconName="user">
       Tab Content 1
     </spy-tab>
-    <spy-tab title="Tab Title 2">
+    <spy-tab title="Tab Title 2" hasWarning="true">
       Tab Content 2
     </spy-tab>
-    <spy-tab title="Tab Title 3">
+    <spy-tab title="Tab Title 3" hasWarning="true" iconName="user">
       Tab Content 3
     </spy-tab>
   `;
@@ -23,7 +26,7 @@ describe('TabsComponent', () => {
     TabsComponent,
     {
       ngModule: {
-        imports: [],
+        imports: [NzTabsModule, IconModule],
         declarations: [TabComponent],
         exports: [TabComponent],
         schemas: [NO_ERRORS_SCHEMA],
@@ -61,7 +64,7 @@ describe('TabsComponent', () => {
       const host = await createComponent({ tab: 1 }, true);
       const tabsElement = host.queryCss('nz-tabset')!;
 
-      expect(tabsElement.properties.nzSelectedIndex).toBe(1);
+      expect(tabsElement.attributes['ng-reflect-nz-selected-index']).toBe('1');
     });
   });
 
@@ -76,7 +79,7 @@ describe('TabsComponent', () => {
       const host = await createComponent({ mode: TabsMode.Card }, true);
       const tabsElement = host.queryCss('nz-tabset')!;
 
-      expect(tabsElement.properties.nzType).toBe('card');
+      expect(tabsElement.attributes['ng-reflect-nz-type']).toBe('card');
     });
   });
 
@@ -85,7 +88,7 @@ describe('TabsComponent', () => {
       const host = await createComponent({ animateSlides: true }, true);
       const tabsElement = host.queryCss('nz-tabset')!;
 
-      expect(tabsElement.properties.nzAnimated).toBe(true);
+      expect(tabsElement.attributes['ng-reflect-nz-animated']).toBe('true');
     });
   });
 
@@ -146,6 +149,44 @@ describe('TabsComponent', () => {
       host.detectChanges();
 
       expect(host.hostComponent.tabChange).toHaveBeenCalled();
+    });
+  });
+
+  describe('Tabs header `icons`', () => {
+    it('should render <spy-icon> component inside the tab if `iconName` attribute exists', async () => {
+      const mockIconName = 'user';
+      const host = await createComponent({}, true);
+
+      host.detectChanges();
+
+      const iconElems = host.fixture.debugElement.queryAll(By.css('spy-icon'));
+
+      expect(iconElems[0]).toBeTruthy();
+      expect(iconElems[0].attributes['ng-reflect-name']).toBe(mockIconName);
+    });
+
+    it('should render <spy-icon> component inside the tab if `hasWarning` attribute exists', async () => {
+      const mockIconName = 'error';
+      const host = await createComponent({}, true);
+
+      host.detectChanges();
+
+      const iconElems = host.fixture.debugElement.queryAll(By.css('spy-icon'));
+
+      expect(iconElems[1]).toBeTruthy();
+      expect(iconElems[1].attributes['ng-reflect-name']).toBe(mockIconName);
+    });
+
+    it('should render <spy-icon> component inside the tab if `hasWarning` and `iconName` attributes exists', async () => {
+      const mockIconName = 'user';
+      const host = await createComponent({}, true);
+
+      host.detectChanges();
+
+      const iconElems = host.fixture.debugElement.queryAll(By.css('spy-icon'));
+
+      expect(iconElems[2]).toBeTruthy();
+      expect(iconElems[2].attributes['ng-reflect-name']).toBe(mockIconName);
     });
   });
 });

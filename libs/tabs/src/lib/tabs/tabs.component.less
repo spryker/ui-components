@@ -116,7 +116,6 @@
     }
   }
 
-  // 'card' mode
   &.@{tab-prefix-cls}-card {
     .@{tab-prefix-cls}-nav {
       background-color: @gray-lighter;
@@ -153,6 +152,14 @@
               color: @red;
             }
           }
+        }
+      }
+
+      .@{tab-prefix-cls}-tab-disabled {
+        color: @gray-darker;
+
+        &:hover {
+          color: @gray-darker;
         }
       }
 
@@ -264,9 +271,9 @@
 
       &-icon {
         &::after {
-          border-top: @tabs-card-nav-arrow-size solid @transparent;
-          border-bottom: @tabs-card-nav-arrow-size solid @transparent;
-          border-left: @tabs-card-nav-arrow-size solid @gray-dark;
+          border-top: @tabs-card-nav-arrow-icon-border-transparent;
+          border-bottom: @tabs-card-nav-arrow-icon-border-transparent;
+          border-left: @tabs-card-nav-arrow-icon-border-gray;
           left: -@tabs-card-nav-arrow-size;
         }
 
@@ -289,9 +296,9 @@
 
       &-icon {
         &::after {
-          border-top: @tabs-card-nav-arrow-size solid @transparent;
-          border-bottom: @tabs-card-nav-arrow-size solid @transparent;
-          border-right: @tabs-card-nav-arrow-size solid @gray-dark;
+          border-top: @tabs-card-nav-arrow-icon-border-transparent;
+          border-bottom: @tabs-card-nav-arrow-icon-border-transparent;
+          border-right: @tabs-card-nav-arrow-icon-border-gray;
           right: -@tabs-card-nav-arrow-size;
         }
 

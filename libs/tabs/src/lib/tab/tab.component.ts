@@ -24,7 +24,7 @@ export class TabComponent {
   @Input() spyTitle = '';
   @Input() @ToBoolean() disabled = false;
   @Input() @ToBoolean() hasWarning = false;
-  @Input() iconName = '';
+  @Input() iconName?: string;
 
   @Output() hasWarningChange = new EventEmitter<boolean>();
 

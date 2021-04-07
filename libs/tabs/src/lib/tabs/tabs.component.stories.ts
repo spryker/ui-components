@@ -61,8 +61,8 @@ export const primary = () => ({
         *ngFor="let tab of tabsDataArray"
         [spyTitle]="tab.title"
         [disabled]="tab.disabled"
-        hasWarning="{{ tab.hasWarning ? tab.hasWarning : false }}"
-        iconName="{{ tab.iconName ? tab.iconName : '' }}"
+        [hasWarning]="tab.hasWarning"
+        [iconName]="tab.iconName"
       >
         {{ tab.content }}
       </spy-tab>

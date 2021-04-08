@@ -2,7 +2,6 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NzTabsModule } from 'ng-zorro-antd';
-import { IconModule } from '@spryker/icon';
 import { By } from '@angular/platform-browser';
 import { TabsComponent, TabsMode } from './tabs.component';
 import { TabComponent } from '../tab/tab.component';
@@ -162,7 +161,7 @@ describe('TabsComponent', () => {
       TabsComponent,
       {
         ngModule: {
-          imports: [NzTabsModule, IconModule],
+          imports: [NzTabsModule],
           declarations: [TabComponent],
           exports: [TabComponent],
           schemas: [NO_ERRORS_SCHEMA],
@@ -182,7 +181,7 @@ describe('TabsComponent', () => {
       const iconElems = host.fixture.debugElement.queryAll(By.css('spy-icon'));
 
       expect(iconElems[0]).toBeTruthy();
-      expect(iconElems[0].context.name).toBe(mockIconName);
+      expect(iconElems[0].properties.name).toBe(mockIconName);
     });
 
     it('should render <spy-icon> component inside the tab if `hasWarning` attribute exists', async () => {
@@ -194,7 +193,7 @@ describe('TabsComponent', () => {
       const iconElems = host.fixture.debugElement.queryAll(By.css('spy-icon'));
 
       expect(iconElems[1]).toBeTruthy();
-      expect(iconElems[1].context.name).toBe(mockIconName);
+      expect(iconElems[1].properties.name).toBe(mockIconName);
     });
 
     it('should render <spy-icon> component inside the tab if `hasWarning` and `iconName` attributes exists', async () => {
@@ -206,7 +205,7 @@ describe('TabsComponent', () => {
       const iconElems = host.fixture.debugElement.queryAll(By.css('spy-icon'));
 
       expect(iconElems[2]).toBeTruthy();
-      expect(iconElems[2].context.name).toBe(mockIconName);
+      expect(iconElems[2].properties.name).toBe(mockIconName);
     });
   });
 });

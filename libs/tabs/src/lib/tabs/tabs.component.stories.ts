@@ -1,34 +1,83 @@
-import { TabsModule } from '../tabs.module';
-import { TabsComponent } from './tabs.component';
-import { TabComponent } from '../tab/tab.component';
 import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   WebComponentsModule,
   CustomElementModule,
   WebComponentDefs,
 } from '@spryker/web-components';
+import { boolean, select } from '@storybook/addon-knobs';
+import { IconCalendarModule, IconUserModule } from '@spryker/icon/icons';
+import { TabsModule } from '../tabs.module';
+import { TabsComponent, TabsMode } from './tabs.component';
+import { TabComponent } from '../tab/tab.component';
 
 export default {
   title: 'TabsComponent',
 };
 
+const tabsData = [
+  {
+    title: 'Test Title 1',
+    content: 'Tab Content 1',
+  },
+  {
+    title: 'Test Title 2',
+    content: 'Tab Content 2',
+    disabled: true,
+  },
+  {
+    title: 'Test Title 3',
+    content: 'Tab Content 3',
+    hasWarning: true,
+  },
+  {
+    title: 'Test Title 4',
+    content: 'Tab Content 4',
+    iconName: 'calendar',
+  },
+  {
+    title: 'Test Title 5',
+    content: 'Tab Content 5',
+    iconName: 'user',
+  },
+  {
+    title: 'Test Title 6',
+    content: 'Tab Content 6',
+    hasWarning: true,
+    iconName: 'user',
+  },
+  {
+    title: 'Test Title 7',
+    content: 'Tab Content 7',
+  },
+];
+
 export const primary = () => ({
   moduleMetadata: {
-    imports: [TabsModule],
+    imports: [TabsModule, IconUserModule, IconCalendarModule],
   },
   template: `
-    <spy-tabs>
-      <spy-tab spyTitle="Test Title 1">
-        Tab Content 1
-      </spy-tab>
-      <spy-tab spyTitle="Test Title 2" disabled="true">
-        Tab Content 2
-      </spy-tab>
-      <spy-tab spyTitle="Test Title 3" hasWarning="true">
-        Tab Content 3
+    <spy-tabs [tab]="tab" [mode]="mode" [animateSlides]="animateSlides">
+      <spy-tab
+        *ngFor="let tab of tabsDataArray"
+        [spyTitle]="tab.title"
+        [disabled]="tab.disabled"
+        [hasWarning]="tab.hasWarning"
+        [iconName]="tab.iconName"
+      >
+        {{ tab.content }}
       </spy-tab>
     </spy-tabs>
   `,
+  props: {
+    tab: select(
+      'Selected tab index',
+      [...new Array(tabsData.length).keys()],
+      0,
+    ),
+    mode: select('Mode', TabsMode, TabsMode.Card),
+    animateSlides: boolean('Animate slides', false),
+    tabsDataArray: tabsData,
+  },
 });
 
 @NgModule({

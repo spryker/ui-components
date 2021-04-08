@@ -16,6 +16,11 @@ import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { switchMap, map, takeUntil, startWith } from 'rxjs/operators';
 import { TabComponent } from '../tab/tab.component';
 
+export enum TabsMode {
+  Line = 'line',
+  Card = 'card',
+}
+
 @Component({
   selector: 'spy-tabs',
   templateUrl: './tabs.component.html',
@@ -41,7 +46,7 @@ export class TabsComponent implements OnInit, OnDestroy {
   destroyed$ = new Subject<void>();
 
   @Input() tab = 0;
-  @Input() mode: 'line' | 'card' = 'line';
+  @Input() mode: TabsMode = TabsMode.Line;
   @Input() @ToBoolean() animateSlides = false;
   @HostBinding('class.tabs--warning') hasWarning = false;
 

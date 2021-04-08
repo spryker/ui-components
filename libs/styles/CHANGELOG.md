@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.34](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.33...@spryker/styles@0.2.0-next.34) (2021-04-08)
+
+
+### Features
+
+* **tab:** add icon ([2d4e0f1](https://github.com/spryker/ui-components/commit/2d4e0f1c9d52289878da994811a86b0316227dc9))
+* **tabs:** add styles for 'card' mode ([9570ebb](https://github.com/spryker/ui-components/commit/9570ebbfff7f89a2cef0092fadbc0aeb6cd73c72))
+
+
+
+
+
 # [0.2.0-next.33](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.32...@spryker/styles@0.2.0-next.33) (2021-03-29)
 
 

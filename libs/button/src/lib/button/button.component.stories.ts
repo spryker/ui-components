@@ -1,6 +1,9 @@
+import { WebComponentsModule } from '@spryker/web-components';
 import { boolean, select } from '@storybook/addon-knobs';
+import { IStory } from '@storybook/angular';
 
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
+import { ButtonComponent } from './button.component';
 import { ButtonModule } from './button.module';
 
 export default {
@@ -35,3 +38,20 @@ export const primary = () => ({
     withIcon: boolean('With icon', false),
   },
 });
+
+export const asWebComponent = (): IStory => {
+  return {
+    moduleMetadata: {
+      imports: [
+        WebComponentsModule.forRoot(),
+        WebComponentsModule.withComponents([
+          { component: ButtonComponent, isRoot: true },
+        ]),
+        ButtonModule,
+      ],
+    },
+    template: `
+      <web-spy-button>Button text</web-spy-button>
+    `,
+  };
+};

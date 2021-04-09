@@ -6,7 +6,12 @@ import {
   PrefixComponentSelectorStrategyOptions,
 } from 'ngx-element-boundary';
 
-import { CustomElementOptions } from './custom-element/custom-element-options';
+import {
+  CustomElementComponentsInitProvider,
+  CustomElementOptions,
+  provideCustomElementComponents,
+  WebComponentDefs,
+} from './custom-element';
 
 export interface WebComponentsModuleOptions {
   customElementOptions?: CustomElementOptions;
@@ -24,6 +29,7 @@ export class WebComponentsModule {
     return {
       ngModule: WebComponentsModule,
       providers: [
+        CustomElementComponentsInitProvider,
         {
           provide: ComponentSelectorStrategy,
           useClass: PrefixComponentSelectorStrategy,
@@ -36,6 +42,15 @@ export class WebComponentsModule {
           ? { provide: CustomElementOptions, useValue: customElementOptions }
           : [],
       ],
+    };
+  }
+
+  static withComponents(
+    components: WebComponentDefs,
+  ): ModuleWithProviders<WebComponentsModule> {
+    return {
+      ngModule: WebComponentsModule,
+      providers: [provideCustomElementComponents(components)],
     };
   }
 }

@@ -280,7 +280,7 @@ export const withHttpDependentColumns = (): IStory => ({
         {
           id: 'col1',
           sortable: true,
-          title: 'Column #1'
+          title: 'Column #1',
         },
         {
           id: 'col2',

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
+import { DatasourceHttpService } from '@spryker/datasource.http';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
@@ -133,7 +134,7 @@ export const withTable = (): IStory => ({
   },
 });
 
-export const withDependentColumns = (): IStory => ({
+export const withInlineDependentColumns = (): IStory => ({
   moduleMetadata: {
     imports: [
       HttpClientTestingModule,
@@ -201,6 +202,107 @@ export const withDependentColumns = (): IStory => ({
                 datasource: {
                   type: 'inline',
                   data: ['Inline 1', 'Inline 2'],
+                },
+              },
+            },
+          },
+          {
+            id: 'col3',
+            type: 'select',
+            typeOptions: {
+              options: ['Option 1', 'Option 2'],
+            },
+          },
+        ],
+        create: {},
+        update: { url: '/update-cell' },
+      },
+    },
+    mockHttp: setMockHttp([
+      {
+        url: '/data-request',
+        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
+      },
+      {
+        url: '/update-cell',
+        data: {},
+      },
+    ]),
+  },
+});
+
+export const withHttpDependentColumns = (): IStory => ({
+  moduleMetadata: {
+    imports: [
+      HttpClientTestingModule,
+      ContextModule,
+      MockHttpModule,
+      TableColumnSelectModule,
+      TableModule.forRoot(),
+      TableModule.withFeatures({
+        editable: () =>
+          import('@spryker/table.feature.editable').then(
+            (m) => m.TableEditableFeatureModule,
+          ),
+      }),
+      TableModule.withColumnComponents({
+        select: TableColumnSelectComponent,
+      } as any),
+      DatasourceModule.withDatasources({
+        'mock-data': MockTableDatasourceService,
+        http: DatasourceHttpService,
+        dependable: TableDatasourceDependableService,
+      }),
+      DefaultContextSerializationModule,
+      BrowserAnimationsModule,
+      NotificationModule.forRoot(),
+      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+      EnLocaleModule,
+    ],
+    providers: [
+      {
+        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+        useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
+        multi: true,
+      },
+    ],
+  },
+  template: `
+    <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
+  `,
+  props: {
+    config: {
+      dataSource: {
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as MockTableDatasourceConfig,
+      columns: [
+        {
+          id: 'col1',
+          sortable: true,
+          title: 'Column #1',
+        },
+        {
+          id: 'col2',
+          title: 'Column #2',
+        },
+        {
+          id: 'col3',
+          title: 'Column #3',
+        },
+      ],
+      editable: {
+        columns: [
+          {
+            id: 'col2',
+            type: 'select',
+            typeOptions: {
+              datasource: {
+                type: 'dependable',
+                dependsOn: 'col3',
+                datasource: {
+                  type: 'http',
+                  url: '/data-request-2',
                 },
               },
             },

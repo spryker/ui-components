@@ -94,7 +94,9 @@
                 </ng-container>
 
                 <ng-template #defaultCell>
-                  <spy-table-column-renderer [data]="[]"></spy-table-column-renderer>
+                  <spy-table-column-renderer
+                    [data]="[]"
+                  ></spy-table-column-renderer>
                 </ng-template>
               </div>
             </td>
@@ -172,7 +174,7 @@
     <ng-container *ngIf="editColumns$ | async as editColumns">
       <ng-container
         *ngIf="
-          (findColumnByColumn | spyInvoke: config:editColumns);
+          findColumnByColumn | spyInvoke: config:editColumns;
           else defaultCell
         "
       >

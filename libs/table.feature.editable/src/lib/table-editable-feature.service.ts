@@ -41,13 +41,11 @@ export class TableEditableService implements OnDestroy {
 
   addRow(rowModel: Record<string, unknown>) {
     const rowIndex = this.model.push(rowModel);
-  
+
     this.modelUpdates$.next({ rowAddedAt: rowIndex });
   }
 
   updateModel(value: unknown, colId: string, rowIdx: number) {
-    // this.maybeInitRows(rowIdx);
-
     this.model[rowIdx][colId] = value;
     this.modelUpdates$.next({ rowAddedAt: rowIdx });
   }
@@ -77,18 +75,6 @@ export class TableEditableService implements OnDestroy {
       map((trackedRowIdx) => this.getValueFor(colId, trackedRowIdx)),
       distinctUntilChanged(),
     );
-  }
-
-  private maybeInitRows(rowIdx: number) {
-    const rowsDiff = rowIdx - this.model.length + 1;
-
-    if (rowsDiff < 1) {
-      return;
-    }
-
-    for (let i = 0; i < rowsDiff; i++) {
-      this.model.push({});
-    }
   }
 
   private trackRowIdx(

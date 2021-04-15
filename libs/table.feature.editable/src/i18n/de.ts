@@ -7,5 +7,6 @@ export default {
     'cancel-button-title': 'Stornieren',
     'save-updates-title': 'Speichern',
     'cancel-updates-title': 'Stornieren',
+    'default-cell-title': '-',
   },
 } as I18nLocaleDataPackage;

@@ -78,9 +78,10 @@
               <div class="ant-table-column-inner">
                 <ng-container
                   *ngIf="
-                  !createConfig?.disableForCols?.includes(column.id);
-                  else defaultCell
-                ">
+                    !createConfig?.disableForCols?.includes(column.id);
+                    else defaultCell
+                  "
+                >
                   <spy-table-column-renderer
                     [config]="
                       getEditColumn | spyInvoke: column:editColumns:i:rowErrors
@@ -94,9 +95,9 @@
 
                 <ng-template #defaultCell>
                   {{
-                  'table.feature.editable.default-cell-title'
-                    | spyI18n
-                    | async
+                    'table.feature.editable.default-cell-title'
+                      | spyI18n
+                      | async
                   }}
                 </ng-template>
               </div>
@@ -175,7 +176,8 @@
     <ng-container *ngIf="editColumns$ | async as editColumns">
       <ng-container
         *ngIf="
-          (findColumnByColumn | spyInvoke: config:editColumns) && !updateConfig?.disableForCols?.includes(config.id);
+          (findColumnByColumn | spyInvoke: config:editColumns) &&
+            !updateConfig?.disableForCols?.includes(config.id);
           else defaultCell
         "
       >

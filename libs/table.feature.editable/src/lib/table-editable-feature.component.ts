@@ -351,7 +351,11 @@ export class TableEditableFeatureComponent
 
     this.syncInput = [...this.syncInput];
     this.syncInput[index][colId] = value;
-    this.tableEditableService.updateModel(value, colId, this.getShiftedIndex(index));
+    this.tableEditableService.updateModel(
+      value,
+      colId,
+      this.getShiftedIndex(index),
+    );
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.cdr.markForCheck();

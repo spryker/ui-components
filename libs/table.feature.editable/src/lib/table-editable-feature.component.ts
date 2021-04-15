@@ -393,7 +393,11 @@ export class TableEditableFeatureComponent
     config: TableColumn,
     columns: TableEditableColumn[],
   ): TableEditableColumn | undefined {
-    return columns.find((column) => (column.id === config.id) && !this.disableForUpdateCols?.includes(config.id));
+    return columns.find(
+      (column) =>
+        column.id === config.id &&
+        !this.disableForUpdateCols?.includes(config.id),
+    );
   }
 
   /**

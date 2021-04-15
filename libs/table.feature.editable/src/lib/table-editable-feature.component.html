@@ -94,11 +94,7 @@
                 </ng-container>
 
                 <ng-template #defaultCell>
-                  {{
-                    'table.feature.editable.default-cell-title'
-                      | spyI18n
-                      | async
-                  }}
+                  <spy-table-column-renderer [data]="[]"></spy-table-column-renderer>
                 </ng-template>
               </div>
             </td>
@@ -176,8 +172,7 @@
     <ng-container *ngIf="editColumns$ | async as editColumns">
       <ng-container
         *ngIf="
-          (findColumnByColumn | spyInvoke: config:editColumns) &&
-            !updateConfig?.disableForCols?.includes(config.id);
+          (findColumnByColumn | spyInvoke: config:editColumns);
           else defaultCell
         "
       >

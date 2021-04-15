@@ -7,6 +7,5 @@ export default {
     'cancel-button-title': 'Cancel',
     'save-updates-title': 'Save',
     'cancel-updates-title': 'Cancel',
-    'default-cell-title': '-',
   },
 } as I18nLocaleDataPackage;

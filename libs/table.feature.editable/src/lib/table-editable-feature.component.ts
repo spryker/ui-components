@@ -111,7 +111,7 @@ export class TableEditableFeatureComponent
   cellErrors?: TableEditableConfigDataErrors;
   rowErrors: TableEditableConfigDataErrorsFields[] = [];
   private tableElement?: HTMLElement;
-
+  private disableForUpdateCols?: string[];
   private destroyed$ = new Subject<void>();
 
   tableColumns$ = this.table$.pipe(switchMap((table) => table.columns$));
@@ -144,7 +144,10 @@ export class TableEditableFeatureComponent
   );
   updateConfig$ = this.config$.pipe(
     pluck('update'),
-    tap((config) => (this.url = config?.url)),
+    tap((config) => {
+      this.url = config?.url;
+      this.disableForUpdateCols = config?.disableForCols;
+    }),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
   initialData$ = this.createConfig$.pipe(
@@ -390,7 +393,7 @@ export class TableEditableFeatureComponent
     config: TableColumn,
     columns: TableEditableColumn[],
   ): TableEditableColumn | undefined {
-    return columns.find((column) => column.id === config.id);
+    return columns.find((column) => (column.id === config.id) && !this.disableForUpdateCols?.includes(config.id));
   }
 
   /**

@@ -32,9 +32,9 @@ export default {
 };
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
-  col1: `col1 #${i}`,
+  col1: `${i}`,
   col2: `Option ${i}`,
-  col3: 'col3',
+  col3: `col3 #${i}`,
 });
 
 export const primary = (): IStory => ({
@@ -299,7 +299,7 @@ export const withHttpDependentColumns = (): IStory => ({
             typeOptions: {
               datasource: {
                 type: 'dependable',
-                dependsOn: 'col3',
+                dependsOn: 'col1',
                 datasource: {
                   type: 'http',
                   url: '/data-request-2',

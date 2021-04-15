@@ -111,7 +111,7 @@ export class TableEditableFeatureComponent
   cellErrors?: TableEditableConfigDataErrors;
   rowErrors: TableEditableConfigDataErrorsFields[] = [];
   private tableElement?: HTMLElement;
-
+  private tableDataLength = 0;
   private destroyed$ = new Subject<void>();
 
   tableColumns$ = this.table$.pipe(switchMap((table) => table.columns$));
@@ -204,8 +204,9 @@ export class TableEditableFeatureComponent
   private updateEditableData$ = this.tableData$.pipe(
     tap(({ data }) => {
       this.tableEditableService.reset();
-      this.syncInput.forEach((row) => this.tableEditableService.addRow(row));
       data.forEach((row) => this.tableEditableService.addRow(row));
+      this.syncInput.forEach((row) => this.tableEditableService.addRow(row));
+      this.tableDataLength = data.length;
     }),
   );
   private shouldUnsubscribe$ = merge(
@@ -332,8 +333,10 @@ export class TableEditableFeatureComponent
    * Adds new row to the table.
    */
   addRow(mockRowData: TableDataRow): void {
-    this.syncInput = [{ ...mockRowData }, ...this.syncInput];
-    this.tableEditableService.addRow(mockRowData);
+    const rowData = { ...mockRowData };
+
+    this.syncInput = [rowData, ...this.syncInput];
+    this.tableEditableService.addRow(rowData);
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.increaseRowErrorsIndex();
@@ -348,7 +351,11 @@ export class TableEditableFeatureComponent
 
     this.syncInput = [...this.syncInput];
     this.syncInput[index][colId] = value;
-    this.tableEditableService.updateModel(value, colId, index);
+    this.tableEditableService.updateModel(
+      value,
+      colId,
+      this.getShiftedIndex(index),
+    );
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.cdr.markForCheck();
@@ -365,10 +372,10 @@ export class TableEditableFeatureComponent
     }
 
     const syncInput = [...this.syncInput];
-    syncInput.splice(index, 1);
 
+    syncInput.splice(index, 1);
+    this.tableEditableService.removeRow(this.getShiftedIndex(index));
     this.syncInput = syncInput;
-    this.tableEditableService.removeRow(index);
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.decreaseRowErrorsIndex(index);
@@ -402,6 +409,10 @@ export class TableEditableFeatureComponent
 
   isRowEditable(rowIndex: number, row: TableDataRow): boolean | undefined {
     return rowIndex === 0 && (row.editableNewRow as boolean);
+  }
+
+  getShiftedIndex(index: number): number {
+    return this.tableDataLength + (this.syncInput.length - index - 1);
   }
 
   getRowError(rowIndex: number): string | undefined {

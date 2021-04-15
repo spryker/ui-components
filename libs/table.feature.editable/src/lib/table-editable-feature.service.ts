@@ -40,12 +40,13 @@ export class TableEditableService implements OnDestroy {
   }
 
   addRow(rowModel: Record<string, unknown>) {
-    this.model.push(rowModel);
-    this.modelUpdates$.next({ rowAddedAt: 0 });
+    const rowIndex = this.model.push(rowModel);
+  
+    this.modelUpdates$.next({ rowAddedAt: rowIndex });
   }
 
   updateModel(value: unknown, colId: string, rowIdx: number) {
-    this.maybeInitRows(rowIdx);
+    // this.maybeInitRows(rowIdx);
 
     this.model[rowIdx][colId] = value;
     this.modelUpdates$.next({ rowAddedAt: rowIdx });

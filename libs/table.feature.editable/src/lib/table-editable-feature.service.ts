@@ -40,7 +40,7 @@ export class TableEditableService implements OnDestroy {
   }
 
   addRow(rowModel: Record<string, unknown>) {
-    this.model.unshift(rowModel);
+    this.model.push(rowModel);
     this.modelUpdates$.next({ rowAddedAt: 0 });
   }
 

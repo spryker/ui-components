@@ -50,7 +50,10 @@ export class WebComponentsModule {
   ): ModuleWithProviders<WebComponentsModule> {
     return {
       ngModule: WebComponentsModule,
-      providers: [provideCustomElementComponents(components)],
+      providers: [
+        CustomElementComponentsInitProvider,
+        provideCustomElementComponents(components),
+      ],
     };
   }
 }

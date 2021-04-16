@@ -1,11 +1,7 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputComponent, InputModule } from '@spryker/input';
-import {
-  CustomElementModule,
-  WebComponentDefs,
-  WebComponentsModule,
-} from '@spryker/web-components';
+import { WebComponentsModule } from '@spryker/web-components';
 
 import { AutocompleteModule } from '../autocomplete.module';
 import { AutocompleteComponent } from './autocomplete.component';
@@ -44,22 +40,19 @@ export const primary = () => ({
   },
 });
 
-@NgModule({
-  imports: [WebComponentsModule.forRoot(), InputModule, AutocompleteModule],
-  entryComponents: [InputComponent, AutocompleteComponent],
-})
-class StoryModule extends CustomElementModule {
-  components: WebComponentDefs = [InputComponent, AutocompleteComponent];
-
-  constructor(injector: Injector) {
-    super(injector);
-    super.ngDoBootstrap();
-  }
-}
-
 export const autocompleteAsWebComponents = () => ({
   moduleMetadata: {
-    imports: [StoryModule, BrowserAnimationsModule],
+    imports: [
+      BrowserAnimationsModule,
+      WebComponentsModule.forRoot(),
+      WebComponentsModule.withComponents([
+        { component: InputComponent, isRoot: true },
+        { component: AutocompleteComponent },
+      ]),
+      InputModule,
+      AutocompleteModule,
+    ],
+    entryComponents: [InputComponent, AutocompleteComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
   },
   template: `

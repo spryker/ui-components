@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1-next.6](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.1-next.5...@spryker/web-components@0.2.1-next.6) (2021-04-16)
+
+
+### Bug Fixes
+
+* **web-components:** add static method to  for registering components ([d15c225](https://github.com/spryker/ui-components/commit/d15c22598b049aa579d26af34bc8d843ca8213aa))
+
+
+
+
+
 ## [0.2.1-next.5](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.1-next.4...@spryker/web-components@0.2.1-next.5) (2021-02-01)
 
 **Note:** Version bump only for package @spryker/web-components

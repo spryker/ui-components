@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
-  Injector,
   Input,
   NgModule,
   NO_ERRORS_SCHEMA,
@@ -11,10 +10,8 @@ import {
 } from '@angular/core';
 import {
   CustomElementMethod,
-  CustomElementModule,
   NgWebComponent,
   SelectComponentsModule,
-  WebComponentDefs,
   WebComponentsModule,
 } from '@spryker/web-components';
 import { IStory } from '@storybook/angular';
@@ -83,25 +80,20 @@ export function crossComponentCommunication(): IStory {
   }
 
   @NgModule({
-    imports: [CommonModule, SelectComponentsModule],
     declarations: [AComponent, BComponent],
+    imports: [
+      CommonModule,
+      SelectComponentsModule,
+      WebComponentsModule.forRoot(),
+      WebComponentsModule.withComponents([
+        { selector: 'a-a', component: AComponent },
+        { selector: 'a-b', component: BComponent },
+      ]),
+    ],
     entryComponents: [AComponent, BComponent],
   })
-  class StoryModule extends CustomElementModule {
-    protected components: WebComponentDefs = [
-      {
-        selector: 'a-a',
-        component: AComponent,
-      },
-      {
-        selector: 'a-b',
-        component: BComponent,
-      },
-    ];
-
-    constructor(injector: Injector) {
-      super(injector);
-      super.ngDoBootstrap();
+  class StoryModule {
+    constructor() {
       this.custom();
     }
 
@@ -146,26 +138,17 @@ export function customElementsExample(): IStory {
   })
   class BComponent {}
 
-  @NgModule({
-    imports: [WebComponentsModule.forRoot()],
-    declarations: [AComponent, BComponent],
-    entryComponents: [AComponent, BComponent],
-  })
-  class StoryModule extends CustomElementModule {
-    components: WebComponentDefs = [
-      { component: AComponent, isRoot: true },
-      BComponent,
-    ];
-
-    constructor(injector: Injector) {
-      super(injector);
-      super.ngDoBootstrap();
-    }
-  }
-
   return {
     moduleMetadata: {
-      imports: [StoryModule],
+      declarations: [AComponent, BComponent],
+      imports: [
+        WebComponentsModule.forRoot(),
+        WebComponentsModule.withComponents([
+          { component: AComponent, isRoot: true },
+          { component: BComponent },
+        ]),
+      ],
+      entryComponents: [AComponent, BComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     },
     template: `

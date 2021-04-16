@@ -1,9 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
-import {
-  CustomElementModule,
-  WebComponentDefs,
-  WebComponentsModule,
-} from '@spryker/web-components';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { WebComponentsModule } from '@spryker/web-components';
 
 import { RadioModule } from '../radio.module';
 import { RadioComponent } from '../radio/radio.component';
@@ -25,22 +21,17 @@ export const primary = () => ({
   `,
 });
 
-@NgModule({
-  imports: [WebComponentsModule.forRoot(), RadioModule],
-  entryComponents: [RadioGroupComponent, RadioComponent],
-})
-class StoryModule extends CustomElementModule {
-  components: WebComponentDefs = [RadioGroupComponent, RadioComponent];
-
-  constructor(injector: Injector) {
-    super(injector);
-    super.ngDoBootstrap();
-  }
-}
-
 export const asWebComponents = () => ({
   moduleMetadata: {
-    imports: [StoryModule],
+    imports: [
+      WebComponentsModule.forRoot(),
+      WebComponentsModule.withComponents([
+        { component: RadioGroupComponent, isRoot: true },
+        { component: RadioComponent },
+      ]),
+      RadioModule,
+    ],
+    entryComponents: [RadioGroupComponent, RadioComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
   },
   template: `

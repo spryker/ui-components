@@ -1,14 +1,11 @@
-import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-  WebComponentsModule,
-  CustomElementModule,
-  WebComponentDefs,
-} from '@spryker/web-components';
-import { boolean, select } from '@storybook/addon-knobs';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IconCalendarModule, IconUserModule } from '@spryker/icon/icons';
+import { WebComponentsModule } from '@spryker/web-components';
+import { boolean, select } from '@storybook/addon-knobs';
+
+import { TabComponent } from '../tab/tab.component';
 import { TabsModule } from '../tabs.module';
 import { TabsComponent, TabsMode } from './tabs.component';
-import { TabComponent } from '../tab/tab.component';
 
 export default {
   title: 'TabsComponent',
@@ -80,22 +77,17 @@ export const primary = () => ({
   },
 });
 
-@NgModule({
-  imports: [WebComponentsModule.forRoot(), TabsModule],
-  entryComponents: [TabsComponent, TabComponent],
-})
-class StoryModule extends CustomElementModule {
-  components: WebComponentDefs = [TabsComponent, TabComponent];
-
-  constructor(injector: Injector) {
-    super(injector);
-    super.ngDoBootstrap();
-  }
-}
-
 export const asWebComponents = () => ({
   moduleMetadata: {
-    imports: [StoryModule],
+    imports: [
+      WebComponentsModule.forRoot(),
+      WebComponentsModule.withComponents([
+        { component: TabsComponent, isRoot: true },
+        { component: TabComponent },
+      ]),
+      TabsModule,
+    ],
+    entryComponents: [TabsComponent, TabComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
   },
   template: `

@@ -5,6 +5,7 @@ import { IStory } from '@storybook/angular';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonComponent } from './button.component';
 import { ButtonModule } from './button.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 export default {
   title: 'ButtonComponent',
@@ -49,6 +50,8 @@ export const asWebComponent = (): IStory => {
         ]),
         ButtonModule,
       ],
+      entryComponents: [ButtonComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     },
     template: `
       <web-spy-button>Button text</web-spy-button>

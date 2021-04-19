@@ -78,7 +78,8 @@
               <div class="ant-table-column-inner">
                 <ng-container
                   *ngIf="
-                    isEditColumnEnabled | spyInvoke: createConfig?.disableForCols:column.id;
+                    isEditColumnEnabled
+                      | spyInvoke: createConfig?.disableForCols:column.id;
                     else defaultCell
                   "
                 >
@@ -179,7 +180,8 @@
     <ng-container *ngIf="editColumns$ | async as editColumns">
       <ng-container
         *ngIf="
-          findColumnByColumn | spyInvoke: updateConfig?.disableForCols:config:editColumns;
+          findColumnByColumn
+            | spyInvoke: updateConfig?.disableForCols:config:editColumns;
           else defaultCell
         "
       >

@@ -112,6 +112,7 @@ export class TableEditableFeatureComponent
   rowErrors: TableEditableConfigDataErrorsFields[] = [];
   private tableElement?: HTMLElement;
   private tableDataLength = 0;
+  private disableForCreateCols?: string[];
   private disableForUpdateCols?: string[];
   private destroyed$ = new Subject<void>();
 
@@ -141,6 +142,9 @@ export class TableEditableFeatureComponent
   editColumns$ = this.config$.pipe(pluck('columns'));
   createConfig$ = this.config$.pipe(
     pluck('create'),
+    tap((config) => {
+      this.disableForCreateCols = config?.disableForCols;
+    }),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
   updateConfig$ = this.config$.pipe(
@@ -401,11 +405,11 @@ export class TableEditableFeatureComponent
     config: TableColumn,
     columns: TableEditableColumn[],
   ): TableEditableColumn | undefined {
-    return columns.find(
-      (column) =>
-        column.id === config.id &&
-        !this.disableForUpdateCols?.includes(config.id),
-    );
+    if (!this.disableForUpdateCols?.includes(config.id)) {
+      return columns.find((column) => column.id === config.id);
+    } else {
+      return undefined;
+    }
   }
 
   /**
@@ -417,6 +421,10 @@ export class TableEditableFeatureComponent
 
   isRowEditable(rowIndex: number, row: TableDataRow): boolean | undefined {
     return rowIndex === 0 && (row.editableNewRow as boolean);
+  }
+
+  isEditColumnEnabled(columnId: string): boolean {
+    return !this.disableForCreateCols?.includes(columnId);
   }
 
   getShiftedIndex(index: number): number {

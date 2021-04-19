@@ -78,7 +78,7 @@
               <div class="ant-table-column-inner">
                 <ng-container
                   *ngIf="
-                    !createConfig?.disableForCols?.includes(column.id);
+                    isEditColumnEnabled | spyInvoke: column.id;
                     else defaultCell
                   "
                 >
@@ -95,7 +95,9 @@
 
                 <ng-template #defaultCell>
                   <spy-table-column-renderer
-                    [data]="[]"
+                    [config]="
+                      getEditColumn | spyInvoke: column:editColumns:i:rowErrors
+                    "
                   ></spy-table-column-renderer>
                 </ng-template>
               </div>

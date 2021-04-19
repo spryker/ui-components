@@ -76,15 +76,32 @@
               "
             >
               <div class="ant-table-column-inner">
-                <spy-table-column-renderer
-                  [config]="
-                    getEditColumn | spyInvoke: column:editColumns:i:rowErrors
+                <ng-container
+                  *ngIf="
+                    isEditColumnEnabled
+                      | spyInvoke: createConfig?.disableForCols:column.id;
+                    else defaultCell
                   "
-                  [data]="row"
-                  [i]="i"
-                  [j]="j"
-                  (spy-table-editable)="updateRows($event, i)"
-                ></spy-table-column-renderer>
+                >
+                  <spy-table-column-renderer
+                    [config]="
+                      getEditColumn | spyInvoke: column:editColumns:i:rowErrors
+                    "
+                    [data]="row"
+                    [i]="i"
+                    [j]="j"
+                    (spy-table-editable)="updateRows($event, i)"
+                  ></spy-table-column-renderer>
+                </ng-container>
+
+                <ng-template #defaultCell>
+                  <spy-table-column-renderer
+                    [config]="column"
+                    [data]="row"
+                    [i]="i"
+                    [j]="j"
+                  ></spy-table-column-renderer>
+                </ng-template>
               </div>
             </td>
             <td class="ant-table-cell">
@@ -161,7 +178,8 @@
     <ng-container *ngIf="editColumns$ | async as editColumns">
       <ng-container
         *ngIf="
-          findColumnByColumn | spyInvoke: config:editColumns;
+          findColumnByColumn
+            | spyInvoke: updateConfig?.disableForCols:config:editColumns;
           else defaultCell
         "
       >

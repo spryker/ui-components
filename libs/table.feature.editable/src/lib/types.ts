@@ -32,12 +32,14 @@ export interface TableEditableConfigCreate {
   initialData?: TableEditableConfigCreateData;
   addButton?: TableEditableConfigButton;
   cancelButton?: TableEditableConfigButton;
+  disableForCols?: string[];
 }
 
 export interface TableEditableConfigUpdate {
   url: TableEditableConfigUrl;
   saveButton?: TableEditableConfigButton;
   cancelButton?: TableEditableConfigButton;
+  disableForCols?: string[];
 }
 
 export interface TableEditableConfigCreateData {

@@ -62,6 +62,7 @@ const tableConfig = {
     create: {
       addButton: {},
       cancelButton: {},
+      disableForCols: ['col2'],
       formInputName: 'form-input-name',
       initialData: {
         data: [
@@ -92,6 +93,7 @@ const tableConfig = {
       url: 'test-url',
       saveButton: {},
       cancelButton: {},
+      disableForCols: ['col2'],
     },
   },
 };

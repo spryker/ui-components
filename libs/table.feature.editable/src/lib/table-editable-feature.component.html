@@ -96,10 +96,8 @@
 
                 <ng-template #defaultCell>
                   <spy-table-column-renderer
-                    [config]="
-                      getEditColumn | spyInvoke: column:editColumns:i:rowErrors
-                    "
-                    [data]="[]"
+                    [config]="column"
+                    [data]="row"
                     [i]="i"
                     [j]="j"
                   ></spy-table-column-renderer>

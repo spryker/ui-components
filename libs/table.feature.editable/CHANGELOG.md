@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.7...@spryker/table.feature.editable@0.1.0-next.8) (2021-04-19)
+
+
+### Features
+
+* **table.feature.editable:** add ability to disable cells via config ([cdbba14](https://github.com/spryker/ui-components/commit/cdbba14b6f496d3cee1ebd1712a1b7261ed6fb26))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.6...@spryker/table.feature.editable@0.1.0-next.7) (2021-04-15)
 
 

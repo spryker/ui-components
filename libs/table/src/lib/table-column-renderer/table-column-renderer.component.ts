@@ -134,7 +134,10 @@ export class TableColumnRendererComponent implements OnChanges {
           const matchedValue = mapOption[String(this.value)];
 
           if (matchedValue) {
-            this.contextService.interpolate(matchedValue, this.fullContext as any);
+            this.contextService.interpolate(
+              matchedValue,
+              this.fullContext as any,
+            );
 
             return { ...mapOptions, [mapKey]: matchedValue };
           }

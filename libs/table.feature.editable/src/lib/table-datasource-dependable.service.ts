@@ -20,13 +20,19 @@ export class TableDatasourceDependableService implements Datasource<TableData> {
     config: TableDatasourceDependableConfig,
     context?: unknown,
   ): Observable<TableData> {
-    const isCreateMode = typeof context === 'object' ? (context as any)?.isCreateMode || false : false;
+    const isCreateMode =
+      typeof context === 'object'
+        ? (context as any)?.isCreateMode || false
+        : false;
     const datasourceService = injector.get(DatasourceService);
     const tableComponent = injector.get(CoreTableComponent);
     const localContext = this.tableColumnService.getContext(injector);
-    const editableFeatureComponent$ = tableComponent.findFeatureByType(TableEditableFeatureComponent);
-    const editableService$ = editableFeatureComponent$
-      .pipe(map((editableFeature) => editableFeature.tableEditableService));
+    const editableFeatureComponent$ = tableComponent.findFeatureByType(
+      TableEditableFeatureComponent,
+    );
+    const editableService$ = editableFeatureComponent$.pipe(
+      map((editableFeature) => editableFeature.tableEditableService),
+    );
 
     return combineLatest([editableService$, editableFeatureComponent$]).pipe(
       switchMap(([editableService, editableFeatureComponent]) => {
@@ -34,15 +40,15 @@ export class TableDatasourceDependableService implements Datasource<TableData> {
           return EMPTY;
         }
 
-        const index = isCreateMode ? editableFeatureComponent.getShiftedIndex(localContext.i) : localContext.i;
+        const index = isCreateMode
+          ? editableFeatureComponent.getShiftedIndex(localContext.i)
+          : localContext.i;
 
         return editableService
           .getUpdatesFor(config.dependsOn, index)
           .pipe(
-            startWith(
-              editableService.getValueFor(config.dependsOn, index),
-            ),
-          )
+            startWith(editableService.getValueFor(config.dependsOn, index)),
+          );
       }),
       switchMap((value) => {
         const contextKey = config.contextKey ?? config.dependsOn;

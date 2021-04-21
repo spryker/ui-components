@@ -6972,6 +6972,80 @@
           "style": "less"
         }
       }
+    },
+    "table-column-dynamic": {
+      "projectType": "library",
+      "root": "libs/table-column-dynamic",
+      "sourceRoot": "libs/table-column-dynamic/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table-column-dynamic/tsconfig.lib.json",
+            "project": "libs/table-column-dynamic/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table-column-dynamic/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table-column-dynamic/tsconfig.lib.json",
+              "libs/table-column-dynamic/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/table-column-dynamic/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table-column-dynamic/jest.config.js",
+            "tsConfig": "libs/table-column-dynamic/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table-column-dynamic/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table-column-dynamic/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/table-column-dynamic",
+            "config": {
+              "configFolder": "libs/table-column-dynamic/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

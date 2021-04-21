@@ -1,5 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
+import {
+  ANALYZE_FOR_ENTRY_COMPONENTS,
+  Component,
+  Injectable,
+  Input,
+  NgModule,
+  OnChanges,
+} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
@@ -9,8 +17,27 @@ import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { NotificationModule } from '@spryker/notification';
-import { TableModule } from '@spryker/table';
+import {
+  ColumnTypeOption,
+  ColumnTypeOptionsType,
+  TableColumn,
+  TableColumnComponent,
+  TableColumnContext,
+  TableColumnType,
+  TableColumnTypeComponent,
+  TableColumnTypeOptions,
+  TableDataRow,
+  TableModule,
+} from '@spryker/table';
 import { TableDatasourceDependableService } from '@spryker/table.feature.editable';
+import {
+  TableColumnTextComponent,
+  TableColumnTextModule,
+} from '@spryker/table.column.text';
+import {
+  TableColumnChipComponent,
+  TableColumnChipModule,
+} from '@spryker/table.column.chip';
 import {
   generateMockTableDataFor,
   MockTableDatasourceConfig,
@@ -19,7 +46,9 @@ import {
 } from '@spryker/table/testing';
 import {
   ContextModule,
+  ContextService,
   DefaultContextSerializationModule,
+  TypedSimpleChanges,
 } from '@spryker/utils';
 import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
@@ -35,6 +64,8 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `${i}`,
   col2: `Option ${i}`,
   col3: `col3 #${i}`,
+  _col3_Type: i % 2 ? 'text' : 'chip',
+  _col3_TypeOptions: i % 2 ? {} : { color: 'grey' },
 });
 
 export const primary = (): IStory => ({
@@ -71,6 +102,97 @@ export const primary = (): IStory => ({
   },
 });
 
+@Injectable({ providedIn: 'root' })
+class TableColumnDynamicConfig {
+  @ColumnTypeOption({
+    required: true,
+    type: ColumnTypeOptionsType.TypeOf,
+    value: String,
+  })
+  type!: TableColumnType;
+  @ColumnTypeOption()
+  typeOptions?: TableColumnTypeOptions;
+}
+
+@Component({
+  selector: 'spy-table-column-dynamic',
+  template: `
+    {{ colConfig | json }}
+    <spy-table-column-renderer
+      [config]="colConfig"
+      [data]="colData"
+      [i]="context?.i"
+      [j]="context?.j"
+    ></spy-table-column-renderer>
+  `,
+})
+@TableColumnTypeComponent(TableColumnDynamicConfig)
+class TableColumnDynamicComponent
+  implements TableColumnComponent<TableColumnDynamicConfig>, OnChanges {
+  @Input() config?: TableColumnDynamicConfig;
+  @Input() context?: TableColumnContext;
+
+  colConfig?: TableColumn;
+  colData?: TableDataRow;
+
+  private colKey = 'dynamic';
+
+  constructor(private contextService: ContextService) {}
+
+  ngOnChanges(changes: TypedSimpleChanges<TableColumnComponent>): void {
+    if (changes.config || changes.context) {
+      this.updateConfig();
+    }
+
+    if (changes.context) {
+      this.updateData();
+    }
+  }
+
+  private updateConfig() {
+    if (!this.config || !this.context) {
+      this.colConfig = undefined;
+      return;
+    }
+
+    const config = { ...this.config, id: this.colKey, title: this.colKey };
+    this.colConfig = this.interpolateConfigReq(config, this.context);
+  }
+
+  private updateData() {
+    this.colData = { [this.colKey]: this.context?.value };
+  }
+
+  private interpolateConfigReq<T>(config: T, context: any): T {
+    switch (typeof config) {
+      case 'string':
+        return this.contextService.interpolateObj(config, context) as any;
+      case 'object':
+        return Array.isArray(config)
+          ? (config.map((value) =>
+            this.interpolateConfigReq(value, context),
+          ) as any)
+          : Object.entries(config).reduce(
+            (acc, [key, value]) => ({
+              ...acc,
+              [key]: this.interpolateConfigReq(value, context),
+            }),
+            {} as T,
+          );
+      default:
+        return config;
+    }
+  }
+}
+
+@NgModule({
+  imports: [CommonModule, TableModule],
+  exports: [TableColumnDynamicComponent],
+  declarations: [TableColumnDynamicComponent],
+  entryComponents: [TableColumnDynamicComponent],
+})
+class TableColumnDynamicModule {}
+
 export const withTable = (): IStory => ({
   moduleMetadata: {
     imports: [
@@ -79,13 +201,19 @@ export const withTable = (): IStory => ({
       TableColumnSelectModule,
       TableModule.forRoot(),
       TableModule.withColumnComponents({
+        text: TableColumnTextComponent,
+        chip: TableColumnChipComponent,
         select: TableColumnSelectComponent,
+        dynamic: TableColumnDynamicComponent,
       } as any),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
       }),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
+      TableColumnDynamicModule,
+      TableColumnTextModule,
+      TableColumnChipModule,
     ],
     providers: [
       {
@@ -127,6 +255,15 @@ export const withTable = (): IStory => ({
               },
             ],
             placeholder: '123',
+          },
+        },
+        {
+          id: 'col3',
+          title: 'Column #3',
+          type: 'dynamic',
+          typeOptions: {
+            type: '${row._col3_Type}',
+            typeOptions: '${row._col3_TypeOptions}',
           },
         },
       ],

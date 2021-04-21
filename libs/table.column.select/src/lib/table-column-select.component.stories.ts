@@ -315,7 +315,10 @@ export const withHttpDependentColumns = (): IStory => ({
             },
           },
         ],
-        create: {},
+        create: {
+          addButton: {},
+          cancelButton: {},
+        },
         update: { url: '/update-cell' },
       },
     },

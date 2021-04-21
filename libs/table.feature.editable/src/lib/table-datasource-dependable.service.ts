@@ -5,7 +5,7 @@ import {
   TableColumnService,
   TableData,
 } from '@spryker/table';
-import { EMPTY, Observable } from 'rxjs';
+import { combineLatest, EMPTY, Observable } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
@@ -23,23 +23,24 @@ export class TableDatasourceDependableService implements Datasource<TableData> {
     const datasourceService = injector.get(DatasourceService);
     const tableComponent = injector.get(CoreTableComponent);
     const localContext = this.tableColumnService.getContext(injector);
-    const editableService$ = tableComponent
-      .findFeatureByType(TableEditableFeatureComponent)
+    const editableFeatureComponent$ = tableComponent.findFeatureByType(TableEditableFeatureComponent);
+    const editableService$ = editableFeatureComponent$
       .pipe(map((editableFeature) => editableFeature.tableEditableService));
 
-    return editableService$.pipe(
-      switchMap((editableService) =>
+    return combineLatest([editableService$, editableFeatureComponent$]).pipe(
+      switchMap(([editableService, editableFeatureComponent]) =>
         editableService
           ? editableService
-              .getUpdatesFor(config.dependsOn, localContext.i)
+              .getUpdatesFor(config.dependsOn, editableFeatureComponent.getShiftedIndex(localContext.i))
               .pipe(
                 startWith(
-                  editableService.getValueFor(config.dependsOn, localContext.i),
+                  editableService.getValueFor(config.dependsOn, editableFeatureComponent.getShiftedIndex(localContext.i)),
                 ),
               )
           : EMPTY,
       ),
       switchMap((value) => {
+        console.log(value, 'value');
         const contextKey = config.contextKey ?? config.dependsOn;
         const tableColumnContext = {
           ...(context as object),

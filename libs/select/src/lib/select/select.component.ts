@@ -61,6 +61,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   @Input() noOptionsText = '';
   @Input() @ToBoolean() disableClear = false;
   @Input() datasource?: DatasourceConfig;
+  @Input() context?: unknown;
 
   @Output() valueChange = new EventEmitter<SelectValueSelected>();
 
@@ -145,7 +146,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
 
     const options$ = this.datasource
       ? this.datasourceService
-          ?.resolve(this.injector, this.datasource)
+          ?.resolve(this.injector, this.datasource, this.context)
           .pipe(map((data) => (data as unknown) as SelectOption[]))
       : EMPTY;
 

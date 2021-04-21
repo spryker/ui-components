@@ -20,6 +20,7 @@ export class TableDatasourceDependableService implements Datasource<TableData> {
     config: TableDatasourceDependableConfig,
     context?: unknown,
   ): Observable<TableData> {
+    const isCreateMode = typeof context === 'object' ? (context as any)?.isCreateMode || false : false;
     const datasourceService = injector.get(DatasourceService);
     const tableComponent = injector.get(CoreTableComponent);
     const localContext = this.tableColumnService.getContext(injector);
@@ -28,24 +29,29 @@ export class TableDatasourceDependableService implements Datasource<TableData> {
       .pipe(map((editableFeature) => editableFeature.tableEditableService));
 
     return combineLatest([editableService$, editableFeatureComponent$]).pipe(
-      switchMap(([editableService, editableFeatureComponent]) =>
-        editableService
-          ? editableService
-              .getUpdatesFor(config.dependsOn, editableFeatureComponent.getShiftedIndex(localContext.i))
-              .pipe(
-                startWith(
-                  editableService.getValueFor(config.dependsOn, editableFeatureComponent.getShiftedIndex(localContext.i)),
-                ),
-              )
-          : EMPTY,
-      ),
+      switchMap(([editableService, editableFeatureComponent]) => {
+        if (!editableService) {
+          return EMPTY;
+        }
+
+        const index = isCreateMode ? editableFeatureComponent.getShiftedIndex(localContext.i) : localContext.i;
+
+        return editableService
+          .getUpdatesFor(config.dependsOn, index)
+          .pipe(
+            startWith(
+              editableService.getValueFor(config.dependsOn, index),
+            ),
+          )
+      }),
       switchMap((value) => {
-        console.log(value, 'value');
         const contextKey = config.contextKey ?? config.dependsOn;
         const tableColumnContext = {
           ...(context as object),
           [contextKey]: value,
         };
+
+        delete tableColumnContext.isCreateMode;
 
         return datasourceService.resolve<TableData>(
           injector,

@@ -66,12 +66,10 @@ export class TableEditableService implements OnDestroy {
   }
 
   getValueFor(colId: string, rowIdx: number): unknown {
-    console.log(rowIdx, 'getValueFor');
     return this.model?.[rowIdx]?.[colId];
   }
 
   getUpdatesFor(colId: string, rowIdx: number): Observable<unknown> {
-    console.log(rowIdx, 'getUpdatesFor');
     return this.modelUpdates$.pipe(
       this.trackRowIdx(rowIdx),
       map((trackedRowIdx) => this.getValueFor(colId, trackedRowIdx)),

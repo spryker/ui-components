@@ -30,7 +30,6 @@ export const primary = (): IStory => ({
     imports: [
       HttpClientTestingModule,
       ContextModule,
-      TableColumnSelectModule,
       TableModule.forRoot(),
       TableModule.withColumnComponents({
         text: TableColumnTextComponent,
@@ -43,14 +42,15 @@ export const primary = (): IStory => ({
       }),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
-      TableColumnDynamicModule,
       TableColumnTextModule,
       TableColumnChipModule,
+      TableColumnSelectModule,
+      TableColumnDynamicModule,
     ],
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
+        useValue: [LayoutFlatHostComponent, TableColumnTextComponent, TableColumnChipComponent, TableColumnSelectComponent, TableColumnDynamicComponent],
         multi: true,
       },
     ],

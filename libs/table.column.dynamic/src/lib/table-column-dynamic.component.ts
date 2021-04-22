@@ -9,7 +9,7 @@ import { ContextService, TypedSimpleChanges } from '@spryker/utils';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
-    text: TableColumnDynamicConfig;
+    dynamic: TableColumnDynamicConfig;
   }
 }
 

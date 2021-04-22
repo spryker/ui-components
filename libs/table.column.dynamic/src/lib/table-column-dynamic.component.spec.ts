@@ -5,16 +5,16 @@ import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const configMock: any = {
-  type: "text",
+  type: 'text',
   typeOptions: {},
-  id: "dynamic",
-  title: "dynamic"
+  id: 'dynamic',
+  title: 'dynamic',
 };
 
 const context: any = {
-  value: "value",
+  value: 'value',
   i: '0',
-  j: '2'
+  j: '2',
 };
 
 describe('TableColumnDynamicComponent', () => {
@@ -24,7 +24,7 @@ describe('TableColumnDynamicComponent', () => {
       ngModule: {
         imports: [DefaultContextSerializationModule],
         declarations: [ContextPipe],
-        schemas: [NO_ERRORS_SCHEMA]
+        schemas: [NO_ERRORS_SCHEMA],
       },
     },
   );
@@ -34,7 +34,10 @@ describe('TableColumnDynamicComponent', () => {
   });
 
   it('should render <spy-table-column-renderer> component', async () => {
-    const host = await createComponent({ config: configMock[0], context }, true);
+    const host = await createComponent(
+      { config: configMock[0], context },
+      true,
+    );
     const tableElem = host.queryCss('spy-table-column-renderer');
 
     expect(tableElem).toBeTruthy();
@@ -49,8 +52,8 @@ describe('TableColumnDynamicComponent', () => {
 
   it('should bound `colData` property to the `data` input of <spy-table-column-renderer> component', async () => {
     const mockColData = {
-      dynamic: context.value
-    }
+      dynamic: context.value,
+    };
     const host = await createComponent({ config: configMock, context }, true);
     const tableElem = host.queryCss('spy-table-column-renderer');
 

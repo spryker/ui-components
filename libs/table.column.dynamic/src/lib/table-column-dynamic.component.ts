@@ -1,9 +1,21 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injectable, OnChanges, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+  Injectable,
+  OnChanges,
+  Input,
+} from '@angular/core';
 import {
   TableColumnComponent,
   TableColumnTypeComponent,
   TableColumnType,
-  TableColumnTypeOptions, ColumnTypeOption, ColumnTypeOptionsType, TableColumnContext, TableColumn, TableDataRow,
+  TableColumnTypeOptions,
+  ColumnTypeOption,
+  ColumnTypeOptionsType,
+  TableColumnContext,
+  TableColumn,
+  TableDataRow,
 } from '@spryker/table';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
 
@@ -76,15 +88,15 @@ export class TableColumnDynamicComponent
       case 'object':
         return Array.isArray(config)
           ? (config.map((value) =>
-            this.interpolateConfigReq(value, context),
-          ) as any)
+              this.interpolateConfigReq(value, context),
+            ) as any)
           : Object.entries(config).reduce(
-            (acc, [key, value]) => ({
-              ...acc,
-              [key]: this.interpolateConfigReq(value, context),
-            }),
-            {} as T,
-          );
+              (acc, [key, value]) => ({
+                ...acc,
+                [key]: this.interpolateConfigReq(value, context),
+              }),
+              {} as T,
+            );
       default:
         return config;
     }

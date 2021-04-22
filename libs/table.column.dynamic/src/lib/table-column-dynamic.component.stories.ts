@@ -2,20 +2,36 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { IStory } from '@storybook/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
-import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils';
+import {
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
+import {
+  ContextModule,
+  DefaultContextSerializationModule,
+} from '@spryker/utils';
 import { TableModule } from '@spryker/table';
 import { DatasourceModule } from '@spryker/datasource';
-import { TableColumnSelectComponent, TableColumnSelectModule } from '@spryker/table.column.select';
-import { TableColumnTextComponent, TableColumnTextModule } from '@spryker/table.column.text';
-import { TableColumnChipComponent, TableColumnChipModule } from '@spryker/table.column.chip';
+import {
+  TableColumnSelectComponent,
+  TableColumnSelectModule,
+} from '@spryker/table.column.select';
+import {
+  TableColumnTextComponent,
+  TableColumnTextModule,
+} from '@spryker/table.column.text';
+import {
+  TableColumnChipComponent,
+  TableColumnChipModule,
+} from '@spryker/table.column.chip';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 import { TableColumnDynamicModule } from './table-column-dynamic.module';
 
 export default {
-  title: 'TableColumnDynamicComponent'
-}
+  title: 'TableColumnDynamicComponent',
+};
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `${i}`,
@@ -50,7 +66,13 @@ export const primary = (): IStory => ({
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnTextComponent, TableColumnChipComponent, TableColumnSelectComponent, TableColumnDynamicComponent],
+        useValue: [
+          LayoutFlatHostComponent,
+          TableColumnTextComponent,
+          TableColumnChipComponent,
+          TableColumnSelectComponent,
+          TableColumnDynamicComponent,
+        ],
         multi: true,
       },
     ],

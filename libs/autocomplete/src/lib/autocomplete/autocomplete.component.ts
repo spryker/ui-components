@@ -106,9 +106,8 @@ export class AutocompleteComponent implements OnInit {
     const options$ = this.datasource
       ? this.datasourceService
           .resolve(this.injector, this.datasource, this.context)
-          .pipe(map((data) => (data as unknown) as AutocompleteValue[]))
       : EMPTY;
 
-    this.datasourceOptions$.next(options$);
+    this.datasourceOptions$.next(options$ as Observable<AutocompleteValue[]>);
   }
 }

@@ -34,7 +34,6 @@ interface TreeSelectItemWithKey extends TreeSelectItem {
   styleUrls: ['./tree-select.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [DatasourceService],
   host: {
     class: 'spy-tree-select',
   },
@@ -104,10 +103,9 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
     const items$ = this.datasource
       ? this.datasourceService
           ?.resolve(this.injector, this.datasource, this.context)
-          .pipe(map((data) => (data as unknown) as TreeSelectItem[]))
       : EMPTY;
 
-    this.datasourceOptions$.next(items$);
+    this.datasourceOptions$.next(items$ as Observable<TreeSelectItem[]>);
   }
 
   private updateItems(): void {

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1-next.8](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.1-next.7...@spryker/web-components@0.2.1-next.8) (2021-04-22)
+
+
+### Bug Fixes
+
+* **web-components:** add optional flag ([eec622f](https://github.com/spryker/ui-components/commit/eec622f974e11f346525054239e720636914d991))
+* **web-components:** add optional flag ([00b2a26](https://github.com/spryker/ui-components/commit/00b2a2626a945a8da184966e459a3b27c5ad5cc4))
+* **web-components:** add optional flag ([6d1de37](https://github.com/spryker/ui-components/commit/6d1de3740e419c127209c5face3f28d535575d5b))
+* **web-components:** add optional flag ([f192e2b](https://github.com/spryker/ui-components/commit/f192e2b39ab6b832a939017f64ab21d77f380449))
+* **web-components:** fix initialization ([10c742e](https://github.com/spryker/ui-components/commit/10c742e26021de401c6c43a38e434b38b047145e))
+
+
+
+
+
 ## [0.2.1-next.7](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.1-next.6...@spryker/web-components@0.2.1-next.7) (2021-04-16)
 
 

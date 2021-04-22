@@ -6,5 +6,6 @@
   [attrs]="attrs"
   (click)="onClick()"
 >
+  <ng-content select="[icon]" icon></ng-content>
   <ng-content></ng-content>
 </spy-button>

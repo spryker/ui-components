@@ -5,7 +5,6 @@ import {
   ModuleWithProviders,
   NgModule,
   Self,
-  Optional,
 } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import {

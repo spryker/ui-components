@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import {
+  Inject,
+  Injector,
+  ModuleWithProviders,
+  NgModule,
+  Self,
+} from '@angular/core';
+import { InjectionTokenType } from '@spryker/utils';
 import {
   ComponentSelectorStrategy,
   PrefixComponentSelectorStrategy,
@@ -7,11 +14,12 @@ import {
 } from 'ngx-element-boundary';
 
 import {
-  CustomElementComponentsInitProvider,
+  CustomElementComponentsToken,
   CustomElementOptions,
   provideCustomElementComponents,
   WebComponentDefs,
 } from './custom-element';
+import { registerComponents } from './custom-element/custom-element-registry';
 
 export interface WebComponentsModuleOptions {
   customElementOptions?: CustomElementOptions;
@@ -29,7 +37,6 @@ export class WebComponentsModule {
     return {
       ngModule: WebComponentsModule,
       providers: [
-        CustomElementComponentsInitProvider,
         {
           provide: ComponentSelectorStrategy,
           useClass: PrefixComponentSelectorStrategy,
@@ -50,10 +57,16 @@ export class WebComponentsModule {
   ): ModuleWithProviders<WebComponentsModule> {
     return {
       ngModule: WebComponentsModule,
-      providers: [
-        CustomElementComponentsInitProvider,
-        provideCustomElementComponents(components),
-      ],
+      providers: [provideCustomElementComponents(components)],
     };
+  }
+
+  constructor(
+    injector: Injector,
+    @Inject(CustomElementComponentsToken)
+    @Self()
+    components: InjectionTokenType<typeof CustomElementComponentsToken>,
+  ) {
+    registerComponents(components.flat(), injector);
   }
 }

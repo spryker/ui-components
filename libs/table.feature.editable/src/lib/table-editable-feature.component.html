@@ -84,6 +84,7 @@
                   "
                 >
                   <spy-table-column-renderer
+                    [context]="{ isCreateMode: true }"
                     [config]="
                       getEditColumn | spyInvoke: column:editColumns:i:rowErrors
                     "

@@ -1,14 +1,20 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { TreeSelectComponent } from './tree-select.component';
-import { TreeSelectExtractKeysPipe } from './tree-select-extract.pipe';
+import { By } from '@angular/platform-browser';
+import { DatasourceModule } from '@spryker/datasource';
+import { JoinModule } from '@spryker/utils';
 import {
   NzTreeSelectModule,
   NzTreeSelectComponent,
 } from 'ng-zorro-antd/tree-select';
-import { JoinModule } from '@spryker/utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { By } from '@angular/platform-browser';
+
+import { TreeSelectComponent } from './tree-select.component';
+import { TreeSelectExtractKeysPipe } from './tree-select-extract.pipe';
+
+class MockDatasource {
+  resolve = jest.fn();
+}
 
 describe('TreeSelectComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(
@@ -16,7 +22,13 @@ describe('TreeSelectComponent', () => {
     {
       ngModule: {
         schemas: [NO_ERRORS_SCHEMA],
-        imports: [NzTreeSelectModule, JoinModule],
+        imports: [
+          NzTreeSelectModule,
+          JoinModule,
+          DatasourceModule.withDatasources({
+            inline: MockDatasource,
+          }),
+        ],
         declarations: [TreeSelectExtractKeysPipe],
       },
     },

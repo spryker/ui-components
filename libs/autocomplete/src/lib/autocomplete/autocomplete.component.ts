@@ -31,6 +31,7 @@ import { AutocompleteValue } from './types';
 export class AutocompleteComponent implements OnInit {
   @Input() @ToJson() options?: AutocompleteValue[];
   @Input() datasource?: DatasourceConfig;
+  @Input() context?: unknown;
 
   @ViewChild(NzAutocompleteComponent, { static: true })
   nzAutocompleteComponent?: NzAutocompleteComponent;
@@ -103,11 +104,13 @@ export class AutocompleteComponent implements OnInit {
     }
 
     const options$ = this.datasource
-      ? this.datasourceService
-          .resolve(this.injector, this.datasource)
-          .pipe(map((data) => (data as unknown) as AutocompleteValue[]))
+      ? this.datasourceService.resolve(
+          this.injector,
+          this.datasource,
+          this.context,
+        )
       : EMPTY;
 
-    this.datasourceOptions$.next(options$);
+    this.datasourceOptions$.next(options$ as Observable<AutocompleteValue[]>);
   }
 }

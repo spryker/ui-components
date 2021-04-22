@@ -30,13 +30,14 @@ export class TableColumnRendererComponent implements OnChanges {
   @Input() template?: TemplateRef<TableColumnTplContext>;
   @Input() i?: number;
   @Input() j?: number;
+  @Input() context?: Record<string, unknown>;
 
   itemConfig?: OrchestratorConfigItem;
   originalConfig?: TableColumn;
 
   value?: unknown;
   isValueUndefined?: boolean;
-  context?: TableColumnTplContext;
+  fullContext?: TableColumnTplContext;
   emptyValue?: string;
   defaultEmptyValue = '-';
 
@@ -53,6 +54,10 @@ export class TableColumnRendererComponent implements OnChanges {
       this.updateValues();
     } else if (changes.i) {
       this.updateDataValues();
+      this.updateTplContext();
+    }
+
+    if (changes.context) {
       this.updateTplContext();
     }
   }
@@ -77,8 +82,8 @@ export class TableColumnRendererComponent implements OnChanges {
   private updateConfig(): void {
     this.config = this.mapConfig(this.config);
 
-    if (this.context && this.config) {
-      this.context.config = this.config;
+    if (this.fullContext && this.config) {
+      this.fullContext.config = this.config;
     }
   }
 
@@ -87,7 +92,8 @@ export class TableColumnRendererComponent implements OnChanges {
       return;
     }
 
-    this.context = {
+    this.fullContext = {
+      ...this.context,
       $implicit: this.value,
       config: this.config,
       row: this.data || {},
@@ -128,7 +134,10 @@ export class TableColumnRendererComponent implements OnChanges {
           const matchedValue = mapOption[String(this.value)];
 
           if (matchedValue) {
-            this.contextService.interpolate(matchedValue, this.context as any);
+            this.contextService.interpolate(
+              matchedValue,
+              this.fullContext as any,
+            );
 
             return { ...mapOptions, [mapKey]: matchedValue };
           }

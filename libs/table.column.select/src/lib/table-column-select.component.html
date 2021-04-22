@@ -19,6 +19,7 @@
       [selectAllTitle]="config?.selectAllTitle | context: context"
       [noOptionsText]="config?.noOptionsText | context: context"
       [datasource]="config?.datasource"
+      [context]="context"
       (valueChange)="valueChangeHandler($event)"
       control
     ></spy-select>

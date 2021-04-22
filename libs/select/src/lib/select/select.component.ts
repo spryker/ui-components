@@ -44,7 +44,6 @@ import {
   styleUrls: ['./select.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [DatasourceService],
 })
 export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('selectRef') selectRef?: ElementRef<HTMLInputElement>;
@@ -61,6 +60,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   @Input() noOptionsText = '';
   @Input() @ToBoolean() disableClear = false;
   @Input() datasource?: DatasourceConfig;
+  @Input() context?: unknown;
 
   @Output() valueChange = new EventEmitter<SelectValueSelected>();
 
@@ -144,12 +144,14 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     const options$ = this.datasource
-      ? this.datasourceService
-          ?.resolve(this.injector, this.datasource)
-          .pipe(map((data) => (data as unknown) as SelectOption[]))
+      ? this.datasourceService?.resolve(
+          this.injector,
+          this.datasource,
+          this.context,
+        )
       : EMPTY;
 
-    this.datasourceOptions$.next(options$);
+    this.datasourceOptions$.next(options$ as Observable<SelectOption[]>);
   }
 
   private updateTitlesArrayForSelectedValues(

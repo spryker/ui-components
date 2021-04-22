@@ -5,7 +5,7 @@ import {
   TableColumnService,
   TableData,
 } from '@spryker/table';
-import { EMPTY, Observable } from 'rxjs';
+import { combineLatest, EMPTY, Observable } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
@@ -20,31 +20,44 @@ export class TableDatasourceDependableService implements Datasource<TableData> {
     config: TableDatasourceDependableConfig,
     context?: unknown,
   ): Observable<TableData> {
+    const isCreateMode =
+      typeof context === 'object'
+        ? (context as any)?.isCreateMode || false
+        : false;
     const datasourceService = injector.get(DatasourceService);
     const tableComponent = injector.get(CoreTableComponent);
     const localContext = this.tableColumnService.getContext(injector);
-    const editableService$ = tableComponent
-      .findFeatureByType(TableEditableFeatureComponent)
-      .pipe(map((editableFeature) => editableFeature.tableEditableService));
+    const editableFeatureComponent$ = tableComponent.findFeatureByType(
+      TableEditableFeatureComponent,
+    );
+    const editableService$ = editableFeatureComponent$.pipe(
+      map((editableFeature) => editableFeature.tableEditableService),
+    );
 
-    return editableService$.pipe(
-      switchMap((editableService) =>
-        editableService
-          ? editableService
-              .getUpdatesFor(config.dependsOn, localContext.i)
-              .pipe(
-                startWith(
-                  editableService.getValueFor(config.dependsOn, localContext.i),
-                ),
-              )
-          : EMPTY,
-      ),
+    return combineLatest([editableService$, editableFeatureComponent$]).pipe(
+      switchMap(([editableService, editableFeatureComponent]) => {
+        if (!editableService) {
+          return EMPTY;
+        }
+
+        const index = isCreateMode
+          ? editableFeatureComponent.getShiftedIndex(localContext.i)
+          : localContext.i;
+
+        return editableService
+          .getUpdatesFor(config.dependsOn, index)
+          .pipe(
+            startWith(editableService.getValueFor(config.dependsOn, index)),
+          );
+      }),
       switchMap((value) => {
         const contextKey = config.contextKey ?? config.dependsOn;
         const tableColumnContext = {
           ...(context as object),
           [contextKey]: value,
         };
+
+        delete tableColumnContext.isCreateMode;
 
         return datasourceService.resolve<TableData>(
           injector,

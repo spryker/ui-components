@@ -7,8 +7,14 @@ import {
   ViewEncapsulation,
   OnChanges,
   SimpleChanges,
+  Injector,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
+import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { ToBoolean, ToJson } from '@spryker/utils';
+import { EMPTY, Observable, ReplaySubject, Subject } from 'rxjs';
+import { map, switchAll, takeUntil } from 'rxjs/operators';
 import { TreeSelectItem, TreeSelectValue } from './types';
 
 /**
@@ -28,11 +34,12 @@ interface TreeSelectItemWithKey extends TreeSelectItem {
   styleUrls: ['./tree-select.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  providers: [DatasourceService],
   host: {
     class: 'spy-tree-select',
   },
 })
-export class TreeSelectComponent implements OnChanges {
+export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
   @Input() @ToJson() items?: TreeSelectItem[];
   @Input() @ToJson() value?: TreeSelectValue | TreeSelectValue[];
   @Input() @ToBoolean() search = false;
@@ -42,6 +49,8 @@ export class TreeSelectComponent implements OnChanges {
   @Input() name = '';
   @Input() noOptionsText = '';
   @Input() @ToBoolean() disableClear = false;
+  @Input() datasource?: DatasourceConfig;
+  @Input() context?: unknown;
 
   @Output() valueChange = new EventEmitter<
     TreeSelectValue | TreeSelectValue[]
@@ -51,10 +60,54 @@ export class TreeSelectComponent implements OnChanges {
   mappedFlatItems?: TreeSelectItem[];
   mappedValue?: TreeSelectValue | TreeSelectValue[];
 
+  datasourceOptions$ = new ReplaySubject<Observable<TreeSelectItem[]>>();
+
+  private destroyed$ = new Subject<void>();
+
+  constructor(
+    private injector: Injector,
+    private datasourceService: DatasourceService,
+  ) {}
+
+  ngOnInit(): void {
+    this.updateDatasource();
+
+    this.datasourceOptions$
+      .pipe(switchAll(), takeUntil(this.destroyed$))
+      .subscribe((items) => {
+        this.items = items;
+        this.updateItems();
+      });
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    if ('items' in changes) {
+    if (changes.items) {
       this.updateItems();
     }
+
+    if (changes.datasource && !changes.datasource.firstChange) {
+      this.updateDatasource();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+  }
+
+  private updateDatasource() {
+    // Reset items before invoking datasource
+    if (this.datasource) {
+      this.items = undefined;
+      this.updateItems();
+    }
+
+    const items$ = this.datasource
+      ? this.datasourceService
+          ?.resolve(this.injector, this.datasource, this.context)
+          .pipe(map((data) => (data as unknown) as TreeSelectItem[]))
+      : EMPTY;
+
+    this.datasourceOptions$.next(items$);
   }
 
   private updateItems(): void {

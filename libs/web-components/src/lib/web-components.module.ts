@@ -5,6 +5,7 @@ import {
   ModuleWithProviders,
   NgModule,
   Self,
+  Optional,
 } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import {
@@ -65,8 +66,9 @@ export class WebComponentsModule {
     injector: Injector,
     @Inject(CustomElementComponentsToken)
     @Self()
-    components: InjectionTokenType<typeof CustomElementComponentsToken>,
+    @Optional()
+    components?: InjectionTokenType<typeof CustomElementComponentsToken>,
   ) {
-    registerComponents(components.flat(), injector);
+    registerComponents(components?.flat() ?? [], injector);
   }
 }

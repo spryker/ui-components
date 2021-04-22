@@ -5,8 +5,7 @@ import {
   TableColumnType,
   TableColumnTypeOptions, ColumnTypeOption, ColumnTypeOptionsType, TableColumnContext, TableColumn, TableDataRow,
 } from '@spryker/table';
-import { ContextService } from '../../../utils/src/lib/context';
-import { TypedSimpleChanges } from '../../../utils/src';
+import { ContextService, TypedSimpleChanges } from '@spryker/utils';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {

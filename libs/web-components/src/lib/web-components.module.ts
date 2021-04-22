@@ -15,12 +15,12 @@ import {
 } from 'ngx-element-boundary';
 
 import {
-  CustomElementComponentsToken,
   CustomElementOptions,
   provideCustomElementComponents,
   WebComponentDefs,
 } from './custom-element';
 import { registerComponents } from './custom-element/custom-element-registry';
+import { CustomElementComponentsToken } from './custom-element/tokens';
 
 export interface WebComponentsModuleOptions {
   customElementOptions?: CustomElementOptions;
@@ -66,9 +66,8 @@ export class WebComponentsModule {
     injector: Injector,
     @Inject(CustomElementComponentsToken)
     @Self()
-    @Optional()
-    components?: InjectionTokenType<typeof CustomElementComponentsToken>,
+    components: InjectionTokenType<typeof CustomElementComponentsToken>,
   ) {
-    registerComponents(components?.flat() ?? [], injector);
+    registerComponents(components.flat(), injector);
   }
 }

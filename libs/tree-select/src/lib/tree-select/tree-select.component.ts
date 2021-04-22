@@ -101,8 +101,11 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
     }
 
     const items$ = this.datasource
-      ? this.datasourceService
-          ?.resolve(this.injector, this.datasource, this.context)
+      ? this.datasourceService?.resolve(
+          this.injector,
+          this.datasource,
+          this.context,
+        )
       : EMPTY;
 
     this.datasourceOptions$.next(items$ as Observable<TreeSelectItem[]>);

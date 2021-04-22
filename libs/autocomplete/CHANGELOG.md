@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@0.1.0-next.1...@spryker/autocomplete@0.1.0-next.2) (2021-04-22)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** fix indexing of the created table rows ([38a22a6](https://github.com/spryker/ui-components/commit/38a22a6999865bda3bbee7267956080d1eb88719))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@0.1.0-next.0...@spryker/autocomplete@0.1.0-next.1) (2021-03-26)
 
 

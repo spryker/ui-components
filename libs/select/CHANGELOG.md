@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.11...@spryker/select@0.2.0-next.12) (2021-04-22)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** fix indexing of the new table rows ([0bc0941](https://github.com/spryker/ui-components/commit/0bc0941dcc64104dab2743b7d7c2d36ca230ee54))
+
+
+
+
+
 # [0.2.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.10...@spryker/select@0.2.0-next.11) (2021-03-15)
 
 

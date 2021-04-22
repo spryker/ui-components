@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.8...@spryker/table.feature.editable@0.1.0-next.9) (2021-04-22)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** fix indexing of the created table rows ([38a22a6](https://github.com/spryker/ui-components/commit/38a22a6999865bda3bbee7267956080d1eb88719))
+* **table.feature.editable:** fix indexing of the new table rows ([0bc0941](https://github.com/spryker/ui-components/commit/0bc0941dcc64104dab2743b7d7c2d36ca230ee54))
+
+
+
+
+
 # [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.7...@spryker/table.feature.editable@0.1.0-next.8) (2021-04-19)
 
 

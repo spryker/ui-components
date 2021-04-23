@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/button.action@0.1.0-next.1...@spryker/button.action@0.1.0-next.2) (2021-04-23)
+
+
+### Features
+
+* **button.action:** add icon slot ([805c166](https://github.com/spryker/ui-components/commit/805c166994ef897ffd29f3c1e4fe78c52df51b1d))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/button.action@0.1.0-next.0...@spryker/button.action@0.1.0-next.1) (2021-03-12)
 
 

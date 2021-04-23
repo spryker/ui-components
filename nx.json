@@ -375,6 +375,9 @@
     },
     "button.icon": {
       "tags": ["type:component", "level:atom", "pkg:primary"]
+    },
+    "table.column.dynamic": {
+      "tags": ["type:component", "level:atom", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

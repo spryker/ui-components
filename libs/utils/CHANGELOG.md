@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.16...@spryker/utils@0.2.0-next.17) (2021-04-23)
+
+
+### Features
+
+* **table.column.dynamic:** add lib ([3cca90e](https://github.com/spryker/ui-components/commit/3cca90e9922d1ffe0931e96e4b0db5640b0db88b))
+
+
+
+
+
 # [0.2.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.0-next.15...@spryker/utils@0.2.0-next.16) (2021-03-02)
 
 

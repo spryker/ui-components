@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.35](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.34...@spryker/styles@0.2.0-next.35) (2021-04-26)
+
+
+### Bug Fixes
+
+* **card:** border radius ([7bebbac](https://github.com/spryker/ui-components/commit/7bebbac92d87d3388570b0cda88cf5cbead283ea))
+* **card:** border radius ([58b4244](https://github.com/spryker/ui-components/commit/58b4244b2b52d3648ccf790ee20b4a1bc853a2db))
+
+
+
+
+
 # [0.2.0-next.34](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.33...@spryker/styles@0.2.0-next.34) (2021-04-08)
 
 

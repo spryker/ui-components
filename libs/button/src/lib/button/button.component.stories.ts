@@ -1,5 +1,5 @@
 import { WebComponentsModule } from '@spryker/web-components';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
@@ -28,6 +28,7 @@ export const primary = () => ({
       [size]="size"
       [disabled]="disabled"
       [loading]="loading"
+      [attrs]="attrs"
     ><span *ngIf="withIcon" icon>&copy;</span>Button</spy-button>
   `,
   props: {
@@ -37,6 +38,7 @@ export const primary = () => ({
     disabled: boolean('Disabled', false),
     loading: boolean('Loading', false),
     withIcon: boolean('With icon', false),
+    attrs: object('Attrs', {}),
   },
 });
 

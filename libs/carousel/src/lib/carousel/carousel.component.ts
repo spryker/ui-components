@@ -32,12 +32,6 @@ export class CarouselComponent implements OnInit {
   };
 
   slides$ = new BehaviorSubject(new Set<CarouselSlideComponent>());
-  mainSlides$ = this.slides$.pipe(
-    map((sildes) => [...sildes].filter((slide) => !slide.isThumb)),
-  );
-  thumbSlides$ = this.slides$.pipe(
-    map((sildes) => [...sildes].filter((slide) => slide.isThumb)),
-  );
 
   thumbsSwiper?: SwiperComponent;
 

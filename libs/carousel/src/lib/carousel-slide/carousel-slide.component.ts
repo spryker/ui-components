@@ -7,7 +7,6 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
 import { CarouselComponent } from '../carousel/carousel.component';
 
 @Component({
@@ -18,7 +17,7 @@ import { CarouselComponent } from '../carousel/carousel.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselSlideComponent implements OnInit {
-  @Input() @ToBoolean() isThumb = false;
+  @Input() thumb?: string;
   @ViewChild('contentTpl') template!: TemplateRef<void>;
 
   constructor(public carouselComponent?: CarouselComponent) {}

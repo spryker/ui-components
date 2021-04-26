@@ -1,9 +1,12 @@
 <swiper
   [slidesPerView]="config.slidesPerView"
-  [navigation]="{ prevEl: prevEl, nextEl: nextEl }"
+  [navigation]="{
+    prevEl: '.swiper-navigation-next',
+    nextEl: '.swiper-navigation-prev'
+  }"
   [thumbs]="{ swiper: thumbsSwiper }"
 >
-  <ng-template swiperSlide *ngFor="let slide of mainSlides$ | async">
+  <ng-template swiperSlide *ngFor="let slide of slides$ | async">
     <ng-container *ngTemplateOutlet="slide.template"></ng-container>
   </ng-template>
 </swiper>
@@ -21,8 +24,10 @@
   [spaceBetween]="thumbConfig.spaceBetween"
   (swiper)="setThumbsSwiper($event)"
 >
-  <ng-template swiperSlide *ngFor="let thumb of thumbSlides$ | async">
-    <ng-container *ngTemplateOutlet="thumb.template"></ng-container>
+  <ng-template swiperSlide *ngFor="let slide of slides$ | async">
+    <div class="">
+      <img [src]="slide.thumb" alt="thumb" />
+    </div>
   </ng-template>
 </swiper>
 

@@ -25,9 +25,7 @@
   (swiper)="setThumbsSwiper($event)"
 >
   <ng-template swiperSlide *ngFor="let slide of slides$ | async">
-    <div class="">
-      <img [src]="slide.thumb" alt="thumb" />
-    </div>
+    <ng-container *ngTemplateOutlet="slide.thumb"></ng-container>
   </ng-template>
 </swiper>
 

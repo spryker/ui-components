@@ -17,8 +17,8 @@ import { CarouselComponent } from '../carousel/carousel.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselSlideComponent implements OnInit {
-  @Input() thumb?: string;
   @ViewChild('contentTpl') template!: TemplateRef<void>;
+  @ViewChild('thumb') thumb!: TemplateRef<void>;
 
   constructor(public carouselComponent?: CarouselComponent) {}
 

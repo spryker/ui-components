@@ -198,14 +198,14 @@ describe('AjaxFormComponent', () => {
     expect(staticHtml.nativeElement.innerHTML).toBe(mockSecondResponse.form);
   }));
 
-  it('component should submit form via button with name attribute and FormData should contain this name', fakeAsync(() => {
+  it('component should submit form via button with name attribute and FormData should contain this name/value', fakeAsync(() => {
     component.action = mockUrl;
     component.method = 'POST';
     fixture.detectChanges();
 
-    let htmlResponse = httpTestingController.expectOne(mockUrl);
+    let httpResponse = httpTestingController.expectOne(mockUrl);
 
-    htmlResponse.flush(mockFirstResponse);
+    httpResponse.flush(mockFirstResponse);
 
     tick();
     fixture.detectChanges();
@@ -219,11 +219,11 @@ describe('AjaxFormComponent', () => {
       preventDefault: jest.fn(),
       submitter: submitElem,
     });
-    htmlResponse = httpTestingController.expectOne(mockUrl);
+    httpResponse = httpTestingController.expectOne(mockUrl);
 
-    expect(htmlResponse.request.body instanceof FormData).toBeTruthy();
-    expect(htmlResponse.request.body.get('submitter')).toBeTruthy();
-    expect(htmlResponse.request.body.get('submitter')).toBe('mockSubmit');
+    expect(httpResponse.request.body instanceof FormData).toBeTruthy();
+    expect(httpResponse.request.body.get('submitter')).toBeTruthy();
+    expect(httpResponse.request.body.get('submitter')).toBe('mockSubmit');
   }));
 
   it('if first form was submitted component should render nz-spinner over the current form', fakeAsync(() => {

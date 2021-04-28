@@ -17,8 +17,13 @@ import { AjaxActionService } from '@spryker/ajax-action';
 import { Subscription } from 'rxjs';
 import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
 import { AjaxFormRequestToken } from './tokens';
-
 import { AjaxFormResponse } from '../types';
+
+export interface SubmitEvent extends Event {
+  // See https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/submitter
+  // See https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#dom-submitevent-submitter
+  submitter: HTMLElement | null;
+}
 
 @Component({
   selector: 'spy-ajax-form',
@@ -96,10 +101,21 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
     this.submitSubscription?.unsubscribe();
   }
 
-  submitHandler(form: HTMLFormElement, event: Event): void {
+  submitHandler(form: HTMLFormElement, event: SubmitEvent): void {
     event.preventDefault();
 
+    const submitElem = event.submitter;
     const submitForm = new FormData(form);
+
+    if (submitElem) {
+      const submitName = submitElem.getAttribute('name');
+      const submitValue = submitElem.getAttribute('value') ?? '';
+
+      if (submitName) {
+        submitForm.append(submitName, submitValue);
+      }
+    }
+
     this.isLoading = true;
 
     if (this.action) {

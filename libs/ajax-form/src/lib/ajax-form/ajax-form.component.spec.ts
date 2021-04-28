@@ -20,6 +20,7 @@ import { AjaxFormModule } from '../ajax-form.module';
 const mockFirstHtmlTemplate = `
   <input type="text" name="name" id="name">
   <button type="submit">Submit</button>
+  <button type="submit" name="submitter" value="mockSubmit">Submit #2</button>
 `;
 const mockSecondHtmlTemplate = `<p>Hello World!!!</p>`;
 const mockUrl = '/html-request';
@@ -195,6 +196,34 @@ describe('AjaxFormComponent', () => {
     fixture.detectChanges();
 
     expect(staticHtml.nativeElement.innerHTML).toBe(mockSecondResponse.form);
+  }));
+
+  it('component should submit form via button with name attribute and FormData should contain this name', fakeAsync(() => {
+    component.action = mockUrl;
+    component.method = 'POST';
+    fixture.detectChanges();
+
+    let htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    htmlResponse.flush(mockFirstResponse);
+
+    tick();
+    fixture.detectChanges();
+
+    const formElem = fixture.debugElement.query(By.css('form'));
+    const submitElem = fixture.nativeElement.querySelector(
+      'button[name="submitter"]',
+    );
+
+    formElem.triggerEventHandler('submit', {
+      preventDefault: jest.fn(),
+      submitter: submitElem,
+    });
+    htmlResponse = httpTestingController.expectOne(mockUrl);
+
+    expect(htmlResponse.request.body instanceof FormData).toBeTruthy();
+    expect(htmlResponse.request.body.get('submitter')).toBeTruthy();
+    expect(htmlResponse.request.body.get('submitter')).toBe('mockSubmit');
   }));
 
   it('if first form was submitted component should render nz-spinner over the current form', fakeAsync(() => {

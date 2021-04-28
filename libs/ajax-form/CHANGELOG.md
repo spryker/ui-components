@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.2.0-next.11...@spryker/ajax-form@0.2.0-next.12) (2021-04-28)
+
+
+### Features
+
+* **ajax-form:** add submitter to form data ([468643f](https://github.com/spryker/ui-components/commit/468643f1027a26a23d226d9243c6844fd4db37c1))
+
+
+
+
+
 # 0.2.0-next.11 (2021-03-22)
 
 

@@ -24,6 +24,7 @@ const mockHtmlTemplate = () => `
   <input type="text" name="name4" style="border: 1px solid red">
   <br>
   <button type="submit">Submit</button>
+  <button type="submit" name="submit2">Submit #2</button>
 `;
 
 function generateMockHtmlPage(): any {

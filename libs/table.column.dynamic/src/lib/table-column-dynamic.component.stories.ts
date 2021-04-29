@@ -22,9 +22,12 @@ import {
   TableColumnTextModule,
 } from '@spryker/table.column.text';
 import {
-  TableColumnChipComponent,
-  TableColumnChipModule,
-} from '@spryker/table.column.chip';
+  DatasourceInlineModule,
+  DatasourceInlineService,
+} from '@spryker/datasource.inline';
+import { NotificationModule } from '@spryker/notification';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 import { TableColumnDynamicModule } from './table-column-dynamic.module';
@@ -37,8 +40,6 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `${i}`,
   col2: `Option ${i}`,
   col3: `col3 #${i}`,
-  _col3_Type: i % 2 ? 'text' : 'chip',
-  _col3_TypeOptions: i % 2 ? {} : { color: 'grey' },
 });
 
 export const primary = (): IStory => ({
@@ -47,19 +48,28 @@ export const primary = (): IStory => ({
       HttpClientTestingModule,
       ContextModule,
       TableModule.forRoot(),
+      TableModule.withFeatures({
+        editable: () =>
+          import('@spryker/table.feature.editable').then(
+            (m) => m.TableEditableFeatureModule,
+          ),
+      } as any),
       TableModule.withColumnComponents({
         text: TableColumnTextComponent,
-        chip: TableColumnChipComponent,
         select: TableColumnSelectComponent,
         dynamic: TableColumnDynamicComponent,
       } as any),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
+        inline: DatasourceInlineService,
       }),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
+      DatasourceInlineModule,
+      NotificationModule.forRoot(),
+      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+      EnLocaleModule,
       TableColumnTextModule,
-      TableColumnChipModule,
       TableColumnSelectModule,
       TableColumnDynamicModule,
     ],
@@ -69,7 +79,6 @@ export const primary = (): IStory => ({
         useValue: [
           LayoutFlatHostComponent,
           TableColumnTextComponent,
-          TableColumnChipComponent,
           TableColumnSelectComponent,
           TableColumnDynamicComponent,
         ],
@@ -116,11 +125,66 @@ export const primary = (): IStory => ({
           title: 'Column #3',
           type: 'dynamic',
           typeOptions: {
-            type: '${row._col3_Type}',
-            typeOptions: '${row._col3_TypeOptions}',
+            datasource: {
+              type: 'inline',
+              data: {
+                type: 'select',
+                typeOptions: {
+                  options: [
+                    {
+                      title: 'Option dynamic 1',
+                      value: 'Option dynamic 1',
+                    },
+                    {
+                      title: 'Option dynamic 2',
+                      value: 'Option dynamic 2',
+                    },
+                  ],
+                },
+              },
+            },
           },
         },
       ],
+      editable: {
+        columns: [
+          {
+            id: 'col2',
+            type: 'select',
+            typeOptions: {
+              options: ['Option 1', 'Option 2'],
+            },
+          },
+          {
+            id: 'col3',
+            type: 'dynamic',
+            typeOptions: {
+              datasource: {
+                type: 'inline',
+                data: {
+                  type: 'select',
+                  typeOptions: {
+                    options: [
+                      {
+                        title: 'Option dynamic 1',
+                        value: 'Option dynamic 1',
+                      },
+                      {
+                        title: 'Option dynamic 2',
+                        value: 'Option dynamic 2',
+                      },
+                    ],
+                  },
+                },
+              },
+            },
+          },
+        ],
+        create: {
+          addButton: {},
+          cancelButton: {},
+        },
+      },
     },
   },
 });

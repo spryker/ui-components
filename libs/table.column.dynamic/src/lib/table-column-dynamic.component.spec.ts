@@ -1,14 +1,16 @@
 import { TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const configMock: any = {
-  type: 'text',
-  typeOptions: {},
   id: 'dynamic',
   title: 'dynamic',
+  datasource: {
+    type: 'inline',
+    data: {},
+  },
 };
 
 const context: any = {
@@ -34,20 +36,10 @@ describe('TableColumnDynamicComponent', () => {
   });
 
   it('should render <spy-table-column-renderer> component', async () => {
-    const host = await createComponent(
-      { config: configMock[0], context },
-      true,
-    );
-    const tableElem = host.queryCss('spy-table-column-renderer');
-
-    expect(tableElem).toBeTruthy();
-  });
-
-  it('should bound `colConfig` property to the `config` input of <spy-table-column-renderer> component', async () => {
     const host = await createComponent({ config: configMock, context }, true);
     const tableElem = host.queryCss('spy-table-column-renderer');
 
-    expect(tableElem?.properties.config).toStrictEqual(configMock);
+    expect(tableElem).toBeTruthy();
   });
 
   it('should bound `colData` property to the `data` input of <spy-table-column-renderer> component', async () => {

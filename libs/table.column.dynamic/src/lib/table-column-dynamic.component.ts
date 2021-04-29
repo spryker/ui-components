@@ -5,19 +5,25 @@ import {
   Injectable,
   OnChanges,
   Input,
+  Injector,
 } from '@angular/core';
 import {
   TableColumnComponent,
   TableColumnTypeComponent,
-  TableColumnType,
-  TableColumnTypeOptions,
   ColumnTypeOption,
   ColumnTypeOptionsType,
   TableColumnContext,
   TableColumn,
   TableDataRow,
 } from '@spryker/table';
+import {
+  DatasourceConfig,
+  DatasourceService,
+  DatasourceType,
+} from '@spryker/datasource';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
+import { EMPTY, merge, ReplaySubject } from 'rxjs';
+import { map, mapTo, switchMap } from 'rxjs/operators';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
@@ -26,15 +32,20 @@ declare module '@spryker/table' {
 }
 
 @Injectable({ providedIn: 'root' })
-export class TableColumnDynamicConfig {
+export class TableColumnDynamicDatasourceConfig implements DatasourceConfig {
   @ColumnTypeOption({
     required: true,
     type: ColumnTypeOptionsType.TypeOf,
     value: String,
   })
-  type!: TableColumnType;
-  @ColumnTypeOption()
-  typeOptions?: TableColumnTypeOptions;
+  type!: DatasourceType;
+  [k: string]: unknown;
+}
+
+@Injectable({ providedIn: 'root' })
+export class TableColumnDynamicConfig {
+  @ColumnTypeOption({ required: true })
+  datasource!: TableColumnDynamicDatasourceConfig;
 }
 
 @Component({
@@ -43,6 +54,7 @@ export class TableColumnDynamicConfig {
   styleUrls: ['./table-column-dynamic.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: { class: 'spy-table-column-dynamic' },
 })
 @TableColumnTypeComponent(TableColumnDynamicConfig)
 export class TableColumnDynamicComponent
@@ -50,31 +62,47 @@ export class TableColumnDynamicComponent
   @Input() config?: TableColumnDynamicConfig;
   @Input() context?: TableColumnContext;
 
-  colConfig?: TableColumn;
   colData?: TableDataRow;
+
+  updateColConfig$ = new ReplaySubject<void>(1);
+  colConfig$ = this.updateColConfig$.pipe(
+    switchMap(() => {
+      if (!this.config || !this.context) {
+        return EMPTY;
+      }
+
+      return this.datasourceService.resolve<TableColumnDynamicConfig>(
+        this.injector,
+        this.config.datasource,
+        this.context,
+      );
+    }),
+    map((colConfig) => {
+      const config = { ...colConfig, id: this.colKey, title: this.colKey };
+      return this.interpolateConfigReq(config, this.context);
+    }),
+  );
+  isColConfigLoading$ = merge(
+    this.updateColConfig$.pipe(mapTo(true)),
+    this.colConfig$.pipe(mapTo(false)),
+  );
 
   private colKey = 'dynamic';
 
-  constructor(private contextService: ContextService) {}
+  constructor(
+    private injector: Injector,
+    private datasourceService: DatasourceService,
+    private contextService: ContextService,
+  ) {}
 
   ngOnChanges(changes: TypedSimpleChanges<TableColumnComponent>): void {
     if (changes.config || changes.context) {
-      this.updateConfig();
+      this.updateColConfig$.next();
     }
 
     if (changes.context) {
       this.updateData();
     }
-  }
-
-  private updateConfig() {
-    if (!this.config || !this.context) {
-      this.colConfig = undefined;
-      return;
-    }
-
-    const config = { ...this.config, id: this.colKey, title: this.colKey };
-    this.colConfig = this.interpolateConfigReq(config, this.context);
   }
 
   private updateData() {

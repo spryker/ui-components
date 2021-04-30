@@ -13,14 +13,14 @@
   <input
     nz-input
     *ngIf="!nzAutocompleteComponent"
-    [placeholder]="placeholder"
+    [attr.placeholder]="placeholder"
     [attr.name]="name"
     [(ngModel)]="value"
     [type]="type"
     [readOnly]="readOnly"
     [disabled]="disabled"
     (ngModelChange)="valueChange.emit($event)"
-    [id]="spyId"
+    [attr.id]="spyId"
     [required]="required"
     [spyApplyAttrs]="attrs"
     (focus)="isFocused = true"
@@ -30,14 +30,13 @@
   <input
     nz-input
     *ngIf="nzAutocompleteComponent"
-    [placeholder]="placeholder"
+    [attr.placeholder]="placeholder"
     [attr.name]="name"
     [(ngModel)]="value"
     [type]="type"
     [readOnly]="readOnly"
     [disabled]="disabled"
-    (ngModelChange)="valueChange.emit($event)"
-    [id]="spyId"
+    [attr.id]="spyId"
     [required]="required"
     [spyApplyAttrs]="attrs"
     (focus)="isFocused = true"

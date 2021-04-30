@@ -37,15 +37,15 @@ export class InputComponent implements AutocompleteWrapper, OnInit, OnChanges {
   @Input() suffix: string | TemplateRef<void> = '';
   @Input() outerPrefix: string | TemplateRef<void> = '';
   @Input() outerSuffix: string | TemplateRef<void> = '';
-  @Input() name = '';
+  @Input() name?: string;
   @Input() value: any = '';
   @Input() type = 'text';
-  @Input() placeholder = '';
+  @Input() placeholder?: string;
   @Input() @ToBoolean() readOnly = false;
   @Input() @ToBoolean() disabled = false;
   @Input() @ToBoolean() required = false;
   @Input() @ToJson() attrs: Record<string, string> = {};
-  @Input() spyId = '';
+  @Input() spyId?: string;
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   isHovered = false;

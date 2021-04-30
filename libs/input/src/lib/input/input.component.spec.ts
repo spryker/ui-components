@@ -77,7 +77,7 @@ describe('InputComponent', () => {
 
       fixture.detectChanges();
 
-      expect(inputElem.properties.placeholder).toBe(mockedPlaceholder);
+      expect(inputElem.attributes.placeholder).toBe(mockedPlaceholder);
     });
 
     it('should bind value to ngModel of input', () => {

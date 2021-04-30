@@ -60,7 +60,7 @@ describe('TextareaComponent', () => {
       component.placeholder = mockedPlaceholder;
 
       fixture.detectChanges();
-      expect(textareaElem.properties.placeholder).toBe(mockedPlaceholder);
+      expect(textareaElem.attributes.placeholder).toBe(mockedPlaceholder);
     });
 
     it('should bind value to value of textarea', () => {

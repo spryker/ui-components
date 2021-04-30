@@ -128,7 +128,7 @@ describe('TableSearchFeatureComponent', () => {
     const expectedValue = '123';
 
     const inputPlaceholder = fixture.debugElement.query(By.css('input'))
-      .properties.placeholder;
+      .attributes.placeholder;
     expect(inputPlaceholder).toBe(expectedValue);
   });
 });

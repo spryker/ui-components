@@ -13,7 +13,6 @@ import {
   ColumnTypeOption,
   ColumnTypeOptionsType,
   TableColumnContext,
-  TableColumn,
   TableDataRow,
 } from '@spryker/table';
 import {
@@ -22,8 +21,8 @@ import {
   DatasourceType,
 } from '@spryker/datasource';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
-import { EMPTY, merge, ReplaySubject } from 'rxjs';
-import { map, mapTo, switchMap } from 'rxjs/operators';
+import { merge, of, ReplaySubject } from 'rxjs';
+import { map, mapTo, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
@@ -64,11 +63,13 @@ export class TableColumnDynamicComponent
 
   colData?: TableDataRow;
 
-  updateColConfig$ = new ReplaySubject<void>(1);
+  private colKey = 'dynamic';
+  private updateColConfig$ = new ReplaySubject<void>(1);
+
   colConfig$ = this.updateColConfig$.pipe(
     switchMap(() => {
       if (!this.config || !this.context) {
-        return EMPTY;
+        return of({});
       }
 
       return this.datasourceService.resolve<TableColumnDynamicConfig>(
@@ -81,13 +82,12 @@ export class TableColumnDynamicComponent
       const config = { ...colConfig, id: this.colKey, title: this.colKey };
       return this.interpolateConfigReq(config, this.context);
     }),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
   isColConfigLoading$ = merge(
     this.updateColConfig$.pipe(mapTo(true)),
     this.colConfig$.pipe(mapTo(false)),
   );
-
-  private colKey = 'dynamic';
 
   constructor(
     private injector: Injector,

@@ -1,15 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
+import { DatasourceService } from '@spryker/datasource';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { of } from 'rxjs';
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 
+// tslint:disable: no-non-null-assertion
+
 const configMock: any = {
-  id: 'dynamic',
-  title: 'dynamic',
   datasource: {
     type: 'inline',
-    data: {},
+    data: {
+      type: 'select',
+      typeOptions: {
+        options: [
+          {
+            title: 'Option dynamic 1',
+            value: 'Option dynamic 1',
+          },
+          {
+            title: 'Option dynamic 2',
+            value: 'Option dynamic 2',
+          },
+        ],
+      },
+    },
   },
 };
 
@@ -19,7 +35,13 @@ const context: any = {
   j: '2',
 };
 
+class MockDatasourceService implements Partial<DatasourceService> {
+  resolve = jest.fn();
+}
+
 describe('TableColumnDynamicComponent', () => {
+  let datasource: MockDatasourceService;
+
   const { testModule, createComponent } = getTestingForComponent(
     TableColumnDynamicComponent,
     {
@@ -32,14 +54,47 @@ describe('TableColumnDynamicComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      providers: [
+        MockDatasourceService,
+        {
+          provide: DatasourceService,
+          useExisting: MockDatasourceService,
+        },
+      ],
+    });
+    datasource = TestBed.inject(MockDatasourceService);
   });
 
-  it('should render <spy-table-column-renderer> component', async () => {
+  it('should render <spy-table-column-renderer> component with config from datasource', async () => {
+    datasource.resolve.mockReturnValue(of(configMock.datasource.data));
+
     const host = await createComponent({ config: configMock, context }, true);
+    const updatedConfigMock = {
+      ...configMock.datasource.data,
+      id: 'dynamic',
+      title: 'dynamic',
+    };
     const tableElem = host.queryCss('spy-table-column-renderer');
 
     expect(tableElem).toBeTruthy();
+    expect(tableElem?.properties.config).toEqual(updatedConfigMock);
+  });
+
+  it('should render `nz-spin` if `isColConfigLoading$` signal invokes', async () => {
+    datasource.resolve.mockReturnValue(of());
+    const host = await createComponent({ config: configMock, context }, true);
+    let spinElem = host.queryCss('nz-spin')!;
+
+    expect(spinElem).toBeTruthy();
+
+    datasource.resolve.mockReturnValue(of(configMock.datasource.data));
+    host.setInputs({ config: { ...configMock }, context });
+    host.detectChanges();
+    spinElem = host.queryCss('nz-spin')!;
+
+    expect(spinElem).toBeFalsy();
   });
 
   it('should bound `colData` property to the `data` input of <spy-table-column-renderer> component', async () => {

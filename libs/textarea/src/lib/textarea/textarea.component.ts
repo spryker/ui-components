@@ -16,13 +16,13 @@ import { ToBoolean, ToJson } from '@spryker/utils';
   encapsulation: ViewEncapsulation.None,
 })
 export class TextareaComponent {
-  @Input() name = '';
+  @Input() name?: string;
   @Input() value = '';
   @Input() @ToBoolean() disabled = false;
-  @Input() placeholder = '';
+  @Input() placeholder?: string;
   @Input() rows = 4;
   @Input() cols = 4;
   @Input() @ToJson() attrs: Record<string, string> = {};
-  @Input() spyId = '';
+  @Input() spyId?: string;
   @Output() valueChange = new EventEmitter<any>();
 }

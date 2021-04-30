@@ -4,11 +4,11 @@
   [rows]="rows"
   [cols]="cols"
   [value]="value"
-  [placeholder]="placeholder"
+  [attr.placeholder]="placeholder"
   [attr.name]="name"
   [spyApplyAttrs]="attrs"
   [disabled]="disabled"
-  [id]="spyId"
+  [attr.id]="spyId"
   (input)="valueChange.emit($event)"
   class="spy-textarea__textfield"
 ></textarea>

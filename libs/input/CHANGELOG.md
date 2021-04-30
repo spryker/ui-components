@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.6 (2021-04-30)
+
+
+### Bug Fixes
+
+* **input:** fix test ([ec68731](https://github.com/spryker/ui-components/commit/ec687319e98c9f01f1d0cc6dfcc835de848aa436))
+* **input:** hide empty id, name and placeholder attributes ([b1c5061](https://github.com/spryker/ui-components/commit/b1c5061c7401c94da6b05c909d5968681db93cbc))
+
+
+
+
+
 # [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.0-next.4...@spryker/input@0.2.0-next.5) (2021-02-01)
 
 

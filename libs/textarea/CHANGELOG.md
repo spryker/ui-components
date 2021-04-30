@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.4 (2021-04-30)
+
+
+### Bug Fixes
+
+* **textarea:** hide empty id, name and placeholder attributes ([7fa3eac](https://github.com/spryker/ui-components/commit/7fa3eac9d167ad92c6e87478e277937a6ed3d88b))
+
+
+
+
+
 # [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/textarea@0.2.0-next.2...@spryker/textarea@0.2.0-next.3) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/textarea

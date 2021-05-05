@@ -91,7 +91,7 @@ describe('TableColumnDynamicComponent', () => {
 
     expect(spinElem).toBeTruthy();
 
-    datasourceData$.next(of(configMock));
+    datasourceData$.next(configMock);
 
     host.detectChanges();
     spinElem = host.queryCss('nz-spin')!;

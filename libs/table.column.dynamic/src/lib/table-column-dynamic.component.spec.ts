@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
 import { DatasourceService } from '@spryker/datasource';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 
 // tslint:disable: no-non-null-assertion
@@ -83,14 +83,16 @@ describe('TableColumnDynamicComponent', () => {
   });
 
   it('should render `nz-spin` if `isColConfigLoading$` signal invokes', async () => {
-    datasource.resolve.mockReturnValue(of());
+    const datasourceData$ = new Subject();
+
+    datasource.resolve.mockReturnValue(datasourceData$);
     const host = await createComponent({ config: configMock, context }, true);
     let spinElem = host.queryCss('nz-spin')!;
 
     expect(spinElem).toBeTruthy();
 
-    datasource.resolve.mockReturnValue(of(configMock.datasource.data));
-    host.setInputs({ config: { ...configMock }, context });
+    datasourceData$.next(of(configMock));
+
     host.detectChanges();
     spinElem = host.queryCss('nz-spin')!;
 

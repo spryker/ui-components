@@ -13,7 +13,7 @@ import {
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
-} from "@angular/core";
+} from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import {
   IconArrowDownModule,

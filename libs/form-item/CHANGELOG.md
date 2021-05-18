@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.6 (2021-05-18)
+
+
+### Bug Fixes
+
+* **form-item:** fix current validation status ([83e10f1](https://github.com/spryker/ui-components/commit/83e10f1e05796cfc16aa1d429c9d6a2b2984b8fe))
+
+
+
+
+
 # [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.2.0-next.4...@spryker/form-item@0.2.0-next.5) (2020-11-30)
 
 **Note:** Version bump only for package @spryker/form-item

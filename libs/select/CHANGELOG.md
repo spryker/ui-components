@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.12...@spryker/select@0.2.0-next.13) (2021-05-18)
+
+
+### Features
+
+* **select:** adjust placeholder input to have TemplateRef ([22a0952](https://github.com/spryker/ui-components/commit/22a09527a2f088f8a0b2958c3e947d50fc902e58))
+
+
+
+
+
 # [0.2.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.11...@spryker/select@0.2.0-next.12) (2021-04-22)
 
 

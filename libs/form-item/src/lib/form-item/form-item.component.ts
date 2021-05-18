@@ -51,6 +51,10 @@ export class FormItemComponent implements OnInit, OnChanges {
 
     if (this.hint) {
       this.currentValidationStatus = 'validating';
+
+      return;
     }
+
+    this.currentValidationStatus = '';
   }
 }

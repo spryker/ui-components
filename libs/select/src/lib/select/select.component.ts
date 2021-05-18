@@ -10,9 +10,10 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  TemplateRef,
   ViewChild,
   ViewEncapsulation,
-} from '@angular/core';
+} from "@angular/core";
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import {
   IconArrowDownModule,
@@ -53,7 +54,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   @Input() @ToBoolean() search = false;
   @Input() @ToBoolean() disabled = false;
   @Input() @ToBoolean() multiple = false;
-  @Input() placeholder = '';
+  @Input() placeholder: string | TemplateRef<void> = '';
   @Input() @ToBoolean() showSelectAll = false;
   @Input() selectAllTitle = '';
   @Input() name = '';

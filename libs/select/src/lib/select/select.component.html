@@ -14,7 +14,9 @@
   [nzClearIcon]="clearIconTpl"
   [nzMaxTagCount]="0"
   [nzMaxTagPlaceholder]="tagPlaceholder"
+  [nzDropdownClassName]="'ant-select--dropdown'"
   [class.ant-select--not-searchable]="!search"
+  class="ant-select--custom"
 >
   <nz-option
     *ngIf="showSelectAll"

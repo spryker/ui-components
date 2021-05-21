@@ -28,7 +28,7 @@ import {
 } from '@spryker/datasource.inline';
 import {
   TableColumnAutocompleteComponent,
-  TableColumnAutocompleteModule
+  TableColumnAutocompleteModule,
 } from '@spryker/table.column.autocomplete';
 import { TableDatasourceDependableService } from '@spryker/table.feature.editable';
 import { NotificationModule } from '@spryker/notification';
@@ -231,7 +231,12 @@ export const withDependentColumns = (): IStory => ({
     providers: [
       {
         provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnAutocompleteComponent, TableColumnSelectComponent, TableColumnDynamicComponent],
+        useValue: [
+          LayoutFlatHostComponent,
+          TableColumnAutocompleteComponent,
+          TableColumnSelectComponent,
+          TableColumnDynamicComponent,
+        ],
         multi: true,
       },
     ],
@@ -269,29 +274,29 @@ export const withDependentColumns = (): IStory => ({
               options: [
                 {
                   title: 'series',
-                  value: 'series'
+                  value: 'series',
                 },
                 {
                   title: 'width',
-                  value: 'width'
+                  value: 'width',
                 },
                 {
                   title: 'white_balance',
-                  value: 'white_balance'
+                  value: 'white_balance',
                 },
                 {
                   title: 'weight',
-                  value: 'weight'
+                  value: 'weight',
                 },
                 {
                   title: 'usb_port',
-                  value: 'usb_port'
+                  value: 'usb_port',
                 },
                 {
                   title: 'touchscreen',
-                  value: 'touchscreen'
+                  value: 'touchscreen',
                 },
-              ]
+              ],
             },
           },
           {
@@ -304,7 +309,7 @@ export const withDependentColumns = (): IStory => ({
                 datasource: {
                   type: 'inline',
                   data: {
-                    type: 'select',
+                    type: 'autocomplete',
                     typeOptions: {
                       options: [
                         {
@@ -320,8 +325,8 @@ export const withDependentColumns = (): IStory => ({
                           title: 'Dependable Option 3',
                         },
                       ],
-                    }
-                  }
+                    },
+                  },
                 },
               },
             },
@@ -352,8 +357,8 @@ export const withDependentColumns = (): IStory => ({
                           title: 'Dependable Option 3',
                         },
                       ],
-                    }
-                  }
+                    },
+                  },
                 },
               },
             },

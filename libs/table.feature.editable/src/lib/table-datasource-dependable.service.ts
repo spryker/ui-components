@@ -44,6 +44,8 @@ export class TableDatasourceDependableService implements Datasource<TableData> {
           ? editableFeatureComponent.getShiftedIndex(localContext.i)
           : localContext.i;
 
+        console.log(config, context);
+
         return editableService
           .getUpdatesFor(config.dependsOn, index)
           .pipe(

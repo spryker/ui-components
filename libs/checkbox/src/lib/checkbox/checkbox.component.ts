@@ -16,7 +16,7 @@ import { ToJson, ToBoolean } from '@spryker/utils';
   encapsulation: ViewEncapsulation.None,
 })
 export class CheckboxComponent {
-  @Input() spyId = '';
+  @Input() spyId?: string;
   @Input() @ToBoolean() checked = false;
   @Input() @ToBoolean() disabled = false;
   @Input() @ToBoolean() indeterminate = false;

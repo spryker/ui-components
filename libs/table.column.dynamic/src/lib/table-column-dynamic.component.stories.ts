@@ -1,19 +1,26 @@
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { IStory } from '@storybook/angular';
+import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  ANALYZE_FOR_ENTRY_COMPONENTS,
+  Injectable,
+  Injector,
+} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { Datasource, DatasourceModule } from '@spryker/datasource';
 import {
-  generateMockTableDataFor,
-  MockTableDatasourceConfig,
-  MockTableDatasourceService,
-  TableDataMockGenerator,
-} from '@spryker/table/testing';
-import {
-  ContextModule,
-  DefaultContextSerializationModule,
-} from '@spryker/utils';
+  DatasourceInlineModule,
+  DatasourceInlineService,
+} from '@spryker/datasource.inline';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { NotificationModule } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
-import { DatasourceModule, Datasource } from '@spryker/datasource';
+import {
+  TableColumnAutocompleteComponent,
+  TableColumnAutocompleteModule,
+} from '@spryker/table.column.autocomplete';
 import {
   TableColumnSelectComponent,
   TableColumnSelectModule,
@@ -22,34 +29,24 @@ import {
   TableColumnTextComponent,
   TableColumnTextModule,
 } from '@spryker/table.column.text';
-import {
-  DatasourceInlineModule,
-  DatasourceInlineService,
-} from '@spryker/datasource.inline';
-import { DatasourceHttpService } from '@spryker/datasource.http';
-import {
-  TableColumnAutocompleteComponent,
-  TableColumnAutocompleteModule,
-} from '@spryker/table.column.autocomplete';
 import { TableDatasourceDependableService } from '@spryker/table.feature.editable';
-import { NotificationModule } from '@spryker/notification';
-import { LocaleModule } from '@spryker/locale';
-import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import {
+  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
+import {
+  ContextModule,
+  ContextService,
+  DefaultContextSerializationModule,
+} from '@spryker/utils';
+import { IStory } from '@storybook/angular';
+import { Observable, of, timer } from 'rxjs';
+import { switchMapTo } from 'rxjs/operators';
+
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 import { TableColumnDynamicModule } from './table-column-dynamic.module';
-import { of, Observable, timer } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Inject, Injectable, Injector } from '@angular/core';
-import { CacheService } from '@spryker/cache';
-import { DataSerializerService } from '@spryker/data-serializer';
-import {
-  ContextService,
-  DiEncodingCodecToken,
-  InjectionTokenType,
-} from '@spryker/utils';
-import { switchMap, switchMapTo } from 'rxjs/operators';
 
 export default {
   title: 'TableColumnDynamicComponent',

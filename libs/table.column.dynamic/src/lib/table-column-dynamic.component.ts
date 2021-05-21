@@ -1,28 +1,28 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
+  Component,
   Injectable,
-  OnChanges,
-  Input,
   Injector,
+  Input,
+  OnChanges,
+  ViewEncapsulation,
 } from '@angular/core';
-import {
-  TableColumnComponent,
-  TableColumnTypeComponent,
-  ColumnTypeOption,
-  ColumnTypeOptionsType,
-  TableColumnContext,
-  TableDataRow,
-} from '@spryker/table';
 import {
   DatasourceConfig,
   DatasourceService,
   DatasourceType,
 } from '@spryker/datasource';
+import {
+  ColumnTypeOption,
+  ColumnTypeOptionsType,
+  TableColumnComponent,
+  TableColumnContext,
+  TableColumnTypeComponent,
+  TableDataRow,
+} from '@spryker/table';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
 import { merge, of, ReplaySubject } from 'rxjs';
-import { map, mapTo, shareReplay, switchMap, tap, delay } from 'rxjs/operators';
+import { delay, map, mapTo, shareReplay, switchMap } from 'rxjs/operators';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {

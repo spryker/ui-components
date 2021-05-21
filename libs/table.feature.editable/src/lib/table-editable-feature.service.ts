@@ -33,21 +33,21 @@ export class TableEditableService implements OnDestroy {
     this.reset();
   }
 
-  reset() {
+  reset(): void {
     for (let i = this.model.length - 1; i >= 0; i--) {
       this.removeRow(i);
     }
   }
 
-  addRow(rowModel: Record<string, unknown>) {
+  addRow(rowModel: Record<string, unknown>): void {
     const rowIndex = this.model.push(rowModel);
 
     this.modelUpdates$.next({ rowAddedAt: rowIndex });
   }
 
-  updateModel(value: unknown, colId: string, rowIdx: number) {
+  updateModel(value: unknown, colId: string, rowIdx: number): void {
     this.model[rowIdx][colId] = value;
-    this.modelUpdates$.next({ rowAddedAt: rowIdx });
+    this.modelUpdates$.next({ rowUpdatedAt: rowIdx });
   }
 
   updateValue(value: string, column: TableEditableColumn): void {
@@ -56,7 +56,7 @@ export class TableEditableService implements OnDestroy {
     );
   }
 
-  removeRow(rowIdx: number) {
+  removeRow(rowIdx: number): void {
     if (rowIdx >= this.model.length) {
       return;
     }

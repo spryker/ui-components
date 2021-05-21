@@ -22,7 +22,7 @@ import {
 } from '@spryker/datasource';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
 import { merge, of, ReplaySubject } from 'rxjs';
-import { map, mapTo, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { map, mapTo, shareReplay, switchMap, tap, delay } from 'rxjs/operators';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
@@ -63,23 +63,28 @@ export class TableColumnDynamicComponent
 
   colData?: TableDataRow;
 
-  private colKey = 'dynamic';
   private updateColConfig$ = new ReplaySubject<void>(1);
 
   colConfig$ = this.updateColConfig$.pipe(
     switchMap(() => {
       if (!this.config || !this.context) {
-        return of({});
+        return of(void 0);
       }
 
-      return this.datasourceService.resolve<TableColumnDynamicConfig>(
-        this.injector,
-        this.config.datasource,
-        this.context,
-      );
+      return this.datasourceService
+        .resolve<TableColumnDynamicConfig>(
+          this.injector,
+          this.config.datasource,
+          this.context,
+        )
+        .pipe(delay(0));
     }),
     map((colConfig) => {
-      const config = { ...colConfig, id: this.colKey, title: this.colKey };
+      const config = {
+        ...colConfig,
+        id: this.context?.config.id,
+        title: this.context?.config.title,
+      };
       return this.interpolateConfigReq(config, this.context);
     }),
     shareReplay({ bufferSize: 1, refCount: true }),
@@ -87,7 +92,7 @@ export class TableColumnDynamicComponent
   isColConfigLoading$ = merge(
     this.updateColConfig$.pipe(mapTo(true)),
     this.colConfig$.pipe(mapTo(false)),
-  );
+  ).pipe(shareReplay({ bufferSize: 1, refCount: true }));
 
   constructor(
     private injector: Injector,
@@ -105,8 +110,16 @@ export class TableColumnDynamicComponent
     }
   }
 
-  private updateData() {
-    this.colData = { [this.colKey]: this.context?.value };
+  private updateData(): void {
+    const colId = this.context?.config.id;
+
+    if (!colId) {
+      this.colData = {};
+
+      return;
+    }
+
+    this.colData = { [colId]: this.context?.value };
   }
 
   private interpolateConfigReq<T>(config: T, context: any): T {

@@ -13,7 +13,7 @@ import {
   DefaultContextSerializationModule,
 } from '@spryker/utils';
 import { TableModule } from '@spryker/table';
-import { DatasourceModule } from '@spryker/datasource';
+import { DatasourceModule, Datasource } from '@spryker/datasource';
 import {
   TableColumnSelectComponent,
   TableColumnSelectModule,
@@ -26,6 +26,7 @@ import {
   DatasourceInlineModule,
   DatasourceInlineService,
 } from '@spryker/datasource.inline';
+import { DatasourceHttpService } from '@spryker/datasource.http';
 import {
   TableColumnAutocompleteComponent,
   TableColumnAutocompleteModule,
@@ -38,10 +39,46 @@ import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 import { TableColumnDynamicModule } from './table-column-dynamic.module';
+import { of, Observable, timer } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Inject, Injectable, Injector } from '@angular/core';
+import { CacheService } from '@spryker/cache';
+import { DataSerializerService } from '@spryker/data-serializer';
+import {
+  ContextService,
+  DiEncodingCodecToken,
+  InjectionTokenType,
+} from '@spryker/utils';
+import { switchMap, switchMapTo } from 'rxjs/operators';
 
 export default {
   title: 'TableColumnDynamicComponent',
 };
+
+@Injectable({
+  providedIn: 'root',
+})
+class MockDatasourceHttpService implements Datasource {
+  constructor(
+    private http: HttpClient,
+    private contextService: ContextService,
+  ) {}
+
+  resolve(
+    injector: Injector,
+    config: { type: 'http'; url: string },
+    context?: unknown,
+  ): Observable<unknown> {
+    config = { ...config };
+    config.url = this.contextService.interpolate(config.url, context as any);
+
+    if (!config.url) {
+      return of(void 0);
+    }
+
+    return timer(2000).pipe(switchMapTo(this.http.request('GET', config.url)));
+  }
+}
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `${i}`,
@@ -221,6 +258,7 @@ export const withDependentColumns = (): IStory => ({
         'mock-data': MockTableDatasourceService,
         inline: DatasourceInlineService,
         dependable: TableDatasourceDependableService,
+        http: MockDatasourceHttpService,
       }),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
@@ -280,22 +318,6 @@ export const withDependentColumns = (): IStory => ({
                   title: 'width',
                   value: 'width',
                 },
-                {
-                  title: 'white_balance',
-                  value: 'white_balance',
-                },
-                {
-                  title: 'weight',
-                  value: 'weight',
-                },
-                {
-                  title: 'usb_port',
-                  value: 'usb_port',
-                },
-                {
-                  title: 'touchscreen',
-                  value: 'touchscreen',
-                },
               ],
             },
           },
@@ -307,26 +329,8 @@ export const withDependentColumns = (): IStory => ({
                 type: 'dependable',
                 dependsOn: 'col1',
                 datasource: {
-                  type: 'inline',
-                  data: {
-                    type: 'autocomplete',
-                    typeOptions: {
-                      options: [
-                        {
-                          value: 'Dependable Option 1',
-                          title: 'Dependable Option 1',
-                        },
-                        {
-                          value: 'Dependable Option 2',
-                          title: 'Dependable Option 2',
-                        },
-                        {
-                          value: 'Dependable Option 3',
-                          title: 'Dependable Option 3',
-                        },
-                      ],
-                    },
-                  },
+                  type: 'http',
+                  url: '${row.col1}',
                 },
               },
             },
@@ -339,26 +343,8 @@ export const withDependentColumns = (): IStory => ({
                 type: 'dependable',
                 dependsOn: 'col1',
                 datasource: {
-                  type: 'inline',
-                  data: {
-                    type: 'select',
-                    typeOptions: {
-                      options: [
-                        {
-                          value: 'Dependable Option 1',
-                          title: 'Dependable Option 1',
-                        },
-                        {
-                          value: 'Dependable Option 2',
-                          title: 'Dependable Option 2',
-                        },
-                        {
-                          value: 'Dependable Option 3',
-                          title: 'Dependable Option 3',
-                        },
-                      ],
-                    },
-                  },
+                  type: 'http',
+                  url: '${row.col1}',
                 },
               },
             },
@@ -379,6 +365,50 @@ export const withDependentColumns = (): IStory => ({
       {
         url: '/update-cell',
         data: {},
+      },
+      {
+        url: 'series',
+        data: {
+          type: 'autocomplete',
+          typeOptions: {
+            options: [
+              {
+                value: 'Dependable Option 1',
+                title: 'Dependable Option 1',
+              },
+              {
+                value: 'Dependable Option 2',
+                title: 'Dependable Option 2',
+              },
+              {
+                value: 'Dependable Option 3',
+                title: 'Dependable Option 3',
+              },
+            ],
+          },
+        },
+      },
+      {
+        url: 'width',
+        data: {
+          type: 'select',
+          typeOptions: {
+            options: [
+              {
+                value: 'Dependable Option 1',
+                title: 'Dependable Option 1',
+              },
+              {
+                value: 'Dependable Option 2',
+                title: 'Dependable Option 2',
+              },
+              {
+                value: 'Dependable Option 3',
+                title: 'Dependable Option 3',
+              },
+            ],
+          },
+        },
       },
     ]),
   },

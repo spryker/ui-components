@@ -80,7 +80,7 @@ describe('CheckboxComponent', () => {
       component.spyId = testId;
       fixture.detectChanges();
 
-      expect(inputElem.properties.id).toBe(testId);
+      expect(inputElem.attributes.id).toBe(testId);
     });
   });
 

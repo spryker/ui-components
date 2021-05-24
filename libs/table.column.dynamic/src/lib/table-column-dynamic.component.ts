@@ -82,8 +82,8 @@ export class TableColumnDynamicComponent
     map((colConfig) => {
       const config = {
         ...colConfig,
-        id: this.context?.config.id,
-        title: this.context?.config.title,
+        id: this.context?.config?.id,
+        title: this.context?.config?.title,
       };
       return this.interpolateConfigReq(config, this.context);
     }),
@@ -111,7 +111,7 @@ export class TableColumnDynamicComponent
   }
 
   private updateData(): void {
-    const colId = this.context?.config.id;
+    const colId = this.context?.config?.id;
 
     if (!colId) {
       this.colData = {};

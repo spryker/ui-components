@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.4 (2021-05-24)
+
+
+### Bug Fixes
+
+* **checkbox:** hide empty id attribute ([0d80a38](https://github.com/spryker/ui-components/commit/0d80a38a50948fdb6bc170d0fc62a6d9395356d7))
+
+
+
+
+
 # [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.2.0-next.2...@spryker/checkbox@0.2.0-next.3) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/checkbox

@@ -1,18 +1,26 @@
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { IStory } from '@storybook/angular';
+import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  ANALYZE_FOR_ENTRY_COMPONENTS,
+  Injectable,
+  Injector,
+} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { Datasource, DatasourceModule } from '@spryker/datasource';
 import {
-  MockTableDatasourceConfig,
-  MockTableDatasourceService,
-  TableDataMockGenerator,
-} from '@spryker/table/testing';
-import {
-  ContextModule,
-  DefaultContextSerializationModule,
-} from '@spryker/utils';
+  DatasourceInlineModule,
+  DatasourceInlineService,
+} from '@spryker/datasource.inline';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { NotificationModule } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
-import { DatasourceModule } from '@spryker/datasource';
+import {
+  TableColumnAutocompleteComponent,
+  TableColumnAutocompleteModule,
+} from '@spryker/table.column.autocomplete';
 import {
   TableColumnSelectComponent,
   TableColumnSelectModule,
@@ -21,14 +29,20 @@ import {
   TableColumnTextComponent,
   TableColumnTextModule,
 } from '@spryker/table.column.text';
+import { TableDatasourceDependableService } from '@spryker/table.feature.editable';
+import { DatasourceHttpService } from '@spryker/datasource.http';
 import {
-  DatasourceInlineModule,
-  DatasourceInlineService,
-} from '@spryker/datasource.inline';
-import { NotificationModule } from '@spryker/notification';
-import { LocaleModule } from '@spryker/locale';
-import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
+  generateMockTableDataFor,
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
+import {
+  ContextModule,
+  DefaultContextSerializationModule,
+} from '@spryker/utils';
+import { IStory } from '@storybook/angular';
+
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 import { TableColumnDynamicModule } from './table-column-dynamic.module';
 
@@ -186,5 +200,185 @@ export const primary = (): IStory => ({
         },
       },
     },
+  },
+});
+
+export const withDependentColumns = (): IStory => ({
+  moduleMetadata: {
+    imports: [
+      HttpClientTestingModule,
+      ContextModule,
+      MockHttpModule,
+      TableColumnAutocompleteModule,
+      TableColumnSelectModule,
+      TableColumnDynamicModule,
+      TableModule.forRoot(),
+      TableModule.withFeatures({
+        editable: () =>
+          import('@spryker/table.feature.editable').then(
+            (m) => m.TableEditableFeatureModule,
+          ),
+      }),
+      TableModule.withColumnComponents({
+        autocomplete: TableColumnAutocompleteComponent,
+        select: TableColumnSelectComponent,
+        dynamic: TableColumnDynamicComponent,
+      } as any),
+      DatasourceModule.withDatasources({
+        'mock-data': MockTableDatasourceService,
+        dependable: TableDatasourceDependableService,
+        http: DatasourceHttpService,
+      }),
+      DefaultContextSerializationModule,
+      BrowserAnimationsModule,
+      NotificationModule.forRoot(),
+      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+      EnLocaleModule,
+    ],
+    providers: [
+      {
+        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+        useValue: [
+          LayoutFlatHostComponent,
+          TableColumnAutocompleteComponent,
+          TableColumnSelectComponent,
+          TableColumnDynamicComponent,
+        ],
+        multi: true,
+      },
+    ],
+  },
+  template: `
+    <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
+  `,
+  props: {
+    config: {
+      dataSource: {
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as MockTableDatasourceConfig,
+      columns: [
+        {
+          id: 'col1',
+          sortable: true,
+          title: 'Column #1',
+        },
+        {
+          id: 'col2',
+          title: 'Column #2',
+        },
+        {
+          id: 'col3',
+          title: 'Column #3',
+        },
+      ],
+      editable: {
+        columns: [
+          {
+            id: 'col1',
+            type: 'select',
+            typeOptions: {
+              options: [
+                {
+                  title: 'series',
+                  value: 'series',
+                },
+                {
+                  title: 'width',
+                  value: 'width',
+                },
+              ],
+            },
+          },
+          {
+            id: 'col2',
+            type: 'dynamic',
+            typeOptions: {
+              datasource: {
+                type: 'dependable',
+                dependsOn: 'col1',
+                datasource: {
+                  type: 'http',
+                  url: '${row.col1}',
+                },
+              },
+            },
+          },
+          {
+            id: 'col3',
+            type: 'dynamic',
+            typeOptions: {
+              datasource: {
+                type: 'dependable',
+                dependsOn: 'col1',
+                datasource: {
+                  type: 'http',
+                  url: '${row.col1}',
+                },
+              },
+            },
+          },
+        ],
+        create: {
+          addButton: {},
+          cancelButton: {},
+        },
+        update: { url: '/update-cell' },
+      },
+    },
+    mockHttp: setMockHttp([
+      {
+        url: '/data-request',
+        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
+      },
+      {
+        url: '/update-cell',
+        data: {},
+      },
+      {
+        url: 'series',
+        data: {
+          type: 'autocomplete',
+          typeOptions: {
+            options: [
+              {
+                value: 'Dependable Option 1',
+                title: 'Dependable Option 1',
+              },
+              {
+                value: 'Dependable Option 2',
+                title: 'Dependable Option 2',
+              },
+              {
+                value: 'Dependable Option 3',
+                title: 'Dependable Option 3',
+              },
+            ],
+          },
+        },
+      },
+      {
+        url: 'width',
+        data: {
+          type: 'select',
+          typeOptions: {
+            options: [
+              {
+                value: 'Dependable Option 1',
+                title: 'Dependable Option 1',
+              },
+              {
+                value: 'Dependable Option 2',
+                title: 'Dependable Option 2',
+              },
+              {
+                value: 'Dependable Option 3',
+                title: 'Dependable Option 3',
+              },
+            ],
+          },
+        },
+      },
+    ]),
   },
 });

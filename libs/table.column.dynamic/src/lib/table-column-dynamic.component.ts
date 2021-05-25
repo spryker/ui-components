@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Injectable,
   Injector,
@@ -21,8 +22,8 @@ import {
   TableDataRow,
 } from '@spryker/table';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
-import { merge, of, ReplaySubject } from 'rxjs';
-import { delay, map, mapTo, shareReplay, switchMap } from 'rxjs/operators';
+import { merge, of, ReplaySubject, Subject } from 'rxjs';
+import { delay, map, mapTo, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 declare module '@spryker/table' {
   interface TableColumnTypeRegistry {
@@ -92,12 +93,16 @@ export class TableColumnDynamicComponent
   isColConfigLoading$ = merge(
     this.updateColConfig$.pipe(mapTo(true)),
     this.colConfig$.pipe(mapTo(false)),
-  ).pipe(shareReplay({ bufferSize: 1, refCount: true }));
+  ).pipe(
+    tap(() => this.cdr.markForCheck()),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
 
   constructor(
     private injector: Injector,
     private datasourceService: DatasourceService,
     private contextService: ContextService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnChanges(changes: TypedSimpleChanges<TableColumnComponent>): void {

@@ -30,6 +30,7 @@ import {
   TableColumnTextModule,
 } from '@spryker/table.column.text';
 import { TableDatasourceDependableService } from '@spryker/table.feature.editable';
+import { DatasourceHttpService } from '@spryker/datasource.http';
 import {
   generateMockTableDataFor,
   MockTableDatasourceConfig,
@@ -38,12 +39,9 @@ import {
 } from '@spryker/table/testing';
 import {
   ContextModule,
-  ContextService,
   DefaultContextSerializationModule,
 } from '@spryker/utils';
 import { IStory } from '@storybook/angular';
-import { Observable, of, timer } from 'rxjs';
-import { switchMapTo } from 'rxjs/operators';
 
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 import { TableColumnDynamicModule } from './table-column-dynamic.module';
@@ -51,31 +49,6 @@ import { TableColumnDynamicModule } from './table-column-dynamic.module';
 export default {
   title: 'TableColumnDynamicComponent',
 };
-
-@Injectable({
-  providedIn: 'root',
-})
-class MockDatasourceHttpService implements Datasource {
-  constructor(
-    private http: HttpClient,
-    private contextService: ContextService,
-  ) {}
-
-  resolve(
-    injector: Injector,
-    config: { type: 'http'; url: string },
-    context?: unknown,
-  ): Observable<unknown> {
-    config = { ...config };
-    config.url = this.contextService.interpolate(config.url, context as any);
-
-    if (!config.url) {
-      return of(void 0);
-    }
-
-    return timer(2000).pipe(switchMapTo(this.http.request('GET', config.url)));
-  }
-}
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `${i}`,
@@ -253,9 +226,8 @@ export const withDependentColumns = (): IStory => ({
       } as any),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
-        inline: DatasourceInlineService,
         dependable: TableDatasourceDependableService,
-        http: MockDatasourceHttpService,
+        http: DatasourceHttpService,
       }),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,

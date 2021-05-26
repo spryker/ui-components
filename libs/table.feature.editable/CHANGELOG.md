@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.9...@spryker/table.feature.editable@0.1.0-next.10) (2021-05-26)
+
+
+### Bug Fixes
+
+* fix dynamic column with editable value changing ([c9d6c13](https://github.com/spryker/ui-components/commit/c9d6c134b2de875d29edef030d7379be589cedfc))
+* **select:** fix styles ([6587aaa](https://github.com/spryker/ui-components/commit/6587aaa211bdf99362f63e677e4724d454d25343))
+
+
+
+
+
 # [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.8...@spryker/table.feature.editable@0.1.0-next.9) (2021-04-22)
 
 

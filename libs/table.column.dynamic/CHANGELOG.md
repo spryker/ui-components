@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.dynamic@0.1.0-next.1...@spryker/table.column.dynamic@0.1.0-next.2) (2021-05-26)
+
+
+### Bug Fixes
+
+* **table.column.dynamic:** fix loader ([319443f](https://github.com/spryker/ui-components/commit/319443f310fa6d58a35485865cf5cfa2fa0a71f4))
+* fix dynamic column with editable value changing ([c9d6c13](https://github.com/spryker/ui-components/commit/c9d6c134b2de875d29edef030d7379be589cedfc))
+* **select:** fix styles ([6587aaa](https://github.com/spryker/ui-components/commit/6587aaa211bdf99362f63e677e4724d454d25343))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.dynamic@0.1.0-next.0...@spryker/table.column.dynamic@0.1.0-next.1) (2021-05-05)
 
 **Note:** Version bump only for package @spryker/table.column.dynamic

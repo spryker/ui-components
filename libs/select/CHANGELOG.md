@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.13...@spryker/select@0.2.0-next.14) (2021-05-26)
+
+
+### Bug Fixes
+
+* **select:** fix styles ([6587aaa](https://github.com/spryker/ui-components/commit/6587aaa211bdf99362f63e677e4724d454d25343))
+
+
+
+
+
 # [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.0-next.12...@spryker/select@0.2.0-next.13) (2021-05-18)
 
 

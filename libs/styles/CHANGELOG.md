@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.37](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.36...@spryker/styles@0.2.0-next.37) (2021-05-26)
+
+
+### Bug Fixes
+
+* **table.column.dynamic:** fix loader ([319443f](https://github.com/spryker/ui-components/commit/319443f310fa6d58a35485865cf5cfa2fa0a71f4))
+
+
+
+
+
 # [0.2.0-next.36](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.0-next.35...@spryker/styles@0.2.0-next.36) (2021-05-05)
 
 **Note:** Version bump only for package @spryker/styles

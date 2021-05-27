@@ -205,7 +205,9 @@ export class TableEditableFeatureComponent
     tap(({ data }) => {
       this.tableEditableService.reset();
       data.forEach((row) => this.tableEditableService.addRow(row));
-      this.syncInput.forEach((row) => this.tableEditableService.addRow(row));
+      [...this.syncInput]
+        .reverse()
+        .forEach((row) => this.tableEditableService.addRow(row));
       this.tableDataLength = data.length;
     }),
   );

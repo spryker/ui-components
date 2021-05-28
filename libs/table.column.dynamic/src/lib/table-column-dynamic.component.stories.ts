@@ -1,13 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  ANALYZE_FOR_ENTRY_COMPONENTS,
-  Injectable,
-  Injector,
-} from '@angular/core';
+import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { Datasource, DatasourceModule } from '@spryker/datasource';
+import { DatasourceModule } from '@spryker/datasource';
 import {
   DatasourceInlineModule,
   DatasourceInlineService,
@@ -31,6 +26,10 @@ import {
 } from '@spryker/table.column.text';
 import { TableDatasourceDependableService } from '@spryker/table.feature.editable';
 import { DatasourceHttpService } from '@spryker/datasource.http';
+import {
+  TableColumnInputComponent,
+  TableColumnInputModule,
+} from '@spryker/table.column.input';
 import {
   generateMockTableDataFor,
   MockTableDatasourceConfig,
@@ -211,6 +210,7 @@ export const withDependentColumns = (): IStory => ({
       MockHttpModule,
       TableColumnAutocompleteModule,
       TableColumnSelectModule,
+      TableColumnInputModule,
       TableColumnDynamicModule,
       TableModule.forRoot(),
       TableModule.withFeatures({
@@ -222,6 +222,7 @@ export const withDependentColumns = (): IStory => ({
       TableModule.withColumnComponents({
         autocomplete: TableColumnAutocompleteComponent,
         select: TableColumnSelectComponent,
+        input: TableColumnInputComponent,
         dynamic: TableColumnDynamicComponent,
       } as any),
       DatasourceModule.withDatasources({
@@ -242,6 +243,7 @@ export const withDependentColumns = (): IStory => ({
           LayoutFlatHostComponent,
           TableColumnAutocompleteComponent,
           TableColumnSelectComponent,
+          TableColumnInputComponent,
           TableColumnDynamicComponent,
         ],
         multi: true,
@@ -287,6 +289,10 @@ export const withDependentColumns = (): IStory => ({
                   title: 'width',
                   value: 'width',
                 },
+                {
+                  title: 'color',
+                  value: 'color',
+                },
               ],
             },
           },
@@ -322,6 +328,46 @@ export const withDependentColumns = (): IStory => ({
         create: {
           addButton: {},
           cancelButton: {},
+          initialData: {
+            data: [
+              {
+                editableNewRow: true,
+                col1: 'series',
+                col2: 'Dependable Option 1',
+              },
+              {
+                editableNewRow: true,
+                col1: 'color',
+                col2: 'Dependable Option 1',
+              },
+              {
+                editableNewRow: true,
+                col1: 'series',
+                col2: 'Dependable Option 2',
+              },
+              {
+                editableNewRow: true,
+                col1: 'width',
+                col2: 'Dependable Option 3',
+              },
+            ],
+            errors: [
+              {
+                rowError: null,
+                columnErrors: [],
+              },
+              {
+                rowError:
+                  'The combination [color] - Black already exists. Please define another one',
+                columnErrors: [],
+              },
+              {
+                rowError:
+                  'The combination [brand] - Samsung already exists. Please define another one',
+                columnErrors: [],
+              },
+            ],
+          },
         },
         update: { url: '/update-cell' },
       },
@@ -338,7 +384,7 @@ export const withDependentColumns = (): IStory => ({
       {
         url: 'series',
         data: {
-          type: 'autocomplete',
+          type: 'input',
           typeOptions: {
             options: [
               {
@@ -361,6 +407,28 @@ export const withDependentColumns = (): IStory => ({
         url: 'width',
         data: {
           type: 'select',
+          typeOptions: {
+            options: [
+              {
+                value: 'Dependable Option 1',
+                title: 'Dependable Option 1',
+              },
+              {
+                value: 'Dependable Option 2',
+                title: 'Dependable Option 2',
+              },
+              {
+                value: 'Dependable Option 3',
+                title: 'Dependable Option 3',
+              },
+            ],
+          },
+        },
+      },
+      {
+        url: 'color',
+        data: {
+          type: 'autocomplete',
           typeOptions: {
             options: [
               {

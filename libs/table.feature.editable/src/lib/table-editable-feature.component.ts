@@ -342,7 +342,7 @@ export class TableEditableFeatureComponent
     this.stringifiedSyncInput = JSON.stringify(this.syncInput);
     this.updateRows$.next(this.syncInput);
     this.increaseRowErrorsIndex();
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   /**

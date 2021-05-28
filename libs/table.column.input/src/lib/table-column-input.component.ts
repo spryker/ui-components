@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Injectable,
-  Input,
+  Input, OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -24,6 +24,8 @@ declare module '@spryker/table' {
 export class TableColumnInputConfig {
   @ColumnTypeOption()
   type = 'text';
+  @ColumnTypeOption()
+  value?: any;
   @ColumnTypeOption()
   placeholder = '';
   @ColumnTypeOption()
@@ -53,20 +55,26 @@ export class TableColumnInputConfig {
 })
 @TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent
-  implements TableColumnComponent<TableColumnInputConfig> {
+  implements TableColumnComponent<TableColumnInputConfig>, OnInit {
   @Input() config?: TableColumnInputConfig;
   @Input() context?: TableColumnContext;
 
   constructor(private tableEditableService: TableEditableService) {}
 
-  valueChangeHandler(inputValue: string) {
+  ngOnInit(): void {
+    if (!this.context?.value && this.config?.value) {
+      this.valueChangeHandler(this.config?.value);
+    }
+  }
+
+  valueChangeHandler(inputValue: string): void {
     // tslint:disable-next-line: no-non-null-assertion
     this.context!.value = inputValue;
     // tslint:disable-next-line: no-non-null-assertion
     this.tableEditableService.updateValue(inputValue, this.context!.config);
   }
 
-  getErrorType(error: string | boolean) {
+  getErrorType(error: string | boolean): boolean {
     return typeof error === 'string';
   }
 }

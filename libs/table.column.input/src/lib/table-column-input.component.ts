@@ -2,7 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   Injectable,
-  Input, OnInit,
+  Input,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import {

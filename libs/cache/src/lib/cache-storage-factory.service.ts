@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { InMemoryPersistenceStrategy, PersistenceStrategyService } from '@spryker/persistence';
+import {
+  InMemoryPersistenceStrategy,
+  PersistenceStrategyService,
+} from '@spryker/persistence';
 
 import { CacheStorage, CacheStrategyConfig } from './types';
 import { CacheStoragePersistanceAdapter } from './сache-storage-persistance-adapter';

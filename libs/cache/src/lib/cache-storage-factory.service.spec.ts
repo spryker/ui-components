@@ -50,14 +50,14 @@ describe('CacheStorageFactoryService', () => {
   });
 
   it('method `create` should return instance of `CacheStoragePersistanceAdapter` that uses a `PersistenceStrategy`', () => {
-    const mockConfig = { type: 'test' };
+    const mockConfig = { storage: 'test', type: 'test' };
     const returnedClass = service.create(mockConfig);
     const expectedClass = new CacheStoragePersistanceAdapter(
       new MockPersistenceStrategyTypeService(),
     );
 
     expect(mockPersistenceStrategyService.select).toHaveBeenCalledWith(
-      mockConfig.type,
+      mockConfig.storage,
     );
     expect(
       returnedClass instanceof CacheStoragePersistanceAdapter,

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.11...@spryker/table.feature.editable@0.1.0-next.12) (2021-05-31)
+
+
+### Features
+
+* **table.column.input:** add value to config ([f6f2566](https://github.com/spryker/ui-components/commit/f6f256668073e8ac06dc3cea6438884ed01d3b93))
+* **table.column.select:** add value to config ([0087624](https://github.com/spryker/ui-components/commit/0087624fcdfb9437d723345ee14917e4a34bd816))
+
+
+
+
+
 # [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.10...@spryker/table.feature.editable@0.1.0-next.11) (2021-05-28)
 
 

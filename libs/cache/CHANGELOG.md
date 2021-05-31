@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/cache@0.1.0-next.2...@spryker/cache@0.1.0-next.3) (2021-05-31)
+
+
+### Bug Fixes
+
+* **cache:** fix storage factory to use config.storage in create() method ([a6cee43](https://github.com/spryker/ui-components/commit/a6cee43f444009242ba4367ae57d225503cd9b23))
+
+
+
+
+
 # [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/cache@0.1.0-next.1...@spryker/cache@0.1.0-next.2) (2021-03-11)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.0 (2021-05-31)
+
+
+### Features
+
+* **table:** fix table-column service name ([3f8e8c0](https://github.com/spryker/ui-components/commit/3f8e8c02a9a93b1bbb8288b8e37918fa049edb06))
+* **table.column.input:** add value to config ([f6f2566](https://github.com/spryker/ui-components/commit/f6f256668073e8ac06dc3cea6438884ed01d3b93))
+
+
+
+
+
 ## [0.0.2-next.3](https://github.com/spryker/ui-components/compare/@spryker/table.column.input@0.0.2-next.2...@spryker/table.column.input@0.0.2-next.3) (2020-12-01)
 
 **Note:** Version bump only for package @spryker/table.column.input

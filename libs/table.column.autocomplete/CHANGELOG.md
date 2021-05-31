@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.autocomplete@0.1.0-next.1...@spryker/table.column.autocomplete@0.1.0-next.2) (2021-05-31)
+
+
+### Features
+
+* **table.column.autocomplete:** add value to config ([c4a4556](https://github.com/spryker/ui-components/commit/c4a45566d6631092c36239fe8325667871168610))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.autocomplete@0.1.0-next.0...@spryker/table.column.autocomplete@0.1.0-next.1) (2021-04-22)
 
 

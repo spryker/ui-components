@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Component, Injectable, Input, NgModule } from '@angular/core';
+import { Component, Injectable, Input, NgModule, OnInit } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { NotificationModule } from '@spryker/notification';
@@ -57,7 +58,7 @@ const tableConfig = {
     columns: [
       { id: 'col1', type: 'edit' as any },
       { id: 'col2', type: 'edit' as any },
-      { id: 'col4', type: 'edit' as any },
+      { id: 'col4', type: 'edit' as any, typeOptions: { value: 'default' } },
     ] as TableColumns,
     create: {
       addButton: {},
@@ -90,7 +91,7 @@ const tableConfig = {
       },
     },
     update: {
-      url: 'test-url',
+      url: '/table-update-cell',
       saveButton: {},
       cancelButton: {},
       disableForCols: ['col2'],
@@ -101,6 +102,7 @@ const tableConfig = {
 @Injectable({ providedIn: 'root' })
 class EditColumnConfig {
   type = 'text';
+  value?: string;
 }
 
 @Component({
@@ -112,7 +114,7 @@ class EditColumnConfig {
         [type]="config?.type"
         [value]="context?.value"
         (input)="updateValue(input.value)"
-        [ngStyle]="{ border: '1px solid black' }"
+        [style.border]="'1px solid black'"
         #input
       />
       <div>
@@ -123,13 +125,22 @@ class EditColumnConfig {
   providers: [TableEditableService],
 })
 @TableColumnTypeComponent(EditColumnConfig)
-class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
+class EditColumnComponent
+  implements TableColumnComponent<EditColumnConfig>, OnInit {
   @Input() config?: EditColumnConfig;
   @Input() context?: TableColumnContext;
 
   constructor(private tableEditableService: TableEditableService) {}
 
-  updateValue(value: string) {
+  ngOnInit(): void {
+    if (!this.context?.value && this.config?.value) {
+      this.updateValue(this.config?.value);
+    }
+  }
+
+  updateValue(value: string): void {
+    // tslint:disable-next-line: no-non-null-assertion
+    this.context!.value = value;
     // tslint:disable-next-line: no-non-null-assertion
     this.tableEditableService.updateValue(value, this.context!.config);
   }
@@ -140,6 +151,7 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
     CommonModule,
     BrowserAnimationsModule,
     HttpClientTestingModule,
+    MockHttpModule,
     TableModule.forRoot(),
     DatasourceModule.withDatasources({
       'mock-data': MockTableDatasourceService,
@@ -152,7 +164,7 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig> {
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
     EnLocaleModule,
   ],
-  exports: [TableModule],
+  exports: [TableModule, MockHttpModule],
   declarations: [EditColumnComponent],
   entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
   providers: [
@@ -168,7 +180,7 @@ export function viaHtml(): IStory {
   return {
     moduleMetadata: { imports: [StoryModule, TableEditableFeatureModule] },
     template: `
-      <spy-table [config]="config">
+      <spy-table [config]="config" [mockHttp]="mockHttp">
         <spy-table-editable-feature spy-table-feature></spy-table-editable-feature>
       </spy-table>
     `,
@@ -192,10 +204,16 @@ export function viaConfig(): IStory {
       ],
     },
     template: `
-      <spy-table [config]="config"></spy-table>
+      <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
     `,
     props: {
       config: tableConfig,
+      mockHttp: setMockHttp([
+        {
+          url: '/table-update-cell',
+          data: {},
+        },
+      ]),
     },
   };
 }

@@ -3,6 +3,7 @@ import {
   Component,
   Injectable,
   Input,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { DataTransformerConfig } from '@spryker/data-transformer';
@@ -72,6 +73,8 @@ export class TableColumnSelectConfig {
   })
   options: (SelectOption | ColumnSelectOptionItem)[] = [];
   @ColumnTypeOption()
+  value?: SelectValue;
+  @ColumnTypeOption()
   multiple? = false;
   @ColumnTypeOption()
   search? = false;
@@ -107,20 +110,26 @@ export class TableColumnSelectConfig {
 })
 @TableColumnTypeComponent(TableColumnSelectConfig)
 export class TableColumnSelectComponent
-  implements TableColumnComponent<TableColumnSelectConfig> {
+  implements TableColumnComponent<TableColumnSelectConfig>, OnInit {
   @Input() config?: TableColumnSelectConfig;
   @Input() context?: TableColumnContext;
 
   constructor(private tableEditableService: TableEditableService) {}
 
-  valueChangeHandler(inputValue: string) {
+  ngOnInit(): void {
+    if (!this.context?.value && this.config?.value) {
+      this.valueChangeHandler(this.config?.value);
+    }
+  }
+
+  valueChangeHandler(inputValue: SelectValue): void {
     // tslint:disable-next-line: no-non-null-assertion
     this.context!.value = inputValue;
     // tslint:disable-next-line: no-non-null-assertion
     this.tableEditableService.updateValue(inputValue, this.context!.config);
   }
 
-  getErrorType(error: string | boolean) {
+  getErrorType(error: string | boolean): boolean {
     return typeof error === 'string';
   }
 }

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { PersistenceStrategyService } from '@spryker/persistence';
+import {
+  InMemoryPersistenceStrategy,
+  PersistenceStrategyService,
+} from '@spryker/persistence';
 
 import { CacheStorage, CacheStrategyConfig } from './types';
 import { CacheStoragePersistanceAdapter } from './сache-storage-persistance-adapter';
@@ -13,12 +16,15 @@ import { CacheStoragePersistanceAdapter } from './сache-storage-persistance-ada
 })
 export class CacheStorageFactoryService {
   private persistenceStrategies: Record<string, CacheStorage> = {};
-  constructor(private persistenceStrategyService: PersistenceStrategyService) {}
+  constructor(
+    private persistenceStrategyService: PersistenceStrategyService,
+    private inMemoryPersistenceStrategy: InMemoryPersistenceStrategy,
+  ) {}
 
   create(config: CacheStrategyConfig): CacheStorage {
-    const persistenceStrategy = this.persistenceStrategyService.select(
-      config.type,
-    );
+    const persistenceStrategy = config.storage
+      ? this.persistenceStrategyService.select(config.storage)
+      : this.inMemoryPersistenceStrategy;
 
     if (!this.persistenceStrategies[config.type]) {
       const cacheStorageInstance = new CacheStoragePersistanceAdapter(

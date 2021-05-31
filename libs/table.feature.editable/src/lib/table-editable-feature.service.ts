@@ -50,7 +50,7 @@ export class TableEditableService implements OnDestroy {
     this.modelUpdates$.next({ rowUpdatedAt: rowIdx });
   }
 
-  updateValue(value: string, column: TableEditableColumn): void {
+  updateValue(value: string | number, column: TableEditableColumn): void {
     this.elementRef.nativeElement.dispatchEvent(
       new TableEditableEvent({ value: value, colId: column.id }),
     );

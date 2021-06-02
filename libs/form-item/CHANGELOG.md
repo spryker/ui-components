@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.2.0-next.6...@spryker/form-item@0.2.0-next.7) (2021-06-02)
+
+
+### Bug Fixes
+
+* **form-item:** reset default size for native radio/checkbox inputs ([7856dfe](https://github.com/spryker/ui-components/commit/7856dfe7eeb7a0d458b0339dc922f07451d85944))
+
+
+
+
+
 # 0.2.0-next.6 (2021-05-18)
 
 

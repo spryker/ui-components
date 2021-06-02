@@ -56,4 +56,12 @@
     line-height: @form-info-icon-line-height;
     vertical-align: middle;
   }
+
+  .@{form-item-prefix-cls}-control {
+    .@{radio-prefix-cls}-input,
+    .@{checkbox-prefix-cls}-input {
+      width: 0;
+      height: 0;
+    }
+  }
 }

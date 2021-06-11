@@ -7120,6 +7120,80 @@
           "style": "less"
         }
       }
+    },
+    "actions.redirect": {
+      "projectType": "library",
+      "root": "libs/actions.redirect",
+      "sourceRoot": "libs/actions.redirect/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/actions.redirect/tsconfig.lib.json",
+            "project": "libs/actions.redirect/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/actions.redirect/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/actions.redirect/tsconfig.lib.json",
+              "libs/actions.redirect/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/actions.redirect/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/actions.redirect/jest.config.js",
+            "tsConfig": "libs/actions.redirect/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/actions.redirect/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/actions.redirect/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/actions.redirect",
+            "config": {
+              "configFolder": "libs/actions.redirect/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

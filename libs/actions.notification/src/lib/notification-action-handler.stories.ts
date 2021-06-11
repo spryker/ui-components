@@ -4,6 +4,7 @@ import { ButtonActionModule } from '@spryker/button.action';
 import { NotificationModule, NotificationType } from '@spryker/notification';
 import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
+import { ContextService } from '@spryker/utils';
 
 import { NotificationActionHandlerService } from './notification-action-handler.service';
 
@@ -21,6 +22,8 @@ export const primary = (): IStory => ({
         notification: NotificationActionHandlerService,
       }),
     ],
+
+    providers: [ContextService],
   },
   template: `
     <spy-button-action

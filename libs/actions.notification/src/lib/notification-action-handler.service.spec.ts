@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NotificationService, NotificationType } from '@spryker/notification';
 import { ContextService } from '@spryker/utils';
@@ -21,9 +21,9 @@ const mockActionsConfig = {
     },
   ],
 };
-
 const mockContext = 'mockContext';
 
+@Injectable()
 class MockInjector {
   get = jest.fn();
 }
@@ -138,41 +138,5 @@ describe('NotificationActionHandlerService', () => {
     notificationActionService$.subscribe(callback);
 
     expect(callback).toHaveBeenCalledWith(expectedResult);
-  });
-
-  it('should throw an error if ContextService has not been provided', () => {
-    injector.get.mockImplementation((instance) => {
-      if (instance.toString() === NotificationService.toString()) {
-        return notificationService;
-      }
-    });
-
-    const serviceInvoker = () =>
-      service.handleAction(injector, mockActionsConfig, mockContext);
-
-    expect(serviceInvoker).toThrow(Error);
-    expect(serviceInvoker).toThrow(
-      expect.objectContaining({
-        message: expect.stringContaining('ContextService'),
-      }),
-    );
-  });
-
-  it('should throw an error if NotificationService has not been provided', () => {
-    injector.get.mockImplementation((instance) => {
-      if (instance.toString() === ContextService.toString()) {
-        return contextService;
-      }
-    });
-
-    const serviceInvoker = () =>
-      service.handleAction(injector, mockActionsConfig, mockContext);
-
-    expect(serviceInvoker).toThrow(Error);
-    expect(serviceInvoker).toThrow(
-      expect.objectContaining({
-        message: expect.stringContaining('NotificationService'),
-      }),
-    );
   });
 });

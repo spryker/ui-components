@@ -381,6 +381,9 @@
     },
     "actions.notification": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "actions.redirect": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

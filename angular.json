@@ -7046,6 +7046,80 @@
           "style": "less"
         }
       }
+    },
+    "actions.notification": {
+      "projectType": "library",
+      "root": "libs/actions.notification",
+      "sourceRoot": "libs/actions.notification/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/actions.notification/tsconfig.lib.json",
+            "project": "libs/actions.notification/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/actions.notification/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/actions.notification/tsconfig.lib.json",
+              "libs/actions.notification/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/actions.notification/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/actions.notification/jest.config.js",
+            "tsConfig": "libs/actions.notification/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/actions.notification/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/actions.notification/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/actions.notification",
+            "config": {
+              "configFolder": "libs/actions.notification/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

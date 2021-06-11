@@ -378,6 +378,9 @@
     },
     "table.column.dynamic": {
       "tags": ["type:component", "level:atom", "pkg:extension"]
+    },
+    "actions.notification": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

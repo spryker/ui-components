@@ -79,7 +79,11 @@
                 <ng-container
                   *ngIf="
                     isEditColumnEnabled
-                      | spyInvoke: createConfig?.disableForCols:column.id;
+                      | spyInvoke
+                        : createConfig?.disableForCols
+                        : column.id
+                        : row
+                        : (disableRowKey$ | async);
                     else defaultCell
                   "
                 >
@@ -180,7 +184,12 @@
       <ng-container
         *ngIf="
           findColumnByColumn
-            | spyInvoke: updateConfig?.disableForCols:config:editColumns;
+            | spyInvoke
+              : updateConfig?.disableForCols
+              : config
+              : editColumns
+              : row
+              : (disableRowKey$ | async);
           else defaultCell
         "
       >

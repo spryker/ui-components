@@ -30,21 +30,33 @@ import { TestLocaleModule } from '@spryker/locale/testing';
 
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
 
-const mockColumns = { id: 'col1', title: 'col1' };
+const mockColumns = [
+  { id: 'col1', title: 'col1' },
+  { id: 'col2', title: 'col2' },
+  { id: 'col3', title: 'col3' },
+];
 const mockUpdateConfig = {
   url: 'test-url',
   saveButton: { title: 'Save' },
   cancelButton: { title: 'Cancel Update' },
+  disableForCols: ['col2'],
 };
 
 const mockConfig = {
-  columns: [{ id: 'col1', type: 'edit' }],
+  columns: [
+    { id: 'col1', type: 'edit' },
+    { id: 'col2', type: 'edit' },
+    { id: 'col3', type: 'edit' },
+  ],
   create: {
     addButton: { title: 'addButton', icon: 'warning' },
     cancelButton: { title: 'Cancel Create', icon: 'warning' },
     formInputName: 'form-input-name',
     initialData: {
-      data: [{ col1: 'value 2' }],
+      data: [
+        { col1: 'value 2', col2: 'value' },
+        { col1: 'value', col2: 'value', col3: 'value' },
+      ],
       errors: {
         0: {
           rowError: 'message',
@@ -54,8 +66,10 @@ const mockConfig = {
         },
       },
     },
+    disableForCols: ['col2'],
   },
   update: mockUpdateConfig,
+  disableRowKey: 'col3',
 };
 
 @Component({
@@ -114,10 +128,10 @@ describe('TableEditableFeatureComponent', () => {
           provide: TestTableFeatureTplContext,
           useValue: {
             [TableFeatureLocation.beforeRows]: {
-              columns: [mockColumns],
+              columns: mockColumns,
             },
             [TableFeatureLocation.cell]: {
-              config: mockColumns,
+              config: mockColumns[0],
             },
           },
         },
@@ -135,7 +149,7 @@ describe('TableEditableFeatureComponent', () => {
     fixture.detectChanges();
     tick();
 
-    testTableFeature.featureMocks?.table.columns$?.next([mockColumns]);
+    testTableFeature.featureMocks?.table.columns$?.next(mockColumns);
 
     fixture.detectChanges();
   }));
@@ -234,6 +248,31 @@ describe('TableEditableFeatureComponent', () => {
       expect(errorTrElem.nativeElement.textContent).toContain(
         mockConfig.create.initialData.errors[0].rowError,
       );
+    });
+
+    it('should render default `td` value if `disableForCols` has id of this column', () => {
+      const rowElem = fixture.debugElement.query(
+        By.css('.spy-table-editable-feature__row'),
+      );
+      const cellElems = rowElem.queryAll(
+        By.css('.spy-table-editable-feature__cell spy-table-column-renderer'),
+      );
+
+      expect(cellElems[0].properties.config.type).toBeTruthy();
+      expect(cellElems[1].properties.config.type).toBeFalsy();
+    });
+
+    it('should render default `td` values if `disableRowKey` has id of any column in row', () => {
+      const rowElem = fixture.debugElement.queryAll(
+        By.css('.spy-table-editable-feature__row'),
+      )[1];
+      const cellElems = rowElem.queryAll(
+        By.css('.spy-table-editable-feature__cell spy-table-column-renderer'),
+      );
+
+      expect(cellElems[0].properties.config.type).toBeFalsy();
+      expect(cellElems[1].properties.config.type).toBeFalsy();
+      expect(cellElems[2].properties.config.type).toBeFalsy();
     });
   });
 

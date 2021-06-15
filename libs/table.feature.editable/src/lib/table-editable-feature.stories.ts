@@ -58,6 +58,7 @@ const tableConfig = {
     columns: [
       { id: 'col1', type: 'edit' as any },
       { id: 'col2', type: 'edit' as any },
+      { id: 'col3', type: 'edit' as any },
       { id: 'col4', type: 'edit' as any, typeOptions: { value: 'default' } },
     ] as TableColumns,
     create: {
@@ -96,6 +97,7 @@ const tableConfig = {
       cancelButton: {},
       disableForCols: ['col2'],
     },
+    disableRowKey: 'col4',
   },
 };
 

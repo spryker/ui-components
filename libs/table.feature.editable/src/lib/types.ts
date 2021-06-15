@@ -25,6 +25,7 @@ export interface TableEditableConfig extends TableFeatureConfig {
   columns: TableEditableColumn[];
   create?: TableEditableConfigCreate;
   update?: TableEditableConfigUpdate;
+  disableRowKey?: string;
 }
 
 export interface TableEditableConfigCreate {

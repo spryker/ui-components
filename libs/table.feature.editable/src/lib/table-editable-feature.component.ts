@@ -219,6 +219,9 @@ export class TableEditableFeatureComponent
       filter((element) => !element),
     ),
   );
+  disableRowKey$ = this.config$.pipe(
+    map((config) => config.disableRowKey ?? '_editableRowDisabled'),
+  );
 
   constructor(
     injector: Injector,
@@ -399,8 +402,10 @@ export class TableEditableFeatureComponent
     disableForCols: string[],
     config: TableColumn,
     columns: TableEditableColumn[],
+    row: TableDataRow,
+    disableRowKey: string,
   ): TableEditableColumn | undefined {
-    if (!disableForCols?.includes(config.id)) {
+    if (!disableForCols?.includes(config.id) && !row?.[disableRowKey]) {
       return columns.find((column) => column.id === config.id);
     } else {
       return undefined;
@@ -418,8 +423,13 @@ export class TableEditableFeatureComponent
     return rowIndex === 0 && (row.editableNewRow as boolean);
   }
 
-  isEditColumnEnabled(disableForCols: string[], columnId: string): boolean {
-    return !disableForCols?.includes(columnId);
+  isEditColumnEnabled(
+    disableForCols: string[],
+    columnId: string,
+    row: TableDataRow,
+    disableRowKey: string,
+  ): boolean {
+    return !disableForCols?.includes(columnId) && !row?.[disableRowKey];
   }
 
   getShiftedIndex(index: number): number {

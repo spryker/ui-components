@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.12...@spryker/table.feature.editable@0.1.0-next.13) (2021-06-15)
+
+
+### Features
+
+* **table.feature.editable:** introduce disableRowKey ([cf4cca4](https://github.com/spryker/ui-components/commit/cf4cca46d389406a4f96fe1fdf05158f49606597))
+
+
+
+
+
 # [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.0-next.11...@spryker/table.feature.editable@0.1.0-next.12) (2021-05-31)
 
 

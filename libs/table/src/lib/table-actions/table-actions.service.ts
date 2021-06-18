@@ -1,9 +1,9 @@
-import { Injectable, Inject, Optional, Injector } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
+import { ActionsService } from '@spryker/actions';
 import { Observable, of } from 'rxjs';
-import { TableActionsDeclaration, TableActionTriggeredEvent } from './types';
-import { InjectionTokenType } from '@spryker/utils';
-import { TableActionsToken } from './tokens';
+
 import { TableEventBus } from '../table/table-event-bus';
+import { TableActionTriggeredEvent } from './types';
 
 /**
  * Invokes appropriate {@link TableFormOverlayActionHandlerService}
@@ -13,26 +13,11 @@ import { TableEventBus } from '../table/table-event-bus';
   providedIn: 'root',
 })
 export class TableActionsService {
-  /**
-   * Merge tokens array {@link TableActionsToken} objects into one object by overriding keys
-   */
-  actionHandlers: TableActionsDeclaration =
-    this.actionHandlersToken?.reduce(
-      (actionHandlers, actionHandler) => ({
-        ...actionHandlers,
-        ...actionHandler,
-      }),
-      {},
-    ) || {};
   tableEventBus?: TableEventBus;
 
   constructor(
     private injector: Injector,
-    @Inject(TableActionsToken)
-    @Optional()
-    private actionHandlersToken: InjectionTokenType<
-      typeof TableActionsToken
-    > | null,
+    private actionsService: ActionsService,
   ) {}
 
   /**
@@ -40,15 +25,16 @@ export class TableActionsService {
    * and calls {@method handleAction} of {@link TableFormOverlayActionHandlerService}
    * provided from {@link TableActionsToken}
    */
-  trigger(actionEvent: TableActionTriggeredEvent): Observable<unknown> {
-    const actionHandler = this.actionHandlers[
-      actionEvent.action.type as string
-    ];
-
-    if (actionHandler) {
-      const actionHandlerService = this.injector.get(actionHandler);
-
-      return actionHandlerService.handleAction(actionEvent, this.injector);
+  trigger(
+    actionEvent: TableActionTriggeredEvent,
+    context?: unknown,
+  ): Observable<unknown> {
+    if (this.actionsService.isActionRegisteredType(actionEvent.action.type)) {
+      return this.actionsService.trigger(
+        this.injector,
+        actionEvent.action,
+        context,
+      );
     }
 
     this.tableEventBus?.emit<TableActionTriggeredEvent>(

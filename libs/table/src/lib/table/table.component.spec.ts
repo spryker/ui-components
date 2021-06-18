@@ -19,6 +19,7 @@ import { TableFeaturesRendererDirective } from '../table-features-renderer/table
 import { TableRenderFeatureDirective } from '../table-features-renderer/table-render-feature.directive';
 import { TableColumns, TableConfig, TableData } from './table';
 import { CoreTableComponent } from './table.component';
+import { ActionsService } from '@spryker/actions';
 
 const mockDataUrl = 'https://test-data-url.com';
 const mockColUrl = 'https://test-col-url.com';
@@ -92,6 +93,11 @@ class MockTableDatasourceHttpService {
   }
 }
 
+@Injectable()
+class MockActionsService {
+  trigger = jest.fn();
+}
+
 describe('TableComponent', () => {
   let httpTestingController: HttpTestingController;
 
@@ -119,6 +125,11 @@ describe('TableComponent', () => {
     TestBed.configureTestingModule({
       imports: [testModule],
       providers: [
+        MockActionsService,
+        {
+          provide: ActionsService,
+          useExisting: MockActionsService,
+        },
         {
           provide: DatasourceTypesToken,
           useValue: {
@@ -130,7 +141,7 @@ describe('TableComponent', () => {
     });
   });
 
-  xdescribe('Template structure', () => {
+  describe('Template structure', () => {
     beforeEach(() => {
       httpTestingController = TestBed.inject(HttpTestingController);
     });
@@ -195,7 +206,7 @@ describe('TableComponent', () => {
     }));
   });
 
-  xdescribe('spy-table-features-renderer', () => {
+  describe('spy-table-features-renderer', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [testModule],

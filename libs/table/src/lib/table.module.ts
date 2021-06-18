@@ -15,10 +15,6 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 
 import { provideTableColumnComponents } from './column-type/tokens';
 import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
-import {
-  provideTableActionsServices,
-  TableActionsDeclaration,
-} from './table-actions';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
 import {
@@ -102,15 +98,6 @@ export class TableModule {
     return {
       ngModule: TableModule,
       providers: [provideTableFeatures(features)],
-    };
-  }
-
-  static withActions(
-    actions: TableActionsDeclaration,
-  ): ModuleWithProviders<TableModule> {
-    return {
-      ngModule: TableModule,
-      providers: [provideTableActionsServices(actions)],
     };
   }
 }

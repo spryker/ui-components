@@ -1,82 +1,81 @@
-import { TestBed } from '@angular/core/testing';
 import { Injector } from '@angular/core';
-import { TableActionsService } from './table-actions.service';
-import { TableModule } from '../table.module';
+import { TestBed } from '@angular/core/testing';
+import { ActionsService } from '@spryker/actions';
 
-const mockActionsHandleType = 'mock';
+import { TableActionsService } from './table-actions.service';
 
 const mockAction = {
   action: {
     id: 'mockId',
-    type: mockActionsHandleType,
+    type: 'mock',
   },
   items: [],
 };
-
-const mockActionWithoutType = {
-  action: {
-    id: 'mockId',
-    type: '',
-  },
-  items: [],
-};
-
-class MockTableFormOverlayActionHandlerService {
-  handleAction = jest.fn();
-}
 
 class MockTableEventBus {
   emit = jest.fn();
 }
 
+class MockActionsService {
+  isActionRegisteredType = jest.fn();
+  trigger = jest.fn();
+}
+
+const mockInjector = 'mockInjector';
+
 describe('TableActionsService', () => {
   let tableActionsService: TableActionsService;
-  let tableFormOverlayActionHandlerService: MockTableFormOverlayActionHandlerService;
-  let injector: Injector;
+  let actionService: MockActionsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        TableModule.withActions({
-          [mockActionsHandleType]: MockTableFormOverlayActionHandlerService,
-        }),
-      ],
       providers: [
         TableActionsService,
-        MockTableFormOverlayActionHandlerService,
+        MockActionsService,
+        {
+          provide: ActionsService,
+          useExisting: MockActionsService,
+        },
+        {
+          provide: Injector,
+          useValue: mockInjector,
+        },
       ],
     });
     tableActionsService = TestBed.inject(TableActionsService);
-    tableFormOverlayActionHandlerService = TestBed.inject(
-      MockTableFormOverlayActionHandlerService,
+    actionService = TestBed.inject(MockActionsService);
+  });
+
+  it('should call `trigger` method from ActionService if action was registered', () => {
+    const mockContext = 'mockContext';
+
+    actionService.isActionRegisteredType.mockReturnValue(true);
+
+    tableActionsService.trigger(mockAction, mockContext);
+
+    expect(actionService.trigger).toHaveBeenCalledWith(
+      mockInjector,
+      mockAction.action,
+      mockContext,
     );
-    injector = TestBed.inject(Injector);
   });
 
-  it('should call `handleAction` method from FormOverlayActionHandlerService if actionHandler was found', () => {
-    tableActionsService.trigger(mockAction as any);
-
-    expect(
-      tableFormOverlayActionHandlerService.handleAction,
-    ).toHaveBeenCalledWith(mockAction, injector);
-  });
-
-  it('should call `emit` of TableEventBus if actionHandler undefined', () => {
+  it('should call `emit` of TableEventBus if action was not registered', () => {
     tableActionsService._setEventBus(new MockTableEventBus() as any);
-    tableActionsService.trigger(mockActionWithoutType as any);
+    actionService.isActionRegisteredType.mockReturnValue(false);
+
+    tableActionsService.trigger(mockAction);
 
     expect(tableActionsService.tableEventBus?.emit).toHaveBeenCalledWith(
       'table',
-      mockActionWithoutType,
-      mockActionWithoutType.action.type,
+      mockAction,
+      mockAction.action.type,
     );
     expect(tableActionsService.tableEventBus?.emit).toHaveBeenCalledWith(
       'table',
-      mockActionWithoutType,
+      mockAction,
     );
 
-    expect(
-      tableFormOverlayActionHandlerService.handleAction,
-    ).not.toHaveBeenCalled();
+    expect(actionService.trigger).not.toHaveBeenCalled();
   });
 });

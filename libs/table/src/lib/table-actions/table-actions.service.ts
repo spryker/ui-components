@@ -6,8 +6,8 @@ import { TableEventBus } from '../table/table-event-bus';
 import { TableActionTriggeredEvent } from './types';
 
 /**
- * Invokes appropriate {@link TableFormOverlayActionHandlerService}
- * from all registered handlers in {@link TableActionsToken}
+ * Invokes appropriate {@link ActionHandler}
+ * from all registered handlers in {@link ActionsService}
  */
 @Injectable({
   providedIn: 'root',
@@ -21,9 +21,9 @@ export class TableActionsService {
   ) {}
 
   /**
-   * Handle actions of {@link TableComponent}
-   * and calls {@method handleAction} of {@link TableFormOverlayActionHandlerService}
-   * provided from {@link TableActionsToken}
+   * Handle actions of {@link ActionsService}
+   * and calls {@method trigger} of {@link ActionHandler}
+   * provided from {@link ActionTypesToken}
    */
   trigger(
     actionEvent: TableActionTriggeredEvent,

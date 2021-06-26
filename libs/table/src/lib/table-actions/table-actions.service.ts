@@ -1,10 +1,10 @@
-import { Injectable, Injector, OnInit, OnDestroy } from '@angular/core';
+import { Injectable, Injector, OnDestroy } from '@angular/core';
 import { ActionsService } from '@spryker/actions';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { TableEventBus } from '../table/table-event-bus';
 import { TableActionTriggeredEvent } from './types';
-import { switchMap, takeUntil } from 'rxjs/operators';
 
 /**
  * Invokes appropriate {@link ActionHandler}
@@ -16,12 +16,15 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 export class TableActionsService implements OnDestroy {
   tableEventBus?: TableEventBus;
 
-  triggerAction$ = new Subject<{ action: any; context: any }>();
-  destroyed$ = new Subject<void>();
+  triggerAction$ = new ReplaySubject<{
+    actionEvent: TableActionTriggeredEvent;
+    context: unknown;
+  }>(1);
 
+  destroyed$ = new Subject<void>();
   action$ = this.triggerAction$.pipe(
-    switchMap(({ action, context }) =>
-      this.actionsService.trigger(this.injector, action, context),
+    switchMap(({ actionEvent, context }) =>
+      this.actionsService.trigger(this.injector, actionEvent.action, context),
     ),
   );
 
@@ -43,7 +46,7 @@ export class TableActionsService implements OnDestroy {
   ): Observable<unknown> {
     if (this.actionsService.isActionRegisteredType(actionEvent.action.type)) {
       this.triggerAction$.next({
-        action: actionEvent.action,
+        actionEvent,
         context,
       });
 

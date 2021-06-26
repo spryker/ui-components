@@ -1,145 +1,145 @@
-import {
-  HttpClientTestingModule,
-  TestRequest,
-} from '@angular/common/http/testing';
-import {
-  ANALYZE_FOR_ENTRY_COMPONENTS,
-  Component,
-  Injector,
-  Input,
-  NgModule,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AjaxFormResponse } from '@spryker/ajax-form';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { LocaleModule } from '@spryker/locale';
-import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
-import { ModalModule, NzModalWrapperComponent } from '@spryker/modal';
-import { UnsavedChangesModule } from '@spryker/unsaved-changes';
-import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
-import { UnsavedChangesDrawerGuardModule } from '@spryker/unsaved-changes.guard.drawer';
+import { ActionsModule } from '@spryker/actions';
+import { ButtonActionModule } from '@spryker/button.action';
+import { DatasourceModule } from '@spryker/datasource';
 import { DrawerModule } from '@spryker/drawer';
-import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
-import { ActionsModule, ActionsService } from '@spryker/actions';
-import { Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { TableModule } from '@spryker/table';
+import { TableRowActionsFeatureModule } from '@spryker/table.feature.row-actions';
+import {
+  MockTableDatasourceConfig,
+  MockTableDatasourceService,
+  TableDataMockGenerator,
+} from '@spryker/table/testing';
+import { DefaultContextSerializationModule } from '@spryker/utils';
+import { object } from '@storybook/addon-knobs';
 
 import { DrawerActionHandlerService } from './drawer-action-handler.service';
-import { DrawerActionConfig } from './types';
-import { DrawerActionModule } from './drawer-action.module';
 
 export default {
-  title: 'DrawerActionHandler',
+  title: 'DrawerActionHandlerService',
 };
 
 @Component({
-  selector: 'spy-test-component',
-  template: ` Test component with {{ test }} input `,
+  selector: 'spy-simple-component',
+  template: `
+    <div>
+      Simple Component #{{ randomValue }} <br />
+      Projected input value - {{ test }}
+    </div>
+  `,
 })
-class TestComponent {
-  @Input() test = '';
+class SimpleComponent {
+  @Input() test?: string;
+
+  randomValue = Math.floor(Math.random() * 100);
 }
-
-@Component({
-  selector: 'spy-story',
-  template: `<button (click)="openDrawer()" [mockHttp]="mockHttp">
-    Open drawer
-  </button>`,
-})
-class StoryComponent implements OnInit, OnDestroy {
-  @Input() mockHttp: any;
-
-  config: DrawerActionConfig = {
-    type: 'drawer',
-    component: TestComponent,
-    options: {
-      inputs: {
-        test: 'test',
-      },
-    },
-  };
-
-  triggerAction$ = new Subject<void>();
-  destroyed$ = new Subject<void>();
-
-  action$ = this.triggerAction$.pipe(
-    switchMap(() =>
-      this.actionsService.trigger(this.injector, this.config, {}),
-    ),
-  );
-
-  constructor(
-    private actionsService: ActionsService,
-    private injector: Injector,
-  ) {}
-
-  ngOnInit(): void {
-    this.action$.pipe(takeUntil(this.destroyed$)).subscribe();
-  }
-
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-  }
-
-  openDrawer() {
-    this.triggerAction$.next();
-  }
-}
-
-@NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    ActionsModule.withActions({
-      drawer: DrawerActionHandlerService,
-    }),
-    HttpClientTestingModule,
-    MockHttpModule,
-    UnsavedChangesModule.forRoot(),
-    UnsavedChangesDrawerGuardModule.forRoot(),
-    UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
-    DrawerModule,
-    DrawerActionModule,
-    ModalModule.forRoot(),
-    LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-    EnLocaleModule,
-  ],
-  providers: [
-    {
-      provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-      useValue: [
-        DrawerContainerProxyComponent,
-        NzModalWrapperComponent,
-        TestComponent,
-      ],
-      multi: true,
-    },
-  ],
-  declarations: [StoryComponent, TestComponent],
-})
-class StoryModule {}
-
-const mockHtmlTemplate = () => `
-  <input type="text" name="name">
-  <button type="submit">Submit</button>
-`;
-
-const formResponse = (request: TestRequest): AjaxFormResponse => ({
-  form: mockHtmlTemplate(),
-});
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [StoryModule],
+    imports: [
+      DrawerModule,
+      BrowserAnimationsModule,
+      ActionsModule.withActions({
+        drawer: DrawerActionHandlerService,
+      }),
+      ButtonActionModule,
+    ],
   },
-  component: StoryComponent,
+  template: `
+    <spy-button-action
+      [action]="action"
+      [mockHttp]="mockHttp"
+      variant="primary"
+      size="lg"
+    >
+      Open drawer Via Service
+    </spy-button-action>
+    <br />
+    <br />
+    <br />
+    <spy-button-action
+      [action]="action"
+      [mockHttp]="mockHttp"
+      variant="primary"
+      size="lg"
+    >
+      Open another drawer Via Service
+    </spy-button-action>
+  `,
   props: {
-    mockHttp: setMockHttp([
-      {
-        url: /^\/mock-url/,
-        dataFn: formResponse,
+    action: object('action', {
+      type: 'drawer',
+      component: SimpleComponent,
+      options: {
+        inputs: {
+          test: 'input value from config',
+        },
       },
-    ]),
+    }),
+  },
+});
+
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
+  col1: `col1 #${i}`,
+  col2: 'col2',
+  col3: 'col3',
+});
+
+export const withTable = () => ({
+  moduleMetadata: {
+    imports: [
+      BrowserAnimationsModule,
+      DrawerModule,
+      ActionsModule.withActions({
+        drawer: DrawerActionHandlerService,
+      }),
+      TableRowActionsFeatureModule,
+      HttpClientTestingModule,
+      ButtonActionModule,
+      TableModule.forRoot(),
+      DatasourceModule.withDatasources({
+        'mock-data': MockTableDatasourceService,
+      }),
+      DefaultContextSerializationModule,
+    ],
+  },
+  template: `
+    <h1 style="font: bold 30px Arial; padding: 15px"> Click on the table row to open drawer </h1>
+
+    <spy-table [config]="config">
+      <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
+    </spy-table>
+  `,
+  props: {
+    config: {
+      dataSource: {
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as MockTableDatasourceConfig,
+      columns: [
+        { id: 'col1', title: 'Column #1' },
+        { id: 'col2', title: 'Column #2' },
+        { id: 'col3', title: 'Column #3' },
+      ],
+      rowActions: {
+        enabled: true,
+        actions: [
+          {
+            id: 'drawer',
+            title: 'Open Drawer',
+            type: 'drawer',
+            component: SimpleComponent,
+            options: {
+              inputs: {
+                test: 'input value from config',
+              },
+            },
+          },
+        ],
+        click: 'drawer',
+      },
+    },
   },
 });

@@ -1,7 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { ActionsModule } from '@spryker/actions';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
@@ -35,19 +33,11 @@ export const primary = (): IStory => ({
       }),
       TableRowActionsFeatureModule,
       HttpClientTestingModule,
-      BrowserAnimationsModule,
       TableModule.forRoot(),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
       }),
       DefaultContextSerializationModule,
-    ],
-    providers: [
-      {
-        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent],
-        multi: true,
-      },
     ],
   },
   template: `

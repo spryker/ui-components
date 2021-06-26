@@ -7345,6 +7345,83 @@
           "style": "less"
         }
       }
+    },
+    "actions.refresh-parent-table": {
+      "projectType": "library",
+      "root": "libs/actions.refresh-parent-table",
+      "sourceRoot": "libs/actions.refresh-parent-table/src",
+      "prefix": "spy",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/actions.refresh-parent-table/tsconfig.lib.json",
+            "project": "libs/actions.refresh-parent-table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/actions.refresh-parent-table/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/actions.refresh-parent-table/tsconfig.lib.json",
+              "libs/actions.refresh-parent-table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/actions.refresh-parent-table/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/actions.refresh-parent-table/jest.config.js",
+            "tsConfig": "libs/actions.refresh-parent-table/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/actions.refresh-parent-table/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/actions.refresh-parent-table/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/actions.refresh-parent-table",
+            "config": {
+              "configFolder": "libs/actions.refresh-parent-table/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "less"
+        }
+      }
     }
   },
   "cli": {

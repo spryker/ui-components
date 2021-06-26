@@ -1,9 +1,10 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, OnInit, OnDestroy } from '@angular/core';
 import { ActionsService } from '@spryker/actions';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
 import { TableEventBus } from '../table/table-event-bus';
 import { TableActionTriggeredEvent } from './types';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 /**
  * Invokes appropriate {@link ActionHandler}
@@ -12,13 +13,24 @@ import { TableActionTriggeredEvent } from './types';
 @Injectable({
   providedIn: 'root',
 })
-export class TableActionsService {
+export class TableActionsService implements OnDestroy {
   tableEventBus?: TableEventBus;
+
+  triggerAction$ = new Subject<{ action: any; context: any }>();
+  destroyed$ = new Subject<void>();
+
+  action$ = this.triggerAction$.pipe(
+    switchMap(({ action, context }) =>
+      this.actionsService.trigger(this.injector, action, context),
+    ),
+  );
 
   constructor(
     private injector: Injector,
     private actionsService: ActionsService,
-  ) {}
+  ) {
+    this.action$.pipe(takeUntil(this.destroyed$)).subscribe();
+  }
 
   /**
    * Handle actions of {@link ActionsService}
@@ -30,11 +42,12 @@ export class TableActionsService {
     context?: unknown,
   ): Observable<unknown> {
     if (this.actionsService.isActionRegisteredType(actionEvent.action.type)) {
-      return this.actionsService.trigger(
-        this.injector,
-        actionEvent.action,
+      this.triggerAction$.next({
+        action: actionEvent.action,
         context,
-      );
+      });
+
+      return this.action$;
     }
 
     this.tableEventBus?.emit<TableActionTriggeredEvent>(
@@ -44,7 +57,7 @@ export class TableActionsService {
     );
     this.tableEventBus?.emit<TableActionTriggeredEvent>('table', actionEvent);
 
-    return of(null);
+    return of(void 0);
   }
 
   /**
@@ -52,5 +65,9 @@ export class TableActionsService {
    */
   _setEventBus(tableEventBus: TableEventBus): void {
     this.tableEventBus = tableEventBus;
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
   }
 }

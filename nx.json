@@ -882,6 +882,12 @@
         "type:service",
         "pkg:extension"
       ]
+    },
+    "actions.http": {
+      "tags": [
+        "type:service",
+        "pkg:extension"
+      ]
     }
   },
   "tasksRunnerOptions": {

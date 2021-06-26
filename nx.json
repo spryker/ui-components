@@ -126,15 +126,6 @@
     "ajax-action": {
       "tags": ["pkg:primary", "type:service"]
     },
-    "ajax-action.post-action.close-overlay": {
-      "tags": ["pkg:extension", "type:service"]
-    },
-    "ajax-action.post-action.redirect": {
-      "tags": ["pkg:extension", "type:service"]
-    },
-    "ajax-action.post-action.refresh-table": {
-      "tags": ["pkg:extension", "type:service"]
-    },
     "html-renderer": {
       "tags": ["pkg:primary", "level:molecule", "type:component"]
     },
@@ -164,9 +155,6 @@
     "table.feature.editable": {
       "tags": ["type:component", "level:molecule", "pkg:extension"],
       "implicitDependencies": ["styles", "locale"]
-    },
-    "ajax-action.post-action.refresh-drawer": {
-      "tags": ["type:service", "pkg:extension"]
     },
     "table.column.chip": {
       "tags": ["level:atom", "type:component", "pkg:extension"]
@@ -231,17 +219,6 @@
       "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["locale"]
     },
-    "table.action-handler.form-overlay": {
-      "tags": ["level:molecule", "type:component-service", "pkg:extension"],
-      "implicitDependencies": ["styles"]
-    },
-    "table.action-handler.html-overlay": {
-      "tags": ["level:molecule", "type:component-service", "pkg:extension"],
-      "implicitDependencies": ["styles"]
-    },
-    "table.action-handler.url": {
-      "tags": ["type:service", "pkg:extension"]
-    },
     "table-integration-internal": {
       "tags": ["type:meta"]
     },
@@ -272,9 +249,6 @@
       "implicitDependencies": ["locale"]
     },
     "datasource.inline.table": {
-      "tags": ["type:service", "pkg:extension"]
-    },
-    "ajax-action.post-action.refresh-parent-table": {
       "tags": ["type:service", "pkg:extension"]
     },
     "unsaved-changes.guard.navigation": {

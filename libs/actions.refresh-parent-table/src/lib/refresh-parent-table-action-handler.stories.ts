@@ -1,7 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActionsModule } from '@spryker/actions';
+import { DrawerActionHandlerService } from '@spryker/actions.drawer';
 import { ButtonActionModule } from '@spryker/button.action';
 import { DatasourceModule } from '@spryker/datasource';
 import { DrawerModule } from '@spryker/drawer';
@@ -13,74 +14,12 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { object } from '@storybook/addon-knobs';
 
-import { DrawerActionHandlerService } from './drawer-action-handler.service';
-import { DrawerActionModule } from './drawer-action.module';
+import { RefreshParentTableActionHandlerService } from './refresh-parent-table-action-handler.service';
 
 export default {
-  title: 'DrawerActionHandlerService',
+  title: 'RefreshParentTableActionHandlerService',
 };
-
-@Component({
-  selector: 'spy-simple-component',
-  template: `
-    <div>
-      Simple Component #{{ randomValue }} <br />
-      Projected input value - {{ test }}
-    </div>
-  `,
-})
-class SimpleComponent {
-  @Input() test?: string;
-
-  randomValue = Math.floor(Math.random() * 100);
-}
-
-export const primary = () => ({
-  moduleMetadata: {
-    imports: [
-      DrawerModule,
-      BrowserAnimationsModule,
-      ActionsModule.withActions({
-        drawer: DrawerActionHandlerService,
-      }),
-      ButtonActionModule,
-    ],
-  },
-  template: `
-    <spy-button-action
-      [action]="action"
-      [mockHttp]="mockHttp"
-      variant="primary"
-      size="lg"
-    >
-      Open drawer Via Service
-    </spy-button-action>
-    <br />
-    <br />
-    <br />
-    <spy-button-action
-      [action]="action"
-      [mockHttp]="mockHttp"
-      variant="primary"
-      size="lg"
-    >
-      Open another drawer Via Service
-    </spy-button-action>
-  `,
-  props: {
-    action: object('action', {
-      type: 'drawer',
-      component: SimpleComponent,
-      options: {
-        inputs: {
-          test: 'input value from config',
-        },
-      },
-    }),
-  },
-});
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
@@ -88,13 +27,59 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col3: 'col3',
 });
 
-export const withTable = () => ({
+const tableConfig = {
+  dataSource: {
+    type: 'mock-data',
+    dataGenerator: tableDataGenerator,
+  } as MockTableDatasourceConfig,
+  columns: [
+    { id: 'col1', title: 'Column #1' },
+    { id: 'col2', title: 'Column #2' },
+    { id: 'col3', title: 'Column #3' },
+  ],
+};
+
+@Component({
+  selector: 'spy-simple-component',
+  template: `
+    <div>
+      <h1 style="font: bold 30px Arial; padding: 15px">
+        Click on the table row to refresh the parent table
+      </h1>
+
+      <spy-table [config]="config">
+        <spy-table-row-actions-feature
+          spy-table-feature
+        ></spy-table-row-actions-feature>
+      </spy-table>
+    </div>
+  `,
+})
+class SimpleComponent {
+  config = {
+    ...tableConfig,
+    rowActions: {
+      enabled: true,
+      actions: [
+        {
+          id: 'refresh_parent_table',
+          title: 'Refresh Parent Table',
+          type: 'refresh_parent_table',
+        },
+      ],
+      click: 'refresh_parent_table',
+    },
+  };
+}
+
+export const primary = () => ({
   moduleMetadata: {
     imports: [
       BrowserAnimationsModule,
       DrawerModule,
       ActionsModule.withActions({
         drawer: DrawerActionHandlerService,
+        refresh_parent_table: RefreshParentTableActionHandlerService,
       }),
       TableRowActionsFeatureModule,
       HttpClientTestingModule,
@@ -104,10 +89,8 @@ export const withTable = () => ({
         'mock-data': MockTableDatasourceService,
       }),
       DefaultContextSerializationModule,
-      DrawerActionModule.withComponents({
-        simple_component: SimpleComponent,
-      }),
     ],
+    declarations: [SimpleComponent],
   },
   template: `
     <h1 style="font: bold 30px Arial; padding: 15px"> Click on the table row to open drawer </h1>
@@ -118,15 +101,7 @@ export const withTable = () => ({
   `,
   props: {
     config: {
-      dataSource: {
-        type: 'mock-data',
-        dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
-      columns: [
-        { id: 'col1', title: 'Column #1' },
-        { id: 'col2', title: 'Column #2' },
-        { id: 'col3', title: 'Column #3' },
-      ],
+      ...tableConfig,
       rowActions: {
         enabled: true,
         actions: [
@@ -134,7 +109,7 @@ export const withTable = () => ({
             id: 'drawer',
             title: 'Open Drawer',
             type: 'drawer',
-            component: 'simple_component',
+            component: SimpleComponent,
             options: {
               inputs: {
                 test: 'input value from config',

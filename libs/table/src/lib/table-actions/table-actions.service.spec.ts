@@ -44,6 +44,9 @@ describe('TableActionsService', () => {
     });
     tableActionsService = TestBed.inject(TableActionsService);
     actionService = TestBed.inject(MockActionsService);
+
+    // Initialize default value to avoid `You provided 'undefined' where a stream was expected.` error
+    tableActionsService.triggerAction$.next({} as any);
   });
 
   it('should call `trigger` method from ActionService if action was registered', () => {
@@ -51,13 +54,18 @@ describe('TableActionsService', () => {
 
     actionService.isActionRegisteredType.mockReturnValue(true);
 
-    tableActionsService.trigger(mockAction, mockContext);
-
-    expect(actionService.trigger).toHaveBeenCalledWith(
-      mockInjector,
-      mockAction.action,
+    const tableActionsService$ = tableActionsService.trigger(
+      mockAction,
       mockContext,
     );
+
+    tableActionsService$.subscribe(() => {
+      expect(actionService.trigger).toHaveBeenCalledWith(
+        mockInjector,
+        mockAction.action,
+        mockContext,
+      );
+    });
   });
 
   it('should call `emit` of TableEventBus if action was not registered', () => {

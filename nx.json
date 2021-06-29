@@ -367,6 +367,9 @@
     },
     "actions.refresh-parent-table": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "actions.close-drawer": {
+      "tags": ["type:service", "pkg:extension"]
     }
   },
   "tasksRunnerOptions": {

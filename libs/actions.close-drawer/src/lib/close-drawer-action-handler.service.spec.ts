@@ -1,4 +1,4 @@
-import { Injectable, NO_ERRORS_SCHEMA, Sanitizer } from '@angular/core';
+import { Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { DrawerRef } from '@spryker/drawer';
 import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';

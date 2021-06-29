@@ -6,10 +6,15 @@ import { DrawerRef } from '@spryker/drawer';
 import { CloseDrawerActionConfig } from './types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class CloseDrawerActionHandlerService implements ActionHandler<unknown, void> {
-  handleAction(injector: Injector, config: CloseDrawerActionConfig, context: unknown): Observable<void> {
+export class CloseDrawerActionHandlerService
+  implements ActionHandler<unknown, void> {
+  handleAction(
+    injector: Injector,
+    config: CloseDrawerActionConfig,
+    context: unknown,
+  ): Observable<void> {
     injector.get(UnsavedChangesFormMonitorDirective, null)?.reset();
     injector.get(DrawerRef).close();
 

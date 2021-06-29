@@ -17,10 +17,7 @@ export default {
 @Component({
   selector: 'spy-story',
   template: `
-    <spy-button
-      variant="primary"
-      size="md"
-      (click)="clickHandler()">
+    <spy-button variant="primary" size="md" (click)="clickHandler()">
       Open drawer
     </spy-button>
   `,
@@ -61,10 +58,7 @@ export const primary = (): IStory => ({
       }),
     ],
     declarations: [SimpleDrawerComponent, DrawerContentComponent],
-    entryComponents: [
-      DrawerContentComponent,
-      DrawerContainerProxyComponent,
-    ],
+    entryComponents: [DrawerContentComponent, DrawerContainerProxyComponent],
   },
   template: `
     <spy-story></spy-story>
@@ -72,6 +66,6 @@ export const primary = (): IStory => ({
   props: {
     action: object('action', {
       type: 'close_drawer',
-    })
-  }
+    }),
+  },
 });

@@ -38,11 +38,11 @@ describe('CloseDrawerActionHandlerService', () => {
         MockDrawerRef,
         {
           provide: UnsavedChangesFormMonitorDirective,
-          useExisting: MockUnsavedChangesFormMonitorDirective
+          useExisting: MockUnsavedChangesFormMonitorDirective,
         },
         {
           provide: DrawerRef,
-          useExisting: MockDrawerRef
+          useExisting: MockDrawerRef,
         },
       ],
       schemas: [NO_ERRORS_SCHEMA],
@@ -50,7 +50,9 @@ describe('CloseDrawerActionHandlerService', () => {
 
     service = TestBed.inject(CloseDrawerActionHandlerService);
     injector = TestBed.inject(MockInjector);
-    unsavedChangesFormMonitorDirective = TestBed.inject(MockUnsavedChangesFormMonitorDirective);
+    unsavedChangesFormMonitorDirective = TestBed.inject(
+      MockUnsavedChangesFormMonitorDirective,
+    );
     drawerRef = TestBed.inject(MockDrawerRef);
 
     injector.get.mockImplementation((instance) => {
@@ -60,9 +62,7 @@ describe('CloseDrawerActionHandlerService', () => {
         return unsavedChangesFormMonitorDirective;
       }
 
-      if (
-        instance.toString() === DrawerRef.toString()
-      ) {
+      if (instance.toString() === DrawerRef.toString()) {
         return drawerRef;
       }
     });

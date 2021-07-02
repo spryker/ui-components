@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -9,15 +9,15 @@ import { ColumnsTransformer, TableColumns } from './table';
 export class TableColumnsResolverService {
   private transformers$ = new BehaviorSubject(new Set<ColumnsTransformer>());
 
-  constructor(private http: HttpClient) {}
+  constructor(private injector: Injector) {}
 
   resolve(colsOrUrl: string | TableColumns): Observable<TableColumns> {
-    const colsObservable =
+    const getCols =
       typeof colsOrUrl === 'string'
-        ? this.http.get<TableColumns>(colsOrUrl)
-        : of(colsOrUrl);
+        ? () => this.injector.get(HttpClient).get<TableColumns>(colsOrUrl)
+        : () => of(colsOrUrl);
 
-    return combineLatest([colsObservable, this.transformers$]).pipe(
+    return combineLatest([getCols(), this.transformers$]).pipe(
       switchMap(([columns, transformers]) =>
         [...transformers].reduce(
           (columns$, transformer) => columns$.pipe(switchMap(transformer)),

@@ -1,4 +1,3 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActionsModule } from '@spryker/actions';
@@ -45,13 +44,16 @@ export const primary = () => ({
       ActionsModule.withActions({
         drawer: DrawerActionHandlerService,
       }),
+      DrawerActionModule.withComponents({
+        simple_component: SimpleComponent,
+      }),
       ButtonActionModule,
     ],
+    declarations: [SimpleComponent],
   },
   template: `
     <spy-button-action
       [action]="action"
-      [mockHttp]="mockHttp"
       variant="primary"
       size="lg"
     >
@@ -62,7 +64,6 @@ export const primary = () => ({
     <br />
     <spy-button-action
       [action]="action"
-      [mockHttp]="mockHttp"
       variant="primary"
       size="lg"
     >
@@ -72,7 +73,7 @@ export const primary = () => ({
   props: {
     action: object('action', {
       type: 'drawer',
-      component: SimpleComponent,
+      component: 'simple_component',
       options: {
         inputs: {
           test: 'input value from config',
@@ -97,7 +98,6 @@ export const withTable = () => ({
         drawer: DrawerActionHandlerService,
       }),
       TableRowActionsFeatureModule,
-      HttpClientTestingModule,
       ButtonActionModule,
       TableModule.forRoot(),
       DatasourceModule.withDatasources({
@@ -108,6 +108,7 @@ export const withTable = () => ({
         simple_component: SimpleComponent,
       }),
     ],
+    declarations: [SimpleComponent],
   },
   template: `
     <h1 style="font: bold 30px Arial; padding: 15px"> Click on the table row to open drawer </h1>

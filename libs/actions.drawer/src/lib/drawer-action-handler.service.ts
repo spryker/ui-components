@@ -77,6 +77,8 @@ export class DrawerActionHandlerService
     context: any,
     injector: Injector,
   ): DrawerRef {
+    drawerData = { ...drawerData };
+
     const options = new DrawerOptionsComponent({
       ...drawerData.options,
       inputs: { ...drawerData.options?.inputs },

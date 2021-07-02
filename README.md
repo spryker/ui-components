@@ -50,7 +50,8 @@ nx lint <my-lib>
 
 #### Storybook
 
-_NOTE:_ Before running any storybooks - make sure to cleanup `dist` folder!
+_NOTE:_ Before running any storybooks - make sure to cleanup libs from `dist` folder
+and have meta build generated via `npm run build-meta`!
 
 Serve:
 
@@ -66,7 +67,8 @@ nx run <my-lib>:build-storybook
 
 #### Global Storybook
 
-_NOTE:_ Before running any storybooks - make sure to cleanup `dist` folder!
+_NOTE:_ Before running any storybooks - make sure to cleanup libs from `dist` folder
+and have meta build generated via `npm run build-meta`!
 
 Serve:
 

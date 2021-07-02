@@ -4,8 +4,9 @@ import {
   Sanitizer,
   SecurityContext,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActionHandler } from '@spryker/actions';
-import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
+import { UnsavedChangesMonitorToken } from '@spryker/unsaved-changes';
 import { AnyContext, ContextService, WindowToken } from '@spryker/utils';
 import { Observable, of } from 'rxjs';
 
@@ -21,30 +22,20 @@ export class RedirectActionHandlerService
     config: RedirectActionConfig,
     context: unknown,
   ): Observable<void> {
-    config = { ...config };
-
-    const sanitizer = injector.get(Sanitizer, null);
+    const sanitizer = injector.get(DomSanitizer);
     const windowToken = injector.get(WindowToken);
-    const contextService = injector.get(ContextService, null);
-    const unsavedChangesFormMonitorDirective = injector.get(
-      UnsavedChangesFormMonitorDirective,
-      null,
-    );
+    const contextService = injector.get(ContextService);
+    const monitor = injector.get(UnsavedChangesMonitorToken, null);
 
-    unsavedChangesFormMonitorDirective?.reset();
+    monitor?.reset();
 
-    if (contextService) {
-      config.url = contextService.interpolate(
-        config.url,
-        context as AnyContext,
-      );
-    }
+    let url = config.url;
 
-    if (sanitizer) {
-      config.url = String(sanitizer.sanitize(SecurityContext.URL, config.url));
-    }
+    url = contextService.interpolate(url, context as AnyContext);
 
-    windowToken.location.href = config.url;
+    url = String(sanitizer.sanitize(SecurityContext.URL, url));
+
+    windowToken.location.href = url;
 
     return of(void 0);
   }

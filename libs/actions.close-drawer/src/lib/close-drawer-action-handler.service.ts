@@ -1,8 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { ActionHandler } from '@spryker/actions';
-import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
 import { DrawerRef } from '@spryker/drawer';
+import { UnsavedChangesMonitorToken } from '@spryker/unsaved-changes';
+import { Observable, of } from 'rxjs';
+
 import { CloseDrawerActionConfig } from './types';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class CloseDrawerActionHandlerService
     config: CloseDrawerActionConfig,
     context: unknown,
   ): Observable<void> {
-    injector.get(UnsavedChangesFormMonitorDirective, null)?.reset();
+    injector.get(UnsavedChangesMonitorToken, null)?.reset();
     injector.get(DrawerRef).close();
 
     return of(void 0);

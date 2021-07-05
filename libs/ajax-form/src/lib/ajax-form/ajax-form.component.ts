@@ -37,7 +37,7 @@ export interface SubmitEvent extends Event {
 })
 export class AjaxFormComponent implements OnDestroy, OnChanges {
   @ViewChild(HtmlRendererComponent, { read: Injector })
-  htmlRendereInjector?: Injector;
+  htmlRendererInjector?: Injector;
 
   @Input() action?: string;
   @Input() method = 'POST';
@@ -136,7 +136,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
     this.isLoading = false;
     this.ajaxActionService.handle(
       response,
-      this.htmlRendereInjector ?? this.injector,
+      this.htmlRendererInjector ?? this.injector,
     );
     // TODO: investigate ExpressionChangedAfterItHasBeenCheckedError
     this.cdr.markForCheck();

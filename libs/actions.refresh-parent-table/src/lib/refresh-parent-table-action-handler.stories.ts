@@ -16,6 +16,7 @@ import {
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 import { RefreshParentTableActionHandlerService } from './refresh-parent-table-action-handler.service';
+import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
 
 export default {
   title: 'RefreshParentTableActionHandlerService',
@@ -91,6 +92,7 @@ export const primary = () => ({
       DefaultContextSerializationModule,
     ],
     declarations: [SimpleComponent],
+    entryComponents: [SimpleComponent, DrawerContainerProxyComponent],
   },
   template: `
     <h1 style="font: bold 30px Arial; padding: 15px"> Click on the table row to open drawer </h1>

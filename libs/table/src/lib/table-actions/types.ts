@@ -6,7 +6,6 @@ import { TableDataRow } from '../table/table';
 
 export interface TableActionBase extends ActionConfig {
   id: string;
-  typeOptions?: unknown;
 }
 
 export interface TableActionTriggeredEvent<

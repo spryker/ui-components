@@ -19,7 +19,13 @@ export class RefreshParentTableActionHandlerService
   ): Observable<void> {
     const table = injector.get(CoreTableComponent).parentTable;
 
-    table?.injector.get(TableDataConfiguratorService).update({});
+    if (!table) {
+      throw new Error(
+        `RefreshParentTableActionHandlerService: Parent Table is not defined!`,
+      );
+    }
+
+    table.injector.get(TableDataConfiguratorService).update({});
 
     return of(void 0);
   }

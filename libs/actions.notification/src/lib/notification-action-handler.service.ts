@@ -18,8 +18,8 @@ export class NotificationActionHandlerService
   ): Observable<NotificationRef[]> {
     config = mergeDeep({}, config);
 
-    const contextService = injector.get(ContextService, null);
-    const notificationService = injector.get(NotificationService, null);
+    const contextService = injector.get(ContextService);
+    const notificationService = injector.get(NotificationService);
     const notificationRefs: NotificationRef[] = [];
 
     for (const data of config.notifications) {

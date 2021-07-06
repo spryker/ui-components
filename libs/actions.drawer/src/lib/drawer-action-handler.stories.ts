@@ -51,7 +51,6 @@ export const primary = () => ({
   template: `
     <spy-button-action
       [action]="action"
-      [mockHttp]="mockHttp"
       variant="primary"
       size="lg"
     >
@@ -62,7 +61,6 @@ export const primary = () => ({
     <br />
     <spy-button-action
       [action]="action"
-      [mockHttp]="mockHttp"
       variant="primary"
       size="lg"
     >

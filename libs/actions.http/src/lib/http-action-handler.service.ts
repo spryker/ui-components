@@ -22,8 +22,8 @@ export class HttpActionHandlerService
   ): Observable<unknown> {
     config = { ...config };
 
-    const contextService = injector.get(ContextService, null);
-    const actionsService = injector.get(ActionsService, null);
+    const contextService = injector.get(ContextService);
+    const actionsService = injector.get(ActionsService);
 
     if (contextService) {
       config.url = contextService.interpolate(

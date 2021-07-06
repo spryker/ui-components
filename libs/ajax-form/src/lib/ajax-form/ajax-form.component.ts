@@ -3,21 +3,21 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Injector,
   Input,
   OnChanges,
   OnDestroy,
   SimpleChanges,
-  ViewEncapsulation,
-  Injector,
   ViewChild,
-  OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
-import { DataSerializerService } from '@spryker/data-serializer';
 import { AjaxActionService } from '@spryker/ajax-action';
+import { DataSerializerService } from '@spryker/data-serializer';
+import { HtmlRendererComponent } from '@spryker/html-renderer';
 import { Subscription } from 'rxjs';
-import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
-import { AjaxFormRequestToken } from './tokens';
+
 import { AjaxFormResponse } from '../types';
+import { AjaxFormRequestToken } from './tokens';
 
 export interface SubmitEvent extends Event {
   // See https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/submitter
@@ -35,9 +35,9 @@ export interface SubmitEvent extends Event {
     class: 'spy-ajax-form',
   },
 })
-export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
-  @ViewChild(UnsavedChangesFormMonitorDirective, { static: true })
-  unsavedChangesFormMonitorDirective?: UnsavedChangesFormMonitorDirective;
+export class AjaxFormComponent implements OnDestroy, OnChanges {
+  @ViewChild(HtmlRendererComponent, { read: Injector })
+  htmlRendererInjector?: Injector;
 
   @Input() action?: string;
   @Input() method = 'POST';
@@ -50,8 +50,6 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
   formAction?: string;
   formMethod?: string;
 
-  private ajaxFormComponentInjector?: Injector;
-
   constructor(
     private ajaxActionService: AjaxActionService,
     private http: HttpClient,
@@ -59,19 +57,6 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
     private injector: Injector,
     private dataSerializerService: DataSerializerService,
   ) {}
-
-  ngOnInit(): void {
-    this.ajaxFormComponentInjector = Injector.create({
-      name: 'AjaxFormComponent_Injector',
-      providers: [
-        {
-          provide: UnsavedChangesFormMonitorDirective,
-          useValue: this.unsavedChangesFormMonitorDirective,
-        },
-      ],
-      parent: this.injector,
-    });
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('action' in changes) {
@@ -149,7 +134,10 @@ export class AjaxFormComponent implements OnDestroy, OnChanges, OnInit {
     this.formMethod = response.method;
 
     this.isLoading = false;
-    this.ajaxActionService.handle(response, this.ajaxFormComponentInjector);
+    this.ajaxActionService.handle(
+      response,
+      this.htmlRendererInjector ?? this.injector,
+    );
     // TODO: investigate ExpressionChangedAfterItHasBeenCheckedError
     this.cdr.markForCheck();
   }

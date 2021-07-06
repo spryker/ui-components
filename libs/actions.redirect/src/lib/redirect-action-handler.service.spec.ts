@@ -1,6 +1,7 @@
-import { Injectable, Sanitizer, SecurityContext } from '@angular/core';
+import { Injectable, SecurityContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
+import { DomSanitizer } from '@angular/platform-browser';
+import { UnsavedChangesMonitorToken } from '@spryker/unsaved-changes';
 import { ContextService, WindowToken } from '@spryker/utils';
 
 import { RedirectActionHandlerService } from './redirect-action-handler.service';
@@ -36,7 +37,7 @@ class MockSanitizer {
 }
 
 @Injectable()
-class MockUnsavedChangesFormMonitorDirective {
+class MockUnsavedChangesMonitorToken {
   reset = jest.fn();
 }
 
@@ -46,7 +47,7 @@ describe('RedirectActionHandlerService', () => {
   let contextService: MockContextService;
   let windowToken: MockWindowToken;
   let sanitizer: MockSanitizer;
-  let unsavedChangesFormMonitorDirective: MockUnsavedChangesFormMonitorDirective;
+  let unsavedChangesMonitor: MockUnsavedChangesMonitorToken;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -55,13 +56,13 @@ describe('RedirectActionHandlerService', () => {
         MockInjector,
         MockWindowToken,
         MockSanitizer,
-        MockUnsavedChangesFormMonitorDirective,
+        MockUnsavedChangesMonitorToken,
         {
-          provide: UnsavedChangesFormMonitorDirective,
-          useExisting: MockUnsavedChangesFormMonitorDirective,
+          provide: UnsavedChangesMonitorToken,
+          useExisting: MockUnsavedChangesMonitorToken,
         },
         {
-          provide: Sanitizer,
+          provide: DomSanitizer,
           useExisting: MockSanitizer,
         },
         {
@@ -79,27 +80,23 @@ describe('RedirectActionHandlerService', () => {
     injector = TestBed.inject(MockInjector);
     contextService = TestBed.inject(MockContextService);
     sanitizer = TestBed.inject(MockSanitizer);
-    unsavedChangesFormMonitorDirective = TestBed.inject(
-      MockUnsavedChangesFormMonitorDirective,
-    );
+    unsavedChangesMonitor = TestBed.inject(MockUnsavedChangesMonitorToken);
     windowToken = TestBed.inject(MockWindowToken);
 
     injector.get.mockImplementation((instance) => {
-      if (instance.toString() === ContextService.toString()) {
+      if (instance === ContextService) {
         return contextService;
       }
 
-      if (instance.toString() === Sanitizer.toString()) {
+      if (instance === DomSanitizer) {
         return sanitizer;
       }
 
-      if (
-        instance.toString() === UnsavedChangesFormMonitorDirective.toString()
-      ) {
-        return unsavedChangesFormMonitorDirective;
+      if (instance === UnsavedChangesMonitorToken) {
+        return unsavedChangesMonitor;
       }
 
-      if (instance.toString() === WindowToken.toString()) {
+      if (instance === WindowToken) {
         return windowToken;
       }
     });
@@ -135,7 +132,7 @@ describe('RedirectActionHandlerService', () => {
   it('should call UnsavedChangesFormMonitorDirective.reset method', () => {
     service.handleAction(injector, mockActionsConfig, mockContext);
 
-    expect(unsavedChangesFormMonitorDirective.reset).toHaveBeenCalled();
+    expect(unsavedChangesMonitor.reset).toHaveBeenCalled();
   });
 
   it('should change location via WindowToken.location.href API after ContextService.interpolate() and Sanitizer.sanitize()', () => {

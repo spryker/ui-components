@@ -1,7 +1,8 @@
 import { Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { DrawerRef } from '@spryker/drawer';
-import { UnsavedChangesFormMonitorDirective } from '@spryker/unsaved-changes.monitor.form';
+import { UnsavedChangesMonitorToken } from '@spryker/unsaved-changes';
+
 import { CloseDrawerActionHandlerService } from './close-drawer-action-handler.service';
 
 const mockActionsConfig = {
@@ -15,7 +16,7 @@ class MockInjector {
 }
 
 @Injectable()
-class MockUnsavedChangesFormMonitorDirective {
+class MockUnsavedChangesMonitorToken {
   reset = jest.fn();
 }
 
@@ -27,18 +28,18 @@ class MockDrawerRef {
 describe('CloseDrawerActionHandlerService', () => {
   let service: CloseDrawerActionHandlerService;
   let injector: MockInjector;
-  let unsavedChangesFormMonitorDirective: MockUnsavedChangesFormMonitorDirective;
+  let unsavedChangesMonitor: MockUnsavedChangesMonitorToken;
   let drawerRef: MockDrawerRef;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         MockInjector,
-        MockUnsavedChangesFormMonitorDirective,
+        MockUnsavedChangesMonitorToken,
         MockDrawerRef,
         {
-          provide: UnsavedChangesFormMonitorDirective,
-          useExisting: MockUnsavedChangesFormMonitorDirective,
+          provide: UnsavedChangesMonitorToken,
+          useExisting: MockUnsavedChangesMonitorToken,
         },
         {
           provide: DrawerRef,
@@ -50,19 +51,15 @@ describe('CloseDrawerActionHandlerService', () => {
 
     service = TestBed.inject(CloseDrawerActionHandlerService);
     injector = TestBed.inject(MockInjector);
-    unsavedChangesFormMonitorDirective = TestBed.inject(
-      MockUnsavedChangesFormMonitorDirective,
-    );
+    unsavedChangesMonitor = TestBed.inject(MockUnsavedChangesMonitorToken);
     drawerRef = TestBed.inject(MockDrawerRef);
 
     injector.get.mockImplementation((instance) => {
-      if (
-        instance.toString() === UnsavedChangesFormMonitorDirective.toString()
-      ) {
-        return unsavedChangesFormMonitorDirective;
+      if (instance === UnsavedChangesMonitorToken) {
+        return unsavedChangesMonitor;
       }
 
-      if (instance.toString() === DrawerRef.toString()) {
+      if (instance === DrawerRef) {
         return drawerRef;
       }
     });
@@ -71,7 +68,7 @@ describe('CloseDrawerActionHandlerService', () => {
   it('should call `UnsavedChangesFormMonitorDirective.reset()` method', () => {
     service.handleAction(injector, mockActionsConfig, mockContext);
 
-    expect(unsavedChangesFormMonitorDirective.reset).toHaveBeenCalled();
+    expect(unsavedChangesMonitor.reset).toHaveBeenCalled();
   });
 
   it('should call `DrawerRef.close()` method', () => {

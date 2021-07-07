@@ -1,54 +1,56 @@
-import { Injectable, Inject, Optional, Injector } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { TableActionsDeclaration, TableActionTriggeredEvent } from './types';
-import { InjectionTokenType } from '@spryker/utils';
-import { TableActionsToken } from './tokens';
+import { Injectable, Injector, OnDestroy } from '@angular/core';
+import { ActionsService } from '@spryker/actions';
+import { Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
+
 import { TableEventBus } from '../table/table-event-bus';
+import { TableActionTriggeredEvent } from './types';
 
 /**
- * Invokes appropriate {@link TableFormOverlayActionHandlerService}
- * from all registered handlers in {@link TableActionsToken}
+ * Invokes appropriate {@link ActionHandler}
+ * from all registered handlers in {@link ActionsService}
  */
 @Injectable({
   providedIn: 'root',
 })
-export class TableActionsService {
-  /**
-   * Merge tokens array {@link TableActionsToken} objects into one object by overriding keys
-   */
-  actionHandlers: TableActionsDeclaration =
-    this.actionHandlersToken?.reduce(
-      (actionHandlers, actionHandler) => ({
-        ...actionHandlers,
-        ...actionHandler,
-      }),
-      {},
-    ) || {};
+export class TableActionsService implements OnDestroy {
   tableEventBus?: TableEventBus;
+
+  triggerAction$ = new ReplaySubject<{
+    actionEvent: TableActionTriggeredEvent;
+    context: unknown;
+  }>(1);
+
+  destroyed$ = new Subject<void>();
+  action$ = this.triggerAction$.pipe(
+    switchMap(({ actionEvent, context }) =>
+      this.actionsService.trigger(this.injector, actionEvent.action, context),
+    ),
+  );
 
   constructor(
     private injector: Injector,
-    @Inject(TableActionsToken)
-    @Optional()
-    private actionHandlersToken: InjectionTokenType<
-      typeof TableActionsToken
-    > | null,
-  ) {}
+    private actionsService: ActionsService,
+  ) {
+    this.action$.pipe(takeUntil(this.destroyed$)).subscribe();
+  }
 
   /**
-   * Handle actions of {@link TableComponent}
-   * and calls {@method handleAction} of {@link TableFormOverlayActionHandlerService}
-   * provided from {@link TableActionsToken}
+   * Handle actions of {@link ActionsService}
+   * and calls {@method trigger} of {@link ActionHandler}
+   * provided from {@link ActionTypesToken}
    */
-  trigger(actionEvent: TableActionTriggeredEvent): Observable<unknown> {
-    const actionHandler = this.actionHandlers[
-      actionEvent.action.type as string
-    ];
+  trigger(
+    actionEvent: TableActionTriggeredEvent,
+    context?: unknown,
+  ): Observable<unknown> {
+    if (this.actionsService.isActionRegisteredType(actionEvent.action.type)) {
+      this.triggerAction$.next({
+        actionEvent,
+        context,
+      });
 
-    if (actionHandler) {
-      const actionHandlerService = this.injector.get(actionHandler);
-
-      return actionHandlerService.handleAction(actionEvent, this.injector);
+      return this.action$;
     }
 
     this.tableEventBus?.emit<TableActionTriggeredEvent>(
@@ -58,7 +60,7 @@ export class TableActionsService {
     );
     this.tableEventBus?.emit<TableActionTriggeredEvent>('table', actionEvent);
 
-    return of(null);
+    return of(void 0);
   }
 
   /**
@@ -66,5 +68,9 @@ export class TableActionsService {
    */
   _setEventBus(tableEventBus: TableEventBus): void {
     this.tableEventBus = tableEventBus;
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
   }
 }

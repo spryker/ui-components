@@ -45,9 +45,7 @@ export class ActionsService {
     return actionHandler.handleAction(injector, config, context);
   }
 
-  private isActionRegisteredType(
-    type: ActionType,
-  ): type is keyof ActionsRegistry {
+  isActionRegisteredType(type: ActionType): type is keyof ActionsRegistry {
     return type in this.actionHandlerTypes;
   }
 }

@@ -1,8 +1,8 @@
 import {
   Component,
   DebugElement,
-  NO_ERRORS_SCHEMA,
   Injector,
+  NO_ERRORS_SCHEMA,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -12,24 +12,25 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
-  TestTableFeatureTplDirective,
-  TestTableFeatureComponent,
-  TestTableFeatureMocks,
-  TestTableFeatureTplContext,
-} from '@spryker/table/testing';
-import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
-import { FilterAvailableActionsPipe } from './table-row-actions.pipe';
-import {
+  TableActionsService,
   TableColumnsResolverService,
   TableData,
   TableDataConfig,
   TableDataConfiguratorService,
   TableDatasourceService,
   TableFeatureLocation,
-  TableActionsToken,
 } from '@spryker/table';
-import { ReplaySubject } from 'rxjs';
+import {
+  TestTableFeatureComponent,
+  TestTableFeatureMocks,
+  TestTableFeatureTplContext,
+  TestTableFeatureTplDirective,
+} from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { ReplaySubject } from 'rxjs';
+
+import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
+import { FilterAvailableActionsPipe } from './table-row-actions.pipe';
 
 @Component({
   selector: 'spy-test-host',
@@ -45,20 +46,21 @@ class MockTableDataConfiguratorService {
   readonly config$ = new ReplaySubject<TableDataConfig>(1);
 }
 
-class MockTableFormOverlayActionHandlerService {
-  handleAction = jest.fn();
+class TableMockActionsService {
+  trigger = jest.fn();
 }
+
+const mockInjector = 'mockInjector';
 
 describe('TableRowActionsFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
   let mockData: TableData;
-  let injector: Injector;
+  let tableActionsService: TableMockActionsService;
   const mockActions = [
     { id: '1234', title: '123', type: 'rowActions', typeOptions: {} },
     { id: 'add', title: 'Add', type: 'rowActions', typeOptions: {} },
   ];
-  const mockAvailableActions = ['add'];
   const mockClick = '1234';
 
   const dropdownSelector = 'spy-dropdown';
@@ -90,13 +92,10 @@ describe('TableRowActionsFeatureComponent', () => {
           provide: TableDataConfiguratorService,
           useClass: MockTableDataConfiguratorService,
         },
-        MockTableFormOverlayActionHandlerService,
+        TableMockActionsService,
         {
-          provide: TableActionsToken,
-          useValue: {
-            rowActions: MockTableFormOverlayActionHandlerService,
-          },
-          multi: true,
+          provide: TableActionsService,
+          useExisting: TableMockActionsService,
         },
         {
           provide: TestTableFeatureMocks,
@@ -117,13 +116,17 @@ describe('TableRowActionsFeatureComponent', () => {
             },
           },
         },
+        {
+          provide: Injector,
+          useValue: mockInjector,
+        },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
   });
 
   beforeEach(fakeAsync(() => {
-    injector = TestBed.inject(Injector);
+    tableActionsService = TestBed.inject(TableMockActionsService);
     fixture = TestBed.createComponent(TestHostComponent);
     testTableFeature = fixture.debugElement.query(
       By.directive(TestTableFeatureComponent),
@@ -147,7 +150,7 @@ describe('TableRowActionsFeatureComponent', () => {
     expect(queryDropdown()).toBeTruthy();
   }));
 
-  it('should bind `actions` by default to `items` property of `spy-pagination`', fakeAsync(() => {
+  it('should bind `actions` by default to `items` property of `spy-dropdown`', fakeAsync(() => {
     const transformedActions = mockActions.map(({ id: action, title }) => ({
       action,
       title,
@@ -161,17 +164,18 @@ describe('TableRowActionsFeatureComponent', () => {
       action: mockActions[0],
       items: [mockData.data[0]],
     };
-    const tableActionsService = TestBed.inject(
-      MockTableFormOverlayActionHandlerService,
-    );
+    const mockContext = {
+      row: {},
+      rowId: '',
+    };
 
     queryDropdown().triggerEventHandler('actionTriggered', mockActions[0].id);
 
     fixture.detectChanges();
 
-    expect(tableActionsService.handleAction).toHaveBeenCalledWith(
+    expect(tableActionsService.trigger).toHaveBeenCalledWith(
       actionTriggeredRes,
-      injector,
+      mockContext,
     );
   }));
 });

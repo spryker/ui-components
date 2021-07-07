@@ -1,22 +1,11 @@
+import { Injector } from '@angular/core';
+import { ActionConfig } from '@spryker/actions';
 import { Observable } from 'rxjs';
-import { Type, Injector } from '@angular/core';
+
 import { TableDataRow } from '../table/table';
 
-// tslint:disable-next-line: no-empty-interface
-export interface TableActionRegistry {
-  // link;
-}
-
-export interface TableActionsDeclaration {
-  [type: string]: Type<TableActionHandler>;
-}
-
-export type TableActionType = keyof TableActionRegistry;
-
-export interface TableActionBase {
+export interface TableActionBase extends ActionConfig {
   id: string;
-  type: TableActionType;
-  typeOptions?: unknown;
 }
 
 export interface TableActionTriggeredEvent<

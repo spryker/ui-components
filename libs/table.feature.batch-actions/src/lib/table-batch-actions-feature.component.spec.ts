@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -7,20 +7,22 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
-  TestTableFeatureTplDirective,
-  TestTableFeatureComponent,
-  TestTableFeatureMocks,
-} from '@spryker/table/testing';
-import { TableBatchActionsFeatureComponent } from './table-batch-actions-feature.component';
-import {
+  TableActionsService,
   TableColumnsResolverService,
   TableData,
   TableDataConfig,
   TableDataConfiguratorService,
   TableDatasourceService,
 } from '@spryker/table';
-import { ReplaySubject } from 'rxjs';
+import {
+  TestTableFeatureComponent,
+  TestTableFeatureMocks,
+  TestTableFeatureTplDirective,
+} from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { ReplaySubject } from 'rxjs';
+
+import { TableBatchActionsFeatureComponent } from './table-batch-actions-feature.component';
 
 @Component({
   selector: 'spy-test-host',
@@ -66,6 +68,10 @@ const mockActionsConfig = {
   ...mockActionsWithoutAvailableActionsPathConfig,
 };
 
+class TableMockActionsService {
+  trigger = jest.fn();
+}
+
 describe('TableBatchActionsFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
@@ -93,6 +99,10 @@ describe('TableBatchActionsFeatureComponent', () => {
           {
             provide: TableDataConfiguratorService,
             useClass: MockTableDataConfiguratorService,
+          },
+          {
+            provide: TableActionsService,
+            useClass: TableMockActionsService,
           },
           {
             provide: TestTableFeatureMocks,
@@ -240,6 +250,10 @@ describe('TableBatchActionsFeatureComponent', () => {
           {
             provide: TableDataConfiguratorService,
             useClass: MockTableDataConfiguratorService,
+          },
+          {
+            provide: TableActionsService,
+            useClass: TableMockActionsService,
           },
           {
             provide: TestTableFeatureMocks,

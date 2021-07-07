@@ -177,6 +177,6 @@ export class TableRowActionsFeatureComponent
 
     rowAction.action = { ...rowAction.action, typeOptions: rowTypeOptions };
 
-    this.tableActionsService.trigger(rowAction);
+    this.tableActionsService.trigger(rowAction, actionContext);
   }
 }

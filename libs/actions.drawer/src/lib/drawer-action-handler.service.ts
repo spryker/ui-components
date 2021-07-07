@@ -24,8 +24,6 @@ import { DrawerActionComponentTypesToken } from './token';
 })
 export class DrawerActionHandlerService
   implements ActionHandler<unknown, DrawerRef<unknown>> {
-  drawerRef?: DrawerRef<unknown>;
-
   private drawerActionHandlerTypes: DrawerActionTypesDeclaration =
     this.drawerActionHandlers?.reduce(
       (components, component) => ({ ...components, ...component }),
@@ -79,6 +77,8 @@ export class DrawerActionHandlerService
     context: any,
     injector: Injector,
   ): DrawerRef {
+    drawerData = { ...drawerData };
+
     const options = new DrawerOptionsComponent({
       ...drawerData.options,
       inputs: { ...drawerData.options?.inputs },

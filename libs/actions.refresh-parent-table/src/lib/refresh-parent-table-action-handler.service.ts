@@ -21,7 +21,7 @@ export class RefreshParentTableActionHandlerService
 
     if (!table) {
       throw new Error(
-        `RefreshParentTableActionHandlerService: Parent Table is not defined!`,
+        `RefreshParentTableActionHandlerService: Parent Table is not found!`,
       );
     }
 

@@ -25,12 +25,7 @@ export class HttpActionHandlerService
     const contextService = injector.get(ContextService);
     const actionsService = injector.get(ActionsService);
 
-    if (contextService) {
-      config.url = contextService.interpolate(
-        config.url,
-        context as AnyContext,
-      );
-    }
+    config.url = contextService.interpolate(config.url, context as AnyContext);
 
     const request$ = this.http
       .request<HttpActionResponse>(config.method || 'GET', config.url)
@@ -43,7 +38,7 @@ export class HttpActionHandlerService
       .pipe(takeUntil(this.destroyed$))
       .subscribe((response: HttpActionResponse) => {
         const actions$ = response.actions?.map((action) =>
-          actionsService?.trigger(injector, action, context),
+          actionsService.trigger(injector, action, context),
         );
 
         if (!actions$?.length) {

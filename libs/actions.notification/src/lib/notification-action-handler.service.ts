@@ -25,21 +25,19 @@ export class NotificationActionHandlerService
     for (const data of config.notifications) {
       const notificationData = { ...data };
 
-      // tslint:disable-next-line: no-non-null-assertion
-      notificationData.title = contextService!.interpolate(
+      notificationData.title = contextService.interpolate(
         String(notificationData.title),
         context as AnyContext,
       );
 
       if (notificationData.description) {
-        // tslint:disable-next-line: no-non-null-assertion
-        notificationData.description = contextService!.interpolate(
+        notificationData.description = contextService.interpolate(
           String(notificationData.description),
           context as AnyContext,
         );
       }
 
-      const notificationRef = notificationService?.show(notificationData);
+      const notificationRef = notificationService.show(notificationData);
 
       if (notificationRef) {
         notificationRefs.push(notificationRef);

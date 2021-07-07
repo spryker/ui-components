@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.1 (2021-07-07)
+
+
+### Features
+
+* **actions.refresh-table:** add lib ([5abb161](https://github.com/spryker/ui-components/commit/5abb161d7281ab090c962a7c9d1f56ca686467ea))
+
+
+
+
+
 # 0.1.0-next.0 (2021-02-24)
 
 

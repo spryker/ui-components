@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table",
-  "version": "0.2.0-next.36",
+  "version": "0.2.0-next.37",
   "dependencies": {
     "@orchestrator/core": "^0.2.0",
     "@orchestrator/layout": "^0.1.0",
@@ -11,13 +11,13 @@
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
+    "@spryker/actions": "^0.1.0-next.0",
     "@spryker/datasource": "^0.0.1-next.0",
     "@spryker/icon": "^0.0.1-next.14",
     "@spryker/locale": "^0.1.0-next.4",
     "@spryker/popover": "^0.1.0-next.0",
     "@spryker/styles": "^0.0.1-next.48",
     "@spryker/utils": "^0.1.0-next.16",
-    "@spryker/actions": "^0.1.0-next.0",
     "tslib": "^1.10.0"
   },
   "publishConfig": {

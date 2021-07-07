@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.2 (2021-07-07)
+
+
+### Bug Fixes
+
+* **actions.drawer:** copy data to avoid mutation during component opening ([97e9a74](https://github.com/spryker/ui-components/commit/97e9a7455a010e54944ce8f441a91fb99c06dedf))
+
+
+### Features
+
+* **actions.notification:** add lib ([86ff501](https://github.com/spryker/ui-components/commit/86ff501ca685fb2cfaa950488ef9176adf4b0c74))
+* **actions.refresh-parent-table:** add lib ([df0ace2](https://github.com/spryker/ui-components/commit/df0ace22321f1f813a35bcb3a48fd4ee8bbc1c0a))
+
+
+
+
+
 # [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/actions.drawer@0.1.0-next.0...@spryker/actions.drawer@0.1.0-next.1) (2021-03-12)
 
 

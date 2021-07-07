@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.37](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.36...@spryker/table@0.2.0-next.37) (2021-07-07)
+
+
+### Bug Fixes
+
+* **table:** make Http optional in Columns Resolver and only injec  it when needed ([d941e4f](https://github.com/spryker/ui-components/commit/d941e4ff3f518862f2b2cc0ee16c949ec97056c8))
+
+
+### Features
+
+* **actions.refresh-parent-table:** add lib ([df0ace2](https://github.com/spryker/ui-components/commit/df0ace22321f1f813a35bcb3a48fd4ee8bbc1c0a))
+
+
+
+
+
 # [0.2.0-next.36](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.0-next.35...@spryker/table@0.2.0-next.36) (2021-04-22)
 
 

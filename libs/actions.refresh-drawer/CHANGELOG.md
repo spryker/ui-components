@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/actions.refresh-drawer@0.1.0-next.0...@spryker/actions.refresh-drawer@0.1.0-next.1) (2021-07-08)
+
+
+### Bug Fixes
+
+* **actions.refresh-drawer:** fix action name ([f67ea6a](https://github.com/spryker/ui-components/commit/f67ea6ab0d976b261c95440ec4be70b18ffc7b5f))
+
+
+
+
+
 # 0.1.0-next.0 (2021-07-07)
 
 

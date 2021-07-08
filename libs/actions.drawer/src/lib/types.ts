@@ -7,12 +7,6 @@ import {
 } from '@spryker/drawer';
 import { RegistryType, RegistryDeclaration } from '@spryker/utils';
 
-declare module '@spryker/actions' {
-  interface ActionsRegistry {
-    drawer: DrawerActionConfig;
-  }
-}
-
 // tslint:disable-next-line:no-empty-interface
 export interface DrawerActionComponentsRegistry {
   // type: Type<unknown>

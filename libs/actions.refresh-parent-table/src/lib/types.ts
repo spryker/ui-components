@@ -2,7 +2,7 @@ import { ActionConfig } from '@spryker/actions';
 
 declare module '@spryker/actions' {
   interface ActionsRegistry {
-    refresh_parent_table: RefreshParentTableActionConfig;
+    'refresh-parent-table': RefreshParentTableActionConfig;
   }
 }
 

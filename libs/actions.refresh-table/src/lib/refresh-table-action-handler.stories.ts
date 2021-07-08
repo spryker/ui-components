@@ -29,7 +29,7 @@ export const primary = (): IStory => ({
     imports: [
       BrowserAnimationsModule,
       ActionsModule.withActions({
-        refresh_table: RefreshTableActionHandlerService,
+        'refresh-table': RefreshTableActionHandlerService,
       }),
       TableRowActionsFeatureModule,
       HttpClientTestingModule,
@@ -62,12 +62,12 @@ export const primary = (): IStory => ({
         enabled: true,
         actions: [
           {
-            id: 'id_refresh_table',
+            id: 'id-refresh-table',
             title: 'Refresh table',
-            type: 'refresh_table',
+            type: 'refresh-table',
           },
         ],
-        click: 'id_refresh_table',
+        click: 'id-refresh-table',
       },
     },
   },

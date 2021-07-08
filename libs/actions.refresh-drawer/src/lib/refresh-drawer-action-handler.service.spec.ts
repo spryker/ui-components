@@ -4,7 +4,7 @@ import { DrawerRef } from '@spryker/drawer';
 import { RefreshDrawerActionHandlerService } from './refresh-drawer-action-handler.service';
 
 const mockActionsConfig = {
-  type: 'refresh_drawer',
+  type: 'refresh-drawer',
 };
 const mockContext = 'mockContext';
 

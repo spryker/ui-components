@@ -63,12 +63,12 @@ class SimpleComponent {
       enabled: true,
       actions: [
         {
-          id: 'refresh_parent_table',
+          id: 'refresh-parent-table',
           title: 'Refresh Parent Table',
-          type: 'refresh_parent_table',
+          type: 'refresh-parent-table',
         },
       ],
-      click: 'refresh_parent_table',
+      click: 'refresh-parent-table',
     },
   };
 }
@@ -80,7 +80,7 @@ export const primary = () => ({
       DrawerModule,
       ActionsModule.withActions({
         drawer: DrawerActionHandlerService,
-        refresh_parent_table: RefreshParentTableActionHandlerService,
+        'refresh-parent-table': RefreshParentTableActionHandlerService,
       }),
       TableRowActionsFeatureModule,
       HttpClientTestingModule,

@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NotificationModule } from '@spryker/notification';
 
 @NgModule({
-  imports: [CommonModule, NotificationModule],
+  imports: [CommonModule],
 })
 export class AjaxActionModule {}

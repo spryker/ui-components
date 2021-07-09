@@ -65,10 +65,10 @@ export class UrlHtmlRendererDirective
           ),
       ),
       map((response) => {
-         this.ajaxActionService.handle(response, this.injector);
-         this.urlHtmlLoading.emit(false);
-         
-         return response.html ?? ''
+        this.ajaxActionService.handle(response, this.injector);
+        this.urlHtmlLoading.emit(false);
+
+        return response.html ?? '';
       }),
     );
   }

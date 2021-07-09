@@ -1,9 +1,5 @@
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed,
-  async,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import {
   HttpTestingController,
   HttpClientTestingModule,

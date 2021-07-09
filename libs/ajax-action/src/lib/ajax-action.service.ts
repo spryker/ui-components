@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { AjaxActionResponse } from './types';
 
 /**
- * Triggers actions via {@link ActionHandler}
+ * Triggers actions via {@link ActionsService}
  */
 @Injectable({
   providedIn: 'root',

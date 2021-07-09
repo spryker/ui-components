@@ -1,58 +1,39 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
-import { NotificationService } from '@spryker/notification';
-import { InjectionTokenType } from '@spryker/utils';
+import { Injectable, Injector, OnDestroy } from '@angular/core';
+import { ActionsService } from '@spryker/actions';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import { AjaxPostActionsToken } from './tokens';
-import { AjaxActionResponse, AjaxPostActionsDeclaration } from './types';
+import { AjaxActionResponse } from './types';
 
 /**
- * Invokes appropriate {@link AjaxPostActionHandler} from all registered handlers in {@link AjaxPostActionsToken}
+ * Triggers actions via {@link ActionsService}
  */
 @Injectable({
   providedIn: 'root',
 })
-export class AjaxActionService {
-  /**
-   * Merge tokens array {@link AjaxPostActionsToken} objects into one object by overriding keys
-   */
-  private actionHandlersObject: AjaxPostActionsDeclaration =
-    this.actionHandlers?.reduce(
-      (actions, action) => ({ ...actions, ...action }),
-      {},
-    ) || {};
+export class AjaxActionService implements OnDestroy {
+  private destroyed = new Subject();
 
-  constructor(
-    private injector: Injector,
-    private notificationService: NotificationService,
-    @Optional()
-    @Inject(AjaxPostActionsToken)
-    private actionHandlers?: InjectionTokenType<typeof AjaxPostActionsToken>,
-  ) {}
+  handle(
+    response: AjaxActionResponse,
+    injector: Injector,
+    context?: unknown,
+  ): void {
+    if (!response.actions) {
+      return;
+    }
 
-  /**
-   * Shows notification.
-   * Invokes related {@link AjaxPostActionHandler} provided from {@link AjaxPostActionsToken}
-   */
-  handle(response: AjaxActionResponse, injector?: Injector): void {
-    response.notifications?.forEach(({ type, message }) =>
-      this.notificationService.show({
-        type,
-        title: message,
-      }),
-    );
+    const actionsService = injector.get(ActionsService);
 
-    response.postActions?.forEach((postAction) => {
-      const actionClass = this.actionHandlersObject[postAction.type];
+    for (const action of response.actions ?? []) {
+      actionsService
+        .trigger(injector, action, context)
+        .pipe(takeUntil(this.destroyed))
+        .subscribe();
+    }
+  }
 
-      if (!actionClass) {
-        throw new Error(
-          `AjaxActionService: Post Action type '${postAction.type}' is not registered!`,
-        );
-      }
-
-      const actionService = this.injector.get(actionClass);
-
-      actionService?.handleAction(postAction, injector ?? this.injector);
-    });
+  ngOnDestroy(): void {
+    this.destroyed.next();
   }
 }

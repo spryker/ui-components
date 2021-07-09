@@ -4,8 +4,7 @@
   "peerDependencies": {
     "@angular/common": "^9.1.2",
     "@angular/core": "^9.1.2",
-    "@spryker/notification": "^0.1.0-next.0",
-    "@spryker/utils": "^0.1.0-next.0",
+    "@spryker/actions": "^0.1.0-next.0",
     "tslib": "^1.10.0"
   },
   "publishConfig": {

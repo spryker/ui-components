@@ -7,9 +7,11 @@ import {
   OnDestroy,
   Output,
   Renderer2,
+  SecurityContext,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { merge, Subscription } from 'rxjs';
 import { mapTo, shareReplay } from 'rxjs/operators';
 
@@ -42,15 +44,21 @@ export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
   constructor(
     private htmlRendererProvider: HtmlRendererProvider,
     private renderer: Renderer2,
+    private domSanitizer: DomSanitizer,
   ) {}
 
   ngAfterViewInit(): void {
     this.subscription = this.htmlRenderer$.subscribe({
       next: (html) => {
+        const sanitizedHtml = this.domSanitizer.sanitize(
+          SecurityContext.HTML,
+          html,
+        );
+
         this.renderer.setProperty(
           this.htmlRendererContent?.nativeElement,
           'innerHTML',
-          html,
+          sanitizedHtml,
         );
         this.htmlRendered.emit(this.htmlRendererContent);
       },

@@ -55,8 +55,7 @@ export class UrlHtmlRendererDirective
       }),
       switchMap((urlHtml) =>
         this.http
-          // tslint:disable-next-line: no-non-null-assertion
-          .request<UrlHtmlRendererResponse>(this.urlMethod!, urlHtml)
+          .request<UrlHtmlRendererResponse>(this.urlMethod || 'GET', urlHtml)
           .pipe(
             catchError(() => {
               this.urlHtmlLoading.emit(false);

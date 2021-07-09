@@ -27,7 +27,7 @@ import { UrlHtmlRendererResponse } from '../html-renderer/types';
 export class UrlHtmlRendererDirective
   implements HtmlRendererProvider, OnChanges {
   @Input() urlHtml = '';
-  @Input() urlMethod? = 'GET';
+  @Input() urlMethod = 'GET';
   @Output() urlHtmlLoading = new EventEmitter<boolean>();
 
   private html$ = new ReplaySubject<string>(1);

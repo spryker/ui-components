@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0-next.4 (2021-07-09)
+
+
+### Bug Fixes
+
+* **ajax-action:** fix comment ([7a823b0](https://github.com/spryker/ui-components/commit/7a823b09a03f8c52993bfb8af97e805e5174de6a))
+* **ajax-action:** fix module ([807c498](https://github.com/spryker/ui-components/commit/807c49859377515ef1c21e224c9f4a3d27691e93))
+* **ajax-action:** fix packge.json ([c95ab91](https://github.com/spryker/ui-components/commit/c95ab91e91f485b4fb9c4187e24db9ca874c24f3))
+* **ajax-action:** remove types ([f97301b](https://github.com/spryker/ui-components/commit/f97301b8510886a2172176023472ca57dae8fa52))
+
+
+
+
+
 # [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/ajax-action@0.2.0-next.2...@spryker/ajax-action@0.2.0-next.3) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/ajax-action

@@ -1,10 +1,5 @@
 import { Type, Injector } from '@angular/core';
-import { NotificationType } from '@spryker/notification';
-
-export interface AjaxActionNotification {
-  type: NotificationType;
-  message: string;
-}
+import { ActionConfig } from '@spryker/actions';
 
 // tslint:disable-next-line: no-empty-interface
 export interface AjaxPostActionRegistry {}
@@ -26,6 +21,5 @@ export interface AjaxPostActionsDeclaration {
 }
 
 export interface AjaxActionResponse {
-  notifications?: AjaxActionNotification[];
-  postActions?: AjaxPostAction[];
+  actions?: ActionConfig[];
 }

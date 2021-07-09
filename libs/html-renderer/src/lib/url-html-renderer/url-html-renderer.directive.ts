@@ -7,7 +7,7 @@ import {
   OnChanges,
   Output,
 } from '@angular/core';
-import { EMPTY, Observable, of, ReplaySubject } from 'rxjs';
+import { EMPTY, Observable, ReplaySubject } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';

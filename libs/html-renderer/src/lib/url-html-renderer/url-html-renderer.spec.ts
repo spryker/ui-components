@@ -91,7 +91,7 @@ describe('UrlHtmlRendererDirective', () => {
 
     component.urlHtml = mockUrl;
     fixture.detectChanges();
-    
+
     let htmlResponse = httpTestingController.expectOne(mockUrl);
 
     htmlResponse.flush(mockResponse);

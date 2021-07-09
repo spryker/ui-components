@@ -6,7 +6,7 @@ import { UnsavedChangesMonitorToken } from '@spryker/unsaved-changes';
 import { CloseDrawerActionHandlerService } from './close-drawer-action-handler.service';
 
 const mockActionsConfig = {
-  type: 'close_drawer',
+  type: 'close-drawer',
 };
 const mockContext = 'mockContext';
 

@@ -1,20 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { NotificationModule } from '@spryker/notification';
-
-import { provideAjaxActions } from './tokens';
-import { AjaxPostActionsDeclaration } from './types';
+import { NgModule } from '@angular/core';
 
 @NgModule({
-  imports: [CommonModule, NotificationModule],
+  imports: [CommonModule],
 })
-export class AjaxActionModule {
-  static withActions(
-    actions: AjaxPostActionsDeclaration,
-  ): ModuleWithProviders<AjaxActionModule> {
-    return {
-      ngModule: AjaxActionModule,
-      providers: [provideAjaxActions(actions)],
-    };
-  }
-}
+export class AjaxActionModule {}

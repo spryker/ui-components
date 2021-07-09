@@ -36,7 +36,7 @@ class SimpleDrawerComponent {
     <h3>Drawer content here...</h3>
 
     <spy-button-action
-      [action]="{ type: 'refresh_drawer' }"
+      [action]="{ type: 'refresh-drawer' }"
       variant="primary"
       size="md"
     >
@@ -54,7 +54,7 @@ export const primary = (): IStory => ({
       ButtonModule,
       ButtonActionModule,
       ActionsModule.withActions({
-        refresh_drawer: RefreshDrawerActionHandlerService,
+        'refresh-drawer': RefreshDrawerActionHandlerService,
       }),
     ],
     declarations: [SimpleDrawerComponent, DrawerContentComponent],
@@ -65,7 +65,7 @@ export const primary = (): IStory => ({
   `,
   props: {
     action: object('action', {
-      type: 'refresh_drawer',
+      type: 'refresh-drawer',
     }),
   },
 });

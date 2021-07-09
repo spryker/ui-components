@@ -5,7 +5,7 @@ import { TableDataConfiguratorService } from '@spryker/table';
 import { RefreshTableActionHandlerService } from './refresh-table-action-handler.service';
 
 const mockActionsConfig = {
-  type: 'refresh_table',
+  type: 'refresh-table',
   url: 'mockUrl',
 };
 const mockContext = 'mockContext';

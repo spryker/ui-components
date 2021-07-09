@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/actions.close-drawer@0.1.0-next.0...@spryker/actions.close-drawer@0.1.0-next.1) (2021-07-08)
+
+
+### Bug Fixes
+
+* **actions.close-drawer:** fix action name ([a0e2fa6](https://github.com/spryker/ui-components/commit/a0e2fa61454d59d6e7c1b78b3bf3807cb76e32e5))
+
+
+
+
+
 # 0.1.0-next.0 (2021-07-07)
 
 

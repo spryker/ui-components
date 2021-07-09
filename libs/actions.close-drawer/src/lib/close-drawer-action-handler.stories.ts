@@ -36,7 +36,7 @@ class SimpleDrawerComponent {
     <h3>Drawer content here...</h3>
 
     <spy-button-action
-      [action]="{ type: 'close_drawer' }"
+      [action]="{ type: 'close-drawer' }"
       variant="primary"
       size="md"
     >
@@ -54,7 +54,7 @@ export const primary = (): IStory => ({
       ButtonModule,
       ButtonActionModule,
       ActionsModule.withActions({
-        close_drawer: CloseDrawerActionHandlerService,
+        'close-drawer': CloseDrawerActionHandlerService,
       }),
     ],
     declarations: [SimpleDrawerComponent, DrawerContentComponent],
@@ -65,7 +65,7 @@ export const primary = (): IStory => ({
   `,
   props: {
     action: object('action', {
-      type: 'close_drawer',
+      type: 'close-drawer',
     }),
   },
 });

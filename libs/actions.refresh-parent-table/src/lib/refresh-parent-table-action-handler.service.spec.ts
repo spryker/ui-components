@@ -8,7 +8,7 @@ import {
 import { RefreshParentTableActionHandlerService } from './refresh-parent-table-action-handler.service';
 
 const mockActionsConfig = {
-  type: 'refresh_parent_table',
+  type: 'refresh-parent-table',
   url: 'mockUrl',
 };
 const mockContext = 'mockContext';

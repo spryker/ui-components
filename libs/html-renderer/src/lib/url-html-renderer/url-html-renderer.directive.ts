@@ -64,12 +64,11 @@ export class UrlHtmlRendererDirective
             }),
           ),
       ),
-      tap((response) => {
-        this.ajaxActionService.handle(response, this.injector);
-      }),
-      map((response) => response.html),
-      tap(() => {
-        this.urlHtmlLoading.emit(false);
+      map((response) => {
+         this.ajaxActionService.handle(response, this.injector);
+         this.urlHtmlLoading.emit(false);
+         
+         return response.html ?? ''
       }),
     );
   }

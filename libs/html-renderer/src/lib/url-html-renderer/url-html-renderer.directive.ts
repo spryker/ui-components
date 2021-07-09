@@ -2,14 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import {
   Directive,
   EventEmitter,
+  Injector,
   Input,
   OnChanges,
   Output,
 } from '@angular/core';
-import { EMPTY, Observable, ReplaySubject } from 'rxjs';
-import { catchError, switchMap, tap } from 'rxjs/operators';
-
+import { EMPTY, Observable, of, ReplaySubject } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { AjaxActionService } from '@spryker/ajax-action';
 import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
+import { UrlHtmlRendererResponse } from '../html-renderer/types';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
@@ -25,12 +27,17 @@ import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
 export class UrlHtmlRendererDirective
   implements HtmlRendererProvider, OnChanges {
   @Input() urlHtml = '';
+  @Input() urlMethod? = 'GET';
   @Output() urlHtmlLoading = new EventEmitter<boolean>();
 
   private html$ = new ReplaySubject<string>(1);
   private isLoading$ = new ReplaySubject<void>(1);
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private injector: Injector,
+    private http: HttpClient,
+    private ajaxActionService: AjaxActionService,
+  ) {}
 
   ngOnChanges(): void {
     this.html$.next(this.urlHtml);
@@ -47,14 +54,23 @@ export class UrlHtmlRendererDirective
         this.isLoading$.next();
       }),
       switchMap((urlHtml) =>
-        this.http.get(urlHtml, { responseType: 'text' }).pipe(
-          catchError(() => {
-            this.urlHtmlLoading.emit(false);
-            return EMPTY;
-          }),
-        ),
+        this.http
+          // tslint:disable-next-line: no-non-null-assertion
+          .request<UrlHtmlRendererResponse>(this.urlMethod!, urlHtml)
+          .pipe(
+            catchError(() => {
+              this.urlHtmlLoading.emit(false);
+              return EMPTY;
+            }),
+          ),
       ),
-      tap(() => this.urlHtmlLoading.emit(false)),
+      tap((response) => {
+        this.ajaxActionService.handle(response, this.injector);
+      }),
+      map((response) => response.html),
+      tap(() => {
+        this.urlHtmlLoading.emit(false);
+      }),
     );
   }
 }

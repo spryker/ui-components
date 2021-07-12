@@ -7,7 +7,6 @@ import {
   OnDestroy,
   Output,
   Renderer2,
-  SecurityContext,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -50,15 +49,12 @@ export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     this.subscription = this.htmlRenderer$.subscribe({
       next: (html) => {
-        const sanitizedHtml = this.domSanitizer.sanitize(
-          SecurityContext.HTML,
-          html,
-        );
+        const bypassedHtml = this.domSanitizer.bypassSecurityTrustHtml(html);
 
         this.renderer.setProperty(
           this.htmlRendererContent?.nativeElement,
           'innerHTML',
-          sanitizedHtml,
+          bypassedHtml,
         );
         this.htmlRendered.emit(this.htmlRendererContent);
       },

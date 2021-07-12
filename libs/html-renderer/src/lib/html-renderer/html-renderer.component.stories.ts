@@ -34,8 +34,8 @@ const mockHtmlTemplate = (template: string) => `
   </body>
 `;
 
-function generateMockHtmlPage(template: string): string {
-  return mockHtmlTemplate(template);
+function generateMockHtmlPage(template: string): { html: string } {
+  return { html: mockHtmlTemplate(template) };
 }
 
 export default {

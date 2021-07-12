@@ -98,8 +98,8 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush({});
 
-    tick();
     fixture.detectChanges();
+    tick();
 
     const htmlRendererElem = fixture.debugElement.query(
       By.css('spy-html-renderer'),
@@ -122,8 +122,8 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockFirstResponse);
 
-    tick();
     fixture.detectChanges();
+    tick();
 
     nzSpinElem = fixture.debugElement.query(
       By.css('.spy-ajax-form-container + nz-spin'),
@@ -140,8 +140,8 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockFirstResponse);
 
-    tick();
     fixture.detectChanges();
+    tick();
 
     const staticHtml = fixture.debugElement.query(
       By.css('spy-html-renderer .spy-html-renderer__content'),
@@ -164,8 +164,8 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockFirstResponse);
 
-    tick();
     fixture.detectChanges();
+    tick();
 
     const staticHtml = fixture.debugElement.query(
       By.css('spy-html-renderer .spy-html-renderer__content'),
@@ -173,17 +173,11 @@ describe('AjaxFormComponent', () => {
 
     expect(staticHtml.nativeElement.innerHTML).toBe(mockFirstResponse.form);
 
-    tick();
-    fixture.detectChanges();
-
     const formElem = fixture.debugElement.query(By.css('form'));
-
     const inputElem = fixture.nativeElement.querySelector('#name');
 
     inputElem.value = 'mockValue';
-
     formElem.triggerEventHandler('submit', event);
-
     htmlResponse = httpTestingController.expectOne(mockUrl);
 
     expect(event.preventDefault).toHaveBeenCalled();
@@ -192,8 +186,8 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockSecondResponse);
 
-    tick();
     fixture.detectChanges();
+    tick();
 
     expect(staticHtml.nativeElement.innerHTML).toBe(mockSecondResponse.form);
   }));
@@ -207,8 +201,8 @@ describe('AjaxFormComponent', () => {
 
     httpResponse.flush(mockFirstResponse);
 
-    tick();
     fixture.detectChanges();
+    tick();
 
     const formElem = fixture.debugElement.query(By.css('form'));
     const submitElem = fixture.nativeElement.querySelector(
@@ -240,19 +234,17 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockFirstResponse);
 
-    tick();
     fixture.detectChanges();
+    tick();
 
     const formElem = fixture.debugElement.query(By.css('form'));
-
     const inputElem = fixture.nativeElement.querySelector('#name');
 
     inputElem.value = 'mockValue';
-
     formElem.triggerEventHandler('submit', event);
 
-    tick();
     fixture.detectChanges();
+    tick();
 
     const staticHtml = fixture.debugElement.query(
       By.css('spy-html-renderer .spy-html-renderer__content'),
@@ -268,8 +260,8 @@ describe('AjaxFormComponent', () => {
 
     htmlResponse.flush(mockSecondResponse);
 
-    tick();
     fixture.detectChanges();
+    tick();
 
     nzSpinElem = fixture.debugElement.query(
       By.css('.spy-ajax-form-container + nz-spin'),
@@ -289,25 +281,20 @@ describe('AjaxFormComponent', () => {
     const formElem = fixture.debugElement.query(By.css('form'));
 
     component.action = mockUrl;
+
     fixture.detectChanges();
+    tick();
 
     httpTestingController.expectOne(mockUrl);
-    tick();
-    fixture.detectChanges();
-
     formElem.triggerEventHandler('submit', event);
 
     let htmlResponse = httpTestingController.expectOne(mockUrl);
     htmlResponse.flush(mockResponse);
-    tick();
-    fixture.detectChanges();
 
     expect(htmlResponse.request.method).toBe('POST');
 
     formElem.triggerEventHandler('submit', event);
     htmlResponse = httpTestingController.expectOne(mockResponse.action);
-    tick();
-    fixture.detectChanges();
 
     expect(htmlResponse.request.method).toBe(mockResponse.method);
   }));

@@ -30,7 +30,7 @@ export class HtmlRendererComponent {
 
   htmlRenderer$ = this.htmlRendererProvider.getHtml().pipe(
     map((html) => {
-      this.htmlRendered.emit(this.htmlRendererContent);
+      setTimeout(() => this.htmlRendered.emit(this.htmlRendererContent), 0);
 
       return this.domSanitizer.bypassSecurityTrustHtml(html);
     }),

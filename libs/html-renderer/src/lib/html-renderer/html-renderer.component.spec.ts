@@ -127,8 +127,12 @@ describe('HtmlRendererComponent', () => {
 
     host.hostComponent.htmlRendered = jest.fn();
     testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+
     host.detectChanges();
 
-    expect(host.hostComponent.htmlRendered).toHaveBeenCalled();
+    setTimeout(
+      () => expect(host.hostComponent.htmlRendered).toHaveBeenCalled(),
+      0,
+    );
   });
 });

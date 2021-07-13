@@ -1,10 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  async,
-  TestBed,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import { async, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { Observable, ReplaySubject } from 'rxjs';
 

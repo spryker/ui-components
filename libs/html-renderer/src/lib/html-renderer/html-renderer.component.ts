@@ -1,17 +1,15 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
-  OnDestroy,
   Output,
-  Renderer2,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { merge, Subscription } from 'rxjs';
-import { mapTo, shareReplay } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
+import { merge } from 'rxjs';
+import { map, mapTo, shareReplay } from 'rxjs/operators';
 
 import { HtmlRendererProvider } from './html-renderer.provider';
 
@@ -25,15 +23,19 @@ import { HtmlRendererProvider } from './html-renderer.provider';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
+export class HtmlRendererComponent {
   @ViewChild('htmlRendererContent', { static: false })
   htmlRendererContent?: ElementRef<HTMLElement>;
   @Output() htmlRendered = new EventEmitter<ElementRef>();
 
-  htmlRenderer$ = this.htmlRendererProvider
-    .getHtml()
-    .pipe(shareReplay({ bufferSize: 1, refCount: true }));
-  subscription = new Subscription();
+  htmlRenderer$ = this.htmlRendererProvider.getHtml().pipe(
+    map((html) => {
+      setTimeout(() => this.htmlRendered.emit(this.htmlRendererContent), 0);
+
+      return this.domSanitizer.bypassSecurityTrustHtml(html);
+    }),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
   isLoading$ = merge(
     this.htmlRenderer$.pipe(mapTo(false)),
     this.htmlRendererProvider.isLoading().pipe(mapTo(true)),
@@ -41,23 +43,6 @@ export class HtmlRendererComponent implements OnDestroy, AfterViewInit {
 
   constructor(
     private htmlRendererProvider: HtmlRendererProvider,
-    private renderer: Renderer2,
+    private domSanitizer: DomSanitizer,
   ) {}
-
-  ngAfterViewInit(): void {
-    this.subscription = this.htmlRenderer$.subscribe({
-      next: (html) => {
-        this.renderer.setProperty(
-          this.htmlRendererContent?.nativeElement,
-          'innerHTML',
-          html,
-        );
-        this.htmlRendered.emit(this.htmlRendererContent);
-      },
-    });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }

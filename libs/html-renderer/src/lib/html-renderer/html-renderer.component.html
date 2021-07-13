@@ -1,5 +1,6 @@
 <span
   #htmlRendererContent
+  [innerHTML]="htmlRenderer$ | async"
   spyCustomElementBoundary
   class="spy-html-renderer__content"
 ></span>

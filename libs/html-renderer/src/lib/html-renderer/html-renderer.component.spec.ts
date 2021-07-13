@@ -1,7 +1,12 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+import {
+  async,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { Observable, ReplaySubject, EMPTY } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 
 import { HtmlRendererComponent } from './html-renderer.component';
 import { HtmlRendererProvider } from './html-renderer.provider';
@@ -122,17 +127,15 @@ describe('HtmlRendererComponent', () => {
     expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml);
   });
 
-  it('should emit @Output(htmlRendered) when component renders HTML code', async () => {
+  it('should emit @Output(htmlRendered) when component renders HTML code', fakeAsync(async () => {
     const host = await createComponent({}, true);
 
     host.hostComponent.htmlRendered = jest.fn();
     testHtmlRendererProvider.html$.next(mockHtmlTemplate);
 
     host.detectChanges();
+    tick();
 
-    setTimeout(
-      () => expect(host.hostComponent.htmlRendered).toHaveBeenCalled(),
-      0,
-    );
-  });
+    expect(host.hostComponent.htmlRendered).toHaveBeenCalled();
+  }));
 });

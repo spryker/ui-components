@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-next.6 (2021-07-13)
+
+**Note:** Version bump only for package @spryker/html-renderer
+
+
+
+
+
 # 0.1.0-next.5 (2020-11-12)
 
 **Note:** Version bump only for package @spryker/html-renderer

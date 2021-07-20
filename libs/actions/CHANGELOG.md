@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/actions@0.1.0-next.1...@spryker/actions@0.1.0-next.2) (2021-07-20)
+
+
+### Bug Fixes
+
+* **table.feature.row-actions:** remove `typeOptions` from the action config ([8c636a6](https://github.com/spryker/ui-components/commit/8c636a6aaa0a79f64f7b057c9c3a60baf601a47d))
+
+
+
+
+
 # 0.1.0-next.1 (2021-07-07)
 
 

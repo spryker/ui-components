@@ -171,9 +171,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
    * Prepares Event Object {@link TableActionTriggeredEvent<TableBatchAction>} and triggers this object via {@link TableActionsService.trigger()} API.
    */
   buttonClickHandler(action: TableBatchAction, batchAction: TableItemActions) {
-    const batchTypeOptions: Record<string, unknown> = {
-      ...(action.typeOptions as Record<string, unknown>),
-    };
+    const rowAction = { ...action };
     const rowIds = batchAction.selectedRows.reduce(
       (ids: string[], row) => [
         ...ids,
@@ -184,17 +182,16 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
       ],
       [],
     );
-
     const context: TableBatchActionContext = {
       rowIds,
     };
 
-    Object.entries(batchTypeOptions).forEach(([key, value]) => {
+    Object.entries(rowAction).forEach(([key, value]) => {
       if (typeof value !== 'string') {
         return;
       }
 
-      batchTypeOptions[key] = this.contextService.interpolate(
+      rowAction[key] = this.contextService.interpolate(
         value,
         context as any,
       );
@@ -202,8 +199,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
 
     const batchEvent: TableActionTriggeredEvent<TableBatchAction> = {
       action: {
-        ...action,
-        typeOptions: batchTypeOptions,
+        ...rowAction,
       },
       items: batchAction.selectedRows,
     };

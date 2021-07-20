@@ -16,6 +16,7 @@ import { object } from '@storybook/addon-knobs';
 
 import { DrawerActionHandlerService } from './drawer-action-handler.service';
 import { DrawerActionModule } from './drawer-action.module';
+import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
 
 export default {
   title: 'DrawerActionHandlerService',
@@ -109,6 +110,7 @@ export const withTable = () => ({
       }),
     ],
     declarations: [SimpleComponent],
+    entryComponents: [DrawerContainerProxyComponent, SimpleComponent]
   },
   template: `
     <h1 style="font: bold 30px Arial; padding: 15px"> Click on the table row to open drawer </h1>

@@ -11,7 +11,7 @@
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
-    "@spryker/actions": "^0.1.0-next.0",
+    "@spryker/actions": "^0.1.0-next.1",
     "@spryker/datasource": "^0.0.1-next.0",
     "@spryker/icon": "^0.0.1-next.14",
     "@spryker/locale": "^0.1.0-next.4",

@@ -110,7 +110,7 @@ export const withTable = () => ({
       }),
     ],
     declarations: [SimpleComponent],
-    entryComponents: [DrawerContainerProxyComponent, SimpleComponent]
+    entryComponents: [DrawerContainerProxyComponent, SimpleComponent],
   },
   template: `
     <h1 style="font: bold 30px Arial; padding: 15px"> Click on the table row to open drawer </h1>

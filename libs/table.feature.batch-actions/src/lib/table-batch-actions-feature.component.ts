@@ -191,10 +191,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
         return;
       }
 
-      rowAction[key] = this.contextService.interpolate(
-        value,
-        context as any,
-      );
+      rowAction[key] = this.contextService.interpolate(value, context as any);
     });
 
     const batchEvent: TableActionTriggeredEvent<TableBatchAction> = {

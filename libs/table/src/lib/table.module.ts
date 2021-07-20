@@ -10,6 +10,7 @@ import { I18nModule } from '@spryker/locale';
 import { PopoverModule } from '@spryker/popover';
 import { ContextModule, InvokeModule, PluckModule } from '@spryker/utils';
 import { SelectComponentsModule } from '@spryker/web-components';
+import { ActionsModule } from '@spryker/actions';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
@@ -46,6 +47,7 @@ import { CoreTableComponent } from './table/table.component';
     I18nModule,
     PopoverModule,
     InvokeModule,
+    ActionsModule,
   ],
   declarations: [
     CoreTableComponent,

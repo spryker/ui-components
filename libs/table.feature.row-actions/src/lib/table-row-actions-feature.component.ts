@@ -149,9 +149,6 @@ export class TableRowActionsFeatureComponent
 
   triggerEvent(action: TableActionTriggeredEvent): void {
     const rowAction = { ...action };
-    const rowTypeOptions = {
-      ...(action.action.typeOptions as Record<string, unknown>),
-    };
     const actionItem = rowAction.items[0];
     const actionContext: TableRowActionContext = {
       row: actionItem,
@@ -160,22 +157,22 @@ export class TableRowActionsFeatureComponent
         : '',
     };
 
-    for (const option in rowTypeOptions) {
+    rowAction.action = { ...rowAction.action };
+
+    for (const option in rowAction.action) {
       if (!option) {
         continue;
       }
-      const optionItem = rowTypeOptions[option];
+      const optionItem = rowAction.action[option];
       if (typeof optionItem !== 'string') {
         continue;
       }
 
-      rowTypeOptions[option] = this.contextService.interpolate(
+      rowAction.action[option] = this.contextService.interpolate(
         optionItem,
         actionContext as any,
       );
     }
-
-    rowAction.action = { ...rowAction.action, typeOptions: rowTypeOptions };
 
     this.tableActionsService.trigger(rowAction, actionContext);
   }

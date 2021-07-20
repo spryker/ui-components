@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import { ActionTypesToken } from './token';
 import {
@@ -17,15 +17,16 @@ import { Observable } from 'rxjs';
 })
 export class ActionsService {
   private actionHandlerTypes: ActionTypesDeclaration =
-    this.actionHandlers.reduce(
+    this.actionHandlers?.reduce(
       (actions, action) => ({ ...actions, ...action }),
       {},
     ) || {};
 
   constructor(
     private injector: Injector,
+    @Optional()
     @Inject(ActionTypesToken)
-    private actionHandlers: InjectionTokenType<typeof ActionTypesToken>,
+    private actionHandlers?: InjectionTokenType<typeof ActionTypesToken>,
   ) {}
 
   trigger<C extends ActionConfig>(

@@ -9,6 +9,7 @@ import {
   OnDestroy,
   SimpleChanges,
   ViewChild,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
@@ -36,8 +37,8 @@ export interface SubmitEvent extends Event {
   },
 })
 export class AjaxFormComponent implements OnDestroy, OnChanges {
-  @ViewChild(HtmlRendererComponent, { read: Injector })
-  htmlRendererInjector?: Injector;
+  @ViewChild(HtmlRendererComponent, { read: ViewContainerRef })
+  htmlRendererVcr?: ViewContainerRef;
 
   @Input() action?: string;
   @Input() method = 'POST';
@@ -136,7 +137,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
     this.isLoading = false;
     this.ajaxActionService.handle(
       response,
-      this.htmlRendererInjector ?? this.injector,
+      this.htmlRendererVcr?.injector ?? this.injector,
     );
     // TODO: investigate ExpressionChangedAfterItHasBeenCheckedError
     this.cdr.markForCheck();

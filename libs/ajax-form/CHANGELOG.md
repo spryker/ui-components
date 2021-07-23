@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.2.0-next.13...@spryker/ajax-form@0.2.0-next.14) (2021-07-23)
+
+
+### Bug Fixes
+
+* **ajax-form:** fix htmlRendererComponent injector reading ([26da779](https://github.com/spryker/ui-components/commit/26da77974da3dca1f03acda05e72073647eda390))
+
+
+
+
+
 # [0.2.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/ajax-form@0.2.0-next.12...@spryker/ajax-form@0.2.0-next.13) (2021-07-07)
 
 

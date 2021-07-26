@@ -1,0 +1,24 @@
+<div
+  class="spy-table-column-input"
+  [class.spy-table-column-input--error-with-message]="
+    getErrorType | spyInvoke: (config?.editableError | context: context)
+  "
+>
+  <spy-form-item
+    [error]="config?.editableError | context: context"
+    withErrorTitle="true"
+  >
+    <spy-input
+      [value]="context?.value | context: context"
+      [type]="config?.type | context: context"
+      [placeholder]="config?.placeholder | context: context"
+      [prefix]="config?.prefix | context: context"
+      [suffix]="config?.suffix | context: context"
+      [outerPrefix]="config?.outerPrefix | context: context"
+      [outerSuffix]="config?.outerSuffix | context: context"
+      [attrs]="config?.attrs"
+      (valueChange)="valueChangeHandler($event)"
+      control
+    ></spy-input>
+  </spy-form-item>
+</div>

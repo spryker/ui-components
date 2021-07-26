@@ -1,0 +1,12 @@
+<nz-card
+  [nzTitle]="spyTitle"
+  [nzExtra]="extra"
+  [nzActions]="actions"
+  [nzBordered]="false"
+  [ngClass]="['head-title-position-' + titlePosition]"
+  spyApplyContexts="spy-bg-white"
+>
+  <span spyCustomElementBoundary>
+    <ng-content></ng-content>
+  </span>
+</nz-card>

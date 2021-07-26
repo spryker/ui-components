@@ -1,0 +1,23 @@
+<spy-drawer-wrapper
+  [closeable]="drawerRef?.options.closeable"
+  [resizable]="drawerRef?.options.resizable"
+  [width]="drawerRef?.options.width"
+  (closed)="drawerRef?.close()"
+>
+  <ng-container *ngIf="drawerRecord?.class; else drawerTemplate">
+    <ng-container
+      *ngComponentOutlet="
+        drawerRecord.class;
+        injector: drawerRecord.injector;
+        ndcDynamicInputs: drawerRecord.inputs;
+        ndcDynamicOutputs: drawerRecord.outputs
+      "
+    ></ng-container>
+  </ng-container>
+
+  <ng-template #drawerTemplate>
+    <ng-container
+      *ngTemplateOutlet="drawerRecord?.template; context: drawerRecord?.context"
+    ></ng-container>
+  </ng-template>
+</spy-drawer-wrapper>

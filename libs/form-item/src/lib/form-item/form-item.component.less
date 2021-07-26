@@ -1,0 +1,67 @@
+@import './form-item.component.theme.less';
+
+.@{form-item-prefix-cls} {
+  display: block;
+  margin-bottom: @form-item-bottom-margin;
+  font-family: @font-family;
+
+  &.no-spaces,
+  &-with-help.no-spaces {
+    margin-bottom: 0;
+  }
+
+  &-label {
+    display: block;
+    text-align: left;
+    line-height: 0;
+
+    > label {
+      font: @font-default;
+      letter-spacing: @letter-spacing-base;
+      text-transform: uppercase;
+      padding-bottom: @form-item-label-bottom-padding;
+      height: auto;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    &--required {
+      margin-left: @form-item-label-required-margin-left;
+    }
+  }
+
+  &-explain,
+  &-extra {
+    margin-top: @form-extra-margin-top;
+    font-size: @form-extra-font-size;
+    min-height: 0;
+
+    > div {
+      display: flex;
+    }
+
+    &-text {
+      padding-left: @form-extra-text-padding-left;
+    }
+  }
+
+  &-control {
+    line-height: 1;
+  }
+
+  .anticon-info-circle {
+    font-size: @font-size-lg;
+    line-height: @form-info-icon-line-height;
+    vertical-align: middle;
+  }
+
+  .@{form-item-prefix-cls}-control {
+    .@{radio-prefix-cls}-input,
+    .@{checkbox-prefix-cls}-input {
+      width: 0;
+      height: 0;
+    }
+  }
+}

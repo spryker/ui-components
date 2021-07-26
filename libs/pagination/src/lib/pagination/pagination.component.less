@@ -1,0 +1,137 @@
+@import './pagination.component.theme.less';
+
+.@{pagination-prefix-cls} {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: @pagination-wrapper-padding;
+  }
+
+  &-select {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: @pagination-select-width;
+  }
+
+  &-item,
+  &-prev,
+  &-next,
+  &-jump-next,
+  &-jump-prev {
+    width: @pagination-link-size;
+    height: @pagination-link-size;
+    background-color: @white;
+    border: @pagination-link-border;
+    border-radius: @pagination-link-border-radius;
+    margin: @pagination-item-margin;
+    font: @font-default;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      margin: 0;
+      color: @gray-darker;
+    }
+
+    &:hover {
+      background-color: @white;
+      border-color: @gray;
+
+      a {
+        color: @gray-darker;
+      }
+    }
+
+    &:active {
+      border-color: @green;
+      background-color: @white;
+
+      a {
+        color: @gray-darker;
+      }
+    }
+
+    .@{pagination-prefix-cls}-item-link {
+      border: none;
+    }
+  }
+
+  &-item-active {
+    background-color: @green;
+    border-color: @green;
+    pointer-events: none;
+
+    a {
+      color: @white;
+    }
+  }
+
+  &-item-container {
+    width: 100%;
+  }
+
+  &-jump-next,
+  &-jump-prev {
+    background: none;
+    border: none;
+    width: @pagination-jump-next-width;
+    min-width: @pagination-jump-next-min-width;
+
+    &:hover {
+      background: none;
+
+      .@{pagination-prefix-cls}-icon {
+        &--default {
+          display: none;
+        }
+
+        &--hover {
+          display: block;
+        }
+      }
+    }
+
+    &:active {
+      .@{pagination-prefix-cls}-icon {
+        color: @green;
+      }
+    }
+  }
+
+  &-jump-prev {
+    transform: @pagination-item-prev-transform;
+  }
+
+  &-disabled {
+    border-color: @gray-light;
+    background: @disabled-bg;
+    pointer-events: none;
+
+    a {
+      color: @gray-darker;
+    }
+  }
+
+  &-icon {
+    height: @pagination-icon-arrow-size;
+    width: @pagination-icon-arrow-size;
+    color: @gray-dark;
+
+    .@{pagination-prefix-cls}-prev & {
+      transform: @pagination-item-next-transform;
+    }
+
+    .@{pagination-prefix-cls}-disabled & {
+      color: @gray;
+    }
+
+    &--hover {
+      display: none;
+    }
+  }
+}

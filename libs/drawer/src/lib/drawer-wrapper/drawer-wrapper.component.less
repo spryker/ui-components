@@ -1,0 +1,58 @@
+@import 'themes/default/theme.less';
+
+.@{drawer-wrapper-prefix-cls} {
+  .transition-mixin(width);
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  pointer-events: none;
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    padding-top: @drawer-wrapper-actions-top-padding;
+    pointer-events: auto;
+    z-index: 0;
+    width: @drawer-wrapper-action-size;
+  }
+
+  &__action {
+    .transition-mixin(border background color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: @drawer-wrapper-action-size;
+    width: @drawer-wrapper-action-size;
+    background: @drawer-wrapper-action-background;
+    border-radius: @drawer-wrapper-action-border-radius;
+    color: @drawer-wrapper-action-color;
+    font-size: @drawer-wrapper-action-icon-size;
+    margin-bottom: @drawer-wrapper-action-bottom-margin;
+    border: @drawer-wrapper-action-border;
+    cursor: pointer;
+    box-shadow: @drawer-wrapper-box-shadow;
+
+    &:hover {
+      border-color: @drawer-wrapper-action-hover-background;
+      color: @drawer-wrapper-action-hover-color;
+      background: @drawer-wrapper-action-hover-background;
+    }
+
+    &:focus {
+      border-color: @drawer-wrapper-action-hover-background;
+    }
+  }
+
+  &__content {
+    width: @drawer-content-width;
+    height: 100%;
+    background-color: @drawer-wrapper-background;
+    pointer-events: auto;
+    border-radius: @drawer-wrapper-border-radius;
+    box-shadow: @drawer-wrapper-box-shadow;
+  }
+}

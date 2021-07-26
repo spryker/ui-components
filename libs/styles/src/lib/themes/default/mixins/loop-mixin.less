@@ -1,0 +1,10 @@
+/**
+ * Provides custom loop for selectors.
+ * @param {Number} @i
+ * @param @rules Extends mixin with properties.
+ */
+.loop-mixin (@i, @rules) when (@i > 0) {
+  @rules();
+
+  .loop-mixin(@i - 1, @rules);
+}

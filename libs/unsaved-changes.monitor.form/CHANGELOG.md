@@ -1,0 +1,37 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0-next.2 (2021-02-23)
+
+
+### Bug Fixes
+
+* **unsaved-changes.monitor.form:** fix spyUnsavedChangesFormMonitorBubbling ([23cef4b](https://github.com/spryker/ui-components/commit/23cef4b71c96414095fce21a42106643c3e237e5))
+
+
+### Features
+
+* **unsaved-changes.monitor.form:** add export bubbling service ([7607a4a](https://github.com/spryker/ui-components/commit/7607a4ad56f57b23f95b52eaa4eca6475d73c254))
+* **unsaved-changes.monitor.form:** add prevent bubbling directive ([6c3822f](https://github.com/spryker/ui-components/commit/6c3822fd483a6a14443efdee038be130f670c712))
+* **unsaved-changes.monitor.form:** fix prooperty name ([c37e1bd](https://github.com/spryker/ui-components/commit/c37e1bdf5f19b6030abd7518abfcdc7cd744ecae))
+
+
+
+
+
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.monitor.form@0.1.0-next.0...@spryker/unsaved-changes.monitor.form@0.1.0-next.1) (2020-09-29)
+
+**Note:** Version bump only for package @spryker/unsaved-changes.monitor.form
+
+
+
+
+
+# 0.1.0-next.0 (2020-09-17)
+
+
+### Features
+
+* **unsaved-changes:** add libs ([e1d6f8c](https://github.com/spryker/ui-components/commit/e1d6f8c798237a58bea31023b49b9dd7ba334893))

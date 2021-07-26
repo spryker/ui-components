@@ -1,0 +1,9 @@
+<nz-autocomplete nzOverlayClassName="spy-autocomplete__dropdown">
+  <nz-auto-option
+    *ngFor="let option of filteredOptions$ | async"
+    [nzDisabled]="option.isDisabled"
+    [nzValue]="option.value"
+  >
+    {{ option.title }}
+  </nz-auto-option>
+</nz-autocomplete>

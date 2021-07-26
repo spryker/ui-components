@@ -40,3 +40,10 @@ Thumbs.db
 
 # Firebase
 .firebase
+
+# Compiled Ant Design themes
+/libs/styles/src/lib/themes/**/*.css
+
+# Compiled i18n data
+/libs/locale/data/*/src/data/*
+!/libs/locale/data/*/src/data/data.d.ts

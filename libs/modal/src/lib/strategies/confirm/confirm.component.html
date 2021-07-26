@@ -1,0 +1,65 @@
+<ng-template #title>
+  <ng-template
+    [ngTemplateOutlet]="genericTemplate"
+    [ngTemplateOutletContext]="{
+      context: modalContext,
+      $implicit: data.title
+    }"
+  ></ng-template>
+</ng-template>
+
+<div class="ant-modal-description" *ngIf="data?.description">
+  <ng-template
+    [ngTemplateOutlet]="genericTemplate"
+    [ngTemplateOutletContext]="{
+      context: modalContext,
+      $implicit: data.description
+    }"
+  ></ng-template>
+</div>
+
+<ng-template #footer let-modal="modalRef">
+  <div class="ant-modal-confirm-actions">
+    <div class="ant-modal-confirm-col">
+      <spy-button size="sm" variant="secondary" (click)="modalRef.close(false)">
+        <ng-template
+          [ngTemplateOutlet]="genericTemplate"
+          [ngTemplateOutletContext]="{
+            context: modalContext,
+            $implicit: data.cancelText
+          }"
+        ></ng-template>
+      </spy-button>
+    </div>
+
+    <div class="ant-modal-confirm-col">
+      <spy-button size="sm" variant="critical" (click)="modalRef.close(true)"
+        ><ng-template
+          [ngTemplateOutlet]="genericTemplate"
+          [ngTemplateOutletContext]="{
+            context: modalContext,
+            $implicit: data.okText
+          }"
+        ></ng-template
+      ></spy-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #genericTemplate let-context="context" let-data>
+  <ng-container
+    *ngTemplateOutlet="
+      data | ofType: 'string':stringTmpl:alternativeTmpl;
+      context: {
+        $implicit: data,
+        context: context
+      }
+    "
+  ></ng-container>
+</ng-template>
+
+<ng-template #stringTmpl let-data>{{ data }}</ng-template>
+
+<ng-template #alternativeTmpl let-context="context" let-data>
+  <ng-container *ngTemplateOutlet="data; context: context"></ng-container>
+</ng-template>

@@ -1,0 +1,125 @@
+<nz-select
+  [(ngModel)]="mappedValue"
+  (ngModelChange)="handleValueChange($event)"
+  [nzShowSearch]="search"
+  [nzShowArrow]="true"
+  [nzDisabled]="disabled"
+  [nzPlaceHolder]="placeholder"
+  [nzMode]="multiple ? 'multiple' : 'default'"
+  [nzSuffixIcon]="suffixIconTpl"
+  [nzNotFoundContent]="notFoundContent"
+  [nzOptionHeightPx]="40"
+  [nzRemoveIcon]="crossIconTpl"
+  [nzAllowClear]="!disableClear"
+  [nzClearIcon]="clearIconTpl"
+  [nzMaxTagCount]="0"
+  [nzMaxTagPlaceholder]="tagPlaceholder"
+  [class.ant-select--not-searchable]="!search"
+  nzDropdownClassName="ant-select--dropdown"
+  class="ant-select--custom"
+>
+  <nz-option
+    *ngIf="showSelectAll"
+    [nzValue]="selectAllValue"
+    [nzLabel]="selectAllTitle"
+  >
+  </nz-option>
+
+  <nz-option
+    *ngFor="let option of mappedOptions"
+    [nzValue]="option.value"
+    [nzLabel]="option.title"
+    [nzDisabled]="option.isDisabled"
+    [nzCustomContent]="true"
+  >
+    <div
+      class="ant-select-item-option-content-wrapper"
+      [class.ant-select-item-option-content-wrapper-selected]="
+        checkSelectedState(option.value)
+      "
+      [title]="option.title"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          multiple ? multiSelectOptionIconTpl : singleSelectOptionIconTpl
+        "
+      >
+      </ng-container>
+      <span class="ant-select-item-option-content-label">
+        {{ option.title }}
+      </span>
+    </div>
+  </nz-option>
+</nz-select>
+
+<select
+  *ngIf="multiple; else singleSelectTpl"
+  class="ant-select-native"
+  multiple
+  [attr.name]="name"
+  [disabled]="disabled"
+  #selectRef
+>
+  <option></option>
+  <option
+    *ngFor="let option of mappedOptions"
+    [value]="option.value"
+    [selected]="checkSelectedState(option.value)"
+  >
+    {{ option.title }}
+  </option>
+</select>
+
+<ng-template #singleSelectTpl>
+  <select
+    class="ant-select-native"
+    [ngModel]="mappedValue"
+    [attr.name]="name"
+    [disabled]="disabled"
+    #selectRef
+  >
+    <option></option>
+    <option *ngFor="let option of mappedOptions" [value]="option.value">
+      {{ option.title }}
+    </option>
+  </select>
+</ng-template>
+
+<ng-template #suffixIconTpl>
+  <spy-icon class="ant-select-arrow__icon" [name]="arrowDownIcon"></spy-icon>
+</ng-template>
+
+<ng-template #crossIconTpl>
+  <spy-icon
+    class="ant-select-selector__choice__remove__icon"
+    [name]="removeIcon"
+  ></spy-icon>
+</ng-template>
+
+<ng-template #singleSelectOptionIconTpl>
+  <spy-icon
+    class="ant-select-item-option__icon--checked"
+    [name]="checkIcon"
+  ></spy-icon>
+</ng-template>
+
+<ng-template #multiSelectOptionIconTpl>
+  <span class="ant-select-item-option-state__multiChecked">
+    <spy-icon
+      class="ant-select-item-option-state__multiChecked--icon"
+      [name]="checkIcon"
+    ></spy-icon>
+  </span>
+  <span class="ant-select-item-option-state__multiUnChecked"></span>
+</ng-template>
+
+<ng-template #clearIconTpl>
+  <spy-icon
+    class="ant-select-selection__clear-icon"
+    [name]="removeIcon"
+  ></spy-icon>
+</ng-template>
+
+<ng-template #tagPlaceholder>{{ selectedList | spyJoin: ', ' }}</ng-template>
+
+<ng-template #notFoundContent>{{ noOptionsText$ | async }}</ng-template>

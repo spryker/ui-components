@@ -1,9 +1,11 @@
-import { ComponentFactoryResolver, Injector, NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 
-import { createCustomElementFor } from './custom-element-factory';
-import { WebComponentDeclaration, WebComponentDefs } from './types';
-import { componentDefsToDeclarations, isDeclarationLazy } from './util';
+import { registerComponents } from './custom-element-registry';
+import { WebComponentDefs } from './types';
 
+/**
+ * @deprecated Use {WebComponentsModule.withComponents()} static method instead.
+ */
 @NgModule({})
 export abstract class CustomElementModule {
   protected abstract components: WebComponentDefs;
@@ -11,35 +13,6 @@ export abstract class CustomElementModule {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
-    this.init();
-  }
-
-  private init() {
-    const componentDeclarations = componentDefsToDeclarations(this.components);
-
-    componentDeclarations.forEach(componentDeclaration =>
-      this.register(componentDeclaration),
-    );
-  }
-
-  private register(componentDeclaration: WebComponentDeclaration) {
-    customElements.define(
-      this.getComponentName(componentDeclaration),
-      createCustomElementFor(componentDeclaration, this.injector),
-    );
-  }
-
-  private getComponentName(componentDeclaration: WebComponentDeclaration) {
-    if (isDeclarationLazy(componentDeclaration)) {
-      return componentDeclaration.selector;
-    }
-
-    if (componentDeclaration.selector) {
-      return componentDeclaration.selector;
-    }
-
-    return this.injector
-      .get(ComponentFactoryResolver)
-      .resolveComponentFactory(componentDeclaration.component).selector;
+    registerComponents(this.components, this.injector);
   }
 }

@@ -1,14 +1,23 @@
 module.exports = {
-  rulesDirectory: ['node_modules/@nrwl/workspace/src/tslint'],
+  rulesDirectory: ['node_modules/@nrwl/workspace/src/tslint', 'codelyzer'],
   rules: {
+    align: {
+      options: ['parameters', 'statements'],
+    },
     'arrow-return-shorthand': true,
     'callable-types': true,
     'class-name': true,
+    curly: true,
     deprecation: {
       severity: 'warn',
     },
+    eofline: true,
     forin: true,
     'import-blacklist': [true, 'rxjs/Rx'],
+    'import-spacing': true,
+    indent: {
+      options: ['spaces'],
+    },
     'interface-over-type-literal': true,
     'member-access': false,
     'member-ordering': [
@@ -44,7 +53,34 @@ module.exports = {
     'object-literal-sort-keys': false,
     'prefer-const': true,
     radix: true,
+    'space-before-function-paren': {
+      options: {
+        anonymous: 'always',
+        asyncArrow: 'always',
+        constructor: 'never',
+        method: 'never',
+        named: 'never',
+      },
+    },
     'triple-equals': [true, 'allow-null-check'],
+    'typedef-whitespace': {
+      options: [
+        {
+          'call-signature': 'nospace',
+          'index-signature': 'nospace',
+          parameter: 'nospace',
+          'property-declaration': 'nospace',
+          'variable-declaration': 'nospace',
+        },
+        {
+          'call-signature': 'onespace',
+          'index-signature': 'onespace',
+          parameter: 'onespace',
+          'property-declaration': 'onespace',
+          'variable-declaration': 'onespace',
+        },
+      ],
+    },
     'unified-signatures': true,
     'variable-name': false,
 
@@ -67,6 +103,16 @@ module.exports = {
       {
         allow: [],
         depConstraints: [
+          // package rules START
+          {
+            sourceTag: 'pkg:primary',
+            onlyDependOnLibsWithTags: ['pkg:primary'],
+          },
+          {
+            sourceTag: 'pkg:extension',
+            onlyDependOnLibsWithTags: ['pkg:primary', 'pkg:extension'],
+          },
+          // package rules END
           // type rules START
           {
             sourceTag: 'type:meta',
@@ -76,7 +122,11 @@ module.exports = {
           { sourceTag: 'type:style', onlyDependOnLibsWithTags: ['type:style'] },
           {
             sourceTag: 'type:service',
-            onlyDependOnLibsWithTags: ['type:util', 'type:service'],
+            onlyDependOnLibsWithTags: [
+              'type:util',
+              'type:service',
+              'type:component-service',
+            ],
           },
           {
             sourceTag: 'type:component',
@@ -84,6 +134,16 @@ module.exports = {
               'type:util',
               'type:service',
               'type:component',
+              'type:component-service',
+            ],
+          },
+          {
+            sourceTag: 'type:component-service',
+            onlyDependOnLibsWithTags: [
+              'type:util',
+              'type:service',
+              'type:component',
+              'type:component-service',
             ],
           },
           // type rules END
@@ -127,6 +187,16 @@ module.exports = {
         enforceBuildableLibDependency: true,
       },
     ],
+    whitespace: {
+      options: [
+        'check-branch',
+        // 'check-decl',
+        'check-operator',
+        'check-separator',
+        'check-type',
+        'check-typecast',
+      ],
+    },
   },
 };
 

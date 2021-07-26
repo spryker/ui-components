@@ -1,0 +1,159 @@
+@import 'ng-zorro-antd/input/style/index.less';
+@import '../theme.less';
+
+.@{input-prefix-cls}-group {
+  .@{input-prefix-cls} {
+    &:only-child {
+      border-radius: @border-radius-base;
+    }
+  }
+
+  .@{input-prefix-cls}-group-addon {
+    background: @gray-lighter;
+    color: @gray-dark;
+    font-family: @font-family;
+
+    &:first-of-type {
+      padding-right: @input-add-before-spacing;
+    }
+  }
+}
+
+.@{input-prefix-cls} {
+  height: @input-height-base;
+  font: @font-default;
+  padding: @input-padding-padding-base;
+
+  &:read-only,
+  &-disabled {
+    &,
+    .has-error & {
+      pointer-events: none;
+      border-color: @input-disabled-border;
+    }
+  }
+
+  &:read-only {
+    &,
+    .has-error & {
+      color: @ink;
+      background: @input-disabled-bg;
+    }
+  }
+
+  &:focus {
+    &,
+    .has-error & {
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  &:invalid {
+    box-shadow: none;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  &-affix-wrapper {
+    height: @input-height-base;
+    padding: 0;
+
+    input.@{input-prefix-cls} {
+      height: 100%;
+      padding: @input-padding-padding-base;
+    }
+
+    &--suffix input.@{input-prefix-cls} {
+      padding-right: @input-affix-padding;
+    }
+
+    &--prefix input.@{input-prefix-cls} {
+      padding-left: @input-affix-padding;
+    }
+
+    .@{input-prefix-cls} {
+      &-prefix,
+      &-suffix {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: @input-icon-color;
+        z-index: 2;
+        line-height: 0;
+        font-family: @font-family;
+      }
+
+      &-prefix {
+        left: 10px;
+      }
+
+      &-suffix {
+        right: 10px;
+      }
+    }
+
+    &:hover {
+      .@{input-prefix-cls}-disabled,
+      .@{input-prefix-cls}:read-only {
+        border-color: @input-disabled-border;
+      }
+    }
+
+    &-focused {
+      box-shadow: none;
+    }
+
+    &.@{input-prefix-cls}-container--hover {
+      border-color: @gray;
+    }
+
+    &.@{input-prefix-cls}-container--focus {
+      border-color: @primary-color;
+    }
+  }
+
+  &-container {
+    &--hover {
+      .@{input-prefix-cls}-group-addon,
+      .@{input-prefix-cls}-affix-wrapper,
+      .@{input-prefix-cls} {
+        border-color: @gray;
+        box-shadow: none;
+      }
+    }
+
+    &--focus {
+      .@{input-prefix-cls}-group-addon,
+      .@{input-prefix-cls}-affix-wrapper,
+      .@{input-prefix-cls} {
+        border-color: @primary-color;
+        border-width: @border-width-base;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.@{form-item-prefix-cls}-has-error {
+  .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--hover,
+  .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--focus,
+  .@{input-prefix-cls}-group-addon,
+  .@{input-prefix-cls} {
+    border-color: @red;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .@{input-prefix-cls}-group-addon {
+    background: @gray-lighter;
+    color: @gray-dark;
+  }
+}

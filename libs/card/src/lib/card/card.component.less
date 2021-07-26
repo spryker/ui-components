@@ -1,0 +1,61 @@
+@import './card.component.theme.less';
+
+.@{card-prefix-cls} {
+  display: block;
+  font-family: @font-family;
+
+  &-head {
+    font-size: @heading-5-font-size;
+    line-height: @card-head-line-height;
+    font-weight: @font-weight-semi-bold;
+    border-bottom-width: @card-border-width;
+    letter-spacing: @card-head-letter-spacing;
+    padding: @card-head-y-padding @card-padding-base;
+
+    .head-title-position-left & {
+      text-align: left;
+    }
+
+    .head-title-position-right & {
+      text-align: right;
+    }
+
+    .head-title-position-center & {
+      text-align: center;
+    }
+  }
+
+  &-head-title,
+  &-extra {
+    padding: 0;
+  }
+
+  &-actions {
+    border-top-width: @card-border-width;
+    border-radius: @spy-card-radius;
+    background: transparent;
+
+    & > li {
+      box-sizing: border-box;
+
+      &:not(:last-child) {
+        border-right-width: @card-border-width;
+      }
+    }
+  }
+
+  .@{card-prefix-cls} {
+    background-color: @card-inner-background;
+
+    .@{card-prefix-cls}-head {
+      font-size: @font-size-base;
+      font-weight: @font-weight-medium;
+      border-color: @card-inner-head-border-color;
+      padding: @card-head-padding-default;
+    }
+
+    .@{card-prefix-cls}-body {
+      padding: @card-body-padding-default;
+    }
+  }
+}

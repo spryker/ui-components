@@ -1,0 +1,33 @@
+<div class="ant-range-picker">
+  <div class="ant-range-picker-col">
+    <spy-date-picker
+      #startPicker
+      [(date)]="dates.from"
+      [enableDate]="{ to: dates?.to }"
+      [enableTime]="timeFrom"
+      [placeholder]="placeholderFrom"
+      [clearButton]="clearButton"
+      [disabled]="disabled"
+      [format]="format"
+      [name]="nameFrom"
+      [time]="time"
+      (dateChange)="dateFromChange(dates)"
+    ></spy-date-picker>
+  </div>
+
+  <div class="ant-range-picker-col">
+    <spy-date-picker
+      #endPicker
+      [(date)]="dates.to"
+      [enableDate]="{ from: dates?.from }"
+      [enableTime]="timeTo"
+      [placeholder]="placeholderTo"
+      [clearButton]="clearButton"
+      [disabled]="disabled"
+      [format]="format"
+      [name]="nameTo"
+      [time]="time"
+      (dateChange)="dateToChange(dates)"
+    ></spy-date-picker>
+  </div>
+</div>

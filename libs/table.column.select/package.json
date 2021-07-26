@@ -1,0 +1,22 @@
+{
+  "name": "@spryker/table.column.select",
+  "version": "0.1.0-next.3",
+  "peerDependencies": {
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
+    "@spryker/data-transformer": "^0.1.0-next.2",
+    "@spryker/datasource": "^0.1.0-next.1",
+    "@spryker/form-item": "^0.2.0-next.1",
+    "@spryker/select": "^0.2.0-next.5",
+    "@spryker/table": "^0.2.0-next.22",
+    "@spryker/table.feature.editable": "^0.1.0-next.12",
+    "@spryker/utils": "^0.2.0-next.1",
+    "tslib": "^1.10.0"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

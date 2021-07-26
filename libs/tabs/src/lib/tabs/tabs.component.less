@@ -1,0 +1,311 @@
+@import './tabs.component.theme.less';
+
+.@{tab-prefix-cls} {
+  font-family: @font-family;
+
+  &-bar {
+    border-bottom: none;
+    margin-bottom: @tabs-margin-bottom;
+  }
+
+  &-ink-bar {
+    bottom: -@tabs-border-width;
+  }
+
+  &-nav-wrap {
+    margin-bottom: 0;
+  }
+
+  &-nav-container {
+    line-height: @tabs-nav-line-height;
+    font-weight: @font-weight-medium;
+    margin-bottom: @tabs-nav-bottom-margin;
+  }
+
+  &-projected-content {
+    display: none;
+  }
+
+  &-custom-tab {
+    .transition-mixin(all);
+    position: relative;
+    padding: @tabs-padding;
+    display: flex;
+    align-items: center;
+
+    &::after {
+      .transition-mixin(background);
+      content: '';
+      position: absolute;
+      bottom: -@tabs-border-width;
+      left: 0;
+      width: 100%;
+      height: @tabs-border-width;
+      background: transparent;
+    }
+
+    &:hover {
+      color: @tabs-hover-color;
+
+      &::after {
+        background: @tabs-hover-color;
+      }
+    }
+
+    &:active {
+      color: @tabs-active-color;
+    }
+
+    &-icon {
+      display: flex;
+      padding-right: @tabs-icon-padding-right;
+      font-size: @font-size-lg;
+    }
+
+    &-warning {
+      color: @red;
+
+      &:hover {
+        color: @red;
+
+        &::after {
+          background: @red;
+        }
+      }
+    }
+  }
+
+  &-nav {
+    width: 100%;
+    border-bottom: @tabs-nav-border-bottom;
+
+    .@{tab-prefix-cls}-tab {
+      padding: 0;
+      vertical-align: bottom;
+
+      .anticon {
+        margin-right: 0;
+        line-height: 1;
+      }
+
+      &-active {
+        &:hover {
+          color: @tabs-highlight-color;
+          border-bottom-color: @tabs-highlight-color;
+        }
+
+        .@{tab-prefix-cls}-custom-tab {
+          &:hover {
+            color: @tabs-highlight-color;
+            border-bottom-color: @tabs-highlight-color;
+          }
+
+          &-warning {
+            &::after {
+              background: @red;
+              z-index: 10;
+            }
+
+            &:hover {
+              color: @red;
+              border-bottom-color: @red;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.@{tab-prefix-cls}-card {
+    .@{tab-prefix-cls}-nav {
+      background-color: @gray-lighter;
+      border-bottom: 0;
+    }
+
+    .@{tab-prefix-cls}-bar {
+      .@{tab-prefix-cls}-tab {
+        font-size: @font-size-sm;
+        font-weight: @font-weight-default;
+        letter-spacing: @letter-spacing-base;
+        color: @ink;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        position: relative;
+
+        &::before {
+          display: none;
+        }
+
+        &:hover {
+          background-color: @white;
+
+          .@{tab-prefix-cls}-custom-tab {
+            color: @ink;
+
+            &::before {
+              background-color: @gray-darker;
+            }
+
+            &-warning {
+              color: @red;
+            }
+          }
+        }
+      }
+
+      .@{tab-prefix-cls}-tab-disabled {
+        color: @gray-darker;
+
+        &:hover {
+          color: @gray-darker;
+        }
+      }
+
+      .@{tab-prefix-cls}-tab-active {
+        color: @green-dark;
+
+        .@{tab-prefix-cls}-custom-tab {
+          &::before {
+            background-color: @green;
+          }
+
+          &-warning::before {
+            background-color: @red;
+          }
+        }
+
+        &:hover {
+          color: @green-dark;
+
+          .@{tab-prefix-cls}-custom-tab {
+            color: @green-dark;
+
+            &::before {
+              background-color: @green;
+            }
+
+            &-warning {
+              color: @red;
+
+              &::before {
+                background-color: @red;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .@{tab-prefix-cls}-custom-tab {
+      padding: @tabs-card-tab-padding;
+
+      &::before {
+        .transition-mixin(background-color);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: @tabs-border-width;
+      }
+
+      &::after {
+        display: none;
+      }
+
+      &-icon {
+        font-size: @tabs-card-tab-icon-size;
+      }
+    }
+
+    .@{tab-prefix-cls}-nav-container-scrolling {
+      padding: @tabs-card-nav-container-scrolling-padding;
+    }
+
+    .@{tab-prefix-cls}-tab-next,
+    .@{tab-prefix-cls}-tab-prev {
+      .transition-mixin(all);
+      bottom: @tabs-card-nav-bottom-indent;
+      top: @tabs-card-nav-top-indent;
+      border: @tabs-card-nav-arrow-border;
+      height: auto;
+
+      &:hover {
+        background-color: @gray-lighter;
+      }
+
+      &:active {
+        background-color: @gray-lighter;
+      }
+
+      &:focus {
+        background-color: @gray-lighter;
+        border-color: @green;
+      }
+
+      &-icon {
+        &::after {
+          .transition-mixin(border-color);
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 0;
+          top: -@tabs-card-nav-arrow-size;
+        }
+      }
+    }
+
+    .@{tab-prefix-cls}-tab-next {
+      box-shadow: @tabs-card-nav-next-btn-shadow;
+      right: 0;
+
+      &:active {
+        .@{tab-prefix-cls}-tab-next-icon {
+          &::after {
+            border-left-color: @gray-darker;
+          }
+        }
+      }
+
+      &-icon {
+        &::after {
+          border-top: @tabs-card-nav-arrow-icon-border-transparent;
+          border-bottom: @tabs-card-nav-arrow-icon-border-transparent;
+          border-left: @tabs-card-nav-arrow-icon-border-gray;
+          left: -@tabs-card-nav-arrow-size;
+        }
+
+        &-target {
+          display: none;
+        }
+      }
+    }
+
+    .@{tab-prefix-cls}-tab-prev {
+      box-shadow: @tabs-card-nav-prev-btn-shadow;
+
+      &:active {
+        .@{tab-prefix-cls}-tab-prev-icon {
+          &::after {
+            border-right-color: @gray-darker;
+          }
+        }
+      }
+
+      &-icon {
+        &::after {
+          border-top: @tabs-card-nav-arrow-icon-border-transparent;
+          border-bottom: @tabs-card-nav-arrow-icon-border-transparent;
+          border-right: @tabs-card-nav-arrow-icon-border-gray;
+          right: -@tabs-card-nav-arrow-size;
+        }
+
+        &-target {
+          display: none;
+        }
+      }
+    }
+  }
+}

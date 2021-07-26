@@ -1,0 +1,407 @@
+@import './date-picker.component.theme.less';
+
+@icon-navigation-arrow-base64-url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGQ9Ik0xNi4zMDIgNS41MjRsLjAxMi4wMTIgNC45MDEgNC45NDVjLjQ3NC4zMjEuNzg1Ljg2NC43ODUgMS40OHYuMDMzYzAgLjUxOS0uMjIuOTg2LS41NzQgMS4zMTJsLTUuMTEyIDUuMTU4YTEuNzc5IDEuNzc5IDAgMDEtMi41MTUuMDEybC0uMDEyLS4wMTItLjAxOC0uMDE4YTEuNzg3IDEuNzg3IDAgMDEwLTIuNTE1TDE1LjkgMTMuNzhIMy43ODdDMi44IDEzLjc4IDIgMTIuOTggMiAxMS45OTV2LS4wMzRjMC0uOTg2LjgtMS43ODYgMS43ODctMS43ODZsMTIuMDY3LS4wMDEtMi4wODUtMi4xMDRhMS43ODcgMS43ODcgMCAwMTAtMi41MTVsLjAxOC0uMDE4YTEuNzc5IDEuNzc5IDAgMDEyLjUxNS0uMDEyeiIgaWQ9ImEiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48bWFzayBpZD0iYiI+PHVzZSB4bGluazpocmVmPSIjYSIvPjwvbWFzaz48dXNlIGZpbGw9IiM5RUExQTciIHhsaW5rOmhyZWY9IiNhIi8+PGcgbWFzaz0idXJsKCNiKSIgZmlsbD0iIzEyMTIxMiI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPjwvZz48L2c+PC9zdmc+Cg==';
+@icon-navigation-arrow-active-base64-url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGQ9Ik0xNi4zMDIgNS41MjRsLjAxMi4wMTIgNC45MDEgNC45NDVjLjQ3NC4zMjEuNzg1Ljg2NC43ODUgMS40OHYuMDMzYzAgLjUxOS0uMjIuOTg2LS41NzQgMS4zMTJsLTUuMTEyIDUuMTU4YTEuNzc5IDEuNzc5IDAgMDEtMi41MTUuMDEybC0uMDEyLS4wMTItLjAxOC0uMDE4YTEuNzg3IDEuNzg3IDAgMDEwLTIuNTE1TDE1LjkgMTMuNzhIMy43ODdDMi44IDEzLjc4IDIgMTIuOTggMiAxMS45OTV2LS4wMzRjMC0uOTg2LjgtMS43ODYgMS43ODctMS43ODZsMTIuMDY3LS4wMDEtMi4wODUtMi4xMDRhMS43ODcgMS43ODcgMCAwMTAtMi41MTVsLjAxOC0uMDE4YTEuNzc5IDEuNzc5IDAgMDEyLjUxNS0uMDEyeiIgaWQ9ImEiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48bWFzayBpZD0iYiI+PHVzZSB4bGluazpocmVmPSIjYSIvPjwvbWFzaz48dXNlIGZpbGw9IiNmZmYiIHhsaW5rOmhyZWY9IiNhIi8+PGcgbWFzaz0idXJsKCNiKSIgZmlsbD0iIzEyMTIxMiI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPjwvZz48L2c+PC9zdmc+Cg==';
+
+.@{calendar-prefix-cls} {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  width: auto;
+  border: @calendar-input-border;
+
+  &,
+  &-dropdown {
+    font: @font-default;
+  }
+
+  &-focused {
+    box-shadow: none;
+    border-color: @green;
+
+    &:hover {
+      border-color: @green;
+    }
+  }
+
+  &.@{calendar-prefix-cls}-disabled {
+    border-color: @gray-light;
+    background: @disabled-bg;
+
+    .@{calendar-prefix-cls}-suffix {
+      color: @gray;
+    }
+  }
+
+  &-input {
+    height: @calendar-input-height;
+    padding: @calendar-input-padding;
+
+    > input {
+      font-size: inherit;
+
+      &.@{input-prefix-cls} {
+        background: transparent;
+      }
+    }
+  }
+
+  &-suffix,
+  &-clear {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: @calendar-picker-icon-width;
+    width: @calendar-picker-icon-height;
+    font-size: @calendar-picker-icon-font-size;
+    color: @gray-dark;
+    right: @calendar-input-horizontal-padding;
+  }
+
+  &-clear {
+    z-index: 2;
+    background: @gray-light;
+    border-radius: 50%;
+
+    &::after,
+    &::before {
+      .transition-mixin(background);
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      width: @calendar-clear-cross-width;
+      height: @calendar-clear-cross-height;
+      border-radius: @calendar-clear-cross-radius;
+      background: @gray-dark;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:hover {
+      background: @gray-light;
+
+      &::before,
+      &::after {
+        background: @gray-darker;
+      }
+    }
+
+    .anticon {
+      display: none;
+    }
+  }
+
+  &-dropdown {
+    top: @calendar-picker-container-top;
+    left: @calendar-picker-container-left;
+  }
+
+  &-panel-container,
+  &-decade-panel,
+  &-year-panel,
+  &-quarter-panel,
+  &-month-panel,
+  &-week-panel,
+  &-date-panel,
+  &-time-panel {
+    height: @calendar-height;
+    width: @calendar-width;
+    border-radius: @calendar-border-radius;
+    background-color: @white;
+  }
+
+  &-body {
+    padding: @calendar-body-padding;
+  }
+
+  &-header {
+    border-bottom: none;
+    padding: @calendar-header-padding;
+    margin-top: @calendar-header-margin-top;
+    margin-bottom: @calendar-header-margin-bottom;
+
+    .@{calendar-prefix-cls}-header-super-prev-btn,
+    .@{calendar-prefix-cls}-header-super-next-btn,
+    .@{calendar-prefix-cls}-header-prev-btn,
+    .@{calendar-prefix-cls}-header-next-btn {
+      width: @calendar-month-btn-width;
+      height: @calendar-month-btn-height;
+      border-radius: @calendar-month-btn-border-radius;
+      border: @calendar-month-btn-border;
+      color: @gray-dark;
+      background: url(@icon-navigation-arrow-base64-url) no-repeat center/
+        @calendar-btn-background-size;
+
+      &:hover {
+        border-color: @gray;
+      }
+
+      &:focus {
+        border-color: @green;
+      }
+
+      &:active {
+        border-color: @green;
+        background-color: @green;
+        background-image: url(@icon-navigation-arrow-active-base64-url);
+        color: @white;
+      }
+
+      span {
+        display: none;
+      }
+    }
+
+    .@{calendar-prefix-cls}-header-super-prev-btn,
+    .@{calendar-prefix-cls}-header-prev-btn {
+      transform: scaleX(-1);
+    }
+
+    &-super-prev-btn,
+    &-super-next-btn {
+      display: none;
+    }
+
+    &-view {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+
+      button:not(:first-child) {
+        margin: @calendar-header-view-first-button-margin;
+      }
+    }
+  }
+
+  &-cell {
+    padding: @calendar-cell-padding;
+
+    &::before {
+      display: none;
+    }
+
+    .@{calendar-prefix-cls}-cell-inner {
+      position: relative;
+      width: 100%;
+      height: @calendar-tbody-td-height;
+      max-width: @calendar-tbody-td-max-width-height;
+      border: none;
+      border-radius: @calendar-date-border-radius;
+      line-height: @calendar-date-line-height;
+      font-weight: @calendar-date-font-weight;
+      color: @gray;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        pointer-events: none;
+        background: none;
+        border: @calendar-tbody-td-border;
+        box-shadow: none;
+      }
+    }
+
+    &.@{calendar-prefix-cls}-cell-in-view {
+      .@{calendar-prefix-cls}-cell-inner {
+        color: @gray-dark;
+      }
+    }
+
+    &.@{calendar-prefix-cls}-cell-in-view:hover,
+    &:hover {
+      .@{calendar-prefix-cls}-cell-inner {
+        color: @gray-darker;
+        background-color: @gray-lighter !important;
+      }
+    }
+
+    &:focus {
+      .@{calendar-prefix-cls}-cell-inner::after {
+        border-color: @green;
+      }
+    }
+
+    &-today.@{calendar-prefix-cls}-cell-in-view,
+    &-today {
+      .@{calendar-prefix-cls}-cell-inner {
+        background: @gray-lighter;
+        color: @ink;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      &:hover {
+        .@{calendar-prefix-cls}-cell-inner {
+          color: @ink;
+          background-color: @gray-light !important;
+        }
+      }
+    }
+
+    &-selected.@{calendar-prefix-cls}-cell-in-view,
+    &-selected {
+      .@{calendar-prefix-cls}-cell-inner {
+        background-color: @green !important;
+        color: @white;
+      }
+
+      &:focus,
+      &:active,
+      &:hover {
+        .@{calendar-prefix-cls}-cell-inner {
+          background-color: @green !important;
+          color: @white;
+        }
+      }
+    }
+
+    &-disabled.@{calendar-prefix-cls}-cell-in-view,
+    &-disabled {
+      pointer-events: none;
+
+      .@{calendar-prefix-cls}-cell-inner {
+        background-color: @gray-lighter !important;
+        color: @gray;
+      }
+    }
+  }
+
+  &-month-panel,
+  &-year-panel {
+    .@{calendar-prefix-cls}-header {
+      &-super-prev-btn,
+      &-super-next-btn {
+        display: block;
+      }
+
+      &-prev-btn,
+      &-next-btn {
+        display: none;
+      }
+    }
+
+    .@{calendar-prefix-cls}-cell {
+      .@{calendar-prefix-cls}-cell-inner {
+        border-radius: @calendar-tbody-td-month-radius;
+      }
+
+      &:not(.@{calendar-prefix-cls}-cell-in-view) {
+        .@{calendar-prefix-cls}-cell-inner {
+          color: @gray-dark;
+        }
+
+        &:hover {
+          .@{calendar-prefix-cls}-cell-inner {
+            color: @gray-darker;
+          }
+        }
+      }
+    }
+  }
+
+  &-date-panel &-content {
+    width: 100%;
+    box-sizing: border-box;
+
+    tbody {
+      td {
+        height: @calendar-tbody-td-height;
+        border: @calendar-tbody-border;
+        border-bottom: none;
+      }
+
+      tr:last-child td {
+        border-bottom: @calendar-tbody-border;
+      }
+    }
+  }
+
+  &-year-panel &-header-year-btn {
+    pointer-events: none;
+  }
+
+  &-time {
+    width: auto;
+    height: auto;
+
+    .@{calendar-prefix-cls}-time-panel {
+      width: auto;
+      height: auto;
+      border-left: none;
+
+      .@{calendar-prefix-cls}-time-panel-cell
+        .@{calendar-prefix-cls}-time-panel-cell-inner {
+        height: @calendar-time-cell-height;
+        line-height: @calendar-time-cell-height;
+      }
+
+      .@{calendar-prefix-cls}-time-panel-cell-disabled {
+        pointer-events: none;
+
+        .@{calendar-prefix-cls}-time-panel-cell-inner {
+          background-color: @gray-lighter;
+          color: @gray;
+        }
+      }
+
+      .@{calendar-prefix-cls}-time-panel-cell-selected
+        .@{calendar-prefix-cls}-time-panel-cell-inner {
+        background: @primary-color;
+        color: @white;
+
+        &:hover,
+        &:focus {
+          background: @primary-color;
+          color: @white;
+        }
+      }
+    }
+
+    .@{calendar-prefix-cls}-now {
+      display: none;
+    }
+
+    .@{calendar-prefix-cls}-panel {
+      border-width: 0;
+    }
+  }
+
+  &-time-panel {
+    display: flex;
+    justify-content: flex-end;
+    padding: @calendar-time-content-padding;
+
+    .@{calendar-prefix-cls}-content {
+      flex: none;
+      border: @calendar-tbody-border;
+      height: @calendar-time-content-height;
+    }
+
+    .@{calendar-prefix-cls}-time-panel-column {
+      border: none;
+      width: @calendar-time-cell-width;
+    }
+
+    .@{calendar-prefix-cls}-header-view {
+      height: @calendar-time-title-height;
+      line-height: @calendar-time-title-height;
+      color: @gray-dark;
+      font-weight: @font-weight-default;
+    }
+  }
+
+  &-footer {
+    display: none;
+  }
+}

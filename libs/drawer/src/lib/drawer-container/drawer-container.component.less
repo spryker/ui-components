@@ -1,0 +1,20 @@
+@import 'themes/default/theme.less';
+
+.@{drawer-container-prefix-cls} {
+  width: 100%;
+  height: 100%;
+
+  &-overlay {
+    z-index: @drawer-container-overlay-z-index;
+  }
+
+  &-pane {
+    height: 100%;
+    width: 100%;
+    pointer-events: none !important;
+  }
+
+  &-backdrop {
+    background: @drawer-container-backdrop-background;
+  }
+}

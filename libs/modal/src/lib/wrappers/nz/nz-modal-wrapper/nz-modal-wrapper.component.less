@@ -1,0 +1,70 @@
+@import './nz-modal-wrapper.component.theme.less';
+
+.@{modal-prefix-cls} {
+  top: 0;
+
+  .ie-styles-only-mixin({margin: 0;});
+
+  &.zoom-appear,
+  &.zoom-enter {
+    .ie-styles-only-mixin({opacity: 1;});
+  }
+
+  &--confirmation {
+    width: 100%;
+    max-width: @modal-confirmation-max-width;
+  }
+
+  &-mask {
+    background: @modal-backdrop-background;
+  }
+
+  &-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: @modal-wrapper-padding;
+  }
+
+  &-content {
+    font: @font-default;
+    padding: @modal-content-padding;
+    color: @gray-darker;
+  }
+
+  &-body,
+  &-header,
+  &-footer {
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    background: none;
+  }
+
+  &-footer {
+    margin: @modal-footer-margin;
+  }
+
+  &-header {
+    margin: @modal-header-margin;
+    padding: @modal-header-padding;
+    border-bottom: @modal-header-border-bottom;
+    font-size: @heading-5-font-size;
+    color: @ink;
+    font-weight: @font-weight-semi-bold;
+  }
+
+  &-description {
+    line-height: @modal-description-line-height;
+  }
+
+  &-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: @modal-confirmation-actions-margin;
+  }
+
+  &-confirm-col {
+    padding: @modal-confirmation-col-padding;
+  }
+}

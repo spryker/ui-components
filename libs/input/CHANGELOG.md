@@ -1,0 +1,374 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.2.0-next.6 (2021-04-30)
+
+
+### Bug Fixes
+
+* **input:** fix test ([ec68731](https://github.com/spryker/ui-components/commit/ec687319e98c9f01f1d0cc6dfcc835de848aa436))
+* **input:** hide empty id, name and placeholder attributes ([b1c5061](https://github.com/spryker/ui-components/commit/b1c5061c7401c94da6b05c909d5968681db93cbc))
+
+
+
+
+
+# [0.2.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.0-next.4...@spryker/input@0.2.0-next.5) (2021-02-01)
+
+
+### Features
+
+* **autocomplete:** add autocomplete implementation ([884273f](https://github.com/spryker/ui-components/commit/884273f0b21d275f7f7ae0e3c709595bdf2df8f5))
+
+
+
+
+
+# [0.2.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.0-next.3...@spryker/input@0.2.0-next.4) (2020-11-12)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.0-next.2...@spryker/input@0.2.0-next.3) (2020-11-06)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# 0.2.0-next.2 (2020-11-04)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.0-next.0...@spryker/input@0.2.0-next.1) (2020-08-03)
+
+
+### Features
+
+* **table-settings:** ant version update ([8d602dd](https://github.com/spryker/ui-components/commit/8d602dd90d90ea6e1be316bf12511a0b636b6864))
+* table-settings ([4dce6db](https://github.com/spryker/ui-components/commit/4dce6dbfc046ad6fa72e072222868183b217390c))
+* **table-settings:** start implementation ([ff72ede](https://github.com/spryker/ui-components/commit/ff72edefb0b79c9573ba3d8daaffb51a9b431cb5))
+
+
+
+
+
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.0-fix-web-components.0...@spryker/input@0.2.0-next.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **libs:** update versions for next release ([9998cae](https://github.com/spryker/ui-components/commit/9998cae9b2ab631607c0d33fa546363313bfd6aa))
+
+
+
+
+
+# [0.1.0-fix-web-components.1](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-fix-web-components.0...@spryker/input@0.1.0-fix-web-components.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **lib:** update all fixed package peer versions ([bebf900](https://github.com/spryker/ui-components/commit/bebf900c4867617f4dd0032a554037827ecdbda6))
+
+
+
+
+
+# [0.1.0-fix-web-components.0](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.24...@spryker/input@0.1.0-fix-web-components.0) (2020-07-16)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# [0.1.0-next.24](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.23...@spryker/input@0.1.0-next.24) (2020-07-03)
+
+
+### Bug Fixes
+
+* **input:** added comment to re-publish module ([e7c06d7](https://github.com/spryker/ui-components/commit/e7c06d751210f74f60bd486b637bb6ea597dfd19))
+* **styles:** added correct styles for input and prefixes ([054946b](https://github.com/spryker/ui-components/commit/054946b1e9cedc7db0870dc82ea49e5c32a730dd))
+
+
+
+
+
+# 0.1.0-next.23 (2020-06-30)
+
+
+### Bug Fixes
+
+* **input:** fixed hover, focus, error states for input ([15cfddb](https://github.com/spryker/ui-components/commit/15cfddbf34734d0c1abc6bd0f4d401714519ff0f))
+* **input:** fixes after cr ([2315cd0](https://github.com/spryker/ui-components/commit/2315cd0b5bc219b69ea44b429918df70482dc673))
+* **input:** fixes after cr ([9cce0bf](https://github.com/spryker/ui-components/commit/9cce0bfadd8f721adc4a830647a5039f03c0a09f))
+* **input:** moved styles to separate file ([81d89bd](https://github.com/spryker/ui-components/commit/81d89bd65a2b6e60f00c093f0a3665277a3fb8d5))
+* **input:** rollback wrong changes ([5e88ec2](https://github.com/spryker/ui-components/commit/5e88ec273c501e9d026d9abaa2a5ee79eeca471b))
+
+
+
+
+
+# [0.1.0-next.22](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.21...@spryker/input@0.1.0-next.22) (2020-05-15)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# [0.1.0-next.21](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.20...@spryker/input@0.1.0-next.21) (2020-05-15)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# [0.1.0-next.20](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.19...@spryker/input@0.1.0-next.20) (2020-05-05)
+
+
+### Bug Fixes
+
+* **table:** fix ie issues ([ce32dce](https://github.com/spryker/ui-components/commit/ce32dce11779f3c1e068431c43a3271e5bbefcf6))
+
+
+
+
+
+# [0.1.0-next.19](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.18...@spryker/input@0.1.0-next.19) (2020-04-27)
+
+
+### Bug Fixes
+
+* **table:** ui-issues ([f29702c](https://github.com/spryker/ui-components/commit/f29702c1c6af44a61ae52a9b47ed70ca3d713be5))
+
+
+
+
+
+# [0.1.0-next.18](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.17...@spryker/input@0.1.0-next.18) (2020-04-01)
+
+
+### Bug Fixes
+
+* **pagination:** removed styles dependency ([b0974fa](https://github.com/spryker/ui-components/commit/b0974fac733f8c5642c5dfe0f6d40349d64128f4))
+
+
+
+
+
+# [0.1.0-next.17](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.16...@spryker/input@0.1.0-next.17) (2020-04-01)
+
+
+### Bug Fixes
+
+* **input, card:** fixed styles ([f240c82](https://github.com/spryker/ui-components/commit/f240c82e5eb36d14c14b1f7b6ba5733e213edb83))
+
+
+
+
+
+# [0.1.0-next.16](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.15...@spryker/input@0.1.0-next.16) (2020-04-01)
+
+
+### Bug Fixes
+
+* **input:** remove broken left padding style ([bb6e25e](https://github.com/spryker/ui-components/commit/bb6e25e79fbc1cd6933ba48dcffc988ea1c640fd))
+* **input:** set name as attribute on native input ([c44ae15](https://github.com/spryker/ui-components/commit/c44ae1579883544ff91f9e87fabe7a2aa7a3d532))
+
+
+
+
+
+# [0.1.0-next.15](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.14...@spryker/input@0.1.0-next.15) (2020-04-01)
+
+
+### Bug Fixes
+
+* **libs:** lock Ant lib to beta.0 ([cc0bcbc](https://github.com/spryker/ui-components/commit/cc0bcbc133e8322cdd23cd7ac60acd398386a3e3))
+* **utils:** add spy prefix to applyAttrs directive ([c76532b](https://github.com/spryker/ui-components/commit/c76532b4400f1b61f87d3f2809c5b0a0ab773008))
+
+
+
+
+
+# [0.1.0-next.14](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.13...@spryker/input@0.1.0-next.14) (2020-03-31)
+
+
+### Bug Fixes
+
+* **libs:** update peer dependencies to next tags ([179dba1](https://github.com/spryker/ui-components/commit/179dba1ab72ac5229bdefbab5cca0747b9d1d004))
+
+
+
+
+
+# [0.1.0-next.13](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.12...@spryker/input@0.1.0-next.13) (2020-03-30)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# [0.1.0-next.12](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.11...@spryker/input@0.1.0-next.12) (2020-03-25)
+
+
+### Features
+
+* **search feature:** search feature for table component ([742eaee](https://github.com/spryker/ui-components/commit/742eaeea5da37018bed2e17a9eb211d1c6385908))
+
+
+
+
+
+# [0.1.0-next.11](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.10...@spryker/input@0.1.0-next.11) (2020-03-16)
+
+
+### Features
+
+* **label:** label component, bool updates ([4d5e875](https://github.com/spryker/ui-components/commit/4d5e8757009faa5fa2b4546b0061508b2c5725f0))
+
+
+
+
+
+# [0.1.0-next.10](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.9...@spryker/input@0.1.0-next.10) (2020-03-11)
+
+
+### Features
+
+* **input:** addBefore and addAfter functionality ([f6206b8](https://github.com/spryker/ui-components/commit/f6206b8796a08f63e7a7c56308e6b14b50a13f38))
+
+
+
+
+
+# [0.1.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.8...@spryker/input@0.1.0-next.9) (2020-03-05)
+
+
+### Bug Fixes
+
+* **input:** fix input placeholder, invalid state ([fb42091](https://github.com/spryker/ui-components/commit/fb42091aa4b43f0e6883191e21a956f36ab18da9))
+
+
+
+
+
+# [0.1.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.7...@spryker/input@0.1.0-next.8) (2020-03-02)
+
+
+### Bug Fixes
+
+* **input:** change input focus placeholder to override default styles ([9b1f5c2](https://github.com/spryker/ui-components/commit/9b1f5c278344ba0e2bb1633b4f4fee70f7a8d07b))
+
+
+### Reverts
+
+* Revert "chore(release): publish" ([6d291d4](https://github.com/spryker/ui-components/commit/6d291d488a9f7f1bdba98b12b5f13abe232f76e2))
+* Revert "chore(release): publish [skip ci]" ([db70cac](https://github.com/spryker/ui-components/commit/db70cac617dc4c058df205e3ca740a8855791cf2))
+
+
+
+
+
+# [0.1.0-next.7](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.6...@spryker/input@0.1.0-next.7) (2020-02-27)
+
+
+### Features
+
+* **textarea,input:** textarea component, input styles ([bcb6a85](https://github.com/spryker/ui-components/commit/bcb6a85644109700ab00b7332b84d6bb94f8511c))
+
+
+
+
+
+# [0.1.0-next.6](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.5...@spryker/input@0.1.0-next.6) (2020-02-25)
+
+
+### Features
+
+* **alert:** add scaffolding ([c9c0eeb](https://github.com/spryker/ui-components/commit/c9c0eebd57e08a60e0aa2989280b5610ba93f0e6))
+
+
+
+
+
+# [0.1.0-next.5](https://github.com/spryker/ui-components/compare/@spryker/input@0.1.0-next.4...@spryker/input@0.1.0-next.5) (2020-02-21)
+
+
+### Bug Fixes
+
+* **input:** add required attribute fix json attr parser ([1cfe43e](https://github.com/spryker/ui-components/commit/1cfe43e7be2df3496bb006a0376bbca4ae36e042))
+
+
+
+
+
+# [0.1.0-next.4](https://github.com/spryker/zed-gui/compare/@spryker/input@0.1.0-next.3...@spryker/input@0.1.0-next.4) (2020-02-20)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# [0.1.0-next.3](https://github.com/spryker/zed-gui/compare/@spryker/input@0.1.0-next.2...@spryker/input@0.1.0-next.3) (2020-02-19)
+
+
+### Bug Fixes
+
+* **libs:** whitelist Ant design dependency ([bf106d6](https://github.com/spryker/zed-gui/commit/bf106d61cdeedd5273f041c9b4742f05a6d84585))
+
+
+
+
+
+# [0.1.0-next.2](https://github.com/spryker/zed-gui/compare/@spryker/input@0.1.0-next.1...@spryker/input@0.1.0-next.2) (2020-02-19)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# [0.1.0-next.1](https://github.com/spryker/zed-gui/compare/@spryker/input@0.1.0-next.0...@spryker/input@0.1.0-next.1) (2020-02-16)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
+# 0.1.0-next.0 (2020-02-14)
+
+
+### Bug Fixes
+
+* **libs:** add utils to form-item and input ([4b4ca60](https://github.com/spryker/zed-gui/commit/4b4ca607e12102f45d7792dd088205505628838f))
+* **libs:** update output path to global `dist` ([1f7c094](https://github.com/spryker/zed-gui/commit/1f7c0945c27d26f90df8be382b926cb861ef79a0))
+
+
+### Features
+
+* **input:** add attr parser ([f769d90](https://github.com/spryker/zed-gui/commit/f769d907e644d8cdf34a854bbbb14a7d88d1af05))
+* **input:** add input scaffolding ([74144ae](https://github.com/spryker/zed-gui/commit/74144ae3b96867463dee3b30db62d39256e50680))
+* **input:** add style button ([c4ca0c0](https://github.com/spryker/zed-gui/commit/c4ca0c068b480946a5a447fcf1234a07cc84979a))
+* **input:** add test ([0028189](https://github.com/spryker/zed-gui/commit/0028189a71bfc2ae3e1bd5d1aedf9fc5fcc6d4e4))
+
+
+### Reverts
+
+* chore(release): publish ([187313f](https://github.com/spryker/zed-gui/commit/187313f70876d8cdf796b300635df5c9af30e842))

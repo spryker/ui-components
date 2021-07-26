@@ -1,6 +1,15 @@
 import { Injector } from '@angular/core';
 import { createCustomElement, NgElementConstructor } from '@angular/elements';
+import {
+  CrossBoundaryNgElementStrategy,
+  CrossBoundaryNgElementStrategyFactory,
+  ElementBoundaryService,
+} from 'ngx-element-boundary';
+import { DefaultElementBoundaryNgElementStrategyFactory } from 'ngx-element-boundary/element-strategy/default';
+import { Observable, Subject } from 'rxjs';
+import { mapTo, take, takeUntil, shareReplay } from 'rxjs/operators';
 
+import { NgWebComponent } from '../ng-web-component';
 import { getElementMethodsOf } from './custom-element-method';
 import {
   WebComponentDeclaration,
@@ -8,62 +17,126 @@ import {
   WebComponentDeclarationStatic,
   WebComponentType,
 } from './types';
-import { isDeclarationLazy } from './util';
+import { exposeMethod, isDeclarationLazy } from './util';
 
-export function createCustomElementFor<T extends WebComponentType>(
-  componentDeclaration: WebComponentDeclaration<T>,
-  injector: Injector,
-): NgElementConstructor<T> {
-  if (isDeclarationLazy(componentDeclaration)) {
-    return createCustomElementForLazy(componentDeclaration, injector);
-  } else {
-    return createCustomElementForStatic(componentDeclaration, injector);
-  }
+export interface CustomElementFactoryOptions {
+  timeoutMs?: number;
 }
 
-export function createCustomElementForStatic<T extends WebComponentType>(
-  componentDeclaration: WebComponentDeclarationStatic<T>,
+export function createCustomElementFor<T>(
+  componentDeclaration: WebComponentDeclaration<WebComponentType<T>>,
   injector: Injector,
-): NgElementConstructor<T> {
+  options?: CustomElementFactoryOptions,
+): NgWebComponent<T> {
+  if (isDeclarationLazy(componentDeclaration)) {
+    return createCustomElementForLazy(componentDeclaration, injector, options);
+  }
+
+  return createCustomElementForStatic(
+    componentDeclaration as WebComponentDeclarationStatic<WebComponentType<T>>,
+    injector,
+    options,
+  );
+}
+
+export function createCustomElementForStatic<T>(
+  componentDeclaration: WebComponentDeclarationStatic<WebComponentType<T>>,
+  injector: Injector,
+  { timeoutMs = 1000 }: CustomElementFactoryOptions = {},
+): NgWebComponent<T> {
+  const elementBoundaryService = injector.get(ElementBoundaryService);
+
   const componentType = componentDeclaration.component;
-  const CustomElementClass = createCustomElement(componentType, { injector });
+
+  const defaultStrategyFactory = new DefaultElementBoundaryNgElementStrategyFactory(
+    componentType,
+    injector,
+  );
+
+  const strategyFactory = new CrossBoundaryNgElementStrategyFactory(
+    defaultStrategyFactory,
+    {
+      isRoot: componentDeclaration.isRoot,
+      boundaryTimeoutMs: timeoutMs,
+    },
+  );
+
+  const NgElement = createCustomElement(componentType, {
+    injector,
+    strategyFactory,
+  });
   const elemMethods = getComponentMethods(componentDeclaration);
 
-  class CustomElement extends (CustomElementClass as any) {
+  class WebComponent extends (NgElement as any) implements NgWebComponent<any> {
+    private destroyed$ = new Subject<void>();
+
+    private ngComponent: any;
+    private ngElementStrategy?: CrossBoundaryNgElementStrategy;
+    private whenInit$ = elementBoundaryService
+      .whenBoundaryExist(this as any, timeoutMs)
+      .pipe(
+        take(1),
+        mapTo(void 0),
+        shareReplay({ refCount: true, bufferSize: 1 }),
+      );
+
+    getNgType() {
+      return componentType;
+    }
+
+    getSuper() {
+      return this.ngComponent;
+    }
+
+    whenInit(): Observable<void> {
+      return this.whenInit$;
+    }
+
     connectedCallback() {
       super.connectedCallback();
-      this.__init();
+
+      this.whenInit()
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe(() => {
+          // When there is no {@link ComponentRef} - it means that the component
+          // was either moved or has been destroyed already
+          if (!this.ngElementStrategy?.componentRef) {
+            return;
+          }
+
+          this.ngComponent = this.ngElementStrategy.componentRef.instance;
+          this.__init();
+        });
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+
+      this.destroyed$.next();
     }
 
     private __init() {
-      elemMethods.forEach(method => this.__exposeMethod(method));
-    }
-
-    private __exposeMethod(method: string) {
-      const proto = Object.getPrototypeOf(this);
-      const ngComponent = this.ngElementStrategy.componentRef.instance;
-      const originalMethod = ngComponent[method];
-      const overrideMethod = this[method];
-
-      const externalMethod = overrideMethod || originalMethod;
-
-      ngComponent[method] = externalMethod;
-      this[method] = externalMethod;
-
-      // Add original method to prototype only once
-      if (typeof proto[method] !== 'function') {
-        proto[method] = originalMethod;
-      }
+      elemMethods.forEach((method) =>
+        exposeMethod(
+          this,
+          this.ngComponent,
+          method,
+          Object.getPrototypeOf(this),
+        ),
+      );
     }
   }
 
-  return (CustomElement as any) as NgElementConstructor<T>;
+  return (WebComponent as any) as NgWebComponent<T>;
 }
 
-export function createCustomElementForLazy<T extends WebComponentType>(
-  componentDeclaration: WebComponentDeclarationLazy<T>,
+export function createCustomElementForLazy<T>(
+  componentDeclaration: WebComponentDeclarationLazy<WebComponentType<T>>,
   injector: Injector,
-): NgElementConstructor<T> {
+  { timeoutMs = 1000 }: CustomElementFactoryOptions = {},
+): NgWebComponent<T> {
+  const elementBoundaryService = injector.get(ElementBoundaryService);
+
   let componentType: NgElementConstructor<T> | undefined;
   let elemMethods: string[] = [];
 
@@ -71,45 +144,77 @@ export function createCustomElementForLazy<T extends WebComponentType>(
     const component = await componentDeclaration.component();
     componentType = createCustomElement(component, { injector });
     elemMethods = getComponentMethods({ ...componentDeclaration, component });
-    LazyCustomElement.prototype = componentType.prototype;
+    LazyWebComponent.prototype = componentType.prototype;
     return componentType;
   }
 
-  class LazyCustomElement extends (HTMLElement as any) {
+  class LazyWebComponent
+    extends (HTMLElement as any)
+    implements NgWebComponent<any> {
+    private destroyed$ = new Subject<void>();
+
+    private ngComponent: any;
+    private ngElementStrategy?: CrossBoundaryNgElementStrategy;
+    private whenInit$ = elementBoundaryService
+      .whenBoundaryExist(this as any, timeoutMs)
+      .pipe(
+        take(1),
+        mapTo(void 0),
+        shareReplay({ refCount: true, bufferSize: 1 }),
+      );
+
     constructor() {
       super();
 
       if (!componentType) {
-        load().then(type => this.__init(type));
+        load().then((type) => this.__init(type));
       } else {
         this.__init(componentType);
       }
     }
 
-    private __init(type: NgElementConstructor<T>) {
-      type.call(this as any, injector);
-      elemMethods.forEach(method => this.__exposeMethod(method.toString()));
+    getNgType() {
+      return componentType;
     }
 
-    private __exposeMethod(method: string) {
-      const proto = Object.getPrototypeOf(this);
-      const ngComponent = this.ngElementStrategy.componentRef.instance;
-      const originalMethod = ngComponent[method];
-      const overrideMethod = this[method];
+    getSuper() {
+      return this.ngElementStrategy?.componentRef?.instance;
+    }
 
-      const externalMethod = overrideMethod || originalMethod;
+    whenInit(): Observable<void> {
+      return this.whenInit$;
+    }
 
-      ngComponent[method] = externalMethod;
-      this[method] = externalMethod;
+    private __init(type: NgElementConstructor<T>) {
+      type.call(this as any, injector);
 
-      // Add original method to prototype only once
-      if (typeof proto[method] !== 'function') {
-        proto[method] = originalMethod;
-      }
+      // Startup initialization
+      this.connectedCallback();
+
+      this.whenInit()
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe(() => {
+          // When there is no {@link ComponentRef} - it means that the component
+          // was either moved or has been destroyed already
+          if (!this.ngElementStrategy?.componentRef) {
+            return;
+          }
+
+          this.ngComponent = this.ngElementStrategy.componentRef.instance;
+
+          elemMethods.forEach((method) =>
+            exposeMethod(
+              this,
+              this.ngComponent,
+              method,
+              Object.getPrototypeOf(this),
+            ),
+          );
+        });
     }
   }
 
-  return (LazyCustomElement as any) as NgElementConstructor<T>;
+  return (LazyWebComponent as any) as NgWebComponent<T>;
 }
 
 function getComponentMethods(
@@ -121,7 +226,7 @@ function getComponentMethods(
     return getElementMethodsOf(componentProto);
   }
 
-  return Object.getOwnPropertyNames(componentProto).filter(key => {
+  return Object.getOwnPropertyNames(componentProto).filter((key) => {
     if (key === 'constructor') {
       return false;
     }

@@ -14,19 +14,11 @@
     "module": "esnext",
     "moduleResolution": "node",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2015", "dom"],
+    "lib": ["es2015", "es2019", "dom"],
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@spryker/core": ["dist/libs/core/index.d.ts", "libs/core/src/index.ts"],
-      "@spryker/styles": [
-        "dist/libs/styles/index.d.ts",
-        "libs/styles/src/index.ts"
-      ],
-      "@spryker/web-components": [
-        "dist/libs/web-components/index.d.ts",
-        "libs/web-components/src/index.ts"
-      ]
+      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

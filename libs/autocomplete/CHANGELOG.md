@@ -1,0 +1,35 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@0.1.0-next.1...@spryker/autocomplete@0.1.0-next.2) (2021-04-22)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** fix indexing of the created table rows ([38a22a6](https://github.com/spryker/ui-components/commit/38a22a6999865bda3bbee7267956080d1eb88719))
+
+
+
+
+
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@0.1.0-next.0...@spryker/autocomplete@0.1.0-next.1) (2021-03-26)
+
+
+### Features
+
+* **autocomplete:** add possibility using datasource ([1f1da8e](https://github.com/spryker/ui-components/commit/1f1da8e2088bcc8f378c8df622fd89e2303a8f7f))
+* **table.column.autocomplete:** fix datasource prop ([38620ac](https://github.com/spryker/ui-components/commit/38620ac5efb5eca20b5ecbf08c52f46689d9e32f))
+* **table.column.autocomplete:** fix datasource prop type ([f7bbe51](https://github.com/spryker/ui-components/commit/f7bbe514d2265e5a4c10c378a3e83ef8c571e8a4))
+
+
+
+
+
+# 0.1.0-next.0 (2021-02-01)
+
+
+### Features
+
+* **autocomplete:** add autocomplete implementation ([884273f](https://github.com/spryker/ui-components/commit/884273f0b21d275f7f7ae0e3c709595bdf2df8f5))

@@ -50,7 +50,8 @@ nx lint <my-lib>
 
 #### Storybook
 
-_NOTE:_ Before running any storybooks - make sure to cleanup `dist` folder!
+_NOTE:_ Before running any storybooks - make sure to cleanup libs from `dist` folder
+and have meta build generated via `npm run build-meta`!
 
 Serve:
 
@@ -66,7 +67,8 @@ nx run <my-lib>:build-storybook
 
 #### Global Storybook
 
-_NOTE:_ Before running any storybooks - make sure to cleanup `dist` folder!
+_NOTE:_ Before running any storybooks - make sure to cleanup libs from `dist` folder
+and have meta build generated via `npm run build-meta`!
 
 Serve:
 
@@ -103,6 +105,7 @@ For this every component library should have associated ONE level tag:
 ## Available Tags
 
 - `type:*` Describes types of library
+  - `type:component-service` Component with service library
   - `type:component` Component library
   - `type:service` Services library
   - `type:style` Styles library
@@ -142,20 +145,19 @@ When library is generated please do the following:
     "styleIncludePaths": ["../styles/src/lib"]
   }
   ```
-- In `libs/<lib-name>/tsconfig.lib.json`
-  - add `"enableIvy": false` to `angularCompilerOptions`:
-  ```json
-  "enableIvy": false
-  ```
 - In `tsconfig.json`
-  - add to beginning of `paths[@spryker/<lib-name>]` new path `libs/<lib-name>/dist/index.d.ts`:
+  - remove newly generated path `paths[@spryker/<lib-name>]`:
   ```json
   "paths": {
-    "@spryker/<lib-name>": [
-      + "libs/<lib-name>/dist/index.d.ts",
+    - "@spryker/<lib-name>": [
       "libs/<lib-name>/src/index.ts"
     ]
   }
+  ```
+- In `lib/<lib-name>/tsconfig.lib.json`
+  - add to beginning of `angularCompilerOptions` new option `enableIvy=false`:
+  ```json
+    "enableIvy": false,
   ```
 - In `libs/<lib-name>/package.json`
   - add `publishConfig` prop with `access=public` value:
@@ -163,6 +165,11 @@ When library is generated please do the following:
   "publishConfig": {
     "access": "public"
   },
+  ```
+- In `lib/<lib-name>/src/test-setup.ts`
+  - add global setup import:
+  ```ts
+  import '../../../config/test-setup';
   ```
 
 ### Component
@@ -181,7 +188,12 @@ Storybook setup should be added via NX CLI with `@nrwl/storybook:configuration` 
 nx g @nrwl/storybook:configuration --name=<my-lib> --uiFramework=@storybook/angular
 ```
 
-_NOTE:_ Add `import '../../../.storybook/config';` to the generated `libs/<my-lib>/.storybook/config.js` file.
+_NOTE:_ Do the following updates after command above:
+
+- Delete file `libs/<my-lib>/.storybook/addons.js`
+- Delete file `libs/<my-lib>/.storybook/config.js`
+- Add file `libs/<my-lib>/.storybook/main.js` with content `module.exports = require('../../../.storybook/main');`
+- Add file `libs/<my-lib>/.storybook/preview.js` with content `import '../../../.storybook/preview';`
 
 ### Library Stories
 
@@ -201,6 +213,30 @@ Generate stories for components via NX CLI with `@nrwl/angular:stories` schemati
 ```bash
 nx g @nrwl/angular:component-story --lib-path libs/<my-lib> --component-path src/lib --component-name <MyComponent> --component-file-name <my.component> --module-file-name <my.module>
 ```
+
+## Localisation / I18N
+
+The localization is provided from each package directly for the package.
+
+The location of i18n files are in: `libs/<my-lib>/src/i18n/`.
+
+Then each specific language is placed in it's own file (ex. `en.ts` or `de.ts`)
+and MUST default export an interface [`I18nLocaleDataPackage`](libs/locale/src/lib/i18n/types.ts#L10) from package `locale`.
+
+All of the i18n files are then aggregated into a main package `locale` during a build phase.
+
+### Publishing
+
+As all separate i18n files are aggregated in single `locale` package
+it's important to understand how to release it correctly
+(read about [Release process](#release-process)).
+
+The changes in separate i18n files will **only** trigger publishing of their package
+but the main `locale` package will not be published.
+
+In order to publish `locale` package - go to it's
+[main entry point file](libs/locale/src/index.ts)
+and update the `Locale Version` number in the comment at the top.
 
 ## Commits
 
@@ -243,6 +279,34 @@ These are the release branches (`git branch` => `@npm tag`):
 
 - `master` => `@latest`
 - `next` => `@next`
+- `beta` => `@beta`
+
+### Release Recovery
+
+#### NPM
+
+Sometimes publishing to NPM may fail due to several reasons:
+
+- NPM services experience outages
+- Configuration of certain packages prevent them from being published by NPM
+  (ex. public access is not explicitly set)
+
+This may result in some or all packages not published even when version
+and changelogs were updated and pushed back to git.
+
+In this case you need to:
+
+1. Make sure that the issue that prevented packages from publishing is resolved
+2. Merge the branch that failed into related `recovery` branch (add to name postfix `/republish`)
+
+**Recovery branches for republishing:**
+
+- `master` => `mater/republish`
+- `next` => `next/republish`
+- `beta` => `beta/republish`
+
+After branch is pushed to CI it will attempt to find unpublished packages in NPM
+and try to publish them again with the same versions.
 
 ---
 

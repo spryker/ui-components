@@ -1,0 +1,18 @@
+<spy-notification-view
+  [type]="type"
+  [closeable]="closeable"
+  [floating]="false"
+  (closed)="closed.emit()"
+  *ngIf="!floating"
+>
+  <ng-container title *ngTemplateOutlet="titleTpl"></ng-container>
+  <ng-container description *ngTemplateOutlet="descriptionTpl"></ng-container>
+</spy-notification-view>
+
+<ng-template #descriptionInnerTpl>
+  <ng-content select="[description]"></ng-content>
+</ng-template>
+
+<ng-template #titleInnerTpl>
+  <ng-content select="[title]"></ng-content>
+</ng-template>

@@ -1,0 +1,16 @@
+{
+  "name": "@spryker/utils.date.adapter.date-fns",
+  "version": "0.1.0-next.0",
+  "peerDependencies": {
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
+    "@spryker/utils": "^0.2.0-next.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.17.0",
+    "tslib": "^1.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

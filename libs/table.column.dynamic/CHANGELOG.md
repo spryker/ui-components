@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.dynamic@0.1.0-next.2...@spryker/table.column.dynamic@0.1.0) (2021-07-26)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** fix indexing of initial data rows ([cf07ed5](https://github.com/spryker/ui-components/commit/cf07ed520c2020544e30e1031e1d66b2e46954d8))
+
+
+
+
+
 # [0.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.dynamic@0.1.0-next.1...@spryker/table.column.dynamic@0.1.0-next.2) (2021-05-26)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@spryker/modal",
-  "version": "0.0.2-next.3",
+  "version": "0.0.2",
   "publishConfig": {
     "access": "public"
   },

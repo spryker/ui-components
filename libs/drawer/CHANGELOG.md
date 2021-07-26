@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2021-07-26)
+
+**Note:** Version bump only for package @spryker/drawer
+
+
+
+
+
 # [0.2.0-next.9](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.2.0-next.8...@spryker/drawer@0.2.0-next.9) (2021-03-12)
 
 

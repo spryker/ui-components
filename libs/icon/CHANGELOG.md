@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2021-07-26)
+
+**Note:** Version bump only for package @spryker/icon
+
+
+
+
+
 # [0.2.0-next.8](https://github.com/spryker/ui-components/compare/@spryker/icon@0.2.0-next.7...@spryker/icon@0.2.0-next.8) (2021-02-24)
 
 

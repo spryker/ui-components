@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.0-next.6...@spryker/input@0.2.0) (2021-07-26)
+
+**Note:** Version bump only for package @spryker/input
+
+
+
+
+
 # 0.2.0-next.6 (2021-04-30)
 
 

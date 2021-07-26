@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2021-07-26)
+
+**Note:** Version bump only for package @spryker/dropdown
+
+
+
+
+
 # [0.2.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.0-next.2...@spryker/dropdown@0.2.0-next.3) (2020-11-12)
 
 **Note:** Version bump only for package @spryker/dropdown

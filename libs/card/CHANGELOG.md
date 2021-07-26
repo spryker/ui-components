@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.2.0-next.5...@spryker/card@0.2.0) (2021-07-26)
+
+**Note:** Version bump only for package @spryker/card
+
+
+
+
+
 # 0.2.0-next.5 (2021-04-26)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0 (2021-07-26)
+
+**Note:** Version bump only for package @spryker/data-transformer.lens
+
+
+
+
+
 # 0.1.0-next.0 (2021-02-25)
 
 

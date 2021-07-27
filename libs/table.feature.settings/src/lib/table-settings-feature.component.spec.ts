@@ -10,16 +10,17 @@ import {
   TestBed,
   tick,
 } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
   TestTableFeatureTplDirective,
 } from '@spryker/table/testing';
-import { TableSettingsFeatureComponent } from './table-settings-feature.component';
-
-import { LocalStoragePersistenceStrategy } from '@spryker/persistence';
-import { By } from '@angular/platform-browser';
-import { ReplaySubject, Observable } from 'rxjs';
 import {
   TableColumnsResolverService,
   TableDataConfiguratorService,
@@ -28,16 +29,12 @@ import {
   TableDataConfig,
   TableData,
 } from '@spryker/table';
-
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { LocalStoragePersistenceStrategy } from '@spryker/persistence';
 import { TestLocaleModule, I18nTestService } from '@spryker/locale/testing';
 import { IconSettingsModule } from '@spryker/icon/icons';
 import { IconModule } from '@spryker/icon';
-
-import {
-  HttpTestingController,
-  HttpClientTestingModule,
-} from '@angular/common/http/testing';
+import { ReplaySubject, Observable } from 'rxjs';
+import { TableSettingsFeatureComponent } from './table-settings-feature.component';
 import { TableSettingsColumn } from './types';
 
 // tslint:disable: no-non-null-assertion

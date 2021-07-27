@@ -17,7 +17,7 @@ import {
 } from '@spryker/table/testing';
 import { TableSettingsFeatureComponent } from './table-settings-feature.component';
 
-import { LocalStoragePersistenceStrategy } from '@spryker/utils';
+import { LocalStoragePersistenceStrategy } from '@spryker/persistence';
 import { By } from '@angular/platform-browser';
 import { ReplaySubject, Observable } from 'rxjs';
 import {

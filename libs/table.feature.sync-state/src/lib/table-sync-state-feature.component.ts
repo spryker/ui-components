@@ -12,7 +12,7 @@ import {
   TableFeatureComponent,
   TableFeatureLocation,
 } from '@spryker/table';
-import { UrlPersistenceStrategy } from '@spryker/utils';
+import { UrlPersistenceStrategy } from '@spryker/persistence';
 import { combineLatest, merge, Observable, of } from 'rxjs';
 import { pluck, switchMap, take, tap } from 'rxjs/operators';
 

@@ -11,7 +11,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
-import { PersistenceService, ToBoolean } from '@spryker/utils';
+import { PersistenceService } from '@spryker/persistence';
+import { ToBoolean } from '@spryker/utils';
 import { merge, ReplaySubject } from 'rxjs';
 import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 

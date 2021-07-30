@@ -2,7 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DatasourceModule } from '@spryker/datasource';
-import { JoinModule } from '@spryker/utils';
+import { JoinModule, InvokeModule } from '@spryker/utils';
 import {
   NzTreeSelectModule,
   NzTreeSelectComponent,
@@ -25,6 +25,7 @@ describe('TreeSelectComponent', () => {
         imports: [
           NzTreeSelectModule,
           JoinModule,
+          InvokeModule,
           DatasourceModule.withDatasources({
             inline: MockDatasource,
           }),
@@ -79,7 +80,7 @@ describe('TreeSelectComponent', () => {
       );
 
       expect(optionElems.length).toBe(6); // +1 for empty option
-      expect(optionElems[0].properties.value).toBe('');
+      expect(optionElems[0].attributes.value).toBe(undefined);
       expect(optionElems[1].properties.value).toBe(mockItems[0].value);
       expect(optionElems[2].properties.value).toBe(
         // tslint:disable-next-line: no-non-null-assertion

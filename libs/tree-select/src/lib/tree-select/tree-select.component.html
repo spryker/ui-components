@@ -14,9 +14,8 @@
 ></nz-tree-select>
 
 <select
-  *ngIf="multiple; else singleSelectTpl"
-  multiple
   class="ant-select-native"
+  [multiple]="multiple"
   [attr.name]="name"
   [disabled]="disabled"
 >
@@ -24,24 +23,11 @@
   <option
     *ngFor="let item of mappedFlatItems"
     [value]="item.value"
-    [selected]="checkSelectedState(item.value)"
+    [selected]="checkSelectedState | spyInvoke: item.value:multiple:value"
   >
     {{ item.title }}
   </option>
 </select>
-
-<ng-template #singleSelectTpl>
-  <select class="ant-select-native" [attr.name]="name" [disabled]="disabled">
-    <option></option>
-    <option
-      *ngFor="let item of mappedFlatItems"
-      [value]="item.value"
-      [selected]="checkSelectedState(item.value)"
-    >
-      {{ item.title }}
-    </option>
-  </select>
-</ng-template>
 
 <ng-template #tagPlaceholder let-selectedList>{{
   selectedList | treeSelectExtractKeys | spyJoin: ', '

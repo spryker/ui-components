@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4](https://github.com/spryker/ui-components/compare/@spryker/table.feature.sync-state@0.0.3...@spryker/table.feature.sync-state@0.0.4) (2021-07-30)
+
+
+### Bug Fixes
+
+* update peer dependencies to stable ([4b08936](https://github.com/spryker/ui-components/commit/4b0893691360cf4bd66935aed24873266c98c4e4))
+
+
+
+
+
 ## [0.0.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.sync-state@0.0.2...@spryker/table.feature.sync-state@0.0.3) (2021-07-28)
 
 

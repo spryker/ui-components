@@ -14,7 +14,7 @@ import {
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { ToBoolean, ToJson } from '@spryker/utils';
 import { EMPTY, Observable, ReplaySubject, Subject } from 'rxjs';
-import { map, switchAll, takeUntil } from 'rxjs/operators';
+import { switchAll, takeUntil } from 'rxjs/operators';
 import { TreeSelectItem, TreeSelectValue } from './types';
 
 /**
@@ -57,7 +57,6 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
 
   mappedItems?: TreeSelectItem[];
   mappedFlatItems?: TreeSelectItem[];
-  mappedValue?: TreeSelectValue | TreeSelectValue[];
 
   datasourceOptions$ = new ReplaySubject<Observable<TreeSelectItem[]>>();
 
@@ -159,20 +158,15 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
    * @param value {@link TreeSelectValue}
    * Check if item value equal to the selected value or includes in selected values array if mode is multiple
    */
-  checkSelectedState(value: TreeSelectValue): boolean {
-    if (this.multiple && this.mappedValue && Array.isArray(this.mappedValue)) {
-      return this.mappedValue.includes(value);
+  checkSelectedState(
+    value: TreeSelectValue,
+    multiple: boolean,
+    state: TreeSelectValue | TreeSelectValue[],
+  ): boolean {
+    if (multiple && state && Array.isArray(state)) {
+      return state.includes(value);
     }
 
-    return value === this.mappedValue;
-  }
-
-  /**
-   * @param value {@link TreeSelectValue}
-   * Emits valueChange output
-   */
-  handleValueChange(value: TreeSelectValue | TreeSelectValue[]): void {
-    this.mappedValue = value;
-    this.valueChange.emit(value);
+    return value === state;
   }
 }

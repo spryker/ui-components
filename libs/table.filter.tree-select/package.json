@@ -4,9 +4,11 @@
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/locale": "^0.2.0-next.0",
-    "@spryker/table.feature.filters": "^0.1.0-next.0",
-    "@spryker/tree-select": "^0.1.0-next.0",
+    "@spryker/locale": "^0.2.0",
+    "@spryker/table.feature.filters": "^0.0.2",
+    "@spryker/tree-select": "^0.1.0"
+  },
+  "dependencies": {
     "tslib": "^1.10.0"
   },
   "publishConfig": {

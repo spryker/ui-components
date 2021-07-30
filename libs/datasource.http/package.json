@@ -7,7 +7,7 @@
     "@spryker/cache": "^0.1.0",
     "@spryker/data-serializer": "^0.0.2",
     "@spryker/datasource": "^0.1.0",
-    "@spryker/utils": "^0.2.0"
+    "@spryker/utils": "^0.2.1"
   },
   "dependencies": {
     "tslib": "^1.10.0"

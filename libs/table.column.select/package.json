@@ -10,7 +10,7 @@
     "@spryker/select": "^0.2.0",
     "@spryker/table": "^0.2.0",
     "@spryker/table.feature.editable": "^0.1.0",
-    "@spryker/utils": "^0.2.0"
+    "@spryker/utils": "^0.2.1"
   },
   "dependencies": {
     "tslib": "^1.10.0"

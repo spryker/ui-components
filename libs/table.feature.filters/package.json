@@ -6,7 +6,7 @@
     "@angular/core": "^9.1.12",
     "@spryker/styles": "^0.2.0",
     "@spryker/table": "^0.2.0",
-    "@spryker/utils": "^0.2.0"
+    "@spryker/utils": "^0.2.1"
   },
   "dependencies": {
     "ng-dynamic-component": "^6.1.0",

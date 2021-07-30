@@ -8,7 +8,7 @@
     "@spryker/icon": "^0.2.0",
     "@spryker/styles": "^0.2.0",
     "@spryker/table": "^0.2.0",
-    "@spryker/utils": "^0.2.0"
+    "@spryker/utils": "^0.2.1"
   },
   "dependencies": {
     "tslib": "^1.10.0"

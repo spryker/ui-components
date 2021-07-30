@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.2...@spryker/table.feature.settings@0.0.3) (2021-07-28)
+
+
+### Bug Fixes
+
+* **table.feature.settings:** add `persistence` dependency to package.json ([ae8ba31](https://github.com/spryker/ui-components/commit/ae8ba31aeb51581091d15cd0c42c69fe7fb18d4b))
+* **table.feature.settings:** fix `persistence` import ([3f1fde2](https://github.com/spryker/ui-components/commit/3f1fde267314b65b935d332994a61e994d763247))
+
+
+
+
+
 ## 0.0.2 (2021-07-26)
 
 **Note:** Version bump only for package @spryker/table.feature.settings

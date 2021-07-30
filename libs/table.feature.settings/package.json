@@ -5,15 +5,17 @@
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/button": "^0.2.0-next.0",
-    "@spryker/checkbox": "^0.2.0-next.0",
-    "@spryker/icon": "^0.2.0-next.0",
-    "@spryker/locale": "^0.2.0-next.0",
-    "@spryker/persistence": "^0.1.0-next.2",
-    "@spryker/popover": "^0.1.0-next.0",
-    "@spryker/styles": "^0.2.0-next.0",
-    "@spryker/table": "^0.2.0-next.0",
-    "@spryker/utils": "^0.2.0-next.0",
+    "@spryker/button": "^0.2.0",
+    "@spryker/checkbox": "^0.2.0",
+    "@spryker/icon": "^0.2.0",
+    "@spryker/locale": "^0.2.0",
+    "@spryker/persistence": "^0.1.0",
+    "@spryker/popover": "^0.1.0",
+    "@spryker/styles": "^0.2.0",
+    "@spryker/table": "^0.2.0",
+    "@spryker/utils": "^0.2.1"
+  },
+  "dependencies": {
     "tslib": "^1.10.0"
   },
   "publishConfig": {

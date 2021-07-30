@@ -1,17 +1,18 @@
 {
   "name": "@spryker/web-components",
   "version": "0.2.1",
-  "publishConfig": {
-    "access": "public"
-  },
   "peerDependencies": {
-    "@angular/cdk": "^9.0.0",
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "@angular/elements": "^9.0.0",
-    "@spryker/utils": "^0.2.0-next.16"
+    "@angular/cdk": "^9.2.3",
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
+    "@angular/elements": "^9.1.12",
+    "@spryker/utils": "^0.2.1"
   },
   "dependencies": {
-    "ngx-element-boundary": "^1.0.10"
+    "ngx-element-boundary": "^1.0.10",
+    "tslib": "^1.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

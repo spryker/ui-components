@@ -13,7 +13,6 @@ import {
 import { By } from '@angular/platform-browser';
 import { StaticHtmlRendererModule } from '@spryker/html-renderer';
 import { AjaxActionService } from '@spryker/ajax-action';
-import { NotificationModule } from '@spryker/notification';
 
 import { AjaxFormModule } from '../ajax-form.module';
 
@@ -61,7 +60,6 @@ describe('AjaxFormComponent', () => {
         StaticHtmlRendererModule,
         HttpClientTestingModule,
         AjaxFormModule,
-        NotificationModule.forRoot(),
       ],
       declarations: [TestComponent],
       providers: [

@@ -4,8 +4,8 @@
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/persistence": "^0.0.1-next.0",
-    "@spryker/utils": "^0.1.0-next.0"
+    "@spryker/persistence": "^0.1.0",
+    "@spryker/utils": "^0.2.1"
   },
   "dependencies": {
     "tslib": "^1.10.0"

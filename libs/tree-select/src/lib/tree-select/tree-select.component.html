@@ -9,7 +9,7 @@
   [nzMaxTagCount]="0"
   [nzMaxTagPlaceholder]="tagPlaceholder"
   [(ngModel)]="value"
-  (ngModelChange)="handleValueChange($event)"
+  (ngModelChange)="valueChange.emit($event)"
   nzDropdownClassName="spy-tree-select-dropdown"
 ></nz-tree-select>
 
@@ -31,14 +31,13 @@
 </select>
 
 <ng-template #singleSelectTpl>
-  <select
-    class="ant-select-native"
-    [ngModel]="mappedValue"
-    [attr.name]="name"
-    [disabled]="disabled"
-  >
+  <select class="ant-select-native" [attr.name]="name" [disabled]="disabled">
     <option></option>
-    <option *ngFor="let item of mappedFlatItems" [value]="item.value">
+    <option
+      *ngFor="let item of mappedFlatItems"
+      [value]="item.value"
+      [selected]="checkSelectedState(item.value)"
+    >
       {{ item.title }}
     </option>
   </select>

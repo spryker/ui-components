@@ -57,7 +57,6 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
 
   mappedItems?: TreeSelectItem[];
   mappedFlatItems?: TreeSelectItem[];
-  mappedValue?: TreeSelectValue | TreeSelectValue[];
 
   datasourceOptions$ = new ReplaySubject<Observable<TreeSelectItem[]>>();
 
@@ -160,19 +159,10 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
    * Check if item value equal to the selected value or includes in selected values array if mode is multiple
    */
   checkSelectedState(value: TreeSelectValue): boolean {
-    if (this.multiple && this.mappedValue && Array.isArray(this.mappedValue)) {
-      return this.mappedValue.includes(value);
+    if (this.multiple && this.value && Array.isArray(this.value)) {
+      return this.value.includes(value);
     }
 
-    return value === this.mappedValue;
-  }
-
-  /**
-   * @param value {@link TreeSelectValue}
-   * Emits valueChange output
-   */
-  handleValueChange(value: TreeSelectValue | TreeSelectValue[]): void {
-    this.mappedValue = value;
-    this.valueChange.emit(value);
+    return value === this.value;
   }
 }

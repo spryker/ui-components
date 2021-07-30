@@ -79,7 +79,7 @@ describe('TreeSelectComponent', () => {
       );
 
       expect(optionElems.length).toBe(6); // +1 for empty option
-      expect(optionElems[0].properties.value).toBe(undefined);
+      expect(optionElems[0].properties.value).toBe('');
       expect(optionElems[1].properties.value).toBe(mockItems[0].value);
       expect(optionElems[2].properties.value).toBe(
         // tslint:disable-next-line: no-non-null-assertion

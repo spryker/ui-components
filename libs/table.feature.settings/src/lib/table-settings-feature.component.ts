@@ -33,7 +33,7 @@ import {
   take,
 } from 'rxjs/operators';
 import { ReplaySubject, of, Observable, merge, combineLatest } from 'rxjs';
-import { PersistenceService } from '@spryker/utils';
+import { PersistenceService } from '@spryker/persistence';
 import { PopoverPosition } from '@spryker/popover';
 
 interface TableSettingsStorageData {

@@ -1,12 +1,12 @@
 {
   "name": "@spryker/actions.close-drawer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/actions": "^0.1.0-next.0",
-    "@spryker/drawer": "^0.2.0-next.9",
-    "@spryker/unsaved-changes": "^0.1.0-next.3"
+    "@spryker/actions": "^0.1.0",
+    "@spryker/drawer": "^0.2.0",
+    "@spryker/unsaved-changes": "^0.1.0"
   },
   "dependencies": {
     "tslib": "^1.10.0"

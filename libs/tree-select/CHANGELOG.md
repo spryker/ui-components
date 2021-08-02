@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.1...@spryker/tree-select@0.1.1-next.1) (2021-08-02)
+
+
+### Bug Fixes
+
+* **tree-select:** fix check selected state with spyInvoke pipe ([d70fa55](https://github.com/spryker/ui-components/commit/d70fa558b03c7e0cb75c0232e9ee14acaf205e2f))
+* **tree-select:** fix initial selected value for native selects ([b4f5318](https://github.com/spryker/ui-components/commit/b4f531852a1b59bf4a7e096d45f4724e2d37ea8b))
+
+
+
+
+
+## [0.1.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0...@spryker/tree-select@0.1.1-next.0) (2021-07-30)
+
+
+### Bug Fixes
+
+* **tree-select:** fix check selected state with spyInvoke pipe ([d70fa55](https://github.com/spryker/ui-components/commit/d70fa558b03c7e0cb75c0232e9ee14acaf205e2f))
+* **tree-select:** fix initial selected value for native selects ([b4f5318](https://github.com/spryker/ui-components/commit/b4f531852a1b59bf4a7e096d45f4724e2d37ea8b))
+
+
+
+
+
 ## [0.1.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.0...@spryker/tree-select@0.1.1) (2021-07-30)
 
 

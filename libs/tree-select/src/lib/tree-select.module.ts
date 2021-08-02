@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TreeSelectComponent } from './tree-select/tree-select.component';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { FormsModule } from '@angular/forms';
-import { JoinModule } from '@spryker/utils';
+import { JoinModule, InvokeModule } from '@spryker/utils';
 import { I18nModule } from '@spryker/locale';
 import { TreeSelectExtractKeysPipe } from './tree-select/tree-select-extract.pipe';
 
@@ -14,6 +14,7 @@ import { TreeSelectExtractKeysPipe } from './tree-select/tree-select-extract.pip
     FormsModule,
     I18nModule,
     JoinModule,
+    InvokeModule,
   ],
   exports: [TreeSelectComponent],
   declarations: [TreeSelectComponent, TreeSelectExtractKeysPipe],

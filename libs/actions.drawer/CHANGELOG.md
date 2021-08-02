@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/spryker/ui-components/compare/@spryker/actions.drawer@0.1.0...@spryker/actions.drawer@0.1.1) (2021-07-30)
+
+
+### Bug Fixes
+
+* update peer dependencies to stable ([4b08936](https://github.com/spryker/ui-components/commit/4b0893691360cf4bd66935aed24873266c98c4e4))
+
+
+
+
+
 # [0.1.0](https://github.com/spryker/ui-components/compare/@spryker/actions.drawer@0.1.0-next.3...@spryker/actions.drawer@0.1.0) (2021-07-26)
 
 

@@ -1,23 +1,23 @@
 {
   "name": "@spryker/table",
-  "version": "0.2.0",
+  "version": "0.2.1",
+  "peerDependencies": {
+    "@angular/cdk": "^9.2.3",
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
+    "@spryker/actions": "^0.1.0",
+    "@spryker/datasource": "^0.1.0",
+    "@spryker/icon": "^0.2.0",
+    "@spryker/locale": "^0.2.0",
+    "@spryker/popover": "^0.1.0",
+    "@spryker/styles": "^0.2.0",
+    "@spryker/utils": "^0.2.1"
+  },
   "dependencies": {
     "@orchestrator/core": "^0.2.0",
     "@orchestrator/layout": "^0.1.0",
     "ng-dynamic-component": "^6.1.0",
-    "ng-zorro-antd": "9.3.0"
-  },
-  "peerDependencies": {
-    "@angular/cdk": "^9.2.3",
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "@spryker/actions": "^0.1.0-next.1",
-    "@spryker/datasource": "^0.0.1-next.0",
-    "@spryker/icon": "^0.0.1-next.14",
-    "@spryker/locale": "^0.1.0-next.4",
-    "@spryker/popover": "^0.1.0-next.0",
-    "@spryker/styles": "^0.0.1-next.48",
-    "@spryker/utils": "^0.1.0-next.16",
+    "ng-zorro-antd": "9.3.0",
     "tslib": "^1.10.0"
   },
   "publishConfig": {

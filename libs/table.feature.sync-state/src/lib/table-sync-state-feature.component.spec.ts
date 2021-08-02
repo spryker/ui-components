@@ -10,16 +10,15 @@ import {
   TestTableFeatureMocks,
   TestTableFeatureTplDirective,
 } from '@spryker/table/testing';
-import { TableSyncStateFeatureComponent } from './table-sync-state-feature.component';
-
-import { UrlPersistenceStrategy } from '@spryker/utils';
-import { By } from '@angular/platform-browser';
-import { Subject } from 'rxjs';
+import { UrlPersistenceStrategy } from '@spryker/persistence';
 import {
   TableColumnsResolverService,
   TableDataConfiguratorService,
   TableDatasourceService,
 } from '@spryker/table';
+import { By } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
+import { TableSyncStateFeatureComponent } from './table-sync-state-feature.component';
 
 // tslint:disable: no-non-null-assertion
 

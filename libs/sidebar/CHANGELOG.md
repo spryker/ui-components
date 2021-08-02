@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.2.1...@spryker/sidebar@0.2.2) (2021-07-30)
+
+
+### Bug Fixes
+
+* update peer dependencies to stable ([4b08936](https://github.com/spryker/ui-components/commit/4b0893691360cf4bd66935aed24873266c98c4e4))
+
+
+
+
+
+## [0.2.1](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.2.0...@spryker/sidebar@0.2.1) (2021-07-28)
+
+
+### Bug Fixes
+
+* **sidebar:** add `persistence` dependency to package.json ([1f55ea0](https://github.com/spryker/ui-components/commit/1f55ea04f06cb1c50f236e039ee14a433ffeff3d))
+* **sidebar:** fix `persistence` import ([1fad388](https://github.com/spryker/ui-components/commit/1fad388e716692881bcc313cb35a28ad4c6642b6))
+
+
+
+
+
 # 0.2.0 (2021-07-26)
 
 **Note:** Version bump only for package @spryker/sidebar

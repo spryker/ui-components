@@ -1,0 +1,11 @@
+<nz-radio-group [(ngModel)]="value" (ngModelChange)="modelChange($event)">
+  <label
+    *ngFor="let radio of radios$ | async"
+    nz-radio
+    [nzValue]="radio.value"
+    [nzDisabled]="radio.disabled"
+  >
+    <ng-container *ngTemplateOutlet="radio.content"></ng-container>
+  </label>
+</nz-radio-group>
+{{ value | json }}

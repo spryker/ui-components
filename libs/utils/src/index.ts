@@ -29,3 +29,4 @@ export * from './lib/get-element-offset';
 export * from './lib/autocomplete-wrapper-token';
 export * from './lib/registry';
 export * from './lib/generics';
+export * from './lib/roman';

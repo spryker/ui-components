@@ -1,11 +1,29 @@
-<nz-radio-group [(ngModel)]="value" (ngModelChange)="modelChange($event)">
-  <label
-    *ngFor="let radio of radios$ | async"
-    nz-radio
-    [nzValue]="radio.value"
-    [nzDisabled]="radio.disabled"
+<ng-container *ngIf="(radiosCount$ | async) > 0">
+  <spy-icon
+    [name]="onboardingCheckIcon"
+    class="spy-onboarding-radio-icon"
+  ></spy-icon>
+  <div class="spy-onboarding-radio-title">
+    {{ 'onboarding-radio.radios-count-title' | spyI18n | async }}:
+    <span class="spy-onboarding-radio-items-count">{{
+      radiosCount$ | async | spyRoman
+    }}</span>
+  </div>
+  <nz-radio-group [(ngModel)]="value" (ngModelChange)="modelChange($event)">
+    <label
+      *ngFor="let radio of radios$ | async"
+      nz-radio
+      [nzValue]="radio.value"
+      [nzDisabled]="radio.disabled"
+    >
+      <ng-container *ngTemplateOutlet="radio.content"></ng-container>
+    </label>
+  </nz-radio-group>
+  <span
+    [spySelectComponents]="radioItemReference"
+    (spySelectComponentsFound)="radiosFound($event)"
+    style="display: none"
   >
-    <ng-container *ngTemplateOutlet="radio.content"></ng-container>
-  </label>
-</nz-radio-group>
-{{ value | json }}
+    <ng-content></ng-content>
+  </span>
+</ng-container>

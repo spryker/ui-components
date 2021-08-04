@@ -23,3 +23,4 @@ export * from './plus';
 export * from './user';
 export * from './crossed-eye';
 export * from './open-eye';
+export * from './onboarding-check';

@@ -20,6 +20,7 @@ export class ChipsComponent {
   @HostBinding('class')
   get hostClasses(): string {
     const replacedColor = this.color.replace(/grey/gi, 'gray');
+
     return `spy-chips spy-chips--${replacedColor}`;
   }
 }

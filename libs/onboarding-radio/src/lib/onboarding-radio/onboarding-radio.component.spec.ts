@@ -16,7 +16,7 @@ describe('OnboardingRadioComponent', () => {
     // tslint:disable-next-line: component-selector
     selector: 'test',
     template: `
-      <spy-onboarding-radio [value]="value">
+      <spy-onboarding-radio [(value)]="value">
         <spy-onboarding-radio-item
           *ngFor="let radioItem of radioItems"
           [value]="radioItem.value"
@@ -90,17 +90,35 @@ describe('OnboardingRadioComponent', () => {
 
 
   describe('events', () => {
-    it('should emit `valueChange` when `valueChange()` called', async () => {
+    it('should change value and selected radio when click on 3rd radio', async () => {
       const host = await createComponent({}, true);
 
       const firstRadio = host.queryCss('label[nz-radio]:nth-child(1)');
       const thirdRadio = host.queryCss('label[nz-radio]:nth-child(3)');
 
-      thirdRadio?.triggerEventHandler('click', null);
+      thirdRadio?.nativeElement.click();
       host.detectChanges();
+
+      expect(host.hostComponent.instance?.value).toBe('C');
 
       expect(firstRadio?.classes['ant-radio-wrapper-checked']).toBe(false);
       expect(thirdRadio?.classes['ant-radio-wrapper-checked']).toBe(true);
+
+    });
+
+    it('should NOT change value when clicked on disabled radio', async () => {
+      const host = await createComponent({}, true);
+
+      const firstRadio = host.queryCss('label[nz-radio]:nth-child(1)');
+      const secondRadio = host.queryCss('label[nz-radio]:nth-child(2)');
+
+      secondRadio?.nativeElement.click();
+      host.detectChanges();
+
+      expect(host.hostComponent.instance?.value).toBe('A');
+
+      expect(firstRadio?.classes['ant-radio-wrapper-checked']).toBe(true);
+      expect(secondRadio?.classes['ant-radio-wrapper-checked']).toBe(false);
 
     });
   })

@@ -86,7 +86,7 @@ export const withTable = (): IStory => ({
           type: 'chip',
           sortable: true,
           typeOptions: {
-            color: 'grey',
+            color: 'gray',
           },
           typeOptionsMappings: {
             color: { 0: 'red' },

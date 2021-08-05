@@ -154,7 +154,7 @@ export const primary = (): IStory => ({
           "
         >
           Extended Custom Header!
-          <div style="outline: 1px solid grey">
+          <div style="outline: 1px solid gray">
             <ng-container
               *ngTemplateOutlet="cellTpl; context: cellContext"
             ></ng-container>
@@ -176,7 +176,7 @@ export const primary = (): IStory => ({
           "
         >
           <p>Extended Custom Cell!</p>
-          <div style="outline: 1px solid grey">
+          <div style="outline: 1px solid gray">
             <ng-container
               *ngTemplateOutlet="cellTpl; context: cellContext"
             ></ng-container>

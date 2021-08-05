@@ -4,7 +4,6 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   QueryList,
   ViewEncapsulation,
@@ -21,7 +20,7 @@ import { IconOnboardingCheckModule } from '@spryker/icon/icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class OnboardingRadioComponent implements OnInit {
+export class OnboardingRadioComponent {
   @Input() value?: string | number;
   @Output() valueChange = new EventEmitter<string | number>();
 
@@ -32,7 +31,7 @@ export class OnboardingRadioComponent implements OnInit {
   > = new BehaviorSubject<OnboardingRadioItemComponent[]>([]);
   radiosCount$ = this.radios$.pipe(
     map((radios) => radios.length),
-    shareReplay(1),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   radioItemReference = OnboardingRadioItemComponent;
@@ -41,10 +40,6 @@ export class OnboardingRadioComponent implements OnInit {
   set contentRadios(radios: QueryList<OnboardingRadioItemComponent>) {
     this.radios$.next(radios.toArray());
   }
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   public modelChange(value: string | number): void {
     this.valueChange.emit(value);

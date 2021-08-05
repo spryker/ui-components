@@ -1,10 +1,10 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  Component,
   Input,
-  ViewChild,
   TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 
 @Component({
@@ -12,14 +12,11 @@ import {
   templateUrl: './onboarding-radio-item.component.html',
   styleUrls: ['./onboarding-radio-item.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
-export class OnboardingRadioItemComponent implements OnInit {
+export class OnboardingRadioItemComponent {
   @Input() value?: string | number;
   @Input() disabled = false;
 
   @ViewChild('contentTpl') content!: TemplateRef<void>;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -4,12 +4,8 @@ import { OnboardingRadioComponent } from './onboarding-radio.component';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { OnboardingRadioModule } from '../onboarding-radio.module';
+import { RadioItem } from '../types';
 
-interface RadioItem {
-  label: string;
-  value: string | number;
-  disabled?: boolean;
-}
 describe('OnboardingRadioComponent', () => {
   @Component({
     // tslint:disable-next-line: component-selector
@@ -97,7 +93,10 @@ describe('OnboardingRadioComponent', () => {
       const firstRadio = host.queryCss('label[nz-radio]:nth-child(1)');
       const thirdRadio = host.queryCss('label[nz-radio]:nth-child(3)');
 
-      thirdRadio?.nativeElement.click();
+      thirdRadio?.triggerEventHandler('click', {
+        stopPropagation: function () {},
+        preventDefault: function () {},
+      });
       host.detectChanges();
 
       expect(host.hostComponent.instance?.value).toBe('C');
@@ -112,7 +111,10 @@ describe('OnboardingRadioComponent', () => {
       const firstRadio = host.queryCss('label[nz-radio]:nth-child(1)');
       const secondRadio = host.queryCss('label[nz-radio]:nth-child(2)');
 
-      secondRadio?.nativeElement.click();
+      secondRadio?.triggerEventHandler('click', {
+        stopPropagation: function () {},
+        preventDefault: function () {},
+      });
       host.detectChanges();
 
       expect(host.hostComponent.instance?.value).toBe('A');

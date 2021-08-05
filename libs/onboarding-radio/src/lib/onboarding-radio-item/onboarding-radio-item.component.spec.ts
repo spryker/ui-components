@@ -8,9 +8,8 @@ describe('OnboardingRadioItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OnboardingRadioItemComponent ]
-    })
-    .compileComponents();
+      declarations: [OnboardingRadioItemComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

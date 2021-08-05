@@ -21,13 +21,7 @@ import { I18nModule } from '@spryker/locale';
     RomanModule,
     I18nModule,
   ],
-  declarations: [
-    OnboardingRadioComponent,
-    OnboardingRadioItemComponent
-  ],
-  exports: [
-    OnboardingRadioComponent,
-    OnboardingRadioItemComponent
-  ],
+  declarations: [OnboardingRadioComponent, OnboardingRadioItemComponent],
+  exports: [OnboardingRadioComponent, OnboardingRadioItemComponent],
 })
 export class OnboardingRadioModule {}

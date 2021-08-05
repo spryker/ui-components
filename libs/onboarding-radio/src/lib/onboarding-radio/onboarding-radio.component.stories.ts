@@ -5,8 +5,8 @@ import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 
 export default {
-  title: 'OnboardingRadioComponent'
-}
+  title: 'OnboardingRadioComponent',
+};
 
 export const primary = () => ({
   moduleMetadata: {
@@ -14,7 +14,7 @@ export const primary = () => ({
       OnboardingRadioModule,
       LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
       EnLocaleModule,
-    ]
+    ],
   },
   template: `
     <spy-onboarding-radio [value]="value">
@@ -25,5 +25,5 @@ export const primary = () => ({
   `,
   props: {
     value: text('value', 'C'),
-  }
-})
+  },
+});

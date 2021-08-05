@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { OnboardingRadioItemComponent } from '../onboarding-radio-item/onboarding-radio-item.component';
 import { map, shareReplay } from 'rxjs/operators';
@@ -12,14 +22,18 @@ import { IconOnboardingCheckModule } from '@spryker/icon/icons';
   encapsulation: ViewEncapsulation.None,
 })
 export class OnboardingRadioComponent implements OnInit {
-
   @Input() value?: string | number;
   @Output() valueChange = new EventEmitter<string | number>();
 
   onboardingCheckIcon = IconOnboardingCheckModule.icon;
 
-  radios$: BehaviorSubject<OnboardingRadioItemComponent[]> = new BehaviorSubject<OnboardingRadioItemComponent[]>([]);
-  radiosCount$ = this.radios$.pipe(map(radios => radios.length), shareReplay(1));
+  radios$: BehaviorSubject<
+    OnboardingRadioItemComponent[]
+  > = new BehaviorSubject<OnboardingRadioItemComponent[]>([]);
+  radiosCount$ = this.radios$.pipe(
+    map((radios) => radios.length),
+    shareReplay(1),
+  );
 
   radioItemReference = OnboardingRadioItemComponent;
 
@@ -28,10 +42,9 @@ export class OnboardingRadioComponent implements OnInit {
     this.radios$.next(radios.toArray());
   }
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public modelChange(value: string | number): void {
     this.valueChange.emit(value);
@@ -40,5 +53,4 @@ export class OnboardingRadioComponent implements OnInit {
   public radiosFound($event: OnboardingRadioItemComponent[]) {
     this.radios$.next($event);
   }
-
 }

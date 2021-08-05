@@ -11,7 +11,6 @@ interface RadioItem {
   disabled?: boolean;
 }
 describe('OnboardingRadioComponent', () => {
-
   @Component({
     // tslint:disable-next-line: component-selector
     selector: 'test',
@@ -22,42 +21,43 @@ describe('OnboardingRadioComponent', () => {
           [value]="radioItem.value"
           [disabled]="radioItem.disabled"
         >
-          {{radioItem.label}}
+          {{ radioItem.label }}
         </spy-onboarding-radio-item>
       </spy-onboarding-radio>
     `,
   })
   class TestComponent {
-    value = 'A'
-    radioItems: RadioItem[] = [{
-      label: 'Radio 1...',
-      value: 'A'
-    }, {
-      label: 'Radio 2...',
-      value: 'B',
-      disabled: true
-    }, {
-      label: 'Radio 3...',
-      value: 'C'
-    }];
+    value = 'A';
+    radioItems: RadioItem[] = [
+      {
+        label: 'Radio 1...',
+        value: 'A',
+      },
+      {
+        label: 'Radio 2...',
+        value: 'B',
+        disabled: true,
+      },
+      {
+        label: 'Radio 3...',
+        value: 'C',
+      },
+    ];
   }
 
   const { testModule, createComponent } = getTestingForComponent(
     TestComponent,
     {
       ngModule: {
-        imports: [
-          OnboardingRadioModule
-        ],
+        imports: [OnboardingRadioModule],
         schemas: [NO_ERRORS_SCHEMA],
       },
-    }
+    },
   );
 
   beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
 
   describe('template', () => {
-
     it('should create', async () => {
       const host = await createComponent({}, true);
       expect(host.fixture.componentInstance).toBeTruthy();
@@ -72,7 +72,7 @@ describe('OnboardingRadioComponent', () => {
     it('should render III as count of radios', async () => {
       const host = await createComponent({}, true);
       const title = host.queryCss('.spy-onboarding-radio-items-count');
-      expect(title?.nativeElement.textContent).toBe('III')
+      expect(title?.nativeElement.textContent).toBe('III');
     });
 
     it('should render 3 inputs with radio', async () => {
@@ -83,11 +83,12 @@ describe('OnboardingRadioComponent', () => {
 
     it('should render 2nd radio to be disabled', async () => {
       const host = await createComponent({}, true);
-      const disabledRadio = host.queryCss('label[nz-radio]:nth-child(2) input:disabled');
+      const disabledRadio = host.queryCss(
+        'label[nz-radio]:nth-child(2) input:disabled',
+      );
       expect(disabledRadio).toBeTruthy();
     });
   });
-
 
   describe('events', () => {
     it('should change value and selected radio when click on 3rd radio', async () => {
@@ -103,7 +104,6 @@ describe('OnboardingRadioComponent', () => {
 
       expect(firstRadio?.classes['ant-radio-wrapper-checked']).toBe(false);
       expect(thirdRadio?.classes['ant-radio-wrapper-checked']).toBe(true);
-
     });
 
     it('should NOT change value when clicked on disabled radio', async () => {
@@ -119,8 +119,6 @@ describe('OnboardingRadioComponent', () => {
 
       expect(firstRadio?.classes['ant-radio-wrapper-checked']).toBe(true);
       expect(secondRadio?.classes['ant-radio-wrapper-checked']).toBe(false);
-
     });
-  })
-
+  });
 });

@@ -5,7 +5,9 @@ import { NO_ERRORS_SCHEMA, Pipe } from '@angular/core';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { OnboardingRadioItemComponent } from '../onboarding-radio-item/onboarding-radio-item.component';
 import { TestLocaleModule } from '@spryker/locale/testing';
-import { RomanModule, RomanPipe } from '@spryker/utils';
+import { RomanPipe } from '@spryker/utils';
+import { IconOnboardingCheckModule } from '@spryker/icon/icons';
+import { By } from '@angular/platform-browser';
 
 @Pipe({
   name: 'spyRoman',
@@ -23,6 +25,7 @@ describe('OnboardingRadioComponent', () => {
       ngModule: {
         imports: [TestLocaleModule],
         declarations: [OnboardingRadioItemComponent, RomanPipe],
+        exports: [OnboardingRadioItemComponent],
         schemas: [NO_ERRORS_SCHEMA],
       },
       projectContent: `
@@ -48,67 +51,44 @@ describe('OnboardingRadioComponent', () => {
   });
 
   describe('template', () => {
-    it('should render spy icon components', async () => {
+    it('should render spy icon component', async () => {
       const host = await createComponent({ value: 'A' }, true);
       const icon = host.queryCss('spy-icon');
       expect(icon).toBeTruthy();
+      expect(icon?.properties.name).toBe(IconOnboardingCheckModule.icon);
     });
-    //
-    // it('should render III as count of radios', async () => {
-    //   const host = await createComponent({}, true);
-    //   const title = host.queryCss('.spy-onboarding-radio-items-count');
-    //   expect(title?.nativeElement.textContent).toBe('III');
-    // });
-    //
-    // it('should render 3 inputs with radio', async () => {
-    //   const host = await createComponent({}, true);
-    //   const radios = host.htmlElement.querySelectorAll('label[nz-radio]');
-    //   expect(radios?.length).toBe(3);
-    // });
-    //
-    // it('should render 2nd radio to be disabled', async () => {
-    //   const host = await createComponent({}, true);
-    //   const disabledRadio = host.queryCss(
-    //     'label[nz-radio]:nth-child(2) input:disabled',
-    //   );
-    //   expect(disabledRadio).toBeTruthy();
-    // });
-  });
 
-  // describe('events', () => {
-  //   it('should change value and selected radio when click on 3rd radio', async () => {
-  //     const host = await createComponent({
-  //       value: 'C'
-  //     }, true);
-  //
-  //     const newValue = 'C';
-  //
-  //     const radioGroup = host.queryCss('nz-radio-group');
-  //
-  //     radioGroup?.triggerEventHandler('ngModelChange', newValue);
-  //     host.detectChanges();
-  //
-  //     // expect(romanPipe.transform).toHaveBeenCalledWith(3);
-  //     expect(radioGroup?.properties.ngModel).toBe(newValue);
-  //
-  //   });
-  //
-  //   it('should NOT change value when clicked on disabled radio', async () => {
-  //     const host = await createComponent({
-  //       value: 'C'
-  //     }, true);
-  //
-  //     const firstRadio = host.queryCss('label[nz-radio]:nth-child(1)');
-  //     const secondRadio = host.queryCss('label[nz-radio]:nth-child(2)');
-  //
-  //     secondRadio?.triggerEventHandler('click', {
-  //       stopPropagation: function () {},
-  //       preventDefault: function () {},
-  //     });
-  //     host.detectChanges();
-  //
-  //     expect(host.hostComponent.instance?.value).toBe('A');
-  //
-  //   });
-  // });
+    it('should be render nz-radio-group', async () => {
+      const host = await createComponent({ value: 'A' }, true);
+      const radioGroup = host.queryCss('nz-radio-group');
+      expect(radioGroup?.properties.ngModel).toBe('A');
+    });
+
+    it('should change value after ngModelChange', async () => {
+      const host = await createComponent({ value: 'A' }, true);
+
+      const newValue = 'C';
+
+      const radioGroup = host.queryCss('nz-radio-group');
+
+      radioGroup?.triggerEventHandler('ngModelChange', newValue);
+      host.detectChanges();
+
+      expect(radioGroup?.properties.ngModel).toBe(newValue);
+    });
+
+    it('should render 3 labels', async () => {
+      const host = await createComponent({ value: 'A' }, true);
+      const labels = host.fixture.debugElement.queryAll(By.css('label'));
+      expect(labels.length).toBe(3);
+    });
+
+    it('should be render label properties', async () => {
+      const host = await createComponent({ value: 'A' }, true);
+      const label = host.queryCss('label');
+      expect(label?.attributes['nz-radio']).toBeDefined();
+      expect(label?.properties.nzValue).toBe('A');
+      expect(label?.properties.nzDisabled).toBe(false);
+    });
+  });
 });

@@ -20,18 +20,16 @@ export class NotificationService {
   show(data: NotificationData): NotificationRef {
     let individualConfig: Partial<IndividualConfig> = {
       toastComponent: NotificationWrapperComponent,
-      easeTime: 300,
-      easing: NotificationEasing.EaseIn,
-      positionClass: NotificationPosition.TopRight,
-      disableTimeOut: data.type !== NotificationType.Success,
-      tapToDismiss: false,
-      timeOut: 3000,
-      closeButton: true,
+      easeTime: this.toastrService.toastrConfig.easeTime ?? 300,
+      easing: this.toastrService.toastrConfig.easing ?? NotificationEasing.EaseIn,
+      positionClass: this.toastrService.toastrConfig.positionClass ?? NotificationPosition.TopRight,
+      disableTimeOut: this.toastrService.toastrConfig.disableTimeOut,
+      tapToDismiss: this.toastrService.toastrConfig.tapToDismiss ?? false,
+      timeOut: this.toastrService.toastrConfig.timeOut ?? 3000,
+      closeButton: this.toastrService.toastrConfig.closeButton ?? true,
     };
     const type = data.type || NotificationType.Info;
 
-    individualConfig.closeButton =
-      data.closeable ?? individualConfig.closeButton;
     individualConfig = mapDataToConfig(data, individualConfig);
 
     const activeToast = this.toastrService.show(

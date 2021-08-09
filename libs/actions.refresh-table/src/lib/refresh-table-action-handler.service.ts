@@ -1,6 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { ActionHandler } from '@spryker/actions';
-import { TableDataConfiguratorService } from '@spryker/table';
+import {
+  TableDataConfiguratorService,
+  TableLocatorService,
+} from '@spryker/table';
 import { Observable, of } from 'rxjs';
 
 import { RefreshTableActionConfig } from './types';
@@ -15,7 +18,25 @@ export class RefreshTableActionHandlerService
     config: RefreshTableActionConfig,
     context: unknown,
   ): Observable<void> {
-    injector.get(TableDataConfiguratorService).update({});
+    let dataConfiguratorService: TableDataConfiguratorService | undefined;
+
+    if (config.tableId) {
+      const table = injector.get(TableLocatorService).findById(config.tableId);
+
+      dataConfiguratorService = table?.injector.get(
+        TableDataConfiguratorService,
+      );
+    } else {
+      dataConfiguratorService = injector.get(TableDataConfiguratorService);
+    }
+
+    if (!dataConfiguratorService) {
+      throw new Error(
+        `RefreshTableActionHandlerService: Could not refresh table ${config.tableId}!`,
+      );
+    }
+
+    dataConfiguratorService?.update({});
 
     return of(void 0);
   }

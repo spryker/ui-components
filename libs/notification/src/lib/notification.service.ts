@@ -21,8 +21,11 @@ export class NotificationService {
     let individualConfig: Partial<IndividualConfig> = {
       toastComponent: NotificationWrapperComponent,
       easeTime: this.toastrService.toastrConfig.easeTime ?? 300,
-      easing: this.toastrService.toastrConfig.easing ?? NotificationEasing.EaseIn,
-      positionClass: this.toastrService.toastrConfig.positionClass ?? NotificationPosition.TopRight,
+      easing:
+        this.toastrService.toastrConfig.easing ?? NotificationEasing.EaseIn,
+      positionClass:
+        this.toastrService.toastrConfig.positionClass ??
+        NotificationPosition.TopRight,
       disableTimeOut: this.toastrService.toastrConfig.disableTimeOut,
       tapToDismiss: this.toastrService.toastrConfig.tapToDismiss ?? false,
       timeOut: this.toastrService.toastrConfig.timeOut ?? 3000,

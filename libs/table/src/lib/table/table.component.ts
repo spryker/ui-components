@@ -77,6 +77,7 @@ import {
   TableRowClickEvent,
 } from './table';
 import { TableEventBus } from './table-event-bus';
+import { InternalTableLocatorService } from '../table-locator';
 
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   shareReplay({ bufferSize: 1, refCount: true });
@@ -356,6 +357,7 @@ export class CoreTableComponent
     private configService: TableConfigService,
     private datasourceService: TableDatasourceService,
     private tableFeaturesRendererService: TableFeaturesRendererService,
+    private internalTableLocatorService: InternalTableLocatorService,
     public injector: Injector,
     @Optional()
     @SkipSelf()
@@ -366,6 +368,12 @@ export class CoreTableComponent
     this.featuresLoaded$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(() => this.dataConfiguratorService.triggerInitialData());
+    this.tableId$
+      .pipe(
+        switchMap(() => this.internalTableLocatorService.register(this)),
+        takeUntil(this.destroyed$),
+      )
+      .subscribe();
     this.tableActionsService._setEventBus(this.tableEventBus);
   }
 

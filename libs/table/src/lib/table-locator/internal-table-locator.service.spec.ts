@@ -31,7 +31,16 @@ describe('InternalTableLocatorService', () => {
 
     internalTableLocatorService$.subscribe();
 
-    expect(service.tableIdsMap.get('id-1')).toBe(mockTableConfig);
     expect(service.findById('id-1')).toBe(mockTableConfig);
+  });
+
+  it('`findById(id)` method should return `undefined` if `tableId` is not found', () => {
+    const internalTableLocatorService$ = service.register(
+      mockTableConfig as TableComponent,
+    );
+
+    internalTableLocatorService$.subscribe();
+
+    expect(service.findById('id-2')).toBe(undefined);
   });
 });

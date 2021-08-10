@@ -36,7 +36,7 @@ export class RefreshTableActionHandlerService
       );
     }
 
-    dataConfiguratorService?.update({});
+    dataConfiguratorService.update({});
 
     return of(void 0);
   }

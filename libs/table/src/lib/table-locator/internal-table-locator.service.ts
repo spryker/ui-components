@@ -7,7 +7,7 @@ import { TableComponent } from '../table';
   providedIn: 'root',
 })
 export class InternalTableLocatorService implements TableLocatorService {
-  tableIdsMap = new Map<any, TableComponent>();
+  private tableIdsMap = new Map<string | undefined, TableComponent>();
 
   findById(id: string): TableComponent | undefined {
     return this.tableIdsMap.get(id);

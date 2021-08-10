@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3-next.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.3-next.0...@spryker/notification@0.2.3-next.1) (2021-08-10)
+
+
+### Bug Fixes
+
+* **notification:** hide notification by timeout and fix global config ([c997bce](https://github.com/spryker/ui-components/commit/c997bcecf9d63bf6259cb549b648604a77cacad3))
+
+
+
+
+
 ## [0.2.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.2...@spryker/notification@0.2.3-next.0) (2021-08-02)
 
 **Note:** Version bump only for package @spryker/notification

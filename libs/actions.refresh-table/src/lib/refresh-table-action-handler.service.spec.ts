@@ -98,6 +98,16 @@ describe('RefreshTableActionHandlerService', () => {
     expect(tableDataConfiguratorService.update).toHaveBeenCalledWith({});
   });
 
+  it('should throw an error if table is not defined by `tableId`', () => {
+    expect(() =>
+      service.handleAction(
+        injector,
+        { tableId: 'mockId', ...mockActionsConfig },
+        mockContext,
+      ),
+    ).toThrow();
+  });
+
   it('should return stream that emits empty value', () => {
     const callback = jest.fn();
 

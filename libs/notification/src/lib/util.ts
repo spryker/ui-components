@@ -10,10 +10,17 @@ export function mapDataToConfig(
   config: NotificationGlobalConfig | NotificationData,
   mappedConfig: Partial<GlobalConfig>,
 ) {
+  mappedConfig = { ...mappedConfig };
   mappedConfig.timeOut = config.timeOut ?? mappedConfig.timeOut;
   mappedConfig.easing = config.easing ?? mappedConfig.easing;
   mappedConfig.easeTime = config.easeTime ?? mappedConfig.easeTime;
   mappedConfig.positionClass = mapPositionClass(config.position);
+  mappedConfig.disableTimeOut =
+    config.disableTimeOut ??
+    mappedConfig.disableTimeOut ??
+    mappedConfig.timeOut === 0;
+  mappedConfig.closeButton =
+    (config as NotificationData).closeable ?? mappedConfig.closeButton;
 
   return mappedConfig;
 }

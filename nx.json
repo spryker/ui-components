@@ -261,10 +261,6 @@
     "data-serializer": {
       "tags": ["type:service", "pkg:primary"]
     },
-    "radio": {
-      "tags": ["level:atom", "type:component", "pkg:primary"],
-      "implicitDependencies": ["styles"]
-    },
     "autocomplete": {
       "tags": ["level:molecule", "type:component", "pkg:primary"],
       "implicitDependencies": ["styles"]

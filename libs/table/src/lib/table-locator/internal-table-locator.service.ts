@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { TableLocatorService } from './table-locator.service';
 import { TableComponent } from '../table';
 
@@ -18,9 +18,7 @@ export class InternalTableLocatorService implements TableLocatorService {
       const tableId = table.tableId;
 
       if (!tableId) {
-        throw new Error(
-          `InternalTableLocatorService: Table Id is not defined!`,
-        );
+        return () => of(void 0);
       }
 
       this.tableIdsMap.set(tableId, table);

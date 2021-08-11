@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3-next.1](https://github.com/spryker/ui-components/compare/@spryker/chips@0.1.3-next.0...@spryker/chips@0.1.3-next.1) (2021-08-04)
+
+
+### Bug Fixes
+
+* **chips:** fix test ([988b6bc](https://github.com/spryker/ui-components/commit/988b6bcdc879f9e386fc6fb03787a325fe80c96f))
+* **chips:** replace grey modifier with gray modifier ([5c31bd1](https://github.com/spryker/ui-components/commit/5c31bd1c0b87c49794802c0b4885b7ad7dab74e6))
+
+
+
+
+
+## [0.1.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/chips@0.1.2...@spryker/chips@0.1.3-next.0) (2021-08-02)
+
+**Note:** Version bump only for package @spryker/chips
+
+
+
+
+
 ## [0.1.2](https://github.com/spryker/ui-components/compare/@spryker/chips@0.1.2-next.0...@spryker/chips@0.1.2) (2021-08-02)
 
 **Note:** Version bump only for package @spryker/chips

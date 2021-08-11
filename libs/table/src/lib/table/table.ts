@@ -2,10 +2,10 @@
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 import { ElementRef, Injector, Type } from '@angular/core';
-import { TableFeatureConfig } from '../table-config/types';
-import { TableActionTriggeredEvent } from '../../lib/table-actions';
-import { TableFeatureComponent } from '../table-feature';
 import { DatasourceConfig } from '@spryker/datasource';
+import { TableFeatureConfig } from '../table-config';
+import { TableActionTriggeredEvent } from '../table-actions';
+import { TableFeatureComponent } from '../table-feature';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;
@@ -117,6 +117,7 @@ export interface TableComponent {
   tableId$: Observable<string>;
   features$: Observable<TableFeatureComponent<TableFeatureConfig>[]>;
   tableElementRef: ElementRef<HTMLElement>;
+  injector: Injector;
   updateRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
   setRowClasses(rowIdx: string, classes: Record<string, boolean>): void;
   on(feature: string, eventName?: string): Observable<unknown>;

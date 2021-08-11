@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
@@ -14,14 +14,36 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { DrawerModule } from '@spryker/drawer';
+import { ActionsModule } from '@spryker/actions';
+import {
+  DrawerActionHandlerService,
+  DrawerActionModule,
+} from '@spryker/actions.drawer';
 import { IStory } from '@storybook/angular';
 
 import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
+import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
 import { TableBatchActionsFeatureModule } from './table-batch-actions-feature.module';
 
 export default {
   title: 'TableBatchActionsFeatureComponent',
 };
+
+@Component({
+  selector: 'spy-simple-component',
+  template: `
+    <div>
+      Simple Component #{{ randomValue }} <br />
+      Projected input value - {{ test }}
+    </div>
+  `,
+})
+class SimpleComponent {
+  @Input() test?: string;
+
+  randomValue = Math.floor(Math.random() * 100);
+}
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   sku: `sku#${i}`,
@@ -98,14 +120,22 @@ function getTotalStory(
         BrowserAnimationsModule,
         NotificationModule.forRoot(),
         TableModule.forRoot(),
+        DrawerModule,
+        ActionsModule.withActions({
+          drawer: DrawerActionHandlerService,
+        }),
         DatasourceModule.withDatasources({
           'mock-data': MockTableDatasourceService,
+        }),
+        DrawerActionModule.withComponents({
+          simple_component: SimpleComponent,
         }),
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
         EnLocaleModule,
         DefaultContextSerializationModule,
         ...extraNgModules,
       ],
+      declarations: [SimpleComponent],
       providers: [
         {
           provide: ANALYZE_FOR_ENTRY_COMPONENTS,
@@ -113,7 +143,11 @@ function getTotalStory(
           multi: true,
         },
       ],
-      entryComponents: [NotificationWrapperComponent],
+      entryComponents: [
+        NotificationWrapperComponent,
+        DrawerContainerProxyComponent,
+        SimpleComponent,
+      ],
     },
     template,
     props: {
@@ -138,19 +172,25 @@ function getTotalStory(
             {
               id: 'update-offer',
               title: 'Update Offer(s)',
-              type: 'form-overlay',
-              typeOptions: {
-                url: 'https://.../?ids=${rowIds}',
-                method: 'GET',
+              type: 'drawer',
+              component: 'simple_component',
+              options: {
+                inputs: {
+                  action: 'https://.../?ids=${rowIds}',
+                  method: 'POST',
+                },
               },
             },
             {
               id: 'ship',
               title: 'Ship',
-              type: 'html-overlay',
-              typeOptions: {
-                url: 'https://.../?ids=${rowIds}',
-                method: 'GET',
+              type: 'drawer',
+              component: 'simple_component',
+              options: {
+                inputs: {
+                  action: 'https://.../?ids=${rowIds}',
+                  method: 'POST',
+                },
               },
             },
           ],

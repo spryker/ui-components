@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/actions.refresh-table@0.1.3-next.0...@spryker/actions.refresh-table@0.2.0-next.0) (2021-08-11)
+
+
+### Features
+
+* **actions.refresh-table:** add `table-locator` service usage ([6200ff3](https://github.com/spryker/ui-components/commit/6200ff3140594458ffab34c929cd063ff4e6fed4))
+
+
+
+
+
 ## [0.1.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/actions.refresh-table@0.1.2...@spryker/actions.refresh-table@0.1.3-next.0) (2021-08-02)
 
 **Note:** Version bump only for package @spryker/actions.refresh-table

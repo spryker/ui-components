@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.3-next.0...@spryker/table@0.3.0-next.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **table:** add error message to `table-locator` if `tableId` is undefined ([6d8d643](https://github.com/spryker/ui-components/commit/6d8d643a159e513214d275b2994849f42d00df93))
+* **table:** fix build ([77a8c7c](https://github.com/spryker/ui-components/commit/77a8c7c3662c3c7c6fc118fc905989bb3e412414))
+* **table:** fix error handling in `table-locator` ([76656ed](https://github.com/spryker/ui-components/commit/76656ed3c49cfc81856bcafc04e78a5069c1b211))
+
+
+### Features
+
+* **table:** add `table-locator` service ([06951f7](https://github.com/spryker/ui-components/commit/06951f7410e913695a2aa2e7ee87c7658f36e0b5))
+
+
+
+
+
 ## [0.2.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.2.2...@spryker/table@0.2.3-next.0) (2021-08-02)
 
 **Note:** Version bump only for package @spryker/table

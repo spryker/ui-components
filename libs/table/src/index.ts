@@ -6,3 +6,4 @@ export * from './lib/table-feature-loader';
 export * from './lib/table-config';
 export * from './lib/table-actions';
 export * from './lib/table-features-renderer';
+export * from './lib/table-locator/table-locator.service';

@@ -35,6 +35,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col2: `${i} col2`,
   col3: `${i} col3`,
   col4: `${i} col4`,
+  isRowEditable: i % 2 === 0,
 });
 
 class TableEditableDataSerializer {
@@ -97,7 +98,7 @@ const tableConfig = {
       cancelButton: {},
       disableForCols: ['col2'],
     },
-    disableRowKey: 'col4',
+    disableRowKey: 'isRowEditable',
   },
 };
 

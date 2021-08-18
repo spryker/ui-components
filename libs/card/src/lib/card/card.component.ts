@@ -18,4 +18,5 @@ export class CardComponent {
   @Input() extra: TemplateRef<void> | undefined;
   @Input() actions: TemplateRef<void>[] | undefined[] = [];
   @Input() titlePosition: 'left' | 'center' | 'right' = 'left';
+  @Input() hoverable = false;
 }

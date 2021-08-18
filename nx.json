@@ -373,6 +373,9 @@
     },
     "actions.refresh-drawer": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "spinner": {
+      "tags": ["type:component", "level:atom", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

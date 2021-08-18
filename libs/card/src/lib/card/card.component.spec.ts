@@ -10,7 +10,12 @@ describe('CardComponent', () => {
 
   @Component({
     template: `
-      <spy-card [spyTitle]="title" [extra]="extra" [actions]="[button]">
+      <spy-card
+        [spyTitle]="title"
+        [extra]="extra"
+        [actions]="[button]"
+        [hoverable]="hoverable"
+      >
         Card Content
       </spy-card>
       <ng-template #button>
@@ -21,6 +26,7 @@ describe('CardComponent', () => {
   class TestComponent {
     title: string | TemplateRef<void> = '';
     extra: TemplateRef<void> | undefined;
+    hoverable: boolean | undefined;
   }
 
   beforeEach(async(() => {
@@ -39,6 +45,16 @@ describe('CardComponent', () => {
 
   it('should create component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('sould be hoverable', () => {
+    const card = fixture.debugElement.query(By.css('nz-card'));
+    expect(card).toBeTruthy();
+    expect(card.classes['ant-card-hoverable']).toBeFalsy();
+
+    component.hoverable = true;
+    fixture.detectChanges();
+    expect(card.classes['ant-card-hoverable']).toBeTruthy();
   });
 
   it('should render card title with content', () => {

@@ -14,6 +14,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.0.5](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.0.5-next.0...@spryker/table.column.image@0.0.5) (2021-08-11)
+
+**Note:** Version bump only for package @spryker/table.column.image
+
+
+
+
+
 ## [0.0.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.0.4...@spryker/table.column.image@0.0.5-next.0) (2021-08-02)
 
 **Note:** Version bump only for package @spryker/table.column.image

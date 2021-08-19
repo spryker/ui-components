@@ -369,6 +369,9 @@
     },
     "actions.refresh-drawer": {
       "tags": ["type:service", "pkg:extension"]
+    },
+    "onboarding-radio": {
+      "tags": ["level:molecule", "type:component", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

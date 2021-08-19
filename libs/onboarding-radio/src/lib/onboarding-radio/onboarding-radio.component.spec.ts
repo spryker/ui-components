@@ -106,9 +106,9 @@ describe('OnboardingRadioComponent', () => {
   //     expect(0).toEqual(0);
   //   });
 
-    // it('must render default slot', () => {
-    //   const labelElem = fixture.debugElement.query(By.css(radioSelector));
-    //   expect(labelElem.nativeElement.textContent).toMatch('Radio');
-    // });
+  // it('must render default slot', () => {
+  //   const labelElem = fixture.debugElement.query(By.css(radioSelector));
+  //   expect(labelElem.nativeElement.textContent).toMatch('Radio');
+  // });
   // });
 });

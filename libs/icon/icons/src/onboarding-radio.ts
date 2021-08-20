@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { provideIcons } from '../../src';
+import { provideIcons } from '@spryker/icon';
 
 const svg = `
 <svg viewBox="0 0 21 14" version="1.1">

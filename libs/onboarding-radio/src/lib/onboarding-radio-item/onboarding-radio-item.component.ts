@@ -1,11 +1,10 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef,
+  TemplateRef, Input,
 } from '@angular/core';
-import { OnboardingRadioItemInputs } from '../onboarding-radio-item-inputs';
+import { ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-onboarding-radio-item',
@@ -13,13 +12,8 @@ import { OnboardingRadioItemInputs } from '../onboarding-radio-item-inputs';
   styleUrls: ['./onboarding-radio-item.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OnboardingRadioItemComponent
-  extends OnboardingRadioItemInputs
-  implements OnInit {
-  constructor() {
-    super();
-  }
+export class OnboardingRadioItemComponent {
+  @Input() value?: string | number;
+  @Input() @ToBoolean() disabled = false;
   @ViewChild('contentTpl') template!: TemplateRef<void>;
-
-  ngOnInit(): void {}
 }

@@ -2,13 +2,11 @@ import {
   Component,
   ChangeDetectionStrategy,
   QueryList,
-  AfterContentInit,
   ViewEncapsulation,
-  ContentChildren,
+  ContentChildren, Input, Output, EventEmitter,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { OnboardingRadioItemComponent } from '../onboarding-radio-item/onboarding-radio-item.component';
-import { OnboardingRadioInputs } from '../onboarding-radio-inputs';
 import { IconOnboardingRadioModule } from '@spryker/icon/icons';
 
 @Component({
@@ -18,40 +16,28 @@ import { IconOnboardingRadioModule } from '@spryker/icon/icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class OnboardingRadioComponent
-  extends OnboardingRadioInputs
-  implements AfterContentInit {
-  radios$: BehaviorSubject<
-    OnboardingRadioItemComponent[]
-  > = new BehaviorSubject<OnboardingRadioItemComponent[]>([]);
+export class OnboardingRadioComponent {
+
+  @Input() value?: string | number;
+  @Output() valueChange = new EventEmitter<string | number>();
+
+  @ContentChildren(OnboardingRadioItemComponent)
+  set onboardingRadioItems(
+    onboardingRadioItems: QueryList<OnboardingRadioItemComponent>,
+  ) {
+    this.radios$.next(onboardingRadioItems.toArray());
+  }
+
+  radios$ = new BehaviorSubject<OnboardingRadioItemComponent[]>([]);
   onboardingRadioIcon = IconOnboardingRadioModule.icon;
-  @ContentChildren(OnboardingRadioItemComponent) radioComponents!: QueryList<
-    OnboardingRadioItemComponent
-  >;
   radioItemComponent = OnboardingRadioItemComponent;
 
-  constructor() {
-    super();
-  }
-
-  ngAfterContentInit(): void {
-    this.radios$.next(this.radioComponents.toArray());
-  }
-
-  storeComponents($event: OnboardingRadioItemComponent[]) {
+  storeComponents($event: OnboardingRadioItemComponent[]): void {
     this.radios$.next($event);
-    setTimeout(() => {}, 10000);
   }
 
-  emitActiveRadio() {
+  emitActiveRadio(): void {
     this.valueChange.emit(this.value);
   }
 
-  checkRadiosExists() {
-    let isExists;
-    this.radios$.subscribe((radios) => {
-      isExists = radios.length > 0;
-    });
-    return isExists;
-  }
 }

@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'roman',
 })
-export class TransformToRomanPipe implements PipeTransform {
+export class ToRomanPipePipe implements PipeTransform {
   transform(value: number): string {
     if (value === 0) {
       return 'NULLA';

@@ -1,7 +1,7 @@
-<ng-container *ngIf="checkRadiosExists()">
+<ng-container *ngIf="(radios$ | async)?.length > 0">
   <spy-icon [name]="onboardingRadioIcon"></spy-icon>
 </ng-container>
-<span class="title"> {{ radios$.getValue().length | roman }}</span>
+<span> {{ (radios$ | async)?.length | roman }}</span>
 <nz-radio-group [(ngModel)]="value" (ngModelChange)="emitActiveRadio()">
   <ng-container *ngFor="let radio of radios$ | async">
     <label nz-radio [nzValue]="radio.value" [nzDisabled]="radio.disabled">

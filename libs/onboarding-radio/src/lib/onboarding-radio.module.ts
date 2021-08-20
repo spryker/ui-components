@@ -7,7 +7,7 @@ import { IconOnboardingRadioModule } from '@spryker/icon/icons';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { SelectComponentsModule } from '@spryker/web-components';
 import { FormsModule } from '@angular/forms';
-import { TransformToRomanModule } from '@spryker/utils';
+import { ToRomanModule } from '@spryker/utils';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { TransformToRomanModule } from '@spryker/utils';
     IconOnboardingRadioModule,
     IconModule,
     NzRadioModule,
-    TransformToRomanModule,
+    ToRomanModule,
     SelectComponentsModule,
     FormsModule,
   ],

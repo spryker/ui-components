@@ -54,7 +54,7 @@ describe('OnboardingRadioComponent', () => {
     it('must create <span> element with class title', async () => {
       const host = await createComponent({}, true);
       const spanTitle = host.queryCss('span');
-      expect(spanTitle?.nativeElement.innerHTML.trim()).toBe(mockedSpanTitle);
+      expect(spanTitle?.nativeElement.innerHTML).toContain(mockedSpanTitle);
     });
 
     it('must create three <spy-onboarding-radio-item> elements', async () => {

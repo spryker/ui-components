@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.2.3-next.0...@spryker/card@0.3.0-next.0) (2021-08-18)
+
+
+### Features
+
+* **card:** added hover effect option for card ([d9a5a68](https://github.com/spryker/ui-components/commit/d9a5a68e17285ad246a92f979de7971ef8478b9e))
+
+
+
+
+
 ## [0.2.3](https://github.com/spryker/ui-components/compare/@spryker/card@0.2.3-next.0...@spryker/card@0.2.3) (2021-08-11)
 
 **Note:** Version bump only for package @spryker/card

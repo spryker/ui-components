@@ -1,14 +1,14 @@
 @import './table-column-image.component.theme.less';
 
 .@{table-column-image-prefix-cls} {
-  margin: 0 auto;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  width: @table-column-image-width;
+  height: @table-column-image-height;
+  overflow: hidden;
 
-  &-container {
-    width: @table-column-image-width;
-    height: @table-column-image-height;
-    overflow: hidden;
+  &__image {
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }

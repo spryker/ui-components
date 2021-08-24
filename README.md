@@ -297,13 +297,13 @@ and changelogs were updated and pushed back to git.
 In this case you need to:
 
 1. Make sure that the issue that prevented packages from publishing is resolved
-2. Merge the branch that failed into related `recovery` branch (add to name postfix `/republish`)
+2. Merge the branch that failed into related `recovery` branch (add to name prefix `republish/`)
 
 **Recovery branches for republishing:**
 
-- `master` => `mater/republish`
-- `next` => `next/republish`
-- `beta` => `beta/republish`
+- `master` => `republish/master`
+- `next` => `republish/next`
+- `beta` => `republish/beta`
 
 After branch is pushed to CI it will attempt to find unpublished packages in NPM
 and try to publish them again with the same versions.

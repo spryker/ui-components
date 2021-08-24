@@ -8,11 +8,11 @@
       "gitRemote": "pub",
       "allowBranch": [
         "master",
-        "master/republish",
+        "republish/master",
         "next",
-        "next/republish",
+        "republish/next",
         "beta",
-        "beta/republish"
+        "republish/beta"
       ],
       "contents": "dist",
       "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],

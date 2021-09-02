@@ -123,14 +123,11 @@
     &.@{table-prefix-cls}-row-hover,
     &:hover {
       background: none;
+      box-shadow: @table-body-hover-row-border-shadow;
 
       &:not(.@{table-prefix-cls}-expanded-row):not(.@{table-prefix-cls}-row-selected)
         > td {
         background: none;
-
-        .@{table-prefix-cls}-column-inner::after {
-          box-shadow: @table-body-hover-row-border-shadow;
-        }
       }
     }
 

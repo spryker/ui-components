@@ -118,7 +118,6 @@
     }
   }
 
-  &-thead > tr,
   &-tbody > tr {
     &.@{table-prefix-cls}-row-hover,
     &:hover {
@@ -130,7 +129,10 @@
         background: none;
       }
     }
+  }
 
+  &-thead > tr,
+  &-tbody > tr {
     &:focus {
       & > td {
         border-top: @table-body-focus-row-border;
@@ -164,7 +166,10 @@
       border-bottom: none;
       position: relative;
 
-      .ie-styles-only-mixin({height: inherit; position: static;});
+      .ie-styles-only-mixin({
+        height: inherit;
+        position: static;
+      });
 
       .@{table-prefix-cls}-column-inner {
         padding: @table-column-inner-padding;
@@ -175,7 +180,9 @@
         height: 100%;
         z-index: 0;
 
-        .ie-styles-only-mixin({position: relative;});
+        .ie-styles-only-mixin({
+          position: relative;
+        });
 
         &::after {
           .transition-mixin(background border box-shadow);
@@ -225,7 +232,9 @@
         width: 100%;
         padding: @table-head-padding;
 
-        .ie-styles-only-mixin({position: relative;});
+        .ie-styles-only-mixin({
+          position: relative;
+        });
 
         &::after {
           .transition-mixin(background border box-shadow);
@@ -259,7 +268,9 @@
       .@{table-prefix-cls}-column-inner {
         padding: 0;
 
-        .ie-styles-only-mixin({position: static;});
+        .ie-styles-only-mixin({
+          position: static;
+        });
 
         &::after {
           display: none;

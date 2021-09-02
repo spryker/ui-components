@@ -134,6 +134,25 @@
       }
     }
 
+    &:focus {
+      & > td {
+        border-top: @table-body-focus-row-border;
+        border-bottom: @table-body-focus-row-border;
+
+        &:first-child {
+          border-left: @table-body-focus-row-border;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+        }
+
+        &:last-child {
+          border-right: @table-body-focus-row-border;
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+      }
+    }
+
     &:first-child > th {
       &:last-child,
       &:first-child {

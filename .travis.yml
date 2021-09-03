@@ -11,7 +11,7 @@ stages:
   - name: test-master
     if: branch = master
   - name: deploy
-    if: branch IN (master, next)
+    if: branch IN (master, next) OR branch =~ /^republish\/.*$/
 before_script:
   # Configure Git to fetch all branches and fetch master
   - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
@@ -85,7 +85,7 @@ jobs:
           on:
             tags: false
             all_branches: true
-            condition: '$TRAVIS_BRANCH =~ ^(master/republish)$'
+            condition: '$TRAVIS_BRANCH =~ ^(republish/master)$'
         - provider: script
           script: npm run release-next
           skip_cleanup: true
@@ -101,7 +101,7 @@ jobs:
           on:
             tags: false
             all_branches: true
-            condition: '$TRAVIS_BRANCH =~ ^(next/republish)$'
+            condition: '$TRAVIS_BRANCH =~ ^(republish/next)$'
         - provider: script
           script: npm run release-tag
           skip_cleanup: true
@@ -117,4 +117,4 @@ jobs:
           on:
             tags: false
             all_branches: true
-            condition: '$TRAVIS_BRANCH =~ ^(beta/republish)$'
+            condition: '$TRAVIS_BRANCH =~ ^(republish/beta)$'

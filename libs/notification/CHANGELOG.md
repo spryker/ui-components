@@ -14,6 +14,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.2.4](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.4-next.0...@spryker/notification@0.2.4) (2021-08-23)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
 ## [0.2.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.3...@spryker/notification@0.2.4-next.0) (2021-08-23)
 
 **Note:** Version bump only for package @spryker/notification

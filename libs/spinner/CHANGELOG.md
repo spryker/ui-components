@@ -14,6 +14,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.1.0](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.0-next.0...@spryker/spinner@0.1.0) (2021-08-23)
+
+**Note:** Version bump only for package @spryker/spinner
+
+
+
+
+
 # 0.1.0-next.0 (2021-08-19)
 
 

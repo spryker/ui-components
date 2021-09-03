@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.4-next.0...@spryker/notification@0.2.4-next.1) (2021-09-03)
+
+
+### Bug Fixes
+
+* **notification.view.component:** updated padding-right on title and description ([78266e1](https://github.com/spryker/ui-components/commit/78266e1d0bd8f1a8ff3887376b55c01d595d112e))
+
+
+
+
+
 ## [0.2.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.3...@spryker/notification@0.2.4-next.0) (2021-08-23)
 
 **Note:** Version bump only for package @spryker/notification

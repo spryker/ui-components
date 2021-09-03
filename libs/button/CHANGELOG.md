@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.4-next.0...@spryker/button@0.2.4-next.1) (2021-08-25)
+
+
+### Bug Fixes
+
+* **button:** button now uses spy-spinner instead of nz-spin ([8bed762](https://github.com/spryker/ui-components/commit/8bed7623d9472babc1765a9f31a142095ca550d2))
+
+
+
+
+
 ## [0.2.4](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.4-next.0...@spryker/button@0.2.4) (2021-08-23)
 
 **Note:** Version bump only for package @spryker/button

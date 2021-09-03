@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.7-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.row-actions@0.0.6...@spryker/table.feature.row-actions@0.0.7-next.0) (2021-09-03)
+
+
+### Bug Fixes
+
+* **table.feature.row-actions:** Adjusted `table-row-actions-feature` component by changing default hover color on spy-icon ([547e123](https://github.com/spryker/ui-components/commit/547e1237dd93fedba94e08eb0f9217d25cd038ec))
+
+
+
+
+
 ## [0.0.6](https://github.com/spryker/ui-components/compare/@spryker/table.feature.row-actions@0.0.6-next.0...@spryker/table.feature.row-actions@0.0.6) (2021-08-23)
 
 **Note:** Version bump only for package @spryker/table.feature.row-actions

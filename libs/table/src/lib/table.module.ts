@@ -29,6 +29,7 @@ import { TableRenderFeatureDirective } from './table-features-renderer/table-ren
 import { ColTplDirective } from './table/col-tpl.directive';
 import { TableColumnComponentDeclaration } from './table/table';
 import { CoreTableComponent } from './table/table.component';
+import { SpinnerModule } from '@spryker/spinner';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { CoreTableComponent } from './table/table.component';
     PopoverModule,
     InvokeModule,
     ActionsModule,
+    SpinnerModule,
   ],
   declarations: [
     CoreTableComponent,

@@ -175,7 +175,7 @@
 </ng-container>
 
 <ng-container *ngIf="isEmpty$ | async">
-  <nz-spin [nzSpinning]="isLoading$ | async">
+  <spy-spinner [isSpinning]="isLoading$ | async">
     <div class="ant-table-empty">
       <ng-container *ngIf="isNotFiltered$ | async; else elseEmptyBlock">
         <spy-icon name="no-data" class="ant-table-empty__icon"></spy-icon>
@@ -195,7 +195,7 @@
         <p>{{ 'table.no-results-suggest' | spyI18n | async }}</p>
       </ng-template>
     </div>
-  </nz-spin>
+  </spy-spinner>
 </ng-container>
 
 <div class="ant-table-features ant-table-features--after-table">

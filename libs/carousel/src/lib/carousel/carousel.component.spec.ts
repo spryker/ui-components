@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarouselComponent } from './carousel.component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
@@ -34,6 +34,8 @@ describe('CarouselComponent', () => {
       <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 6 thumb"></div>
     </spy-carousel-slide>`;
 
+  const slidesCount = 6;
+
   const defaultInputs: {
     config: CarouselOptions;
     thumbConfig: CarouselOptions;
@@ -42,7 +44,7 @@ describe('CarouselComponent', () => {
       slidesPerView: 1,
     },
     thumbConfig: {
-      slidesPerView: 6,
+      slidesPerView: 4,
       spaceBetween: 15,
     },
   };
@@ -84,38 +86,5 @@ describe('CarouselComponent', () => {
     const swipers = host.fixture.debugElement.queryAll(By.css('swiper'));
     expect(swipers).toBeTruthy();
     expect(swipers.length).toBe(2);
-
-    const thumbsSwiper = swipers[1];
-    expect(thumbsSwiper.properties['slidesPerView']).toBe(
-      defaultInputs.thumbConfig.slidesPerView,
-    );
-    expect(thumbsSwiper.properties['spaceBetween']).toBe(
-      defaultInputs.thumbConfig.spaceBetween,
-    );
-
-    thumbsSwiper.triggerEventHandler('swiper', thumbsSwiper);
-    expect(host.component.thumbsSwiper).toBe(thumbsSwiper);
-  });
-
-  it('should render navigation buttons', async () => {
-    const host = await createComponent(defaultInputs, true);
-
-    const nextButton = host.fixture.debugElement.query(
-      By.css('.spy-carousel__navigation-button--next'),
-    );
-    expect(nextButton).toBeTruthy();
-
-    expect(nextButton.properties.className).toContain(
-      host.component.nextButtonClass,
-    );
-
-    const prevButton = host.fixture.debugElement.query(
-      By.css('.spy-carousel__navigation-button--preview'),
-    );
-    expect(prevButton).toBeTruthy();
-
-    expect(prevButton.properties.className).toContain(
-      host.component.prevButtonClass,
-    );
   });
 });

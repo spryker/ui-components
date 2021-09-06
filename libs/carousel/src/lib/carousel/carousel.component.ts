@@ -23,26 +23,20 @@ SwiperCore.use([Navigation, Thumbs]);
   styleUrls: ['./carousel.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  host: {
-    class: 'spy-carousel',
-  },
 })
 export class CarouselComponent {
   @Input() config: CarouselOptions = { slidesPerView: 1 };
   @Input() thumbConfig: CarouselOptions = {
-    slidesPerView: 6,
+    slidesPerView: 4,
     spaceBetween: 15,
   };
   @Input() withThumbs = false;
 
   thumbsSwiper: Swiper | undefined;
 
-  prevButtonClass = 'spy-carousel__navigation-button--preview';
-  nextButtonClass = 'spy-carousel__navigation-button--next';
-
   navigationOptions: NavigationOptions = {
-    prevEl: `.${this.prevButtonClass}`,
-    nextEl: `.${this.nextButtonClass}`,
+    prevEl: '.spy-carousel__navigation-button_preview',
+    nextEl: '.spy-carousel__navigation-button_next',
   };
 
   paginationArrowIcon = IconPaginationArrowModule.icon;

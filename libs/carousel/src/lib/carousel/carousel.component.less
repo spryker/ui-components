@@ -2,26 +2,23 @@
 @import './carousel.component.theme.less';
 
 .@{carousel-prefix-cls} {
-  position: relative;
-  display: block;
-
+  &__wrapper {
+    position: relative;
+  }
   &__horizontal {
     &.swiper-container-thumbs {
       padding: @carousel-thumbs-padding;
-
       .swiper-slide {
         [thumb] {
           overflow: hidden;
           border: @carousel-thumb-border;
           border-radius: @carousel-thumb-border-radius;
-
           img {
             display: block;
             width: 100%;
           }
         }
       }
-
       .swiper-slide-thumb-active {
         [thumb] {
           border: @carousel-thumb-active-border;
@@ -29,10 +26,9 @@
       }
     }
   }
-
   &__navigation-button {
     position: absolute;
-    z-index: @carousel-navigation-button-z-index;
+    z-index: 1;
     top: @carousel-navigation-button-top;
     width: @carousel-navigation-button-width;
     height: @carousel-navigation-button-height;
@@ -41,22 +37,14 @@
     border-radius: @carousel-navigation-button-border-radius;
     color: @carousel-navigation-button-icon-color;
     box-shadow: @carousel-navigation-button-box-shadow;
-    transition: @carousel-navigation-button-transition;
 
-    &:hover {
-      border: @carousel-navigation-button-hover-border;
-    }
-
-    &--next {
+    &_next {
       right: @carousel-navigation-next-button-right;
     }
 
-    &--preview {
+    &_preview {
       left: @carousel-navigation-preview-button-left;
-    }
-
-    &-icon {
-      &--preview {
+      spy-icon {
         transform: rotate(180deg);
       }
     }

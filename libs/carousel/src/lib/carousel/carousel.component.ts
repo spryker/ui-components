@@ -25,8 +25,8 @@ SwiperCore.use([Navigation, Thumbs]);
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselComponent {
-  @Input() config: CarouselOptions = { slidesPerView: 1 };
-  @Input() thumbConfig: CarouselOptions = {
+  @Input() config?: CarouselOptions = { slidesPerView: 1 };
+  @Input() thumbConfig?: CarouselOptions = {
     slidesPerView: 4,
     spaceBetween: 15,
   };

@@ -1,51 +1,10 @@
 @import '~swiper/swiper-bundle.css';
 @import './carousel.component.theme.less';
 
-.@{carousel-prefix-cls} {
-  &-wrapper {
-    position: relative;
-  }
-  &-horizontal {
-    &.swiper-container-thumbs {
-      padding: @carousel-thumbs-padding;
-      .swiper-slide {
-        [thumb] {
-          overflow: hidden;
-          border: @carousel-thumb-border;
-          border-radius: @carousel-thumb-border-radius;
-          img {
-            display: block;
-            width: 100%;
-          }
-        }
-      }
-      .swiper-slide-thumb-active {
-        [thumb] {
-          border: @carousel-thumb-active-border;
-        }
-      }
-    }
-  }
-  &-navigation-button {
-    position: absolute;
-    z-index: 1;
-    top: @carousel-navigation-button-top;
-    width: @carousel-navigation-button-width;
-    height: @carousel-navigation-button-height;
-    background-color: @carousel-navigation-button-background-color;
-    border: @carousel-navigation-button-border;
-    border-radius: @carousel-navigation-button-border-radius;
-    color: @carousel-navigation-button-icon-color;
-
-    &_next {
-      right: @carousel-navigation-next-button-right;
-    }
-
-    &_preview {
-      left: @carousel-navigation-preview-button-left;
-      spy-icon {
-        transform: rotate(180deg);
-      }
+.carousel-navigation-button {
+  &_preview {
+    spy-icon {
+      transform: rotate(180deg);
     }
   }
 }

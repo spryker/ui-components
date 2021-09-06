@@ -3,13 +3,14 @@ import {
   Component,
   ContentChildren,
   Input,
+  OnInit,
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
 import { CarouselOptions } from '../types';
 
 import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
-import { NavigationOptions, ThumbsOptions } from 'swiper/types';
+import { NavigationOptions } from 'swiper/types';
 import { IconPaginationArrowModule } from '@spryker/icon/icons';
 import Swiper from 'swiper/core';
 import { BehaviorSubject } from 'rxjs';
@@ -24,7 +25,7 @@ SwiperCore.use([Navigation, Thumbs]);
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnInit {
   @Input() config?: CarouselOptions = { slidesPerView: 1 };
   @Input() thumbConfig?: CarouselOptions = {
     slidesPerView: 4,
@@ -32,14 +33,14 @@ export class CarouselComponent {
   };
   @Input() withThumbs = false;
 
-  thumbsSwiper: Swiper | undefined;
-
   navigationOptions: NavigationOptions = {
-    prevEl: '.spy-carousel-navigation-button_preview',
-    nextEl: '.spy-carousel-navigation-button_next',
+    prevEl: '.carousel-navigation-button_preview',
+    nextEl: '.carousel-navigation-button_next',
   };
 
   paginationArrowIcon = IconPaginationArrowModule.icon;
+
+  thumbsSwiper: Swiper | undefined;
 
   slides$ = new BehaviorSubject<CarouselSlideComponent[]>([]);
 
@@ -47,4 +48,8 @@ export class CarouselComponent {
   set contentSlides(slides: QueryList<CarouselSlideComponent>) {
     this.slides$.next(slides.toArray());
   }
+
+  constructor() {}
+
+  ngOnInit(): void {}
 }

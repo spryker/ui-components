@@ -35,8 +35,8 @@ export class CarouselComponent {
   thumbsSwiper: Swiper | undefined;
 
   navigationOptions: NavigationOptions = {
-    prevEl: '.spy-carousel__navigation-button_preview',
-    nextEl: '.spy-carousel__navigation-button_next',
+    prevEl: '.spy-carousel-navigation-button_preview',
+    nextEl: '.spy-carousel-navigation-button_next',
   };
 
   paginationArrowIcon = IconPaginationArrowModule.icon;

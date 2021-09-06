@@ -2,12 +2,17 @@
 @table-prefix-spryker-cls: ~'@{spryker-prefix}-table';
 
 @table-header-icon-color: @gray;
-@table-column-body-color: @gray-dark;
-@table-column-sorters-margin-top: 2px;
 @table-body-row-bg: @white;
 @table-body-selected-row-bg: @green-lighter;
 @table-body-active-row-border-bg: @green-light;
+@table-body-padding-top: 10px;
+@table-body-padding-bottom: 12.5px;
+@table-body-focus-row-border: 2px solid @green-dark;
+@table-body-margin-vertical: 3px;
+@table-body-focus-row-border-radius: @border-radius-base;
 @table-body-hover-row-border-shadow: 0px 4px 12px @gray-light;
+@table-column-body-color: @gray-dark;
+@table-column-sorters-margin-top: 2px;
 @table-column-head-color: @ink;
 @table-column-title-font-size: 12px;
 @table-column-sorter-down-margin-top: -5px;
@@ -17,15 +22,11 @@
 @table-top-features-padding: 5px;
 @table-selection-column-min-height: 70px;
 @table-head-padding-vertical: 15px;
-@table-body-padding-top: 10px;
-@table-body-padding-bottom: 12.5px;
-@table-body-margin-vertical: 3px;
+@table-head-padding: @table-head-padding-vertical @table-padding-horizontal;
 @table-padding-horizontal: 25px;
 @table-column-inner-padding: @table-body-padding-top @table-padding-horizontal
   @table-body-padding-bottom;
-@table-head-padding: @table-head-padding-vertical @table-padding-horizontal;
 @table-column-first-border-radius: @border-radius-base 0 0 @border-radius-base;
-@table-body-focus-row-border-radius: @border-radius-base;
 @table-column-last-border-radius: 0 @border-radius-base @border-radius-base 0;
 @table-features-padding-vertical: 30px;
 @table-features-col-padding: 5px;
@@ -48,4 +49,3 @@
 @table-empty-icon-size: 279px;
 @table-empty-icon-size-sm: 200px;
 @table-empty-icon-margin-bottom: 20px;
-@table-body-focus-row-border: 2px solid @green-dark;

@@ -162,14 +162,18 @@ export class CoreTableComponent
     ),
     shareReplaySafe(),
   );
+  private isTableDataEmpty = true;
 
   data$ = this.config$.pipe(
     map((config) => config.dataSource),
     distinctUntilChanged(),
     switchMap((dataSource) => this.datasourceService.resolve(dataSource)),
+    map((config) => {
+      this.isTableDataEmpty = !config.data.length;
+      return config;
+    }),
     shareReplaySafe(),
   );
-
   tableData$ = this.data$.pipe(pluck('data'));
   sortingData$ = this.dataConfiguratorService.config$.pipe(
     map((config) => {
@@ -460,21 +464,16 @@ export class CoreTableComponent
     key: string;
     value: 'descend' | 'ascend' | null;
   }): void {
-    this.tableData$.pipe(
-      map((data) => {
-        if (data?.length) {
-          const { key, value } = event;
-          const sortingCriteria: SortingCriteria = {
-            sortBy: value ? key : undefined,
-            sortDirection: this.sortingValueTransformation(value),
-          };
+    if (this.isTableDataEmpty) {
+      return;
+    }
+    const { key, value } = event;
+    const sortingCriteria: SortingCriteria = {
+      sortBy: value ? key : undefined,
+      sortDirection: this.sortingValueTransformation(value),
+    };
 
-          this.dataConfiguratorService.update(
-            sortingCriteria as TableDataConfig,
-          );
-        }
-      }),
-    );
+    this.dataConfiguratorService.update(sortingCriteria as TableDataConfig);
   }
 
   /** @internal */

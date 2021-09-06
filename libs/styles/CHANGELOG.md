@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.4-next.1...@spryker/styles@0.3.0-next.0) (2021-09-06)
+
+
+### Bug Fixes
+
+* **carousel:** added shadow to next/prev buttons ([47b9aaf](https://github.com/spryker/ui-components/commit/47b9aaff3e1a407e9d06bb169a2be48469212b9f))
+
+
+### Features
+
+* **carousel:** added styles to carousel ([77524d4](https://github.com/spryker/ui-components/commit/77524d4bb5a5bb85f35d7ba08803641862c82e77))
+
+
+
+
+
 ## [0.2.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.4-next.0...@spryker/styles@0.2.4-next.1) (2021-08-25)
 
 

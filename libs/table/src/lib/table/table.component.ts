@@ -460,18 +460,21 @@ export class CoreTableComponent
     key: string;
     value: 'descend' | 'ascend' | null;
   }): void {
-    this.tableData$.subscribe((data) => {
-      console.log(data.length);
-      if (data?.length) {
-        const { key, value } = event;
-        const sortingCriteria: SortingCriteria = {
-          sortBy: value ? key : undefined,
-          sortDirection: this.sortingValueTransformation(value),
-        };
+    this.tableData$.pipe(
+      map((data) => {
+        if (data?.length) {
+          const { key, value } = event;
+          const sortingCriteria: SortingCriteria = {
+            sortBy: value ? key : undefined,
+            sortDirection: this.sortingValueTransformation(value),
+          };
 
-        this.dataConfiguratorService.update(sortingCriteria as TableDataConfig);
-      }
-    });
+          this.dataConfiguratorService.update(
+            sortingCriteria as TableDataConfig,
+          );
+        }
+      }),
+    );
   }
 
   /** @internal */

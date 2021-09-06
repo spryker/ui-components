@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "enableIvy": false,
     "outDir": "../../dist/out-tsc",
     "target": "es2015",
     "declaration": true,

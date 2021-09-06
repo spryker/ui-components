@@ -1,6 +1,6 @@
-<div class="spy-carousel-wrapper">
+<div class="spy-carousel__wrapper">
   <swiper
-    containerModifierClass="spy-carousel-"
+    containerModifierClass="spy-carousel__"
     [slidesPerView]="config?.slidesPerView"
     [navigation]="navigationOptions"
     [thumbs]="{ swiper: this.thumbsSwiper }"
@@ -10,7 +10,7 @@
     </ng-template>
   </swiper>
   <swiper
-    containerModifierClass="spy-carousel-"
+    containerModifierClass="spy-carousel__"
     *ngIf="withThumbs"
     [slidesPerView]="thumbConfig.slidesPerView"
     [spaceBetween]="thumbConfig.spaceBetween"
@@ -21,12 +21,12 @@
     </ng-template>
   </swiper>
   <button
-    class="spy-carousel-navigation-button spy-carousel-navigation-button_preview"
+    class="spy-carousel__navigation-button spy-carousel__navigation-button_preview"
   >
     <spy-icon [name]="paginationArrowIcon"></spy-icon>
   </button>
   <button
-    class="spy-carousel-navigation-button spy-carousel-navigation-button_next"
+    class="spy-carousel__navigation-button spy-carousel__navigation-button_next"
   >
     <spy-icon [name]="paginationArrowIcon"></spy-icon>
   </button>

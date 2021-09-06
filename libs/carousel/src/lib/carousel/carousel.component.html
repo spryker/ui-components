@@ -1,24 +1,33 @@
-<swiper
-  [slidesPerView]="config.slidesPerView"
-  [navigation]="navigationOptions"
-  [thumbs]="{ swiper: thumbsSwiper }"
->
-  <ng-template swiperSlide *ngFor="let slide of slides$ | async">
-    <ng-container *ngTemplateOutlet="slide.template"></ng-container>
-  </ng-template>
-</swiper>
-<swiper
-  *ngIf="withThumbs"
-  [slidesPerView]="thumbConfig.slidesPerView"
-  [spaceBetween]="thumbConfig.spaceBetween"
->
-  <ng-template swiperSlide *ngFor="let slide of slides$ | async">
-    <ng-container *ngTemplateOutlet="slide.thumbTemplate"></ng-container>
-  </ng-template>
-</swiper>
-<button class="carousel-navigation-button carousel-navigation-button_preview">
-  <spy-icon [name]="paginationArrowIcon"></spy-icon>
-</button>
-<button class="carousel-navigation-button carousel-navigation-button_next">
-  <spy-icon [name]="paginationArrowIcon"></spy-icon>
-</button>
+<div class="spy-carousel-wrapper">
+  <swiper
+    containerModifierClass="spy-carousel-"
+    [slidesPerView]="config.slidesPerView"
+    [navigation]="navigationOptions"
+    [thumbs]="{ swiper: this.thumbsSwiper }"
+  >
+    <ng-template swiperSlide *ngFor="let slide of slides$ | async">
+      <ng-container *ngTemplateOutlet="slide.template"></ng-container>
+    </ng-template>
+  </swiper>
+  <swiper
+    containerModifierClass="spy-carousel-"
+    *ngIf="withThumbs"
+    [slidesPerView]="thumbConfig.slidesPerView"
+    [spaceBetween]="thumbConfig.spaceBetween"
+    (swiper)="thumbsSwiper = $event"
+  >
+    <ng-template swiperSlide *ngFor="let slide of slides$ | async">
+      <ng-container *ngTemplateOutlet="slide.thumbTemplate"></ng-container>
+    </ng-template>
+  </swiper>
+  <button
+    class="spy-carousel-navigation-button spy-carousel-navigation-button_preview"
+  >
+    <spy-icon [name]="paginationArrowIcon"></spy-icon>
+  </button>
+  <button
+    class="spy-carousel-navigation-button spy-carousel-navigation-button_next"
+  >
+    <spy-icon [name]="paginationArrowIcon"></spy-icon>
+  </button>
+</div>

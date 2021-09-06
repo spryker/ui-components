@@ -376,6 +376,9 @@
     },
     "spinner": {
       "tags": ["type:component", "level:atom", "pkg:primary"]
+    },
+    "carousel": {
+      "tags": ["type:component", "level:molecule", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

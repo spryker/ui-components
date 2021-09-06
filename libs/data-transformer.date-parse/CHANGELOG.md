@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.date-parse@0.1.4...@spryker/data-transformer.date-parse@0.1.5-next.0) (2021-09-03)
+
+**Note:** Version bump only for package @spryker/data-transformer.date-parse
+
+
+
+
+
 ## [0.1.4](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.date-parse@0.1.4-next.0...@spryker/data-transformer.date-parse@0.1.4) (2021-08-23)
 
 **Note:** Version bump only for package @spryker/data-transformer.date-parse

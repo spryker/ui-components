@@ -8,6 +8,7 @@ import {
 import { ToBoolean } from '@spryker/utils';
 
 import { ButtonCore } from '../button-core/button-core';
+import { SpinnerSize } from '@spryker/spinner';
 
 export enum ButtonType {
   Button = 'button',
@@ -28,6 +29,8 @@ export class ButtonComponent extends ButtonCore {
   @ToBoolean()
   disabled = false;
   @Input() loading?: Boolean;
+
+  spinnerSize = SpinnerSize.Small;
 
   protected buttonClassName = 'spy-button';
 }

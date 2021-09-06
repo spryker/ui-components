@@ -162,14 +162,14 @@ export class CoreTableComponent
     ),
     shareReplaySafe(),
   );
-  private isTableDataEmpty = true;
+  private isEmpty = true;
 
   data$ = this.config$.pipe(
     map((config) => config.dataSource),
     distinctUntilChanged(),
     switchMap((dataSource) => this.datasourceService.resolve(dataSource)),
     map((config) => {
-      this.isTableDataEmpty = !config.data.length;
+      this.isEmpty = !config.data.length;
       return config;
     }),
     shareReplaySafe(),
@@ -464,7 +464,7 @@ export class CoreTableComponent
     key: string;
     value: 'descend' | 'ascend' | null;
   }): void {
-    if (this.isTableDataEmpty) {
+    if (this.isEmpty) {
       return;
     }
     const { key, value } = event;

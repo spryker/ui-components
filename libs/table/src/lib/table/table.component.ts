@@ -460,7 +460,7 @@ export class CoreTableComponent
     key: string;
     value: 'descend' | 'ascend' | null;
   }): void {
-    this.tableData$.subscribe(data => {
+    this.tableData$.subscribe((data) => {
       console.log(data.length);
       if (data?.length) {
         const { key, value } = event;
@@ -471,7 +471,7 @@ export class CoreTableComponent
 
         this.dataConfiguratorService.update(sortingCriteria as TableDataConfig);
       }
-    })
+    });
   }
 
   /** @internal */

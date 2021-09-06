@@ -54,7 +54,7 @@ export const primary = () => ({
     slidesPerView: number('Slides per view', 1),
     slidesSpaceBetween: number('Slides space between', 15),
     withThumbs: boolean('With thumbs', true),
-    thumbsPerView: number('Thumbs per view', 4),
+    thumbsPerView: number('Thumbs per view', 6),
     thumbsSpaceBetween: number('Thumbs space between', 15),
   },
 });

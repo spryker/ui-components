@@ -11,7 +11,8 @@
     "@spryker/locale": "^0.2.0",
     "@spryker/popover": "^0.1.0",
     "@spryker/styles": "^0.2.0",
-    "@spryker/utils": "^0.2.1"
+    "@spryker/utils": "^0.2.1",
+    "@spryker/spinner": "^0.1.0"
   },
   "dependencies": {
     "@orchestrator/core": "^0.2.0",

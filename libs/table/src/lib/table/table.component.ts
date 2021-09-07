@@ -113,9 +113,13 @@ export class CoreTableComponent
    */
   @Input() events: TableEvents = {};
 
-  @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<TableColumnContext>;
+  @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<
+    TableColumnContext
+  >;
 
-  @ViewChild('headerTpl', { static: true }) headerTpl!: TemplateRef<TableHeaderContext>;
+  @ViewChild('headerTpl', { static: true }) headerTpl!: TemplateRef<
+    TableHeaderContext
+  >;
   @ViewChild('tableElementRef', { read: ElementRef })
   tableElementRef!: ElementRef<HTMLElement>;
 
@@ -152,8 +156,8 @@ export class CoreTableComponent
     switchMap((colsOrUrl) =>
       colsOrUrl
         ? this.columnsResolverService
-          .resolve(colsOrUrl)
-          .pipe(catchError(this.handleStreamError()))
+            .resolve(colsOrUrl)
+            .pipe(catchError(this.handleStreamError()))
         : of([]),
     ),
     shareReplaySafe(),
@@ -267,15 +271,14 @@ export class CoreTableComponent
   );
 
   isEmpty$ = combineLatest([
-    this.tableData$.pipe(map((data) => {
+    this.tableData$.pipe(
+      map((data) => {
         this.isEmpty = !data.length;
         return Boolean(data.length);
       }),
     ),
     this.dataConfiguratorService.config$.pipe(
-      map((config) =>
-        Boolean(Object.keys(config).length),
-      ),
+      map((config) => Boolean(Object.keys(config).length)),
     ),
     this.featuresInRows$.pipe(map((features) => Boolean(features.length))),
   ]).pipe(
@@ -294,8 +297,8 @@ export class CoreTableComponent
       const isFiltered = (config: Record<string, unknown>) =>
         config.filter
           ? Boolean(
-            Object.keys(config.filter as Record<string, unknown>).length,
-          )
+              Object.keys(config.filter as Record<string, unknown>).length,
+            )
           : false;
       const isSearched = (config: Record<string, unknown>) =>
         config.search ? String(config.search).length : false;
@@ -364,8 +367,7 @@ export class CoreTableComponent
     @Optional()
     @SkipSelf()
     public parentTable: CoreTableComponent,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.featuresLoaded$

@@ -271,22 +271,17 @@ export class CoreTableComponent
   );
 
   isEmpty$ = combineLatest([
-    this.tableData$.pipe(
-      map((data) => {
-        this.isEmpty = !data.length;
-        return Boolean(data.length);
-      }),
-    ),
+    this.tableData$.pipe(map((data) => Boolean(data.length))),
     this.dataConfiguratorService.config$.pipe(
       map((config) => Boolean(Object.keys(config).length)),
     ),
     this.featuresInRows$.pipe(map((features) => Boolean(features.length))),
   ]).pipe(
     startWith([true, false, true]),
-    map(
-      ([isTableData, isConfig, isFeaturesInRows]) =>
-        !isTableData && !isFeaturesInRows && isConfig,
-    ),
+    map(([isTableData, isConfig, isFeaturesInRows]) => {
+      this.isEmpty = !isTableData;
+      return !isTableData && !isFeaturesInRows && isConfig;
+    }),
     shareReplaySafe(),
   );
 

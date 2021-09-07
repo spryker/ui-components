@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.2-next.0...@spryker/table@0.3.2-next.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* **table:** adjusted `table` component by adding isTableDataEmpty property ([b21573a](https://github.com/spryker/ui-components/commit/b21573aca6b435b39ba04737a7f3bb88e289a13f))
+* **table:** adjusted `table` component by adding spy-spinner and disabling sorting on empty table ([eb470ff](https://github.com/spryker/ui-components/commit/eb470ff21e7886fcf325ebd6a29deab7e57d5407))
+* **table:** adjusted `table` component by changing layout ([5bbd779](https://github.com/spryker/ui-components/commit/5bbd779bc97f3d813790f038464423d55bfe4871))
+* **table:** adjusted `table` component by formatting code ([da132a3](https://github.com/spryker/ui-components/commit/da132a3330051c642b1f17b61a9867e69a6a1c98))
+* **table:** adjusted `table` component by formatting code ([01998d2](https://github.com/spryker/ui-components/commit/01998d2a5eab8658d48e158319c9ea4fbc626d70))
+* **table:** adjusted `table` component by formatting code ([4f0ac67](https://github.com/spryker/ui-components/commit/4f0ac67bd55d3a3dac2c7c4818da4e1f36e672bf))
+* **table:** adjusted `table` component by renaming variable ([34b5c80](https://github.com/spryker/ui-components/commit/34b5c80e9fec16c69bc7ba9c473b098a8cf2ba88))
+* **table:** adjusted `table` component by setting isEmpty from another place ([5228212](https://github.com/spryker/ui-components/commit/5228212ebe5740882e0a8a641df10d775260b348))
+* **table:** adjusted package.json by adding spinner as peer dependency ([5ebd09c](https://github.com/spryker/ui-components/commit/5ebd09cc65be3373ca3909f07c0f61288be42a52))
+* **table:** adjusted table component by removing subscription ([99b4c00](https://github.com/spryker/ui-components/commit/99b4c0078fee584f5c5b904344325b91bfb1dce7))
+
+
+
+
+
 ## [0.3.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.1...@spryker/table@0.3.2-next.0) (2021-09-03)
 
 **Note:** Version bump only for package @spryker/table

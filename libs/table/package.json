@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table",
-  "version": "0.3.2-next.0",
+  "version": "0.3.2-next.1",
   "peerDependencies": {
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.1.12",
@@ -10,9 +10,9 @@
     "@spryker/icon": "^0.2.0",
     "@spryker/locale": "^0.2.0",
     "@spryker/popover": "^0.1.0",
+    "@spryker/spinner": "^0.1.0",
     "@spryker/styles": "^0.2.0",
-    "@spryker/utils": "^0.2.1",
-    "@spryker/spinner": "^0.1.0"
+    "@spryker/utils": "^0.2.1"
   },
   "dependencies": {
     "@orchestrator/core": "^0.2.0",

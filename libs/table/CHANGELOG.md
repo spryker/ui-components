@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.2-next.1...@spryker/table@0.3.2-next.2) (2021-09-07)
+
+
+### Bug Fixes
+
+* **table:** adjusted `table` component by updating styles ([c4578ea](https://github.com/spryker/ui-components/commit/c4578ea46d019e3d97439cb3dfd56c9b29aa3315))
+* **table.component:** added tabindex on tr added focus state ([ce0b19e](https://github.com/spryker/ui-components/commit/ce0b19e3e6d218aea7b19b2e13ec9b58662e9d3c))
+* **table.component:** changed tr box-shadow according to figma design ([5e88656](https://github.com/spryker/ui-components/commit/5e88656abb533cba4de7902efb7d7db594222b74))
+* **table.component:** hot-fix removed hover state on thead tr ([314c3ed](https://github.com/spryker/ui-components/commit/314c3ed3a29fd99432dfaa9279c9daea67c61b0c))
+
+
+
+
+
 ## [0.3.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.2-next.0...@spryker/table@0.3.2-next.1) (2021-09-07)
 
 

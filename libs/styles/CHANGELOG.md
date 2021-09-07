@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.1...@spryker/styles@0.3.0-next.2) (2021-09-07)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `table` by updating padding ([09f3f9b](https://github.com/spryker/ui-components/commit/09f3f9bf6c3e817ab4c2b12d67c771fbc97b70c3))
+* **styles:** adjusted `table` styles by reordering them ([5ab3019](https://github.com/spryker/ui-components/commit/5ab3019a727df9023e226bf03cbdcbeb96d2aa54))
+* **table:** adjusted `table` component by updating styles ([c4578ea](https://github.com/spryker/ui-components/commit/c4578ea46d019e3d97439cb3dfd56c9b29aa3315))
+* **table.component:** added tabindex on tr added focus state ([ce0b19e](https://github.com/spryker/ui-components/commit/ce0b19e3e6d218aea7b19b2e13ec9b58662e9d3c))
+* **table.component:** changed tr box-shadow according to figma design ([5e88656](https://github.com/spryker/ui-components/commit/5e88656abb533cba4de7902efb7d7db594222b74))
+
+
+
+
+
 # [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.0...@spryker/styles@0.3.0-next.1) (2021-09-06)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.1-next.0...@spryker/card@0.3.1-next.1) (2021-09-08)
+
+
+### Bug Fixes
+
+* **card.component:** added box-shadow on card ([ea8984e](https://github.com/spryker/ui-components/commit/ea8984eb52aea9a328ff87589874a630ab62db3b))
+
+
+
+
+
 ## [0.3.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.0...@spryker/card@0.3.1-next.0) (2021-09-03)
 
 **Note:** Version bump only for package @spryker/card

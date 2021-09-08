@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.2...@spryker/styles@0.3.0-next.3) (2021-09-08)
+
+
+### Bug Fixes
+
+* **card:** Adjusted card component by replacing style with variable ([ede0fe4](https://github.com/spryker/ui-components/commit/ede0fe4bd10240191a93bf6250c5f45a6dc46ced))
+* **card.component:** added box-shadow on card ([ea8984e](https://github.com/spryker/ui-components/commit/ea8984eb52aea9a328ff87589874a630ab62db3b))
+* **styles:** adjusted `card` by using newly introduced variables ([cbe63cb](https://github.com/spryker/ui-components/commit/cbe63cb41a27158cb947bc07417d081ac735d3f9))
+* **styles:** adjusted `card` by using newly introduced variables adjusted `colors` updated variable ([f46b305](https://github.com/spryker/ui-components/commit/f46b30536ea1ea6ca9b22ff100798b6ff7322a1c))
+* **styles:** adjusted `colors` by adding shadow colors ([030fa54](https://github.com/spryker/ui-components/commit/030fa54c7fbada95ea8b397eb9765cecda85d70e))
+* **styles:** adjusted `colors` by renaming variable ([67ccc20](https://github.com/spryker/ui-components/commit/67ccc20de578cca3905e8e6851f7a2b3473c0536))
+* **styles:** adjusted `colors` by updating color variables ([13fde11](https://github.com/spryker/ui-components/commit/13fde112fb5b7ec14953f10caad86dbb37d06d62))
+
+
+
+
+
 # [0.3.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.1...@spryker/styles@0.3.0-next.2) (2021-09-07)
 
 

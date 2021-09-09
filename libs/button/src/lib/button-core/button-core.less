@@ -123,6 +123,12 @@
       &.loading {
         padding: @btn-padding-with-loading-md;
       }
+
+      .@{spin-prefix-cls} {
+        &-nested-loading {
+          left: @btn-loading-spin-offset-md;
+        }
+      }
     }
   }
 
@@ -228,7 +234,7 @@
     color: currentColor;
 
     &-nested-loading {
-      position: absolute;
+      position: relative;
       left: @btn-loading-spin-offset-sm;
       height: 100%;
     }

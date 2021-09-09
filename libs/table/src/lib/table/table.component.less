@@ -118,154 +118,183 @@
     }
   }
 
-  &-thead > tr,
   &-tbody > tr {
     &.@{table-prefix-cls}-row-hover,
     &:hover {
       background: none;
+      box-shadow: @table-body-hover-row-border-shadow;
 
       &:not(.@{table-prefix-cls}-expanded-row):not(.@{table-prefix-cls}-row-selected)
         > td {
         background: none;
-
-        .@{table-prefix-cls}-column-inner::after {
-          box-shadow: @table-body-hover-row-border-shadow;
-        }
       }
     }
+  }
 
-    &:first-child > th {
-      &:last-child,
-      &:first-child {
-        border-radius: 0;
-      }
-    }
+  &-thead,
+  &-tbody {
+    & > tr {
+      &:focus {
+        & > td {
+          border-top: @table-body-focus-row-border;
+          border-bottom: @table-body-focus-row-border;
 
-    th.@{table-prefix-cls}-column-has-sorters,
-    > th,
-    > td {
-      padding: 0;
-      border-bottom: none;
-      position: relative;
+          &:first-child {
+            border-left: @table-body-focus-row-border;
+            border-top-left-radius: @table-body-focus-row-border-radius;
+            border-bottom-left-radius: @table-body-focus-row-border-radius;
+          }
 
-      .ie-styles-only-mixin({height: inherit; position: static;});
-
-      .@{table-prefix-cls}-column-inner {
-        padding: @table-column-inner-padding;
-        color: @table-column-body-color;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        z-index: 0;
-
-        .ie-styles-only-mixin({position: relative;});
-
-        &::after {
-          .transition-mixin(background border box-shadow);
-          content: '';
-          position: absolute;
-          top: @table-body-margin-vertical;
-          bottom: @table-body-margin-vertical;
-          left: 0;
-          width: 100%;
-          background: @table-body-row-bg;
-          border-top: @table-border-base;
-          border-bottom: @table-border-base;
-          z-index: -1;
-        }
-
-        &--align-right {
-          align-items: flex-end;
+          &:last-child {
+            border-right: @table-body-focus-row-border;
+            border-top-right-radius: @table-body-focus-row-border-radius;
+            border-bottom-right-radius: @table-body-focus-row-border-radius;
+          }
         }
       }
 
-      &:first-child .@{table-prefix-cls}-column-inner::after {
-        border-radius: @table-column-first-border-radius;
-        border-left: @table-border-base;
-      }
-
-      &:last-child .@{table-prefix-cls}-column-inner::after {
-        border-radius: @table-column-last-border-radius;
-        border-right: @table-border-base;
-      }
-    }
-
-    th.@{table-prefix-cls}-column-has-sorters,
-    > th {
-      &:hover {
-        background: none;
-      }
-
-      .@{table-prefix-cls}-column-inner {
-        padding: @table-head-padding;
-        color: @table-column-head-color;
-        font-size: @table-column-title-font-size;
-      }
-    }
-
-    th.@{table-prefix-cls}-column-has-sorters {
-      .@{table-prefix-cls}-column-sorters {
-        width: 100%;
-        padding: @table-head-padding;
-
-        .ie-styles-only-mixin({position: relative;});
-
-        &::after {
-          .transition-mixin(background border box-shadow);
-          content: '';
-          position: absolute;
-          top: @table-body-margin-vertical;
-          bottom: @table-body-margin-vertical;
-          left: 0;
-          width: 100%;
-          background: @table-body-row-bg;
-          border-top: @table-border-base;
-          border-bottom: @table-border-base;
-          z-index: -1;
+      &:first-child > th {
+        &:last-child,
+        &:first-child {
+          border-radius: 0;
         }
       }
 
-      &:first-child .@{table-prefix-cls}-column-sorters::after {
-        border-radius: @table-column-first-border-radius;
-        border-left: @table-border-base;
-      }
-
-      &:last-child .@{table-prefix-cls}-column-sorters::after {
-        border-radius: @table-column-last-border-radius;
-        border-right: @table-border-base;
-      }
-
-      &.@{table-prefix-cls}-column-sort {
-        background: transparent;
-      }
-
-      .@{table-prefix-cls}-column-inner {
+      th.@{table-prefix-cls}-column-has-sorters,
+      > th,
+      > td {
         padding: 0;
+        border-bottom: none;
+        position: relative;
 
-        .ie-styles-only-mixin({position: static;});
+        .ie-styles-only-mixin({
+          height: inherit;
+          position: static;
+        });
 
-        &::after {
-          display: none;
+        .@{table-prefix-cls}-column-inner {
+          padding: @table-column-inner-padding;
+          color: @table-column-body-color;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 100%;
+          z-index: 0;
+
+          .ie-styles-only-mixin({
+            position: relative;
+          });
+
+          &::after {
+            .transition-mixin(background border box-shadow);
+            content: '';
+            position: absolute;
+            top: @table-body-margin-vertical;
+            bottom: @table-body-margin-vertical;
+            left: 0;
+            width: 100%;
+            background: @table-body-row-bg;
+            border-top: @table-border-base;
+            border-bottom: @table-border-base;
+            z-index: -1;
+          }
+
+          &--align-right {
+            align-items: flex-end;
+          }
+        }
+
+        &:first-child .@{table-prefix-cls}-column-inner::after {
+          border-radius: @table-column-first-border-radius;
+          border-left: @table-border-base;
+        }
+
+        &:last-child .@{table-prefix-cls}-column-inner::after {
+          border-radius: @table-column-last-border-radius;
+          border-right: @table-border-base;
         }
       }
-    }
 
-    &.@{table-prefix-cls}-row--with-errors > td {
-      .@{table-prefix-cls}-column-inner {
-        &::after {
-          background: @table-row-bg-with-errors;
-          border-color: @table-row-border-color-with-errors;
+      th.@{table-prefix-cls}-column-has-sorters,
+      > th {
+        &:hover {
+          background: none;
+        }
+
+        .@{table-prefix-cls}-column-inner {
+          padding: @table-head-padding;
+          color: @table-column-head-color;
+          font-size: @table-column-title-font-size;
         }
       }
-    }
 
-    &:first-child > td .@{table-prefix-cls}-column-inner::after {
-      top: 0;
-    }
+      th.@{table-prefix-cls}-column-has-sorters {
+        .@{table-prefix-cls}-column-sorters {
+          width: 100%;
+          padding: @table-head-padding;
 
-    &:last-child > td .@{table-prefix-cls}-column-inner::after {
-      bottom: 0;
+          .ie-styles-only-mixin({
+            position: relative;
+          });
+
+          &::after {
+            .transition-mixin(background border box-shadow);
+            content: '';
+            position: absolute;
+            top: @table-body-margin-vertical;
+            bottom: @table-body-margin-vertical;
+            left: 0;
+            width: 100%;
+            background: @table-body-row-bg;
+            border-top: @table-border-base;
+            border-bottom: @table-border-base;
+            z-index: -1;
+          }
+        }
+
+        &:first-child .@{table-prefix-cls}-column-sorters::after {
+          border-radius: @table-column-first-border-radius;
+          border-left: @table-border-base;
+        }
+
+        &:last-child .@{table-prefix-cls}-column-sorters::after {
+          border-radius: @table-column-last-border-radius;
+          border-right: @table-border-base;
+        }
+
+        &.@{table-prefix-cls}-column-sort {
+          background: transparent;
+        }
+
+        .@{table-prefix-cls}-column-inner {
+          padding: 0;
+
+          .ie-styles-only-mixin({
+            position: static;
+          });
+
+          &::after {
+            display: none;
+          }
+        }
+      }
+
+      &.@{table-prefix-cls}-row--with-errors > td {
+        .@{table-prefix-cls}-column-inner {
+          &::after {
+            background: @table-row-bg-with-errors;
+            border-color: @table-row-border-color-with-errors;
+          }
+        }
+      }
+
+      &:first-child > td .@{table-prefix-cls}-column-inner::after {
+        top: 0;
+      }
+
+      &:last-child > td .@{table-prefix-cls}-column-inner::after {
+        bottom: 0;
+      }
     }
   }
 

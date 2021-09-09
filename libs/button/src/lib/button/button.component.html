@@ -5,7 +5,7 @@
   [class.loading]="loading"
   #buttonRef
 >
-  <nz-spin *ngIf="loading" [nzSize]="'small'"></nz-spin>
+  <spy-spinner [isSpinning]="loading" [size]="spinnerSize"></spy-spinner>
   <span
     class="spy-button-core__btn-icon"
     [class.spy-button-core__btn-icon--loading]="loading"

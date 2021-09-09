@@ -3,9 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.4-next.0...@spryker/styles@0.2.4) (2021-08-23)
+# [0.3.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.3...@spryker/styles@0.3.0-next.4) (2021-09-09)
 
-**Note:** Version bump only for package @spryker/styles
+
+### Bug Fixes
+
+* **styles:** adjusted colors by updating color variables ([085c928](https://github.com/spryker/ui-components/commit/085c928899981bbdb4a32e4dace6afbe71713f9f))
+
+
+### Reverts
+
+* Revert "align colors with Figma color tokens" ([81c6386](https://github.com/spryker/ui-components/commit/81c6386c7fd9320a15409508b0d89c58784f8b57))
+
+
+
+
+
+# [0.3.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.2...@spryker/styles@0.3.0-next.3) (2021-09-08)
+
+
+### Bug Fixes
+
+* **card:** Adjusted card component by replacing style with variable ([ede0fe4](https://github.com/spryker/ui-components/commit/ede0fe4bd10240191a93bf6250c5f45a6dc46ced))
+* **card.component:** added box-shadow on card ([ea8984e](https://github.com/spryker/ui-components/commit/ea8984eb52aea9a328ff87589874a630ab62db3b))
+* **styles:** adjusted `card` by using newly introduced variables ([cbe63cb](https://github.com/spryker/ui-components/commit/cbe63cb41a27158cb947bc07417d081ac735d3f9))
+* **styles:** adjusted `card` by using newly introduced variables adjusted `colors` updated variable ([f46b305](https://github.com/spryker/ui-components/commit/f46b30536ea1ea6ca9b22ff100798b6ff7322a1c))
+* **styles:** adjusted `colors` by adding shadow colors ([030fa54](https://github.com/spryker/ui-components/commit/030fa54c7fbada95ea8b397eb9765cecda85d70e))
+* **styles:** adjusted `colors` by renaming variable ([67ccc20](https://github.com/spryker/ui-components/commit/67ccc20de578cca3905e8e6851f7a2b3473c0536))
+* **styles:** adjusted `colors` by updating color variables ([13fde11](https://github.com/spryker/ui-components/commit/13fde112fb5b7ec14953f10caad86dbb37d06d62))
+
+
+
+
+
+# [0.3.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.1...@spryker/styles@0.3.0-next.2) (2021-09-07)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `table` by updating padding ([09f3f9b](https://github.com/spryker/ui-components/commit/09f3f9bf6c3e817ab4c2b12d67c771fbc97b70c3))
+* **styles:** adjusted `table` styles by reordering them ([5ab3019](https://github.com/spryker/ui-components/commit/5ab3019a727df9023e226bf03cbdcbeb96d2aa54))
+* **table:** adjusted `table` component by updating styles ([c4578ea](https://github.com/spryker/ui-components/commit/c4578ea46d019e3d97439cb3dfd56c9b29aa3315))
+* **table.component:** added tabindex on tr added focus state ([ce0b19e](https://github.com/spryker/ui-components/commit/ce0b19e3e6d218aea7b19b2e13ec9b58662e9d3c))
+* **table.component:** changed tr box-shadow according to figma design ([5e88656](https://github.com/spryker/ui-components/commit/5e88656abb533cba4de7902efb7d7db594222b74))
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.0...@spryker/styles@0.3.0-next.1) (2021-09-06)
+
+
+### Reverts
+
+* Revert "feat(carousel): added styles to carousel" ([fd15ef4](https://github.com/spryker/ui-components/commit/fd15ef4662bdeb7080d8e9d1f19d1651135285b0))
+* Revert "fix(carousel): added shadow to next/prev buttons" ([c2d4ce1](https://github.com/spryker/ui-components/commit/c2d4ce11615d3500e3278a478df16e7c839e46b6))
+
+
+
+
+
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.4-next.1...@spryker/styles@0.3.0-next.0) (2021-09-06)
+
+
+### Bug Fixes
+
+* **carousel:** added shadow to next/prev buttons ([47b9aaf](https://github.com/spryker/ui-components/commit/47b9aaff3e1a407e9d06bb169a2be48469212b9f))
+
+
+### Features
+
+* **carousel:** added styles to carousel ([77524d4](https://github.com/spryker/ui-components/commit/77524d4bb5a5bb85f35d7ba08803641862c82e77))
+
+
+
+
+
+## [0.2.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.2.4-next.0...@spryker/styles@0.2.4-next.1) (2021-08-25)
+
+
+### Bug Fixes
+
+* **button:** button now uses spy-spinner instead of nz-spin ([8bed762](https://github.com/spryker/ui-components/commit/8bed7623d9472babc1765a9f31a142095ca550d2))
 
 
 

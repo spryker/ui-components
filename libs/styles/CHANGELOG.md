@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.3...@spryker/styles@0.3.0-next.4) (2021-09-09)
+
+
+### Bug Fixes
+
+* **styles:** adjusted colors by updating color variables ([085c928](https://github.com/spryker/ui-components/commit/085c928899981bbdb4a32e4dace6afbe71713f9f))
+
+
+### Reverts
+
+* Revert "align colors with Figma color tokens" ([81c6386](https://github.com/spryker/ui-components/commit/81c6386c7fd9320a15409508b0d89c58784f8b57))
+
+
+
+
+
 # [0.3.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.2...@spryker/styles@0.3.0-next.3) (2021-09-08)
 
 

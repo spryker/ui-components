@@ -9,7 +9,7 @@
     "lib": ["dom", "es2018"]
   },
   "angularCompilerOptions": {
-    "enavleIvy": false,
+    "enableIvy": false,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "enableResourceInlining": true

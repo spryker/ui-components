@@ -6,11 +6,21 @@
   display: block;
 
   &__horizontal {
+    .swiper-slide {
+      border-radius: @carousel-slide-border-radius;
+      overflow: hidden;
+
+      img {
+        display: block;
+      }
+    }
+
     &.swiper-container-thumbs {
       padding: @carousel-thumbs-padding;
 
       .swiper-slide {
         [thumb] {
+          display: block;
           overflow: hidden;
           border: @carousel-thumb-border;
           border-radius: @carousel-thumb-border-radius;

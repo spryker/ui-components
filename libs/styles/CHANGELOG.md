@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.2-next.0...@spryker/styles@0.3.2-next.1) (2021-09-13)
+
+
+### Bug Fixes
+
+* **card:** adjusted `card` component by updating styles ([06ef11d](https://github.com/spryker/ui-components/commit/06ef11dc4f40a9621731861eb168849e33aada12))
+* **styles:** adjusted `card` by formatting ([c19bd98](https://github.com/spryker/ui-components/commit/c19bd98b410443f5af277a603bbf06c4c8dbe357))
+* **styles:** adjusted `card` component by introducing padding variable ([f942944](https://github.com/spryker/ui-components/commit/f942944794e1cc11edbc7d335ba527eb4907b10c))
+
+
+
+
+
 ## [0.3.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.1...@spryker/styles@0.3.2-next.0) (2021-09-10)
 
 **Note:** Version bump only for package @spryker/styles

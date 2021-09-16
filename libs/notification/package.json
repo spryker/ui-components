@@ -1,6 +1,6 @@
 {
   "name": "@spryker/notification",
-  "version": "0.2.5",
+  "version": "0.2.6-next.0",
   "peerDependencies": {
     "@angular/animations": "^9.1.12",
     "@angular/common": "^9.1.12",

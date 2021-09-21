@@ -35,7 +35,12 @@
 @btn-border-radius-round: 40px;
 @btn-border-radius-circle: 50%;
 @btn-border-radius-link: 24px;
+@btn-border-secondary: @btn-border @btn-link-color;
 @btn-shadow-default-size: 0 0 2px;
+@btn-shadow-secondary-size: 0 0 3px;
+@btn-shadow-secondary-bigger-size: 0 4px 12px;
+@btn-shadow-secondary: @btn-shadow-secondary-size @green;
+@btn-shadow-hovered-secondary: @btn-shadow-secondary-bigger-size @ink-effect;
 @btn-shadow-default: @btn-shadow-default-size transparent;
 @btn-shadow-hover-size: 0 4px 18px;
 @btn-text-shadow: none;
@@ -50,6 +55,7 @@
 @btn-danger-shadow-hover: @btn-shadow-hover-size rgba(@btn-danger-bg, 0.5);
 @btn-danger-shadow-focus: @btn-shadow-default-size @btn-danger-bg;
 @btn-danger-active-bg: @red-dark;
+@btn-focus-bg: @global-bg-white;
 @btn-default-color: @gray-darker;
 @btn-default-bg: @component-background;
 @btn-default-border: @gray;

@@ -39,27 +39,28 @@
   &--secondary {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-default-bg;
-      color: @btn-default-color;
-      border-color: @btn-default-border;
+      color: @btn-secondary-color;
+      border-color: @btn-secondary-border;
 
       &:hover {
         background: @btn-default-bg;
-        color: @btn-default-color;
-        border-color: @btn-default-border;
-        box-shadow: @btn-default-shadow-hover;
+        color: @btn-secondary-color;
+        border: @btn-border-secondary;
+        box-shadow: @btn-shadow-hovered-secondary;
       }
 
       &:focus,
       &:active,
       &:focus:active {
         background: @btn-default-bg-active;
-        color: @btn-default-color;
+        color: @btn-secondary-color;
         border-color: @btn-default-border;
       }
 
       &:focus {
+        background: @btn-focus-bg;
         border-color: @btn-default-border-focus;
-        box-shadow: @btn-shadow-default;
+        box-shadow: @btn-shadow-secondary;
       }
     }
   }
@@ -265,7 +266,7 @@
   }
 
   &:active {
-    transform: @btn-active-transform;
+    transform: none;
   }
 
   &[disabled] {

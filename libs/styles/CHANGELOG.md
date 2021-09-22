@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.2-next.1...@spryker/styles@0.3.2-next.2) (2021-09-22)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `button` variables by adding variables ([7b5430b](https://github.com/spryker/ui-components/commit/7b5430bb36b47315257233ab0c1625dd34a5d929))
+* **styles:** adjusted `button` variables by adding variables for secondary buttons ([28f8dfb](https://github.com/spryker/ui-components/commit/28f8dfbfbeb8bf93b6bd4c4047c565d0902ad4fd))
+
+
+
+
+
 ## [0.3.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.2-next.0...@spryker/styles@0.3.2-next.1) (2021-09-13)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.2-next.2...@spryker/styles@0.3.2-next.3) (2021-09-23)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `notification` variables by providing shadow and updating min-width ([09acb37](https://github.com/spryker/ui-components/commit/09acb375d57aeaa140f8b4d954652e75f9c9c777))
+
+
+
+
+
 ## [0.3.2-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.2-next.1...@spryker/styles@0.3.2-next.2) (2021-09-22)
 
 

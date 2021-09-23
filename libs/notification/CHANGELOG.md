@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6-next.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.6-next.0...@spryker/notification@0.2.6-next.1) (2021-09-23)
+
+
+### Bug Fixes
+
+* **notification:** adjusted `notification-wrapper` component by updating box-shadow ([9774f1b](https://github.com/spryker/ui-components/commit/9774f1bbd5d7fee093f5430ba5da51523a7e599d))
+
+
+
+
+
 ## [0.2.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.5...@spryker/notification@0.2.6-next.0) (2021-09-10)
 
 **Note:** Version bump only for package @spryker/notification

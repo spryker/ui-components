@@ -63,7 +63,13 @@ const tableConfig = {
       { id: 'col4', type: 'edit' as any, typeOptions: { value: 'default' } },
     ] as TableColumns,
     create: {
-      addButton: {},
+      addButton: {
+        type: 'button',
+        shape: 'default',
+        variant: 'secondary',
+        size: 'lg',
+        icon: 'warning',
+      },
       cancelButton: {},
       disableForCols: ['col2'],
       formInputName: 'form-input-name',

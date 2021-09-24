@@ -73,9 +73,29 @@ export interface TableEditableConfigButtonText
   title: string;
 }
 
+export interface TableEditableConfigButtonSize {
+  size: string;
+}
+
+export interface TableEditableConfigButtonShape {
+  shape: string;
+}
+
+export interface TableEditableConfigButtonVariant {
+  variant: string;
+}
+
+export interface TableEditableConfigButtonType {
+  type: string;
+}
+
 export type TableEditableConfigButton =
   | TableEditableConfigButtonText
-  | TableEditableConfigButtonIcon;
+  | TableEditableConfigButtonIcon
+  | TableEditableConfigButtonSize
+  | TableEditableConfigButtonShape
+  | TableEditableConfigButtonVariant
+  | TableEditableConfigButtonType;
 
 export interface TableEditableEventData<T = unknown> {
   colId: string;

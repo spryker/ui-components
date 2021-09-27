@@ -86,7 +86,9 @@ export interface TableEditableEventData<T = unknown> {
   value?: T;
 }
 
-export class TableEditableEvent<T = unknown> extends CustomEvent<TableEditableEventData<T>> {
+export class TableEditableEvent<T = unknown> extends CustomEvent<
+  TableEditableEventData<T>
+> {
   static readonly eventName = 'spy-table-editable';
 
   constructor(detail: TableEditableEventData<T>) {

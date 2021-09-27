@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/spryker/ui-components/compare/@spryker/actions.http@0.1.7-next.0...@spryker/actions.http@0.1.7) (2021-09-16)
+
+**Note:** Version bump only for package @spryker/actions.http
+
+
+
+
+
 ## [0.1.7-next.0](https://github.com/spryker/ui-components/compare/@spryker/actions.http@0.1.6...@spryker/actions.http@0.1.7-next.0) (2021-09-10)
 
 **Note:** Version bump only for package @spryker/actions.http

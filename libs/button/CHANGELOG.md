@@ -19,6 +19,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.2.6](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.6-next.1...@spryker/button@0.2.6) (2021-09-16)
+
+**Note:** Version bump only for package @spryker/button
+
+
+
+
+
 ## [0.2.6-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.6-next.0...@spryker/button@0.2.6-next.1) (2021-09-16)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.filter.equals@0.1.7...@spryker/data-transformer.filter.equals@0.1.8-next.1) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/data-transformer.filter.equals
+
+
+
+
+
 ## [0.1.8-next.0](https://github.com/spryker/zed-gui/compare/@spryker/data-transformer.filter.equals@0.1.4...@spryker/data-transformer.filter.equals@0.1.8-next.0) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/data-transformer.filter.equals

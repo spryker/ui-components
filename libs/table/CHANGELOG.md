@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.4...@spryker/table@0.3.5-next.1) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
 ## [0.3.5-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table@0.3.1...@spryker/table@0.3.5-next.0) (2021-09-27)
 
 

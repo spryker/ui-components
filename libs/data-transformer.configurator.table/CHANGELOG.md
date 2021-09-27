@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-next.0](https://github.com/spryker/zed-gui/compare/@spryker/data-transformer.configurator.table@0.1.4...@spryker/data-transformer.configurator.table@0.1.8-next.0) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/data-transformer.configurator.table
+
+
+
+
+
 ## [0.1.7](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.configurator.table@0.1.7-next.0...@spryker/data-transformer.configurator.table@0.1.7) (2021-09-16)
 
 **Note:** Version bump only for package @spryker/data-transformer.configurator.table

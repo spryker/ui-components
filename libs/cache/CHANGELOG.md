@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-next.0](https://github.com/spryker/zed-gui/compare/@spryker/cache@0.1.4...@spryker/cache@0.1.8-next.0) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/cache
+
+
+
+
+
 ## [0.1.7](https://github.com/spryker/ui-components/compare/@spryker/cache@0.1.7-next.0...@spryker/cache@0.1.7) (2021-09-16)
 
 **Note:** Version bump only for package @spryker/cache

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8-next.0](https://github.com/spryker/zed-gui/compare/@spryker/link@0.2.4...@spryker/link@0.2.8-next.0) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/link
+
+
+
+
+
 ## [0.2.7](https://github.com/spryker/ui-components/compare/@spryker/link@0.2.7-next.0...@spryker/link@0.2.7) (2021-09-16)
 
 **Note:** Version bump only for package @spryker/link

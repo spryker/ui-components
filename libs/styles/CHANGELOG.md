@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3-next.0](https://github.com/spryker/zed-gui/compare/@spryker/styles@0.2.4...@spryker/styles@0.3.3-next.0) (2021-09-27)
+
+
+### Bug Fixes
+
+* **button:** button now uses spy-spinner instead of nz-spin ([8bed762](https://github.com/spryker/zed-gui/commit/8bed7623d9472babc1765a9f31a142095ca550d2))
+* **card:** adjusted `card` component by updating styles ([06ef11d](https://github.com/spryker/zed-gui/commit/06ef11dc4f40a9621731861eb168849e33aada12))
+* **card:** Adjusted card component by replacing style with variable ([ede0fe4](https://github.com/spryker/zed-gui/commit/ede0fe4bd10240191a93bf6250c5f45a6dc46ced))
+* **card.component:** added box-shadow on card ([ea8984e](https://github.com/spryker/zed-gui/commit/ea8984eb52aea9a328ff87589874a630ab62db3b))
+* **styles:** adjusted `button` variables by adding variables ([7b5430b](https://github.com/spryker/zed-gui/commit/7b5430bb36b47315257233ab0c1625dd34a5d929))
+* **styles:** adjusted `button` variables by adding variables for secondary buttons ([28f8dfb](https://github.com/spryker/zed-gui/commit/28f8dfbfbeb8bf93b6bd4c4047c565d0902ad4fd))
+* **styles:** adjusted `card` by formatting ([c19bd98](https://github.com/spryker/zed-gui/commit/c19bd98b410443f5af277a603bbf06c4c8dbe357))
+* **styles:** adjusted `card` by using newly introduced variables ([cbe63cb](https://github.com/spryker/zed-gui/commit/cbe63cb41a27158cb947bc07417d081ac735d3f9))
+* **styles:** adjusted `card` by using newly introduced variables adjusted `colors` updated variable ([f46b305](https://github.com/spryker/zed-gui/commit/f46b30536ea1ea6ca9b22ff100798b6ff7322a1c))
+* **styles:** adjusted `card` component by introducing padding variable ([f942944](https://github.com/spryker/zed-gui/commit/f942944794e1cc11edbc7d335ba527eb4907b10c))
+* **styles:** adjusted `colors` by adding shadow colors ([030fa54](https://github.com/spryker/zed-gui/commit/030fa54c7fbada95ea8b397eb9765cecda85d70e))
+* **styles:** adjusted `colors` by renaming variable ([67ccc20](https://github.com/spryker/zed-gui/commit/67ccc20de578cca3905e8e6851f7a2b3473c0536))
+* **styles:** adjusted `colors` by updating color variables ([13fde11](https://github.com/spryker/zed-gui/commit/13fde112fb5b7ec14953f10caad86dbb37d06d62))
+* **styles:** adjusted `notification` variables by providing shadow and updating min-width ([09acb37](https://github.com/spryker/zed-gui/commit/09acb375d57aeaa140f8b4d954652e75f9c9c777))
+* **styles:** adjusted `table` by updating padding ([09f3f9b](https://github.com/spryker/zed-gui/commit/09f3f9bf6c3e817ab4c2b12d67c771fbc97b70c3))
+* **styles:** adjusted `table` styles by reordering them ([5ab3019](https://github.com/spryker/zed-gui/commit/5ab3019a727df9023e226bf03cbdcbeb96d2aa54))
+* **styles:** adjusted colors by updating color variables ([085c928](https://github.com/spryker/zed-gui/commit/085c928899981bbdb4a32e4dace6afbe71713f9f))
+* **table:** adjusted `table` component by updating styles ([c4578ea](https://github.com/spryker/zed-gui/commit/c4578ea46d019e3d97439cb3dfd56c9b29aa3315))
+* **table.component:** added tabindex on tr added focus state ([ce0b19e](https://github.com/spryker/zed-gui/commit/ce0b19e3e6d218aea7b19b2e13ec9b58662e9d3c))
+* **table.component:** changed tr box-shadow according to figma design ([5e88656](https://github.com/spryker/zed-gui/commit/5e88656abb533cba4de7902efb7d7db594222b74))
+
+
+### Reverts
+
+* Revert "align colors with Figma color tokens" ([81c6386](https://github.com/spryker/zed-gui/commit/81c6386c7fd9320a15409508b0d89c58784f8b57))
+* Revert "feat(carousel): added styles to carousel" ([fd15ef4](https://github.com/spryker/zed-gui/commit/fd15ef4662bdeb7080d8e9d1f19d1651135285b0))
+
+
+
+
+
 ## [0.3.2-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.2-next.2...@spryker/styles@0.3.2-next.3) (2021-09-23)
 
 

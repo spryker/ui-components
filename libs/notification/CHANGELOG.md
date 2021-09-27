@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7-next.0](https://github.com/spryker/zed-gui/compare/@spryker/notification@0.2.4...@spryker/notification@0.2.7-next.0) (2021-09-27)
+
+
+### Bug Fixes
+
+* **notification:** adjusted `notification-wrapper` component by updating box-shadow ([9774f1b](https://github.com/spryker/zed-gui/commit/9774f1bbd5d7fee093f5430ba5da51523a7e599d))
+* **notification.view.component:** updated padding-right on title and description ([78266e1](https://github.com/spryker/zed-gui/commit/78266e1d0bd8f1a8ff3887376b55c01d595d112e))
+
+
+
+
+
 ## [0.2.6-next.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.6-next.0...@spryker/notification@0.2.6-next.1) (2021-09-23)
 
 

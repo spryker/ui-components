@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.search@0.0.6...@spryker/table.feature.search@0.0.10-next.0) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/table.feature.search
+
+
+
+
+
 ## [0.0.9](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.0.9-next.0...@spryker/table.feature.search@0.0.9) (2021-09-16)
 
 **Note:** Version bump only for package @spryker/table.feature.search

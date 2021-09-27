@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7-next.0](https://github.com/spryker/zed-gui/compare/@spryker/button@0.2.4...@spryker/button@0.2.7-next.0) (2021-09-27)
+
+
+### Bug Fixes
+
+* **button:** adjusted `button-core` styles by changing variables ([ce42f4f](https://github.com/spryker/zed-gui/commit/ce42f4f205567f51f4d1bc31a01a89fa34ec566e))
+* **button:** adjusted `button-core` styles by removing stretching ([7cda07b](https://github.com/spryker/zed-gui/commit/7cda07bcd73e2ad8925e3dd95474676195b246a4))
+* **button:** adjusted `button-core` styles by updating hover focus and active state ([915c58b](https://github.com/spryker/zed-gui/commit/915c58bf53fb7e0d19fb8eb897c1058f29f1ee6e))
+* **button:** adjusted `button-core` styles by updating variables ([0fdbf76](https://github.com/spryker/zed-gui/commit/0fdbf7698c41ca589e7edcd1c59fe7ee65d3b5cb))
+* **button:** adjusted `button` component stories by adding secondary state ([f929dbc](https://github.com/spryker/zed-gui/commit/f929dbc2ae516c6bfaab7ba40c1d481aea4f585f))
+* **button:** adjusted `button` component stories by removing secondary state ([af19731](https://github.com/spryker/zed-gui/commit/af19731560f0c3e0a84bf32d8240f1d0d6a27772))
+* **button:** button now uses spy-spinner instead of nz-spin ([8bed762](https://github.com/spryker/zed-gui/commit/8bed7623d9472babc1765a9f31a142095ca550d2))
+* **button:** updated spinner peerDependency in package.json ([86f0acf](https://github.com/spryker/zed-gui/commit/86f0acfb234fff2cfd8cc3b57acf9f008072935b))
+
+
+
+
+
 ## [0.2.6-next.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.6-next.1...@spryker/button@0.2.6-next.2) (2021-09-22)
 
 

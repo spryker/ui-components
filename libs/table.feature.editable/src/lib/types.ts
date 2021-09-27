@@ -71,40 +71,22 @@ export interface TableEditableConfigButtonIcon {
 export interface TableEditableConfigButtonText
   extends Partial<TableEditableConfigButtonIcon> {
   title: string;
-}
-
-export interface TableEditableConfigButtonSize {
   size: string;
-}
-
-export interface TableEditableConfigButtonShape {
   shape: string;
-}
-
-export interface TableEditableConfigButtonVariant {
   variant: string;
-}
-
-export interface TableEditableConfigButtonType {
   type: string;
 }
 
 export type TableEditableConfigButton =
   | TableEditableConfigButtonText
-  | TableEditableConfigButtonIcon
-  | TableEditableConfigButtonSize
-  | TableEditableConfigButtonShape
-  | TableEditableConfigButtonVariant
-  | TableEditableConfigButtonType;
+  | TableEditableConfigButtonIcon;
 
 export interface TableEditableEventData<T = unknown> {
   colId: string;
   value?: T;
 }
 
-export class TableEditableEvent<T = unknown> extends CustomEvent<
-  TableEditableEventData<T>
-> {
+export class TableEditableEvent<T = unknown> extends CustomEvent<TableEditableEventData<T>> {
   static readonly eventName = 'spy-table-editable';
 
   constructor(detail: TableEditableEventData<T>) {

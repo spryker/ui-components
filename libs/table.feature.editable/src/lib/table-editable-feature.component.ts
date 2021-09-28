@@ -12,12 +12,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
-import {
-  ButtonShape,
-  ButtonSize,
-  ButtonType,
-  ButtonVariant,
-} from '@spryker/button';
 import { DataSerializerService } from '@spryker/data-serializer';
 import {
   IconEditModule,
@@ -106,10 +100,6 @@ export class TableEditableFeatureComponent
   warningIcon = IconWarningModule.icon;
   addRowIcon = IconPlusModule.icon;
   tableFeatureLocation = TableFeatureLocation;
-  buttonSize = ButtonSize;
-  buttonVariant = ButtonVariant;
-  buttonShape = ButtonShape;
-  buttonType = ButtonType;
   syncInput: TableDataRow[] = [];
   stringifiedSyncInput?: string;
   url?: TableEditableConfigUrl;

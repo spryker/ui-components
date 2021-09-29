@@ -6,6 +6,12 @@ import {
 } from '@spryker/table';
 import { DatasourceConfig, Datasource } from '@spryker/datasource';
 import { TableDatasourceDependableService } from './table-datasource-dependable.service';
+import {
+  ButtonShape,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '@spryker/button';
 
 declare module '@spryker/table' {
   interface TableConfig {
@@ -71,6 +77,10 @@ export interface TableEditableConfigButtonIcon {
 export interface TableEditableConfigButtonText
   extends Partial<TableEditableConfigButtonIcon> {
   title: string;
+  size: ButtonSize;
+  shape: ButtonShape;
+  variant: ButtonVariant;
+  type: ButtonType;
 }
 
 export type TableEditableConfigButton =

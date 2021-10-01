@@ -4,7 +4,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { buttonClassName } from '../button-core/button-core';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
-import { ButtonComponent } from './button.component';
+import { ButtonComponent, ButtonType } from './button.component';
 
 // tslint:disable: no-non-null-assertion
 
@@ -143,5 +143,6 @@ describe('ButtonComponent', () => {
     expect(component.size).toBe(ButtonSize.Medium);
     expect(component.shape).toBe(ButtonShape.Default);
     expect(component.variant).toBe(ButtonVariant.Primary);
+    expect(component.type).toBe(ButtonType.Button);
   });
 });

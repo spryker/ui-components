@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-next.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-next.2...@spryker/table.feature.editable@0.1.8-next.3) (2021-10-01)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** adjusted `table-editable-feature.component` spec by adding test ([1fe12a5](https://github.com/spryker/ui-components/commit/1fe12a5299daf6037dbda186ebfc7180ad9de11a))
+* **table.feature.editable:** adjusted `table-editable-feature.component` spec by adding test ([4a53420](https://github.com/spryker/ui-components/commit/4a53420f8b4da78d5e33cbb83e118a0f2732790c))
+* **table.feature.editable:** adjusted `table-editable-feature.component` spec by updating variables ([b288f2f](https://github.com/spryker/ui-components/commit/b288f2faf8e97c4f71775a8cf468dc74c0096d6f))
+* **table.feature.editable:** adjusted `table-editable-feature` layout by replacing button attributes ([13e56d6](https://github.com/spryker/ui-components/commit/13e56d602cab9ccc4edbe8e049a979119ab27427))
+
+
+
+
+
 ## [0.1.8-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-next.1...@spryker/table.feature.editable@0.1.8-next.2) (2021-09-29)
 
 

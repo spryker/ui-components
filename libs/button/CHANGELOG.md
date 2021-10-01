@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7-next.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.7-next.1...@spryker/button@0.2.7-next.2) (2021-10-01)
+
+
+### Bug Fixes
+
+* **button:** adjusted `button-component` spec by adding test with undefined inputs ([0fe4c83](https://github.com/spryker/ui-components/commit/0fe4c83891cb3db96035891052747054f6fbe426))
+* **button:** adjusted `button-component` spec by adding type into test ([afbc991](https://github.com/spryker/ui-components/commit/afbc991c0a4fcf2b2459767fcc0bca2ce5932f6b))
+* **button:** adjusted `button-core` adding checks into onChanges ([b5eaf85](https://github.com/spryker/ui-components/commit/b5eaf85f90fff33abb232e632e027b3e024e3454))
+* **button:** adjusted `button-core` by updating setClassList method ([34500cd](https://github.com/spryker/ui-components/commit/34500cdde257c5cde1abeb53f7b3293b097263a5))
+* **button:** adjusted `button.component` spec by removing unused import ([52051b6](https://github.com/spryker/ui-components/commit/52051b61cc1ec46e81e581c406456175fc1b39b5))
+* **button:** adjusted `button` by adding check into onChanges method ([19c59c1](https://github.com/spryker/ui-components/commit/19c59c16eabdbd6ad85f9bf121acddcae4e6eafd))
+
+
+
+
+
 ## [0.2.7-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.6-next.2...@spryker/button@0.2.7-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/button

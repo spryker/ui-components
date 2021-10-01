@@ -219,10 +219,14 @@ describe('TableEditableFeatureComponent', () => {
         ],
       ).toBeTruthy();
       expect(
-        createButtonElem.classes[`${buttonClassName}--${mockConfig.create.addButton.shape}`],
+        createButtonElem.classes[
+          `${buttonClassName}--${mockConfig.create.addButton.shape}`
+        ],
       ).toBeTruthy();
       expect(
-        createButtonElem.classes[`${buttonClassName}--${mockConfig.create.addButton.size}`],
+        createButtonElem.classes[
+          `${buttonClassName}--${mockConfig.create.addButton.size}`
+        ],
       ).toBeTruthy();
     });
 

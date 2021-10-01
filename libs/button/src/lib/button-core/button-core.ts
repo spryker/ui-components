@@ -84,6 +84,7 @@ export class ButtonCore
     this.shape = this.shape ?? ButtonShape.Default;
     this.size = this.size ?? ButtonSize.Medium;
     this.variant = this.variant ?? ButtonVariant.Primary;
+
     this.changeClassName(this.shape);
     this.changeClassName(this.size);
     this.changeClassName(this.variant);

@@ -139,6 +139,7 @@ describe('ButtonComponent', () => {
       true,
     );
     const component = host.component;
+
     expect(component.size).toBe(ButtonSize.Medium);
     expect(component.shape).toBe(ButtonShape.Default);
     expect(component.variant).toBe(ButtonVariant.Primary);

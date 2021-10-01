@@ -16,6 +16,7 @@ import {
   TableFeatureLocation,
   TableFeaturesRendererService,
 } from '@spryker/table';
+import { buttonClassName, ButtonModule, ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
 import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
@@ -49,7 +50,13 @@ const mockConfig = {
     { id: 'col3', type: 'edit' },
   ],
   create: {
-    addButton: { title: 'addButton', icon: 'warning' },
+    addButton: {
+      title: 'addButton',
+      icon: 'warning',
+      variant: ButtonVariant.Primary,
+      size: ButtonSize.Medium,
+      shape: ButtonShape.Default,
+    },
     cancelButton: { title: 'Cancel Create', icon: 'warning' },
     formInputName: 'form-input-name',
     initialData: {
@@ -80,11 +87,13 @@ const mockConfig = {
     </test-table-feature>
   `,
 })
-class TestHostComponent {}
+class TestHostComponent {
+}
 
 describe('TableEditableFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
+  const buttonCls = 'spy-button';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -94,6 +103,7 @@ describe('TableEditableFeatureComponent', () => {
         DefaultContextSerializationModule,
         OverlayModule,
         TestLocaleModule,
+        ButtonModule,
       ],
       declarations: [
         TestTableFeatureTplDirective,
@@ -193,6 +203,30 @@ describe('TableEditableFeatureComponent', () => {
       expect(createIconElem.properties.name).toBe(
         mockConfig.create.addButton.icon,
       );
+    });
+
+    it('should render `spy-button` with `config.create.addButton.size` md', () => {
+      const createButtonElem = fixture.debugElement.query(
+        By.css('spy-button.spy-table-editable-feature__create-row'),
+      );
+      expect(
+        createButtonElem.classes[`${buttonClassName}--${ButtonVariant.Primary}`],
+      ).toBeTruthy();
+      expect(
+        createButtonElem.classes[`${buttonCls}--${ButtonVariant.Primary}`],
+      ).toBeTruthy();
+      expect(
+        createButtonElem.classes[`${buttonClassName}--${ButtonShape.Default}`],
+      ).toBeTruthy();
+      expect(
+        createButtonElem.classes[`${buttonCls}--${ButtonShape.Default}`],
+      ).toBeTruthy();
+      expect(
+        createButtonElem.classes[`${buttonClassName}--${ButtonSize.Medium}`],
+      ).toBeTruthy();
+      expect(
+        createButtonElem.classes[`${buttonCls}--${ButtonSize.Medium}`],
+      ).toBeTruthy();
     });
 
     it('should render additional `th` and `td` if `createConfig.cancelButton` exist', () => {

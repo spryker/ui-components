@@ -16,7 +16,7 @@ describe('ButtonComponent', () => {
     {
       ngModule: { schemas: [NO_ERRORS_SCHEMA] },
       projectContent: `
-        <span class="icon-element" icon></span>
+        <span class='icon-element' icon></span>
         Content
       `,
     },
@@ -136,7 +136,7 @@ describe('ButtonComponent', () => {
         size: undefined,
         type: undefined,
       },
-      true
+      true,
     );
     const component = host.component;
     expect(component.size).toBe(ButtonSize.Medium);

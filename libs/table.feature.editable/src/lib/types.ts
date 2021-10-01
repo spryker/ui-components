@@ -77,10 +77,10 @@ export interface TableEditableConfigButtonIcon {
 export interface TableEditableConfigButtonText
   extends Partial<TableEditableConfigButtonIcon> {
   title: string;
-  size: ButtonSize;
-  shape: ButtonShape;
-  variant: ButtonVariant;
-  type: ButtonType;
+  size?: ButtonSize;
+  shape?: ButtonShape;
+  variant?: ButtonVariant;
+  type?: ButtonType;
 }
 
 export type TableEditableConfigButton =

@@ -16,7 +16,13 @@ import {
   TableFeatureLocation,
   TableFeaturesRendererService,
 } from '@spryker/table';
-import { buttonClassName, ButtonModule, ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
+import {
+  buttonClassName,
+  ButtonModule,
+  ButtonShape,
+  ButtonSize,
+  ButtonVariant,
+} from '@spryker/button';
 import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
@@ -87,8 +93,7 @@ const mockConfig = {
     </test-table-feature>
   `,
 })
-class TestHostComponent {
-}
+class TestHostComponent {}
 
 describe('TableEditableFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
@@ -210,7 +215,9 @@ describe('TableEditableFeatureComponent', () => {
         By.css('spy-button.spy-table-editable-feature__create-row'),
       );
       expect(
-        createButtonElem.classes[`${buttonClassName}--${ButtonVariant.Primary}`],
+        createButtonElem.classes[
+          `${buttonClassName}--${ButtonVariant.Primary}`
+        ],
       ).toBeTruthy();
       expect(
         createButtonElem.classes[`${buttonCls}--${ButtonVariant.Primary}`],

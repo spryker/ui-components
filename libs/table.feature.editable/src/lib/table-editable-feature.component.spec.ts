@@ -98,7 +98,6 @@ class TestHostComponent {}
 describe('TableEditableFeatureComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testTableFeature: TestTableFeatureComponent;
-  const buttonCls = 'spy-button';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -210,7 +209,7 @@ describe('TableEditableFeatureComponent', () => {
       );
     });
 
-    it('should render `spy-button` with `config.create.addButton.size` md', () => {
+    it('should render `spy-button` with predefined options', () => {
       const createButtonElem = fixture.debugElement.query(
         By.css('spy-button.spy-table-editable-feature__create-row'),
       );
@@ -220,19 +219,10 @@ describe('TableEditableFeatureComponent', () => {
         ],
       ).toBeTruthy();
       expect(
-        createButtonElem.classes[`${buttonCls}--${ButtonVariant.Primary}`],
-      ).toBeTruthy();
-      expect(
         createButtonElem.classes[`${buttonClassName}--${ButtonShape.Default}`],
       ).toBeTruthy();
       expect(
-        createButtonElem.classes[`${buttonCls}--${ButtonShape.Default}`],
-      ).toBeTruthy();
-      expect(
         createButtonElem.classes[`${buttonClassName}--${ButtonSize.Medium}`],
-      ).toBeTruthy();
-      expect(
-        createButtonElem.classes[`${buttonCls}--${ButtonSize.Medium}`],
       ).toBeTruthy();
     });
 

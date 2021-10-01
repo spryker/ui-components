@@ -3,6 +3,8 @@ import {
   Component,
   HostBinding,
   Input,
+  OnChanges,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
@@ -22,7 +24,7 @@ export enum ButtonType {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent extends ButtonCore {
+export class ButtonComponent extends ButtonCore implements OnChanges {
   @Input() type: ButtonType = ButtonType.Button;
   @Input()
   @HostBinding('class.spy-button--disabled')
@@ -33,4 +35,10 @@ export class ButtonComponent extends ButtonCore {
   spinnerSize = SpinnerSize.Small;
 
   protected buttonClassName = 'spy-button';
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('type' in changes) {
+      this.type = changes.type.currentValue ?? ButtonType.Button;
+    }
+  }
 }

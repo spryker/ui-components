@@ -19,10 +19,10 @@
       <ng-container *ngIf="mockRowData$ | async as mockRowData">
         <spy-button
           class="spy-table-editable-feature__create-row"
-          [attr.size]="addButton.size"
-          [attr.variant]="addButton.variant"
-          [attr.shape]="addButton.shape"
-          [attr.type]="addButton.type"
+          [size]="addButton.size"
+          [variant]="addButton.variant"
+          [shape]="addButton.shape"
+          [type]="addButton.type"
           (click)="addRow(mockRowData)"
         >
           <spy-icon [name]="addButton.icon || addRowIcon" icon></spy-icon>

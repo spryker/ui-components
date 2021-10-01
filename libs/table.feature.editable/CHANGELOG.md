@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-next.4](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-next.3...@spryker/table.feature.editable@0.1.8-next.4) (2021-10-01)
+
+**Note:** Version bump only for package @spryker/table.feature.editable
+
+
+
+
+
 ## [0.1.8-next.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-next.2...@spryker/table.feature.editable@0.1.8-next.3) (2021-10-01)
 
 

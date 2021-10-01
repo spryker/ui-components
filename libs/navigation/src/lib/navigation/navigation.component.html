@@ -8,7 +8,6 @@
       <li
         *ngIf="!item.subItems?.length"
         nz-menu-item
-        [nzPaddingLeft]="0"
         [nzSelected]="item.isActive"
       >
         <a [href]="item.url" (click)="clickHandler($event, item.url)">
@@ -21,7 +20,7 @@
         nz-submenu
         [nzOpen]="item.isActive"
         [nzTitle]="titleTpl"
-        [nzPaddingLeft]="0"
+        [nzPaddingLeft]="'unset'"
         [nzDisabled]="item.disabled"
       >
         <ul>
@@ -33,11 +32,11 @@
 
       <ng-template #titleTpl>
         <spy-icon
-          class="menu-title-icon"
+          class="ant-menu-title-icon"
           *ngIf="item.icon"
           [name]="item.icon"
         ></spy-icon>
-        <span class="menu-title-text">{{ item.title }}</span>
+        <span class="ant-menu-title-text">{{ item.title }}</span>
       </ng-template>
     </ng-container>
   </ng-template>

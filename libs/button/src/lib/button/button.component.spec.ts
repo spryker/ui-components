@@ -4,7 +4,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { buttonClassName } from '../button-core/button-core';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
-import { ButtonComponent, ButtonType } from './button.component';
+import { ButtonComponent } from './button.component';
 
 // tslint:disable: no-non-null-assertion
 

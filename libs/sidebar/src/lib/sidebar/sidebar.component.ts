@@ -25,7 +25,7 @@ import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 })
 export class SidebarComponent implements OnChanges, OnInit {
   @Input() width = 250;
-  @Input() collapsedWidth = 62;
+  @Input() collapsedWidth = 96;
   @Input() spyId?: string;
   @Input() trigger: undefined | TemplateRef<void>;
   @Input() @ToBoolean() collapsed = false;

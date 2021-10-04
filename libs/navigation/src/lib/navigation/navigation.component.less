@@ -6,9 +6,12 @@
 
   > .@{menu-prefix-cls}-item,
   > .@{menu-prefix-cls}-submenu {
+    border-radius: @menu-item-radius;
+
     > a,
     > .@{menu-prefix-cls}-submenu-title {
       padding: @menu-item-padding;
+      border-radius: @menu-item-radius;
     }
 
     > .@{menu-prefix-cls}-sub > ul {
@@ -22,8 +25,8 @@
         > .@{menu-prefix-cls}-sub > ul {
           > .@{menu-prefix-cls}-item,
           > .@{menu-prefix-cls}-submenu {
-            > a,
-            > .@{menu-prefix-cls}-submenu-title {
+            a,
+            .@{menu-prefix-cls}-submenu-title {
               padding: @menu-item-submenu-submenu-padding;
             }
           }
@@ -32,15 +35,26 @@
     }
   }
 
-  &-item,
-  &-submenu {
+  .@{menu-prefix-cls}-item,
+  .@{menu-prefix-cls}-submenu {
     .transition-mixin(background);
     padding: 0 !important;
+    width: 100%;
     white-space: normal;
+
+    &:focus {
+      > a:only-child,
+      > .@{menu-prefix-cls}-submenu-title {
+        border: @menu-item-focus-border;
+        box-shadow: @menu-item-focus-box-shadow;
+      }
+    }
 
     > a:only-child,
     > .@{menu-prefix-cls}-submenu-title {
       .transition-mixin(background color);
+      border: @menu-item-focus-border-transparent;
+      width: 100%;
       display: flex;
       align-items: center;
       color: inherit;
@@ -65,6 +79,11 @@
     .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
       &::before,
       &::after {
+        background-image: linear-gradient(
+          to right,
+          @gray-dark,
+          @gray-dark
+        ) !important;
         width: @menu-item-arrow-width;
         height: @menu-item-arrow-height;
       }
@@ -80,9 +99,6 @@
   }
 
   &-item:hover,
-  &-item-active,
-  &-submenu-open,
-  &-submenu-active,
   &-submenu-title:hover {
     background: @gray-lighter;
 
@@ -93,17 +109,6 @@
 
     .@{menu-prefix-cls}-title-icon {
       color: @gray-darker;
-    }
-
-    .@{menu-prefix-cls}-submenu-arrow {
-      &::before,
-      &::after {
-        background-image: linear-gradient(
-          to right,
-          @menu-item-color,
-          @menu-item-color
-        ) !important;
-      }
     }
   }
 
@@ -200,7 +205,6 @@
 
   &-submenu-popup {
     border-radius: unset;
-    box-shadow: @menu-item-popup-box-shadow;
 
     &::before {
       display: none;
@@ -208,41 +212,47 @@
 
     &.@{menu-prefix-cls}-submenu-placement-right {
       width: @menu-item-popup-width;
-      height: @menu-item-popup-height;
+      padding-left: @menu-item-popup-list-padding-left !important;
     }
 
     .@{menu-prefix-cls} {
       border-radius: unset;
+      box-shadow: none;
     }
 
-    .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
-      transform: @menu-item-popup-arrow-transform;
-
-      &::before {
-        transform: @menu-item-popup-arrow-transform-before;
-      }
-
-      &::after {
-        transform: @menu-item-popup-arrow-transform-after;
-      }
-    }
-
-    .@{menu-prefix-cls}-submenu-open {
-      > .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
+    .@{menu-prefix-cls}-item,
+    .@{menu-prefix-cls}-submenu {
+      .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
         transform: @menu-item-popup-arrow-transform;
 
         &::before {
-          transform: @menu-item-popup-open-arrow-transform-before;
+          transform: @menu-item-popup-arrow-transform-before;
         }
 
         &::after {
-          transform: @menu-item-popup-open-arrow-transform-after;
+          transform: @menu-item-popup-arrow-transform-after;
+        }
+      }
+
+      &.@{menu-prefix-cls}-submenu-open {
+        > .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
+          transform: @menu-item-popup-arrow-transform;
+
+          &::before {
+            transform: @menu-item-popup-open-arrow-transform-before;
+          }
+
+          &::after {
+            transform: @menu-item-popup-open-arrow-transform-after;
+          }
         }
       }
     }
 
     .@{menu-prefix-cls}-sub {
-      max-height: @menu-item-popup-height;
+      border-radius: @menu-item-popup-sub-list-radius;
+      padding: @menu-item-popup-sub-list-padding;
+      box-shadow: @menu-item-popup-sub-list-box-shadow;
 
       .@{menu-prefix-cls}-item,
       .@{menu-prefix-cls}-submenu {

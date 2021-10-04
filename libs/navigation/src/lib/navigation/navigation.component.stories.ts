@@ -75,11 +75,11 @@ export const primary = () => ({
     items: [
       {
         title: 'Item1',
+        url: 'dashboard',
         icon: 'dashboard',
       },
       {
         title: 'Item2',
-        url: '',
         icon: 'orders',
         isActive: false,
         subItems: [
@@ -111,14 +111,14 @@ export const primary = () => ({
       },
       {
         title: 'Item3',
-        url: '',
+        url: 'offers',
         icon: 'offers',
         isActive: true,
         subItems: [],
       },
       {
         title: 'Item4',
-        url: '',
+        url: 'profile',
         icon: 'profile',
         isActive: false,
         subItems: [],

@@ -95,6 +95,12 @@
     }
   }
 
+  &-item-active,
+  &:not(&-inline) &-submenu-open,
+  &-submenu-active {
+    color: @menu-item-color;
+  }
+
   &-item:hover,
   &-submenu-title:hover {
     background: @gray-lighter;
@@ -141,6 +147,10 @@
     height: @menu-item-icon-size;
     line-height: @menu-item-icon-line-height;
     flex-shrink: @menu-item-icon-flex-shrink;
+
+    &:empty {
+      display: none;
+    }
   }
 
   .anticon {

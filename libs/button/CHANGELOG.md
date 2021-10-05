@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7-beta.0](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.7-next.2...@spryker/button@0.2.7-beta.0) (2021-10-05)
+
+**Note:** Version bump only for package @spryker/button
+
+
+
+
+
 ## [0.2.7-next.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.7-next.1...@spryker/button@0.2.7-next.2) (2021-10-01)
 
 

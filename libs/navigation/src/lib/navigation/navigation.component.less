@@ -42,14 +42,6 @@
     width: 100%;
     white-space: normal;
 
-    &:focus {
-      > a:only-child,
-      > .@{menu-prefix-cls}-submenu-title {
-        border: @menu-item-focus-border;
-        box-shadow: @menu-item-focus-box-shadow;
-      }
-    }
-
     > a:only-child,
     > .@{menu-prefix-cls}-submenu-title {
       .transition-mixin(background color);
@@ -60,6 +52,11 @@
       color: inherit;
       text-decoration: none;
       white-space: normal;
+
+      &:focus {
+        border: @menu-item-focus-border;
+        box-shadow: @menu-item-focus-box-shadow;
+      }
     }
 
     &.@{menu-prefix-cls}-submenu-open {

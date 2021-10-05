@@ -17,6 +17,13 @@ import {
   TableFeaturesRendererService,
 } from '@spryker/table';
 import {
+  buttonClassName,
+  ButtonModule,
+  ButtonShape,
+  ButtonSize,
+  ButtonVariant,
+} from '@spryker/button';
+import {
   TestTableFeatureComponent,
   TestTableFeatureMocks,
   TestTableFeatureTplContext,
@@ -49,7 +56,13 @@ const mockConfig = {
     { id: 'col3', type: 'edit' },
   ],
   create: {
-    addButton: { title: 'addButton', icon: 'warning' },
+    addButton: {
+      title: 'addButton',
+      icon: 'warning',
+      variant: ButtonVariant.Primary,
+      size: ButtonSize.Medium,
+      shape: ButtonShape.Default,
+    },
     cancelButton: { title: 'Cancel Create', icon: 'warning' },
     formInputName: 'form-input-name',
     initialData: {
@@ -94,6 +107,7 @@ describe('TableEditableFeatureComponent', () => {
         DefaultContextSerializationModule,
         OverlayModule,
         TestLocaleModule,
+        ButtonModule,
       ],
       declarations: [
         TestTableFeatureTplDirective,
@@ -193,6 +207,27 @@ describe('TableEditableFeatureComponent', () => {
       expect(createIconElem.properties.name).toBe(
         mockConfig.create.addButton.icon,
       );
+    });
+
+    it('should render `spy-button` with predefined options', () => {
+      const createButtonElem = fixture.debugElement.query(
+        By.css('spy-button.spy-table-editable-feature__create-row'),
+      );
+      expect(
+        createButtonElem.classes[
+          `${buttonClassName}--${mockConfig.create.addButton.variant}`
+        ],
+      ).toBeTruthy();
+      expect(
+        createButtonElem.classes[
+          `${buttonClassName}--${mockConfig.create.addButton.shape}`
+        ],
+      ).toBeTruthy();
+      expect(
+        createButtonElem.classes[
+          `${buttonClassName}--${mockConfig.create.addButton.size}`
+        ],
+      ).toBeTruthy();
     });
 
     it('should render additional `th` and `td` if `createConfig.cancelButton` exist', () => {

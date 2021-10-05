@@ -4,7 +4,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { buttonClassName } from '../button-core/button-core';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
-import { ButtonComponent } from './button.component';
+import { ButtonComponent, ButtonType } from './button.component';
 
 // tslint:disable: no-non-null-assertion
 
@@ -16,7 +16,7 @@ describe('ButtonComponent', () => {
     {
       ngModule: { schemas: [NO_ERRORS_SCHEMA] },
       projectContent: `
-        <span class="icon-element" icon></span>
+        <span class='icon-element' icon></span>
         Content
       `,
     },
@@ -126,5 +126,23 @@ describe('ButtonComponent', () => {
 
       expect(buttonElem.properties.disabled).toBe(true);
     });
+  });
+
+  it('should add default @Input(variant), @Input(shape), @Input(size) properties, when undefined passed', async () => {
+    const host = await createComponent(
+      {
+        variant: undefined,
+        shape: undefined,
+        size: undefined,
+        type: undefined,
+      },
+      true,
+    );
+    const component = host.component;
+
+    expect(component.size).toBe(ButtonSize.Medium);
+    expect(component.shape).toBe(ButtonShape.Default);
+    expect(component.variant).toBe(ButtonVariant.Primary);
+    expect(component.type).toBe(ButtonType.Button);
   });
 });

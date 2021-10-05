@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/persistence@0.1.7...@spryker/persistence@0.1.8-next.1) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/persistence
+
+
+
+
+
+## [0.1.8-next.0](https://github.com/spryker/zed-gui/compare/@spryker/persistence@0.1.4...@spryker/persistence@0.1.8-next.0) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/persistence
+
+
+
+
+
+## [0.1.7](https://github.com/spryker/ui-components/compare/@spryker/persistence@0.1.7-next.0...@spryker/persistence@0.1.7) (2021-09-16)
+
+**Note:** Version bump only for package @spryker/persistence
+
+
+
+
+
+## [0.1.7-next.0](https://github.com/spryker/ui-components/compare/@spryker/persistence@0.1.6...@spryker/persistence@0.1.7-next.0) (2021-09-10)
+
+**Note:** Version bump only for package @spryker/persistence
+
+
+
+
+
+## [0.1.6](https://github.com/spryker/ui-components/compare/@spryker/persistence@0.1.5-next.0...@spryker/persistence@0.1.6) (2021-09-10)
+
+**Note:** Version bump only for package @spryker/persistence
+
+
+
+
+
+## [0.1.5](https://github.com/spryker/ui-components/compare/@spryker/persistence@0.1.5-next.0...@spryker/persistence@0.1.5) (2021-09-10)
+
+**Note:** Version bump only for package @spryker/persistence
+
+
+
+
+
 ## [0.1.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/persistence@0.1.4...@spryker/persistence@0.1.5-next.0) (2021-09-03)
 
 **Note:** Version bump only for package @spryker/persistence

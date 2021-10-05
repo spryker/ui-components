@@ -1,6 +1,6 @@
 {
   "name": "@spryker/ajax-form",
-  "version": "0.2.5-next.0",
+  "version": "0.2.8-next.1",
   "peerDependencies": {
     "@angular/common": "^9.1.2",
     "@angular/core": "^9.1.2",

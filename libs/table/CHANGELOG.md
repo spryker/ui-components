@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.5-next.1...@spryker/table@0.3.5-next.2) (2021-10-05)
+
+
+### Bug Fixes
+
+* **table:** adjusted `table` component styles by updating focused state ([b284f03](https://github.com/spryker/ui-components/commit/b284f031add986a37e57aa3c847038d7829aa55f))
+* **table:** increased `spryker/styles` version dependency ([ba4d5c8](https://github.com/spryker/ui-components/commit/ba4d5c846cf3034bf732f04d71d477162fe1c0bd))
+
+
+
+
+
 ## [0.3.5-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.4...@spryker/table@0.3.5-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/table

@@ -1,7 +1,7 @@
 <swiper
+  #mainSwiper
   containerModifierClass="spy-carousel__"
   [slidesPerView]="config?.slidesPerView"
-  [navigation]="navigationOptions"
   [thumbs]="{ swiper: this.thumbsSwiper }"
 >
   <ng-template swiperSlide *ngFor="let slide of slides$ | async">
@@ -19,13 +19,19 @@
     <ng-container *ngTemplateOutlet="slide.thumbTemplate"></ng-container>
   </ng-template>
 </swiper>
-<button class="spy-carousel__navigation-button {{ prevButtonClass }}">
+<button
+  class="spy-carousel__navigation-button spy-carousel__navigation-button--preview"
+  (click)="slidePrev()"
+>
   <spy-icon
     class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--preview"
     [name]="paginationArrowIcon"
   ></spy-icon>
 </button>
-<button class="spy-carousel__navigation-button {{ nextButtonClass }}">
+<button
+  class="spy-carousel__navigation-button spy-carousel__navigation-button--next"
+  (click)="slideNext()"
+>
   <spy-icon
     class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--next"
     [name]="paginationArrowIcon"

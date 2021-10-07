@@ -32,7 +32,7 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
   @Input() value?: string;
   @Input() name?: string;
 
-  @Output() selected = new EventEmitter<boolean>();
+  @Output() selected = new EventEmitter<string | number>();
   @ViewChildren(NzRadioComponent) nzRadios?: QueryList<NzRadioComponent>;
 
   hasError = false;

@@ -1,13 +1,13 @@
 @import './navigation.component.theme.less';
 
 .@{navigation-prefix-cls} {
-  &-title-text {
+  &__title-text {
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: @line-height-base;
   }
 
-  &-title-icon {
+  &__title-icon {
     .transition-mixin(color);
     color: @gray-dark;
     margin-right: @navigation-item-icon-margin-right;
@@ -90,20 +90,20 @@
         background: @gray-lighter;
         color: @ink;
 
-        .@{navigation-prefix-cls}-title-icon {
+        .@{navigation-prefix-cls}__title-icon {
           color: @gray-darker;
         }
       }
     }
 
     &.@{menu-prefix-cls}-item-selected {
+      &:hover,
       > a:only-child,
-      > .@{menu-prefix-cls}-submenu-title,
-      &:hover {
+      > .@{menu-prefix-cls}-submenu-title {
         background: @gray-lighter;
         color: @green-dark;
 
-        .@{navigation-prefix-cls}-title-icon {
+        .@{navigation-prefix-cls}__title-icon {
           color: @primary-color;
         }
       }
@@ -126,7 +126,7 @@
           }
         }
 
-        .@{navigation-prefix-cls}-title-icon {
+        .@{navigation-prefix-cls}__title-icon {
           color: @gray-darker;
         }
       }
@@ -135,11 +135,7 @@
     .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
       &::before,
       &::after {
-        background-image: linear-gradient(
-          to right,
-          @gray-dark,
-          @gray-dark
-        ) !important;
+        background-image: linear-gradient(to right, @gray-dark, @gray-dark);
         width: @menu-item-arrow-width;
         height: @menu-item-arrow-height;
       }
@@ -186,7 +182,7 @@
           display: none;
         }
 
-        .@{navigation-prefix-cls}-title-icon {
+        .@{navigation-prefix-cls}__title-icon {
           margin-right: @navigation-collapsed-item-icon-margin-right;
 
           .anticon {
@@ -194,7 +190,7 @@
           }
         }
 
-        .@{navigation-prefix-cls}-title-text {
+        .@{navigation-prefix-cls}__title-text {
           padding-top: @navigation-collapsed-item-text-padding-top;
         }
       }

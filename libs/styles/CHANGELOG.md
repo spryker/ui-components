@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3-beta.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-beta.0...@spryker/styles@0.3.3-beta.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* **carousel:** fixed next/prev button working, fixed styles ([a1832a1](https://github.com/spryker/ui-components/commit/a1832a13f40b9f7896ac49eef0b19075be1e0470))
+* **checkbox:** fixed styles for error state ([e90b035](https://github.com/spryker/ui-components/commit/e90b035d3b83df778aa32ee06313ced011509248))
+* **dropdown:** dropdown border and shadow styles adjusted according to design ([9688aa0](https://github.com/spryker/ui-components/commit/9688aa0bd1a15ccd6390934fa69706c6cf74c13c))
+* **dropdown:** dropdown styles refreshed according the styleguide, added classes to icon and text ([7c4a6d6](https://github.com/spryker/ui-components/commit/7c4a6d6b507734a3f35bf3804add4bafb8357cfa))
+
+
+
+
+
 ## [0.3.3-beta.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-next.2...@spryker/styles@0.3.3-beta.0) (2021-10-05)
 
 

@@ -13,18 +13,21 @@
 
   &-menu {
     width: @dropdown-menu-width;
+    border: @dropdown-menu-border;
     border-radius: @dropdown-menu-border-radius;
     box-shadow: @dropdown-menu-box-shadow;
     background-color: @white;
     padding: @dropdown-menu-padding;
+    overflow: hidden;
 
     &-item {
       height: @dropdown-menu-item-height;
+      padding: @dropdown-menu-item-padding;
       font: @font-default;
       color: @ink;
       border: @dropdown-menu-item-border;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
 
       &:hover {
         background-color: @gray-lighter;
@@ -36,5 +39,21 @@
         border-color: @green;
       }
     }
+  }
+}
+
+.@{spryker-prefix}-dropdown-item {
+  display: flex;
+
+  &__icon {
+    display: block;
+    margin: @dropdown-icon-margin;
+    line-height: @dropdown-icon-line-height;
+    overflow: visible;
+  }
+
+  &__text {
+    display: block;
+    white-space: normal;
   }
 }

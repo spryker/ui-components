@@ -29,7 +29,7 @@ import { RadioComponent } from '../radio/radio.component';
   },
 })
 export class RadioGroupComponent implements OnInit, OnDestroy {
-  @Input() value?: string;
+  @Input() value?: string | number;
   @Input() name?: string;
 
   @Output() selected = new EventEmitter<string | number>();

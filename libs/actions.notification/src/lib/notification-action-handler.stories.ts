@@ -7,6 +7,7 @@ import { IStory } from '@storybook/angular';
 import { ContextService } from '@spryker/utils';
 
 import { NotificationActionHandlerService } from './notification-action-handler.service';
+import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 
 export default {
   title: 'NotificationActionHandlerService',
@@ -22,8 +23,8 @@ export const primary = (): IStory => ({
         notification: NotificationActionHandlerService,
       }),
     ],
-
     providers: [ContextService],
+    entryComponents: [NotificationWrapperComponent],
   },
   template: `
     <spy-button-action

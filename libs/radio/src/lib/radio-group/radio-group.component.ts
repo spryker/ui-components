@@ -15,6 +15,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NzRadioComponent } from 'ng-zorro-antd/radio';
 import { RadioComponent } from '../radio/radio.component';
+import { RadioValue } from '../types';
 
 @Component({
   selector: 'spy-radio-group',
@@ -29,10 +30,10 @@ import { RadioComponent } from '../radio/radio.component';
   },
 })
 export class RadioGroupComponent implements OnInit, OnDestroy {
-  @Input() value?: string | number;
+  @Input() value?: RadioValue;
   @Input() name?: string;
 
-  @Output() selected = new EventEmitter<string | number>();
+  @Output() selected = new EventEmitter<RadioValue>();
   @ViewChildren(NzRadioComponent) nzRadios?: QueryList<NzRadioComponent>;
 
   hasError = false;

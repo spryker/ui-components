@@ -40,7 +40,7 @@ import {
   getElementOffset,
   provideInvokeContext,
 } from '@spryker/utils';
-import { NzResizeObserver } from 'ng-zorro-antd/core/resize-observers';
+import { NzResizeObserver } from 'ng-zorro-antd/cdk/resize-observer';
 import { combineLatest, EMPTY, merge, Subject } from 'rxjs';
 import {
   debounceTime,

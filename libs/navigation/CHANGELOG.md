@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.3.0-next.0...@spryker/navigation@0.3.0-alpha.0) (2021-10-11)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
 # [0.3.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.3.0-next.0...@spryker/navigation@0.3.0-beta.0) (2021-10-11)
 
 **Note:** Version bump only for package @spryker/navigation

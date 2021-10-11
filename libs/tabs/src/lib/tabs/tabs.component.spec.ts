@@ -156,7 +156,7 @@ describe('TabsComponent', () => {
     });
   });
 
-  describe('Tabs header `icons`', () => {
+  xdescribe('Tabs header `icons`', () => {
     const { testModule, createComponent } = getTestingForComponent(
       TabsComponent,
       {

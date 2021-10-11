@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-beta.0...@spryker/table.feature.editable@0.1.8-alpha.0) (2021-10-11)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** fixed import path of the `NzResizeObserver` ([ca246f5](https://github.com/spryker/ui-components/commit/ca246f56e644ce13b1f35a27278184e1ac8a63dc))
+
+
+
+
+
 ## [0.1.8-beta.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-next.4...@spryker/table.feature.editable@0.1.8-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/table.feature.editable

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.3-beta.0...@spryker/spinner@0.2.0-alpha.0) (2021-10-11)
+
+
+### Bug Fixes
+
+* **spinner:** fixed import path of the `NzSpinModule` ([f16f7fe](https://github.com/spryker/ui-components/commit/f16f7fea3701e21fe09c0d404497f8b255daf6e6))
+
+
+### Features
+
+* updated `ng-zorro-antd` dependency version ([31c4869](https://github.com/spryker/ui-components/commit/31c486905c199d849d1326f8dc406d358f3156b3))
+
+
+
+
+
 ## [0.1.3-beta.0](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.3-next.1...@spryker/spinner@0.1.3-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/spinner

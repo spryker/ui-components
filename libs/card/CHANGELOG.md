@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.4-beta.0...@spryker/card@0.4.0-alpha.0) (2021-10-11)
+
+
+### Features
+
+* updated `ng-zorro-antd` dependency version ([31c4869](https://github.com/spryker/ui-components/commit/31c486905c199d849d1326f8dc406d358f3156b3))
+
+
+
+
+
 ## [0.3.4-beta.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.4-next.1...@spryker/card@0.3.4-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/card

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.0-next.0...@spryker/sidebar@0.3.0-alpha.0) (2021-10-11)
+
+**Note:** Version bump only for package @spryker/sidebar
+
+
+
+
+
 # [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.2.9-next.1...@spryker/sidebar@0.3.0-next.0) (2021-10-07)
 
 

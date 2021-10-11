@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-beta.1...@spryker/styles@0.4.0-alpha.0) (2021-10-11)
+
+
+### Bug Fixes
+
+* **styles:** adjust `menu` styles ([f0d70d2](https://github.com/spryker/ui-components/commit/f0d70d21870d02401096fce931be2a0951a71331))
+
+
+### Features
+
+* **styles:** add new styles to `layout` and `menu` ([8a4d010](https://github.com/spryker/ui-components/commit/8a4d0103ca06b4b3fd6269e14585d2ab5f87e4cc))
+* **styles:** added `navigation` vars & adjusted `menu` vars ([ae62e2d](https://github.com/spryker/ui-components/commit/ae62e2d5c63c00414a4e66cffa77b1b2c9cacfad))
+
+
+
+
+
 # [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-next.2...@spryker/styles@0.4.0-next.0) (2021-10-07)
 
 

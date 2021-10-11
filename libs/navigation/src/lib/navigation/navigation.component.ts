@@ -39,6 +39,9 @@ export class NavigationComposerDirective extends InterceptionComposerDirective {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [...provideInterceptionService()],
+  host: {
+    class: 'spy-navigation',
+  },
 })
 export class NavigationComponent implements NavigationComponentMethods {
   @Input() @ToBoolean() collapsed = false;

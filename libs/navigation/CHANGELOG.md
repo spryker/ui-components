@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.2.8-next.1...@spryker/navigation@0.3.0-next.0) (2021-10-07)
+
+
+### Bug Fixes
+
+* **navigation:** added host class & fixed styles ([04d4a0c](https://github.com/spryker/ui-components/commit/04d4a0c990944aa9c7e7b201db109845db43c68a))
+* **navigation:** adjust `menu-item` focus styles ([f6e893a](https://github.com/spryker/ui-components/commit/f6e893a2a069320d5e60e07a5678a523a3669fba))
+* **navigation:** adjust styles ([fec94c8](https://github.com/spryker/ui-components/commit/fec94c8035dc77e0a57c88cd7b7633716db6a5dd))
+* **navigation:** fix styles ([a45bb73](https://github.com/spryker/ui-components/commit/a45bb7384357614a25cc8996e04eb187df107fe5))
+* **navigation:** hide an empty `menu-icon` & change an active `menu-item` color ([0c11f6c](https://github.com/spryker/ui-components/commit/0c11f6cfb5917f2fb3531cd63b4d91af94d2398d))
+
+
+### Features
+
+* **navigation:** add new styles ([a30899c](https://github.com/spryker/ui-components/commit/a30899cb222ebbca323df5f8c57131492ba982e7))
+
+
+
+
+
 ## [0.2.8-beta.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.2.8-next.1...@spryker/navigation@0.2.8-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/navigation

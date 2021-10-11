@@ -82,7 +82,7 @@
     "date-fns": "~2.17.0",
     "deepmerge": "^4.2.2",
     "ng-dynamic-component": "^6.1.0",
-    "ng-zorro-antd": "9.3.0",
+    "ng-zorro-antd": "12.0.0",
     "ngx-element-boundary": "^1.0.10",
     "ngx-toastr": "^12.1.0",
     "rxjs": "^6.5.4",

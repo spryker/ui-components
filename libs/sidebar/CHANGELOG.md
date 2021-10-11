@@ -11,6 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.3.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.0-next.0...@spryker/sidebar@0.3.0-beta.0) (2021-10-11)
+
+**Note:** Version bump only for package @spryker/sidebar
+
+
+
+
+
 # [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.2.9-next.1...@spryker/sidebar@0.3.0-next.0) (2021-10-07)
 
 

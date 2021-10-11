@@ -11,7 +11,7 @@
     "@spryker/web-components": "^0.2.1"
   },
   "dependencies": {
-    "ng-zorro-antd": "9.3.0",
+    "ng-zorro-antd": "12.0.0",
     "tslib": "^1.10.0"
   },
   "publishConfig": {

@@ -6,10 +6,6 @@
   color: @checkbox-label-color;
   letter-spacing: @letter-spacing-base;
 
-  .has-error & .@{checkbox-prefix-cls}-inner {
-    border-color: @error-color;
-  }
-
   &.cdk-focused .@{checkbox-prefix-cls}-checked {
     box-shadow: @checkbox-shadow-focus;
   }
@@ -37,7 +33,6 @@
 .@{checkbox-prefix-cls} {
   align-self: flex-start;
   flex-shrink: 0;
-  top: @checkbox-shift-top;
   border: @checkbox-border;
   border-radius: @checkbox-border-radius;
   box-shadow: @checkbox-shadow-default;
@@ -120,7 +115,32 @@
     }
   }
 
-  + span:empty {
-    padding: 0;
+  + span {
+    line-height: @checkbox-label-line-height;
+
+    &:empty {
+      padding: 0;
+    }
+  }
+}
+
+.@{form-item-prefix-cls}-has-error {
+  .@{checkbox-prefix-cls},
+  .@{checkbox-prefix-cls}-wrapper {
+    &:hover,
+    &:active,
+    &:focus {
+      .@{checkbox-prefix-cls}-inner {
+        border-color: @error-color;
+      }
+    }
+
+    &-inner {
+      border-color: @error-color;
+    }
+  }
+
+  &-inner {
+    border-color: @error-color;
   }
 }

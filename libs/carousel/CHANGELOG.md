@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.0...@spryker/carousel@0.1.0-beta.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* **carousel:** fixed next/prev button working, fixed styles ([a1832a1](https://github.com/spryker/ui-components/commit/a1832a13f40b9f7896ac49eef0b19075be1e0470))
+
+
+
+
+
 # [0.1.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-next.0...@spryker/carousel@0.1.0-beta.0) (2021-09-17)
 
 

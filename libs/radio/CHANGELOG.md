@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-beta.1](https://github.com/spryker/ui-components/compare/@spryker/radio@0.1.8-beta.0...@spryker/radio@0.1.8-beta.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* **radio:** fixed selected event emitting type ([1b0a4e0](https://github.com/spryker/ui-components/commit/1b0a4e03a558e9bfc72f9f72e7ec98973a473bf5))
+* **radio:** type of value can be number as well ([e407221](https://github.com/spryker/ui-components/commit/e4072215995c5162b0d7af02e4a5f645b8ea4bb7))
+
+
+
+
+
 ## [0.1.8-beta.0](https://github.com/spryker/ui-components/compare/@spryker/radio@0.1.8-next.1...@spryker/radio@0.1.8-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/radio

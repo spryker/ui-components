@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-beta.1...@spryker/styles@0.4.0-beta.0) (2021-10-11)
+
+
+### Bug Fixes
+
+* **styles:** adjust `menu` styles ([f0d70d2](https://github.com/spryker/ui-components/commit/f0d70d21870d02401096fce931be2a0951a71331))
+
+
+### Features
+
+* **styles:** add new styles to `layout` and `menu` ([8a4d010](https://github.com/spryker/ui-components/commit/8a4d0103ca06b4b3fd6269e14585d2ab5f87e4cc))
+* **styles:** added `navigation` vars & adjusted `menu` vars ([ae62e2d](https://github.com/spryker/ui-components/commit/ae62e2d5c63c00414a4e66cffa77b1b2c9cacfad))
+
+
+
+
+
+# [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-next.2...@spryker/styles@0.4.0-next.0) (2021-10-07)
+
+
+### Bug Fixes
+
+* **styles:** adjust `menu` styles ([f0d70d2](https://github.com/spryker/ui-components/commit/f0d70d21870d02401096fce931be2a0951a71331))
+
+
+### Features
+
+* **styles:** add new styles to `layout` and `menu` ([8a4d010](https://github.com/spryker/ui-components/commit/8a4d0103ca06b4b3fd6269e14585d2ab5f87e4cc))
+* **styles:** added `navigation` vars & adjusted `menu` vars ([ae62e2d](https://github.com/spryker/ui-components/commit/ae62e2d5c63c00414a4e66cffa77b1b2c9cacfad))
+
+
+
+
+
+## [0.3.3-beta.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-beta.0...@spryker/styles@0.3.3-beta.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* **carousel:** fixed next/prev button working, fixed styles ([a1832a1](https://github.com/spryker/ui-components/commit/a1832a13f40b9f7896ac49eef0b19075be1e0470))
+* **checkbox:** fixed styles for error state ([e90b035](https://github.com/spryker/ui-components/commit/e90b035d3b83df778aa32ee06313ced011509248))
+* **dropdown:** dropdown border and shadow styles adjusted according to design ([9688aa0](https://github.com/spryker/ui-components/commit/9688aa0bd1a15ccd6390934fa69706c6cf74c13c))
+* **dropdown:** dropdown styles refreshed according the styleguide, added classes to icon and text ([7c4a6d6](https://github.com/spryker/ui-components/commit/7c4a6d6b507734a3f35bf3804add4bafb8357cfa))
+
+
+
+
+
 ## [0.3.3-beta.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-next.2...@spryker/styles@0.3.3-beta.0) (2021-10-05)
 
 

@@ -105,17 +105,9 @@ describe('CarouselComponent', () => {
     );
     expect(nextButton).toBeTruthy();
 
-    expect(nextButton.properties.className).toContain(
-      host.component.nextButtonClass,
-    );
-
     const prevButton = host.fixture.debugElement.query(
       By.css('.spy-carousel__navigation-button--preview'),
     );
     expect(prevButton).toBeTruthy();
-
-    expect(prevButton.properties.className).toContain(
-      host.component.prevButtonClass,
-    );
   });
 });

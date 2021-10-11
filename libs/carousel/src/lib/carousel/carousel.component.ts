@@ -4,16 +4,17 @@ import {
   ContentChildren,
   Input,
   QueryList,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { CarouselOptions } from '../types';
 
 import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
-import { NavigationOptions, ThumbsOptions } from 'swiper/types';
 import { IconPaginationArrowModule } from '@spryker/icon/icons';
 import Swiper from 'swiper/core';
 import { BehaviorSubject } from 'rxjs';
 import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
+import { SwiperComponent } from 'swiper/angular';
 
 SwiperCore.use([Navigation, Thumbs]);
 
@@ -35,15 +36,9 @@ export class CarouselComponent {
   };
   @Input() withThumbs = false;
 
+  @ViewChild('mainSwiper', { static: false }) swiper!: SwiperComponent;
+
   thumbsSwiper: Swiper | undefined;
-
-  prevButtonClass = 'spy-carousel__navigation-button--preview';
-  nextButtonClass = 'spy-carousel__navigation-button--next';
-
-  navigationOptions: NavigationOptions = {
-    prevEl: `.${this.prevButtonClass}`,
-    nextEl: `.${this.nextButtonClass}`,
-  };
 
   paginationArrowIcon = IconPaginationArrowModule.icon;
 
@@ -52,5 +47,13 @@ export class CarouselComponent {
   @ContentChildren(CarouselSlideComponent)
   set contentSlides(slides: QueryList<CarouselSlideComponent>) {
     this.slides$.next(slides.toArray());
+  }
+
+  slideNext() {
+    this.swiper.swiperRef.slideNext();
+  }
+
+  slidePrev() {
+    this.swiper.swiperRef.slidePrev();
   }
 }

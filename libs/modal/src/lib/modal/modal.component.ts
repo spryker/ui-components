@@ -18,8 +18,8 @@ import { takeUntil } from 'rxjs/operators';
 
 import { ModalService } from '../modal.service';
 import { ComponentModal } from '../strategies/component.strategy';
-import { ModalRef } from '../types';
 import { TemplateModalContext } from '../strategies/template.strategy';
+import { ModalRef } from '../types';
 
 @Component({
   selector: 'spy-modal',

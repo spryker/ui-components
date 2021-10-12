@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DropdownComponent } from './dropdown/dropdown.component';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { IconModule } from '@spryker/icon';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
   imports: [CommonModule, NzDropDownModule, IconModule],

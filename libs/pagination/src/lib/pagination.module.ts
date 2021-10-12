@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginationComponent } from './pagination/pagination.component';
-import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { IconModule } from '@spryker/icon';
 import { SelectModule } from '@spryker/select';
 import {
@@ -9,6 +7,9 @@ import {
   IconDoubleArrowRightModule,
   IconDotsModule,
 } from '@spryker/icon/icons';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   imports: [

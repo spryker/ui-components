@@ -48,7 +48,7 @@ export class InternalIconService implements IconServiceInterface {
   async resolveIcon(name: string): Promise<string | undefined> {
     if (this.resolvedIcons[name]) {
       await this.resolvedIcons[name];
-      
+
       return name;
     }
 

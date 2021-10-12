@@ -31,6 +31,7 @@ export class InternalIconService implements IconServiceInterface {
     if (this.isInited || !this.icons) {
       return;
     }
+
     this.isInited = true;
 
     this.icons
@@ -47,18 +48,21 @@ export class InternalIconService implements IconServiceInterface {
   async resolveIcon(name: string): Promise<string | undefined> {
     if (this.resolvedIcons[name]) {
       await this.resolvedIcons[name];
+      
       return name;
     }
 
     if (this.unresolvedIcons[name]) {
       // tslint:disable-next-line: no-non-null-assertion
       await this.addIcon(name, this.unresolvedIcons[name]!);
+
       return name;
     }
   }
 
   private async getSvgIcon(name: string, svg: IconSvg): Promise<string> {
     const icon = typeof svg === 'string' ? Promise.resolve(svg) : svg();
+
     return await (this.resolvedIcons[name] = icon);
   }
 }

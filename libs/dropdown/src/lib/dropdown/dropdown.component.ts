@@ -9,20 +9,7 @@ import {
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 
-export interface DropdownItem {
-  action: string;
-  title: string;
-  icon?: string;
-  disabled?: boolean;
-  subItems?: DropdownItem[];
-}
-export type Placement =
-  | 'bottomLeft'
-  | 'bottomCenter'
-  | 'bottomRight'
-  | 'topLeft'
-  | 'topCenter'
-  | 'topRight';
+import { DropdownItem, Placement } from './types';
 
 @Component({
   selector: 'spy-dropdown',

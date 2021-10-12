@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.2.0-alpha.0...@spryker/tree-select@0.2.0-alpha.1) (2021-10-12)
+
+
+### Bug Fixes
+
+* **tree-select:** changed imports order ([c181773](https://github.com/spryker/ui-components/commit/c181773a5b2226c8d57eafd5acbc98ab0e37d7ef))
+
+
+
+
+
 # [0.2.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.8-beta.0...@spryker/tree-select@0.2.0-alpha.0) (2021-10-11)
 
 

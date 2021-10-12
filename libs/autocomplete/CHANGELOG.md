@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.1](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@0.2.0-alpha.0...@spryker/autocomplete@0.2.0-alpha.1) (2021-10-12)
+
+
+### Bug Fixes
+
+* **autocomplete:** changed imports order ([49a6065](https://github.com/spryker/ui-components/commit/49a6065dcaadfe13c5e67c45c4dc6b3747294cf3))
+
+
+
+
+
 # [0.2.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@0.1.8-beta.0...@spryker/autocomplete@0.2.0-alpha.0) (2021-10-11)
 
 

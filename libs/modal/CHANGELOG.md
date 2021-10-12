@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.1](https://github.com/spryker/ui-components/compare/@spryker/modal@0.1.0-alpha.0...@spryker/modal@0.1.0-alpha.1) (2021-10-12)
+
+
+### Bug Fixes
+
+* **modal:** changed imports order ([8513f61](https://github.com/spryker/ui-components/commit/8513f61e2fc46681e0eab5df12f6576fbc0ac6e6))
+
+
+
+
+
 # [0.1.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/modal@0.0.10-beta.0...@spryker/modal@0.1.0-alpha.0) (2021-10-11)
 
 

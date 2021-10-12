@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.1](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.3.0-alpha.0...@spryker/dropdown@0.3.0-alpha.1) (2021-10-12)
+
+
+### Bug Fixes
+
+* **dropdown:** changed imports order ([f7cbe02](https://github.com/spryker/ui-components/commit/f7cbe02bf6901daf0e0f3a6a65faa25391f12b3d))
+* **dropdown:** moved types to the separate file ([81e83cf](https://github.com/spryker/ui-components/commit/81e83cf89986f9a129b31bbb51c11a09fe697087))
+
+
+
+
+
 # [0.3.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.8-beta.1...@spryker/dropdown@0.3.0-alpha.0) (2021-10-11)
 
 

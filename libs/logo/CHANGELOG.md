@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.1](https://github.com/spryker/ui-components/compare/@spryker/logo@0.3.0-alpha.0...@spryker/logo@0.3.0-alpha.1) (2021-10-12)
+
+
+### Bug Fixes
+
+* **logo:** changed imports order ([3f86ae5](https://github.com/spryker/ui-components/commit/3f86ae5896c34809af1b84464251f4fe532ba186))
+
+
+
+
+
 # [0.3.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/logo@0.2.8-beta.0...@spryker/logo@0.3.0-alpha.0) (2021-10-11)
 
 

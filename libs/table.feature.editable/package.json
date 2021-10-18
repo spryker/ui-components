@@ -2,9 +2,9 @@
   "name": "@spryker/table.feature.editable",
   "version": "0.2.0-alpha.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@angular/forms": "^9.1.12",
+    "@angular/common": "^12.2.10",
+    "@angular/core": "^12.2.10",
+    "@angular/forms": "^12.2.10",
     "@spryker/ajax-action": "^0.2.0",
     "@spryker/button": "^0.2.0",
     "@spryker/data-serializer": "^0.0.2",

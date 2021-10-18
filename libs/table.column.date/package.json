@@ -2,8 +2,8 @@
   "name": "@spryker/table.column.date",
   "version": "0.0.10-beta.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
+    "@angular/common": "^12.2.10",
+    "@angular/core": "^12.2.10",
     "@spryker/table": "^0.2.0",
     "@spryker/utils": "^0.2.1"
   },

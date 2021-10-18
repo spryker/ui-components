@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-alpha.0...@spryker/table.feature.editable@0.2.0-alpha.0) (2021-10-18)
+
+
+### Features
+
+* **table.feature.editable:** added `ng-zorro-antd` dependency ([817ef37](https://github.com/spryker/ui-components/commit/817ef37d2a1b71ed81971e85e970ae7b2a3af644))
+
+
+
+
+
 ## [0.1.8-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-beta.0...@spryker/table.feature.editable@0.1.8-alpha.0) (2021-10-11)
 
 

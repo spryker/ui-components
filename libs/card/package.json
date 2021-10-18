@@ -2,8 +2,8 @@
   "name": "@spryker/card",
   "version": "0.4.0-alpha.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
+    "@angular/common": "^12.2.10",
+    "@angular/core": "^12.2.10",
     "@spryker/styles": "^0.2.0",
     "@spryker/utils": "^0.2.1",
     "@spryker/web-components": "^0.2.1"

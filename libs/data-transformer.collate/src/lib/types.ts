@@ -31,11 +31,11 @@ export interface CollateDataTransformerDataT {
 export interface DataTransformerConfiguratorRegistry {}
 
 export type DataTransformerConfiguratorType = RegistryType<
-  DataTransformerConfiguratorRegistry
+  DataTransformerConfiguratorRegistry | any
 >;
 
 export type DataTransformerConfiguratorDeclaration = RegistryDeclaration<
-  DataTransformerConfiguratorRegistry
+  DataTransformerConfiguratorRegistry | unknown
 >;
 
 export interface DataTransformerConfiguratorConfig {
@@ -68,14 +68,14 @@ export interface DataTransformerFilter {
 }
 
 export type DataTransformerFilterDeclaration = RegistryDeclaration<
-  DataTransformerFilterRegistry
+  DataTransformerFilterRegistry | unknown
 >;
 
 // tslint:disable-next-line: no-empty-interface
 export interface DataTransformerFilterRegistry {}
 
 export type DataTransformerFilterRegistryType = RegistryType<
-  DataTransformerFilterRegistry
+  DataTransformerFilterRegistry | any
 >;
 
 export type DataTransformerFilterData = Record<string, unknown>[];

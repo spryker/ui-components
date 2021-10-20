@@ -9,12 +9,12 @@ export interface DatasourceRegistry {
 }
 
 export type DatasourceTypesDeclaration = RegistryDeclaration<
-  DatasourceRegistry
+  DatasourceRegistry | unknown
 >;
 
 // 'inline'
 // 'name.type' => 'table.inline'
-export type DatasourceType = RegistryType<DatasourceRegistry>;
+export type DatasourceType = RegistryType<DatasourceRegistry | any>;
 
 export interface DatasourceConfig {
   type: DatasourceType;

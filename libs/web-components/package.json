@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "ngx-element-boundary": "^1.0.10",
-    "tslib": "^1.10.0"
+    "tslib": "^2.1.0"
   },
   "publishConfig": {
     "access": "public"

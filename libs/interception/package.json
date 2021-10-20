@@ -6,7 +6,7 @@
     "@angular/core": "^12.2.10"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.1.0"
   },
   "publishConfig": {
     "access": "public"

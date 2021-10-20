@@ -9,7 +9,7 @@
     "@spryker/tree-select": "^0.1.0"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.1.0"
   },
   "publishConfig": {
     "access": "public"

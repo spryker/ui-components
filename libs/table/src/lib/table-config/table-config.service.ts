@@ -12,6 +12,8 @@ export class TableConfigService {
     columns: true,
     columnsUrl: true,
     dataSource: true,
+    columnConfigurator: false,
+    rowActions: false,
   };
 
   constructor(private defaultConfig: TableDefaultConfig) {}

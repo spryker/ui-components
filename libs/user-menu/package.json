@@ -2,14 +2,14 @@
   "name": "@spryker/user-menu",
   "version": "0.1.8-beta.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
+    "@angular/common": "^12.2.10",
+    "@angular/core": "^12.2.10",
     "@spryker/icon": "^0.2.0",
     "@spryker/popover": "^0.1.0",
     "@spryker/web-components": "^0.2.1"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.1.0"
   },
   "publishConfig": {
     "access": "public"

@@ -37,12 +37,14 @@ export class DataTransformerConfiguratorService {
   ): Observable<DataTransformerConfiguratorConfigT> {
     if (!this.isDataConfiguratorRegisteredType(config.type)) {
       throw Error(
-        `DataTransformerConfiguratorService: Unknown data configurator type ${config.type}`,
+        `DataTransformerConfiguratorService: Unknown data configurator type ${String(
+          config.type,
+        )}`,
       );
     }
 
     const dataConfigurator: DataTransformerConfigurator = injector.get(
-      this.dataConfigurators[config.type],
+      (this.dataConfigurators as any)[config.type],
     );
 
     return dataConfigurator.resolve(injector);

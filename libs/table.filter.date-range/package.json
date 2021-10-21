@@ -2,15 +2,15 @@
   "name": "@spryker/table.filter.date-range",
   "version": "0.0.10-beta.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
+    "@angular/common": "^12.2.10",
+    "@angular/core": "^12.2.10",
     "@spryker/date-picker": "^0.2.0",
     "@spryker/locale": "^0.2.0",
     "@spryker/styles": "^0.2.0",
     "@spryker/table.feature.filters": "^0.0.2"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.1.0"
   },
   "publishConfig": {
     "access": "public"

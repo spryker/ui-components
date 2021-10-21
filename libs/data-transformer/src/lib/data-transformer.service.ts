@@ -40,12 +40,14 @@ export class DataTransformerService {
   ): Observable<unknown> {
     if (!this.isTransformerRegisteredType(config.type)) {
       throw Error(
-        `DataTransformerService: Unknown transformer type ${config.type}`,
+        `DataTransformerService: Unknown transformer type ${String(
+          config.type,
+        )}`,
       );
     }
 
     const transformer: DataTransformer<unknown, unknown> = this.injector.get(
-      this.transformers[config.type],
+      (this.transformers as any)[config.type],
     );
 
     return transformer.transform(data, config, injector ?? this.injector);

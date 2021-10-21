@@ -34,7 +34,7 @@ export class TableColumnListConfigInner {
 @Injectable({ providedIn: 'root' })
 export class TableColumnListConfig extends TableColumnListConfigInner {
   @ColumnTypeOption()
-  limit = 2;
+  limit? = 2;
 }
 
 @Component({
@@ -72,7 +72,7 @@ export class TableColumnListComponent
     }
 
     const value = this.context.value;
-    const isLimited = this.config && this.config.limit > 0;
+    const isLimited = this.config && this.config.limit && this.config.limit > 0;
     let values = Array.isArray(value) ? value : [value];
     values = Boolean(values.length) ? (values as unknown[]) : [undefined];
     this.values = values.map((_value) => ({

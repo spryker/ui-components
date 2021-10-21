@@ -16,4 +16,14 @@ module.exports = {
   ],
   coverageReporters: ['lcov', 'text'],
   passWithNoTests: true,
+  testPathIgnorePatterns: [
+    'libs/table.feature.title',
+    'table.feature.total',
+    'table.feature.search',
+    'table.feature.filters',
+    'table.feature.sync-state',
+    'table.feature.selectable',
+    'table.feature.pagination',
+    'table.feature.batch-actions',
+  ],
 };

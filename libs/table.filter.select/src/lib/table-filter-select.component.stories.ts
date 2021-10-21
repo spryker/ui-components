@@ -62,8 +62,8 @@ function getFiltersStory(
         BrowserAnimationsModule,
         TableModule.forRoot(),
         TableFiltersFeatureModule.withFilterComponents({
-          select: TableFilterSelectComponent as any,
-        }),
+          select: TableFilterSelectComponent,
+        } as any),
         DefaultContextSerializationModule,
         DatasourceModule.withDatasources({
           'mock-data': MockTableDatasourceService,

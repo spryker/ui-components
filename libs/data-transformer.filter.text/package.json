@@ -1,6 +1,6 @@
 {
   "name": "@spryker/data-transformer.filter.text",
-  "version": "0.1.8-beta.0",
+  "version": "0.2.0-alpha.0",
   "peerDependencies": {
     "@angular/common": "^12.2.10",
     "@angular/core": "^12.2.10",

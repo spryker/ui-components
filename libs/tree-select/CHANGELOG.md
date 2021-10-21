@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.2](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.2.0-alpha.1...@spryker/tree-select@0.2.0-alpha.2) (2021-10-21)
+
+
+### Features
+
+* updated `tslib` dependency ([01d336c](https://github.com/spryker/ui-components/commit/01d336c2ed9ab974f38f6491eb4b440427117203))
+* **sidebar:** updated `angular` dependencies ([0bb06e5](https://github.com/spryker/ui-components/commit/0bb06e56eb2981d8dff2931dd10493591ff9a08f))
+* **tree-select:** updated `angular` dependencies ([6fb069f](https://github.com/spryker/ui-components/commit/6fb069f2bf8a03a3c0426bfaeb6c461553991495))
+
+
+
+
+
 # [0.2.0-alpha.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.2.0-alpha.0...@spryker/tree-select@0.2.0-alpha.1) (2021-10-12)
 
 

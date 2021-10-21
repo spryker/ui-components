@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.9-beta.0...@spryker/web-components@0.3.0-alpha.0) (2021-10-21)
+
+
+### Features
+
+* updated `tslib` dependency ([01d336c](https://github.com/spryker/ui-components/commit/01d336c2ed9ab974f38f6491eb4b440427117203))
+* **sidebar:** updated `angular` dependencies ([0bb06e5](https://github.com/spryker/ui-components/commit/0bb06e56eb2981d8dff2931dd10493591ff9a08f))
+* **web-components:** updated `angular` dependencies ([e9aa924](https://github.com/spryker/ui-components/commit/e9aa924dd7b13a68d94f57edcf8c559512f0de89))
+
+
+
+
+
 ## [0.2.9-beta.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.9-next.1...@spryker/web-components@0.2.9-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/web-components

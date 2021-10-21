@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.0.10-beta.0...@spryker/table.feature.filters@0.1.0-alpha.0) (2021-10-21)
+
+
+### Features
+
+* updated `tslib` dependency ([01d336c](https://github.com/spryker/ui-components/commit/01d336c2ed9ab974f38f6491eb4b440427117203))
+* **sidebar:** updated `angular` dependencies ([0bb06e5](https://github.com/spryker/ui-components/commit/0bb06e56eb2981d8dff2931dd10493591ff9a08f))
+* **table.feature.filters:** updated `angular` dependencies ([b341284](https://github.com/spryker/ui-components/commit/b3412848c29f214a611f756da4faddedab38ad6c))
+
+
+
+
+
 ## [0.0.10-beta.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.0.10-next.1...@spryker/table.feature.filters@0.0.10-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/table.feature.filters

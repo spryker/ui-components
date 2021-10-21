@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.1](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.3.0-alpha.0...@spryker/toggle@0.3.0-alpha.1) (2021-10-21)
+
+
+### Features
+
+* updated `tslib` dependency ([01d336c](https://github.com/spryker/ui-components/commit/01d336c2ed9ab974f38f6491eb4b440427117203))
+* **sidebar:** updated `angular` dependencies ([0bb06e5](https://github.com/spryker/ui-components/commit/0bb06e56eb2981d8dff2931dd10493591ff9a08f))
+* **toggle:** updated `angular` dependencies ([3349782](https://github.com/spryker/ui-components/commit/3349782f4e46dc28d3e38f10df394d7e5f2b4f92))
+
+
+
+
+
 # [0.3.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.2.8-beta.0...@spryker/toggle@0.3.0-alpha.0) (2021-10-11)
 
 

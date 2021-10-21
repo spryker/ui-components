@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.2.0-alpha.0...@spryker/table.feature.editable@0.2.0-alpha.1) (2021-10-21)
+
+
+### Features
+
+* updated `tslib` dependency ([01d336c](https://github.com/spryker/ui-components/commit/01d336c2ed9ab974f38f6491eb4b440427117203))
+* **sidebar:** updated `angular` dependencies ([0bb06e5](https://github.com/spryker/ui-components/commit/0bb06e56eb2981d8dff2931dd10493591ff9a08f))
+* **table.feature.editable:** updated `angular` dependencies ([64a5e16](https://github.com/spryker/ui-components/commit/64a5e16371fe3ace71d2a107e14aa0af2ba87e39))
+
+
+
+
+
 # [0.2.0-alpha.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-alpha.0...@spryker/table.feature.editable@0.2.0-alpha.0) (2021-10-18)
 
 

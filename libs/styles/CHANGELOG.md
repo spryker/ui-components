@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-alpha.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-alpha.1...@spryker/styles@0.4.0-alpha.2) (2021-10-21)
+
+
+### Features
+
+* updated `tslib` dependency ([01d336c](https://github.com/spryker/ui-components/commit/01d336c2ed9ab974f38f6491eb4b440427117203))
+* **sidebar:** updated `angular` dependencies ([0bb06e5](https://github.com/spryker/ui-components/commit/0bb06e56eb2981d8dff2931dd10493591ff9a08f))
+* **styles:** updated `angular` dependencies ([5ea6a5c](https://github.com/spryker/ui-components/commit/5ea6a5c1292c6b620bb4f42d7b78bc544da148f2))
+
+
+
+
+
 # [0.4.0-alpha.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-alpha.0...@spryker/styles@0.4.0-alpha.1) (2021-10-11)
 
 

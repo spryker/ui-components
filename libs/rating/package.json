@@ -1,0 +1,19 @@
+{
+  "name": "@spryker/rating",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
+    "@angular/forms": "^9.1.12",
+    "@spryker/icon": "^0.2.7",
+    "@spryker/styles": "^0.3.2",
+    "@spryker/utils": "^0.2.8"
+  },
+  "dependencies": {
+    "ng-zorro-antd": "9.3.0",
+    "tslib": "^1.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

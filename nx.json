@@ -379,6 +379,9 @@
     },
     "carousel": {
       "tags": ["type:component", "level:molecule", "pkg:primary"]
+    },
+    "rating": {
+      "tags": ["type:component", "level:atom", "pkg:primary"]
     }
   },
   "tasksRunnerOptions": {

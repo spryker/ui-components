@@ -66,7 +66,9 @@ describe('RatingComponent', () => {
   });
 
   it('should render rating control', () => {
-    const controlEl = fixture.debugElement.query(By.css('.spy-rating-control'));
+    const controlEl = fixture.debugElement.query(
+      By.css('.spy-rating__control'),
+    );
     expect(controlEl).toBeTruthy();
     expect(controlEl.properties.ngModel).toBe(rating);
     expect(controlEl.properties.nzCount).toBe(maxRating);
@@ -75,7 +77,9 @@ describe('RatingComponent', () => {
   });
 
   it('should trigger rating change', () => {
-    const controlEl = fixture.debugElement.query(By.css('.spy-rating-control'));
+    const controlEl = fixture.debugElement.query(
+      By.css('.spy-rating__control'),
+    );
     expect(controlEl).toBeTruthy();
     const newRating = 3;
     controlEl.triggerEventHandler('ngModelChange', newRating);

@@ -7,6 +7,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconStarModule } from '@spryker/icon/icons';
+import { ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-rating',
@@ -19,8 +20,8 @@ import { IconStarModule } from '@spryker/icon/icons';
 export class RatingComponent {
   @Input() rating?: number;
   @Input() maxRating = 5;
-  @Input() allowHalf = true;
-  @Input() readOnly = false;
+  @Input() @ToBoolean() allowHalf = true;
+  @Input() @ToBoolean() readOnly = false;
 
   @Output() ratingChange = new EventEmitter<number>();
 

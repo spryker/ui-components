@@ -51,6 +51,7 @@ export const primary = () => ({
       ButtonActionModule,
     ],
     declarations: [SimpleComponent],
+    entryComponents: [DrawerContainerProxyComponent, SimpleComponent],
   },
   template: `
     <spy-button-action

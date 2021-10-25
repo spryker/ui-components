@@ -12,7 +12,9 @@
         "next",
         "republish/next",
         "beta",
-        "republish/beta"
+        "republish/beta",
+        "rc",
+        "republish/rc"
       ],
       "contents": "dist",
       "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],

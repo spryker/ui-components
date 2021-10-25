@@ -79,6 +79,6 @@ describe('RatingComponent', () => {
     expect(controlEl).toBeTruthy();
     const newRating = 3;
     controlEl.triggerEventHandler('ngModelChange', newRating);
-    expect(ratingChangeSpy).toBeCalledWith(newRating);
+    expect(ratingChangeSpy).toHaveBeenCalledWith(newRating);
   });
 });

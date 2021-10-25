@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.0...@spryker/styles@0.4.0-beta.1) (2021-10-25)
+
+
+### Features
+
+* **rating:** implemented rating component ([4ef703a](https://github.com/spryker/ui-components/commit/4ef703a311aa9d99d9ac07c9261565285f73ca8d))
+
+
+
+
+
 # [0.4.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-beta.1...@spryker/styles@0.4.0-beta.0) (2021-10-11)
 
 

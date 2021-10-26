@@ -280,6 +280,8 @@ These are the release branches (`git branch` => `@npm tag`):
 - `master` => `@latest`
 - `next` => `@next`
 - `beta` => `@beta`
+- `alpha` => `@alpha`
+- `rc` => `@rc`
 
 ### Release Recovery
 
@@ -304,6 +306,8 @@ In this case you need to:
 - `master` => `republish/master`
 - `next` => `republish/next`
 - `beta` => `republish/beta`
+- `alpha` => `republish/alpha`
+- `rc` => `republish/rc`
 
 After branch is pushed to CI it will attempt to find unpublished packages in NPM
 and try to publish them again with the same versions.

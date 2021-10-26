@@ -13,6 +13,8 @@
         "republish/next",
         "beta",
         "republish/beta",
+        "alpha",
+        "republish/alpha",
         "rc",
         "republish/rc"
       ],

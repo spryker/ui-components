@@ -377,10 +377,10 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   }
 
   openPicker(): void {
-    this._picker?.picker.showOverlay(); // used private API of NzDatePickerComponent
+    this._picker?.open();
   }
 
   closePicker(): void {
-    this._picker?.picker.hideOverlay(); // used private API of NzDatePickerComponent
+    this._picker?.close();
   }
 }

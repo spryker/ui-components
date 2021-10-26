@@ -43,7 +43,7 @@ export class DataTransformerFilterService {
     }
 
     const filterService: DataTransformerFilter = this.injector.get(
-      this.filters[type],
+      (this.filters as any)[type],
     );
 
     return filterService.filter(data, options, byValue, transformerByPropName);

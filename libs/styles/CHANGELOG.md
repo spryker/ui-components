@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-next.0...@spryker/styles@0.4.0-next.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `table-feature-filters` variables by updating margin-bottom ([33b0357](https://github.com/spryker/ui-components/commit/33b035711e07ac2a100c047bf4fbaa855224d1fb))
+* **styles:** adjusted `table-feature-search` variables by adding margin-bottom variable ([3c74a6c](https://github.com/spryker/ui-components/commit/3c74a6c08857c2a8b516cf68bef804664e00676b))
+* **styles:** adjusted `table-feature-settings` variables by adding padding-left variable ([639f0fb](https://github.com/spryker/ui-components/commit/639f0fb538ef23458aced40d4cde441082ccd9e2))
+
+
+
+
+
 # [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-next.2...@spryker/styles@0.4.0-next.0) (2021-10-07)
 
 

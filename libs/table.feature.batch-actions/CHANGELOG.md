@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.0.10-next.1...@spryker/table.feature.batch-actions@0.0.10-next.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **table.feature.batch-actions:** adjusted `table-batch-actions-feature` by updating padding ([bfc04f1](https://github.com/spryker/ui-components/commit/bfc04f120b80de93a33d652391137a7ad22c316d))
+
+
+
+
+
 ## [0.0.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.0.9...@spryker/table.feature.batch-actions@0.0.10-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/table.feature.batch-actions

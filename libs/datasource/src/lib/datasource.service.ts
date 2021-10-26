@@ -36,11 +36,11 @@ export class DatasourceService {
     context?: unknown,
   ): Observable<D> {
     if (!this.isDatasourceRegisteredType(config.type)) {
-      throw Error(`DatasourceService: Unknown datasource type ${config.type}`);
+      throw Error(`DatasourceService: Unknown datasource type ${String(config.type)}`);
     }
 
     const dataSource: Datasource<unknown, unknown> = injector.get(
-      this.dataSources[config.type],
+      (this.dataSources as any)[config.type],
     );
 
     return dataSource.resolve(injector, config, context).pipe(

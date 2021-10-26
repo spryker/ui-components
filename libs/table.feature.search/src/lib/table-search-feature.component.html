@@ -1,5 +1,8 @@
 <ng-container
-  *spyTableFeatureTpl="tableFeatureLocation.top; styles: { marginLeft: 'auto' }"
+  *spyTableFeatureTpl="
+    tableFeatureLocation.top;
+    styles: { marginLeft: 'auto', paddingBottom: '20px' }
+  "
 >
   <spy-input
     *ngIf="isVisible$ | async"

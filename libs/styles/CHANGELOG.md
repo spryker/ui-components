@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-beta.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.1...@spryker/styles@0.4.0-beta.2) (2021-10-26)
+
+
+### Features
+
+* **styles:** added short media query mixins ([31037f5](https://github.com/spryker/ui-components/commit/31037f578286bf732861cae2feb401008142b4fb))
+
+
+
+
+
 # [0.4.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.0...@spryker/styles@0.4.0-beta.1) (2021-10-25)
 
 

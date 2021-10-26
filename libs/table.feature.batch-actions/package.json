@@ -2,8 +2,8 @@
   "name": "@spryker/table.feature.batch-actions",
   "version": "0.0.10-next.1",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
+    "@angular/common": "^12.2.10",
+    "@angular/core": "^12.2.10",
     "@spryker/button": "^0.2.0",
     "@spryker/notification": "^0.2.0",
     "@spryker/styles": "^0.2.0",
@@ -12,7 +12,7 @@
     "@spryker/utils": "^0.2.1"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.1.0"
   },
   "publishConfig": {
     "access": "public"

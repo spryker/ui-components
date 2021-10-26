@@ -36,3 +36,39 @@
     .breakpoint-media-min-mixin(@min, @rules);
   }
 }
+
+/**
+ * Set small screen media query with properties inside
+ * @params @rules Extends mixin with properties for media query.
+ */
+.sm(@rules) {
+  .breakpoint-edge-min-mixin(@breakpoints[sm]);
+  .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], @rules);
+}
+
+/**
+ * Set middle screen media query with properties inside
+ * @params @rules Extends mixin with properties for media query.
+ */
+.md(@rules) {
+  .breakpoint-edge-min-mixin(@breakpoints[md]);
+  .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], @rules);
+}
+
+/**
+ * Set large screen media query with properties inside
+ * @params @rules Extends mixin with properties for media query.
+ */
+.lg(@rules) {
+  .breakpoint-edge-min-mixin(@breakpoints[lg]);
+  .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], @rules);
+}
+
+/**
+ * Set extra large screen media query with properties inside
+ * @params @rules Extends mixin with properties for media query.
+ */
+.xl(@rules) {
+  .breakpoint-edge-min-mixin(@breakpoints[xl]);
+  .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], @rules);
+}

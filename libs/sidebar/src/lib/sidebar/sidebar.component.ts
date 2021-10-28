@@ -24,7 +24,7 @@ import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'spy-sidebar',
-  }
+  },
 })
 export class SidebarComponent implements OnChanges, OnInit {
   @Input() width = 250;

@@ -2,8 +2,8 @@
   "name": "@spryker/table.column.input",
   "version": "0.1.8-next.1",
   "peerDependencies": {
-    "@angular/common": "^12.2.10",
-    "@angular/core": "^12.2.10",
+    "@angular/common": "^12.2.12",
+    "@angular/core": "^12.2.12",
     "@spryker/form-item": "^0.2.0",
     "@spryker/input": "^0.2.0",
     "@spryker/table": "^0.2.0",

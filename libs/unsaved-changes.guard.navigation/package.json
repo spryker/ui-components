@@ -2,8 +2,8 @@
   "name": "@spryker/unsaved-changes.guard.navigation",
   "version": "0.1.8-next.1",
   "peerDependencies": {
-    "@angular/common": "^12.2.10",
-    "@angular/core": "^12.2.10",
+    "@angular/common": "^12.2.12",
+    "@angular/core": "^12.2.12",
     "@spryker/interception": "^0.1.0",
     "@spryker/modal": "^0.0.2",
     "@spryker/navigation": "^0.2.0",

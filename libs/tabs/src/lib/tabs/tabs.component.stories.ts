@@ -51,7 +51,12 @@ const tabsData = [
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [TabsModule, IconUserModule, IconCalendarModule, BrowserAnimationsModule],
+    imports: [
+      TabsModule,
+      IconUserModule,
+      IconCalendarModule,
+      BrowserAnimationsModule,
+    ],
   },
   template: `
     <spy-tabs [tab]="tab" [mode]="mode" [animateSlides]="animateSlides">

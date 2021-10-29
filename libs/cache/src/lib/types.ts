@@ -10,7 +10,7 @@ export type CacheStrategyType = keyof CacheStrategyRegistry extends never
   : keyof CacheStrategyRegistry;
 
 export type CacheStrategyTypesDeclaration = {
-  [P in keyof CacheStrategyRegistry]?: Type<CacheStrategy>;
+  [P in keyof CacheStrategyRegistry]?: Type<CacheStrategy | unknown>;
 };
 
 export interface CacheStrategyConfig {

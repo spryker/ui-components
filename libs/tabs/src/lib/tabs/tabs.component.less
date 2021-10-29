@@ -109,15 +109,21 @@
     }
 
     .@{tab-prefix-cls}-nav-more {
+      .transition-mixin(background);
+      background: @white;
       padding: @tabs-nav-more-padding;
       display: flex;
       align-items: center;
+
+      &:hover {
+        background: @gray-lighter;
+      }
 
       .anticon {
         font-size: @tabs-nav-more-icon-size;
         height: @tabs-nav-more-icon-size;
         display: block;
-        color: @ink;
+        color: @gray-dark;
       }
     }
   }
@@ -237,27 +243,35 @@
 }
 
 .nz-tabs-dropdown {
+  min-width: @tabs-nav-dropdown-min-width !important;
   font-family: @font-family;
   box-shadow: @tabs-nav-dropdown-box-shadow;
   margin-top: @tabs-nav-dropdown-margin-top;
+  border-radius: @tabs-nav-dropdown-border-radius;
+  border: @tabs-nav-dropdown-border;
 
   .@{tab-prefix-cls}-dropdown-menu-item {
     padding: 0;
     line-height: 1;
+
+    &-disabled {
+      .@{tab-prefix-cls}-custom-tab {
+        color: @gray-darker;
+      }
+    }
   }
 
   .@{tab-prefix-cls}-custom-tab {
-    padding: @tabs-card-tab-padding;
-    font-size: @font-size-sm;
-    justify-content: center;
+    padding: @tabs-nav-dropdown-item-padding;
+    font-weight: @font-weight-default;
+    color: @ink;
 
     &:hover::after {
       display: none;
     }
 
     &-icon {
-      font-size: @tabs-card-tab-icon-size;
-      height: @tabs-card-tab-icon-size;
+      display: none;
     }
   }
 }

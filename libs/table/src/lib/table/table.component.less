@@ -313,10 +313,9 @@
 
   &-empty {
     display: flex;
-    height: @table-empty-container-height;
     justify-content: center;
     align-items: center;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     font: @font-default;
     border-radius: @border-radius-base;
     background: @white;
@@ -326,7 +325,7 @@
     &__title {
       padding-bottom: @table-empty-title-padding-bottom;
       font-weight: @font-weight-semi-bold;
-      font-size: @heading-3-font-size;
+      font-size: @heading-5-font-size;
       color: @gray-darker;
 
       &--sm {

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-next.1...@spryker/styles@0.4.0-next.2) (2021-11-01)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `table` variables by removing unneeded one ([e58350c](https://github.com/spryker/ui-components/commit/e58350c838581cdc18aba631954eee42afef2dc0))
+* **styles:** adjusted `table` variables by updating container-size & empty-icon-size & icon-margin-bottom variables ([b31b6d8](https://github.com/spryker/ui-components/commit/b31b6d8f7d6dd2ddecf543986ce0f181992765b9))
+
+
+
+
+
 # [0.4.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-next.0...@spryker/styles@0.4.0-next.1) (2021-10-26)
 
 

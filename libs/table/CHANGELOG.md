@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.5-next.2...@spryker/table@0.4.0-next.3) (2021-11-01)
+
+
+### Bug Fixes
+
+* **table:** adjusted `table` by replacing flex-flow with flex-direction ([136acea](https://github.com/spryker/ui-components/commit/136acea2efee1cafe8a43a3574584c2649de9206))
+* **table:** adjusted `table` by updating empty state flex-flow & title font-size ([e4c1c35](https://github.com/spryker/ui-components/commit/e4c1c35aef0d883a52a492b63d66b496ec9ff51b))
+* **table:** updated `styles` dependency ([e5817c6](https://github.com/spryker/ui-components/commit/e5817c68ff6e4175fba447cbb5c64f02e996a1ac))
+
+
+
+
+
 ## [0.3.5-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.5-next.1...@spryker/table@0.3.5-next.2) (2021-10-05)
 
 

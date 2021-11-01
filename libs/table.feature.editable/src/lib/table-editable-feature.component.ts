@@ -266,7 +266,7 @@ export class TableEditableFeatureComponent
       this.tableElement = undefined;
     }
 
-    this.updateTableElement$.next(this.tableElement);
+    this.updateTableElement$.next(<HTMLElement> this.tableElement);
   }
 
   private changeColsVisibilityAfterColumnConfigurator(id: string): void {

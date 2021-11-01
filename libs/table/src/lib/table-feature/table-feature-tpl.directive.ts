@@ -38,7 +38,7 @@ export class TableFeatureTplDirective
     }
 
     if (changes.spyTableFeatureTplStyles) {
-      this.styles$.next(this.spyTableFeatureTplStyles);
+      this.styles$.next(<Record<string, any>> this.spyTableFeatureTplStyles);
     }
   }
 }

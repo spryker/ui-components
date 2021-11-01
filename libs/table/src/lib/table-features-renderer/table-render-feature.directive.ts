@@ -51,7 +51,7 @@ export class TableRenderFeatureDirective
     changes: TypedSimpleChanges<TableRenderFeatureDirectiveInputs>,
   ): void {
     if (changes.spyTableRenderFeature) {
-      this.feature$.next(this.spyTableRenderFeature);
+      this.feature$.next(<FeatureRecord> this.spyTableRenderFeature);
     }
   }
 

@@ -109,11 +109,11 @@ export class TableFeaturesRendererDirective
     }
 
     if (changes.spyTableFeaturesRendererContext) {
-      this.context$.next(this.spyTableFeaturesRendererContext);
+      this.context$.next(<TableFeatureTplContext> this.spyTableFeaturesRendererContext);
     }
 
     if (changes.spyTableFeaturesRendererMaxFeatures) {
-      this.maxFeatures$.next(this.spyTableFeaturesRendererMaxFeatures);
+      this.maxFeatures$.next(<number> this.spyTableFeaturesRendererMaxFeatures);
     }
   }
 

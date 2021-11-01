@@ -63,7 +63,7 @@ export class SidebarComponent implements OnChanges, OnInit {
   constructor(private persistenceService: PersistenceService) {}
 
   ngOnInit(): void {
-    this.spyId$.next(this.spyId);
+    this.spyId$.next(String(this.spyId));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -72,7 +72,7 @@ export class SidebarComponent implements OnChanges, OnInit {
     }
 
     if ('spyId' in changes && !changes.spyId.firstChange) {
-      this.spyId$.next(this.spyId);
+      this.spyId$.next(String(this.spyId));
     }
   }
 

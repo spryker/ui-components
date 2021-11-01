@@ -384,7 +384,7 @@ export class CoreTableComponent
     }
 
     if (changes.tableId) {
-      this.setTableId$.next(this.tableId);
+      this.setTableId$.next(<string> this.tableId);
     }
   }
 

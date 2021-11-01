@@ -108,13 +108,14 @@ export class TableFeaturesRendererService implements OnDestroy {
     );
 
     const featureTemplates$ = featuresInLocation$.pipe(
-      map((features) => features.map((feature) => feature.featureTemplate)),
+      map((features) => features?.map((feature) => feature.featureTemplate)),
     );
 
     const featureContexts$ = featuresInLocation$.pipe(
       switchMap((features) =>
         combineLatest(
-          features.map((feature) => feature.featureContext$ ?? of(undefined)),
+          // tslint:disable-next-line:no-non-null-assertion
+          features!.map((feature) => feature.featureContext$ ?? of(undefined)),
         ),
       ),
       // tslint:disable-next-line: deprecation
@@ -127,12 +128,13 @@ export class TableFeaturesRendererService implements OnDestroy {
       map(([templates, contexts]) => (...args: TArgs) => {
         const context = contextGetter(...args);
 
-        return templates.reduceRight<TableChainedContext<TContext>>(
+        return templates?.reduceRight<TableChainedContext<TContext>>(
           (prevCtx, template, j) => ({
             $implicit: template as any,
             context: {
               ...context,
-              ...contexts[j],
+              // tslint:disable-next-line:no-non-null-assertion
+              ...contexts![j],
               ...prevCtx,
             },
           }),

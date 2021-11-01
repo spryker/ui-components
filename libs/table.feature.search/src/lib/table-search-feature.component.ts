@@ -41,7 +41,7 @@ export class TableSearchFeatureComponent
   suffixIcon = IconRemoveModule.icon;
   prefixIcon = IconMagnifierModule.icon;
 
-  destroyed$ = new Subject();
+  destroyed$ = new Subject<void>();
   inputValue$ = new Subject<string>();
   valueChange$ = this.inputValue$.pipe(
     debounceTime(300),

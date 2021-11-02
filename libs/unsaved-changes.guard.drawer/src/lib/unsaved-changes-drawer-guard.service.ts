@@ -28,7 +28,8 @@ import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
  */
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesDrawerGuardComposableFactory
-  implements InterceptionComposableFactory {
+  implements InterceptionComposableFactory
+{
   canApply(token: unknown): boolean {
     return (token && token instanceof DrawerContainerComponent) as boolean;
   }

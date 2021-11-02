@@ -37,7 +37,8 @@ export enum ButtonAjaxMethod {
 })
 export class ButtonAjaxComponent
   extends ButtonCoreInputs
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
   @Input() url?: string;
 

@@ -46,7 +46,8 @@ export class TableColumnListConfig extends TableColumnListConfigInner {
 })
 @TableColumnTypeComponent(TableColumnListConfig)
 export class TableColumnListComponent
-  implements TableColumnComponent<TableColumnListConfig>, OnInit, OnChanges {
+  implements TableColumnComponent<TableColumnListConfig>, OnInit, OnChanges
+{
   @Input() config?: TableColumnListConfig;
   @Input() context?: TableColumnContext;
 

@@ -13,7 +13,8 @@ import {
   selector: '[spyUnsavedChangesFormMonitorBubbling]',
 })
 export class UnsavedChangesFormMonitorBubblingDirective
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   private disposeInputEvent?: () => void;
 
   constructor(

@@ -20,7 +20,8 @@ export class ObjectMapDataTransformerService
     DataTransformer<
       ObjectMapDataTransformerData,
       ObjectMapDataTransformerDataT
-    > {
+    >
+{
   constructor(private dataTransformerService: DataTransformerService) {}
 
   transform(
@@ -40,7 +41,7 @@ export class ObjectMapDataTransformerService
             : of(value);
         }
 
-        return forkJoin([ dataToTransform ]);
+        return forkJoin([dataToTransform]);
       }),
     );
   }

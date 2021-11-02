@@ -110,7 +110,8 @@ export class TableColumnSelectConfig {
 })
 @TableColumnTypeComponent(TableColumnSelectConfig)
 export class TableColumnSelectComponent
-  implements TableColumnComponent<TableColumnSelectConfig>, OnInit {
+  implements TableColumnComponent<TableColumnSelectConfig>, OnInit
+{
   @Input() config?: TableColumnSelectConfig;
   @Input() context?: TableColumnContext;
 

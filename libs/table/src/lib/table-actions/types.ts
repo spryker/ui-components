@@ -9,14 +9,14 @@ export interface TableActionBase extends ActionConfig {
 }
 
 export interface TableActionTriggeredEvent<
-  A extends TableActionBase = TableActionBase
+  A extends TableActionBase = TableActionBase,
 > {
   action: A;
   items: TableDataRow[];
 }
 
 export interface TableActionHandler<
-  A extends TableActionBase = TableActionBase
+  A extends TableActionBase = TableActionBase,
 > {
   handleAction(
     actionEvent: TableActionTriggeredEvent<A>,

@@ -20,7 +20,8 @@ export interface RangeDataTransformerFilterValue {
  */
 @Injectable({ providedIn: 'root' })
 export class RangeDataTransformerFilterService
-  implements DataTransformerFilter {
+  implements DataTransformerFilter
+{
   constructor(private dataTransformerService: DataTransformerService) {}
 
   filter(

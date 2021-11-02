@@ -44,20 +44,19 @@ import {
 })
 export class NotificationComponent
   extends NotificationInputs
-  implements OnChanges, OnDestroy {
+  implements OnChanges, OnDestroy
+{
   @Input() @ToJson() floatingConfig?: NotificationConfig;
 
   @ViewChild(NotificationViewComponent)
   notificationViewComponent?: NotificationViewComponent;
 
   @ContentChild('titleTpl') contentTitleTpl?: TemplateRef<NotificationContext>;
-  @ContentChild('descriptionTpl') contentDescriptionTpl?: TemplateRef<
-    NotificationContext
-  >;
+  @ContentChild('descriptionTpl')
+  contentDescriptionTpl?: TemplateRef<NotificationContext>;
 
-  @ViewChild('titleInnerTpl', { static: true }) innerTitleTpl?: TemplateRef<
-    NotificationContext
-  >;
+  @ViewChild('titleInnerTpl', { static: true })
+  innerTitleTpl?: TemplateRef<NotificationContext>;
   @ViewChild('descriptionInnerTpl', { static: true })
   innerDescriptionTpl?: TemplateRef<NotificationContext>;
 

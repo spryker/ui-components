@@ -35,7 +35,8 @@ import { TableSearchConfig } from './types';
 })
 export class TableSearchFeatureComponent
   extends TableFeatureComponent<TableSearchConfig>
-  implements OnDestroy, OnInit {
+  implements OnDestroy, OnInit
+{
   name = 'search';
   tableFeatureLocation = TableFeatureLocation;
   suffixIcon = IconRemoveModule.icon;

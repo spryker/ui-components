@@ -52,9 +52,7 @@ export class TableMockComponent implements TableComponent {
   updateRowClasses = jest.fn();
   setRowClasses = jest.fn();
   eventHandler = jest.fn();
-  tableElementRef = (new MockElementRef() as unknown) as ElementRef<
-    HTMLElement
-  >;
+  tableElementRef = new MockElementRef() as unknown as ElementRef<HTMLElement>;
   injector = new MockInjector();
   eventBus = new TableEventBus(this.eventHandler);
   features$ = new ReplaySubject<TableFeatureComponent<TableFeatureConfig>[]>(1);
@@ -118,7 +116,8 @@ export function initFeature<T>(
   template: ` <ng-content></ng-content> `,
 })
 export class TestTableFeatureComponent<T = TableMockComponent>
-  implements AfterContentInit {
+  implements AfterContentInit
+{
   @ContentChild(TableFeatureComponent) feature?: TableFeatureComponent;
 
   featureMocks?: TableFeatureMocks<T>;
@@ -153,7 +152,8 @@ export const TestTableFeatureTplContext = new InjectionToken<
 })
 export class TestTableFeatureTplDirective
   extends TableFeatureTplDirectiveInputs
-  implements OnChanges {
+  implements OnChanges
+{
   constructor(
     public template: TemplateRef<TableFeatureTplContext>,
     public vcr: ViewContainerRef,

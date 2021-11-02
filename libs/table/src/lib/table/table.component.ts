@@ -100,7 +100,8 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   },
 })
 export class CoreTableComponent
-  implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy {
+  implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy
+{
   static Count = 0;
 
   @Input() @ToJson() config?: TableConfig;
@@ -113,13 +114,11 @@ export class CoreTableComponent
    */
   @Input() events: TableEvents = {};
 
-  @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<
-    TableColumnContext
-  >;
+  @ViewChild('cellTpl', { static: true })
+  cellTpl!: TemplateRef<TableColumnContext>;
 
-  @ViewChild('headerTpl', { static: true }) headerTpl!: TemplateRef<
-    TableHeaderContext
-  >;
+  @ViewChild('headerTpl', { static: true })
+  headerTpl!: TemplateRef<TableHeaderContext>;
   @ViewChild('tableElementRef', { read: ElementRef })
   tableElementRef!: ElementRef<HTMLElement>;
 
@@ -227,12 +226,13 @@ export class CoreTableComponent
 
   private featuresLoaded$ = this.features$.pipe(delay(0), skip(1), take(1));
 
-  featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
-    this.features$,
-    TableFeatureLocation.header,
-    () => this.headerTpl,
-    (config: TableColumn, i: number): TableHeaderContext => ({ config, i }),
-  );
+  featureHeaderContext$ =
+    this.tableFeaturesRendererService.chainFeatureContexts(
+      this.features$,
+      TableFeatureLocation.header,
+      () => this.headerTpl,
+      (config: TableColumn, i: number): TableHeaderContext => ({ config, i }),
+    );
 
   featureCellContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
     this.features$,
@@ -384,7 +384,7 @@ export class CoreTableComponent
     }
 
     if (changes.tableId) {
-      this.setTableId$.next(<string> this.tableId);
+      this.setTableId$.next(<string>this.tableId);
     }
   }
 

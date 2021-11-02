@@ -56,7 +56,8 @@ export class TableColumnInputConfig {
 })
 @TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent
-  implements TableColumnComponent<TableColumnInputConfig>, OnInit {
+  implements TableColumnComponent<TableColumnInputConfig>, OnInit
+{
   @Input() config?: TableColumnInputConfig;
   @Input() context?: TableColumnContext;
 

@@ -14,7 +14,8 @@ import { Observable, ReplaySubject, EMPTY } from 'rxjs';
   ],
 })
 export class StaticHtmlRendererDirective
-  implements HtmlRendererProvider, OnChanges {
+  implements HtmlRendererProvider, OnChanges
+{
   @Input() html = '';
 
   private html$ = new ReplaySubject<string>(1);

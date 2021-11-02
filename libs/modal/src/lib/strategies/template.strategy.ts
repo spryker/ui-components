@@ -19,7 +19,8 @@ export interface TemplateModalExtras<T> {
 export class TemplateModalRenderingRef<T>
   implements
     ModalRenderingRef<T, TemplateModalExtras<T>>,
-    TemplateModalExtras<T> {
+    TemplateModalExtras<T>
+{
   constructor(private viewRef: EmbeddedViewRef<TemplateModalContext<T>>) {}
 
   getViewRef(): EmbeddedViewRef<TemplateModalContext<T>> {
@@ -47,7 +48,8 @@ export class TemplateModalRenderingRef<T>
 }
 
 export class TemplateModalStrategy<T>
-  implements ModalStrategy<T, TemplateModalExtras<T>> {
+  implements ModalStrategy<T, TemplateModalExtras<T>>
+{
   constructor(private template: TemplateRef<TemplateModalContext<T>>) {}
 
   render(

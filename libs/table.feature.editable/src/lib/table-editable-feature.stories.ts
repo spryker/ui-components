@@ -135,7 +135,8 @@ class EditColumnConfig {
 })
 @TableColumnTypeComponent(EditColumnConfig)
 class EditColumnComponent
-  implements TableColumnComponent<EditColumnConfig>, OnInit {
+  implements TableColumnComponent<EditColumnConfig>, OnInit
+{
   @Input() config?: EditColumnConfig;
   @Input() context?: TableColumnContext;
 

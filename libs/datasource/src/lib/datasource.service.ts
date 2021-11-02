@@ -47,13 +47,15 @@ export class DatasourceService {
 
     return dataSource.resolve(injector, config, context).pipe(
       switchMap((data) => {
-        return (config.transform
-          ? this.dataTransformerService.transform(
-              data,
-              config.transform,
-              injector,
-            )
-          : of(data)) as Observable<D>;
+        return (
+          config.transform
+            ? this.dataTransformerService.transform(
+                data,
+                config.transform,
+                injector,
+              )
+            : of(data)
+        ) as Observable<D>;
       }),
     );
   }

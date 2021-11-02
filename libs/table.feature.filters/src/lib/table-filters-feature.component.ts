@@ -38,21 +38,17 @@ import {
     },
   ],
 })
-export class TableFiltersFeatureComponent extends TableFeatureComponent<
-  TableFiltersConfig
-> {
+export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFiltersConfig> {
   name = 'filters';
   tableFeatureLocation = TableFeatureLocation;
   filterClasses: Record<string, string | string[]> = {};
 
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
-  filterComponentMap: Record<
-    string,
-    TableFilterComponent<TableFilterBase>
-  > = this.tableFilterToken.reduce(
-    (acc, filter) => ({ ...acc, ...filter }),
-    {},
-  ) as Record<string, TableFilterComponent<TableFilterBase>>;
+  filterComponentMap: Record<string, TableFilterComponent<TableFilterBase>> =
+    this.tableFilterToken.reduce(
+      (acc, filter) => ({ ...acc, ...filter }),
+      {},
+    ) as Record<string, TableFilterComponent<TableFilterBase>>;
   dataConfig$ = this.dataConfiguratorService$.pipe(
     switchMap((service) => service.config$),
     shareReplay({ refCount: true, bufferSize: 1 }),

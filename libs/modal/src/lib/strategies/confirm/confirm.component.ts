@@ -16,7 +16,8 @@ import { ConfirmModalData } from './types';
 })
 export class ConfirmModalComponent
   extends asModal<ConfirmModalData, boolean>()
-  implements ComponentModal {
+  implements ComponentModal
+{
   @ViewChild('title', { static: true }) title!: TemplateRef<
     ModalTemplateContext<AnyModal>
   >;

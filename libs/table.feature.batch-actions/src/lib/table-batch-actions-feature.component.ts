@@ -51,9 +51,7 @@ import {
     },
   ],
 })
-export class TableBatchActionsFeatureComponent extends TableFeatureComponent<
-  TableBatchActionsConfig
-> {
+export class TableBatchActionsFeatureComponent extends TableFeatureComponent<TableBatchActionsConfig> {
   name = 'batchActions';
   tableFeatureLocation = TableFeatureLocation;
 

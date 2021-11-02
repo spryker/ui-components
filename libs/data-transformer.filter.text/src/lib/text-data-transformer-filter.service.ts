@@ -50,10 +50,9 @@ export class TextDataTransformerFilterService implements DataTransformerFilter {
       map((transformedValuesByPropNames: Record<string, unknown[]>) =>
         data.filter((row) =>
           propNames.some((propName) =>
-            transformedValuesByPropNames?.[
-              propName
-            ].some((byTransformedValue) =>
-              String(row[propName]).includes(String(byTransformedValue)),
+            transformedValuesByPropNames?.[propName].some(
+              (byTransformedValue) =>
+                String(row[propName]).includes(String(byTransformedValue)),
             ),
           ),
         ),

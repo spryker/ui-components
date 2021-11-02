@@ -16,7 +16,8 @@ import { RedirectActionConfig } from './types';
   providedIn: 'root',
 })
 export class RedirectActionHandlerService
-  implements ActionHandler<unknown, void> {
+  implements ActionHandler<unknown, void>
+{
   handleAction(
     injector: Injector,
     config: RedirectActionConfig,

@@ -26,7 +26,8 @@ declare module '@spryker/table' {
 
 @Injectable({ providedIn: 'root' })
 export class ColumnAutocompleteDataTransformer
-  implements DataTransformerConfig {
+  implements DataTransformerConfig
+{
   @ColumnTypeOption({ required: true })
   type!: string;
   [k: string]: unknown;
@@ -108,7 +109,8 @@ export class TableColumnAutocompleteConfig {
 })
 @TableColumnTypeComponent(TableColumnAutocompleteConfig)
 export class TableColumnAutocompleteComponent
-  implements TableColumnComponent<TableColumnAutocompleteConfig>, OnInit {
+  implements TableColumnComponent<TableColumnAutocompleteConfig>, OnInit
+{
   @Input() config?: TableColumnAutocompleteConfig;
   @Input() context?: TableColumnContext;
 

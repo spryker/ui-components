@@ -15,7 +15,8 @@ import { map } from 'rxjs/operators';
  */
 @Injectable({ providedIn: 'root' })
 export class EqualsDataTransformerFilterService
-  implements DataTransformerFilter {
+  implements DataTransformerFilter
+{
   constructor(private dataTransformerService: DataTransformerService) {}
 
   filter(

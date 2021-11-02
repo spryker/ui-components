@@ -23,7 +23,8 @@ export class TableRenderFeatureDirectiveInputs {
 })
 export class TableRenderFeatureDirective
   extends TableRenderFeatureDirectiveInputs
-  implements OnInit, OnChanges {
+  implements OnInit, OnChanges
+{
   private destroyed$ = new Subject<void>();
   private feature$ = new ReplaySubject<FeatureRecord>(1);
 
@@ -51,7 +52,7 @@ export class TableRenderFeatureDirective
     changes: TypedSimpleChanges<TableRenderFeatureDirectiveInputs>,
   ): void {
     if (changes.spyTableRenderFeature) {
-      this.feature$.next(<FeatureRecord> this.spyTableRenderFeature);
+      this.feature$.next(<FeatureRecord>this.spyTableRenderFeature);
     }
   }
 

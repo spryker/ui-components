@@ -31,7 +31,8 @@ interface DestructibleInjector
  */
 @Injectable()
 export class InterceptionComposerImplementation
-  implements InterceptionComposer, OnDestroy, OnInit {
+  implements InterceptionComposer, OnDestroy, OnInit
+{
   private static NO_SERVICE = { __noService: true };
 
   private factories = this.injector.get(
@@ -141,7 +142,8 @@ export class InterceptionComposerImplementation
 
 @Injectable()
 export abstract class InterceptionComposerService
-  implements InterceptionComposer {
+  implements InterceptionComposer
+{
   abstract getService<T>(
     token: Type<T> | AbstractType<T> | InjectionToken<T>,
     skipSelf?: boolean,

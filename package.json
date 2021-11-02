@@ -64,6 +64,9 @@
     "postinstall_noop": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
+  "engines": {
+    "node": "^12.22.0 || >=14.0.0"
+  },
   "dependencies": {
     "@angular/animations": "^12.2.12",
     "@angular/cdk": "^12.2.12",
@@ -121,7 +124,7 @@
     "copyfiles": "^2.2.0",
     "cz-conventional-changelog": "^3.1.0",
     "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
+    "eslint": "^8.1.0",
     "fast-glob": "^3.1.1",
     "firebase-tools": "^8.12.1",
     "globby": "^11.0.0",
@@ -133,7 +136,7 @@
     "lint-staged": "^10.0.7",
     "ng-packagr": "^9.1.5",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.1.2",
+    "prettier": "^2.4.1",
     "protractor": "~5.4.0",
     "react": "^16.13.1",
     "react-is": "^16.13.1",
@@ -142,9 +145,9 @@
     "storybook-addons-abstract": "^6.0.0",
     "ts-jest": "^25.3.0",
     "ts-node": "^8.6.2",
-    "tsickle": "^0.38.0",
-    "tslint": "^6.1.0",
-    "typescript": "~4.2.3"
+    "tsickle": "^0.43.0",
+    "tslint": "^6.1.3",
+    "typescript": "~4.3.5"
   },
   "config": {
     "commitizen": {

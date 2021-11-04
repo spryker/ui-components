@@ -11,7 +11,7 @@
     "@spryker/locale": "^0.2.0",
     "@spryker/popover": "^0.1.0",
     "@spryker/spinner": "^0.1.0",
-    "@spryker/styles": "^0.3.3",
+    "@spryker/styles": "^0.4.0",
     "@spryker/utils": "^0.2.1"
   },
   "dependencies": {

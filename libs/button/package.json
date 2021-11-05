@@ -1,6 +1,6 @@
 {
   "name": "@spryker/button",
-  "version": "0.2.6",
+  "version": "0.2.7-next.3",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
@@ -8,7 +8,7 @@
     "@spryker/icon": "^0.2.0",
     "@spryker/notification": "^0.2.0",
     "@spryker/spinner": "^0.1.1",
-    "@spryker/styles": "^0.2.0",
+    "@spryker/styles": "^0.4.0",
     "@spryker/utils": "^0.2.1"
   },
   "dependencies": {

@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.0-next.1...@spryker/sidebar@0.3.0-next.2) (2021-11-05)
+
+
+### Bug Fixes
+
+* **sidebar:** updated `spryker/styles` dependency ([d4e4412](https://github.com/spryker/ui-components/commit/d4e441271cfb1d77f54f7ac313f3ea4eb7e8ce11))
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.0-next.0...@spryker/sidebar@0.3.0-next.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* **sidebar:** provided host class & flex container for the content ([da3c0f4](https://github.com/spryker/ui-components/commit/da3c0f4eca502bff460cec7acd895c301be4f90f))
+
+
+
+
+
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.2.9-next.1...@spryker/sidebar@0.3.0-next.0) (2021-10-07)
+
+
+### Features
+
+* **sidebar:** add new styles ([e00c763](https://github.com/spryker/ui-components/commit/e00c763d17257c0353e361516c4a76fc328ee3a1))
+
+
+
+
+
+## [0.2.9-next.1](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.2.8...@spryker/sidebar@0.2.9-next.1) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/sidebar
+
+
+
+
+
+## [0.2.9-next.0](https://github.com/spryker/zed-gui/compare/@spryker/sidebar@0.2.5...@spryker/sidebar@0.2.9-next.0) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/sidebar
+
+
+
+
+
 ## [0.2.8](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.2.8-next.0...@spryker/sidebar@0.2.8) (2021-09-16)
 
 **Note:** Version bump only for package @spryker/sidebar

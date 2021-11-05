@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.3...@spryker/card@0.3.4-next.1) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/card
+
+
+
+
+
+## [0.3.4-next.0](https://github.com/spryker/zed-gui/compare/@spryker/card@0.3.0...@spryker/card@0.3.4-next.0) (2021-09-27)
+
+
+### Bug Fixes
+
+* **card:** adjusted `card` component by updating inner card box-shadow ([9a747e1](https://github.com/spryker/zed-gui/commit/9a747e14a07f7082e689a3b9794d3f8c227e43fe))
+* **card:** adjusted `card` component by updating padding ([c64916d](https://github.com/spryker/zed-gui/commit/c64916de8c01ddcb5a9cd9935a73d5f48a865934))
+* **card:** adjusted `card` component by updating styles ([06ef11d](https://github.com/spryker/zed-gui/commit/06ef11dc4f40a9621731861eb168849e33aada12))
+* **card.component:** added box-shadow on card ([ea8984e](https://github.com/spryker/zed-gui/commit/ea8984eb52aea9a328ff87589874a630ab62db3b))
+
+
+
+
+
 ## [0.3.3](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.3-next.1...@spryker/card@0.3.3) (2021-09-16)
 
 **Note:** Version bump only for package @spryker/card

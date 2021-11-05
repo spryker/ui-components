@@ -129,6 +129,11 @@
         background: none;
       }
     }
+
+    &:focus {
+      border-radius: @table-body-focus-row-border-radius;
+      box-shadow: @table-body-focus-row-border-shadow;
+    }
   }
 
   &-thead,
@@ -308,10 +313,9 @@
 
   &-empty {
     display: flex;
-    height: @table-empty-container-height;
     justify-content: center;
     align-items: center;
-    flex-flow: column wrap;
+    flex-direction: column;
     font: @font-default;
     border-radius: @border-radius-base;
     background: @white;
@@ -321,7 +325,7 @@
     &__title {
       padding-bottom: @table-empty-title-padding-bottom;
       font-weight: @font-weight-semi-bold;
-      font-size: @heading-3-font-size;
+      font-size: @heading-5-font-size;
       color: @gray-darker;
 
       &--sm {

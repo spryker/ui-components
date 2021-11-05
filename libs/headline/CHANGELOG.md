@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8-next.2](https://github.com/spryker/ui-components/compare/@spryker/headline@0.2.8-next.1...@spryker/headline@0.2.8-next.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* **headline:** adjusted `headline` component styles to keep buttons with actions on their places ([0605f44](https://github.com/spryker/ui-components/commit/0605f44a25cfb60aa9f32625313e735e24b208a0))
+* **headline:** adjusted `headline` component styles to remove wrap ([d88504a](https://github.com/spryker/ui-components/commit/d88504a48a7b149190a3a6ac017a1f95a7a319f5))
+
+
+
+
+
+## [0.2.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/headline@0.2.7...@spryker/headline@0.2.8-next.1) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/headline
+
+
+
+
+
+## [0.2.8-next.0](https://github.com/spryker/zed-gui/compare/@spryker/headline@0.2.4...@spryker/headline@0.2.8-next.0) (2021-09-27)
+
+**Note:** Version bump only for package @spryker/headline
+
+
+
+
+
 ## [0.2.7](https://github.com/spryker/ui-components/compare/@spryker/headline@0.2.7-next.0...@spryker/headline@0.2.7) (2021-09-16)
 
 **Note:** Version bump only for package @spryker/headline

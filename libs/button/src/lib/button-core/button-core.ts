@@ -48,14 +48,17 @@ export class ButtonCore
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('shape' in changes) {
+      this.shape = changes.shape.currentValue ?? ButtonShape.Default;
       this.changeClassName(this.shape, changes.shape.previousValue);
     }
 
     if ('size' in changes) {
+      this.size = changes.size.currentValue ?? ButtonSize.Medium;
       this.changeClassName(this.size, changes.size.previousValue);
     }
 
     if ('variant' in changes) {
+      this.variant = changes.variant.currentValue ?? ButtonVariant.Primary;
       this.changeClassName(this.variant, changes.variant.previousValue);
     }
   }
@@ -79,6 +82,9 @@ export class ButtonCore
       );
     }
 
+    this.shape = this.shape ?? ButtonShape.Default;
+    this.size = this.size ?? ButtonSize.Medium;
+    this.variant = this.variant ?? ButtonVariant.Primary;
     this.changeClassName(this.shape);
     this.changeClassName(this.size);
     this.changeClassName(this.variant);

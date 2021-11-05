@@ -11,15 +11,18 @@
         tableFeatureLocation.beforeTable;
         styles: {
           order: '3',
-          marginLeft: 'auto',
-          paddingLeft: '15px'
+          display: 'flex',
+          flexGrow: '1'
         }
       "
     >
       <ng-container *ngIf="mockRowData$ | async as mockRowData">
         <spy-button
           class="spy-table-editable-feature__create-row"
-          [size]="buttonSize.Medium"
+          [size]="addButton.size"
+          [variant]="addButton.variant"
+          [shape]="addButton.shape"
+          [type]="addButton.type"
           (click)="addRow(mockRowData)"
         >
           <spy-icon [name]="addButton.icon || addRowIcon" icon></spy-icon>

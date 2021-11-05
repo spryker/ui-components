@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.10-next.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.0.10-next.2...@spryker/table.feature.search@0.0.10-next.3) (2021-11-04)
+
+**Note:** Version bump only for package @spryker/table.feature.search
+
+
+
+
+
 ## [0.0.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.0.10-next.1...@spryker/table.feature.search@0.0.10-next.2) (2021-10-26)
 
 

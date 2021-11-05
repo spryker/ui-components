@@ -6,7 +6,7 @@
     "@angular/core": "^9.1.12",
     "@angular/forms": "^9.1.12",
     "@spryker/ajax-action": "^0.2.0",
-    "@spryker/button": "^0.2.0",
+    "@spryker/button": "^0.2.7",
     "@spryker/data-serializer": "^0.0.2",
     "@spryker/datasource": "^0.1.0",
     "@spryker/icon": "^0.2.0",

@@ -5,4 +5,7 @@ module.exports = {
     '@storybook/addon-docs',
     'storybook-addons-abstract',
   ],
+  core: {
+    builder: 'webpack5',
+  },
 };

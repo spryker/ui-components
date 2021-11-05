@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-next.2...@spryker/styles@0.4.0-next.3) (2021-11-05)
+
+
+### Bug Fixes
+
+* **styles:** updated `button` variables by removing unused one ([d665c2b](https://github.com/spryker/ui-components/commit/d665c2b6168f4a9e94a2434c43cdb4cd771952f7))
+* **styles:** updated `table-feature-filters` variables by removing unused one ([7ea26d9](https://github.com/spryker/ui-components/commit/7ea26d96f540edbc9025222fef9e360357a6a739))
+
+
+
+
+
 # [0.4.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-next.1...@spryker/styles@0.4.0-next.2) (2021-11-01)
 
 

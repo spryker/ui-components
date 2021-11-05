@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.monitor.form@0.1.7-next.1...@spryker/unsaved-changes.monitor.form@0.1.7) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/unsaved-changes.monitor.form
+
+
+
+
+
 ## [0.1.7-next.1](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.monitor.form@0.1.6...@spryker/unsaved-changes.monitor.form@0.1.7-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/unsaved-changes.monitor.form

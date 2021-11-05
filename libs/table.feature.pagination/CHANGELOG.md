@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.10](https://github.com/spryker/ui-components/compare/@spryker/table.feature.pagination@0.0.10-next.1...@spryker/table.feature.pagination@0.0.10) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/table.feature.pagination
+
+
+
+
+
 ## [0.0.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.pagination@0.0.9...@spryker/table.feature.pagination@0.0.10-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/table.feature.pagination

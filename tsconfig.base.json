@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "esnext",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "strict": true,
+    "lib": ["es2015", "es2019", "dom"],
+    "paths": {
+      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

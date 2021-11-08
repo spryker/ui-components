@@ -41,7 +41,7 @@ export class ObjectMapDataTransformerService
             : of(value);
         }
 
-        return forkJoin([dataToTransform]);
+        return forkJoin(dataToTransform as any);
       }),
     );
   }

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DataTransformerService } from '@spryker/data-transformer';
-import { of } from 'rxjs/internal/observable/of';
+import { of } from 'rxjs';
 
 import { TableDatasourceInlineService } from './table-datasource-inline.service';
 

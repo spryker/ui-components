@@ -558,8 +558,8 @@ export class TableEditableFeatureComponent
       url,
       cellContext as unknown as AnyContext,
     );
-    // tslint:disable-next-line: no-non-null-assertion
     const value =
+      // tslint:disable-next-line:no-non-null-assertion
       this.editingModel[cellContext.i][cellContext.config.id]!.value;
     const requestData = {
       [cellContext.config.id]: value,

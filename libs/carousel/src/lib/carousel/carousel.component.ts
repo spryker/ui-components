@@ -16,8 +16,6 @@ import { BehaviorSubject } from 'rxjs';
 import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
 import { SwiperComponent } from 'swiper/angular';
 
-SwiperCore.use([Navigation, Thumbs]);
-
 @Component({
   selector: 'spy-carousel',
   templateUrl: './carousel.component.html',
@@ -29,6 +27,10 @@ SwiperCore.use([Navigation, Thumbs]);
   },
 })
 export class CarouselComponent {
+  constructor() {
+    SwiperCore.use([Navigation, Thumbs]);
+  }
+
   @Input() config: CarouselOptions = { slidesPerView: 1 };
   @Input() thumbConfig: CarouselOptions = {
     slidesPerView: 6,

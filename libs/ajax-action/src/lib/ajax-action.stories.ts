@@ -61,6 +61,7 @@ class StoryComponent {
       mock: ActionMockService,
     }),
   ],
+  exports: [StoryComponent],
   declarations: [StoryComponent],
 })
 class StoryModule {}

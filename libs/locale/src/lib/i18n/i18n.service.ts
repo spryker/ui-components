@@ -53,7 +53,7 @@ export class I18nService {
       map((locale) => {
         console.log(locale);
         console.log(token);
-        return locale[token]
+        return locale[token];
       }),
       distinctUntilChanged(),
       this.maybeInterpolateLocale(data),
@@ -73,7 +73,9 @@ export class I18nService {
   ): string {
     this.interpolationRegex.lastIndex = 0; // Reset global Regex state
     return localeString.replace(this.interpolationRegex, (_, name: string) =>
-      data[name] !== null || data[name] !== undefined ?  (data[name]).toString() :  ''
+      data[name] !== null || data[name] !== undefined
+        ? data[name].toString()
+        : '',
     );
   }
 }

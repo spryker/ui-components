@@ -20,4 +20,9 @@
       </spy-chips>
     </span>
   </ng-container>
+  <ng-template #emptyBlock>
+    <spy-chips color="gray" maxWidth="200px">
+      {{ 'table.feature.total.total:number' | spyI18n: { number: 0 } | async }}
+    </spy-chips>
+  </ng-template>
 </ng-container>

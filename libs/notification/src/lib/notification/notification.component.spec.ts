@@ -15,7 +15,7 @@ describe('NotificationWrapperComponent', () => {
   const mockedDescription = 'mockedDescription';
 
   class MockNotificationRef {
-    afterClose$ = new Subject();
+    afterClose$ = new Subject<void>();
 
     afterClose = jest.fn().mockReturnValue(this.afterClose$);
     close = jest.fn();

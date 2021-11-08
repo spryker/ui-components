@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.2](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.1...@spryker/carousel@0.1.0-beta.2) (2021-11-08)
+
+
+### Bug Fixes
+
+* **carousel:** fixed carousel thumbs in production mode ([a13923c](https://github.com/spryker/ui-components/commit/a13923cf79be3263b1460891d50d465c9a1958e9))
+
+
+
+
+
 # [0.1.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.0...@spryker/carousel@0.1.0-beta.1) (2021-10-08)
 
 

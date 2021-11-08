@@ -50,7 +50,11 @@ export class I18nService {
     data?: I18nLocaleInterpolationData,
   ): Observable<string> {
     return this.locale$.pipe(
-      map((locale) => locale[token]),
+      map((locale) => {
+        console.log(locale);
+        console.log(token);
+        return locale[token]
+      }),
       distinctUntilChanged(),
       this.maybeInterpolateLocale(data),
       shareReplay({ bufferSize: 1, refCount: true }),
@@ -68,9 +72,8 @@ export class I18nService {
     data: I18nLocaleInterpolationData,
   ): string {
     this.interpolationRegex.lastIndex = 0; // Reset global Regex state
-
     return localeString.replace(this.interpolationRegex, (_, name: string) =>
-      String(data[name] || ''),
+      data[name] !== null || data[name] !== undefined ?  (data[name]).toString() :  ''
     );
   }
 }

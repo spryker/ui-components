@@ -17,6 +17,7 @@ export default {
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
     EnLocaleModule,
   ],
+  exports: [SelectComponent],
 })
 class StoryModule {}
 

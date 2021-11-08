@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/web-components@0.2.9-next.1...@spryker/web-components@0.2.10-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/web-components
+
+
+
+
+
 ## [0.2.9](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.9-next.1...@spryker/web-components@0.2.9) (2021-11-05)
 
 **Note:** Version bump only for package @spryker/web-components

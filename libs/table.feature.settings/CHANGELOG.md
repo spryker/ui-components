@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.12-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.settings@0.0.11-next.2...@spryker/table.feature.settings@0.0.12-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
 ## [0.0.11](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.11-next.3...@spryker/table.feature.settings@0.0.11) (2021-11-05)
 
 **Note:** Version bump only for package @spryker/table.feature.settings

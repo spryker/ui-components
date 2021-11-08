@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8-next.0](https://github.com/spryker/zed-gui/compare/@spryker/button@0.2.7-next.2...@spryker/button@0.2.8-next.0) (2021-11-08)
+
+
+### Bug Fixes
+
+* **button:** updated `button-core` styles by removing unused transform none ([70961c8](https://github.com/spryker/zed-gui/commit/70961c8fc01b1c5b193bb097a08d35d1b67f0d3a))
+* **button:** updated `spryker/styles` dependency ([fac8ee4](https://github.com/spryker/zed-gui/commit/fac8ee4f5fa70e19d07739c6203e400054484f46))
+
+
+
+
+
 ## [0.2.7](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.7-next.3...@spryker/button@0.2.7) (2021-11-05)
 
 **Note:** Version bump only for package @spryker/button

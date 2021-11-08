@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5-next.0](https://github.com/spryker/zed-gui/compare/@spryker/card@0.3.4-next.1...@spryker/card@0.3.5-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/card
+
+
+
+
+
 ## [0.3.4](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.4-next.1...@spryker/card@0.3.4) (2021-11-05)
 
 **Note:** Version bump only for package @spryker/card

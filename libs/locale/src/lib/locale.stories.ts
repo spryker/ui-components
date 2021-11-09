@@ -30,11 +30,7 @@ class LocaleStoryComponent {
 function createStoryFor(locale: LocaleMeta): () => IStory {
   return () => ({
     moduleMetadata: {
-      imports: [
-        BrowserAnimationsModule,
-        LocaleModule.forRoot(),
-        locale.module,
-      ],
+      imports: [BrowserAnimationsModule, LocaleModule.forRoot(), locale.module],
     },
     component: LocaleStoryComponent,
   });

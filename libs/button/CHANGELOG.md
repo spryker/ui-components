@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.0-next.1...@spryker/button@0.3.0-next.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **button:** update peerDependencies on styles lib ([db56003](https://github.com/spryker/ui-components/commit/db560039f880ced36356d73d0ebf317d0ff6aada))
+
+
+
+
+
 # [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.0-next.0...@spryker/button@0.3.0-next.1) (2021-11-09)
 
 

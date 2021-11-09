@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/button": "^0.2.0",
+    "@spryker/button": "^0.3.0",
     "@spryker/icon": "^0.2.0",
     "@spryker/styles": "^0.2.0",
     "@spryker/utils": "^0.2.1"

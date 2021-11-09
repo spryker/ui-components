@@ -5,7 +5,7 @@
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/button": "^0.2.0",
+    "@spryker/button": "^0.3.0",
     "@spryker/checkbox": "^0.2.0",
     "@spryker/icon": "^0.2.0",
     "@spryker/locale": "^0.2.0",

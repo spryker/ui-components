@@ -39,28 +39,67 @@
   &--secondary {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-default-bg;
-      color: @btn-secondary-color;
-      border-color: @btn-secondary-border;
+      color: @btn-default-color;
+      border-color: @btn-default-border;
 
       &:hover {
-        background: @btn-default-bg;
-        color: @btn-secondary-color;
-        border: @btn-border-secondary;
-        box-shadow: @btn-shadow-hovered-secondary;
+        box-shadow: @btn-shadow-secondary-hover;
       }
 
-      &:focus,
-      &:active,
-      &:focus:active {
+      &:focus {
+        box-shadow: @btn-shadow-secondary-focus;
+      }
+
+      &:active {
         background: @btn-default-bg-active;
-        color: @btn-secondary-color;
-        border-color: @btn-default-border;
+      }
+    }
+  }
+
+  &--outline {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      color: @btn-outline-color;
+      border-color: @btn-outline-border;
+
+      &:hover {
+        box-shadow: @btn-shadow-outline-hover;
       }
 
       &:focus {
         background: @btn-focus-bg;
         border-color: @btn-default-border-focus;
-        box-shadow: @btn-shadow-secondary;
+        box-shadow: @btn-shadow-outline-focus;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
+        border-color: @btn-outline-border;
+      }
+    }
+  }
+
+  &--critical-outline {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      color: @btn-critical-outline-color;
+      border-color: @btn-critical-outline-border;
+
+      &:hover {
+        background: @btn-critical-outline-bg-hover;
+      }
+
+      &:focus,
+      &:active {
+        background: @btn-default-bg;
+      }
+
+      &:focus {
+        box-shadow: @btn-shadow-critical-outline-focus;
+      }
+
+      &:active {
+        box-shadow: @btn-shadow-critical-outline-active;
       }
     }
   }

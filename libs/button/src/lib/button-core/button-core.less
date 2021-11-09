@@ -36,31 +36,90 @@
     }
   }
 
-  &--secondary {
+  &--outline {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-default-bg;
-      color: @btn-secondary-color;
-      border-color: @btn-secondary-border;
+      color: @btn-outline-color;
+      border-color: @btn-outline-border;
 
       &:hover {
         background: @btn-default-bg;
-        color: @btn-secondary-color;
-        border: @btn-border-secondary;
-        box-shadow: @btn-shadow-hovered-secondary;
+        color: @btn-outline-color;
+        border: @btn-border-outline;
+        box-shadow: @btn-shadow-hovered-outline;
       }
 
       &:focus,
       &:active,
       &:focus:active {
         background: @btn-default-bg-active;
-        color: @btn-secondary-color;
-        border-color: @btn-default-border;
+        color: @btn-outline-color;
       }
 
       &:focus {
         background: @btn-focus-bg;
         border-color: @btn-default-border-focus;
-        box-shadow: @btn-shadow-secondary;
+        box-shadow: @btn-shadow-outline;
+      }
+
+      &:active {
+        border-color: @btn-outline-border;
+      }
+    }
+  }
+
+  &--critical-outline {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      color: @btn-critical-outline-color;
+      border-color: @btn-critical-outline-border;
+
+      &:hover {
+        background: @btn-critical-outline-hover-background;
+      }
+
+      &:focus,
+      &:active,
+      &:focus:active {
+        background: @btn-default-bg-active;
+      }
+
+      &:focus {
+        box-shadow: @btn-shadow-critical-outline-focus;
+      }
+
+      &:active {
+        box-shadow: @btn-shadow-critical-outline-active;
+      }
+    }
+  }
+
+  &--secondary {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      color: @btn-default-color;
+      border-color: @btn-default-border;
+
+      &:hover {
+        background: @btn-default-bg;
+        color: @btn-default-color;
+        border-color: @btn-default-border;
+        box-shadow: @btn-secondary-box-shadow;
+      }
+
+      &:focus,
+      &:active,
+      &:focus:active {
+        color: @btn-default-color;
+        border-color: @btn-default-border;
+      }
+
+      &:focus {
+        box-shadow: @btn-shadow-secondary-focus;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
       }
     }
   }

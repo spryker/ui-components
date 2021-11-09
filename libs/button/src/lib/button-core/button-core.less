@@ -36,6 +36,36 @@
     }
   }
 
+  &--secondary {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      color: @btn-default-color;
+      border-color: @btn-default-border;
+
+      &:hover {
+        background: @btn-default-bg;
+        color: @btn-default-color;
+        border-color: @btn-default-border;
+        box-shadow: @btn-secondary-box-shadow;
+      }
+
+      &:focus,
+      &:active,
+      &:focus:active {
+        color: @btn-default-color;
+        border-color: @btn-default-border;
+      }
+
+      &:focus {
+        box-shadow: @btn-shadow-secondary-focus;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
+      }
+    }
+  }
+
   &--outline {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-default-bg;
@@ -90,36 +120,6 @@
 
       &:active {
         box-shadow: @btn-shadow-critical-outline-active;
-      }
-    }
-  }
-
-  &--secondary {
-    .@{btn-prefix-core-btn-cls} {
-      background: @btn-default-bg;
-      color: @btn-default-color;
-      border-color: @btn-default-border;
-
-      &:hover {
-        background: @btn-default-bg;
-        color: @btn-default-color;
-        border-color: @btn-default-border;
-        box-shadow: @btn-secondary-box-shadow;
-      }
-
-      &:focus,
-      &:active,
-      &:focus:active {
-        color: @btn-default-color;
-        border-color: @btn-default-border;
-      }
-
-      &:focus {
-        box-shadow: @btn-shadow-secondary-focus;
-      }
-
-      &:active {
-        background: @btn-default-bg-active;
       }
     }
   }

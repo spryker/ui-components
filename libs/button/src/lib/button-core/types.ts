@@ -4,7 +4,7 @@ export enum ButtonVariant {
   Critical = 'critical',
   Link = 'link',
   Outline = 'outline',
-  CriticalOutline = 'critical-outline'
+  CriticalOutline = 'critical-outline',
 }
 
 export enum ButtonShape {

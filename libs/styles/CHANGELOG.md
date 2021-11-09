@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.1-next.1...@spryker/styles@0.4.1-next.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **style:** provided variables for outline and critical-outline ([bb76b53](https://github.com/spryker/ui-components/commit/bb76b53368582251500452af5d934d480d9e2a97))
+
+
+
+
+
 ## [0.4.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0...@spryker/styles@0.4.1-next.1) (2021-11-08)
 
 **Note:** Version bump only for package @spryker/styles

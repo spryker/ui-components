@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.8-next.1...@spryker/button@0.3.0-next.0) (2021-11-09)
+
+
+### Features
+
+* **button:** provided outline and critical-outline states and updated secondary state ([29886a7](https://github.com/spryker/ui-components/commit/29886a76890bd05b329765ae47c8413083465718))
+
+
+
+
+
 ## [0.2.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.7...@spryker/button@0.2.8-next.1) (2021-11-08)
 
 **Note:** Version bump only for package @spryker/button

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.11-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.0.11-next.1...@spryker/table.feature.batch-actions@0.0.11-next.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **table.feature.batch-actions:** updated `spryker/button` peerDependency ([9046bff](https://github.com/spryker/ui-components/commit/9046bff4d81d65bd54c30db7b81c64fe8cf54ea5))
+
+
+
+
+
+## [0.0.11-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.0.10...@spryker/table.feature.batch-actions@0.0.11-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
+## [0.0.11-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.batch-actions@0.0.10-next.2...@spryker/table.feature.batch-actions@0.0.11-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
 ## [0.0.10](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.0.10-next.2...@spryker/table.feature.batch-actions@0.0.10) (2021-11-05)
 
 **Note:** Version bump only for package @spryker/table.feature.batch-actions

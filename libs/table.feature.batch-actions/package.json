@@ -1,10 +1,10 @@
 {
   "name": "@spryker/table.feature.batch-actions",
-  "version": "0.0.10",
+  "version": "0.0.11-next.2",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/button": "^0.2.0",
+    "@spryker/button": "^0.3.0",
     "@spryker/notification": "^0.2.0",
     "@spryker/styles": "^0.2.0",
     "@spryker/table": "^0.2.0",

@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.0-next.1...@spryker/button@0.3.0-next.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **button:** update peerDependencies on styles lib ([db56003](https://github.com/spryker/ui-components/commit/db560039f880ced36356d73d0ebf317d0ff6aada))
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.0-next.0...@spryker/button@0.3.0-next.1) (2021-11-09)
+
+
+### Bug Fixes
+
+* **button:** update style variables ([ae6eb9c](https://github.com/spryker/ui-components/commit/ae6eb9cc920bc3fb73268eeef84a1c3a0aa4e00c))
+
+
+
+
+
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.8-next.1...@spryker/button@0.3.0-next.0) (2021-11-09)
+
+
+### Features
+
+* **button:** provided outline and critical-outline states and updated secondary state ([29886a7](https://github.com/spryker/ui-components/commit/29886a76890bd05b329765ae47c8413083465718))
+
+
+
+
+
+## [0.2.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.7...@spryker/button@0.2.8-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/button
+
+
+
+
+
+## [0.2.8-next.0](https://github.com/spryker/zed-gui/compare/@spryker/button@0.2.7-next.2...@spryker/button@0.2.8-next.0) (2021-11-08)
+
+
+### Bug Fixes
+
+* **button:** updated `button-core` styles by removing unused transform none ([70961c8](https://github.com/spryker/zed-gui/commit/70961c8fc01b1c5b193bb097a08d35d1b67f0d3a))
+* **button:** updated `spryker/styles` dependency ([fac8ee4](https://github.com/spryker/zed-gui/commit/fac8ee4f5fa70e19d07739c6203e400054484f46))
+
+
+
+
+
 ## [0.2.7](https://github.com/spryker/ui-components/compare/@spryker/button@0.2.7-next.3...@spryker/button@0.2.7) (2021-11-05)
 
 **Note:** Version bump only for package @spryker/button

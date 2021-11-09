@@ -1,6 +1,6 @@
 {
   "name": "@spryker/collapsible",
-  "version": "0.2.9-next.1",
+  "version": "0.2.9",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",

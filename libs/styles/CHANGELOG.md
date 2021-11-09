@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.1-next.2...@spryker/styles@0.4.1-next.3) (2021-11-09)
+
+
+### Bug Fixes
+
+* **styles:** cleanup button variables ([9373c93](https://github.com/spryker/ui-components/commit/9373c932c404ab371f04561c70e07fbd91df3546))
+
+
+
+
+
 ## [0.4.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.1-next.1...@spryker/styles@0.4.1-next.2) (2021-11-09)
 
 

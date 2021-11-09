@@ -34,15 +34,14 @@
 @btn-border-radius-round: 40px;
 @btn-border-radius-circle: 50%;
 @btn-border-radius-link: 24px;
-@btn-border-outline: @btn-border @btn-link-color;
+@btn-border-outline: @btn-border @green;
 @btn-shadow-default-size: 0 0 2px;
 @btn-shadow-secondary-size: 0 0 3px;
 @btn-shadow-secondary-bigger-size: 0 4px 12px;
 @btn-shadow-secondary-focus: @btn-shadow-secondary-size @green;
-@btn-shadow-critical-outline-active: @btn-shadow-secondary-bigger-size
-  @ink-effect;
-@btn-shadow-outline: @btn-shadow-secondary-size @green;
-@btn-shadow-outline-hover: @btn-shadow-secondary-bigger-size @ink-effect;
+@btn-shadow-secondary-hover: @btn-shadow-secondary-bigger-size @ink-effect;
+@btn-shadow-outline-focus: @btn-shadow-secondary-focus;
+@btn-shadow-outline-hover: @btn-shadow-secondary-hover;
 @btn-shadow-default: @btn-shadow-default-size transparent;
 @btn-shadow-hover-size: 0 4px 18px;
 @btn-text-shadow: none;
@@ -85,5 +84,6 @@
 @btn-icon-right-padding: 8px;
 @btn-critical-outline-color: @red;
 @btn-critical-outline-border: @red;
+@btn-shadow-critical-outline-focus: @btn-shadow-secondary-focus;
+@btn-shadow-critical-outline-active: @btn-shadow-secondary-hover;
 @btn-critical-outline-hover-background: @gray-lighter;
-@btn-secondary-box-shadow: @btn-shadow-secondary-bigger-size @ink-effect;

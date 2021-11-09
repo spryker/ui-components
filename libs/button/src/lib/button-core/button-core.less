@@ -63,17 +63,7 @@
       border-color: @btn-outline-border;
 
       &:hover {
-        background: @btn-default-bg;
-        color: @btn-outline-color;
-        border: @btn-border-outline;
         box-shadow: @btn-shadow-outline-hover;
-      }
-
-      &:focus,
-      &:active,
-      &:focus:active {
-        background: @btn-default-bg-active;
-        color: @btn-outline-color;
       }
 
       &:focus {
@@ -83,6 +73,7 @@
       }
 
       &:active {
+        background: @btn-default-bg-active;
         border-color: @btn-outline-border;
       }
     }

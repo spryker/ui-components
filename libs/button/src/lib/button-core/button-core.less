@@ -46,7 +46,7 @@
         background: @btn-default-bg;
         color: @btn-default-color;
         border-color: @btn-default-border;
-        box-shadow: @btn-secondary-box-shadow;
+        box-shadow: @btn-shadow-secondary-hover;
       }
 
       &:focus,
@@ -88,7 +88,7 @@
       &:focus {
         background: @btn-focus-bg;
         border-color: @btn-default-border-focus;
-        box-shadow: @btn-shadow-secondary-focus;
+        box-shadow: @btn-shadow-outline-focus;
       }
 
       &:active {
@@ -109,11 +109,11 @@
 
       &:focus,
       &:active {
-        background: @btn-default-bg-active;
+        background: @btn-default-bg;
       }
 
       &:focus {
-        box-shadow: @btn-shadow-secondary-focus;
+        box-shadow: @btn-shadow-critical-outline-focus;
       }
 
       &:active {

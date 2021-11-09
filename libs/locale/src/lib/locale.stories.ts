@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IStory, storiesOf } from '@storybook/angular';
-import { DatePickerModule } from '@spryker/date-picker';
 
 import { LocaleModule } from './locale.module';
 
@@ -20,9 +19,6 @@ import { LocaleModule } from './locale.module';
       <p>Localized date: {{ date | date }}</p>
       <p>Localized time: {{ date | date: 'shortTime' }}</p>
       <p>Localized currency: {{ price | currency: 'EUR' }}</p>
-      <p>
-        <spy-date-picker [(date)]="date"></spy-date-picker>
-      </p>
     </ng-container>
   `,
 })
@@ -38,7 +34,6 @@ function createStoryFor(locale: LocaleMeta): () => IStory {
         BrowserAnimationsModule,
         LocaleModule.forRoot(),
         locale.module,
-        DatePickerModule,
       ],
     },
     component: LocaleStoryComponent,

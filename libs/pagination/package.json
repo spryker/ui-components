@@ -1,6 +1,6 @@
 {
   "name": "@spryker/pagination",
-  "version": "0.2.9",
+  "version": "0.2.10-next.0",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",

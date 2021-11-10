@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.13-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.settings@0.0.11-next.2...@spryker/table.feature.settings@0.0.13-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **table.feature.settings:** updated `spryker/button` peerDependency ([c7da1e5](https://github.com/spryker/zed-gui/commit/c7da1e5beb307ff64f5754d25f3cce141fa01a9a))
+
+
+
+
+
 ## [0.0.12](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.12-next.2...@spryker/table.feature.settings@0.0.12) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/table.feature.settings

@@ -1,6 +1,6 @@
 {
   "name": "@spryker/drawer",
-  "version": "0.2.9",
+  "version": "0.2.10-next.0",
   "peerDependencies": {
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.1.2",

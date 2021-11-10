@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/button.icon@0.1.8-next.1...@spryker/button.icon@0.1.10-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **button.icon:** updated `spryker/button` peerDependency ([892d384](https://github.com/spryker/zed-gui/commit/892d384149e69d7b352bc157f25f681c9ed4752f))
+
+
+
+
+
 ## [0.1.9](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.1.9-next.2...@spryker/button.icon@0.1.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/button.icon

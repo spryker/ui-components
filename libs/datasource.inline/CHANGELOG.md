@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/datasource.inline@0.1.8-next.1...@spryker/datasource.inline@0.1.10-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/datasource.inline
+
+
+
+
+
 ## [0.1.9](https://github.com/spryker/ui-components/compare/@spryker/datasource.inline@0.1.9-next.1...@spryker/datasource.inline@0.1.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/datasource.inline

@@ -1,6 +1,6 @@
 {
   "name": "@spryker/ajax-action",
-  "version": "0.2.9",
+  "version": "0.2.10-next.0",
   "peerDependencies": {
     "@angular/common": "^9.1.2",
     "@angular/core": "^9.1.2",

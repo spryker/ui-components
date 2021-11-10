@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.editable@0.1.8-next.5...@spryker/table.feature.editable@0.1.10-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** updated `spryker/button` peerDependencies ([1915a7d](https://github.com/spryker/zed-gui/commit/1915a7d9e078be2e192505967db843e3468e7ccd))
+* **table.feature.editable:** updated `spryker/button` peerDependency ([1347bec](https://github.com/spryker/zed-gui/commit/1347bec25139505f47054dbe2e7e09cb0586be45))
+
+
+
+
+
 ## [0.1.9](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.9-next.2...@spryker/table.feature.editable@0.1.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/table.feature.editable

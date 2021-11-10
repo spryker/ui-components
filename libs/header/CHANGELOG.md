@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/header@0.2.8-next.1...@spryker/header@0.2.10-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/header
+
+
+
+
+
 ## [0.2.9](https://github.com/spryker/ui-components/compare/@spryker/header@0.2.9-next.1...@spryker/header@0.2.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/header

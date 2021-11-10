@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9-next.1](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.monitor.form@0.1.8...@spryker/unsaved-changes.monitor.form@0.1.9-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/unsaved-changes.monitor.form
+
+
+
+
+
 ## [0.1.9-next.0](https://github.com/spryker/zed-gui/compare/@spryker/unsaved-changes.monitor.form@0.1.7-next.1...@spryker/unsaved-changes.monitor.form@0.1.9-next.0) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/unsaved-changes.monitor.form

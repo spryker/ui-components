@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.1-next.1...@spryker/button@0.3.1-next.2) (2021-11-12)
+
+
+### Bug Fixes
+
+* **button:** adjusted `button-core` by updating critical-outline hover & active states ([bb7ef5d](https://github.com/spryker/ui-components/commit/bb7ef5d45aa90cde19920988fac58cfef6150531))
+* **button:** updated `spryker/styles` peerDependency ([7971f94](https://github.com/spryker/ui-components/commit/7971f94101dcf1de74abf76094a86085704b94e2))
+* **button:** updated `spryker/styles` peerDependency ([22195eb](https://github.com/spryker/ui-components/commit/22195eb4f0a227630e4829286afeaf4a21f16b7c))
+
+
+
+
+
 ## [0.3.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.0...@spryker/button@0.3.1-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/button

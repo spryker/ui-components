@@ -85,12 +85,7 @@
       border-color: @btn-critical-outline-border;
 
       &:hover {
-        background: @btn-critical-outline-bg-hover;
-      }
-
-      &:focus,
-      &:active {
-        background: @btn-default-bg;
+        box-shadow: @btn-critical-outline-shadow-hover;
       }
 
       &:focus {
@@ -98,7 +93,7 @@
       }
 
       &:active {
-        box-shadow: @btn-critical-outline-shadow-active;
+        background: @btn-default-bg-active;
       }
     }
   }

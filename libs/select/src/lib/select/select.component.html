@@ -8,7 +8,7 @@
   [nzMode]="multiple ? 'multiple' : 'default'"
   [nzSuffixIcon]="suffixIconTpl"
   [nzNotFoundContent]="notFoundContent"
-  [nzOptionHeightPx]="40"
+  [nzOptionHeightPx]="42"
   [nzRemoveIcon]="crossIconTpl"
   [nzAllowClear]="!disableClear"
   [nzClearIcon]="clearIconTpl"
@@ -22,7 +22,12 @@
     *ngIf="showSelectAll"
     [nzValue]="selectAllValue"
     [nzLabel]="selectAllTitle"
+    [nzCustomContent]="true"
   >
+    <div
+      class="ant-select-item-option-content-wrapper">
+      {{ selectAllTitle }}
+    </div>
   </nz-option>
 
   <nz-option
@@ -104,12 +109,7 @@
 </ng-template>
 
 <ng-template #multiSelectOptionIconTpl>
-  <span class="ant-select-item-option-state__multiChecked">
-    <spy-icon
-      class="ant-select-item-option-state__multiChecked--icon"
-      [name]="checkIcon"
-    ></spy-icon>
-  </span>
+  <span class="ant-select-item-option-state__multiChecked"></span>
   <span class="ant-select-item-option-state__multiUnChecked"></span>
 </ng-template>
 

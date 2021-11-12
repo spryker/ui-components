@@ -4,12 +4,13 @@
   [nzDisabled]="disabled"
   [nzMultiple]="multiple"
   [nzPlaceHolder]="placeholder"
-  [nzNotFoundContent]="noOptionsText"
+  [nzNotFoundContent]="notFoundContent"
   [nzAllowClear]="!disableClear"
   [nzMaxTagCount]="0"
   [nzMaxTagPlaceholder]="tagPlaceholder"
   [(ngModel)]="value"
   (ngModelChange)="valueChange.emit($event)"
+  nzCheckable
   nzDropdownClassName="spy-tree-select-dropdown"
 ></nz-tree-select>
 
@@ -32,3 +33,5 @@
 <ng-template #tagPlaceholder let-selectedList>{{
   selectedList | treeSelectExtractKeys | spyJoin: ', '
 }}</ng-template>
+
+<ng-template #notFoundContent>{{ noOptionsText$ | async }}</ng-template>

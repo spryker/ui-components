@@ -13,8 +13,9 @@ import {
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { ToBoolean, ToJson } from '@spryker/utils';
-import { EMPTY, Observable, ReplaySubject, Subject } from 'rxjs';
-import { switchAll, takeUntil } from 'rxjs/operators';
+import { I18nService } from '@spryker/locale';
+import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
 import { TreeSelectItem, TreeSelectValue } from './types';
 
 /**
@@ -62,9 +63,19 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
 
   private destroyed$ = new Subject<void>();
 
+  setNoOptionsText$ = new BehaviorSubject(this.noOptionsText);
+  noOptionsText$ = this.setNoOptionsText$.pipe(
+    switchMap((noOptionsText) =>
+      noOptionsText
+        ? of(noOptionsText)
+        : this.i18nService.translate('tree-select.no-results'),
+    ),
+  );
+
   constructor(
     private injector: Injector,
     private datasourceService: DatasourceService,
+    private i18nService: I18nService,
   ) {}
 
   ngOnInit(): void {
@@ -85,6 +96,10 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
 
     if (changes.datasource && !changes.datasource.firstChange) {
       this.updateDatasource();
+    }
+
+    if (changes.noOptionsText) {
+      this.setNoOptionsText$.next(this.noOptionsText);
     }
   }
 

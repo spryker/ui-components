@@ -14,7 +14,14 @@ import {
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { ToBoolean, ToJson } from '@spryker/utils';
 import { I18nService } from '@spryker/locale';
-import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  EMPTY,
+  Observable,
+  of,
+  ReplaySubject,
+  Subject,
+} from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
 import { TreeSelectItem, TreeSelectValue } from './types';
 

@@ -17,6 +17,10 @@
       padding-right: @input-add-before-spacing;
     }
   }
+
+  &-wrapper {
+    border-radius: 10px;
+  }
 }
 
 .@{input-prefix-cls} {
@@ -42,7 +46,6 @@
   }
 
   &:focus {
-    &,
     .has-error & {
       box-shadow: none;
     }
@@ -77,6 +80,15 @@
       padding-left: @input-affix-padding;
     }
 
+    &-focused {
+      .transition-mixin(border-color box-shadow);
+      border-radius: 10px;
+
+      .@{input-prefix-cls} {
+        box-shadow: none;
+      }
+    }
+
     .@{input-prefix-cls} {
       &-prefix,
       &-suffix {
@@ -105,10 +117,6 @@
       }
     }
 
-    &-focused {
-      box-shadow: none;
-    }
-
     &.@{input-prefix-cls}-container--hover {
       border-color: @gray;
     }
@@ -124,7 +132,6 @@
       .@{input-prefix-cls}-affix-wrapper,
       .@{input-prefix-cls} {
         border-color: @gray;
-        box-shadow: none;
       }
     }
 
@@ -134,7 +141,6 @@
       .@{input-prefix-cls} {
         border-color: @primary-color;
         border-width: @border-width-base;
-        box-shadow: none;
       }
     }
   }
@@ -144,8 +150,11 @@
   .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--hover,
   .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--focus,
   .@{input-prefix-cls}-group-addon,
+  .@{input-prefix-cls}-group,
+  .@{select-prefix-cls}-selector,
   .@{input-prefix-cls} {
     border-color: @red;
+    box-shadow: none !important;
 
     &:focus {
       box-shadow: none;

@@ -5,7 +5,7 @@ import { ActionsModule } from '@spryker/actions';
 import { DrawerActionHandlerService } from '@spryker/actions.drawer';
 import { ButtonActionModule } from '@spryker/button.action';
 import { DatasourceModule } from '@spryker/datasource';
-import { DrawerModule } from '@spryker/drawer';
+import { DrawerModule, DrawerContainerProxyComponent } from '@spryker/drawer';
 import { TableModule } from '@spryker/table';
 import { TableRowActionsFeatureModule } from '@spryker/table.feature.row-actions';
 import {
@@ -14,9 +14,7 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-
 import { RefreshParentTableActionHandlerService } from './refresh-parent-table-action-handler.service';
-import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
 
 export default {
   title: 'RefreshParentTableActionHandlerService',

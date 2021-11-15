@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.12-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.0.12-next.1...@spryker/table.feature.filters@0.0.12-next.2) (2021-11-15)
+
+
+### Bug Fixes
+
+* **table.feature.filters:** updated `spryker/styles` peerDependency ([2959ac6](https://github.com/spryker/ui-components/commit/2959ac6ec55df0b6586c7948b53273f8917c9574))
+
+
+
+
+
 ## [0.0.12-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.0.11...@spryker/table.feature.filters@0.0.12-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/table.feature.filters

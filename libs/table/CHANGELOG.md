@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.7-next.1...@spryker/table@0.3.7-next.2) (2021-11-15)
+
+
+### Bug Fixes
+
+* **table:** updated `spryker/styles` peerDependency ([604bc3f](https://github.com/spryker/ui-components/commit/604bc3fc91fad0b50a716f00c3718bbd9820624e))
+* **table:** updated `table` component by adding table-features--after-table padding-top ([81474ed](https://github.com/spryker/ui-components/commit/81474eda4388fd91c79b2b81e610994a27a01d45))
+* **table:** updated `table` component by renaming variable ([334f6e0](https://github.com/spryker/ui-components/commit/334f6e0ccfd5af952be7a312ed404fde3457dc4d))
+
+
+
+
+
 ## [0.3.7-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.6...@spryker/table@0.3.7-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/table

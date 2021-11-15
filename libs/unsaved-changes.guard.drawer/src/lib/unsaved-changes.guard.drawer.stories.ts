@@ -1,6 +1,11 @@
 import { Component, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DrawerModule, DrawerRef, DrawerService, DrawerContainerProxyComponent } from '@spryker/drawer';
+import {
+  DrawerModule,
+  DrawerRef,
+  DrawerService,
+  DrawerContainerProxyComponent,
+} from '@spryker/drawer';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { ModalModule, NzModalWrapperComponent } from '@spryker/modal';

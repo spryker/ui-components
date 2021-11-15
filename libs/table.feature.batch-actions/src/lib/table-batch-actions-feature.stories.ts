@@ -5,7 +5,10 @@ import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
-import { NotificationModule, NotificationWrapperComponent } from '@spryker/notification';
+import {
+  NotificationModule,
+  NotificationWrapperComponent,
+} from '@spryker/notification';
 import { TableModule } from '@spryker/table';
 import { TableSelectableFeatureModule } from '@spryker/table.feature.selectable';
 import {

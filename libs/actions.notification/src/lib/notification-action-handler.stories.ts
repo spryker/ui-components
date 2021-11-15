@@ -1,7 +1,11 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActionsModule } from '@spryker/actions';
 import { ButtonActionModule } from '@spryker/button.action';
-import { NotificationModule, NotificationType, NotificationWrapperComponent } from '@spryker/notification';
+import {
+  NotificationModule,
+  NotificationType,
+  NotificationWrapperComponent,
+} from '@spryker/notification';
 import { object } from '@storybook/addon-knobs';
 import { IStory } from '@storybook/angular';
 import { ContextService } from '@spryker/utils';

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { DrawerModule, DrawerService, DrawerContainerProxyComponent } from '@spryker/drawer';
+import {
+  DrawerModule,
+  DrawerService,
+  DrawerContainerProxyComponent,
+} from '@spryker/drawer';
 import { ButtonModule } from '@spryker/button';
 import { ButtonActionModule } from '@spryker/button.action';
 import { ActionsModule } from '@spryker/actions';

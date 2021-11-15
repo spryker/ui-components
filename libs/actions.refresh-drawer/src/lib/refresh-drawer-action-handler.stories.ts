@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { DrawerModule, DrawerService } from '@spryker/drawer';
+import { DrawerModule, DrawerService, DrawerContainerProxyComponent } from '@spryker/drawer';
 import { ButtonModule } from '@spryker/button';
 import { ButtonActionModule } from '@spryker/button.action';
 import { ActionsModule } from '@spryker/actions';
 import { WebComponentsModule } from '@spryker/web-components';
 import { IStory } from '@storybook/angular';
 import { object } from '@storybook/addon-knobs';
-
-import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
 import { RefreshDrawerActionHandlerService } from './refresh-drawer-action-handler.service';
 
 export default {

@@ -5,7 +5,7 @@ import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
-import { NotificationModule } from '@spryker/notification';
+import { NotificationModule, NotificationWrapperComponent } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
 import { TableSelectableFeatureModule } from '@spryker/table.feature.selectable';
 import {
@@ -14,16 +14,13 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { DrawerModule } from '@spryker/drawer';
+import { DrawerModule, DrawerContainerProxyComponent } from '@spryker/drawer';
 import { ActionsModule } from '@spryker/actions';
 import {
   DrawerActionHandlerService,
   DrawerActionModule,
 } from '@spryker/actions.drawer';
 import { IStory } from '@storybook/angular';
-
-import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
-import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
 import { TableBatchActionsFeatureModule } from './table-batch-actions-feature.module';
 
 export default {

@@ -27,7 +27,6 @@
 }
 
 .@{table-prefix-cls} {
-  margin-bottom: @table-bottom-margin;
   font: @font-default;
   background: none;
 
@@ -38,6 +37,10 @@
   &-features {
     &--before-table {
       padding-bottom: @table-features-padding-vertical;
+    }
+
+    &--after-table {
+      padding-top: @table-features-after-table-padding-vertical;
     }
 
     @{table-feature-renderer-prefix-cls} {

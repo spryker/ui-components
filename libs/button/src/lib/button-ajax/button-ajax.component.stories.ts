@@ -1,10 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { NotificationModule } from '@spryker/notification';
+import { NotificationModule, NotificationWrapperComponent } from '@spryker/notification';
 import { select } from '@storybook/addon-knobs';
-
-import { NotificationWrapperComponent } from '../../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonAjaxModule } from './button-ajax.module';
 

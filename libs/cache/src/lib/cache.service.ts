@@ -22,7 +22,7 @@ import {
   providedIn: 'root',
 })
 export class CacheService {
-  private caches: CacheStrategyTypesDeclaration =
+  private caches: Partial<CacheStrategyTypesDeclaration> =
     this.cachesTypes?.reduce(
       (caches, cache) => ({ ...caches, ...cache }),
       {},

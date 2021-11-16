@@ -27,7 +27,7 @@ const mockConfig = {
       type: mockAnotherTestTypeTransformerConfig.type,
     },
   },
-};
+} as any;
 
 class MockDataTransformerService {
   transform = jest

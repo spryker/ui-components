@@ -28,7 +28,7 @@ describe('DateParseDataTransformerService', () => {
   it('transform method should returns the date number of milliseconds', () => {
     const mockConfig = {
       type: 'type',
-    };
+    } as any;
     const mockData = '2021-02-15T10:57:07.086Z';
     const callback = jest.fn();
 

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { DataTransformerService } from '@spryker/data-transformer';
+import {
+  DataTransformerService,
+  DataTransformerType,
+} from '@spryker/data-transformer';
 import {
   DataFilterTransformerByPropName,
   DataTransformerFilter,
@@ -34,7 +37,7 @@ export class EqualsDataTransformerFilterService
           ? forkJoin(
               byValue.map((valueToCompare) =>
                 this.dataTransformerService.transform(valueToCompare, {
-                  type: transformerByPropName[propName],
+                  type: transformerByPropName[propName] as DataTransformerType,
                 }),
               ),
             )

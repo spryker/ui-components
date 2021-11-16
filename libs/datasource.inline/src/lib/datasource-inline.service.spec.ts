@@ -18,7 +18,7 @@ describe('DatasourceInlineService', () => {
       transform: {
         type: 'test',
       },
-    };
+    } as any;
     const mockInjector = {} as any;
     const callback = jest.fn();
     const serviceObservable$ = service.resolve(mockInjector, mockConfig);

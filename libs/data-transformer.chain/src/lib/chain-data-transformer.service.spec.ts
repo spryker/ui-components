@@ -19,7 +19,7 @@ const mockConfig = {
       value: 'mockAnotherTestReturnedValue',
     },
   ],
-};
+} as any;
 
 class MockDataTransformerService {
   transform = jest
@@ -60,7 +60,7 @@ describe('ChainDataTransformerService', () => {
     const resultValue = transformers[transformers.length - 1].value;
     transformObservable$.subscribe(callback);
 
-    mockConfig.transformers.forEach((config) => {
+    mockConfig.transformers.forEach((config: any) => {
       expect(dataTransformerService.transform).toBeCalledWith(
         mockData,
         config,

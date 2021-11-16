@@ -48,7 +48,7 @@ const tableConfig = {
   dataSource: {
     type: 'mock-data',
     dataGenerator: tableDataGenerator,
-  } as MockTableDatasourceConfig,
+  } as unknown as MockTableDatasourceConfig,
   columns: [
     { id: 'col1', title: 'Column #1' },
     { id: 'col2', title: 'Column #2' },
@@ -165,7 +165,7 @@ class EditColumnComponent
     TableModule.forRoot(),
     DatasourceModule.withDatasources({
       'mock-data': MockTableDatasourceService,
-    }),
+    } as any),
     TableModule.withColumnComponents({
       edit: EditColumnComponent,
     } as any),

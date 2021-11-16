@@ -383,8 +383,8 @@ export class CoreTableComponent
       this.setConfig$.next(this.config);
     }
 
-    if (changes.tableId) {
-      this.setTableId$.next(<string>this.tableId);
+    if (changes.tableId && this.tableId) {
+      this.setTableId$.next(this.tableId);
     }
   }
 

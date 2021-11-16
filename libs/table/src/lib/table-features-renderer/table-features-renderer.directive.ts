@@ -109,14 +109,18 @@ export class TableFeaturesRendererDirective
       );
     }
 
-    if (changes.spyTableFeaturesRendererContext) {
-      this.context$.next(
-        <TableFeatureTplContext>this.spyTableFeaturesRendererContext,
-      );
+    if (
+      changes.spyTableFeaturesRendererContext &&
+      this.spyTableFeaturesRendererContext
+    ) {
+      this.context$.next(this.spyTableFeaturesRendererContext);
     }
 
-    if (changes.spyTableFeaturesRendererMaxFeatures) {
-      this.maxFeatures$.next(<number>this.spyTableFeaturesRendererMaxFeatures);
+    if (
+      changes.spyTableFeaturesRendererMaxFeatures &&
+      this.spyTableFeaturesRendererMaxFeatures
+    ) {
+      this.maxFeatures$.next(this.spyTableFeaturesRendererMaxFeatures);
     }
   }
 

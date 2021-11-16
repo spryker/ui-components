@@ -34,7 +34,7 @@ describe('ArrayMapDataTransformerService', () => {
       mapItems: {
         type: 'type',
       },
-    };
+    } as any;
     const mockData = ['data', 'newdata', '1data'];
     const mockReturnedData = mockData.map(() => mockReturnedValue);
     const callback = jest.fn();

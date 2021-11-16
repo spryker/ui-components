@@ -51,8 +51,8 @@ export class TableRenderFeatureDirective
   ngOnChanges(
     changes: TypedSimpleChanges<TableRenderFeatureDirectiveInputs>,
   ): void {
-    if (changes.spyTableRenderFeature) {
-      this.feature$.next(<FeatureRecord>this.spyTableRenderFeature);
+    if (changes.spyTableRenderFeature && this.spyTableRenderFeature) {
+      this.feature$.next(this.spyTableRenderFeature);
     }
   }
 

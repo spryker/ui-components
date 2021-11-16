@@ -126,7 +126,7 @@ function getTotalStory(
         }),
         DatasourceModule.withDatasources({
           'mock-data': MockTableDatasourceService,
-        }),
+        } as any),
         DrawerActionModule.withComponents({
           simple_component: SimpleComponent,
         }),
@@ -155,7 +155,7 @@ function getTotalStory(
         dataSource: {
           type: 'mock-data',
           dataGenerator: tableDataGenerator,
-        } as MockTableDatasourceConfig,
+        } as unknown as MockTableDatasourceConfig,
         columns: [
           { id: 'sku', title: 'SKU' },
           { id: 'col2', title: 'Available Actions' },

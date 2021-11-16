@@ -103,7 +103,7 @@ export const withTable = () => ({
       TableModule.forRoot(),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       DrawerActionModule.withComponents({
         simple_component: SimpleComponent,
@@ -124,7 +124,7 @@ export const withTable = () => ({
       dataSource: {
         type: 'mock-data',
         dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+      } as unknown as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', title: 'Column #1' },
         { id: 'col2', title: 'Column #2' },

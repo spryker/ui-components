@@ -14,7 +14,7 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class DataTransformerConfiguratorService {
-  private dataConfigurators: DataTransformerConfiguratorDeclaration =
+  private dataConfigurators: Partial<DataTransformerConfiguratorDeclaration> =
     this.dataConfiguratorsTypes?.reduce(
       (dataConfigurators, dataConfigurator) => ({
         ...dataConfigurators,
@@ -44,7 +44,7 @@ export class DataTransformerConfiguratorService {
     }
 
     const dataConfigurator: DataTransformerConfigurator = injector.get(
-      (this.dataConfigurators as any)[config.type],
+      this.dataConfigurators[config.type],
     );
 
     return dataConfigurator.resolve(injector);

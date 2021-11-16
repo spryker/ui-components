@@ -7,11 +7,10 @@ export interface DataTransformerRegistry {
   // pluck: DataTransformer
 }
 
-export type DataTransformerType = RegistryType<DataTransformerRegistry | any>;
+export type DataTransformerType = RegistryType<DataTransformerRegistry>;
 
-export type DataTransformerTypesDeclaration = RegistryDeclaration<
-  DataTransformerRegistry | unknown
->;
+export type DataTransformerTypesDeclaration =
+  RegistryDeclaration<DataTransformerRegistry>;
 
 export interface DataTransformerConfig {
   type: DataTransformerType;

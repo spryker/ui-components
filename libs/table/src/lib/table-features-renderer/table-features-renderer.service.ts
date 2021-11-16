@@ -112,14 +112,16 @@ export class TableFeaturesRendererService implements OnDestroy {
     );
 
     const featureContexts$ = featuresInLocation$.pipe(
-      switchMap((features) =>
-        combineLatest(
-          // tslint:disable-next-line:no-non-null-assertion
-          features!.map((feature) => feature.featureContext$ ?? of(undefined)),
-        ),
-      ),
-      // tslint:disable-next-line: deprecation
-      startWith([] as never),
+      switchMap((features) => {
+        if (!features) {
+          return of([]);
+        }
+
+        return combineLatest(
+          features.map((feature) => feature.featureContext$ ?? of(undefined)),
+        );
+      }),
+      startWith([]),
       debounceTime(0),
     );
 

@@ -269,7 +269,9 @@ export class TableEditableFeatureComponent
       this.tableElement = undefined;
     }
 
-    this.updateTableElement$.next(<HTMLElement>this.tableElement);
+    if (this.tableElement) {
+      this.updateTableElement$.next(this.tableElement);
+    }
   }
 
   private changeColsVisibilityAfterColumnConfigurator(id: string): void {

@@ -79,7 +79,7 @@ describe('DatasourceHttpService', () => {
       },
       url: 'mockUrl',
       method: 'POST',
-    };
+    } as any;
     const serviceObservable$ = service.resolve(mockInjector, mockConfig);
 
     serviceObservable$.subscribe();
@@ -90,14 +90,13 @@ describe('DatasourceHttpService', () => {
   });
 
   it('resolve method should sent request with url and method `GET` if method does not exist in the config', () => {
-    const mockUrl = 'mockUrl';
     const mockConfig = {
       type: 'type',
       transform: {
         type: 'type',
       },
       url: 'mockUrl',
-    };
+    } as any;
     const serviceObservable$ = service.resolve(mockInjector, mockConfig);
 
     serviceObservable$.subscribe();
@@ -117,7 +116,7 @@ describe('DatasourceHttpService', () => {
       },
       url: 'mockUrl',
       dataIn: DatasourceHttpConfigDataIn.Body,
-    };
+    } as any;
 
     dataSerializerService.serialize.mockReturnValue(mockContextSerialized);
 
@@ -151,7 +150,7 @@ describe('DatasourceHttpService', () => {
       },
       url: 'mockUrl',
       dataIn: DatasourceHttpConfigDataIn.Params,
-    };
+    } as any;
     const serviceObservable$ = service.resolve(
       mockInjector,
       mockConfig,
@@ -181,7 +180,7 @@ describe('DatasourceHttpService', () => {
       },
       url: 'mockUrl',
       method: 'POST',
-    };
+    } as any;
     const callback = jest.fn();
     const serviceObservable$ = service.resolve(mockInjector, mockConfig);
 
@@ -205,7 +204,7 @@ describe('DatasourceHttpService', () => {
         type: 'type',
         namespace: 'namespace',
       },
-    };
+    } as any;
     cacheService.getCached.mockReturnValue(mockResponse);
 
     const returnValue = service.resolve(mockInjector, mockConfig);

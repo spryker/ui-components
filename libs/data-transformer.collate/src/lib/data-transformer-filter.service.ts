@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataTransformerFilterService {
-  private filters: DataTransformerFilterDeclaration =
+  private filters: Partial<DataTransformerFilterDeclaration> =
     this.filtersTypes?.reduce(
       (filters, filter) => ({ ...filters, ...filter }),
       {},
@@ -43,14 +43,14 @@ export class DataTransformerFilterService {
     }
 
     const filterService: DataTransformerFilter = this.injector.get(
-      (this.filters as any)[type],
+      this.filters[type],
     );
 
     return filterService.filter(data, options, byValue, transformerByPropName);
   }
 
   private isFilterRegisteredType(
-    type: DataTransformerFilterRegistryType,
+    type: string,
   ): type is keyof DataTransformerFilterRegistry {
     return type in this.filters;
   }

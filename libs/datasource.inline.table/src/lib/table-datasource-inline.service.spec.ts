@@ -52,7 +52,7 @@ describe('TableDatasourceInlineService', () => {
       transformerByPropName: {
         col1: 'date',
       },
-    };
+    } as any;
     const mockTransformersConfig = {
       type: 'chain',
       transformers: [

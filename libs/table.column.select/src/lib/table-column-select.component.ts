@@ -6,8 +6,11 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { DataTransformerConfig } from '@spryker/data-transformer';
-import { DatasourceConfig } from '@spryker/datasource';
+import {
+  DataTransformerConfig,
+  DataTransformerType,
+} from '@spryker/data-transformer';
+import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
 import { SelectOption, SelectValue } from '@spryker/select';
 import {
   ColumnTypeOption,
@@ -27,14 +30,14 @@ declare module '@spryker/table' {
 @Injectable({ providedIn: 'root' })
 export class ColumnSelectDataTransformer implements DataTransformerConfig {
   @ColumnTypeOption({ required: true })
-  type!: string;
+  type!: DataTransformerType;
   [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
 export class ColumnSelectDatasource implements DatasourceConfig {
   @ColumnTypeOption({ required: true })
-  type!: string;
+  type!: DatasourceType;
   @ColumnTypeOption()
   transform?: ColumnSelectDataTransformer;
   [k: string]: unknown;

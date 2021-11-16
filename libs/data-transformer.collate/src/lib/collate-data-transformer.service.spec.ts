@@ -103,7 +103,7 @@ describe('CollateDataTransformerService', () => {
         type: 'text',
         propNames: ['value 1'],
       },
-    };
+    } as any;
     const callback = jest.fn();
 
     dataTransformerConfiguratorService.resolve.mockReturnValue(
@@ -138,7 +138,7 @@ describe('CollateDataTransformerService', () => {
       configurator: {
         type: 'table-data',
       },
-    };
+    } as any;
     const callback = jest.fn();
     const mockDataTransformerConfiguratorData$ = new BehaviorSubject(
       mockTransformerReturnData,

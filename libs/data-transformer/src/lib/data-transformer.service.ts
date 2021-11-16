@@ -18,7 +18,7 @@ import {
   providedIn: 'root',
 })
 export class DataTransformerService {
-  private transformers: DataTransformerTypesDeclaration =
+  private transformers: Partial<DataTransformerTypesDeclaration> =
     this.transformersTypes?.reduce(
       (transformers, transformer) => ({ ...transformers, ...transformer }),
       {},
@@ -47,7 +47,7 @@ export class DataTransformerService {
     }
 
     const transformer: DataTransformer<unknown, unknown> = this.injector.get(
-      (this.transformers as any)[config.type],
+      this.transformers[config.type],
     );
 
     return transformer.transform(data, config, injector ?? this.injector);

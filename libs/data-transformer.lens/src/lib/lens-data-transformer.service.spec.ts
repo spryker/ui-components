@@ -38,7 +38,7 @@ describe('LensDataTransformerService', () => {
       transformer: {
         type: 'type',
       },
-    };
+    } as any;
     const mockData = {
       test: {
         test2: {
@@ -69,7 +69,7 @@ describe('LensDataTransformerService', () => {
       transformer: {
         type: 'type',
       },
-    };
+    } as any;
     const mockData = {
       test: {
         test2: {

@@ -4,10 +4,10 @@
   "peerDependencies": {
     "@angular/common": "^12.2.12",
     "@angular/core": "^12.2.12",
-    "@spryker/icon": "^0.2.0",
-    "@spryker/locale": "^0.2.0",
-    "@spryker/select": "^0.2.0",
-    "@spryker/utils": "^0.2.1"
+    "@spryker/icon": "^0.3.0",
+    "@spryker/locale": "^0.3.0",
+    "@spryker/select": "^0.3.0",
+    "@spryker/utils": "^0.3.0"
   },
   "dependencies": {
     "ng-zorro-antd": "^12.0.1",

@@ -4,10 +4,10 @@
   "peerDependencies": {
     "@angular/common": "^12.2.12",
     "@angular/core": "^12.2.12",
-    "@spryker/ajax-action": "^0.2.0",
-    "@spryker/data-serializer": "^0.0.2",
-    "@spryker/html-renderer": "^0.1.0",
-    "@spryker/unsaved-changes.monitor.form": "^0.1.0"
+    "@spryker/ajax-action": "^0.3.0",
+    "@spryker/data-serializer": "^0.1.0",
+    "@spryker/html-renderer": "^0.2.0",
+    "@spryker/unsaved-changes.monitor.form": "^0.2.0"
   },
   "dependencies": {
     "tslib": "^2.3.1"

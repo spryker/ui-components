@@ -4,10 +4,10 @@
   "peerDependencies": {
     "@angular/common": "^12.2.12",
     "@angular/core": "^12.2.12",
-    "@spryker/date-picker": "^0.2.0",
-    "@spryker/locale": "^0.2.0",
-    "@spryker/styles": "^0.2.0",
-    "@spryker/table.feature.filters": "^0.0.2"
+    "@spryker/date-picker": "^0.3.0",
+    "@spryker/locale": "^0.3.0",
+    "@spryker/styles": "^0.5.0",
+    "@spryker/table.feature.filters": "^0.1.0"
   },
   "dependencies": {
     "tslib": "^2.3.1"

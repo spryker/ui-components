@@ -20,7 +20,37 @@
           #tableElementRef
           nzFrontPagination="false"
           [nzLoading]="isLoading$ | async"
+          [nzData]="tableData"
+          [nzNoResult]="noResult"
         >
+          <ng-template #noResult>
+            <spy-spinner [isSpinning]="isLoading$ | async">
+              <div class="ant-table-empty">
+                <ng-container
+                  *ngIf="isNotFiltered$ | async; else elseEmptyBlock"
+                >
+                  <spy-icon
+                    name="no-data"
+                    class="ant-table-empty__icon"
+                  ></spy-icon>
+                  <h2 class="ant-table-empty__title">
+                    {{ 'table.empty-table' | spyI18n | async }}
+                  </h2>
+                </ng-container>
+
+                <ng-template #elseEmptyBlock>
+                  <spy-icon
+                    name="no-filtered-data"
+                    class="ant-table-empty__icon ant-table-empty__icon--sm"
+                  ></spy-icon>
+                  <h3 class="ant-table-empty__title ant-table-empty__title--sm">
+                    {{ 'table.no-results' | spyI18n | async }}
+                  </h3>
+                  <p>{{ 'table.no-results-suggest' | spyI18n | async }}</p>
+                </ng-template>
+              </div>
+            </spy-spinner>
+          </ng-template>
           <thead nzSortFn="true" (nzSortOrderChange)="updateSorting($event)">
             <tr>
               <ng-container
@@ -85,8 +115,8 @@
               </ng-template>
             </tr>
           </thead>
-          <ng-container *ngIf="featuresInRows$ | async as featuresInRows">
-            <ng-container *ngIf="tableData.length || featuresInRows.length">
+          <ng-container>
+            <ng-container>
               <tbody>
                 <ng-container
                   *ngTemplateOutlet="
@@ -173,30 +203,6 @@
       </ng-container>
     </ng-container>
   </ng-container>
-</ng-container>
-
-<ng-container *ngIf="isEmpty$ | async">
-  <spy-spinner [isSpinning]="isLoading$ | async">
-    <div class="ant-table-empty">
-      <ng-container *ngIf="isNotFiltered$ | async; else elseEmptyBlock">
-        <spy-icon name="no-data" class="ant-table-empty__icon"></spy-icon>
-        <h2 class="ant-table-empty__title">
-          {{ 'table.empty-table' | spyI18n | async }}
-        </h2>
-      </ng-container>
-
-      <ng-template #elseEmptyBlock>
-        <spy-icon
-          name="no-filtered-data"
-          class="ant-table-empty__icon ant-table-empty__icon--sm"
-        ></spy-icon>
-        <h3 class="ant-table-empty__title ant-table-empty__title--sm">
-          {{ 'table.no-results' | spyI18n | async }}
-        </h3>
-        <p>{{ 'table.no-results-suggest' | spyI18n | async }}</p>
-      </ng-template>
-    </div>
-  </spy-spinner>
 </ng-container>
 
 <div class="ant-table-features ant-table-features--after-table">

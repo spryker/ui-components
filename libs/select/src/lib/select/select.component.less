@@ -51,10 +51,16 @@
 
       .@{select-prefix-cls}-selection-search {
         display: block;
+        min-width: 100%;
+
+        &:first-child {
+          .@{select-prefix-cls}-selection-search-input {
+            margin-left: 0;
+          }
+        }
 
         &-input,
         &-mirror {
-          margin-left: 0 !important;
           color: @ink;
         }
       }

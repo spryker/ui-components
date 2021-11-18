@@ -51,6 +51,30 @@
     line-height: 1;
   }
 
+  &-has-error {
+    .@{select-prefix-cls}:not(.@{select-prefix-cls}-borderless).@{select-prefix-cls}-open
+      .@{select-prefix-cls}-selector,
+    .@{select-prefix-cls}:not(.@{select-prefix-cls}-borderless).@{select-prefix-cls}-focused
+      .@{select-prefix-cls}-selector,
+    .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--hover,
+    .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--focus,
+    .@{input-prefix-cls}-container--hover,
+    .@{input-prefix-cls}-container--focus,
+    .@{input-prefix-cls}-group-addon,
+    .@{input-prefix-cls}-group,
+    .@{input-prefix-cls} {
+      border-color: @red;
+      box-shadow: none;
+
+      &:focus,
+      .@{input-prefix-cls},
+      .@{input-prefix-cls}-group-addon {
+        border-color: @red;
+        box-shadow: none;
+      }
+    }
+  }
+
   .anticon-info-circle {
     font-size: @font-size-lg;
     line-height: @form-info-icon-line-height;

@@ -1,10 +1,10 @@
 {
   "name": "@spryker/button.icon",
-  "version": "0.1.8-next.1",
+  "version": "0.1.10-next.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/button": "^0.2.0",
+    "@spryker/button": "^0.3.0",
     "@spryker/icon": "^0.2.0",
     "@spryker/styles": "^0.2.0",
     "@spryker/utils": "^0.2.1"

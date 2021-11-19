@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.13-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.12...@spryker/table.feature.settings@0.0.13-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+## [0.0.13-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.settings@0.0.11-next.2...@spryker/table.feature.settings@0.0.13-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **table.feature.settings:** updated `spryker/button` peerDependency ([c7da1e5](https://github.com/spryker/zed-gui/commit/c7da1e5beb307ff64f5754d25f3cce141fa01a9a))
+
+
+
+
+
+## [0.0.12](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.12-next.2...@spryker/table.feature.settings@0.0.12) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+## [0.0.12-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.12-next.1...@spryker/table.feature.settings@0.0.12-next.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **table.feature.settings:** updated `spryker/button` peerDependency ([c7da1e5](https://github.com/spryker/ui-components/commit/c7da1e5beb307ff64f5754d25f3cce141fa01a9a))
+
+
+
+
+
+## [0.0.12-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.11...@spryker/table.feature.settings@0.0.12-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+## [0.0.12-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.settings@0.0.11-next.2...@spryker/table.feature.settings@0.0.12-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+## [0.0.11](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.11-next.3...@spryker/table.feature.settings@0.0.11) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+## [0.0.11-next.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.11-next.2...@spryker/table.feature.settings@0.0.11-next.3) (2021-11-04)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+## [0.0.11-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.11-next.1...@spryker/table.feature.settings@0.0.11-next.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **table.feature.settings:** adjusted `table-settings-feature` by adding popover padding ([bf5e2fd](https://github.com/spryker/ui-components/commit/bf5e2fd4338c62bcc5a42c5830a56b11975c35d6))
+* **table.feature.settings:** adjusted `table-settings-feature` by updating styles ([fa69957](https://github.com/spryker/ui-components/commit/fa699571922275d98dc8358f8bc2c58223dff313))
+* **table.feature.settings:** adjusted `table-settings-feature` layout by updating styles ([5d1a74d](https://github.com/spryker/ui-components/commit/5d1a74dafcddadced51113e6f02db60f59df8494))
+* **table.feature.settings:** updated the `styles` dependency to change features positioning ([da9a589](https://github.com/spryker/ui-components/commit/da9a5894832062d9dddff50456e71f380d6cd19c))
+
+
+
+
+
 ## [0.0.11-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.10...@spryker/table.feature.settings@0.0.11-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/table.feature.settings

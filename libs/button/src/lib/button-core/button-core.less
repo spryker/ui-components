@@ -39,28 +39,61 @@
   &--secondary {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-default-bg;
-      color: @btn-secondary-color;
-      border-color: @btn-secondary-border;
+      color: @btn-default-color;
+      border-color: @btn-default-border;
 
       &:hover {
-        background: @btn-default-bg;
-        color: @btn-secondary-color;
-        border: @btn-border-secondary;
-        box-shadow: @btn-shadow-hovered-secondary;
-      }
-
-      &:focus,
-      &:active,
-      &:focus:active {
-        background: @btn-default-bg-active;
-        color: @btn-secondary-color;
-        border-color: @btn-default-border;
+        box-shadow: @btn-secondary-shadow-hover;
       }
 
       &:focus {
-        background: @btn-focus-bg;
+        box-shadow: @btn-secondary-shadow-focus;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
+      }
+    }
+  }
+
+  &--outline {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      color: @btn-outline-color;
+      border-color: @btn-outline-border;
+
+      &:hover {
+        box-shadow: @btn-outline-shadow-hover;
+      }
+
+      &:focus {
         border-color: @btn-default-border-focus;
-        box-shadow: @btn-shadow-secondary;
+        box-shadow: @btn-outline-shadow-focus;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
+        border-color: @btn-outline-border;
+      }
+    }
+  }
+
+  &--critical-outline {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      color: @btn-critical-outline-color;
+      border-color: @btn-critical-outline-border;
+
+      &:hover {
+        box-shadow: @btn-critical-outline-shadow-hover;
+      }
+
+      &:focus {
+        box-shadow: @btn-critical-outline-shadow-focus;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
       }
     }
   }
@@ -193,7 +226,6 @@
       }
 
       &:active {
-        transform: none;
         color: @btn-link-color-hover;
         background: @btn-link-bg-active;
         border-color: transparent;
@@ -263,10 +295,6 @@
   &:focus,
   &:active {
     outline: none;
-  }
-
-  &:active {
-    transform: none;
   }
 
   &[disabled] {

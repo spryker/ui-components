@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.9-next.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.8...@spryker/notification@0.2.9-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
+## [0.2.9-next.0](https://github.com/spryker/zed-gui/compare/@spryker/notification@0.2.7-next.1...@spryker/notification@0.2.9-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **notification:** updated `spryker/styles` dependency ([68d9b3d](https://github.com/spryker/zed-gui/commit/68d9b3db232e7d94c6c24e0915fca11b84e8a1ee))
+
+
+
+
+
+## [0.2.8](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.8-next.1...@spryker/notification@0.2.8) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
+## [0.2.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.7...@spryker/notification@0.2.8-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
+## [0.2.8-next.0](https://github.com/spryker/zed-gui/compare/@spryker/notification@0.2.7-next.1...@spryker/notification@0.2.8-next.0) (2021-11-08)
+
+
+### Bug Fixes
+
+* **notification:** updated `spryker/styles` dependency ([68d9b3d](https://github.com/spryker/zed-gui/commit/68d9b3db232e7d94c6c24e0915fca11b84e8a1ee))
+
+
+
+
+
+## [0.2.7](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.7-next.2...@spryker/notification@0.2.7) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
+## [0.2.7-next.2](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.7-next.1...@spryker/notification@0.2.7-next.2) (2021-11-05)
+
+
+### Bug Fixes
+
+* **notification:** updated `spryker/styles` dependency ([68d9b3d](https://github.com/spryker/ui-components/commit/68d9b3db232e7d94c6c24e0915fca11b84e8a1ee))
+
+
+
+
+
 ## [0.2.7-next.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.6-next.1...@spryker/notification@0.2.7-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/notification

@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.9...@spryker/dropdown@0.2.10-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/dropdown
+
+
+
+
+
+## [0.2.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/dropdown@0.2.8-next.2...@spryker/dropdown@0.2.10-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/dropdown
+
+
+
+
+
+## [0.2.9](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.9-next.1...@spryker/dropdown@0.2.9) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/dropdown
+
+
+
+
+
+## [0.2.9-next.1](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.8...@spryker/dropdown@0.2.9-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/dropdown
+
+
+
+
+
+## [0.2.9-next.0](https://github.com/spryker/zed-gui/compare/@spryker/dropdown@0.2.8-next.2...@spryker/dropdown@0.2.9-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/dropdown
+
+
+
+
+
+## [0.2.8](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.8-next.2...@spryker/dropdown@0.2.8) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/dropdown
+
+
+
+
+
 ## [0.2.8-next.2](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.8-next.1...@spryker/dropdown@0.2.8-next.2) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/dropdown

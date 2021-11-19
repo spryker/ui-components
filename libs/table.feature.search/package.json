@@ -1,12 +1,12 @@
 {
   "name": "@spryker/table.feature.search",
-  "version": "0.0.10-next.1",
+  "version": "0.0.12-next.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
     "@spryker/icon": "^0.2.0",
     "@spryker/input": "^0.2.0",
-    "@spryker/styles": "^0.2.0",
+    "@spryker/styles": "^0.4.0",
     "@spryker/table": "^0.2.0",
     "@spryker/utils": "^0.2.1"
   },

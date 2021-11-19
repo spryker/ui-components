@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table.filter.tree-select",
-  "version": "0.0.10-next.1",
+  "version": "0.0.12-next.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",

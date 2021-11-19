@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.12-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.chip@0.0.11...@spryker/table.column.chip@0.0.12-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/table.column.chip
+
+
+
+
+
+## [0.0.12-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.column.chip@0.0.10-next.1...@spryker/table.column.chip@0.0.12-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/table.column.chip
+
+
+
+
+
+## [0.0.11](https://github.com/spryker/ui-components/compare/@spryker/table.column.chip@0.0.11-next.1...@spryker/table.column.chip@0.0.11) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/table.column.chip
+
+
+
+
+
+## [0.0.11-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.chip@0.0.10...@spryker/table.column.chip@0.0.11-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/table.column.chip
+
+
+
+
+
+## [0.0.11-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.column.chip@0.0.10-next.1...@spryker/table.column.chip@0.0.11-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/table.column.chip
+
+
+
+
+
+## [0.0.10](https://github.com/spryker/ui-components/compare/@spryker/table.column.chip@0.0.10-next.1...@spryker/table.column.chip@0.0.10) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/table.column.chip
+
+
+
+
+
 ## [0.0.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.chip@0.0.9...@spryker/table.column.chip@0.0.10-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/table.column.chip

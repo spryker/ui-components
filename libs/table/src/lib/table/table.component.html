@@ -23,34 +23,6 @@
           [nzData]="tableData"
           [nzNoResult]="noResult"
         >
-          <ng-template #noResult>
-            <spy-spinner [isSpinning]="isLoading$ | async">
-              <div class="ant-table-empty">
-                <ng-container
-                  *ngIf="isNotFiltered$ | async; else elseEmptyBlock"
-                >
-                  <spy-icon
-                    name="no-data"
-                    class="ant-table-empty__icon"
-                  ></spy-icon>
-                  <h2 class="ant-table-empty__title">
-                    {{ 'table.empty-table' | spyI18n | async }}
-                  </h2>
-                </ng-container>
-
-                <ng-template #elseEmptyBlock>
-                  <spy-icon
-                    name="no-filtered-data"
-                    class="ant-table-empty__icon ant-table-empty__icon--sm"
-                  ></spy-icon>
-                  <h3 class="ant-table-empty__title ant-table-empty__title--sm">
-                    {{ 'table.no-results' | spyI18n | async }}
-                  </h3>
-                  <p>{{ 'table.no-results-suggest' | spyI18n | async }}</p>
-                </ng-template>
-              </div>
-            </spy-spinner>
-          </ng-template>
           <thead nzSortFn="true" (nzSortOrderChange)="updateSorting($event)">
             <tr>
               <ng-container
@@ -115,95 +87,118 @@
               </ng-template>
             </tr>
           </thead>
-          <ng-container>
-            <ng-container>
-              <tbody>
-                <ng-container
-                  *ngTemplateOutlet="
-                    rowsFeaturesTpl;
-                    context: {
-                      $implicit: featureLocation.beforeRows,
-                      context: { data: tableData, columns: columns }
-                    }
-                  "
-                ></ng-container>
+          <tbody>
+            <ng-container
+              *ngTemplateOutlet="
+                rowsFeaturesTpl;
+                context: {
+                  $implicit: featureLocation.beforeRows,
+                  context: { data: tableData, columns: columns }
+                }
+              "
+            ></ng-container>
 
-                <tr
-                  tabindex="0"
-                  *ngFor="
-                    let data of tableData;
-                    trackBy: trackByData;
-                    index as indexOfRow
-                  "
-                  [ngClass]="rowClasses[indexOfRow]"
-                  (click)="rowClickHandler(data, $event)"
-                >
+            <tr
+              tabindex="0"
+              *ngFor="
+                let data of tableData;
+                trackBy: trackByData;
+                index as indexOfRow
+              "
+              [ngClass]="rowClasses[indexOfRow]"
+              (click)="rowClickHandler(data, $event)"
+            >
+              <ng-container
+                *ngTemplateOutlet="
+                  colsFeaturesTpl;
+                  context: {
+                    $implicit: featureLocation.beforeCols,
+                    context: { data: data, i: indexOfRow }
+                  }
+                "
+              ></ng-container>
+
+              <td
+                *ngFor="
+                  let column of columns;
+                  trackBy: trackByColumns;
+                  index as indexOfCell
+                "
+              >
+                <div class="ant-table-column-inner">
                   <ng-container
-                    *ngTemplateOutlet="
-                      colsFeaturesTpl;
-                      context: {
-                        $implicit: featureLocation.beforeCols,
-                        context: { data: data, i: indexOfRow }
-                      }
-                    "
-                  ></ng-container>
-
-                  <td
-                    *ngFor="
-                      let column of columns;
-                      trackBy: trackByColumns;
-                      index as indexOfCell
+                    *ngIf="
+                      featureCellContext
+                        | spyInvoke
+                          : column
+                          : data
+                          : indexOfRow
+                          : indexOfCell as cellContext
                     "
                   >
-                    <div class="ant-table-column-inner">
-                      <ng-container
-                        *ngIf="
-                          featureCellContext
-                            | spyInvoke
-                              : column
-                              : data
-                              : indexOfRow
-                              : indexOfCell as cellContext
-                        "
-                      >
-                        <ng-container
-                          *ngTemplateOutlet="
-                            cellContext.$implicit;
-                            context: cellContext.context
-                          "
-                        ></ng-container>
-                      </ng-container>
-                    </div>
-                  </td>
+                    <ng-container
+                      *ngTemplateOutlet="
+                        cellContext.$implicit;
+                        context: cellContext.context
+                      "
+                    ></ng-container>
+                  </ng-container>
+                </div>
+              </td>
 
-                  <ng-container
-                    *ngTemplateOutlet="
-                      colsFeaturesTpl;
-                      context: {
-                        $implicit: featureLocation.afterCols,
-                        context: { data: data, i: indexOfRow }
-                      }
-                    "
-                  ></ng-container>
-                </tr>
+              <ng-container
+                *ngTemplateOutlet="
+                  colsFeaturesTpl;
+                  context: {
+                    $implicit: featureLocation.afterCols,
+                    context: { data: data, i: indexOfRow }
+                  }
+                "
+              ></ng-container>
+            </tr>
 
-                <ng-container
-                  *ngTemplateOutlet="
-                    rowsFeaturesTpl;
-                    context: {
-                      $implicit: featureLocation.afterRows,
-                      context: { data: tableData, columns: columns }
-                    }
-                  "
-                ></ng-container>
-              </tbody>
-            </ng-container>
-          </ng-container>
+            <ng-container
+              *ngTemplateOutlet="
+                rowsFeaturesTpl;
+                context: {
+                  $implicit: featureLocation.afterRows,
+                  context: { data: tableData, columns: columns }
+                }
+              "
+            ></ng-container>
+          </tbody>
         </nz-table>
       </ng-container>
     </ng-container>
   </ng-container>
 </ng-container>
+
+<ng-template #noResult>
+  <spy-spinner [isSpinning]="isLoading$ | async">
+    <div class="ant-table-empty">
+      <ng-container *ngIf="isNotFiltered$ | async; else elseEmptyBlock">
+        <spy-icon name="no-data" class="ant-table-empty__icon"></spy-icon>
+        <h2 class="ant-table-empty__title">
+          {{ 'table.empty-table' | spyI18n | async }}
+        </h2>
+      </ng-container>
+
+      <ng-template #elseEmptyBlock>
+        <spy-icon
+          name="no-filtered-data"
+          class="ant-table-empty__icon ant-table-empty__icon--sm"
+        ></spy-icon>
+        <h3 class="ant-table-empty__title ant-table-empty__title--sm">
+          {{ 'table.no-results' | spyI18n | async }}
+        </h3>
+        <p>{{ 'table.no-results-suggest' | spyI18n | async }}</p>
+      </ng-template>
+    </div>
+  </spy-spinner>
+</ng-template>
+<ng-template *ngIf="!(isLoading$ | async)">
+  <ng-container *ngTemplateOutlet="noResult"></ng-container>
+</ng-template>
 
 <div class="ant-table-features ant-table-features--after-table">
   <spy-table-features-renderer

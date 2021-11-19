@@ -270,21 +270,6 @@ export class CoreTableComponent
     shareReplaySafe(),
   );
 
-  isEmpty$ = combineLatest([
-    this.tableData$.pipe(map((data) => Boolean(data.length))),
-    this.dataConfiguratorService.config$.pipe(
-      map((config) => Boolean(Object.keys(config).length)),
-    ),
-    this.featuresInRows$.pipe(map((features) => Boolean(features.length))),
-  ]).pipe(
-    startWith([true, false, true]),
-    map(([isTableData, isConfig, isFeaturesInRows]) => {
-      this.isEmpty = !isTableData;
-      return !isTableData && !isFeaturesInRows && isConfig;
-    }),
-    shareReplaySafe(),
-  );
-
   isNotFiltered$ = this.dataConfiguratorService.config$.pipe(
     startWith({}),
     pairwise(),

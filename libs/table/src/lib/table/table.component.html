@@ -196,9 +196,6 @@
     </div>
   </spy-spinner>
 </ng-template>
-<ng-template *ngIf="!(isLoading$ | async)">
-  <ng-container *ngTemplateOutlet="noResult"></ng-container>
-</ng-template>
 
 <div class="ant-table-features ant-table-features--after-table">
   <spy-table-features-renderer

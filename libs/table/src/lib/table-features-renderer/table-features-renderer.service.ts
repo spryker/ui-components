@@ -135,8 +135,7 @@ export class TableFeaturesRendererService implements OnDestroy {
             $implicit: template as any,
             context: {
               ...context,
-              // tslint:disable-next-line:no-non-null-assertion
-              ...contexts![j],
+              ...contexts[j],
               ...prevCtx,
             },
           }),

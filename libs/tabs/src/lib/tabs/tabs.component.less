@@ -255,7 +255,7 @@
   border: @tabs-nav-dropdown-border;
 
   .@{tab-prefix-cls}-custom-tab {
-    padding: @tabs-nav-dropdown-item-padding;
+    padding: @tabs-nav-dropdown-custom-tab-padding;
     font-weight: @font-weight-default;
     color: @ink;
 
@@ -269,8 +269,8 @@
   }
 
   .@{tab-prefix-cls}-dropdown-menu-item {
-    padding: 0;
-    line-height: 1;
+    padding: @tabs-nav-dropdown-menu-item-padding;
+    line-height: @tabs-nav-dropdown-menu-item-line-height;
 
     &-disabled {
       .@{tab-prefix-cls}-custom-tab {

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/data-transformer@0.1.8-next.1...@spryker/data-transformer@0.2.0-rc.0) (2021-11-23)
+
+
+### Bug Fixes
+
+* fixed components/services types ([6e668d3](https://github.com/spryker/ui-components/commit/6e668d35a91731509d7d0add48e2f0f69c1bb0d8))
+
+
+### Features
+
+* updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
+* updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
+* updated peerDependencies ([9c034d5](https://github.com/spryker/ui-components/commit/9c034d5d972cbeb9fd90135dd901521b9877247e))
+
+
+
+
+
 ## [0.1.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer@0.1.7...@spryker/data-transformer@0.1.8-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/data-transformer

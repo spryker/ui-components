@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.2.8-next.1...@spryker/tabs@0.3.0-rc.0) (2021-11-23)
+
+
+### Bug Fixes
+
+* **tabs:** adjusted styles ([10a109e](https://github.com/spryker/ui-components/commit/10a109ebb968e0ff25bc7b4b9643192740c5ea87))
+* **tabs:** adjusted styles for tab button ([e20690f](https://github.com/spryker/ui-components/commit/e20690fbf2d19e190167b72fc021caed0eef0a7f))
+* **tabs:** fixed/added styles ([00cce29](https://github.com/spryker/ui-components/commit/00cce2975cd750e4d11343d802bbee31c186ceab))
+
+
+### Features
+
+* updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
+* updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
+* updated peerDependencies ([9c034d5](https://github.com/spryker/ui-components/commit/9c034d5d972cbeb9fd90135dd901521b9877247e))
+
+
+
+
+
 ## [0.2.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.2.7...@spryker/tabs@0.2.8-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/tabs

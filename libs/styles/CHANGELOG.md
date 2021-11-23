@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-next.0...@spryker/styles@0.4.0-rc.0) (2021-11-23)
+
+
+### Bug Fixes
+
+* fixed `.transition-mixin()` usage ([87560c9](https://github.com/spryker/ui-components/commit/87560c9670a8c301c357b4706a5476cb3b4cca8a))
+* **styles:** adjusted transition mixin && adjusted `tabs` variables ([ccb1e17](https://github.com/spryker/ui-components/commit/ccb1e17239ce3bfb875a0159cdd492da403d3f68))
+* **styles:** fixed `select` variable value ([c415400](https://github.com/spryker/ui-components/commit/c415400244aaedd458cb75cdae44cc260a52dbc7))
+* **styles:** fixed variables for `radio` and `select` ([20a3414](https://github.com/spryker/ui-components/commit/20a3414260027de2c5614072a23e6a0519ad99ba))
+* **styles:** fixed/added `tabs` variables ([d0baece](https://github.com/spryker/ui-components/commit/d0baece02d6cc687ad880b3df36e6e01a33c6cb4))
+
+
+### Features
+
+* updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
+* updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
+
+
+
+
+
 # [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-next.2...@spryker/styles@0.4.0-next.0) (2021-10-07)
 
 

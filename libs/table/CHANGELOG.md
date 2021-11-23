@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.5-next.2...@spryker/table@0.4.0-rc.0) (2021-11-23)
+
+
+### Bug Fixes
+
+* fixed `.transition-mixin()` usage ([87560c9](https://github.com/spryker/ui-components/commit/87560c9670a8c301c357b4706a5476cb3b4cca8a))
+* fixed components/services types ([6e668d3](https://github.com/spryker/ui-components/commit/6e668d35a91731509d7d0add48e2f0f69c1bb0d8))
+* **table:** adjusted `table-features-renderer` service ([d1e5eef](https://github.com/spryker/ui-components/commit/d1e5eef0804ab2c4a8c7dd9a24fe35a0a904cde8))
+
+
+### Features
+
+* updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
+* updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
+* updated peerDependencies ([9c034d5](https://github.com/spryker/ui-components/commit/9c034d5d972cbeb9fd90135dd901521b9877247e))
+
+
+
+
+
 ## [0.3.5-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.5-next.1...@spryker/table@0.3.5-next.2) (2021-10-05)
 
 

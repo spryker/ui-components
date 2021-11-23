@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.3.0-next.0...@spryker/navigation@0.3.0-rc.0) (2021-11-23)
+
+
+### Bug Fixes
+
+* fixed `.transition-mixin()` usage ([87560c9](https://github.com/spryker/ui-components/commit/87560c9670a8c301c357b4706a5476cb3b4cca8a))
+* **navigation:** adjusted styles ([21bbb10](https://github.com/spryker/ui-components/commit/21bbb102b1045b93fc2584e02e7e113d0cfbfc7c))
+* **navigation:** fixed styles ([60292d8](https://github.com/spryker/ui-components/commit/60292d85e3efc568e8a88c652913eb34e07020b8))
+
+
+### Features
+
+* updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
+* updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
+* updated peerDependencies ([9c034d5](https://github.com/spryker/ui-components/commit/9c034d5d972cbeb9fd90135dd901521b9877247e))
+
+
+
+
+
 # [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.2.8-next.1...@spryker/navigation@0.3.0-next.0) (2021-10-07)
 
 

@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputModule } from '@spryker/input';
+import { TextareaModule } from '@spryker/textarea';
+import { AutocompleteModule } from '@spryker/autocomplete';
+import { SelectModule } from '@spryker/select';
+import { TreeSelectModule } from '@spryker/tree-select';
+import { RadioModule } from '@spryker/radio';
 import { IStory } from '@storybook/angular';
 
 import { FormItemModule } from '../form-item.module';
@@ -111,4 +116,78 @@ export const noSpaces = (): IStory => ({
       <spy-input type="text" control></spy-input>
     </spy-form-item>
   `,
+});
+
+export const formWithErrors = (): IStory => ({
+  moduleMetadata: {
+    imports: [
+      StoryModule,
+      TextareaModule,
+      AutocompleteModule,
+      SelectModule,
+      TreeSelectModule,
+      RadioModule,
+    ],
+  },
+  template: `
+    <spy-form-item error="Error Message">
+      Input
+      <spy-input type="text" control></spy-input>
+    </spy-form-item>
+    <spy-form-item error="Error Message">
+      Textarea
+      <spy-textarea control></spy-textarea>
+    </spy-form-item>
+    <spy-form-item error="Error Message">
+      Autocomplete
+      <spy-input control>
+        <spy-autocomplete [options]="autocomplete"></spy-autocomplete>
+      </spy-input>
+    </spy-form-item>
+    <spy-form-item error="Error Message">
+      Select
+      <spy-select [options]="select" control></spy-select>
+    </spy-form-item>
+    <spy-form-item error="Error Message">
+      Tree-select
+      <spy-tree-select [items]="treeSelect" control></spy-tree-select>
+    </spy-form-item>
+    <spy-form-item error="Error Message">
+      Radio-group
+      <spy-radio-group [value]="'A'" control>
+        <spy-radio [value]="'A'" hasError>Label A</spy-radio>
+        <spy-radio [value]="'B'">Label B</spy-radio>
+      </spy-radio-group>
+    </spy-form-item>
+  `,
+  props: {
+    autocomplete: [
+      {
+        value: 'Option 1',
+        title: 'Option 1',
+        isDisabled: false,
+      },
+      {
+        value: 'Option 2',
+        title: 'Option 2',
+      },
+      {
+        value: 'Option 3',
+        title: 'Option 3',
+      },
+    ],
+    select: ['Option 1', 'Option 2', 'Option 3'],
+    treeSelect: [
+      {
+        title: 'Option 1',
+        value: 'Option 1',
+        children: [
+          { title: 'Option 4', value: 'Option 4' },
+          { title: 'Option 5', value: 'Option 5' },
+        ],
+      },
+      { title: 'Option 2', value: 'Option 2' },
+      { title: 'Option 3', value: 'Option 3' },
+    ],
+  },
 });

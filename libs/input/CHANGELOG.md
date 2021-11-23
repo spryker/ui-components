@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.10-next.1...@spryker/input@0.2.10-next.2) (2021-11-23)
+
+
+### Bug Fixes
+
+* **input:** added class name to the html ([3e5615b](https://github.com/spryker/ui-components/commit/3e5615b5386864a8c822c173a888b2323c43fd94))
+
+
+
+
+
 ## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.9...@spryker/input@0.2.10-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/input

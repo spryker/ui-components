@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2-next.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.2-next.3...@spryker/styles@0.4.2-next.4) (2021-11-23)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `input` component/variables ([daaebdf](https://github.com/spryker/ui-components/commit/daaebdfa058492144afba47ad9c0dff1e4518255))
+* **styles:** adjusted components and variables ([752a972](https://github.com/spryker/ui-components/commit/752a9724cb00ac3012d82839e5616eb40b2d91ff))
+
+
+
+
+
 ## [0.4.2-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.2-next.2...@spryker/styles@0.4.2-next.3) (2021-11-15)
 
 

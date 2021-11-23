@@ -31,6 +31,7 @@ import { TreeSelectItem, TreeSelectValue } from './types';
 interface TreeSelectItemWithKey extends TreeSelectItem {
   key: TreeSelectValue;
   isLeaf: boolean;
+  disabled?: boolean;
 }
 
 /**
@@ -157,6 +158,7 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
       {
         value: item.value,
         title: item.title,
+        isDisabled: item.isDisabled ?? false,
       },
       ...childItems,
     ];
@@ -169,6 +171,7 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
     return {
       ...item,
       key: item.value,
+      disabled: item.isDisabled,
       children: isChildrenExist
         ? item.children?.map((childItem) => this.mapTreeItems(childItem))
         : [],

@@ -24,6 +24,7 @@
   <option
     *ngFor="let item of mappedFlatItems"
     [value]="item.value"
+    [disabled]="item.isDisabled"
     [selected]="checkSelectedState | spyInvoke: item.value:multiple:value"
   >
     {{ item.title }}

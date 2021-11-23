@@ -30,7 +30,8 @@ export interface ComponentModalRenderingRef<T extends ComponentModal>
   extends ModalRenderingRef<T, ComponentModalExtras<T>> {}
 
 class ComponentModalRenderingRefImpl<T extends ComponentModal>
-  implements ComponentModalRenderingRef<T> {
+  implements ComponentModalRenderingRef<T>
+{
   constructor(private componentRef: ComponentRef<T>) {}
 
   getComponentRef(): ComponentRef<T> {
@@ -69,7 +70,8 @@ export interface ComponentModalStrategyOptions {
 }
 
 export class ComponentModalStrategy<T extends ComponentModal>
-  implements ModalStrategy<T, ComponentModalExtras<T>> {
+  implements ModalStrategy<T, ComponentModalExtras<T>>
+{
   constructor(
     private component: Type<T>,
     private options?: ComponentModalStrategyOptions,

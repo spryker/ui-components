@@ -38,7 +38,8 @@ export class TableColumnDateConfig {
 })
 @TableColumnTypeComponent(TableColumnDateConfig)
 export class TableColumnDateComponent
-  implements TableColumnComponent<TableColumnDateConfig> {
+  implements TableColumnComponent<TableColumnDateConfig>
+{
   @Input() config?: TableColumnDateConfig;
   @Input() context?: TableColumnContext;
 }

@@ -40,7 +40,7 @@ import {
   getElementOffset,
   provideInvokeContext,
 } from '@spryker/utils';
-import { NzResizeObserver } from 'ng-zorro-antd/core/resize-observers';
+import { NzResizeObserver } from 'ng-zorro-antd/cdk/resize-observer';
 import { combineLatest, EMPTY, merge, Subject } from 'rxjs';
 import {
   debounceTime,
@@ -98,7 +98,8 @@ interface TableEditCellModel {
 })
 export class TableEditableFeatureComponent
   extends TableFeatureComponent<TableEditableConfig>
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   @ViewChild('editableCell') editableCell?: TemplateRef<any>;
 
   name = 'editable';
@@ -157,7 +158,7 @@ export class TableEditableFeatureComponent
     map((createConfig) => {
       if (createConfig?.initialData?.errors) {
         Object.entries(createConfig.initialData.errors).map(([key, value]) => {
-          this.rowErrors[(key as unknown) as number] = value;
+          this.rowErrors[key as unknown as number] = value;
         });
       }
 
@@ -195,18 +196,19 @@ export class TableEditableFeatureComponent
     map((entries) => entries[0].contentRect.width),
     tap(() => this.zone.run(() => this.updateFloatCellPosition())),
   );
-  private updateFloatCellsPositionOnColumnConfigurator$ = this.tableEventBus$.pipe(
-    switchMap((eventBus) =>
-      eventBus.on<TableSettingsChangeEvent>('columnConfigurator'),
-    ),
-    tap(({ visibilityChanged }) => {
-      if (visibilityChanged !== undefined) {
-        this.changeColsVisibilityAfterColumnConfigurator(visibilityChanged);
-      }
+  private updateFloatCellsPositionOnColumnConfigurator$ =
+    this.tableEventBus$.pipe(
+      switchMap((eventBus) =>
+        eventBus.on<TableSettingsChangeEvent>('columnConfigurator'),
+      ),
+      tap(({ visibilityChanged }) => {
+        if (visibilityChanged !== undefined) {
+          this.changeColsVisibilityAfterColumnConfigurator(visibilityChanged);
+        }
 
-      this.updateFloatCellPosition();
-    }),
-  );
+        this.updateFloatCellPosition();
+      }),
+    );
   private updateEditableData$ = this.tableData$.pipe(
     tap(({ data }) => {
       this.tableEditableService.reset();
@@ -257,16 +259,19 @@ export class TableEditableFeatureComponent
 
   ngAfterViewChecked(): void {
     if (!this.tableElement && this.table?.tableElementRef) {
-      this.tableElement = this.table?.tableElementRef?.nativeElement?.querySelector(
-        'table',
-      ) as HTMLElement;
+      this.tableElement =
+        this.table?.tableElementRef?.nativeElement?.querySelector(
+          'table',
+        ) as HTMLElement;
     }
 
     if (this.tableElement && !this.table?.tableElementRef) {
       this.tableElement = undefined;
     }
 
-    this.updateTableElement$.next(this.tableElement);
+    if (this.tableElement) {
+      this.updateTableElement$.next(this.tableElement);
+    }
   }
 
   private changeColsVisibilityAfterColumnConfigurator(id: string): void {
@@ -553,11 +558,11 @@ export class TableEditableFeatureComponent
     const method = typeof this.url === 'string' ? 'GET' : this.url?.method;
     const parsedUrl = this.contextService.interpolate(
       url,
-      (cellContext as unknown) as AnyContext,
+      cellContext as unknown as AnyContext,
     );
-    // tslint:disable-next-line: no-non-null-assertion
-    const value = this.editingModel[cellContext.i][cellContext.config.id]!
-      .value;
+    const value =
+      // tslint:disable-next-line:no-non-null-assertion
+      this.editingModel[cellContext.i][cellContext.config.id]!.value;
     const requestData = {
       [cellContext.config.id]: value,
     };
@@ -585,9 +590,8 @@ export class TableEditableFeatureComponent
         (error) => {
           this.editingModel = { ...this.editingModel };
           // tslint:disable-next-line: no-non-null-assertion
-          this.editingModel[cellContext.i][
-            cellContext.config.id
-          ]!.value = undefined;
+          this.editingModel[cellContext.i][cellContext.config.id]!.value =
+            undefined;
           this.cellErrors = {
             ...this.cellErrors,
             [cellContext.j]: {

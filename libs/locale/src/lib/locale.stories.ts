@@ -1,12 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IStory, storiesOf } from '@storybook/angular';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 import { LocaleModule } from './locale.module';
-
-// TODO(date-picker): Remove this style import when our date picker is used
-import '!style-loader!css-loader!less-loader?javascriptEnabled!ng-zorro-antd/date-picker/style/entry.less';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -23,10 +19,6 @@ import '!style-loader!css-loader!less-loader?javascriptEnabled!ng-zorro-antd/dat
       <p>Localized date: {{ date | date }}</p>
       <p>Localized time: {{ date | date: 'shortTime' }}</p>
       <p>Localized currency: {{ price | currency: 'EUR' }}</p>
-      <p>
-        <!-- TODO(date-picker): Replace Ant with our date picker when built -->
-        <nz-date-picker [(ngModel)]="date"></nz-date-picker>
-      </p>
     </ng-container>
   `,
 })
@@ -38,12 +30,7 @@ class LocaleStoryComponent {
 function createStoryFor(locale: LocaleMeta): () => IStory {
   return () => ({
     moduleMetadata: {
-      imports: [
-        BrowserAnimationsModule,
-        LocaleModule.forRoot(),
-        locale.module,
-        NzDatePickerModule,
-      ],
+      imports: [BrowserAnimationsModule, LocaleModule.forRoot(), locale.module],
     },
     component: LocaleStoryComponent,
   });

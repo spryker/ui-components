@@ -25,7 +25,8 @@ import { UrlHtmlRendererResponse } from '../html-renderer/types';
   ],
 })
 export class UrlHtmlRendererDirective
-  implements HtmlRendererProvider, OnChanges {
+  implements HtmlRendererProvider, OnChanges
+{
   @Input() urlHtml = '';
   @Input() urlMethod = 'GET';
   @Output() urlHtmlLoading = new EventEmitter<boolean>();

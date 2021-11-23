@@ -10,7 +10,8 @@ import { CloseDrawerActionConfig } from './types';
   providedIn: 'root',
 })
 export class CloseDrawerActionHandlerService
-  implements ActionHandler<unknown, void> {
+  implements ActionHandler<unknown, void>
+{
   handleAction(
     injector: Injector,
     config: CloseDrawerActionConfig,

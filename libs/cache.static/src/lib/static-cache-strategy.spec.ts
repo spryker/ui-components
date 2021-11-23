@@ -42,7 +42,7 @@ class MockTimeDurationService {
   parse = jest.fn();
 }
 
-const mockConfig = {
+const mockConfig: any = {
   type: 'test',
   expiresIn: '2d',
 };

@@ -21,7 +21,8 @@ import {
  */
 @Injectable()
 export abstract class UnsavedChangesGuardBase
-  implements OnDestroy, UnsavedChangesGuard {
+  implements OnDestroy, UnsavedChangesGuard
+{
   protected monitors$ = new BehaviorSubject(new Set<UnsavedChangesMonitor>());
 
   protected monitorStatuses$ = this.monitors$.pipe(

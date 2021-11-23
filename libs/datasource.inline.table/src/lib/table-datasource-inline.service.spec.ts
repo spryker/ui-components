@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DataTransformerService } from '@spryker/data-transformer';
-import { of } from 'rxjs/internal/observable/of';
+import { of } from 'rxjs';
 
 import { TableDatasourceInlineService } from './table-datasource-inline.service';
 
@@ -52,7 +52,7 @@ describe('TableDatasourceInlineService', () => {
       transformerByPropName: {
         col1: 'date',
       },
-    };
+    } as any;
     const mockTransformersConfig = {
       type: 'chain',
       transformers: [

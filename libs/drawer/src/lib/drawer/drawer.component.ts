@@ -40,7 +40,8 @@ export class DrawerComponentInputs {
 })
 export class DrawerComponent
   extends DrawerComponentInputs
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
   @Output() isOpenChange = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<void>();
 

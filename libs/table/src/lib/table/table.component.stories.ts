@@ -45,7 +45,7 @@ const tableConfig: TableConfig = {
   dataSource: {
     type: 'mock-data',
     dataGenerator: tableDataGenerator,
-  } as MockTableDatasourceConfig,
+  } as unknown as MockTableDatasourceConfig,
   columns: [
     { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
     { id: 'col2', sortable: true, title: 'Column #2', width: '20%' },
@@ -94,7 +94,8 @@ class TableColumnTestConfig {
 })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent
-  implements TableColumnComponent<TableColumnTestConfig> {
+  implements TableColumnComponent<TableColumnTestConfig>
+{
   @Input() config?: TableColumnTestConfig;
   @Input() context?: TableColumnContext;
 }
@@ -110,7 +111,7 @@ class TableColumnTestComponent
     } as any),
     DatasourceModule.withDatasources({
       'mock-data': MockTableDatasourceService,
-    }),
+    } as any),
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
     EnLocaleModule,
     BrowserAnimationsModule,

@@ -27,7 +27,8 @@ import { EMPTY } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
 })
 export class TableFilterTreeSelectComponent
-  implements TableFilterComponent<TableFilterTreeSelect>, OnChanges {
+  implements TableFilterComponent<TableFilterTreeSelect>, OnChanges
+{
   @Input() config?: TableFilterTreeSelect;
   @Input() value?: TableFilterTreeSelectValue;
   @Output() valueChange = new EventEmitter<TableFilterTreeSelectValue>();

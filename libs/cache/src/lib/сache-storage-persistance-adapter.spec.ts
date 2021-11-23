@@ -58,7 +58,8 @@ describe('CacheStoragePersistanceAdapter', () => {
   let mockPersistenceStrategyTypeService: MockPersistenceStrategyTypeService;
 
   beforeEach(() => {
-    mockPersistenceStrategyTypeService = new MockPersistenceStrategyTypeService();
+    mockPersistenceStrategyTypeService =
+      new MockPersistenceStrategyTypeService();
     instance = new CacheStoragePersistanceAdapter(
       mockPersistenceStrategyTypeService,
     );

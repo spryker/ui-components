@@ -41,7 +41,8 @@ export class TableFeaturesRendererDirectiveInputs {
 })
 export class TableFeaturesRendererDirective
   extends TableFeaturesRendererDirectiveInputs
-  implements OnInit, OnChanges, OnDestroy {
+  implements OnInit, OnChanges, OnDestroy
+{
   private featuresDiffer = this.iterableDiffers
     .find([])
     .create<FeatureRecord>((idx, feature) => feature.component);
@@ -108,11 +109,17 @@ export class TableFeaturesRendererDirective
       );
     }
 
-    if (changes.spyTableFeaturesRendererContext) {
+    if (
+      changes.spyTableFeaturesRendererContext &&
+      this.spyTableFeaturesRendererContext
+    ) {
       this.context$.next(this.spyTableFeaturesRendererContext);
     }
 
-    if (changes.spyTableFeaturesRendererMaxFeatures) {
+    if (
+      changes.spyTableFeaturesRendererMaxFeatures &&
+      this.spyTableFeaturesRendererMaxFeatures
+    ) {
       this.maxFeatures$.next(this.spyTableFeaturesRendererMaxFeatures);
     }
   }

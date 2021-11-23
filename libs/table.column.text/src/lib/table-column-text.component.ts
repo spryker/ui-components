@@ -36,7 +36,8 @@ export class TableColumnTextConfig {
 })
 @TableColumnTypeComponent(TableColumnTextConfig)
 export class TableColumnTextComponent
-  implements TableColumnComponent<TableColumnTextConfig> {
+  implements TableColumnComponent<TableColumnTextConfig>
+{
   @Input() config?: TableColumnTextConfig;
   @Input() context?: TableColumnContext;
 }

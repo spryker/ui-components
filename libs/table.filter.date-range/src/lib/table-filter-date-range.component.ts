@@ -21,7 +21,8 @@ import { I18nService } from '@spryker/locale';
   encapsulation: ViewEncapsulation.None,
 })
 export class TableFilterDateRangeComponent
-  implements TableFilterComponent<TableFilterDateRange> {
+  implements TableFilterComponent<TableFilterDateRange>
+{
   @Input() config?: TableFilterDateRange;
   @Input() value?: DateRangeValueInput = {};
   @Output() valueChange = new EventEmitter<DateRangeValueInput>();

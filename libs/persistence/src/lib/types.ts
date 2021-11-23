@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 
 export interface PersistenceStrategyRegistry {}
 
-export type PersistenceStrategyType = keyof PersistenceStrategyRegistry extends never
-  ? string
-  : keyof PersistenceStrategyRegistry;
+export type PersistenceStrategyType =
+  keyof PersistenceStrategyRegistry extends never
+    ? string
+    : keyof PersistenceStrategyRegistry;
 
 export type PersistenceStrategyTypesDeclaration = {
   [P in keyof PersistenceStrategyRegistry]?: Type<PersistenceStrategy>;

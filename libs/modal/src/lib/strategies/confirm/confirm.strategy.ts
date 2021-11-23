@@ -10,7 +10,8 @@ import { ConfirmModalComponent } from './confirm.component';
 import { ConfirmModalData, ConfirmModalStrategyOptions } from './types';
 
 export class ConfirmModalRenderingRef
-  implements ComponentModalRenderingRef<ConfirmModalComponent> {
+  implements ComponentModalRenderingRef<ConfirmModalComponent>
+{
   constructor(
     private renderingRef: ComponentModalRenderingRef<ConfirmModalComponent>,
   ) {}
@@ -48,9 +49,7 @@ export class ConfirmModalRenderingRef
   }
 }
 
-export class ConfirmModalStrategy extends ComponentModalStrategy<
-  ConfirmModalComponent
-> {
+export class ConfirmModalStrategy extends ComponentModalStrategy<ConfirmModalComponent> {
   constructor(private opts?: ConfirmModalStrategyOptions) {
     super(ConfirmModalComponent);
   }

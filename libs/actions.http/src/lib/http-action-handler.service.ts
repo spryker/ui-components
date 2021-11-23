@@ -11,7 +11,8 @@ import { HttpActionConfig, HttpActionResponse } from './types';
   providedIn: 'root',
 })
 export class HttpActionHandlerService
-  implements ActionHandler<unknown, unknown>, OnDestroy {
+  implements ActionHandler<unknown, unknown>, OnDestroy
+{
   private destroyed$ = new Subject<void>();
   constructor(private http: HttpClient) {}
 

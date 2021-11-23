@@ -85,13 +85,15 @@ export interface TableData<T extends TableDataRow = TableDataRow> {
   pageSize: number;
 }
 
-export interface TableConfig {
+export interface TableCoreConfig {
   dataSource: DatasourceConfig;
   columnsUrl?: string;
   columns?: TableColumns;
   // Features may expect it's config under it's namespace
   [featureName: string]: TableFeatureConfig | unknown;
 }
+
+export interface TableConfig extends TableCoreConfig {}
 
 export type ColumnsTransformer = (
   cols: TableColumns,

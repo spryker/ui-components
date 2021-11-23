@@ -90,7 +90,8 @@ describe('CacheService', () => {
     const clearObserver$ = service.clearCache(mockNamespace);
     clearObserver$.subscribe();
 
-    const cacheStorages: MockCacheStoragePersistanceAdapter[] = cacheFactory.createAll();
+    const cacheStorages: MockCacheStoragePersistanceAdapter[] =
+      cacheFactory.createAll();
 
     cacheStorages.forEach((cacheStorage) => {
       expect(cacheStorage.clear).toHaveBeenCalledWith(mockNamespace);

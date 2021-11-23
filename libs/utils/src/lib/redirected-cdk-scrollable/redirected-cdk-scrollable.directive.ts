@@ -17,7 +17,8 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 })
 export class RedirectedCdkScrollableDirective
   extends CdkScrollable
-  implements AfterViewInit {
+  implements AfterViewInit
+{
   @Input() spyRedirectedCdkScrollable?: string;
 
   private queryElement$ = new ReplaySubject<ElementRef<HTMLElement>>();

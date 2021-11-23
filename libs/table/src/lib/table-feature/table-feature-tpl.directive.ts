@@ -16,7 +16,8 @@ export class TableFeatureTplDirectiveInputs {
 })
 export class TableFeatureTplDirective
   extends TableFeatureTplDirectiveInputs
-  implements OnChanges {
+  implements OnChanges
+{
   locations$ = new ReplaySubject<string[]>(1);
   styles$ = new ReplaySubject<Record<string, any>>(1);
 
@@ -37,7 +38,7 @@ export class TableFeatureTplDirective
       );
     }
 
-    if (changes.spyTableFeatureTplStyles) {
+    if (changes.spyTableFeatureTplStyles && this.spyTableFeatureTplStyles) {
       this.styles$.next(this.spyTableFeatureTplStyles);
     }
   }

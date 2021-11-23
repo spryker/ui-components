@@ -39,9 +39,7 @@ export interface TableTotalConfig extends TableFeatureConfig {}
     },
   ],
 })
-export class TableTotalFeatureComponent extends TableFeatureComponent<
-  TableTotalConfig
-> {
+export class TableTotalFeatureComponent extends TableFeatureComponent<TableTotalConfig> {
   name = 'total';
   tableFeatureLocation = TableFeatureLocation;
 

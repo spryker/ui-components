@@ -38,7 +38,7 @@ export class TableDatasourceInlineModule {
           collate: CollateDataTransformerService,
           lens: LensDataTransformerService,
           'date-serialize': DateSerializeDataTransformerService,
-        }).providers || [],
+        } as any).providers || [],
         CollateDataTransformerModule.withConfigurators({
           table: TableDataTransformerConfiguratorService,
         }).providers || [],
@@ -46,7 +46,7 @@ export class TableDatasourceInlineModule {
           text: TextDataTransformerFilterService,
           equals: EqualsDataTransformerFilterService,
           range: RangeDataTransformerFilterService,
-        }).providers || [],
+        } as any).providers || [],
       ],
     };
   }

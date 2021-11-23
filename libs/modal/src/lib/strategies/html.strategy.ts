@@ -45,7 +45,8 @@ type HtmlNodesFactory<T> = (
 ) => Node[];
 
 export class HtmlModalRenderingRef<T>
-  implements ModalRenderingRef<T, HtmlModalExtras>, HtmlModalExtras {
+  implements ModalRenderingRef<T, HtmlModalExtras>, HtmlModalExtras
+{
   constructor(
     private parentElement: Node,
     private elements: Node[],
@@ -117,9 +118,9 @@ export class HtmlModalStrategy<T> implements ModalStrategy<T, HtmlModalExtras> {
   }
 
   private selectRenderFn(): HtmlNodesFactory<T> {
-    return ('element' in this.options
-      ? this.renderElement
-      : this.renderString) as HtmlNodesFactory<T>;
+    return (
+      'element' in this.options ? this.renderElement : this.renderString
+    ) as HtmlNodesFactory<T>;
   }
 
   private resolveHtml<H extends HtmlType>(

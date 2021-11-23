@@ -33,14 +33,14 @@ import { TableFeatureTplDirective } from './table-feature-tpl.directive';
   template: ``,
 })
 export abstract class TableFeatureComponent<
-  C extends TableFeatureConfig = TableFeatureConfig
-> implements AfterViewInit {
+  C extends TableFeatureConfig = TableFeatureConfig,
+> implements AfterViewInit
+{
   @Input()
   name = '';
 
-  @ViewChildren(TableFeatureTplDirective) tplDirectives?: QueryList<
-    TableFeatureTplDirective
-  >;
+  @ViewChildren(TableFeatureTplDirective)
+  tplDirectives?: QueryList<TableFeatureTplDirective>;
 
   config?: C;
   table?: TableComponent;
@@ -59,17 +59,15 @@ export abstract class TableFeatureComponent<
   private setTableEventBus$ = new ReplaySubject<TableFeatureEventBus>(1);
   tableEventBus$ = this.setTableEventBus$.asObservable();
 
-  private setColumnsResolverService$ = new ReplaySubject<
-    TableColumnsResolverService
-  >(1);
+  private setColumnsResolverService$ =
+    new ReplaySubject<TableColumnsResolverService>(1);
   columnsResolverService$ = this.setColumnsResolverService$.asObservable();
 
   private setDataSourceService$ = new ReplaySubject<TableDatasourceService>(1);
   dataSourceService$ = this.setDataSourceService$.asObservable();
 
-  private setDataConfiguratorService$ = new ReplaySubject<
-    TableDataConfiguratorService
-  >(1);
+  private setDataConfiguratorService$ =
+    new ReplaySubject<TableDataConfiguratorService>(1);
   dataConfiguratorService$ = this.setDataConfiguratorService$.asObservable();
 
   private setActionsService$ = new ReplaySubject<TableActionsService>(1);

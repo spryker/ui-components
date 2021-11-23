@@ -75,7 +75,7 @@ export const primary = (): IStory => ({
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
         inline: DatasourceInlineService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
       DatasourceInlineModule,
@@ -107,7 +107,7 @@ export const primary = (): IStory => ({
       dataSource: {
         type: 'mock-data',
         dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+      } as unknown as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1' },
         {
@@ -229,7 +229,7 @@ export const withDependentColumns = (): IStory => ({
         'mock-data': MockTableDatasourceService,
         dependable: TableDatasourceDependableService,
         http: DatasourceHttpService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
       NotificationModule.forRoot(),
@@ -258,7 +258,7 @@ export const withDependentColumns = (): IStory => ({
       dataSource: {
         type: 'mock-data',
         dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+      } as unknown as MockTableDatasourceConfig,
       columns: [
         {
           id: 'col1',

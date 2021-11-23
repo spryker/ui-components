@@ -26,9 +26,10 @@ export interface TableFiltersRegistry {
   // Key is string - value is type TableFilterBase
 }
 
-export type TableFilterMap = TableFiltersRegistry[keyof TableFiltersRegistry] extends never
-  ? { [type: string]: TableFilterBase }
-  : TableFiltersRegistry;
+export type TableFilterMap =
+  TableFiltersRegistry[keyof TableFiltersRegistry] extends never
+    ? { [type: string]: TableFilterBase }
+    : TableFiltersRegistry;
 
 export type TableFilter = TableFilterMap[keyof TableFiltersRegistry];
 
@@ -43,11 +44,9 @@ export interface TableFilterComponent<C extends TableFilterBase> {
 
 export type FindTableFilter<
   T extends TableFilter['type'],
-  F = Distribute<TableFilter>
+  F = Distribute<TableFilter>,
 > = F extends { type: T } ? F : never;
 
-export type TableFiltersDeclaration = Partial<
-  {
-    [P in TableFilterType]: TableFilterComponent<FindTableFilter<P>>;
-  }
->;
+export type TableFiltersDeclaration = Partial<{
+  [P in TableFilterType]: TableFilterComponent<FindTableFilter<P>>;
+}>;

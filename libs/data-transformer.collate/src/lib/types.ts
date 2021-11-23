@@ -30,13 +30,11 @@ export interface CollateDataTransformerDataT {
 // tslint:disable-next-line: no-empty-interface
 export interface DataTransformerConfiguratorRegistry {}
 
-export type DataTransformerConfiguratorType = RegistryType<
-  DataTransformerConfiguratorRegistry
->;
+export type DataTransformerConfiguratorType =
+  RegistryType<DataTransformerConfiguratorRegistry>;
 
-export type DataTransformerConfiguratorDeclaration = RegistryDeclaration<
-  DataTransformerConfiguratorRegistry
->;
+export type DataTransformerConfiguratorDeclaration =
+  RegistryDeclaration<DataTransformerConfiguratorRegistry>;
 
 export interface DataTransformerConfiguratorConfig {
   type: DataTransformerConfiguratorType;
@@ -67,16 +65,14 @@ export interface DataTransformerFilter {
   ): Observable<DataTransformerFilterData>;
 }
 
-export type DataTransformerFilterDeclaration = RegistryDeclaration<
-  DataTransformerFilterRegistry
->;
-
 // tslint:disable-next-line: no-empty-interface
 export interface DataTransformerFilterRegistry {}
 
-export type DataTransformerFilterRegistryType = RegistryType<
-  DataTransformerFilterRegistry
->;
+export type DataTransformerFilterRegistryType =
+  RegistryType<DataTransformerFilterRegistry>;
+
+export type DataTransformerFilterDeclaration =
+  RegistryDeclaration<DataTransformerFilterRegistry>;
 
 export type DataTransformerFilterData = Record<string, unknown>[];
 

@@ -41,7 +41,7 @@ export const withTable = (): IStory => ({
       TableModule.forRoot(),
       DatasourceModule.withDatasources({
         'table.inline': TableDatasourceInlineService,
-      }),
+      } as any),
       TableModule.withFeatures({
         pagination: () =>
           import('@spryker/table.feature.pagination').then(

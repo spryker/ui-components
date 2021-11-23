@@ -92,7 +92,8 @@ class TableColumnTestConfig {
 })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent
-  implements TableColumnComponent<TableColumnTestConfig> {
+  implements TableColumnComponent<TableColumnTestConfig>
+{
   @Input() config?: TableColumnTestConfig;
   @Input() context?: TableColumnContext;
 }

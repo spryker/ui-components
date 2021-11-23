@@ -2,14 +2,14 @@
   "name": "@spryker/table.feature.selectable",
   "version": "0.0.10-next.1",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/styles": "^0.2.0",
-    "@spryker/table": "^0.2.0",
-    "@spryker/utils": "^0.2.1"
+    "@angular/common": "^12.2.12",
+    "@angular/core": "^12.2.12",
+    "@spryker/styles": "^0.5.0",
+    "@spryker/table": "^0.4.0",
+    "@spryker/utils": "^0.3.0"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

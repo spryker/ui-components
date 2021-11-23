@@ -23,7 +23,8 @@ export class TableRenderFeatureDirectiveInputs {
 })
 export class TableRenderFeatureDirective
   extends TableRenderFeatureDirectiveInputs
-  implements OnInit, OnChanges {
+  implements OnInit, OnChanges
+{
   private destroyed$ = new Subject<void>();
   private feature$ = new ReplaySubject<FeatureRecord>(1);
 
@@ -50,7 +51,7 @@ export class TableRenderFeatureDirective
   ngOnChanges(
     changes: TypedSimpleChanges<TableRenderFeatureDirectiveInputs>,
   ): void {
-    if (changes.spyTableRenderFeature) {
+    if (changes.spyTableRenderFeature && this.spyTableRenderFeature) {
       this.feature$.next(this.spyTableRenderFeature);
     }
   }

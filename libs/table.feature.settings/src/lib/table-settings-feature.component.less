@@ -43,8 +43,8 @@
 
     &:not(.cdk-drag-placeholder) {
       .transition-mixin(
-        transform,
-        @common-transition-time,
+        transform;
+        @common-transition-time;
         @table-settings-feature-drag-transition-function
       );
     }
@@ -110,8 +110,8 @@
 
   &__drag-placeholder {
     .transition-mixin(
-      transform,
-      @common-transition-time,
+      transform;
+      @common-transition-time;
       @table-settings-feature-drag-transition-function
     );
     background: @green-lighter;

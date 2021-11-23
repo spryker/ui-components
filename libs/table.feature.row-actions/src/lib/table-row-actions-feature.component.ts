@@ -49,7 +49,8 @@ import {
 })
 export class TableRowActionsFeatureComponent
   extends TableFeatureComponent<TableRowActionsConfig>
-  implements OnDestroy, OnInit {
+  implements OnDestroy, OnInit
+{
   name = 'rowActions';
   tableFeatureLocation = TableFeatureLocation;
   triggerIcon = IconActionModule.icon;

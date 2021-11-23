@@ -31,7 +31,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
   ],
 })
 export class UnsavedChangesFormMonitorDirective
-  implements UnsavedChangesMonitor, OnInit, OnDestroy, OnChanges {
+  implements UnsavedChangesMonitor, OnInit, OnDestroy, OnChanges
+{
   /**
    * Allows attaching / detaching monitor
    */

@@ -1,27 +1,22 @@
 @tab-prefix-cls: ~'@{ant-prefix}-tabs';
 
 @tabs-border-width: 2px;
-@tabs-margin-bottom: 16px;
 @tabs-horizontal-margin: 0;
 @tabs-horizontal-padding: 30px;
-@tabs-vertical-padding: 8px;
+@tabs-vertical-padding: 12px;
 @tabs-padding: @tabs-vertical-padding @tabs-horizontal-padding;
-@tabs-nav-line-height: 1.715;
-@tabs-nav-bottom-margin: 16px;
+@tabs-nav-border-bottom: @tabs-border-width solid @gray-light;
+@tabs-nav-dropdown-box-shadow: 0px 4px 12px rgba(18, 18, 18, 0.15);
+@tabs-nav-dropdown-margin-top: 4px;
+@tabs-nav-dropdown-border-radius: 4px;
+@tabs-nav-dropdown-border: 1px solid @gray-light;
+@tabs-nav-dropdown-custom-tab-padding: 14px 12px;
+@tabs-nav-dropdown-menu-item-padding: 0;
+@tabs-nav-dropdown-menu-item-line-height: 1;
+@tabs-nav-dropdown-min-width: 140px;
+@tabs-nav-more-padding: 7px;
+@tabs-nav-more-icon-size: 18px;
 @tabs-hover-color: @gray-darker;
 @tabs-icon-padding-right: 6px;
-@tabs-nav-border-bottom: @tabs-border-width solid @gray-light;
-@tabs-card-tab-padding: 11px @tabs-horizontal-padding 8px;
-@tabs-card-tab-icon-padding-left: 40px;
+@tabs-card-tab-padding: 13px @tabs-horizontal-padding;
 @tabs-card-tab-icon-size: 13px;
-@tabs-card-nav-container-scrolling-padding: 3px 32px;
-@tabs-card-nav-next-btn-shadow: -2px 0 4px 0 rgba(5, 5, 5, 0.1);
-@tabs-card-nav-prev-btn-shadow: 2px 0 4px 0 rgba(5, 5, 5, 0.1);
-@tabs-card-nav-top-indent: 3px;
-@tabs-card-nav-bottom-indent: 3px;
-@tabs-card-nav-arrow-size: 6px;
-@tabs-card-nav-arrow-border: 1px solid @transparent;
-@tabs-card-nav-arrow-icon-border-transparent: @tabs-card-nav-arrow-size solid
-  @transparent;
-@tabs-card-nav-arrow-icon-border-gray: @tabs-card-nav-arrow-size solid
-  @gray-dark;

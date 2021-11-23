@@ -38,7 +38,8 @@ export class TableColumnChipConfig {
 })
 @TableColumnTypeComponent(TableColumnChipConfig)
 export class TableColumnChipComponent
-  implements TableColumnComponent<TableColumnChipConfig> {
+  implements TableColumnComponent<TableColumnChipConfig>
+{
   @Input() config?: TableColumnChipConfig;
   @Input() context?: TableColumnContext;
 }

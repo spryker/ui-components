@@ -16,7 +16,8 @@ import {
 })
 export class ArrayMapDataTransformerService
   implements
-    DataTransformer<ArrayMapDataTransformerData, ArrayMapDataTransformerDataT> {
+    DataTransformer<ArrayMapDataTransformerData, ArrayMapDataTransformerDataT>
+{
   constructor(private dataTransformerService: DataTransformerService) {}
 
   transform(

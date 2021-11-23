@@ -13,7 +13,7 @@ describe('DateSerializeDataTransformerService', () => {
   it('transform method should return date in the iso format', () => {
     const mockConfig = {
       type: 'type',
-    };
+    } as any;
     const mockData = 1614195833321;
     const callback = jest.fn();
     const transformObservable$ = service.transform(mockData, mockConfig);

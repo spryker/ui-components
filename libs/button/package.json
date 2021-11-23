@@ -2,17 +2,17 @@
   "name": "@spryker/button",
   "version": "0.2.7-next.2",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/ajax-action": "^0.2.0",
-    "@spryker/icon": "^0.2.0",
-    "@spryker/notification": "^0.2.0",
-    "@spryker/spinner": "^0.1.1",
-    "@spryker/styles": "^0.2.0",
-    "@spryker/utils": "^0.2.1"
+    "@angular/common": "^12.2.12",
+    "@angular/core": "^12.2.12",
+    "@spryker/ajax-action": "^0.3.0",
+    "@spryker/icon": "^0.3.0",
+    "@spryker/notification": "^0.3.0",
+    "@spryker/spinner": "^0.2.0",
+    "@spryker/styles": "^0.5.0",
+    "@spryker/utils": "^0.3.0"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

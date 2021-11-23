@@ -36,7 +36,8 @@ export class TableColumnImageConfig {
 })
 @TableColumnTypeComponent(TableColumnImageConfig)
 export class TableColumnImageComponent
-  implements TableColumnComponent<TableColumnImageConfig> {
+  implements TableColumnComponent<TableColumnImageConfig>
+{
   @Input() config?: TableColumnImageConfig;
   @Input() context?: TableColumnContext;
 }

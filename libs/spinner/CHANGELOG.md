@@ -16,6 +16,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.1.4](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.4-next.1...@spryker/spinner@0.1.4) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/spinner
+
+
+
+
+
+## [0.1.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.3...@spryker/spinner@0.1.4-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/spinner
+
+
+
+
+
+## [0.1.4-next.0](https://github.com/spryker/zed-gui/compare/@spryker/spinner@0.1.3-next.1...@spryker/spinner@0.1.4-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/spinner
+
+
+
+
+
+## [0.1.3](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.3-next.1...@spryker/spinner@0.1.3) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/spinner
+
+
+
+
+
 ## [0.1.3-next.1](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.2...@spryker/spinner@0.1.3-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/spinner

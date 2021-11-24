@@ -113,7 +113,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<Tab
       if (shouldShowActions) {
         return {
           order: 2,
-          padding: '0 20px',
+          padding: '0 10px',
         };
       }
 

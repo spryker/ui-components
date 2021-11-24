@@ -1,61 +1,68 @@
 @import './sidebar.component.theme.less';
 
-@{layout-sidebar-prefix-cls} .@{layout-prefix-cls}-sider {
-  display: block;
-  min-height: @layout-sidebar-min-height;
-  box-shadow: @layout-sidebar-box-shadow;
-  height: 100%;
-  font-family: @font-family;
+.@{layout-sidebar-prefix-cls} {
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
 
-  &-collapsed {
-    .@{layout-prefix-cls}-sider {
-      &-trigger {
-        &-icon {
-          transform: @layout-trigger-icon-collapsed-transform;
+  .@{layout-prefix-cls}-sider {
+    display: block;
+    min-height: @layout-sidebar-min-height;
+    box-shadow: @layout-sidebar-box-shadow;
+    height: 100%;
+    font-family: @font-family;
+
+    &-collapsed {
+      .@{layout-prefix-cls}-sider {
+        &-trigger {
+          &-icon {
+            transform: @layout-trigger-icon-collapsed-transform;
+          }
         }
       }
     }
-  }
 
-  &-trigger {
-    .transition-mixin(border, background, color;);
-    position: absolute;
-    right: @layout-trigger-right-shift;
-    bottom: @layout-trigger-bottom-shift;
-    width: auto !important;
-    height: auto;
-    border-radius: @layout-trigger-border-radius;
-    border: @layout-trigger-border;
-    color: @gray-dark;
-    outline: none;
-
-    &:hover {
-      color: @layout-trigger-background;
-      background: @layout-trigger-background-hover;
-      border-color: @layout-trigger-background-hover;
-    }
-
-    &:focus {
-      border-color: @layout-trigger-background-hover;
-    }
-
-    &-inner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: @layout-trigger-inner-size;
-      height: @layout-trigger-inner-size;
+    &-trigger {
+      .transition-mixin(border, background, color;);
+      position: absolute;
+      right: @layout-trigger-right-shift;
+      bottom: @layout-trigger-bottom-shift;
+      width: auto !important;
+      height: auto;
       border-radius: @layout-trigger-border-radius;
-      box-shadow: @layout-trigger-box-shadow;
-      font-size: @layout-trigger-inner-font-size;
+      border: @layout-trigger-border;
+      color: @gray-dark;
+      outline: none;
+
+      &:hover {
+        color: @layout-trigger-background;
+        background: @layout-trigger-background-hover;
+        border-color: @layout-trigger-background-hover;
+      }
+
+      &:focus {
+        border-color: @layout-trigger-background-hover;
+      }
+
+      &-inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: @layout-trigger-inner-size;
+        height: @layout-trigger-inner-size;
+        border-radius: @layout-trigger-border-radius;
+        box-shadow: @layout-trigger-box-shadow;
+        font-size: @layout-trigger-inner-font-size;
+      }
+
+      &-icon {
+        transform: @layout-trigger-icon-transform;
+      }
     }
 
-    &-icon {
-      transform: @layout-trigger-icon-transform;
+    &-children {
+      overflow-y: auto;
     }
-  }
-
-  &-children {
-    overflow-y: auto;
   }
 }

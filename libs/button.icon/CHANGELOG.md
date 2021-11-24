@@ -16,6 +16,49 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.1.9](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.1.9-next.2...@spryker/button.icon@0.1.9) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/button.icon
+
+
+
+
+
+## [0.1.9-next.2](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.1.9-next.1...@spryker/button.icon@0.1.9-next.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **button.icon:** updated `spryker/button` peerDependency ([892d384](https://github.com/spryker/ui-components/commit/892d384149e69d7b352bc157f25f681c9ed4752f))
+
+
+
+
+
+## [0.1.9-next.1](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.1.8...@spryker/button.icon@0.1.9-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/button.icon
+
+
+
+
+
+## [0.1.9-next.0](https://github.com/spryker/zed-gui/compare/@spryker/button.icon@0.1.8-next.1...@spryker/button.icon@0.1.9-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/button.icon
+
+
+
+
+
+## [0.1.8](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.1.8-next.1...@spryker/button.icon@0.1.8) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/button.icon
+
+
+
+
+
 ## [0.1.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.1.7...@spryker/button.icon@0.1.8-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/button.icon

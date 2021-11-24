@@ -16,6 +16,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.2.9](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.9-next.1...@spryker/select@0.2.9) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.2.9-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8...@spryker/select@0.2.9-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.2.9-next.0](https://github.com/spryker/zed-gui/compare/@spryker/select@0.2.8-next.1...@spryker/select@0.2.9-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.2.8](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8-next.1...@spryker/select@0.2.8) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
 ## [0.2.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.7...@spryker/select@0.2.8-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/select

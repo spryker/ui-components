@@ -23,6 +23,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.3.1](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.3.1-next.1...@spryker/navigation@0.3.1) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+## [0.3.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.3.0...@spryker/navigation@0.3.1-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+## [0.3.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/navigation@0.3.0-next.0...@spryker/navigation@0.3.1-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+# [0.3.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.3.0-next.1...@spryker/navigation@0.3.0) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.3.0-next.0...@spryker/navigation@0.3.0-next.1) (2021-11-04)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
 # [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.2.8-next.1...@spryker/navigation@0.3.0-next.0) (2021-10-07)
 
 

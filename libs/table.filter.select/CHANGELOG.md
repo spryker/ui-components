@@ -16,6 +16,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.0.11](https://github.com/spryker/ui-components/compare/@spryker/table.filter.select@0.0.11-next.1...@spryker/table.filter.select@0.0.11) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/table.filter.select
+
+
+
+
+
+## [0.0.11-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.select@0.0.10...@spryker/table.filter.select@0.0.11-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/table.filter.select
+
+
+
+
+
+## [0.0.11-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.filter.select@0.0.10-next.1...@spryker/table.filter.select@0.0.11-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/table.filter.select
+
+
+
+
+
+## [0.0.10](https://github.com/spryker/ui-components/compare/@spryker/table.filter.select@0.0.10-next.1...@spryker/table.filter.select@0.0.10) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/table.filter.select
+
+
+
+
+
 ## [0.0.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.select@0.0.9...@spryker/table.filter.select@0.0.10-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/table.filter.select

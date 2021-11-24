@@ -17,6 +17,7 @@
   "dependencies": {
     "@orchestrator/core": "^1.0.0",
     "@orchestrator/layout": "^1.0.0",
+    "@orchestrator/gen-io-ts": "^3.0.1",
     "ng-dynamic-component": "^8.0.1",
     "ng-zorro-antd": "^12.0.1",
     "tslib": "^2.3.1"

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.0-rc.0...@spryker/sidebar@0.4.0-rc.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* **sidebar:** provided host class & flex container for the content ([da3c0f4](https://github.com/spryker/ui-components/commit/da3c0f4eca502bff460cec7acd895c301be4f90f))
+* **sidebar:** updated `spryker/styles` dependency ([d4e4412](https://github.com/spryker/ui-components/commit/d4e441271cfb1d77f54f7ac313f3ea4eb7e8ce11))
+* updated conflicting components versions ([56e8c1b](https://github.com/spryker/ui-components/commit/56e8c1b3e35112233cf54cfc7bce81fd6ee35e33))
+
+
+
+
+
 # [0.3.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.0-next.0...@spryker/sidebar@0.3.0-rc.0) (2021-11-23)
 
 

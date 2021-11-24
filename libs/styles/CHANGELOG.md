@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-rc.0...@spryker/styles@0.5.0-rc.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* **style:** provided variables for outline and critical-outline ([bb76b53](https://github.com/spryker/ui-components/commit/bb76b53368582251500452af5d934d480d9e2a97))
+* **styles:** adjusted `table-feature-filters` variables by updating margin-bottom ([33b0357](https://github.com/spryker/ui-components/commit/33b035711e07ac2a100c047bf4fbaa855224d1fb))
+* **styles:** adjusted `table-feature-search` variables by adding margin-bottom variable ([3c74a6c](https://github.com/spryker/ui-components/commit/3c74a6c08857c2a8b516cf68bef804664e00676b))
+* **styles:** adjusted `table-feature-settings` variables by adding padding-left variable ([639f0fb](https://github.com/spryker/ui-components/commit/639f0fb538ef23458aced40d4cde441082ccd9e2))
+* **styles:** adjusted `table` variables by removing unneeded one ([e58350c](https://github.com/spryker/ui-components/commit/e58350c838581cdc18aba631954eee42afef2dc0))
+* **styles:** adjusted `table` variables by updating container-size & empty-icon-size & icon-margin-bottom variables ([b31b6d8](https://github.com/spryker/ui-components/commit/b31b6d8f7d6dd2ddecf543986ce0f181992765b9))
+* **styles:** cleanup button variables ([9373c93](https://github.com/spryker/ui-components/commit/9373c932c404ab371f04561c70e07fbd91df3546))
+* **styles:** updated `button` variables by removing unused one ([d665c2b](https://github.com/spryker/ui-components/commit/d665c2b6168f4a9e94a2434c43cdb4cd771952f7))
+* **styles:** updated `table-feature-filters` variables by removing unused one ([7ea26d9](https://github.com/spryker/ui-components/commit/7ea26d96f540edbc9025222fef9e360357a6a739))
+* updated conflicting components versions ([56e8c1b](https://github.com/spryker/ui-components/commit/56e8c1b3e35112233cf54cfc7bce81fd6ee35e33))
+
+
+
+
+
 # [0.4.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-next.0...@spryker/styles@0.4.0-rc.0) (2021-11-23)
 
 

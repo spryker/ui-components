@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.1.0-rc.0...@spryker/table.feature.filters@0.1.0-rc.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* **table.feature.filters:** adjusted `table-filters-feature` by removing margin-top ([2e1c1e1](https://github.com/spryker/ui-components/commit/2e1c1e1c429187b5f273ac810ed8907b336459bb))
+* **table.feature.filters:** updated the `styles` dependency to change features positioning ([15d20a9](https://github.com/spryker/ui-components/commit/15d20a936a8183eaf9f1a3b98a0523e437e3d7c9))
+* **table.feature.filters:** updated the `styles` dependency to change features positioning ([e9d077c](https://github.com/spryker/ui-components/commit/e9d077cd4eb2581f6c76d1ef9cbcd36182dac4f5))
+
+
+
+
+
 # [0.1.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.0.10-next.1...@spryker/table.feature.filters@0.1.0-rc.0) (2021-11-23)
 
 

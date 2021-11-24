@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.3.0-rc.0...@spryker/navigation@0.4.0-rc.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* updated conflicting components versions ([56e8c1b](https://github.com/spryker/ui-components/commit/56e8c1b3e35112233cf54cfc7bce81fd6ee35e33))
+
+
+
+
+
 # [0.3.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.3.0-next.0...@spryker/navigation@0.3.0-rc.0) (2021-11-23)
 
 

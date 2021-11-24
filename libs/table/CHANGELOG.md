@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.0...@spryker/table@0.4.0-rc.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* **table:** added `@orchestrator/gen-io-ts` dependency to the `whitelistedNonPeerDependencies` ([093ac0c](https://github.com/spryker/ui-components/commit/093ac0cdc3b7c701251d2b36f0dffdac29101ace))
+* **table:** added missing `@orchestrator/gen-io-ts` dependency ([e1d8360](https://github.com/spryker/ui-components/commit/e1d836067f5e5f0017c6c1a47ea597aedd1374ac))
+* **table:** adjusted `table` by replacing flex-flow with flex-direction ([136acea](https://github.com/spryker/ui-components/commit/136acea2efee1cafe8a43a3574584c2649de9206))
+* **table:** adjusted `table` by updating empty state flex-flow & title font-size ([e4c1c35](https://github.com/spryker/ui-components/commit/e4c1c35aef0d883a52a492b63d66b496ec9ff51b))
+* **table:** updated `spryker/table` by updating version ([5ff90a9](https://github.com/spryker/ui-components/commit/5ff90a973835cc7280f8561d2176a89d078b4b80))
+* **table:** updated `styles` dependency ([e5817c6](https://github.com/spryker/ui-components/commit/e5817c68ff6e4175fba447cbb5c64f02e996a1ac))
+
+
+
+
+
 # [0.4.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.5-next.2...@spryker/table@0.4.0-rc.0) (2021-11-23)
 
 

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.1.0-rc.0...@spryker/table.feature.search@0.1.0-rc.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* **table.feature.search:** adjusted `table-search-feature` by adding margin-bottom ([8792812](https://github.com/spryker/ui-components/commit/8792812a8402332bc4fc6e425297e319cbcc45cd))
+* **table.feature.search:** adjusted `table-search-feature` by providing padding ([07269d7](https://github.com/spryker/ui-components/commit/07269d7f7f0538f89ee3d3c72483a31957e830f2))
+* **table.feature.search:** adjusted `table-search-feature` layout by removing padding ([aecd8f7](https://github.com/spryker/ui-components/commit/aecd8f71b154677c4370f24e23f9ca6d406ef37d))
+* **table.feature.search:** updated the `styles` dependency to change features positioning ([1a8c6b4](https://github.com/spryker/ui-components/commit/1a8c6b47e765a6ff17c76c850ba9dd9d137503fe))
+
+
+
+
+
 # [0.1.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.0.10-next.1...@spryker/table.feature.search@0.1.0-rc.0) (2021-11-23)
 
 

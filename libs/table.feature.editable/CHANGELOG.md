@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.2.0-rc.0...@spryker/table.feature.editable@0.2.0-rc.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** adjusted `table-editable-feature` by removing padding ([b2abb55](https://github.com/spryker/ui-components/commit/b2abb55e4b81aacf2af0653e5782ef79e200060c))
+* **table.feature.editable:** adjusted `table-editable-feature` by updating button styles ([94568f5](https://github.com/spryker/ui-components/commit/94568f5f447c7f6be5854390d0556d9dc6ad9f34))
+* **table.feature.editable:** adjusted `table-editable-feature` by updating styles ([bf29b88](https://github.com/spryker/ui-components/commit/bf29b88d2e4ef8c6f68d673f6edcb9fa553710b8))
+* **table.feature.editable:** adjusted `table-editable-feature` layout by updating styles ([c3416cd](https://github.com/spryker/ui-components/commit/c3416cda8c6dc72121f1a8b3690c05c9e35f907b))
+* **table.feature.editable:** updated `spryker/button` peerDependencies ([1915a7d](https://github.com/spryker/ui-components/commit/1915a7d9e078be2e192505967db843e3468e7ccd))
+* **table.feature.editable:** updated `spryker/button` peerDependency ([1347bec](https://github.com/spryker/ui-components/commit/1347bec25139505f47054dbe2e7e09cb0586be45))
+
+
+
+
+
 # [0.2.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-next.4...@spryker/table.feature.editable@0.2.0-rc.0) (2021-11-23)
 
 

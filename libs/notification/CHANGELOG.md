@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.3.0-rc.0...@spryker/notification@0.3.0-rc.1) (2021-11-25)
+
+
+### Bug Fixes
+
+* **notification:** reverted `ngx-toastr` dependency version ([40bac98](https://github.com/spryker/ui-components/commit/40bac98fe7182fa04feafbc603da9dbc968accc7))
+* **notification:** updated `spryker/styles` dependency ([68d9b3d](https://github.com/spryker/ui-components/commit/68d9b3db232e7d94c6c24e0915fca11b84e8a1ee))
+
+
+
+
+
 # [0.3.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.2.7-next.1...@spryker/notification@0.3.0-rc.0) (2021-11-23)
 
 

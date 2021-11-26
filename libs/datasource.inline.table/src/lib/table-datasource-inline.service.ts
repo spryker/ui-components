@@ -71,7 +71,7 @@ export class TableDatasourceInlineService implements Datasource<TableData> {
         },
       ],
       transformerByPropName: config.transformerByPropName,
-    } as unknown as DataTransformerConfig;
+    };
 
     return this.datasourceInlineService
       .resolve(injector, config)
@@ -79,7 +79,7 @@ export class TableDatasourceInlineService implements Datasource<TableData> {
         switchMap((data) =>
           this.dataTransformerService.transform(
             data,
-            transformConfig,
+            transformConfig as DataTransformerConfig,
             injector,
           ),
         ),

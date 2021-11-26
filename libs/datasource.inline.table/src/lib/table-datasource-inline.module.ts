@@ -1,10 +1,14 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DataTransformerModule } from '@spryker/data-transformer';
+import {
+  DataTransformerModule,
+  DataTransformerTypesDeclaration,
+} from '@spryker/data-transformer';
 import { ArrayMapDataTransformerService } from '@spryker/data-transformer.array-map';
 import { ChainDataTransformerService } from '@spryker/data-transformer.chain';
 import {
   CollateDataTransformerModule,
   CollateDataTransformerService,
+  DataTransformerFilterDeclaration,
 } from '@spryker/data-transformer.collate';
 import { TableDataTransformerConfiguratorService } from '@spryker/data-transformer.configurator.table';
 import { DateParseDataTransformerService } from '@spryker/data-transformer.date-parse';
@@ -38,7 +42,7 @@ export class TableDatasourceInlineModule {
           collate: CollateDataTransformerService,
           lens: LensDataTransformerService,
           'date-serialize': DateSerializeDataTransformerService,
-        } as any).providers || [],
+        } as unknown as DataTransformerTypesDeclaration).providers || [],
         CollateDataTransformerModule.withConfigurators({
           table: TableDataTransformerConfiguratorService,
         }).providers || [],
@@ -46,7 +50,7 @@ export class TableDatasourceInlineModule {
           text: TextDataTransformerFilterService,
           equals: EqualsDataTransformerFilterService,
           range: RangeDataTransformerFilterService,
-        } as any).providers || [],
+        } as unknown as DataTransformerFilterDeclaration).providers || [],
       ],
     };
   }

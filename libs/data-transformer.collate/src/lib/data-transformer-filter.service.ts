@@ -50,7 +50,7 @@ export class DataTransformerFilterService {
   }
 
   private isFilterRegisteredType(
-    type: string,
+    type: DataTransformerFilterRegistryType,
   ): type is keyof DataTransformerFilterRegistry {
     return type in this.filters;
   }

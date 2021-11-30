@@ -16,12 +16,6 @@ import {
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
 
-declare module '../table/table' {
-  interface TableColumnTypeRegistry {
-    list: TableColumnListConfig;
-  }
-}
-
 export class TableColumnListConfigInner {
   @ColumnTypeOption()
   type?: string;

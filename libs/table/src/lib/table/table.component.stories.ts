@@ -20,7 +20,10 @@ import {
   TableDataMockGenerator,
 } from '../../../../table/testing/src';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
-import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
+import {
+  TableColumnListComponent,
+  TableColumnListConfig,
+} from '../table-column-list/table-column-list.component';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableModule } from '../table.module';
 import {
@@ -98,6 +101,12 @@ class TableColumnTestComponent
 {
   @Input() config?: TableColumnTestConfig;
   @Input() context?: TableColumnContext;
+}
+
+declare module '../table/table' {
+  interface TableColumnTypeRegistry {
+    list: TableColumnListConfig;
+  }
 }
 
 @NgModule({

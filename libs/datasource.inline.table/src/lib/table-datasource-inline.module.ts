@@ -1,14 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import {
-  DataTransformerModule,
-  DataTransformerTypesDeclaration,
-} from '@spryker/data-transformer';
+import { DataTransformerModule } from '@spryker/data-transformer';
 import { ArrayMapDataTransformerService } from '@spryker/data-transformer.array-map';
 import { ChainDataTransformerService } from '@spryker/data-transformer.chain';
 import {
   CollateDataTransformerModule,
   CollateDataTransformerService,
-  DataTransformerFilterDeclaration,
 } from '@spryker/data-transformer.collate';
 import { TableDataTransformerConfiguratorService } from '@spryker/data-transformer.configurator.table';
 import { DateParseDataTransformerService } from '@spryker/data-transformer.date-parse';
@@ -18,8 +14,36 @@ import { RangeDataTransformerFilterService } from '@spryker/data-transformer.fil
 import { TextDataTransformerFilterService } from '@spryker/data-transformer.filter.text';
 import { LensDataTransformerService } from '@spryker/data-transformer.lens';
 import { ObjectMapDataTransformerService } from '@spryker/data-transformer.object-map';
+import { PluckDataTransformerService } from '@spryker/data-transformer.pluck';
 import { TableModule } from '@spryker/table';
 import { DateModule } from '@spryker/utils/date';
+
+declare module '@spryker/data-transformer' {
+  interface DataTransformerRegistry {
+    chain: ChainDataTransformerService;
+    'array-map': ArrayMapDataTransformerService;
+    'object-map': ObjectMapDataTransformerService;
+    'date-parse': DateParseDataTransformerService;
+    collate: CollateDataTransformerService;
+    lens: LensDataTransformerService;
+    'date-serialize': DateSerializeDataTransformerService;
+    pluck: PluckDataTransformerService;
+  }
+}
+
+declare module '@spryker/data-transformer.collate' {
+  interface DataTransformerConfiguratorRegistry {
+    table: TableDataTransformerConfiguratorService;
+  }
+}
+
+declare module '@spryker/data-transformer.collate' {
+  interface DataTransformerFilterRegistry {
+    text: TextDataTransformerFilterService;
+    equals: EqualsDataTransformerFilterService;
+    range: RangeDataTransformerFilterService;
+  }
+}
 
 @NgModule({
   imports: [
@@ -42,7 +66,8 @@ export class TableDatasourceInlineModule {
           collate: CollateDataTransformerService,
           lens: LensDataTransformerService,
           'date-serialize': DateSerializeDataTransformerService,
-        } as unknown as DataTransformerTypesDeclaration).providers || [],
+          pluck: PluckDataTransformerService,
+        }).providers || [],
         CollateDataTransformerModule.withConfigurators({
           table: TableDataTransformerConfiguratorService,
         }).providers || [],
@@ -50,7 +75,7 @@ export class TableDatasourceInlineModule {
           text: TextDataTransformerFilterService,
           equals: EqualsDataTransformerFilterService,
           range: RangeDataTransformerFilterService,
-        } as unknown as DataTransformerFilterDeclaration).providers || [],
+        }).providers || [],
       ],
     };
   }

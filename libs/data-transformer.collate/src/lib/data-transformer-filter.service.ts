@@ -32,7 +32,7 @@ export class DataTransformerFilterService {
   ) {}
 
   filter(
-    type: string,
+    type: DataTransformerFilterRegistryType | string,
     data: DataTransformerFilterData,
     options: DataTransformerFilterConfig,
     byValue: DataTransformerFilterByValue,
@@ -50,7 +50,7 @@ export class DataTransformerFilterService {
   }
 
   private isFilterRegisteredType(
-    type: DataTransformerFilterRegistryType,
+    type: DataTransformerFilterRegistryType | string,
   ): type is keyof DataTransformerFilterRegistry {
     return type in this.filters;
   }

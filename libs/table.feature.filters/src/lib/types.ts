@@ -4,12 +4,6 @@ import { Distribute } from '@spryker/utils';
 import { Observable } from 'rxjs';
 import { TableFeatureConfig } from '@spryker/table';
 
-declare module '@spryker/table' {
-  interface TableConfig {
-    filters?: TableFiltersConfig;
-  }
-}
-
 export interface TableFiltersConfig extends TableFeatureConfig {
   items: TableFilterBase[];
 }

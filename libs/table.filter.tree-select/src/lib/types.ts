@@ -1,11 +1,5 @@
 import { TableFilterBase } from '@spryker/table.feature.filters';
 
-declare module '@spryker/table.feature.filters' {
-  interface TableFiltersRegistry {
-    'tree-select': TableFilterTreeSelect;
-  }
-}
-
 /**
  * Interface {@link TableFilterTreeSelect} represents config of the Tree Select filters feature
  */

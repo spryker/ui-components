@@ -3,12 +3,6 @@ import { DataTransformerConfig } from '@spryker/data-transformer';
 import { RegistryDeclaration, RegistryType } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
-declare module '@spryker/data-transformer' {
-  interface DataTransformerRegistry {
-    collate: CollateDataTransformerConfig;
-  }
-}
-
 export interface CollateDataTransformerConfig extends DataTransformerConfig {
   configurator: DataTransformerConfiguratorConfig;
   filter?: {

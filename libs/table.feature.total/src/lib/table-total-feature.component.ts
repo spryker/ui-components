@@ -16,15 +16,7 @@ import {
   take,
   pluck,
 } from 'rxjs/operators';
-
-declare module '@spryker/table' {
-  interface TableConfig {
-    total?: TableTotalConfig;
-  }
-}
-
-// tslint:disable-next-line: no-empty-interface
-export interface TableTotalConfig extends TableFeatureConfig {}
+import { TableTotalConfig } from './types';
 
 @Component({
   selector: 'spy-table-total-feature',

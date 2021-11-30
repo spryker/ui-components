@@ -25,12 +25,6 @@ import { ContextService, TypedSimpleChanges } from '@spryker/utils';
 import { merge, of, ReplaySubject, Subject } from 'rxjs';
 import { delay, map, mapTo, shareReplay, switchMap, tap } from 'rxjs/operators';
 
-declare module '@spryker/table' {
-  interface TableColumnTypeRegistry {
-    dynamic: TableColumnDynamicConfig;
-  }
-}
-
 @Injectable({ providedIn: 'root' })
 export class TableColumnDynamicDatasourceConfig implements DatasourceConfig {
   @ColumnTypeOption({

@@ -9,5 +9,5 @@
       "ngx-element-boundary/element-strategy/default": "ngxElementBoundary.elementStrategy.default"
     }
   },
-  "whitelistedNonPeerDependencies": ["ngx-element-boundary"]
+  "allowedNonPeerDependencies": ["ngx-element-boundary"]
 }

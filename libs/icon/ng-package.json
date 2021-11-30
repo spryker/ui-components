@@ -5,6 +5,6 @@
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../styles/src/lib"]
   },
-  "whitelistedNonPeerDependencies": ["ng-zorro-antd"],
+  "allowedNonPeerDependencies": ["ng-zorro-antd"],
   "assets": ["src/lib/fontello"]
 }

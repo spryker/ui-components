@@ -73,7 +73,7 @@ export class TableColumnListComponent
     }
 
     const value = this.context.value;
-    const isLimited = this.config && this.config.limit && this.config.limit > 0;
+    const isLimited = this.config && Boolean(this.config.limit);
     let values = Array.isArray(value) ? value : [value];
     values = Boolean(values.length) ? (values as unknown[]) : [undefined];
     this.values = values.map((_value) => ({
@@ -95,6 +95,7 @@ export class TableColumnListComponent
       delete (config as TableColumnTypeDef).type;
       delete (config as TableColumnTypeDef).typeOptions;
       delete (config as TableColumnTypeDef).typeChildren;
+      delete (config as TableColumnTypeDef).typeOptionsMappings;
 
       Object.assign(config, this.config);
 

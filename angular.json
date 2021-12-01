@@ -1,74 +1,6 @@
 {
   "version": 1,
   "projects": {
-    "core": {
-      "projectType": "library",
-      "root": "libs/core",
-      "sourceRoot": "libs/core/src",
-      "prefix": "spy",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "libs/core/tsconfig.lib.json",
-            "project": "libs/core/ng-package.json"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/core/tsconfig.lib.json",
-              "libs/core/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/core/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/core/jest.config.js",
-            "tsConfig": "libs/core/tsconfig.spec.json",
-            "setupFile": "libs/core/src/test-setup.ts"
-          }
-        },
-        "storybook": {
-          "builder": "@nrwl/storybook:storybook",
-          "options": {
-            "uiFramework": "@storybook/angular",
-            "port": 4400,
-            "config": {
-              "configFolder": "libs/core/.storybook"
-            }
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
-        },
-        "build-storybook": {
-          "builder": "@nrwl/storybook:build",
-          "options": {
-            "uiFramework": "@storybook/angular",
-            "outputPath": "dist/storybook/core",
-            "config": {
-              "configFolder": "libs/core/.storybook"
-            }
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
     "form-item": {
       "projectType": "library",
       "root": "libs/form-item",
@@ -7061,91 +6993,6 @@
           "style": "less"
         }
       }
-    },
-    "test": {
-      "projectType": "application",
-      "root": "apps/test",
-      "sourceRoot": "apps/test/src",
-      "prefix": "spy",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/test",
-            "index": "apps/test/src/index.html",
-            "main": "apps/test/src/main.ts",
-            "polyfills": "apps/test/src/polyfills.ts",
-            "tsConfig": "apps/test/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/test/src/favicon.ico", "apps/test/src/assets"],
-            "styles": ["apps/test/src/styles.less"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/test/src/environments/environment.ts",
-                  "with": "apps/test/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "test:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "test:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "test:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/test/src/**/*.ts",
-              "apps/test/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/test"],
-          "options": {
-            "jestConfig": "apps/test/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
     }
   },
   "cli": {
@@ -7155,17 +7002,15 @@
   "schematics": {
     "@nrwl/angular:application": {
       "style": "less",
-      "linter": "eslint",
+      "prefix": "spy",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "protractor",
-      "prefix": "spy"
+      "e2eTestRunner": "protractor"
     },
     "@nrwl/angular:library": {
       "style": "less",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
       "prefix": "spy",
-      "publishable": true
+      "publishable": true,
+      "unitTestRunner": "jest"
     },
     "@schematics/angular:component": {
       "style": "less",
@@ -7174,10 +7019,6 @@
     },
     "@nrwl/storybook:configuration": {
       "uiFramework": "@storybook/angular"
-    },
-    "@nrwl/angular:component": {
-      "style": "less"
     }
-  },
-  "defaultProject": "core"
+  }
 }

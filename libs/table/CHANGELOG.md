@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.1...@spryker/table@0.4.0-rc.2) (2021-12-01)
+
+
+### Bug Fixes
+
+* fixed `jest-preset-angular` package deprecations ([7ae4dfa](https://github.com/spryker/ui-components/commit/7ae4dfa3e60b243490e2ccc50db4f2ffee0b8ab9))
+
+
+
+
+
 # [0.4.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.0...@spryker/table@0.4.0-rc.1) (2021-11-24)
 
 

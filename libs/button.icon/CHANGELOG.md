@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.2.0-rc.0...@spryker/button.icon@0.2.0-rc.1) (2021-12-01)
+
+
+### Bug Fixes
+
+* **button.icon:** updated `spryker/button` peerDependency ([892d384](https://github.com/spryker/ui-components/commit/892d384149e69d7b352bc157f25f681c9ed4752f))
+* fixed `jest-preset-angular` package deprecations ([7ae4dfa](https://github.com/spryker/ui-components/commit/7ae4dfa3e60b243490e2ccc50db4f2ffee0b8ab9))
+
+
+
+
+
 # [0.2.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.1.8-next.1...@spryker/button.icon@0.2.0-rc.0) (2021-11-23)
 
 

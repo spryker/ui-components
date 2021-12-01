@@ -8,7 +8,6 @@
     "nx.json": "*"
   },
   "projects": {
-    "core": { "tags": ["pkg:primary", "type:util", "core"] },
     "styles": { "tags": ["pkg:primary", "type:style"] },
     "utils": { "tags": ["pkg:primary", "type:util"] },
     "storybook": { "tags": ["pkg:primary", "type:meta"] },
@@ -303,8 +302,7 @@
     },
     "actions.close-drawer": { "tags": ["type:service", "pkg:extension"] },
     "actions.refresh-drawer": { "tags": ["type:service", "pkg:extension"] },
-    "spinner": { "tags": ["type:component", "level:atom", "pkg:primary"] },
-    "test": { "tags": ["type:meta"] }
+    "spinner": { "tags": ["type:component", "level:atom", "pkg:primary"] }
   },
   "tasksRunnerOptions": {
     "default": {

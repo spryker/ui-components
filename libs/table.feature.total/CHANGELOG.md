@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.1.0-rc.2...@spryker/table.feature.total@0.1.0-rc.3) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.feature.total:** added `types` to export ([efd89fa](https://github.com/spryker/ui-components/commit/efd89fad355ce3e7b169549061cb09d8aa3d7d6e))
+
+
+
+
+
 # [0.1.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.1.0-rc.1...@spryker/table.feature.total@0.1.0-rc.2) (2021-12-02)
 
 

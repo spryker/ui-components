@@ -15,12 +15,6 @@ import {
 } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
-declare module '@spryker/table' {
-  interface TableColumnTypeRegistry {
-    input: TableColumnInputConfig;
-  }
-}
-
 @Injectable({ providedIn: 'root' })
 export class TableColumnInputConfig {
   @ColumnTypeOption()

@@ -14,8 +14,36 @@ import { RangeDataTransformerFilterService } from '@spryker/data-transformer.fil
 import { TextDataTransformerFilterService } from '@spryker/data-transformer.filter.text';
 import { LensDataTransformerService } from '@spryker/data-transformer.lens';
 import { ObjectMapDataTransformerService } from '@spryker/data-transformer.object-map';
+import { PluckDataTransformerService } from '@spryker/data-transformer.pluck';
 import { TableModule } from '@spryker/table';
 import { DateModule } from '@spryker/utils/date';
+
+declare module '@spryker/data-transformer' {
+  interface DataTransformerRegistry {
+    chain: ChainDataTransformerService;
+    'array-map': ArrayMapDataTransformerService;
+    'object-map': ObjectMapDataTransformerService;
+    'date-parse': DateParseDataTransformerService;
+    collate: CollateDataTransformerService;
+    lens: LensDataTransformerService;
+    'date-serialize': DateSerializeDataTransformerService;
+    pluck: PluckDataTransformerService;
+  }
+}
+
+declare module '@spryker/data-transformer.collate' {
+  interface DataTransformerConfiguratorRegistry {
+    table: TableDataTransformerConfiguratorService;
+  }
+}
+
+declare module '@spryker/data-transformer.collate' {
+  interface DataTransformerFilterRegistry {
+    text: TextDataTransformerFilterService;
+    equals: EqualsDataTransformerFilterService;
+    range: RangeDataTransformerFilterService;
+  }
+}
 
 @NgModule({
   imports: [
@@ -38,7 +66,8 @@ export class TableDatasourceInlineModule {
           collate: CollateDataTransformerService,
           lens: LensDataTransformerService,
           'date-serialize': DateSerializeDataTransformerService,
-        } as any).providers || [],
+          pluck: PluckDataTransformerService,
+        }).providers || [],
         CollateDataTransformerModule.withConfigurators({
           table: TableDataTransformerConfiguratorService,
         }).providers || [],
@@ -46,7 +75,7 @@ export class TableDatasourceInlineModule {
           text: TextDataTransformerFilterService,
           equals: EqualsDataTransformerFilterService,
           range: RangeDataTransformerFilterService,
-        } as any).providers || [],
+        }).providers || [],
       ],
     };
   }

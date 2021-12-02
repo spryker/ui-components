@@ -21,12 +21,6 @@ import {
 } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
-declare module '@spryker/table' {
-  interface TableColumnTypeRegistry {
-    autocomplete: TableColumnAutocompleteConfig;
-  }
-}
-
 @Injectable({ providedIn: 'root' })
 export class ColumnAutocompleteDataTransformer
   implements DataTransformerConfig

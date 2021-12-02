@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.input@0.2.0-rc.1...@spryker/table.column.input@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.column.input:** removed module declaration ([e053499](https://github.com/spryker/ui-components/commit/e0534994d4bf8cbc7dbbbccafc15b8b6a9c9d389))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.input@0.2.0-rc.0...@spryker/table.column.input@0.2.0-rc.1) (2021-12-01)
 
 

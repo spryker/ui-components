@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.row-actions@0.1.0-rc.1...@spryker/table.feature.row-actions@0.1.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.feature.row-actions:** removed module declaration ([b7c8b8e](https://github.com/spryker/ui-components/commit/b7c8b8e981771cd0b7f3fcdf108b1cdaf81b53f2))
+
+
+
+
+
 # [0.1.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.row-actions@0.1.0-rc.0...@spryker/table.feature.row-actions@0.1.0-rc.1) (2021-12-01)
 
 

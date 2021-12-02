@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.filter.range@0.2.0-rc.1...@spryker/data-transformer.filter.range@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **data-transformer.filter.range:** removed module declaration ([f4ed595](https://github.com/spryker/ui-components/commit/f4ed595763ebe2b9a421ec1286fbf893b3dc1b0c))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.filter.range@0.2.0-rc.0...@spryker/data-transformer.filter.range@0.2.0-rc.1) (2021-12-01)
 
 

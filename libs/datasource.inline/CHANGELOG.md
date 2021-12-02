@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/datasource.inline@0.2.0-rc.1...@spryker/datasource.inline@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **datasource.inline:** removed module declaration ([429698f](https://github.com/spryker/ui-components/commit/429698fd270e1f367bd6b699fd63e859ed1f2f18))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/datasource.inline@0.2.0-rc.0...@spryker/datasource.inline@0.2.0-rc.1) (2021-12-01)
 
 

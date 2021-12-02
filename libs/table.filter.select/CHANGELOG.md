@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.filter.select@0.1.0-rc.1...@spryker/table.filter.select@0.1.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.filter.select:** removed module declaration ([a168490](https://github.com/spryker/ui-components/commit/a168490605183e745afa4ca31cc0064d65910bba))
+
+
+
+
+
 # [0.1.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.select@0.1.0-rc.0...@spryker/table.filter.select@0.1.0-rc.1) (2021-12-01)
 
 

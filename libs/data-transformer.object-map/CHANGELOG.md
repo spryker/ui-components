@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.object-map@0.2.0-rc.1...@spryker/data-transformer.object-map@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **data-transformer.object-map:** removed module declaration ([dbc69e9](https://github.com/spryker/ui-components/commit/dbc69e96b5d333206e707ae28b67f40f25c5e104))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.object-map@0.2.0-rc.0...@spryker/data-transformer.object-map@0.2.0-rc.1) (2021-12-01)
 
 

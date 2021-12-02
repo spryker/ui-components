@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.1.0-rc.2...@spryker/table.feature.search@0.1.0-rc.3) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.feature.search:** removed module declaration ([6a1337f](https://github.com/spryker/ui-components/commit/6a1337f374545b2e0e2f82b0f36b444e8f6ad28b))
+
+
+
+
+
 # [0.1.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.1.0-rc.1...@spryker/table.feature.search@0.1.0-rc.2) (2021-12-01)
 
 

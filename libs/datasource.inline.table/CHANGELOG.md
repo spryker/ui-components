@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/datasource.inline.table@0.2.0-rc.1...@spryker/datasource.inline.table@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **datasource.inline.table:** removed `PluckDataTransformerService` declaration ([21a21e7](https://github.com/spryker/ui-components/commit/21a21e7ebfa13f24f0252c687aa0e69a9ff52f7a))
+* **datasource.inline.table:** removed module declaration && added `data-transformer` declarations to the module ([90605a1](https://github.com/spryker/ui-components/commit/90605a1f38c154361571099155ed6a9d7bba1e7d))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/datasource.inline.table@0.2.0-rc.0...@spryker/datasource.inline.table@0.2.0-rc.1) (2021-12-01)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.filter.tree-select@0.1.0-rc.1...@spryker/table.filter.tree-select@0.1.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.filter.tree-select:** removed module declaration ([be4621a](https://github.com/spryker/ui-components/commit/be4621a195f972f5f2c37a8d654ff8e8c5aa10ac))
+
+
+
+
+
 # [0.1.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.tree-select@0.1.0-rc.0...@spryker/table.filter.tree-select@0.1.0-rc.1) (2021-12-01)
 
 

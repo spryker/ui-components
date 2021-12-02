@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.autocomplete@0.2.0-rc.1...@spryker/table.column.autocomplete@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.column.autocomplete:** removed module declaration ([c1a05b9](https://github.com/spryker/ui-components/commit/c1a05b9a55fb289f9e2f0cd28943b02088d023cd))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.autocomplete@0.2.0-rc.0...@spryker/table.column.autocomplete@0.2.0-rc.1) (2021-12-01)
 
 

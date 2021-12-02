@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.date-serialize@0.2.0-rc.1...@spryker/data-transformer.date-serialize@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **data-transformer.date-serialize:** removed module declaration ([6b1f082](https://github.com/spryker/ui-components/commit/6b1f082839b1835bd241f4a114ea2a4ece024342))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.date-serialize@0.2.0-rc.0...@spryker/data-transformer.date-serialize@0.2.0-rc.1) (2021-12-01)
 
 

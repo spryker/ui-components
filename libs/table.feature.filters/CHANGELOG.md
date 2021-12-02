@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.1.0-rc.2...@spryker/table.feature.filters@0.1.0-rc.3) (2021-12-02)
+
+
+### Bug Fixes
+
+* replaced deprecated `whitelistedNonPeerDependencies` with `allowedNonPeerDependencies` ([b4f1592](https://github.com/spryker/ui-components/commit/b4f1592e940e5042a11aa6f2a0f955b145b0ed2b))
+* **table.feature.filters:** removed module declaration ([48e7dc2](https://github.com/spryker/ui-components/commit/48e7dc2eb82cb6a19ae918a47f366e1e34615f0a))
+
+
+
+
+
 # [0.1.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.1.0-rc.1...@spryker/table.feature.filters@0.1.0-rc.2) (2021-12-01)
 
 

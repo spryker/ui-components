@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/cache.static@0.2.0-rc.1...@spryker/cache.static@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **cache.static:** removed module declaration ([041ed48](https://github.com/spryker/ui-components/commit/041ed487ddf22f35918ebe5237f37f3f78cfedab))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/cache.static@0.2.0-rc.0...@spryker/cache.static@0.2.0-rc.1) (2021-12-01)
 
 

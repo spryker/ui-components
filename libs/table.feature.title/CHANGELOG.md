@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.title@0.1.0-rc.1...@spryker/table.feature.title@0.1.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.feature.title:** removed module declaration ([48ccf9d](https://github.com/spryker/ui-components/commit/48ccf9d7a7c00d6e338ff1335afcca6eae8bd930))
+
+
+
+
+
 # [0.1.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.title@0.1.0-rc.0...@spryker/table.feature.title@0.1.0-rc.1) (2021-12-01)
 
 

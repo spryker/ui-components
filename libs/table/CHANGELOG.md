@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.3](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.2...@spryker/table@0.4.0-rc.3) (2021-12-02)
+
+
+### Bug Fixes
+
+* replaced deprecated `whitelistedNonPeerDependencies` with `allowedNonPeerDependencies` ([b4f1592](https://github.com/spryker/ui-components/commit/b4f1592e940e5042a11aa6f2a0f955b145b0ed2b))
+* **table:** fixed `table-column-list` component types ([740562c](https://github.com/spryker/ui-components/commit/740562c5f1f7fb836cf93e06f91aad1c4bd00a11))
+* **table:** moved `table-column-list` module declaration to the storybook ([387e477](https://github.com/spryker/ui-components/commit/387e47770c47ad62f38787d9af9b437c59fb5873))
+
+
+
+
+
 # [0.4.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.1...@spryker/table@0.4.0-rc.2) (2021-12-01)
 
 

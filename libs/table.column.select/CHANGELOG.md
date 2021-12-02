@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.select@0.2.0-rc.1...@spryker/table.column.select@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.column.select:** removed module declaration ([4e9a2d6](https://github.com/spryker/ui-components/commit/4e9a2d618c430d68ac225a6858b2f0ae735f588f))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.select@0.2.0-rc.0...@spryker/table.column.select@0.2.0-rc.1) (2021-12-01)
 
 

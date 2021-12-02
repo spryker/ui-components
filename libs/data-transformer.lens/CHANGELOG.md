@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.lens@0.2.0-rc.1...@spryker/data-transformer.lens@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **data-transformer.lens:** removed module declaration ([21bc5eb](https://github.com/spryker/ui-components/commit/21bc5eb6a16e20877d093181b17bc6bef4cfde17))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.lens@0.2.0-rc.0...@spryker/data-transformer.lens@0.2.0-rc.1) (2021-12-01)
 
 

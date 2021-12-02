@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.dynamic@0.2.0-rc.1...@spryker/table.column.dynamic@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* replaced deprecated `whitelistedNonPeerDependencies` with `allowedNonPeerDependencies` ([b4f1592](https://github.com/spryker/ui-components/commit/b4f1592e940e5042a11aa6f2a0f955b145b0ed2b))
+* **table.column.dynamic:** removed module declaration ([2571c8a](https://github.com/spryker/ui-components/commit/2571c8a38e6b9e4633505b8fb5e8d11de90393bb))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.dynamic@0.2.0-rc.0...@spryker/table.column.dynamic@0.2.0-rc.1) (2021-12-01)
 
 

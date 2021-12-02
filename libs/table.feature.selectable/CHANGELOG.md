@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.selectable@0.1.0-rc.1...@spryker/table.feature.selectable@0.1.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.feature.selectable:** removed module declaration ([9194d38](https://github.com/spryker/ui-components/commit/9194d3822868ffbf8c4f94ce5d38de7f1538e0f3))
+
+
+
+
+
 # [0.1.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.selectable@0.1.0-rc.0...@spryker/table.feature.selectable@0.1.0-rc.1) (2021-12-01)
 
 

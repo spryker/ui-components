@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.array-map@0.2.0-rc.1...@spryker/data-transformer.array-map@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **data-transformer.array-map:** removed module declaration ([d97890b](https://github.com/spryker/ui-components/commit/d97890b8cb0c3c2e36d6fa45767c40ec9a0a255d))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.array-map@0.2.0-rc.0...@spryker/data-transformer.array-map@0.2.0-rc.1) (2021-12-01)
 
 

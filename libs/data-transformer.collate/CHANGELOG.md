@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.collate@0.2.0-rc.1...@spryker/data-transformer.collate@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **data-transformer.collate:** fixed `filter` service types ([f6a8a0a](https://github.com/spryker/ui-components/commit/f6a8a0a46b16598d357e9c75c9cc1edfd9da1eb5))
+* **data-transformer.collate:** removed module declaration ([15841bf](https://github.com/spryker/ui-components/commit/15841bf24743e79d61aaa239420a7ccf52ee5fd0))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.collate@0.2.0-rc.0...@spryker/data-transformer.collate@0.2.0-rc.1) (2021-12-01)
 
 

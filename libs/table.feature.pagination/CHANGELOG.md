@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.pagination@0.1.0-rc.1...@spryker/table.feature.pagination@0.1.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **table.feature.pagination:** removed module declaration ([7b9e321](https://github.com/spryker/ui-components/commit/7b9e32142d9745fe0d5cb15ba16ce9ccf6309121))
+
+
+
+
+
 # [0.1.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.pagination@0.1.0-rc.0...@spryker/table.feature.pagination@0.1.0-rc.1) (2021-12-01)
 
 

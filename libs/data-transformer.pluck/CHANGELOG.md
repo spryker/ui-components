@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.pluck@0.2.0-rc.1...@spryker/data-transformer.pluck@0.2.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **data-transformer.pluck:** removed module declaration ([a02cba8](https://github.com/spryker/ui-components/commit/a02cba89303a8acc3972c1fce47e14d3aff58f8a))
+
+
+
+
+
 # [0.2.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.pluck@0.2.0-rc.0...@spryker/data-transformer.pluck@0.2.0-rc.1) (2021-12-01)
 
 

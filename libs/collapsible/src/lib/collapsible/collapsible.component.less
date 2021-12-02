@@ -5,7 +5,7 @@
   font-family: @font-family;
   border: @collapse-border;
   border-radius: @collapse-panel-border-radius;
-  background: @gray-lighter;
+  background: @spy-gray-lighter;
 
   & > &-item {
     display: block;
@@ -13,7 +13,7 @@
 
     & > .@{collapse-prefix-cls}-header {
       padding: @collapse-header-padding;
-      font-size: @font-size-sm;
+      font-size: @spy-font-size-sm;
       font-weight: @font-weight-medium;
       line-height: @collapse-header-line-height;
 
@@ -51,7 +51,7 @@
       &:last-child {
         & > .@{collapse-prefix-cls}-header {
           &:hover {
-            background: @gray-lighter;
+            background: @spy-gray-lighter;
 
             &::before,
             &::after {
@@ -63,7 +63,7 @@
     }
 
     &:focus {
-      border-color: @green;
+      border-color: @spy-green;
     }
   }
 
@@ -108,7 +108,7 @@
 
   &-content {
     border-top: @collapse-border;
-    background: @gray-lighter;
-    color: @ink;
+    background: @spy-gray-lighter;
+    color: @spy-ink;
   }
 }

@@ -1,7 +1,7 @@
 @import 'themes/default/theme.less';
 
 .@{btn-toggle-prefix-cls} {
-  background: @white;
+  background: @spy-white;
   border: @btn-toggle-border;
   min-width: @btn-toggle-size;
   height: @btn-toggle-size;
@@ -19,35 +19,35 @@
 
   &:focus {
     color: @gray-dark;
-    border-color: @green;
+    border-color: @spy-green;
   }
 
   &:active {
-    background: @gray-lighter;
+    background: @spy-gray-lighter;
     color: @gray-darker;
-    border-color: @gray;
+    border-color: @spy-gray;
   }
 
   &:disabled {
-    background: @gray-lighter;
-    border-color: @gray-lighter;
+    background: @spy-gray-lighter;
+    border-color: @spy-gray-lighter;
     color: @gray-dark;
     cursor: not-allowed;
   }
 
   &--toggled {
-    color: @green;
+    color: @spy-green;
     border-color: currentColor;
 
     &:focus {
-      color: @green;
+      color: @spy-green;
       border-color: @green-dark;
     }
 
     &:active {
       background: @green-lighter;
       color: @green-dark;
-      border-color: @green;
+      border-color: @spy-green;
     }
 
     &:hover {

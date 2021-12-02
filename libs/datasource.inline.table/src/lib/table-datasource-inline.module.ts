@@ -14,7 +14,6 @@ import { RangeDataTransformerFilterService } from '@spryker/data-transformer.fil
 import { TextDataTransformerFilterService } from '@spryker/data-transformer.filter.text';
 import { LensDataTransformerService } from '@spryker/data-transformer.lens';
 import { ObjectMapDataTransformerService } from '@spryker/data-transformer.object-map';
-import { PluckDataTransformerService } from '@spryker/data-transformer.pluck';
 import { TableModule } from '@spryker/table';
 import { DateModule } from '@spryker/utils/date';
 
@@ -27,7 +26,6 @@ declare module '@spryker/data-transformer' {
     collate: CollateDataTransformerService;
     lens: LensDataTransformerService;
     'date-serialize': DateSerializeDataTransformerService;
-    pluck: PluckDataTransformerService;
   }
 }
 
@@ -66,7 +64,6 @@ export class TableDatasourceInlineModule {
           collate: CollateDataTransformerService,
           lens: LensDataTransformerService,
           'date-serialize': DateSerializeDataTransformerService,
-          pluck: PluckDataTransformerService,
         }).providers || [],
         CollateDataTransformerModule.withConfigurators({
           table: TableDataTransformerConfiguratorService,

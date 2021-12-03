@@ -4,13 +4,13 @@
   &.host-ctx-spy-bg-white,
   &:not([class^='host-ctx-spy-bg']) {
     .@{notification-prefix-cls} {
-      background: @gray-lighter;
+      background: @spy-gray-lighter;
     }
   }
 
   &.host-ctx-spy-bg-gray {
     .@{notification-prefix-cls} {
-      background: @white;
+      background: @spy-white;
     }
   }
 }
@@ -40,7 +40,7 @@
     z-index: 0;
 
     &--success {
-      color: @green;
+      color: @spy-green;
       background: @green-lighter;
     }
 
@@ -50,23 +50,23 @@
     }
 
     &--warning {
-      color: @orange;
+      color: @spy-orange;
       background: @orange-light;
     }
 
     &--error {
-      color: @red;
+      color: @spy-red;
       background: @red-light;
     }
   }
 
   &__inner {
-    background: @white;
+    background: @spy-white;
     border-radius: 50%;
   }
 
   &__title {
-    color: @ink;
+    color: @spy-ink;
   }
 
   &&-no-icon {
@@ -74,7 +74,7 @@
   }
 
   &-success {
-    border-left-color: @green;
+    border-left-color: @spy-green;
   }
 
   &-info {
@@ -82,11 +82,11 @@
   }
 
   &-warning {
-    border-left-color: @orange;
+    border-left-color: @spy-orange;
   }
 
   &-error {
-    border-left-color: @red;
+    border-left-color: @spy-red;
   }
 
   &-description {
@@ -110,7 +110,7 @@
       transform: translateY(-50%);
       line-height: 0;
       right: @notification-close-icon-right-position;
-      font-size: @font-size-lg;
+      font-size: @spy-font-size-lg;
       color: @gray-dark;
 
       &:hover {

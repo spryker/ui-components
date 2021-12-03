@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@angular/common": "^9.1.2",
     "@angular/core": "^9.1.2",
-    "@spryker/styles": "^0.2.0"
+    "@spryker/styles": "^0.6.0"
   },
   "dependencies": {
     "tslib": "^1.10.0"

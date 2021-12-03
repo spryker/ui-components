@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/textarea@0.2.10-next.1...@spryker/textarea@0.2.10-next.2) (2021-11-23)
+
+
+### Bug Fixes
+
+* **textarea:** adjusted styles ([d81c227](https://github.com/spryker/ui-components/commit/d81c22724a7fa21c8ec5531bce64a9109eca6ffd))
+
+
+
+
+
 ## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/textarea@0.2.9...@spryker/textarea@0.2.10-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/textarea

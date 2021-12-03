@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.10-next.1...@spryker/select@0.2.10-next.2) (2021-11-23)
+
+
+### Bug Fixes
+
+* **select:** adjusted styles ([f3d270d](https://github.com/spryker/ui-components/commit/f3d270d325010f5053700615e1ff1bec8334e3d2))
+* **select:** adjusted styles/template && updated peerDependencies ([82b4437](https://github.com/spryker/ui-components/commit/82b443781695fca5797a99488e759bbfa98889e2))
+* **select:** fixed styles and template ([6592c12](https://github.com/spryker/ui-components/commit/6592c12b165314a6fd90fd77e7d0842ff5eb5859))
+
+
+
+
+
 ## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.9...@spryker/select@0.2.10-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/select

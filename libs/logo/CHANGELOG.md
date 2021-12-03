@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/logo@0.2.10-next.1...@spryker/logo@0.2.10-next.2) (2021-11-23)
+
+
+### Bug Fixes
+
+* **logo:** made variables values as CSS variables ([1af37e9](https://github.com/spryker/ui-components/commit/1af37e9ebe01f514095b085a0c9ddfbddcb60c73))
+
+
+
+
+
 ## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/logo@0.2.9...@spryker/logo@0.2.10-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/logo

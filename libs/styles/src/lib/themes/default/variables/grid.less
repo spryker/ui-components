@@ -8,12 +8,36 @@
   lg: 24px;
 };
 @grid-columns: var(--spy-grid-columns, 12);
-@grid-directions: var(--spy-grid-directions, row, row-reverse, column, column-reverse);
+@grid-directions: var(
+  --spy-grid-directions,
+  row,
+  row-reverse,
+  column,
+  column-reverse
+);
 @grid-wrap: var(--spy-grid-wrap, nowrap, wrap, wrap-reverse);
-@grid-align-content: var(--spy-grid-align-content, normal, flex-start, flex-end, center, space-between,
-  space-around, space-evenly, stretch);
-@grid-align: var(--spy-grid-align, flex-start, center, flex-end, space-between, space-around,
-  space-evenly, stretch, baseline);
+@grid-align-content: var(
+  --spy-grid-align-content,
+  normal,
+  flex-start,
+  flex-end,
+  center,
+  space-between,
+  space-around,
+  space-evenly,
+  stretch
+);
+@grid-align: var(
+  --spy-grid-align,
+  flex-start,
+  center,
+  flex-end,
+  space-between,
+  space-around,
+  space-evenly,
+  stretch,
+  baseline
+);
 
 /**
  * Returns a map with the list of properties that should generate grid selectors with breakpoints.

@@ -31,7 +31,7 @@
       }
 
       .@{select-prefix-cls}-selector {
-        background-color: @white;
+        background-color: @spy-white;
 
         .@{select-prefix-cls}-selection-placeholder {
           color: @gray-dark;
@@ -42,7 +42,7 @@
 
     &-disabled {
       .@{select-prefix-cls}-selector {
-        background-color: @gray-lighter;
+        background-color: @spy-gray-lighter;
         color: @gray-dark;
       }
     }
@@ -54,14 +54,14 @@
         flex-wrap: nowrap;
 
         &:hover {
-          border-color: @gray;
+          border-color: @spy-gray;
         }
       }
 
       .@{select-prefix-cls}-selection-item {
         background: none;
         border: none;
-        color: @ink;
+        color: @spy-ink;
         display: block;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -83,7 +83,7 @@
 
         &-input,
         &-mirror {
-          color: @ink;
+          color: @spy-ink;
         }
       }
     }
@@ -93,7 +93,7 @@
         border-color: @gray-light;
 
         &:hover {
-          border-color: @gray;
+          border-color: @spy-gray;
         }
       }
     }
@@ -145,7 +145,7 @@
     border-radius: @select-border-radius;
     margin: @select-menu-margin;
     padding: 0;
-    background-color: @white;
+    background-color: @spy-white;
     box-shadow: @tree-select-dropdown-box-shadow;
     font: @font-default;
   }
@@ -168,11 +168,11 @@
 
         &:hover,
         &:focus {
-          background-color: @gray-lighter;
+          background-color: @spy-gray-lighter;
         }
 
         &:focus {
-          border-color: @green;
+          border-color: @spy-green;
         }
 
         .font-highlight {
@@ -196,8 +196,8 @@
 
         &-indeterminate {
           .@{select-prefix-cls}-tree-checkbox-inner {
-            background-color: @green;
-            border-color: @green;
+            background-color: @spy-green;
+            border-color: @spy-green;
 
             &::after {
               background: url(@tree-select-checkbox-ideterminate-base64-url)
@@ -215,7 +215,7 @@
 
       &-node {
         &-content-wrapper {
-          color: @ink;
+          color: @spy-ink;
           min-width: 0;
           flex: 1;
           text-overflow: ellipsis;

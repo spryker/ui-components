@@ -59,17 +59,17 @@
     &-icon {
       display: flex;
       padding-right: @tabs-icon-padding-right;
-      font-size: @font-size-lg;
+      font-size: @spy-font-size-lg;
     }
 
     &-warning {
-      color: @red;
+      color: @spy-red;
 
       &:hover {
-        color: @red;
+        color: @spy-red;
 
         &::after {
-          background: @red;
+          background: @spy-red;
         }
       }
     }
@@ -102,13 +102,13 @@
 
           &-warning {
             &::after {
-              background: @red;
+              background: @spy-red;
               z-index: 10;
             }
 
             &:hover {
-              color: @red;
-              border-bottom-color: @red;
+              color: @spy-red;
+              border-bottom-color: @spy-red;
             }
           }
         }
@@ -118,16 +118,16 @@
 
   &.@{tab-prefix-cls}-card {
     .@{tab-prefix-cls}-nav {
-      background-color: @gray-lighter;
+      background-color: @spy-gray-lighter;
       border-bottom: 0;
     }
 
     .@{tab-prefix-cls}-bar {
       .@{tab-prefix-cls}-tab {
-        font-size: @font-size-sm;
+        font-size: @spy-font-size-sm;
         font-weight: @font-weight-default;
         letter-spacing: @letter-spacing-base;
-        color: @ink;
+        color: @spy-ink;
         margin: 0;
         padding: 0;
         border: 0;
@@ -139,17 +139,17 @@
         }
 
         &:hover {
-          background-color: @white;
+          background-color: @spy-white;
 
           .@{tab-prefix-cls}-custom-tab {
-            color: @ink;
+            color: @spy-ink;
 
             &::before {
               background-color: @gray-darker;
             }
 
             &-warning {
-              color: @red;
+              color: @spy-red;
             }
           }
         }
@@ -168,11 +168,11 @@
 
         .@{tab-prefix-cls}-custom-tab {
           &::before {
-            background-color: @green;
+            background-color: @spy-green;
           }
 
           &-warning::before {
-            background-color: @red;
+            background-color: @spy-red;
           }
         }
 
@@ -183,14 +183,14 @@
             color: @green-dark;
 
             &::before {
-              background-color: @green;
+              background-color: @spy-green;
             }
 
             &-warning {
-              color: @red;
+              color: @spy-red;
 
               &::before {
-                background-color: @red;
+                background-color: @spy-red;
               }
             }
           }
@@ -233,16 +233,16 @@
       height: auto;
 
       &:hover {
-        background-color: @gray-lighter;
+        background-color: @spy-gray-lighter;
       }
 
       &:active {
-        background-color: @gray-lighter;
+        background-color: @spy-gray-lighter;
       }
 
       &:focus {
-        background-color: @gray-lighter;
-        border-color: @green;
+        background-color: @spy-gray-lighter;
+        border-color: @spy-green;
       }
 
       &-icon {

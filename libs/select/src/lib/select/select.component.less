@@ -29,7 +29,7 @@
         flex-wrap: nowrap;
 
         &:hover {
-          border-color: @gray;
+          border-color: @spy-gray;
         }
       }
 
@@ -40,7 +40,7 @@
         white-space: nowrap;
         background: none;
         border: none;
-        color: @ink;
+        color: @spy-ink;
       }
     }
 
@@ -54,7 +54,7 @@
 
         &-input,
         &-mirror {
-          color: @ink;
+          color: @spy-ink;
         }
       }
     }
@@ -64,7 +64,7 @@
         border-color: @gray-light;
 
         &:hover {
-          border-color: @gray;
+          border-color: @spy-gray;
         }
       }
     }
@@ -72,7 +72,7 @@
     .@{select-prefix-cls}-selection {
       &-item {
         display: block;
-        color: @ink;
+        color: @spy-ink;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -145,12 +145,12 @@
       height: @select-dropdown-menu-item-height;
       line-height: @select-dropdown-menu-item-line-height;
       font-weight: @select-dropdown-menu-item-font-weight;
-      color: @ink;
+      color: @spy-ink;
       padding: @select-dropdown-menu-item-padding;
 
       &:hover {
         &:not(.@{select-prefix-cls}-dropdown-menu-item-disabled) {
-          background-color: @gray-lighter;
+          background-color: @spy-gray-lighter;
         }
       }
 
@@ -163,7 +163,7 @@
 
             &-selected {
               &:not(.@{select-prefix-cls}-item-option-disabled) {
-                color: @green;
+                color: @spy-green;
                 background-color: @green-lighter;
               }
 
@@ -205,27 +205,27 @@
           }
 
           &__multiChecked {
-            background-color: @green;
+            background-color: @spy-green;
             display: none;
             text-align: center;
             line-height: @checkbox-multi-select-checked-line-height;
 
             &--icon {
-              color: @white;
+              color: @spy-white;
               font-size: @checkbox-multi-select-checked-icon-size;
             }
           }
 
           &__multiUnChecked {
             border: @select-multiple-unchecked-border;
-            background-color: @white;
+            background-color: @spy-white;
 
             &:focus {
-              border-color: @green;
+              border-color: @spy-green;
             }
 
             &:hover {
-              border-color: @gray;
+              border-color: @spy-gray;
             }
           }
         }
@@ -235,7 +235,7 @@
           position: absolute;
           right: @select-menu-horizontal-padding;
           top: @select-menu-vertical-padding;
-          color: @green;
+          color: @spy-green;
           background-size: @check-icon-size;
           height: @check-icon-size;
           width: @check-icon-size;
@@ -243,12 +243,12 @@
         }
 
         &-disabled {
-          background-color: @gray-lighter;
+          background-color: @spy-gray-lighter;
           color: @gray-dark;
 
           .@{select-prefix-cls}-item-option-state__multiUnChecked {
             border-color: @gray-light;
-            background-color: @gray-lighter;
+            background-color: @spy-gray-lighter;
           }
         }
       }
@@ -259,7 +259,7 @@
         align-items: center;
         font: @font-default;
         height: @select-empty-item-height;
-        color: @ink;
+        color: @spy-ink;
       }
     }
   }

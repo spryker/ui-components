@@ -5,7 +5,7 @@
     &.@{table-prefix-cls}-row--editable
       > td
       .@{table-prefix-cls}-column-inner::after {
-      border-color: @green;
+      border-color: @spy-green;
     }
   }
 }
@@ -18,7 +18,7 @@
       transform: translateY(-50%);
       left: 0;
       padding: @table-editable-feature-float-cell-padding;
-      background: @white;
+      background: @spy-white;
       box-shadow: @table-editable-feature-float-cell-shadow;
       border-radius: @table-editable-feature-float-border-radius;
       z-index: 1;
@@ -78,7 +78,7 @@
 
     &:hover {
       &::before {
-        background: @gray-lighter;
+        background: @spy-gray-lighter;
       }
 
       .spy-table-editable-feature__wrapper-icon {
@@ -92,7 +92,7 @@
     align-items: center;
     padding: @table-editable-feature-error-padding;
     font-size: @table-editable-feature-error-size;
-    color: @red;
+    color: @spy-red;
 
     &-icon {
       padding-right: @table-editable-feature-error-icon-right-padding;

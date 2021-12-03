@@ -3,14 +3,14 @@
 .@{user-menu-prefix-cls}-link {
   .transition-mixin(background-color);
   display: block;
-  color: @ink;
+  color: @spy-ink;
   text-align: center;
   padding: @user-menu-link-padding;
   border-radius: @user-menu-link-border-radius;
   position: relative;
 
   &:hover {
-    background-color: @gray-lighter;
+    background-color: @spy-gray-lighter;
   }
 
   &::after {
@@ -23,6 +23,6 @@
   }
 
   &--danger {
-    color: @red;
+    color: @spy-red;
   }
 }

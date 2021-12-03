@@ -4,7 +4,7 @@
   &__title-text {
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: @line-height-base;
+    line-height: @spy-line-height-base;
   }
 
   &__title-icon {
@@ -87,8 +87,8 @@
       }
 
       &:hover {
-        background: @gray-lighter;
-        color: @ink;
+        background: @spy-gray-lighter;
+        color: @spy-ink;
 
         .@{navigation-prefix-cls}__title-icon {
           color: @gray-darker;
@@ -100,19 +100,19 @@
       &:hover,
       > a:only-child,
       > .@{menu-prefix-cls}-submenu-title {
-        background: @gray-lighter;
+        background: @spy-gray-lighter;
         color: @green-dark;
 
         .@{navigation-prefix-cls}__title-icon {
-          color: @primary-color;
+          color: @spy-primary-color;
         }
       }
     }
 
     &.@{menu-prefix-cls}-submenu-open {
       > .@{menu-prefix-cls}-submenu-title {
-        background: @gray-lighter;
-        color: @ink;
+        background: @spy-gray-lighter;
+        color: @spy-ink;
 
         .@{menu-prefix-cls}-submenu-arrow {
           transform: @menu-item-open-arrow-transform;
@@ -164,7 +164,7 @@
         bottom: @menu-item-decorator-bottom-spacing;
         left: @menu-item-decorator-left-spacing;
         width: @menu-item-decorator-width;
-        background: @primary-color;
+        background: @spy-primary-color;
         border-radius: @border-radius-base;
       }
     }
@@ -175,7 +175,7 @@
       .@{menu-prefix-cls}-item > a,
       .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
         padding: @menu-collapsed-item-padding;
-        font-size: @font-size-sm;
+        font-size: @spy-font-size-sm;
         flex-direction: column;
 
         .@{menu-prefix-cls}-submenu-arrow {

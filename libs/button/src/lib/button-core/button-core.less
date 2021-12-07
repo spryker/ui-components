@@ -204,8 +204,8 @@
       min-width: 0;
       min-height: 0;
       padding: @btn-link-padding;
-      background: transparent;
-      border-color: transparent;
+      background: @transparent;
+      border-color: @transparent;
       color: @btn-link-color;
       border-radius: @btn-border-radius-link;
 
@@ -221,20 +221,20 @@
       &:focus {
         color: @btn-link-color-hover;
         background: @btn-link-bg-active;
-        border-color: transparent;
+        border-color: @transparent;
         box-shadow: @btn-link-shadow-focus;
       }
 
       &:active {
         color: @btn-link-color-hover;
         background: @btn-link-bg-active;
-        border-color: transparent;
+        border-color: @transparent;
         box-shadow: none;
       }
 
       &[disabled] {
-        border-color: transparent;
-        background: transparent;
+        border-color: @transparent;
+        background: @transparent;
         pointer-events: none;
       }
     }

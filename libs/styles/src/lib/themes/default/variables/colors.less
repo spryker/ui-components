@@ -26,22 +26,23 @@
 @gray-light: var(--spy-gray-light, #efeeee);
 @gray-lighter: var(--spy-gray-lighter, #f8f8f8);
 
-@ink: var(--spy-ink, #121212);
-@ink-effect: var(--spy-ink-effect, rgba(#121212, 0.15));
 @white: #fff;
 @spy-white: var(--spy-white, @white);
+
+@ink: var(--spy-ink, #121212);
+@ink-effect: var(--spy-ink-effect, rgba(#121212, 0.15));
 
 @global-bg-white: var(--spy-global-bg-white, @spy-white);
 @global-bg-gray: var(--spy-global-bg-gray, @gray-lighter);
 
 @warning-color: #ff6800;
-@spy-warning-color: var(--spy-warning-color, @warning-color);
+@spy-warning-color: var(--spy-warning-color, @orange);
 @success-color: var(--spy-success-color, @green);
 @error-color: #f2392e;
-@spy-error-color: var(--spy-error-color, @error-color);
+@spy-error-color: var(--spy-error-color, @red);
 @info-color: var(--spy-info-color, @blue);
 @primary-color: #17b497;
-@spy-primary-color: var(--spy-primary-color, @primary-color);
+@spy-primary-color: var(--spy-primary-color, @green);
 @normal-color: var(--spy-normal-color, @gray);
 @body-background: var(--spy-body-background, @gray-lighter);
 @component-background: var(--spy-component-background, @white);
@@ -49,5 +50,5 @@
 @border-color-split: var(--spy-border-color-split, @gray-light);
 @disabled-color: var(--spy-disabled-color, @gray-dark);
 @disabled-bg: #f8f8f8;
-@spy-disabled-bg: var(--spy-disabled-bg, @disabled-bg);
-@transparent: var(--spy-transparent, transparent);
+@spy-disabled-bg: var(--spy-disabled-bg, @gray-lighter);
+@transparent: var(--spy-transparent, rgba(#fff, 0));

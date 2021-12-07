@@ -32,7 +32,7 @@
         flex-wrap: nowrap;
 
         &:hover {
-          border-color: @spy-gray;
+          border-color: @gray;
         }
       }
 
@@ -43,7 +43,7 @@
         white-space: nowrap;
         background: none;
         border: none;
-        color: @spy-ink;
+        color: @ink;
       }
     }
 
@@ -64,7 +64,7 @@
 
         &-input,
         &-mirror {
-          color: @spy-ink;
+          color: @ink;
         }
       }
     }
@@ -74,27 +74,27 @@
         border-color: @gray-light;
 
         &:hover {
-          border-color: @spy-gray;
+          border-color: @gray;
         }
       }
     }
 
     &.@{select-prefix-cls}-focused:not(.@{select-prefix-cls}-customize-input) {
       .@{select-prefix-cls}-selector {
-        border-color: @spy-green;
+        border-color: @green;
       }
     }
 
     &.@{select-prefix-cls}-disabled {
       .@{select-prefix-cls}-arrow {
-        color: @spy-gray;
+        color: @gray;
       }
     }
 
     .@{select-prefix-cls}-selection {
       &-item {
         display: block;
-        color: @spy-ink;
+        color: @ink;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -169,12 +169,12 @@
       height: @select-dropdown-menu-item-height;
       line-height: @select-dropdown-menu-item-line-height;
       font-weight: @select-dropdown-menu-item-font-weight;
-      color: @spy-ink;
+      color: @ink;
       padding: @select-dropdown-menu-item-padding;
 
       &:hover {
         &:not(.@{select-prefix-cls}-dropdown-menu-item-disabled) {
-          background-color: @spy-gray-lighter;
+          background-color: @gray-lighter;
         }
       }
 
@@ -188,7 +188,7 @@
 
             &-selected {
               &:not(.@{select-prefix-cls}-item-option-disabled) {
-                color: @spy-green;
+                color: @green;
                 background-color: @green-lighter;
               }
 
@@ -224,7 +224,7 @@
           }
 
           &__multiChecked {
-            background-color: @spy-green;
+            background-color: @green;
             line-height: @checkbox-multi-select-checked-line-height;
             position: relative;
             display: none;
@@ -251,11 +251,11 @@
             background-color: @spy-white;
 
             &:focus {
-              border-color: @spy-green;
+              border-color: @green;
             }
 
             &:hover {
-              border-color: @spy-gray;
+              border-color: @gray;
             }
           }
         }
@@ -265,17 +265,17 @@
           position: absolute;
           right: @select-menu-horizontal-padding;
           top: @select-menu-vertical-padding;
-          color: @spy-green;
+          color: @green;
           font-size: @check-icon-size;
         }
 
         &-disabled {
-          background-color: @spy-gray-lighter;
+          background-color: @gray-lighter;
           color: @gray-dark;
 
           .@{select-prefix-cls}-item-option-state__multiUnChecked {
             border-color: @gray-light;
-            background-color: @spy-gray-lighter;
+            background-color: @gray-lighter;
           }
         }
       }
@@ -286,7 +286,7 @@
         align-items: center;
         font: @font-default;
         height: @select-empty-item-height;
-        color: @spy-ink;
+        color: @ink;
       }
     }
   }

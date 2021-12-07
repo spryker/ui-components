@@ -63,13 +63,13 @@
     }
 
     &-warning {
-      color: @spy-red;
+      color: @red;
 
       &:hover {
-        color: @spy-red;
+        color: @red;
 
         &::after {
-          background: @spy-red;
+          background: @red;
         }
       }
     }
@@ -102,13 +102,13 @@
 
           &-warning {
             &::after {
-              background: @spy-red;
+              background: @red;
               z-index: 10;
             }
 
             &:hover {
-              color: @spy-red;
-              border-bottom-color: @spy-red;
+              color: @red;
+              border-bottom-color: @red;
             }
           }
         }
@@ -118,7 +118,7 @@
 
   &.@{tab-prefix-cls}-card {
     .@{tab-prefix-cls}-nav {
-      background-color: @spy-gray-lighter;
+      background-color: @gray-lighter;
       border-bottom: 0;
     }
 
@@ -127,7 +127,7 @@
         font-size: @spy-font-size-sm;
         font-weight: @font-weight-default;
         letter-spacing: @letter-spacing-base;
-        color: @spy-ink;
+        color: @ink;
         margin: 0;
         padding: 0;
         border: 0;
@@ -142,14 +142,14 @@
           background-color: @spy-white;
 
           .@{tab-prefix-cls}-custom-tab {
-            color: @spy-ink;
+            color: @ink;
 
             &::before {
               background-color: @gray-darker;
             }
 
             &-warning {
-              color: @spy-red;
+              color: @red;
             }
           }
         }
@@ -168,11 +168,11 @@
 
         .@{tab-prefix-cls}-custom-tab {
           &::before {
-            background-color: @spy-green;
+            background-color: @green;
           }
 
           &-warning::before {
-            background-color: @spy-red;
+            background-color: @red;
           }
         }
 
@@ -183,14 +183,14 @@
             color: @green-dark;
 
             &::before {
-              background-color: @spy-green;
+              background-color: @green;
             }
 
             &-warning {
-              color: @spy-red;
+              color: @red;
 
               &::before {
-                background-color: @spy-red;
+                background-color: @red;
               }
             }
           }
@@ -233,16 +233,16 @@
       height: auto;
 
       &:hover {
-        background-color: @spy-gray-lighter;
+        background-color: @gray-lighter;
       }
 
       &:active {
-        background-color: @spy-gray-lighter;
+        background-color: @gray-lighter;
       }
 
       &:focus {
-        background-color: @spy-gray-lighter;
-        border-color: @spy-green;
+        background-color: @gray-lighter;
+        border-color: @green;
       }
 
       &-icon {

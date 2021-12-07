@@ -33,7 +33,7 @@
         border-color: @gray-light;
 
         &:hover {
-          border-color: @spy-gray;
+          border-color: @gray;
         }
       }
     }
@@ -64,7 +64,7 @@
 
     &-disabled {
       .@{select-prefix-cls}-selector {
-        background-color: @spy-gray-lighter;
+        background-color: @gray-lighter;
         color: @gray-dark;
       }
 
@@ -80,7 +80,7 @@
         flex-wrap: nowrap;
 
         &:hover {
-          border-color: @spy-gray;
+          border-color: @gray;
         }
       }
 
@@ -88,7 +88,7 @@
         &-item {
           background: none;
           border: none;
-          color: @spy-ink;
+          color: @ink;
           display: block;
           text-overflow: ellipsis;
           overflow: hidden;
@@ -111,7 +111,7 @@
 
     &-open {
       .@{select-prefix-cls}-selector {
-        border-color: @spy-green;
+        border-color: @green;
         box-shadow: @tree-select-focus-box-shadow;
       }
 
@@ -130,7 +130,7 @@
 
         &-input,
         &-mirror {
-          color: @spy-ink;
+          color: @ink;
         }
       }
     }
@@ -203,7 +203,7 @@
             background-color: @green-lighter;
 
             .@{select-prefix-cls}-tree-node-content-wrapper {
-              color: @spy-green;
+              color: @green;
             }
           }
 
@@ -211,14 +211,14 @@
             .@{select-prefix-cls}-tree-checkbox-inner {
               &,
               &:hover {
-                border-color: @spy-green;
+                border-color: @green;
               }
             }
           }
         }
 
         &-disabled {
-          background: @spy-gray-lighter;
+          background: @gray-lighter;
 
           &,
           .@{select-prefix-cls}-tree-switcher {
@@ -227,7 +227,7 @@
         }
 
         &:hover:not(&-checkbox-checked) {
-          background: @spy-gray-lighter;
+          background: @gray-lighter;
         }
 
         .font-highlight {
@@ -249,7 +249,7 @@
           transition: unset;
 
           &:hover {
-            border-color: @spy-gray;
+            border-color: @gray;
           }
 
           &::after {
@@ -259,8 +259,8 @@
 
         &-indeterminate {
           .@{select-prefix-cls}-tree-checkbox-inner {
-            background-color: @spy-green;
-            border-color: @spy-green;
+            background-color: @green;
+            border-color: @green;
 
             &::after {
               width: @tree-select-indeterminate-checkbox-inner-width;
@@ -276,7 +276,7 @@
       &-node {
         &-content-wrapper {
           line-height: @tree-select-tree-node-content-wrapper-line-height;
-          color: @spy-ink;
+          color: @ink;
           min-width: 0;
           padding: 0;
           flex: 1;
@@ -307,7 +307,7 @@
     }
 
     &-not-found {
-      color: @spy-ink;
+      color: @ink;
       padding: @tree-select-tree-not-found-padding;
       display: block;
     }

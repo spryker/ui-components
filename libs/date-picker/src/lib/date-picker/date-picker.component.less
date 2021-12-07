@@ -25,10 +25,10 @@
 
   &-focused {
     box-shadow: none;
-    border-color: @spy-green;
+    border-color: @green;
 
     &:hover {
-      border-color: @spy-green;
+      border-color: @green;
     }
   }
 
@@ -37,7 +37,7 @@
     background: @spy-disabled-bg;
 
     .@{calendar-prefix-cls}-suffix {
-      color: @spy-gray;
+      color: @gray;
     }
   }
 
@@ -144,16 +144,16 @@
       background: @date-picker-icon-navigation-arrow;
 
       &:hover {
-        border-color: @spy-gray;
+        border-color: @gray;
       }
 
       &:focus {
-        border-color: @spy-green;
+        border-color: @green;
       }
 
       &:active {
-        border-color: @spy-green;
-        background-color: @spy-green;
+        border-color: @green;
+        background-color: @green;
         background-image: @date-picker-icon-navigation-arrow-active;
         color: @spy-white;
       }
@@ -200,7 +200,7 @@
       border-radius: @calendar-date-border-radius;
       line-height: @calendar-date-line-height;
       font-weight: @calendar-date-font-weight;
-      color: @spy-gray;
+      color: @gray;
 
       &::after {
         content: '';
@@ -226,21 +226,21 @@
     &:hover {
       .@{calendar-prefix-cls}-cell-inner {
         color: @gray-darker;
-        background-color: @spy-gray-lighter !important;
+        background-color: @gray-lighter !important;
       }
     }
 
     &:focus {
       .@{calendar-prefix-cls}-cell-inner::after {
-        border-color: @spy-green;
+        border-color: @green;
       }
     }
 
     &-today.@{calendar-prefix-cls}-cell-in-view,
     &-today {
       .@{calendar-prefix-cls}-cell-inner {
-        background: @spy-gray-lighter;
-        color: @spy-ink;
+        background: @gray-lighter;
+        color: @ink;
 
         &::before {
           display: none;
@@ -249,7 +249,7 @@
 
       &:hover {
         .@{calendar-prefix-cls}-cell-inner {
-          color: @spy-ink;
+          color: @ink;
           background-color: @gray-light !important;
         }
       }
@@ -258,7 +258,7 @@
     &-selected.@{calendar-prefix-cls}-cell-in-view,
     &-selected {
       .@{calendar-prefix-cls}-cell-inner {
-        background-color: @spy-green !important;
+        background-color: @green !important;
         color: @spy-white;
       }
 
@@ -266,7 +266,7 @@
       &:active,
       &:hover {
         .@{calendar-prefix-cls}-cell-inner {
-          background-color: @spy-green !important;
+          background-color: @green !important;
           color: @spy-white;
         }
       }
@@ -277,8 +277,8 @@
       pointer-events: none;
 
       .@{calendar-prefix-cls}-cell-inner {
-        background-color: @spy-gray-lighter !important;
-        color: @spy-gray;
+        background-color: @gray-lighter !important;
+        color: @gray;
       }
     }
   }
@@ -356,8 +356,8 @@
         pointer-events: none;
 
         .@{calendar-prefix-cls}-time-panel-cell-inner {
-          background-color: @spy-gray-lighter;
-          color: @spy-gray;
+          background-color: @gray-lighter;
+          color: @gray;
         }
       }
 

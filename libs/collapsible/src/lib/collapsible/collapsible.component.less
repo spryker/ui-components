@@ -5,7 +5,7 @@
   font-family: @font-family;
   border: @collapse-border;
   border-radius: @collapse-panel-border-radius;
-  background: @spy-gray-lighter;
+  background: @gray-lighter;
 
   & > &-item {
     display: block;
@@ -51,7 +51,7 @@
       &:last-child {
         & > .@{collapse-prefix-cls}-header {
           &:hover {
-            background: @spy-gray-lighter;
+            background: @gray-lighter;
 
             &::before,
             &::after {
@@ -63,7 +63,7 @@
     }
 
     &:focus {
-      border-color: @spy-green;
+      border-color: @green;
     }
   }
 
@@ -108,7 +108,7 @@
 
   &-content {
     border-top: @collapse-border;
-    background: @spy-gray-lighter;
-    color: @spy-ink;
+    background: @gray-lighter;
+    color: @ink;
   }
 }

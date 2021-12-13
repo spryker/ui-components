@@ -57,7 +57,10 @@ describe('TableFilterSelectComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
     service = TestBed.inject(I18nTestService);
   });
 

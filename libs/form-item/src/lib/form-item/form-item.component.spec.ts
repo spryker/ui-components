@@ -23,7 +23,10 @@ describe('FormItemModule', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('template must render as a tree [nz-form-item]=>[nz-form-label,nz-form-control]', async () => {

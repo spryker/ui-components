@@ -5,6 +5,7 @@ xdescribe('Directive: SelectComponents', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SelectComponentsDirective],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

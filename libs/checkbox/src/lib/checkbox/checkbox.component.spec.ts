@@ -41,6 +41,7 @@ describe('CheckboxComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CheckboxComponent, TestComponent, ApplyAttrsDirective],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 
@@ -173,17 +174,17 @@ describe('CheckboxComponent', () => {
       fixture.detectChanges();
 
       expect(inputElem.attributes['test']).toBe('attr6');
-      expect(inputElem.attributes['test2']).toBe(null);
+      expect(inputElem.attributes['test2']).toBe(undefined);
 
       component.attrs = null;
       fixture.detectChanges();
 
-      expect(inputElem.attributes['test']).toBe(null);
+      expect(inputElem.attributes['test']).toBe(undefined);
 
       component.attrs = '';
       fixture.detectChanges();
 
-      expect(inputElem.attributes['test']).toBe(null);
+      expect(inputElem.attributes['test']).toBe(undefined);
     });
   });
 

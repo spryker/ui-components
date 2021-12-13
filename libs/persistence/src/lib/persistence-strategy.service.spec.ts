@@ -25,6 +25,7 @@ describe('PersistenceStrategyService', () => {
         }),
       ],
       providers: [MockPersistenceStrategy],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(PersistenceStrategyService);
     persistenceStrategy = TestBed.inject(MockPersistenceStrategy);

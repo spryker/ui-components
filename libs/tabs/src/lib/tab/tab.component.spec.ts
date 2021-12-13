@@ -11,7 +11,12 @@ describe('TabComponent', () => {
     projectContent: 'Content',
   });
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   describe('component.hasWarningChange', () => {
     it('should emit hasWarningChange on hasWarningChange', async () => {

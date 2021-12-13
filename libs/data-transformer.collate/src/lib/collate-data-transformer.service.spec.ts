@@ -67,6 +67,7 @@ describe('CollateDataTransformerService', () => {
           useExisting: MockDataTransformerConfiguratorService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(CollateDataTransformerService);
     dataTransformerConfiguratorService = TestBed.inject(

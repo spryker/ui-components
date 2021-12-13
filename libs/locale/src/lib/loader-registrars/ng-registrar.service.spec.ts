@@ -7,6 +7,7 @@ xdescribe('Service: NgRegistrar', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [NgRegistrarService],
+      teardown: { destroyAfterEach: false },
     });
   });
 

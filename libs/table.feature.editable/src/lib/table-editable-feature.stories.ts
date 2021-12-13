@@ -176,7 +176,6 @@ class EditColumnComponent
   ],
   exports: [TableModule, MockHttpModule],
   declarations: [EditColumnComponent],
-  entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
   providers: [
     {
       provide: TableEditableEditRequestToken,

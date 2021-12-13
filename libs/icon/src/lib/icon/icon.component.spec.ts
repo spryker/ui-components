@@ -37,6 +37,7 @@ describe('IconComponent', () => {
           },
         ]),
       ],
+      teardown: { destroyAfterEach: false },
     });
   });
 

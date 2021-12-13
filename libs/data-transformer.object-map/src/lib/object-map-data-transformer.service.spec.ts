@@ -58,6 +58,7 @@ describe('ObjectMapDataTransformerService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(ObjectMapDataTransformerService);
     dataTransformerService = TestBed.inject(MockDataTransformerService);

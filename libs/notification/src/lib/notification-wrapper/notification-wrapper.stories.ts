@@ -44,7 +44,6 @@ class StoryComponent implements OnChanges {
   imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
   declarations: [StoryComponent],
   exports: [NotificationModule, StoryComponent],
-  entryComponents: [NotificationWrapperComponent],
 })
 class StoryModule {}
 

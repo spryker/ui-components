@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'sidebar',
-  preset: '../../jest.config.js',
+  displayName: 'sidebar',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/sidebar',
-  snapshotSerializers: [
-    'jest-preset-angular/build/serializers/no-ng-attributes',
-    'jest-preset-angular/build/serializers/ng-snapshot',
-    'jest-preset-angular/build/serializers/html-comment',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

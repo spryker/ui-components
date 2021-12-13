@@ -45,6 +45,7 @@ describe('HtmlRendererComponent', () => {
         },
         MockHtmlRendererProvider,
       ],
+      teardown: { destroyAfterEach: false },
     });
     testHtmlRendererProvider = TestBed.inject(MockHtmlRendererProvider);
   }));

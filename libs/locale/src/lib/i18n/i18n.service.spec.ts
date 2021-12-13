@@ -7,6 +7,7 @@ xdescribe('Service: I18n', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [I18nService],
+      teardown: { destroyAfterEach: false },
     });
   });
 

@@ -42,6 +42,7 @@ describe('ChainDataTransformerService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(ChainDataTransformerService);
     dataTransformerService = TestBed.inject(MockDataTransformerService);

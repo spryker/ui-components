@@ -7,6 +7,7 @@ xdescribe('Service: AntRegistrar', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [AntRegistrarService],
+      teardown: { destroyAfterEach: false },
     });
   });
 

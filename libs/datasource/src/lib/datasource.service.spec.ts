@@ -41,6 +41,7 @@ describe('DatasourceService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(DatasourceService);
     datasource = TestBed.inject(MockDatasource);

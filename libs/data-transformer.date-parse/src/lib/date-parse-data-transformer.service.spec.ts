@@ -20,6 +20,7 @@ describe('DateParseDataTransformerService', () => {
           useExisting: MockDateService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(DateParseDataTransformerService);
     dateService = TestBed.inject(MockDateService);

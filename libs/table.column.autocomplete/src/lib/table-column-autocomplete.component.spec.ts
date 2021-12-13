@@ -81,6 +81,7 @@ describe('TableColumnAutocompleteComponent', () => {
           useExisting: MockDatasourceService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     }).overrideComponent(TableColumnAutocompleteComponent, {
       set: {
         providers: [
@@ -122,7 +123,7 @@ describe('TableColumnAutocompleteComponent', () => {
 
     expect(inputElem).toBeTruthy();
 
-    expect(inputElem?.parent?.attributes['class']).toBe(
+    expect(inputElem?.parent?.attributes['class']).toContain(
       'ant-form-item-control-input-content',
     );
   });

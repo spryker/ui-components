@@ -8,6 +8,5 @@ import { ConfirmModalComponent } from './confirm.component';
 @NgModule({
   imports: [CommonModule, ButtonModule, OfTypePipeModule],
   declarations: [ConfirmModalComponent],
-  entryComponents: [ConfirmModalComponent],
 })
 export class ConfirmModalModule {}

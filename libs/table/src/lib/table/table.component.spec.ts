@@ -138,6 +138,7 @@ describe('TableComponent', () => {
           multi: true,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
   });
 
@@ -222,6 +223,7 @@ describe('TableComponent', () => {
             multi: true,
           },
         ],
+        teardown: { destroyAfterEach: false },
       });
     });
 

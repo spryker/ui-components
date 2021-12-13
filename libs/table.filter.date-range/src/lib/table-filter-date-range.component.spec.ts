@@ -28,7 +28,12 @@ describe('TableFilterDateRangeComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   it('template must render `spy-date-range-picker`', async () => {
     const host = await createComponent({ config: mockDateRangeConfig }, true);

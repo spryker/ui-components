@@ -7,6 +7,7 @@ xdescribe('Service: SprykerRegistrar', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [SprykerRegistrarService],
+      teardown: { destroyAfterEach: false },
     });
   });
 

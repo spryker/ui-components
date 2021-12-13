@@ -56,7 +56,10 @@ describe('TreeSelectComponent', () => {
   ];
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('should render nz-tree-select component from Ant Design and native select', async () => {

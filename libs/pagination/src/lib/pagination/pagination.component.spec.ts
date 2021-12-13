@@ -37,6 +37,7 @@ describe('PaginationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [PaginationComponent, TestComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

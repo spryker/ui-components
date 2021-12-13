@@ -6,7 +6,7 @@ describe('DatasourceInlineService', () => {
   let service: DatasourceInlineService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ teardown: { destroyAfterEach: false } });
     service = TestBed.inject(DatasourceInlineService);
   });
 

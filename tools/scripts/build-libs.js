@@ -1,6 +1,6 @@
 const { execSync } = require('child_process');
 
-const projects = require('../../nx.json').projects;
+const projects = require('../../angular.json').projects;
 
 const EXCLUDED_TAGS = ['type:meta'];
 

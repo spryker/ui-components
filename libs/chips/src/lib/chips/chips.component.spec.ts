@@ -14,7 +14,12 @@ describe('ChipsComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   it('Input color should be bound to host element', async () => {
     const mockedColor = 'red';

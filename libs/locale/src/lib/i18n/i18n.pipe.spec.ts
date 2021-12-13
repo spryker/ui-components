@@ -7,6 +7,7 @@ xdescribe('Pipe: I18ne', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [I18nPipe],
+      teardown: { destroyAfterEach: false },
     });
   });
 

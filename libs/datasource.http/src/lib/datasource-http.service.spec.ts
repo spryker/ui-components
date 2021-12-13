@@ -59,6 +59,7 @@ describe('DatasourceHttpService', () => {
           useExisting: MockEncoder,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(DatasourceHttpService);
     cacheService = TestBed.inject(MockCacheService);

@@ -72,6 +72,7 @@ describe('StaticCacheStrategy', () => {
           useExisting: MockTimeDurationService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(StaticCacheStrategy);
     timeDurationService = TestBed.inject(MockTimeDurationService);

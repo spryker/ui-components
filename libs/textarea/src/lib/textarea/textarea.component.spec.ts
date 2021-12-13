@@ -39,6 +39,7 @@ describe('TextareaComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TextareaComponent, TestComponent, ApplyAttrsDirective],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
@@ -150,13 +151,13 @@ describe('TextareaComponent', () => {
       fixture.detectChanges();
 
       expect(textareaElem.attributes['test']).toBe('attr6');
-      expect(textareaElem.attributes['test2']).toBe(null);
+      expect(textareaElem.attributes['test2']).toBe(undefined);
 
       component.attrs = null;
 
       fixture.detectChanges();
 
-      expect(textareaElem.attributes['test']).toBe(null);
+      expect(textareaElem.attributes['test']).toBe(undefined);
     });
   });
 

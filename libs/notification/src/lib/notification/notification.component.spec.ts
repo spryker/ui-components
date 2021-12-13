@@ -49,6 +49,7 @@ describe('NotificationWrapperComponent', () => {
           useExisting: MockNotificationService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     notificationService = TestBed.inject(MockNotificationService);
   });

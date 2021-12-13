@@ -12,6 +12,7 @@ xdescribe('LocaleSwitcherComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LocaleSwitcherComponent],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

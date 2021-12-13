@@ -3,11 +3,7 @@
   "dest": "../../dist/libs/web-components",
   "lib": {
     "entryFile": "src/index.ts",
-    "styleIncludePaths": ["../styles/src/lib"],
-    "umdModuleIds": {
-      "ngx-element-boundary": "ngxElementBoundary",
-      "ngx-element-boundary/element-strategy/default": "ngxElementBoundary.elementStrategy.default"
-    }
+    "styleIncludePaths": ["../styles/src/lib"]
   },
   "allowedNonPeerDependencies": ["ngx-element-boundary"]
 }

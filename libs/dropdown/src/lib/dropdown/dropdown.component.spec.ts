@@ -37,6 +37,7 @@ describe('DropdownComponent', () => {
       imports: [DropdownModule, NoopAnimationsModule],
       declarations: [TestComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

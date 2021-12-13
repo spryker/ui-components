@@ -130,6 +130,7 @@ describe('TableColumnRendererComponent', () => {
           multi: true,
         },
       ],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

@@ -23,7 +23,10 @@ describe('ToggleComponent', () => {
   const inputSelector = 'input[type=checkbox]';
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('should render nz-switch component from Ant Design', async () => {

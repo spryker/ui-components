@@ -35,7 +35,10 @@ describe('TableColumnDateComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('Template must render value from config.date converted by DatePipe with custom format value', async () => {

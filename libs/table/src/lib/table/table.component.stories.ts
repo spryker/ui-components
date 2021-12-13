@@ -128,11 +128,6 @@ declare module '../table/table' {
   ],
   exports: [TableModule, MockHttpModule],
   declarations: [TableColumnTestComponent],
-  entryComponents: [
-    LayoutFlatHostComponent,
-    TableColumnTestComponent,
-    TableColumnListComponent,
-  ],
 })
 class StoryModule {}
 

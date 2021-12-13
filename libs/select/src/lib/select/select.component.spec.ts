@@ -38,7 +38,10 @@ describe('SelectComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('template must render nz-select from Ant Design and default select', async () => {
@@ -213,7 +216,7 @@ describe('SelectComponent', () => {
       );
 
       expect(optionElems.length).toBe(1);
-      expect(optionElems[0].properties.value).toBe(undefined);
+      expect(optionElems[0].properties.value).toBe('');
     });
 
     it('should render <option> tags for every @Input(options) value', async () => {
@@ -223,7 +226,7 @@ describe('SelectComponent', () => {
       );
 
       expect(optionElems.length).toBe(4); // +1 for empty option
-      expect(optionElems[0].properties.value).toBe(undefined);
+      expect(optionElems[0].properties.value).toBe('');
       expect(optionElems[1].properties.value).toBe(1);
       expect(optionElems[2].properties.value).toBe(2);
       expect(optionElems[3].properties.value).toBe(3);

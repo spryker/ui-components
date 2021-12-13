@@ -57,6 +57,7 @@ describe('TableColumnInputComponent', () => {
     TestBed.configureTestingModule({
       imports: [testModule],
       providers: [MockTableEditableService],
+      teardown: { destroyAfterEach: false },
     }).overrideComponent(TableColumnInputComponent, {
       set: {
         providers: [
@@ -91,7 +92,7 @@ describe('TableColumnInputComponent', () => {
 
     expect(inputElem).toBeTruthy();
 
-    expect(inputElem?.parent?.attributes['class']).toBe(
+    expect(inputElem?.parent?.attributes['class']).toContain(
       'ant-form-item-control-input-content',
     );
   });

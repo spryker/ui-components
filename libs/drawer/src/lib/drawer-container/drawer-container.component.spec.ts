@@ -48,6 +48,7 @@ describe('DrawerContainerComponent', () => {
       imports: [PortalModule, DynamicIoModule],
       declarations: [TestComponent, DrawerContainerComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

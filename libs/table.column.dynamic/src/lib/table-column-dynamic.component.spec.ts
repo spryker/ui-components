@@ -67,6 +67,7 @@ describe('TableColumnDynamicComponent', () => {
           useExisting: MockDatasourceService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     datasource = TestBed.inject(MockDatasourceService);
   });

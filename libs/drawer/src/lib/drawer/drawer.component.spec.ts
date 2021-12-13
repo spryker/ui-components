@@ -56,6 +56,7 @@ describe('DrawerComponent', () => {
         },
         MockDrawerService,
       ],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

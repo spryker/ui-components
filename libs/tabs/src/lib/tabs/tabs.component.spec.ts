@@ -35,7 +35,12 @@ describe('TabsComponent', () => {
       },
     );
 
-    beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+    beforeEach(() =>
+      TestBed.configureTestingModule({
+        imports: [testModule],
+        teardown: { destroyAfterEach: false },
+      }),
+    );
 
     it('should render <nz-tabset>', async () => {
       const host = await createComponent();
@@ -171,7 +176,12 @@ describe('TabsComponent', () => {
       },
     );
 
-    beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+    beforeEach(() =>
+      TestBed.configureTestingModule({
+        imports: [testModule],
+        teardown: { destroyAfterEach: false },
+      }),
+    );
 
     it('should render <spy-icon> component inside the tab if `iconName` attribute exists', async () => {
       const mockIconName = 'user';

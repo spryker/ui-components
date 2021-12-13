@@ -1,4 +1,5 @@
 const collectCoverage = process.env.COVERAGE !== undefined;
+const { getJestProjects } = require('@nrwl/jest');
 
 module.exports = {
   testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
@@ -16,4 +17,5 @@ module.exports = {
   ],
   coverageReporters: ['lcov', 'text'],
   passWithNoTests: true,
+  projects: getJestProjects(),
 };

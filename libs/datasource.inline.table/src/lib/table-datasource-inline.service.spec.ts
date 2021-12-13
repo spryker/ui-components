@@ -21,6 +21,7 @@ describe('TableDatasourceInlineService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(TableDatasourceInlineService);
     dataTransformerService = TestBed.inject(MockDataTransformerService);

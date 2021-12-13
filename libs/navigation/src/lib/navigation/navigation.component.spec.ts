@@ -52,6 +52,7 @@ describe('NavigationComponent', () => {
       imports: [NoopAnimationsModule],
       declarations: [TestComponent, NavigationComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

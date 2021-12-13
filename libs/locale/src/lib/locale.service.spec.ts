@@ -7,6 +7,7 @@ xdescribe('Service: Locale', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [LocaleService],
+      teardown: { destroyAfterEach: false },
     });
   });
 

@@ -31,6 +31,7 @@ describe('ButtonAjaxComponent', () => {
         HttpClientTestingModule,
         NotificationModule.forRoot(),
       ],
+      teardown: { destroyAfterEach: false },
     }),
   );
 

@@ -25,7 +25,10 @@ describe('DateRangePickerComponent', () => {
   const mockedName = 'mockedName';
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('should render two <spy-date-picker> elements', async () => {

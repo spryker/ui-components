@@ -55,7 +55,10 @@ describe('DatePickerComponent', () => {
   };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
     registerLocaleData(zh);
   });
 

@@ -78,7 +78,7 @@
     "@angular/platform-browser-dynamic": "^13.1.0",
     "@angular/router": "^13.1.0",
     "@nrwl/nx-cloud": "^13.0.0",
-    "@orchestrator/core": "^2.0.0-next.1",
+    "@orchestrator/core": "^2.0.0-next.2",
     "@orchestrator/layout": "^2.0.0-next.1",
     "core-js": "^3.19.0",
     "date-fns": "^2.25.0",
@@ -154,7 +154,7 @@
     "tsickle": "^0.43.0",
     "tslint": "^6.1.3",
     "typescript": "~4.4.4",
-    "webpack": "~5.27.2"
+    "webpack": "~5.65.0"
   },
   "config": {
     "commitizen": {

@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 import { TestBed } from '@angular/core/testing';
 
 import { I18nPipe } from './i18n.pipe';

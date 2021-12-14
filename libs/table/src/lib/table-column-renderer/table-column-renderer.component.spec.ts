@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   AfterViewInit,
   ANALYZE_FOR_ENTRY_COMPONENTS,
@@ -45,7 +45,7 @@ const mockData: TableDataRow = {
 };
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'test-host-wrapper',
   template: `
     <spy-table-column-renderer
@@ -86,7 +86,7 @@ class TableColumnTestConfig {
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'table-column-test',
   template: ` {{ config.text | context: context }} `,
 })

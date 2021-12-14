@@ -1,4 +1,3 @@
-/* tslint:disable:no-empty-interface */
 import { EventEmitter } from '@angular/core';
 import { Distribute } from '@spryker/utils';
 import { Observable } from 'rxjs';

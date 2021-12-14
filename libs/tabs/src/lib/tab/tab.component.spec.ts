@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TabComponent } from './tab.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('TabComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(TabComponent, {

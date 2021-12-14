@@ -5,7 +5,7 @@ import { IStory, storiesOf } from '@storybook/angular';
 import { LocaleModule } from './locale.module';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'locale-story-component',
   styles: [
     `
@@ -36,7 +36,7 @@ function createStoryFor(locale: LocaleMeta): () => IStory {
   });
 }
 
-declare var require: any;
+declare const require: any;
 
 interface LocaleMeta {
   name: string;

@@ -2,6 +2,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import {
   Component,
   NO_ERRORS_SCHEMA,
+  OnInit,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -18,7 +19,7 @@ import { DrawerContainerComponent } from './drawer-container.component';
     <ng-template #drawerTpl let-drawerRef> Content </ng-template>
   `,
 })
-class TestComponent {
+class TestComponent implements OnInit {
   closeable = false;
   width = '50%';
   resizable = false;

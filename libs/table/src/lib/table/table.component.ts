@@ -343,7 +343,7 @@ export class CoreTableComponent
   };
 
   // We rely here on order to have the handler ready
-  // tslint:disable-next-line: member-ordering
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   private tableEventBus = new TableEventBus(this.handleEvent);
 
   constructor(
@@ -397,7 +397,7 @@ export class CoreTableComponent
       .pipe(
         startWith(null),
         // featureDirectives were already checked above
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         map(() => this.featureDirectives!.map((feature) => feature.component)),
         takeUntil(this.destroyed$),
       )

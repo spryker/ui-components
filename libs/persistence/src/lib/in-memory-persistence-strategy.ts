@@ -39,7 +39,7 @@ export class InMemoryPersistenceStrategy implements PersistenceStrategy {
       this.items[key] = new BehaviorSubject(value);
     }
 
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return this.items[key]!;
   }
 }

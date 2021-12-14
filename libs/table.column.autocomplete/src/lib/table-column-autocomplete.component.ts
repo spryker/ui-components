@@ -120,9 +120,9 @@ export class TableColumnAutocompleteComponent
   }
 
   valueChangeHandler(inputValue: string): void {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.context!.value = inputValue;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.tableEditableService.updateValue(inputValue, this.context!.config);
   }
 

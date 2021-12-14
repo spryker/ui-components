@@ -3,7 +3,7 @@ import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
 import { Observable, ReplaySubject, EMPTY } from 'rxjs';
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'spy-html-renderer[html]',
   exportAs: 'staticHtmlRendererProvider',
   providers: [

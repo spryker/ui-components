@@ -149,9 +149,9 @@ class EditColumnComponent
   }
 
   updateValue(value: string): void {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.context!.value = value;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.tableEditableService.updateValue(value, this.context!.config);
   }
 }

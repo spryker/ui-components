@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ChipsComponent } from './chips.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('ChipsComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(

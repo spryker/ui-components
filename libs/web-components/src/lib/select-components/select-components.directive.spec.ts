@@ -9,5 +9,6 @@ xdescribe('Directive: SelectComponents', () => {
     }).compileComponents();
   }));
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   it('should create an instance', () => {});
 });

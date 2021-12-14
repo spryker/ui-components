@@ -4,7 +4,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { LabelComponent } from './label.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('LabelComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(

@@ -9,7 +9,7 @@ import { select } from '@storybook/addon-knobs';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonAjaxModule } from './button-ajax.module';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 export default {
   title: 'ButtonAjaxComponent',

@@ -28,7 +28,7 @@ import { TableFeatureTplDirective } from './table-feature-tpl.directive';
 
 @Component({
   // This is abstract component so selector is ignored
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'selector',
   template: ``,
 })
@@ -98,7 +98,7 @@ export abstract class TableFeatureComponent<
       this.tplDirectives.changes.pipe(
         startWith(undefined),
         // This null-check is done above
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         map(() => this.tplDirectives!.toArray()),
         // Only pass when actual changes were made to directives
         // Otherwise Angular will emit on every re-renders

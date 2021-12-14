@@ -69,11 +69,11 @@ export class TableColumnListComponent
     const value = this.context.value;
     const isLimited = this.config && Boolean(this.config.limit);
     let values = Array.isArray(value) ? value : [value];
-    values = Boolean(values.length) ? (values as unknown[]) : [undefined];
+    values = values.length ? (values as unknown[]) : [undefined];
     this.values = values.map((_value) => ({
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       ...this.context!.row,
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       [this.context!.config.id]: _value,
     }));
     this.valuesLimited =

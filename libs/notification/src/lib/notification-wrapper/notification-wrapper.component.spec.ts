@@ -90,7 +90,7 @@ describe('NotificationWrapperComponent', () => {
 
     notificationElem.triggerEventHandler('closed', null);
 
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     expect(component.notificationRef!.close).toHaveBeenCalled();
   });
 });

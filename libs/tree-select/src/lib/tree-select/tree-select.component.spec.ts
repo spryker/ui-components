@@ -86,11 +86,11 @@ describe('TreeSelectComponent', () => {
       expect(optionElems[0].attributes.value).toBe(undefined);
       expect(optionElems[1].properties.value).toBe(mockItems[0].value);
       expect(optionElems[2].properties.value).toBe(
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         mockItems[0].children![0].value,
       );
       expect(optionElems[3].properties.value).toBe(
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         mockItems[0].children![1].value,
       );
       expect(optionElems[4].properties.value).toBe(mockItems[1].value);

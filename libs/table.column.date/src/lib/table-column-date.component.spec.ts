@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TestBed } from '@angular/core/testing';
 import { TableColumnDateComponent } from './table-column-date.component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';

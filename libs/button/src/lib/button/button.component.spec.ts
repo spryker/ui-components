@@ -6,7 +6,7 @@ import { buttonClassName } from '../button-core/button-core';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonComponent, ButtonType } from './button.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('ButtonComponent', () => {
   const buttonCls = 'spy-button';

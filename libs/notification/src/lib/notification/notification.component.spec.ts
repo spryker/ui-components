@@ -156,7 +156,7 @@ describe('NotificationWrapperComponent', () => {
         true,
       );
       const notificationElem = host.queryCss('spy-notification-view');
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       notificationElem!.componentInstance.close = jest.fn();
       host.component.close();
 

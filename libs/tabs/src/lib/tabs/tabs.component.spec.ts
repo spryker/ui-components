@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { TabsComponent, TabsMode } from './tabs.component';
 import { TabComponent } from '../tab/tab.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('TabsComponent', () => {
   const projectedContent = `

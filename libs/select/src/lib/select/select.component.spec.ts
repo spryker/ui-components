@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -15,7 +15,7 @@ class MockDatasource {
 
 describe('SelectComponent', () => {
   @Component({
-    // tslint:disable-next-line: component-selector
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'nz-select',
     template: ` <ng-content></ng-content> `,
   })

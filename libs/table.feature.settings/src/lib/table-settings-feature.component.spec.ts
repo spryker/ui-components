@@ -37,7 +37,7 @@ import { ReplaySubject, Observable } from 'rxjs';
 import { TableSettingsFeatureComponent } from './table-settings-feature.component';
 import { TableSettingsColumn } from './types';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 class MockLocalStoragePersistenceStrategy {
   save = jest.fn();

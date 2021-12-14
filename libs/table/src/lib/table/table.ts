@@ -1,4 +1,3 @@
-/* tslint:disable:no-empty-interface */
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 import { ElementRef, Injector, Type } from '@angular/core';

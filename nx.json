@@ -7,7 +7,6 @@
       "devDependencies": "*"
     },
     "tsconfig.json": "*",
-    "tslint.json": "*",
     "nx.json": "*"
   },
   "tasksRunnerOptions": {
@@ -32,20 +31,23 @@
     "defaultBase": "master"
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "defaultCollection": "@nrwl/angular"
   },
   "generators": {
     "@nrwl/angular:application": {
       "style": "less",
-      "prefix": "spy",
+      "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "protractor"
+      "e2eTestRunner": "protractor",
+      "prefix": "spy"
     },
     "@nrwl/angular:library": {
       "style": "less",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
       "prefix": "spy",
-      "publishable": true,
-      "unitTestRunner": "jest"
+      "publishable": true
     },
     "@schematics/angular:component": {
       "style": "less",
@@ -54,6 +56,9 @@
     },
     "@nrwl/storybook:configuration": {
       "uiFramework": "@storybook/angular"
+    },
+    "@nrwl/angular:component": {
+      "style": "less"
     }
   }
 }

@@ -4,7 +4,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { ButtonToggleComponent } from './button-toggle.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('ButtonToggleComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(

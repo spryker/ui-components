@@ -4,7 +4,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { DateRangePickerComponent } from './date-range-picker.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('DateRangePickerComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(

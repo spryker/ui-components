@@ -31,6 +31,15 @@
             "jestConfig": "libs/actions/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/actions/**/*.ts",
+              "libs/actions/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -99,6 +108,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/actions.close-drawer/**/*.ts",
+              "libs/actions.close-drawer/**/*.html"
+            ]
           }
         }
       },
@@ -169,6 +187,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/actions.drawer/**/*.ts",
+              "libs/actions.drawer/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -237,6 +264,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/actions.http/**/*.ts",
+              "libs/actions.http/**/*.html"
+            ]
           }
         }
       },
@@ -307,6 +343,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/actions.notification/**/*.ts",
+              "libs/actions.notification/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -375,6 +420,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/actions.redirect/**/*.ts",
+              "libs/actions.redirect/**/*.html"
+            ]
           }
         }
       },
@@ -445,6 +499,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/actions.refresh-drawer/**/*.ts",
+              "libs/actions.refresh-drawer/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -513,6 +576,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/actions.refresh-parent-table/**/*.ts",
+              "libs/actions.refresh-parent-table/**/*.html"
+            ]
           }
         }
       },
@@ -583,6 +655,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/actions.refresh-table/**/*.ts",
+              "libs/actions.refresh-table/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -651,6 +732,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ajax-action/**/*.ts",
+              "libs/ajax-action/**/*.html"
+            ]
           }
         }
       },
@@ -721,6 +811,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ajax-form/**/*.ts",
+              "libs/ajax-form/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -789,6 +888,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/autocomplete/**/*.ts",
+              "libs/autocomplete/**/*.html"
+            ]
           }
         }
       },
@@ -860,6 +968,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/button/**/*.ts", "libs/button/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -930,6 +1044,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/button.action/**/*.ts",
+              "libs/button.action/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -999,6 +1122,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/button.icon/**/*.ts",
+              "libs/button.icon/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1038,6 +1170,12 @@
             "jestConfig": "libs/cache/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/cache/**/*.ts", "libs/cache/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -1076,6 +1214,15 @@
           "options": {
             "jestConfig": "libs/cache.static/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/cache.static/**/*.ts",
+              "libs/cache.static/**/*.html"
+            ]
           }
         }
       },
@@ -1145,6 +1292,12 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/card/**/*.ts", "libs/card/**/*.html"]
           }
         }
       },
@@ -1216,6 +1369,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/checkbox/**/*.ts",
+              "libs/checkbox/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1285,6 +1447,12 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/chips/**/*.ts", "libs/chips/**/*.html"]
           }
         }
       },
@@ -1356,6 +1524,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/collapsible/**/*.ts",
+              "libs/collapsible/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1394,6 +1571,15 @@
           "options": {
             "jestConfig": "libs/data-serializer/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-serializer/**/*.ts",
+              "libs/data-serializer/**/*.html"
+            ]
           }
         }
       },
@@ -1434,6 +1620,15 @@
             "jestConfig": "libs/data-transformer/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer/**/*.ts",
+              "libs/data-transformer/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1472,6 +1667,15 @@
           "options": {
             "jestConfig": "libs/data-transformer.array-map/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.array-map/**/*.ts",
+              "libs/data-transformer.array-map/**/*.html"
+            ]
           }
         }
       },
@@ -1512,6 +1716,15 @@
             "jestConfig": "libs/data-transformer.chain/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.chain/**/*.ts",
+              "libs/data-transformer.chain/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1550,6 +1763,15 @@
           "options": {
             "jestConfig": "libs/data-transformer.collate/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.collate/**/*.ts",
+              "libs/data-transformer.collate/**/*.html"
+            ]
           }
         }
       },
@@ -1590,6 +1812,15 @@
             "jestConfig": "libs/data-transformer.configurator.table/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.configurator.table/**/*.ts",
+              "libs/data-transformer.configurator.table/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1628,6 +1859,15 @@
           "options": {
             "jestConfig": "libs/data-transformer.date-parse/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.date-parse/**/*.ts",
+              "libs/data-transformer.date-parse/**/*.html"
+            ]
           }
         }
       },
@@ -1668,6 +1908,15 @@
             "jestConfig": "libs/data-transformer.date-serialize/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.date-serialize/**/*.ts",
+              "libs/data-transformer.date-serialize/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1706,6 +1955,15 @@
           "options": {
             "jestConfig": "libs/data-transformer.filter.equals/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.filter.equals/**/*.ts",
+              "libs/data-transformer.filter.equals/**/*.html"
+            ]
           }
         }
       },
@@ -1746,6 +2004,15 @@
             "jestConfig": "libs/data-transformer.filter.range/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.filter.range/**/*.ts",
+              "libs/data-transformer.filter.range/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1784,6 +2051,15 @@
           "options": {
             "jestConfig": "libs/data-transformer.filter.text/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.filter.text/**/*.ts",
+              "libs/data-transformer.filter.text/**/*.html"
+            ]
           }
         }
       },
@@ -1824,6 +2100,15 @@
             "jestConfig": "libs/data-transformer.lens/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.lens/**/*.ts",
+              "libs/data-transformer.lens/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1862,6 +2147,15 @@
           "options": {
             "jestConfig": "libs/data-transformer.object-map/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.object-map/**/*.ts",
+              "libs/data-transformer.object-map/**/*.html"
+            ]
           }
         }
       },
@@ -1902,6 +2196,15 @@
             "jestConfig": "libs/data-transformer.pluck/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-transformer.pluck/**/*.ts",
+              "libs/data-transformer.pluck/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1941,6 +2244,15 @@
             "jestConfig": "libs/datasource/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/datasource/**/*.ts",
+              "libs/datasource/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -1979,6 +2291,15 @@
           "options": {
             "jestConfig": "libs/datasource.http/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/datasource.http/**/*.ts",
+              "libs/datasource.http/**/*.html"
+            ]
           }
         }
       },
@@ -2049,6 +2370,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/datasource.inline/**/*.ts",
+              "libs/datasource.inline/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -2118,6 +2448,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/datasource.inline.table/**/*.ts",
+              "libs/datasource.inline.table/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -2186,6 +2525,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/date-picker/**/*.ts",
+              "libs/date-picker/**/*.html"
+            ]
           }
         }
       },
@@ -2257,6 +2605,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/drawer/**/*.ts", "libs/drawer/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -2326,6 +2680,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dropdown/**/*.ts",
+              "libs/dropdown/**/*.html"
+            ]
           }
         }
       },
@@ -2397,6 +2760,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/form-item/**/*.ts",
+              "libs/form-item/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -2466,6 +2838,12 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/grid/**/*.ts", "libs/grid/**/*.html"]
           }
         }
       },
@@ -2537,6 +2915,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/header/**/*.ts", "libs/header/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -2606,6 +2990,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/headline/**/*.ts",
+              "libs/headline/**/*.html"
+            ]
           }
         }
       },
@@ -2677,6 +3070,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/html-renderer/**/*.ts",
+              "libs/html-renderer/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -2745,6 +3147,12 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/icon/**/*.ts", "libs/icon/**/*.html"]
           }
         }
       },
@@ -2816,6 +3224,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/input/**/*.ts", "libs/input/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -2886,6 +3300,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/input.password/**/*.ts",
+              "libs/input.password/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -2925,6 +3348,15 @@
             "jestConfig": "libs/interception/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/interception/**/*.ts",
+              "libs/interception/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -2946,6 +3378,15 @@
           "options": {
             "jestConfig": "libs/internal-utils/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/internal-utils/**/*.ts",
+              "libs/internal-utils/**/*.html"
+            ]
           }
         }
       },
@@ -3015,6 +3456,12 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/label/**/*.ts", "libs/label/**/*.html"]
           }
         }
       },
@@ -3086,6 +3533,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/layout/**/*.ts", "libs/layout/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -3155,6 +3608,12 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/link/**/*.ts", "libs/link/**/*.html"]
           }
         }
       },
@@ -3226,6 +3685,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/locale/**/*.ts", "libs/locale/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -3294,6 +3759,12 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/logo/**/*.ts", "libs/logo/**/*.html"]
           }
         }
       },
@@ -3365,6 +3836,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/modal/**/*.ts", "libs/modal/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -3434,6 +3911,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/navigation/**/*.ts",
+              "libs/navigation/**/*.html"
+            ]
           }
         }
       },
@@ -3505,6 +3991,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/notification/**/*.ts",
+              "libs/notification/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -3575,6 +4070,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/pagination/**/*.ts",
+              "libs/pagination/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -3614,6 +4118,15 @@
           "options": {
             "jestConfig": "libs/persistence/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/persistence/**/*.ts",
+              "libs/persistence/**/*.html"
+            ]
           }
         }
       },
@@ -3683,6 +4196,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/popover/**/*.ts",
+              "libs/popover/**/*.html"
+            ]
           }
         }
       },
@@ -3754,6 +4276,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/radio/**/*.ts", "libs/radio/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -3823,6 +4351,12 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/select/**/*.ts", "libs/select/**/*.html"]
           }
         }
       },
@@ -3894,6 +4428,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/sidebar/**/*.ts",
+              "libs/sidebar/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -3963,6 +4506,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/spinner/**/*.ts",
+              "libs/spinner/**/*.html"
+            ]
           }
         }
       },
@@ -4047,6 +4599,12 @@
             "jestConfig": "libs/styles/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/styles/**/*.ts", "libs/styles/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -4116,6 +4674,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/table/**/*.ts", "libs/table/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -4168,6 +4732,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table-integration-internal/**/*.ts",
+              "libs/table-integration-internal/**/*.html"
+            ]
           }
         }
       },
@@ -4238,6 +4811,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.column.autocomplete/**/*.ts",
+              "libs/table.column.autocomplete/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -4306,6 +4888,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.column.chip/**/*.ts",
+              "libs/table.column.chip/**/*.html"
+            ]
           }
         }
       },
@@ -4376,6 +4967,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.column.date/**/*.ts",
+              "libs/table.column.date/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -4444,6 +5044,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.column.dynamic/**/*.ts",
+              "libs/table.column.dynamic/**/*.html"
+            ]
           }
         }
       },
@@ -4514,6 +5123,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.column.image/**/*.ts",
+              "libs/table.column.image/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -4583,6 +5201,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.column.input/**/*.ts",
+              "libs/table.column.input/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -4651,6 +5278,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.column.select/**/*.ts",
+              "libs/table.column.select/**/*.html"
+            ]
           }
         }
       },
@@ -4722,6 +5358,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.column.text/**/*.ts",
+              "libs/table.column.text/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -4790,6 +5435,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.batch-actions/**/*.ts",
+              "libs/table.feature.batch-actions/**/*.html"
+            ]
           }
         }
       },
@@ -4861,6 +5515,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.editable/**/*.ts",
+              "libs/table.feature.editable/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -4930,6 +5593,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.filters/**/*.ts",
+              "libs/table.feature.filters/**/*.html"
+            ]
           }
         }
       },
@@ -5001,6 +5673,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.pagination/**/*.ts",
+              "libs/table.feature.pagination/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -5070,6 +5751,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.row-actions/**/*.ts",
+              "libs/table.feature.row-actions/**/*.html"
+            ]
           }
         }
       },
@@ -5141,6 +5831,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.search/**/*.ts",
+              "libs/table.feature.search/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -5210,6 +5909,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.selectable/**/*.ts",
+              "libs/table.feature.selectable/**/*.html"
+            ]
           }
         }
       },
@@ -5281,6 +5989,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.settings/**/*.ts",
+              "libs/table.feature.settings/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -5351,6 +6068,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.sync-state/**/*.ts",
+              "libs/table.feature.sync-state/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -5419,6 +6145,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.title/**/*.ts",
+              "libs/table.feature.title/**/*.html"
+            ]
           }
         }
       },
@@ -5490,6 +6225,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.feature.total/**/*.ts",
+              "libs/table.feature.total/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -5559,6 +6303,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.filter.date-range/**/*.ts",
+              "libs/table.filter.date-range/**/*.html"
+            ]
           }
         }
       },
@@ -5630,6 +6383,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.filter.select/**/*.ts",
+              "libs/table.filter.select/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -5699,6 +6461,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/table.filter.tree-select/**/*.ts",
+              "libs/table.filter.tree-select/**/*.html"
+            ]
           }
         }
       },
@@ -5770,6 +6541,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/tabs/**/*.ts", "libs/tabs/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -5839,6 +6616,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/textarea/**/*.ts",
+              "libs/textarea/**/*.html"
+            ]
           }
         }
       },
@@ -5910,6 +6696,12 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/toggle/**/*.ts", "libs/toggle/**/*.html"]
+          }
         }
       },
       "schematics": {
@@ -5980,6 +6772,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/tree-select/**/*.ts",
+              "libs/tree-select/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -6020,6 +6821,15 @@
             "jestConfig": "libs/unsaved-changes/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/unsaved-changes/**/*.ts",
+              "libs/unsaved-changes/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -6058,6 +6868,15 @@
           "options": {
             "jestConfig": "libs/unsaved-changes.guard.browser/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/unsaved-changes.guard.browser/**/*.ts",
+              "libs/unsaved-changes.guard.browser/**/*.html"
+            ]
           }
         }
       },
@@ -6128,6 +6947,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/unsaved-changes.guard.drawer/**/*.ts",
+              "libs/unsaved-changes.guard.drawer/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -6196,6 +7024,15 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/unsaved-changes.guard.navigation/**/*.ts",
+              "libs/unsaved-changes.guard.navigation/**/*.html"
+            ]
           }
         }
       },
@@ -6266,6 +7103,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/unsaved-changes.monitor.form/**/*.ts",
+              "libs/unsaved-changes.monitor.form/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -6335,6 +7181,15 @@
               "quiet": true
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/user-menu/**/*.ts",
+              "libs/user-menu/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -6373,6 +7228,12 @@
           "options": {
             "jestConfig": "libs/utils/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/utils/**/*.ts", "libs/utils/**/*.html"]
           }
         }
       },
@@ -6413,6 +7274,15 @@
             "jestConfig": "libs/utils.date.adapter.date-fns/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/utils.date.adapter.date-fns/**/*.ts",
+              "libs/utils.date.adapter.date-fns/**/*.html"
+            ]
+          }
         }
       },
       "schematics": {
@@ -6451,6 +7321,15 @@
           "options": {
             "jestConfig": "libs/web-components/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/web-components/**/*.ts",
+              "libs/web-components/**/*.html"
+            ]
           }
         }
       },

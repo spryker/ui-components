@@ -7,7 +7,7 @@ import { ApplyAttrsDirective } from '@spryker/utils';
 
 describe('InputComponent', () => {
   @Component({
-    // tslint:disable-next-line: component-selector
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'test',
     template: `
       <spy-input

@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   AfterContentInit,
   ChangeDetectorRef,
@@ -111,7 +111,7 @@ export function initFeature<T>(
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'test-table-feature',
   template: ` <ng-content></ng-content> `,
 })

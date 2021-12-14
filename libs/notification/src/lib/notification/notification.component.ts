@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -44,7 +45,7 @@ import {
 })
 export class NotificationComponent
   extends NotificationInputs
-  implements OnChanges, OnDestroy
+  implements OnChanges, AfterViewInit, OnDestroy
 {
   @Input() @ToJson() floatingConfig?: NotificationConfig;
 

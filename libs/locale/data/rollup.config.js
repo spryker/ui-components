@@ -58,6 +58,7 @@ module.exports = locales
         target: 'es2015',
         module: 'esnext',
         exclude: ['**/*.spec.ts', '**/*.stories.ts'],
+        tsconfig: 'tsconfig.base.json',
       }),
     ],
   }));

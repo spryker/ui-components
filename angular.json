@@ -1,5 +1,6 @@
 {
   "version": 1,
+  "defaultProject": "utils",
   "projects": {
     "actions": {
       "projectType": "library",
@@ -4527,15 +4528,9 @@
     },
     "storybook": {
       "projectType": "library",
-      "root": "libs",
-      "sourceRoot": "libs",
+      "root": ".storybook/global",
+      "sourceRoot": ".storybook/global",
       "architect": {
-        "build": {
-          "builder": "@angular-devkit/architect:true",
-          "options": {
-            "tsConfig": ".storybook/global/tsconfig.json"
-          }
-        },
         "compile": {
           "builder": "@nrwl/storybook:build",
           "options": {

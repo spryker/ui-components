@@ -1,7 +1,4 @@
 {
-  "cli": {
-    "analytics": false
-  },
   "version": 1,
   "projects": {
     "actions": {
@@ -4575,15 +4572,9 @@
     },
     "storybook": {
       "projectType": "library",
-      "root": "libs",
-      "sourceRoot": "libs",
+      "root": ".storybook/global",
+      "sourceRoot": ".storybook/global",
       "architect": {
-        "build": {
-          "builder": "@angular-devkit/architect:true",
-          "options": {
-            "tsConfig": ".storybook/global/tsconfig.json"
-          }
-        },
         "compile": {
           "builder": "@nrwl/storybook:build",
           "outputs": ["{options.outputPath}"],

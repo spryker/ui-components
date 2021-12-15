@@ -135,31 +135,51 @@ When library is generated please do the following:
 - In `tsconfig.base.json`
   - remove newly generated path `paths[@spryker/<lib-name>]`:
   ```json
-  "paths": {
-    - "@spryker/<lib-name>": [
-      "libs/<lib-name>/src/index.ts"
-    ]
-  }
+    "paths": {
+      - "@spryker/<lib-name>": [
+        "libs/<lib-name>/src/index.ts"
+      ]
+    }
+  ```
+- In `tsconfig.json`
+  - add the following to the `references`:
+  ```json
+    {
+      "path": "./libs/<lib-name>/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/<lib-name>/tsconfig.spec.json"
+    },
   ```
 - In `libs/<lib-name>/.eslintrc.json`
   - remove following section:
   ```json
-    "parserOptions": { ... },
+    "extends": [
+      "plugin:@nrwl/nx/angular",
+      "plugin:@angular-eslint/template/process-inline-templates"
+    ],
+  ```
+- In `libs/<lib-name>/jest.config.js`
+  - remove following sections:
+  ```json
+    "transform": { ... },
+    "transformIgnorePatterns": { ... },
+    "snapshotSerializers": { ... }
   ```
 - In `libs/<lib-name>/ng-package.json`
   - add `styleIncludePaths` to `lib` for theme imports:
   ```json
-  "lib": {
-    ...
-    "styleIncludePaths": ["../styles/src/lib"]
-  }
+    "lib": {
+      ...
+      "styleIncludePaths": ["../styles/src/lib"]
+    }
   ```
 - In `libs/<lib-name>/package.json`
   - add `publishConfig` prop with `access=public` value:
   ```json
-  "publishConfig": {
-    "access": "public"
-  },
+    "publishConfig": {
+      "access": "public"
+    },
   ```
 - In `libs/<lib-name>/tsconfig.json`
   - remove following sections:
@@ -191,10 +211,7 @@ nx g @nrwl/storybook:configuration --name=<my-lib> --uiFramework=@storybook/angu
 
 _NOTE:_ Do the following updates after command above:
 
-- Delete file `libs/<my-lib>/.storybook/addons.js`
-- Delete file `libs/<my-lib>/.storybook/config.js`
-- Add file `libs/<my-lib>/.storybook/main.js` with content `module.exports = require('../../../.storybook/main');`
-- Add file `libs/<my-lib>/.storybook/preview.js` with content `import '../../../.storybook/preview';`
+- Add `import '../../../.storybook/preview';` to the `.storybook/preview.js`
 
 ### Library Stories
 

@@ -3,6 +3,7 @@ module.exports = {
   addons: [
     '@storybook/addon-knobs',
     '@storybook/addon-docs',
+    '@storybook/addon-essentials',
     'storybook-addons-abstract',
   ],
   core: {

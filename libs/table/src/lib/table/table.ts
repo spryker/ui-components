@@ -2,6 +2,7 @@ import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 import { ElementRef, Injector, Type } from '@angular/core';
 import { DatasourceConfig } from '@spryker/datasource';
+import { AnyContext } from '@spryker/utils';
 import { TableFeatureConfig } from '../table-config';
 import { TableActionTriggeredEvent } from '../table-actions';
 import { TableFeatureComponent } from '../table-feature';
@@ -44,7 +45,7 @@ export interface TableHeaderContext {
   i: number;
 }
 
-export interface TableColumnContext {
+export interface TableColumnContext extends AnyContext {
   value: TableDataValue;
   row: TableDataRow;
   config: TableColumn;

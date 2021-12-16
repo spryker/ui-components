@@ -99,7 +99,7 @@ describe('TableFilterTreeSelectComponent', () => {
   describe('@Input(value)', () => {
     it('`value` must be bound to `value` input of the `spy-tree-select` element', async () => {
       const host = await createComponent(
-        { config: mockTreeSelectConfig, value: mockTreeSelectValues },
+        { config: mockTreeSelectConfig, value: mockTreeSelectValues as any },
         true,
       );
       const selectElem = host.queryCss('spy-tree-select');

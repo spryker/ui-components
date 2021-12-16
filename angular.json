@@ -11,7 +11,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/actions"],
           "options": {
-            "tsConfig": "libs/actions/tsconfig.lib.json",
             "project": "libs/actions/ng-package.json"
           },
           "configurations": {
@@ -59,7 +58,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/actions.close-drawer"],
           "options": {
-            "tsConfig": "libs/actions.close-drawer/tsconfig.lib.json",
             "project": "libs/actions.close-drawer/ng-package.json"
           },
           "configurations": {
@@ -138,7 +136,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/actions.drawer"],
           "options": {
-            "tsConfig": "libs/actions.drawer/tsconfig.lib.json",
             "project": "libs/actions.drawer/ng-package.json"
           },
           "configurations": {
@@ -217,7 +214,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/actions.http"],
           "options": {
-            "tsConfig": "libs/actions.http/tsconfig.lib.json",
             "project": "libs/actions.http/ng-package.json"
           },
           "configurations": {
@@ -296,7 +292,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/actions.notification"],
           "options": {
-            "tsConfig": "libs/actions.notification/tsconfig.lib.json",
             "project": "libs/actions.notification/ng-package.json"
           },
           "configurations": {
@@ -375,7 +370,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/actions.redirect"],
           "options": {
-            "tsConfig": "libs/actions.redirect/tsconfig.lib.json",
             "project": "libs/actions.redirect/ng-package.json"
           },
           "configurations": {
@@ -454,7 +448,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/actions.refresh-drawer"],
           "options": {
-            "tsConfig": "libs/actions.refresh-drawer/tsconfig.lib.json",
             "project": "libs/actions.refresh-drawer/ng-package.json"
           },
           "configurations": {
@@ -533,7 +526,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/actions.refresh-parent-table"],
           "options": {
-            "tsConfig": "libs/actions.refresh-parent-table/tsconfig.lib.json",
             "project": "libs/actions.refresh-parent-table/ng-package.json"
           },
           "configurations": {
@@ -612,7 +604,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/actions.refresh-table"],
           "options": {
-            "tsConfig": "libs/actions.refresh-table/tsconfig.lib.json",
             "project": "libs/actions.refresh-table/ng-package.json"
           },
           "configurations": {
@@ -691,7 +682,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/ajax-action"],
           "options": {
-            "tsConfig": "libs/ajax-action/tsconfig.lib.json",
             "project": "libs/ajax-action/ng-package.json"
           },
           "configurations": {
@@ -770,7 +760,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/ajax-form"],
           "options": {
-            "tsConfig": "libs/ajax-form/tsconfig.lib.json",
             "project": "libs/ajax-form/ng-package.json"
           },
           "configurations": {
@@ -849,7 +838,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/autocomplete"],
           "options": {
-            "tsConfig": "libs/autocomplete/tsconfig.lib.json",
             "project": "libs/autocomplete/ng-package.json"
           },
           "configurations": {
@@ -929,7 +917,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/button"],
           "options": {
-            "tsConfig": "libs/button/tsconfig.lib.json",
             "project": "libs/button/ng-package.json"
           },
           "configurations": {
@@ -1006,7 +993,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/button.action"],
           "options": {
-            "tsConfig": "libs/button.action/tsconfig.lib.json",
             "project": "libs/button.action/ng-package.json"
           },
           "configurations": {
@@ -1085,7 +1071,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/button.icon"],
           "options": {
-            "tsConfig": "libs/button.icon/tsconfig.lib.json",
             "project": "libs/button.icon/ng-package.json"
           },
           "configurations": {
@@ -1164,7 +1149,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/cache"],
           "options": {
-            "tsConfig": "libs/cache/tsconfig.lib.json",
             "project": "libs/cache/ng-package.json"
           },
           "configurations": {
@@ -1209,7 +1193,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/cache.static"],
           "options": {
-            "tsConfig": "libs/cache.static/tsconfig.lib.json",
             "project": "libs/cache.static/ng-package.json"
           },
           "configurations": {
@@ -1257,7 +1240,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/card"],
           "options": {
-            "tsConfig": "libs/card/tsconfig.lib.json",
             "project": "libs/card/ng-package.json"
           },
           "configurations": {
@@ -1334,7 +1316,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/checkbox"],
           "options": {
-            "tsConfig": "libs/checkbox/tsconfig.lib.json",
             "project": "libs/checkbox/ng-package.json"
           },
           "configurations": {
@@ -1414,7 +1395,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/chips"],
           "options": {
-            "tsConfig": "libs/chips/tsconfig.lib.json",
             "project": "libs/chips/ng-package.json"
           },
           "configurations": {
@@ -1491,7 +1471,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/collapsible"],
           "options": {
-            "tsConfig": "libs/collapsible/tsconfig.lib.json",
             "project": "libs/collapsible/ng-package.json"
           },
           "configurations": {
@@ -1570,7 +1549,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-serializer"],
           "options": {
-            "tsConfig": "libs/data-serializer/tsconfig.lib.json",
             "project": "libs/data-serializer/ng-package.json"
           },
           "configurations": {
@@ -1618,7 +1596,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer"],
           "options": {
-            "tsConfig": "libs/data-transformer/tsconfig.lib.json",
             "project": "libs/data-transformer/ng-package.json"
           },
           "configurations": {
@@ -1666,7 +1643,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.array-map"],
           "options": {
-            "tsConfig": "libs/data-transformer.array-map/tsconfig.lib.json",
             "project": "libs/data-transformer.array-map/ng-package.json"
           },
           "configurations": {
@@ -1714,7 +1690,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.chain"],
           "options": {
-            "tsConfig": "libs/data-transformer.chain/tsconfig.lib.json",
             "project": "libs/data-transformer.chain/ng-package.json"
           },
           "configurations": {
@@ -1762,7 +1737,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.collate"],
           "options": {
-            "tsConfig": "libs/data-transformer.collate/tsconfig.lib.json",
             "project": "libs/data-transformer.collate/ng-package.json"
           },
           "configurations": {
@@ -1810,7 +1784,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.configurator.table"],
           "options": {
-            "tsConfig": "libs/data-transformer.configurator.table/tsconfig.lib.json",
             "project": "libs/data-transformer.configurator.table/ng-package.json"
           },
           "configurations": {
@@ -1858,7 +1831,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.date-parse"],
           "options": {
-            "tsConfig": "libs/data-transformer.date-parse/tsconfig.lib.json",
             "project": "libs/data-transformer.date-parse/ng-package.json"
           },
           "configurations": {
@@ -1906,7 +1878,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.date-serialize"],
           "options": {
-            "tsConfig": "libs/data-transformer.date-serialize/tsconfig.lib.json",
             "project": "libs/data-transformer.date-serialize/ng-package.json"
           },
           "configurations": {
@@ -1954,7 +1925,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.filter.equals"],
           "options": {
-            "tsConfig": "libs/data-transformer.filter.equals/tsconfig.lib.json",
             "project": "libs/data-transformer.filter.equals/ng-package.json"
           },
           "configurations": {
@@ -2002,7 +1972,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.filter.range"],
           "options": {
-            "tsConfig": "libs/data-transformer.filter.range/tsconfig.lib.json",
             "project": "libs/data-transformer.filter.range/ng-package.json"
           },
           "configurations": {
@@ -2050,7 +2019,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.filter.text"],
           "options": {
-            "tsConfig": "libs/data-transformer.filter.text/tsconfig.lib.json",
             "project": "libs/data-transformer.filter.text/ng-package.json"
           },
           "configurations": {
@@ -2098,7 +2066,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.lens"],
           "options": {
-            "tsConfig": "libs/data-transformer.lens/tsconfig.lib.json",
             "project": "libs/data-transformer.lens/ng-package.json"
           },
           "configurations": {
@@ -2146,7 +2113,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.object-map"],
           "options": {
-            "tsConfig": "libs/data-transformer.object-map/tsconfig.lib.json",
             "project": "libs/data-transformer.object-map/ng-package.json"
           },
           "configurations": {
@@ -2194,7 +2160,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/data-transformer.pluck"],
           "options": {
-            "tsConfig": "libs/data-transformer.pluck/tsconfig.lib.json",
             "project": "libs/data-transformer.pluck/ng-package.json"
           },
           "configurations": {
@@ -2242,7 +2207,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/datasource"],
           "options": {
-            "tsConfig": "libs/datasource/tsconfig.lib.json",
             "project": "libs/datasource/ng-package.json"
           },
           "configurations": {
@@ -2290,7 +2254,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/datasource.http"],
           "options": {
-            "tsConfig": "libs/datasource.http/tsconfig.lib.json",
             "project": "libs/datasource.http/ng-package.json"
           },
           "configurations": {
@@ -2338,7 +2301,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/datasource.inline"],
           "options": {
-            "tsConfig": "libs/datasource.inline/tsconfig.lib.json",
             "project": "libs/datasource.inline/ng-package.json"
           },
           "configurations": {
@@ -2417,7 +2379,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/datasource.inline.table"],
           "options": {
-            "tsConfig": "libs/datasource.inline.table/tsconfig.lib.json",
             "project": "libs/datasource.inline.table/ng-package.json"
           },
           "configurations": {
@@ -2496,7 +2457,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/date-picker"],
           "options": {
-            "tsConfig": "libs/date-picker/tsconfig.lib.json",
             "project": "libs/date-picker/ng-package.json"
           },
           "configurations": {
@@ -2576,7 +2536,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/drawer"],
           "options": {
-            "tsConfig": "libs/drawer/tsconfig.lib.json",
             "project": "libs/drawer/ng-package.json"
           },
           "configurations": {
@@ -2653,7 +2612,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/dropdown"],
           "options": {
-            "tsConfig": "libs/dropdown/tsconfig.lib.json",
             "project": "libs/dropdown/ng-package.json"
           },
           "configurations": {
@@ -2733,7 +2691,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/form-item"],
           "options": {
-            "tsConfig": "libs/form-item/tsconfig.lib.json",
             "project": "libs/form-item/ng-package.json"
           },
           "configurations": {
@@ -2813,7 +2770,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/grid"],
           "options": {
-            "tsConfig": "libs/grid/tsconfig.lib.json",
             "project": "libs/grid/ng-package.json"
           },
           "configurations": {
@@ -2890,7 +2846,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/header"],
           "options": {
-            "tsConfig": "libs/header/tsconfig.lib.json",
             "project": "libs/header/ng-package.json"
           },
           "configurations": {
@@ -2967,7 +2922,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/headline"],
           "options": {
-            "tsConfig": "libs/headline/tsconfig.lib.json",
             "project": "libs/headline/ng-package.json"
           },
           "configurations": {
@@ -3047,7 +3001,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/html-renderer"],
           "options": {
-            "tsConfig": "libs/html-renderer/tsconfig.lib.json",
             "project": "libs/html-renderer/ng-package.json"
           },
           "configurations": {
@@ -3126,7 +3079,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/icon"],
           "options": {
-            "tsConfig": "libs/icon/tsconfig.lib.json",
             "project": "libs/icon/ng-package.json"
           },
           "configurations": {
@@ -3203,7 +3155,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/input"],
           "options": {
-            "tsConfig": "libs/input/tsconfig.lib.json",
             "project": "libs/input/ng-package.json"
           },
           "configurations": {
@@ -3280,7 +3231,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/input.password"],
           "options": {
-            "tsConfig": "libs/input.password/tsconfig.lib.json",
             "project": "libs/input.password/ng-package.json"
           },
           "configurations": {
@@ -3359,7 +3309,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/interception"],
           "options": {
-            "tsConfig": "libs/interception/tsconfig.lib.json",
             "project": "libs/interception/ng-package.json"
           },
           "configurations": {
@@ -3438,7 +3387,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/label"],
           "options": {
-            "tsConfig": "libs/label/tsconfig.lib.json",
             "project": "libs/label/ng-package.json"
           },
           "configurations": {
@@ -3515,7 +3463,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/layout"],
           "options": {
-            "tsConfig": "libs/layout/tsconfig.lib.json",
             "project": "libs/layout/ng-package.json"
           },
           "configurations": {
@@ -3592,7 +3539,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/link"],
           "options": {
-            "tsConfig": "libs/link/tsconfig.lib.json",
             "project": "libs/link/ng-package.json"
           },
           "configurations": {
@@ -3669,7 +3615,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/locale"],
           "options": {
-            "tsConfig": "libs/locale/tsconfig.lib.json",
             "project": "libs/locale/ng-package.json"
           },
           "configurations": {
@@ -3745,7 +3690,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/logo"],
           "options": {
-            "tsConfig": "libs/logo/tsconfig.lib.json",
             "project": "libs/logo/ng-package.json"
           },
           "configurations": {
@@ -3822,7 +3766,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/modal"],
           "options": {
-            "tsConfig": "libs/modal/tsconfig.lib.json",
             "project": "libs/modal/ng-package.json"
           },
           "configurations": {
@@ -3899,7 +3842,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/navigation"],
           "options": {
-            "tsConfig": "libs/navigation/tsconfig.lib.json",
             "project": "libs/navigation/ng-package.json"
           },
           "configurations": {
@@ -3979,7 +3921,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/notification"],
           "options": {
-            "tsConfig": "libs/notification/tsconfig.lib.json",
             "project": "libs/notification/ng-package.json"
           },
           "configurations": {
@@ -4059,7 +4000,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/pagination"],
           "options": {
-            "tsConfig": "libs/pagination/tsconfig.lib.json",
             "project": "libs/pagination/ng-package.json"
           },
           "configurations": {
@@ -4139,7 +4079,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/persistence"],
           "options": {
-            "tsConfig": "libs/persistence/tsconfig.lib.json",
             "project": "libs/persistence/ng-package.json"
           },
           "configurations": {
@@ -4187,7 +4126,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/popover"],
           "options": {
-            "tsConfig": "libs/popover/tsconfig.lib.json",
             "project": "libs/popover/ng-package.json"
           },
           "configurations": {
@@ -4267,7 +4205,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/radio"],
           "options": {
-            "tsConfig": "libs/radio/tsconfig.lib.json",
             "project": "libs/radio/ng-package.json"
           },
           "configurations": {
@@ -4344,7 +4281,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/select"],
           "options": {
-            "tsConfig": "libs/select/tsconfig.lib.json",
             "project": "libs/select/ng-package.json"
           },
           "configurations": {
@@ -4421,7 +4357,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/sidebar"],
           "options": {
-            "tsConfig": "libs/sidebar/tsconfig.lib.json",
             "project": "libs/sidebar/ng-package.json"
           },
           "configurations": {
@@ -4501,7 +4436,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/spinner"],
           "options": {
-            "tsConfig": "libs/spinner/tsconfig.lib.json",
             "project": "libs/spinner/ng-package.json"
           },
           "configurations": {
@@ -4619,7 +4553,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/styles"],
           "options": {
-            "tsConfig": "libs/styles/tsconfig.lib.json",
             "project": "libs/styles/ng-package.json"
           },
           "configurations": {
@@ -4664,7 +4597,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table"],
           "options": {
-            "tsConfig": "libs/table/tsconfig.lib.json",
             "project": "libs/table/ng-package.json"
           },
           "configurations": {
@@ -4803,7 +4735,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.column.autocomplete"],
           "options": {
-            "tsConfig": "libs/table.column.autocomplete/tsconfig.lib.json",
             "project": "libs/table.column.autocomplete/ng-package.json"
           },
           "configurations": {
@@ -4882,7 +4813,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.column.chip"],
           "options": {
-            "tsConfig": "libs/table.column.chip/tsconfig.lib.json",
             "project": "libs/table.column.chip/ng-package.json"
           },
           "configurations": {
@@ -4961,7 +4891,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.column.date"],
           "options": {
-            "tsConfig": "libs/table.column.date/tsconfig.lib.json",
             "project": "libs/table.column.date/ng-package.json"
           },
           "configurations": {
@@ -5040,7 +4969,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.column.dynamic"],
           "options": {
-            "tsConfig": "libs/table.column.dynamic/tsconfig.lib.json",
             "project": "libs/table.column.dynamic/ng-package.json"
           },
           "configurations": {
@@ -5119,7 +5047,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.column.image"],
           "options": {
-            "tsConfig": "libs/table.column.image/tsconfig.lib.json",
             "project": "libs/table.column.image/ng-package.json"
           },
           "configurations": {
@@ -5198,7 +5125,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.column.input"],
           "options": {
-            "tsConfig": "libs/table.column.input/tsconfig.lib.json",
             "project": "libs/table.column.input/ng-package.json"
           },
           "configurations": {
@@ -5277,7 +5203,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.column.select"],
           "options": {
-            "tsConfig": "libs/table.column.select/tsconfig.lib.json",
             "project": "libs/table.column.select/ng-package.json"
           },
           "configurations": {
@@ -5357,7 +5282,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.column.text"],
           "options": {
-            "tsConfig": "libs/table.column.text/tsconfig.lib.json",
             "project": "libs/table.column.text/ng-package.json"
           },
           "configurations": {
@@ -5436,7 +5360,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.batch-actions"],
           "options": {
-            "tsConfig": "libs/table.feature.batch-actions/tsconfig.lib.json",
             "project": "libs/table.feature.batch-actions/ng-package.json"
           },
           "configurations": {
@@ -5516,7 +5439,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.editable"],
           "options": {
-            "tsConfig": "libs/table.feature.editable/tsconfig.lib.json",
             "project": "libs/table.feature.editable/ng-package.json"
           },
           "configurations": {
@@ -5596,7 +5518,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.filters"],
           "options": {
-            "tsConfig": "libs/table.feature.filters/tsconfig.lib.json",
             "project": "libs/table.feature.filters/ng-package.json"
           },
           "configurations": {
@@ -5676,7 +5597,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.pagination"],
           "options": {
-            "tsConfig": "libs/table.feature.pagination/tsconfig.lib.json",
             "project": "libs/table.feature.pagination/ng-package.json"
           },
           "configurations": {
@@ -5756,7 +5676,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.row-actions"],
           "options": {
-            "tsConfig": "libs/table.feature.row-actions/tsconfig.lib.json",
             "project": "libs/table.feature.row-actions/ng-package.json"
           },
           "configurations": {
@@ -5836,7 +5755,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.search"],
           "options": {
-            "tsConfig": "libs/table.feature.search/tsconfig.lib.json",
             "project": "libs/table.feature.search/ng-package.json"
           },
           "configurations": {
@@ -5916,7 +5834,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.selectable"],
           "options": {
-            "tsConfig": "libs/table.feature.selectable/tsconfig.lib.json",
             "project": "libs/table.feature.selectable/ng-package.json"
           },
           "configurations": {
@@ -5996,7 +5913,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.settings"],
           "options": {
-            "tsConfig": "libs/table.feature.settings/tsconfig.lib.json",
             "project": "libs/table.feature.settings/ng-package.json"
           },
           "configurations": {
@@ -6076,7 +5992,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.sync-state"],
           "options": {
-            "tsConfig": "libs/table.feature.sync-state/tsconfig.lib.json",
             "project": "libs/table.feature.sync-state/ng-package.json"
           },
           "configurations": {
@@ -6155,7 +6070,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.title"],
           "options": {
-            "tsConfig": "libs/table.feature.title/tsconfig.lib.json",
             "project": "libs/table.feature.title/ng-package.json"
           },
           "configurations": {
@@ -6235,7 +6149,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.feature.total"],
           "options": {
-            "tsConfig": "libs/table.feature.total/tsconfig.lib.json",
             "project": "libs/table.feature.total/ng-package.json"
           },
           "configurations": {
@@ -6315,7 +6228,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.filter.date-range"],
           "options": {
-            "tsConfig": "libs/table.filter.date-range/tsconfig.lib.json",
             "project": "libs/table.filter.date-range/ng-package.json"
           },
           "configurations": {
@@ -6395,7 +6307,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.filter.select"],
           "options": {
-            "tsConfig": "libs/table.filter.select/tsconfig.lib.json",
             "project": "libs/table.filter.select/ng-package.json"
           },
           "configurations": {
@@ -6475,7 +6386,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/table.filter.tree-select"],
           "options": {
-            "tsConfig": "libs/table.filter.tree-select/tsconfig.lib.json",
             "project": "libs/table.filter.tree-select/ng-package.json"
           },
           "configurations": {
@@ -6555,7 +6465,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/tabs"],
           "options": {
-            "tsConfig": "libs/tabs/tsconfig.lib.json",
             "project": "libs/tabs/ng-package.json"
           },
           "configurations": {
@@ -6632,7 +6541,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/textarea"],
           "options": {
-            "tsConfig": "libs/textarea/tsconfig.lib.json",
             "project": "libs/textarea/ng-package.json"
           },
           "configurations": {
@@ -6712,7 +6620,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/toggle"],
           "options": {
-            "tsConfig": "libs/toggle/tsconfig.lib.json",
             "project": "libs/toggle/ng-package.json"
           },
           "configurations": {
@@ -6789,7 +6696,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/tree-select"],
           "options": {
-            "tsConfig": "libs/tree-select/tsconfig.lib.json",
             "project": "libs/tree-select/ng-package.json"
           },
           "configurations": {
@@ -6869,7 +6775,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/unsaved-changes"],
           "options": {
-            "tsConfig": "libs/unsaved-changes/tsconfig.lib.json",
             "project": "libs/unsaved-changes/ng-package.json"
           },
           "configurations": {
@@ -6917,7 +6822,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/unsaved-changes.guard.browser"],
           "options": {
-            "tsConfig": "libs/unsaved-changes.guard.browser/tsconfig.lib.json",
             "project": "libs/unsaved-changes.guard.browser/ng-package.json"
           },
           "configurations": {
@@ -6965,7 +6869,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/unsaved-changes.guard.drawer"],
           "options": {
-            "tsConfig": "libs/unsaved-changes.guard.drawer/tsconfig.lib.json",
             "project": "libs/unsaved-changes.guard.drawer/ng-package.json"
           },
           "configurations": {
@@ -7044,7 +6947,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/unsaved-changes.guard.navigation"],
           "options": {
-            "tsConfig": "libs/unsaved-changes.guard.navigation/tsconfig.lib.json",
             "project": "libs/unsaved-changes.guard.navigation/ng-package.json"
           },
           "configurations": {
@@ -7123,7 +7025,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/unsaved-changes.monitor.form"],
           "options": {
-            "tsConfig": "libs/unsaved-changes.monitor.form/tsconfig.lib.json",
             "project": "libs/unsaved-changes.monitor.form/ng-package.json"
           },
           "configurations": {
@@ -7202,7 +7103,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/user-menu"],
           "options": {
-            "tsConfig": "libs/user-menu/tsconfig.lib.json",
             "project": "libs/user-menu/ng-package.json"
           },
           "configurations": {
@@ -7281,7 +7181,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/utils"],
           "options": {
-            "tsConfig": "libs/utils/tsconfig.lib.json",
             "project": "libs/utils/ng-package.json"
           },
           "configurations": {
@@ -7326,7 +7225,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/utils.date.adapter.date-fns"],
           "options": {
-            "tsConfig": "libs/utils.date.adapter.date-fns/tsconfig.lib.json",
             "project": "libs/utils.date.adapter.date-fns/ng-package.json"
           },
           "configurations": {
@@ -7374,7 +7272,6 @@
           "builder": "@nrwl/angular:package",
           "outputs": ["dist/libs/web-components"],
           "options": {
-            "tsConfig": "libs/web-components/tsconfig.lib.json",
             "project": "libs/web-components/ng-package.json"
           },
           "configurations": {

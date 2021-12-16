@@ -60,5 +60,6 @@
     "@nrwl/angular:component": {
       "style": "less"
     }
-  }
+  },
+  "defaultProject": "utils"
 }

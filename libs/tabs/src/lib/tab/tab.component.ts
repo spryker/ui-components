@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 import { IconErrorModule } from '@spryker/icon/icons';
+import { TabTemplateContext } from 'ng-zorro-antd/tabs';
 
 @Component({
   selector: 'spy-tab',
@@ -30,7 +31,9 @@ export class TabComponent implements OnChanges {
   @Output() hasWarningChange = new EventEmitter<boolean>();
 
   @ViewChild('contentTpl') template!: TemplateRef<void>;
-  @ViewChild('titleTpl') titleTemplate!: TemplateRef<void>;
+  @ViewChild('titleTpl') titleTemplate!:
+    | string
+    | TemplateRef<TabTemplateContext>;
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('hasWarning' in changes) {

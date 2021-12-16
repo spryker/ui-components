@@ -13,7 +13,7 @@
     *ngIf="total"
     class="ant-pagination-select"
     [value]="pageSize"
-    [disableClear]="disableClear"
+    [disableClear]="$any(disableClear)"
     [options]="pageSizeOptions"
     (valueChange)="pageSizeChange.emit($event)"
   ></spy-select>

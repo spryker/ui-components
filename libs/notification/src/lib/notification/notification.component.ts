@@ -87,7 +87,7 @@ export class NotificationComponent
   );
 
   private floatingRef$ = this.floatingData$.pipe(
-    filter(() => this.floating),
+    filter(() => Boolean(this.floating)),
     map((data) => this.notificationService.show(data)),
     share(),
   );

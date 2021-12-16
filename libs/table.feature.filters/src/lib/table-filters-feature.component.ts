@@ -4,6 +4,7 @@ import {
   forwardRef,
   Inject,
   Injector,
+  Type,
   ViewEncapsulation,
 } from '@angular/core';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
@@ -44,11 +45,13 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
   filterClasses: Record<string, string | string[]> = {};
 
   updateFiltersValue$ = new Subject<Record<string, unknown> | null>();
-  filterComponentMap: Record<string, TableFilterComponent<TableFilterBase>> =
-    this.tableFilterToken.reduce(
-      (acc, filter) => ({ ...acc, ...filter }),
-      {},
-    ) as Record<string, TableFilterComponent<TableFilterBase>>;
+  filterComponentMap: Record<
+    string,
+    Type<TableFilterComponent<TableFilterBase>>
+  > = this.tableFilterToken.reduce(
+    (acc, filter) => ({ ...acc, ...filter }),
+    {},
+  ) as Record<string, Type<TableFilterComponent<TableFilterBase>>>;
   dataConfig$ = this.dataConfiguratorService$.pipe(
     switchMap((service) => service.config$),
     shareReplay({ refCount: true, bufferSize: 1 }),
@@ -109,7 +112,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
 
   constructor(
     @Inject(TABLE_FILTERS_TOKEN)
-    private tableFilterToken: TableFiltersDeclaration[],
+    private tableFilterToken: Type<TableFiltersDeclaration>[],
     injector: Injector,
   ) {
     super(injector);

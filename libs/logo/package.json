@@ -2,8 +2,8 @@
   "name": "@spryker/logo",
   "version": "0.3.0-rc.2",
   "peerDependencies": {
-    "@angular/common": "^13.1.0",
-    "@angular/core": "^13.1.0",
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
     "@spryker/styles": "^0.5.0"
   },
   "dependencies": {

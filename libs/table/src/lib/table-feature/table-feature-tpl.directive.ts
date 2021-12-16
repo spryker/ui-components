@@ -1,4 +1,10 @@
-import { Directive, Input, TemplateRef, OnChanges } from '@angular/core';
+import {
+  Directive,
+  Input,
+  TemplateRef,
+  OnChanges,
+  Injectable,
+} from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { TypedSimpleChanges } from '@spryker/utils';
 
@@ -6,6 +12,7 @@ export interface TableFeatureTplContext {
   [key: string]: any;
 }
 
+@Injectable()
 export class TableFeatureTplDirectiveInputs {
   @Input() spyTableFeatureTpl?: string | string[];
   @Input() spyTableFeatureTplStyles?: Record<string, any>;

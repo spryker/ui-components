@@ -2,8 +2,8 @@
   "name": "@spryker/actions.http",
   "version": "0.2.0-rc.1",
   "peerDependencies": {
-    "@angular/common": "^13.1.0",
-    "@angular/core": "^13.1.0",
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
     "@spryker/actions": "^0.2.0",
     "@spryker/utils": "^0.3.0"
   },

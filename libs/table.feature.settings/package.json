@@ -2,9 +2,9 @@
   "name": "@spryker/table.feature.settings",
   "version": "0.1.0-rc.3",
   "peerDependencies": {
-    "@angular/cdk": "^13.1.0",
-    "@angular/common": "^13.1.0",
-    "@angular/core": "^13.1.0",
+    "@angular/cdk": "^13.0.0",
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
     "@spryker/button": "^0.4.0",
     "@spryker/checkbox": "^0.3.0",
     "@spryker/icon": "^0.3.0",

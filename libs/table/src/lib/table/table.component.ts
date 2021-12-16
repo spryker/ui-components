@@ -138,7 +138,7 @@ export class CoreTableComponent
   featureDirectives?: QueryList<TableFeatureDirective>;
 
   featureLocation = TableFeatureLocation;
-  featureComponentType = TableFeatureComponent;
+  featureComponentType = TableFeatureComponent as Type<TableFeatureComponent>;
 
   private setConfig$ = new ReplaySubject<TableConfig>(1);
   config$ = this.setConfig$.pipe(shareReplaySafe());
@@ -172,8 +172,8 @@ export class CoreTableComponent
   tableData$ = this.data$.pipe(pluck('data'));
   sortingData$ = this.dataConfiguratorService.config$.pipe(
     map((config) => {
-      const sortBy = config.sortBy;
-      let direction = config.sortDirection;
+      const sortBy = String(config.sortBy);
+      let direction = String(config.sortDirection);
 
       if (sortBy && direction) {
         direction = direction === 'asc' ? 'ascend' : 'descend';
@@ -456,10 +456,7 @@ export class CoreTableComponent
   }
 
   /** @internal */
-  updateSorting(event: {
-    key: string;
-    value: 'descend' | 'ascend' | null;
-  }): void {
+  updateSorting(event: { key: string; value: string | null }): void {
     if (this.isEmpty) {
       return;
     }
@@ -483,7 +480,7 @@ export class CoreTableComponent
   }
 
   private sortingValueTransformation(
-    value: 'descend' | 'ascend' | null,
+    value: string | null,
   ): SortingCriteria['sortDirection'] {
     if (value === 'descend') {
       return 'desc';

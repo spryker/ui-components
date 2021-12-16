@@ -10,6 +10,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { InterceptionComposerService } from '@spryker/interception';
+import { ToBoolean } from '@spryker/utils';
 import {
   UnsavedChangesGuardToken,
   UnsavedChangesMonitor,
@@ -36,7 +37,7 @@ export class UnsavedChangesFormMonitorDirective
   /**
    * Allows attaching / detaching monitor
    */
-  @Input() spyUnsavedChangesFormMonitor = true;
+  @Input() @ToBoolean() spyUnsavedChangesFormMonitor: boolean | string = true;
 
   private disposeInputEvent?: () => void;
 

@@ -1,4 +1,5 @@
 import { TableFilterBase } from '@spryker/table.feature.filters';
+import { SelectValueSelected } from '@spryker/select';
 
 export interface TableFilterSelect
   extends TableFilterBase<TableFilterSelectValue> {
@@ -16,4 +17,4 @@ export interface TableFilterSelectOptionsValue {
   title: string;
 }
 
-export type TableFilterSelectValue = unknown | unknown[];
+export type TableFilterSelectValue = SelectValueSelected;

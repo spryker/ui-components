@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Directive,
+  Injectable,
   Input,
   IterableChanges,
   IterableDiffers,
@@ -27,6 +28,7 @@ import { TableFeaturesRendererService } from './table-features-renderer.service'
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
 import { TableFeatureLocation } from '../table/table';
 
+@Injectable()
 export class TableFeaturesRendererDirectiveInputs {
   /** Location of the feature */
   @Input() spyTableFeaturesRenderer?: TableFeatureLocation;

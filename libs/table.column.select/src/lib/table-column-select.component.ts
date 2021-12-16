@@ -11,7 +11,11 @@ import {
   DataTransformerType,
 } from '@spryker/data-transformer';
 import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
-import { SelectOption, SelectValue } from '@spryker/select';
+import {
+  SelectOption,
+  SelectValue,
+  SelectValueSelected,
+} from '@spryker/select';
 import {
   ColumnTypeOption,
   ColumnTypeOptionsType,
@@ -46,7 +50,7 @@ export class ColumnSelectOptionItem {
     type: ColumnTypeOptionsType.AnyOf,
     value: [String, Number],
   })
-  value?: SelectValue;
+  value: SelectValue;
   @ColumnTypeOption()
   isDisabled? = false;
 }
@@ -120,7 +124,7 @@ export class TableColumnSelectComponent
     }
   }
 
-  valueChangeHandler(inputValue: SelectValue): void {
+  valueChangeHandler(inputValue: SelectValueSelected): void {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.context!.value = inputValue;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

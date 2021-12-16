@@ -2,9 +2,9 @@
   "name": "@spryker/utils",
   "version": "0.3.0-rc.2",
   "peerDependencies": {
-    "@angular/cdk": "^13.1.0",
-    "@angular/common": "^13.1.0",
-    "@angular/core": "^13.1.0"
+    "@angular/cdk": "^13.0.0",
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0"
   },
   "dependencies": {
     "deepmerge": "^4.2.2",

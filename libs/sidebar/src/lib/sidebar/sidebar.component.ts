@@ -44,7 +44,7 @@ export class SidebarComponent implements OnChanges, OnInit {
   );
   initialState$ = this.persistenceKey$.pipe(
     switchMap((persistenceKey) => {
-      return this.persistenceService.retrieve(persistenceKey);
+      return this.persistenceService.retrieve<boolean>(persistenceKey);
     }),
     tap(() => {
       this.isCollapsedStateRetrieved = true;

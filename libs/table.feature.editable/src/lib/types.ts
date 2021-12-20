@@ -80,26 +80,6 @@ export type TableEditableConfigButton =
   | TableEditableConfigButtonText
   | TableEditableConfigButtonIcon;
 
-export interface TableEditableEventData<T = unknown> {
-  colId: string;
-  value?: T;
-}
-
-export class TableEditableEvent<T = unknown> extends CustomEvent<
-  TableEditableEventData<T>
-> {
-  static readonly eventName = 'spy-table-editable';
-
-  constructor(detail: TableEditableEventData<T>) {
-    super(TableEditableEvent.eventName, {
-      bubbles: true,
-      cancelable: true,
-      composed: true,
-      detail,
-    });
-  }
-}
-
 export interface TableDatasourceDependableConfig extends DatasourceConfig {
   dependsOn: string;
   contextKey?: string;

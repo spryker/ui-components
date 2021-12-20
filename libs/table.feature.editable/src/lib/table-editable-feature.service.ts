@@ -2,7 +2,7 @@ import { ElementRef, Injectable, OnDestroy } from '@angular/core';
 import { Observable, OperatorFunction, Subject } from 'rxjs';
 import { distinctUntilChanged, map, scan } from 'rxjs/operators';
 
-import { TableEditableColumn, TableEditableEvent } from './types';
+import { TableEditableColumn } from './types';
 
 interface ModelOperationAdd {
   rowAddedAt: number;
@@ -52,7 +52,12 @@ export class TableEditableService implements OnDestroy {
 
   updateValue(value: unknown, column: TableEditableColumn): void {
     this.elementRef.nativeElement.dispatchEvent(
-      new TableEditableEvent({ value: value, colId: column.id }),
+      new CustomEvent('spy-table-editable', {
+        bubbles: true,
+        cancelable: true,
+        composed: true,
+        detail: { value: value, colId: column.id },
+      }),
     );
   }
 

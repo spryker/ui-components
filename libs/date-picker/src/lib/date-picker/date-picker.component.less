@@ -24,7 +24,6 @@
   }
 
   &-focused {
-    box-shadow: none;
     border-color: @green;
 
     &:hover {
@@ -106,6 +105,10 @@
   &-dropdown {
     top: @calendar-picker-container-top;
     left: @calendar-picker-container-left;
+  }
+
+  &-panel-container {
+    box-shadow: @calendar-picker-container-shadow;
   }
 
   &-panel-container,

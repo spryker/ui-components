@@ -5,24 +5,26 @@
   display: inline-flex;
   flex-direction: column;
 
+  .@{btn-prefix-core-btn-cls} {
+    &:hover {
+      color: @btn-primary-color;
+      box-shadow: @btn-shadow-hover;
+    }
+
+    &:focus {
+      color: @btn-primary-color;
+      box-shadow: @btn-shadow-default;
+
+      &::after {
+        box-shadow: @btn-shadow-focus;
+      }
+    }
+  }
+
   &--primary {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-primary-bg;
       border-color: @btn-primary-bg;
-
-      &:hover {
-        color: @btn-primary-color;
-        box-shadow: @btn-primary-shadow-hover;
-      }
-
-      &:focus {
-        color: @btn-primary-color;
-        box-shadow: @btn-shadow-default;
-
-        &::after {
-          box-shadow: @btn-primary-shadow-focus;
-        }
-      }
 
       &:active {
         color: @btn-primary-color;
@@ -39,15 +41,12 @@
   &--secondary {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-default-bg;
-      color: @btn-default-color;
       border-color: @btn-default-border;
 
-      &:hover {
-        box-shadow: @btn-secondary-shadow-hover;
-      }
-
+      &,
+      &:hover,
       &:focus {
-        box-shadow: @btn-secondary-shadow-focus;
+        color: @btn-default-color;
       }
 
       &:active {
@@ -59,16 +58,12 @@
   &--outline {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-default-bg;
-      color: @btn-outline-color;
       border-color: @btn-outline-border;
 
-      &:hover {
-        box-shadow: @btn-outline-shadow-hover;
-      }
-
+      &,
+      &:hover,
       &:focus {
-        border-color: @btn-default-border-focus;
-        box-shadow: @btn-outline-shadow-focus;
+        color: @btn-outline-color;
       }
 
       &:active {
@@ -84,12 +79,10 @@
       color: @btn-critical-outline-color;
       border-color: @btn-critical-outline-border;
 
-      &:hover {
-        box-shadow: @btn-critical-outline-shadow-hover;
-      }
-
+      &,
+      &:hover,
       &:focus {
-        box-shadow: @btn-critical-outline-shadow-focus;
+        color: @btn-critical-outline-color;
       }
 
       &:active {
@@ -103,23 +96,11 @@
       background: @btn-danger-bg;
       border-color: @btn-danger-bg;
 
-      &:hover {
-        box-shadow: @btn-danger-shadow-hover;
-      }
-
       &:focus,
       &:active {
         color: @btn-danger-color;
         background: @btn-danger-active-bg;
         border-color: @btn-danger-active-bg;
-      }
-
-      &:focus {
-        box-shadow: @btn-shadow-default;
-
-        &::after {
-          box-shadow: @btn-danger-shadow-focus;
-        }
       }
 
       &:active::after {
@@ -209,26 +190,19 @@
       color: @btn-link-color;
       border-radius: @btn-border-radius-link;
 
-      &::after {
-        display: none;
-      }
-
       &:hover {
         color: @btn-link-color-hover;
-        box-shadow: none;
       }
 
-      &:focus {
-        color: @btn-link-color-hover;
-        background: @btn-link-bg-active;
-        border-color: @transparent;
-        box-shadow: @btn-link-shadow-focus;
-      }
-
+      &:focus,
       &:active {
         color: @btn-link-color-hover;
         background: @btn-link-bg-active;
         border-color: @transparent;
+      }
+
+      &:hover,
+      &:active {
         box-shadow: none;
       }
 

@@ -7,8 +7,8 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
 import { AbstractControl, NgModel } from '@angular/forms';
+import { ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-form-item',

@@ -8,7 +8,6 @@ module.exports = {
     '@storybook/addon-essentials',
     'storybook-addons-abstract',
   ],
-  styles: ['./styles.less'],
   core: {
     builder: 'webpack5',
   },
@@ -37,7 +36,13 @@ module.exports = {
   },
   previewHead: (head) => `
     ${head}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalreset.css@1.1.0/normalreset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@angular/cdk@13.0.0/overlay-prebuilt.css">
   `,
 };

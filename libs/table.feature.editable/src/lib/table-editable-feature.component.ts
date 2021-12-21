@@ -65,6 +65,7 @@ import {
   TableEditableConfigDataErrors,
   TableEditableConfigDataErrorsFields,
   TableEditableConfigUrl,
+  TableEditableEvent,
 } from './types';
 import { TableEditableService } from './table-editable-feature.service';
 
@@ -258,8 +259,6 @@ export class TableEditableFeatureComponent
   }
 
   ngAfterViewChecked(): void {
-    this.cdr.detectChanges();
-
     if (!this.tableElement && this.table?.tableElementRef) {
       this.tableElement =
         this.table?.tableElementRef?.nativeElement?.querySelector(
@@ -364,7 +363,7 @@ export class TableEditableFeatureComponent
   /**
    * Updates row config and syncs row value with {@link: syncInput}.
    */
-  updateRows(event: CustomEvent, index: number): void {
+  updateRows(event: TableEditableEvent, index: number): void {
     const { colId, value } = event.detail;
 
     this.syncInput = [...this.syncInput];
@@ -518,7 +517,11 @@ export class TableEditableFeatureComponent
     };
   }
 
-  onEditUpdated(event: CustomEvent, rowIndex: number, colId: string): void {
+  onEditUpdated(
+    event: TableEditableEvent,
+    rowIndex: number,
+    colId: string,
+  ): void {
     const { value } = event.detail;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.editingModel[rowIndex][colId]!.value = value;

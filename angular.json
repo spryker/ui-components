@@ -32,7 +32,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/actions/**/*.ts",
@@ -110,7 +110,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/actions.close-drawer/**/*.ts",
@@ -188,7 +188,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/actions.drawer/**/*.ts",
@@ -266,7 +266,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/actions.http/**/*.ts",
@@ -344,7 +344,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/actions.notification/**/*.ts",
@@ -422,7 +422,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/actions.redirect/**/*.ts",
@@ -500,7 +500,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/actions.refresh-drawer/**/*.ts",
@@ -578,7 +578,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/actions.refresh-parent-table/**/*.ts",
@@ -656,7 +656,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/actions.refresh-table/**/*.ts",
@@ -734,7 +734,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/ajax-action/**/*.ts",
@@ -812,7 +812,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/ajax-form/**/*.ts",
@@ -890,7 +890,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/autocomplete/**/*.ts",
@@ -969,7 +969,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/button/**/*.ts", "libs/button/**/*.html"]
           }
@@ -1045,7 +1045,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/button.action/**/*.ts",
@@ -1123,7 +1123,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/button.icon/**/*.ts",
@@ -1170,7 +1170,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/cache/**/*.ts", "libs/cache/**/*.html"]
           }
@@ -1214,7 +1214,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/cache.static/**/*.ts",
@@ -1292,7 +1292,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/card/**/*.ts", "libs/card/**/*.html"]
           }
@@ -1368,7 +1368,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/checkbox/**/*.ts",
@@ -1447,7 +1447,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/chips/**/*.ts", "libs/chips/**/*.html"]
           }
@@ -1523,7 +1523,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/collapsible/**/*.ts",
@@ -1570,7 +1570,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-serializer/**/*.ts",
@@ -1617,7 +1617,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer/**/*.ts",
@@ -1664,7 +1664,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.array-map/**/*.ts",
@@ -1711,7 +1711,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.chain/**/*.ts",
@@ -1758,7 +1758,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.collate/**/*.ts",
@@ -1805,7 +1805,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.configurator.table/**/*.ts",
@@ -1852,7 +1852,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.date-parse/**/*.ts",
@@ -1899,7 +1899,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.date-serialize/**/*.ts",
@@ -1946,7 +1946,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.filter.equals/**/*.ts",
@@ -1993,7 +1993,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.filter.range/**/*.ts",
@@ -2040,7 +2040,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.filter.text/**/*.ts",
@@ -2087,7 +2087,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.lens/**/*.ts",
@@ -2134,7 +2134,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.object-map/**/*.ts",
@@ -2181,7 +2181,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/data-transformer.pluck/**/*.ts",
@@ -2228,7 +2228,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/datasource/**/*.ts",
@@ -2275,7 +2275,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/datasource.http/**/*.ts",
@@ -2353,7 +2353,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/datasource.inline/**/*.ts",
@@ -2431,7 +2431,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/datasource.inline.table/**/*.ts",
@@ -2509,7 +2509,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/date-picker/**/*.ts",
@@ -2588,7 +2588,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/drawer/**/*.ts", "libs/drawer/**/*.html"]
           }
@@ -2664,7 +2664,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/dropdown/**/*.ts",
@@ -2743,7 +2743,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/form-item/**/*.ts",
@@ -2822,7 +2822,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/grid/**/*.ts", "libs/grid/**/*.html"]
           }
@@ -2898,7 +2898,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/header/**/*.ts", "libs/header/**/*.html"]
           }
@@ -2974,7 +2974,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/headline/**/*.ts",
@@ -3053,7 +3053,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/html-renderer/**/*.ts",
@@ -3131,7 +3131,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/icon/**/*.ts", "libs/icon/**/*.html"]
           }
@@ -3207,7 +3207,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/input/**/*.ts", "libs/input/**/*.html"]
           }
@@ -3283,7 +3283,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/input.password/**/*.ts",
@@ -3330,7 +3330,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/interception/**/*.ts",
@@ -3361,7 +3361,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/internal-utils/**/*.ts",
@@ -3439,7 +3439,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/label/**/*.ts", "libs/label/**/*.html"]
           }
@@ -3515,7 +3515,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/layout/**/*.ts", "libs/layout/**/*.html"]
           }
@@ -3591,7 +3591,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/link/**/*.ts", "libs/link/**/*.html"]
           }
@@ -3667,7 +3667,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/locale/**/*.ts", "libs/locale/**/*.html"]
           }
@@ -3742,7 +3742,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/logo/**/*.ts", "libs/logo/**/*.html"]
           }
@@ -3818,7 +3818,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/modal/**/*.ts", "libs/modal/**/*.html"]
           }
@@ -3894,7 +3894,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/navigation/**/*.ts",
@@ -3973,7 +3973,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/notification/**/*.ts",
@@ -4052,7 +4052,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/pagination/**/*.ts",
@@ -4100,7 +4100,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/persistence/**/*.ts",
@@ -4178,7 +4178,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/popover/**/*.ts",
@@ -4257,7 +4257,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/radio/**/*.ts", "libs/radio/**/*.html"]
           }
@@ -4333,7 +4333,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/select/**/*.ts", "libs/select/**/*.html"]
           }
@@ -4409,7 +4409,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/sidebar/**/*.ts",
@@ -4488,7 +4488,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/spinner/**/*.ts",
@@ -4574,7 +4574,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/styles/**/*.ts", "libs/styles/**/*.html"]
           }
@@ -4649,7 +4649,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/table/**/*.ts", "libs/table/**/*.html"]
           }
@@ -4709,7 +4709,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table-integration-internal/**/*.ts",
@@ -4787,7 +4787,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.column.autocomplete/**/*.ts",
@@ -4865,7 +4865,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.column.chip/**/*.ts",
@@ -4943,7 +4943,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.column.date/**/*.ts",
@@ -5021,7 +5021,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.column.dynamic/**/*.ts",
@@ -5099,7 +5099,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.column.image/**/*.ts",
@@ -5177,7 +5177,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.column.input/**/*.ts",
@@ -5255,7 +5255,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.column.select/**/*.ts",
@@ -5334,7 +5334,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.column.text/**/*.ts",
@@ -5412,7 +5412,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.batch-actions/**/*.ts",
@@ -5491,7 +5491,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.editable/**/*.ts",
@@ -5570,7 +5570,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.filters/**/*.ts",
@@ -5649,7 +5649,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.pagination/**/*.ts",
@@ -5728,7 +5728,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.row-actions/**/*.ts",
@@ -5807,7 +5807,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.search/**/*.ts",
@@ -5886,7 +5886,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.selectable/**/*.ts",
@@ -5965,7 +5965,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.settings/**/*.ts",
@@ -6044,7 +6044,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.sync-state/**/*.ts",
@@ -6122,7 +6122,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.title/**/*.ts",
@@ -6201,7 +6201,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.feature.total/**/*.ts",
@@ -6280,7 +6280,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.filter.date-range/**/*.ts",
@@ -6359,7 +6359,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.filter.select/**/*.ts",
@@ -6438,7 +6438,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/table.filter.tree-select/**/*.ts",
@@ -6517,7 +6517,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/tabs/**/*.ts", "libs/tabs/**/*.html"]
           }
@@ -6593,7 +6593,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/textarea/**/*.ts",
@@ -6672,7 +6672,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/toggle/**/*.ts", "libs/toggle/**/*.html"]
           }
@@ -6748,7 +6748,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/tree-select/**/*.ts",
@@ -6796,7 +6796,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/unsaved-changes/**/*.ts",
@@ -6843,7 +6843,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/unsaved-changes.guard.browser/**/*.ts",
@@ -6921,7 +6921,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/unsaved-changes.guard.drawer/**/*.ts",
@@ -6999,7 +6999,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/unsaved-changes.guard.navigation/**/*.ts",
@@ -7077,7 +7077,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/unsaved-changes.monitor.form/**/*.ts",
@@ -7155,7 +7155,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/user-menu/**/*.ts",
@@ -7202,7 +7202,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/utils/**/*.ts", "libs/utils/**/*.html"]
           }
@@ -7246,7 +7246,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/utils.date.adapter.date-fns/**/*.ts",
@@ -7293,7 +7293,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/web-components/**/*.ts",

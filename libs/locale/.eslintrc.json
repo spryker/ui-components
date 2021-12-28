@@ -3,9 +3,14 @@
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": ["./data/**/src/data/data.ts"],
+      "files": [
+        "./data/**/src/*.ts",
+        "./data/**/src/data/*.ts",
+        "./locales/**/src/index.ts"
+      ],
       "rules": {
-        "no-var": 0
+        "no-var": 0,
+        "@nrwl/nx/enforce-module-boundaries": 0
       }
     },
     {

@@ -31,9 +31,7 @@ export class TabComponent implements OnChanges {
   @Output() hasWarningChange = new EventEmitter<boolean>();
 
   @ViewChild('contentTpl') template!: TemplateRef<void>;
-  @ViewChild('titleTpl') titleTemplate!:
-    | string
-    | TemplateRef<TabTemplateContext>;
+  @ViewChild('titleTpl') titleTemplate!: TemplateRef<TabTemplateContext>;
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('hasWarning' in changes) {

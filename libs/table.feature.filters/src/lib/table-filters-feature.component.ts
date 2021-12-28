@@ -112,7 +112,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
 
   constructor(
     @Inject(TABLE_FILTERS_TOKEN)
-    private tableFilterToken: Type<TableFiltersDeclaration>[],
+    private tableFilterToken: TableFiltersDeclaration[],
     injector: Injector,
   ) {
     super(injector);

@@ -30,7 +30,7 @@ export class ButtonComponent extends ButtonCore implements OnChanges {
   @HostBinding('class.spy-button--disabled')
   @ToBoolean()
   disabled = false;
-  @Input() loading?: Boolean;
+  @Input() @ToBoolean() loading?: boolean;
 
   spinnerSize = SpinnerSize.Small;
 

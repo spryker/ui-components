@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 
 describe('CheckboxComponent', () => {
   @Component({
-    // tslint:disable-next-line: component-selector
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'test',
     template: `
       <spy-checkbox
@@ -41,6 +41,7 @@ describe('CheckboxComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CheckboxComponent, TestComponent, ApplyAttrsDirective],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 
@@ -173,17 +174,17 @@ describe('CheckboxComponent', () => {
       fixture.detectChanges();
 
       expect(inputElem.attributes['test']).toBe('attr6');
-      expect(inputElem.attributes['test2']).toBe(null);
+      expect(inputElem.attributes['test2']).toBe(undefined);
 
       component.attrs = null;
       fixture.detectChanges();
 
-      expect(inputElem.attributes['test']).toBe(null);
+      expect(inputElem.attributes['test']).toBe(undefined);
 
       component.attrs = '';
       fixture.detectChanges();
 
-      expect(inputElem.attributes['test']).toBe(null);
+      expect(inputElem.attributes['test']).toBe(undefined);
     });
   });
 

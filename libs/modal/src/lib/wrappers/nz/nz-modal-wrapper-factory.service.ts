@@ -67,6 +67,7 @@ function mapNzOptions(options: ModalOptions<AnyModal>): NzModalOptions {
 
 export class NzModalWrapperRef implements ModalWrapperRef {
   private destroyed$ = new Subject<void>();
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onDispose = () => {};
 
   constructor(private nzModalRef: NzModalRef) {
@@ -75,6 +76,7 @@ export class NzModalWrapperRef implements ModalWrapperRef {
       .subscribe(() => this.onDispose());
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setModalRef(modalRef: ModalRef<any, any>): void {}
 
   addModalOptions(options: ModalOptions<AnyModal>): void {

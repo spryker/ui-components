@@ -15,6 +15,8 @@ import {
   TableSelectionRow,
 } from '@spryker/table.feature.selectable';
 import { ContextService, multipleIntersectionOfString } from '@spryker/utils';
+import { ButtonSize } from '@spryker/button';
+import { NotificationType } from '@spryker/notification';
 import { combineLatest, Observable } from 'rxjs';
 import {
   map,
@@ -54,6 +56,8 @@ import {
 export class TableBatchActionsFeatureComponent extends TableFeatureComponent<TableBatchActionsConfig> {
   name = 'batchActions';
   tableFeatureLocation = TableFeatureLocation;
+  buttonSize = ButtonSize;
+  notificationType = NotificationType;
 
   actions$ = this.config$.pipe(pluck('actions'));
   itemSelected$ = this.tableEventBus$.pipe(

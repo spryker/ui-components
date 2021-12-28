@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import {
+  AfterViewChecked,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -98,7 +99,7 @@ interface TableEditCellModel {
 })
 export class TableEditableFeatureComponent
   extends TableFeatureComponent<TableEditableConfig>
-  implements OnInit, OnDestroy
+  implements OnInit, AfterViewChecked, OnDestroy
 {
   @ViewChild('editableCell') editableCell?: TemplateRef<any>;
 
@@ -462,7 +463,7 @@ export class TableEditableFeatureComponent
 
     this.editingModel = { ...this.editingModel };
 
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const tdElem = cellElement.closest('td')!;
     const { left: leftParentOffsetSum } = getElementOffset(tdElem, 'ant-table');
     const leftCellOffset =
@@ -470,9 +471,9 @@ export class TableEditableFeatureComponent
       cellElement.offsetWidth -
       this.tableElement.offsetWidth;
 
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.editingModel[rowIndex][cellIndex]!.cellElement = cellElement;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.editingModel[rowIndex][cellIndex]!.leftCellOffset =
       leftCellOffset > 0 ? `-${leftCellOffset}px` : '0';
 
@@ -522,7 +523,7 @@ export class TableEditableFeatureComponent
     colId: string,
   ): void {
     const { value } = event.detail;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.editingModel[rowIndex][colId]!.value = value;
   }
 
@@ -553,7 +554,7 @@ export class TableEditableFeatureComponent
   }
 
   submitEdit(cellContext: TableColumnContext): void {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const url = typeof this.url === 'string' ? this.url : this.url!.url;
     const method = typeof this.url === 'string' ? 'GET' : this.url?.method;
     const parsedUrl = this.contextService.interpolate(
@@ -561,14 +562,14 @@ export class TableEditableFeatureComponent
       cellContext as unknown as AnyContext,
     );
     const value =
-      // tslint:disable-next-line:no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.editingModel[cellContext.i][cellContext.config.id]!.value;
     const requestData = {
       [cellContext.config.id]: value,
     };
 
     this.httpClient
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       .request(method!, parsedUrl, {
         body: {
           data: this.dataSerializerService.serialize(
@@ -589,7 +590,7 @@ export class TableEditableFeatureComponent
         },
         (error) => {
           this.editingModel = { ...this.editingModel };
-          // tslint:disable-next-line: no-non-null-assertion
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           this.editingModel[cellContext.i][cellContext.config.id]!.value =
             undefined;
           this.cellErrors = {

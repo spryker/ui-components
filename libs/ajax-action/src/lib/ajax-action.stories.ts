@@ -13,10 +13,8 @@ export default {
   providedIn: 'root',
 })
 class ActionMockService implements ActionHandler<unknown, void> {
-  constructor() {}
-
   handleAction(injector: Injector, action: ActionConfig): Observable<void> {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.getElementById(
       'test-id',
     )!.innerHTML += `<div>${action.random}</div>`;

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -44,7 +45,7 @@ import {
 })
 export class NotificationComponent
   extends NotificationInputs
-  implements OnChanges, OnDestroy
+  implements OnChanges, AfterViewInit, OnDestroy
 {
   @Input() @ToJson() floatingConfig?: NotificationConfig;
 
@@ -86,7 +87,7 @@ export class NotificationComponent
   );
 
   private floatingRef$ = this.floatingData$.pipe(
-    filter(() => this.floating),
+    filter(() => Boolean(this.floating)),
     map((data) => this.notificationService.show(data)),
     share(),
   );

@@ -21,7 +21,11 @@
 <ng-template #footer let-modal="modalRef">
   <div class="ant-modal-confirm-actions">
     <div class="ant-modal-confirm-col">
-      <spy-button size="sm" variant="secondary" (click)="modalRef.close(false)">
+      <spy-button
+        [size]="buttonSize.Small"
+        [variant]="buttonVariant.Secondary"
+        (click)="modalRef.close(false)"
+      >
         <ng-template
           [ngTemplateOutlet]="genericTemplate"
           [ngTemplateOutletContext]="{
@@ -33,7 +37,10 @@
     </div>
 
     <div class="ant-modal-confirm-col">
-      <spy-button size="sm" variant="critical" (click)="modalRef.close(true)"
+      <spy-button
+        [size]="buttonSize.Small"
+        [variant]="buttonVariant.Critical"
+        (click)="modalRef.close(true)"
         ><ng-template
           [ngTemplateOutlet]="genericTemplate"
           [ngTemplateOutletContext]="{

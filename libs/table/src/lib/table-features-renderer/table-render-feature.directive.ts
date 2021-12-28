@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Directive,
+  Injectable,
   Input,
   OnChanges,
   OnInit,
@@ -14,6 +15,7 @@ import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { FeatureRecord } from './types';
 
+@Injectable()
 export class TableRenderFeatureDirectiveInputs {
   @Input() spyTableRenderFeature?: FeatureRecord;
 }

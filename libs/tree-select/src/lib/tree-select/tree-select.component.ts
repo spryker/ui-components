@@ -21,8 +21,9 @@ import { TreeSelectItem, TreeSelectValue } from './types';
  * Interface extends {@link TreeSelectItem} and adds 'key' property as it is required by ant-design
  */
 interface TreeSelectItemWithKey extends TreeSelectItem {
-  key: TreeSelectValue;
+  key: string;
   isLeaf: boolean;
+  children?: TreeSelectItemWithKey[];
 }
 
 /**
@@ -55,7 +56,7 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
     TreeSelectValue | TreeSelectValue[]
   >();
 
-  mappedItems?: TreeSelectItem[];
+  mappedItems?: TreeSelectItemWithKey[];
   mappedFlatItems?: TreeSelectItem[];
 
   datasourceOptions$ = new ReplaySubject<Observable<TreeSelectItem[]>>();
@@ -146,7 +147,7 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
 
     return {
       ...item,
-      key: item.value,
+      key: String(item.value),
       children: isChildrenExist
         ? item.children?.map((childItem) => this.mapTreeItems(childItem))
         : [],

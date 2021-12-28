@@ -55,6 +55,7 @@ export class InterceptionComposerImplementation
     this.servicesInjector = undefined;
   }
 
+  // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit(): void {
     const applicableFactories = this.factories.filter((factory) =>
       factory.canApply(this.token),
@@ -70,7 +71,7 @@ export class InterceptionComposerImplementation
     }) as DestructibleInjector;
 
     applicableFactories.forEach((factory) =>
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.servicesInjector!.get(factory.getServiceToken()),
     );
   }

@@ -74,6 +74,7 @@ describe('RedirectActionHandlerService', () => {
           useExisting: MockWindowToken,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(RedirectActionHandlerService);

@@ -1,4 +1,3 @@
-/* tslint:disable:no-empty-interface */
 import { Type } from '@angular/core';
 import { Observable } from 'rxjs';
 

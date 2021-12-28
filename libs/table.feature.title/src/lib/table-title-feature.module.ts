@@ -7,7 +7,6 @@ import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
   imports: [CommonModule, TableFeatureModule],
   exports: [TableTitleFeatureComponent],
   declarations: [TableTitleFeatureComponent],
-  entryComponents: [TableTitleFeatureComponent],
 })
 export class TableTitleFeatureModule implements ModuleWithFeature {
   featureComponent = TableTitleFeatureComponent;

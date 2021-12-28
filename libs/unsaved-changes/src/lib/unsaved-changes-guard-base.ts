@@ -80,6 +80,7 @@ export abstract class UnsavedChangesGuardBase
     this.monitors$.getValue().forEach((monitor) => monitor.reset());
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   init(): void {}
 
   dispose(): void {

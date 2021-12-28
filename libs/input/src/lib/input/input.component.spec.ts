@@ -7,7 +7,7 @@ import { ApplyAttrsDirective } from '@spryker/utils';
 
 describe('InputComponent', () => {
   @Component({
-    // tslint:disable-next-line: component-selector
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'test',
     template: `
       <spy-input
@@ -48,6 +48,7 @@ describe('InputComponent', () => {
     TestBed.configureTestingModule({
       declarations: [InputComponent, TestComponent, ApplyAttrsDirective],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 
@@ -180,13 +181,13 @@ describe('InputComponent', () => {
       fixture.detectChanges();
 
       expect(inputElem.attributes['test']).toBe('attr6');
-      expect(inputElem.attributes['test2']).toBe(null);
+      expect(inputElem.attributes['test2']).toBe(undefined);
 
       component.attrs = null;
 
       fixture.detectChanges();
 
-      expect(inputElem.attributes['test']).toBe(null);
+      expect(inputElem.attributes['test']).toBe(undefined);
     });
   });
 

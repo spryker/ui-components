@@ -1,6 +1,6 @@
 <span spyApplyContexts="spy-bg-gray">
   <spy-notification-view
-    [type]="toastPackage.toastType"
+    [type]="$any(toastPackage.toastType)"
     [closeable]="toastPackage.config.closeButton"
     (closed)="closeHandler()"
     [floating]="true"
@@ -9,7 +9,7 @@
       <span *ngIf="title | ofType: 'string'; else titleTmpl">{{ title }}</span>
       <ng-template #titleTmpl>
         <ng-template
-          [ngTemplateOutlet]="title"
+          [ngTemplateOutlet]="$any(title)"
           [ngTemplateOutletContext]="{ $implicit: notificationRef }"
         ></ng-template>
       </ng-template>
@@ -21,7 +21,7 @@
       </span>
       <ng-template #descriptionTmpl>
         <ng-template
-          [ngTemplateOutlet]="message"
+          [ngTemplateOutlet]="$any(message)"
           [ngTemplateOutletContext]="{ $implicit: notificationRef }"
         ></ng-template>
       </ng-template>

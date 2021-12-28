@@ -21,7 +21,6 @@ export interface CollateDataTransformerDataT {
   pageSize: number;
 }
 
-// tslint:disable-next-line: no-empty-interface
 export interface DataTransformerConfiguratorRegistry {}
 
 export type DataTransformerConfiguratorType =
@@ -59,7 +58,6 @@ export interface DataTransformerFilter {
   ): Observable<DataTransformerFilterData>;
 }
 
-// tslint:disable-next-line: no-empty-interface
 export interface DataTransformerFilterRegistry {}
 
 export type DataTransformerFilterRegistryType =

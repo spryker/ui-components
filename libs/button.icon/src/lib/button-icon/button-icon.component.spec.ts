@@ -5,7 +5,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ButtonIconComponent } from './button-icon.component';
 import { ButtonSize, ButtonType, ButtonAttributes } from '@spryker/button';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('ButtonIconComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(
@@ -17,7 +17,12 @@ describe('ButtonIconComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   it('should render <button>', async () => {
     const host = await createComponent({}, true);

@@ -23,6 +23,7 @@ describe('ArrayMapDataTransformerService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(ArrayMapDataTransformerService);
     dataTransformerService = TestBed.inject(MockDataTransformerService);

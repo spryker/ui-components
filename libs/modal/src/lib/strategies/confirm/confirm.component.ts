@@ -1,4 +1,5 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { ButtonSize, ButtonVariant } from '@spryker/button';
 
 import { asModal } from '../../modal-base';
 import {
@@ -34,6 +35,8 @@ export class ConfirmModalComponent
   modalContext = {
     $implicit: this.modalRef,
   };
+  buttonSize = ButtonSize;
+  buttonVariant = ButtonVariant;
 
   setDefaultData(data?: InferModalData<ConfirmModalComponent>): void {
     this.defaultData = data;

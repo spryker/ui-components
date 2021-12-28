@@ -20,7 +20,7 @@ import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { TableSyncStateFeatureComponent } from './table-sync-state-feature.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 class MockUrlPersistenceStrategy {
   save = jest.fn();
@@ -81,6 +81,7 @@ describe('TableSyncStateFeatureComponent', () => {
         MockUrlPersistenceStrategy,
       ],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     });
   });
 

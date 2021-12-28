@@ -1,5 +1,4 @@
-/* tslint:disable:no-empty-interface */
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Type } from '@angular/core';
 import { Distribute } from '@spryker/utils';
 import { Observable } from 'rxjs';
 import { TableFeatureConfig } from '@spryker/table';
@@ -42,5 +41,5 @@ export type FindTableFilter<
 > = F extends { type: T } ? F : never;
 
 export type TableFiltersDeclaration = Partial<{
-  [P in TableFilterType]: TableFilterComponent<FindTableFilter<P>>;
+  [P in TableFilterType]: Type<TableFilterComponent<FindTableFilter<P>>>;
 }>;

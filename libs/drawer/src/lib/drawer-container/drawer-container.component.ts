@@ -40,7 +40,7 @@ import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.compone
 import { DrawerTemplateContext } from '../types';
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'spy-drawer-container',
   providers: [
     ...provideInterceptionComposerToken(
@@ -115,9 +115,9 @@ export class DrawerContainerComponent implements OnInit, OnDestroy {
     this.cdr.markForCheck();
 
     setTimeout(() => {
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.drawerRecord!.class = drawerRecordClass;
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.drawerRecord!.template = drawerRecordTemplate;
       this.cdr.markForCheck();
     }, 0);

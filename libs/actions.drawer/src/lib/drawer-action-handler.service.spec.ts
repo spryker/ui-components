@@ -70,6 +70,7 @@ describe('DrawerActionHandlerService', () => {
           useExisting: MockDrawerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(DrawerActionHandlerService);

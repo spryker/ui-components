@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'data-transformer.filter.equals',
-  preset: '../../jest.config.js',
+  displayName: 'data-transformer.filter.equals',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/data-transformer.filter.equals',
-  snapshotSerializers: [
-    'jest-preset-angular/build/serializers/no-ng-attributes',
-    'jest-preset-angular/build/serializers/ng-snapshot',
-    'jest-preset-angular/build/serializers/html-comment',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

@@ -2,8 +2,8 @@
   "name": "@spryker/table.feature.sync-state",
   "version": "0.1.0-rc.2",
   "peerDependencies": {
-    "@angular/common": "^12.2.12",
-    "@angular/core": "^12.2.12",
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
     "@spryker/persistence": "^0.2.0",
     "@spryker/table": "^0.4.0",
     "@spryker/utils": "^0.3.0"

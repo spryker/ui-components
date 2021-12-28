@@ -7,7 +7,6 @@ import {
 } from '@spryker/drawer';
 import { RegistryType, RegistryDeclaration } from '@spryker/utils';
 
-// tslint:disable-next-line:no-empty-interface
 export interface DrawerActionComponentsRegistry {
   // type: Type<unknown>
 }

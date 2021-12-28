@@ -61,7 +61,7 @@ const tableConfig = {
       { id: 'col2', type: 'edit' as any },
       { id: 'col3', type: 'edit' as any },
       { id: 'col4', type: 'edit' as any, typeOptions: { value: 'default' } },
-    ] as TableColumns,
+    ] as unknown as TableColumns,
     create: {
       addButton: {
         type: 'button',
@@ -149,9 +149,9 @@ class EditColumnComponent
   }
 
   updateValue(value: string): void {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.context!.value = value;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.tableEditableService.updateValue(value, this.context!.config);
   }
 }
@@ -176,7 +176,6 @@ class EditColumnComponent
   ],
   exports: [TableModule, MockHttpModule],
   declarations: [EditColumnComponent],
-  entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
   providers: [
     {
       provide: TableEditableEditRequestToken,

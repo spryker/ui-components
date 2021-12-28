@@ -42,6 +42,7 @@ describe('CacheStorageFactoryService', () => {
           useExisting: MockPersistenceStrategyService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(CacheStorageFactoryService);
     mockPersistenceStrategyService = TestBed.inject(

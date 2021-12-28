@@ -25,6 +25,7 @@ describe('LensDataTransformerService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(LensDataTransformerService);
     dataTransformerService = TestBed.inject(MockDataTransformerService);

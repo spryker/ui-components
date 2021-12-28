@@ -37,7 +37,7 @@ export class StaticCacheStrategy implements CacheStrategy {
         if (isCacheEntryExist) {
           return cacheStorage.get<T>(id, config.namespace).pipe(
             switchMap((cacheEntry) => {
-              // tslint:disable-next-line: no-non-null-assertion
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               const { value, updatedAt } = cacheEntry!;
               const expiryDate = cacheDuration.addTo(updatedAt);
               const currentDate = new Date();

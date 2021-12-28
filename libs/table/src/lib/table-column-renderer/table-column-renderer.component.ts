@@ -98,9 +98,9 @@ export class TableColumnRendererComponent implements OnChanges {
       config: this.config,
       row: this.data || {},
       value: this.value,
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       i: this.i!,
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       j: this.j!,
     };
   }
@@ -149,7 +149,7 @@ export class TableColumnRendererComponent implements OnChanges {
     }
 
     const children = config.typeChildren?.map(
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       (c) => this.mapConfigChildren(c)!,
     );
 

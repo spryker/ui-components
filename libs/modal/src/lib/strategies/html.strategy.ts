@@ -68,13 +68,13 @@ export class HtmlModalRenderingRef<T>
 
   dispose(): void {
     // Refs cleanup requires assignment to `undefined`
-    // tslint:disable: no-non-null-assertion
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
     this.removeElements();
     this.elements = undefined!;
     this.renderFn = undefined!;
 
-    // tslint:enable: no-non-null-assertion
+    /* eslint-enable @typescript-eslint/no-non-null-assertion */
   }
 
   private removeElements() {

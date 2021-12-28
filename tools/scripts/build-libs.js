@@ -1,24 +1,37 @@
 const { execSync } = require('child_process');
 
-const projects = require('../../nx.json').projects;
+const IGNORE_TAGS = ['type:meta'];
+const projects = require('../../angular.json').projects;
 
-const EXCLUDED_TAGS = ['type:meta'];
+/**
+ * Spawns a command with all buildable projects from `angular.json`
+ * that do not have tags specified in {@link IGNORE_TAGS}
+ *
+ * ```
+ *  npx nx run-many --target build --projects [...projects]
+ * ```
+ * @param {string[]} extraArgs Extra args to pass to the NX build command
+ */
+async function main(extraArgs) {
+  /** @type {Record<string, boolean>} */
+  const ignoreMap = IGNORE_TAGS.reduce(
+    (acc, tag) => ({ ...acc, [tag]: true }),
+    {},
+  );
 
-async function main(args) {
   const projectsToBuild = Object.entries(projects)
-    .filter(
-      ([_, p]) => p.tags && !p.tags.some((tag) => EXCLUDED_TAGS.includes(tag)),
-    )
+    .filter(([_, p]) => p.tags && p.tags.every((tag) => !ignoreMap[tag]))
     .map(([name]) => name);
 
   console.log(`Building projects: ${projectsToBuild.join(', ')}...`);
 
-  execSync(
-    `npx nx run-many --target build --with-deps ${args.join(
-      ' ',
-    )} --projects ${projectsToBuild.join(',')}`,
-    { stdio: 'inherit' },
-  );
+  const args = [
+    '--target build',
+    `--projects ${projectsToBuild.join(',')}`,
+    ...extraArgs,
+  ];
+
+  execSync(`npx nx run-many ${args.join(' ')}`, { stdio: 'inherit' });
 }
 
 main(process.argv.slice(2)).catch((e) => {

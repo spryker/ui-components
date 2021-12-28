@@ -103,7 +103,6 @@ export class TableFeaturesRendererService implements OnDestroy {
   ) {
     const featuresInLocation$ = features$.pipe(
       switchMap((features) => this.trackFeatureRecords(features, location)),
-      // tslint:disable-next-line: deprecation
       startWith([] as never),
     );
 

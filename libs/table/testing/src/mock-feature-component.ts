@@ -98,7 +98,6 @@ export class MockFeatureComponent extends TableFeatureComponent {
   imports: [TableFeatureModule],
   exports: [MockFeatureComponent],
   declarations: [MockFeatureComponent],
-  entryComponents: [MockFeatureComponent],
 })
 export class MockFeatureModule implements ModuleWithFeature {
   featureComponent = MockFeatureComponent;

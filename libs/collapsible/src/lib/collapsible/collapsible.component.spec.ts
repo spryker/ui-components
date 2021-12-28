@@ -16,6 +16,7 @@ describe('CollapsibleComponent', () => {
       declarations: [CollapsibleComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

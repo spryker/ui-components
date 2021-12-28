@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Directive,
+  Injectable,
   Input,
   IterableChanges,
   IterableDiffers,
@@ -27,6 +28,7 @@ import { TableFeaturesRendererService } from './table-features-renderer.service'
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
 import { TableFeatureLocation } from '../table/table';
 
+@Injectable()
 export class TableFeaturesRendererDirectiveInputs {
   /** Location of the feature */
   @Input() spyTableFeaturesRenderer?: TableFeatureLocation;
@@ -132,19 +134,19 @@ export class TableFeaturesRendererDirective
   private updateFeatures(changes: IterableChanges<FeatureRecord>): void {
     changes.forEachAddedItem((record) =>
       // Index always exists when adding feature
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.renderFeatureTpl(record.item, record.currentIndex!),
     );
 
     changes.forEachMovedItem((record) =>
       // Index always exists when moving feature
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.moveFeature(record.previousIndex!, record.currentIndex!),
     );
 
     changes.forEachRemovedItem((record) =>
       // Index always exists when removing feature
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.destroyFeature(record.currentIndex!),
     );
   }

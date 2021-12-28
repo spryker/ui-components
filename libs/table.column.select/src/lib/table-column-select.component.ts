@@ -11,7 +11,11 @@ import {
   DataTransformerType,
 } from '@spryker/data-transformer';
 import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
-import { SelectOption, SelectValue } from '@spryker/select';
+import {
+  SelectOption,
+  SelectValue,
+  SelectValueSelected,
+} from '@spryker/select';
 import {
   ColumnTypeOption,
   ColumnTypeOptionsType,
@@ -46,7 +50,7 @@ export class ColumnSelectOptionItem {
     type: ColumnTypeOptionsType.AnyOf,
     value: [String, Number],
   })
-  value?: SelectValue;
+  value: SelectValue;
   @ColumnTypeOption()
   isDisabled? = false;
 }
@@ -120,10 +124,10 @@ export class TableColumnSelectComponent
     }
   }
 
-  valueChangeHandler(inputValue: SelectValue): void {
-    // tslint:disable-next-line: no-non-null-assertion
+  valueChangeHandler(inputValue: SelectValueSelected): void {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.context!.value = inputValue;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.tableEditableService.updateValue(inputValue, this.context!.config);
   }
 

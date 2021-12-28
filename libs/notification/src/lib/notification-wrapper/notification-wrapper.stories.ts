@@ -13,7 +13,7 @@ export default {
 };
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'story-selector',
   template: `
     <button (click)="notificationService.show(data)">Show Notification</button>
@@ -44,7 +44,6 @@ class StoryComponent implements OnChanges {
   imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
   declarations: [StoryComponent],
   exports: [NotificationModule, StoryComponent],
-  entryComponents: [NotificationWrapperComponent],
 })
 class StoryModule {}
 

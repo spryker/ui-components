@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.4](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.2.0-rc.3...@spryker/table.feature.editable@0.2.0-rc.4) (2021-12-28)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** fixed console error ([0eeeaa6](https://github.com/spryker/ui-components/commit/0eeeaa6247b3e6ebfc7ea71b7a3af7be438876bf))
+* **table.feature.editable:** fixed console error ([6f36d38](https://github.com/spryker/ui-components/commit/6f36d3893450f6252427511d2f47e0ce5c1a2875))
+
+
+### Features
+
+* migrated libraries from `tslint` to `eslint` ([b14f937](https://github.com/spryker/ui-components/commit/b14f937bfd7803341e6626dd491484aa4d9b1344))
+* migrated storybook to the latest version ([cac4528](https://github.com/spryker/ui-components/commit/cac45288f9644fc20c4cff6b4a658a74130fbe2e))
+* migrated to `nx` v13 ([6b67e50](https://github.com/spryker/ui-components/commit/6b67e504a2ff8e8a840f70e12aae056c31698b47))
+
+
+
+
+
 # [0.2.0-rc.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.2.0-rc.2...@spryker/table.feature.editable@0.2.0-rc.3) (2021-12-02)
 
 

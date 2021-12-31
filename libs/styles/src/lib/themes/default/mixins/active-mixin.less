@@ -1,5 +1,10 @@
-.active(@color: @primary-color) {
+/**
+ * Provides active state for elements, configured by the passed parameters.
+ * @param {String} @color [@primary-color]
+ * @param {String} @box-shadow [@box-shadow-focus]
+ */
+.active(@color: @primary-color, @box-shadow: @box-shadow-focus) {
   border-color: @color;
   outline: 0;
-  box-shadow: @box-shadow-focus;
+  box-shadow: @box-shadow;
 }

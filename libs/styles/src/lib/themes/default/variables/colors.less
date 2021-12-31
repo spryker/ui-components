@@ -22,15 +22,21 @@
 
 @gray-darker: var(--spy-gray-darker, #71747b);
 @gray-dark: var(--spy-gray-dark, #9ea1a6);
-@gray: var(--spy-gray, #d4d5d7);
+@gray-static: #d4d5d7;
+@gray: var(--spy-gray, @gray-static);
 @gray-light: var(--spy-gray-light, #efeeee);
 @gray-lighter: var(--spy-gray-lighter, #f8f8f8);
 
 @white: #fff;
 @spy-white: var(--spy-white, @white);
 
-@ink: var(--spy-ink, #121212);
-@ink-effect: var(--spy-ink-effect, rgba(#121212, 0.15));
+@ink-static: #121212;
+@ink: var(--spy-ink, @ink-static);
+@ink-effect: var(--spy-ink-effect, @overlay-1);
+
+@overlay-1: rgba(@ink-static, 0.15);
+@overlay-2: rgba(@ink-static, 0.3);
+@overlay-3: rgba(@ink-static, 0.5);
 
 @global-bg-white: var(--spy-global-bg-white, @spy-white);
 @global-bg-gray: var(--spy-global-bg-gray, @gray-lighter);

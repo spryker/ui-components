@@ -19,12 +19,9 @@
 );
 
 @text-color: var(--spy-text-color, @gray-dark);
-@text-color-secondary: #121212;
-@spy-text-color-secondary: var(
-  --spy-text-color-secondary,
-  @text-color-secondary
-);
-@heading-color: var(--spy-heading-color, #121212);
+@text-color-secondary: @ink-static;
+@spy-text-color-secondary: var(--spy-text-color-secondary, @ink);
+@heading-color: var(--spy-heading-color, @ink);
 
 @font-size-lg: 16px;
 @spy-font-size-lg: var(--spy-font-size-lg, @font-size-lg);

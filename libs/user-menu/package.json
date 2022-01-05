@@ -6,6 +6,7 @@
     "@angular/core": "^9.1.12",
     "@spryker/icon": "^0.2.0",
     "@spryker/popover": "^0.1.0",
+    "@spryker/styles": "^0.6.0",
     "@spryker/web-components": "^0.2.1"
   },
   "dependencies": {

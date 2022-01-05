@@ -53,7 +53,7 @@
       }
 
       .@{select-prefix-cls}-selector {
-        background-color: @white;
+        background-color: @spy-white;
 
         .@{select-prefix-cls}-selection-placeholder {
           color: @gray-dark;
@@ -178,7 +178,7 @@
     border-radius: @select-border-radius;
     margin: @select-menu-margin;
     padding: 0;
-    background-color: @white;
+    background-color: @spy-white;
     box-shadow: @tree-select-dropdown-box-shadow;
     font: @font-default;
   }
@@ -267,7 +267,7 @@
               height: @tree-select-indeterminate-checkbox-inner-height;
               transform: @tree-select-indeterminate-checkbox-inner-transform;
               border-radius: @tree-select-indeterminate-checkbox-inner-border-radius;
-              background-color: @white;
+              background-color: @spy-white;
             }
           }
         }
@@ -286,11 +286,11 @@
           transition: unset;
 
           &:hover {
-            background-color: transparent;
+            background-color: @transparent;
           }
 
           &.@{select-prefix-cls}-tree-node-selected {
-            background-color: transparent;
+            background-color: @transparent;
           }
         }
       }

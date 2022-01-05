@@ -11,7 +11,7 @@
     "@spryker/locale": "^0.2.0",
     "@spryker/persistence": "^0.1.0",
     "@spryker/popover": "^0.1.0",
-    "@spryker/styles": "^0.4.0",
+    "@spryker/styles": "^0.6.0",
     "@spryker/table": "^0.2.0",
     "@spryker/utils": "^0.2.1"
   },

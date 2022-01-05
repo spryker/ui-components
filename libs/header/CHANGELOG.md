@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/header@0.2.10-next.1...@spryker/header@0.3.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **header:** introduced css variables ([8135b1f](https://github.com/spryker/ui-components/commit/8135b1f7b15abf1094feef18dc06f177b7650a8e))
+
+
+
+
+
 ## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/header@0.2.9...@spryker/header@0.2.10-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/header

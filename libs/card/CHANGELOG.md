@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.6-next.1...@spryker/card@0.4.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([1d93490](https://github.com/spryker/ui-components/commit/1d93490f88ae49fb0fbe142de298c0935abc2ae9))
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+
+
+
+
+
 ## [0.3.6-next.1](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.5...@spryker/card@0.3.6-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/card

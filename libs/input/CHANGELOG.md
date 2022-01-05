@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.10-next.2...@spryker/input@0.3.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **input:** introduced css variables ([8bb7164](https://github.com/spryker/ui-components/commit/8bb716423fa973db83192ca0ef99211307a60e61))
+
+
+
+
+
 ## [0.2.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/input@0.2.10-next.1...@spryker/input@0.2.10-next.2) (2021-11-23)
 
 

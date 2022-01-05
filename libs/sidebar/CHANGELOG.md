@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.2-next.1...@spryker/sidebar@0.4.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **sidebar:** introduced css variables ([853915c](https://github.com/spryker/ui-components/commit/853915c971fd8f9fb7be92472c20f9801335fd84))
+
+
+
+
+
 ## [0.3.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.1...@spryker/sidebar@0.3.2-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/sidebar

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.0.12-next.2...@spryker/table.feature.filters@0.1.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **table.feature.filters:** introduced css variables ([37afb64](https://github.com/spryker/ui-components/commit/37afb64bc81e9f237223c9ec22ddb61d8cc4a1f6))
+
+
+
+
+
 ## [0.0.12-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.0.12-next.1...@spryker/table.feature.filters@0.0.12-next.2) (2021-11-15)
 
 

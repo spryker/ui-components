@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.text@0.0.12-next.1...@spryker/table.column.text@0.1.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **table.column.text:** introduced css variables ([5d41d57](https://github.com/spryker/ui-components/commit/5d41d5748095f08dd1e9d6d08fb202cee8e3b103))
+
+
+
+
+
 ## [0.0.12-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.text@0.0.11...@spryker/table.column.text@0.0.12-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/table.column.text

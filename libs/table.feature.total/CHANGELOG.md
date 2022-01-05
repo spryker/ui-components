@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.0.12-next.1...@spryker/table.feature.total@0.1.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **table.feature.total:** introduced css variables ([224eeb9](https://github.com/spryker/ui-components/commit/224eeb934572f2746d50ab2cc47d28ec4e7dbf26))
+
+
+
+
+
 ## [0.0.12-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.0.11...@spryker/table.feature.total@0.0.12-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/table.feature.total

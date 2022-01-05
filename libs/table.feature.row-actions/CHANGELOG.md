@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.row-actions@0.0.12-next.1...@spryker/table.feature.row-actions@0.1.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **table.feature.row-actions:** introduced css variables ([be1a541](https://github.com/spryker/ui-components/commit/be1a541215092bb163ea894c72798f44b5f0a6ee))
+
+
+
+
+
 ## [0.0.12-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.row-actions@0.0.11...@spryker/table.feature.row-actions@0.0.12-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/table.feature.row-actions

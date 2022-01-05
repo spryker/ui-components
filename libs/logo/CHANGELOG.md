@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/logo@0.2.10-next.2...@spryker/logo@0.3.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **logo:** introduced css variables ([eabef84](https://github.com/spryker/ui-components/commit/eabef849fd84dfea990d5a5f1132399780b7b8f9))
+
+
+
+
+
 ## [0.2.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/logo@0.2.10-next.1...@spryker/logo@0.2.10-next.2) (2021-11-23)
 
 

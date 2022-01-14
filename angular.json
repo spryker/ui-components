@@ -4509,6 +4509,12 @@
       "root": ".storybook/global",
       "sourceRoot": ".storybook/global",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/architect:true",
+          "options": {
+            "tsConfig": ".storybook/global/tsconfig.json"
+          }
+        },
         "compile": {
           "builder": "@nrwl/storybook:build",
           "outputs": ["{options.outputPath}"],

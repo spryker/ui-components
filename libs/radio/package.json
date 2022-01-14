@@ -2,9 +2,9 @@
   "name": "@spryker/radio",
   "version": "0.2.0-rc.3",
   "peerDependencies": {
-    "@angular/common": "^13.0.0",
-    "@angular/core": "^13.0.0",
-    "@angular/forms": "^13.0.0",
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
+    "@angular/forms": ">=9.1.12",
     "@spryker/styles": "^0.5.0",
     "@spryker/utils": "^0.3.0"
   },

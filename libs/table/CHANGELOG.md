@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.5](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.4...@spryker/table@0.4.0-rc.5) (2022-01-17)
+
+
+### Bug Fixes
+
+* fix libs peerDependencies on angular ([44bd351](https://github.com/spryker/ui-components/commit/44bd35192446358fa03f6523a04725763248e7fb))
+* **storybook:** fix build ([1b57c18](https://github.com/spryker/ui-components/commit/1b57c184d9beba37ec2bbb457829fe03e012306a))
+
+
+
+
+
 # [0.4.0-rc.4](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.3...@spryker/table@0.4.0-rc.4) (2021-12-28)
 
 

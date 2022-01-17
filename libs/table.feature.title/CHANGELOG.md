@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.4](https://github.com/spryker/ui-components/compare/@spryker/table.feature.title@0.1.0-rc.3...@spryker/table.feature.title@0.1.0-rc.4) (2022-01-17)
+
+
+### Bug Fixes
+
+* fix libs peerDependencies on angular ([44bd351](https://github.com/spryker/ui-components/commit/44bd35192446358fa03f6523a04725763248e7fb))
+
+
+
+
+
 # [0.1.0-rc.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.title@0.1.0-rc.2...@spryker/table.feature.title@0.1.0-rc.3) (2021-12-28)
 
 

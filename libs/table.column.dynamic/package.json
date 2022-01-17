@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table.column.dynamic",
-  "version": "0.2.0-rc.3",
+  "version": "0.2.0-rc.4",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",

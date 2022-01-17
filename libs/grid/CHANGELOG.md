@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.3](https://github.com/spryker/ui-components/compare/@spryker/grid@0.2.0-rc.2...@spryker/grid@0.2.0-rc.3) (2022-01-17)
+
+
+### Bug Fixes
+
+* fix libs peerDependencies on angular ([44bd351](https://github.com/spryker/ui-components/commit/44bd35192446358fa03f6523a04725763248e7fb))
+
+
+
+
+
 # [0.2.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/grid@0.2.0-rc.1...@spryker/grid@0.2.0-rc.2) (2021-12-28)
 
 

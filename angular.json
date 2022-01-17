@@ -40,13 +40,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:primary"]
+      }
     },
     "actions.close-drawer": {
       "projectType": "library",
@@ -118,13 +112,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "actions.drawer": {
       "projectType": "library",
@@ -196,13 +184,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "actions.http": {
       "projectType": "library",
@@ -274,13 +256,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "actions.notification": {
       "projectType": "library",
@@ -352,13 +328,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "actions.redirect": {
       "projectType": "library",
@@ -430,13 +400,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "actions.refresh-drawer": {
       "projectType": "library",
@@ -508,13 +472,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "actions.refresh-parent-table": {
       "projectType": "library",
@@ -586,13 +544,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "actions.refresh-table": {
       "projectType": "library",
@@ -664,13 +616,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "ajax-action": {
       "projectType": "library",
@@ -742,13 +688,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "type:service"]
+      }
     },
     "ajax-form": {
       "projectType": "library",
@@ -820,13 +760,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      }
     },
     "autocomplete": {
       "projectType": "library",
@@ -899,12 +833,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:primary"],
       "implicitDependencies": ["styles"]
     },
     "button": {
@@ -975,12 +903,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "type:component", "level:atom"],
       "implicitDependencies": ["styles"]
     },
     "button.action": {
@@ -1053,13 +975,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component", "level:atom", "pkg:primary"]
+      }
     },
     "button.icon": {
       "projectType": "library",
@@ -1131,13 +1047,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component", "level:atom", "pkg:primary"]
+      }
     },
     "cache": {
       "projectType": "library",
@@ -1175,13 +1085,7 @@
             "lintFilePatterns": ["libs/cache/**/*.ts", "libs/cache/**/*.html"]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:primary"]
+      }
     },
     "cache.static": {
       "projectType": "library",
@@ -1222,13 +1126,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "card": {
       "projectType": "library",
@@ -1298,12 +1196,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "checkbox": {
@@ -1377,12 +1269,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "chips": {
@@ -1453,12 +1339,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "collapsible": {
@@ -1531,13 +1411,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      }
     },
     "data-serializer": {
       "projectType": "library",
@@ -1578,13 +1452,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:primary"]
+      }
     },
     "data-transformer": {
       "projectType": "library",
@@ -1625,13 +1493,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:primary"]
+      }
     },
     "data-transformer.array-map": {
       "projectType": "library",
@@ -1672,13 +1534,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.chain": {
       "projectType": "library",
@@ -1719,13 +1575,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.collate": {
       "projectType": "library",
@@ -1766,13 +1616,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.configurator.table": {
       "projectType": "library",
@@ -1813,13 +1657,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.date-parse": {
       "projectType": "library",
@@ -1860,13 +1698,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.date-serialize": {
       "projectType": "library",
@@ -1907,13 +1739,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.filter.equals": {
       "projectType": "library",
@@ -1954,13 +1780,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.filter.range": {
       "projectType": "library",
@@ -2001,13 +1821,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.filter.text": {
       "projectType": "library",
@@ -2048,13 +1862,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.lens": {
       "projectType": "library",
@@ -2095,13 +1903,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.object-map": {
       "projectType": "library",
@@ -2142,13 +1944,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "data-transformer.pluck": {
       "projectType": "library",
@@ -2189,13 +1985,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "datasource": {
       "projectType": "library",
@@ -2236,13 +2026,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:primary"]
+      }
     },
     "datasource.http": {
       "projectType": "library",
@@ -2283,13 +2067,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "datasource.inline": {
       "projectType": "library",
@@ -2361,13 +2139,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "datasource.inline.table": {
       "projectType": "library",
@@ -2439,13 +2211,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "date-picker": {
       "projectType": "library",
@@ -2518,12 +2284,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
       "implicitDependencies": ["styles", "locale"]
     },
     "drawer": {
@@ -2594,12 +2354,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component-service"],
       "implicitDependencies": ["styles"]
     },
     "dropdown": {
@@ -2673,12 +2427,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "form-item": {
@@ -2752,12 +2500,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "grid": {
@@ -2828,12 +2570,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "type:style"],
       "implicitDependencies": ["styles"]
     },
     "header": {
@@ -2904,12 +2640,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:organism", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "headline": {
@@ -2983,12 +2713,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "html-renderer": {
@@ -3061,13 +2785,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"]
+      }
     },
     "icon": {
       "projectType": "library",
@@ -3137,12 +2855,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "input": {
@@ -3213,12 +2925,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "input.password": {
@@ -3291,13 +2997,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component", "level:atom", "pkg:primary"]
+      }
     },
     "interception": {
       "projectType": "library",
@@ -3338,13 +3038,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:primary"]
+      }
     },
     "internal-utils": {
       "projectType": "library",
@@ -3369,13 +3063,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "type:meta"]
+      }
     },
     "label": {
       "projectType": "library",
@@ -3445,12 +3133,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "layout": {
@@ -3521,12 +3203,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "link": {
@@ -3597,12 +3273,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "locale": {
@@ -3672,13 +3342,7 @@
             "lintFilePatterns": ["libs/locale/**/*.ts", "libs/locale/**/*.html"]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "type:util"]
+      }
     },
     "logo": {
       "projectType": "library",
@@ -3748,12 +3412,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "modal": {
@@ -3824,12 +3482,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component-service", "pkg:primary"],
       "implicitDependencies": ["styles", "locale"]
     },
     "navigation": {
@@ -3903,12 +3555,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component-service"],
       "implicitDependencies": ["styles"]
     },
     "notification": {
@@ -3982,12 +3628,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component-service"],
       "implicitDependencies": ["styles"]
     },
     "pagination": {
@@ -4061,12 +3701,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
       "implicitDependencies": ["styles", "locale"]
     },
     "persistence": {
@@ -4108,13 +3742,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:primary"]
+      }
     },
     "popover": {
       "projectType": "library",
@@ -4187,12 +3815,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "radio": {
@@ -4263,12 +3885,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:atom", "type:component", "pkg:primary"],
       "implicitDependencies": ["styles"]
     },
     "select": {
@@ -4339,12 +3955,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
       "implicitDependencies": ["styles", "locale"]
     },
     "sidebar": {
@@ -4418,12 +4028,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "spinner": {
@@ -4496,13 +4100,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component", "level:atom", "pkg:primary"]
+      }
     },
     "storybook": {
       "projectType": "library",
@@ -4546,8 +4144,7 @@
             }
           }
         }
-      },
-      "tags": ["pkg:primary", "type:meta"]
+      }
     },
     "styles": {
       "projectType": "library",
@@ -4585,13 +4182,7 @@
             "lintFilePatterns": ["libs/styles/**/*.ts", "libs/styles/**/*.html"]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      },
-      "tags": ["pkg:primary", "type:style"]
+      }
     },
     "table": {
       "projectType": "library",
@@ -4661,12 +4252,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:organism", "type:component-service"],
       "implicitDependencies": ["styles", "locale"]
     },
     "table-integration-internal": {
@@ -4723,13 +4308,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:meta"]
+      }
     },
     "table.column.autocomplete": {
       "projectType": "library",
@@ -4801,13 +4380,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      }
     },
     "table.column.chip": {
       "projectType": "library",
@@ -4879,13 +4452,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      }
     },
     "table.column.date": {
       "projectType": "library",
@@ -4957,13 +4524,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      }
     },
     "table.column.dynamic": {
       "projectType": "library",
@@ -5035,13 +4596,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      }
     },
     "table.column.image": {
       "projectType": "library",
@@ -5113,13 +4668,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      }
     },
     "table.column.input": {
       "projectType": "library",
@@ -5191,13 +4740,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component", "level:atom", "pkg:extension"]
+      }
     },
     "table.column.select": {
       "projectType": "library",
@@ -5270,12 +4813,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component", "level:molecule", "pkg:extension"],
       "implicitDependencies": ["locale"]
     },
     "table.column.text": {
@@ -5348,13 +4885,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:atom", "type:component", "pkg:extension"]
+      }
     },
     "table.feature.batch-actions": {
       "projectType": "library",
@@ -5427,12 +4958,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles"]
     },
     "table.feature.editable": {
@@ -5506,12 +5031,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component", "level:molecule", "pkg:extension"],
       "implicitDependencies": ["styles", "locale"]
     },
     "table.feature.filters": {
@@ -5585,12 +5104,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles"]
     },
     "table.feature.pagination": {
@@ -5664,12 +5177,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles"]
     },
     "table.feature.row-actions": {
@@ -5743,12 +5250,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles"]
     },
     "table.feature.search": {
@@ -5822,12 +5323,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles"]
     },
     "table.feature.selectable": {
@@ -5901,12 +5396,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles"]
     },
     "table.feature.settings": {
@@ -5980,12 +5469,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles", "locale"]
     },
     "table.feature.sync-state": {
@@ -6058,13 +5541,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"]
+      }
     },
     "table.feature.title": {
       "projectType": "library",
@@ -6137,12 +5614,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles"]
     },
     "table.feature.total": {
@@ -6216,12 +5687,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles", "locale"]
     },
     "table.filter.date-range": {
@@ -6295,12 +5760,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["styles", "locale"]
     },
     "table.filter.select": {
@@ -6374,12 +5833,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["locale"]
     },
     "table.filter.tree-select": {
@@ -6453,12 +5906,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:extension"],
       "implicitDependencies": ["locale"]
     },
     "tabs": {
@@ -6529,12 +5976,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "textarea": {
@@ -6608,12 +6049,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "toggle": {
@@ -6684,12 +6119,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:atom", "type:component"],
       "implicitDependencies": ["styles"]
     },
     "tree-select": {
@@ -6763,12 +6192,6 @@
           }
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["pkg:primary", "level:molecule", "type:component"],
       "implicitDependencies": ["styles", "locale"]
     },
     "unsaved-changes": {
@@ -6810,13 +6233,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component-service", "pkg:primary"]
+      }
     },
     "unsaved-changes.guard.browser": {
       "projectType": "library",
@@ -6857,13 +6274,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "unsaved-changes.guard.drawer": {
       "projectType": "library",
@@ -6935,13 +6346,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "unsaved-changes.guard.navigation": {
       "projectType": "library",
@@ -7013,13 +6418,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "unsaved-changes.monitor.form": {
       "projectType": "library",
@@ -7091,13 +6490,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:component-service", "pkg:primary"]
+      }
     },
     "user-menu": {
       "projectType": "library",
@@ -7169,13 +6562,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["level:molecule", "type:component", "pkg:primary"]
+      }
     },
     "utils": {
       "projectType": "library",
@@ -7213,13 +6600,7 @@
             "lintFilePatterns": ["libs/utils/**/*.ts", "libs/utils/**/*.html"]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "type:util"]
+      }
     },
     "utils.date.adapter.date-fns": {
       "projectType": "library",
@@ -7260,13 +6641,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "less"
-        }
-      },
-      "tags": ["type:service", "pkg:extension"]
+      }
     },
     "web-components": {
       "projectType": "library",
@@ -7307,13 +6682,7 @@
             ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "less"
-        }
-      },
-      "tags": ["pkg:primary", "type:util"]
+      }
     }
   }
 }

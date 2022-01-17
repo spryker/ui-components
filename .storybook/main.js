@@ -34,15 +34,4 @@ module.exports = {
 
     return config;
   },
-  previewHead: (head) => `
-    ${head}
-    <style>
-        html,
-        body {
-            height: 100%;
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalreset.css@1.1.0/normalreset.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@angular/cdk@13.0.0/overlay-prebuilt.css">
-  `,
 };

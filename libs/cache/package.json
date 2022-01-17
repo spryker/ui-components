@@ -2,8 +2,8 @@
   "name": "@spryker/cache",
   "version": "0.2.0-rc.2",
   "peerDependencies": {
-    "@angular/common": "^13.0.0",
-    "@angular/core": "^13.0.0",
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
     "@spryker/persistence": "^0.2.0",
     "@spryker/utils": "^0.3.0"
   },

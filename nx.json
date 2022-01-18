@@ -1,5 +1,8 @@
 {
   "npmScope": "spryker",
+  "affected": {
+    "defaultBase": "master"
+  },
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": {
@@ -392,9 +395,6 @@
       }
     }
   },
-  "affected": {
-    "defaultBase": "master"
-  },
   "targetDependencies": {
     "build": [
       {
@@ -402,37 +402,5 @@
         "projects": "dependencies"
       }
     ]
-  },
-  "cli": {
-    "analytics": false,
-    "defaultCollection": "@nrwl/angular"
-  },
-  "generators": {
-    "@nrwl/angular:application": {
-      "style": "less",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "protractor",
-      "prefix": "spy"
-    },
-    "@nrwl/angular:library": {
-      "style": "less",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "prefix": "spy",
-      "publishable": true
-    },
-    "@schematics/angular:component": {
-      "style": "less",
-      "prefix": "spy",
-      "changeDetection": "OnPush"
-    },
-    "@nrwl/storybook:configuration": {
-      "uiFramework": "@storybook/angular"
-    },
-    "@nrwl/angular:component": {
-      "style": "less"
-    }
-  },
-  "defaultProject": "utils"
+  }
 }

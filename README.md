@@ -127,7 +127,7 @@ Every new library should be generated via NX CLI with `@nrwl/angular:library` sc
 _NOTE_: You should assign library tags either during generation command or after in `nx.json` file.
 
 ```bash
-nx g @nrwl/angular:library <my-lib> --importPath=@spryker/<my-lib> --publishable --tags level:<level>
+nx g @nrwl/angular:library <my-lib> --importPath=@spryker/<my-lib> --tags level:<level>
 ```
 
 When library is generated please do the following:
@@ -163,7 +163,6 @@ When library is generated please do the following:
   - remove following sections:
   ```json
     "transform": { ... },
-    "transformIgnorePatterns": { ... },
     "snapshotSerializers": { ... }
   ```
 - In `libs/<lib-name>/ng-package.json`
@@ -206,7 +205,7 @@ nx g @schematics/angular:component --name=<my-component> --project=<my-lib>
 Storybook setup should be added via NX CLI with `@nrwl/storybook:configuration` schematic:
 
 ```bash
-nx g @nrwl/storybook:configuration --name=<my-lib> --uiFramework=@storybook/angular
+nx g @nrwl/storybook:configuration --name=<my-lib>
 ```
 
 _NOTE:_ Do the following updates after command above:

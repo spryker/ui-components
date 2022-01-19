@@ -190,8 +190,8 @@ When library is generated please do the following:
   - remove following section:
   ```json
     "angularCompilerOptions": {
-    "compilationMode": "partial"
-  }
+      "compilationMode": "partial"
+    }
   ```
 - In `lib/<lib-name>/src/test-setup.ts`
   - add global setup import:

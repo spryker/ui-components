@@ -186,6 +186,13 @@ When library is generated please do the following:
     "compilerOptions": { ... },
     "angularCompilerOptions": { ... }
   ```
+- In `libs/<lib-name>/tsconfig.lib.prod.json`
+  - remove following section:
+  ```json
+    "angularCompilerOptions": {
+    "compilationMode": "partial"
+  }
+  ```
 - In `lib/<lib-name>/src/test-setup.ts`
   - add global setup import:
   ```ts

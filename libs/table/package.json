@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table",
-  "version": "0.4.0-rc.6",
+  "version": "0.4.0-rc.7",
   "peerDependencies": {
     "@angular/cdk": ">=9.2.3",
     "@angular/common": ">=9.1.12",

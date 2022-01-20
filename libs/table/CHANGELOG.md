@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.7](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.6...@spryker/table@0.4.0-rc.7) (2022-01-20)
+
+
+### Bug Fixes
+
+* disabled `ivy` compilation mode ([b73c8cd](https://github.com/spryker/ui-components/commit/b73c8cd6990e72e74b9f5c1a5ee0a76ba740c109))
+* updated `[@orchestrator](https://github.com/orchestrator)` dependencies ([648b246](https://github.com/spryker/ui-components/commit/648b246979343893488cf4294f989224b8d5bc0f))
+* updated `[@orchestrator](https://github.com/orchestrator)` dependencies ([e172763](https://github.com/spryker/ui-components/commit/e1727635999f911735ba66fced6a98ecd5aca5ba))
+
+
+
+
+
 # [0.4.0-rc.6](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.5...@spryker/table@0.4.0-rc.6) (2022-01-18)
 
 **Note:** Version bump only for package @spryker/table

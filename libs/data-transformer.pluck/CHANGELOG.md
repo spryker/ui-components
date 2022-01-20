@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.5](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.pluck@0.2.0-rc.4...@spryker/data-transformer.pluck@0.2.0-rc.5) (2022-01-20)
+
+
+### Bug Fixes
+
+* disabled `ivy` compilation mode ([b73c8cd](https://github.com/spryker/ui-components/commit/b73c8cd6990e72e74b9f5c1a5ee0a76ba740c109))
+
+
+
+
+
 # [0.2.0-rc.4](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.pluck@0.2.0-rc.3...@spryker/data-transformer.pluck@0.2.0-rc.4) (2022-01-17)
 
 

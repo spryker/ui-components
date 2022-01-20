@@ -9,7 +9,6 @@
     "ng-zorro-antd",
     "ng-dynamic-component",
     "@orchestrator/core",
-    "@orchestrator/layout",
-    "@orchestrator/gen-io-ts"
+    "@orchestrator/layout"
   ]
 }

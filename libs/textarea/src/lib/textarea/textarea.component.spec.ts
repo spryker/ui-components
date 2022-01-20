@@ -151,13 +151,13 @@ describe('TextareaComponent', () => {
       fixture.detectChanges();
 
       expect(textareaElem.attributes['test']).toBe('attr6');
-      expect(textareaElem.attributes['test2']).toBe(undefined);
+      expect(textareaElem.attributes['test2']).toBe(null);
 
       component.attrs = null;
 
       fixture.detectChanges();
 
-      expect(textareaElem.attributes['test']).toBe(undefined);
+      expect(textareaElem.attributes['test']).toBe(null);
     });
   });
 

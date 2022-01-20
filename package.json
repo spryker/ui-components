@@ -61,7 +61,7 @@
     "prerelease-tag": "npm run pack",
     "release-tag": "lerna publish --yes --conventional-prerelease --dist-tag $TRAVIS_BRANCH --preid $TRAVIS_BRANCH",
     "postversion": "lerna exec --concurrency 1 --stream -- node \\$LERNA_ROOT_PATH/tools/scripts/update-lib.js",
-    "postinstall": "ngcc --properties es2015 browser module main"
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
   "engines": {
@@ -79,8 +79,8 @@
     "@angular/platform-browser-dynamic": "^12.0.0",
     "@angular/router": "^12.0.0",
     "@nrwl/nx-cloud": "^12.0.0",
-    "@orchestrator/core": "2.1.0-ng-12.2",
-    "@orchestrator/layout": "2.0.1-ng-12.2",
+    "@orchestrator/core": "ng-12",
+    "@orchestrator/layout": "ng-12",
     "core-js": "^3.19.0",
     "date-fns": "^2.25.0",
     "deepmerge": "^4.2.2",

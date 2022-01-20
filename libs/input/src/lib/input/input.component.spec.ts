@@ -181,13 +181,13 @@ describe('InputComponent', () => {
       fixture.detectChanges();
 
       expect(inputElem.attributes['test']).toBe('attr6');
-      expect(inputElem.attributes['test2']).toBe(undefined);
+      expect(inputElem.attributes['test2']).toBe(null);
 
       component.attrs = null;
 
       fixture.detectChanges();
 
-      expect(inputElem.attributes['test']).toBe(undefined);
+      expect(inputElem.attributes['test']).toBe(null);
     });
   });
 

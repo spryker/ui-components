@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.5](https://github.com/spryker/ui-components/compare/@spryker/label@0.2.0-rc.4...@spryker/label@0.2.0-rc.5) (2022-01-21)
+
+
+### Bug Fixes
+
+* fix peerDependencies ([0bc63f2](https://github.com/spryker/ui-components/commit/0bc63f2ad0c56a86bd0966aff2da588070e0bda8))
+* **label:** fix peerDependency ([5518733](https://github.com/spryker/ui-components/commit/5518733506d3ed9b14d49c60098acd79435ef9f7))
+
+
+
+
+
 # [0.2.0-rc.4](https://github.com/spryker/ui-components/compare/@spryker/label@0.2.0-rc.3...@spryker/label@0.2.0-rc.4) (2022-01-20)
 
 

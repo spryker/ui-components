@@ -2,6 +2,7 @@
   "name": "@spryker/modal",
   "version": "0.1.0-rc.6",
   "peerDependencies": {
+    "@angular/cdk": ">=9.2.3",
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",
     "@spryker/locale": "^0.3.0",

@@ -391,7 +391,7 @@
         ],
         "canTrackAnalytics": false,
         "showUsageWarnings": true,
-        "parallel": 3
+        "parallel": 4
       }
     }
   },

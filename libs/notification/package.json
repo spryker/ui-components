@@ -2,7 +2,7 @@
   "name": "@spryker/notification",
   "version": "0.3.0-rc.6",
   "peerDependencies": {
-    "@angular/animations": "^13.0.0",
+    "@angular/animations": ">=9.1.12",
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",
     "@spryker/icon": "^0.3.0",

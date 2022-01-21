@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.8](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.2.0-rc.7...@spryker/table.feature.editable@0.2.0-rc.8) (2022-01-21)
+
+
+### Bug Fixes
+
+* fix peerDependency to @angular/cdk ([2053092](https://github.com/spryker/ui-components/commit/2053092082084ed50f21ba9697db776b0fe86e40))
+
+
+
+
+
 # [0.2.0-rc.7](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.2.0-rc.6...@spryker/table.feature.editable@0.2.0-rc.7) (2022-01-21)
 
 

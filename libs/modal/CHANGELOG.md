@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.7](https://github.com/spryker/ui-components/compare/@spryker/modal@0.1.0-rc.6...@spryker/modal@0.1.0-rc.7) (2022-01-21)
+
+
+### Bug Fixes
+
+* fix peerDependency to @angular/cdk ([2053092](https://github.com/spryker/ui-components/commit/2053092082084ed50f21ba9697db776b0fe86e40))
+
+
+
+
+
 # [0.1.0-rc.6](https://github.com/spryker/ui-components/compare/@spryker/modal@0.1.0-rc.5...@spryker/modal@0.1.0-rc.6) (2022-01-21)
 
 

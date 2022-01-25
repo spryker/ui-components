@@ -1,7 +1,6 @@
 import {
   ChangeDetectorRef,
   Directive,
-  Injectable,
   Input,
   IterableChanges,
   IterableDiffers,
@@ -10,8 +9,9 @@ import {
   OnInit,
   TemplateRef,
   ViewContainerRef,
+  SimpleChanges,
 } from '@angular/core';
-import { isNonNullable, TypedSimpleChanges } from '@spryker/utils';
+import { isNonNullable } from '@spryker/utils';
 import { combineLatest, Observable, ReplaySubject, Subject } from 'rxjs';
 import {
   debounceTime,
@@ -28,23 +28,17 @@ import { TableFeaturesRendererService } from './table-features-renderer.service'
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
 import { TableFeatureLocation } from '../table/table';
 
-@Injectable()
-export class TableFeaturesRendererDirectiveInputs {
-  /** Location of the feature */
-  @Input() spyTableFeaturesRenderer?: TableFeatureLocation;
-  @Input() spyTableFeaturesRendererFeatures?: TableFeatureComponent[];
-  @Input() spyTableFeaturesRendererMaxFeatures?: number;
-  @Input() spyTableFeaturesRendererContext?: TableFeatureTplContext;
-}
-
 @Directive({
   selector: '[spyTableFeaturesRenderer]',
   exportAs: 'spyTableFeaturesRenderer',
 })
 export class TableFeaturesRendererDirective
-  extends TableFeaturesRendererDirectiveInputs
   implements OnInit, OnChanges, OnDestroy
 {
+  @Input() spyTableFeaturesRenderer?: TableFeatureLocation;
+  @Input() spyTableFeaturesRendererFeatures?: TableFeatureComponent[];
+  @Input() spyTableFeaturesRendererMaxFeatures?: number;
+  @Input() spyTableFeaturesRendererContext?: TableFeatureTplContext;
   private featuresDiffer = this.iterableDiffers
     .find([])
     .create<FeatureRecord>((idx, feature) => feature.component);
@@ -86,9 +80,7 @@ export class TableFeaturesRendererDirective
     private iterableDiffers: IterableDiffers,
     private cdr: ChangeDetectorRef,
     private featuresRendererService: TableFeaturesRendererService,
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.featureChanges$
@@ -96,9 +88,7 @@ export class TableFeaturesRendererDirective
       .subscribe((features) => this.updateFeatures(features));
   }
 
-  ngOnChanges(
-    changes: TypedSimpleChanges<TableFeaturesRendererDirectiveInputs>,
-  ): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (
       changes.spyTableFeaturesRenderer ||
       changes.spyTableFeaturesRendererFeatures

@@ -13,6 +13,8 @@ import {
   Optional,
   TemplateRef,
   ViewContainerRef,
+  SimpleChanges,
+  Input,
 } from '@angular/core';
 import {
   TableColumns,
@@ -23,13 +25,12 @@ import {
   TableFeatureComponent,
   TableFeatureEventBus,
   TableFeatureTplContext,
-  TableFeatureTplDirectiveInputs,
   TableEventBus,
   TableComponent,
   TableFeatureConfig,
 } from '@spryker/table';
 import { ReplaySubject, BehaviorSubject } from 'rxjs';
-import { InjectionTokenType, TypedSimpleChanges } from '@spryker/utils';
+import { InjectionTokenType } from '@spryker/utils';
 
 class MockElementRef {
   nativeElement = {
@@ -150,10 +151,10 @@ export const TestTableFeatureTplContext = new InjectionToken<
 @Directive({
   selector: '[spyTableFeatureTpl]',
 })
-export class TestTableFeatureTplDirective
-  extends TableFeatureTplDirectiveInputs
-  implements OnChanges
-{
+export class TestTableFeatureTplDirective implements OnChanges {
+  @Input() spyTableFeatureTpl?: string | string[];
+  @Input() spyTableFeatureTplStyles?: Record<string, any>;
+
   constructor(
     public template: TemplateRef<TableFeatureTplContext>,
     public vcr: ViewContainerRef,
@@ -162,13 +163,9 @@ export class TestTableFeatureTplDirective
     public locationContext?: InjectionTokenType<
       typeof TestTableFeatureTplContext
     >,
-  ) {
-    super();
-  }
+  ) {}
 
-  ngOnChanges(
-    changes: TypedSimpleChanges<TableFeatureTplDirectiveInputs>,
-  ): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.spyTableFeatureTpl) {
       const locations = Array.isArray(this.spyTableFeatureTpl!)
         ? this.spyTableFeatureTpl!

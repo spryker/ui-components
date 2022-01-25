@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.8](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.7...@spryker/table@0.4.0-rc.8) (2022-01-25)
+
+
+### Bug Fixes
+
+* **table:** fix directives by replacing inputs ([a8206e9](https://github.com/spryker/ui-components/commit/a8206e9c4d34fa178499f9eb34f24be34bbfc703))
+
+
+
+
+
 # [0.4.0-rc.7](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-rc.6...@spryker/table@0.4.0-rc.7) (2022-01-20)
 
 

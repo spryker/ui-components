@@ -4,13 +4,13 @@
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/data-transformer": "^0.1.0",
-    "@spryker/datasource": "^0.1.0",
-    "@spryker/form-item": "^0.2.0",
-    "@spryker/select": "^0.2.0",
-    "@spryker/table": "^0.2.0",
-    "@spryker/table.feature.editable": "^0.1.0",
-    "@spryker/utils": "^0.2.1"
+    "@spryker/data-transformer": "^0.1.10",
+    "@spryker/datasource": "^0.1.10",
+    "@spryker/form-item": "^0.3.0",
+    "@spryker/select": "^0.3.0",
+    "@spryker/table": "^0.4.0",
+    "@spryker/table.feature.editable": "^0.2.0",
+    "@spryker/utils": "^0.2.11"
   },
   "dependencies": {
     "tslib": "^1.10.0"

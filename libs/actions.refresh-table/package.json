@@ -1,11 +1,11 @@
 {
   "name": "@spryker/actions.refresh-table",
-  "version": "0.2.6",
+  "version": "0.2.7-next.2",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/actions": "^0.1.0",
-    "@spryker/table": "^0.2.0"
+    "@spryker/actions": "^0.1.10",
+    "@spryker/table": "^0.4.0"
   },
   "dependencies": {
     "tslib": "^1.10.0"

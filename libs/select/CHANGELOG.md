@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-next.0...@spryker/select@0.3.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.10-next.2...@spryker/select@0.3.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **select:** introduced css variables ([db36eee](https://github.com/spryker/ui-components/commit/db36eee2a061099a61942d4401cbbcbc4c1e3e41))
+
+
+
+
+
+## [0.2.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.10-next.1...@spryker/select@0.2.10-next.2) (2021-11-23)
+
+
+### Bug Fixes
+
+* **select:** adjusted styles ([f3d270d](https://github.com/spryker/ui-components/commit/f3d270d325010f5053700615e1ff1bec8334e3d2))
+* **select:** adjusted styles/template && updated peerDependencies ([82b4437](https://github.com/spryker/ui-components/commit/82b443781695fca5797a99488e759bbfa98889e2))
+* **select:** fixed styles and template ([6592c12](https://github.com/spryker/ui-components/commit/6592c12b165314a6fd90fd77e7d0842ff5eb5859))
+
+
+
+
+
+## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.9...@spryker/select@0.2.10-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.2.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/select@0.2.8-next.1...@spryker/select@0.2.10-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
 ## [0.2.9](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.9-next.1...@spryker/select@0.2.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/select

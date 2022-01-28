@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.3.0-next.0...@spryker/tabs@0.3.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.2.10-next.1...@spryker/tabs@0.3.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([1d93490](https://github.com/spryker/ui-components/commit/1d93490f88ae49fb0fbe142de298c0935abc2ae9))
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **tabs:** introduced css variables ([c045216](https://github.com/spryker/ui-components/commit/c045216985223e75b9e38bbb490fecfb07d669da))
+
+
+
+
+
+## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.2.9...@spryker/tabs@0.2.10-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/tabs
+
+
+
+
+
+## [0.2.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/tabs@0.2.8-next.1...@spryker/tabs@0.2.10-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/tabs
+
+
+
+
+
 ## [0.2.9](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.2.9-next.1...@spryker/tabs@0.2.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/tabs

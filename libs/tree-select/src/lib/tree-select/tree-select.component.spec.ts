@@ -1,4 +1,4 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DatasourceModule } from '@spryker/datasource';
@@ -40,7 +40,6 @@ describe('TreeSelectComponent', () => {
   const mockedValue = 'mockedValue';
   const mockedPlaceholder = 'mockedPlaceholder';
   const mockedName = 'mockedName';
-  const mockedNoOptionsText = 'mockedNoOptionsText';
   const mockedCallValue = ['Option'];
   const mockItems = [
     {
@@ -151,15 +150,11 @@ describe('TreeSelectComponent', () => {
       expect(select?.attributes.name).toBe(mockedName);
     });
 
-    it('Input noOptionsText should be bound to nzNotFoundContent of nz-tree-select', async () => {
-      const host = await createComponent(
-        { items: mockItems, noOptionsText: mockedNoOptionsText },
-        true,
-      );
-
+    it('Should bind templateRef to `nzNotFoundContent` input of `nz-tree-select`', async () => {
+      const host = await createComponent({ items: mockItems }, true);
       const treeSelect = host.queryComponent(NzTreeSelectComponent);
 
-      expect(treeSelect?.nzNotFoundContent).toBe(mockedNoOptionsText);
+      expect(treeSelect?.nzNotFoundContent).toEqual(expect.any(TemplateRef));
     });
 
     it('Input disableClear should be bound to nzAllowClear of nz-tree-select', async () => {

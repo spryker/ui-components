@@ -1,13 +1,13 @@
 {
   "name": "@spryker/unsaved-changes.guard.navigation",
-  "version": "0.1.9",
+  "version": "0.1.10-next.2",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/interception": "^0.1.0",
-    "@spryker/modal": "^0.0.2",
-    "@spryker/navigation": "^0.2.0",
-    "@spryker/unsaved-changes": "^0.1.0"
+    "@spryker/interception": "^0.1.10",
+    "@spryker/modal": "^0.1.0",
+    "@spryker/navigation": "^0.4.0",
+    "@spryker/unsaved-changes": "^0.1.10"
   },
   "dependencies": {
     "tslib": "^1.10.0"

@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0-next.0...@spryker/table@0.4.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.7-next.2...@spryker/table@0.4.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([1d93490](https://github.com/spryker/ui-components/commit/1d93490f88ae49fb0fbe142de298c0935abc2ae9))
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **table:** introduced css variables ([af4f212](https://github.com/spryker/ui-components/commit/af4f212bd630d7cfffed8cba1213996fc3b8556d))
+
+
+
+
+
+## [0.3.7-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.7-next.1...@spryker/table@0.3.7-next.2) (2021-11-15)
+
+
+### Bug Fixes
+
+* **table:** updated `spryker/styles` peerDependency ([604bc3f](https://github.com/spryker/ui-components/commit/604bc3fc91fad0b50a716f00c3718bbd9820624e))
+* **table:** updated `table` component by adding table-features--after-table padding-top ([81474ed](https://github.com/spryker/ui-components/commit/81474eda4388fd91c79b2b81e610994a27a01d45))
+* **table:** updated `table` component by renaming variable ([334f6e0](https://github.com/spryker/ui-components/commit/334f6e0ccfd5af952be7a312ed404fde3457dc4d))
+
+
+
+
+
+## [0.3.7-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.6...@spryker/table@0.3.7-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+## [0.3.7-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table@0.3.5-next.2...@spryker/table@0.3.7-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **table:** adjusted `table` by replacing flex-flow with flex-direction ([136acea](https://github.com/spryker/zed-gui/commit/136acea2efee1cafe8a43a3574584c2649de9206))
+* **table:** adjusted `table` by updating empty state flex-flow & title font-size ([e4c1c35](https://github.com/spryker/zed-gui/commit/e4c1c35aef0d883a52a492b63d66b496ec9ff51b))
+* **table:** updated `spryker/table` by updating version ([5ff90a9](https://github.com/spryker/zed-gui/commit/5ff90a973835cc7280f8561d2176a89d078b4b80))
+* **table:** updated `styles` dependency ([e5817c6](https://github.com/spryker/zed-gui/commit/e5817c68ff6e4175fba447cbb5c64f02e996a1ac))
+
+
+
+
+
 ## [0.3.6](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.6-next.1...@spryker/table@0.3.6) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/table

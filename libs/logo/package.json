@@ -1,10 +1,10 @@
 {
   "name": "@spryker/logo",
-  "version": "0.2.9",
+  "version": "0.3.0-next.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/styles": "^0.2.0"
+    "@spryker/styles": "^0.5.0"
   },
   "dependencies": {
     "ng-zorro-antd": "9.3.0",

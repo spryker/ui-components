@@ -1,6 +1,6 @@
 {
   "name": "@spryker/persistence",
-  "version": "0.1.11-next.0",
+  "version": "0.1.11-next.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",

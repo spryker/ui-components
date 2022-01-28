@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.3.0-next.0...@spryker/pagination@0.3.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
 # [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.2.10-next.1...@spryker/pagination@0.3.0-next.0) (2022-01-05)
 
 

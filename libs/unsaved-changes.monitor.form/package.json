@@ -1,6 +1,6 @@
 {
   "name": "@spryker/unsaved-changes.monitor.form",
-  "version": "0.1.9-next.1",
+  "version": "0.1.9-next.2",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",

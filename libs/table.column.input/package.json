@@ -4,11 +4,11 @@
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/form-item": "^0.2.0",
-    "@spryker/input": "^0.2.0",
-    "@spryker/table": "^0.2.0",
-    "@spryker/table.feature.editable": "^0.1.0",
-    "@spryker/utils": "^0.2.1"
+    "@spryker/form-item": "^0.3.0",
+    "@spryker/input": "^0.3.0",
+    "@spryker/table": "^0.4.0",
+    "@spryker/table.feature.editable": "^0.2.0",
+    "@spryker/utils": "^0.2.11"
   },
   "dependencies": {
     "tslib": "^1.10.0"

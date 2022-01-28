@@ -4,8 +4,8 @@
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/data-transformer.collate": "^0.1.0",
-    "@spryker/table": "^0.2.0"
+    "@spryker/data-transformer.collate": "^0.1.10",
+    "@spryker/table": "^0.4.0"
   },
   "dependencies": {
     "tslib": "^1.10.0"

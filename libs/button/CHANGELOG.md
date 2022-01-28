@@ -82,6 +82,83 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.4.0](https://github.com/spryker/ui-components/compare/@spryker/button@0.4.0-next.1...@spryker/button@0.4.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/button
+
+
+
+
+
+# [0.4.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.4.0-next.0...@spryker/button@0.4.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.1-next.2...@spryker/button@0.4.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([1d93490](https://github.com/spryker/ui-components/commit/1d93490f88ae49fb0fbe142de298c0935abc2ae9))
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* introduced `box-shadow` variables ([18814bc](https://github.com/spryker/ui-components/commit/18814bc82e3278a2fc41866504b6faa74f18565f))
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+
+
+
+
+
+## [0.3.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.1-next.1...@spryker/button@0.3.1-next.2) (2021-11-12)
+
+
+### Bug Fixes
+
+* **button:** adjusted `button-core` by updating critical-outline hover & active states ([bb7ef5d](https://github.com/spryker/ui-components/commit/bb7ef5d45aa90cde19920988fac58cfef6150531))
+* **button:** updated `spryker/styles` peerDependency ([7971f94](https://github.com/spryker/ui-components/commit/7971f94101dcf1de74abf76094a86085704b94e2))
+* **button:** updated `spryker/styles` peerDependency ([22195eb](https://github.com/spryker/ui-components/commit/22195eb4f0a227630e4829286afeaf4a21f16b7c))
+
+
+
+
+
+## [0.3.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.0...@spryker/button@0.3.1-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/button
+
+
+
+
+
+## [0.3.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/button@0.2.7-next.2...@spryker/button@0.3.1-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **button:** update peerDependencies on styles lib ([db56003](https://github.com/spryker/zed-gui/commit/db560039f880ced36356d73d0ebf317d0ff6aada))
+* **button:** update style variables ([ae6eb9c](https://github.com/spryker/zed-gui/commit/ae6eb9cc920bc3fb73268eeef84a1c3a0aa4e00c))
+* **button:** updated `button-core` styles by removing unused transform none ([70961c8](https://github.com/spryker/zed-gui/commit/70961c8fc01b1c5b193bb097a08d35d1b67f0d3a))
+* **button:** updated `spryker/styles` dependency ([fac8ee4](https://github.com/spryker/zed-gui/commit/fac8ee4f5fa70e19d07739c6203e400054484f46))
+
+
+### Features
+
+* **button:** provided outline and critical-outline states and updated secondary state ([29886a7](https://github.com/spryker/zed-gui/commit/29886a76890bd05b329765ae47c8413083465718))
+
+
+
+
+
 # [0.3.0](https://github.com/spryker/ui-components/compare/@spryker/button@0.3.0-next.2...@spryker/button@0.3.0) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/button

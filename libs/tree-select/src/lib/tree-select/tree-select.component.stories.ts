@@ -35,7 +35,7 @@ export const primary = () => ({
       },
       { title: 'Option 2', value: 'Option 2' },
       { title: 'Option 3', value: 'Option 3' },
-      { title: 'Option 4', value: 'Option 4' },
+      { title: 'Option 4', isDisabled: true, value: 'Option 4' },
       { title: 'Option 5', value: 'Option 5' },
       { title: 'Option 6', value: 'Option 6' },
     ],

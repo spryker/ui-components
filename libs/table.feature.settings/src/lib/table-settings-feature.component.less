@@ -12,7 +12,7 @@
   }
 
   &__title {
-    background: @white;
+    background: @spy-white;
     padding: @table-settings-feature-header-footer-padding;
     font: @font-default;
     color: @ink;
@@ -22,7 +22,7 @@
   }
 
   &__footer {
-    background: @white;
+    background: @spy-white;
     padding: @table-settings-feature-header-footer-padding;
     text-align: right;
     box-shadow: @table-settings-feature-footer-shadow;
@@ -32,9 +32,9 @@
 
   &__item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding: @table-settings-feature-item-padding;
-    background: @white;
+    background: @spy-white;
     cursor: pointer;
 
     &.cdk-drag-disabled {
@@ -59,7 +59,6 @@
   }
 
   &__item-name {
-    padding-top: @table-settings-feature-item-name-top-padding;
     flex-grow: 1;
     margin: 0 @table-settings-feature-item-name-side-margin;
     color: @ink;

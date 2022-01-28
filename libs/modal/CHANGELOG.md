@@ -95,6 +95,59 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.1.0](https://github.com/spryker/ui-components/compare/@spryker/modal@0.1.0-next.1...@spryker/modal@0.1.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/modal
+
+
+
+
+
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/modal@0.1.0-next.0...@spryker/modal@0.1.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/modal@0.0.12-next.1...@spryker/modal@0.1.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* introduced `box-shadow` variables ([18814bc](https://github.com/spryker/ui-components/commit/18814bc82e3278a2fc41866504b6faa74f18565f))
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **modal:** introduced css variables ([e03be41](https://github.com/spryker/ui-components/commit/e03be41fd2dbd7fdbbbb1a2bcbd3b36fb25b286c))
+
+
+
+
+
+## [0.0.12-next.1](https://github.com/spryker/ui-components/compare/@spryker/modal@0.0.11...@spryker/modal@0.0.12-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/modal
+
+
+
+
+
+## [0.0.12-next.0](https://github.com/spryker/zed-gui/compare/@spryker/modal@0.0.10-next.1...@spryker/modal@0.0.12-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/modal
+
+
+
+
+
 ## [0.0.11](https://github.com/spryker/ui-components/compare/@spryker/modal@0.0.11-next.1...@spryker/modal@0.0.11) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/modal

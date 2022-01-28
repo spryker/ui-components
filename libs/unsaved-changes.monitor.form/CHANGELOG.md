@@ -62,6 +62,41 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.1.9](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.monitor.form@0.1.9-next.2...@spryker/unsaved-changes.monitor.form@0.1.9) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/unsaved-changes.monitor.form
+
+
+
+
+
+## [0.1.9-next.2](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.monitor.form@0.1.9-next.1...@spryker/unsaved-changes.monitor.form@0.1.9-next.2) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+## [0.1.9-next.1](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.monitor.form@0.1.8...@spryker/unsaved-changes.monitor.form@0.1.9-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/unsaved-changes.monitor.form
+
+
+
+
+
+## [0.1.9-next.0](https://github.com/spryker/zed-gui/compare/@spryker/unsaved-changes.monitor.form@0.1.7-next.1...@spryker/unsaved-changes.monitor.form@0.1.9-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/unsaved-changes.monitor.form
+
+
+
+
+
 ## [0.1.8](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.monitor.form@0.1.8-next.1...@spryker/unsaved-changes.monitor.form@0.1.8) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/unsaved-changes.monitor.form

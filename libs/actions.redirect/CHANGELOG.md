@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/spryker/ui-components/compare/@spryker/actions.redirect@0.1.10-next.2...@spryker/actions.redirect@0.1.10) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/actions.redirect
+
+
+
+
+
 ## [0.1.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/actions.redirect@0.1.10-next.1...@spryker/actions.redirect@0.1.10-next.2) (2022-01-28)
 
 

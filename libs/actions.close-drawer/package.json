@@ -1,6 +1,6 @@
 {
   "name": "@spryker/actions.close-drawer",
-  "version": "0.1.10-next.2",
+  "version": "0.1.10",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",

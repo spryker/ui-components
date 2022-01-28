@@ -1,6 +1,6 @@
 {
   "name": "@spryker/web-components",
-  "version": "0.2.11-next.2",
+  "version": "0.2.11",
   "peerDependencies": {
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.1.12",

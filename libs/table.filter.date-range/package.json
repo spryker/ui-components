@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table.filter.date-range",
-  "version": "0.2.0-rc.0",
+  "version": "0.2.0-rc.1",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",

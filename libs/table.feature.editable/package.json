@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table.feature.editable",
-  "version": "0.3.0-rc.0",
+  "version": "0.3.0-rc.1",
   "peerDependencies": {
     "@angular/cdk": ">=9.2.3",
     "@angular/common": ">=9.1.12",

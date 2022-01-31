@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.2.0...@spryker/table.feature.editable@0.3.0-rc.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* apply z-index variable ([8fff27b](https://github.com/spryker/ui-components/commit/8fff27b59830d568adf73515a75eb54800fd91b0))
+* **datasource.inline.table:** removed module declaration && added `data-transformer` declarations to the module ([90605a1](https://github.com/spryker/ui-components/commit/90605a1f38c154361571099155ed6a9d7bba1e7d))
+* disabled `ivy` compilation mode ([b73c8cd](https://github.com/spryker/ui-components/commit/b73c8cd6990e72e74b9f5c1a5ee0a76ba740c109))
+* **drawer:** added `drawer-container-proxy.component` export ([b945481](https://github.com/spryker/ui-components/commit/b945481c530944747fd7ca4d86bf6b4310504aa9))
+* fix libs peerDependencies on angular ([44bd351](https://github.com/spryker/ui-components/commit/44bd35192446358fa03f6523a04725763248e7fb))
+* fix peerDependencies ([0bc63f2](https://github.com/spryker/ui-components/commit/0bc63f2ad0c56a86bd0966aff2da588070e0bda8))
+* fix peerDependency to @angular/cdk ([2053092](https://github.com/spryker/ui-components/commit/2053092082084ed50f21ba9697db776b0fe86e40))
+* fixed `jest-preset-angular` package deprecations ([7ae4dfa](https://github.com/spryker/ui-components/commit/7ae4dfa3e60b243490e2ccc50db4f2ffee0b8ab9))
+* **table.feature.editable:** fixed console error ([0eeeaa6](https://github.com/spryker/ui-components/commit/0eeeaa6247b3e6ebfc7ea71b7a3af7be438876bf))
+* **table.feature.editable:** fixed console error ([6f36d38](https://github.com/spryker/ui-components/commit/6f36d3893450f6252427511d2f47e0ce5c1a2875))
+* **table.feature.editable:** removed module declaration ([cafa596](https://github.com/spryker/ui-components/commit/cafa596129c61abf2c729e07a3560f82e7c810a1))
+
+
+### Features
+
+* migrated libraries from `tslint` to `eslint` ([b14f937](https://github.com/spryker/ui-components/commit/b14f937bfd7803341e6626dd491484aa4d9b1344))
+* migrated storybook to the latest version ([cac4528](https://github.com/spryker/ui-components/commit/cac45288f9644fc20c4cff6b4a658a74130fbe2e))
+* migrated to `nx` v13 ([6b67e50](https://github.com/spryker/ui-components/commit/6b67e504a2ff8e8a840f70e12aae056c31698b47))
+* updated peerDependencies ([9c034d5](https://github.com/spryker/ui-components/commit/9c034d5d972cbeb9fd90135dd901521b9877247e))
+
+
+
+
+
 # [0.2.0-rc.8](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.2.0-rc.7...@spryker/table.feature.editable@0.2.0-rc.8) (2022-01-21)
 
 

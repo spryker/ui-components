@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.5.0...@spryker/styles@0.6.0-rc.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* **datasource.inline.table:** removed module declaration && added `data-transformer` declarations to the module ([90605a1](https://github.com/spryker/ui-components/commit/90605a1f38c154361571099155ed6a9d7bba1e7d))
+* disabled `ivy` compilation mode ([b73c8cd](https://github.com/spryker/ui-components/commit/b73c8cd6990e72e74b9f5c1a5ee0a76ba740c109))
+* **drawer:** added `drawer-container-proxy.component` export ([b945481](https://github.com/spryker/ui-components/commit/b945481c530944747fd7ca4d86bf6b4310504aa9))
+* fix libs peerDependencies on angular ([44bd351](https://github.com/spryker/ui-components/commit/44bd35192446358fa03f6523a04725763248e7fb))
+* fixed `.transition-mixin()` usage ([87560c9](https://github.com/spryker/ui-components/commit/87560c9670a8c301c357b4706a5476cb3b4cca8a))
+* fixed `jest-preset-angular` package deprecations ([7ae4dfa](https://github.com/spryker/ui-components/commit/7ae4dfa3e60b243490e2ccc50db4f2ffee0b8ab9))
+* **style:** introduce [@spy-border-color-split](https://github.com/spy-border-color-split) and [@spy-disabled-color](https://github.com/spy-disabled-color) variables ([5f09454](https://github.com/spryker/ui-components/commit/5f094541f2416dbec5b04ac126325a13649bdefd))
+* **style:** introduce variables for z-index ([0efa6fb](https://github.com/spryker/ui-components/commit/0efa6fb581120de71a224b2de930a63d2f7df22b))
+* **styles:** adjusted transition mixin && adjusted `tabs` variables ([ccb1e17](https://github.com/spryker/ui-components/commit/ccb1e17239ce3bfb875a0159cdd492da403d3f68))
+* **styles:** fixed `select` variable value ([c415400](https://github.com/spryker/ui-components/commit/c415400244aaedd458cb75cdae44cc260a52dbc7))
+* updated conflicting components versions ([56e8c1b](https://github.com/spryker/ui-components/commit/56e8c1b3e35112233cf54cfc7bce81fd6ee35e33))
+
+
+### Features
+
+* migrated libraries from `tslint` to `eslint` ([b14f937](https://github.com/spryker/ui-components/commit/b14f937bfd7803341e6626dd491484aa4d9b1344))
+* migrated storybook to the latest version ([cac4528](https://github.com/spryker/ui-components/commit/cac45288f9644fc20c4cff6b4a658a74130fbe2e))
+* migrated to `nx` v13 ([6b67e50](https://github.com/spryker/ui-components/commit/6b67e504a2ff8e8a840f70e12aae056c31698b47))
+
+
+
+
+
 # [0.5.0-rc.6](https://github.com/spryker/ui-components/compare/@spryker/styles@0.5.0-rc.5...@spryker/styles@0.5.0-rc.6) (2022-01-20)
 
 

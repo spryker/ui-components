@@ -73,6 +73,57 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.4.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.4.0-next.1...@spryker/card@0.4.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/card
+
+
+
+
+
+# [0.4.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/card@0.4.0-next.0...@spryker/card@0.4.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.6-next.1...@spryker/card@0.4.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([1d93490](https://github.com/spryker/ui-components/commit/1d93490f88ae49fb0fbe142de298c0935abc2ae9))
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+
+
+
+
+
+## [0.3.6-next.1](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.5...@spryker/card@0.3.6-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/card
+
+
+
+
+
+## [0.3.6-next.0](https://github.com/spryker/zed-gui/compare/@spryker/card@0.3.4-next.1...@spryker/card@0.3.6-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/card
+
+
+
+
+
 ## [0.3.5](https://github.com/spryker/ui-components/compare/@spryker/card@0.3.5-next.1...@spryker/card@0.3.5) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/card

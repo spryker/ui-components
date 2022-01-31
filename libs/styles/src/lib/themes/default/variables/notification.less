@@ -8,12 +8,12 @@
 @notification-padding-y: 10px;
 @notification-padding-x: 14px;
 @notification-padding: @notification-padding-y @notification-padding-x;
-@notification-shadow: -2px 2px 20px @ink-effect;
+@notification-shadow: @box-shadow-3;
 @notification-with-description-padding-right: @notification-close-icon-right-position +
   5px;
-@notification-border-radius: 4px;
+@notification-border-radius: @border-radius-small;
 @notification-border-width: 6px;
-@notification-border: @notification-border-width solid transparent;
+@notification-border: @notification-border-width solid @transparent;
 @notification-block-margin-bottom: 30px;
 @notification-min-width: 470px;
 @notification-icon-wrapper-width: 38px;
@@ -23,3 +23,4 @@
 @notification-close-hover-color: @gray-darker;
 @notification-toast-top-right-right-position: 30px;
 @notification-toast-top-right-top-position: 85px;
+@notification-z-index: 0;

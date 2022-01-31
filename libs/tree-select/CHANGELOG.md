@@ -84,6 +84,78 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.2.0](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.2.0-next.2...@spryker/tree-select@0.2.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/tree-select
+
+
+
+
+
+# [0.2.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.2.0-next.1...@spryker/tree-select@0.2.0-next.2) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.2.0-next.0...@spryker/tree-select@0.2.0-next.1) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([1d93490](https://github.com/spryker/ui-components/commit/1d93490f88ae49fb0fbe142de298c0935abc2ae9))
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **tree-select:** introduced css variables ([60b1604](https://github.com/spryker/ui-components/commit/60b16048bf2bc1a0f1d78be5587bd99cf257541b))
+
+
+
+
+
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.10-next.1...@spryker/tree-select@0.2.0-next.0) (2021-11-23)
+
+
+### Bug Fixes
+
+* **tree-select:** adjusted styles/types ([9d95994](https://github.com/spryker/ui-components/commit/9d959946a2a572ddb6f81a3e3340b549daf132a8))
+* **tree-select:** fixed styles and template ([23bdb66](https://github.com/spryker/ui-components/commit/23bdb6647b85d669d97655b39be8d473424ac9c0))
+* **tree-select:** made variables values as CSS variables && updated peerDependencies ([a81b4ad](https://github.com/spryker/ui-components/commit/a81b4ad0d140fd354ef3a333e0cce2eca5f2dcd5))
+* **tree-select:** mapped `disabled` state for options ([76b14c8](https://github.com/spryker/ui-components/commit/76b14c892621916d255bdbcf0f528ac279ab928a))
+
+
+### Features
+
+* **tree-select:** added translation files ([8883a20](https://github.com/spryker/ui-components/commit/8883a208c19e172ba1f00ef3d22177825849fd95))
+
+
+
+
+
+## [0.1.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.9...@spryker/tree-select@0.1.10-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/tree-select
+
+
+
+
+
+## [0.1.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/tree-select@0.1.8-next.1...@spryker/tree-select@0.1.10-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/tree-select
+
+
+
+
+
 ## [0.1.9](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.1.9-next.1...@spryker/tree-select@0.1.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/tree-select

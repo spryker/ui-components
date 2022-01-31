@@ -92,6 +92,56 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.4.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.4.0-next.1...@spryker/sidebar@0.4.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/sidebar
+
+
+
+
+
+# [0.4.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.4.0-next.0...@spryker/sidebar@0.4.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.2-next.1...@spryker/sidebar@0.4.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **sidebar:** introduced css variables ([853915c](https://github.com/spryker/ui-components/commit/853915c971fd8f9fb7be92472c20f9801335fd84))
+
+
+
+
+
+## [0.3.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.1...@spryker/sidebar@0.3.2-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/sidebar
+
+
+
+
+
+## [0.3.2-next.0](https://github.com/spryker/zed-gui/compare/@spryker/sidebar@0.3.0-next.1...@spryker/sidebar@0.3.2-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **sidebar:** updated `spryker/styles` dependency ([d4e4412](https://github.com/spryker/zed-gui/commit/d4e441271cfb1d77f54f7ac313f3ea4eb7e8ce11))
+
+
+
+
+
 ## [0.3.1](https://github.com/spryker/ui-components/compare/@spryker/sidebar@0.3.1-next.1...@spryker/sidebar@0.3.1) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/sidebar

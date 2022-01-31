@@ -63,6 +63,44 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.1.10](https://github.com/spryker/ui-components/compare/@spryker/button.action@0.1.10-next.2...@spryker/button.action@0.1.10) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/button.action
+
+
+
+
+
+## [0.1.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/button.action@0.1.10-next.1...@spryker/button.action@0.1.10-next.2) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+## [0.1.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/button.action@0.1.9...@spryker/button.action@0.1.10-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/button.action
+
+
+
+
+
+## [0.1.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/button.action@0.1.8-next.1...@spryker/button.action@0.1.10-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **button.action:** updated `spryker/button` peerDependency ([e90081a](https://github.com/spryker/zed-gui/commit/e90081acffef2344a827be2f054f4f77cbc4064b))
+
+
+
+
+
 ## [0.1.9](https://github.com/spryker/ui-components/compare/@spryker/button.action@0.1.9-next.2...@spryker/button.action@0.1.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/button.action

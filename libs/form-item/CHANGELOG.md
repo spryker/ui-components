@@ -73,6 +73,74 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.3.0](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.3.0-next.2...@spryker/form-item@0.3.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/form-item
+
+
+
+
+
+# [0.3.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.3.0-next.1...@spryker/form-item@0.3.0-next.2) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.3.0-next.0...@spryker/form-item@0.3.0-next.1) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+
+
+
+
+
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.2.10-next.1...@spryker/form-item@0.3.0-next.0) (2021-11-23)
+
+
+### Bug Fixes
+
+* **form-item:** adjusted styles ([a1c051d](https://github.com/spryker/ui-components/commit/a1c051dd2e1d1c373550dc8b3c2836ff4d53c807))
+* **form-item:** fixed `label` styles ([1745e53](https://github.com/spryker/ui-components/commit/1745e53e1d768d3ffcc0cf383227170af3703047))
+
+
+### Features
+
+* **form-item:** added `error` styles && added new story && updated peerDependencies ([94d1c2a](https://github.com/spryker/ui-components/commit/94d1c2af10fcfafaeb0e848f3338988de633588e))
+
+
+
+
+
+## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.2.9...@spryker/form-item@0.2.10-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/form-item
+
+
+
+
+
+## [0.2.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/form-item@0.2.8-next.1...@spryker/form-item@0.2.10-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/form-item
+
+
+
+
+
 ## [0.2.9](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.2.9-next.1...@spryker/form-item@0.2.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/form-item

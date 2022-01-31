@@ -6,10 +6,10 @@
     "@angular/core": ">=9.1.12",
     "@spryker/data-transformer": "^0.2.0",
     "@spryker/datasource": "^0.2.0",
-    "@spryker/form-item": "^0.3.0",
-    "@spryker/select": "^0.3.0",
-    "@spryker/table": "^0.4.0",
-    "@spryker/table.feature.editable": "^0.2.0",
+    "@spryker/form-item": "^0.4.0",
+    "@spryker/select": "^0.4.0",
+    "@spryker/table": "^0.5.0",
+    "@spryker/table.feature.editable": "^0.3.0",
     "@spryker/utils": "^0.3.0"
   },
   "dependencies": {

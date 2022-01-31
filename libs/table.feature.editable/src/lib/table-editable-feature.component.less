@@ -18,10 +18,10 @@
       transform: translateY(-50%);
       left: 0;
       padding: @table-editable-feature-float-cell-padding;
-      background: @white;
+      background: @spy-white;
       box-shadow: @table-editable-feature-float-cell-shadow;
       border-radius: @table-editable-feature-float-border-radius;
-      z-index: 1;
+      z-index: @table-editable-feature-float-cell-z-index;
       cursor: auto;
     }
 
@@ -48,7 +48,7 @@
     display: inline-block;
     position: relative;
     padding: @table-editable-feature-wrapper-padding;
-    z-index: 0;
+    z-index: @table-editable-feature-wrapper-z-index;
     cursor: text;
 
     &::before {
@@ -59,8 +59,8 @@
       bottom: @table-editable-feature-wrapper-bg-y-indents;
       left: 0;
       right: 0;
-      background: transparent;
-      z-index: -1;
+      background: @transparent;
+      z-index: @table-editable-feature-wrapper-before-z-index;
       border-radius: @table-editable-feature-wrapper-border-radius;
     }
 

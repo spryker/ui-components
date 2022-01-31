@@ -73,6 +73,59 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.3.0](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.3.0-next.1...@spryker/toggle@0.3.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/toggle
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.3.0-next.0...@spryker/toggle@0.3.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.2.10-next.1...@spryker/toggle@0.3.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* introduced `box-shadow` variables ([18814bc](https://github.com/spryker/ui-components/commit/18814bc82e3278a2fc41866504b6faa74f18565f))
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **toggle:** introduced css variables ([6cc3b45](https://github.com/spryker/ui-components/commit/6cc3b45db103521b6bb42be5505bcccf9b4647da))
+
+
+
+
+
+## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.2.9...@spryker/toggle@0.2.10-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/toggle
+
+
+
+
+
+## [0.2.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/toggle@0.2.8-next.1...@spryker/toggle@0.2.10-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/toggle
+
+
+
+
+
 ## [0.2.9](https://github.com/spryker/ui-components/compare/@spryker/toggle@0.2.9-next.1...@spryker/toggle@0.2.9) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/toggle

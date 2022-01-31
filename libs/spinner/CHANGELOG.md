@@ -73,6 +73,53 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [0.2.0](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.2.0-next.1...@spryker/spinner@0.2.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/spinner
+
+
+
+
+
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.2.0-next.0...@spryker/spinner@0.2.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.5-next.1...@spryker/spinner@0.2.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **spinner:** introduced css variables ([a7b3354](https://github.com/spryker/ui-components/commit/a7b3354fb5b59c7ff0fc3b0b58f7e53abb617ccd))
+
+
+
+
+
+## [0.1.5-next.1](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.4...@spryker/spinner@0.1.5-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/spinner
+
+
+
+
+
+## [0.1.5-next.0](https://github.com/spryker/zed-gui/compare/@spryker/spinner@0.1.3-next.1...@spryker/spinner@0.1.5-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/spinner
+
+
+
+
+
 ## [0.1.4](https://github.com/spryker/ui-components/compare/@spryker/spinner@0.1.4-next.1...@spryker/spinner@0.1.4) (2021-11-09)
 
 **Note:** Version bump only for package @spryker/spinner

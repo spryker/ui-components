@@ -197,7 +197,7 @@
           flex-direction: column;
           justify-content: center;
           height: 100%;
-          z-index: 0;
+          z-index: @table-column-inner-z-index;
 
           .ie-styles-only-mixin({
             position: relative;
@@ -214,7 +214,7 @@
             background: @table-body-row-bg;
             border-top: @table-border-base;
             border-bottom: @table-border-base;
-            z-index: -1;
+            z-index: @table-after-z-index;
           }
 
           &--align-right {
@@ -267,7 +267,7 @@
             background: @table-body-row-bg;
             border-top: @table-border-base;
             border-bottom: @table-border-base;
-            z-index: -1;
+            z-index: @table-after-z-index;
           }
         }
 

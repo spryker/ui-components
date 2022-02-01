@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-beta.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.3...@spryker/styles@0.4.0-beta.4) (2022-02-01)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
 # [0.4.0-beta.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.2...@spryker/styles@0.4.0-beta.3) (2022-02-01)
 
 

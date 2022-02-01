@@ -46,6 +46,7 @@
 
   &__navigation-button {
     position: absolute;
+    padding: @carousel-navigation-button-padding;
     z-index: @carousel-navigation-button-z-index;
     top: @carousel-navigation-button-top;
     width: @carousel-navigation-button-width;
@@ -59,6 +60,42 @@
 
     &:hover {
       border: @carousel-navigation-button-hover-border;
+    }
+
+    &:active {
+      background-color: @green;
+      border-color: @transparent;
+
+      .@{carousel-prefix-cls}__navigation-button-icon {
+        color: @white;
+      }
+    }
+
+    &:disabled {
+      background-color: @gray-lighter;
+
+      .@{carousel-prefix-cls}__navigation-button-icon {
+        color: @gray;
+      }
+
+      &:hover {
+        border-color: @gray-light;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      border-color: @green;
+
+      &:before {
+        content: '';
+        position: absolute;
+        box-shadow: @btn-shadow-secondary-size @green;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
     }
 
     &--next {

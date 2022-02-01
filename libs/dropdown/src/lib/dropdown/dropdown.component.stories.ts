@@ -2,7 +2,7 @@ import { DropdownModule } from '../dropdown.module';
 import { DropdownComponent } from './dropdown.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconModule } from '@spryker/icon';
-import { IconCheckModule } from '@spryker/icon/icons';
+import { IconCheckModule, IconInfoModule } from '@spryker/icon/icons';
 
 export default {
   title: 'DropdownComponent',
@@ -15,6 +15,7 @@ export const primary = () => ({
       BrowserAnimationsModule,
       IconModule,
       IconCheckModule,
+      IconInfoModule,
     ],
   },
   template: `
@@ -25,10 +26,15 @@ export const primary = () => ({
       {
         action: 'action1',
         title:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam amet consectetur harum maxime optio porro quam ratione unde velit.',
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam amet consectetur harum maxime optio porro quam ratione unde velit',
         icon: IconCheckModule.icon,
       },
-      { action: 'action2', title: 'item2' },
+      {
+        action: 'action2',
+        title: 'One line item',
+        icon: IconInfoModule.icon,
+      },
+      { action: 'action3', title: 'Without icon' },
     ],
   },
 });

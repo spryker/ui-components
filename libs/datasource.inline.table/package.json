@@ -1,6 +1,6 @@
 {
   "name": "@spryker/datasource.inline.table",
-  "version": "0.2.0-rc.5",
+  "version": "0.2.0-rc.6",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",
@@ -17,7 +17,7 @@
     "@spryker/data-transformer.object-map": "^0.2.0",
     "@spryker/datasource": "^0.2.0",
     "@spryker/datasource.inline": "^0.2.0",
-    "@spryker/table": "^0.4.0",
+    "@spryker/table": "^0.5.0",
     "@spryker/utils": "^0.3.0"
   },
   "dependencies": {

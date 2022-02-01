@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.5.0...@spryker/styles@0.6.0-rc.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* **datasource.inline.table:** removed module declaration && added `data-transformer` declarations to the module ([90605a1](https://github.com/spryker/ui-components/commit/90605a1f38c154361571099155ed6a9d7bba1e7d))
+* disabled `ivy` compilation mode ([b73c8cd](https://github.com/spryker/ui-components/commit/b73c8cd6990e72e74b9f5c1a5ee0a76ba740c109))
+* **drawer:** added `drawer-container-proxy.component` export ([b945481](https://github.com/spryker/ui-components/commit/b945481c530944747fd7ca4d86bf6b4310504aa9))
+* fix libs peerDependencies on angular ([44bd351](https://github.com/spryker/ui-components/commit/44bd35192446358fa03f6523a04725763248e7fb))
+* fixed `.transition-mixin()` usage ([87560c9](https://github.com/spryker/ui-components/commit/87560c9670a8c301c357b4706a5476cb3b4cca8a))
+* fixed `jest-preset-angular` package deprecations ([7ae4dfa](https://github.com/spryker/ui-components/commit/7ae4dfa3e60b243490e2ccc50db4f2ffee0b8ab9))
+* **style:** introduce [@spy-border-color-split](https://github.com/spy-border-color-split) and [@spy-disabled-color](https://github.com/spy-disabled-color) variables ([5f09454](https://github.com/spryker/ui-components/commit/5f094541f2416dbec5b04ac126325a13649bdefd))
+* **style:** introduce variables for z-index ([0efa6fb](https://github.com/spryker/ui-components/commit/0efa6fb581120de71a224b2de930a63d2f7df22b))
+* **styles:** adjusted transition mixin && adjusted `tabs` variables ([ccb1e17](https://github.com/spryker/ui-components/commit/ccb1e17239ce3bfb875a0159cdd492da403d3f68))
+* **styles:** fixed `select` variable value ([c415400](https://github.com/spryker/ui-components/commit/c415400244aaedd458cb75cdae44cc260a52dbc7))
+* updated conflicting components versions ([56e8c1b](https://github.com/spryker/ui-components/commit/56e8c1b3e35112233cf54cfc7bce81fd6ee35e33))
+
+
+### Features
+
+* migrated libraries from `tslint` to `eslint` ([b14f937](https://github.com/spryker/ui-components/commit/b14f937bfd7803341e6626dd491484aa4d9b1344))
+* migrated storybook to the latest version ([cac4528](https://github.com/spryker/ui-components/commit/cac45288f9644fc20c4cff6b4a658a74130fbe2e))
+* migrated to `nx` v13 ([6b67e50](https://github.com/spryker/ui-components/commit/6b67e504a2ff8e8a840f70e12aae056c31698b47))
+
+
+
+
+
 # [0.5.0-rc.6](https://github.com/spryker/ui-components/compare/@spryker/styles@0.5.0-rc.5...@spryker/styles@0.5.0-rc.6) (2022-01-20)
 
 
@@ -96,6 +124,97 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
 * updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
+
+
+
+
+
+# [0.5.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.5.0-next.0...@spryker/styles@0.5.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.5.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.2-next.4...@spryker/styles@0.5.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* **styles:** replaced static `font-weight` with variable ([dc10669](https://github.com/spryker/ui-components/commit/dc106699b0647b77b3a5a761444d3628567397c5))
+* adjusted css variables usage ([1d93490](https://github.com/spryker/ui-components/commit/1d93490f88ae49fb0fbe142de298c0935abc2ae9))
+* adjusted css variables usage ([75edc24](https://github.com/spryker/ui-components/commit/75edc244ee7b725a666ec7a9dc3bf2ce3cdc1021))
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* introduced `border-radius` variables ([0ab637a](https://github.com/spryker/ui-components/commit/0ab637a6637fc7e2fbe29263013b39844cb83de9))
+* introduced `box-shadow` variables ([18814bc](https://github.com/spryker/ui-components/commit/18814bc82e3278a2fc41866504b6faa74f18565f))
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+
+
+
+
+
+## [0.4.2-next.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.2-next.3...@spryker/styles@0.4.2-next.4) (2021-11-23)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `input` component/variables ([daaebdf](https://github.com/spryker/ui-components/commit/daaebdfa058492144afba47ad9c0dff1e4518255))
+* **styles:** adjusted components and variables ([752a972](https://github.com/spryker/ui-components/commit/752a9724cb00ac3012d82839e5616eb40b2d91ff))
+
+
+
+
+
+## [0.4.2-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.2-next.2...@spryker/styles@0.4.2-next.3) (2021-11-15)
+
+
+### Bug Fixes
+
+* **styles:** updated `table-feature-filters` variable to update table-filters-feature-margin-bottom ([0ab2882](https://github.com/spryker/ui-components/commit/0ab28825a2f7140958d852eb589c444cd58e4dbe))
+* **styles:** updated `table` variable by adding [@table-features-after-table-padding-vertical](https://github.com/table-features-after-table-padding-vertical) ([95d76d7](https://github.com/spryker/ui-components/commit/95d76d71e9cf82e5b05d5d5855967393eb002da1))
+* **styles:** updated `table` variable by removing unneeded one & refactoring one ([edcf4cc](https://github.com/spryker/ui-components/commit/edcf4cc5e9d4973152c4d52ebb3df99ed9b562e4))
+* **styles:** updated `table` variable to decrease table-feature--before-table padding ([43c64b5](https://github.com/spryker/ui-components/commit/43c64b57be198717ab8258de1f3df1f6dd44659a))
+
+
+
+
+
+## [0.4.2-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.2-next.1...@spryker/styles@0.4.2-next.2) (2021-11-12)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `button` by removing variable ([aeb6ad3](https://github.com/spryker/ui-components/commit/aeb6ad3e8f47975707ccb63005178462ac2bff8d))
+* **styles:** adjusted `button` by updating variables ([0b16e17](https://github.com/spryker/ui-components/commit/0b16e17caeb33b6a62bbbebc7dfd2193e4bd5153))
+
+
+
+
+
+## [0.4.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.1...@spryker/styles@0.4.2-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+## [0.4.2-next.0](https://github.com/spryker/zed-gui/compare/@spryker/styles@0.4.0-next.1...@spryker/styles@0.4.2-next.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **style:** provided variables for outline and critical-outline ([bb76b53](https://github.com/spryker/zed-gui/commit/bb76b53368582251500452af5d934d480d9e2a97))
+* **styles:** adjusted `table` variables by removing unneeded one ([e58350c](https://github.com/spryker/zed-gui/commit/e58350c838581cdc18aba631954eee42afef2dc0))
+* **styles:** adjusted `table` variables by updating container-size & empty-icon-size & icon-margin-bottom variables ([b31b6d8](https://github.com/spryker/zed-gui/commit/b31b6d8f7d6dd2ddecf543986ce0f181992765b9))
+* **styles:** cleanup button variables ([9373c93](https://github.com/spryker/zed-gui/commit/9373c932c404ab371f04561c70e07fbd91df3546))
+* **styles:** updated `button` variables by removing unused one ([d665c2b](https://github.com/spryker/zed-gui/commit/d665c2b6168f4a9e94a2434c43cdb4cd771952f7))
+* **styles:** updated `table-feature-filters` variables by removing unused one ([7ea26d9](https://github.com/spryker/zed-gui/commit/7ea26d96f540edbc9025222fef9e360357a6a739))
 
 
 

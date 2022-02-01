@@ -4,7 +4,7 @@
   &__title-text {
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: @line-height-base;
+    line-height: @spy-line-height-base;
   }
 
   &__title-icon {
@@ -31,7 +31,7 @@
 
 .@{menu-prefix-cls} {
   font: @font-default;
-  background: transparent;
+  background: @transparent;
 
   > .@{menu-prefix-cls}-item,
   > .@{menu-prefix-cls}-submenu {
@@ -103,7 +103,7 @@
         color: @green-dark;
 
         .@{navigation-prefix-cls}__title-icon {
-          color: @primary-color;
+          color: @spy-primary-color;
         }
       }
     }
@@ -167,7 +167,7 @@
         bottom: @menu-item-decorator-bottom-spacing;
         left: @menu-item-decorator-left-spacing;
         width: @menu-item-decorator-width;
-        background: @primary-color;
+        background: @spy-primary-color;
         border-radius: @border-radius-base;
       }
     }
@@ -184,7 +184,7 @@
 
       .@{menu-prefix-cls}-item > a,
       .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
-        font-size: @font-size-sm;
+        font-size: @spy-font-size-sm;
         flex-direction: column;
 
         .@{menu-prefix-cls}-submenu-arrow {
@@ -214,7 +214,7 @@
     }
 
     .@{menu-prefix-cls}-sub {
-      background: @white;
+      background: @spy-white;
     }
 
     &.@{menu-prefix-cls}-submenu-placement-right {

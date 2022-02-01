@@ -23,7 +23,7 @@
       left: 0;
       width: 100%;
       height: @tabs-border-width;
-      background: transparent;
+      background: @transparent;
     }
 
     &:hover {
@@ -40,8 +40,8 @@
 
     &-icon {
       padding-right: @tabs-icon-padding-right;
-      font-size: @font-size-lg;
-      height: @font-size-lg;
+      font-size: @spy-font-size-lg;
+      height: @spy-font-size-lg;
     }
 
     &-warning {
@@ -100,7 +100,7 @@
           &-warning {
             &::after {
               background: @red;
-              z-index: 10;
+              z-index: @tabs-custom-tab-z-index;
             }
 
             &:hover {
@@ -114,7 +114,7 @@
 
     .@{tab-prefix-cls}-nav-more {
       .transition-mixin(background);
-      background: @white;
+      background: @spy-white;
       padding: @tabs-nav-more-padding;
       display: flex;
       align-items: center;
@@ -142,7 +142,7 @@
       }
 
       .@{tab-prefix-cls}-tab {
-        font-size: @font-size-sm;
+        font-size: @spy-font-size-sm;
         font-weight: @font-weight-default;
         letter-spacing: @letter-spacing-base;
         color: @ink;
@@ -161,7 +161,7 @@
         }
 
         &:hover {
-          background-color: @white;
+          background-color: @spy-white;
 
           .@{tab-prefix-cls}-custom-tab {
             color: @ink;

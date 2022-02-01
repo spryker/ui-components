@@ -1,12 +1,12 @@
 {
   "name": "@spryker/table.filter.select",
-  "version": "0.1.0-rc.5",
+  "version": "0.1.0-rc.6",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",
     "@spryker/locale": "^0.3.0",
-    "@spryker/select": "^0.3.0",
-    "@spryker/table.feature.filters": "^0.1.0"
+    "@spryker/select": "^0.4.0",
+    "@spryker/table.feature.filters": "^0.2.0"
   },
   "dependencies": {
     "tslib": "^2.3.1"

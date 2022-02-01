@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-beta.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.2...@spryker/styles@0.4.0-beta.3) (2022-02-01)
+
+
+### Bug Fixes
+
+* **carousel:** added styles to different states for navigation buttons ([b0c8036](https://github.com/spryker/ui-components/commit/b0c803674c2d6c0a33d9721006ff5143307baad6))
+* **dropdown:** extended storybook examples and fixed styles for icons in dropdown menu items ([70a6270](https://github.com/spryker/ui-components/commit/70a62707013404e5ecfa838b2ca6dcf603a857aa))
+
+
+
+
+
 # [0.4.0-beta.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.1...@spryker/styles@0.4.0-beta.2) (2021-10-26)
 
 

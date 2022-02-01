@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.3](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.2...@spryker/carousel@0.1.0-beta.3) (2022-02-01)
+
+
+### Bug Fixes
+
+* **carousel:** added styles to different states for navigation buttons ([b0c8036](https://github.com/spryker/ui-components/commit/b0c803674c2d6c0a33d9721006ff5143307baad6))
+
+
+
+
+
 # [0.1.0-beta.2](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.1...@spryker/carousel@0.1.0-beta.2) (2021-11-08)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8-beta.2](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.8-beta.1...@spryker/dropdown@0.2.8-beta.2) (2022-02-01)
+
+
+### Bug Fixes
+
+* **dropdown:** extended storybook examples and fixed styles for icons in dropdown menu items ([70a6270](https://github.com/spryker/ui-components/commit/70a62707013404e5ecfa838b2ca6dcf603a857aa))
+
+
+
+
+
 ## [0.2.8-beta.1](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.8-beta.0...@spryker/dropdown@0.2.8-beta.1) (2021-10-08)
 
 

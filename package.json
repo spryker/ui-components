@@ -107,7 +107,7 @@
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-node-resolve": "^7.1.3",
     "@rollup/plugin-typescript": "^4.1.1",
-    "@storybook/addon-docs": "^6.4.17",
+    "@storybook/addon-docs": "^6.0.12",
     "@storybook/addon-knobs": "^6.0.12",
     "@storybook/angular": "^6.0.12",
     "@storybook/semver": "^7.3.2",

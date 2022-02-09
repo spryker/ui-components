@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.6.0-rc.1...@spryker/styles@0.6.0-rc.2) (2022-02-09)
+
+
+### Bug Fixes
+
+* **styles:** fixed `grid` variables ([0ea0f73](https://github.com/spryker/ui-components/commit/0ea0f734124a09ab493db6df0dbc7c0dc59a5f05))
+
+
+
+
+
 # [0.6.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.5.0...@spryker/styles@0.6.0-rc.1) (2022-01-31)
 
 

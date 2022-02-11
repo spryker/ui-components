@@ -1,13 +1,58 @@
 import { Injectable, Injector } from '@angular/core';
-import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
-import { ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
-import { select } from '@storybook/addon-knobs';
 import { EMPTY, Observable } from 'rxjs';
+import { Meta } from '@storybook/angular';
+import { withDesign } from 'storybook-addon-designs';
+import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
+import {
+  ButtonShape,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '@spryker/button';
+
+import { ButtonActionComponent } from './button-action.component';
 import { ButtonActionModule } from '../button-action.module';
 
 export default {
   title: 'ButtonActionComponent',
-};
+  component: ButtonActionComponent,
+  decorators: [withDesign],
+  parameters: {
+    controls: {
+      include: ['variant', 'size', 'shape', 'type', 'attrs'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1989%3A9331',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    variant: {
+      control: { type: 'select' },
+      options: ButtonVariant,
+    },
+    size: {
+      control: { type: 'select' },
+      options: ButtonSize,
+    },
+    shape: {
+      control: { type: 'select' },
+      options: ButtonShape,
+    },
+    type: {
+      control: { type: 'select' },
+      options: ButtonType,
+    },
+  },
+  args: {
+    variant: ButtonVariant.Primary,
+    size: ButtonSize.Medium,
+    shape: ButtonShape.Default,
+    type: ButtonType.Button,
+    attrs: { name: 'custom-name' },
+  },
+} as Meta;
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +71,17 @@ class MockActionHandlerService implements ActionHandler {
   }
 }
 
-export const primary = () => ({
+export const primary = (args) => ({
+  props: {
+    ...args,
+    action: {
+      type: 'mock',
+      component: 'component',
+      options: {
+        url: '/html-request',
+      },
+    },
+  },
   moduleMetadata: {
     imports: [
       ButtonActionModule,
@@ -41,19 +96,9 @@ export const primary = () => ({
       [shape]="shape"
       [variant]="variant"
       [size]="size"
+      [type]="type"
+      [attrs]="attrs"
     >Show action config</spy-button-action>
     <div class="action"></div>
   `,
-  props: {
-    action: {
-      type: 'mock',
-      component: 'component',
-      options: {
-        url: '/html-request',
-      },
-    },
-    variant: select('Variant', ButtonVariant, ButtonVariant.Primary),
-    size: select('Size', ButtonSize, ButtonSize.Large),
-    shape: select('Shape', ButtonShape, ButtonShape.Default),
-  },
 });

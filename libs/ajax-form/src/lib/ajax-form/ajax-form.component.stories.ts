@@ -1,11 +1,17 @@
-import { AjaxFormModule } from '../ajax-form.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Meta } from '@storybook/angular';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule } from '@spryker/notification';
+import { AjaxFormModule } from '../ajax-form.module';
 
 export default {
   title: 'AjaxFormComponent',
-};
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+    },
+  },
+} as Meta;
 
 const mockHtmlTemplate = () => `
   name
@@ -31,7 +37,17 @@ function generateMockHtmlPage(): any {
   return { form: mockHtmlTemplate() };
 }
 
-export const primary = () => ({
+export const primary = (args) => ({
+  props: {
+    ...args,
+    action: '/html-request',
+    mockHttp: setMockHttp([
+      {
+        url: '/html-request',
+        dataFn: () => generateMockHtmlPage(),
+      },
+    ]),
+  },
   moduleMetadata: {
     imports: [
       AjaxFormModule,
@@ -41,13 +57,4 @@ export const primary = () => ({
     ],
   },
   template: `<spy-ajax-form [action]="action" [mockHttp]="mockHttp"></spy-ajax-form>`,
-  props: {
-    action: '/html-request',
-    mockHttp: setMockHttp([
-      {
-        url: '/html-request',
-        dataFn: () => generateMockHtmlPage(),
-      },
-    ]),
-  },
 });

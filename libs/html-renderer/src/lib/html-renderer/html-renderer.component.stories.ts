@@ -1,8 +1,8 @@
-import { StaticHtmlRendererModule } from '../static-html-renderer/static-html-renderer.module';
-import { UrlHtmlRendererModule } from '../url-html-renderer/url-html-renderer.module';
-import { IStory } from '@storybook/angular';
+import { Meta } from '@storybook/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { StaticHtmlRendererModule } from '../static-html-renderer/static-html-renderer.module';
+import { UrlHtmlRendererModule } from '../url-html-renderer/url-html-renderer.module';
 
 const mockHtmlTemplate = (template: string) => `
   <head>
@@ -40,28 +40,27 @@ function generateMockHtmlPage(template: string): { html: string } {
 
 export default {
   title: 'HtmlRendererComponent',
-};
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+  },
+} as Meta;
 
-export const withStaticHtml = (): IStory => ({
+export const withStaticHtml = (args) => ({
+  props: {
+    ...args,
+    html: mockHtmlTemplate('Static'),
+  },
   moduleMetadata: {
     imports: [StaticHtmlRendererModule],
   },
   template: `
     <spy-html-renderer [html]="html"></spy-html-renderer>
   `,
-  props: {
-    html: mockHtmlTemplate('Static'),
-  },
 });
 
-export const withUrlHtml = (): IStory => ({
-  moduleMetadata: {
-    imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
-  },
-  template: `
-    <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>
-  `,
+export const withUrlHtml = (args) => ({
   props: {
+    ...args,
     mockHttp: setMockHttp([
       {
         url: '/html-request',
@@ -69,4 +68,10 @@ export const withUrlHtml = (): IStory => ({
       },
     ]),
   },
+  moduleMetadata: {
+    imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
+  },
+  template: `
+    <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>
+  `,
 });

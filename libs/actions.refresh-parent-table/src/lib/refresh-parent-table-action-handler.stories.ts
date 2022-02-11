@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta } from '@storybook/angular';
 import { ActionsModule } from '@spryker/actions';
 import { DrawerActionHandlerService } from '@spryker/actions.drawer';
 import { ButtonActionModule } from '@spryker/button.action';
@@ -18,7 +19,12 @@ import { RefreshParentTableActionHandlerService } from './refresh-parent-table-a
 
 export default {
   title: 'RefreshParentTableActionHandlerService',
-};
+  parameters: {
+    controls: {
+      include: ['config'],
+    },
+  },
+} as Meta;
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
@@ -71,7 +77,8 @@ class SimpleComponent {
   };
 }
 
-export const primary = () => ({
+export const primary = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [
       BrowserAnimationsModule,
@@ -99,26 +106,34 @@ export const primary = () => ({
       <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
     </spy-table>
   `,
-  props: {
-    config: {
-      ...tableConfig,
-      rowActions: {
-        enabled: true,
-        actions: [
-          {
-            id: 'drawer',
-            title: 'Open Drawer',
-            type: 'drawer',
-            component: SimpleComponent,
-            options: {
-              inputs: {
-                test: 'input value from config',
-              },
+});
+primary.args = {
+  config: {
+    ...tableConfig,
+    rowActions: {
+      enabled: true,
+      actions: [
+        {
+          id: 'drawer',
+          title: 'Open Drawer',
+          type: 'drawer',
+          component: SimpleComponent,
+          options: {
+            inputs: {
+              test: 'input value from config',
             },
           },
-        ],
-        click: 'drawer',
-      },
+        },
+      ],
+      click: 'drawer',
     },
   },
-});
+};
+//ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+primary.argTypes = {
+  config: {
+    table: {
+      disable: true,
+    },
+  },
+};

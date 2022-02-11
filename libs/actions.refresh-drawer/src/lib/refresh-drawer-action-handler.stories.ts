@@ -7,14 +7,24 @@ import {
 import { ButtonModule } from '@spryker/button';
 import { ButtonActionModule } from '@spryker/button.action';
 import { ActionsModule } from '@spryker/actions';
-import { WebComponentsModule } from '@spryker/web-components';
-import { IStory } from '@storybook/angular';
-import { object } from '@storybook/addon-knobs';
+import { Meta } from '@storybook/angular';
+import { withDesign } from 'storybook-addon-designs';
 import { RefreshDrawerActionHandlerService } from './refresh-drawer-action-handler.service';
 
 export default {
   title: 'RefreshDrawerActionHandlerService',
-};
+  decorators: [withDesign],
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
+      allowFullscreen: true,
+    },
+  },
+} as Meta;
 
 @Component({
   selector: 'spy-story',
@@ -48,10 +58,15 @@ class SimpleDrawerComponent {
 })
 class DrawerContentComponent {}
 
-export const primary = (): IStory => ({
+export const primary = (args) => ({
+  props: {
+    ...args,
+    action: {
+      type: 'refresh-drawer',
+    },
+  },
   moduleMetadata: {
     imports: [
-      WebComponentsModule.forRoot(),
       DrawerModule,
       ButtonModule,
       ButtonActionModule,
@@ -65,9 +80,4 @@ export const primary = (): IStory => ({
   template: `
     <spy-story></spy-story>
   `,
-  props: {
-    action: object('action', {
-      type: 'refresh-drawer',
-    }),
-  },
 });

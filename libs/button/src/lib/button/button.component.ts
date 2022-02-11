@@ -37,6 +37,8 @@ export class ButtonComponent extends ButtonCore implements OnChanges {
   protected buttonClassName = 'spy-button';
 
   ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+
     if ('type' in changes) {
       this.type = changes.type.currentValue ?? ButtonType.Button;
     }

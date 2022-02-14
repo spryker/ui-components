@@ -1,12 +1,12 @@
 {
   "name": "@spryker/input.password",
-  "version": "0.1.10-next.1",
+  "version": "0.1.11-next.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/icon": "^0.2.0",
-    "@spryker/input": "^0.2.0",
-    "@spryker/utils": "^0.2.1"
+    "@spryker/icon": "^0.3.0",
+    "@spryker/input": "^0.3.0",
+    "@spryker/utils": "^0.2.11"
   },
   "dependencies": {
     "tslib": "^1.10.0"

@@ -1,11 +1,11 @@
 {
   "name": "@spryker/actions.refresh-drawer",
-  "version": "0.1.10-next.1",
+  "version": "0.1.11-next.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/actions": "^0.1.0",
-    "@spryker/drawer": "^0.2.0"
+    "@spryker/actions": "^0.1.10",
+    "@spryker/drawer": "^0.2.10"
   },
   "dependencies": {
     "tslib": "^1.10.0"

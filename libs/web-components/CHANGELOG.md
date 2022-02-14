@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.12-next.1](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.11...@spryker/web-components@0.2.12-next.1) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/web-components
+
+
+
+
+
+## [0.2.12-next.0](https://github.com/spryker/zed-gui/compare/@spryker/web-components@0.2.11...@spryker/web-components@0.2.12-next.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/web-components
+
+
+
+
+
+## [0.2.11](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.11-next.2...@spryker/web-components@0.2.11) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/web-components
+
+
+
+
+
+## [0.2.11-next.2](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.11-next.1...@spryker/web-components@0.2.11-next.2) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
 ## [0.2.11-next.1](https://github.com/spryker/ui-components/compare/@spryker/web-components@0.2.10...@spryker/web-components@0.2.11-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/web-components

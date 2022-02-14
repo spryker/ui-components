@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.1.0...@spryker/table.feature.settings@0.1.1-next.1) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+## [0.1.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.settings@0.1.0...@spryker/table.feature.settings@0.1.1-next.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+# [0.1.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.1.0-next.1...@spryker/table.feature.settings@0.1.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.1.0-next.0...@spryker/table.feature.settings@0.1.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
 # [0.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.13-next.1...@spryker/table.feature.settings@0.1.0-next.0) (2022-01-05)
 
 

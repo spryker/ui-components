@@ -29,7 +29,7 @@ describe('TableDatasourceInlineService', () => {
 
   it('resolve method should return value from DataTransformerService.transform', () => {
     const mockConfig = {
-      type: 'table.inline',
+      type: 'inline.table',
       data: [
         {
           col1: '2020-09-24T15:20:08+02:00',

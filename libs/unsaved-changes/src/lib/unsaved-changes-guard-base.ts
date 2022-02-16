@@ -44,18 +44,18 @@ export abstract class UnsavedChangesGuardBase
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
-  private interceptionComposer = this.injector.get(
-    InterceptionComposerService,
-    null,
-  );
-
-  protected parentGuard = this.interceptionComposer?.getService(
-    UnsavedChangesGuardToken,
-    true,
-  );
+  private interceptionComposer: InterceptionComposerService | null;
+  protected parentGuard?: UnsavedChangesGuardToken;
 
   constructor(protected injector: Injector) {
-    setTimeout(() => this.init(), 0);
+    this.interceptionComposer = this.injector.get(
+      InterceptionComposerService,
+      null,
+    );
+    this.parentGuard = this.interceptionComposer?.getService(
+      UnsavedChangesGuardToken,
+      true,
+    );
   }
 
   attachMonitor(monitor: UnsavedChangesMonitor): void {
@@ -79,9 +79,6 @@ export abstract class UnsavedChangesGuardBase
   resetMonitors(): void {
     this.monitors$.getValue().forEach((monitor) => monitor.reset());
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  init(): void {}
 
   dispose(): void {
     this.monitors$.getValue().clear();

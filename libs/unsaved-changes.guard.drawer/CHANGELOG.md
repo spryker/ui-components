@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.6](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.guard.drawer@0.2.0-rc.5...@spryker/unsaved-changes.guard.drawer@0.2.0-rc.6) (2022-02-16)
+
+
+### Bug Fixes
+
+* **unsaved-changes.guard.drawer:** moved initialization to the constructor ([4e0206d](https://github.com/spryker/ui-components/commit/4e0206d6b610bc5b0e479d0cd103bbb372a04b3b))
+
+
+
+
+
 # [0.2.0-rc.5](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.guard.drawer@0.1.10...@spryker/unsaved-changes.guard.drawer@0.2.0-rc.5) (2022-01-31)
 
 

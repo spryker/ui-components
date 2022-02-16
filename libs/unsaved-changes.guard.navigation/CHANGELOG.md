@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.6](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.guard.navigation@0.2.0-rc.5...@spryker/unsaved-changes.guard.navigation@0.2.0-rc.6) (2022-02-16)
+
+
+### Bug Fixes
+
+* **unsaved-changes.guard.navigation:** moved initialization to the constructor ([273a853](https://github.com/spryker/ui-components/commit/273a8537e7414ad8e011dd94acaa7c92328f1624))
+
+
+
+
+
 # [0.2.0-rc.5](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.guard.navigation@0.1.10...@spryker/unsaved-changes.guard.navigation@0.2.0-rc.5) (2022-01-31)
 
 

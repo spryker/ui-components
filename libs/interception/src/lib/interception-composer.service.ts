@@ -136,7 +136,7 @@ export class InterceptionComposerImplementation
         InterceptionComposerImplementation.NO_SERVICE as never,
       );
 
-      // TODO: if no services found, injector returns an empty object instead of throw an error
+      // HACK: if no services found, injector returns an empty object instead of throw an error
       if (service && Object.keys(service).length === 0) {
         return InterceptionComposerImplementation.NO_SERVICE;
       }

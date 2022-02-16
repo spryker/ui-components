@@ -8,7 +8,7 @@ export interface DatasourceRegistry {
 }
 
 // 'inline'
-// 'name.type' => 'table.inline'
+// 'name.type' => 'inline.table'
 export type DatasourceType = RegistryType<DatasourceRegistry>;
 
 export type DatasourceTypesDeclaration =

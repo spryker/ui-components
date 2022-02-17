@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { WebComponentsModule } from "../../../src";
+import { WebComponentsModule } from '../../../src';
 import { StorybookComponent } from './storybook.component';
 
 @NgModule({

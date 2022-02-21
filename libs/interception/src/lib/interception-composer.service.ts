@@ -131,10 +131,17 @@ export class InterceptionComposerImplementation
   ): any {
     // To avoid circular dependency
     try {
-      return this.injector.get(
+      const service = this.injector.get(
         token,
         InterceptionComposerImplementation.NO_SERVICE as never,
       );
+
+      // HACK: if no services found, injector returns an empty object instead of throw an error
+      if (service && Object.keys(service).length === 0) {
+        return InterceptionComposerImplementation.NO_SERVICE;
+      }
+
+      return service;
     } catch {
       return InterceptionComposerImplementation.NO_SERVICE;
     }

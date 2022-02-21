@@ -7,7 +7,6 @@ import { UnsavedChangesMonitor } from './unsaved-changes-monitor';
 export abstract class UnsavedChangesGuardToken implements UnsavedChangesGuard {
   abstract attachMonitor(monitor: UnsavedChangesMonitor): void;
   abstract detachMonitor(monitor: UnsavedChangesMonitor): void;
-  abstract init(): void;
   abstract dispose(): void;
   abstract resetMonitors(): void;
 }

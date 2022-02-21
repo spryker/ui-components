@@ -45,16 +45,18 @@ export class UnsavedChangesFormMonitorDirective
     UnsavedChangesMonitorStatus.Clean,
   );
 
-  private unsavedChangesGuard = this.interceptionComposerService?.getService(
-    UnsavedChangesGuardToken,
-  );
+  private unsavedChangesGuard?: UnsavedChangesGuardToken;
 
   constructor(
     private formRef: ElementRef<HTMLFormElement>,
     private renderer: Renderer2,
     @Optional()
     private interceptionComposerService?: InterceptionComposerService,
-  ) {}
+  ) {
+    this.unsavedChangesGuard = this.interceptionComposerService?.getService(
+      UnsavedChangesGuardToken,
+    );
+  }
 
   ngOnInit(): void {
     if (this.spyUnsavedChangesFormMonitor !== false) {

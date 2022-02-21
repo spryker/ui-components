@@ -31,7 +31,7 @@ export default {
   args: {
     config: {
       dataSource: {
-        type: 'table.inline',
+        type: 'inline.table',
         data: [
           {
             col1: 1,
@@ -170,7 +170,7 @@ export const withTable = (args) => ({
       MockHttpModule,
       TableModule.forRoot(),
       DatasourceModule.withDatasources({
-        'table.inline': TableDatasourceInlineService,
+        'inline.table': TableDatasourceInlineService,
       } as any),
       TableModule.withFeatures({
         pagination: () =>

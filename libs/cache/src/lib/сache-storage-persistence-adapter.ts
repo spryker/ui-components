@@ -18,7 +18,7 @@ interface ManifestData {
 /**
  * {@link CacheStorage} adapter for a {@link PersistenceStrategy}.
  */
-export class CacheStoragePersistanceAdapter implements CacheStorage {
+export class CacheStoragePersistenceAdapter implements CacheStorage {
   static ManifestId = 'Persistence_Strategies_Manifest';
   static DefaultNamespace = 'Default_Persistence_Strategies_Namespace';
   private manifest$: Observable<
@@ -29,7 +29,7 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
   constructor(persistenceStrategy: PersistenceStrategy) {
     this.persistenceStrategy = persistenceStrategy;
     this.manifest$ = this.persistenceStrategy.retrieve(
-      CacheStoragePersistanceAdapter.ManifestId,
+      CacheStoragePersistenceAdapter.ManifestId,
     );
   }
 
@@ -167,7 +167,7 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
     namespace?: string,
   ): ManifestData {
     const strategyNamespace =
-      namespace ?? CacheStoragePersistanceAdapter.DefaultNamespace;
+      namespace ?? CacheStoragePersistenceAdapter.DefaultNamespace;
     const name = this.getCacheName(strategyNamespace, id.serialize());
     const configs = manifest.get(strategyNamespace) ?? [];
 
@@ -178,7 +178,7 @@ export class CacheStoragePersistanceAdapter implements CacheStorage {
     manifest: Map<string, ManifestStrategyConfig[]>,
   ): Observable<void> {
     return this.persistenceStrategy.save(
-      CacheStoragePersistanceAdapter.ManifestId,
+      CacheStoragePersistenceAdapter.ManifestId,
       manifest,
     );
   }

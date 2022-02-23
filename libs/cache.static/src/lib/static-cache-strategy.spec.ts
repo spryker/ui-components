@@ -5,8 +5,9 @@ import { of, ReplaySubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { StaticCacheStrategy } from './static-cache-strategy';
+import { StaticCacheStrategyConfig } from './types';
 
-class MockCacheStoragePersistanceAdapter {
+class MockCacheStoragePersistenceAdapter {
   items = new Map();
 
   has = jest.fn().mockImplementation((id: CacheId) => {
@@ -42,7 +43,7 @@ class MockTimeDurationService {
   parse = jest.fn();
 }
 
-const mockConfig: any = {
+const mockConfig: StaticCacheStrategyConfig = {
   type: 'test',
   expiresIn: '2d',
 };
@@ -53,7 +54,7 @@ const mockId = {
 
 describe('StaticCacheStrategy', () => {
   let service: StaticCacheStrategy;
-  let cacheStoragePersistanceAdapter: MockCacheStoragePersistanceAdapter;
+  let cacheStoragePersistenceAdapter: MockCacheStoragePersistenceAdapter;
   let timeDurationService: MockTimeDurationService;
   let cacheStorageFactoryService: MockCacheStorageFactoryService;
   let timeDuration: MockTimeDuration;
@@ -77,11 +78,11 @@ describe('StaticCacheStrategy', () => {
     service = TestBed.inject(StaticCacheStrategy);
     timeDurationService = TestBed.inject(MockTimeDurationService);
     cacheStorageFactoryService = TestBed.inject(MockCacheStorageFactoryService);
-    cacheStoragePersistanceAdapter = new MockCacheStoragePersistanceAdapter();
+    cacheStoragePersistenceAdapter = new MockCacheStoragePersistenceAdapter();
     timeDuration = new MockTimeDuration();
 
     cacheStorageFactoryService.create.mockReturnValue(
-      cacheStoragePersistanceAdapter,
+      cacheStoragePersistenceAdapter,
     );
     timeDurationService.parse.mockReturnValue(timeDuration);
   });
@@ -98,7 +99,7 @@ describe('StaticCacheStrategy', () => {
 
     getCachedObservable$.subscribe(callback);
 
-    const entry = cacheStoragePersistanceAdapter.items.get(mockId.serialize());
+    const entry = cacheStoragePersistenceAdapter.items.get(mockId.serialize());
 
     expect(callback).toHaveBeenCalledWith(mockValue);
     expect(entry.value).toBe(mockValue);
@@ -129,11 +130,11 @@ describe('StaticCacheStrategy', () => {
     triggerGetCached$.next(mockValue);
     getCachedObservable$.subscribe(callback);
 
-    const entry = cacheStoragePersistanceAdapter.items.get(mockId.serialize());
+    const entry = cacheStoragePersistenceAdapter.items.get(mockId.serialize());
 
     triggerGetCached$.next(mockValue);
 
-    const cachedEntry = cacheStoragePersistanceAdapter.items.get(
+    const cachedEntry = cacheStoragePersistenceAdapter.items.get(
       mockId.serialize(),
     );
 
@@ -166,12 +167,12 @@ describe('StaticCacheStrategy', () => {
     triggerGetCached$.next(mockValue);
     getCachedObservable$.subscribe(callback);
 
-    const entry = cacheStoragePersistanceAdapter.items.get(mockId.serialize());
+    const entry = cacheStoragePersistenceAdapter.items.get(mockId.serialize());
 
     tick(500);
     triggerGetCached$.next(newMockValue);
 
-    const cachedEntry = cacheStoragePersistanceAdapter.items.get(
+    const cachedEntry = cacheStoragePersistenceAdapter.items.get(
       mockId.serialize(),
     );
 

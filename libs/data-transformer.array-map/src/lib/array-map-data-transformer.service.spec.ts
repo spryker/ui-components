@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { DataTransformerService } from '@spryker/data-transformer';
+import { of } from 'rxjs';
 
 import { ArrayMapDataTransformerService } from './array-map-data-transformer.service';
-import { of } from 'rxjs';
+import { ArrayMapDataTransformerConfig } from './types';
 
 const mockReturnedValue = 'mockReturnValue';
 
@@ -30,12 +31,12 @@ describe('ArrayMapDataTransformerService', () => {
   });
 
   it('transform method should map array and return transformed array with transformed value by config prop', () => {
-    const mockConfig = {
+    const mockConfig: ArrayMapDataTransformerConfig = {
       type: 'type',
       mapItems: {
         type: 'type',
       },
-    } as any;
+    };
     const mockData = ['data', 'newdata', '1data'];
     const mockReturnedData = mockData.map(() => mockReturnedValue);
     const callback = jest.fn();

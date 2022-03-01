@@ -19,10 +19,10 @@ export class PaginationComponent {
   @Input() total = 0;
   @Input() page = 1;
   @Input() pageSize = 10;
-  @Input() @ToBoolean() hideOnSinglePage: boolean | string = false;
+  @Input() @ToBoolean() hideOnSinglePage = false;
   @Input() pageSizeOptions = [10, 20, 50];
   @Input() placeholder = '';
-  @Input() @ToBoolean() disableClear: boolean | string = false;
+  @Input() @ToBoolean() disableClear = false;
   @Output() pageChange = new EventEmitter<number>();
-  @Output() pageSizeChange = new EventEmitter<any>();
+  @Output() pageSizeChange = new EventEmitter<number>();
 }

@@ -19,17 +19,15 @@
       <ng-container *ngIf="mockRowData$ | async as mockRowData">
         <spy-button
           class="spy-table-editable-feature__create-row"
-          [size]="$any(addButton).size"
-          [variant]="$any(addButton).variant"
-          [shape]="$any(addButton).shape"
-          [type]="$any(addButton).type"
+          [size]="addButton.size"
+          [variant]="addButton.variant"
+          [shape]="addButton.shape"
+          [type]="addButton.type"
           (click)="addRow(mockRowData)"
         >
           <spy-icon [name]="addButton.icon || addRowIcon" icon></spy-icon>
-          <ng-container
-            *ngIf="$any(addButton).title; else defaultAddButtonText"
-          >
-            {{ $any(addButton).title }}
+          <ng-container *ngIf="addButton.title; else defaultAddButtonText">
+            {{ addButton.title }}
           </ng-container>
 
           <ng-template #defaultAddButtonText>
@@ -95,13 +93,12 @@
                   <spy-table-column-renderer
                     [context]="{ isCreateMode: true }"
                     [config]="
-                      getEditColumn
-                        | spyInvoke: column:editColumns:i:$any(rowErrors)
+                      getEditColumn | spyInvoke: column:editColumns:i:rowErrors
                     "
                     [data]="row"
                     [i]="i"
                     [j]="j"
-                    (spy-table-editable)="updateRows($any($event), i)"
+                    (spy-table-editable)="updateRows($event, i)"
                   ></spy-table-column-renderer>
                 </ng-container>
 
@@ -131,11 +128,11 @@
 
                   <ng-container
                     *ngIf="
-                      $any(createConfig?.cancelButton)?.title;
+                      createConfig?.cancelButton?.title;
                       else defaultCancelButtonText
                     "
                   >
-                    {{ $any(createConfig?.cancelButton)?.title }}
+                    {{ createConfig?.cancelButton?.title }}
                   </ng-container>
 
                   <ng-template #defaultCancelButtonText>
@@ -272,7 +269,7 @@
         [data]="editableRowData | spyInvoke: row:config.id"
         [i]="i"
         [j]="j"
-        (spy-table-editable)="onEditUpdated($any($event), i, config.id)"
+        (spy-table-editable)="onEditUpdated($event, i, config.id)"
       ></spy-table-column-renderer>
     </div>
 

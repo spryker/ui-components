@@ -1,16 +1,16 @@
 {
   "name": "@spryker/unsaved-changes.guard.drawer",
-  "version": "0.1.10",
+  "version": "0.2.0-rc.7",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/drawer": "^0.2.10",
-    "@spryker/interception": "^0.1.10",
-    "@spryker/modal": "^0.1.0",
-    "@spryker/unsaved-changes": "^0.1.10"
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
+    "@spryker/drawer": "^0.3.0",
+    "@spryker/interception": "^0.2.0",
+    "@spryker/modal": "^0.2.0",
+    "@spryker/unsaved-changes": "^0.2.0"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

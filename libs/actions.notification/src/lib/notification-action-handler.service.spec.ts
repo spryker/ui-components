@@ -61,6 +61,7 @@ describe('NotificationActionHandlerService', () => {
           useExisting: MockContextService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(NotificationActionHandlerService);

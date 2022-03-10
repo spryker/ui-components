@@ -41,7 +41,7 @@ class TestActionHandlerService implements ActionHandler<unknown, void> {
     config: { random: string } & ActionConfig,
     context: unknown,
   ): Observable<void> {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.getElementById('test-id')!.innerHTML = `${config.random}`;
 
     return of(void 0);
@@ -57,7 +57,7 @@ class SecondTestActionHandlerService implements ActionHandler<unknown, void> {
     config: { random: string } & ActionConfig,
     context: unknown,
   ): Observable<void> {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.getElementById('second-test-id')!.innerHTML = `${config.random}`;
 
     return of(void 0);

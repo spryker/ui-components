@@ -6,7 +6,7 @@ import { buttonClassName } from '../button-core/button-core';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonLinkComponent } from './button-link.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('ButtonLinkComponent', () => {
   const buttonLinkCls = 'spy-button-link';
@@ -19,7 +19,12 @@ describe('ButtonLinkComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   it('should render <a>', async () => {
     const host = await createComponent();

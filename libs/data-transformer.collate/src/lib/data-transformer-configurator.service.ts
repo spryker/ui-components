@@ -14,7 +14,7 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class DataTransformerConfiguratorService {
-  private dataConfigurators: DataTransformerConfiguratorDeclaration =
+  private dataConfigurators: Partial<DataTransformerConfiguratorDeclaration> =
     this.dataConfiguratorsTypes?.reduce(
       (dataConfigurators, dataConfigurator) => ({
         ...dataConfigurators,
@@ -37,7 +37,9 @@ export class DataTransformerConfiguratorService {
   ): Observable<DataTransformerConfiguratorConfigT> {
     if (!this.isDataConfiguratorRegisteredType(config.type)) {
       throw Error(
-        `DataTransformerConfiguratorService: Unknown data configurator type ${config.type}`,
+        `DataTransformerConfiguratorService: Unknown data configurator type ${String(
+          config.type,
+        )}`,
       );
     }
 

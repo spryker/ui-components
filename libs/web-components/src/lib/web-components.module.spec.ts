@@ -5,6 +5,7 @@ describe('WebComponentsModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [WebComponentsModule],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

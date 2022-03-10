@@ -20,7 +20,10 @@ import {
   TableDataMockGenerator,
 } from '../../../../table/testing/src';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
-import { TableColumnListComponent } from '../table-column-list/table-column-list.component';
+import {
+  TableColumnListComponent,
+  TableColumnListConfig,
+} from '../table-column-list/table-column-list.component';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableModule } from '../table.module';
 import {
@@ -45,7 +48,7 @@ const tableConfig: TableConfig = {
   dataSource: {
     type: 'mock-data',
     dataGenerator: tableDataGenerator,
-  } as MockTableDatasourceConfig,
+  } as unknown as MockTableDatasourceConfig,
   columns: [
     { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
     { id: 'col2', sortable: true, title: 'Column #2', width: '20%' },
@@ -94,9 +97,16 @@ class TableColumnTestConfig {
 })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent
-  implements TableColumnComponent<TableColumnTestConfig> {
+  implements TableColumnComponent<TableColumnTestConfig>
+{
   @Input() config?: TableColumnTestConfig;
   @Input() context?: TableColumnContext;
+}
+
+declare module '../table/table' {
+  interface TableColumnTypeRegistry {
+    list: TableColumnListConfig;
+  }
 }
 
 @NgModule({
@@ -110,7 +120,7 @@ class TableColumnTestComponent
     } as any),
     DatasourceModule.withDatasources({
       'mock-data': MockTableDatasourceService,
-    }),
+    } as any),
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
     EnLocaleModule,
     BrowserAnimationsModule,
@@ -118,11 +128,6 @@ class TableColumnTestComponent
   ],
   exports: [TableModule, MockHttpModule],
   declarations: [TableColumnTestComponent],
-  entryComponents: [
-    LayoutFlatHostComponent,
-    TableColumnTestComponent,
-    TableColumnListComponent,
-  ],
 })
 class StoryModule {}
 

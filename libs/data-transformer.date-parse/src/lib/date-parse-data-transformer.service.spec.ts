@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
+import { DateService } from '@spryker/utils/date';
 
 import { DateParseDataTransformerService } from './date-parse-data-transformer.service';
-import { DateService } from '@spryker/utils/date';
+import { DateParseDataTransformerConfig } from './types';
 
 class MockDateService {
   parse = jest.fn();
@@ -20,13 +21,14 @@ describe('DateParseDataTransformerService', () => {
           useExisting: MockDateService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(DateParseDataTransformerService);
     dateService = TestBed.inject(MockDateService);
   });
 
   it('transform method should returns the date number of milliseconds', () => {
-    const mockConfig = {
+    const mockConfig: DateParseDataTransformerConfig = {
       type: 'type',
     };
     const mockData = '2021-02-15T10:57:07.086Z';

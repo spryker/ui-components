@@ -14,7 +14,8 @@ import {
 })
 export class PluckDataTransformerService
   implements
-    DataTransformer<PluckDataTransformerData, PluckDataTransformerDataT> {
+    DataTransformer<PluckDataTransformerData, PluckDataTransformerDataT>
+{
   constructor(private contextService: ContextService) {}
 
   transform(

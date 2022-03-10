@@ -44,7 +44,7 @@ export class SidebarComponent implements OnChanges, OnInit {
   );
   initialState$ = this.persistenceKey$.pipe(
     switchMap((persistenceKey) => {
-      return this.persistenceService.retrieve(persistenceKey);
+      return this.persistenceService.retrieve<boolean>(persistenceKey);
     }),
     tap(() => {
       this.isCollapsedStateRetrieved = true;
@@ -66,15 +66,17 @@ export class SidebarComponent implements OnChanges, OnInit {
   constructor(private persistenceService: PersistenceService) {}
 
   ngOnInit(): void {
-    this.spyId$.next(this.spyId);
+    if (this.spyId) {
+      this.spyId$.next(this.spyId);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if ('collapsed' in changes) {
+    if (changes.collapsed) {
       this.setCollapsedState$.next(this.collapsed);
     }
 
-    if ('spyId' in changes && !changes.spyId.firstChange) {
+    if (changes.spyId && this.spyId && !changes.spyId.firstChange) {
       this.spyId$.next(this.spyId);
     }
   }

@@ -24,6 +24,7 @@ describe('DataTransformerConfiguratorService', () => {
         }),
       ],
       providers: [MockDataTransformerConfigurator],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(DataTransformerConfiguratorService);

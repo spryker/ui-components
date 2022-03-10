@@ -36,7 +36,7 @@ class TestComponent {
     this.datasourceData = this.datasourceService.resolve(this.injector, {
       type: 'inline',
       data: this.datasourceDataProp,
-    });
+    } as any);
   }
 }
 
@@ -45,7 +45,7 @@ export const primary = (): IStory => ({
     imports: [
       DatasourceModule.withDatasources({
         inline: DatasourceInlineService,
-      }),
+      } as any),
     ],
     declarations: [TestComponent],
   },

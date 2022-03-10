@@ -100,7 +100,8 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () =>
   },
 })
 export class CoreTableComponent
-  implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy {
+  implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy
+{
   static Count = 0;
 
   @Input() @ToJson() config?: TableConfig;
@@ -113,13 +114,11 @@ export class CoreTableComponent
    */
   @Input() events: TableEvents = {};
 
-  @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<
-    TableColumnContext
-  >;
+  @ViewChild('cellTpl', { static: true })
+  cellTpl!: TemplateRef<TableColumnContext>;
 
-  @ViewChild('headerTpl', { static: true }) headerTpl!: TemplateRef<
-    TableHeaderContext
-  >;
+  @ViewChild('headerTpl', { static: true })
+  headerTpl!: TemplateRef<TableHeaderContext>;
   @ViewChild('tableElementRef', { read: ElementRef })
   tableElementRef!: ElementRef<HTMLElement>;
 
@@ -139,7 +138,7 @@ export class CoreTableComponent
   featureDirectives?: QueryList<TableFeatureDirective>;
 
   featureLocation = TableFeatureLocation;
-  featureComponentType = TableFeatureComponent;
+  featureComponentType = TableFeatureComponent as Type<TableFeatureComponent>;
 
   private setConfig$ = new ReplaySubject<TableConfig>(1);
   config$ = this.setConfig$.pipe(shareReplaySafe());
@@ -173,8 +172,8 @@ export class CoreTableComponent
   tableData$ = this.data$.pipe(pluck('data'));
   sortingData$ = this.dataConfiguratorService.config$.pipe(
     map((config) => {
-      const sortBy = config.sortBy;
-      let direction = config.sortDirection;
+      const sortBy = String(config.sortBy);
+      let direction = String(config.sortDirection);
 
       if (sortBy && direction) {
         direction = direction === 'asc' ? 'ascend' : 'descend';
@@ -227,12 +226,13 @@ export class CoreTableComponent
 
   private featuresLoaded$ = this.features$.pipe(delay(0), skip(1), take(1));
 
-  featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
-    this.features$,
-    TableFeatureLocation.header,
-    () => this.headerTpl,
-    (config: TableColumn, i: number): TableHeaderContext => ({ config, i }),
-  );
+  featureHeaderContext$ =
+    this.tableFeaturesRendererService.chainFeatureContexts(
+      this.features$,
+      TableFeatureLocation.header,
+      () => this.headerTpl,
+      (config: TableColumn, i: number): TableHeaderContext => ({ config, i }),
+    );
 
   featureCellContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
     this.features$,
@@ -343,7 +343,7 @@ export class CoreTableComponent
   };
 
   // We rely here on order to have the handler ready
-  // tslint:disable-next-line: member-ordering
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   private tableEventBus = new TableEventBus(this.handleEvent);
 
   constructor(
@@ -383,7 +383,7 @@ export class CoreTableComponent
       this.setConfig$.next(this.config);
     }
 
-    if (changes.tableId) {
+    if (changes.tableId && this.tableId) {
       this.setTableId$.next(this.tableId);
     }
   }
@@ -397,7 +397,7 @@ export class CoreTableComponent
       .pipe(
         startWith(null),
         // featureDirectives were already checked above
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         map(() => this.featureDirectives!.map((feature) => feature.component)),
         takeUntil(this.destroyed$),
       )
@@ -456,10 +456,7 @@ export class CoreTableComponent
   }
 
   /** @internal */
-  updateSorting(event: {
-    key: string;
-    value: 'descend' | 'ascend' | null;
-  }): void {
+  updateSorting(event: { key: string; value: string | null }): void {
     if (this.isEmpty) {
       return;
     }
@@ -483,7 +480,7 @@ export class CoreTableComponent
   }
 
   private sortingValueTransformation(
-    value: 'descend' | 'ascend' | null,
+    value: string | null,
   ): SortingCriteria['sortDirection'] {
     if (value === 'descend') {
       return 'desc';

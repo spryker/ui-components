@@ -1,25 +1,645 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "sourceMap": true,
-    "declaration": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "noEmitHelpers": true,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "strict": true,
-    "target": "es2015",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2015", "es2019", "dom"],
-    "rootDir": ".",
-    "baseUrl": ".",
-    "paths": {
-      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
+  "files": [],
+  "references": [
+    {
+      "path": "./libs/actions/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/actions/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/actions.close-drawer/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/actions.close-drawer/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/actions.drawer/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/actions.drawer/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/actions.http/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/actions.http/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/actions.notification/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/actions.notification/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/actions.redirect/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/actions.redirect/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/actions.refresh-drawer/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/actions.refresh-drawer/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/actions.refresh-parent-table/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/actions.refresh-parent-table/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/actions.refresh-table/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/actions.refresh-table/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/ajax-action/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/ajax-action/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/ajax-form/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/ajax-form/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/autocomplete/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/autocomplete/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/button/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/button/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/button.action/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/button.action/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/button.icon/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/button.icon/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/cache/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/cache/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/cache.static/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/cache.static/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/card/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/card/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/checkbox/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/checkbox/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/chips/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/chips/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/collapsible/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/collapsible/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-serializer/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-serializer/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.array-map/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.array-map/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.chain/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.chain/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.collate/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.collate/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.configurator.table/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.configurator.table/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.date-parse/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.date-parse/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.date-serialize/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.date-serialize/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.filter.equals/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.filter.equals/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.filter.range/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.filter.range/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.filter.text/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.filter.text/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.lens/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.lens/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.object-map/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.object-map/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/data-transformer.pluck/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/data-transformer.pluck/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/datasource/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/datasource/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/datasource.http/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/datasource.http/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/datasource.inline/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/datasource.inline/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/datasource.inline.table/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/datasource.inline.table/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/date-picker/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/date-picker/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/drawer/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/drawer/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/dropdown/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/dropdown/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/form-item/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/form-item/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/grid/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/grid/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/header/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/header/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/headline/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/headline/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/html-renderer/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/html-renderer/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/icon/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/icon/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/input/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/input/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/input.password/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/input.password/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/interception/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/interception/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/internal-utils/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/internal-utils/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/label/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/label/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/layout/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/layout/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/link/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/link/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/locale/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/locale/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/logo/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/logo/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/modal/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/modal/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/navigation/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/navigation/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/notification/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/notification/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/pagination/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/pagination/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/persistence/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/persistence/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/popover/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/popover/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/radio/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/radio/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/select/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/select/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/sidebar/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/sidebar/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/spinner/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/spinner/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/styles/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/styles/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table-integration-internal/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table-integration-internal/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.column.autocomplete/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.column.autocomplete/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.column.chip/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.column.chip/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.column.date/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.column.date/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.column.dynamic/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.column.dynamic/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.column.image/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.column.image/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.column.input/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.column.input/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.column.select/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.column.select/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.column.text/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.column.text/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.batch-actions/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.batch-actions/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.editable/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.editable/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.filters/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.filters/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.pagination/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.pagination/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.row-actions/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.row-actions/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.search/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.search/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.selectable/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.selectable/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.settings/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.settings/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.sync-state/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.sync-state/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.title/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.title/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.feature.total/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.feature.total/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.filter.date-range/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.filter.date-range/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.filter.select/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.filter.select/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/table.filter.tree-select/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/table.filter.tree-select/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/tabs/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/tabs/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/textarea/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/textarea/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/toggle/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/toggle/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/tree-select/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/tree-select/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/unsaved-changes/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/unsaved-changes/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/unsaved-changes.guard.browser/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/unsaved-changes.guard.browser/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/unsaved-changes.guard.drawer/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/unsaved-changes.guard.drawer/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/unsaved-changes.guard.navigation/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/unsaved-changes.guard.navigation/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/unsaved-changes.monitor.form/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/unsaved-changes.monitor.form/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/user-menu/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/user-menu/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/utils/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/utils/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/utils.date.adapter.date-fns/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/utils.date.adapter.date-fns/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/web-components/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/web-components/tsconfig.spec.json"
     }
-  },
-  "exclude": ["node_modules", "tmp"]
+  ],
+  "angularCompilerOptions": {
+    "enableIvy": false,
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }

@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
@@ -61,6 +61,7 @@ describe('TableColumnSelectComponent', () => {
     TestBed.configureTestingModule({
       imports: [testModule],
       providers: [MockTableEditableService, MockDatasourceService],
+      teardown: { destroyAfterEach: false },
     })
       .overrideComponent(TableColumnSelectComponent, {
         set: {
@@ -106,7 +107,7 @@ describe('TableColumnSelectComponent', () => {
 
     expect(selectElem).toBeTruthy();
 
-    expect(selectElem?.parent?.attributes['class']).toBe(
+    expect(selectElem?.parent?.attributes['class']).toContain(
       'ant-form-item-control-input-content',
     );
   });

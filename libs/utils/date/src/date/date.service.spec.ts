@@ -38,6 +38,7 @@ describe('DateService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [DateModule.withAdapter(MockDateAdapterService)],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(DateService);
     mockAdapter = TestBed.inject(MockDateAdapterService);

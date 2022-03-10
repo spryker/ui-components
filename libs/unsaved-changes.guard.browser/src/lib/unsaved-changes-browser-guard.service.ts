@@ -15,10 +15,6 @@ export class UnsavedChangesBrowserGuard extends UnsavedChangesGuardBase {
 
   constructor(injector: Injector) {
     super(injector);
-  }
-
-  init(): void {
-    super.init();
 
     this.hasDirtyStatus$
       .pipe(takeUntil(this.destroyed$))

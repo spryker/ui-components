@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DataTransformerService } from '@spryker/data-transformer';
-import { of } from 'rxjs/internal/observable/of';
+import { of } from 'rxjs';
 
 import { TableDatasourceInlineService } from './table-datasource-inline.service';
 
@@ -21,6 +21,7 @@ describe('TableDatasourceInlineService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(TableDatasourceInlineService);
     dataTransformerService = TestBed.inject(MockDataTransformerService);
@@ -28,7 +29,7 @@ describe('TableDatasourceInlineService', () => {
 
   it('resolve method should return value from DataTransformerService.transform', () => {
     const mockConfig = {
-      type: 'table.inline',
+      type: 'inline.table',
       data: [
         {
           col1: '2020-09-24T15:20:08+02:00',
@@ -52,7 +53,7 @@ describe('TableDatasourceInlineService', () => {
       transformerByPropName: {
         col1: 'date',
       },
-    };
+    } as any;
     const mockTransformersConfig = {
       type: 'chain',
       transformers: [

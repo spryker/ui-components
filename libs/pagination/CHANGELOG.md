@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.4.0-rc.1...@spryker/pagination@0.4.0-rc.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* fixed script types ([047dc4a](https://github.com/spryker/ui-components/commit/047dc4aff179dcb51e5eb02769994f88df53453f))
+* removed `$any()` type-cast function from templates ([4869cff](https://github.com/spryker/ui-components/commit/4869cff8f5a2fda8c2947398192eb7620aa72fb6))
+
+
+
+
+
 # [0.4.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/pagination@0.3.0...@spryker/pagination@0.4.0-rc.1) (2022-01-31)
 
 

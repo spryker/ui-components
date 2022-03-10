@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0-rc.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.6.0-rc.2...@spryker/styles@0.6.0-rc.3) (2022-03-10)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `input` styles && `radio` variables ([2711e42](https://github.com/spryker/ui-components/commit/2711e42d1dae388d8c3b75438f759dfeee2e73d3))
+* **styles:** adjusted `input` styles && adjusted `form-item`/`tree-select` variables ([3bd9e53](https://github.com/spryker/ui-components/commit/3bd9e53162a73eb9f628d645d13017e51d518279))
+* **styles:** fixed `radio`/`tabs` variables ([93ae3b9](https://github.com/spryker/ui-components/commit/93ae3b96071210a0c76d2a032073ee8fa008d81e))
+
+
+
+
+
 # [0.6.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.6.0-rc.1...@spryker/styles@0.6.0-rc.2) (2022-02-09)
 
 

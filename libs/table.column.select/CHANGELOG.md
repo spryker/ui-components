@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.7](https://github.com/spryker/ui-components/compare/@spryker/table.column.select@0.2.0-rc.6...@spryker/table.column.select@0.2.0-rc.7) (2022-03-10)
+
+
+### Bug Fixes
+
+* removed `$any()` type-cast function from templates ([4869cff](https://github.com/spryker/ui-components/commit/4869cff8f5a2fda8c2947398192eb7620aa72fb6))
+
+
+
+
+
 # [0.2.0-rc.6](https://github.com/spryker/ui-components/compare/@spryker/table.column.select@0.1.10...@spryker/table.column.select@0.2.0-rc.6) (2022-01-31)
 
 

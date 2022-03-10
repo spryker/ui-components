@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.0-rc.1...@spryker/navigation@0.5.0-rc.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* removed `$any()` type-cast function from templates ([4869cff](https://github.com/spryker/ui-components/commit/4869cff8f5a2fda8c2947398192eb7620aa72fb6))
+
+
+
+
+
 # [0.5.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.4.0...@spryker/navigation@0.5.0-rc.1) (2022-01-31)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/button@0.5.0-rc.1...@spryker/button@0.5.0-rc.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* **button:** fix ngOnChanges extend ([d851174](https://github.com/spryker/ui-components/commit/d85117408cfca6a046882503f1559ab02a660490))
+
+
+
+
+
 # [0.5.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/button@0.4.0...@spryker/button@0.5.0-rc.1) (2022-01-31)
 
 

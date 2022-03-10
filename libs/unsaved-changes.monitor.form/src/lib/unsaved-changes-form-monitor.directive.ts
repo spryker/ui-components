@@ -37,7 +37,7 @@ export class UnsavedChangesFormMonitorDirective
   /**
    * Allows attaching / detaching monitor
    */
-  @Input() @ToBoolean() spyUnsavedChangesFormMonitor: boolean | string = true;
+  @Input() @ToBoolean() spyUnsavedChangesFormMonitor = true;
 
   private disposeInputEvent?: () => void;
 

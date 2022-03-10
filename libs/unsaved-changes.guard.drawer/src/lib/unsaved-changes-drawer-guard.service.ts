@@ -31,7 +31,7 @@ export class UnsavedChangesDrawerGuardComposableFactory
   implements InterceptionComposableFactory
 {
   canApply(token: unknown): boolean {
-    return (token && token instanceof DrawerContainerComponent) as boolean;
+    return token && token instanceof DrawerContainerComponent;
   }
 
   getServiceProviders(): Provider[] {

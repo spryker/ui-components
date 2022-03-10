@@ -4,7 +4,7 @@
 >
   <form
     #submitForm
-    (submit)="submitHandler(submitForm, $any($event))"
+    (submit)="submitHandler(submitForm, $event)"
     spyUnsavedChangesFormMonitor
   >
     <spy-html-renderer *ngIf="form" [html]="form"></spy-html-renderer>

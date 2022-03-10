@@ -9,7 +9,7 @@
     withErrorTitle="true"
   >
     <spy-select
-      [value]="$any(context?.value) | context: context"
+      [value]="context?.value | context: context"
       [options]="config?.options | context: context"
       [multiple]="config?.multiple | context: context"
       [search]="config?.search | context: context"

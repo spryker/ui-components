@@ -1,13 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-
-import { ChainDataTransformerService } from './chain-data-transformer.service';
 import {
   DataTransformerService,
   DataTransformerConfig,
 } from '@spryker/data-transformer';
 import { of } from 'rxjs';
 
-const mockConfig = {
+import { ChainDataTransformerService } from './chain-data-transformer.service';
+import { ChainDataTransformerConfig } from './types';
+
+const mockConfig: ChainDataTransformerConfig = {
   type: 'type',
   transformers: [
     {
@@ -19,7 +20,7 @@ const mockConfig = {
       value: 'mockAnotherTestReturnedValue',
     },
   ],
-} as any;
+};
 
 class MockDataTransformerService {
   transform = jest

@@ -7,7 +7,7 @@ import {
 import { EMPTY, of } from 'rxjs';
 
 import { CacheStorageFactoryService } from './cache-storage-factory.service';
-import { CacheStoragePersistanceAdapter } from './сache-storage-persistance-adapter';
+import { CacheStoragePersistenceAdapter } from './сache-storage-persistence-adapter';
 
 class MockPersistenceStrategyTypeService implements PersistenceStrategy {
   save = jest.fn().mockReturnValue(EMPTY);
@@ -50,10 +50,10 @@ describe('CacheStorageFactoryService', () => {
     );
   });
 
-  it('method `create` should return instance of `CacheStoragePersistanceAdapter` that uses a `PersistenceStrategy`', () => {
+  it('method `create` should return instance of `CacheStoragePersistenceAdapter` that uses a `PersistenceStrategy`', () => {
     const mockConfig = { storage: 'test', type: 'test' };
     const returnedClass = service.create(mockConfig);
-    const expectedClass = new CacheStoragePersistanceAdapter(
+    const expectedClass = new CacheStoragePersistenceAdapter(
       new MockPersistenceStrategyTypeService(),
     );
 
@@ -61,12 +61,12 @@ describe('CacheStorageFactoryService', () => {
       mockConfig.storage,
     );
     expect(
-      returnedClass instanceof CacheStoragePersistanceAdapter,
+      returnedClass instanceof CacheStoragePersistenceAdapter,
     ).toBeTruthy();
     expect(JSON.stringify(returnedClass)).toBe(JSON.stringify(expectedClass));
   });
 
-  it('method `create` should sore return `CacheStoragePersistanceAdapter` instance and reuse it for the same type', () => {
+  it('method `create` should sore return `CacheStoragePersistenceAdapter` instance and reuse it for the same type', () => {
     const mockConfig = { type: 'test' };
     const returnedClass = service.create(mockConfig);
     const returnedClassWithSameType = service.create(mockConfig);
@@ -74,15 +74,15 @@ describe('CacheStorageFactoryService', () => {
     expect(returnedClass).toBe(returnedClassWithSameType);
   });
 
-  it('method `getAll` should return array of instances of `CacheStoragePersistanceAdapter` that uses a `PersistenceStrategy`', () => {
+  it('method `getAll` should return array of instances of `CacheStoragePersistenceAdapter` that uses a `PersistenceStrategy`', () => {
     const returnedClasses = service.createAll();
-    const expectedClass = new CacheStoragePersistanceAdapter(
+    const expectedClass = new CacheStoragePersistenceAdapter(
       new MockPersistenceStrategyTypeService(),
     );
 
     expect(mockPersistenceStrategyService.getAll).toHaveBeenCalled();
     expect(
-      returnedClasses[0] instanceof CacheStoragePersistanceAdapter,
+      returnedClasses[0] instanceof CacheStoragePersistenceAdapter,
     ).toBeTruthy();
     expect(JSON.stringify(returnedClasses)).toBe(
       JSON.stringify([expectedClass]),

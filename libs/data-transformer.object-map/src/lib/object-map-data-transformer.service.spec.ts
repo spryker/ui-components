@@ -6,6 +6,7 @@ import {
 import { of } from 'rxjs';
 
 import { ObjectMapDataTransformerService } from './object-map-data-transformer.service';
+import { ObjectMapDataTransformerConfig } from './types';
 
 const mockTestTypeTransformerConfig = {
   type: 'mockTestTypeTransformer',
@@ -17,7 +18,7 @@ const mockAnotherTestTypeTransformerConfig = {
   returnValue: 'mockAnotherTestReturnedValue',
   propValue: 'anotherTest',
 };
-const mockConfig = {
+const mockConfig: ObjectMapDataTransformerConfig = {
   type: 'type',
   mapProps: {
     [mockTestTypeTransformerConfig.propValue]: {
@@ -27,7 +28,7 @@ const mockConfig = {
       type: mockAnotherTestTypeTransformerConfig.type,
     },
   },
-} as any;
+};
 
 class MockDataTransformerService {
   transform = jest

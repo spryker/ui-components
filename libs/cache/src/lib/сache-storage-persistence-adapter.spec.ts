@@ -1,6 +1,6 @@
 import { EMPTY, of } from 'rxjs';
 
-import { CacheStoragePersistanceAdapter } from './сache-storage-persistance-adapter';
+import { CacheStoragePersistenceAdapter } from './сache-storage-persistence-adapter';
 
 const mockNamespace = 'mockNamespace';
 const mockId = {
@@ -44,7 +44,7 @@ const mockStrategyData = new Map([
 class MockPersistenceStrategyTypeService {
   save = jest.fn().mockReturnValue(EMPTY);
   retrieve = jest.fn().mockImplementation((name) => {
-    if (name === CacheStoragePersistanceAdapter.ManifestId) {
+    if (name === CacheStoragePersistenceAdapter.ManifestId) {
       return of(mockManifest);
     } else {
       return of(mockStrategyData.get(name));
@@ -53,14 +53,14 @@ class MockPersistenceStrategyTypeService {
   remove = jest.fn().mockReturnValue(EMPTY);
 }
 
-describe('CacheStoragePersistanceAdapter', () => {
-  let instance: CacheStoragePersistanceAdapter;
+describe('CacheStoragePersistenceAdapter', () => {
+  let instance: CacheStoragePersistenceAdapter;
   let mockPersistenceStrategyTypeService: MockPersistenceStrategyTypeService;
 
   beforeEach(() => {
     mockPersistenceStrategyTypeService =
       new MockPersistenceStrategyTypeService();
-    instance = new CacheStoragePersistanceAdapter(
+    instance = new CacheStoragePersistenceAdapter(
       mockPersistenceStrategyTypeService,
     );
   });
@@ -93,7 +93,7 @@ describe('CacheStoragePersistanceAdapter', () => {
     const getValue = mockStrategyData.get(name);
 
     expect(mockPersistenceStrategyTypeService.retrieve).toHaveBeenCalledWith(
-      CacheStoragePersistanceAdapter.ManifestId,
+      CacheStoragePersistenceAdapter.ManifestId,
     );
     expect(mockPersistenceStrategyTypeService.retrieve).toHaveBeenCalledWith(
       name,
@@ -113,9 +113,9 @@ describe('CacheStoragePersistanceAdapter', () => {
     setObserver$.subscribe();
 
     const name = `${
-      CacheStoragePersistanceAdapter.DefaultNamespace
+      CacheStoragePersistenceAdapter.DefaultNamespace
     }.${cacheId.serialize()}`;
-    mockManifest.set(CacheStoragePersistanceAdapter.DefaultNamespace, [
+    mockManifest.set(CacheStoragePersistenceAdapter.DefaultNamespace, [
       {
         id: cacheId.serialize(),
         name,
@@ -123,10 +123,10 @@ describe('CacheStoragePersistanceAdapter', () => {
     ]);
 
     expect(mockPersistenceStrategyTypeService.retrieve).toHaveBeenCalledWith(
-      CacheStoragePersistanceAdapter.ManifestId,
+      CacheStoragePersistenceAdapter.ManifestId,
     );
     expect(mockPersistenceStrategyTypeService.save).toHaveBeenCalledWith(
-      CacheStoragePersistanceAdapter.ManifestId,
+      CacheStoragePersistenceAdapter.ManifestId,
       mockManifest,
     );
     expect(mockPersistenceStrategyTypeService.save).toHaveBeenCalledWith(
@@ -150,10 +150,10 @@ describe('CacheStoragePersistanceAdapter', () => {
     );
 
     expect(mockPersistenceStrategyTypeService.retrieve).toHaveBeenCalledWith(
-      CacheStoragePersistanceAdapter.ManifestId,
+      CacheStoragePersistenceAdapter.ManifestId,
     );
     expect(mockPersistenceStrategyTypeService.save).toHaveBeenCalledWith(
-      CacheStoragePersistanceAdapter.ManifestId,
+      CacheStoragePersistenceAdapter.ManifestId,
       mockManifest,
     );
     expect(mockPersistenceStrategyTypeService.remove).toHaveBeenCalledWith(
@@ -168,10 +168,10 @@ describe('CacheStoragePersistanceAdapter', () => {
     mockManifest.delete(mockNamespace);
 
     expect(mockPersistenceStrategyTypeService.retrieve).toHaveBeenCalledWith(
-      CacheStoragePersistanceAdapter.ManifestId,
+      CacheStoragePersistenceAdapter.ManifestId,
     );
     expect(mockPersistenceStrategyTypeService.save).toHaveBeenCalledWith(
-      CacheStoragePersistanceAdapter.ManifestId,
+      CacheStoragePersistenceAdapter.ManifestId,
       mockManifest,
     );
     expect(mockPersistenceStrategyTypeService.remove).toHaveBeenCalledWith(

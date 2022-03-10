@@ -7,7 +7,7 @@ import { ToBoolean } from '@spryker/utils';
 })
 export class NotificationInputs {
   @Input() type: NotificationType = NotificationType.Info;
-  @Input() @ToBoolean() closeable: boolean | string = false;
-  @Input() @ToBoolean() floating: boolean | string = true;
+  @Input() @ToBoolean() closeable = false;
+  @Input() @ToBoolean() floating = true;
   @Output() closed = new EventEmitter<void>();
 }

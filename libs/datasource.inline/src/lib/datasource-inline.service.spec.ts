@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DatasourceInlineService } from './datasource-inline.service';
+import { DatasourceInlineConfig } from './types';
 
 describe('DatasourceInlineService', () => {
   let service: DatasourceInlineService;
@@ -12,13 +13,13 @@ describe('DatasourceInlineService', () => {
 
   it('resolve method should return value from config.data as observable', () => {
     const mockReturnedValue = 'mockReturnedValue';
-    const mockConfig = {
+    const mockConfig: DatasourceInlineConfig = {
       type: 'inline',
       data: mockReturnedValue,
       transform: {
         type: 'test',
       },
-    } as any;
+    };
     const mockInjector = {} as any;
     const callback = jest.fn();
     const serviceObservable$ = service.resolve(mockInjector, mockConfig);

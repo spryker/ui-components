@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.guard.drawer@0.2.0-rc.7...@spryker/unsaved-changes.guard.drawer@0.2.0) (2022-03-10)
+
+**Note:** Version bump only for package @spryker/unsaved-changes.guard.drawer
+
+
+
+
+
 # [0.2.0-rc.7](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes.guard.drawer@0.2.0-rc.6...@spryker/unsaved-changes.guard.drawer@0.2.0-rc.7) (2022-03-10)
 
 

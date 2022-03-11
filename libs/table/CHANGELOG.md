@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.1-next.1...@spryker/table@0.4.1-next.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* **table:** adjusted `table-column-renderer` to provide a `name` property ([07aa370](https://github.com/spryker/ui-components/commit/07aa37036ad2586251774ae37561b2858aa2d065))
+
+
+
+
+
 ## [0.4.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0...@spryker/table@0.4.1-next.1) (2022-01-28)
 
 **Note:** Version bump only for package @spryker/table

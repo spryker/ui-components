@@ -36,7 +36,7 @@ export class TableColumnRendererComponent implements OnChanges {
   originalConfig?: TableColumn;
 
   value?: unknown;
-  displayKey?: unknown;
+  displayValue?: unknown;
   isValueUndefined?: boolean;
   fullContext?: TableColumnTplContext;
   emptyValue?: string;
@@ -77,7 +77,7 @@ export class TableColumnRendererComponent implements OnChanges {
 
     this.emptyValue = this.config.emptyValue || this.defaultEmptyValue;
     this.value = this.data?.[this.config.id];
-    this.displayKey =
+    this.displayValue =
       this.config.displayKey && this.data?.[this.config.displayKey]
         ? this.data?.[this.config.displayKey]
         : this.value;
@@ -103,7 +103,7 @@ export class TableColumnRendererComponent implements OnChanges {
       config: this.config,
       row: this.data || {},
       value: this.value,
-      displayValue: this.displayKey,
+      displayValue: this.displayValue,
       // tslint:disable-next-line: no-non-null-assertion
       i: this.i!,
       // tslint:disable-next-line: no-non-null-assertion

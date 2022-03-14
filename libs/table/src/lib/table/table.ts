@@ -48,7 +48,7 @@ export interface TableHeaderContext {
 
 export interface TableColumnContext {
   value: TableDataValue;
-  displayValue: unknown;
+  displayValue?: unknown;
   row: TableDataRow;
   config: TableColumn;
   i: number;

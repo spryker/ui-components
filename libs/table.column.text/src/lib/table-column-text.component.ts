@@ -22,7 +22,7 @@ declare module '@spryker/table' {
 @Injectable({ providedIn: 'root' })
 export class TableColumnTextConfig {
   @ColumnTypeOption()
-  text? = this.contextService.wrap('value');
+  text? = this.contextService.wrap('displayValue');
 
   constructor(private contextService: ContextService) {}
 }

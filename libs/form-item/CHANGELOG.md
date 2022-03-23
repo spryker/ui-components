@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.4.0-rc.1...@spryker/form-item@0.4.0-rc.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* **form-item:** adjusted styles ([a47c91a](https://github.com/spryker/ui-components/commit/a47c91a40857068d83682ac406962c590ccf3d73))
+* **form-item:** adjusted styles ([d2cac1b](https://github.com/spryker/ui-components/commit/d2cac1bd8ee3fda66f680a7c4ee9d9bbe7f05faf))
+* removed `$any()` type-cast function from templates ([4869cff](https://github.com/spryker/ui-components/commit/4869cff8f5a2fda8c2947398192eb7620aa72fb6))
+
+
+
+
+
 # [0.4.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.3.0...@spryker/form-item@0.4.0-rc.1) (2022-01-31)
 
 

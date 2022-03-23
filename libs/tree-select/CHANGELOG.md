@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.3.0-rc.1...@spryker/tree-select@0.3.0-rc.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* **tree-select:** adjusted styles ([9330fb1](https://github.com/spryker/ui-components/commit/9330fb1daa00a3647285b42dac39341e18f587e9))
+
+
+
+
+
 # [0.3.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@0.2.0...@spryker/tree-select@0.3.0-rc.1) (2022-01-31)
 
 

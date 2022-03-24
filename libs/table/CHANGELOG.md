@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1-next.3](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.1-next.2...@spryker/table@0.4.1-next.3) (2022-03-15)
+
+
+### Bug Fixes
+
+* **table:** adjusted `table-column-renderer` to rename `displayKey` property to `displayValue` ([118e880](https://github.com/spryker/ui-components/commit/118e8809b8d8e7bfc56e686a2e8527cf675d5f87))
+* **table:** made `displayValue` property optional ([a09744f](https://github.com/spryker/ui-components/commit/a09744f05d58ef683519a3fc992a09e402c12b29))
+* **table:** renamed `name` property to `displayKey` in `TableColumn` interface and provided `displayValue` property in `TableColumnContext` interface ([a921eab](https://github.com/spryker/ui-components/commit/a921eab76ef62ad1581aa203b44288cc8ad23ce7))
+
+
+
+
+
 ## [0.4.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.1-next.1...@spryker/table@0.4.1-next.2) (2022-03-10)
 
 

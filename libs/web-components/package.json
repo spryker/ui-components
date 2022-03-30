@@ -1,12 +1,12 @@
 {
   "name": "@spryker/web-components",
-  "version": "0.2.11-next.1",
+  "version": "0.2.12-next.1",
   "peerDependencies": {
     "@angular/cdk": "^9.2.3",
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
     "@angular/elements": "^9.1.12",
-    "@spryker/utils": "^0.2.1"
+    "@spryker/utils": "^0.2.11"
   },
   "dependencies": {
     "ngx-element-boundary": "^1.0.10",

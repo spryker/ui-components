@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/user-menu@0.2.0...@spryker/user-menu@0.2.1-next.1) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/user-menu
+
+
+
+
+
+## [0.2.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/user-menu@0.2.0...@spryker/user-menu@0.2.1-next.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/user-menu
+
+
+
+
+
+# [0.2.0](https://github.com/spryker/ui-components/compare/@spryker/user-menu@0.2.0-next.1...@spryker/user-menu@0.2.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/user-menu
+
+
+
+
+
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/user-menu@0.2.0-next.0...@spryker/user-menu@0.2.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/user-menu@0.1.10-next.1...@spryker/user-menu@0.2.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **user-menu:** introduced css variables ([366a593](https://github.com/spryker/ui-components/commit/366a59397230be09171f76726c2bba50ea723508))
+
+
+
+
+
 ## [0.1.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/user-menu@0.1.9...@spryker/user-menu@0.1.10-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/user-menu

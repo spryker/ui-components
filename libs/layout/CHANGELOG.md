@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/layout@0.3.0...@spryker/layout@0.3.1-next.1) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/layout
+
+
+
+
+
+## [0.3.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/layout@0.3.0...@spryker/layout@0.3.1-next.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/layout
+
+
+
+
+
+# [0.3.0](https://github.com/spryker/ui-components/compare/@spryker/layout@0.3.0-next.1...@spryker/layout@0.3.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/layout
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/layout@0.3.0-next.0...@spryker/layout@0.3.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/layout@0.2.10-next.1...@spryker/layout@0.3.0-next.0) (2022-01-05)
+
+
+### Features
+
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **layout:** introduced css variables ([9117f4a](https://github.com/spryker/ui-components/commit/9117f4ab87b24255b733a689e7eb49fbe3522d23))
+
+
+
+
+
 ## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/layout@0.2.9...@spryker/layout@0.2.10-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/layout

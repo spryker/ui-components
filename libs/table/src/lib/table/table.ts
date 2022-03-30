@@ -10,6 +10,7 @@ import { TableFeatureComponent } from '../table-feature';
 export interface TableColumn extends Partial<TableColumnTypeDef> {
   id: string;
   title: string;
+  displayKey?: string;
   width?: string;
   multiRenderMode?: boolean;
   multiRenderModeLimit?: number;
@@ -47,6 +48,7 @@ export interface TableHeaderContext {
 
 export interface TableColumnContext {
   value: TableDataValue;
+  displayValue?: unknown;
   row: TableDataRow;
   config: TableColumn;
   i: number;

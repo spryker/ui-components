@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.1.0...@spryker/table.feature.settings@0.1.1-next.1) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+## [0.1.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.settings@0.1.0...@spryker/table.feature.settings@0.1.1-next.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+# [0.1.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.1.0-next.1...@spryker/table.feature.settings@0.1.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/table.feature.settings
+
+
+
+
+
+# [0.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.1.0-next.0...@spryker/table.feature.settings@0.1.0-next.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+
+
+
+# [0.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.13-next.1...@spryker/table.feature.settings@0.1.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+
+
+### Features
+
+* introduced `box-shadow` variables ([18814bc](https://github.com/spryker/ui-components/commit/18814bc82e3278a2fc41866504b6faa74f18565f))
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **table.feature.settings:** introduced css variables ([6aef447](https://github.com/spryker/ui-components/commit/6aef44759cca35a626f19a3462e3f49890ad3d98))
+
+
+
+
+
 ## [0.0.13-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.12...@spryker/table.feature.settings@0.0.13-next.1) (2021-11-10)
 
 **Note:** Version bump only for package @spryker/table.feature.settings

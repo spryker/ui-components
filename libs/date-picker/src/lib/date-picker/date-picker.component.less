@@ -24,7 +24,6 @@
   }
 
   &-focused {
-    box-shadow: none;
     border-color: @green;
 
     &:hover {
@@ -34,7 +33,7 @@
 
   &.@{calendar-prefix-cls}-disabled {
     border-color: @gray-light;
-    background: @disabled-bg;
+    background: @spy-disabled-bg;
 
     .@{calendar-prefix-cls}-suffix {
       color: @gray;
@@ -49,7 +48,7 @@
       font-size: inherit;
 
       &.@{input-prefix-cls} {
-        background: transparent;
+        background: @transparent;
       }
     }
   }
@@ -108,6 +107,10 @@
     left: @calendar-picker-container-left;
   }
 
+  &-panel-container {
+    box-shadow: @calendar-picker-container-shadow;
+  }
+
   &-panel-container,
   &-decade-panel,
   &-year-panel,
@@ -119,7 +122,7 @@
     height: @calendar-height;
     width: @calendar-width;
     border-radius: @calendar-border-radius;
-    background-color: @white;
+    background-color: @spy-white;
   }
 
   &-body {
@@ -155,7 +158,7 @@
         border-color: @green;
         background-color: @green;
         background-image: @date-picker-icon-navigation-arrow-active;
-        color: @white;
+        color: @spy-white;
       }
 
       span {
@@ -259,7 +262,7 @@
     &-selected {
       .@{calendar-prefix-cls}-cell-inner {
         background-color: @green !important;
-        color: @white;
+        color: @spy-white;
       }
 
       &:focus,
@@ -267,7 +270,7 @@
       &:hover {
         .@{calendar-prefix-cls}-cell-inner {
           background-color: @green !important;
-          color: @white;
+          color: @spy-white;
         }
       }
     }
@@ -363,13 +366,13 @@
 
       .@{calendar-prefix-cls}-time-panel-cell-selected
         .@{calendar-prefix-cls}-time-panel-cell-inner {
-        background: @primary-color;
-        color: @white;
+        background: @spy-primary-color;
+        color: @spy-white;
 
         &:hover,
         &:focus {
-          background: @primary-color;
-          color: @white;
+          background: @spy-primary-color;
+          color: @spy-white;
         }
       }
     }

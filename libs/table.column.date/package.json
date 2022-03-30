@@ -1,11 +1,11 @@
 {
   "name": "@spryker/table.column.date",
-  "version": "0.0.12-next.1",
+  "version": "0.0.13-next.2",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12",
-    "@spryker/table": "^0.2.0",
-    "@spryker/utils": "^0.2.1"
+    "@spryker/table": "^0.4.0",
+    "@spryker/utils": "^0.2.11"
   },
   "dependencies": {
     "tslib": "^1.10.0"

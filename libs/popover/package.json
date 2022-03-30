@@ -1,9 +1,10 @@
 {
   "name": "@spryker/popover",
-  "version": "0.1.4-next.1",
+  "version": "0.2.1-next.1",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12"
+    "@angular/core": "^9.1.12",
+    "@spryker/styles": "^0.5.0"
   },
   "dependencies": {
     "ng-zorro-antd": "9.3.0",

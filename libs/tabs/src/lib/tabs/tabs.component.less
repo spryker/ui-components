@@ -41,7 +41,7 @@
       left: 0;
       width: 100%;
       height: @tabs-border-width;
-      background: transparent;
+      background: @transparent;
     }
 
     &:hover {
@@ -59,7 +59,7 @@
     &-icon {
       display: flex;
       padding-right: @tabs-icon-padding-right;
-      font-size: @font-size-lg;
+      font-size: @spy-font-size-lg;
     }
 
     &-warning {
@@ -124,7 +124,7 @@
 
     .@{tab-prefix-cls}-bar {
       .@{tab-prefix-cls}-tab {
-        font-size: @font-size-sm;
+        font-size: @spy-font-size-sm;
         font-weight: @font-weight-default;
         letter-spacing: @letter-spacing-base;
         color: @ink;
@@ -139,7 +139,7 @@
         }
 
         &:hover {
-          background-color: @white;
+          background-color: @spy-white;
 
           .@{tab-prefix-cls}-custom-tab {
             color: @ink;

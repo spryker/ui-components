@@ -51,7 +51,7 @@
     }
 
     &::placeholder {
-      color: transparent;
+      color: @transparent;
     }
   }
 
@@ -122,7 +122,7 @@
     }
 
     &.@{input-prefix-cls}-container--focus {
-      border-color: @primary-color;
+      border-color: @spy-primary-color;
     }
   }
 
@@ -139,8 +139,8 @@
       .@{input-prefix-cls}-group-addon,
       .@{input-prefix-cls}-affix-wrapper,
       .@{input-prefix-cls} {
-        border-color: @primary-color;
-        border-width: @border-width-base;
+        border-color: @spy-primary-color;
+        border-width: @spy-border-width-base;
       }
     }
   }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.13-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@0.0.13-next.1...@spryker/table.column.date@0.0.13-next.2) (2022-03-15)
+
+
+### Bug Fixes
+
+* **table.column.date:** adjusted to render `displayValue` property instead of `value` ([ca0c533](https://github.com/spryker/ui-components/commit/ca0c533d8671d424592222f5ac9c8e15743a9c4f))
+
+
+
+
+
 ## [0.0.13-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@0.0.12...@spryker/table.column.date@0.0.13-next.1) (2022-01-28)
 
 **Note:** Version bump only for package @spryker/table.column.date

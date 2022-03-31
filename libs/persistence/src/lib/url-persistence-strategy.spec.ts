@@ -44,6 +44,7 @@ describe('UrlPersistenceStrategy', () => {
           useExisting: MockWindowToken,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(UrlPersistenceStrategy);
     windowToken = TestBed.inject(MockWindowToken);

@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TestBed } from '@angular/core/testing';
 import {
   TableColumnListComponent,
@@ -71,7 +71,10 @@ describe('TableColumnListComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('should render `spy-table-column-renderer` element', async () => {
@@ -125,7 +128,7 @@ describe('TableColumnListComponent', () => {
     ).toBeTruthy();
     expect(triggerElem).toBeTruthy();
     expect(triggerElem?.nativeElement.textContent).toContain(
-      mockContextWithMultiple.value.length,
+      `(${mockContextWithMultiple.value.length})`,
     );
   });
 

@@ -25,7 +25,12 @@ describe('NotificationViewComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   it('should render nz-alert', async () => {
     const host = await createComponent({}, true);

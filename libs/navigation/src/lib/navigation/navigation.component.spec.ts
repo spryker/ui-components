@@ -36,7 +36,7 @@ describe('NavigationComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
   @Component({
-    // tslint:disable-next-line: component-selector
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'test',
     template: `
       <spy-navigation [items]="items" [collapsed]="collapsed"></spy-navigation>
@@ -52,6 +52,7 @@ describe('NavigationComponent', () => {
       imports: [NoopAnimationsModule],
       declarations: [TestComponent, NavigationComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

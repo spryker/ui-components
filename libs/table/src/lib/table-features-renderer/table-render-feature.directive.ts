@@ -6,24 +6,20 @@ import {
   OnInit,
   TemplateRef,
   ViewContainerRef,
+  SimpleChanges,
 } from '@angular/core';
-import { TypedSimpleChanges } from '@spryker/utils';
 import { combineLatest, of, ReplaySubject, Subject } from 'rxjs';
 import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { FeatureRecord } from './types';
 
-export class TableRenderFeatureDirectiveInputs {
-  @Input() spyTableRenderFeature?: FeatureRecord;
-}
-
 @Directive({
   selector: '[spyTableRenderFeature]',
 })
-export class TableRenderFeatureDirective
-  extends TableRenderFeatureDirectiveInputs
-  implements OnInit, OnChanges {
+export class TableRenderFeatureDirective implements OnInit, OnChanges {
+  @Input() spyTableRenderFeature?: FeatureRecord;
+
   private destroyed$ = new Subject<void>();
   private feature$ = new ReplaySubject<FeatureRecord>(1);
 
@@ -35,9 +31,7 @@ export class TableRenderFeatureDirective
     startWith(undefined),
   );
 
-  constructor(private vcr: ViewContainerRef, private cdr: ChangeDetectorRef) {
-    super();
-  }
+  constructor(private vcr: ViewContainerRef, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     combineLatest([this.template$, this.templateContext$])
@@ -47,10 +41,8 @@ export class TableRenderFeatureDirective
       );
   }
 
-  ngOnChanges(
-    changes: TypedSimpleChanges<TableRenderFeatureDirectiveInputs>,
-  ): void {
-    if (changes.spyTableRenderFeature) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.spyTableRenderFeature && this.spyTableRenderFeature) {
       this.feature$.next(this.spyTableRenderFeature);
     }
   }

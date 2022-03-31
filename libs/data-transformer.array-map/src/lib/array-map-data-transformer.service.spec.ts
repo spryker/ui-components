@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { DataTransformerService } from '@spryker/data-transformer';
+import { of } from 'rxjs';
 
 import { ArrayMapDataTransformerService } from './array-map-data-transformer.service';
-import { of } from 'rxjs';
+import { ArrayMapDataTransformerConfig } from './types';
 
 const mockReturnedValue = 'mockReturnValue';
 
@@ -23,13 +24,14 @@ describe('ArrayMapDataTransformerService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(ArrayMapDataTransformerService);
     dataTransformerService = TestBed.inject(MockDataTransformerService);
   });
 
   it('transform method should map array and return transformed array with transformed value by config prop', () => {
-    const mockConfig = {
+    const mockConfig: ArrayMapDataTransformerConfig = {
       type: 'type',
       mapItems: {
         type: 'type',

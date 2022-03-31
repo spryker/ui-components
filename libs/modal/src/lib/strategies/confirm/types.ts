@@ -1,7 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { ModalTemplateContext, AnyModal } from '../../types';
 
-// tslint:disable-next-line: no-empty-interface
 export interface ConfirmModalStrategyOptions extends ConfirmModalData {}
 
 export interface ConfirmModalData {

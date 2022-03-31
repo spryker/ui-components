@@ -21,9 +21,7 @@ import { TableTitleConfig } from './types';
     },
   ],
 })
-export class TableTitleFeatureComponent extends TableFeatureComponent<
-  TableTitleConfig
-> {
+export class TableTitleFeatureComponent extends TableFeatureComponent<TableTitleConfig> {
   name = 'title';
   tableFeatureLocation = TableFeatureLocation;
 

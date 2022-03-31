@@ -1,13 +1,13 @@
 {
   "name": "@spryker/data-transformer.chain",
-  "version": "0.1.11-next.1",
+  "version": "0.2.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/data-transformer": "^0.1.10"
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
+    "@spryker/data-transformer": "^0.2.0"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

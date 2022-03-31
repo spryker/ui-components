@@ -38,7 +38,8 @@ import {
 })
 export class TableSelectableFeatureComponent
   extends TableFeatureComponent<TableSelectableConfig>
-  implements OnDestroy {
+  implements OnDestroy
+{
   name = 'itemSelection';
   tableFeatureLocation = TableFeatureLocation;
 

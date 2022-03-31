@@ -1,32 +1,28 @@
-import { Directive, Input, TemplateRef, OnChanges } from '@angular/core';
+import {
+  Directive,
+  Input,
+  TemplateRef,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import { TypedSimpleChanges } from '@spryker/utils';
 
 export interface TableFeatureTplContext {
   [key: string]: any;
 }
 
-export class TableFeatureTplDirectiveInputs {
-  @Input() spyTableFeatureTpl?: string | string[];
-  @Input() spyTableFeatureTplStyles?: Record<string, any>;
-}
-
 @Directive({
   selector: '[spyTableFeatureTpl]',
 })
-export class TableFeatureTplDirective
-  extends TableFeatureTplDirectiveInputs
-  implements OnChanges {
+export class TableFeatureTplDirective implements OnChanges {
+  @Input() spyTableFeatureTpl?: string | string[];
+  @Input() spyTableFeatureTplStyles?: Record<string, any>;
   locations$ = new ReplaySubject<string[]>(1);
   styles$ = new ReplaySubject<Record<string, any>>(1);
 
-  constructor(public template: TemplateRef<TableFeatureTplContext>) {
-    super();
-  }
+  constructor(public template: TemplateRef<TableFeatureTplContext>) {}
 
-  ngOnChanges(
-    changes: TypedSimpleChanges<TableFeatureTplDirectiveInputs>,
-  ): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.spyTableFeatureTpl) {
       this.locations$.next(
         !this.spyTableFeatureTpl
@@ -37,7 +33,7 @@ export class TableFeatureTplDirective
       );
     }
 
-    if (changes.spyTableFeatureTplStyles) {
+    if (changes.spyTableFeatureTplStyles && this.spyTableFeatureTplStyles) {
       this.styles$.next(this.spyTableFeatureTplStyles);
     }
   }

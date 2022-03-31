@@ -127,44 +127,71 @@ Every new library should be generated via NX CLI with `@nrwl/angular:library` sc
 _NOTE_: You should assign library tags either during generation command or after in `nx.json` file.
 
 ```bash
-nx g @nrwl/angular:library <my-lib> --publishable --tags level:<level>
+nx g @nrwl/angular:library <my-lib> --importPath=@spryker/<my-lib> --tags level:<level>
 ```
 
 When library is generated please do the following:
 
-- In `libs/<lib-name>/tslint.json`
-  - remove all rules:
+- In `tsconfig.base.json`
+  - remove newly generated path `paths[@spryker/<lib-name>]`:
   ```json
-  "rules": {}
+    "paths": {
+      - "@spryker/<lib-name>": [
+        "libs/<lib-name>/src/index.ts"
+      ]
+    }
+  ```
+- In `tsconfig.json`
+  - add the following to the `references`:
+  ```json
+    {
+      "path": "./libs/<lib-name>/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/<lib-name>/tsconfig.spec.json"
+    },
+  ```
+- In `libs/<lib-name>/.eslintrc.json`
+  - remove following section:
+  ```json
+    "extends": [
+      "plugin:@nrwl/nx/angular",
+      "plugin:@angular-eslint/template/process-inline-templates"
+    ],
+  ```
+- In `libs/<lib-name>/jest.config.js`
+  - remove following sections:
+  ```json
+    "transform": { ... },
+    "snapshotSerializers": { ... }
   ```
 - In `libs/<lib-name>/ng-package.json`
   - add `styleIncludePaths` to `lib` for theme imports:
   ```json
-  "lib": {
-    ...
-    "styleIncludePaths": ["../styles/src/lib"]
-  }
-  ```
-- In `tsconfig.json`
-  - remove newly generated path `paths[@spryker/<lib-name>]`:
-  ```json
-  "paths": {
-    - "@spryker/<lib-name>": [
-      "libs/<lib-name>/src/index.ts"
-    ]
-  }
-  ```
-- In `lib/<lib-name>/tsconfig.lib.json`
-  - add to beginning of `angularCompilerOptions` new option `enableIvy=false`:
-  ```json
-    "enableIvy": false,
+    "lib": {
+      ...
+      "styleIncludePaths": ["../styles/src/lib"]
+    }
   ```
 - In `libs/<lib-name>/package.json`
   - add `publishConfig` prop with `access=public` value:
   ```json
-  "publishConfig": {
-    "access": "public"
-  },
+    "publishConfig": {
+      "access": "public"
+    },
+  ```
+- In `libs/<lib-name>/tsconfig.json`
+  - remove following sections:
+  ```json
+    "compilerOptions": { ... },
+    "angularCompilerOptions": { ... }
+  ```
+- In `libs/<lib-name>/tsconfig.lib.prod.json`
+  - remove following section:
+  ```json
+    "angularCompilerOptions": {
+      "compilationMode": "partial"
+    }
   ```
 - In `lib/<lib-name>/src/test-setup.ts`
   - add global setup import:
@@ -185,15 +212,12 @@ nx g @schematics/angular:component --name=<my-component> --project=<my-lib>
 Storybook setup should be added via NX CLI with `@nrwl/storybook:configuration` schematic:
 
 ```bash
-nx g @nrwl/storybook:configuration --name=<my-lib> --uiFramework=@storybook/angular
+nx g @nrwl/storybook:configuration --name=<my-lib>
 ```
 
 _NOTE:_ Do the following updates after command above:
 
-- Delete file `libs/<my-lib>/.storybook/addons.js`
-- Delete file `libs/<my-lib>/.storybook/config.js`
-- Add file `libs/<my-lib>/.storybook/main.js` with content `module.exports = require('../../../.storybook/main');`
-- Add file `libs/<my-lib>/.storybook/preview.js` with content `import '../../../.storybook/preview';`
+- Add `import '../../../.storybook/preview';` to the `.storybook/preview.js`
 
 ### Library Stories
 
@@ -280,6 +304,8 @@ These are the release branches (`git branch` => `@npm tag`):
 - `master` => `@latest`
 - `next` => `@next`
 - `beta` => `@beta`
+- `alpha` => `@alpha`
+- `rc` => `@rc`
 
 ### Release Recovery
 
@@ -304,6 +330,8 @@ In this case you need to:
 - `master` => `republish/master`
 - `next` => `republish/next`
 - `beta` => `republish/beta`
+- `alpha` => `republish/alpha`
+- `rc` => `republish/rc`
 
 After branch is pushed to CI it will attempt to find unpublished packages in NPM
 and try to publish them again with the same versions.

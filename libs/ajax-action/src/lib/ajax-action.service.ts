@@ -12,7 +12,7 @@ import { AjaxActionResponse } from './types';
   providedIn: 'root',
 })
 export class AjaxActionService implements OnDestroy {
-  private destroyed = new Subject();
+  private destroyed$ = new Subject<void>();
 
   handle(
     response: AjaxActionResponse,
@@ -28,12 +28,12 @@ export class AjaxActionService implements OnDestroy {
     for (const action of response.actions ?? []) {
       actionsService
         .trigger(injector, action, context)
-        .pipe(takeUntil(this.destroyed))
+        .pipe(takeUntil(this.destroyed$))
         .subscribe();
     }
   }
 
   ngOnDestroy(): void {
-    this.destroyed.next();
+    this.destroyed$.next();
   }
 }

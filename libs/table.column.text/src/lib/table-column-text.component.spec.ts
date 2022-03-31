@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TestBed } from '@angular/core/testing';
 import { TableColumnTextComponent } from './table-column-text.component';
 import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
@@ -29,7 +29,10 @@ describe('TableColumnTextComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('Template must render value text from config', async () => {

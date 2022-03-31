@@ -16,12 +16,6 @@ import {
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
 
-declare module '../table/table' {
-  interface TableColumnTypeRegistry {
-    list: TableColumnListConfig;
-  }
-}
-
 export class TableColumnListConfigInner {
   @ColumnTypeOption()
   type?: string;
@@ -34,7 +28,7 @@ export class TableColumnListConfigInner {
 @Injectable({ providedIn: 'root' })
 export class TableColumnListConfig extends TableColumnListConfigInner {
   @ColumnTypeOption()
-  limit = 2;
+  limit? = 2;
 }
 
 @Component({
@@ -46,7 +40,8 @@ export class TableColumnListConfig extends TableColumnListConfigInner {
 })
 @TableColumnTypeComponent(TableColumnListConfig)
 export class TableColumnListComponent
-  implements TableColumnComponent<TableColumnListConfig>, OnInit, OnChanges {
+  implements TableColumnComponent<TableColumnListConfig>, OnInit, OnChanges
+{
   @Input() config?: TableColumnListConfig;
   @Input() context?: TableColumnContext;
 
@@ -72,13 +67,13 @@ export class TableColumnListComponent
     }
 
     const value = this.context.value;
-    const isLimited = this.config && this.config.limit > 0;
+    const isLimited = this.config && Boolean(this.config.limit);
     let values = Array.isArray(value) ? value : [value];
-    values = Boolean(values.length) ? (values as unknown[]) : [undefined];
+    values = values.length ? (values as unknown[]) : [undefined];
     this.values = values.map((_value) => ({
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       ...this.context!.row,
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       [this.context!.config.id]: _value,
     }));
     this.valuesLimited =
@@ -94,6 +89,7 @@ export class TableColumnListComponent
       delete (config as TableColumnTypeDef).type;
       delete (config as TableColumnTypeDef).typeOptions;
       delete (config as TableColumnTypeDef).typeChildren;
+      delete (config as TableColumnTypeDef).typeOptionsMappings;
 
       Object.assign(config, this.config);
 

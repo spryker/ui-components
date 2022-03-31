@@ -5,7 +5,7 @@ import { DrawerData, DrawerOptions } from './drawer-options';
 
 export class DrawerRef<
   D = DrawerData,
-  O extends DrawerOptions<D> = DrawerOptions<D>
+  O extends DrawerOptions<D> = DrawerOptions<D>,
 > {
   private setClose$ = new ReplaySubject<Observable<void>>(1);
   private afterClosed$ = this.setClose$.pipe(

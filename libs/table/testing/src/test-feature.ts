@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   AfterContentInit,
   ChangeDetectorRef,
@@ -13,6 +13,8 @@ import {
   Optional,
   TemplateRef,
   ViewContainerRef,
+  SimpleChanges,
+  Input,
 } from '@angular/core';
 import {
   TableColumns,
@@ -23,13 +25,12 @@ import {
   TableFeatureComponent,
   TableFeatureEventBus,
   TableFeatureTplContext,
-  TableFeatureTplDirectiveInputs,
   TableEventBus,
   TableComponent,
   TableFeatureConfig,
 } from '@spryker/table';
 import { ReplaySubject, BehaviorSubject } from 'rxjs';
-import { InjectionTokenType, TypedSimpleChanges } from '@spryker/utils';
+import { InjectionTokenType } from '@spryker/utils';
 
 class MockElementRef {
   nativeElement = {
@@ -52,9 +53,7 @@ export class TableMockComponent implements TableComponent {
   updateRowClasses = jest.fn();
   setRowClasses = jest.fn();
   eventHandler = jest.fn();
-  tableElementRef = (new MockElementRef() as unknown) as ElementRef<
-    HTMLElement
-  >;
+  tableElementRef = new MockElementRef() as unknown as ElementRef<HTMLElement>;
   injector = new MockInjector();
   eventBus = new TableEventBus(this.eventHandler);
   features$ = new ReplaySubject<TableFeatureComponent<TableFeatureConfig>[]>(1);
@@ -113,12 +112,13 @@ export function initFeature<T>(
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'test-table-feature',
   template: ` <ng-content></ng-content> `,
 })
 export class TestTableFeatureComponent<T = TableMockComponent>
-  implements AfterContentInit {
+  implements AfterContentInit
+{
   @ContentChild(TableFeatureComponent) feature?: TableFeatureComponent;
 
   featureMocks?: TableFeatureMocks<T>;
@@ -151,9 +151,10 @@ export const TestTableFeatureTplContext = new InjectionToken<
 @Directive({
   selector: '[spyTableFeatureTpl]',
 })
-export class TestTableFeatureTplDirective
-  extends TableFeatureTplDirectiveInputs
-  implements OnChanges {
+export class TestTableFeatureTplDirective implements OnChanges {
+  @Input() spyTableFeatureTpl?: string | string[];
+  @Input() spyTableFeatureTplStyles?: Record<string, any>;
+
   constructor(
     public template: TemplateRef<TableFeatureTplContext>,
     public vcr: ViewContainerRef,
@@ -162,13 +163,9 @@ export class TestTableFeatureTplDirective
     public locationContext?: InjectionTokenType<
       typeof TestTableFeatureTplContext
     >,
-  ) {
-    super();
-  }
+  ) {}
 
-  ngOnChanges(
-    changes: TypedSimpleChanges<TableFeatureTplDirectiveInputs>,
-  ): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.spyTableFeatureTpl) {
       const locations = Array.isArray(this.spyTableFeatureTpl!)
         ? this.spyTableFeatureTpl!

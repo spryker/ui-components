@@ -17,6 +17,32 @@ import { ObjectMapDataTransformerService } from '@spryker/data-transformer.objec
 import { TableModule } from '@spryker/table';
 import { DateModule } from '@spryker/utils/date';
 
+declare module '@spryker/data-transformer' {
+  interface DataTransformerRegistry {
+    chain: ChainDataTransformerService;
+    'array-map': ArrayMapDataTransformerService;
+    'object-map': ObjectMapDataTransformerService;
+    'date-parse': DateParseDataTransformerService;
+    collate: CollateDataTransformerService;
+    lens: LensDataTransformerService;
+    'date-serialize': DateSerializeDataTransformerService;
+  }
+}
+
+declare module '@spryker/data-transformer.collate' {
+  interface DataTransformerConfiguratorRegistry {
+    table: TableDataTransformerConfiguratorService;
+  }
+}
+
+declare module '@spryker/data-transformer.collate' {
+  interface DataTransformerFilterRegistry {
+    text: TextDataTransformerFilterService;
+    equals: EqualsDataTransformerFilterService;
+    range: RangeDataTransformerFilterService;
+  }
+}
+
 @NgModule({
   imports: [
     DateModule,

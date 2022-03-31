@@ -9,7 +9,6 @@ import { OverlayModalWrapperFactory } from './modal-wrapper-factory';
 @NgModule({
   imports: [CommonModule, OverlayModule],
   declarations: [ModalWrapperComponent],
-  entryComponents: [ModalWrapperComponent],
 })
 export class OverlayWrapperModule {
   static forRoot(): ModuleWithProviders<OverlayWrapperModule> {

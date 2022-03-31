@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TestBed } from '@angular/core/testing';
 import { TableColumnChipComponent } from './table-column-chip.component';
 import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
@@ -31,7 +31,10 @@ describe('TableColumnChipComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('Template must render spy-chips node', async () => {

@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'table.filter.select',
-  preset: '../../jest.config.js',
+  displayName: 'table.filter.select',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/table.filter.select',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

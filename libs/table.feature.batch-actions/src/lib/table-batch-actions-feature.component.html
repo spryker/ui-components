@@ -14,7 +14,7 @@
             *ngFor="let item of itemActions.actions"
           >
             <spy-button
-              size="sm"
+              [size]="buttonSize.Small"
               (click)="buttonClickHandler(item, itemActions)"
               >{{ item.title }}</spy-button
             >
@@ -26,7 +26,7 @@
         spyApplyContexts="spy-bg-gray"
         *ngIf="noActionsMessage$ | async as noActionsMessage"
       >
-        <spy-notification type="warning" floating="false">
+        <spy-notification [type]="notificationType.Warning" floating="false">
           <span title>{{ noActionsMessage }}</span>
         </spy-notification>
       </div>

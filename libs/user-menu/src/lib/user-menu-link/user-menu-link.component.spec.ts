@@ -32,6 +32,7 @@ describe('UserMenuLinkComponent', () => {
         },
         MockUserMenuComponent,
       ],
+      teardown: { destroyAfterEach: false },
     });
     userMenuComponent = TestBed.inject(MockUserMenuComponent);
   });

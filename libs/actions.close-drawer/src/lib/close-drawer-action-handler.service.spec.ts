@@ -47,6 +47,7 @@ describe('CloseDrawerActionHandlerService', () => {
         },
       ],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(CloseDrawerActionHandlerService);

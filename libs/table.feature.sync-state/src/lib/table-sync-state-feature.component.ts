@@ -31,9 +31,7 @@ import { TableSyncStateConfig } from './types';
     },
   ],
 })
-export class TableSyncStateFeatureComponent extends TableFeatureComponent<
-  TableSyncStateConfig
-> {
+export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableSyncStateConfig> {
   name = 'syncStateUrl';
   tableFeatureLocation = TableFeatureLocation;
 

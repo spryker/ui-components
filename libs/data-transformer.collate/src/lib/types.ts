@@ -3,12 +3,6 @@ import { DataTransformerConfig } from '@spryker/data-transformer';
 import { RegistryDeclaration, RegistryType } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
-declare module '@spryker/data-transformer' {
-  interface DataTransformerRegistry {
-    collate: CollateDataTransformerConfig;
-  }
-}
-
 export interface CollateDataTransformerConfig extends DataTransformerConfig {
   configurator: DataTransformerConfiguratorConfig;
   filter?: {
@@ -27,16 +21,13 @@ export interface CollateDataTransformerDataT {
   pageSize: number;
 }
 
-// tslint:disable-next-line: no-empty-interface
 export interface DataTransformerConfiguratorRegistry {}
 
-export type DataTransformerConfiguratorType = RegistryType<
-  DataTransformerConfiguratorRegistry
->;
+export type DataTransformerConfiguratorType =
+  RegistryType<DataTransformerConfiguratorRegistry>;
 
-export type DataTransformerConfiguratorDeclaration = RegistryDeclaration<
-  DataTransformerConfiguratorRegistry
->;
+export type DataTransformerConfiguratorDeclaration =
+  RegistryDeclaration<DataTransformerConfiguratorRegistry>;
 
 export interface DataTransformerConfiguratorConfig {
   type: DataTransformerConfiguratorType;
@@ -67,16 +58,13 @@ export interface DataTransformerFilter {
   ): Observable<DataTransformerFilterData>;
 }
 
-export type DataTransformerFilterDeclaration = RegistryDeclaration<
-  DataTransformerFilterRegistry
->;
-
-// tslint:disable-next-line: no-empty-interface
 export interface DataTransformerFilterRegistry {}
 
-export type DataTransformerFilterRegistryType = RegistryType<
-  DataTransformerFilterRegistry
->;
+export type DataTransformerFilterRegistryType =
+  RegistryType<DataTransformerFilterRegistry>;
+
+export type DataTransformerFilterDeclaration =
+  RegistryDeclaration<DataTransformerFilterRegistry>;
 
 export type DataTransformerFilterData = Record<string, unknown>[];
 

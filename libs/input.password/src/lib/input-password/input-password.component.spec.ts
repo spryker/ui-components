@@ -6,7 +6,7 @@ import { InputPasswordComponent } from './input-password.component';
 import { InputModule } from '@spryker/input';
 import { IconOpenEyeModule, IconCrossedEyeModule } from '@spryker/icon/icons';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('InputPasswordComponent', () => {
   describe('Host functionality', () => {
@@ -19,7 +19,12 @@ describe('InputPasswordComponent', () => {
       },
     );
 
-    beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+    beforeEach(() =>
+      TestBed.configureTestingModule({
+        imports: [testModule],
+        teardown: { destroyAfterEach: false },
+      }),
+    );
 
     it('should render <spy-input>', async () => {
       const host = await createComponent({}, true);
@@ -164,7 +169,12 @@ describe('InputPasswordComponent', () => {
       },
     );
 
-    beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+    beforeEach(() =>
+      TestBed.configureTestingModule({
+        imports: [testModule],
+        teardown: { destroyAfterEach: false },
+      }),
+    );
 
     it('should trigger host type and `spy-icon` name', async () => {
       const host = await createComponent({}, true);

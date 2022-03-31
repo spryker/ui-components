@@ -7,18 +7,15 @@ import {
 } from '@spryker/drawer';
 import { RegistryType, RegistryDeclaration } from '@spryker/utils';
 
-// tslint:disable-next-line:no-empty-interface
 export interface DrawerActionComponentsRegistry {
   // type: Type<unknown>
 }
 
-export type DrawerActionComponentType = RegistryType<
-  DrawerActionComponentsRegistry
->;
+export type DrawerActionComponentType =
+  RegistryType<DrawerActionComponentsRegistry>;
 
-export type DrawerActionTypesDeclaration = RegistryDeclaration<
-  DrawerActionComponentsRegistry
->;
+export type DrawerActionTypesDeclaration =
+  RegistryDeclaration<DrawerActionComponentsRegistry>;
 
 export interface DrawerActionConfigComponent extends ActionConfig {
   component: DrawerActionComponentType | Type<unknown>;

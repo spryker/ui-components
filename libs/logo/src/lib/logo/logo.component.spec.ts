@@ -10,6 +10,7 @@ describe('LogoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LogoComponent],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

@@ -19,7 +19,8 @@ export interface TemplateModalExtras<T> {
 export class TemplateModalRenderingRef<T>
   implements
     ModalRenderingRef<T, TemplateModalExtras<T>>,
-    TemplateModalExtras<T> {
+    TemplateModalExtras<T>
+{
   constructor(private viewRef: EmbeddedViewRef<TemplateModalContext<T>>) {}
 
   getViewRef(): EmbeddedViewRef<TemplateModalContext<T>> {
@@ -37,17 +38,18 @@ export class TemplateModalRenderingRef<T>
 
   dispose(): void {
     // Refs cleanup requires assignment to `undefined`
-    // tslint:disable: no-non-null-assertion
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
     this.viewRef.destroy();
     this.viewRef = undefined!;
 
-    // tslint:enable: no-non-null-assertion
+    /* eslint-enable @typescript-eslint/no-non-null-assertion */
   }
 }
 
 export class TemplateModalStrategy<T>
-  implements ModalStrategy<T, TemplateModalExtras<T>> {
+  implements ModalStrategy<T, TemplateModalExtras<T>>
+{
   constructor(private template: TemplateRef<TemplateModalContext<T>>) {}
 
   render(

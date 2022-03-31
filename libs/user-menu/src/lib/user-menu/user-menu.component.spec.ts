@@ -13,7 +13,12 @@ describe('UserMenuComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   it('should render <spy-user-menu>', async () => {
     const host = await createComponent({}, true);

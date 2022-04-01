@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/header@0.4.0...@spryker/header@0.4.1-next.0) (2022-04-01)
+
+**Note:** Version bump only for package @spryker/header
+
+
+
+
+
 # [0.4.0](https://github.com/spryker/ui-components/compare/@spryker/header@0.4.0-rc.1...@spryker/header@0.4.0) (2022-03-10)
 
 **Note:** Version bump only for package @spryker/header

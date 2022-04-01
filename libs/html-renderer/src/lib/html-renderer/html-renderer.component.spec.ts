@@ -6,7 +6,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { HtmlRendererComponent } from './html-renderer.component';
 import { HtmlRendererProvider } from './html-renderer.provider';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 const mockHtmlTemplate = `
   <p>Hello World!!!</p>
@@ -45,6 +45,7 @@ describe('HtmlRendererComponent', () => {
         },
         MockHtmlRendererProvider,
       ],
+      teardown: { destroyAfterEach: false },
     });
     testHtmlRendererProvider = TestBed.inject(MockHtmlRendererProvider);
   }));

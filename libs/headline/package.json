@@ -1,13 +1,13 @@
 {
   "name": "@spryker/headline",
-  "version": "0.3.1-next.1",
+  "version": "0.4.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.2",
-    "@angular/core": "^9.1.2",
-    "@spryker/styles": "^0.5.0"
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
+    "@spryker/styles": "^0.6.0"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

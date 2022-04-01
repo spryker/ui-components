@@ -2,16 +2,14 @@ import { Injector } from '@angular/core';
 import { RegistryDeclaration, RegistryType } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
-// tslint:disable-next-line: no-empty-interface
 export interface DataTransformerRegistry {
   // pluck: DataTransformer
 }
 
 export type DataTransformerType = RegistryType<DataTransformerRegistry>;
 
-export type DataTransformerTypesDeclaration = RegistryDeclaration<
-  DataTransformerRegistry
->;
+export type DataTransformerTypesDeclaration =
+  RegistryDeclaration<DataTransformerRegistry>;
 
 export interface DataTransformerConfig {
   type: DataTransformerType;
@@ -24,5 +22,5 @@ export interface DataTransformer<D, DT> {
     data: D,
     config: DataTransformerConfig,
     injector?: Injector,
-  ): Observable<DT>;
+  ): Observable<DT | unknown>;
 }

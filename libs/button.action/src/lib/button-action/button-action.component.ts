@@ -43,7 +43,7 @@ export class ButtonActionComponent implements OnInit, OnDestroy {
     switchMap(() =>
       this.actionsService.trigger(
         this.injector,
-        // tslint:disable-next-line:no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.action!,
         this.actionContext,
       ),

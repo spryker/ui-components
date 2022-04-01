@@ -3,7 +3,8 @@ import { PrefixComponentSelectorStrategyOptions } from 'ngx-element-boundary';
 
 @Injectable({ providedIn: 'root' })
 export class CustomElementOptions
-  implements PrefixComponentSelectorStrategyOptions {
+  implements PrefixComponentSelectorStrategyOptions
+{
   /**
    * Add prefix to all Angular Custom Elements
    *

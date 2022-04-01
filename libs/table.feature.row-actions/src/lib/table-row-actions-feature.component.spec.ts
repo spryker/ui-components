@@ -122,6 +122,7 @@ describe('TableRowActionsFeatureComponent', () => {
         },
       ],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     });
   });
 

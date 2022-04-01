@@ -35,7 +35,7 @@ export type AnyFunction<R = any, A extends any[] = any[]> = (...args: A) => R;
  */
 export type FunctionWithArgs<
   R = any,
-  A extends [any, ...any[]] = [any]
+  A extends [any, ...any[]] = [any],
 > = AnyFunction<R, A>;
 
 /**

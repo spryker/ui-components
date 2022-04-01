@@ -32,7 +32,8 @@ import { RadioGroupComponent } from '../radio-group/radio-group.component';
   },
 })
 export class RadioComponent
-  implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+  implements OnInit, OnChanges, OnDestroy, AfterViewInit
+{
   @Input() value?: string;
   @Input() @ToBoolean() disabled = false;
   @Input() @ToBoolean() hasError = false;

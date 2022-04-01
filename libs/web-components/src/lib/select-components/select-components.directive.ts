@@ -46,7 +46,8 @@ import {
   selector: '[spySelectComponents]',
 })
 export class SelectComponentsDirective<T = unknown>
-  implements OnChanges, OnDestroy {
+  implements OnChanges, OnDestroy
+{
   /**
    * Angular component type that {@link NgWebComponent} should be instance of
    */

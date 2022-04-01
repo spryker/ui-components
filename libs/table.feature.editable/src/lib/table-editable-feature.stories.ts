@@ -48,7 +48,7 @@ const tableConfig = {
   dataSource: {
     type: 'mock-data',
     dataGenerator: tableDataGenerator,
-  } as MockTableDatasourceConfig,
+  } as unknown as MockTableDatasourceConfig,
   columns: [
     { id: 'col1', title: 'Column #1' },
     { id: 'col2', title: 'Column #2' },
@@ -61,7 +61,7 @@ const tableConfig = {
       { id: 'col2', type: 'edit' as any },
       { id: 'col3', type: 'edit' as any },
       { id: 'col4', type: 'edit' as any, typeOptions: { value: 'default' } },
-    ] as TableColumns,
+    ] as unknown as TableColumns,
     create: {
       addButton: {
         type: 'button',
@@ -135,7 +135,8 @@ class EditColumnConfig {
 })
 @TableColumnTypeComponent(EditColumnConfig)
 class EditColumnComponent
-  implements TableColumnComponent<EditColumnConfig>, OnInit {
+  implements TableColumnComponent<EditColumnConfig>, OnInit
+{
   @Input() config?: EditColumnConfig;
   @Input() context?: TableColumnContext;
 
@@ -148,9 +149,9 @@ class EditColumnComponent
   }
 
   updateValue(value: string): void {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.context!.value = value;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.tableEditableService.updateValue(value, this.context!.config);
   }
 }
@@ -164,7 +165,7 @@ class EditColumnComponent
     TableModule.forRoot(),
     DatasourceModule.withDatasources({
       'mock-data': MockTableDatasourceService,
-    }),
+    } as any),
     TableModule.withColumnComponents({
       edit: EditColumnComponent,
     } as any),
@@ -175,7 +176,6 @@ class EditColumnComponent
   ],
   exports: [TableModule, MockHttpModule],
   declarations: [EditColumnComponent],
-  entryComponents: [LayoutFlatHostComponent, EditColumnComponent],
   providers: [
     {
       provide: TableEditableEditRequestToken,

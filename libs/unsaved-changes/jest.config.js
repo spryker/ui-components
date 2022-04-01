@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'unsaved-changes',
-  preset: '../../jest.config.js',
+  displayName: 'unsaved-changes',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/unsaved-changes',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

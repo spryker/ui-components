@@ -34,6 +34,7 @@ describe('CardComponent', () => {
       imports: [CardModule],
       declarations: [TestComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

@@ -9,8 +9,9 @@ import {
   OnInit,
   TemplateRef,
   ViewContainerRef,
+  SimpleChanges,
 } from '@angular/core';
-import { isNonNullable, TypedSimpleChanges } from '@spryker/utils';
+import { isNonNullable } from '@spryker/utils';
 import { combineLatest, Observable, ReplaySubject, Subject } from 'rxjs';
 import {
   debounceTime,
@@ -27,21 +28,17 @@ import { TableFeaturesRendererService } from './table-features-renderer.service'
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
 import { TableFeatureLocation } from '../table/table';
 
-export class TableFeaturesRendererDirectiveInputs {
-  /** Location of the feature */
-  @Input() spyTableFeaturesRenderer?: TableFeatureLocation;
-  @Input() spyTableFeaturesRendererFeatures?: TableFeatureComponent[];
-  @Input() spyTableFeaturesRendererMaxFeatures?: number;
-  @Input() spyTableFeaturesRendererContext?: TableFeatureTplContext;
-}
-
 @Directive({
   selector: '[spyTableFeaturesRenderer]',
   exportAs: 'spyTableFeaturesRenderer',
 })
 export class TableFeaturesRendererDirective
-  extends TableFeaturesRendererDirectiveInputs
-  implements OnInit, OnChanges, OnDestroy {
+  implements OnInit, OnChanges, OnDestroy
+{
+  @Input() spyTableFeaturesRenderer?: TableFeatureLocation;
+  @Input() spyTableFeaturesRendererFeatures?: TableFeatureComponent[];
+  @Input() spyTableFeaturesRendererMaxFeatures?: number;
+  @Input() spyTableFeaturesRendererContext?: TableFeatureTplContext;
   private featuresDiffer = this.iterableDiffers
     .find([])
     .create<FeatureRecord>((idx, feature) => feature.component);
@@ -83,9 +80,7 @@ export class TableFeaturesRendererDirective
     private iterableDiffers: IterableDiffers,
     private cdr: ChangeDetectorRef,
     private featuresRendererService: TableFeaturesRendererService,
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.featureChanges$
@@ -93,9 +88,7 @@ export class TableFeaturesRendererDirective
       .subscribe((features) => this.updateFeatures(features));
   }
 
-  ngOnChanges(
-    changes: TypedSimpleChanges<TableFeaturesRendererDirectiveInputs>,
-  ): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (
       changes.spyTableFeaturesRenderer ||
       changes.spyTableFeaturesRendererFeatures
@@ -108,11 +101,17 @@ export class TableFeaturesRendererDirective
       );
     }
 
-    if (changes.spyTableFeaturesRendererContext) {
+    if (
+      changes.spyTableFeaturesRendererContext &&
+      this.spyTableFeaturesRendererContext
+    ) {
       this.context$.next(this.spyTableFeaturesRendererContext);
     }
 
-    if (changes.spyTableFeaturesRendererMaxFeatures) {
+    if (
+      changes.spyTableFeaturesRendererMaxFeatures &&
+      this.spyTableFeaturesRendererMaxFeatures
+    ) {
       this.maxFeatures$.next(this.spyTableFeaturesRendererMaxFeatures);
     }
   }
@@ -125,19 +124,19 @@ export class TableFeaturesRendererDirective
   private updateFeatures(changes: IterableChanges<FeatureRecord>): void {
     changes.forEachAddedItem((record) =>
       // Index always exists when adding feature
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.renderFeatureTpl(record.item, record.currentIndex!),
     );
 
     changes.forEachMovedItem((record) =>
       // Index always exists when moving feature
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.moveFeature(record.previousIndex!, record.currentIndex!),
     );
 
     changes.forEachRemovedItem((record) =>
       // Index always exists when removing feature
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.destroyFeature(record.currentIndex!),
     );
   }

@@ -23,6 +23,7 @@ describe('LinkComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, LinkComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

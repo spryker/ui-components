@@ -1,9 +1,9 @@
-import { TreeSelectComponent } from './tree-select.component';
-import { TreeSelectModule } from '../tree-select.module';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { TreeSelectComponent } from './tree-select.component';
+import { TreeSelectModule } from '../tree-select.module';
 
 export default {
   title: 'TreeSelectComponent',
@@ -16,6 +16,7 @@ export default {
     LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
     EnLocaleModule,
   ],
+  exports: [TreeSelectComponent],
 })
 class StoryModule {}
 

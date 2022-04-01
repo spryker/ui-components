@@ -10,7 +10,6 @@ import { TablePaginationFeatureComponent } from './table-pagination-feature.comp
   imports: [CommonModule, PaginationModule, TableFeatureModule, PluckModule],
   exports: [TablePaginationFeatureComponent],
   declarations: [TablePaginationFeatureComponent],
-  entryComponents: [TablePaginationFeatureComponent],
 })
 export class TablePaginationFeatureModule implements ModuleWithFeature {
   featureComponent = TablePaginationFeatureComponent;

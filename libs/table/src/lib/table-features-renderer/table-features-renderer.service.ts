@@ -103,22 +103,24 @@ export class TableFeaturesRendererService implements OnDestroy {
   ) {
     const featuresInLocation$ = features$.pipe(
       switchMap((features) => this.trackFeatureRecords(features, location)),
-      // tslint:disable-next-line: deprecation
       startWith([] as never),
     );
 
     const featureTemplates$ = featuresInLocation$.pipe(
-      map((features) => features.map((feature) => feature.featureTemplate)),
+      map((features) => features?.map((feature) => feature.featureTemplate)),
     );
 
     const featureContexts$ = featuresInLocation$.pipe(
-      switchMap((features) =>
-        combineLatest(
+      switchMap((features) => {
+        if (!features) {
+          return of([]);
+        }
+
+        return combineLatest(
           features.map((feature) => feature.featureContext$ ?? of(undefined)),
-        ),
-      ),
-      // tslint:disable-next-line: deprecation
-      startWith([] as never),
+        );
+      }),
+      startWith([]),
       debounceTime(0),
     );
 
@@ -127,7 +129,7 @@ export class TableFeaturesRendererService implements OnDestroy {
       map(([templates, contexts]) => (...args: TArgs) => {
         const context = contextGetter(...args);
 
-        return templates.reduceRight<TableChainedContext<TContext>>(
+        return templates?.reduceRight<TableChainedContext<TContext>>(
           (prevCtx, template, j) => ({
             $implicit: template as any,
             context: {

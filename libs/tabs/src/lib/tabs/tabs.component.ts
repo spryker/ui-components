@@ -27,9 +27,23 @@ export enum TabsMode {
   styleUrls: ['./tabs.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: { class: 'spy-tabs' },
 })
 export class TabsComponent implements OnInit, OnDestroy {
+  @Input() tab = 0;
+  @Input() mode: TabsMode = TabsMode.Line;
+  @Input() @ToBoolean() animateSlides = false;
+  @HostBinding('class.spy-tabs--warning') hasWarning = false;
+
+  @Output() tabChange = new EventEmitter<number>();
+
+  @ContentChildren(TabComponent)
+  set contentTabs(childrenTabs: QueryList<TabComponent>) {
+    this.tabs$.next(childrenTabs.toArray());
+  }
+
   tabReference = TabComponent;
+
   tabs$ = new BehaviorSubject<TabComponent[]>([]);
   hasWarning$ = this.tabs$.pipe(
     switchMap((tabs: TabComponent[]) =>
@@ -44,18 +58,6 @@ export class TabsComponent implements OnInit, OnDestroy {
     ),
   );
   destroyed$ = new Subject<void>();
-
-  @Input() tab = 0;
-  @Input() mode: TabsMode = TabsMode.Line;
-  @Input() @ToBoolean() animateSlides = false;
-  @HostBinding('class.tabs--warning') hasWarning = false;
-
-  @Output() tabChange = new EventEmitter<number>();
-
-  @ContentChildren(TabComponent)
-  set contentTabs(childrenTabs: QueryList<TabComponent>) {
-    this.tabs$.next(childrenTabs.toArray());
-  }
 
   ngOnInit(): void {
     this.hasWarning$

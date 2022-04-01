@@ -14,6 +14,7 @@ describe('AutocompleteComponent', () => {
       declarations: [AutocompleteComponent],
       providers: [{ provide: AutocompleteWrapperToken, useValue: '' }],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

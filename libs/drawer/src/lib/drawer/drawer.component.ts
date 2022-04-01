@@ -13,6 +13,7 @@ import {
   ViewChild,
   ViewEncapsulation,
   OnInit,
+  Injectable,
 } from '@angular/core';
 import { take, takeUntil, switchMap } from 'rxjs/operators';
 
@@ -22,6 +23,7 @@ import { DrawerService } from '../drawer.service';
 import { DrawerTemplateContext } from '../types';
 import { Subject, Observable } from 'rxjs';
 
+@Injectable()
 export class DrawerComponentInputs {
   @Input() isOpen?: boolean;
   @Input() closeable?: boolean;
@@ -40,7 +42,8 @@ export class DrawerComponentInputs {
 })
 export class DrawerComponent
   extends DrawerComponentInputs
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
   @Output() isOpenChange = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<void>();
 

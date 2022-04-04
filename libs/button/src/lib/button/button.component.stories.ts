@@ -11,8 +11,7 @@ export default {
   title: 'ButtonComponent',
   parameters: {
     abstract: {
-      url:
-        'https://share.goabstract.com/06fcce27-bd5a-4151-92ab-64e49b8d5001?collectionLayerId=0dbe2190-2585-4964-94d5-13a746765cbd&mode=design',
+      url: 'https://share.goabstract.com/06fcce27-bd5a-4151-92ab-64e49b8d5001?collectionLayerId=0dbe2190-2585-4964-94d5-13a746765cbd&mode=design',
     },
   },
 };

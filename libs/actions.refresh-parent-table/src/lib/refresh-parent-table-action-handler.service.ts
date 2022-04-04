@@ -11,7 +11,8 @@ import {
   providedIn: 'root',
 })
 export class RefreshParentTableActionHandlerService
-  implements ActionHandler<unknown, void> {
+  implements ActionHandler<unknown, void>
+{
   handleAction(
     injector: Injector,
     config: RefreshParentTableActionConfig,

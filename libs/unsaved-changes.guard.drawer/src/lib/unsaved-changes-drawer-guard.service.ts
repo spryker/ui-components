@@ -26,9 +26,10 @@ import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
 /**
  * Dynamically provides {@link UnsavedChangesDrawerGuard} for the drawer component.
  */
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class UnsavedChangesDrawerGuardComposableFactory
-  implements InterceptionComposableFactory {
+  implements InterceptionComposableFactory
+{
   canApply(token: unknown): boolean {
     return token && token instanceof DrawerContainerComponent;
   }
@@ -57,25 +58,30 @@ export class UnsavedChangesDrawerGuardComposableFactory
  */
 @Injectable()
 export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
-  private interceptorService = this.injector.get(InterceptorService);
-  private modalService = this.injector.get(ModalService);
-  private i18nService = this.injector.get(I18nService);
+  private interceptorService: InterceptorService;
+  private modalService: ModalService;
+  private i18nService: I18nService;
 
   private destroyed$ = new Subject<void>();
-  private translations$ = combineLatest([
-    this.i18nService.translate('unsaved-changes.confirmation-title'),
-    this.i18nService.translate('unsaved-changes.confirmation-ok'),
-    this.i18nService.translate('unsaved-changes.confirmation-cancel'),
-  ]);
 
-  init(): void {
-    super.init();
+  constructor(injector: Injector) {
+    super(injector);
+
+    this.interceptorService = this.injector.get(InterceptorService);
+    this.modalService = this.injector.get(ModalService);
+    this.i18nService = this.injector.get(I18nService);
+
+    const translations$ = combineLatest([
+      this.i18nService.translate('unsaved-changes.confirmation-title'),
+      this.i18nService.translate('unsaved-changes.confirmation-ok'),
+      this.i18nService.translate('unsaved-changes.confirmation-cancel'),
+    ]);
 
     this.interceptorService
       .intercept(DrawerCloseInterceptionEvent, () =>
         this.hasDirtyStatus$.pipe(
           take(1),
-          withLatestFrom(this.translations$),
+          withLatestFrom(translations$),
           switchMap(([hasDirtyStatus, [title, okText, cancelText]]) =>
             hasDirtyStatus
               ? this.modalService

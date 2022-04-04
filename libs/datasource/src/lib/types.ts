@@ -3,18 +3,16 @@ import { DataTransformerConfig } from '@spryker/data-transformer';
 import { RegistryDeclaration, RegistryType } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
-// tslint:disable-next-line: no-empty-interface
 export interface DatasourceRegistry {
   // type: Datasource
 }
 
-export type DatasourceTypesDeclaration = RegistryDeclaration<
-  DatasourceRegistry
->;
-
 // 'inline'
-// 'name.type' => 'table.inline'
+// 'name.type' => 'inline.table'
 export type DatasourceType = RegistryType<DatasourceRegistry>;
+
+export type DatasourceTypesDeclaration =
+  RegistryDeclaration<DatasourceRegistry>;
 
 export interface DatasourceConfig {
   type: DatasourceType;

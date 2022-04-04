@@ -1,6 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
-import { DataTransformerService } from '@spryker/data-transformer';
-import { Datasource, DatasourceConfig } from '@spryker/datasource';
+import {
+  DataTransformerConfig,
+  DataTransformerService,
+  DataTransformerType,
+} from '@spryker/data-transformer';
+import { Datasource } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { TableData } from '@spryker/table';
 import { Observable } from 'rxjs';
@@ -19,19 +23,19 @@ export class TableDatasourceInlineService implements Datasource<TableData> {
     injector: Injector,
     config: TableDatasourceInlineConfig,
   ): Observable<TableData> {
-    const preprocessConfig: Record<string, DatasourceConfig> = {};
-    const postprocessConfig: Record<string, DatasourceConfig> = {};
+    const preprocessConfig: Record<string, DataTransformerConfig> = {};
+    const postprocessConfig: Record<string, DataTransformerConfig> = {};
 
     for (const [key, value] of Object.entries(
       config.transformerByPropName ?? {},
     )) {
       if (value === 'date') {
         preprocessConfig[key] = {
-          type: 'date-parse',
+          type: 'date-parse' as DataTransformerType,
         };
 
         postprocessConfig[key] = {
-          type: 'date-serialize',
+          type: 'date-serialize' as DataTransformerType,
         };
       }
     }
@@ -67,7 +71,7 @@ export class TableDatasourceInlineService implements Datasource<TableData> {
         },
       ],
       transformerByPropName: config.transformerByPropName,
-    };
+    } as unknown as DataTransformerConfig;
 
     return this.datasourceInlineService
       .resolve(injector, config)

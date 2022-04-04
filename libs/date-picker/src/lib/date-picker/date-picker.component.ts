@@ -215,9 +215,9 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
     if (fromHours !== undefined && toHours !== undefined) {
       workHoursRanges.push([
-        // tslint:disable-next-line:no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         [fromHours, fromMinutes!],
-        // tslint:disable-next-line:no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         [toHours, toMinutes!],
       ]);
     }
@@ -377,10 +377,10 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
   }
 
   openPicker(): void {
-    this._picker?.picker.showOverlay(); // used private API of NzDatePickerComponent
+    this._picker?.open();
   }
 
   closePicker(): void {
-    this._picker?.picker.hideOverlay(); // used private API of NzDatePickerComponent
+    this._picker?.close();
   }
 }

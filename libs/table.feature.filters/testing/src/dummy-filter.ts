@@ -13,7 +13,8 @@ import { EMPTY } from 'rxjs';
   `,
 })
 export class TableDummyFilterComponent
-  implements TableFilterComponent<any>, OnChanges {
+  implements TableFilterComponent<any>, OnChanges
+{
   @Input() config?: any;
   valueChange: any;
   value = '';

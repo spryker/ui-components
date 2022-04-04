@@ -18,7 +18,7 @@ import {
   providedIn: 'root',
 })
 export class DataTransformerService {
-  private transformers: DataTransformerTypesDeclaration =
+  private transformers: Partial<DataTransformerTypesDeclaration> =
     this.transformersTypes?.reduce(
       (transformers, transformer) => ({ ...transformers, ...transformer }),
       {},
@@ -40,7 +40,9 @@ export class DataTransformerService {
   ): Observable<unknown> {
     if (!this.isTransformerRegisteredType(config.type)) {
       throw Error(
-        `DataTransformerService: Unknown transformer type ${config.type}`,
+        `DataTransformerService: Unknown transformer type ${String(
+          config.type,
+        )}`,
       );
     }
 

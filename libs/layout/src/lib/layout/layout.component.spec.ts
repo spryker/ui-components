@@ -23,6 +23,7 @@ describe('LayoutComponent', () => {
       imports: [LayoutModule],
       declarations: [TestComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

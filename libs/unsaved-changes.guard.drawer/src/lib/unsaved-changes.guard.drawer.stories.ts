@@ -1,6 +1,11 @@
 import { Component, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DrawerModule, DrawerRef, DrawerService } from '@spryker/drawer';
+import {
+  DrawerModule,
+  DrawerRef,
+  DrawerService,
+  DrawerContainerProxyComponent,
+} from '@spryker/drawer';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { ModalModule, NzModalWrapperComponent } from '@spryker/modal';
@@ -8,8 +13,6 @@ import { UnsavedChangesModule } from '@spryker/unsaved-changes';
 import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
 import { UnsavedChangesFormMonitorModule } from '@spryker/unsaved-changes.monitor.form';
 import { IStory } from '@storybook/angular';
-
-import { DrawerContainerProxyComponent } from '../../../drawer/src/lib/drawer-container/drawer-container-proxy.component';
 import { UnsavedChangesDrawerGuardModule } from './unsaved-changes-drawer-guard.module';
 
 export default {

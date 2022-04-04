@@ -4,6 +4,7 @@ import { DefaultContextSerializationModule } from '@spryker/utils';
 import { of } from 'rxjs';
 
 import { LensDataTransformerService } from './lens-data-transformer.service';
+import { LensDataTransformerConfig } from './types';
 
 const mockReturnedValue = 'mockReturnValue';
 
@@ -25,6 +26,7 @@ describe('LensDataTransformerService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(LensDataTransformerService);
     dataTransformerService = TestBed.inject(MockDataTransformerService);
@@ -32,7 +34,7 @@ describe('LensDataTransformerService', () => {
 
   it('transform method should return object with transformed value by path prop', () => {
     const mockInitialValue = 'mockInitialValue';
-    const mockConfig = {
+    const mockConfig: LensDataTransformerConfig = {
       type: 'type',
       path: 'test.test2.test3',
       transformer: {
@@ -63,7 +65,7 @@ describe('LensDataTransformerService', () => {
   });
 
   it('transform method should not mutate initial data from props', () => {
-    const mockConfig = {
+    const mockConfig: LensDataTransformerConfig = {
       type: 'type',
       path: 'test.test2.test3',
       transformer: {

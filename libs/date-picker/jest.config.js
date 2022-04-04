@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'date-picker',
-  preset: '../../jest.config.js',
+  displayName: 'date-picker',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/date-picker',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

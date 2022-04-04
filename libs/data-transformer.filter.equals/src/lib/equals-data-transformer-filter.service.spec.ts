@@ -25,6 +25,7 @@ describe('EqualsDataTransformerFilterService', () => {
           useExisting: MockDataTransformer,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(EqualsDataTransformerFilterService);

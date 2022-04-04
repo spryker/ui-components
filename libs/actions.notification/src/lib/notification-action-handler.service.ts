@@ -10,7 +10,8 @@ import { NotificationActionConfig } from './types';
   providedIn: 'root',
 })
 export class NotificationActionHandlerService
-  implements ActionHandler<unknown, NotificationRef[]> {
+  implements ActionHandler<unknown, NotificationRef[]>
+{
   handleAction(
     injector: Injector,
     config: NotificationActionConfig,

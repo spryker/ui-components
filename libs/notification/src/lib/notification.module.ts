@@ -43,7 +43,9 @@ import { mapDataToConfig } from './util';
   exports: [NotificationViewComponent, NotificationComponent],
 })
 export class NotificationModule {
-  static forRoot(config?: NotificationGlobalConfig): ModuleWithProviders {
+  static forRoot(
+    config?: NotificationGlobalConfig,
+  ): ModuleWithProviders<NotificationModule> {
     let mappedConfig: Partial<GlobalConfig> = {
       maxOpened: config?.maxOpened ? config.maxOpened : 0,
       newestOnTop: config?.newestOnTop ? config.newestOnTop : true,

@@ -51,7 +51,13 @@
     line-height: 1;
   }
 
-  &-has-error {
+  .anticon-info-circle {
+    font-size: @spy-font-size-lg;
+    line-height: @form-info-icon-line-height;
+    vertical-align: middle;
+  }
+
+  &.@{form-item-prefix-cls}-has-error.@{form-item-prefix-cls}-with-help {
     .@{select-prefix-cls}:not(.@{select-prefix-cls}-borderless).@{select-prefix-cls}-open
       .@{select-prefix-cls}-selector,
     .@{select-prefix-cls}:not(.@{select-prefix-cls}-borderless).@{select-prefix-cls}-focused
@@ -71,12 +77,6 @@
         box-shadow: none;
       }
     }
-  }
-
-  .anticon-info-circle {
-    font-size: @spy-font-size-lg;
-    line-height: @form-info-icon-line-height;
-    vertical-align: middle;
   }
 
   .@{form-item-prefix-cls}-control {

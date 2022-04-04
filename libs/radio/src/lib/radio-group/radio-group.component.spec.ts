@@ -32,6 +32,7 @@ describe('RadioGroupComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, RadioComponent, RadioGroupComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

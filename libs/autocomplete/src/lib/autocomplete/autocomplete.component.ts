@@ -4,6 +4,8 @@ import {
   Inject,
   Injector,
   Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
   SimpleChanges,
   ViewChild,
@@ -28,7 +30,7 @@ import { AutocompleteValue } from './types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AutocompleteComponent implements OnInit {
+export class AutocompleteComponent implements OnChanges, OnInit, OnDestroy {
   @Input() @ToJson() options?: AutocompleteValue[];
   @Input() datasource?: DatasourceConfig;
   @Input() context?: unknown;
@@ -37,7 +39,7 @@ export class AutocompleteComponent implements OnInit {
   nzAutocompleteComponent?: NzAutocompleteComponent;
 
   datasourceOptions$ = new ReplaySubject<Observable<AutocompleteValue[]>>(1);
-  options$ = new ReplaySubject<AutocompleteValue[]>(1);
+  options$ = new ReplaySubject<AutocompleteValue[] | undefined>(1);
   filteredOptions$ = this.options$.pipe(
     switchMap((options) => {
       if (!this.autocompleteWrapper?.value$ || !options) {

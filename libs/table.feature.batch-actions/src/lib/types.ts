@@ -1,12 +1,6 @@
 import { TableActionBase, TableFeatureConfig } from '@spryker/table';
 import { TableSelectionRow } from '@spryker/table.feature.selectable';
 
-declare module '@spryker/table' {
-  interface TableConfig {
-    batchActions?: TableBatchActionsConfig;
-  }
-}
-
 export interface TableBatchActionsConfig extends TableFeatureConfig {
   actions: TableBatchAction[];
   rowIdPath: string;

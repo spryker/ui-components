@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'data-transformer.filter.range',
-  preset: '../../jest.config.js',
+  displayName: 'data-transformer.filter.range',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/data-transformer.filter.range',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

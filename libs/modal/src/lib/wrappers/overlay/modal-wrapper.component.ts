@@ -61,15 +61,12 @@ export class ModalWrapperComponent {
   @ViewChild('content', { read: ViewContainerRef, static: true })
   contentVcr!: ViewContainerRef;
 
-  @ViewChild('headerBind', { static: true }) headerBind!: TemplateRef<
-    RenderBindContext
-  >;
-  @ViewChild('renderBind', { static: true }) renderBind!: TemplateRef<
-    RenderBindContext
-  >;
-  @ViewChild('renderTpl', { static: true }) renderTpl!: TemplateRef<
-    RenderTplContext
-  >;
+  @ViewChild('headerBind', { static: true })
+  headerBind!: TemplateRef<RenderBindContext>;
+  @ViewChild('renderBind', { static: true })
+  renderBind!: TemplateRef<RenderBindContext>;
+  @ViewChild('renderTpl', { static: true })
+  renderTpl!: TemplateRef<RenderTplContext>;
 
   headerTpl!: TemplateRef<RenderBindContext | RenderTplContext>;
   headerCtx!: { $implicit: any };

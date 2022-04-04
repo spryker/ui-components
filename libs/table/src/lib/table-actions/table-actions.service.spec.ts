@@ -41,6 +41,7 @@ describe('TableActionsService', () => {
           useValue: mockInjector,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     tableActionsService = TestBed.inject(TableActionsService);
     actionService = TestBed.inject(MockActionsService);

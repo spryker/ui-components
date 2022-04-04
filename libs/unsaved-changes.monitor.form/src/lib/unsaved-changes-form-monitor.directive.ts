@@ -10,6 +10,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { InterceptionComposerService } from '@spryker/interception';
+import { ToBoolean } from '@spryker/utils';
 import {
   UnsavedChangesGuardToken,
   UnsavedChangesMonitor,
@@ -31,11 +32,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
   ],
 })
 export class UnsavedChangesFormMonitorDirective
-  implements UnsavedChangesMonitor, OnInit, OnDestroy, OnChanges {
+  implements UnsavedChangesMonitor, OnInit, OnDestroy, OnChanges
+{
   /**
    * Allows attaching / detaching monitor
    */
-  @Input() spyUnsavedChangesFormMonitor = true;
+  @Input() @ToBoolean() spyUnsavedChangesFormMonitor = true;
 
   private disposeInputEvent?: () => void;
 
@@ -43,16 +45,18 @@ export class UnsavedChangesFormMonitorDirective
     UnsavedChangesMonitorStatus.Clean,
   );
 
-  private unsavedChangesGuard = this.interceptionComposerService?.getService(
-    UnsavedChangesGuardToken,
-  );
+  private unsavedChangesGuard?: UnsavedChangesGuardToken;
 
   constructor(
     private formRef: ElementRef<HTMLFormElement>,
     private renderer: Renderer2,
     @Optional()
     private interceptionComposerService?: InterceptionComposerService,
-  ) {}
+  ) {
+    this.unsavedChangesGuard = this.interceptionComposerService?.getService(
+      UnsavedChangesGuardToken,
+    );
+  }
 
   ngOnInit(): void {
     if (this.spyUnsavedChangesFormMonitor !== false) {

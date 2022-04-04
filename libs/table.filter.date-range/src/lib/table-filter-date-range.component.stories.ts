@@ -67,7 +67,7 @@ function getFiltersStory(
         DefaultContextSerializationModule,
         DatasourceModule.withDatasources({
           'mock-data': MockTableDatasourceService,
-        }),
+        } as any),
         TableFilterDateRangeModule,
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
         EnLocaleModule,
@@ -87,7 +87,7 @@ function getFiltersStory(
         dataSource: {
           type: 'mock-data',
           dataGenerator: tableDataGenerator,
-        } as MockTableDatasourceConfig,
+        } as unknown as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },

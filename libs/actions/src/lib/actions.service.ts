@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ActionsService {
-  private actionHandlerTypes: ActionTypesDeclaration =
+  private actionHandlerTypes: Partial<ActionTypesDeclaration> =
     this.actionHandlers?.reduce(
       (actions, action) => ({ ...actions, ...action }),
       {},

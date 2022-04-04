@@ -18,7 +18,8 @@ import {
 })
 export class CollateDataTransformerService
   implements
-    DataTransformer<CollateDataTransformerData, CollateDataTransformerDataT> {
+    DataTransformer<CollateDataTransformerData, CollateDataTransformerDataT>
+{
   constructor(
     private dataTransformerFilter: DataTransformerFilterService,
     private collateDataConfigurator: DataTransformerConfiguratorService,

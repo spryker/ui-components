@@ -100,7 +100,8 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
  */
 @Injectable({ providedIn: 'root', useExisting: InterceptionService })
 export abstract class InterceptorDispatcherService
-  implements InterceptorDispatcher {
+  implements InterceptorDispatcher
+{
   abstract dispatch<D>(event: InterceptionEventType<D>, data: D): Observable<D>;
   abstract dispatch<D extends never>(
     event: InterceptionEventType<D>,

@@ -20,13 +20,14 @@ export class ObjectMapDataTransformerService
     DataTransformer<
       ObjectMapDataTransformerData,
       ObjectMapDataTransformerDataT
-    > {
+    >
+{
   constructor(private dataTransformerService: DataTransformerService) {}
 
   transform(
     data: ObjectMapDataTransformerData,
     config: ObjectMapDataTransformerConfig,
-  ): Observable<ObjectMapDataTransformerDataT> {
+  ): Observable<ObjectMapDataTransformerDataT | unknown> {
     return of(Object.entries(data)).pipe(
       switchMap((dataArray) => {
         const dataToTransform: ObjectMapDataTransformerDataT = {};
@@ -40,7 +41,7 @@ export class ObjectMapDataTransformerService
             : of(value);
         }
 
-        return forkJoin(dataToTransform);
+        return forkJoin(dataToTransform as any);
       }),
     );
   }

@@ -13,12 +13,6 @@ import {
 } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
-declare module '@spryker/table' {
-  interface TableColumnTypeRegistry {
-    text: TableColumnTextConfig;
-  }
-}
-
 @Injectable({ providedIn: 'root' })
 export class TableColumnTextConfig {
   @ColumnTypeOption()
@@ -36,7 +30,8 @@ export class TableColumnTextConfig {
 })
 @TableColumnTypeComponent(TableColumnTextConfig)
 export class TableColumnTextComponent
-  implements TableColumnComponent<TableColumnTextConfig> {
+  implements TableColumnComponent<TableColumnTextConfig>
+{
   @Input() config?: TableColumnTextConfig;
   @Input() context?: TableColumnContext;
 }

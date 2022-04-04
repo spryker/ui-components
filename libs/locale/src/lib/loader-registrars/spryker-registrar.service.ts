@@ -19,11 +19,10 @@ export interface SprykerLocaleData {
   providedIn: 'root',
 })
 export class SprykerRegistrarService
-  implements LocaleLoaderRegistrar<SprykerLocaleData> {
-  private localeData: Record<
-    string,
-    SprykerLocaleData | undefined
-  > = Object.create(null);
+  implements LocaleLoaderRegistrar<SprykerLocaleData>
+{
+  private localeData: Record<string, SprykerLocaleData | undefined> =
+    Object.create(null);
 
   constructor(private i18nService: I18nService) {}
 

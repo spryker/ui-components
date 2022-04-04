@@ -10,7 +10,7 @@ import {
 import { ToBoolean, ToJson } from '@spryker/utils';
 
 import { DatePickerComponent } from '../date-picker/date-picker.component';
-import { DateRangeValue, DateRangeValueInput } from './types';
+import { DateRangeValueInput } from './types';
 
 @Component({
   selector: 'spy-date-range-picker',
@@ -32,7 +32,7 @@ export class DateRangePickerComponent {
   @Input() placeholderTo?: string;
   @Input() nameFrom?: string;
   @Input() nameTo?: string;
-  @Output() datesChange = new EventEmitter<DateRangeValue>();
+  @Output() datesChange = new EventEmitter<DateRangeValueInput>();
 
   @ViewChild('startPicker', { static: true }) startPicker?: DatePickerComponent;
   @ViewChild('endPicker', { static: true }) endPicker?: DatePickerComponent;
@@ -95,19 +95,19 @@ export class DateRangePickerComponent {
     return config;
   }
 
-  datesChangeHandler(dates: DateRangeValue): void {
+  datesChangeHandler(dates: DateRangeValueInput): void {
     dates.from = this.normalizeDate(dates.from, 0, 0, 0);
     dates.to = this.normalizeDate(dates.to, 23, 59, 59);
 
     this.datesChange.emit(dates);
   }
 
-  dateFromChange(dates: DateRangeValue) {
+  dateFromChange(dates: DateRangeValueInput) {
     this.datesChangeHandler(dates);
     this.timeTo = this.enabledTimeTo.bind(this);
   }
 
-  dateToChange(dates: DateRangeValue) {
+  dateToChange(dates: DateRangeValueInput) {
     this.datesChangeHandler(dates);
     this.timeFrom = this.enabledTimeFrom.bind(this);
   }

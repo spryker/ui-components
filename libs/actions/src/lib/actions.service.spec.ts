@@ -24,6 +24,7 @@ describe('ActionsService', () => {
         }),
       ],
       providers: [MockActionHandler],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(ActionsService);

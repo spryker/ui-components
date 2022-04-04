@@ -17,7 +17,8 @@ import {
 })
 export class ChainDataTransformerService
   implements
-    DataTransformer<ChainDataTransformerData, ChainDataTransformerDataT> {
+    DataTransformer<ChainDataTransformerData, ChainDataTransformerDataT>
+{
   constructor(private dataTransformerService: DataTransformerService) {}
 
   transform(

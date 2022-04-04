@@ -116,14 +116,6 @@
         border-color: @input-disabled-border;
       }
     }
-
-    &.@{input-prefix-cls}-container--hover {
-      border-color: @gray;
-    }
-
-    &.@{input-prefix-cls}-container--focus {
-      border-color: @spy-primary-color;
-    }
   }
 
   &-container {
@@ -136,8 +128,10 @@
     }
 
     &--focus {
+      &.@{input-prefix-cls}-affix-wrapper-focused
+        .@{input-prefix-cls}-affix-wrapper,
+      &.@{input-prefix-cls}-affix-wrapper-focused.@{input-prefix-cls}-affix-wrapper,
       .@{input-prefix-cls}-group-addon,
-      .@{input-prefix-cls}-affix-wrapper,
       .@{input-prefix-cls} {
         border-color: @spy-primary-color;
         border-width: @spy-border-width-base;

@@ -9,7 +9,6 @@ import { TableSelectableFeatureComponent } from './table-selectable-feature.comp
   imports: [CommonModule, CheckboxModule, TableFeatureModule],
   exports: [TableSelectableFeatureComponent],
   declarations: [TableSelectableFeatureComponent],
-  entryComponents: [TableSelectableFeatureComponent],
 })
 export class TableSelectableFeatureModule implements ModuleWithFeature {
   featureComponent = TableSelectableFeatureComponent;

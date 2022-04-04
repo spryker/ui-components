@@ -108,13 +108,14 @@ describe('TableBatchActionsFeatureComponent', () => {
             provide: TestTableFeatureMocks,
             useValue: {
               config: {
-                enabled: true, // This will enable feature via config
+                enabled: true,
                 ...mockActionsConfig,
               },
             },
           },
         ],
         schemas: [NO_ERRORS_SCHEMA],
+        teardown: { destroyAfterEach: false },
       });
     });
 
@@ -259,13 +260,14 @@ describe('TableBatchActionsFeatureComponent', () => {
             provide: TestTableFeatureMocks,
             useValue: {
               config: {
-                enabled: true, // This will enable feature via config
+                enabled: true,
                 ...mockActionsWithoutAvailableActionsPathConfig,
               },
             },
           },
         ],
         schemas: [NO_ERRORS_SCHEMA],
+        teardown: { destroyAfterEach: false },
       });
     });
 

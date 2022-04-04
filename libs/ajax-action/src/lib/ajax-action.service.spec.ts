@@ -41,6 +41,7 @@ describe('AjaxActionService', () => {
           useExisting: MockActionsService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     ajaxActionService = TestBed.inject(AjaxActionService);
     actionService = TestBed.inject(MockActionsService);

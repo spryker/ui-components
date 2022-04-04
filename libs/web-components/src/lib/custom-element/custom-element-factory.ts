@@ -48,10 +48,8 @@ export function createCustomElementForStatic<T>(
 
   const componentType = componentDeclaration.component;
 
-  const defaultStrategyFactory = new DefaultElementBoundaryNgElementStrategyFactory(
-    componentType,
-    injector,
-  );
+  const defaultStrategyFactory =
+    new DefaultElementBoundaryNgElementStrategyFactory(componentType, injector);
 
   const strategyFactory = new CrossBoundaryNgElementStrategyFactory(
     defaultStrategyFactory,
@@ -127,7 +125,7 @@ export function createCustomElementForStatic<T>(
     }
   }
 
-  return (WebComponent as any) as NgWebComponent<T>;
+  return WebComponent as any as NgWebComponent<T>;
 }
 
 export function createCustomElementForLazy<T>(
@@ -150,7 +148,8 @@ export function createCustomElementForLazy<T>(
 
   class LazyWebComponent
     extends (HTMLElement as any)
-    implements NgWebComponent<any> {
+    implements NgWebComponent<any>
+  {
     private destroyed$ = new Subject<void>();
 
     private ngComponent: any;
@@ -214,7 +213,7 @@ export function createCustomElementForLazy<T>(
     }
   }
 
-  return (LazyWebComponent as any) as NgWebComponent<T>;
+  return LazyWebComponent as any as NgWebComponent<T>;
 }
 
 function getComponentMethods(

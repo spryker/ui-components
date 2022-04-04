@@ -4,6 +4,7 @@ import {
   Directive,
   ElementRef,
   Input,
+  OnChanges,
   SimpleChanges,
 } from '@angular/core';
 import { fromEvent, Observable, ReplaySubject, Subject } from 'rxjs';
@@ -17,7 +18,8 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 })
 export class RedirectedCdkScrollableDirective
   extends CdkScrollable
-  implements AfterViewInit {
+  implements AfterViewInit, OnChanges
+{
   @Input() spyRedirectedCdkScrollable?: string;
 
   private queryElement$ = new ReplaySubject<ElementRef<HTMLElement>>();

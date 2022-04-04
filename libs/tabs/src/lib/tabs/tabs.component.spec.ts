@@ -1,12 +1,12 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { NzTabsModule } from 'ng-zorro-antd';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { By } from '@angular/platform-browser';
 import { TabsComponent, TabsMode } from './tabs.component';
 import { TabComponent } from '../tab/tab.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('TabsComponent', () => {
   const projectedContent = `
@@ -35,7 +35,12 @@ describe('TabsComponent', () => {
       },
     );
 
-    beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+    beforeEach(() =>
+      TestBed.configureTestingModule({
+        imports: [testModule],
+        teardown: { destroyAfterEach: false },
+      }),
+    );
 
     it('should render <nz-tabset>', async () => {
       const host = await createComponent();
@@ -170,42 +175,50 @@ describe('TabsComponent', () => {
       },
     );
 
-    beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+    beforeEach(() =>
+      TestBed.configureTestingModule({
+        imports: [testModule],
+        teardown: { destroyAfterEach: false },
+      }),
+    );
 
-    it('should render <spy-icon> component inside the tab if `iconName` attribute exists', async () => {
+    it('should render <spy-icon> component inside the tab if `iconName` attribute exists', fakeAsync(async () => {
       const mockIconName = 'user';
       const host = await createComponent({}, true);
 
+      tick(500);
       host.detectChanges();
 
       const iconElems = host.fixture.debugElement.queryAll(By.css('spy-icon'));
 
       expect(iconElems[0]).toBeTruthy();
       expect(iconElems[0].properties.name).toBe(mockIconName);
-    });
+    }));
 
-    it('should render <spy-icon> component inside the tab if `hasWarning` attribute exists', async () => {
+    it('should render <spy-icon> component inside the tab if `hasWarning` attribute exists', fakeAsync(async () => {
       const mockIconName = 'error';
       const host = await createComponent({}, true);
 
+      tick(500);
       host.detectChanges();
 
       const iconElems = host.fixture.debugElement.queryAll(By.css('spy-icon'));
 
       expect(iconElems[1]).toBeTruthy();
       expect(iconElems[1].properties.name).toBe(mockIconName);
-    });
+    }));
 
-    it('should render <spy-icon> component inside the tab if `hasWarning` and `iconName` attributes exists', async () => {
+    it('should render <spy-icon> component inside the tab if `hasWarning` and `iconName` attributes exists', fakeAsync(async () => {
       const mockIconName = 'user';
       const host = await createComponent({}, true);
 
+      tick(500);
       host.detectChanges();
 
       const iconElems = host.fixture.debugElement.queryAll(By.css('spy-icon'));
 
       expect(iconElems[2]).toBeTruthy();
       expect(iconElems[2].properties.name).toBe(mockIconName);
-    });
+    }));
   });
 });

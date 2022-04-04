@@ -10,7 +10,7 @@ export const propsTransformation = <
   T extends TemplateIndexSignature & Object,
   K extends keyof T,
   K2 extends keyof T[K],
-  K2_NEW extends string
+  K2_NEW extends string,
 >(
   template: T,
   prop: K2 | K2_NEW,

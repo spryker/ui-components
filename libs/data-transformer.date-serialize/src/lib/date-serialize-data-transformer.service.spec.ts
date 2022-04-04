@@ -1,17 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DateSerializeDataTransformerService } from './date-serialize-data-transformer.service';
+import { DateSerializeDataTransformerConfig } from './types';
 
 describe('DateSerializeDataTransformerService', () => {
   let service: DateSerializeDataTransformerService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ teardown: { destroyAfterEach: false } });
     service = TestBed.inject(DateSerializeDataTransformerService);
   });
 
   it('transform method should return date in the iso format', () => {
-    const mockConfig = {
+    const mockConfig: DateSerializeDataTransformerConfig = {
       type: 'type',
     };
     const mockData = 1614195833321;

@@ -16,7 +16,12 @@ describe('SpinnerComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   it('should render spinner with special inputs properties', async () => {
     const inputs: SpinnerComponent = {

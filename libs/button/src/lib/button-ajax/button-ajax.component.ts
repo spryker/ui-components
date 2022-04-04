@@ -37,7 +37,8 @@ export enum ButtonAjaxMethod {
 })
 export class ButtonAjaxComponent
   extends ButtonCoreInputs
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
   @Input() url?: string;
 
@@ -48,7 +49,7 @@ export class ButtonAjaxComponent
     filter(() => Boolean(this.url)),
     switchMap(() =>
       this.http
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         .request(this.method, this.url!)
         .pipe(catchError((response) => of(response))),
     ),

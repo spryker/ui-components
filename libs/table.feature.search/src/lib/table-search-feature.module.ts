@@ -18,7 +18,6 @@ import { TableSearchFeatureComponent } from './table-search-feature.component';
   ],
   exports: [TableSearchFeatureComponent],
   declarations: [TableSearchFeatureComponent],
-  entryComponents: [TableSearchFeatureComponent],
 })
 export class TableSearchFeatureModule implements ModuleWithFeature {
   featureComponent = TableSearchFeatureComponent;

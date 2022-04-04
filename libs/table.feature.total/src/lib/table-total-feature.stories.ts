@@ -61,7 +61,7 @@ function getTotalStory(
         TableModule.forRoot(),
         DatasourceModule.withDatasources({
           'mock-data': MockTableDatasourceService,
-        }),
+        } as any),
         LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
         EnLocaleModule,
         DefaultContextSerializationModule,
@@ -81,7 +81,7 @@ function getTotalStory(
         dataSource: {
           type: 'mock-data',
           dataGenerator: tableDataGenerator,
-        } as MockTableDatasourceConfig,
+        } as unknown as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1' },
           { id: 'col2', title: 'Column #2' },

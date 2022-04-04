@@ -15,7 +15,7 @@ describe('NotificationWrapperComponent', () => {
   const mockedDescription = 'mockedDescription';
 
   class MockNotificationRef {
-    afterClose$ = new Subject();
+    afterClose$ = new Subject<void>();
 
     afterClose = jest.fn().mockReturnValue(this.afterClose$);
     close = jest.fn();
@@ -49,6 +49,7 @@ describe('NotificationWrapperComponent', () => {
           useExisting: MockNotificationService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     notificationService = TestBed.inject(MockNotificationService);
   });
@@ -155,7 +156,7 @@ describe('NotificationWrapperComponent', () => {
         true,
       );
       const notificationElem = host.queryCss('spy-notification-view');
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       notificationElem!.componentInstance.close = jest.fn();
       host.component.close();
 

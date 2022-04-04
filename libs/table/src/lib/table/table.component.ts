@@ -365,9 +365,7 @@ export class CoreTableComponent
   ) {}
 
   ngOnInit(): void {
-    this.featuresLoaded$
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe(() => this.dataConfiguratorService.triggerInitialData());
+    this.featuresLoaded$.pipe(takeUntil(this.destroyed$));
     this.tableId$
       .pipe(
         switchMap(() => this.internalTableLocatorService.register(this)),

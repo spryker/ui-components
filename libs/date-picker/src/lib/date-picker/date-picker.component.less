@@ -45,6 +45,7 @@
     padding: @calendar-input-padding;
 
     > input {
+      padding-left: @calendar-input-inner-padding-left;
       font-size: inherit;
 
       &.@{input-prefix-cls} {
@@ -66,7 +67,7 @@
   }
 
   &-clear {
-    z-index: 2;
+    z-index: @calendar-clear-z-index;
     background: @gray-light;
     border-radius: 50%;
 
@@ -104,7 +105,6 @@
 
   &-dropdown {
     top: @calendar-picker-container-top;
-    left: @calendar-picker-container-left;
   }
 
   &-panel-container {

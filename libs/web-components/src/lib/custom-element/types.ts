@@ -23,7 +23,7 @@ export interface WebComponentDeclarationLazy<T extends WebComponentType>
 }
 
 export type WebComponentDeclaration<
-  T extends WebComponentType = WebComponentType
+  T extends WebComponentType = WebComponentType,
 > = WebComponentDeclarationStatic<T> | WebComponentDeclarationLazy<T>;
 
 export type WebComponentDef = WebComponentType | WebComponentDeclaration;

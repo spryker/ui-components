@@ -1,8 +1,8 @@
-/* tslint:disable:no-empty-interface */
 import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 import { ElementRef, Injector, Type } from '@angular/core';
 import { DatasourceConfig } from '@spryker/datasource';
+import { AnyContext } from '@spryker/utils';
 import { TableFeatureConfig } from '../table-config';
 import { TableActionTriggeredEvent } from '../table-actions';
 import { TableFeatureComponent } from '../table-feature';
@@ -46,7 +46,7 @@ export interface TableHeaderContext {
   i: number;
 }
 
-export interface TableColumnContext {
+export interface TableColumnContext extends AnyContext {
   value: TableDataValue;
   displayValue?: unknown;
   row: TableDataRow;
@@ -87,13 +87,15 @@ export interface TableData<T extends TableDataRow = TableDataRow> {
   pageSize: number;
 }
 
-export interface TableConfig {
+export interface TableCoreConfig {
   dataSource: DatasourceConfig;
   columnsUrl?: string;
   columns?: TableColumns;
   // Features may expect it's config under it's namespace
   [featureName: string]: TableFeatureConfig | unknown;
 }
+
+export interface TableConfig extends TableCoreConfig {}
 
 export type ColumnsTransformer = (
   cols: TableColumns,

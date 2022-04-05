@@ -49,7 +49,8 @@ import {
 })
 export class TableRowActionsFeatureComponent
   extends TableFeatureComponent<TableRowActionsConfig>
-  implements OnDestroy, OnInit {
+  implements OnDestroy, OnInit
+{
   name = 'rowActions';
   tableFeatureLocation = TableFeatureLocation;
   triggerIcon = IconActionModule.icon;
@@ -103,7 +104,7 @@ export class TableRowActionsFeatureComponent
       )
       .subscribe(([{ row }, action]) => {
         const event: TableActionTriggeredEvent = {
-          // tslint:disable-next-line: no-non-null-assertion
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           action: action! as TableActionBase,
           items: [row],
         };

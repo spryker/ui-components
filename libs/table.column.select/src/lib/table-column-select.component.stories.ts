@@ -42,7 +42,7 @@ export const primary = (): IStory => ({
     imports: [
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
-      }),
+      } as any),
       TableColumnSelectModule,
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
@@ -83,7 +83,7 @@ export const withTable = (): IStory => ({
       } as any),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
     ],
@@ -103,7 +103,7 @@ export const withTable = (): IStory => ({
       dataSource: {
         type: 'mock-data',
         dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+      } as unknown as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1' },
         {
@@ -155,7 +155,7 @@ export const withInlineDependentColumns = (): IStory => ({
         'mock-data': MockTableDatasourceService,
         inline: DatasourceInlineService,
         dependable: TableDatasourceDependableService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
       NotificationModule.forRoot(),
@@ -178,7 +178,7 @@ export const withInlineDependentColumns = (): IStory => ({
       dataSource: {
         type: 'mock-data',
         dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+      } as unknown as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1' },
         {
@@ -252,7 +252,7 @@ export const withHttpDependentColumns = (): IStory => ({
         'mock-data': MockTableDatasourceService,
         http: DatasourceHttpService,
         dependable: TableDatasourceDependableService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
       NotificationModule.forRoot(),
@@ -275,7 +275,7 @@ export const withHttpDependentColumns = (): IStory => ({
       dataSource: {
         type: 'mock-data',
         dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+      } as unknown as MockTableDatasourceConfig,
       columns: [
         {
           id: 'col1',

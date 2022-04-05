@@ -17,8 +17,8 @@ import {
   providedIn: 'root',
 })
 export class LensDataTransformerService
-  implements
-    DataTransformer<LensDataTransformerData, LensDataTransformerDataT> {
+  implements DataTransformer<LensDataTransformerData, LensDataTransformerDataT>
+{
   constructor(
     private contextService: ContextService,
     private dataTransformerService: DataTransformerService,
@@ -40,10 +40,11 @@ export class LensDataTransformerService
       .pipe(
         map((currentData) => {
           if (paths.length > 1) {
-            const interpolatedPrevData = this.contextService.interpolateExpression(
-              this.contextService.cratePath(paths.slice(0, -1)),
-              copiedData as any,
-            ) as Record<string, unknown>;
+            const interpolatedPrevData =
+              this.contextService.interpolateExpression(
+                this.contextService.cratePath(paths.slice(0, -1)),
+                copiedData as any,
+              ) as Record<string, unknown>;
 
             interpolatedPrevData[paths[paths.length - 1]] = currentData;
           } else {

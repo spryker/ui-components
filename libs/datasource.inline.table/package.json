@@ -1,27 +1,27 @@
 {
   "name": "@spryker/datasource.inline.table",
-  "version": "0.1.11-next.1",
+  "version": "0.2.1-next.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/data-transformer": "^0.1.10",
-    "@spryker/data-transformer.array-map": "^0.1.10",
-    "@spryker/data-transformer.chain": "^0.1.10",
-    "@spryker/data-transformer.configurator.table": "^0.1.10",
-    "@spryker/data-transformer.date-parse": "^0.1.10",
-    "@spryker/data-transformer.date-serialize": "^0.1.10",
-    "@spryker/data-transformer.filter.equals": "^0.1.10",
-    "@spryker/data-transformer.filter.range": "^0.1.10",
-    "@spryker/data-transformer.filter.text": "^0.1.10",
-    "@spryker/data-transformer.lens": "^0.1.10",
-    "@spryker/data-transformer.object-map": "^0.1.10",
-    "@spryker/datasource": "^0.1.10",
-    "@spryker/datasource.inline": "^0.1.10",
-    "@spryker/table": "^0.4.0",
-    "@spryker/utils": "^0.2.11"
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
+    "@spryker/data-transformer": "^0.2.0",
+    "@spryker/data-transformer.array-map": "^0.2.0",
+    "@spryker/data-transformer.chain": "^0.2.0",
+    "@spryker/data-transformer.configurator.table": "^0.2.0",
+    "@spryker/data-transformer.date-parse": "^0.2.0",
+    "@spryker/data-transformer.date-serialize": "^0.2.0",
+    "@spryker/data-transformer.filter.equals": "^0.2.0",
+    "@spryker/data-transformer.filter.range": "^0.2.0",
+    "@spryker/data-transformer.filter.text": "^0.2.0",
+    "@spryker/data-transformer.lens": "^0.2.0",
+    "@spryker/data-transformer.object-map": "^0.2.0",
+    "@spryker/datasource": "^0.2.0",
+    "@spryker/datasource.inline": "^0.2.0",
+    "@spryker/table": "^0.5.0",
+    "@spryker/utils": "^0.3.0"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

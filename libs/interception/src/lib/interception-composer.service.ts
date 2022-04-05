@@ -31,7 +31,8 @@ interface DestructibleInjector
  */
 @Injectable()
 export class InterceptionComposerImplementation
-  implements InterceptionComposer, OnDestroy, OnInit {
+  implements InterceptionComposer, OnDestroy, OnInit
+{
   private static NO_SERVICE = { __noService: true };
 
   private factories = this.injector.get(
@@ -54,6 +55,7 @@ export class InterceptionComposerImplementation
     this.servicesInjector = undefined;
   }
 
+  // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit(): void {
     const applicableFactories = this.factories.filter((factory) =>
       factory.canApply(this.token),
@@ -69,7 +71,7 @@ export class InterceptionComposerImplementation
     }) as DestructibleInjector;
 
     applicableFactories.forEach((factory) =>
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.servicesInjector!.get(factory.getServiceToken()),
     );
   }
@@ -129,10 +131,17 @@ export class InterceptionComposerImplementation
   ): any {
     // To avoid circular dependency
     try {
-      return this.injector.get(
+      const service = this.injector.get(
         token,
         InterceptionComposerImplementation.NO_SERVICE as never,
       );
+
+      // HACK: if no services found, injector returns an empty object instead of throw an error
+      if (service && Object.keys(service).length === 0) {
+        return InterceptionComposerImplementation.NO_SERVICE;
+      }
+
+      return service;
     } catch {
       return InterceptionComposerImplementation.NO_SERVICE;
     }
@@ -141,7 +150,8 @@ export class InterceptionComposerImplementation
 
 @Injectable()
 export abstract class InterceptionComposerService
-  implements InterceptionComposer {
+  implements InterceptionComposer
+{
   abstract getService<T>(
     token: Type<T> | AbstractType<T> | InjectionToken<T>,
     skipSelf?: boolean,

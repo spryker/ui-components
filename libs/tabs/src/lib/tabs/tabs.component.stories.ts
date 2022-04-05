@@ -1,4 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconCalendarModule, IconUserModule } from '@spryker/icon/icons';
 import { WebComponentsModule } from '@spryker/web-components';
 import { boolean, select } from '@storybook/addon-knobs';
@@ -50,7 +51,12 @@ const tabsData = [
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: [TabsModule, IconUserModule, IconCalendarModule],
+    imports: [
+      TabsModule,
+      IconUserModule,
+      IconCalendarModule,
+      BrowserAnimationsModule,
+    ],
   },
   template: `
     <spy-tabs [tab]="tab" [mode]="mode" [animateSlides]="animateSlides">

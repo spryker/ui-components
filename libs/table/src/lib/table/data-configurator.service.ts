@@ -18,7 +18,8 @@ export interface InitialDataStrategy {
 export class TableDataConfiguratorService {
   private internalConfig$ = new Subject<TableDataConfig>();
   private resetConfig$ = new ReplaySubject<TableDataConfig>();
-  private initialDataStrategy: InitialDataStrategy = new DefaultInitialDataStrategy();
+  private initialDataStrategy: InitialDataStrategy =
+    new DefaultInitialDataStrategy();
   private initialData$ = new ReplaySubject<Observable<TableDataConfig>>(1);
 
   readonly config$: Observable<TableDataConfig> = merge(

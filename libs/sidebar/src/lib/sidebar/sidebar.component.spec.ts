@@ -16,6 +16,7 @@ describe('SidebarComponent', () => {
       providers: [],
       declarations: [SidebarComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 
@@ -46,7 +47,7 @@ describe('SidebarComponent', () => {
   });
 
   it('should trigger sidebar', () => {
-    spyOn(component.collapsedChange, 'emit');
+    jest.spyOn(component.collapsedChange, 'emit');
     triggerButton.triggerEventHandler('click', null);
     fixture.detectChanges();
 

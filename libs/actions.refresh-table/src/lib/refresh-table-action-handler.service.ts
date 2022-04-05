@@ -12,7 +12,8 @@ import { RefreshTableActionConfig } from './types';
   providedIn: 'root',
 })
 export class RefreshTableActionHandlerService
-  implements ActionHandler<unknown, void> {
+  implements ActionHandler<unknown, void>
+{
   handleAction(
     injector: Injector,
     config: RefreshTableActionConfig,

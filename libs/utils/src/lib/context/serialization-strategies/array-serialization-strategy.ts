@@ -6,7 +6,8 @@ import { ContextSerializationService } from '../context-serialization.service';
   providedIn: 'root',
 })
 export class ArrayContextSerializationStrategy
-  implements ContextSerializationStrategy<Array<any>> {
+  implements ContextSerializationStrategy<Array<any>>
+{
   constructor(
     private contextSerializationService: ContextSerializationService,
   ) {}

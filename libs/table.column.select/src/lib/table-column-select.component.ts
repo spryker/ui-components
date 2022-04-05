@@ -6,9 +6,16 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { DataTransformerConfig } from '@spryker/data-transformer';
-import { DatasourceConfig } from '@spryker/datasource';
-import { SelectOption, SelectValue } from '@spryker/select';
+import {
+  DataTransformerConfig,
+  DataTransformerType,
+} from '@spryker/data-transformer';
+import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
+import {
+  SelectOption,
+  SelectValue,
+  SelectValueSelected,
+} from '@spryker/select';
 import {
   ColumnTypeOption,
   ColumnTypeOptionsType,
@@ -18,23 +25,17 @@ import {
 } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
-declare module '@spryker/table' {
-  interface TableColumnTypeRegistry {
-    select: TableColumnSelectConfig;
-  }
-}
-
 @Injectable({ providedIn: 'root' })
 export class ColumnSelectDataTransformer implements DataTransformerConfig {
   @ColumnTypeOption({ required: true })
-  type!: string;
+  type!: DataTransformerType;
   [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
 export class ColumnSelectDatasource implements DatasourceConfig {
   @ColumnTypeOption({ required: true })
-  type!: string;
+  type!: DatasourceType;
   @ColumnTypeOption()
   transform?: ColumnSelectDataTransformer;
   [k: string]: unknown;
@@ -49,7 +50,7 @@ export class ColumnSelectOptionItem {
     type: ColumnTypeOptionsType.AnyOf,
     value: [String, Number],
   })
-  value?: SelectValue;
+  value: SelectValue;
   @ColumnTypeOption()
   isDisabled? = false;
 }
@@ -110,7 +111,8 @@ export class TableColumnSelectConfig {
 })
 @TableColumnTypeComponent(TableColumnSelectConfig)
 export class TableColumnSelectComponent
-  implements TableColumnComponent<TableColumnSelectConfig>, OnInit {
+  implements TableColumnComponent<TableColumnSelectConfig>, OnInit
+{
   @Input() config?: TableColumnSelectConfig;
   @Input() context?: TableColumnContext;
 
@@ -122,10 +124,10 @@ export class TableColumnSelectComponent
     }
   }
 
-  valueChangeHandler(inputValue: SelectValue): void {
-    // tslint:disable-next-line: no-non-null-assertion
+  valueChangeHandler(inputValue: SelectValueSelected): void {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.context!.value = inputValue;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.tableEditableService.updateValue(inputValue, this.context!.config);
   }
 

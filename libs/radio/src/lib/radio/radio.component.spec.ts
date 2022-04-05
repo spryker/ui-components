@@ -53,6 +53,7 @@ describe('RadioComponent', () => {
       TestBed.configureTestingModule({
         declarations: [TestComponent, RadioComponent],
         schemas: [NO_ERRORS_SCHEMA],
+        teardown: { destroyAfterEach: false },
       }).compileComponents();
     }));
 
@@ -136,6 +137,7 @@ describe('RadioComponent', () => {
         imports: [RadioModule],
         declarations: [TestComponent],
         schemas: [NO_ERRORS_SCHEMA],
+        teardown: { destroyAfterEach: false },
       }).compileComponents();
     }));
 
@@ -166,6 +168,7 @@ describe('RadioComponent', () => {
       TestBed.configureTestingModule({
         declarations: [TestGroupComponent, RadioComponent, RadioGroupComponent],
         schemas: [NO_ERRORS_SCHEMA],
+        teardown: { destroyAfterEach: false },
       }).compileComponents();
     }));
 

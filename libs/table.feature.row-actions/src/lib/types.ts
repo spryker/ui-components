@@ -4,12 +4,6 @@ import {
   TableFeatureConfig,
 } from '@spryker/table';
 
-declare module '@spryker/table' {
-  interface TableConfig {
-    rowActions?: TableRowActionsConfig;
-  }
-}
-
 export interface TableRowActionsConfig extends TableFeatureConfig {
   actions?: TableRowActionBase[];
   click?: string;

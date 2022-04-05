@@ -16,7 +16,6 @@ import { NotificationModule } from '@spryker/notification';
   ],
   declarations: [TableBatchActionsFeatureComponent],
   exports: [TableBatchActionsFeatureComponent],
-  entryComponents: [TableBatchActionsFeatureComponent],
 })
 export class TableBatchActionsFeatureModule implements ModuleWithFeature {
   featureComponent = TableBatchActionsFeatureComponent;

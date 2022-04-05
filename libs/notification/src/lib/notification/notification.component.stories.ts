@@ -18,7 +18,6 @@ export default {
 @NgModule({
   imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
   exports: [NotificationModule],
-  entryComponents: [NotificationWrapperComponent],
 })
 class StoryModule {}
 

@@ -1,12 +1,6 @@
-import { Inject, Injectable, Optional } from '@angular/core';
-import {
-  I18nConfig,
-  I18nLocaleDataToken,
-  I18nLocaleInterpolationData,
-  LocaleService,
-} from '@spryker/locale';
+import { Injectable } from '@angular/core';
+import { I18nLocaleInterpolationData } from '@spryker/locale';
 import { Observable, of } from 'rxjs';
-import { InjectionTokenType } from '@spryker/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +23,7 @@ export class I18nTestService {
     data?: I18nLocaleInterpolationData,
   ): Observable<string> {
     this.addLocaleData(token, data);
+
     return of(token);
   }
 }

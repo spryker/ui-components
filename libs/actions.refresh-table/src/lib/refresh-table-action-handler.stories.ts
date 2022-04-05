@@ -36,7 +36,7 @@ export const primary = (): IStory => ({
       TableModule.forRoot(),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
     ],
   },
@@ -52,7 +52,7 @@ export const primary = (): IStory => ({
       dataSource: {
         type: 'mock-data',
         dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+      } as unknown as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', title: 'Column #1' },
         { id: 'col2', title: 'Column #2' },

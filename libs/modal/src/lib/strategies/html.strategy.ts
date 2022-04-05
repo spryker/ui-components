@@ -45,7 +45,8 @@ type HtmlNodesFactory<T> = (
 ) => Node[];
 
 export class HtmlModalRenderingRef<T>
-  implements ModalRenderingRef<T, HtmlModalExtras>, HtmlModalExtras {
+  implements ModalRenderingRef<T, HtmlModalExtras>, HtmlModalExtras
+{
   constructor(
     private parentElement: Node,
     private elements: Node[],
@@ -67,13 +68,13 @@ export class HtmlModalRenderingRef<T>
 
   dispose(): void {
     // Refs cleanup requires assignment to `undefined`
-    // tslint:disable: no-non-null-assertion
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
     this.removeElements();
     this.elements = undefined!;
     this.renderFn = undefined!;
 
-    // tslint:enable: no-non-null-assertion
+    /* eslint-enable @typescript-eslint/no-non-null-assertion */
   }
 
   private removeElements() {
@@ -117,9 +118,9 @@ export class HtmlModalStrategy<T> implements ModalStrategy<T, HtmlModalExtras> {
   }
 
   private selectRenderFn(): HtmlNodesFactory<T> {
-    return ('element' in this.options
-      ? this.renderElement
-      : this.renderString) as HtmlNodesFactory<T>;
+    return (
+      'element' in this.options ? this.renderElement : this.renderString
+    ) as HtmlNodesFactory<T>;
   }
 
   private resolveHtml<H extends HtmlType>(

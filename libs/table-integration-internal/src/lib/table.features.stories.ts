@@ -166,7 +166,7 @@ function getFeaturesStory(
         } as any),
         DatasourceModule.withDatasources({
           'mock-data': MockTableDatasourceService,
-        }),
+        } as any),
         TableFilterDateRangeModule,
         TableFilterSelectModule,
         TableFilterTreeSelectModule,
@@ -194,7 +194,7 @@ function getFeaturesStory(
         dataSource: {
           type: 'mock-data',
           dataGenerator: tableDataGenerator,
-        } as MockTableDatasourceConfig,
+        } as unknown as MockTableDatasourceConfig,
         columns: [
           { id: 'col1', title: 'Column #1', sortable: true, hideable: true },
           { id: 'col2', title: 'Column #2', hideable: false },

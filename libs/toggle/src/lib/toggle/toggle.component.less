@@ -37,6 +37,11 @@
     box-shadow: @toggle-checked-focus-box-shadow;
   }
 
+  &-handle {
+    top: @toggle-handle-position-top;
+    left: @toggle-handle-position-left;
+  }
+
   &-checked {
     &:hover,
     &:focus {
@@ -45,6 +50,10 @@
 
     &:hover {
       box-shadow: none;
+    }
+
+    .@{toggle-prefix-cls}-handle {
+      left: @toggle-checked-handle-position-left;
     }
   }
 

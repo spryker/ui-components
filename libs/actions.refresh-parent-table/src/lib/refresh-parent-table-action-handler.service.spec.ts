@@ -45,6 +45,7 @@ describe('RefreshParentTableActionHandlerService', () => {
           useExisting: MockTableDataConfiguratorService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(RefreshParentTableActionHandlerService);

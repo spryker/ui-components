@@ -1,16 +1,16 @@
 {
   "name": "@spryker/table.feature.filters",
-  "version": "0.1.1-next.1",
+  "version": "0.2.1-next.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/styles": "^0.5.0",
-    "@spryker/table": "^0.4.0",
-    "@spryker/utils": "^0.2.11"
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
+    "@spryker/styles": "^0.6.0",
+    "@spryker/table": "^0.5.0",
+    "@spryker/utils": "^0.3.0"
   },
   "dependencies": {
-    "ng-dynamic-component": "^6.1.0",
-    "tslib": "^1.10.0"
+    "ng-dynamic-component": "^9.0.0",
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

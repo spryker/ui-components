@@ -40,8 +40,8 @@ export const withTable = (): IStory => ({
       MockHttpModule,
       TableModule.forRoot(),
       DatasourceModule.withDatasources({
-        'table.inline': TableDatasourceInlineService,
-      }),
+        'inline.table': TableDatasourceInlineService,
+      } as any),
       TableModule.withFeatures({
         pagination: () =>
           import('@spryker/table.feature.pagination').then(
@@ -85,7 +85,7 @@ export const withTable = (): IStory => ({
   props: {
     config: {
       dataSource: {
-        type: 'table.inline',
+        type: 'inline.table',
         data: [
           {
             col1: 1,

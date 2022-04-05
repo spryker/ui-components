@@ -23,7 +23,8 @@ import { DrawerActionComponentTypesToken } from './token';
   providedIn: 'root',
 })
 export class DrawerActionHandlerService
-  implements ActionHandler<unknown, DrawerRef<unknown>> {
+  implements ActionHandler<unknown, DrawerRef<unknown>>
+{
   private drawerActionHandlerTypes: DrawerActionTypesDeclaration =
     this.drawerActionHandlers?.reduce(
       (components, component) => ({ ...components, ...component }),
@@ -92,9 +93,8 @@ export class DrawerActionHandlerService
         );
       }
 
-      drawerData.component = this.drawerActionHandlerTypes[
-        drawerData.component
-      ];
+      drawerData.component =
+        this.drawerActionHandlerTypes[drawerData.component];
     }
 
     if (options.inputs) {

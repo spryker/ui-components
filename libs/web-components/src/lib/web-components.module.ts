@@ -32,9 +32,7 @@ export interface WebComponentsModuleOptions {
 export class WebComponentsModule {
   static forRoot({
     customElementOptions,
-  }: WebComponentsModuleOptions = {}): ModuleWithProviders<
-    WebComponentsModule
-  > {
+  }: WebComponentsModuleOptions = {}): ModuleWithProviders<WebComponentsModule> {
     return {
       ngModule: WebComponentsModule,
       providers: [

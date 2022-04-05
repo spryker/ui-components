@@ -1,5 +1,6 @@
-import { Option, OptionConfig } from '@orchestrator/core';
-import { anyOf, arrayOf, typeOf } from '@orchestrator/gen-io-ts';
+import { Option, OptionConfig, getIoTs } from '@orchestrator/core';
+
+const { anyOf, arrayOf, typeOf } = getIoTs;
 
 export enum ColumnTypeOptionsType {
   /** Value will be compared with strict equality */

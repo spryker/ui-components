@@ -5,15 +5,6 @@ import { Observable, of } from 'rxjs';
 import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
 import { AjaxActionService } from './ajax-action.service';
 
-export default {
-  title: 'AjaxActionComponent',
-  parameters: {
-    controls: {
-      hideNoControlsWarning: true,
-    },
-  },
-} as Meta;
-
 @Injectable({
   providedIn: 'root',
 })
@@ -57,6 +48,17 @@ class StoryComponent {
     this.ajaxActionService.handle(actionObject, this.injector);
   }
 }
+
+export default {
+  title: 'AjaxActionComponent',
+  component: StoryComponent,
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+    },
+  },
+} as Meta;
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -74,5 +76,4 @@ export const primary = (args) => ({
   moduleMetadata: {
     imports: [StoryModule],
   },
-  component: StoryComponent,
 });

@@ -14,24 +14,6 @@ import { DrawerService } from './drawer.service';
 import { DrawerComponentInputs } from './drawer/drawer.component';
 import { DrawerRef } from './drawer-ref';
 
-export default {
-  title: 'DrawersComponent',
-  decorators: [withDesign],
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
-      allowFullscreen: true,
-    },
-  },
-  args: {
-    closeable: true,
-    resizable: true,
-    width: '50%',
-    hasBackdrop: false,
-  },
-} as Meta;
-
 @Component({
   selector: 'spy-story',
   template: `
@@ -100,6 +82,28 @@ class SimpleDrawerComponent extends DrawerComponentInputs {
   openDrawer = false;
 }
 
+export default {
+  title: 'DrawersComponent',
+  component: SimpleDrawerComponent,
+  decorators: [withDesign],
+  parameters: {
+    controls: {
+      include: ['closeable', 'resizable', 'width', 'hasBackdrop'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
+      allowFullscreen: true,
+    },
+  },
+  args: {
+    closeable: true,
+    resizable: true,
+    width: '50%',
+    hasBackdrop: false,
+  },
+} as Meta;
+
 @Component({
   selector: 'spy-drawer-example-component',
   template: `
@@ -158,7 +162,6 @@ export const primary = (args) => ({
     imports: [DrawerModule],
     entryComponents: [DrawerContainerProxyComponent],
   },
-  component: SimpleDrawerComponent,
 });
 
 export const withMultipleDrawers = (args) => ({
@@ -179,4 +182,25 @@ export const withComponent = (args) => ({
   },
   component: DrawerWithComponentComponent,
 });
-withComponent.args = {};
+withComponent.argTypes = {
+  closeable: {
+    table: {
+      disable: true,
+    },
+  },
+  resizable: {
+    table: {
+      disable: true,
+    },
+  },
+  width: {
+    table: {
+      disable: true,
+    },
+  },
+  hasBackdrop: {
+    table: {
+      disable: true,
+    },
+  },
+};

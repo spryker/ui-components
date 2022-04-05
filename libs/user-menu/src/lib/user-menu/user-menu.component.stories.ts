@@ -1,6 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { IconUserModule } from '@spryker/icon/icons';
 import { UserMenuModule } from '../user-menu.module';
 import { UserMenuLinkType } from '../user-menu-link/user-menu-link.component';
@@ -9,7 +8,6 @@ import { UserMenuComponent } from './user-menu.component';
 export default {
   title: 'UserMenuComponent',
   component: UserMenuComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [
@@ -19,11 +17,6 @@ export default {
         'profileUserMenuLinkText',
         'logoutUserMenuLinkText',
       ],
-    },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2890%3A11773',
-      allowFullscreen: true,
     },
   },
   argTypes: {

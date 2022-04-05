@@ -119,7 +119,6 @@
     "@rollup/plugin-typescript": "^8.3.0",
     "@storybook/addon-docs": "^6.4.13",
     "@storybook/addon-essentials": "^6.4.13",
-    "@storybook/addon-knobs": "^6.4.0",
     "@storybook/angular": "^6.4.13",
     "@storybook/builder-webpack5": "^6.4.13",
     "@storybook/manager-webpack5": "^6.4.9",

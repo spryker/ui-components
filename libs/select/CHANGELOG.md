@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.0...@spryker/select@0.4.1-next.0) (2022-04-01)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+# [0.4.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.0-rc.1...@spryker/select@0.4.0) (2022-03-10)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
 # [0.4.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0...@spryker/select@0.4.0-rc.1) (2022-01-31)
 
 
@@ -91,6 +107,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
 * updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
 * updated peerDependencies ([9c034d5](https://github.com/spryker/ui-components/commit/9c034d5d972cbeb9fd90135dd901521b9877247e))
+
+
+
+
+
+## [0.3.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0...@spryker/select@0.3.1-next.1) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.3.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/select@0.3.0...@spryker/select@0.3.1-next.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/select
 
 
 

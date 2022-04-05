@@ -107,7 +107,7 @@ export default {
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
   @ColumnTypeOption()
-  text? = this.contextService.wrap('value');
+  text? = this.contextService.wrap('displayValue');
 
   constructor(private contextService: ContextService) {}
 }

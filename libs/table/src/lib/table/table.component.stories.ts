@@ -1,7 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, Injectable, Input, NgModule, OnInit } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { Meta } from '@storybook/angular';
+import { withDesign } from 'storybook-addon-designs';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
@@ -12,19 +13,15 @@ import {
   DefaultContextSerializationModule,
   InvokeModule,
 } from '@spryker/utils';
-import { IStory } from '@storybook/angular';
-
 import {
   MockTableDatasourceConfig,
   MockTableDatasourceService,
   TableDataMockGenerator,
-} from '../../../../table/testing/src';
+} from '../../../testing/src';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
-import {
-  TableColumnListComponent,
-  TableColumnListConfig,
-} from '../table-column-list/table-column-list.component';
-import { TableFeatureComponent } from '../table-feature/table-feature.component';
+import { TableColumnListConfig } from '../table-column-list/table-column-list.component';
+import { TableFeatureComponent } from '../table-feature';
+import { CoreTableComponent } from './table.component';
 import { TableModule } from '../table.module';
 import {
   TableColumnComponent,
@@ -32,10 +29,6 @@ import {
   TableConfig,
   TableFeatureLocation,
 } from './table';
-
-export default {
-  title: 'TableComponent',
-};
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
@@ -82,6 +75,34 @@ const tableConfig: TableConfig = {
     },
   ],
 };
+
+export default {
+  title: 'TableComponent',
+  component: CoreTableComponent,
+  decorators: [withDesign],
+  parameters: {
+    controls: {
+      include: ['config', 'tableId'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=319%3A445',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
+    config: tableConfig,
+    tableId: 'someId',
+  },
+} as Meta;
 
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
@@ -131,17 +152,15 @@ declare module '../table/table' {
 })
 class StoryModule {}
 
-export const primary = (): IStory => ({
+export const primary = (args) => ({
+  props: args,
   moduleMetadata: { imports: [StoryModule] },
   template: `
-    <spy-table [config]="config">
+    <spy-table [config]="config" [tableId]="tableId">
       <div *spyColTpl="'col1'; let col1">spyColTpl: {{ col1 }}</div>
       <ng-template spyColTpl="col2" let-col2>spyColTpl Template: {{ col2 }}</ng-template>
     </spy-table>
   `,
-  props: {
-    config: tableConfig,
-  },
 });
 
 @Component({
@@ -225,62 +244,62 @@ class CustomFeatureComponent extends TableFeatureComponent implements OnInit {
   }
 }
 
-function getFeatureStory(location: TableFeatureLocation): IStory {
+function getFeatureStory(args, location: TableFeatureLocation) {
   return {
+    props: {
+      ...args,
+      location,
+    },
     moduleMetadata: {
       imports: [StoryModule, InvokeModule],
       declarations: [CustomFeatureComponent],
     },
     template: `
-      <spy-table [config]="config">
+      <spy-table [config]="config" [tableId]="tableId">
         <spy-custom-feature spy-table-feature [location]="location"></spy-custom-feature>
       </spy-table>
     `,
-    props: {
-      location,
-      config: tableConfig,
-    },
   };
 }
 
-export const withFeatureInTop = (): IStory =>
-  getFeatureStory(TableFeatureLocation.top);
+export const withFeatureInTop = (args) =>
+  getFeatureStory(args, TableFeatureLocation.top);
 
-export const withFeatureInBeforeTable = (): IStory =>
-  getFeatureStory(TableFeatureLocation.beforeTable);
+export const withFeatureInBeforeTable = (args) =>
+  getFeatureStory(args, TableFeatureLocation.beforeTable);
 
-export const withFeatureInHeader = (): IStory =>
-  getFeatureStory(TableFeatureLocation.header);
+export const withFeatureInHeader = (args) =>
+  getFeatureStory(args, TableFeatureLocation.header);
 
-export const withFeatureInHeaderExt = (): IStory =>
-  getFeatureStory(TableFeatureLocation.headerExt);
+export const withFeatureInHeaderExt = (args) =>
+  getFeatureStory(args, TableFeatureLocation.headerExt);
 
-export const withFeatureInBeforeRows = (): IStory =>
-  getFeatureStory(TableFeatureLocation.beforeRows);
+export const withFeatureInBeforeRows = (args) =>
+  getFeatureStory(args, TableFeatureLocation.beforeRows);
 
-export const withFeatureInBeforeColsHeader = (): IStory =>
-  getFeatureStory(TableFeatureLocation.beforeColsHeader);
+export const withFeatureInBeforeColsHeader = (args) =>
+  getFeatureStory(args, TableFeatureLocation.beforeColsHeader);
 
-export const withFeatureInBeforeCols = (): IStory =>
-  getFeatureStory(TableFeatureLocation.beforeCols);
+export const withFeatureInBeforeCols = (args) =>
+  getFeatureStory(args, TableFeatureLocation.beforeCols);
 
-export const withFeatureInCell = (): IStory =>
-  getFeatureStory(TableFeatureLocation.cell);
+export const withFeatureInCell = (args) =>
+  getFeatureStory(args, TableFeatureLocation.cell);
 
-export const withFeatureInAfterCols = (): IStory =>
-  getFeatureStory(TableFeatureLocation.afterCols);
+export const withFeatureInAfterCols = (args) =>
+  getFeatureStory(args, TableFeatureLocation.afterCols);
 
-export const withFeatureInAfterColsHeader = (): IStory =>
-  getFeatureStory(TableFeatureLocation.afterColsHeader);
+export const withFeatureInAfterColsHeader = (args) =>
+  getFeatureStory(args, TableFeatureLocation.afterColsHeader);
 
-export const withFeatureInAfterRows = (): IStory =>
-  getFeatureStory(TableFeatureLocation.afterRows);
+export const withFeatureInAfterRows = (args) =>
+  getFeatureStory(args, TableFeatureLocation.afterRows);
 
-export const withFeatureInAfterTable = (): IStory =>
-  getFeatureStory(TableFeatureLocation.afterTable);
+export const withFeatureInAfterTable = (args) =>
+  getFeatureStory(args, TableFeatureLocation.afterTable);
 
-export const withFeatureInBottom = (): IStory =>
-  getFeatureStory(TableFeatureLocation.bottom);
+export const withFeatureInBottom = (args) =>
+  getFeatureStory(args, TableFeatureLocation.bottom);
 
-export const withFeatureInHidden = (): IStory =>
-  getFeatureStory(TableFeatureLocation.hidden);
+export const withFeatureInHidden = (args) =>
+  getFeatureStory(args, TableFeatureLocation.hidden);

@@ -2,6 +2,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { Meta } from '@storybook/angular';
+import { withDesign } from 'storybook-addon-designs';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
@@ -20,36 +22,39 @@ import {
   ContextModule,
   DefaultContextSerializationModule,
 } from '@spryker/utils';
-import { object } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
 
 import { TableColumnAutocompleteComponent } from './table-column-autocomplete.component';
 import { TableColumnAutocompleteModule } from './table-column-autocomplete.module';
 
 export default {
   title: 'TableColumnAutocompleteComponent',
-};
-
-const tableDataGenerator: TableDataMockGenerator = (i) => ({
-  col1: `col1 #${i}`,
-  col2: `Option ${i}`,
-  col3: 'col3',
-});
-
-export const primary = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      DatasourceModule.withDatasources({
-        'mock-data': MockTableDatasourceService,
-      } as any),
-      TableColumnAutocompleteModule,
-      DefaultContextSerializationModule,
-      BrowserAnimationsModule,
-    ],
-  },
   component: TableColumnAutocompleteComponent,
-  props: {
-    config: object('Config', {
+  decorators: [withDesign],
+  parameters: {
+    controls: {
+      include: ['config', 'context', 'mockHttp'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=5181%3A20182',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+      table: {
+        disable: true,
+      },
+    },
+    mockHttp: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
+    config: {
       options: [
         {
           value: 'Burns Bay Road',
@@ -67,14 +72,37 @@ export const primary = (): IStory => ({
           title: 'Wall Street',
         },
       ],
-    }),
-    context: object('Context', {
-      value: '',
-    }),
+    },
   },
+} as Meta;
+
+const tableDataGenerator: TableDataMockGenerator = (i) => ({
+  col1: `col1 #${i}`,
+  col2: `Option ${i}`,
+  col3: 'col3',
 });
 
-export const withTable = (): IStory => ({
+export const primary = (args) => ({
+  props: args,
+  moduleMetadata: {
+    imports: [
+      DatasourceModule.withDatasources({
+        'mock-data': MockTableDatasourceService,
+      } as any),
+      TableColumnAutocompleteModule,
+      DefaultContextSerializationModule,
+      BrowserAnimationsModule,
+    ],
+  },
+});
+primary.args = {
+  context: {
+    value: '',
+  },
+};
+
+export const withTable = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [
       HttpClientTestingModule,
@@ -101,49 +129,57 @@ export const withTable = (): IStory => ({
   template: `
     <spy-table [config]="config"></spy-table>
   `,
-  props: {
-    config: {
-      dataSource: {
-        type: 'mock-data',
-        dataGenerator: tableDataGenerator,
-      } as unknown as MockTableDatasourceConfig,
-      columns: [
-        {
-          id: 'col1',
-          sortable: true,
-          title: 'Column #1',
+});
+withTable.args = {
+  config: {
+    dataSource: {
+      type: 'mock-data',
+      dataGenerator: tableDataGenerator,
+    } as unknown as MockTableDatasourceConfig,
+    columns: [
+      {
+        id: 'col1',
+        sortable: true,
+        title: 'Column #1',
+      },
+      {
+        id: 'col2',
+        title: 'Column #2',
+        type: 'autocomplete',
+        typeOptions: {
+          options: [
+            {
+              value: 'Burns Bay Road',
+              title:
+                'Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road',
+              isDisabled: false,
+            },
+            {
+              value: 'Downing Street',
+              title: 'Downing Street',
+              isDisabled: true,
+            },
+            {
+              value: 'Wall Street',
+              title: 'Wall Street',
+            },
+          ],
+          placeholder: 'Placeholder',
         },
-        {
-          id: 'col2',
-          title: 'Column #2',
-          type: 'autocomplete',
-          typeOptions: {
-            options: [
-              {
-                value: 'Burns Bay Road',
-                title:
-                  'Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road',
-                isDisabled: false,
-              },
-              {
-                value: 'Downing Street',
-                title: 'Downing Street',
-                isDisabled: true,
-              },
-              {
-                value: 'Wall Street',
-                title: 'Wall Street',
-              },
-            ],
-            placeholder: 'Placeholder',
-          },
-        },
-      ],
+      },
+    ],
+  },
+};
+withTable.argTypes = {
+  context: {
+    table: {
+      disable: true,
     },
   },
-});
+};
 
-export const withDependentColumns = (): IStory => ({
+export const withDependentColumns = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [
       HttpClientTestingModule,
@@ -182,96 +218,103 @@ export const withDependentColumns = (): IStory => ({
   template: `
     <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
   `,
-  props: {
-    config: {
-      dataSource: {
-        type: 'mock-data',
-        dataGenerator: tableDataGenerator,
-      } as unknown as MockTableDatasourceConfig,
+});
+withDependentColumns.args = {
+  config: {
+    dataSource: {
+      type: 'mock-data',
+      dataGenerator: tableDataGenerator,
+    } as unknown as MockTableDatasourceConfig,
+    columns: [
+      {
+        id: 'col1',
+        sortable: true,
+        title: 'Column #1',
+      },
+      {
+        id: 'col2',
+        title: 'Column #2',
+      },
+      {
+        id: 'col3',
+        title: 'Column #3',
+      },
+    ],
+    editable: {
       columns: [
         {
-          id: 'col1',
-          sortable: true,
-          title: 'Column #1',
-        },
-        {
           id: 'col2',
-          title: 'Column #2',
-        },
-        {
-          id: 'col3',
-          title: 'Column #3',
-        },
-      ],
-      editable: {
-        columns: [
-          {
-            id: 'col2',
-            type: 'autocomplete',
-            typeOptions: {
+          type: 'autocomplete',
+          typeOptions: {
+            datasource: {
+              type: 'dependable',
+              dependsOn: 'col3',
               datasource: {
-                type: 'dependable',
-                dependsOn: 'col3',
-                datasource: {
-                  type: 'inline',
-                  data: [
-                    {
-                      value: 'Dependable Option 1',
-                      title: 'Dependable Option 1',
-                      isDisabled: false,
-                    },
-                    {
-                      value: 'Dependable Option 2',
-                      title: 'Dependable Option 2',
-                      isDisabled: true,
-                    },
-                    {
-                      value: 'Dependable Option 3',
-                      title: 'Dependable Option 3',
-                    },
-                  ],
-                },
+                type: 'inline',
+                data: [
+                  {
+                    value: 'Dependable Option 1',
+                    title: 'Dependable Option 1',
+                    isDisabled: false,
+                  },
+                  {
+                    value: 'Dependable Option 2',
+                    title: 'Dependable Option 2',
+                    isDisabled: true,
+                  },
+                  {
+                    value: 'Dependable Option 3',
+                    title: 'Dependable Option 3',
+                  },
+                ],
               },
             },
           },
-          {
-            id: 'col3',
-            type: 'autocomplete',
-            typeOptions: {
-              options: [
-                {
-                  value: 'Burns Bay Road',
-                  title:
-                    'Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road',
-                  isDisabled: false,
-                },
-                {
-                  value: 'Downing Street',
-                  title: 'Downing Street',
-                  isDisabled: true,
-                },
-                {
-                  value: 'Wall Street',
-                  title: 'Wall Street',
-                },
-              ],
-              placeholder: 'Col 3 Placeholder',
-            },
+        },
+        {
+          id: 'col3',
+          type: 'autocomplete',
+          typeOptions: {
+            options: [
+              {
+                value: 'Burns Bay Road',
+                title:
+                  'Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road',
+                isDisabled: false,
+              },
+              {
+                value: 'Downing Street',
+                title: 'Downing Street',
+                isDisabled: true,
+              },
+              {
+                value: 'Wall Street',
+                title: 'Wall Street',
+              },
+            ],
+            placeholder: 'Col 3 Placeholder',
           },
-        ],
-        create: {},
-        update: { url: '/update-cell' },
-      },
+        },
+      ],
+      create: {},
+      update: { url: '/update-cell' },
     },
-    mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-      },
-      {
-        url: '/update-cell',
-        data: {},
-      },
-    ]),
   },
-});
+  mockHttp: setMockHttp([
+    {
+      url: '/data-request',
+      dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
+    },
+    {
+      url: '/update-cell',
+      data: {},
+    },
+  ]),
+};
+withDependentColumns.argTypes = {
+  context: {
+    table: {
+      disable: true,
+    },
+  },
+};

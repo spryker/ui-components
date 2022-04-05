@@ -2,6 +2,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { IStory, Meta } from '@storybook/angular';
+import { withDesign } from 'storybook-addon-designs';
 import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
@@ -23,12 +25,7 @@ import {
   DrawerActionHandlerService,
   DrawerActionModule,
 } from '@spryker/actions.drawer';
-import { IStory } from '@storybook/angular';
 import { TableBatchActionsFeatureModule } from './table-batch-actions-feature.module';
-
-export default {
-  title: 'TableBatchActionsFeatureComponent',
-};
 
 @Component({
   selector: 'spy-simple-component',
@@ -81,6 +78,73 @@ const availableActionsTitle = (index: number): string => {
   }
 };
 
+export default {
+  title: 'TableBatchActionsFeatureComponent',
+  decorators: [withDesign],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1365%3A7734',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
+    config: {
+      dataSource: {
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as unknown as MockTableDatasourceConfig,
+      columns: [
+        { id: 'sku', title: 'SKU' },
+        { id: 'col2', title: 'Available Actions' },
+      ],
+      itemSelection: {
+        enabled: true, // This will enable feature via config
+      },
+      batchActions: {
+        enabled: true, // This will enable feature via config
+        noActionsMessage: 'No available actions for selected rows',
+        availableActionsPath: '_actionIds',
+        rowIdPath: 'sku',
+        actions: [
+          {
+            id: 'update-offer',
+            title: 'Update Offer(s)',
+            type: 'drawer',
+            component: 'simple_component',
+            options: {
+              inputs: {
+                action: 'https://.../?ids=${rowIds}',
+                method: 'POST',
+              },
+            },
+          },
+          {
+            id: 'ship',
+            title: 'Ship',
+            type: 'drawer',
+            component: 'simple_component',
+            options: {
+              inputs: {
+                action: 'https://.../?ids=${rowIds}',
+                method: 'POST',
+              },
+            },
+          },
+        ],
+      },
+    },
+  },
+} as Meta;
+
 export const viaHtml = getTotalStory(
   `
     <spy-table [config]="config">
@@ -93,7 +157,7 @@ export const viaHtml = getTotalStory(
 
 export const viaConfig = getTotalStory(
   `
-    <spy-table [config]="config">
+    <spy-table [config]="config"></spy-table>
   `,
   [
     TableModule.withFeatures({
@@ -112,8 +176,9 @@ export const viaConfig = getTotalStory(
 function getTotalStory(
   template: string,
   extraNgModules: any[] = [],
-): () => IStory {
-  return () => ({
+): (args) => IStory {
+  return (args) => ({
+    props: args,
     moduleMetadata: {
       imports: [
         HttpClientTestingModule,
@@ -150,52 +215,5 @@ function getTotalStory(
       ],
     },
     template,
-    props: {
-      config: {
-        dataSource: {
-          type: 'mock-data',
-          dataGenerator: tableDataGenerator,
-        } as unknown as MockTableDatasourceConfig,
-        columns: [
-          { id: 'sku', title: 'SKU' },
-          { id: 'col2', title: 'Available Actions' },
-        ],
-        itemSelection: {
-          enabled: true, // This will enable feature via config
-        },
-        batchActions: {
-          enabled: true, // This will enable feature via config
-          noActionsMessage: 'No available actions for selected rows',
-          availableActionsPath: '_actionIds',
-          rowIdPath: 'sku',
-          actions: [
-            {
-              id: 'update-offer',
-              title: 'Update Offer(s)',
-              type: 'drawer',
-              component: 'simple_component',
-              options: {
-                inputs: {
-                  action: 'https://.../?ids=${rowIds}',
-                  method: 'POST',
-                },
-              },
-            },
-            {
-              id: 'ship',
-              title: 'Ship',
-              type: 'drawer',
-              component: 'simple_component',
-              options: {
-                inputs: {
-                  action: 'https://.../?ids=${rowIds}',
-                  method: 'POST',
-                },
-              },
-            },
-          ],
-        },
-      },
-    },
   });
 }

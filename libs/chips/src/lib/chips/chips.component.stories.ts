@@ -42,6 +42,6 @@ export const primary = (args) => ({
     imports: [ChipsModule],
   },
   template: `
-    <spy-chips [color]="color">{{text}}</spy-chips>
+    <spy-chips [color]="color">{{ text }}</spy-chips>
   `,
 });

@@ -1,6 +1,5 @@
 import { Meta } from '@storybook/angular';
 import { withDesign } from 'storybook-addon-designs';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import * as icons from '@spryker/icon/icons';
 import { IconModule } from '../icon.module';
 import { IconComponent } from './icon.component';
@@ -33,7 +32,7 @@ export const allIcons = (args) => ({
     icons: iconNames,
   },
   moduleMetadata: {
-    imports: [NzIconModule, IconModule, ...iconsModules],
+    imports: [IconModule, ...iconsModules],
   },
   template: `
     <p *ngFor="let icon of icons">
@@ -56,7 +55,7 @@ allIcons.argTypes = {
 export const icon = (args) => ({
   props: args,
   moduleMetadata: {
-    imports: [NzIconModule, IconModule, ...iconsModules],
+    imports: [IconModule, ...iconsModules],
   },
 });
 icon.args = {

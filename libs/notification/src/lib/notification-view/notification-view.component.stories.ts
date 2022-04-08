@@ -26,9 +26,6 @@ export default {
       control: { type: 'select' },
       options: NotificationType,
     },
-    closeable: {
-      control: { type: 'boolean' },
-    },
   },
   args: {
     title: 'Title Template',

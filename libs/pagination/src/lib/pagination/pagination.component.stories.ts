@@ -1,4 +1,3 @@
-import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
 import { withDesign } from 'storybook-addon-designs';
@@ -27,14 +26,8 @@ export default {
     },
   },
   argTypes: {
-    hideOnSinglePage: {
-      control: { type: 'boolean' },
-    },
     pageSizeOptions: {
       control: { type: 'array' },
-    },
-    disableClear: {
-      control: { type: 'boolean' },
     },
   },
   args: {
@@ -45,6 +38,6 @@ export default {
 export const primary = (args) => ({
   props: args,
   moduleMetadata: {
-    imports: [PaginationModule, NzPaginationModule, BrowserAnimationsModule],
+    imports: [PaginationModule, BrowserAnimationsModule],
   },
 });

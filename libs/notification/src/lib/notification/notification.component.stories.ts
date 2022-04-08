@@ -37,12 +37,6 @@ export default {
       control: { type: 'select' },
       options: NotificationType,
     },
-    closeable: {
-      control: { type: 'boolean' },
-    },
-    floating: {
-      control: { type: 'boolean' },
-    },
     floatingConfig: {
       table: { disable: true },
     },

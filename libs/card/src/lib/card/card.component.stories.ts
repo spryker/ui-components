@@ -1,4 +1,3 @@
-import { NzCardModule } from 'ng-zorro-antd/card';
 import { Meta } from '@storybook/angular';
 import { withDesign } from 'storybook-addon-designs';
 import { CardComponent } from './card.component';
@@ -32,10 +31,15 @@ export default {
 export const primary = (args) => ({
   props: args,
   moduleMetadata: {
-    imports: [NzCardModule, CardModule],
+    imports: [CardModule],
   },
   template: `
-    <spy-card [spyTitle]="spyTitle" [extra]="extraRef" [actions]="[button, button]">
+    <spy-card
+      [spyTitle]="spyTitle"
+      [titlePosition]="titlePosition"
+      [hoverable]="hoverable"
+      [extra]="extraRef"
+      [actions]="[button, button]">
       Card content here
     </spy-card>
     <ng-template #extraRef>
@@ -50,10 +54,15 @@ export const primary = (args) => ({
 export const withInnerCard = (args) => ({
   props: args,
   moduleMetadata: {
-    imports: [NzCardModule, CardModule],
+    imports: [CardModule],
   },
   template: `
-    <spy-card [spyTitle]="spyTitle" [extra]="extraRef" [actions]="[button, button]">
+    <spy-card
+      [spyTitle]="spyTitle"
+      [titlePosition]="titlePosition"
+      [hoverable]="hoverable"
+      [extra]="extraRef"
+      [actions]="[button, button]">
       <spy-card [spyTitle]="spyTitle">
         Card content here
       </spy-card>

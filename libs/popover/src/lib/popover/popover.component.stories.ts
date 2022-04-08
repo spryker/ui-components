@@ -44,7 +44,10 @@ export const popover = (args) => ({
   },
   template: `
     <div style="padding: 100px; display: flex; justify-content: center;">
-      <spy-popover [position]="position">
+      <spy-popover
+        [position]="position"
+        [popoverTrigger]="popoverTrigger"
+        [open]="open">
         <button trigger>Open</button>
         <ul>
           <li *ngFor="let number of mockData">Popover content item {{ number + 1 }}</li>

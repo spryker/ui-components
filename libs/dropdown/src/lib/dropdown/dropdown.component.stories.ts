@@ -31,7 +31,13 @@ export const primary = (args) => ({
   },
   template: `
     <div style="padding: 80px; display: flex; justify-content: center;">
-      <spy-dropdown [items]="items" [placement]="placement">ICON</spy-dropdown>
+      <spy-dropdown
+        [items]="items"
+        [placement]="placement"
+        [visible]="visible"
+        [disabled]="disabled">
+        ICON
+      </spy-dropdown>
     </div>
   `,
 });

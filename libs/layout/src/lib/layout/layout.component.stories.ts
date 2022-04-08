@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/angular';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { LayoutComponent } from './layout.component';
 import { LayoutModule } from '../layout.module';
 
@@ -14,7 +13,7 @@ export default {
 export const primary = (args) => ({
   props: args,
   moduleMetadata: {
-    imports: [LayoutModule, NzLayoutModule],
+    imports: [LayoutModule],
   },
   template: `
     <spy-layout>

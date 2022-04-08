@@ -40,20 +40,6 @@ export default {
       allowFullscreen: true,
     },
   },
-  argTypes: {
-    required: {
-      control: { type: 'boolean' },
-    },
-    noSpaces: {
-      control: { type: 'boolean' },
-    },
-    noLabel: {
-      control: { type: 'boolean' },
-    },
-    withErrorTitle: {
-      control: { type: 'boolean' },
-    },
-  },
   args: {
     error: 'Error message',
     withErrorTitle: true,

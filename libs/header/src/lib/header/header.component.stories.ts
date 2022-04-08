@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/angular';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { withDesign } from 'storybook-addon-designs';
 import { HeaderModule } from '../header.module';
 
@@ -19,7 +18,7 @@ export default {
 export const primary = (args) => ({
   props: args,
   moduleMetadata: {
-    imports: [HeaderModule, NzLayoutModule],
+    imports: [HeaderModule],
   },
   template: `
     <spy-header>

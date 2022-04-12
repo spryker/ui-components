@@ -1,4 +1,7 @@
 @link-prefix-cls: ~'@{spryker-prefix}-link';
 
-@link-icon-padding-right: 8px;
-@link-font: @font-weight-default @font-size-sm / 1 @font-family;
+@link-icon-padding-right: var(--spy-link-icon-padding-right, 8px);
+@link-font: var(
+  --spy-link-font,
+  @font-weight-default @font-size-sm / 1 @font-family
+);

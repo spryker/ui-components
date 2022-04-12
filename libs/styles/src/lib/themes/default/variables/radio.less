@@ -3,15 +3,25 @@
 @radio-group-spryker-prefix-cls: ~'@{spryker-prefix}-radio-group';
 
 @radio-size: 18px;
-@radio-border: @spy-border-width-base solid @gray;
-@radio-inner-size: 10px;
-@radio-inner-margin: (-@radio-inner-size / 2) 0 0 (-@radio-inner-size / 2);
-@radio-focus-border-color: @green;
-@radio-disabled-border-color: @gray;
-@radio-inner-disabled-background: @gray-dark;
-@radio-hover-border-color: @gray-dark;
-@radio-checked-background: @green-dark;
-@radio-checked-focus-shadow: 0 0 2px @green;
-@radio-group-item-padding-bottom: 16px;
-@radio-label-color: @ink;
-@radio-label-indent-x: 8px;
+@spy-radio-size: var(--spy-radio-size, @radio-size);
+@radio-border: var(--spy-radio-border, @spy-border-width-base solid @gray);
+@radio-inner-size: var(--spy-radio-inner-size, 10px);
+@radio-inner-margin: var(--spy-radio-inner-margin, -5px 0 0 -5px);
+@radio-focus-border-color: var(--spy-radio-focus-border-color, @green);
+@radio-disabled-border-color: var(--spy-radio-disabled-border-color, @gray);
+@radio-inner-disabled-background: var(
+  --spy-radio-inner-disabled-background,
+  @gray-dark
+);
+@radio-hover-border-color: var(--spy-radio-hover-border-color, @gray-dark);
+@radio-checked-background: var(--spy-radio-checked-background, @green-dark);
+@radio-checked-focus-shadow: var(
+  --spy-radio-checked-focus-shadow,
+  0 0 2px @green
+);
+@radio-group-item-padding-bottom: var(
+  --spy-radio-group-item-padding-bottom,
+  16px
+);
+@radio-label-color: var(--spy-radio-label-color, @ink);
+@radio-label-indent-x: var(--spy-radio-label-indent-x, 8px);

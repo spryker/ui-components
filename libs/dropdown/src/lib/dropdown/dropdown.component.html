@@ -4,6 +4,7 @@
   [nzPlacement]="placement"
   [nzDisabled]="disabled"
   [(nzVisible)]="visible"
+  [nzTrigger]="trigger"
   (click)="$event.stopPropagation()"
   (nzVisibleChange)="visibleChange.emit($event)"
 >

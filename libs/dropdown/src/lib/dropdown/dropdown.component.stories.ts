@@ -3,6 +3,7 @@ import { DropdownComponent } from './dropdown.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconModule } from '@spryker/icon';
 import { IconCheckModule, IconInfoModule } from '@spryker/icon/icons';
+import { select } from '@storybook/addon-knobs';
 
 export default {
   title: 'DropdownComponent',
@@ -19,7 +20,7 @@ export const primary = () => ({
     ],
   },
   template: `
-    <spy-dropdown [items]="items">ICON</spy-dropdown>
+    <spy-dropdown [items]="items" [trigger]="trigger">ICON</spy-dropdown>
   `,
   props: {
     items: [
@@ -36,5 +37,6 @@ export const primary = () => ({
       },
       { action: 'action3', title: 'Without icon' },
     ],
+    trigger: select('Trigger', ['click', 'hover'], 'hover'),
   },
 });

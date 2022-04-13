@@ -15,6 +15,7 @@ describe('DropdownComponent', () => {
         [placement]="placement"
         [visible]="visible"
         [disabled]="disabled"
+        [trigger]="trigger"
         (visibleChange)="visibleChangeSpy($event)"
         (actionTriggered)="actionTriggeredSpy(action)"
       ></spy-dropdown>
@@ -25,6 +26,7 @@ describe('DropdownComponent', () => {
     placement: any;
     visible: any;
     disabled: any;
+    trigger: any;
     visibleChangeSpy = jest.fn();
     actionTriggeredSpy = jest.fn();
   }
@@ -90,6 +92,16 @@ describe('DropdownComponent', () => {
       fixture.detectChanges();
 
       expect(spanElem.attributes['ng-reflect-nz-visible']).toBe('true');
+    });
+
+    it('should bind visible to nzTrigger of nz-dropdown', () => {
+      const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
+
+      const mockedValue = 'hover';
+      component.trigger = mockedValue;
+
+      fixture.detectChanges();
+      expect(spanElem.attributes['ng-reflect-nz-trigger']).toBe(mockedValue);
     });
   });
 

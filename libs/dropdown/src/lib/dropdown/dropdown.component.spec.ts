@@ -94,7 +94,7 @@ describe('DropdownComponent', () => {
       expect(spanElem.attributes['ng-reflect-nz-visible']).toBe('true');
     });
 
-    it('should bind visible to nzTrigger of nz-dropdown', () => {
+    it('should bind trigger to nzTrigger of nz-dropdown', () => {
       const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
 
       const mockedValue = 'hover';

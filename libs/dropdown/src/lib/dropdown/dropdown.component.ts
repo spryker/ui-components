@@ -24,6 +24,8 @@ export type Placement =
   | 'topCenter'
   | 'topRight';
 
+export type Trigger = 'click' | 'hover';
+
 @Component({
   selector: 'spy-dropdown',
   templateUrl: './dropdown.component.html',
@@ -34,6 +36,7 @@ export type Placement =
 export class DropdownComponent {
   @Input() items: DropdownItem[] = [];
   @Input() placement: Placement = 'bottomRight';
+  @Input() trigger: Trigger = 'hover';
   @HostBinding('class.spy-dropdown--open')
   @Input()
   @ToBoolean()

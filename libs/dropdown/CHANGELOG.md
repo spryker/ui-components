@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.8-beta.2...@spryker/dropdown@0.3.0-beta.0) (2022-04-13)
+
+
+### Bug Fixes
+
+* **dropdown:** fix typo in test case name ([81c18d3](https://github.com/spryker/ui-components/commit/81c18d3c34a916b4d12bee3f506fc4ad540366d3))
+
+
+### Features
+
+* **dropdown:** add trigger type feature (opening by hover, by click) ([58a505e](https://github.com/spryker/ui-components/commit/58a505e3a3d9654747c16854c42bbca4b6455902))
+
+
+
+
+
 ## [0.2.8-beta.2](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.2.8-beta.1...@spryker/dropdown@0.2.8-beta.2) (2022-02-01)
 
 

@@ -3,16 +3,20 @@
 
 @btn-font-weight: var(--spy-btn-font-weight, @font-weight-medium);
 @btn-font-size-lg: @font-size-base;
+@spy-btn-font-size-lg: var(--spy-btn-font-size-lg, @btn-font-size-lg);
 @btn-min-width-base: var(--spy-btn-min-width-base, 100px);
 @btn-min-width-lg: var(--spy-btn-min-width-lg, 105px);
 @btn-min-width-md: var(--spy-btn-min-width-md, 90px);
 @btn-min-width-sm: var(--spy-btn-min-width-sm, 85px);
 @btn-min-width-circle: var(--spy-btn-min-width-circle, 26px);
-@btn-height-lg: var(--spy-btn-height-lg, 48px);
+@btn-height-lg: 48px;
+@spy-btn-height-lg: var(--spy-btn-height-lg, @btn-height-lg);
 @btn-height-md: var(--spy-btn-height-md, 42px);
-@btn-height-sm: var(--spy-btn-height-sm, 38px);
+@btn-height-sm: 38px;
+@spy-btn-height-sm: var(--spy-btn-height-sm, @btn-height-sm);
 @btn-height-xs: var(--spy-btn-height-xs, 26px);
 @btn-height-base: 42px;
+@spy-btn-height-base: var(--spy-btn-height-base, @btn-height-base);
 @btn-decoration-size: var(--spy-btn-decoration-size, -2px);
 @btn-horizontal-vertical-base: var(--spy-btn-horizontal-vertical-base, 3px);
 @btn-horizontal-padding-base: var(--spy-btn-horizontal-padding-base, 16px);
@@ -47,8 +51,9 @@
 @btn-loading-spin-offset-lg: var(--spy-btn-loading-spin-offset-lg, -15px);
 @btn-loading-spin-offset-md: var(--spy-btn-loading-spin-offset-md, -13px);
 @btn-loading-spin-offset-sm: var(--spy-btn-loading-spin-offset-sm, -11px);
-@btn-border-width: var(--spy-btn-border-width, 1px);
-@btn-border: var(--spy-btn-border, @btn-border-width solid @transparent);
+@btn-border-width: 1px;
+@spy-btn-border-width: var(--spy-btn-border-width, @btn-border-width);
+@btn-border: var(--spy-btn-border, @spy-btn-border-width solid @transparent);
 @btn-border-radius: var(--spy-btn-border-radius, @border-radius-base);
 @btn-border-radius-round: var(--spy-btn-border-radius-round, 40px);
 @btn-border-radius-circle: var(--spy-btn-border-radius-circle, 50%);

@@ -141,6 +141,9 @@ export const viaModalComponent = (args) => ({
   },
   component: SimpleModalComponent,
 });
+viaModalComponent.parameters = {
+  controls: { hideNoControlsWarning: true },
+};
 
 @Component({
   selector: 'spy-story',

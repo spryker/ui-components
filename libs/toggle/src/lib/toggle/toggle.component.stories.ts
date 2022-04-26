@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { ToggleComponent } from './toggle.component';
 import { ToggleModule } from '../toggle.module';
 
 export default {
   title: 'ToggleComponent',
   component: ToggleComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['value', 'disabled', 'name'],

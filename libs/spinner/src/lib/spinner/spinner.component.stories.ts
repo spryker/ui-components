@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { SpinnerSize } from '../types';
 import { SpinnerComponent } from './spinner.component';
 import { SpinnerModule } from '../spinner.module';
@@ -7,7 +6,6 @@ import { SpinnerModule } from '../spinner.module';
 export default {
   title: 'SpinnerComponent',
   component: SpinnerComponent,
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

@@ -15,7 +15,6 @@ import { IStory, Meta } from '@storybook/angular';
 
 import { TableSelectableFeatureModule } from './table-selectable-feature.module';
 import { TableSelectionChangeEvent } from './types';
-import { withDesign } from 'storybook-addon-designs';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
@@ -25,7 +24,6 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
   title: 'TableSelectableFeatureComponent',
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

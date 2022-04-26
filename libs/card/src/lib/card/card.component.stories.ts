@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { CardComponent } from './card.component';
 import { CardModule } from '../card.module';
 
 export default {
   title: 'CardComponent',
   component: CardComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['spyTitle', 'titlePosition', 'hoverable'],

@@ -7,7 +7,6 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 import { DrawerModule } from './drawer.module';
 import { DrawerService } from './drawer.service';
@@ -85,7 +84,6 @@ class SimpleDrawerComponent extends DrawerComponentInputs {
 export default {
   title: 'DrawersComponent',
   component: SimpleDrawerComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['closeable', 'resizable', 'width', 'hasBackdrop'],

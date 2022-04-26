@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { ChipsComponent } from './chips.component';
 import { ChipsModule } from '../chips.module';
 
 export default {
   title: 'ChipsComponent',
   component: ChipsComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['color', 'maxWidth', 'text'],

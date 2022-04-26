@@ -13,7 +13,6 @@ import { DefaultContextSerializationModule } from '@spryker/utils';
 import { IStory, Meta } from '@storybook/angular';
 
 import { TablePaginationFeatureModule } from './table-pagination-feature.module';
-import { withDesign } from 'storybook-addon-designs';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
@@ -23,7 +22,6 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
   title: 'TablePaginationFeatureComponent',
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

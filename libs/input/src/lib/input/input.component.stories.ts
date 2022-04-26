@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { InputModule } from '../input.module';
 import { InputComponent } from './input.component';
 
 export default {
   title: 'InputComponent',
   component: InputComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

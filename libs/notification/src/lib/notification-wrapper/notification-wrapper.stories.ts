@@ -1,7 +1,6 @@
 import { NgModule, Component, Input, OnChanges } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { NotificationModule } from '../notification.module';
 import { NotificationService } from '../notification.service';
 import { NotificationWrapperComponent } from './notification-wrapper.component';
@@ -45,7 +44,6 @@ class StoryModule {}
 export default {
   title: 'NotificationWrapperComponent',
   component: StoryComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['type', 'closeable', 'title', 'description', 'timeOut'],

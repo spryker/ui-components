@@ -52,11 +52,6 @@ class StoryComponent {
 export default {
   title: 'AjaxActionComponent',
   component: StoryComponent,
-  parameters: {
-    controls: {
-      hideNoControlsWarning: true,
-    },
-  },
 } as Meta;
 
 @NgModule({

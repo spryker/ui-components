@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
 import { HeadlineModule } from '../headline.module';
 import { HeadlineComponent, Level } from './headline.component';
-import { withDesign } from 'storybook-addon-designs';
 
 export default {
   title: 'HeadlineComponent',
   component: HeadlineComponent,
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

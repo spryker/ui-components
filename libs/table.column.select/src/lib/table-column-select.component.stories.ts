@@ -3,7 +3,6 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { DatasourceHttpService } from '@spryker/datasource.http';
@@ -36,7 +35,6 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 export default {
   title: 'TableColumnSelectComponent',
   component: TableColumnSelectComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['config', 'context', 'mockHttp'],

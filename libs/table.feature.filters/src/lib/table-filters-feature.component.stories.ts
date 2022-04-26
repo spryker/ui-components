@@ -14,7 +14,6 @@ import { DefaultContextSerializationModule } from '@spryker/utils';
 import { IStory, Meta } from '@storybook/angular';
 
 import { TableFiltersFeatureModule } from './table-filters-feature.module';
-import { withDesign } from 'storybook-addon-designs';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
@@ -24,7 +23,6 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
   title: 'TableFiltersFeatureComponent',
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

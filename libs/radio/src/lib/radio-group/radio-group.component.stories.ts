@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { WebComponentsModule } from '@spryker/web-components';
 import { StorybookModule } from '@spryker/web-components/storybook';
 import { RadioModule } from '../radio.module';
@@ -15,7 +14,6 @@ enum RadioGroupValue {
 export default {
   title: 'RadioGroupComponent',
   component: RadioGroupComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['value', 'name', 'firstRadioValue', 'secondRadioValue'],

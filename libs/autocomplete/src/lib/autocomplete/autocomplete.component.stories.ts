@@ -4,7 +4,6 @@ import { InputComponent, InputModule } from '@spryker/input';
 import { WebComponentsModule } from '@spryker/web-components';
 import { StorybookModule } from '@spryker/web-components/storybook';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 
 import { AutocompleteModule } from '../autocomplete.module';
 import { AutocompleteComponent } from './autocomplete.component';
@@ -30,7 +29,6 @@ const mockAutocompleteOptions = [
 export default {
   title: 'AutocompleteComponent',
   component: AutocompleteComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['options'],

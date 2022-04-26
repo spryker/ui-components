@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { WebComponentsModule } from '@spryker/web-components';
 import { StorybookModule } from '@spryker/web-components/storybook';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonComponent, ButtonType } from './button.component';
@@ -11,7 +10,6 @@ import { ButtonModule } from './button.module';
 export default {
   title: 'ButtonComponent',
   component: ButtonComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

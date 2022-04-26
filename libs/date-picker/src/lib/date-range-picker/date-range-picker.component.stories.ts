@@ -1,6 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { LocaleModule } from '@spryker/locale';
 import { EnLocaleModule, EN_LOCALE } from '@spryker/locale/locales/en';
 import { DateRangePickerComponent } from './date-range-picker.component';
@@ -9,7 +8,6 @@ import { DateRangePickerModule } from './date-range-picker.module';
 export default {
   title: 'DateRangePickerComponent',
   component: DateRangePickerComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

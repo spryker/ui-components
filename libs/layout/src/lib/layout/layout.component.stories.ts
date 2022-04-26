@@ -5,9 +5,6 @@ import { LayoutModule } from '../layout.module';
 export default {
   title: 'LayoutComponent',
   component: LayoutComponent,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
 } as Meta;
 
 export const primary = (args) => ({

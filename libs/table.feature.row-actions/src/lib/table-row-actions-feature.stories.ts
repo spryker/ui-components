@@ -3,7 +3,6 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { IStory, Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableActionTriggeredEvent, TableModule } from '@spryker/table';
 import {
@@ -24,7 +23,6 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
   title: 'TableRowActionsFeatureComponent',
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

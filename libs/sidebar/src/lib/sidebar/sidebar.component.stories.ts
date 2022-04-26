@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { IconModule } from '@spryker/icon';
 import { SidebarComponent } from './sidebar.component';
 import { SidebarModule } from '../sidebar.module';
@@ -7,7 +6,6 @@ import { SidebarModule } from '../sidebar.module';
 export default {
   title: 'SidebarComponent',
   component: SidebarComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['width', 'collapsedWidth', 'spyId', 'collapsed', 'innerText'],

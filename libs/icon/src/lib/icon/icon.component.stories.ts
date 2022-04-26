@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import * as icons from '@spryker/icon/icons';
 import { IconModule } from '../icon.module';
 import { IconComponent } from './icon.component';
@@ -8,7 +7,6 @@ import { Icon } from './types';
 export default {
   title: 'IconComponent',
   component: IconComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['name', 'iconColor'],

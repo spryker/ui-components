@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { CollapsibleComponent } from './collapsible.component';
 import { CollapsibleModule } from '../collapsible.module';
 
 export default {
   title: 'CollapsibleComponent',
   component: CollapsibleComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['spyTitle', 'active', 'disabled', 'alwaysRender'],

@@ -8,16 +8,11 @@ import { ButtonModule } from '@spryker/button';
 import { ButtonActionModule } from '@spryker/button.action';
 import { ActionsModule } from '@spryker/actions';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { RefreshDrawerActionHandlerService } from './refresh-drawer-action-handler.service';
 
 export default {
   title: 'RefreshDrawerActionHandlerService',
-  decorators: [withDesign],
   parameters: {
-    controls: {
-      hideNoControlsWarning: true,
-    },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',

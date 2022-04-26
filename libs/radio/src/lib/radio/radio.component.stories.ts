@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { RadioModule } from '../radio.module';
 import { RadioComponent } from './radio.component';
 
 export default {
   title: 'RadioComponent',
   component: RadioComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['value', 'disabled', 'hasError'],

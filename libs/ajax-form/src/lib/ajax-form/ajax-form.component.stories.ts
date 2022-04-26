@@ -6,11 +6,6 @@ import { AjaxFormModule } from '../ajax-form.module';
 
 export default {
   title: 'AjaxFormComponent',
-  parameters: {
-    controls: {
-      hideNoControlsWarning: true,
-    },
-  },
 } as Meta;
 
 const mockHtmlTemplate = () => `

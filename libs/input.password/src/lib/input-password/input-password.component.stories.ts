@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { InputPasswordModule } from '../input-password.module';
 import { InputPasswordComponent } from './input-password.component';
 
 export default {
   title: 'InputPasswordComponent',
   component: InputPasswordComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

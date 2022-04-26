@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { TextareaComponent } from './textarea.component';
 import { TextareaModule } from '../textarea.module';
 
 export default {
   title: 'TextareaComponent',
   component: TextareaComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

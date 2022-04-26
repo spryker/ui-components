@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { CheckboxComponent } from './checkbox.component';
 import { CheckboxModule } from '../checkbox.module';
 
 export default {
   title: 'CheckboxComponent',
   component: CheckboxComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

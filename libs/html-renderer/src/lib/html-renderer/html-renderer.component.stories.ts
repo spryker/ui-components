@@ -40,9 +40,6 @@ function generateMockHtmlPage(template: string): { html: string } {
 
 export default {
   title: 'HtmlRendererComponent',
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
 } as Meta;
 
 export const withStaticHtml = (args) => ({

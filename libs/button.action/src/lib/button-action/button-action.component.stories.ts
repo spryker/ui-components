@@ -1,7 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
 import {
   ButtonShape,
@@ -16,7 +15,6 @@ import { ButtonActionModule } from '../button-action.module';
 export default {
   title: 'ButtonActionComponent',
   component: ButtonActionComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['variant', 'size', 'shape', 'type', 'attrs'],

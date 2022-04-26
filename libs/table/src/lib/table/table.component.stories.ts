@@ -2,7 +2,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, Injectable, Input, NgModule, OnInit } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
@@ -79,7 +78,6 @@ const tableConfig: TableConfig = {
 export default {
   title: 'TableComponent',
   component: CoreTableComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['config', 'tableId'],

@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { ActionsModule } from '@spryker/actions';
 import { ButtonActionModule } from '@spryker/button.action';
 import { DatasourceModule } from '@spryker/datasource';
@@ -20,7 +19,6 @@ import { DrawerActionModule } from './drawer-action.module';
 
 export default {
   title: 'DrawerActionHandlerService',
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['action', 'config'],

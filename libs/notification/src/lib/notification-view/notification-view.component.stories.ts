@@ -1,7 +1,5 @@
-import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { ApplyContextsModule } from '@spryker/utils';
 import { NotificationModule } from '../notification.module';
 import { NotificationViewComponent } from './notification-view.component';
@@ -10,7 +8,6 @@ import { NotificationType } from '../types';
 export default {
   title: 'NotificationViewComponent',
   component: NotificationViewComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['type', 'closeable', 'title', 'description'],

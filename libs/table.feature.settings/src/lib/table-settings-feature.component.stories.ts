@@ -3,7 +3,6 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { IStory, Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { CheckboxModule } from '@spryker/checkbox';
 import { DatasourceModule } from '@spryker/datasource';
 import { IconModule } from '@spryker/icon';
@@ -28,7 +27,6 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
   title: 'TableSettingsFeatureComponent',
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

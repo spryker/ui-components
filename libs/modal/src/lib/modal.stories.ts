@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import { Meta } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { withDesign } from 'storybook-addon-designs';
 import { ModalModule } from './modal.module';
 import { ModalService } from './modal.service';
 import { NzModalWrapperComponent } from './wrappers';
@@ -14,7 +13,6 @@ import { HtmlModalStrategy } from './strategies';
 
 export default {
   title: 'ModalComponent',
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',
@@ -141,9 +139,6 @@ export const viaModalComponent = (args) => ({
   },
   component: SimpleModalComponent,
 });
-viaModalComponent.parameters = {
-  controls: { hideNoControlsWarning: true },
-};
 
 @Component({
   selector: 'spy-story',

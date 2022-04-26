@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { InputModule } from '@spryker/input';
 import { TextareaModule } from '@spryker/textarea';
 import { AutocompleteModule } from '@spryker/autocomplete';
@@ -14,7 +13,6 @@ import { FormItemComponent } from './form-item.component';
 export default {
   title: 'FormItemComponent',
   component: FormItemComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

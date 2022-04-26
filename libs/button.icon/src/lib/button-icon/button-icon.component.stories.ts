@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { ButtonIconModule } from '../button-icon.module';
 import { ButtonIconComponent } from './button-icon.component';
 import { ButtonSize, ButtonType } from '@spryker/button';
@@ -8,7 +7,6 @@ import { IconPlusModule } from '@spryker/icon/icons';
 export default {
   title: 'ButtonIconComponent',
   component: ButtonIconComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['size', 'type', 'disabled', 'attrs'],

@@ -1,6 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import {
   PopoverComponent,
   PopoverPosition,
@@ -11,7 +10,6 @@ import { PopoverModule } from '../popover.module';
 export default {
   title: 'PopoverComponent',
   component: PopoverComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['open', 'popoverTrigger', 'position'],

@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { LabelComponent } from './label.component';
 import { LabelModule } from '../label.module';
 
 export default {
   title: 'LabelComponent',
   component: LabelComponent,
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

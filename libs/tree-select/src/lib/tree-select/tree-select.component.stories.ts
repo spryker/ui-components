@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 
@@ -11,7 +10,6 @@ import { TreeSelectModule } from '../tree-select.module';
 export default {
   title: 'TreeSelectComponent',
   component: TreeSelectComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

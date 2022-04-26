@@ -1,7 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { IconCalendarModule, IconUserModule } from '@spryker/icon/icons';
 import { WebComponentsModule } from '@spryker/web-components';
 import { StorybookModule } from '@spryker/web-components/storybook';
@@ -50,7 +49,6 @@ const tabsData = [
 export default {
   title: 'TabsComponent',
   component: TabsComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['tab', 'mode', 'animateSlides', 'tabsDataArray'],

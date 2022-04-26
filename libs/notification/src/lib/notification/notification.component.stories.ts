@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { ApplyContextsModule } from '@spryker/utils';
 import { NotificationComponent } from './notification.component';
 import { NotificationModule } from '../notification.module';
@@ -14,7 +13,6 @@ import {
 export default {
   title: 'NotificationComponent',
   component: NotificationComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

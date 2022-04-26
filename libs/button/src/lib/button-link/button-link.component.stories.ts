@@ -1,6 +1,4 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
-
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonLinkComponent } from './button-link.component';
 import { ButtonLinkModule } from './button-link.module';
@@ -8,7 +6,6 @@ import { ButtonLinkModule } from './button-link.module';
 export default {
   title: 'ButtonLinkComponent',
   component: ButtonLinkComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['variant', 'size', 'shape', 'url', 'attrs'],

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { SelectModule } from '../select.module';
@@ -10,7 +9,6 @@ import { SelectComponent } from './select.component';
 export default {
   title: 'SelectComponent',
   component: SelectComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

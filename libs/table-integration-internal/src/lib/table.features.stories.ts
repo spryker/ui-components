@@ -2,7 +2,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IStory, Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { TableModule } from '@spryker/table';
 import {
   TableFilterDateRangeComponent,
@@ -68,7 +67,6 @@ const availableActions = (index: number): string[] | undefined => {
 
 export default {
   title: 'TableFeaturesComponent',
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

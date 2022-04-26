@@ -1,6 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { Icon, provideIcons } from '@spryker/icon';
 import { SidebarModule } from '@spryker/sidebar';
 import { NavigationModule } from '../navigation.module';
@@ -9,7 +8,6 @@ import { NavigationComponent } from './navigation.component';
 export default {
   title: 'NavigationComponent',
   component: NavigationComponent,
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

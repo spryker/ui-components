@@ -3,7 +3,6 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { IStory, Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
@@ -80,7 +79,6 @@ const availableActionsTitle = (index: number): string => {
 
 export default {
   title: 'TableBatchActionsFeatureComponent',
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

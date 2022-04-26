@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { LogoModule } from '../logo.module';
 import { LogoComponent } from './logo.component';
 
 export default {
   title: 'LogoComponent',
   component: LogoComponent,
-  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',

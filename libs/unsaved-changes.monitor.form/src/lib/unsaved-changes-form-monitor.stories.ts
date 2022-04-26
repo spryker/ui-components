@@ -6,11 +6,6 @@ import { UnsavedChangesFormMonitorModule } from './unsaved-changes-form-monitor.
 
 export default {
   title: 'UnsavedChangesMonitorForm',
-  parameters: {
-    controls: {
-      hideNoControlsWarning: true,
-    },
-  },
 } as Meta;
 
 export const primary = () => ({

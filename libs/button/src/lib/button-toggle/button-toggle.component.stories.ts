@@ -1,12 +1,10 @@
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { ButtonToggleComponent } from './button-toggle.component';
 import { ButtonToggleModule } from './button-toggle.module';
 
 export default {
   title: 'ButtonToggleComponent',
   component: ButtonToggleComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['disabled', 'toggled', 'attrs'],

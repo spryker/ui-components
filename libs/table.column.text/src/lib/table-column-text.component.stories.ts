@@ -3,7 +3,6 @@ import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
 import {
@@ -22,7 +21,6 @@ import { TableColumnTextModule } from './table-column-text.module';
 export default {
   title: 'TableColumnTextComponent',
   component: TableColumnTextComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['config', 'context'],

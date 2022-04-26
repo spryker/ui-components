@@ -6,7 +6,6 @@ import {
   NotificationWrapperComponent,
 } from '@spryker/notification';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonAjaxComponent, ButtonAjaxMethod } from './button-ajax.component';
@@ -15,7 +14,6 @@ import { ButtonAjaxModule } from './button-ajax.module';
 export default {
   title: 'ButtonAjaxComponent',
   component: ButtonAjaxComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: ['variant', 'size', 'shape', 'attrs', 'method'],

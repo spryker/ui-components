@@ -1,13 +1,11 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
-import { withDesign } from 'storybook-addon-designs';
 import { PaginationComponent } from './pagination.component';
 import { PaginationModule } from '../pagination.module';
 
 export default {
   title: 'PaginationComponent',
   component: PaginationComponent,
-  decorators: [withDesign],
   parameters: {
     controls: {
       include: [

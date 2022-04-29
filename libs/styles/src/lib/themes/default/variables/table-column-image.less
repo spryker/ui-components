@@ -1,4 +1,11 @@
 @table-column-image-prefix-cls: ~'@{spryker-prefix}-table-column-image';
 
-@table-column-image-width: var(--spy-table-column-image-width, 50px);
-@table-column-image-height: var(--spy-table-column-image-height, 50px);
+@table-column-image-size: var(--spy-table-column-image-size, 50px);
+@table-column-image-width: var(
+  --spy-table-column-image-width,
+  @table-column-image-size
+);
+@table-column-image-height: var(
+  --spy-table-column-image-height,
+  @table-column-image-size
+);

@@ -1,5 +1,8 @@
 @calendar-prefix-cls: ~'@{ant-prefix}-picker';
 
+@calendar-spacing-small: var(--spy-calendar-spacing-small, 12px);
+@calendar-spacing-medium: var(--spy-calendar-spacing-medium, 24px);
+@calendar-spacing-big: var(--spy-calendar-spacing-big, 38px);
 @calendar-input-height: var(
   --spy-calendar-input-height,
   calc(@spy-input-height-base - (@spy-border-width-base * 2))
@@ -41,7 +44,7 @@
 );
 @calendar-body-horizontal-padding: var(
   --spy-calendar-body-horizontal-padding,
-  12px
+  @calendar-spacing-small
 );
 @calendar-body-padding: var(
   --spy-calendar-body-padding,
@@ -59,11 +62,11 @@
 );
 @calendar-next-month-button-right: var(
   --spy-calendar-next-month-button-right,
-  12px
+  @calendar-spacing-small
 );
 @calendar-prev-month-button-left: var(
   --spy-calendar-prev-month-button-left,
-  12px
+  @calendar-spacing-small
 );
 @calendar-cell-padding: var(--spy-calendar-cell-padding, 0);
 @calendar-border-width: var(--spy-calendar-border-width, 1px);
@@ -71,7 +74,10 @@
   --spy-calendar-tbody-border,
   @calendar-border-width solid @gray
 );
-@calendar-tbody-td-height: var(--spy-calendar-tbody-td-height, 38px);
+@calendar-tbody-td-height: var(
+  --spy-calendar-tbody-td-height,
+  @calendar-spacing-big
+);
 @calendar-tbody-td-max-width-height: var(
   --spy-calendar-tbody-td-max-width-height,
   58px
@@ -85,13 +91,22 @@
   @calendar-border-width solid @transparent
 );
 @calendar-date-border-radius: var(--spy-calendar-date-border-radius, 0);
-@calendar-date-line-height: var(--spy-calendar-date-line-height, 38px);
+@calendar-date-line-height: var(
+  --spy-calendar-date-line-height,
+  @calendar-spacing-big
+);
 @calendar-date-font-weight: var(
   --spy-calendar-date-font-weight,
   @font-weight-medium
 );
-@calendar-month-btn-width: var(--spy-calendar-month-btn-width, 38px);
-@calendar-month-btn-height: var(--spy-calendar-month-btn-height, 38px);
+@calendar-month-btn-width: var(
+  --spy-calendar-month-btn-width,
+  @calendar-spacing-big
+);
+@calendar-month-btn-height: var(
+  --spy-calendar-month-btn-height,
+  @calendar-spacing-big
+);
 @calendar-month-btn-border: var(
   --spy-calendar-month-btn-border,
   @calendar-border-width solid @gray-light
@@ -100,18 +115,26 @@
   --spy-calendar-month-btn-border-radius,
   @border-radius-small
 );
-@calendar-picker-icon-width: var(--spy-calendar-picker-icon-width, 24px);
-@calendar-picker-icon-height: var(--spy-calendar-picker-icon-height, 24px);
+@calendar-picker-icon-width: var(
+  --spy-calendar-picker-icon-width,
+  @calendar-spacing-medium
+);
+@calendar-picker-icon-height: var(
+  --spy-calendar-picker-icon-height,
+  @calendar-spacing-medium
+);
 @calendar-picker-icon-font-size: var(
   --spy-calendar-picker-icon-font-size,
-  24px
+  @calendar-spacing-medium
 );
-@calendar-picker-icon-margin-top: var(
-  --spy-calendar-picker-icon-margin-top,
-  -12px
+@calendar-next-btn-right: var(
+  --spy-calendar-next-btn-right,
+  @calendar-spacing-small
 );
-@calendar-next-btn-right: var(--spy-calendar-next-btn-right, 12px);
-@calendar-prev-btn-left: var(--spy-calendar-prev-btn-left, 12px);
+@calendar-prev-btn-left: var(
+  --spy-calendar-prev-btn-left,
+  @calendar-spacing-small
+);
 @calendar-btn-background-size: var(--spy-calendar-btn-background-size, 19px);
 @calendar-clear-cross-width: var(--spy-calendar-clear-cross-width, 14px);
 @calendar-clear-cross-height: var(--spy-calendar-clear-cross-height, 3px);
@@ -134,7 +157,3 @@
 
 @range-min-width: var(--spy-range-min-width, 290px);
 @range-calendar-indents: var(--spy-range-calendar-indents, 3px);
-@range-calendar-indents-negative: var(
-  --spy-range-calendar-indents-negative,
-  -3px
-);

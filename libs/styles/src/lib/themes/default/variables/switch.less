@@ -14,8 +14,14 @@
   --spy-toggle-focus-box-shadow,
   @btn-shadow-default-size @gray-darker
 );
-@toggle-handle-position-top: var(--spy-toggle-handle-position-top, 1px);
-@toggle-handle-position-left: var(--spy-toggle-handle-position-left, 1px);
+@toggle-handle-position-top: var(
+  --spy-toggle-handle-position-top,
+  @toggle-border-width
+);
+@toggle-handle-position-left: var(
+  --spy-toggle-handle-position-left,
+  @toggle-border-width
+);
 @toggle-checked-focus-box-shadow: var(
   --spy-toggle-checked-focus-box-shadow,
   @box-shadow-focus

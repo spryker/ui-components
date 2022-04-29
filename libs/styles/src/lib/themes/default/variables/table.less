@@ -63,7 +63,7 @@
 @table-head-padding-vertical: var(--spy-table-head-padding-vertical, 15px);
 @table-head-padding: var(
   --spy-table-head-padding,
-  @table-head-padding-vertical @table-padding-horizontal
+  @table-head-padding-vertical @spy-table-padding-horizontal
 );
 @table-padding-horizontal: 25px;
 @spy-table-padding-horizontal: var(
@@ -72,7 +72,8 @@
 );
 @table-column-inner-padding: var(
   --spy-table-column-inner-padding,
-  @table-body-padding-top @table-padding-horizontal @table-body-padding-bottom
+  @table-body-padding-top @spy-table-padding-horizontal
+    @table-body-padding-bottom
 );
 @table-column-inner-z-index: var(--spy-table-column-inner-z-index, 0);
 @table-column-first-border-radius: var(

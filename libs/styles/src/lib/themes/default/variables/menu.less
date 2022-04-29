@@ -3,7 +3,7 @@
 @menu-collapsed-width: var(--spy-menu-collapsed-width, 96px);
 @menu-collapsed-item-padding: var(--spy-menu-collapsed-item-padding, 15px 10px);
 @menu-icon-size: var(--spy-menu-icon-size, @spy-font-size-base);
-@menu-icon-size-lg: var(--spy-menu-icon-size-lg, @font-size-lg);
+@menu-icon-size-lg: var(--spy-menu-icon-size-lg, @spy-font-size-lg);
 @menu-highlight-color: var(--spy-menu-highlight-color, @ink);
 @menu-inline-toplevel-item-height: var(
   --spy-menu-inline-toplevel-item-height,
@@ -73,49 +73,65 @@
   11px 34px 11px 38px
 );
 @menu-item-popup-width: var(--spy-menu-item-popup-width, 210px);
+@menu-item-transform-translate-small: var(--spy-menu-item-transform-small, 2px);
+@menu-item-transform-translate-medium: var(
+  --spy-menu-item-transform-small,
+  3.5px
+);
+@menu-item-transform-rotate-small: var(--spy-menu-item-transform-medium, 45deg);
+@menu-item-transform-rotate-medium: var(--spy-menu-item-transform-big, 135deg);
 @menu-item-popup-arrow-transform: var(
   --spy-menu-item-popup-arrow-transform,
-  translateY(-2px)
+  translateY(calc(@menu-item-transform-translate-small * -1))
 );
 @menu-item-popup-open-arrow-transform: var(
   --spy-menu-item-popup-open-arrow-transform,
-  translateY(-2px) translateX(-2px)
+  translateY(calc(@menu-item-transform-translate-small * -1))
+    translateX(calc(@menu-item-transform-translate-small * -1))
 );
 @menu-item-popup-arrow-transform-before: var(
   --spy-menu-item-popup-arrow-transform-before,
-  rotate(-135deg) translateX(3.5px)
+  rotate(calc(@menu-item-transform-rotate-medium * -1))
+    translateX(@menu-item-transform-translate-medium)
 );
 @menu-item-popup-open-arrow-transform-before: var(
   --spy-menu-item-popup-open-arrow-transform-before,
-  rotate(-45deg) translateX(3.5px)
+  rotate(calc(@menu-item-transform-rotate-small * -1))
+    translateX(@menu-item-transform-translate-medium)
 );
 @menu-item-popup-arrow-transform-after: var(
   --spy-menu-item-popup-arrow-transform-after,
-  rotate(-45deg) translateX(-3.5px)
+  rotate(calc(@menu-item-transform-rotate-small * -1))
+    translateX(calc(@menu-item-transform-translate-medium * -1))
 );
 @menu-item-popup-open-arrow-transform-after: var(
   --spy-menu-item-popup-open-arrow-transform-after,
-  rotate(-135deg) translateX(-3.5px)
+  rotate(calc(@menu-item-transform-rotate-medium * -1))
+    translateX(calc(@menu-item-transform-translate-medium * -1))
 );
 @menu-item-arrow-width: var(--spy-menu-item-arrow-width, 9px);
 @menu-item-arrow-height: var(--spy-menu-item-arrow-height, 2.5px);
 @menu-item-open-arrow-transform: var(
   --spy-menu-item-open-arrow-transform,
-  translateY(-4px)
+  translateY(calc(@menu-item-transform-translate-small * -2))
 );
 @menu-item-arrow-transform-before: var(
   --spy-menu-item-arrow-transform-before,
-  rotate(-45deg) translateX(3.5px)
+  rotate(calc(@menu-item-transform-rotate-small * -1))
+    translateX(@menu-item-transform-translate-medium)
 );
 @menu-item-open-arrow-transform-before: var(
   --spy-menu-item-open-arrow-transform-before,
-  rotate(45deg) translateX(4px)
+  rotate(@menu-item-transform-rotate-small)
+    translateX(calc(@menu-item-transform-translate-small * 2))
 );
 @menu-item-arrow-transform-after: var(
   --spy-menu-item-arrow-transform-after,
-  rotate(45deg) translateX(-3.5px)
+  rotate(@menu-item-transform-rotate-small)
+    translateX(calc(@menu-item-transform-translate-medium * -1))
 );
 @menu-item-open-arrow-transform-after: var(
   --spy-menu-item-open-arrow-transform-after,
-  rotate(-45deg) translateX(-4px)
+  rotate(calc(@menu-item-transform-rotate-small * -1))
+    translateX(calc(@menu-item-transform-translate-small * -2))
 );

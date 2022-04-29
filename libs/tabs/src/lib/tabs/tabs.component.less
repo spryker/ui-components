@@ -19,7 +19,7 @@
       .transition-mixin(background);
       content: '';
       position: absolute;
-      bottom: @tabs-border-width-negative;
+      bottom: calc(@tabs-border-width * -1);
       left: 0;
       width: 100%;
       height: @tabs-border-width;
@@ -69,7 +69,7 @@
     }
 
     .@{tab-prefix-cls}-ink-bar {
-      bottom: @tabs-border-width-negative;
+      bottom: calc(@tabs-border-width * -1);
     }
 
     .@{tab-prefix-cls}-tab {

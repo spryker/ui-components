@@ -134,6 +134,9 @@ describe('TableSyncStateFeatureComponent', () => {
     expect(testUrlPersistenceStrategyService.retrieve).toHaveBeenCalledWith(
       mockedKey,
     );
+
+    testUrlPersistenceStrategyService.retrieveSubject$.next(mockedValue);
+
     expect(dataConfiguratorService.reset).toHaveBeenCalledWith(mockedValue);
   }));
 });

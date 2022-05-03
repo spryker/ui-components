@@ -7,10 +7,8 @@
 @modal-description-line-height: var(--spy-modal-description-line-height, 1.7);
 @modal-header-indent-y: var(--spy-modal-header-indent-y, 17px);
 @modal-header-border-width: var(--spy-modal-header-border-width, 1px);
-@modal-header-margin: var(
-  --spy-modal-header-margin,
-  -30px -30px @modal-header-indent-y
-);
+@modal-header-margin: calc(@modal-content-padding * -1)
+  calc(@modal-content-padding * -1) @modal-header-indent-y;
 @modal-header-padding: var(
   --spy-modal-header-padding,
   @modal-header-indent-y @modal-content-padding

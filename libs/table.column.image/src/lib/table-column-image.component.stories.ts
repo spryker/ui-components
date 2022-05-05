@@ -37,6 +37,7 @@ export const primary = (): IStory => ({
   props: {
     config: object('Config', {
       src: '${value}',
+      alt: 'Value for testing',
     }),
     context: object('Context', {
       value: 'https://images.icecat.biz/img/norm/medium/25904006-8438.jpg',
@@ -85,6 +86,7 @@ export const withTable = (): IStory => ({
           type: 'image',
           typeOptions: {
             src: '${value}',
+            alt: 'Value for testing',
           },
         },
         {
@@ -93,6 +95,7 @@ export const withTable = (): IStory => ({
           type: 'image',
           typeOptions: {
             src: '${value}',
+            alt: 'Second value for testing',
           },
         },
       ],

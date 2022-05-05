@@ -24,6 +24,15 @@
       }
     }
   }
+
+  &-initial-loading {
+    .@{spin-prefix-cls}-nested-loading {
+      > div > .@{spin-prefix-cls} {
+        position: relative;
+        height: @table-initial-loading-height;
+      }
+    }
+  }
 }
 
 .@{table-prefix-cls} {

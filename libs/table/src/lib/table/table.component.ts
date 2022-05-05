@@ -246,6 +246,11 @@ export class CoreTableComponent
     ): TableColumnContext => ({ config, row, i, j, value: row[config.id] }),
   );
 
+  isInitialLoading$ = merge(this.tableData$.pipe(mapTo(false))).pipe(
+    startWith(true),
+    shareReplaySafe(),
+  );
+
   isLoading$ = merge(
     this.dataConfiguratorService.config$.pipe(mapTo(true)),
     this.data$.pipe(mapTo(false)),

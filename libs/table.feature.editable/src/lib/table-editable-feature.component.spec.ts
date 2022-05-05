@@ -48,7 +48,18 @@ const mockUpdateConfig = {
   cancelButton: { title: 'Cancel Update' },
   disableForCols: ['col2'],
 };
-
+const mockData = {
+  data: [
+    {
+      col1: 'col1_data1',
+      col2: 'col2_data1',
+      col3: 'col3_data1',
+    },
+  ],
+  total: 5,
+  pageSize: 10,
+  page: 1,
+};
 const mockConfig = {
   columns: [
     { id: 'col1', type: 'edit' },
@@ -165,6 +176,7 @@ describe('TableEditableFeatureComponent', () => {
     tick();
 
     testTableFeature.featureMocks?.table.columns$?.next(mockColumns);
+    testTableFeature.featureMocks?.table.data$?.next(mockData);
 
     fixture.detectChanges();
   }));

@@ -16,24 +16,26 @@
         }
       "
     >
-      <ng-container *ngIf="mockRowData$ | async as mockRowData">
-        <spy-button
-          class="spy-table-editable-feature__create-row"
-          [size]="addButton.size"
-          [variant]="addButton.variant"
-          [shape]="addButton.shape"
-          [type]="addButton.type"
-          (click)="addRow(mockRowData)"
-        >
-          <spy-icon [name]="addButton.icon || addRowIcon" icon></spy-icon>
-          <ng-container *ngIf="addButton.title; else defaultAddButtonText">
-            {{ addButton.title }}
-          </ng-container>
+      <ng-container *ngIf="tableData$ | async">
+        <ng-container *ngIf="mockRowData$ | async as mockRowData">
+          <spy-button
+            class="spy-table-editable-feature__create-row"
+            [size]="addButton.size"
+            [variant]="addButton.variant"
+            [shape]="addButton.shape"
+            [type]="addButton.type"
+            (click)="addRow(mockRowData)"
+          >
+            <spy-icon [name]="addButton.icon || addRowIcon" icon></spy-icon>
+            <ng-container *ngIf="addButton.title; else defaultAddButtonText">
+              {{ addButton.title }}
+            </ng-container>
 
-          <ng-template #defaultAddButtonText>
-            {{ 'table.feature.editable.add-button-title' | spyI18n | async }}
-          </ng-template>
-        </spy-button>
+            <ng-template #defaultAddButtonText>
+              {{ 'table.feature.editable.add-button-title' | spyI18n | async }}
+            </ng-template>
+          </spy-button>
+        </ng-container>
       </ng-container>
     </ng-container>
 

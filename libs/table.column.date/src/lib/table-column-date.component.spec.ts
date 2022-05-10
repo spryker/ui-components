@@ -14,13 +14,13 @@ const configMock: any = [
     format: 'mm:ss',
   },
   {
-    date: '${value}',
+    date: '${displayValue}',
     format: 'mm:ss',
   },
 ];
 
 const context: any = {
-  value: new Date('2020-01-01T17:25:00'),
+  displayValue: new Date('2020-01-01T17:25:00'),
 };
 
 describe('TableColumnDateComponent', () => {

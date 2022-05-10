@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.1-next.3...@spryker/table@0.6.0-next.0) (2022-04-01)
+
+
+### Bug Fixes
+
+* apply z-index variable ([8fff27b](https://github.com/spryker/ui-components/commit/8fff27b59830d568adf73515a75eb54800fd91b0))
+* disabled `ivy` compilation mode ([b73c8cd](https://github.com/spryker/ui-components/commit/b73c8cd6990e72e74b9f5c1a5ee0a76ba740c109))
+* fix libs peerDependencies on angular ([44bd351](https://github.com/spryker/ui-components/commit/44bd35192446358fa03f6523a04725763248e7fb))
+* fixed `.transition-mixin()` usage ([87560c9](https://github.com/spryker/ui-components/commit/87560c9670a8c301c357b4706a5476cb3b4cca8a))
+* fixed `jest-preset-angular` package deprecations ([7ae4dfa](https://github.com/spryker/ui-components/commit/7ae4dfa3e60b243490e2ccc50db4f2ffee0b8ab9))
+* **navigation:** adjusted styles ([21bbb10](https://github.com/spryker/ui-components/commit/21bbb102b1045b93fc2584e02e7e113d0cfbfc7c))
+* **storybook:** fix build ([1b57c18](https://github.com/spryker/ui-components/commit/1b57c184d9beba37ec2bbb457829fe03e012306a))
+* **table.column.editable:** removed module declaration ([5a851d2](https://github.com/spryker/ui-components/commit/5a851d2a7dd9e20a29316ee5c7066ed1b53ef90f))
+* **table:** added `@orchestrator/gen-io-ts` dependency to the `whitelistedNonPeerDependencies` ([093ac0c](https://github.com/spryker/ui-components/commit/093ac0cdc3b7c701251d2b36f0dffdac29101ace))
+* **table:** added missing `@orchestrator/gen-io-ts` dependency ([e1d8360](https://github.com/spryker/ui-components/commit/e1d836067f5e5f0017c6c1a47ea597aedd1374ac))
+* **table:** adjusted `table-features-renderer` service ([d1e5eef](https://github.com/spryker/ui-components/commit/d1e5eef0804ab2c4a8c7dd9a24fe35a0a904cde8))
+* **table:** fix directives by replacing inputs ([a8206e9](https://github.com/spryker/ui-components/commit/a8206e9c4d34fa178499f9eb34f24be34bbfc703))
+* **table:** update gen-io-ts usage ([c111f37](https://github.com/spryker/ui-components/commit/c111f372d82b8a91e2bfa74ef845c66bafacb674))
+* **table:** updated dependencies ([0a5d4e2](https://github.com/spryker/ui-components/commit/0a5d4e2505be74777f5b9068b841f5f428acf5fe))
+* updated `[@orchestrator](https://github.com/orchestrator)` dependencies ([648b246](https://github.com/spryker/ui-components/commit/648b246979343893488cf4294f989224b8d5bc0f))
+* updated `[@orchestrator](https://github.com/orchestrator)` dependencies ([e172763](https://github.com/spryker/ui-components/commit/e1727635999f911735ba66fced6a98ecd5aca5ba))
+
+
+### Features
+
+* migrated libraries from `tslint` to `eslint` ([b14f937](https://github.com/spryker/ui-components/commit/b14f937bfd7803341e6626dd491484aa4d9b1344))
+* migrated storybook to the latest version ([cac4528](https://github.com/spryker/ui-components/commit/cac45288f9644fc20c4cff6b4a658a74130fbe2e))
+* migrated to `nx` v13 ([6b67e50](https://github.com/spryker/ui-components/commit/6b67e504a2ff8e8a840f70e12aae056c31698b47))
+
+
+
+
+
 # [0.5.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.5.0-rc.1...@spryker/table@0.5.0) (2022-03-10)
 
 **Note:** Version bump only for package @spryker/table
@@ -164,6 +197,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
 * updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
 * updated peerDependencies ([9c034d5](https://github.com/spryker/ui-components/commit/9c034d5d972cbeb9fd90135dd901521b9877247e))
+
+
+
+
+
+## [0.4.1-next.3](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.1-next.2...@spryker/table@0.4.1-next.3) (2022-03-15)
+
+
+### Bug Fixes
+
+* **table:** adjusted `table-column-renderer` to rename `displayKey` property to `displayValue` ([118e880](https://github.com/spryker/ui-components/commit/118e8809b8d8e7bfc56e686a2e8527cf675d5f87))
+* **table:** made `displayValue` property optional ([a09744f](https://github.com/spryker/ui-components/commit/a09744f05d58ef683519a3fc992a09e402c12b29))
+* **table:** renamed `name` property to `displayKey` in `TableColumn` interface and provided `displayValue` property in `TableColumnContext` interface ([a921eab](https://github.com/spryker/ui-components/commit/a921eab76ef62ad1581aa203b44288cc8ad23ce7))
+
+
+
+
+
+## [0.4.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.1-next.1...@spryker/table@0.4.1-next.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* **table:** adjusted `table-column-renderer` to provide a `name` property ([07aa370](https://github.com/spryker/ui-components/commit/07aa37036ad2586251774ae37561b2858aa2d065))
+
+
+
+
+
+## [0.4.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.0...@spryker/table@0.4.1-next.1) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+## [0.4.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table@0.4.0...@spryker/table@0.4.1-next.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/table
 
 
 

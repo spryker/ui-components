@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/utils@0.3.0...@spryker/utils@0.3.1-next.0) (2022-04-01)
+
+**Note:** Version bump only for package @spryker/utils
+
+
+
+
+
 # [0.3.0](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.11...@spryker/utils@0.3.0) (2022-03-10)
 
 
@@ -88,6 +96,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
 * updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
+
+
+
+
+
+## [0.2.12-next.1](https://github.com/spryker/ui-components/compare/@spryker/utils@0.2.11...@spryker/utils@0.2.12-next.1) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/utils
+
+
+
+
+
+## [0.2.12-next.0](https://github.com/spryker/zed-gui/compare/@spryker/utils@0.2.11...@spryker/utils@0.2.12-next.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/utils
 
 
 

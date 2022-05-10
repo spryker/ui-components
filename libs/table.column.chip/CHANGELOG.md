@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.chip@0.2.0-next.0...@spryker/table.column.chip@0.2.0-next.1) (2022-05-10)
+
+
+### Bug Fixes
+
+* **table.column.chip:** updated `@spryker/table` dependency ([d67a727](https://github.com/spryker/ui-components/commit/d67a7276cc58ba5865e514f047699166c5b6afaf))
+
+
+
+
+
 # [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.chip@0.0.13-next.2...@spryker/table.column.chip@0.2.0-next.0) (2022-04-01)
 
 

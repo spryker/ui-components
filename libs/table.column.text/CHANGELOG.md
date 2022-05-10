@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.text@0.3.0-next.0...@spryker/table.column.text@0.3.0-next.1) (2022-05-10)
+
+
+### Bug Fixes
+
+* **table.column.text:** updated `@spryker/table` dependency ([08f2432](https://github.com/spryker/ui-components/commit/08f24325452b7ced73ffb2903e31d1fcc7c59988))
+
+
+
+
+
 # [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.text@0.1.1-next.2...@spryker/table.column.text@0.3.0-next.0) (2022-04-01)
 
 

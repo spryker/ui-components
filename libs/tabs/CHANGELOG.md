@@ -19,6 +19,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.4.1](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.4.1-next.0...@spryker/tabs@0.4.1) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/tabs
+
+
+
+
+
 ## [0.4.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.4.0...@spryker/tabs@0.4.1-next.0) (2022-04-01)
 
 **Note:** Version bump only for package @spryker/tabs

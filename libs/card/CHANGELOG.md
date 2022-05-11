@@ -14,6 +14,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.5.1](https://github.com/spryker/ui-components/compare/@spryker/card@0.5.1-next.0...@spryker/card@0.5.1) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/card
+
+
+
+
+
 ## [0.5.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.5.0...@spryker/card@0.5.1-next.0) (2022-04-01)
 
 **Note:** Version bump only for package @spryker/card

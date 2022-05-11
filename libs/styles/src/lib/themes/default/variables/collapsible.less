@@ -1,24 +1,43 @@
 @collapse-prefix-cls: ~'@{ant-prefix}-collapse';
 
-@collapse-panel-border-radius: @border-radius-small;
-@collapse-panel-border-width: 1px;
-@collapse-header-plus-width: 12px;
-@collapse-header-plus-border: 2px;
-@collapse-header-plus-translate: translate(
-  0,
-  -(@collapse-header-plus-border / 2)
+@collapse-panel-border-radius: var(
+  --spy-collapse-panel-border-radius,
+  @border-radius-small
 );
-@collapse-header-plus-transform-active: @collapse-header-plus-translate
-  rotate(0deg);
-@collapse-header-plus-transform-default: @collapse-header-plus-translate
-  rotate(-90deg);
-@collapse-header-line-height: 15px;
-@collapse-header-icon-size: @collapse-header-line-height;
-@collapse-header-padding-y: 10px;
-@collapse-header-padding-x: 18px;
-@collapse-header-padding: @collapse-header-padding-y
-  (@collapse-header-padding-x + @collapse-header-plus-width)
-  @collapse-header-padding-y @collapse-header-padding-x;
-@collapse-content-padding: 10px 18px;
-@collapse-header-icon-margin-right: 3px;
-@collapse-border: @collapse-panel-border-width solid @gray-light;
+@collapse-panel-border-width: var(--spy-collapse-panel-border-width, 1px);
+@collapse-header-plus-width: var(--spy-collapse-header-plus-width, 12px);
+@collapse-header-plus-border: var(--spy-collapse-header-plus-border, 2px);
+@collapse-header-plus-translate: var(
+  --spy-collapse-header-plus-translate,
+  translateY(calc(@collapse-header-plus-border / -2))
+);
+@collapse-header-plus-transform-active: var(
+  --spy-collapse-header-plus-transform-active,
+  @collapse-header-plus-translate rotate(0deg)
+);
+@collapse-header-plus-transform-default: var(
+  --spy-collapse-header-plus-transform-default,
+  @collapse-header-plus-translate rotate(-90deg)
+);
+@collapse-header-line-height: var(--spy-collapse-header-line-height, 15px);
+@collapse-header-icon-size: var(
+  --spy-collapse-header-icon-size,
+  @collapse-header-line-height
+);
+@collapse-header-padding-y: var(--spy-collapse-header-padding-y, 10px);
+@collapse-header-padding-x: var(--spy-collapse-header-padding-x, 18px);
+@collapse-header-padding: var(
+  --spy-collapse-header-padding,
+  @collapse-header-padding-y
+    calc(@collapse-header-padding-x + @collapse-header-plus-width)
+    @collapse-header-padding-y @collapse-header-padding-x
+);
+@collapse-content-padding: var(--spy-collapse-content-padding, 10px 18px);
+@collapse-header-icon-margin-right: var(
+  --spy-collapse-header-icon-margin-right,
+  3px
+);
+@collapse-border: var(
+  --spy-collapse-border,
+  @collapse-panel-border-width solid @gray-light
+);

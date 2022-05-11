@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.2.1-next.0...@spryker/table.feature.batch-actions@0.3.0-next.0) (2022-05-11)
+
+
+### Features
+
+* introduced advanced css variables ([3c2c839](https://github.com/spryker/ui-components/commit/3c2c839c755a1ae05dc2b28bcd1a24691971c360))
+
+
+
+
+
+## [0.2.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.2.1-next.0...@spryker/table.feature.batch-actions@0.2.1) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
 ## [0.2.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.2.0...@spryker/table.feature.batch-actions@0.2.1-next.0) (2022-04-01)
 
 **Note:** Version bump only for package @spryker/table.feature.batch-actions

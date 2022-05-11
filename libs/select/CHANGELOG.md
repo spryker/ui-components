@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.1-next.0...@spryker/select@0.4.1) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.4.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.1-next.0...@spryker/select@0.4.1-next.1) (2022-05-11)
+
+
+### Bug Fixes
+
+* **select:** adjusted styles ([9e744f7](https://github.com/spryker/ui-components/commit/9e744f75c8d8b299e2836fe4be3678298b3bfdd4))
+
+
+
+
+
 ## [0.4.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.0...@spryker/select@0.4.1-next.0) (2022-04-01)
 
 **Note:** Version bump only for package @spryker/select

@@ -12,6 +12,12 @@
   width: @select-component-width;
   position: relative;
 
+  &-multiple {
+    .@{select-prefix-cls}-selection-search {
+      display: none;
+    }
+  }
+
   &--custom {
     &.@{select-prefix-cls}-multiple {
       &::after {
@@ -26,14 +32,15 @@
         pointer-events: none;
       }
 
-      .@{select-prefix-cls}-selector {
+      .@{select-prefix-cls}-selector,
+      &.@{select-prefix-cls}-allow-clear .@{select-prefix-cls}-selector {
         padding: @select-multiple-selector-padding;
         border-color: @gray-light;
         flex-wrap: nowrap;
+      }
 
-        &:hover {
-          border-color: @gray;
-        }
+      .@{select-prefix-cls}-selector:hover {
+        border-color: @gray;
       }
 
       .@{select-prefix-cls}-selection-item {
@@ -44,6 +51,11 @@
         background: none;
         border: none;
         color: @ink;
+        padding: 0;
+      }
+
+      .@{select-prefix-cls}-selection-search {
+        min-width: 100%;
       }
     }
 
@@ -54,13 +66,7 @@
 
       .@{select-prefix-cls}-selection-search {
         display: block;
-        min-width: 100%;
-
-        &:first-child {
-          .@{select-prefix-cls}-selection-search-input {
-            margin-left: 0;
-          }
-        }
+        margin-left: 0;
 
         &-input,
         &-mirror {
@@ -69,7 +75,7 @@
       }
     }
 
-    &.@{select-prefix-cls}-single:not(.@{select-prefix-cls}-customize-input) {
+    &.@{select-prefix-cls}-single:not(.@{select-prefix-cls}-customize-input):not(.@{select-prefix-cls}-focused) {
       .@{select-prefix-cls}-selector {
         border-color: @gray-light;
 
@@ -109,6 +115,7 @@
       &-placeholder {
         color: @gray-dark;
         opacity: 1;
+        right: @select-selection-placeholder-spacing-right;
       }
     }
 

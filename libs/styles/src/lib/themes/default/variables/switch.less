@@ -1,11 +1,32 @@
 @toggle-prefix-cls: ~'@{ant-prefix}-switch';
 @toggle-wrapper-prefix-cls: ~'@{spryker-prefix}-toggle';
 
-@toggle-border-width: 1px;
-@toggle-border: @toggle-border-width solid @transparent;
-@toggle-wrapper-label-padding-right: 12px;
-@toggle-focus-box-shadow: @btn-shadow-default-size @gray-darker;
-@toggle-handle-position-top: 1px;
-@toggle-handle-position-left: 1px;
-@toggle-checked-focus-box-shadow: @box-shadow-focus;
-@toggle-checked-handle-position-left: calc(100% - 19px);
+@toggle-border-width: var(--spy-toggle-border-width, 1px);
+@toggle-border: var(
+  --spy-toggle-border,
+  @toggle-border-width solid @transparent
+);
+@toggle-wrapper-label-padding-right: var(
+  --spy-toggle-wrapper-label-padding-right,
+  12px
+);
+@toggle-focus-box-shadow: var(
+  --spy-toggle-focus-box-shadow,
+  @btn-shadow-default-size @gray-darker
+);
+@toggle-handle-position-top: var(
+  --spy-toggle-handle-position-top,
+  @toggle-border-width
+);
+@toggle-handle-position-left: var(
+  --spy-toggle-handle-position-left,
+  @toggle-border-width
+);
+@toggle-checked-focus-box-shadow: var(
+  --spy-toggle-checked-focus-box-shadow,
+  @box-shadow-focus
+);
+@toggle-checked-handle-position-left: var(
+  --spy-toggle-checked-handle-position-left,
+  calc(100% - 19px)
+);

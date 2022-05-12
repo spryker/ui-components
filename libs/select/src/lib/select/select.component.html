@@ -50,6 +50,17 @@
       </span>
     </div>
   </nz-option>
+
+  <ng-container>
+    <nz-option
+      *ngFor="let option of options$ | async"
+      nzCustomContent
+      [nzValue]="option.value"
+      [nzLabel]="option.title"
+    >
+      <ng-container *ngTemplateOutlet="option.template"></ng-container>
+    </nz-option>
+  </ng-container>
 </nz-select>
 
 <select

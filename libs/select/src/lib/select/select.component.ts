@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ContentChildren,
   ElementRef,
   EventEmitter,
   Injector,
@@ -9,9 +10,11 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  QueryList,
   SimpleChanges,
   TemplateRef,
   ViewChild,
+  ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
@@ -38,6 +41,7 @@ import {
   SelectValue,
   SelectValueSelected,
 } from './types';
+import { OptionComponent } from '../option/option.component';
 
 @Component({
   selector: 'spy-select',
@@ -64,6 +68,13 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   @Input() context?: unknown;
 
   @Output() valueChange = new EventEmitter<SelectValueSelected>();
+
+  options$ = new BehaviorSubject<OptionComponent[]>([]);
+
+  @ContentChildren(OptionComponent)
+  set contentTabs(options: QueryList<OptionComponent>) {
+    this.options$.next(options.toArray());
+  }
 
   checkIcon = IconCheckModule.icon;
   arrowDownIcon = IconArrowDownModule.icon;

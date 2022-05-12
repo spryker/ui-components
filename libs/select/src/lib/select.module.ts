@@ -12,6 +12,7 @@ import { JoinModule } from '@spryker/utils';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import { SelectComponent } from './select/select.component';
+import { OptionComponent } from './option/option.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { SelectComponent } from './select/select.component';
     IconRemoveModule,
     JoinModule,
   ],
-  declarations: [SelectComponent],
-  exports: [SelectComponent],
+  declarations: [SelectComponent, OptionComponent],
+  exports: [SelectComponent, OptionComponent],
 })
 export class SelectModule {}

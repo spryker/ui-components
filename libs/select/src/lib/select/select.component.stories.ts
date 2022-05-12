@@ -104,3 +104,21 @@ export const withSelectAll = () => ({
     selectAllTitle: 'Select All',
   },
 });
+
+export const withCustomContent = () => ({
+  moduleMetadata: { imports: [StoryModule, SelectModule] },
+  template: `
+    <spy-select [placeholder]="placeholder">
+        <spy-option value="option1">
+            <span style="color: red; font-weight: 400">Red text</span>
+        </spy-option>
+        <spy-option value="option2">
+            <span style="font-weight: 700">Bold text</span>
+        </spy-option>
+    </spy-select>
+  `,
+  props: {
+    value: ['option1', 'option2'],
+    placeholder: 'Select option...',
+  },
+});

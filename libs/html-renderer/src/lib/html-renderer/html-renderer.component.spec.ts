@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { SpinnerSize } from '@spryker/spinner';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import { HtmlRendererComponent } from './html-renderer.component';
@@ -103,6 +104,19 @@ describe('HtmlRendererComponent', () => {
     spinElem = host.queryCss('spy-spinner')!;
 
     expect(spinElem).toBeFalsy();
+  });
+
+  it('should apply `size` attribute for `spy-spinner` element', async () => {
+    const host = await createComponent(
+      { spinnerSize: SpinnerSize.Default },
+      true,
+    );
+    testHtmlRendererProvider.isLoading$.next();
+    host.detectChanges();
+
+    const spinElem = host.queryCss('spy-spinner')!;
+
+    expect(spinElem.properties.size).toBe(SpinnerSize.Default);
   });
 
   it('should render html inside `spy-html-renderer` when html was changes', async () => {

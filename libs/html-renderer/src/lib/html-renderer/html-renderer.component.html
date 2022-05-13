@@ -6,8 +6,5 @@
 ></span>
 
 <ng-container *ngIf="isLoading$ | async">
-  <spy-spinner
-    [isSpinning]="isLoading$ | async"
-    [size]="spinnerSize"
-  ></spy-spinner>
+  <spy-spinner [isSpinning]="true" [size]="spinnerSize"></spy-spinner>
 </ng-container>

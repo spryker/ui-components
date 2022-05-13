@@ -5,8 +5,9 @@
   class="spy-html-renderer__content"
 ></span>
 
-<nz-spin
-  class="spy-html-renderer__loader"
-  nzSize="small"
-  *ngIf="isLoading$ | async"
-></nz-spin>
+<ng-container *ngIf="isLoading$ | async">
+  <spy-spinner
+    [isSpinning]="isLoading$ | async"
+    [size]="spinnerSize"
+  ></spy-spinner>
+</ng-container>

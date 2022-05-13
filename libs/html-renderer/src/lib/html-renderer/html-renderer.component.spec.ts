@@ -69,38 +69,38 @@ describe('HtmlRendererComponent', () => {
     expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
   });
 
-  it('should render `nz-spin` if `isLoading$` signal invokes', async () => {
+  it('should render `spy-spinner` if `isLoading$` signal invokes', async () => {
     const host = await createComponent({}, true);
     testHtmlRendererProvider.isLoading$.next();
     host.detectChanges();
 
-    const spinElem = host.queryCss('nz-spin')!;
+    const spinElem = host.queryCss('spy-spinner')!;
 
     expect(spinElem).toBeTruthy();
   });
 
-  it('should not render `nz-spin` if `isLoading$` signal does not invoke', async () => {
+  it('should not render `spy-spinner` if `isLoading$` signal does not invoke', async () => {
     const host = await createComponent({}, true);
     host.detectChanges();
 
-    const spinElem = host.queryCss('nz-spin')!;
+    const spinElem = host.queryCss('spy-spinner')!;
 
     expect(spinElem).toBeFalsy();
   });
 
-  it('should not render `nz-spin` if `html$` signal invokes', async () => {
+  it('should not render `spy-spinner` if `html$` signal invokes', async () => {
     const host = await createComponent({}, true);
     testHtmlRendererProvider.isLoading$.next();
     host.detectChanges();
 
-    let spinElem = host.queryCss('nz-spin')!;
+    let spinElem = host.queryCss('spy-spinner')!;
 
     expect(spinElem).toBeTruthy();
 
     testHtmlRendererProvider.html$.next(mockHtmlTemplate);
     host.detectChanges();
 
-    spinElem = host.queryCss('nz-spin')!;
+    spinElem = host.queryCss('spy-spinner')!;
 
     expect(spinElem).toBeFalsy();
   });

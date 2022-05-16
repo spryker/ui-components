@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/html-renderer@0.2.2-next.0...@spryker/html-renderer@0.2.2-next.1) (2022-05-13)
+
+
+### Bug Fixes
+
+* **html-renderer:** added input to manage spinner size ([2a7258f](https://github.com/spryker/ui-components/commit/2a7258f943c1970c23b15a8463fc3ad9709b46ba))
+
+
+
+
+
 ## [0.2.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/html-renderer@0.2.1...@spryker/html-renderer@0.2.2-next.0) (2022-05-11)
 
 **Note:** Version bump only for package @spryker/html-renderer

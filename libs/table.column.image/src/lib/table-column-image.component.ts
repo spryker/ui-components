@@ -18,7 +18,7 @@ export class TableColumnImageConfig {
   @ColumnTypeOption()
   src? = this.contextService.wrap('displayValue');
   @ColumnTypeOption()
-  alt?: string;
+  alt? = '';
 
   constructor(private contextService: ContextService) {}
 }

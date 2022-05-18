@@ -95,7 +95,6 @@ export const withTable = (): IStory => ({
           type: 'image',
           typeOptions: {
             src: '${value}',
-            alt: 'Second value for testing',
           },
         },
       ],

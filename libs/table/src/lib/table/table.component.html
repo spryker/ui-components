@@ -10,9 +10,6 @@
       [features]="features$ | async"
     ></spy-table-features-renderer>
   </div>
-</ng-container>
-
-<ng-container *ngIf="tableData$ | async">
   <div class="ant-table-features ant-table-features--before-table">
     <spy-table-features-renderer
       [location]="featureLocation.beforeTable"
@@ -215,9 +212,6 @@
       [features]="features$ | async"
     ></spy-table-features-renderer>
   </div>
-</ng-container>
-
-<ng-container *ngIf="tableData$ | async">
   <div class="ant-table-features ant-table-features--bottom">
     <spy-table-features-renderer
       [location]="featureLocation.bottom"

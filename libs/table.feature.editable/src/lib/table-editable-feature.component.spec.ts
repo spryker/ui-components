@@ -51,9 +51,9 @@ const mockUpdateConfig = {
 const mockData = {
   data: [
     {
-      col1: 'col1_data1',
-      col2: 'col2_data1',
-      col3: 'col3_data1',
+      col1: 'col1_data',
+      col2: 'col2_data',
+      col3: 'col3_data',
     },
   ],
   total: 5,

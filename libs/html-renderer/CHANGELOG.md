@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/spryker/ui-components/compare/@spryker/html-renderer@0.2.2-next.2...@spryker/html-renderer@0.2.2) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/html-renderer
+
+
+
+
+
 ## [0.2.2-next.2](https://github.com/spryker/ui-components/compare/@spryker/html-renderer@0.2.2-next.1...@spryker/html-renderer@0.2.2-next.2) (2022-05-16)
 
 

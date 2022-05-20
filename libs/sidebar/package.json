@@ -1,6 +1,6 @@
 {
   "name": "@spryker/sidebar",
-  "version": "0.5.2-next.0",
+  "version": "0.5.2",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",

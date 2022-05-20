@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/spryker/ui-components/compare/@spryker/headline@0.5.0-next.1...@spryker/headline@0.5.0) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/headline
+
+
+
+
+
+# [0.5.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/headline@0.5.0-next.0...@spryker/headline@0.5.0-next.1) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/headline
+
+
+
+
+
 # [0.5.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/headline@0.4.1-next.0...@spryker/headline@0.5.0-next.0) (2022-05-11)
 
 

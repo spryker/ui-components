@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.5.0-next.0...@spryker/tabs@0.5.0-next.1) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/tabs
+
+
+
+
+
+# [0.5.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.4.1-next.0...@spryker/tabs@0.5.0-next.0) (2022-05-11)
+
+
+### Bug Fixes
+
+* applied correct variables in styles ([76dcb2c](https://github.com/spryker/ui-components/commit/76dcb2c7e370e313cc86078ae2cc43aa1fc2c9a2))
+
+
+### Features
+
+* introduced advanced css variables ([3c2c839](https://github.com/spryker/ui-components/commit/3c2c839c755a1ae05dc2b28bcd1a24691971c360))
+
+
+
+
+
 ## [0.4.1](https://github.com/spryker/ui-components/compare/@spryker/tabs@0.4.1-next.0...@spryker/tabs@0.4.1) (2022-05-10)
 
 **Note:** Version bump only for package @spryker/tabs

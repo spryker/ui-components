@@ -5,5 +5,5 @@
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../styles/src/lib"]
   },
-  "allowedNonPeerDependencies": ["ng-dynamic-component"]
+  "allowedNonPeerDependencies": ["ng-dynamic-component", "rxjs"]
 }

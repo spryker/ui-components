@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/data-transformer.object-map",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["rxjs"]
 }

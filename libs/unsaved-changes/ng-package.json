@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/unsaved-changes",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["rxjs"]
 }

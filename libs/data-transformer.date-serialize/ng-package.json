@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/data-transformer.date-serialize",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["rxjs"]
 }

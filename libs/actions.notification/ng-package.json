@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/actions.notification",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["rxjs"]
 }

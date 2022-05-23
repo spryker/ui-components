@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/actions.redirect",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["rxjs"]
 }

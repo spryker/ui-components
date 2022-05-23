@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/actions.refresh-table",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["rxjs"]
 }

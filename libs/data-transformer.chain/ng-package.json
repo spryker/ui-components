@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/data-transformer.chain",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["rxjs"]
 }

@@ -10,6 +10,7 @@
     "@spryker/table.feature.filters": "^0.2.0"
   },
   "dependencies": {
+    "rxjs": "^7.4.0",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

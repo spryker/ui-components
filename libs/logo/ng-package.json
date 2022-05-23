@@ -6,6 +6,5 @@
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../styles/src/lib"]
   },
-  "allowedNonPeerDependencies": ["ng-zorro-antd"],
   "assets": ["./src/lib/logo/images/*"]
 }

@@ -7,6 +7,7 @@
     "@spryker/data-transformer": "^0.2.0",
     "@spryker/data-transformer.array-map": "^0.2.0",
     "@spryker/data-transformer.chain": "^0.2.0",
+    "@spryker/data-transformer.collate": "^0.2.2",
     "@spryker/data-transformer.configurator.table": "^0.2.0",
     "@spryker/data-transformer.date-parse": "^0.2.0",
     "@spryker/data-transformer.date-serialize": "^0.2.0",

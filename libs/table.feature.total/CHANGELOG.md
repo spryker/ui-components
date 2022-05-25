@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.2.2...@spryker/table.feature.total@0.2.3-next.0) (2022-05-25)
+
+
+### Bug Fixes
+
+* added `rxjs` to `allowedNonPeerDependencies` ([ec4a99c](https://github.com/spryker/ui-components/commit/ec4a99ccdcbfb16ae3076807e145942492443abf))
+* added missed / removed unused dependencies ([cee4a1f](https://github.com/spryker/ui-components/commit/cee4a1f4892bd36be77b03215f14870b0aaad8a4))
+* moved `rxjs` to the `peerDependencies` ([4deabb4](https://github.com/spryker/ui-components/commit/4deabb44aa6cc97998cdf5e2ddf27567e040a7c9))
+
+
+
+
+
 ## [0.2.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.2.2-next.0...@spryker/table.feature.total@0.2.2) (2022-05-20)
 
 **Note:** Version bump only for package @spryker/table.feature.total

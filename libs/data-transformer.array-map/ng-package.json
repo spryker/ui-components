@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/data-transformer.array-map",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

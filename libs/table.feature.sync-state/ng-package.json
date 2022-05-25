@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/table.feature.sync-state",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

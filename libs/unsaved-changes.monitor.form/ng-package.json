@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/unsaved-changes.monitor.form",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

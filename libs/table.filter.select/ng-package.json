@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/table.filter.select",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

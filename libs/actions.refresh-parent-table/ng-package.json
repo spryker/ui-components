@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/actions.refresh-parent-table",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

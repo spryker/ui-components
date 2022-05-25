@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/interception",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

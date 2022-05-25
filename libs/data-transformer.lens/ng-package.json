@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/data-transformer.lens",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/persistence",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

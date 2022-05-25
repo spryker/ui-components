@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/data-transformer.filter.text",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

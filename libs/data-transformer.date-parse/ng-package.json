@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/data-transformer.date-parse",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

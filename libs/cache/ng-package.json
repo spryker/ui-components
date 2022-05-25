@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/cache",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

@@ -7,10 +7,10 @@
     "@spryker/cache": "^0.2.0",
     "@spryker/data-serializer": "^0.1.0",
     "@spryker/datasource": "^0.2.0",
-    "@spryker/utils": "^0.3.0"
+    "@spryker/utils": "^0.3.0",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
-    "rxjs": "^7.4.0",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

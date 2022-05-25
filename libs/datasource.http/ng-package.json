@@ -3,6 +3,5 @@
   "dest": "../../dist/libs/datasource.http",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["rxjs"]
+  }
 }

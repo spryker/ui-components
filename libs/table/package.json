@@ -12,7 +12,9 @@
     "@spryker/popover": "^0.3.0",
     "@spryker/spinner": "^0.3.0",
     "@spryker/styles": "^0.7.0",
-    "@spryker/utils": "^0.3.0"
+    "@spryker/utils": "^0.3.0",
+    "@spryker/web-components": "^0.3.2",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
     "@orchestrator/core": "ng-12",

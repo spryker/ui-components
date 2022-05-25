@@ -1,13 +1,14 @@
 {
   "name": "@spryker/actions.redirect",
-  "version": "0.2.2",
+  "version": "0.2.3-next.0",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",
     "@angular/platform-browser": ">=9.1.12",
     "@spryker/actions": "^0.2.0",
     "@spryker/unsaved-changes": "^0.2.0",
-    "@spryker/utils": "^0.3.0"
+    "@spryker/utils": "^0.3.0",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
     "tslib": "^2.3.1"

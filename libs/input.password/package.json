@@ -1,11 +1,12 @@
 {
   "name": "@spryker/input.password",
-  "version": "0.2.2",
+  "version": "0.2.3-next.0",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",
     "@spryker/icon": "^0.4.0",
     "@spryker/input": "^0.4.0",
+    "@spryker/styles": "^0.7.0",
     "@spryker/utils": "^0.3.0"
   },
   "dependencies": {

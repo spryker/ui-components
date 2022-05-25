@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table.feature.settings",
-  "version": "0.2.4-next.0",
+  "version": "0.2.4-next.1",
   "peerDependencies": {
     "@angular/cdk": ">=9.2.3",
     "@angular/common": ">=9.1.12",

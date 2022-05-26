@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.sync-state@0.1.4-next.1...@spryker/table.feature.sync-state@0.1.4-next.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **table.feature.sync-state:** fixed resetting of the initial request ([a00af09](https://github.com/spryker/ui-components/commit/a00af093fe2d6ffe51ee0ec0010ed5e2382da904))
+
+
+
+
+
 ## [0.1.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.sync-state@0.1.3...@spryker/table.feature.sync-state@0.1.4-next.1) (2022-05-25)
 
 **Note:** Version bump only for package @spryker/table.feature.sync-state

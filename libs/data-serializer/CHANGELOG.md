@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3-next.1](https://github.com/spryker/ui-components/compare/@spryker/data-serializer@0.1.2...@spryker/data-serializer@0.1.3-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/data-serializer
+
+
+
+
+
+## [0.1.3-next.0](https://github.com/spryker/zed-gui/compare/@spryker/data-serializer@0.1.2...@spryker/data-serializer@0.1.3-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/data-serializer
+
+
+
+
+
+## [0.1.2](https://github.com/spryker/ui-components/compare/@spryker/data-serializer@0.1.2-next.0...@spryker/data-serializer@0.1.2) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/data-serializer
+
+
+
+
+
+## [0.1.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/data-serializer@0.1.1...@spryker/data-serializer@0.1.2-next.0) (2022-05-11)
+
+**Note:** Version bump only for package @spryker/data-serializer
+
+
+
+
+
 ## [0.1.1](https://github.com/spryker/ui-components/compare/@spryker/data-serializer@0.1.1-next.0...@spryker/data-serializer@0.1.1) (2022-05-10)
 
 **Note:** Version bump only for package @spryker/data-serializer

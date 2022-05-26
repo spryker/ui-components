@@ -17,6 +17,8 @@ import { ContextService } from '@spryker/utils';
 export class TableColumnImageConfig {
   @ColumnTypeOption()
   src? = this.contextService.wrap('displayValue');
+  @ColumnTypeOption()
+  alt? = '';
 
   constructor(private contextService: ContextService) {}
 }

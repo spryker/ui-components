@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.5.1...@spryker/notification@0.5.2-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
+## [0.5.2-next.0](https://github.com/spryker/zed-gui/compare/@spryker/notification@0.5.1...@spryker/notification@0.5.2-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
+## [0.5.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.5.1-next.0...@spryker/notification@0.5.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
+## [0.5.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.5.0...@spryker/notification@0.5.1-next.0) (2022-05-25)
+
+
+### Bug Fixes
+
+* added `rxjs` to `allowedNonPeerDependencies` ([ec4a99c](https://github.com/spryker/ui-components/commit/ec4a99ccdcbfb16ae3076807e145942492443abf))
+* added missed / removed unused dependencies ([cee4a1f](https://github.com/spryker/ui-components/commit/cee4a1f4892bd36be77b03215f14870b0aaad8a4))
+* moved `rxjs` to the `peerDependencies` ([4deabb4](https://github.com/spryker/ui-components/commit/4deabb44aa6cc97998cdf5e2ddf27567e040a7c9))
+
+
+
+
+
+# [0.5.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.5.0-next.1...@spryker/notification@0.5.0) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
+# [0.5.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.5.0-next.0...@spryker/notification@0.5.0-next.1) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/notification
+
+
+
+
+
 ## [0.4.1](https://github.com/spryker/ui-components/compare/@spryker/notification@0.4.1-next.0...@spryker/notification@0.4.1) (2022-05-10)
 
 **Note:** Version bump only for package @spryker/notification

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.3.2-next.1...@spryker/table.feature.filters@0.3.2-next.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **table.feature.filters:** adjusted styles ([e79dfa7](https://github.com/spryker/ui-components/commit/e79dfa75f424260a0b447c7f98e45902b302387c))
+
+
+
+
+
 ## [0.3.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.3.1...@spryker/table.feature.filters@0.3.2-next.1) (2022-05-25)
 
 **Note:** Version bump only for package @spryker/table.feature.filters

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.3.4-next.1...@spryker/table.feature.editable@0.3.4-next.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** fixed `addButton` visibility ([796fa06](https://github.com/spryker/ui-components/commit/796fa062cce17c03b0094f68c473416190d6d75a))
+
+
+
+
+
 ## [0.3.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.3.3...@spryker/table.feature.editable@0.3.4-next.1) (2022-05-25)
 
 **Note:** Version bump only for package @spryker/table.feature.editable

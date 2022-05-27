@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.1-next.1...@spryker/styles@0.7.1-next.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **styles:** added a new `table` variable ([6f20830](https://github.com/spryker/ui-components/commit/6f208303c157e12c9f2fc561d22e749715cd36b4))
+
+
+
+
+
+## [0.7.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.0...@spryker/styles@0.7.1-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+## [0.7.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/styles@0.7.0...@spryker/styles@0.7.1-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.7.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.0-next.0...@spryker/styles@0.7.0) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
 # [0.7.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.6.1-next.0...@spryker/styles@0.7.0-next.0) (2022-05-11)
 
 

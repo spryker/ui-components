@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/grid@0.2.3...@spryker/grid@0.2.4-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/grid
+
+
+
+
+
+## [0.2.4-next.0](https://github.com/spryker/zed-gui/compare/@spryker/grid@0.2.3...@spryker/grid@0.2.4-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/grid
+
+
+
+
+
+## [0.2.3](https://github.com/spryker/ui-components/compare/@spryker/grid@0.2.3-next.0...@spryker/grid@0.2.3) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/grid
+
+
+
+
+
+## [0.2.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/grid@0.2.2...@spryker/grid@0.2.3-next.0) (2022-05-25)
+
+
+### Bug Fixes
+
+* **grid:** added missed `@spryker/styles` dependency ([32f4563](https://github.com/spryker/ui-components/commit/32f4563ed9447f02dba4653f9307b781e3c14605))
+
+
+
+
+
+## [0.2.2](https://github.com/spryker/ui-components/compare/@spryker/grid@0.2.2-next.0...@spryker/grid@0.2.2) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/grid
+
+
+
+
+
 ## [0.2.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/grid@0.2.1...@spryker/grid@0.2.2-next.0) (2022-05-11)
 
 **Note:** Version bump only for package @spryker/grid

@@ -3,6 +3,14 @@
 .@{html-renderer-prefix-cls} {
   .@{spin-prefix-cls}-nested-loading {
     display: block;
-    min-height: @html-renderer-loader-height;
+
+    & > div {
+      height: 100%;
+    }
+
+    .@{spin-prefix-cls}-spinning {
+      min-height: @html-renderer-loader-height;
+      position: relative;
+    }
   }
 }

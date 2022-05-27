@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.1-next.2...@spryker/styles@0.7.1-next.3) (2022-05-27)
+
+
+### Bug Fixes
+
+* **styles:** added `[@spinner-prefix-cls](https://github.com/spinner-prefix-cls)` variable to the `spin` ([e92cdfc](https://github.com/spryker/ui-components/commit/e92cdfc55e22cd8a055497af2befa4aa286a6ee8))
+
+
+
+
+
 ## [0.7.1-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.1-next.1...@spryker/styles@0.7.1-next.2) (2022-05-26)
 
 

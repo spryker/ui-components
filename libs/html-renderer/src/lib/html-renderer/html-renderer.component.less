@@ -1,16 +1,10 @@
 @import './html-renderer.component.theme.less';
 
 .@{html-renderer-prefix-cls} {
-  .@{spin-prefix-cls}-nested-loading {
-    display: block;
-
-    & > div {
-      height: 100%;
-    }
-
-    .@{spin-prefix-cls}-spinning {
+  > .@{spinner-prefix-cls} {
+    .@{spin-prefix-cls}-nested-loading {
+      display: block;
       min-height: @html-renderer-loader-height;
-      position: relative;
     }
   }
 }

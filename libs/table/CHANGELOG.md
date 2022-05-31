@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.3-next.1...@spryker/table@0.7.3-next.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **table:** added spinner to initial table loading ([1cd159d](https://github.com/spryker/ui-components/commit/1cd159ddd808eebbb20d4d0e410e1e0a449d1a4f))
+
+
+
+
+
+## [0.7.3-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.2...@spryker/table@0.7.3-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+## [0.7.3-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table@0.7.2...@spryker/table@0.7.3-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
 ## [0.7.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.2-next.0...@spryker/table@0.7.2) (2022-05-25)
 
 **Note:** Version bump only for package @spryker/table

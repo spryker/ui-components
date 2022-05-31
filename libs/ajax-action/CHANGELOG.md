@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/ajax-action@0.3.3...@spryker/ajax-action@0.3.4-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/ajax-action
+
+
+
+
+
+## [0.3.4-next.0](https://github.com/spryker/zed-gui/compare/@spryker/ajax-action@0.3.3...@spryker/ajax-action@0.3.4-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/ajax-action
+
+
+
+
+
 ## [0.3.3](https://github.com/spryker/ui-components/compare/@spryker/ajax-action@0.3.3-next.0...@spryker/ajax-action@0.3.3) (2022-05-25)
 
 **Note:** Version bump only for package @spryker/ajax-action

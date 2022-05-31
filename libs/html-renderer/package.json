@@ -1,13 +1,13 @@
 {
   "name": "@spryker/html-renderer",
-  "version": "0.2.3",
+  "version": "0.2.4-next.2",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",
     "@angular/platform-browser": ">=9.1.12",
     "@spryker/ajax-action": "^0.3.0",
-    "@spryker/spinner": "^0.3.2",
-    "@spryker/styles": "^0.7.0",
+    "@spryker/spinner": "^0.3.3",
+    "@spryker/styles": "^0.7.1",
     "@spryker/web-components": "^0.3.0",
     "rxjs": "^7.4.0"
   },

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.3.3-next.1...@spryker/button.icon@0.3.3) (2022-05-31)
+
+**Note:** Version bump only for package @spryker/button.icon
+
+
+
+
+
 ## [0.3.3-next.1](https://github.com/spryker/ui-components/compare/@spryker/button.icon@0.3.2...@spryker/button.icon@0.3.3-next.1) (2022-05-25)
 
 **Note:** Version bump only for package @spryker/button.icon

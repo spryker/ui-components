@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.collate@0.2.4...@spryker/data-transformer.collate@0.2.5-next.0) (2022-06-01)
+
+
+### Bug Fixes
+
+* **data-transformer.collate:** fixed hardcoded `text` in the search ([f4f622e](https://github.com/spryker/ui-components/commit/f4f622efdc99928a68d316bfa34a66f12c07affc))
+
+
+
+
+
 ## [0.2.4](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.collate@0.2.4-next.1...@spryker/data-transformer.collate@0.2.4) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/data-transformer.collate

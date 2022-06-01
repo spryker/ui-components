@@ -12,6 +12,7 @@ import { SpinnerSize } from '../types';
   styleUrls: ['./spinner.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: { class: 'spy-spinner' },
 })
 export class SpinnerComponent {
   @Input() delay?: number;

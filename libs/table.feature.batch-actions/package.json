@@ -1,6 +1,6 @@
 {
   "name": "@spryker/table.feature.batch-actions",
-  "version": "0.3.2-next.1",
+  "version": "0.3.2",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",

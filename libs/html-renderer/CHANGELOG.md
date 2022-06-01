@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/spryker/ui-components/compare/@spryker/html-renderer@0.2.4-next.2...@spryker/html-renderer@0.2.4) (2022-05-31)
+
+**Note:** Version bump only for package @spryker/html-renderer
+
+
+
+
+
+## [0.2.4-next.2](https://github.com/spryker/ui-components/compare/@spryker/html-renderer@0.2.4-next.1...@spryker/html-renderer@0.2.4-next.2) (2022-05-27)
+
+
+### Bug Fixes
+
+* **html-renderer:** adjusted styles ([ceec56c](https://github.com/spryker/ui-components/commit/ceec56cbf460d94caadc1230613fea19d0c599f0))
+* **html-renderer:** updated peerDependencies ([47208df](https://github.com/spryker/ui-components/commit/47208df864dd3a70a5dd9773fc8af47d4d59aa56))
+
+
+
+
+
 ## [0.2.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/html-renderer@0.2.3...@spryker/html-renderer@0.2.4-next.1) (2022-05-25)
 
 **Note:** Version bump only for package @spryker/html-renderer

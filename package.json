@@ -32,7 +32,7 @@
         "affected": "nx affected",
         "format": "nx format:write --all",
         "format:write": "nx format:write --all",
-        "format:check": "nx format:check --all",
+        "format:check": "nx format:check",
         "update": "nx migrate latest",
         "update:check": "ng update",
         "workspace-schematic": "nx workspace-schematic",

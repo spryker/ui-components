@@ -5,18 +5,18 @@ import { IStory } from '@storybook/angular';
 import { UnsavedChangesFormMonitorModule } from './unsaved-changes-form-monitor.module';
 
 export default {
-  title: 'UnsavedChangesMonitorForm',
+    title: 'UnsavedChangesMonitorForm',
 };
 
 export const primary = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      UnsavedChangesFormMonitorModule,
-      UnsavedChangesModule.forRoot(),
-      UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
-    ],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [
+            UnsavedChangesFormMonitorModule,
+            UnsavedChangesModule.forRoot(),
+            UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
+        ],
+    },
+    template: `
     <form spyUnsavedChangesFormMonitor>
       <input type="text" style="border: 1px solid red" />
 

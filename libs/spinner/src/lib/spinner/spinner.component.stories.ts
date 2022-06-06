@@ -4,14 +4,14 @@ import { SpinnerModule } from '../spinner.module';
 import { SpinnerSize } from '../types';
 
 export default {
-  title: 'SpinnerComponent',
+    title: 'SpinnerComponent',
 };
 
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [SpinnerModule],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [SpinnerModule],
+    },
+    template: `
     <spy-spinner
       [delay]="delay"
       [size]="size"
@@ -19,10 +19,10 @@ export const primary = () => ({
       [overlayContent]="overlayContent"
     >Content for loading</spy-spinner>
   `,
-  props: {
-    delay: number('Delay before appearing spinner (ms)', 100),
-    size: select('Size', SpinnerSize, SpinnerSize.Default),
-    isSpinning: boolean('Is spinning', true),
-    overlayContent: boolean('Overlay content', false),
-  },
+    props: {
+        delay: number('Delay before appearing spinner (ms)', 100),
+        size: select('Size', SpinnerSize, SpinnerSize.Default),
+        isSpinning: boolean('Is spinning', true),
+        overlayContent: boolean('Overlay content', false),
+    },
 });

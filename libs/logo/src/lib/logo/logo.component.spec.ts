@@ -4,34 +4,32 @@ import { By } from '@angular/platform-browser';
 import { LogoComponent } from './logo.component';
 
 describe('LogoComponent', () => {
-  let component: LogoComponent;
-  let fixture: ComponentFixture<LogoComponent>;
+    let component: LogoComponent;
+    let fixture: ComponentFixture<LogoComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [LogoComponent],
-      teardown: { destroyAfterEach: false },
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [LogoComponent],
+            teardown: { destroyAfterEach: false },
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LogoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(LogoComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 
-  it('should change image modifier', () => {
-    const logoImageModifier = 'full';
+    it('should change image modifier', () => {
+        const logoImageModifier = 'full';
 
-    component.size = logoImageModifier;
-    fixture.detectChanges();
-    const logoElement = fixture.debugElement.query(
-      By.css(`.spy-logo--${logoImageModifier}`),
-    );
-    expect(logoElement).toBeTruthy();
-  });
+        component.size = logoImageModifier;
+        fixture.detectChanges();
+        const logoElement = fixture.debugElement.query(By.css(`.spy-logo--${logoImageModifier}`));
+        expect(logoElement).toBeTruthy();
+    });
 });

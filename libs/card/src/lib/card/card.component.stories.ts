@@ -4,14 +4,14 @@ import { CardModule } from '../card.module';
 import { boolean } from '@storybook/addon-knobs';
 
 export default {
-  title: 'CardComponent',
+    title: 'CardComponent',
 };
 
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [NzCardModule, CardModule],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [NzCardModule, CardModule],
+    },
+    template: `
     <spy-card spyTitle="Card Title" [extra]="extraRef" [actions]="[button, button]" [hoverable]="hoverable">
       Card content here
     </spy-card>
@@ -22,16 +22,16 @@ export const primary = () => ({
       <button>Button Content</button>
     </ng-template>
   `,
-  props: {
-    hoverable: boolean('Hoverable', false),
-  },
+    props: {
+        hoverable: boolean('Hoverable', false),
+    },
 });
 
 export const withInnerCard = () => ({
-  moduleMetadata: {
-    imports: [NzCardModule, CardModule],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [NzCardModule, CardModule],
+    },
+    template: `
     <spy-card spyTitle="Card Title" [extra]="extraRef" [actions]="[button, button]" [hoverable]="hoverable">
       <spy-card spyTitle="Card Title">
         Card content here
@@ -44,7 +44,7 @@ export const withInnerCard = () => ({
       <button>Button Content</button>
     </ng-template>
   `,
-  props: {
-    hoverable: boolean('Hoverable', false),
-  },
+    props: {
+        hoverable: boolean('Hoverable', false),
+    },
 });

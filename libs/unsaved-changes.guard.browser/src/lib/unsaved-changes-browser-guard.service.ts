@@ -9,36 +9,36 @@ import { UnsavedChangesGuardBase } from '@spryker/unsaved-changes';
  */
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesBrowserGuard extends UnsavedChangesGuardBase {
-  private destroyed$ = new Subject<void>();
+    private destroyed$ = new Subject<void>();
 
-  private hasDirtyStatus = false;
+    private hasDirtyStatus = false;
 
-  constructor(injector: Injector) {
-    super(injector);
+    constructor(injector: Injector) {
+        super(injector);
 
-    this.hasDirtyStatus$
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((hasDirtyStatus) => (this.hasDirtyStatus = hasDirtyStatus));
+        this.hasDirtyStatus$
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe((hasDirtyStatus) => (this.hasDirtyStatus = hasDirtyStatus));
 
-    this.beforeUnload = this.beforeUnload.bind(this);
+        this.beforeUnload = this.beforeUnload.bind(this);
 
-    window.addEventListener('beforeunload', this.beforeUnload);
-  }
-
-  dispose(): void {
-    super.dispose();
-
-    this.destroyed$.next();
-
-    window.removeEventListener('beforeunload', this.beforeUnload);
-  }
-
-  private beforeUnload(event: Event) {
-    if (!this.hasDirtyStatus) {
-      return;
+        window.addEventListener('beforeunload', this.beforeUnload);
     }
 
-    event.preventDefault();
-    (event as any).returnValue = '';
-  }
+    dispose(): void {
+        super.dispose();
+
+        this.destroyed$.next();
+
+        window.removeEventListener('beforeunload', this.beforeUnload);
+    }
+
+    private beforeUnload(event: Event) {
+        if (!this.hasDirtyStatus) {
+            return;
+        }
+
+        event.preventDefault();
+        (event as any).returnValue = '';
+    }
 }

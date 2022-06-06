@@ -5,17 +5,17 @@ import { ButtonSize } from '@spryker/button';
 import { IconPlusModule } from '@spryker/icon/icons';
 
 export default {
-  title: 'ButtonIconComponent',
+    title: 'ButtonIconComponent',
 };
 
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [ButtonIconModule, IconPlusModule],
-  },
-  component: ButtonIconComponent,
-  props: {
-    size: select('Size', ButtonSize, ButtonSize.Large),
-    iconName: IconPlusModule.icon,
-    disabled: boolean('Disabled', false),
-  },
+    moduleMetadata: {
+        imports: [ButtonIconModule, IconPlusModule],
+    },
+    component: ButtonIconComponent,
+    props: {
+        size: select('Size', ButtonSize, ButtonSize.Large),
+        iconName: IconPlusModule.icon,
+        disabled: boolean('Disabled', false),
+    },
 });

@@ -5,74 +5,59 @@ import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 const configMock: any = [
-  {
-    src: 'imageSrc',
-    alt: 'Value for testing',
-  },
-  {
-    src: '${value}',
-  },
+    {
+        src: 'imageSrc',
+        alt: 'Value for testing',
+    },
+    {
+        src: '${value}',
+    },
 ];
 
 const context: any = {
-  value: 'imageSrc',
+    value: 'imageSrc',
 };
 
 describe('TableColumnImageComponent', () => {
-  const { testModule, createComponent } = getTestingForComponent(
-    TableColumnImageComponent,
-    {
-      ngModule: {
-        imports: [DefaultContextSerializationModule],
-        declarations: [ContextPipe],
-      },
-    },
-  );
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [testModule],
-      teardown: { destroyAfterEach: false },
+    const { testModule, createComponent } = getTestingForComponent(TableColumnImageComponent, {
+        ngModule: {
+            imports: [DefaultContextSerializationModule],
+            declarations: [ContextPipe],
+        },
     });
-  });
 
-  it('Template must render image node', async () => {
-    const host = await createComponent(
-      { config: configMock[0], context },
-      true,
-    );
-    const imageElem = host.queryCss('img');
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
+    });
 
-    expect(imageElem).toBeTruthy();
-  });
+    it('Template must render image node', async () => {
+        const host = await createComponent({ config: configMock[0], context }, true);
+        const imageElem = host.queryCss('img');
 
-  it('Image should have src from config', async () => {
-    const host = await createComponent(
-      { config: configMock[0], context },
-      true,
-    );
-    const imageElem = host.queryCss('img');
+        expect(imageElem).toBeTruthy();
+    });
 
-    expect(imageElem!.properties.src).toBe(configMock[0].src);
-  });
+    it('Image should have src from config', async () => {
+        const host = await createComponent({ config: configMock[0], context }, true);
+        const imageElem = host.queryCss('img');
 
-  it('Image should have alt from config', async () => {
-    const host = await createComponent(
-      { config: configMock[0], context },
-      true,
-    );
-    const imageElem = host.queryCss('img');
+        expect(imageElem!.properties.src).toBe(configMock[0].src);
+    });
 
-    expect(imageElem!.properties.alt).toBe(configMock[0].alt);
-  });
+    it('Image should have alt from config', async () => {
+        const host = await createComponent({ config: configMock[0], context }, true);
+        const imageElem = host.queryCss('img');
 
-  it('Image should have src with dynamic text string from context', async () => {
-    const host = await createComponent(
-      { config: configMock[1], context },
-      true,
-    );
-    const imageElem = host.queryCss('img');
+        expect(imageElem!.properties.alt).toBe(configMock[0].alt);
+    });
 
-    expect(imageElem!.properties.src).toBe(context.value);
-  });
+    it('Image should have src with dynamic text string from context', async () => {
+        const host = await createComponent({ config: configMock[1], context }, true);
+        const imageElem = host.queryCss('img');
+
+        expect(imageElem!.properties.src).toBe(context.value);
+    });
 });

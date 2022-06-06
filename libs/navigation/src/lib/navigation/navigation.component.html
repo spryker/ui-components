@@ -1,43 +1,31 @@
 <ul nz-menu nzMode="inline" [nzInlineCollapsed]="collapsed">
-  <ng-container
-    *ngTemplateOutlet="menuTpl; context: { $implicit: items }"
-  ></ng-container>
+    <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: items }"></ng-container>
 
-  <ng-template #menuTpl let-items>
-    <ng-container *ngFor="let item of items">
-      <li
-        *ngIf="!item.subItems?.length"
-        nz-menu-item
-        [nzSelected]="item.isActive"
-      >
-        <a [href]="item.url" (click)="clickHandler($event, item.url)">
-          <ng-container *ngTemplateOutlet="titleTpl"></ng-container>
-        </a>
-      </li>
+    <ng-template #menuTpl let-items>
+        <ng-container *ngFor="let item of items">
+            <li *ngIf="!item.subItems?.length" nz-menu-item [nzSelected]="item.isActive">
+                <a [href]="item.url" (click)="clickHandler($event, item.url)">
+                    <ng-container *ngTemplateOutlet="titleTpl"></ng-container>
+                </a>
+            </li>
 
-      <li
-        *ngIf="item.subItems?.length"
-        nz-submenu
-        [nzOpen]="item.isActive"
-        [nzTitle]="titleTpl"
-        [nzPaddingLeft]="'unset'"
-        [nzDisabled]="item.disabled"
-      >
-        <ul>
-          <ng-container
-            *ngTemplateOutlet="menuTpl; context: { $implicit: item.subItems }"
-          ></ng-container>
-        </ul>
-      </li>
+            <li
+                *ngIf="item.subItems?.length"
+                nz-submenu
+                [nzOpen]="item.isActive"
+                [nzTitle]="titleTpl"
+                [nzPaddingLeft]="'unset'"
+                [nzDisabled]="item.disabled"
+            >
+                <ul>
+                    <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: item.subItems }"></ng-container>
+                </ul>
+            </li>
 
-      <ng-template #titleTpl>
-        <spy-icon
-          class="spy-navigation__title-icon"
-          *ngIf="item.icon"
-          [name]="item.icon"
-        ></spy-icon>
-        <span class="spy-navigation__title-text">{{ item.title }}</span>
-      </ng-template>
-    </ng-container>
-  </ng-template>
+            <ng-template #titleTpl>
+                <spy-icon class="spy-navigation__title-icon" *ngIf="item.icon" [name]="item.icon"></spy-icon>
+                <span class="spy-navigation__title-text">{{ item.title }}</span>
+            </ng-template>
+        </ng-container>
+    </ng-template>
 </ul>

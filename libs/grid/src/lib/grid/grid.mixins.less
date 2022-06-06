@@ -4,7 +4,7 @@
  * @param {Number} @columns [@grid-columns]
  */
 .grid-span-mixin(@column, @columns: @grid-columns) {
-  @column-value: (100% / @columns) * @column;
+    @column-value: (100% / @columns) * @column;
 }
 
 /**
@@ -24,15 +24,15 @@
   @selector-modifier: @option,
   @nested-breakpoint-key: '',
 ) {
-  each(@variable, .(@variant)  {
+    each(@variable, .(@variant)  {
     &-@{selector-modifier}-@{variant} {
         @{option}: @variant;
     }
   })
-    &
-    when
-    (@grid-breakpoints-map[@@selector-modifier] = true) {
-    each(@breakpoints-prop, .(@edges, @breakpoint-key) {
+        &
+        when
+        (@grid-breakpoints-map[@@selector-modifier] = true) {
+        each(@breakpoints-prop, .(@edges, @breakpoint-key) {
       .breakpoint-edge-min-mixin(@edges);
 
       .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], {
@@ -51,7 +51,7 @@
         })
       })
     });
-  }
+    }
 }
 
 /**
@@ -69,15 +69,15 @@
   @with-breakpoints: true,
   @reverse-value: false
 ) {
-  each(@variable, .(@gutter, @gutter-key) {
+    each(@variable, .(@gutter, @gutter-key) {
     &-gutter-@{gutter-key} {
       @{option}: (@gutter / 2) * if(@reverse-value, -1, 1);
     }
   })
-    &
-    when
-    (@with-breakpoints = true) {
-    each(@breakpoints-prop, .(@edges, @breakpoint-key) {
+        &
+        when
+        (@with-breakpoints = true) {
+        each(@breakpoints-prop, .(@edges, @breakpoint-key) {
       .breakpoint-edge-min-mixin(@edges);
 
       .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], {
@@ -88,7 +88,7 @@
         })
       })
     });
-  }
+    }
 }
 
 /**
@@ -99,16 +99,16 @@
  * @param {String} @nested-breakpoint-key ['']
  */
 .grid-align-mixin (@breakpoints-prop: @breakpoints, @direction, @grid-breakpoints-map, @nested-breakpoint-key: '',) when (@direction = column), (@direction = column-reverse) {
-  &.@{grid-row-prefix-cls} {
-    .grid-variant-mixin(@breakpoints-prop, align-items, @grid-align, @grid-breakpoints-map, align-row, @nested-breakpoint-key);
-    .grid-variant-mixin(@breakpoints-prop, justify-content, @grid-align, @grid-breakpoints-map, align-col, @nested-breakpoint-key);
-  }
+    &.@{grid-row-prefix-cls} {
+        .grid-variant-mixin(@breakpoints-prop, align-items, @grid-align, @grid-breakpoints-map, align-row, @nested-breakpoint-key);
+        .grid-variant-mixin(@breakpoints-prop, justify-content, @grid-align, @grid-breakpoints-map, align-col, @nested-breakpoint-key);
+    }
 }
 .grid-align-mixin (@breakpoints-prop: @breakpoints, @direction, @grid-breakpoints-map, @nested-breakpoint-key: '',) when (@direction = row), (@direction = row-reverse) {
-  &.@{grid-row-prefix-cls} {
-    .grid-variant-mixin(@breakpoints-prop, align-items, @grid-align, @grid-breakpoints-map, align-col, @nested-breakpoint-key);
-    .grid-variant-mixin(@breakpoints-prop, justify-content, @grid-align, @grid-breakpoints-map, align-row, @nested-breakpoint-key);
-  }
+    &.@{grid-row-prefix-cls} {
+        .grid-variant-mixin(@breakpoints-prop, align-items, @grid-align, @grid-breakpoints-map, align-col, @nested-breakpoint-key);
+        .grid-variant-mixin(@breakpoints-prop, justify-content, @grid-align, @grid-breakpoints-map, align-row, @nested-breakpoint-key);
+    }
 }
 
 /**
@@ -126,17 +126,17 @@
   @grid-breakpoints-map,
   @selector-modifier: @option,
 ) {
-  each(@variable, .(@variant)  {
+    each(@variable, .(@variant)  {
     &-@{selector-modifier}-@{variant} {
         @{option}: @variant;
 
       .grid-align-mixin(@breakpoints-prop, @variant, @grid-breakpoints-map);
     }
   })
-    &
-    when
-    (@grid-breakpoints-map[@@selector-modifier] = true) {
-    each(@breakpoints-prop, .(@edges, @breakpoint-key) {
+        &
+        when
+        (@grid-breakpoints-map[@@selector-modifier] = true) {
+        each(@breakpoints-prop, .(@edges, @breakpoint-key) {
       .breakpoint-edge-min-mixin(@edges);
 
       .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], {
@@ -153,5 +153,5 @@
         }
       })
     });
-  }
+    }
 }

@@ -7,16 +7,10 @@ import { ButtonModule } from '@spryker/button';
 import { NotificationModule } from '@spryker/notification';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TableFeatureModule,
-    ButtonModule,
-    NotificationModule,
-    ApplyContextsModule,
-  ],
-  declarations: [TableBatchActionsFeatureComponent],
-  exports: [TableBatchActionsFeatureComponent],
+    imports: [CommonModule, TableFeatureModule, ButtonModule, NotificationModule, ApplyContextsModule],
+    declarations: [TableBatchActionsFeatureComponent],
+    exports: [TableBatchActionsFeatureComponent],
 })
 export class TableBatchActionsFeatureModule implements ModuleWithFeature {
-  featureComponent = TableBatchActionsFeatureComponent;
+    featureComponent = TableBatchActionsFeatureComponent;
 }

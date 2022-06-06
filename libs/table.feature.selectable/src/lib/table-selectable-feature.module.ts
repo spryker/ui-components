@@ -6,10 +6,10 @@ import { TableFeatureModule, ModuleWithFeature } from '@spryker/table';
 import { TableSelectableFeatureComponent } from './table-selectable-feature.component';
 
 @NgModule({
-  imports: [CommonModule, CheckboxModule, TableFeatureModule],
-  exports: [TableSelectableFeatureComponent],
-  declarations: [TableSelectableFeatureComponent],
+    imports: [CommonModule, CheckboxModule, TableFeatureModule],
+    exports: [TableSelectableFeatureComponent],
+    declarations: [TableSelectableFeatureComponent],
 })
 export class TableSelectableFeatureModule implements ModuleWithFeature {
-  featureComponent = TableSelectableFeatureComponent;
+    featureComponent = TableSelectableFeatureComponent;
 }

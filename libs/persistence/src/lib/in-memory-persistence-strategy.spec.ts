@@ -6,59 +6,59 @@ const mockKey = 'mockKey';
 const mockValue = 'mockValue';
 
 describe('InMemoryPersistenceStrategy', () => {
-  let service: InMemoryPersistenceStrategy;
+    let service: InMemoryPersistenceStrategy;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({ teardown: { destroyAfterEach: false } });
-    service = TestBed.inject(InMemoryPersistenceStrategy);
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({ teardown: { destroyAfterEach: false } });
+        service = TestBed.inject(InMemoryPersistenceStrategy);
+    });
 
-  it('retrieve method when no value under key must return undefined', () => {
-    const callback = jest.fn();
-    const retrievedSavedObserver$ = service.retrieve(mockKey);
+    it('retrieve method when no value under key must return undefined', () => {
+        const callback = jest.fn();
+        const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe(callback);
+        retrievedSavedObserver$.subscribe(callback);
 
-    expect(callback).toHaveBeenCalledWith(undefined);
-  });
+        expect(callback).toHaveBeenCalledWith(undefined);
+    });
 
-  it('retrieve method must return stored value under key from memory', () => {
-    const callback = jest.fn();
-    service.save(mockKey, mockValue);
-    const retrievedSavedObserver$ = service.retrieve(mockKey);
+    it('retrieve method must return stored value under key from memory', () => {
+        const callback = jest.fn();
+        service.save(mockKey, mockValue);
+        const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe(callback);
+        retrievedSavedObserver$.subscribe(callback);
 
-    expect(callback).toHaveBeenCalledWith(mockValue);
-  });
+        expect(callback).toHaveBeenCalledWith(mockValue);
+    });
 
-  it('save method must store `value` under `key` in the memory', () => {
-    const callback = jest.fn();
-    const retrievedSavedObserver$ = service.retrieve(mockKey);
+    it('save method must store `value` under `key` in the memory', () => {
+        const callback = jest.fn();
+        const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe(callback);
+        retrievedSavedObserver$.subscribe(callback);
 
-    expect(callback).toHaveBeenCalledWith(undefined);
+        expect(callback).toHaveBeenCalledWith(undefined);
 
-    service.save(mockKey, mockValue);
+        service.save(mockKey, mockValue);
 
-    expect(callback).toHaveBeenCalledWith(mockValue);
-  });
+        expect(callback).toHaveBeenCalledWith(mockValue);
+    });
 
-  it('remove method must remove stored `value` under `key` from memory', () => {
-    const callback = jest.fn();
-    const retrievedSavedObserver$ = service.retrieve(mockKey);
+    it('remove method must remove stored `value` under `key` from memory', () => {
+        const callback = jest.fn();
+        const retrievedSavedObserver$ = service.retrieve(mockKey);
 
-    retrievedSavedObserver$.subscribe(callback);
+        retrievedSavedObserver$.subscribe(callback);
 
-    expect(callback).toHaveBeenCalledWith(undefined);
+        expect(callback).toHaveBeenCalledWith(undefined);
 
-    service.save(mockKey, mockValue);
+        service.save(mockKey, mockValue);
 
-    expect(callback).toHaveBeenCalledWith(mockValue);
+        expect(callback).toHaveBeenCalledWith(mockValue);
 
-    service.remove(mockKey);
+        service.remove(mockKey);
 
-    expect(callback).toHaveBeenCalledWith(undefined);
-  });
+        expect(callback).toHaveBeenCalledWith(undefined);
+    });
 });

@@ -3,20 +3,20 @@ import { DropdownComponent } from './dropdown.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
-  title: 'DropdownComponent',
+    title: 'DropdownComponent',
 };
 
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [DropdownModule, BrowserAnimationsModule],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [DropdownModule, BrowserAnimationsModule],
+    },
+    template: `
     <spy-dropdown [items]="items">ICON</spy-dropdown>
   `,
-  props: {
-    items: [
-      { action: 'action1', title: 'item1' },
-      { action: 'action2', title: 'item2' },
-    ],
-  },
+    props: {
+        items: [
+            { action: 'action1', title: 'item1' },
+            { action: 'action2', title: 'item2' },
+        ],
+    },
 });

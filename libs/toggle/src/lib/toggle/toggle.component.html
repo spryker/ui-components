@@ -1,22 +1,6 @@
-<div
-  class="spy-toggle__label"
-  [class.spy-toggle__label--active]="value"
-  [class.spy-toggle__label--disabled]="disabled"
->
-  <ng-content></ng-content>
+<div class="spy-toggle__label" [class.spy-toggle__label--active]="value" [class.spy-toggle__label--disabled]="disabled">
+    <ng-content></ng-content>
 </div>
 
-<nz-switch
-  [nzDisabled]="disabled"
-  [(ngModel)]="value"
-  (ngModelChange)="onChangeHandler($event)"
->
-</nz-switch>
-<input
-  type="checkbox"
-  [attr.name]="name"
-  [ngModel]="value"
-  [disabled]="disabled"
-  style="display: none"
-  #inputRef
-/>
+<nz-switch [nzDisabled]="disabled" [(ngModel)]="value" (ngModelChange)="onChangeHandler($event)"> </nz-switch>
+<input type="checkbox" [attr.name]="name" [ngModel]="value" [disabled]="disabled" style="display: none" #inputRef />

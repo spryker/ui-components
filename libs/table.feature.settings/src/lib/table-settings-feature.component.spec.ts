@@ -1,33 +1,16 @@
-import {
-  Component,
-  NO_ERRORS_SCHEMA,
-  Injector,
-  DebugElement,
-} from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { Component, NO_ERRORS_SCHEMA, Injector, DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  HttpTestingController,
-  HttpClientTestingModule,
-} from '@angular/common/http/testing';
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TestTableFeatureComponent, TestTableFeatureMocks, TestTableFeatureTplDirective } from '@spryker/table/testing';
 import {
-  TestTableFeatureComponent,
-  TestTableFeatureMocks,
-  TestTableFeatureTplDirective,
-} from '@spryker/table/testing';
-import {
-  TableColumnsResolverService,
-  TableDataConfiguratorService,
-  TableDatasourceService,
-  TableColumns,
-  TableDataConfig,
-  TableData,
+    TableColumnsResolverService,
+    TableDataConfiguratorService,
+    TableDatasourceService,
+    TableColumns,
+    TableDataConfig,
+    TableData,
 } from '@spryker/table';
 import { LocalStoragePersistenceStrategy } from '@spryker/persistence';
 import { TestLocaleModule, I18nTestService } from '@spryker/locale/testing';
@@ -40,283 +23,263 @@ import { TableSettingsColumn } from './types';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 class MockLocalStoragePersistenceStrategy {
-  save = jest.fn();
-  retrieveSubject$ = new ReplaySubject(1);
-  retrieve = jest.fn().mockReturnValue(this.retrieveSubject$);
+    save = jest.fn();
+    retrieveSubject$ = new ReplaySubject(1);
+    retrieve = jest.fn().mockReturnValue(this.retrieveSubject$);
 }
 
 class MockTableDataConfiguratorService {
-  readonly config$ = new ReplaySubject<TableDataConfig>(1);
+    readonly config$ = new ReplaySubject<TableDataConfig>(1);
 }
 
 @Component({
-  selector: 'spy-test-host',
-  template: `
-    <test-table-feature>
-      <spy-table-settings-feature></spy-table-settings-feature>
-    </test-table-feature>
-  `,
+    selector: 'spy-test-host',
+    template: `
+        <test-table-feature>
+            <spy-table-settings-feature></spy-table-settings-feature>
+        </test-table-feature>
+    `,
 })
 class TestHostComponent {}
 
 describe('TableSettingsFeatureComponent', () => {
-  let fixture: ComponentFixture<TestHostComponent>;
-  let testTableFeature: TestTableFeatureComponent;
-  let injector: Injector;
-  let testLocalStoragePersistenceStrategy: MockLocalStoragePersistenceStrategy;
-  let testLocaleService: I18nTestService;
-  let httpTestingController: HttpTestingController;
-  let columnsObs$: Observable<TableColumns>;
-  let mockData: TableData;
+    let fixture: ComponentFixture<TestHostComponent>;
+    let testTableFeature: TestTableFeatureComponent;
+    let injector: Injector;
+    let testLocalStoragePersistenceStrategy: MockLocalStoragePersistenceStrategy;
+    let testLocaleService: I18nTestService;
+    let httpTestingController: HttpTestingController;
+    let columnsObs$: Observable<TableColumns>;
+    let mockData: TableData;
 
-  const columns: TableSettingsColumn[] = [
-    { id: 'col1', title: 'Column #1', hideable: true },
-    { id: 'col2', title: 'Column #2', hideable: true },
-    { id: 'col3', title: 'Column #3', hideable: true },
-  ];
+    const columns: TableSettingsColumn[] = [
+        { id: 'col1', title: 'Column #1', hideable: true },
+        { id: 'col2', title: 'Column #2', hideable: true },
+        { id: 'col3', title: 'Column #3', hideable: true },
+    ];
 
-  const expectedColumnsUncheckResult: TableSettingsColumn[] = [
-    { id: 'col2', title: 'Column #2', hideable: true },
-    { id: 'col3', title: 'Column #3', hideable: true },
-  ];
+    const expectedColumnsUncheckResult: TableSettingsColumn[] = [
+        { id: 'col2', title: 'Column #2', hideable: true },
+        { id: 'col3', title: 'Column #3', hideable: true },
+    ];
 
-  const expectedColumnsCheckResult: TableSettingsColumn[] = [
-    { id: 'col1', title: 'Column #1', hideable: true, hidden: false },
-    { id: 'col2', title: 'Column #2', hideable: true },
-    { id: 'col3', title: 'Column #3', hideable: true },
-  ];
+    const expectedColumnsCheckResult: TableSettingsColumn[] = [
+        { id: 'col1', title: 'Column #1', hideable: true, hidden: false },
+        { id: 'col2', title: 'Column #2', hideable: true },
+        { id: 'col3', title: 'Column #3', hideable: true },
+    ];
 
-  const expectedColumnsDragResult: TableSettingsColumn[] = [
-    { id: 'col2', title: 'Column #2', hideable: true },
-    { id: 'col1', title: 'Column #1', hideable: true },
-    { id: 'col3', title: 'Column #3', hideable: true },
-  ];
+    const expectedColumnsDragResult: TableSettingsColumn[] = [
+        { id: 'col2', title: 'Column #2', hideable: true },
+        { id: 'col1', title: 'Column #1', hideable: true },
+        { id: 'col3', title: 'Column #3', hideable: true },
+    ];
 
-  const popoverComponent = 'spy-popover';
-  const buttonToggle = 'spy-button-toggle';
-  const icon = '.spy-icon-settings';
-  const settingsFeature = '.spy-table-settings-feature';
-  const checkbox = 'spy-checkbox';
-  const resetBtn = '.spy-table-settings-feature__reset-button';
+    const popoverComponent = 'spy-popover';
+    const buttonToggle = 'spy-button-toggle';
+    const icon = '.spy-icon-settings';
+    const settingsFeature = '.spy-table-settings-feature';
+    const checkbox = 'spy-checkbox';
+    const resetBtn = '.spy-table-settings-feature__reset-button';
 
-  function queryPopover(): DebugElement {
-    return fixture.debugElement.query(By.css(popoverComponent));
-  }
+    function queryPopover(): DebugElement {
+        return fixture.debugElement.query(By.css(popoverComponent));
+    }
 
-  function queryButtonToggle(): DebugElement {
-    return fixture.debugElement.query(By.css(buttonToggle));
-  }
+    function queryButtonToggle(): DebugElement {
+        return fixture.debugElement.query(By.css(buttonToggle));
+    }
 
-  function queryIcon(): DebugElement {
-    return fixture.debugElement.query(By.css(icon));
-  }
+    function queryIcon(): DebugElement {
+        return fixture.debugElement.query(By.css(icon));
+    }
 
-  function querySettings(): DebugElement {
-    return fixture.debugElement.query(By.css(settingsFeature));
-  }
+    function querySettings(): DebugElement {
+        return fixture.debugElement.query(By.css(settingsFeature));
+    }
 
-  function queryCheckbox(): DebugElement {
-    return fixture.debugElement.query(By.css(checkbox));
-  }
+    function queryCheckbox(): DebugElement {
+        return fixture.debugElement.query(By.css(checkbox));
+    }
 
-  function queryReset(): DebugElement {
-    return fixture.debugElement.query(By.css(resetBtn));
-  }
+    function queryReset(): DebugElement {
+        return fixture.debugElement.query(By.css(resetBtn));
+    }
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        DragDropModule,
-        TestLocaleModule,
-        IconModule,
-        IconSettingsModule,
-        HttpClientTestingModule,
-      ],
-      declarations: [
-        TestTableFeatureTplDirective,
-        TableSettingsFeatureComponent,
-        TestHostComponent,
-        TestTableFeatureComponent,
-      ],
-      providers: [
-        {
-          provide: TableDatasourceService,
-          useValue: 'TableDatasourceService',
-        },
-        {
-          provide: LocalStoragePersistenceStrategy,
-          useExisting: MockLocalStoragePersistenceStrategy,
-        },
-        {
-          provide: TableDataConfiguratorService,
-          useExisting: MockTableDataConfiguratorService,
-        },
-        {
-          provide: TestTableFeatureMocks,
-          useValue: {
-            config: {
-              enabled: true,
-            },
-          },
-        },
-        MockTableDataConfiguratorService,
-        MockLocalStoragePersistenceStrategy,
-        TableColumnsResolverService,
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
-      teardown: { destroyAfterEach: false },
-    });
-  });
-
-  beforeEach(fakeAsync(() => {
-    injector = TestBed.inject(Injector);
-    fixture = TestBed.createComponent(TestHostComponent);
-    testTableFeature = fixture.debugElement.query(
-      By.directive(TestTableFeatureComponent),
-    ).componentInstance;
-
-    testLocaleService = TestBed.inject(I18nTestService);
-    testLocalStoragePersistenceStrategy = TestBed.inject(
-      MockLocalStoragePersistenceStrategy,
-    );
-
-    httpTestingController = TestBed.inject(HttpTestingController);
-
-    columnsObs$ = TestBed.inject(TableColumnsResolverService).resolve(
-      columns as any,
-    );
-
-    mockData = {
-      data: [{}],
-      page: 0,
-      pageSize: 0,
-      total: 10,
-    };
-
-    testLocalStoragePersistenceStrategy.retrieveSubject$.next(null);
-
-    fixture.detectChanges();
-    tick();
-
-    testTableFeature.featureMocks?.table.data$?.next(mockData);
-
-    fixture.detectChanges();
-  }));
-
-  afterEach(() => {
-    httpTestingController.verify();
-  });
-
-  it('should render `spy-popover`', fakeAsync(() => {
-    expect(queryPopover()).toBeTruthy();
-  }));
-
-  it('should render `spy-button-toggle` with [trigger] attribute', fakeAsync(() => {
-    const spyButtonToggle = queryButtonToggle();
-    expect(spyButtonToggle.attributes.trigger).toBe('');
-  }));
-
-  it('should render `spy-icon` for spy-button-toggle', fakeAsync(() => {
-    expect(queryIcon()).toBeTruthy();
-  }));
-
-  it('component should render `spy-table-settings-feature__item` elements', fakeAsync(() => {
-    columnsObs$.subscribe();
-    fixture.detectChanges();
-    tick();
-
-    const columnsArr = fixture.nativeElement.querySelectorAll(
-      '.spy-table-settings-feature__item',
-    );
-    expect(columnsArr.length).toBe(columns.length);
-  }));
-
-  it('component should be able to drag and drop elements in list of columns', fakeAsync(() => {
-    const subsctiptionCallbackSpy = jest.fn();
-
-    columnsObs$.subscribe(subsctiptionCallbackSpy);
-    fixture.detectChanges();
-    tick();
-
-    const columnsArr = querySettings();
-
-    columnsArr.triggerEventHandler('cdkDropListDropped', {
-      previousIndex: 1,
-      currentIndex: 0,
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [DragDropModule, TestLocaleModule, IconModule, IconSettingsModule, HttpClientTestingModule],
+            declarations: [
+                TestTableFeatureTplDirective,
+                TableSettingsFeatureComponent,
+                TestHostComponent,
+                TestTableFeatureComponent,
+            ],
+            providers: [
+                {
+                    provide: TableDatasourceService,
+                    useValue: 'TableDatasourceService',
+                },
+                {
+                    provide: LocalStoragePersistenceStrategy,
+                    useExisting: MockLocalStoragePersistenceStrategy,
+                },
+                {
+                    provide: TableDataConfiguratorService,
+                    useExisting: MockTableDataConfiguratorService,
+                },
+                {
+                    provide: TestTableFeatureMocks,
+                    useValue: {
+                        config: {
+                            enabled: true,
+                        },
+                    },
+                },
+                MockTableDataConfiguratorService,
+                MockLocalStoragePersistenceStrategy,
+                TableColumnsResolverService,
+            ],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: false },
+        });
     });
 
-    fixture.detectChanges();
-    tick();
+    beforeEach(fakeAsync(() => {
+        injector = TestBed.inject(Injector);
+        fixture = TestBed.createComponent(TestHostComponent);
+        testTableFeature = fixture.debugElement.query(By.directive(TestTableFeatureComponent)).componentInstance;
 
-    expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(
-      expectedColumnsDragResult,
-    );
-  }));
+        testLocaleService = TestBed.inject(I18nTestService);
+        testLocalStoragePersistenceStrategy = TestBed.inject(MockLocalStoragePersistenceStrategy);
 
-  it('component should be able to remove element from list of columns', fakeAsync(() => {
-    const subsctiptionCallbackSpy = jest.fn();
+        httpTestingController = TestBed.inject(HttpTestingController);
 
-    columnsObs$.subscribe(subsctiptionCallbackSpy);
-    fixture.detectChanges();
-    tick();
+        columnsObs$ = TestBed.inject(TableColumnsResolverService).resolve(columns as any);
 
-    const checkboxElem = queryCheckbox();
+        mockData = {
+            data: [{}],
+            page: 0,
+            pageSize: 0,
+            total: 10,
+        };
 
-    checkboxElem.triggerEventHandler('checkedChange', {});
+        testLocalStoragePersistenceStrategy.retrieveSubject$.next(null);
 
-    fixture.detectChanges();
-    tick();
+        fixture.detectChanges();
+        tick();
 
-    expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(
-      expectedColumnsUncheckResult,
-    );
-  }));
+        testTableFeature.featureMocks?.table.data$?.next(mockData);
 
-  it('component should be able to move element back to the correct position to list of columns', fakeAsync(() => {
-    const subsctiptionCallbackSpy = jest.fn();
+        fixture.detectChanges();
+    }));
 
-    columnsObs$.subscribe(subsctiptionCallbackSpy);
-    fixture.detectChanges();
-    tick();
+    afterEach(() => {
+        httpTestingController.verify();
+    });
 
-    const checkboxElem = queryCheckbox();
+    it('should render `spy-popover`', fakeAsync(() => {
+        expect(queryPopover()).toBeTruthy();
+    }));
 
-    checkboxElem.triggerEventHandler('checkedChange', {});
+    it('should render `spy-button-toggle` with [trigger] attribute', fakeAsync(() => {
+        const spyButtonToggle = queryButtonToggle();
+        expect(spyButtonToggle.attributes.trigger).toBe('');
+    }));
 
-    fixture.detectChanges();
-    tick();
+    it('should render `spy-icon` for spy-button-toggle', fakeAsync(() => {
+        expect(queryIcon()).toBeTruthy();
+    }));
 
-    checkboxElem.triggerEventHandler('checkedChange', {});
+    it('component should render `spy-table-settings-feature__item` elements', fakeAsync(() => {
+        columnsObs$.subscribe();
+        fixture.detectChanges();
+        tick();
 
-    fixture.detectChanges();
-    tick();
+        const columnsArr = fixture.nativeElement.querySelectorAll('.spy-table-settings-feature__item');
+        expect(columnsArr.length).toBe(columns.length);
+    }));
 
-    expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(
-      expectedColumnsCheckResult,
-    );
-  }));
+    it('component should be able to drag and drop elements in list of columns', fakeAsync(() => {
+        const subsctiptionCallbackSpy = jest.fn();
 
-  it('Reset button should reset columns list to the default state', fakeAsync(() => {
-    const subsctiptionCallbackSpy = jest.fn();
+        columnsObs$.subscribe(subsctiptionCallbackSpy);
+        fixture.detectChanges();
+        tick();
 
-    columnsObs$.subscribe(subsctiptionCallbackSpy);
-    fixture.detectChanges();
-    tick();
+        const columnsArr = querySettings();
 
-    const checkboxElem = queryCheckbox();
+        columnsArr.triggerEventHandler('cdkDropListDropped', {
+            previousIndex: 1,
+            currentIndex: 0,
+        });
 
-    checkboxElem.triggerEventHandler('checkedChange', {});
+        fixture.detectChanges();
+        tick();
 
-    fixture.detectChanges();
-    tick();
+        expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(expectedColumnsDragResult);
+    }));
 
-    const resetBtnElem = queryReset();
+    it('component should be able to remove element from list of columns', fakeAsync(() => {
+        const subsctiptionCallbackSpy = jest.fn();
 
-    resetBtnElem.triggerEventHandler('click', {});
+        columnsObs$.subscribe(subsctiptionCallbackSpy);
+        fixture.detectChanges();
+        tick();
 
-    fixture.detectChanges();
-    tick();
+        const checkboxElem = queryCheckbox();
 
-    expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(columns);
-  }));
+        checkboxElem.triggerEventHandler('checkedChange', {});
+
+        fixture.detectChanges();
+        tick();
+
+        expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(expectedColumnsUncheckResult);
+    }));
+
+    it('component should be able to move element back to the correct position to list of columns', fakeAsync(() => {
+        const subsctiptionCallbackSpy = jest.fn();
+
+        columnsObs$.subscribe(subsctiptionCallbackSpy);
+        fixture.detectChanges();
+        tick();
+
+        const checkboxElem = queryCheckbox();
+
+        checkboxElem.triggerEventHandler('checkedChange', {});
+
+        fixture.detectChanges();
+        tick();
+
+        checkboxElem.triggerEventHandler('checkedChange', {});
+
+        fixture.detectChanges();
+        tick();
+
+        expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(expectedColumnsCheckResult);
+    }));
+
+    it('Reset button should reset columns list to the default state', fakeAsync(() => {
+        const subsctiptionCallbackSpy = jest.fn();
+
+        columnsObs$.subscribe(subsctiptionCallbackSpy);
+        fixture.detectChanges();
+        tick();
+
+        const checkboxElem = queryCheckbox();
+
+        checkboxElem.triggerEventHandler('checkedChange', {});
+
+        fixture.detectChanges();
+        tick();
+
+        const resetBtnElem = queryReset();
+
+        resetBtnElem.triggerEventHandler('click', {});
+
+        fixture.detectChanges();
+        tick();
+
+        expect(subsctiptionCallbackSpy).toHaveBeenCalledWith(columns);
+    }));
 });

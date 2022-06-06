@@ -35,38 +35,38 @@ const mockHtmlTemplate = (template: string) => `
 `;
 
 function generateMockHtmlPage(template: string): { html: string } {
-  return { html: mockHtmlTemplate(template) };
+    return { html: mockHtmlTemplate(template) };
 }
 
 export default {
-  title: 'HtmlRendererComponent',
+    title: 'HtmlRendererComponent',
 };
 
 export const withStaticHtml = (): IStory => ({
-  moduleMetadata: {
-    imports: [StaticHtmlRendererModule],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [StaticHtmlRendererModule],
+    },
+    template: `
     <spy-html-renderer [html]="html"></spy-html-renderer>
   `,
-  props: {
-    html: mockHtmlTemplate('Static'),
-  },
+    props: {
+        html: mockHtmlTemplate('Static'),
+    },
 });
 
 export const withUrlHtml = (): IStory => ({
-  moduleMetadata: {
-    imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
+    },
+    template: `
     <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>
   `,
-  props: {
-    mockHttp: setMockHttp([
-      {
-        url: '/html-request',
-        dataFn: () => generateMockHtmlPage('Url'),
-      },
-    ]),
-  },
+    props: {
+        mockHttp: setMockHttp([
+            {
+                url: '/html-request',
+                dataFn: () => generateMockHtmlPage('Url'),
+            },
+        ]),
+    },
 });

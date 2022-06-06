@@ -6,7 +6,7 @@ import { NavigationComponent } from './navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
-  title: 'NavigationComponent',
+    title: 'NavigationComponent',
 };
 
 const iconDashboard = `
@@ -59,149 +59,149 @@ const iconProfile = `
 `;
 
 const icons: Icon[] = [
-  { icon: 'dashboard', svg: iconDashboard },
-  { icon: 'orders', svg: iconOrders },
-  { icon: 'offers', svg: iconOffers },
-  { icon: 'profile', svg: iconProfile },
+    { icon: 'dashboard', svg: iconDashboard },
+    { icon: 'orders', svg: iconOrders },
+    { icon: 'offers', svg: iconOffers },
+    { icon: 'profile', svg: iconProfile },
 ];
 
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [NavigationModule, BrowserAnimationsModule],
-    providers: [provideIcons(icons)],
-  },
-  component: NavigationComponent,
-  props: {
-    items: [
-      {
-        title: 'Item1',
-        url: 'dashboard',
-        icon: 'dashboard',
-      },
-      {
-        title: 'Item2',
-        icon: 'orders',
-        isActive: false,
-        subItems: [
-          {
-            title: 'SubItem1',
-            url: '',
-            icon: '',
-            isActive: false,
-            subItems: [],
-          },
-          {
-            title: 'SubItem2',
-          },
-          {
-            title: 'SubItem3',
-            url: '',
-            icon: '',
-            isActive: false,
-            subItems: [],
-          },
-          {
-            title: 'SubItem4',
-            url: '',
-            icon: '',
-            isActive: false,
-            subItems: [],
-          },
+    moduleMetadata: {
+        imports: [NavigationModule, BrowserAnimationsModule],
+        providers: [provideIcons(icons)],
+    },
+    component: NavigationComponent,
+    props: {
+        items: [
+            {
+                title: 'Item1',
+                url: 'dashboard',
+                icon: 'dashboard',
+            },
+            {
+                title: 'Item2',
+                icon: 'orders',
+                isActive: false,
+                subItems: [
+                    {
+                        title: 'SubItem1',
+                        url: '',
+                        icon: '',
+                        isActive: false,
+                        subItems: [],
+                    },
+                    {
+                        title: 'SubItem2',
+                    },
+                    {
+                        title: 'SubItem3',
+                        url: '',
+                        icon: '',
+                        isActive: false,
+                        subItems: [],
+                    },
+                    {
+                        title: 'SubItem4',
+                        url: '',
+                        icon: '',
+                        isActive: false,
+                        subItems: [],
+                    },
+                ],
+            },
+            {
+                title: 'Item3',
+                url: 'offers',
+                icon: 'offers',
+                isActive: true,
+                subItems: [],
+            },
+            {
+                title: 'Item4',
+                url: 'profile',
+                icon: 'profile',
+                isActive: false,
+                subItems: [],
+            },
         ],
-      },
-      {
-        title: 'Item3',
-        url: 'offers',
-        icon: 'offers',
-        isActive: true,
-        subItems: [],
-      },
-      {
-        title: 'Item4',
-        url: 'profile',
-        icon: 'profile',
-        isActive: false,
-        subItems: [],
-      },
-    ],
-  },
+    },
 });
 
 export const withSidebar = () => ({
-  moduleMetadata: {
-    imports: [NavigationModule, SidebarModule, BrowserAnimationsModule],
-    providers: [provideIcons(icons)],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [NavigationModule, SidebarModule, BrowserAnimationsModule],
+        providers: [provideIcons(icons)],
+    },
+    template: `
     <spy-sidebar [collapsed]="collapsed" (collapsedChange)="collapsed = !collapsed">
       <spy-navigation [items]="items" [collapsed]="collapsed"></spy-navigation>
     </spy-sidebar>
   `,
-  props: {
-    collapsed: false,
-    items: [
-      {
-        title: 'Item1',
-        icon: 'dashboard',
-      },
-      {
-        title: 'Item2',
-        url: '',
-        icon: 'orders',
-        isActive: false,
-        subItems: [
-          {
-            title: 'SubItem1',
-            url: '',
-            icon: '',
-            isActive: true,
-            subItems: [],
-          },
-          {
-            title: 'SubItem2',
-            url: '',
-            subItems: [
-              {
-                title: 'SubSubItem1',
-              },
-              {
-                title: 'SubSubItem2',
-              },
-              {
-                title: 'SubSubItem3',
-              },
-            ],
-          },
-          {
-            title: 'SubItem3',
-            url: '',
-            icon: '',
-            isActive: false,
-            subItems: [],
-          },
-          {
-            title: 'SubItem4',
-            url: '',
-            icon: '',
-            isActive: false,
-            subItems: [],
-          },
+    props: {
+        collapsed: false,
+        items: [
+            {
+                title: 'Item1',
+                icon: 'dashboard',
+            },
+            {
+                title: 'Item2',
+                url: '',
+                icon: 'orders',
+                isActive: false,
+                subItems: [
+                    {
+                        title: 'SubItem1',
+                        url: '',
+                        icon: '',
+                        isActive: true,
+                        subItems: [],
+                    },
+                    {
+                        title: 'SubItem2',
+                        url: '',
+                        subItems: [
+                            {
+                                title: 'SubSubItem1',
+                            },
+                            {
+                                title: 'SubSubItem2',
+                            },
+                            {
+                                title: 'SubSubItem3',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'SubItem3',
+                        url: '',
+                        icon: '',
+                        isActive: false,
+                        subItems: [],
+                    },
+                    {
+                        title: 'SubItem4',
+                        url: '',
+                        icon: '',
+                        isActive: false,
+                        subItems: [],
+                    },
+                ],
+            },
+            {
+                title: 'Item3',
+                url: '',
+                icon: 'offers',
+                isActive: true,
+                subItems: [],
+            },
+            {
+                title: 'Item4',
+                url: '',
+                icon: 'profile',
+                isActive: false,
+                subItems: [],
+            },
         ],
-      },
-      {
-        title: 'Item3',
-        url: '',
-        icon: 'offers',
-        isActive: true,
-        subItems: [],
-      },
-      {
-        title: 'Item4',
-        url: '',
-        icon: 'profile',
-        isActive: false,
-        subItems: [],
-      },
-    ],
-  },
+    },
 });

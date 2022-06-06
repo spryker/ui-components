@@ -9,54 +9,52 @@ import { select, text, boolean, number } from '@storybook/addon-knobs';
 import { NotificationData, NotificationType } from '../types';
 
 export default {
-  title: 'NotificationWrapperComponent',
+    title: 'NotificationWrapperComponent',
 };
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'story-selector',
-  template: `
-    <button (click)="notificationService.show(data)">Show Notification</button>
-  `,
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'story-selector',
+    template: ` <button (click)="notificationService.show(data)">Show Notification</button> `,
 })
 class StoryComponent implements OnChanges {
-  constructor(public notificationService: NotificationService) {}
-  @Input() title = '';
-  @Input() type?: NotificationType;
-  @Input() description?: string;
-  @Input() closeable?: boolean;
-  @Input() timeOut?: number;
+    constructor(public notificationService: NotificationService) {}
+    @Input() title = '';
+    @Input() type?: NotificationType;
+    @Input() description?: string;
+    @Input() closeable?: boolean;
+    @Input() timeOut?: number;
 
-  data: NotificationData = {
-    title: this.title,
-  };
+    data: NotificationData = {
+        title: this.title,
+    };
 
-  ngOnChanges() {
-    this.data.type = this.type;
-    this.data.title = this.title;
-    this.data.description = this.description;
-    this.data.closeable = this.closeable;
-    this.data.timeOut = this.timeOut;
-  }
+    ngOnChanges() {
+        this.data.type = this.type;
+        this.data.title = this.title;
+        this.data.description = this.description;
+        this.data.closeable = this.closeable;
+        this.data.timeOut = this.timeOut;
+    }
 }
 
 @NgModule({
-  imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
-  declarations: [StoryComponent],
-  exports: [NotificationModule, StoryComponent],
+    imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
+    declarations: [StoryComponent],
+    exports: [NotificationModule, StoryComponent],
 })
 class StoryModule {}
 
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [StoryModule],
-  },
-  component: StoryComponent,
-  props: {
-    type: select('Type', NotificationType, NotificationType.Info),
-    title: text('Text', 'Test Title'),
-    description: text('Description', 'Test Description'),
-    closeable: boolean('Closeable', true),
-    timeOut: number('Timeout (ms)', 3000),
-  },
+    moduleMetadata: {
+        imports: [StoryModule],
+    },
+    component: StoryComponent,
+    props: {
+        type: select('Type', NotificationType, NotificationType.Info),
+        title: text('Text', 'Test Title'),
+        description: text('Description', 'Test Description'),
+        closeable: boolean('Closeable', true),
+        timeOut: number('Timeout (ms)', 3000),
+    },
 });

@@ -7,13 +7,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzLayoutModule,
-    CustomElementBoundaryModule,
-    ApplyContextsModule,
-  ],
-  declarations: [HeaderComponent],
-  exports: [HeaderComponent],
+    imports: [CommonModule, NzLayoutModule, CustomElementBoundaryModule, ApplyContextsModule],
+    declarations: [HeaderComponent],
+    exports: [HeaderComponent],
 })
 export class HeaderModule {}

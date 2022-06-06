@@ -7,15 +7,13 @@ import { provideDateAdapter } from './token';
 import { DateAdapter } from './types';
 
 @NgModule({
-  imports: [CommonModule],
+    imports: [CommonModule],
 })
 export class DateModule {
-  static withAdapter(
-    adapter: InjectableType<DateAdapter>,
-  ): ModuleWithProviders<DateModule> {
-    return {
-      ngModule: DateModule,
-      providers: [provideDateAdapter(adapter)],
-    };
-  }
+    static withAdapter(adapter: InjectableType<DateAdapter>): ModuleWithProviders<DateModule> {
+        return {
+            ngModule: DateModule,
+            providers: [provideDateAdapter(adapter)],
+        };
+    }
 }

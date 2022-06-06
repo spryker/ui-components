@@ -11,18 +11,18 @@ import { IStory } from '@storybook/angular';
 import { FormItemModule } from '../form-item.module';
 
 export default {
-  title: 'FormItemComponent',
+    title: 'FormItemComponent',
 };
 
 @NgModule({
-  imports: [BrowserAnimationsModule],
-  exports: [FormItemModule, InputModule],
+    imports: [BrowserAnimationsModule],
+    exports: [FormItemModule, InputModule],
 })
 class StoryModule {}
 
 export const primary = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    moduleMetadata: { imports: [StoryModule] },
+    template: `
     <spy-form-item for="input-id1">
       Label
       <spy-input spyId="form-id1" type="text" control></spy-input>
@@ -35,8 +35,8 @@ export const primary = () => ({
 });
 
 export const withError = (): IStory => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    moduleMetadata: { imports: [StoryModule] },
+    template: `
     <spy-form-item error="Error Message">
       Label
       <spy-input placeholder="Type here..." type="text" control></spy-input>
@@ -45,8 +45,8 @@ export const withError = (): IStory => ({
 });
 
 export const withErrorAndPrefix = (): IStory => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    moduleMetadata: { imports: [StoryModule] },
+    template: `
     <spy-form-item error="Error Message">
       Label
       <spy-input prefix="P" placeholder="Type here..." type="text" control></spy-input>
@@ -55,8 +55,8 @@ export const withErrorAndPrefix = (): IStory => ({
 });
 
 export const withErrorAndOuterPrefix = (): IStory => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    moduleMetadata: { imports: [StoryModule] },
+    template: `
     <spy-form-item error="Error Message">
       Label
       <spy-input outerPrefix="prefix" placeholder="Type here..." type="text" control></spy-input>
@@ -65,8 +65,8 @@ export const withErrorAndOuterPrefix = (): IStory => ({
 });
 
 export const withErrorAndSuffix = (): IStory => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    moduleMetadata: { imports: [StoryModule] },
+    template: `
     <spy-form-item error="Error Message">
       Label
       <spy-input suffix="S" placeholder="Type here..." type="text" control></spy-input>
@@ -75,8 +75,8 @@ export const withErrorAndSuffix = (): IStory => ({
 });
 
 export const withErrorAndOuterSuffix = (): IStory => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    moduleMetadata: { imports: [StoryModule] },
+    template: `
     <spy-form-item error="Error Message">
       Label
       <spy-input outerSuffix="suffix" placeholder="Type here..." type="text" control></spy-input>
@@ -85,8 +85,8 @@ export const withErrorAndOuterSuffix = (): IStory => ({
 });
 
 export const required = (): IStory => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    moduleMetadata: { imports: [StoryModule] },
+    template: `
     <spy-form-item required>
       Label
       <spy-input placeholder="Type here..." type="text" control></spy-input>
@@ -95,8 +95,8 @@ export const required = (): IStory => ({
 });
 
 export const noLabel = (): IStory => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    moduleMetadata: { imports: [StoryModule] },
+    template: `
     <spy-form-item [noLabel]="true">
       Hidden label!
       <spy-input placeholder="Type here..." type="text" control></spy-input>
@@ -105,8 +105,8 @@ export const noLabel = (): IStory => ({
 });
 
 export const noSpaces = (): IStory => ({
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    moduleMetadata: { imports: [StoryModule] },
+    template: `
     <spy-form-item noSpaces>
       Label
       <spy-input type="text" control></spy-input>
@@ -119,17 +119,10 @@ export const noSpaces = (): IStory => ({
 });
 
 export const formWithErrors = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      StoryModule,
-      TextareaModule,
-      AutocompleteModule,
-      SelectModule,
-      TreeSelectModule,
-      RadioModule,
-    ],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [StoryModule, TextareaModule, AutocompleteModule, SelectModule, TreeSelectModule, RadioModule],
+    },
+    template: `
     <spy-form-item error="Error Message">
       Input
       <spy-input type="text" control></spy-input>
@@ -160,34 +153,34 @@ export const formWithErrors = (): IStory => ({
       </spy-radio-group>
     </spy-form-item>
   `,
-  props: {
-    autocomplete: [
-      {
-        value: 'Option 1',
-        title: 'Option 1',
-        isDisabled: false,
-      },
-      {
-        value: 'Option 2',
-        title: 'Option 2',
-      },
-      {
-        value: 'Option 3',
-        title: 'Option 3',
-      },
-    ],
-    select: ['Option 1', 'Option 2', 'Option 3'],
-    treeSelect: [
-      {
-        title: 'Option 1',
-        value: 'Option 1',
-        children: [
-          { title: 'Option 4', value: 'Option 4' },
-          { title: 'Option 5', value: 'Option 5' },
+    props: {
+        autocomplete: [
+            {
+                value: 'Option 1',
+                title: 'Option 1',
+                isDisabled: false,
+            },
+            {
+                value: 'Option 2',
+                title: 'Option 2',
+            },
+            {
+                value: 'Option 3',
+                title: 'Option 3',
+            },
         ],
-      },
-      { title: 'Option 2', value: 'Option 2' },
-      { title: 'Option 3', value: 'Option 3' },
-    ],
-  },
+        select: ['Option 1', 'Option 2', 'Option 3'],
+        treeSelect: [
+            {
+                title: 'Option 1',
+                value: 'Option 1',
+                children: [
+                    { title: 'Option 4', value: 'Option 4' },
+                    { title: 'Option 5', value: 'Option 5' },
+                ],
+            },
+            { title: 'Option 2', value: 'Option 2' },
+            { title: 'Option 3', value: 'Option 3' },
+        ],
+    },
 });

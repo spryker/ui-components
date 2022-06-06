@@ -4,14 +4,8 @@ import { UnsavedChangesFormMonitorDirective } from './unsaved-changes-form-monit
 import { UnsavedChangesFormMonitorBubblingDirective } from './unsaved-changes-form-monitor-bubbling.directive';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [
-    UnsavedChangesFormMonitorDirective,
-    UnsavedChangesFormMonitorBubblingDirective,
-  ],
-  exports: [
-    UnsavedChangesFormMonitorDirective,
-    UnsavedChangesFormMonitorBubblingDirective,
-  ],
+    imports: [CommonModule],
+    declarations: [UnsavedChangesFormMonitorDirective, UnsavedChangesFormMonitorBubblingDirective],
+    exports: [UnsavedChangesFormMonitorDirective, UnsavedChangesFormMonitorBubblingDirective],
 })
 export class UnsavedChangesFormMonitorModule {}

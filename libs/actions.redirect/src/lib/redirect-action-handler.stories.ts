@@ -9,21 +9,21 @@ import { IStory } from '@storybook/angular';
 import { RedirectActionHandlerService } from './redirect-action-handler.service';
 
 export default {
-  title: 'RedirectActionHandlerService',
+    title: 'RedirectActionHandlerService',
 };
 
 export const primary = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      BrowserAnimationsModule,
-      ButtonActionModule,
-      ActionsModule.withActions({
-        redirect: RedirectActionHandlerService,
-      }),
-    ],
-    providers: [ContextService, Sanitizer],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [
+            BrowserAnimationsModule,
+            ButtonActionModule,
+            ActionsModule.withActions({
+                redirect: RedirectActionHandlerService,
+            }),
+        ],
+        providers: [ContextService, Sanitizer],
+    },
+    template: `
     <spy-button-action
       [action]="action"
       variant="primary"
@@ -32,10 +32,10 @@ export const primary = (): IStory => ({
       Redirect Via Service
     </spy-button-action>
   `,
-  props: {
-    action: object('action', {
-      type: 'redirect',
-      url: 'https://spryker.com',
-    }),
-  },
+    props: {
+        action: object('action', {
+            type: 'redirect',
+            url: 'https://spryker.com',
+        }),
+    },
 });

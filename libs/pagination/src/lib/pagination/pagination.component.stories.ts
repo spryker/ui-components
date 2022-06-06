@@ -4,15 +4,15 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
-  title: 'PaginationComponent',
+    title: 'PaginationComponent',
 };
 
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [PaginationModule, NzPaginationModule, BrowserAnimationsModule],
-  },
-  component: PaginationComponent,
-  props: {
-    total: 300,
-  },
+    moduleMetadata: {
+        imports: [PaginationModule, NzPaginationModule, BrowserAnimationsModule],
+    },
+    component: PaginationComponent,
+    props: {
+        total: 300,
+    },
 });

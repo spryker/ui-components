@@ -1,29 +1,29 @@
 {
-  "name": "@spryker/table",
-  "version": "0.7.3",
-  "peerDependencies": {
-    "@angular/cdk": ">=9.2.3",
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/actions": "^0.2.0",
-    "@spryker/datasource": "^0.2.0",
-    "@spryker/icon": "^0.4.0",
-    "@spryker/locale": "^0.3.0",
-    "@spryker/popover": "^0.3.0",
-    "@spryker/spinner": "^0.3.0",
-    "@spryker/styles": "^0.7.0",
-    "@spryker/utils": "^0.3.0",
-    "@spryker/web-components": "^0.3.2",
-    "rxjs": "^7.4.0"
-  },
-  "dependencies": {
-    "@orchestrator/core": "ng-12",
-    "@orchestrator/layout": "ng-12",
-    "ng-dynamic-component": "^9.0.0",
-    "ng-zorro-antd": "^12.0.1",
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/table",
+    "version": "0.7.3",
+    "peerDependencies": {
+        "@angular/cdk": ">=9.2.3",
+        "@angular/common": ">=9.1.12",
+        "@angular/core": ">=9.1.12",
+        "@spryker/actions": "^0.2.0",
+        "@spryker/datasource": "^0.2.0",
+        "@spryker/icon": "^0.4.0",
+        "@spryker/locale": "^0.3.0",
+        "@spryker/popover": "^0.3.0",
+        "@spryker/spinner": "^0.3.0",
+        "@spryker/styles": "^0.7.0",
+        "@spryker/utils": "^0.3.0",
+        "@spryker/web-components": "^0.3.2",
+        "rxjs": "^7.4.0"
+    },
+    "dependencies": {
+        "@orchestrator/core": "ng-12",
+        "@orchestrator/layout": "ng-12",
+        "ng-dynamic-component": "^9.0.0",
+        "ng-zorro-antd": "^12.0.1",
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

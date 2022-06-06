@@ -1,15 +1,15 @@
 {
-  "name": "@spryker/interception",
-  "version": "0.2.4",
-  "peerDependencies": {
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "rxjs": "^7.4.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/interception",
+    "version": "0.2.4",
+    "peerDependencies": {
+        "@angular/common": ">=9.1.12",
+        "@angular/core": ">=9.1.12",
+        "rxjs": "^7.4.0"
+    },
+    "dependencies": {
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

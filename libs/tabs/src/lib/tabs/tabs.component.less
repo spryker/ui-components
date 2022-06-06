@@ -1,281 +1,281 @@
 @import './tabs.component.theme.less';
 
 .@{tab-prefix-cls} {
-  font-family: @font-family;
+    font-family: @font-family;
 
-  &-projected-content {
-    display: none;
-  }
-
-  &-custom-tab {
-    .transition-mixin(all);
-    position: relative;
-    padding: @tabs-padding;
-    font-weight: @font-weight-medium;
-    display: flex;
-    align-items: center;
-
-    &::after {
-      .transition-mixin(background);
-      content: '';
-      position: absolute;
-      bottom: calc(@tabs-border-width * -1);
-      left: 0;
-      width: 100%;
-      height: @tabs-border-width;
-      background: @transparent;
+    &-projected-content {
+        display: none;
     }
 
-    &:hover {
-      color: @tabs-hover-color;
-
-      &::after {
-        background: @tabs-hover-color;
-      }
-    }
-
-    &:active {
-      color: @tabs-active-color;
-    }
-
-    &-icon {
-      padding-right: @tabs-icon-padding-right;
-      font-size: @spy-font-size-lg;
-      height: @spy-font-size-lg;
-    }
-
-    &-warning {
-      color: @red;
-
-      &:hover {
-        color: @red;
+    &-custom-tab {
+        .transition-mixin(all);
+        position: relative;
+        padding: @tabs-padding;
+        font-weight: @font-weight-medium;
+        display: flex;
+        align-items: center;
 
         &::after {
-          background: @red;
+            .transition-mixin(background);
+            content: '';
+            position: absolute;
+            bottom: calc(@tabs-border-width * -1);
+            left: 0;
+            width: 100%;
+            height: @tabs-border-width;
+            background: @transparent;
         }
-      }
-    }
-  }
 
-  & > &-nav {
-    width: 100%;
-
-    &::before {
-      display: none;
-    }
-
-    .@{tab-prefix-cls}-nav-list {
-      border-bottom: @tabs-nav-border-bottom;
-    }
-
-    .@{tab-prefix-cls}-ink-bar {
-      bottom: calc(@tabs-border-width * -1);
-    }
-
-    .@{tab-prefix-cls}-tab {
-      padding: 0;
-      vertical-align: bottom;
-
-      .anticon {
-        margin-right: 0;
-        line-height: 1;
-      }
-
-      &-btn {
-        transition: none;
-      }
-
-      &-active {
         &:hover {
-          color: @tabs-highlight-color;
-          border-bottom-color: @tabs-highlight-color;
+            color: @tabs-hover-color;
+
+            &::after {
+                background: @tabs-hover-color;
+            }
         }
 
-        .@{tab-prefix-cls}-custom-tab {
-          &:hover {
-            color: @tabs-highlight-color;
-            border-bottom-color: @tabs-highlight-color;
-          }
+        &:active {
+            color: @tabs-active-color;
+        }
 
-          &-warning {
-            &::after {
-              background: @red;
-              z-index: @tabs-custom-tab-z-index;
-            }
+        &-icon {
+            padding-right: @tabs-icon-padding-right;
+            font-size: @spy-font-size-lg;
+            height: @spy-font-size-lg;
+        }
+
+        &-warning {
+            color: @red;
 
             &:hover {
-              color: @red;
-              border-bottom-color: @red;
+                color: @red;
+
+                &::after {
+                    background: @red;
+                }
             }
-          }
         }
-      }
     }
 
-    .@{tab-prefix-cls}-nav-more {
-      .transition-mixin(background);
-      background: @spy-white;
-      padding: @tabs-nav-more-padding;
-      display: flex;
-      align-items: center;
-
-      &:hover {
-        background: @gray-lighter;
-      }
-
-      .anticon {
-        font-size: @tabs-nav-more-icon-size;
-        height: @tabs-nav-more-icon-size;
-        display: block;
-        color: @gray-dark;
-      }
-    }
-  }
-
-  &.@{tab-prefix-cls}-card {
-    .@{tab-prefix-cls}-nav {
-      background-color: @gray-lighter;
-      border-bottom: 0;
-
-      .@{tab-prefix-cls}-nav-list {
-        border-bottom: unset;
-      }
-
-      .@{tab-prefix-cls}-tab {
-        font-size: @spy-font-size-sm;
-        font-weight: @font-weight-default;
-        letter-spacing: @letter-spacing-base;
-        color: @ink;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-        position: relative;
-
-        & + .@{tab-prefix-cls}-tab {
-          margin-left: 0;
-        }
+    & > &-nav {
+        width: 100%;
 
         &::before {
-          display: none;
+            display: none;
         }
 
-        &:hover {
-          background-color: @spy-white;
+        .@{tab-prefix-cls}-nav-list {
+            border-bottom: @tabs-nav-border-bottom;
+        }
 
-          .@{tab-prefix-cls}-custom-tab {
-            color: @ink;
+        .@{tab-prefix-cls}-ink-bar {
+            bottom: calc(@tabs-border-width * -1);
+        }
 
-            &::before {
-              background-color: @gray-darker;
+        .@{tab-prefix-cls}-tab {
+            padding: 0;
+            vertical-align: bottom;
+
+            .anticon {
+                margin-right: 0;
+                line-height: 1;
             }
 
-            &-warning {
-              color: @red;
+            &-btn {
+                transition: none;
             }
-          }
+
+            &-active {
+                &:hover {
+                    color: @tabs-highlight-color;
+                    border-bottom-color: @tabs-highlight-color;
+                }
+
+                .@{tab-prefix-cls}-custom-tab {
+                    &:hover {
+                        color: @tabs-highlight-color;
+                        border-bottom-color: @tabs-highlight-color;
+                    }
+
+                    &-warning {
+                        &::after {
+                            background: @red;
+                            z-index: @tabs-custom-tab-z-index;
+                        }
+
+                        &:hover {
+                            color: @red;
+                            border-bottom-color: @red;
+                        }
+                    }
+                }
+            }
         }
-      }
 
-      .@{tab-prefix-cls}-tab-disabled {
-        color: @gray-darker;
+        .@{tab-prefix-cls}-nav-more {
+            .transition-mixin(background);
+            background: @spy-white;
+            padding: @tabs-nav-more-padding;
+            display: flex;
+            align-items: center;
 
-        &:hover {
-          color: @gray-darker;
+            &:hover {
+                background: @gray-lighter;
+            }
+
+            .anticon {
+                font-size: @tabs-nav-more-icon-size;
+                height: @tabs-nav-more-icon-size;
+                display: block;
+                color: @gray-dark;
+            }
         }
-      }
+    }
 
-      .@{tab-prefix-cls}-tab-active {
-        color: @green-dark;
+    &.@{tab-prefix-cls}-card {
+        .@{tab-prefix-cls}-nav {
+            background-color: @gray-lighter;
+            border-bottom: 0;
+
+            .@{tab-prefix-cls}-nav-list {
+                border-bottom: unset;
+            }
+
+            .@{tab-prefix-cls}-tab {
+                font-size: @spy-font-size-sm;
+                font-weight: @font-weight-default;
+                letter-spacing: @letter-spacing-base;
+                color: @ink;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                border-radius: 0;
+                position: relative;
+
+                & + .@{tab-prefix-cls}-tab {
+                    margin-left: 0;
+                }
+
+                &::before {
+                    display: none;
+                }
+
+                &:hover {
+                    background-color: @spy-white;
+
+                    .@{tab-prefix-cls}-custom-tab {
+                        color: @ink;
+
+                        &::before {
+                            background-color: @gray-darker;
+                        }
+
+                        &-warning {
+                            color: @red;
+                        }
+                    }
+                }
+            }
+
+            .@{tab-prefix-cls}-tab-disabled {
+                color: @gray-darker;
+
+                &:hover {
+                    color: @gray-darker;
+                }
+            }
+
+            .@{tab-prefix-cls}-tab-active {
+                color: @green-dark;
+
+                .@{tab-prefix-cls}-custom-tab {
+                    &::before {
+                        background-color: @green;
+                    }
+
+                    &-warning::before {
+                        background-color: @red;
+                    }
+                }
+
+                &:hover {
+                    color: @green-dark;
+
+                    .@{tab-prefix-cls}-custom-tab {
+                        color: @green-dark;
+
+                        &::before {
+                            background-color: @green;
+                        }
+
+                        &-warning {
+                            color: @red;
+
+                            &::before {
+                                background-color: @red;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         .@{tab-prefix-cls}-custom-tab {
-          &::before {
-            background-color: @green;
-          }
-
-          &-warning::before {
-            background-color: @red;
-          }
-        }
-
-        &:hover {
-          color: @green-dark;
-
-          .@{tab-prefix-cls}-custom-tab {
-            color: @green-dark;
+            padding: @tabs-card-tab-padding;
+            font-weight: @font-weight-default;
 
             &::before {
-              background-color: @green;
+                .transition-mixin(background-color);
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: @tabs-border-width;
             }
 
-            &-warning {
-              color: @red;
-
-              &::before {
-                background-color: @red;
-              }
+            &::after {
+                display: none;
             }
-          }
+
+            &-icon {
+                font-size: @tabs-card-tab-icon-size;
+                height: @tabs-card-tab-icon-size;
+            }
         }
-      }
     }
-
-    .@{tab-prefix-cls}-custom-tab {
-      padding: @tabs-card-tab-padding;
-      font-weight: @font-weight-default;
-
-      &::before {
-        .transition-mixin(background-color);
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: @tabs-border-width;
-      }
-
-      &::after {
-        display: none;
-      }
-
-      &-icon {
-        font-size: @tabs-card-tab-icon-size;
-        height: @tabs-card-tab-icon-size;
-      }
-    }
-  }
 }
 
 .nz-tabs-dropdown {
-  min-width: @tabs-nav-dropdown-min-width !important;
-  font-family: @font-family;
-  box-shadow: @tabs-nav-dropdown-box-shadow;
-  margin-top: @tabs-nav-dropdown-margin-top;
-  border-radius: @tabs-nav-dropdown-border-radius;
-  border: @tabs-nav-dropdown-border;
+    min-width: @tabs-nav-dropdown-min-width !important;
+    font-family: @font-family;
+    box-shadow: @tabs-nav-dropdown-box-shadow;
+    margin-top: @tabs-nav-dropdown-margin-top;
+    border-radius: @tabs-nav-dropdown-border-radius;
+    border: @tabs-nav-dropdown-border;
 
-  .@{tab-prefix-cls}-custom-tab {
-    padding: @tabs-nav-dropdown-custom-tab-padding;
-    font-weight: @font-weight-default;
-    color: @ink;
+    .@{tab-prefix-cls}-custom-tab {
+        padding: @tabs-nav-dropdown-custom-tab-padding;
+        font-weight: @font-weight-default;
+        color: @ink;
 
-    &:hover::after {
-      display: none;
+        &:hover::after {
+            display: none;
+        }
+
+        &-icon {
+            display: none;
+        }
     }
 
-    &-icon {
-      display: none;
-    }
-  }
+    .@{tab-prefix-cls}-dropdown-menu-item {
+        padding: @tabs-nav-dropdown-menu-item-padding;
+        line-height: @tabs-nav-dropdown-menu-item-line-height;
 
-  .@{tab-prefix-cls}-dropdown-menu-item {
-    padding: @tabs-nav-dropdown-menu-item-padding;
-    line-height: @tabs-nav-dropdown-menu-item-line-height;
-
-    &-disabled {
-      .@{tab-prefix-cls}-custom-tab {
-        color: @gray-darker;
-      }
+        &-disabled {
+            .@{tab-prefix-cls}-custom-tab {
+                color: @gray-darker;
+            }
+        }
     }
-  }
 }

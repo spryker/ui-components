@@ -1,11 +1,11 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-  ViewEncapsulation,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    ViewChild,
+    ViewEncapsulation,
 } from '@angular/core';
 import { ToBoolean, ToJson } from '@spryker/utils';
 
@@ -13,135 +13,121 @@ import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { DateRangeValueInput } from './types';
 
 @Component({
-  selector: 'spy-date-range-picker',
-  templateUrl: './date-range-picker.component.html',
-  styleUrls: ['./date-range-picker.component.less'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'spy-date-range-picker',
+    templateUrl: './date-range-picker.component.html',
+    styleUrls: ['./date-range-picker.component.less'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateRangePickerComponent {
-  private static HoursRange = [...Array(24).keys()];
-  private static MinutesRange = [...Array(60).keys()];
+    private static HoursRange = [...Array(24).keys()];
+    private static MinutesRange = [...Array(60).keys()];
 
-  @Input() @ToJson() dates: DateRangeValueInput = {};
-  @Input() @ToBoolean() clearButton = true;
-  @Input() @ToBoolean() disabled = false;
-  @Input() @ToBoolean() time?: boolean;
-  @Input() format?: string;
-  @Input() placeholderFrom?: string;
-  @Input() placeholderTo?: string;
-  @Input() nameFrom?: string;
-  @Input() nameTo?: string;
-  @Output() datesChange = new EventEmitter<DateRangeValueInput>();
+    @Input() @ToJson() dates: DateRangeValueInput = {};
+    @Input() @ToBoolean() clearButton = true;
+    @Input() @ToBoolean() disabled = false;
+    @Input() @ToBoolean() time?: boolean;
+    @Input() format?: string;
+    @Input() placeholderFrom?: string;
+    @Input() placeholderTo?: string;
+    @Input() nameFrom?: string;
+    @Input() nameTo?: string;
+    @Output() datesChange = new EventEmitter<DateRangeValueInput>();
 
-  @ViewChild('startPicker', { static: true }) startPicker?: DatePickerComponent;
-  @ViewChild('endPicker', { static: true }) endPicker?: DatePickerComponent;
+    @ViewChild('startPicker', { static: true }) startPicker?: DatePickerComponent;
+    @ViewChild('endPicker', { static: true }) endPicker?: DatePickerComponent;
 
-  timeTo = this.enabledTimeTo.bind(this);
-  timeFrom = this.enabledTimeFrom.bind(this);
+    timeTo = this.enabledTimeTo.bind(this);
+    timeFrom = this.enabledTimeFrom.bind(this);
 
-  enabledTimeFrom(current: Date) {
-    const { hours, minutes } = this.getHoursAndMinutes(current, this.dates.to);
+    enabledTimeFrom(current: Date) {
+        const { hours, minutes } = this.getHoursAndMinutes(current, this.dates.to);
 
-    return {
-      hours: () =>
-        hours
-          ? DateRangePickerComponent.HoursRange.slice(0, hours)
-          : DateRangePickerComponent.HoursRange,
-      minutes: () =>
-        minutes
-          ? DateRangePickerComponent.MinutesRange.slice(0, minutes)
-          : DateRangePickerComponent.MinutesRange,
-    };
-  }
-
-  enabledTimeTo(current: Date) {
-    const { hours, minutes } = this.getHoursAndMinutes(
-      current,
-      this.dates.from,
-    );
-
-    return {
-      hours: () =>
-        hours
-          ? DateRangePickerComponent.HoursRange.slice(hours)
-          : DateRangePickerComponent.HoursRange,
-      minutes: () =>
-        minutes
-          ? DateRangePickerComponent.MinutesRange.slice(minutes)
-          : DateRangePickerComponent.MinutesRange,
-    };
-  }
-
-  getHoursAndMinutes(current: Date, date?: Date | string) {
-    const config = {
-      minutes: 0,
-      hours: 0,
-    };
-
-    if (!date || !current) {
-      return config;
+        return {
+            hours: () =>
+                hours ? DateRangePickerComponent.HoursRange.slice(0, hours) : DateRangePickerComponent.HoursRange,
+            minutes: () =>
+                minutes
+                    ? DateRangePickerComponent.MinutesRange.slice(0, minutes)
+                    : DateRangePickerComponent.MinutesRange,
+        };
     }
 
-    if (this.getDateTime(date) === this.getDateTime(current)) {
-      date = new Date(date);
+    enabledTimeTo(current: Date) {
+        const { hours, minutes } = this.getHoursAndMinutes(current, this.dates.from);
 
-      config.hours = date.getHours();
-      config.minutes = date.getMinutes();
-
-      return config;
+        return {
+            hours: () =>
+                hours ? DateRangePickerComponent.HoursRange.slice(hours) : DateRangePickerComponent.HoursRange,
+            minutes: () =>
+                minutes ? DateRangePickerComponent.MinutesRange.slice(minutes) : DateRangePickerComponent.MinutesRange,
+        };
     }
 
-    return config;
-  }
+    getHoursAndMinutes(current: Date, date?: Date | string) {
+        const config = {
+            minutes: 0,
+            hours: 0,
+        };
 
-  datesChangeHandler(dates: DateRangeValueInput): void {
-    dates.from = this.normalizeDate(dates.from, 0, 0, 0);
-    dates.to = this.normalizeDate(dates.to, 23, 59, 59);
+        if (!date || !current) {
+            return config;
+        }
 
-    this.datesChange.emit(dates);
-  }
+        if (this.getDateTime(date) === this.getDateTime(current)) {
+            date = new Date(date);
 
-  dateFromChange(dates: DateRangeValueInput) {
-    this.datesChangeHandler(dates);
-    this.timeTo = this.enabledTimeTo.bind(this);
-  }
+            config.hours = date.getHours();
+            config.minutes = date.getMinutes();
 
-  dateToChange(dates: DateRangeValueInput) {
-    this.datesChangeHandler(dates);
-    this.timeFrom = this.enabledTimeFrom.bind(this);
-  }
+            return config;
+        }
 
-  getDateTime(date?: Date | string): number | undefined {
-    if (!date) {
-      return undefined;
+        return config;
     }
 
-    const copyDate = new Date(date);
+    datesChangeHandler(dates: DateRangeValueInput): void {
+        dates.from = this.normalizeDate(dates.from, 0, 0, 0);
+        dates.to = this.normalizeDate(dates.to, 23, 59, 59);
 
-    copyDate.setHours(0, 0, 0, 0);
-
-    return copyDate.getTime();
-  }
-
-  private normalizeDate(
-    date: Date | string | undefined,
-    hour: number,
-    min: number,
-    sec: number,
-  ): Date | undefined {
-    if (!date) {
-      return;
+        this.datesChange.emit(dates);
     }
 
-    if (typeof date === 'string') {
-      date = new Date(date);
+    dateFromChange(dates: DateRangeValueInput) {
+        this.datesChangeHandler(dates);
+        this.timeTo = this.enabledTimeTo.bind(this);
     }
 
-    if (!this.time) {
-      date.setHours(hour, min, sec, 0);
+    dateToChange(dates: DateRangeValueInput) {
+        this.datesChangeHandler(dates);
+        this.timeFrom = this.enabledTimeFrom.bind(this);
     }
 
-    return date;
-  }
+    getDateTime(date?: Date | string): number | undefined {
+        if (!date) {
+            return undefined;
+        }
+
+        const copyDate = new Date(date);
+
+        copyDate.setHours(0, 0, 0, 0);
+
+        return copyDate.getTime();
+    }
+
+    private normalizeDate(date: Date | string | undefined, hour: number, min: number, sec: number): Date | undefined {
+        if (!date) {
+            return;
+        }
+
+        if (typeof date === 'string') {
+            date = new Date(date);
+        }
+
+        if (!this.time) {
+            date.setHours(hour, min, sec, 0);
+        }
+
+        return date;
+    }
 }

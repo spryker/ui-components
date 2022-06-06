@@ -15,8 +15,8 @@ const dest = `./dist`;
 console.log(`Copying lib ${libName} from ${source} into ${dest}...`);
 
 copyfiles([source, dest], { up: sourceDepth }, (err) => {
-  if (err) {
-    console.error(`Failed to copy lib ${libName}: ${err}`);
-    process.exit(1);
-  }
+    if (err) {
+        console.error(`Failed to copy lib ${libName}: ${err}`);
+        process.exit(1);
+    }
 });

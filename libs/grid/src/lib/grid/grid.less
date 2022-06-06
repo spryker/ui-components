@@ -22,44 +22,44 @@
   @grid-columns-prop: @grid-columns,
   @grid-breakpoints-map: .grid-breakpoints-config-default(),
 ) {
-  .@{grid-row-prefix-cls} {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: stretch;
-    justify-content: flex-start;
+    .@{grid-row-prefix-cls} {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: stretch;
+        justify-content: flex-start;
 
-    .grid-gutter-mixin(@grid-breakpoints-prop, margin, @grid-gutter-prop, @grid-breakpoints-map[@gutter], true);
-    .grid-nested-mixin(@grid-breakpoints-prop, flex-direction, @grid-directions, @grid-breakpoints-map, direction);
-    .grid-variant-mixin(@grid-breakpoints-prop, flex-wrap, @grid-wrap, @grid-breakpoints-map, wrap);
-    .grid-variant-mixin(@grid-breakpoints-prop, align-content, @grid-align-content, @grid-breakpoints-map);
+        .grid-gutter-mixin(@grid-breakpoints-prop, margin, @grid-gutter-prop, @grid-breakpoints-map[@gutter], true);
+        .grid-nested-mixin(@grid-breakpoints-prop, flex-direction, @grid-directions, @grid-breakpoints-map, direction);
+        .grid-variant-mixin(@grid-breakpoints-prop, flex-wrap, @grid-wrap, @grid-breakpoints-map, wrap);
+        .grid-variant-mixin(@grid-breakpoints-prop, align-content, @grid-align-content, @grid-breakpoints-map);
 
-    &:not([class*='-direction']) {
-      .grid-align-mixin(@grid-breakpoints-prop, row, @grid-breakpoints-map);
+        &:not([class*='-direction']) {
+            .grid-align-mixin(@grid-breakpoints-prop, row, @grid-breakpoints-map);
+        }
+
+        &-full-height {
+            height: 100%;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
     }
 
-    &-full-height {
-      height: 100%;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
+    .@{grid-col-prefix-cls} {
+        flex-grow: 1;
+        flex-basis: 0;
+        max-width: 100%;
 
-  .@{grid-col-prefix-cls} {
-    flex-grow: 1;
-    flex-basis: 0;
-    max-width: 100%;
+        &-basis-auto {
+            flex-basis: auto;
+        }
 
-    &-basis-auto {
-      flex-basis: auto;
-    }
+        &-respect-max-size {
+            min-width: 0;
+        }
 
-    &-respect-max-size {
-      min-width: 0;
-    }
+        .grid-gutter-mixin(@grid-breakpoints-prop, padding, @grid-gutter-prop, @grid-breakpoints-map[@gutter]);
 
-    .grid-gutter-mixin(@grid-breakpoints-prop, padding, @grid-gutter-prop, @grid-breakpoints-map[@gutter]);
-
-    .loop-mixin(@grid-columns-prop, {
+        .loop-mixin(@grid-columns-prop, {
       .grid-span-mixin(@i);
 
       &-@{i} {
@@ -77,7 +77,7 @@
       }
     });
 
-    each(@grid-breakpoints-prop, .(@edges, @breakpoint-key) {
+        each(@grid-breakpoints-prop, .(@edges, @breakpoint-key) {
       .breakpoint-edge-min-mixin(@edges);
 
       .breakpoint-media-between-mixin(@breakpoint-edges[min], @breakpoint-edges[max], {
@@ -104,5 +104,5 @@
         }
       })
     });
-  }
+    }
 }

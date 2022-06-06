@@ -8,11 +8,11 @@ import { WebComponentDefs } from './types';
  */
 @NgModule({})
 export abstract class CustomElementModule implements DoBootstrap {
-  protected abstract components: WebComponentDefs;
+    protected abstract components: WebComponentDefs;
 
-  constructor(private injector: Injector) {}
+    constructor(private injector: Injector) {}
 
-  ngDoBootstrap() {
-    registerComponents(this.components, this.injector);
-  }
+    ngDoBootstrap() {
+        registerComponents(this.components, this.injector);
+    }
 }

@@ -6,19 +6,19 @@ import { ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonLinkComponent } from './button-link.component';
 
 export default {
-  title: 'ButtonLinkComponent',
+    title: 'ButtonLinkComponent',
 };
 
 export const primary = (): IStory => ({
-  moduleMetadata: {
-    imports: [ApplyAttrsModule],
-    declarations: [ButtonLinkComponent],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [ApplyAttrsModule],
+        declarations: [ButtonLinkComponent],
+    },
+    template: `
     <spy-button-link [variant]="variant" [size]="size">Button</spy-button-link>
   `,
-  props: {
-    variant: select('Variant', ButtonVariant, ButtonVariant.Primary),
-    size: select('Size', ButtonSize, ButtonSize.Large),
-  },
+    props: {
+        variant: select('Variant', ButtonVariant, ButtonVariant.Primary),
+        size: select('Size', ButtonSize, ButtonSize.Large),
+    },
 });

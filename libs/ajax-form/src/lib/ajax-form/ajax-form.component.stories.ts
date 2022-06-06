@@ -4,7 +4,7 @@ import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule } from '@spryker/notification';
 
 export default {
-  title: 'AjaxFormComponent',
+    title: 'AjaxFormComponent',
 };
 
 const mockHtmlTemplate = () => `
@@ -28,26 +28,21 @@ const mockHtmlTemplate = () => `
 `;
 
 function generateMockHtmlPage(): any {
-  return { form: mockHtmlTemplate() };
+    return { form: mockHtmlTemplate() };
 }
 
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [
-      AjaxFormModule,
-      MockHttpModule,
-      HttpClientTestingModule,
-      NotificationModule.forRoot(),
-    ],
-  },
-  template: `<spy-ajax-form [action]="action" [mockHttp]="mockHttp"></spy-ajax-form>`,
-  props: {
-    action: '/html-request',
-    mockHttp: setMockHttp([
-      {
-        url: '/html-request',
-        dataFn: () => generateMockHtmlPage(),
-      },
-    ]),
-  },
+    moduleMetadata: {
+        imports: [AjaxFormModule, MockHttpModule, HttpClientTestingModule, NotificationModule.forRoot()],
+    },
+    template: `<spy-ajax-form [action]="action" [mockHttp]="mockHttp"></spy-ajax-form>`,
+    props: {
+        action: '/html-request',
+        mockHttp: setMockHttp([
+            {
+                url: '/html-request',
+                dataFn: () => generateMockHtmlPage(),
+            },
+        ]),
+    },
 });

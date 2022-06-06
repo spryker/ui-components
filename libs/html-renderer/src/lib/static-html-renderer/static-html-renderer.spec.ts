@@ -6,56 +6,52 @@ import { StaticHtmlRendererModule } from './static-html-renderer.module';
 const mockHtmlTemplate = `<p>Hello World!!!</p>`;
 
 @Component({
-  selector: 'spy-test',
-  template: ` <spy-html-renderer [html]="html"></spy-html-renderer> `,
+    selector: 'spy-test',
+    template: ` <spy-html-renderer [html]="html"></spy-html-renderer> `,
 })
 class TestComponent {
-  html: any;
+    html: any;
 }
 
 describe('StaticHtmlRendererDirective', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+    let component: TestComponent;
+    let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [StaticHtmlRendererModule],
-      declarations: [TestComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      teardown: { destroyAfterEach: false },
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [StaticHtmlRendererModule],
+            declarations: [TestComponent],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: false },
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        component = fixture.componentInstance;
+    });
 
-  it('should render @Input(html) inside of `spy-html-renderer`', () => {
-    const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer .spy-html-renderer__content'),
-    );
+    it('should render @Input(html) inside of `spy-html-renderer`', () => {
+        const htmlRendererElem = fixture.debugElement.query(By.css('spy-html-renderer .spy-html-renderer__content'));
 
-    component.html = mockHtmlTemplate;
-    fixture.detectChanges();
+        component.html = mockHtmlTemplate;
+        fixture.detectChanges();
 
-    expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
-  });
+        expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
+    });
 
-  it('should render html inside `spy-html-renderer` when @Input(html) was changes', async () => {
-    const mockRerenderHtml = `<p>Rerendered!!!</p>`;
-    const htmlRendererElem = fixture.debugElement.query(
-      By.css('spy-html-renderer .spy-html-renderer__content'),
-    );
+    it('should render html inside `spy-html-renderer` when @Input(html) was changes', async () => {
+        const mockRerenderHtml = `<p>Rerendered!!!</p>`;
+        const htmlRendererElem = fixture.debugElement.query(By.css('spy-html-renderer .spy-html-renderer__content'));
 
-    component.html = mockHtmlTemplate;
-    fixture.detectChanges();
+        component.html = mockHtmlTemplate;
+        fixture.detectChanges();
 
-    expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
+        expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
 
-    component.html = mockRerenderHtml;
-    fixture.detectChanges();
+        component.html = mockRerenderHtml;
+        fixture.detectChanges();
 
-    expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml);
-  });
+        expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml);
+    });
 });

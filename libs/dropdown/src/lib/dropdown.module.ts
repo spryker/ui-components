@@ -5,8 +5,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { IconModule } from '@spryker/icon';
 
 @NgModule({
-  imports: [CommonModule, NzDropDownModule, IconModule],
-  exports: [DropdownComponent],
-  declarations: [DropdownComponent],
+    imports: [CommonModule, NzDropDownModule, IconModule],
+    exports: [DropdownComponent],
+    declarations: [DropdownComponent],
 })
 export class DropdownModule {}

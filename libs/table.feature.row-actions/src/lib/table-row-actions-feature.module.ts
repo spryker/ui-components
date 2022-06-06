@@ -9,16 +9,10 @@ import { FilterAvailableActionsPipe } from './table-row-actions.pipe';
 import { TableRowActionsFeatureComponent } from './table-row-actions-feature.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    DropdownModule,
-    IconActionModule,
-    IconModule,
-    TableFeatureModule,
-  ],
-  exports: [TableRowActionsFeatureComponent],
-  declarations: [TableRowActionsFeatureComponent, FilterAvailableActionsPipe],
+    imports: [CommonModule, DropdownModule, IconActionModule, IconModule, TableFeatureModule],
+    exports: [TableRowActionsFeatureComponent],
+    declarations: [TableRowActionsFeatureComponent, FilterAvailableActionsPipe],
 })
 export class TableRowActionsFeatureModule implements ModuleWithFeature {
-  featureComponent = TableRowActionsFeatureComponent;
+    featureComponent = TableRowActionsFeatureComponent;
 }

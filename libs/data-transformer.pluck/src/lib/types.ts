@@ -4,5 +4,5 @@ export type PluckDataTransformerData = object;
 export type PluckDataTransformerDataT = unknown;
 
 export interface PluckDataTransformerConfig extends DataTransformerConfig {
-  path: string;
+    path: string;
 }

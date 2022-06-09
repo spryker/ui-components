@@ -2,6 +2,7 @@ import {
   AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   HostBinding,
   Inject,
@@ -78,6 +79,8 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
   @ViewChild('datePicker', { static: false })
   datePicker?: NzDatePickerComponent;
+  @ViewChild('inputElement', { static: true })
+  inputElement!: ElementRef<HTMLInputElement>;
 
   private _picker?: NzDatePickerComponent;
 
@@ -369,6 +372,13 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     } else {
       this.closePicker();
     }
+  }
+
+  dateChangeEvent(event: Date): void {
+    this.dateChange.emit(event);
+    this.inputElement.nativeElement.dispatchEvent(
+      new Event('input', { bubbles: true }),
+    );
   }
 
   openChangeEvent(isOpen: boolean): void {

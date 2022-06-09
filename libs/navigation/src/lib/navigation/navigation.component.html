@@ -16,7 +16,7 @@
       [nzOpen]="item.isActive"
       [nzTitle]="parentTitleTpl"
       [nzPaddingLeft]="'unset'"
-      [nzDisabled]="item.disabled"
+      [nzDisabled]="item.isDisabled"
     >
       <ul>
         <ng-container
@@ -41,7 +41,7 @@
               [nzOpen]="item.isActive"
               [nzTitle]="childTitleTpl"
               [nzPaddingLeft]="'unset'"
-              [nzDisabled]="item.disabled"
+              [nzDisabled]="item.isDisabled"
             >
               <ul>
                 <ng-container
@@ -62,6 +62,7 @@
         *ngIf="!item.subItems?.length"
         nz-menu-item
         [nzSelected]="item.isActive"
+        [nzDisabled]="item.isDisabled"
       >
         <a [href]="item.url" (click)="clickHandler($event, item.url)">
           <ng-container

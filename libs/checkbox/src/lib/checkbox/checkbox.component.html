@@ -4,6 +4,7 @@
   [nzDisabled]="disabled"
   [nzIndeterminate]="indeterminate"
   (ngModelChange)="checkedChange.emit($event)"
+  (click)="onLabelClick($event.target)"
 >
   <ng-content></ng-content>
 </label>

@@ -77,6 +77,7 @@ export const primary = () => ({
         title: 'Item1',
         url: 'dashboard',
         icon: 'dashboard',
+        isDisabled: true,
       },
       {
         title: 'Item2',
@@ -98,6 +99,7 @@ export const primary = () => ({
             url: '',
             icon: '',
             isActive: false,
+            isDisabled: true,
             subItems: [],
           },
           {
@@ -143,6 +145,7 @@ export const withSidebar = () => ({
       {
         title: 'Item1',
         icon: 'dashboard',
+        isDisabled: true,
       },
       {
         title: 'Item2',
@@ -177,6 +180,7 @@ export const withSidebar = () => ({
             url: '',
             icon: '',
             isActive: false,
+            isDisabled: true,
             subItems: [],
           },
           {

@@ -55,10 +55,6 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
     this.destroyed$.next();
   }
 
-  onLabelClick(target: EventTarget): void {
-    target.dispatchEvent(new Event('input', { bubbles: true }));
-  }
-
   valueChanged(prev: string) {
     if (this.value === prev) {
       this.value = undefined;

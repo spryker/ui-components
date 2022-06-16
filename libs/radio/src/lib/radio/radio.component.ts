@@ -67,10 +67,6 @@ export class RadioComponent
     this.updateInputValue();
   }
 
-  onLabelClick(target: EventTarget): void {
-    target.dispatchEvent(new Event('input', { bubbles: true }));
-  }
-
   select() {
     if (this.radioGroupComponent) {
       this.radioGroupComponent.select(this);

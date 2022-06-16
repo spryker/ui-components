@@ -19,7 +19,7 @@ export class TriggerChangeEventDirective {
       ? triggerChangeEvent(
           this.el.nativeElement.querySelector(`${this.spyTriggerChangeEvent}`),
         )
-      : triggerChangeEvent(this.spyTriggerChangeEvent.nativeElement);
+      : triggerChangeEvent(this.spyTriggerChangeEvent);
   }
 
   constructor(private el: ElementRef) {}

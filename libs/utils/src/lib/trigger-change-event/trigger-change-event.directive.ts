@@ -2,7 +2,8 @@ import {
   Directive,
   ElementRef,
   HostListener,
-  Input, OnInit,
+  Input,
+  OnInit,
 } from '@angular/core';
 import { triggerChangeEvent } from './trigger-change-event-function';
 
@@ -15,7 +16,9 @@ export class TriggerChangeEventDirective {
   @HostListener('click', ['$event'])
   onClick(): void {
     typeof this.spyTriggerChangeEvent === 'string'
-      ? triggerChangeEvent(this.el.nativeElement.querySelector(`${this.spyTriggerChangeEvent}`))
+      ? triggerChangeEvent(
+          this.el.nativeElement.querySelector(`${this.spyTriggerChangeEvent}`),
+        )
       : triggerChangeEvent(this.spyTriggerChangeEvent.nativeElement);
   }
 

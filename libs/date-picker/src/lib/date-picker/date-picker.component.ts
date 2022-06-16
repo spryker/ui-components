@@ -14,7 +14,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconCalendarModule } from '@spryker/icon/icons';
-import { InjectionTokenType, ToBoolean, ToJson, triggerChangeEvent } from '@spryker/utils';
+import {
+  InjectionTokenType,
+  ToBoolean,
+  ToJson,
+  triggerChangeEvent,
+} from '@spryker/utils';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 
 import { DateWorkDaysToken, DateWorkHoursToken } from './tokens';

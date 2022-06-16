@@ -15,6 +15,7 @@
   [nzMaxTagCount]="0"
   [nzMaxTagPlaceholder]="tagPlaceholder"
   [class.ant-select--not-searchable]="!search"
+  [nzCustomTemplate]="selectedOption$ | async"
   nzDropdownClassName="ant-select--dropdown"
   class="ant-select--custom"
 >
@@ -27,10 +28,10 @@
 
   <nz-option
     *ngFor="let option of mappedOptions"
+    nzCustomContent
     [nzValue]="option.value"
     [nzLabel]="option.title"
     [nzDisabled]="option.isDisabled"
-    [nzCustomContent]="true"
   >
     <div
       class="ant-select-item-option-content-wrapper"
@@ -46,21 +47,16 @@
       >
       </ng-container>
       <span class="ant-select-item-option-content-label">
-        {{ option.title }}
+        <ng-container
+          *ngIf="customOptionTemplate; else inputOptionsTemplateRef"
+          [ngTemplateOutlet]="option.template"
+        ></ng-container>
+        <ng-template #inputOptionsTemplateRef>
+          {{ option.title }}
+        </ng-template>
       </span>
     </div>
   </nz-option>
-
-  <ng-container>
-    <nz-option
-      *ngFor="let option of options$ | async"
-      nzCustomContent
-      [nzValue]="option.value"
-      [nzLabel]="option.title"
-    >
-      <ng-container *ngTemplateOutlet="option.template"></ng-container>
-    </nz-option>
-  </ng-container>
 </nz-select>
 
 <select
@@ -81,13 +77,27 @@
   </option>
 </select>
 
+<span
+  [spySelectComponents]="optionReference"
+  (spySelectComponentsFound)="optionsFound($event)"
+  class="ant-options-projected-content"
+>
+  <ng-content></ng-content>
+</span>
+<span
+  [spySelectComponents]="selectedOptionReference"
+  (spySelectComponentsFound)="selectedOptionFound($event)"
+  class="ant-options-projected-content"
+>
+  <ng-content select="[selected]"></ng-content>
+</span>
+
 <ng-template #singleSelectTpl>
   <select
     class="ant-select-native"
     [ngModel]="mappedValue"
     [attr.name]="name"
     [disabled]="disabled"
-    #selectRef
   >
     <option></option>
     <option *ngFor="let option of mappedOptions" [value]="option.value">

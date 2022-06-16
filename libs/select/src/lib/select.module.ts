@@ -10,9 +10,11 @@ import {
 import { I18nModule } from '@spryker/locale';
 import { JoinModule } from '@spryker/utils';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { SelectComponentsModule } from '@spryker/web-components';
 
 import { SelectComponent } from './select/select.component';
 import { OptionComponent } from './option/option.component';
+import { SelectedOptionComponent } from './selected-option/selected-option.component';
 
 @NgModule({
   imports: [
@@ -25,8 +27,9 @@ import { OptionComponent } from './option/option.component';
     IconCheckModule,
     IconRemoveModule,
     JoinModule,
+    SelectComponentsModule,
   ],
-  declarations: [SelectComponent, OptionComponent],
-  exports: [SelectComponent, OptionComponent],
+  declarations: [SelectComponent, OptionComponent, SelectedOptionComponent],
+  exports: [SelectComponent, OptionComponent, SelectedOptionComponent],
 })
 export class SelectModule {}

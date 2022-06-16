@@ -1,6 +1,6 @@
 // tslint:disable: no-non-null-assertion
 import { Component, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DatasourceModule } from '@spryker/datasource';
@@ -9,6 +9,7 @@ import { JoinModule } from '@spryker/utils';
 
 import { SelectComponent } from './select.component';
 import { OptionComponent } from '../option/option.component';
+import { SelectedOptionComponent } from '../selected-option/selected-option.component';
 
 class MockDatasource {
   resolve = jest.fn();
@@ -308,6 +309,10 @@ describe('SelectComponent', () => {
       <spy-option value="${projectedOptionValues[1]}">
           <span style="font-weight: 700">Bold text</span>
       </spy-option>
+      <spy-selected-option>
+        <span before>before</span>
+        <span after>after</span>
+      </spy-selected-option>
   `;
 
     const { testModule, createComponent } = getTestingForComponent(
@@ -321,8 +326,8 @@ describe('SelectComponent', () => {
             }),
           ],
           schemas: [NO_ERRORS_SCHEMA],
-          declarations: [OptionComponent],
-          exports: [OptionComponent],
+          declarations: [OptionComponent, SelectedOptionComponent],
+          exports: [OptionComponent, SelectedOptionComponent],
         },
         projectContent: projectedContent,
       },
@@ -332,18 +337,31 @@ describe('SelectComponent', () => {
       TestBed.configureTestingModule({ imports: [testModule] });
     });
 
-    it('should render projected options', async () => {
-      const host = await createComponent({}, true);
+    it('should render projected options', fakeAsync(async () => {
+      const host = await createComponent({ customOptionTemplate: true }, true);
+      tick();
+      host.detectChanges();
 
       const projectedOptionEls = host.hostElement.queryAll(By.css('nz-option'));
       expect(projectedOptionEls.length).toBe(projectedOptionValues.length);
-
       const projectedOptionEl = projectedOptionEls[0];
       expect(projectedOptionEl.attributes.nzCustomContent).toBe('');
       expect(projectedOptionEl.properties.nzLabel).toBeUndefined();
       expect(projectedOptionEl.properties.nzValue).toBe(
         projectedOptionValues[0],
       );
-    });
+    }));
+
+    it('should render custom selected template', fakeAsync(async () => {
+      const host = await createComponent({ customOptionTemplate: true }, true);
+      tick();
+      host.detectChanges();
+
+      const selectComponentEl = host.queryCss('nz-select');
+      expect(selectComponentEl).toBeTruthy();
+      expect(
+        selectComponentEl?.properties.nzCustomTemplate instanceof TemplateRef,
+      ).toBeTruthy();
+    }));
   });
 });

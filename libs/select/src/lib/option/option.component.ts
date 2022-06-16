@@ -5,6 +5,7 @@ import {
   TemplateRef,
   Input,
 } from '@angular/core';
+import { ToBoolean } from '@spryker/utils';
 
 @Component({
   selector: 'spy-option',
@@ -15,5 +16,6 @@ import {
 export class OptionComponent {
   @Input() value?: string;
   @Input() title?: string;
+  @Input() @ToBoolean() disabled = false;
   @ViewChild('contentTpl') template!: TemplateRef<void>;
 }

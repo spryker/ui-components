@@ -98,6 +98,7 @@
     [ngModel]="mappedValue"
     [attr.name]="name"
     [disabled]="disabled"
+    #selectRef
   >
     <option></option>
     <option *ngFor="let option of mappedOptions" [value]="option.value">

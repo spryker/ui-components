@@ -25,8 +25,4 @@ export class CheckboxComponent {
   @Input() @ToJson() attrs: Record<string, string> = {};
 
   @Output() checkedChange: EventEmitter<boolean> = new EventEmitter();
-
-  onLabelClick(target: EventTarget): void {
-    target.dispatchEvent(new Event('input', { bubbles: true }));
-  }
 }

@@ -14,6 +14,14 @@
   align-items: center;
   cursor: pointer;
 
+  &-disabled {
+    color: #9ea1a7;
+    pointer-events: none;
+    .spy-button-icon__button {
+      background: #efeeee;
+    }
+  }
+
   &__label {
     padding: 0px 10px 0px 10px;
     /* font-size: body-medium-14 */
@@ -25,7 +33,7 @@
   }
 
   &__remove-button-icon {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     margin-left: auto;
@@ -33,15 +41,28 @@
     height: 24px;
     /* neutrals-gray-base */
     background: #d4d5d7;
-    /* neutrals-white */
-    color: #ffffff;
     border-radius: 0 20px 20px 0;
-    width: 28px;
-    font-size: 9px;
 
     :hover > & {
       /* neutrals-grey-dark */
       background: #9ea1a6;
+    }
+
+    .spy-button-icon__button {
+      background: none;
+      &:hover {
+        background: none;
+      }
+      &:focus {
+        background: none;
+        box-shadow: none;
+      }
+      .spy-button-icon__icon {
+        /* neutrals-white */
+        color: #ffffff;
+        width: 28px;
+        font-size: 9px;
+      }
     }
 
     :focus > & {

@@ -1,4 +1,3 @@
-import { TagComponent } from './tag.component';
 import { boolean } from '@storybook/addon-knobs';
 import { TagModule } from '../tag.module';
 
@@ -11,9 +10,10 @@ export const primary = () => ({
     imports: [TagModule],
   },
   template: `
-    <spy-tag [disabled]="disabled">This is a tag</spy-tag>
+    <spy-tag [removable]="removable" [disabled]="disabled">This is a tag</spy-tag>
   `,
   props: {
     disabled: boolean('Disabled', false),
+    removable: boolean('Removable', false),
   },
 });

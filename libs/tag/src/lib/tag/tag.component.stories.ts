@@ -11,7 +11,7 @@ export const primary = () => ({
     imports: [TagModule],
   },
   template: `
-    <spy-tag [disabled]="disabled">Tag</spy-tag>
+    <spy-tag [disabled]="disabled">This is a tag</spy-tag>
   `,
   props: {
     disabled: boolean('Disabled', false),

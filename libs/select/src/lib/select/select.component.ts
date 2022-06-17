@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
+  ContentChildren,
   ElementRef,
   EventEmitter,
   Injector,
@@ -9,6 +11,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  QueryList,
   SimpleChanges,
   TemplateRef,
   ViewChild,
@@ -30,7 +33,7 @@ import {
   ReplaySubject,
   Subject,
 } from 'rxjs';
-import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
+import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
 
 import {
   SelectOption,
@@ -38,6 +41,8 @@ import {
   SelectValue,
   SelectValueSelected,
 } from './types';
+import { OptionComponent } from '../option/option.component';
+import { SelectedOptionComponent } from '../selected-option/selected-option.component';
 
 @Component({
   selector: 'spy-select',
@@ -62,8 +67,32 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   @Input() @ToBoolean() disableClear = false;
   @Input() datasource?: DatasourceConfig;
   @Input() context?: unknown;
+  @Input() customOptionTemplate = false;
 
   @Output() valueChange = new EventEmitter<SelectValueSelected>();
+
+  optionReference = OptionComponent;
+  selectedOptionReference = SelectedOptionComponent;
+
+  selectedOption$ = new BehaviorSubject<any>(null);
+
+  @ContentChildren(OptionComponent)
+  set contentOptions(options: QueryList<OptionComponent>) {
+    setTimeout(() => {
+      if (this.customOptionTemplate) {
+        this.setTemplateOptions(options.toArray());
+      }
+    });
+  }
+
+  @ContentChild(SelectedOptionComponent)
+  set contentSelectedOption(option: SelectedOptionComponent) {
+    if (option) {
+      setTimeout(() => {
+        this.selectedOption$.next(option.template);
+      });
+    }
+  }
 
   checkIcon = IconCheckModule.icon;
   arrowDownIcon = IconArrowDownModule.icon;
@@ -135,6 +164,29 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
     this.mappedValue = value;
     this.valueChange.emit(value);
     this.selectRef?.nativeElement.dispatchEvent(inputEvent);
+  }
+
+  optionsFound(options: OptionComponent[]) {
+    setTimeout(() => {
+      this.setTemplateOptions(options);
+    });
+  }
+
+  selectedOptionFound(options: SelectedOptionComponent[]) {
+    this.selectedOption$.next(options[0]?.template);
+  }
+
+  private setTemplateOptions(options: OptionComponent[]) {
+    this.options = options.map(
+      (optionComp) =>
+        ({
+          title: optionComp.title,
+          value: optionComp.value,
+          isDisabled: optionComp.disabled,
+          template: optionComp.template,
+        } as SelectOptionItem),
+    );
+    this.updateOptions();
   }
 
   private updateDatasource() {

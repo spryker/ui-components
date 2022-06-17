@@ -1,0 +1,5 @@
+<ng-template #contentTpl let-selected>
+  <ng-content select="[before]"></ng-content>
+  <span class="ant-select-selection__label">{{ selected.nzLabel }}</span>
+  <ng-content select="[after]"></ng-content>
+</ng-template>

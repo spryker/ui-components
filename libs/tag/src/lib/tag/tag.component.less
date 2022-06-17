@@ -1,12 +1,9 @@
 @import './tag.component.theme.less';
 
-.spy-tag {
-  /* neutrals-gray-light */
-  background: #efeeee;
-  /* radii-large: 24px */
-  border-radius: 20px;
-  /* neutrals/Ink */
-  color: #121212;
+.@{tag-prefix-cls} {
+  background: @tag-bg;
+  border-radius: @tag-border-radius;
+  color: @tag-text-color;
 
   display: inline-flex;
   flex-direction: row;
@@ -14,22 +11,12 @@
   align-items: center;
   cursor: pointer;
 
-  &-disabled {
-    color: #9ea1a7;
-    pointer-events: none;
-    .spy-button-icon__button {
-      background: #efeeee;
-    }
-  }
-
   &__label {
     padding: 0px 10px 0px 10px;
-    /* font-size: body-medium-14 */
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    font-family: @font-family;
+    font-weight: @font-weight-medium;
+    font-size: @font-size-base;
+    line-height: @tag-label-height;
   }
 
   &__remove-button-icon {
@@ -37,15 +24,13 @@
     align-items: center;
     justify-content: center;
     margin-left: auto;
-    /* size-xxxs */
-    height: 24px;
-    /* neutrals-gray-base */
-    background: #d4d5d7;
-    border-radius: 0 20px 20px 0;
+    height: @tag-remove-button-height;
+    background: @tag-remove-button-bg;
+    border-radius: 0 @tag-border-radius @tag-border-radius 0;
 
     :hover > & {
       /* neutrals-grey-dark */
-      background: #9ea1a6;
+      background: @tag-remove-button-hover-bg;
     }
 
     .spy-button-icon__button {
@@ -59,17 +44,28 @@
       }
       .spy-button-icon__icon {
         /* neutrals-white */
-        color: #ffffff;
-        width: 28px;
-        font-size: 9px;
+        color: @white;
+        width: @tag-remove-button-icon-width;
+        font-size: @tag-remove-button-icon-size;
       }
     }
 
     :focus > & {
       /* emphasis-0 */
-      box-shadow: 0px 0px 3px #17b497;
+      box-shadow: @box-shadow-focus;
       /* neutrals-grey-dark */
-      background: #9ea1a6;
+      background: @tag-remove-button-focus-bg;
+    }
+  }
+
+  &-disabled {
+    color: @tag-disabled-color;
+    pointer-events: none;
+    .spy-button-icon {
+      background: @tag-remove-button-disabled-color;
+      &__icon {
+        color: @tag-remove-button-icon-disabled-color!important;
+      }
     }
   }
 }

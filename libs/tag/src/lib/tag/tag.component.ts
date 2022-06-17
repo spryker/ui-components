@@ -9,6 +9,7 @@ import {
   HostBinding,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
+import { IconRemoveModule } from '@spryker/icon/icons';
 
 @Component({
   selector: 'spy-tag',
@@ -25,6 +26,7 @@ export class TagComponent implements OnInit {
   @Input() @ToBoolean() @HostBinding('class.spy-tag-disabled') disabled = false;
   @Input() @ToBoolean() removable = true;
   @Output() onRemove = new EventEmitter<MouseEvent>();
+  icon = IconRemoveModule.icon;
   constructor() {}
 
   ngOnInit(): void {}

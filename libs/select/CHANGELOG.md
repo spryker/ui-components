@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8-beta.0...@spryker/select@0.3.0-beta.0) (2022-06-17)
+
+
+### Features
+
+* **select:** added custom option template ([3992140](https://github.com/spryker/ui-components/commit/3992140438dba54a72b43c51caf6001446a149f2))
+* **select:** added custom selected template ([5ff10db](https://github.com/spryker/ui-components/commit/5ff10dbd7b67b8b98b92c6588e6b5d2b7c9fae82))
+
+
+
+
+
 ## [0.2.8-beta.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8-next.1...@spryker/select@0.2.8-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/select

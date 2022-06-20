@@ -25,7 +25,7 @@ import { IconRemoveModule } from '@spryker/icon/icons';
 export class TagComponent implements OnInit {
   @Input() @ToBoolean() @HostBinding('class.spy-tag-disabled') disabled = false;
   @Input() @ToBoolean() removable = true;
-  @Output() onRemove = new EventEmitter<MouseEvent>();
+  @Output() readonly onRemove = new EventEmitter<MouseEvent>();
   icon = IconRemoveModule.icon;
   constructor() {}
 
@@ -33,6 +33,5 @@ export class TagComponent implements OnInit {
 
   removeTag(e: MouseEvent): void {
     this.onRemove.emit(e);
-    console.log(e);
   }
 }

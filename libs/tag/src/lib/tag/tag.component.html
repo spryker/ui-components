@@ -1,7 +1,8 @@
 <span class="spy-tag__label"><ng-content></ng-content></span>
 <!-- icon button component -->
 <spy-button-icon
-  *ngIf="!removable"
+  [disabled]="disabled"
+  *ngIf="removable"
   [iconName]="icon"
   [size]="'sm'"
   class="spy-tag__remove-button-icon"

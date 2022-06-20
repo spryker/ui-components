@@ -1,4 +1,4 @@
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import { TagModule } from '../tag.module';
 
 export default {
@@ -14,6 +14,6 @@ export const primary = () => ({
   `,
   props: {
     disabled: boolean('Disabled', false),
-    removable: boolean('Removable', false),
+    removable: boolean('Removable', true),
   },
 });

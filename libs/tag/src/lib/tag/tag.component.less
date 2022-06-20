@@ -6,7 +6,6 @@
   width: fit-content;
   align-items: center;
   cursor: pointer;
-
   background: @tag-bg;
   border-radius: @tag-border-radius;
   color: @tag-label-color;
@@ -34,13 +33,16 @@
 
     .spy-button-icon__button {
       background: none;
+
       &:hover {
         background: none;
       }
+
       &:focus {
         background: none;
         box-shadow: none;
       }
+
       .spy-button-icon__icon {
         color: @white;
         width: @tag-remove-button-icon-width;
@@ -57,10 +59,12 @@
   &-disabled {
     color: @tag-disabled-color;
     pointer-events: none;
-    .spy-button-icon {
+
+    .spy-button-icon--disabled {
       background: @tag-remove-button-disabled-color;
-      &__icon {
-        color: @tag-remove-button-icon-disabled-color!important;
+
+      .spy-icon-remove {
+        color: @tag-remove-button-icon-disabled-color;
       }
     }
   }

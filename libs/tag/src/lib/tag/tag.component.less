@@ -31,7 +31,7 @@
       background: @tag-remove-button-hover-bg;
     }
 
-    .spy-button-icon__button {
+    .@{btn-icon-prefix-cls}__button {
       background: none;
 
       &:hover {
@@ -43,7 +43,7 @@
         box-shadow: none;
       }
 
-      .spy-button-icon__icon {
+      .@{btn-icon-prefix-cls}__icon {
         color: @white;
         width: @tag-remove-button-icon-width;
         font-size: @tag-remove-button-icon-size;
@@ -60,7 +60,7 @@
     color: @tag-disabled-color;
     pointer-events: none;
 
-    .spy-button-icon--disabled {
+    .@{btn-icon-prefix-cls}--disabled {
       background: @tag-remove-button-disabled-color;
 
       .spy-icon-remove {

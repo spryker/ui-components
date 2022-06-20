@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TagComponent } from './tag.component';
 import { Component, NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { button } from '@storybook/addon-knobs';
 
 describe('TagComponent', () => {
   @Component({
@@ -62,13 +61,13 @@ describe('TagComponent', () => {
   describe('TagComponent', () => {
     it('should not have "spy-tag-disabled" when not disabled', () => {
       const tagElement = fixture.debugElement.query(By.css('.spy-tag'));
-      expect(Object.keys(tagElement.classes)).not.toContain('spy-tag-disabled');
+      expect(tagElement.classes['spy-tag-disabled']).toBeUndefined();
     });
     it('should have "spy-tag-disabled" when disabled', () => {
       component.disabled = true;
       fixture.detectChanges();
       const tagElement = fixture.debugElement.query(By.css('.spy-tag'));
-      expect(Object.keys(tagElement.classes)).toContain('spy-tag-disabled');
+      expect(tagElement.classes['spy-tag-disabled']).toBe(true);
     });
     it('should have Input("disabled") bind to the disabled of the button when disabled', () => {
       component.disabled = true;
@@ -100,7 +99,7 @@ describe('TagComponent', () => {
         '.spy-tag__remove-button-icon',
       );
       buttonElement.click();
-      expect(component.onRemoveButtonClick).toHaveBeenCalledTimes(1);
+      expect(component.onRemoveButtonClick).toHaveBeenCalled();
     });
     it('should not clickable when disabled', () => {
       component.disabled = true;
@@ -109,7 +108,7 @@ describe('TagComponent', () => {
         '.spy-tag__remove-button-icon',
       );
       buttonElement.click();
-      expect(component.onRemoveButtonClick).toHaveBeenCalledTimes(0);
+      expect(component.onRemoveButtonClick).not.toHaveBeenCalled();
     });
   });
 });

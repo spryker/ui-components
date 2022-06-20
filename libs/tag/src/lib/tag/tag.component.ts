@@ -28,6 +28,8 @@ export class TagComponent {
   icon = IconRemoveModule.icon;
 
   removeTag(e: MouseEvent): void {
-    this.onRemove.emit(e);
+    if (!this.disabled) {
+      this.onRemove.emit(e);
+    }
   }
 }

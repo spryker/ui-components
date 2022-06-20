@@ -61,7 +61,7 @@ describe('TagComponent', () => {
   describe('TagComponent', () => {
     it('should not have "spy-tag-disabled" when not disabled', () => {
       const tagElement = fixture.debugElement.query(By.css('.spy-tag'));
-      expect(tagElement.classes['spy-tag-disabled']).toBeUndefined();
+      expect(tagElement.classes['spy-tag-disabled']).toBe(undefined);
     });
     it('should have "spy-tag-disabled" when disabled', () => {
       component.disabled = true;

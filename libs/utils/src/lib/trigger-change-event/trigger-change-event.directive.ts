@@ -11,7 +11,7 @@ import { triggerChangeEvent } from './trigger-change-event-function';
   selector: '[spyTriggerChangeEvent]',
 })
 export class TriggerChangeEventDirective {
-  @Input() spyTriggerChangeEvent: HTMLElement | string = 'input';
+  @Input() spyTriggerChangeEvent: ElementRef<HTMLElement> | string = 'input';
 
   @HostListener('click', ['$event'])
   onClick(): void {
@@ -19,7 +19,10 @@ export class TriggerChangeEventDirective {
       ? triggerChangeEvent(
           this.el.nativeElement.querySelector(`${this.spyTriggerChangeEvent}`),
         )
-      : triggerChangeEvent(this.spyTriggerChangeEvent);
+      : triggerChangeEvent(
+          (this.spyTriggerChangeEvent.nativeElement ??
+            this.spyTriggerChangeEvent) as HTMLElement,
+        );
   }
 
   constructor(private el: ElementRef) {}

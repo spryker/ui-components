@@ -10,5 +10,6 @@ export interface NavigationItem {
     url?: string;
     icon?: string;
     isActive?: boolean;
+    isDisabled?: boolean;
     subItems?: NavigationItem[];
 }

@@ -1,18 +1,18 @@
 @import './tag.component.theme.less';
 
 .@{tag-prefix-cls} {
-  background: @tag-bg;
-  border-radius: @tag-border-radius;
-  color: @tag-text-color;
-
   display: inline-flex;
   flex-direction: row;
   width: fit-content;
   align-items: center;
   cursor: pointer;
 
+  background: @tag-bg;
+  border-radius: @tag-border-radius;
+  color: @tag-label-color;
+
   &__label {
-    padding: 0px 10px 0px 10px;
+    padding: 0 @tag-label-padding;
     font-family: @font-family;
     font-weight: @font-weight-medium;
     font-size: @font-size-base;
@@ -29,7 +29,6 @@
     border-radius: 0 @tag-border-radius @tag-border-radius 0;
 
     :hover > & {
-      /* neutrals-grey-dark */
       background: @tag-remove-button-hover-bg;
     }
 
@@ -43,7 +42,6 @@
         box-shadow: none;
       }
       .spy-button-icon__icon {
-        /* neutrals-white */
         color: @white;
         width: @tag-remove-button-icon-width;
         font-size: @tag-remove-button-icon-size;
@@ -51,9 +49,7 @@
     }
 
     :focus > & {
-      /* emphasis-0 */
       box-shadow: @box-shadow-focus;
-      /* neutrals-grey-dark */
       background: @tag-remove-button-focus-bg;
     }
   }

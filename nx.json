@@ -382,6 +382,9 @@
     },
     "rating": {
       "tags": ["type:component", "level:atom", "pkg:primary"]
+    },
+    "tag": {
+      "tags": ["type:component", "level:atom"]
     }
   },
   "tasksRunnerOptions": {

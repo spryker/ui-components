@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-beta.5](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.4...@spryker/styles@0.4.0-beta.5) (2022-06-21)
+
+
+### Features
+
+* **tag:** configure stories for storybook for tag component ([a8a215a](https://github.com/spryker/ui-components/commit/a8a215a45557856e62ff1e9e19cf96f599d7722f))
+
+
+
+
+
 # [0.4.0-beta.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.3...@spryker/styles@0.4.0-beta.4) (2022-02-01)
 
 **Note:** Version bump only for package @spryker/styles

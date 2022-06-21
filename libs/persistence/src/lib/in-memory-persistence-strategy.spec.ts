@@ -9,7 +9,9 @@ describe('InMemoryPersistenceStrategy', () => {
     let service: InMemoryPersistenceStrategy;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ teardown: { destroyAfterEach: false } });
+        TestBed.configureTestingModule({
+            teardown: { destroyAfterEach: false },
+        });
         service = TestBed.inject(InMemoryPersistenceStrategy);
     });
 

@@ -126,7 +126,10 @@ export function createCustomElementForLazy<T>(
     async function load() {
         const component = await componentDeclaration.component();
         componentType = createCustomElement(component, { injector });
-        elemMethods = getComponentMethods({ ...componentDeclaration, component });
+        elemMethods = getComponentMethods({
+            ...componentDeclaration,
+            component,
+        });
         LazyWebComponent.prototype = componentType.prototype;
         return componentType;
     }

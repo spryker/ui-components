@@ -80,7 +80,10 @@
                                         rowsFeaturesTpl;
                                         context: {
                                             $implicit: featureLocation.beforeRows,
-                                            context: { data: tableData, columns: columns }
+                                            context: {
+                                                data: tableData,
+                                                columns: columns
+                                            }
                                         }
                                     "
                                 ></ng-container>
@@ -96,7 +99,10 @@
                                             colsFeaturesTpl;
                                             context: {
                                                 $implicit: featureLocation.beforeCols,
-                                                context: { data: data, i: indexOfRow }
+                                                context: {
+                                                    data: data,
+                                                    i: indexOfRow
+                                                }
                                             }
                                         "
                                     ></ng-container>
@@ -124,7 +130,10 @@
                                             colsFeaturesTpl;
                                             context: {
                                                 $implicit: featureLocation.afterCols,
-                                                context: { data: data, i: indexOfRow }
+                                                context: {
+                                                    data: data,
+                                                    i: indexOfRow
+                                                }
                                             }
                                         "
                                     ></ng-container>
@@ -135,7 +144,10 @@
                                         rowsFeaturesTpl;
                                         context: {
                                             $implicit: featureLocation.afterRows,
-                                            context: { data: tableData, columns: columns }
+                                            context: {
+                                                data: tableData,
+                                                columns: columns
+                                            }
                                         }
                                     "
                                 ></ng-container>

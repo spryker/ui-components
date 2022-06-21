@@ -14,7 +14,7 @@ h3 {
 
 strong {
     font-weight: @font-weight-semi-bold;
-    color: red;
+    color: @red;
 }
 
 [class^='spy-col'] {
@@ -25,7 +25,7 @@ strong {
         text-align: center;
         padding: 10px;
         min-height: 100%;
-        background: #ccc;
+        background: @gray-light;
     }
 
     .expander {
@@ -34,14 +34,14 @@ strong {
     }
 
     &:nth-child(even) p {
-        background: yellow;
+        background: @yellow;
     }
 
     .pic {
         display: grid;
         width: 30px;
         height: 30px;
-        background: #ccc;
+        background: @gray-light;
     }
 
     .no-wrap-text {
@@ -54,7 +54,7 @@ strong {
 
 .container-with-height {
     height: 300px;
-    border: 2px solid red;
+    border: @spy-border-width-base solid @red;
 }
 
 .tight-container {
@@ -63,6 +63,6 @@ strong {
 }
 
 .card {
-    border: 2px solid red;
+    border: @spy-border-width-base solid @red;
     padding: 10px;
 }

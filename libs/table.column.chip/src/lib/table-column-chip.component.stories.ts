@@ -72,7 +72,12 @@ export const withTable = (): IStory => ({
                 dataGenerator: tableDataGenerator,
             } as unknown as MockTableDatasourceConfig,
             columns: [
-                { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
+                {
+                    id: 'col1',
+                    sortable: true,
+                    title: 'Column #1',
+                    width: '20%',
+                },
                 {
                     id: 'col2',
                     title: 'Column #2',

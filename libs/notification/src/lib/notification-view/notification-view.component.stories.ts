@@ -24,7 +24,16 @@ export const primary = () => ({
     </spy-notification-view>
   `,
     props: {
-        type: select('Type', { Info: 'info', Error: 'error', Warning: 'warning', Success: 'success' }, 'info'),
+        type: select(
+            'Type',
+            {
+                Info: 'info',
+                Error: 'error',
+                Warning: 'warning',
+                Success: 'success',
+            },
+            'info',
+        ),
         closeable: boolean('Closeable', false),
     },
 });

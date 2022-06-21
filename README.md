@@ -48,6 +48,12 @@ nx test <my-lib>
 nx lint <my-lib>
 ```
 
+#### Lint styles
+
+```bash
+npm run stylelint
+```
+
 #### Storybook
 
 _NOTE:_ Before running any storybooks - make sure to cleanup libs from `dist` folder

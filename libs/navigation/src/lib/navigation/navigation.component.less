@@ -116,6 +116,7 @@
                 .@{menu-prefix-cls}-submenu-arrow {
                     transform: @menu-item-open-arrow-transform;
 
+                    /* stylelint-disable selector-max-class */
                     &::before {
                         transform: @menu-item-open-arrow-transform-before;
                     }
@@ -123,6 +124,7 @@
                     &::after {
                         transform: @menu-item-open-arrow-transform-after;
                     }
+                    /* stylelint-enable */
                 }
 
                 .@{navigation-prefix-cls}__title-icon {
@@ -194,9 +196,11 @@
                 .@{navigation-prefix-cls}__title-icon {
                     margin-right: @navigation-collapsed-item-icon-margin-right;
 
+                    /* stylelint-disable selector-max-class, selector-max-compound-selectors */
                     .anticon {
                         font-size: inherit;
                     }
+                    /* stylelint-enable */
                 }
 
                 .@{navigation-prefix-cls}__title-text {
@@ -211,10 +215,6 @@
 
         &::before {
             display: none;
-        }
-
-        .@{menu-prefix-cls}-sub {
-            background: @spy-white;
         }
 
         &.@{menu-prefix-cls}-submenu-placement-right {
@@ -245,6 +245,7 @@
                 > .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
                     transform: @menu-item-popup-arrow-transform;
 
+                    /* stylelint-disable selector-max-class */
                     &::before {
                         transform: @menu-item-popup-open-arrow-transform-before;
                     }
@@ -252,11 +253,13 @@
                     &::after {
                         transform: @menu-item-popup-open-arrow-transform-after;
                     }
+                    /* stylelint-enable */
                 }
             }
         }
 
         .@{menu-prefix-cls}-sub {
+            background: @spy-white;
             border-radius: @menu-item-popup-sub-list-radius;
             padding: @menu-item-popup-sub-list-padding;
             box-shadow: @menu-item-popup-sub-list-box-shadow;

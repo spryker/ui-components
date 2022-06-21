@@ -7,7 +7,9 @@ describe('DateSerializeDataTransformerService', () => {
     let service: DateSerializeDataTransformerService;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ teardown: { destroyAfterEach: false } });
+        TestBed.configureTestingModule({
+            teardown: { destroyAfterEach: false },
+        });
         service = TestBed.inject(DateSerializeDataTransformerService);
     });
 

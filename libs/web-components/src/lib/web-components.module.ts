@@ -33,7 +33,12 @@ export class WebComponentsModule {
                     provide: PrefixComponentSelectorStrategyOptions,
                     useExisting: CustomElementOptions,
                 },
-                customElementOptions ? { provide: CustomElementOptions, useValue: customElementOptions } : [],
+                customElementOptions
+                    ? {
+                          provide: CustomElementOptions,
+                          useValue: customElementOptions,
+                      }
+                    : [],
             ],
         };
     }

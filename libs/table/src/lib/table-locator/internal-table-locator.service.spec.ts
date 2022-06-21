@@ -20,7 +20,9 @@ describe('InternalTableLocatorService', () => {
     let service: InternalTableLocatorService;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ teardown: { destroyAfterEach: false } });
+        TestBed.configureTestingModule({
+            teardown: { destroyAfterEach: false },
+        });
         service = TestBed.inject(InternalTableLocatorService);
     });
 

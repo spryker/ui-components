@@ -36,7 +36,8 @@ export class NotificationComponent extends NotificationInputs implements OnChang
     @ViewChild(NotificationViewComponent)
     notificationViewComponent?: NotificationViewComponent;
 
-    @ContentChild('titleTpl') contentTitleTpl?: TemplateRef<NotificationContext>;
+    @ContentChild('titleTpl')
+    contentTitleTpl?: TemplateRef<NotificationContext>;
     @ContentChild('descriptionTpl')
     contentDescriptionTpl?: TemplateRef<NotificationContext>;
 

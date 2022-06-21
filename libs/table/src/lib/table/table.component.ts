@@ -209,7 +209,10 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges, Af
         this.features$,
         TableFeatureLocation.header,
         () => this.headerTpl,
-        (config: TableColumn, i: number): TableHeaderContext => ({ config, i }),
+        (config: TableColumn, i: number): TableHeaderContext => ({
+            config,
+            i,
+        }),
     );
 
     featureCellContext$ = this.tableFeaturesRendererService.chainFeatureContexts(

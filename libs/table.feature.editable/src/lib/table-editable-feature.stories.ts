@@ -56,7 +56,11 @@ const tableConfig = {
             { id: 'col1', type: 'edit' as any },
             { id: 'col2', type: 'edit' as any },
             { id: 'col3', type: 'edit' as any },
-            { id: 'col4', type: 'edit' as any, typeOptions: { value: 'default' } },
+            {
+                id: 'col4',
+                type: 'edit' as any,
+                typeOptions: { value: 'default' },
+            },
         ] as unknown as TableColumns,
         create: {
             addButton: {

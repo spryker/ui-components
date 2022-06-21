@@ -26,6 +26,7 @@ jobs:
           script:
               - git fetch origin next
               - npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --all --parallel
+              - npm run stylelint
         - name: 'Unit Tests'
           script:
               - git fetch origin next
@@ -45,6 +46,7 @@ jobs:
           script:
               - git fetch origin master
               - npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --all --parallel
+              - npm run stylelint
         - name: 'Unit Tests'
           script:
               - git fetch origin master
@@ -57,6 +59,7 @@ jobs:
         - name: 'Lint code'
           script:
               - npm run affected:lint -- --all --parallel
+              - npm run stylelint
         - name: 'Unit Tests'
           script:
               - COVERAGE=true npm run affected:test -- --all --parallel

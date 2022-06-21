@@ -34,7 +34,8 @@ export class DateRangePickerComponent {
     @Input() nameTo?: string;
     @Output() datesChange = new EventEmitter<DateRangeValueInput>();
 
-    @ViewChild('startPicker', { static: true }) startPicker?: DatePickerComponent;
+    @ViewChild('startPicker', { static: true })
+    startPicker?: DatePickerComponent;
     @ViewChild('endPicker', { static: true }) endPicker?: DatePickerComponent;
 
     timeTo = this.enabledTimeTo.bind(this);

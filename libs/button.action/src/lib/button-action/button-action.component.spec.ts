@@ -102,7 +102,9 @@ describe('ButtonActionComponent', () => {
                 const host = await createComponent({ attrs: { disabled: 'true' } }, true);
                 const buttonElem = host.queryCss('spy-button');
 
-                expect(buttonElem?.properties.attrs).toEqual({ disabled: 'true' });
+                expect(buttonElem?.properties.attrs).toEqual({
+                    disabled: 'true',
+                });
             });
         });
     });

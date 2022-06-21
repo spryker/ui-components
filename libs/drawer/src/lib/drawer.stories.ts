@@ -20,7 +20,9 @@ export default {
         <p><button (click)="dispose()">Dispose</button></p>
         <ng-template #drawerTpl let-drawerRef>
             <h3>Drawer content here...</h3>
-            <p><button (click)="drawerRef.close()">Close from inside</button></p>
+            <p>
+                <button (click)="drawerRef.close()">Close from inside</button>
+            </p>
             <p><button (click)="addDrawer(drawerTpl)">Add drawer</button></p>
             <p><button (click)="closeAll()">Close all</button></p>
         </ng-template>

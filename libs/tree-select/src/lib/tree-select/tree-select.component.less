@@ -38,12 +38,6 @@
             }
         }
 
-        &-multiple {
-            .@{select-prefix-cls}-selection-search {
-                display: none;
-            }
-        }
-
         &-multiple,
         &-single {
             &::after {
@@ -100,6 +94,10 @@
                     overflow: hidden;
                     white-space: nowrap;
                     padding: 0;
+                }
+
+                &-search {
+                    display: none;
                 }
 
                 &-search-input,

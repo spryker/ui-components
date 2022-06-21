@@ -131,8 +131,18 @@ export const withTable = (): IStory => ({
                 },
             },
             columns: [
-                { id: 'col1', title: 'Column #1', width: '20%', sortable: true },
-                { id: 'col2', title: 'Column #2', width: '20%', sortable: true },
+                {
+                    id: 'col1',
+                    title: 'Column #1',
+                    width: '20%',
+                    sortable: true,
+                },
+                {
+                    id: 'col2',
+                    title: 'Column #2',
+                    width: '20%',
+                    sortable: true,
+                },
                 { id: 'col3', title: 'Column #3' },
                 { id: 'col4', title: 'Column #4' },
             ],

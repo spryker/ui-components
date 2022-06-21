@@ -47,7 +47,13 @@ describe('AjaxFormComponent', () => {
         TestBed.configureTestingModule({
             imports: [StaticHtmlRendererModule, HttpClientTestingModule, AjaxFormModule],
             declarations: [TestComponent],
-            providers: [{ provide: AjaxActionService, useExisting: MockAjaxActionService }, MockAjaxActionService],
+            providers: [
+                {
+                    provide: AjaxActionService,
+                    useExisting: MockAjaxActionService,
+                },
+                MockAjaxActionService,
+            ],
             schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
         }).compileComponents();

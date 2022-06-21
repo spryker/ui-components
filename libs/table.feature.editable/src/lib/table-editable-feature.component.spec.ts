@@ -126,7 +126,10 @@ describe('TableEditableFeatureComponent', () => {
                     provide: TableDataConfiguratorService,
                     useValue: 'MockTableDataConfiguratorService',
                 },
-                { provide: AjaxActionService, useValue: 'MockAjaxActionService' },
+                {
+                    provide: AjaxActionService,
+                    useValue: 'MockAjaxActionService',
+                },
                 {
                     provide: TestTableFeatureMocks,
                     useValue: {

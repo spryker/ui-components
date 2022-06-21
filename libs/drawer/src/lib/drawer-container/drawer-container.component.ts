@@ -209,7 +209,10 @@ export class DrawerContainerComponent implements OnInit, OnDestroy {
     }
 
     private createDrawerContext(drawerRef: DrawerRef<DrawerData, DrawerOptionsTemplate>): DrawerTemplateContext {
-        return { ...(drawerRef.options.context as object), $implicit: drawerRef };
+        return {
+            ...(drawerRef.options.context as object),
+            $implicit: drawerRef,
+        };
     }
 
     private emitClosed(): void {

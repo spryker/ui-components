@@ -68,7 +68,10 @@ export const withFeatures = (): IStory => ({
                 provide: TableColumnsResolverService,
                 useValue: 'TableColumnsResolverService',
             },
-            { provide: TableDatasourceService, useValue: 'TableDatasourceService' },
+            {
+                provide: TableDatasourceService,
+                useValue: 'TableDatasourceService',
+            },
             {
                 provide: TableDataConfiguratorService,
                 useValue: 'TableDataConfiguratorService',

@@ -19,7 +19,13 @@ import {
 })
 export class DataTransformerService {
     private transformers: Partial<DataTransformerTypesDeclaration> =
-        this.transformersTypes?.reduce((transformers, transformer) => ({ ...transformers, ...transformer }), {}) ?? {};
+        this.transformersTypes?.reduce(
+            (transformers, transformer) => ({
+                ...transformers,
+                ...transformer,
+            }),
+            {},
+        ) ?? {};
 
     constructor(
         private injector: Injector,

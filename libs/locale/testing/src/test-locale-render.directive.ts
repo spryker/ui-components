@@ -8,6 +8,8 @@ export class TestLocaleRenderDirective implements OnInit {
 
     ngOnInit() {
         this.vcr.clear();
-        this.vcr.createEmbeddedView(this.templateRef, { $implicit: 'mockLocale' });
+        this.vcr.createEmbeddedView(this.templateRef, {
+            $implicit: 'mockLocale',
+        });
     }
 }

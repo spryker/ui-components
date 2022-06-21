@@ -152,7 +152,12 @@ function getFeaturesStory(template: string, extraNgModules: any[] = []): () => I
                     dataGenerator: tableDataGenerator,
                 } as unknown as MockTableDatasourceConfig,
                 columns: [
-                    { id: 'col1', title: 'Column #1', sortable: true, hideable: true },
+                    {
+                        id: 'col1',
+                        title: 'Column #1',
+                        sortable: true,
+                        hideable: true,
+                    },
                     { id: 'col2', title: 'Column #2', hideable: false },
                     { id: 'col3', title: 'Column #3', hideable: true },
                     { id: 'col4', title: 'Column #4', hideable: true },

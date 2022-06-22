@@ -17,7 +17,7 @@ export class TriggerChangeEventDirective {
   onClick(): void {
     typeof this.spyTriggerChangeEvent === 'string'
       ? triggerChangeEvent(
-          this.el.nativeElement.querySelector(`${this.spyTriggerChangeEvent}`),
+          this.el.nativeElement.querySelector(this.spyTriggerChangeEvent),
         )
       : triggerChangeEvent(
           (this.spyTriggerChangeEvent.nativeElement ??

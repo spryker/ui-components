@@ -27,6 +27,12 @@ export default {
     },
   },
   argTypes: {
+    outerPrefix: {
+      control: { type: 'text' },
+    },
+    outerSuffix: {
+      control: { type: 'text' },
+    },
     attrs: {
       control: { type: 'object' },
     },

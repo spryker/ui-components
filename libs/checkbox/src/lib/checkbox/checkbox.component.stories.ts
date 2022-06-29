@@ -40,6 +40,10 @@ export const primary = (args) => ({
   template: `
     <spy-checkbox
       [spyId]="spyId"
+      [checked]="checked"
+      [disabled]="disabled"
+      [indeterminate]="indeterminate"
+      [required]="required"
       [name]="name"
       [attrs]="attrs"
     >Checkbox label</spy-checkbox>

@@ -32,6 +32,9 @@ export default {
     },
   },
   argTypes: {
+    value: {
+      control: { type: 'text' },
+    },
     valueChange: {
       table: {
         disable: true,

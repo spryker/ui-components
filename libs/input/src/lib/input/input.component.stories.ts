@@ -29,6 +29,20 @@ export default {
       allowFullscreen: true,
     },
   },
+  argTypes: {
+    outerPrefix: {
+      control: { type: 'text' },
+    },
+    outerSuffix: {
+      control: { type: 'text' },
+    },
+    prefix: {
+      control: { type: 'text' },
+    },
+    suffix: {
+      control: { type: 'text' },
+    },
+  },
   args: {
     name: 'input-name',
     spyId: 'input-id',

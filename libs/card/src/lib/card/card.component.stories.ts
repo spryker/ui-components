@@ -16,6 +16,9 @@ export default {
     },
   },
   argTypes: {
+    spyTitle: {
+      control: { type: 'text' },
+    },
     titlePosition: {
       control: { type: 'select' },
     },

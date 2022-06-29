@@ -38,6 +38,17 @@ export default {
       allowFullscreen: true,
     },
   },
+  argTypes: {
+    error: {
+      control: { type: 'text' },
+    },
+    warning: {
+      control: { type: 'text' },
+    },
+    hint: {
+      control: { type: 'text' },
+    },
+  },
   args: {
     error: 'Error message',
     withErrorTitle: true,

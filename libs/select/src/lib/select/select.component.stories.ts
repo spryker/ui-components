@@ -31,6 +31,14 @@ export default {
       allowFullscreen: true,
     },
   },
+  argTypes: {
+    placeholder: {
+      control: { type: 'text' },
+    },
+    value: {
+      control: { type: 'text' },
+    },
+  },
   args: {
     options: ['Option 1', 'Option 2', 'Option 3'],
     multiple: true,

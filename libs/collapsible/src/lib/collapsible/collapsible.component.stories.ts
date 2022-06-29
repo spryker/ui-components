@@ -40,7 +40,11 @@ export const primary = (args) => ({
     declarations: [StoryComponent],
   },
   template: `
-    <spy-collapsible [spyTitle]="spyTitle" [alwaysRender]="alwaysRender">
+    <spy-collapsible
+      [spyTitle]="spyTitle"
+      [active]="active"
+      [disabled]="disabled"
+      [alwaysRender]="alwaysRender">
       <spy-story></spy-story>
     </spy-collapsible>
   `,

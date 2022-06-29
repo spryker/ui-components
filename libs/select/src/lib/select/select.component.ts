@@ -69,7 +69,6 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
   @Input() datasource?: DatasourceConfig;
   @Input() context?: unknown;
   @Input() customOptionTemplate = false;
-  @Input() dropdownClassName = 'ant-select--dropdown';
 
   @Output() valueChange = new EventEmitter<SelectValueSelected>();
 

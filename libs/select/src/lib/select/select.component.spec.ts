@@ -145,17 +145,6 @@ describe('SelectComponent', () => {
         expect(nzSelectElem!.properties.nzPlaceHolder).toBe('placeholder');
       });
 
-      it('should bind customDropdownClass', async () => {
-        const host = await createComponent(
-          { dropdownClassName: 'class-name' },
-          true,
-        );
-        const nzSelectElem = host.queryCss('nz-select');
-
-        expect(nzSelectElem).toBeTruthy();
-        expect(nzSelectElem!.properties.nzDropdownClassName).toBe('class-name');
-      });
-
       it('should bind disableClear inverted to nzAllowClear of nz-select', async () => {
         const host = await createComponent({}, true);
         const nzSelectElem = host.queryCss('nz-select');

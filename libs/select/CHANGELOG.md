@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-beta.0...@spryker/select@0.3.0-beta.1) (2022-06-29)
+
+
+### Bug Fixes
+
+* **select:** fixed init value displaying when used custom option template ([2d05d63](https://github.com/spryker/ui-components/commit/2d05d63c2d6aac04766a0390a7f1a00183b2eb4b))
+
+
+
+
+
 # [0.3.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8-beta.0...@spryker/select@0.3.0-beta.0) (2022-06-17)
 
 

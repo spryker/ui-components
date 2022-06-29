@@ -16,7 +16,7 @@
   [nzMaxTagPlaceholder]="tagPlaceholder"
   [class.ant-select--not-searchable]="!search"
   [nzCustomTemplate]="selectedOption$ | async"
-  nzDropdownClassName="ant-select--dropdown"
+  [nzDropdownClassName]="dropdownClassName"
   class="ant-select--custom"
 >
   <nz-option

@@ -11,18 +11,17 @@ import { triggerChangeEvent } from './trigger-change-event-function';
   selector: '[spyTriggerChangeEvent]',
 })
 export class TriggerChangeEventDirective {
-  @Input() spyTriggerChangeEvent: ElementRef<HTMLElement> | string = 'input';
+  @Input() spyTriggerChangeEvent: HTMLElement | string = 'input';
+
+  private changeEventSelectorName = this.spyTriggerChangeEvent as string;
 
   @HostListener('click', ['$event'])
   onClick(): void {
     typeof this.spyTriggerChangeEvent === 'string'
       ? triggerChangeEvent(
-          this.el.nativeElement.querySelector(this.spyTriggerChangeEvent),
+          this.el.nativeElement.querySelector(this.changeEventSelectorName),
         )
-      : triggerChangeEvent(
-          (this.spyTriggerChangeEvent.nativeElement ??
-            this.spyTriggerChangeEvent) as HTMLElement,
-        );
+      : triggerChangeEvent(this.spyTriggerChangeEvent);
   }
 
   constructor(private el: ElementRef) {}

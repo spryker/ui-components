@@ -1,5 +1,6 @@
 import { ANALYZE_FOR_ENTRY_COMPONENTS, Component } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta } from '@storybook/angular';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { ModalModule, NzModalWrapperComponent } from '@spryker/modal';
@@ -7,13 +8,8 @@ import { NavigationModule } from '@spryker/navigation';
 import { UnsavedChangesModule } from '@spryker/unsaved-changes';
 import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
 import { UnsavedChangesFormMonitorModule } from '@spryker/unsaved-changes.monitor.form';
-import { IStory } from '@storybook/angular';
 
 import { UnsavedChangesGuardNavigationModule } from './unsaved-changes-navigation-guard.module';
-
-export default {
-  title: 'UnsavedChangesGuardNavigation',
-};
 
 @Component({
   selector: 'spy-content',
@@ -26,22 +22,31 @@ export default {
   `,
 })
 class NavigationComponent {
-  items = [
-    {
-      title: 'Item1',
-    },
-    {
-      title: 'Item1',
-      url: 'google.com',
-    },
-    {
-      title: 'Item1',
-      url: 'google.com',
-    },
-  ];
+  items = [];
 }
 
-export const primary = (): IStory => ({
+export default {
+  title: 'UnsavedChangesGuardNavigation',
+  component: NavigationComponent,
+  args: {
+    items: [
+      {
+        title: 'Item1',
+      },
+      {
+        title: 'Item1',
+        url: 'google.com',
+      },
+      {
+        title: 'Item1',
+        url: 'google.com',
+      },
+    ],
+  },
+} as Meta;
+
+export const primary = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [
       NavigationModule,
@@ -63,5 +68,4 @@ export const primary = (): IStory => ({
       },
     ],
   },
-  component: NavigationComponent,
 });

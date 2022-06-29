@@ -1,18 +1,43 @@
-import { NzCardModule } from 'ng-zorro-antd/card';
-
+import { Meta } from '@storybook/angular';
+import { CardComponent } from './card.component';
 import { CardModule } from '../card.module';
-import { boolean } from '@storybook/addon-knobs';
 
 export default {
   title: 'CardComponent',
-};
+  component: CardComponent,
+  parameters: {
+    controls: {
+      include: ['spyTitle', 'titlePosition', 'hoverable'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8982',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    titlePosition: {
+      control: { type: 'select' },
+    },
+  },
+  args: {
+    spyTitle: 'Card Title',
+    titlePosition: 'left',
+  },
+} as Meta;
 
-export const primary = () => ({
+export const primary = (args) => ({
+  props: args,
   moduleMetadata: {
-    imports: [NzCardModule, CardModule],
+    imports: [CardModule],
   },
   template: `
-    <spy-card spyTitle="Card Title" [extra]="extraRef" [actions]="[button, button]" [hoverable]="hoverable">
+    <spy-card
+      [spyTitle]="spyTitle"
+      [titlePosition]="titlePosition"
+      [hoverable]="hoverable"
+      [extra]="extraRef"
+      [actions]="[button, button]">
       Card content here
     </spy-card>
     <ng-template #extraRef>
@@ -22,18 +47,21 @@ export const primary = () => ({
       <button>Button Content</button>
     </ng-template>
   `,
-  props: {
-    hoverable: boolean('Hoverable', false),
-  },
 });
 
-export const withInnerCard = () => ({
+export const withInnerCard = (args) => ({
+  props: args,
   moduleMetadata: {
-    imports: [NzCardModule, CardModule],
+    imports: [CardModule],
   },
   template: `
-    <spy-card spyTitle="Card Title" [extra]="extraRef" [actions]="[button, button]" [hoverable]="hoverable">
-      <spy-card spyTitle="Card Title">
+    <spy-card
+      [spyTitle]="spyTitle"
+      [titlePosition]="titlePosition"
+      [hoverable]="hoverable"
+      [extra]="extraRef"
+      [actions]="[button, button]">
+      <spy-card [spyTitle]="spyTitle">
         Card content here
       </spy-card>
     </spy-card>
@@ -44,7 +72,4 @@ export const withInnerCard = () => ({
       <button>Button Content</button>
     </ng-template>
   `,
-  props: {
-    hoverable: boolean('Hoverable', false),
-  },
 });

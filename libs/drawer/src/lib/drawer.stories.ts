@@ -6,18 +6,12 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { boolean, text } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
-
+import { Meta } from '@storybook/angular';
 import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 import { DrawerModule } from './drawer.module';
 import { DrawerService } from './drawer.service';
 import { DrawerComponentInputs } from './drawer/drawer.component';
 import { DrawerRef } from './drawer-ref';
-
-export default {
-  title: 'DrawersComponent',
-};
 
 @Component({
   selector: 'spy-story',
@@ -87,6 +81,27 @@ class SimpleDrawerComponent extends DrawerComponentInputs {
   openDrawer = false;
 }
 
+export default {
+  title: 'DrawersComponent',
+  component: SimpleDrawerComponent,
+  parameters: {
+    controls: {
+      include: ['closeable', 'resizable', 'width', 'hasBackdrop'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
+      allowFullscreen: true,
+    },
+  },
+  args: {
+    closeable: true,
+    resizable: true,
+    width: '50%',
+    hasBackdrop: false,
+  },
+} as Meta;
+
 @Component({
   selector: 'spy-drawer-example-component',
   template: `
@@ -139,40 +154,51 @@ class DrawerWithComponentComponent implements OnDestroy {
   }
 }
 
-export const primary = (): IStory => ({
+export const primary = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [DrawerModule],
     entryComponents: [DrawerContainerProxyComponent],
   },
-  component: SimpleDrawerComponent,
-  props: {
-    closeable: boolean('Closeable', true),
-    resizable: boolean('Resizable', true),
-    width: text('Width', '50%'),
-    hasBackdrop: boolean('Has backdrop', false),
-  },
 });
 
-export const withMultipleDrawers = (): IStory => ({
+export const withMultipleDrawers = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [DrawerModule],
     entryComponents: [DrawerContainerProxyComponent],
   },
   component: MultipleDrawersComponent,
-  props: {
-    closeable: boolean('Closeable', true),
-    resizable: boolean('Resizable', true),
-    width: text('Width', '50%'),
-    hasBackdrop: boolean('Has backdrop', false),
-  },
 });
 
-export const withComponent = (): IStory => ({
+export const withComponent = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [DrawerModule],
     declarations: [DrawerExampleComponent],
     entryComponents: [DrawerContainerProxyComponent, DrawerExampleComponent],
   },
   component: DrawerWithComponentComponent,
-  props: {},
 });
+withComponent.argTypes = {
+  closeable: {
+    table: {
+      disable: true,
+    },
+  },
+  resizable: {
+    table: {
+      disable: true,
+    },
+  },
+  width: {
+    table: {
+      disable: true,
+    },
+  },
+  hasBackdrop: {
+    table: {
+      disable: true,
+    },
+  },
+};

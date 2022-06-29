@@ -118,6 +118,7 @@ export const withCustomContent = () => ({
         [placeholder]="placeholder"
         [multiple]="multiple"
         [search]="search"
+        [value]="'option1'"
     >
         <spy-option value="option1" title="Red text">
             <span style="color: red; font-weight: 400">Red text</span>
@@ -129,8 +130,8 @@ export const withCustomContent = () => ({
             <span style="font-style: italic">Italic text</span>
         </spy-option>
         <spy-selected-option *ngIf="useCustomTemplate">
-            <span beforeTitle>before </span>
-            <span afterTitle> after</span>
+            <span before>before </span>
+            <span after> after</span>
         </spy-selected-option>
     </spy-select>
   `,
@@ -139,7 +140,7 @@ export const withCustomContent = () => ({
     placeholder: 'Select option...',
     multiple: boolean('Multiple', false),
     search: boolean('Searchable', false),
-    useCustomTemplate: boolean('Use custom selected template', false),
+    useCustomTemplate: boolean('Use custom selected template', true),
   },
 });
 

@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ContentChildren,
@@ -120,6 +121,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
     private injector: Injector,
     private datasourceService: DatasourceService,
     private i18nService: I18nService,
+    private cdRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -241,6 +243,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
     if (this.mappedValue) {
       this.updateTitlesArrayForSelectedValues(this.mappedValue);
     }
+    this.cdRef.detectChanges();
   }
 
   private isValueExist(value?: any): boolean {

@@ -8,6 +8,7 @@
   [nzAllowClear]="!disableClear"
   [nzMaxTagCount]="0"
   [nzMaxTagPlaceholder]="tagPlaceholder"
+  [class.ant-select-show-search]="search"
   [(ngModel)]="value"
   (ngModelChange)="valueChange.emit($event)"
   nzCheckable

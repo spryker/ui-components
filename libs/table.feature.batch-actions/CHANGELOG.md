@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.3.2-next.1...@spryker/table.feature.batch-actions@0.3.2) (2022-05-31)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
+## [0.3.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.3.1...@spryker/table.feature.batch-actions@0.3.2-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
+## [0.3.2-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.feature.batch-actions@0.3.1...@spryker/table.feature.batch-actions@0.3.2-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
+## [0.3.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.3.1-next.0...@spryker/table.feature.batch-actions@0.3.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
+## [0.3.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.3.0...@spryker/table.feature.batch-actions@0.3.1-next.0) (2022-05-25)
+
+
+### Bug Fixes
+
+* added `rxjs` to `allowedNonPeerDependencies` ([ec4a99c](https://github.com/spryker/ui-components/commit/ec4a99ccdcbfb16ae3076807e145942492443abf))
+* added missed / removed unused dependencies ([cee4a1f](https://github.com/spryker/ui-components/commit/cee4a1f4892bd36be77b03215f14870b0aaad8a4))
+* moved `rxjs` to the `peerDependencies` ([4deabb4](https://github.com/spryker/ui-components/commit/4deabb44aa6cc97998cdf5e2ddf27567e040a7c9))
+
+
+
+
+
+# [0.3.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.3.0-next.1...@spryker/table.feature.batch-actions@0.3.0) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.3.0-next.0...@spryker/table.feature.batch-actions@0.3.0-next.1) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.2.1-next.0...@spryker/table.feature.batch-actions@0.3.0-next.0) (2022-05-11)
+
+
+### Features
+
+* introduced advanced css variables ([3c2c839](https://github.com/spryker/ui-components/commit/3c2c839c755a1ae05dc2b28bcd1a24691971c360))
+
+
+
+
+
+## [0.2.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.2.1-next.0...@spryker/table.feature.batch-actions@0.2.1) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/table.feature.batch-actions
+
+
+
+
+
 ## [0.2.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.2.0...@spryker/table.feature.batch-actions@0.2.1-next.0) (2022-04-01)
 
 **Note:** Version bump only for package @spryker/table.feature.batch-actions

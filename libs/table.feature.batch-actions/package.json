@@ -1,15 +1,16 @@
 {
   "name": "@spryker/table.feature.batch-actions",
-  "version": "0.2.1-next.0",
+  "version": "0.3.2",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",
     "@spryker/button": "^0.5.0",
     "@spryker/notification": "^0.4.0",
-    "@spryker/styles": "^0.6.0",
+    "@spryker/styles": "^0.7.0",
     "@spryker/table": "^0.5.0",
     "@spryker/table.feature.selectable": "^0.2.0",
-    "@spryker/utils": "^0.3.0"
+    "@spryker/utils": "^0.3.0",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
     "tslib": "^2.3.1"

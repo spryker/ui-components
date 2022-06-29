@@ -22,6 +22,7 @@ export default {
         title: 'Item1',
         url: '/dashboard',
         icon: 'dashboard',
+        isDisabled: true,
       },
       {
         title: 'Item2',
@@ -43,6 +44,7 @@ export default {
             url: '',
             icon: '',
             isActive: false,
+            isDisabled: true,
             subItems: [],
           },
           {
@@ -153,6 +155,7 @@ withSidebar.args = {
     {
       title: 'Item1',
       icon: 'dashboard',
+      isDisabled: true,
     },
     {
       title: 'Item2',
@@ -187,6 +190,7 @@ withSidebar.args = {
           url: '',
           icon: '',
           isActive: false,
+          isDisabled: true,
           subItems: [],
         },
         {

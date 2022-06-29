@@ -38,6 +38,12 @@
       }
     }
 
+    &-multiple {
+      .@{select-prefix-cls}-selection-search {
+        display: none;
+      }
+    }
+
     &-multiple,
     &-single {
       &::after {
@@ -121,12 +127,8 @@
 
       .@{select-prefix-cls}-selection-search {
         display: block;
-
-        &:first-child {
-          .@{select-prefix-cls}-selection-search-input {
-            margin-left: 0;
-          }
-        }
+        min-width: 100%;
+        margin-left: 0;
 
         &-input,
         &-mirror {

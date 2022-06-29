@@ -56,6 +56,7 @@ export const primary = (args) => ({
 primary.args = {
   config: {
     src: '${value}',
+    alt: 'Value for testing',
   },
   context: {
     value: 'https://images.icecat.biz/img/norm/medium/25904006-8438.jpg',
@@ -105,6 +106,7 @@ withTable.args = {
         type: 'image',
         typeOptions: {
           src: '${value}',
+          alt: 'Value for testing',
         },
       },
       {

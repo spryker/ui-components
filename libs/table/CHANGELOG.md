@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.3-next.2...@spryker/table@0.7.3) (2022-05-31)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+## [0.7.3-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.3-next.1...@spryker/table@0.7.3-next.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **table:** added spinner to initial table loading ([1cd159d](https://github.com/spryker/ui-components/commit/1cd159ddd808eebbb20d4d0e410e1e0a449d1a4f))
+
+
+
+
+
+## [0.7.3-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.2...@spryker/table@0.7.3-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+## [0.7.3-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table@0.7.2...@spryker/table@0.7.3-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+## [0.7.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.2-next.0...@spryker/table@0.7.2) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+## [0.7.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.1...@spryker/table@0.7.2-next.0) (2022-05-25)
+
+
+### Bug Fixes
+
+* added `rxjs` to `allowedNonPeerDependencies` ([ec4a99c](https://github.com/spryker/ui-components/commit/ec4a99ccdcbfb16ae3076807e145942492443abf))
+* added missed / removed unused dependencies ([cee4a1f](https://github.com/spryker/ui-components/commit/cee4a1f4892bd36be77b03215f14870b0aaad8a4))
+* moved `rxjs` to the `peerDependencies` ([4deabb4](https://github.com/spryker/ui-components/commit/4deabb44aa6cc97998cdf5e2ddf27567e040a7c9))
+
+
+
+
+
+## [0.7.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.1-next.0...@spryker/table@0.7.1) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+## [0.7.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.6.1-next.0...@spryker/table@0.7.1-next.0) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+## [0.6.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.6.0-next.1...@spryker/table@0.6.1-next.0) (2022-05-11)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.6.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.6.0-next.0...@spryker/table@0.6.0) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/table
+
+
+
+
+
+# [0.6.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table@0.6.0-next.0...@spryker/table@0.6.0-next.1) (2022-05-11)
+
+
+### Bug Fixes
+
+* applied correct variables in styles ([76dcb2c](https://github.com/spryker/ui-components/commit/76dcb2c7e370e313cc86078ae2cc43aa1fc2c9a2))
+
+
+### Features
+
+* introduced advanced css variables ([3c2c839](https://github.com/spryker/ui-components/commit/3c2c839c755a1ae05dc2b28bcd1a24691971c360))
+
+
+
+
+
 # [0.6.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.4.1-next.3...@spryker/table@0.6.0-next.0) (2022-04-01)
 
 

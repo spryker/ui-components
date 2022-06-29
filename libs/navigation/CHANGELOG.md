@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.4-next.0...@spryker/navigation@0.5.4) (2022-06-21)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+## [0.5.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.3...@spryker/navigation@0.5.4-next.0) (2022-06-10)
+
+
+### Bug Fixes
+
+* **navigation:** added `isDisabled` to the NavigationItem interface ([bb75dc7](https://github.com/spryker/ui-components/commit/bb75dc7e4efbcd0777169226e4b69b0aa68b17a1))
+* **navigation:** increased submenu level ([7510ab9](https://github.com/spryker/ui-components/commit/7510ab9a23d39da90ba39e8c7371de0307f4b58d))
+
+
+
+
+
+## [0.5.3](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.3-next.1...@spryker/navigation@0.5.3) (2022-05-31)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+## [0.5.3-next.1](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.2...@spryker/navigation@0.5.3-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+## [0.5.3-next.0](https://github.com/spryker/zed-gui/compare/@spryker/navigation@0.5.2...@spryker/navigation@0.5.3-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+## [0.5.2](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.2-next.0...@spryker/navigation@0.5.2) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+## [0.5.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.1...@spryker/navigation@0.5.2-next.0) (2022-05-11)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+## [0.5.1](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.1-next.0...@spryker/navigation@0.5.1) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
 ## [0.5.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.0...@spryker/navigation@0.5.1-next.0) (2022-04-01)
 
 **Note:** Version bump only for package @spryker/navigation

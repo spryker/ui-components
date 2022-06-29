@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.5.1-next.1...@spryker/date-picker@0.5.1) (2022-05-31)
+
+**Note:** Version bump only for package @spryker/date-picker
+
+
+
+
+
+## [0.5.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.5.0...@spryker/date-picker@0.5.1-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/date-picker
+
+
+
+
+
+## [0.5.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/date-picker@0.5.0...@spryker/date-picker@0.5.1-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/date-picker
+
+
+
+
+
+# [0.5.0](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.5.0-next.1...@spryker/date-picker@0.5.0) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/date-picker
+
+
+
+
+
+# [0.5.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.5.0-next.0...@spryker/date-picker@0.5.0-next.1) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/date-picker
+
+
+
+
+
+# [0.5.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.4.1-next.0...@spryker/date-picker@0.5.0-next.0) (2022-05-11)
+
+
+### Bug Fixes
+
+* applied correct variables in styles ([76dcb2c](https://github.com/spryker/ui-components/commit/76dcb2c7e370e313cc86078ae2cc43aa1fc2c9a2))
+* **date-picker:** adjusted styles ([7429225](https://github.com/spryker/ui-components/commit/742922576f82a45075e23b301e65bc03a493ae6c))
+
+
+### Features
+
+* introduced advanced css variables ([3c2c839](https://github.com/spryker/ui-components/commit/3c2c839c755a1ae05dc2b28bcd1a24691971c360))
+
+
+
+
+
+## [0.4.1](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.4.1-next.0...@spryker/date-picker@0.4.1) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/date-picker
+
+
+
+
+
 ## [0.4.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.4.0...@spryker/date-picker@0.4.1-next.0) (2022-04-01)
 
 **Note:** Version bump only for package @spryker/date-picker

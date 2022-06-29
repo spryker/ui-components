@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.3.2-next.2...@spryker/table.column.image@0.3.2) (2022-05-31)
+
+**Note:** Version bump only for package @spryker/table.column.image
+
+
+
+
+
+## [0.3.2-next.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.3.2-next.0...@spryker/table.column.image@0.3.2-next.2) (2022-05-27)
+
+**Note:** Version bump only for package @spryker/table.column.image
+
+
+
+
+
+## [0.3.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.3.1...@spryker/table.column.image@0.3.2-next.0) (2022-05-25)
+
+
+### Bug Fixes
+
+* **table.column.image:** added `alt` attribute to the image ([0d9a129](https://github.com/spryker/ui-components/commit/0d9a129a65c4ec9fb93a176666e0add02c718e4b))
+
+
+
+
+
+## [0.3.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.3.1-next.0...@spryker/table.column.image@0.3.1) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/table.column.image
+
+
+
+
+
+## [0.3.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.3.0...@spryker/table.column.image@0.3.1-next.0) (2022-05-11)
+
+**Note:** Version bump only for package @spryker/table.column.image
+
+
+
+
+
+# [0.3.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.3.0-next.1...@spryker/table.column.image@0.3.0) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/table.column.image
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.3.0-next.0...@spryker/table.column.image@0.3.0-next.1) (2022-05-10)
+
+
+### Bug Fixes
+
+* **table.column.image:** updated `@spryker/table` dependency ([9da4017](https://github.com/spryker/ui-components/commit/9da4017adcfe3a29911f3f74616cc76cd05935ba))
+
+
+
+
+
 # [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.image@0.1.1-next.2...@spryker/table.column.image@0.3.0-next.0) (2022-04-01)
 
 

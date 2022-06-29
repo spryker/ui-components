@@ -115,7 +115,7 @@ export class CollateDataTransformerService
           }
 
           return this.dataTransformerFilter.filter(
-            'text',
+            collateConfig.search.type,
             filteredData,
             collateConfig.search as DataTransformerFilterConfig,
             [configuratorConfig.search],

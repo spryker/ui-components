@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@0.2.2-next.1...@spryker/table.column.date@0.2.2) (2022-05-31)
+
+**Note:** Version bump only for package @spryker/table.column.date
+
+
+
+
+
+## [0.2.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@0.2.1...@spryker/table.column.date@0.2.2-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table.column.date
+
+
+
+
+
+## [0.2.2-next.0](https://github.com/spryker/zed-gui/compare/@spryker/table.column.date@0.2.1...@spryker/table.column.date@0.2.2-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/table.column.date
+
+
+
+
+
+## [0.2.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@0.2.1-next.0...@spryker/table.column.date@0.2.1) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/table.column.date
+
+
+
+
+
+## [0.2.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@0.2.0...@spryker/table.column.date@0.2.1-next.0) (2022-05-11)
+
+**Note:** Version bump only for package @spryker/table.column.date
+
+
+
+
+
+# [0.2.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@0.2.0-next.1...@spryker/table.column.date@0.2.0) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/table.column.date
+
+
+
+
+
+# [0.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@0.2.0-next.0...@spryker/table.column.date@0.2.0-next.1) (2022-05-10)
+
+
+### Bug Fixes
+
+* **table.column.date:** updated `@spryker/table` dependency ([2dd1501](https://github.com/spryker/ui-components/commit/2dd1501046dab16c3209b32b28ab7916e11958a7))
+
+
+
+
+
 # [0.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@0.0.13-next.2...@spryker/table.column.date@0.2.0-next.0) (2022-04-01)
 
 

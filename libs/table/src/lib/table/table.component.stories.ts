@@ -242,8 +242,8 @@ class CustomFeatureComponent extends TableFeatureComponent implements OnInit {
   }
 }
 
-function getFeatureStory(args, location: TableFeatureLocation) {
-  return {
+function getFeatureStory(location: TableFeatureLocation) {
+  return (args) => ({
     props: {
       ...args,
       location,
@@ -257,47 +257,51 @@ function getFeatureStory(args, location: TableFeatureLocation) {
         <spy-custom-feature spy-table-feature [location]="location"></spy-custom-feature>
       </spy-table>
     `,
-  };
+  });
 }
 
-export const withFeatureInTop = (args) =>
-  getFeatureStory(args, TableFeatureLocation.top);
+export const withFeatureInTop = getFeatureStory(TableFeatureLocation.top);
 
-export const withFeatureInBeforeTable = (args) =>
-  getFeatureStory(args, TableFeatureLocation.beforeTable);
+export const withFeatureInBeforeTable = getFeatureStory(
+  TableFeatureLocation.beforeTable,
+);
 
-export const withFeatureInHeader = (args) =>
-  getFeatureStory(args, TableFeatureLocation.header);
+export const withFeatureInHeader = getFeatureStory(TableFeatureLocation.header);
 
-export const withFeatureInHeaderExt = (args) =>
-  getFeatureStory(args, TableFeatureLocation.headerExt);
+export const withFeatureInHeaderExt = getFeatureStory(
+  TableFeatureLocation.headerExt,
+);
 
-export const withFeatureInBeforeRows = (args) =>
-  getFeatureStory(args, TableFeatureLocation.beforeRows);
+export const withFeatureInBeforeRows = getFeatureStory(
+  TableFeatureLocation.beforeRows,
+);
 
-export const withFeatureInBeforeColsHeader = (args) =>
-  getFeatureStory(args, TableFeatureLocation.beforeColsHeader);
+export const withFeatureInBeforeColsHeader = getFeatureStory(
+  TableFeatureLocation.beforeColsHeader,
+);
 
-export const withFeatureInBeforeCols = (args) =>
-  getFeatureStory(args, TableFeatureLocation.beforeCols);
+export const withFeatureInBeforeCols = getFeatureStory(
+  TableFeatureLocation.beforeCols,
+);
 
-export const withFeatureInCell = (args) =>
-  getFeatureStory(args, TableFeatureLocation.cell);
+export const withFeatureInCell = getFeatureStory(TableFeatureLocation.cell);
 
-export const withFeatureInAfterCols = (args) =>
-  getFeatureStory(args, TableFeatureLocation.afterCols);
+export const withFeatureInAfterCols = getFeatureStory(
+  TableFeatureLocation.afterCols,
+);
 
-export const withFeatureInAfterColsHeader = (args) =>
-  getFeatureStory(args, TableFeatureLocation.afterColsHeader);
+export const withFeatureInAfterColsHeader = getFeatureStory(
+  TableFeatureLocation.afterColsHeader,
+);
 
-export const withFeatureInAfterRows = (args) =>
-  getFeatureStory(args, TableFeatureLocation.afterRows);
+export const withFeatureInAfterRows = getFeatureStory(
+  TableFeatureLocation.afterRows,
+);
 
-export const withFeatureInAfterTable = (args) =>
-  getFeatureStory(args, TableFeatureLocation.afterTable);
+export const withFeatureInAfterTable = getFeatureStory(
+  TableFeatureLocation.afterTable,
+);
 
-export const withFeatureInBottom = (args) =>
-  getFeatureStory(args, TableFeatureLocation.bottom);
+export const withFeatureInBottom = getFeatureStory(TableFeatureLocation.bottom);
 
-export const withFeatureInHidden = (args) =>
-  getFeatureStory(args, TableFeatureLocation.hidden);
+export const withFeatureInHidden = getFeatureStory(TableFeatureLocation.hidden);

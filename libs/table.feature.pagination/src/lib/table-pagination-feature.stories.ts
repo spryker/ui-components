@@ -10,19 +10,51 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { IStory } from '@storybook/angular';
+import { IStory, Meta } from '@storybook/angular';
 
 import { TablePaginationFeatureModule } from './table-pagination-feature.module';
-
-export default {
-  title: 'TablePaginationFeatureComponent',
-};
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
   col2: 'col2',
   col3: 'col3',
 });
+
+export default {
+  title: 'TablePaginationFeatureComponent',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1365%3A7734',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
+    config: {
+      dataSource: {
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as unknown as MockTableDatasourceConfig,
+      columns: [
+        { id: 'col1', title: 'Column #1' },
+        { id: 'col2', title: 'Column #2' },
+        { id: 'col3', title: 'Column #3' },
+      ],
+      pagination: {
+        enabled: true, // This will enable feature via config
+        sizes: [10, 50, 100],
+      },
+    },
+  },
+} as Meta;
 
 export const viaHtml = getPaginationStory(
   `
@@ -35,7 +67,7 @@ export const viaHtml = getPaginationStory(
 
 export const viaConfig = getPaginationStory(
   `
-    <spy-table [config]="config">
+    <spy-table [config]="config"></spy-table>
   `,
   [
     TableModule.withFeatures({
@@ -50,8 +82,9 @@ export const viaConfig = getPaginationStory(
 function getPaginationStory(
   template: string,
   extraNgModules: any[] = [],
-): () => IStory {
-  return () => ({
+): (args) => IStory {
+  return (args) => ({
+    props: args,
     moduleMetadata: {
       imports: [
         HttpClientTestingModule,
@@ -72,22 +105,5 @@ function getPaginationStory(
       ],
     },
     template,
-    props: {
-      config: {
-        dataSource: {
-          type: 'mock-data',
-          dataGenerator: tableDataGenerator,
-        } as unknown as MockTableDatasourceConfig,
-        columns: [
-          { id: 'col1', title: 'Column #1' },
-          { id: 'col2', title: 'Column #2' },
-          { id: 'col3', title: 'Column #3' },
-        ],
-        pagination: {
-          enabled: true, // This will enable feature via config
-          sizes: [10, 50, 100],
-        },
-      },
-    },
   });
 }

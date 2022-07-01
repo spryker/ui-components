@@ -1,13 +1,9 @@
 import { Component, Injectable, Injector, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
+import { Meta } from '@storybook/angular';
 import { Observable, of } from 'rxjs';
-
+import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
 import { AjaxActionService } from './ajax-action.service';
-
-export default {
-    title: 'AjaxActionComponent',
-};
 
 @Injectable({
     providedIn: 'root',
@@ -47,6 +43,12 @@ class StoryComponent {
         this.ajaxActionService.handle(actionObject, this.injector);
     }
 }
+
+export default {
+    title: 'AjaxActionComponent',
+    component: StoryComponent,
+} as Meta;
+
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -59,10 +61,9 @@ class StoryComponent {
 })
 class StoryModule {}
 
-export const primary = () => ({
+export const primary = (args) => ({
+    props: args,
     moduleMetadata: {
         imports: [StoryModule],
     },
-    component: StoryComponent,
-    props: {},
 });

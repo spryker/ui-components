@@ -5,7 +5,7 @@
             [class.spy-radio--disabled]="radio.disabled"
             [class.spy-radio--error]="radio.hasError"
         >
-            <label nz-radio [nzValue]="radio.value" [nzDisabled]="radio.disabled">
+            <label nz-radio [nzValue]="radio.value" [nzDisabled]="radio.disabled" spyTriggerChangeEvent>
                 <ng-container *ngTemplateOutlet="radio.template"></ng-container>
             </label>
         </div>

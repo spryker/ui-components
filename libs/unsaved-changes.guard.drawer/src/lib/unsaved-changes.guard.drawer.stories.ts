@@ -1,5 +1,6 @@
 import { Component, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta } from '@storybook/angular';
 import { DrawerModule, DrawerRef, DrawerService, DrawerContainerProxyComponent } from '@spryker/drawer';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
@@ -7,18 +8,15 @@ import { ModalModule, NzModalWrapperComponent } from '@spryker/modal';
 import { UnsavedChangesModule } from '@spryker/unsaved-changes';
 import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
 import { UnsavedChangesFormMonitorModule } from '@spryker/unsaved-changes.monitor.form';
-import { IStory } from '@storybook/angular';
 import { UnsavedChangesDrawerGuardModule } from './unsaved-changes-drawer-guard.module';
-
-export default {
-    title: 'UnsavedChangesGuardDrawer',
-};
 
 @Component({
     selector: 'spy-drawer-content',
     template: `
         <form spyUnsavedChangesFormMonitor>
-            <input type="text" />
+            <div>
+                <input type="text" />
+            </div>
             <button>Submit</button>
         </form>
     `,
@@ -46,7 +44,13 @@ class StoryComponent {
     }
 }
 
-export const primary = (): IStory => ({
+export default {
+    title: 'UnsavedChangesGuardDrawer',
+    component: StoryComponent,
+} as Meta;
+
+export const primary = (args) => ({
+    props: args,
     moduleMetadata: {
         imports: [
             DrawerModule,
@@ -68,5 +72,4 @@ export const primary = (): IStory => ({
             },
         ],
     },
-    component: StoryComponent,
 });

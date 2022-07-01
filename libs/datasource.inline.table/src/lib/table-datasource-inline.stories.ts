@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta } from '@storybook/angular';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
@@ -12,56 +13,13 @@ import { TableFilterDateRangeComponent, TableFilterDateRangeModule } from '@spry
 import { TableFilterSelectComponent, TableFilterSelectModule } from '@spryker/table.filter.select';
 import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils';
 import { DateFnsDateAdapterModule } from '@spryker/utils.date.adapter.date-fns';
-import { IStory } from '@storybook/angular';
 
 import { TableDatasourceInlineModule } from './table-datasource-inline.module';
 import { TableDatasourceInlineService } from './table-datasource-inline.service';
 
 export default {
     title: 'TableDatasourceInlineService',
-};
-
-export const withTable = (): IStory => ({
-    moduleMetadata: {
-        imports: [
-            DateFnsDateAdapterModule,
-            TableDatasourceInlineModule.withConfig(),
-            HttpClientTestingModule,
-            ContextModule,
-            MockHttpModule,
-            TableModule.forRoot(),
-            DatasourceModule.withDatasources({
-                'inline.table': TableDatasourceInlineService,
-            } as any),
-            TableModule.withFeatures({
-                pagination: () =>
-                    import('@spryker/table.feature.pagination').then((m) => m.TablePaginationFeatureModule),
-                filters: () => import('@spryker/table.feature.filters').then((m) => m.TableFiltersFeatureModule),
-                search: () => import('@spryker/table.feature.search').then((m) => m.TableSearchFeatureModule),
-            }),
-            TableFiltersFeatureModule.withFilterComponents({
-                select: TableFilterSelectComponent,
-                'date-range': TableFilterDateRangeComponent,
-            } as any),
-            TableFilterSelectModule,
-            TableFilterDateRangeModule,
-            DefaultContextSerializationModule,
-            BrowserAnimationsModule,
-            LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-            EnLocaleModule,
-        ],
-        providers: [
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [LayoutFlatHostComponent, TableFilterDateRangeComponent, TableFilterSelectComponent],
-                multi: true,
-            },
-        ],
-    },
-    template: `
-    <spy-table [config]="config"></spy-table>
-  `,
-    props: {
+    args: {
         config: {
             dataSource: {
                 type: 'inline.table',
@@ -131,18 +89,8 @@ export const withTable = (): IStory => ({
                 },
             },
             columns: [
-                {
-                    id: 'col1',
-                    title: 'Column #1',
-                    width: '20%',
-                    sortable: true,
-                },
-                {
-                    id: 'col2',
-                    title: 'Column #2',
-                    width: '20%',
-                    sortable: true,
-                },
+                { id: 'col1', title: 'Column #1', width: '20%', sortable: true },
+                { id: 'col2', title: 'Column #2', width: '20%', sortable: true },
                 { id: 'col3', title: 'Column #3' },
                 { id: 'col4', title: 'Column #4' },
             ],
@@ -200,4 +148,47 @@ export const withTable = (): IStory => ({
             },
         },
     },
+} as Meta;
+
+export const withTable = (args) => ({
+    props: args,
+    moduleMetadata: {
+        imports: [
+            DateFnsDateAdapterModule,
+            TableDatasourceInlineModule.withConfig(),
+            HttpClientTestingModule,
+            ContextModule,
+            MockHttpModule,
+            TableModule.forRoot(),
+            DatasourceModule.withDatasources({
+                'inline.table': TableDatasourceInlineService,
+            } as any),
+            TableModule.withFeatures({
+                pagination: () =>
+                    import('@spryker/table.feature.pagination').then((m) => m.TablePaginationFeatureModule),
+                filters: () => import('@spryker/table.feature.filters').then((m) => m.TableFiltersFeatureModule),
+                search: () => import('@spryker/table.feature.search').then((m) => m.TableSearchFeatureModule),
+            }),
+            TableFiltersFeatureModule.withFilterComponents({
+                select: TableFilterSelectComponent,
+                'date-range': TableFilterDateRangeComponent,
+            } as any),
+            TableFilterSelectModule,
+            TableFilterDateRangeModule,
+            DefaultContextSerializationModule,
+            BrowserAnimationsModule,
+            LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+            EnLocaleModule,
+        ],
+        providers: [
+            {
+                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                useValue: [LayoutFlatHostComponent, TableFilterDateRangeComponent, TableFilterSelectComponent],
+                multi: true,
+            },
+        ],
+    },
+    template: `
+    <spy-table [config]="config"></spy-table>
+  `,
 });

@@ -2,6 +2,7 @@ import {
     AfterViewChecked,
     ChangeDetectionStrategy,
     Component,
+    ElementRef,
     EventEmitter,
     HostBinding,
     Inject,
@@ -13,7 +14,7 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { IconCalendarModule } from '@spryker/icon/icons';
-import { InjectionTokenType, ToBoolean, ToJson } from '@spryker/utils';
+import { InjectionTokenType, ToBoolean, ToJson, triggerChangeEvent } from '@spryker/utils';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 
 import { DateWorkDaysToken, DateWorkHoursToken } from './tokens';
@@ -78,6 +79,8 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
     @ViewChild('datePicker', { static: false })
     datePicker?: NzDatePickerComponent;
+    @ViewChild('inputElement', { static: true })
+    inputElement!: ElementRef<HTMLInputElement>;
 
     private _picker?: NzDatePickerComponent;
 
@@ -336,6 +339,11 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
         } else {
             this.closePicker();
         }
+    }
+
+    dateChangeEvent(event: Date): void {
+        this.dateChange.emit(event);
+        triggerChangeEvent(this.inputElement.nativeElement);
     }
 
     openChangeEvent(isOpen: boolean): void {

@@ -3,16 +3,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActionsModule } from '@spryker/actions';
 import { ButtonActionModule } from '@spryker/button.action';
 import { ContextService } from '@spryker/utils';
-import { object } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
+import { Meta } from '@storybook/angular';
 
 import { RedirectActionHandlerService } from './redirect-action-handler.service';
 
 export default {
     title: 'RedirectActionHandlerService',
-};
+    parameters: {
+        controls: {
+            include: ['action'],
+        },
+    },
+    args: {
+        action: {
+            type: 'redirect',
+            url: 'https://spryker.com',
+        },
+    },
+} as Meta;
 
-export const primary = (): IStory => ({
+export const primary = (args) => ({
+    props: args,
     moduleMetadata: {
         imports: [
             BrowserAnimationsModule,
@@ -32,10 +43,4 @@ export const primary = (): IStory => ({
       Redirect Via Service
     </spy-button-action>
   `,
-    props: {
-        action: object('action', {
-            type: 'redirect',
-            url: 'https://spryker.com',
-        }),
-    },
 });

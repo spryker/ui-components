@@ -13,10 +13,10 @@ export class FormItemComponent implements OnInit, OnChanges {
     @Input() error: string | boolean | TemplateRef<{ $implicit: AbstractControl | NgModel }> = '';
     @Input() warning: string | TemplateRef<{ $implicit: AbstractControl | NgModel }> = '';
     @Input() hint: string | TemplateRef<{ $implicit: AbstractControl | NgModel }> = '';
-    @Input() @ToBoolean() required: boolean | string = false;
-    @Input() @ToBoolean() noSpaces: boolean | string = false;
-    @Input() @ToBoolean() noLabel: boolean | string = false;
-    @Input() @ToBoolean() withErrorTitle: boolean | string = false;
+    @Input() @ToBoolean() required = false;
+    @Input() @ToBoolean() noSpaces = false;
+    @Input() @ToBoolean() noLabel = false;
+    @Input() @ToBoolean() withErrorTitle = false;
     currentValidationStatus = '';
 
     ngOnInit() {

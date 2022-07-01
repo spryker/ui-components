@@ -8,7 +8,7 @@
     [nzDisabledTime]="disabledTime"
     [nzShowToday]="false"
     [nzShowTime]="nzTime"
-    (ngModelChange)="dateChange.emit($event)"
+    (ngModelChange)="dateChangeEvent($event)"
     (nzOnOpenChange)="openChangeEvent($event)"
     [nzSuffixIcon]="suffixTpl"
     *spyLocaleRender
@@ -20,4 +20,11 @@
     <spy-icon [name]="suffixIcon"></spy-icon>
 </ng-template>
 
-<input type="hidden" [ngModel]="date | spyToIsoDateFormat" [name]="name" [attr.name]="name" [disabled]="disabled" />
+<input
+    #inputElement
+    type="hidden"
+    [ngModel]="date | spyToIsoDateFormat"
+    [name]="name"
+    [attr.name]="name"
+    [disabled]="disabled"
+/>

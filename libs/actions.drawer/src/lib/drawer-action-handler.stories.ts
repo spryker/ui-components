@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta } from '@storybook/angular';
 import { ActionsModule } from '@spryker/actions';
 import { ButtonActionModule } from '@spryker/button.action';
 import { DatasourceModule } from '@spryker/datasource';
@@ -8,14 +9,23 @@ import { TableModule } from '@spryker/table';
 import { TableRowActionsFeatureModule } from '@spryker/table.feature.row-actions';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { object } from '@storybook/addon-knobs';
 
 import { DrawerActionHandlerService } from './drawer-action-handler.service';
 import { DrawerActionModule } from './drawer-action.module';
 
 export default {
     title: 'DrawerActionHandlerService',
-};
+    parameters: {
+        controls: {
+            include: ['action', 'config'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
+            allowFullscreen: true,
+        },
+    },
+} as Meta;
 
 @Component({
     selector: 'spy-simple-component',
@@ -32,7 +42,8 @@ class SimpleComponent {
     randomValue = Math.floor(Math.random() * 100);
 }
 
-export const primary = () => ({
+export const primary = (args) => ({
+    props: args,
     moduleMetadata: {
         imports: [
             DrawerModule,
@@ -67,18 +78,18 @@ export const primary = () => ({
       Open another drawer Via Service
     </spy-button-action>
   `,
-    props: {
-        action: object('action', {
-            type: 'drawer',
-            component: 'simple_component',
-            options: {
-                inputs: {
-                    test: 'input value from config',
-                },
-            },
-        }),
-    },
 });
+primary.args = {
+    action: {
+        type: 'drawer',
+        component: 'simple_component',
+        options: {
+            inputs: {
+                test: 'input value from config',
+            },
+        },
+    },
+};
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col1: `col1 #${i}`,
@@ -86,7 +97,8 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col3: 'col3',
 });
 
-export const withTable = () => ({
+export const withTable = (args) => ({
+    props: args,
     moduleMetadata: {
         imports: [
             BrowserAnimationsModule,
@@ -115,34 +127,42 @@ export const withTable = () => ({
       <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
     </spy-table>
   `,
-    props: {
-        config: {
-            dataSource: {
-                type: 'mock-data',
-                dataGenerator: tableDataGenerator,
-            } as unknown as MockTableDatasourceConfig,
-            columns: [
-                { id: 'col1', title: 'Column #1' },
-                { id: 'col2', title: 'Column #2' },
-                { id: 'col3', title: 'Column #3' },
-            ],
-            rowActions: {
-                enabled: true,
-                actions: [
-                    {
-                        id: 'drawer',
-                        title: 'Open Drawer',
-                        type: 'drawer',
-                        component: 'simple_component',
-                        options: {
-                            inputs: {
-                                test: 'input value from config',
-                            },
+});
+withTable.args = {
+    config: {
+        dataSource: {
+            type: 'mock-data',
+            dataGenerator: tableDataGenerator,
+        } as unknown as MockTableDatasourceConfig,
+        columns: [
+            { id: 'col1', title: 'Column #1' },
+            { id: 'col2', title: 'Column #2' },
+            { id: 'col3', title: 'Column #3' },
+        ],
+        rowActions: {
+            enabled: true,
+            actions: [
+                {
+                    id: 'drawer',
+                    title: 'Open Drawer',
+                    type: 'drawer',
+                    component: 'simple_component',
+                    options: {
+                        inputs: {
+                            test: 'input value from config',
                         },
                     },
-                ],
-                click: 'drawer',
-            },
+                },
+            ],
+            click: 'drawer',
         },
     },
-});
+};
+//ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+withTable.argTypes = {
+    config: {
+        table: {
+            disable: true,
+        },
+    },
+};

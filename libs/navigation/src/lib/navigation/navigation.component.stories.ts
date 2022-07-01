@@ -1,13 +1,78 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta } from '@storybook/angular';
 import { Icon, provideIcons } from '@spryker/icon';
 import { SidebarModule } from '@spryker/sidebar';
-
 import { NavigationModule } from '../navigation.module';
 import { NavigationComponent } from './navigation.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
     title: 'NavigationComponent',
-};
+    component: NavigationComponent,
+    parameters: {
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=319%3A448',
+            allowFullscreen: true,
+        },
+    },
+    args: {
+        collapsed: false,
+        items: [
+            {
+                title: 'Item1',
+                url: '/dashboard',
+                icon: 'dashboard',
+                isDisabled: true,
+            },
+            {
+                title: 'Item2',
+                icon: 'orders',
+                isActive: false,
+                subItems: [
+                    {
+                        title: 'SubItem1',
+                        url: '',
+                        icon: '',
+                        isActive: false,
+                        subItems: [],
+                    },
+                    {
+                        title: 'SubItem2',
+                    },
+                    {
+                        title: 'SubItem3',
+                        url: '',
+                        icon: '',
+                        isActive: false,
+                        isDisabled: true,
+                        subItems: [],
+                    },
+                    {
+                        title: 'SubItem4',
+                        url: '',
+                        icon: '',
+                        isActive: false,
+                        subItems: [],
+                    },
+                ],
+            },
+            {
+                title: 'Item3',
+                url: '/offers',
+                icon: 'offers',
+                isActive: true,
+                subItems: [],
+            },
+            {
+                title: 'Item4',
+                url: '/profile',
+                icon: 'profile',
+                isActive: false,
+                subItems: [],
+            },
+        ],
+    },
+} as Meta;
 
 const iconDashboard = `
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
@@ -65,71 +130,16 @@ const icons: Icon[] = [
     { icon: 'profile', svg: iconProfile },
 ];
 
-export const primary = () => ({
+export const primary = (args) => ({
+    props: args,
     moduleMetadata: {
         imports: [NavigationModule, BrowserAnimationsModule],
         providers: [provideIcons(icons)],
     },
-    component: NavigationComponent,
-    props: {
-        items: [
-            {
-                title: 'Item1',
-                url: 'dashboard',
-                icon: 'dashboard',
-                isDisabled: true,
-            },
-            {
-                title: 'Item2',
-                icon: 'orders',
-                isActive: false,
-                subItems: [
-                    {
-                        title: 'SubItem1',
-                        url: '',
-                        icon: '',
-                        isActive: false,
-                        subItems: [],
-                    },
-                    {
-                        title: 'SubItem2',
-                    },
-                    {
-                        title: 'SubItem3',
-                        url: '',
-                        icon: '',
-                        isActive: false,
-                        isDisabled: true,
-                        subItems: [],
-                    },
-                    {
-                        title: 'SubItem4',
-                        url: '',
-                        icon: '',
-                        isActive: false,
-                        subItems: [],
-                    },
-                ],
-            },
-            {
-                title: 'Item3',
-                url: 'offers',
-                icon: 'offers',
-                isActive: true,
-                subItems: [],
-            },
-            {
-                title: 'Item4',
-                url: 'profile',
-                icon: 'profile',
-                isActive: false,
-                subItems: [],
-            },
-        ],
-    },
 });
 
-export const withSidebar = () => ({
+export const withSidebar = (args) => ({
+    props: args,
     moduleMetadata: {
         imports: [NavigationModule, SidebarModule, BrowserAnimationsModule],
         providers: [provideIcons(icons)],
@@ -139,73 +149,79 @@ export const withSidebar = () => ({
       <spy-navigation [items]="items" [collapsed]="collapsed"></spy-navigation>
     </spy-sidebar>
   `,
-    props: {
-        collapsed: false,
-        items: [
-            {
-                title: 'Item1',
-                icon: 'dashboard',
-                isDisabled: true,
-            },
-            {
-                title: 'Item2',
-                url: '',
-                icon: 'orders',
-                isActive: false,
-                subItems: [
-                    {
-                        title: 'SubItem1',
-                        url: '',
-                        icon: '',
-                        isActive: true,
-                        subItems: [],
-                    },
-                    {
-                        title: 'SubItem2',
-                        url: '',
-                        subItems: [
-                            {
-                                title: 'SubSubItem1',
-                            },
-                            {
-                                title: 'SubSubItem2',
-                            },
-                            {
-                                title: 'SubSubItem3',
-                            },
-                        ],
-                    },
-                    {
-                        title: 'SubItem3',
-                        url: '',
-                        icon: '',
-                        isActive: false,
-                        isDisabled: true,
-                        subItems: [],
-                    },
-                    {
-                        title: 'SubItem4',
-                        url: '',
-                        icon: '',
-                        isActive: false,
-                        subItems: [],
-                    },
-                ],
-            },
-            {
-                title: 'Item3',
-                url: '',
-                icon: 'offers',
-                isActive: true,
-                subItems: [],
-            },
-            {
-                title: 'Item4',
-                url: '',
-                icon: 'profile',
-                isActive: false,
-                subItems: [],
-            },
-        ],
-    },
 });
+withSidebar.args = {
+    items: [
+        {
+            title: 'Item1',
+            icon: 'dashboard',
+            isDisabled: true,
+        },
+        {
+            title: 'Item2',
+            url: '',
+            icon: 'orders',
+            isActive: false,
+            subItems: [
+                {
+                    title: 'SubItem1',
+                    url: '',
+                    icon: '',
+                    isActive: true,
+                    subItems: [],
+                },
+                {
+                    title: 'SubItem2',
+                    url: '',
+                    subItems: [
+                        {
+                            title: 'SubSubItem1',
+                        },
+                        {
+                            title: 'SubSubItem2',
+                        },
+                        {
+                            title: 'SubSubItem3',
+                        },
+                    ],
+                },
+                {
+                    title: 'SubItem3',
+                    url: '',
+                    icon: '',
+                    isActive: false,
+                    isDisabled: true,
+                    subItems: [],
+                },
+                {
+                    title: 'SubItem4',
+                    url: '',
+                    icon: '',
+                    isActive: false,
+                    subItems: [],
+                },
+            ],
+        },
+        {
+            title: 'Item3',
+            url: '',
+            icon: 'offers',
+            isActive: true,
+            subItems: [],
+        },
+        {
+            title: 'Item4',
+            url: '',
+            icon: 'profile',
+            isActive: false,
+            subItems: [],
+        },
+    ],
+};
+withSidebar.argTypes = {
+    collapsed: {
+        table: {
+            disable: true,
+        },
+    },
+};

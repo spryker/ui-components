@@ -1,22 +1,20 @@
 import { Component, Injector, Input } from '@angular/core';
-import { DatasourceModule, DatasourceService } from '@spryker/datasource';
-import { text } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
+import { Meta } from '@storybook/angular';
 import { of } from 'rxjs';
-
+import { DatasourceModule, DatasourceService } from '@spryker/datasource';
 import { DatasourceInlineService } from './datasource-inline.service';
 
 export default {
     title: 'DatasourceInline',
-};
+    args: {
+        datasourceDataProp: 'new data',
+    },
+} as Meta;
 
 @Component({
     selector: 'spy-test',
     template: `
         {{ datasourceData | async }}
-        <br />
-        <br />
-        <br />
         <br />
         <br />
         <button (click)="getData()">Get Data From Datasource</button>
@@ -37,7 +35,8 @@ class TestComponent {
     }
 }
 
-export const primary = (): IStory => ({
+export const primary = (args) => ({
+    props: args,
     moduleMetadata: {
         imports: [
             DatasourceModule.withDatasources({
@@ -49,7 +48,4 @@ export const primary = (): IStory => ({
     template: `
     <spy-test [datasourceDataProp]="datasourceDataProp"></spy-test>
   `,
-    props: {
-        datasourceDataProp: text('Data For Datasource', ''),
-    },
 });

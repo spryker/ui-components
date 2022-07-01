@@ -1,5 +1,12 @@
 <ng-container *ngIf="!radioGroupComponent; else contentTpl">
-    <label nz-radio ngModel [nzValue]="value" [nzDisabled]="disabled" (ngModelChange)="selected.emit(value)">
+    <label
+        nz-radio
+        ngModel
+        [nzValue]="value"
+        [nzDisabled]="disabled"
+        (ngModelChange)="selected.emit(value)"
+        spyTriggerChangeEvent
+    >
         <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
     </label>
 </ng-container>

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.5.2...@spryker/checkbox@0.5.3-next.0) (2022-06-29)
+
+
+### Bug Fixes
+
+* **checkbox:** added `spyTriggerChangeEvent` directive ([99bb5e2](https://github.com/spryker/ui-components/commit/99bb5e23b779b0077cd3b6a510ac5ca9bd220b91))
+* **checkbox:** dispatched `input` event by label click ([482b08f](https://github.com/spryker/ui-components/commit/482b08fa40c47c71ea395d24a1ec364c2d75efdd))
+
+
+
+
+
 ## [0.5.2](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.5.2-next.1...@spryker/checkbox@0.5.2) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/checkbox

@@ -27,12 +27,12 @@ class LocaleStoryComponent {
     @Input() price = 100500;
 }
 
-function createStoryFor(locale: LocaleMeta): () => IStory {
-    return () => ({
+function createStoryFor(locale: LocaleMeta): (args) => IStory {
+    return (args) => ({
+        props: args,
         moduleMetadata: {
             imports: [BrowserAnimationsModule, LocaleModule.forRoot(), locale.module],
         },
-        component: LocaleStoryComponent,
     });
 }
 
@@ -54,6 +54,19 @@ const locales: LocaleMeta[] = localeModulesLoader.keys().map(
 );
 
 const localeStories = storiesOf('LocaleModule', module);
+localeStories.addParameters({
+    component: LocaleStoryComponent,
+    argTypes: {
+        date: {
+            table: {
+                disable: true,
+            },
+        },
+    },
+    args: {
+        date: Date.now(),
+    },
+});
 
 locales.forEach((locale) => {
     localeStories.add(locale.name, createStoryFor(locale));

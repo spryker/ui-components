@@ -79,6 +79,8 @@ export const disabledTimeViaFunction = (args) => ({
     },
     template: `
     <spy-date-picker
+      [clearButton]="clearButton"
+      [disabled]="disabled"
       [enableDate]="enableDate"
       [enableTime]="enableTime"
       [placeholder]="placeholder"

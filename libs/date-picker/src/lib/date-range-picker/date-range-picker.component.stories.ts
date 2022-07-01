@@ -47,10 +47,14 @@ export const primary = (args) => ({
     },
     template: `
     <spy-date-range-picker
+        [clearButton]="clearButton"
+        [disabled]="disabled"
         [time]="time"
         [format]="format"
         [placeholderFrom]="placeholderFrom"
         [placeholderTo]="placeholderTo"
+        [nameFrom]="nameFrom"
+        [nameTo]="nameTo"
     ></spy-date-range-picker>
   `,
 });

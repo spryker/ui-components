@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { Meta } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
 import {
@@ -9,19 +10,41 @@ import {
   MockTableDatasourceService,
   TableDataMockGenerator,
 } from '@spryker/table/testing';
+
 import {
   ContextModule,
   DefaultContextSerializationModule,
 } from '@spryker/utils';
-import { object } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
-
 import { TableColumnDateComponent } from './table-column-date.component';
 import { TableColumnDateModule } from './table-column-date.module';
 
 export default {
   title: 'TableColumnDateComponent',
-};
+  component: TableColumnDateComponent,
+  parameters: {
+    controls: {
+      include: ['config', 'context'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=5181%3A17045',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+      table: {
+        disable: true,
+      },
+    },
+    context: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+} as Meta;
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
@@ -29,23 +52,24 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col3: new Date('2020-01-01T17:25:00'),
 });
 
-export const primary = (): IStory => ({
+export const primary = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [TableColumnDateModule, DefaultContextSerializationModule],
   },
-  component: TableColumnDateComponent,
-  props: {
-    config: object('Config', {
-      date: '${value}',
-      format: 'mediumDate',
-    }),
-    context: object('Context', {
-      value: new Date('2020-01-01T17:25:00'),
-    }),
-  },
 });
+primary.args = {
+  config: {
+    date: '${displayValue}',
+    format: 'mediumDate',
+  },
+  context: {
+    displayValue: new Date('2020-01-01T17:25:00'),
+  },
+};
 
-export const withTable = (): IStory => ({
+export const withTable = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [
       HttpClientTestingModule,
@@ -72,32 +96,32 @@ export const withTable = (): IStory => ({
   template: `
     <spy-table [config]="config"></spy-table>
   `,
-  props: {
-    config: {
-      dataSource: {
-        type: 'mock-data',
-        dataGenerator: tableDataGenerator,
-      } as unknown as MockTableDatasourceConfig,
-      columns: [
-        { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
-        {
-          id: 'col2',
-          title: 'Column #2',
-          type: 'date',
-          typeOptions: {
-            date: '${value}',
-            format: 'mediumDate',
-          },
-        },
-        {
-          id: 'col3',
-          title: 'Column #3',
-          type: 'date',
-          typeOptions: {
-            date: '${value}',
-          },
-        },
-      ],
-    },
-  },
 });
+withTable.args = {
+  config: {
+    dataSource: {
+      type: 'mock-data',
+      dataGenerator: tableDataGenerator,
+    } as unknown as MockTableDatasourceConfig,
+    columns: [
+      { id: 'col1', sortable: true, title: 'Column #1', width: '20%' },
+      {
+        id: 'col2',
+        title: 'Column #2',
+        type: 'date',
+        typeOptions: {
+          date: '${value}',
+          format: 'mediumDate',
+        },
+      },
+      {
+        id: 'col3',
+        title: 'Column #3',
+        type: 'date',
+        typeOptions: {
+          date: '${value}',
+        },
+      },
+    ],
+  },
+};

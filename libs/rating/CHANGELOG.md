@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/rating@0.1.0-beta.0...@spryker/rating@0.1.0-beta.1) (2022-08-01)
+
+**Note:** Version bump only for package @spryker/rating
+
+
+
+
+
 # 0.1.0-beta.0 (2021-10-25)
 
 

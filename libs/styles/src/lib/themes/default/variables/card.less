@@ -1,25 +1,38 @@
 @card-prefix-cls: ~'@{ant-prefix}-card';
 
-@card-background: @white;
-@card-actions-background: @white;
-@card-head-color: @ink;
-@card-box-shadow: 0 1px 3px @ink-effect;
-@card-head-line-height: 22px;
-@card-head-letter-spacing: 0.11px;
+@card-background: var(--spy-card-background, @spy-white);
+@card-actions-background: var(--spy-card-actions-background, @spy-white);
+@card-head-color: var(--spy-card-head-color, @ink);
+@card-box-shadow: var(--spy-card-box-shadow, @box-shadow-base);
+@card-head-line-height: var(--spy-card-head-line-height, 22px);
+@card-head-letter-spacing: var(--spy-card-head-letter-spacing, 0.11px);
 @card-padding-base: 30px;
-@card-padding-base-smaller: 20px;
-@card-body-padding: @card-padding-base-smaller @card-padding-base-smaller
-  @card-padding-base;
-@card-head-y-padding: 19px;
-@card-radius: @border-radius-base;
-@spy-card-radius: 0 0 @border-radius-base @border-radius-base;
-@card-border-width: 1px;
-@card-inner-background: @gray-lighter;
-@card-inner-head-border-color: @gray-light;
-@card-inner-padding-y-head: 13px;
-@card-inner-padding-y-base: 15px;
-@card-inner-padding-x-base: 20px;
-@card-head-padding-default: @card-inner-padding-y-head
-  @card-inner-padding-x-base;
-@card-body-padding-default: @card-inner-padding-y-base
-  @card-inner-padding-x-base;
+@spy-card-padding-base: var(--spy-card-padding-base, @card-padding-base);
+@card-padding-base-smaller: var(--spy-card-padding-base-smaller, 20px);
+@card-body-padding: var(
+  --spy-card-body-padding,
+  @card-padding-base-smaller @card-padding-base-smaller @spy-card-padding-base
+);
+@card-head-y-padding: var(--spy-card-head-y-padding, 19px);
+@card-radius: var(--spy-card-radius, @border-radius-base);
+@card-actions-radius: var(
+  --spy-actions-card-radius,
+  0 0 @border-radius-base @border-radius-base
+);
+@card-border-width: var(--spy-card-border-width, 1px);
+@card-inner-background: var(--spy-card-inner-background, @gray-lighter);
+@card-inner-head-border-color: var(
+  --spy-card-inner-head-border-color,
+  @gray-light
+);
+@card-inner-padding-y-head: var(--spy-card-inner-padding-y-head, 13px);
+@card-inner-padding-y-base: var(--spy-card-inner-padding-y-base, 15px);
+@card-inner-padding-x-base: var(--spy-card-inner-padding-x-base, 20px);
+@card-head-padding-default: var(
+  --spy-card-head-padding-default,
+  @card-inner-padding-y-head @card-inner-padding-x-base
+);
+@card-body-padding-default: var(
+  --spy-card-body-padding-default,
+  @card-inner-padding-y-base @card-inner-padding-x-base
+);

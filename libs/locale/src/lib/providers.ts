@@ -30,10 +30,10 @@ export function provideLocaleRecords(locales: LocaleRecord[]): Provider {
 }
 
 export function provideLocaleRecordsFactory<
-  F extends FunctionWithArgs<LocaleRecord[]>
+  F extends FunctionWithArgs<LocaleRecord[]>,
 >(factory: F, deps: Parameters<F>): Provider;
 export function provideLocaleRecordsFactory<
-  F extends FunctionWithoutArgs<LocaleRecord[]>
+  F extends FunctionWithoutArgs<LocaleRecord[]>,
 >(factory: F): Provider;
 export function provideLocaleRecordsFactory(
   factory: AnyFunction<LocaleRecord[]>,

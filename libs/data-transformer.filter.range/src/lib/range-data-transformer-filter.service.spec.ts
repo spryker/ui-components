@@ -24,6 +24,7 @@ describe('RangeDataTransformerFilterService', () => {
           useExisting: MockDataTransformer,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(RangeDataTransformerFilterService);

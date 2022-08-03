@@ -65,7 +65,7 @@ export class LocaleService implements OnDestroy {
     .reduce<Record<string, UnknownLocaleLoaderMap | undefined>>(
       (acc, locale) => ({
         ...acc,
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         [locale.id]: this.pickRegisteredLoaders(locale.loaders!),
       }),
       Object.create(null),
@@ -154,7 +154,7 @@ export class LocaleService implements OnDestroy {
     const loadersMap = Object.entries(this.loaderRegistrars).map(
       ([name, registrarType]) => ({
         // Iterating over existing values
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         registrarType: registrarType!,
         loader: loaders[name],
       }),

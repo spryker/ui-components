@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TestBed } from '@angular/core/testing';
 import { TableColumnDateComponent } from './table-column-date.component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
@@ -14,13 +14,13 @@ const configMock: any = [
     format: 'mm:ss',
   },
   {
-    date: '${value}',
+    date: '${displayValue}',
     format: 'mm:ss',
   },
 ];
 
 const context: any = {
-  value: new Date('2020-01-01T17:25:00'),
+  displayValue: new Date('2020-01-01T17:25:00'),
 };
 
 describe('TableColumnDateComponent', () => {
@@ -35,7 +35,10 @@ describe('TableColumnDateComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('Template must render value from config.date converted by DatePipe with custom format value', async () => {

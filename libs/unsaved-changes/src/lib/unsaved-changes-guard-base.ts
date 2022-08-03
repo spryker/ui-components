@@ -21,7 +21,8 @@ import {
  */
 @Injectable()
 export abstract class UnsavedChangesGuardBase
-  implements OnDestroy, UnsavedChangesGuard {
+  implements OnDestroy, UnsavedChangesGuard
+{
   protected monitors$ = new BehaviorSubject(new Set<UnsavedChangesMonitor>());
 
   protected monitorStatuses$ = this.monitors$.pipe(
@@ -43,18 +44,18 @@ export abstract class UnsavedChangesGuardBase
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
-  private interceptionComposer = this.injector.get(
-    InterceptionComposerService,
-    null,
-  );
-
-  protected parentGuard = this.interceptionComposer?.getService(
-    UnsavedChangesGuardToken,
-    true,
-  );
+  private interceptionComposer: InterceptionComposerService | null;
+  protected parentGuard?: UnsavedChangesGuardToken;
 
   constructor(protected injector: Injector) {
-    setTimeout(() => this.init(), 0);
+    this.interceptionComposer = this.injector.get(
+      InterceptionComposerService,
+      null,
+    );
+    this.parentGuard = this.interceptionComposer?.getService(
+      UnsavedChangesGuardToken,
+      true,
+    );
   }
 
   attachMonitor(monitor: UnsavedChangesMonitor): void {
@@ -78,8 +79,6 @@ export abstract class UnsavedChangesGuardBase
   resetMonitors(): void {
     this.monitors$.getValue().forEach((monitor) => monitor.reset());
   }
-
-  init(): void {}
 
   dispose(): void {
     this.monitors$.getValue().clear();

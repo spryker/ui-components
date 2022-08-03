@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { Meta } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { DatasourceHttpService } from '@spryker/datasource.http';
@@ -21,15 +22,9 @@ import {
   ContextModule,
   DefaultContextSerializationModule,
 } from '@spryker/utils';
-import { object } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
 
 import { TableColumnSelectComponent } from './table-column-select.component';
 import { TableColumnSelectModule } from './table-column-select.module';
-
-export default {
-  title: 'TableColumnSelectComponent',
-};
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `${i}`,
@@ -37,20 +32,39 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col3: `col3 #${i}`,
 });
 
-export const primary = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      DatasourceModule.withDatasources({
-        'mock-data': MockTableDatasourceService,
-      }),
-      TableColumnSelectModule,
-      DefaultContextSerializationModule,
-      BrowserAnimationsModule,
-    ],
-  },
+export default {
+  title: 'TableColumnSelectComponent',
   component: TableColumnSelectComponent,
-  props: {
-    config: object('Config', {
+  parameters: {
+    controls: {
+      include: ['config', 'context', 'mockHttp'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=5181%3A20182',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+      table: {
+        disable: true,
+      },
+    },
+    context: {
+      table: {
+        disable: true,
+      },
+    },
+    mockHttp: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
+    config: {
       options: [
         'Option 1',
         'Option 2',
@@ -64,14 +78,53 @@ export const primary = (): IStory => ({
         'Option 10',
       ],
       placeholder: '123',
-    }),
-    context: object('Context', {
-      value: ['Option 1'],
-    }),
+    },
+    mockHttp: setMockHttp([
+      {
+        url: '/data-request',
+        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
+      },
+      {
+        url: '/update-cell',
+        data: {},
+      },
+    ]),
+  },
+} as Meta;
+
+export const primary = (args) => ({
+  props: args,
+  moduleMetadata: {
+    imports: [
+      DatasourceModule.withDatasources({
+        'mock-data': MockTableDatasourceService,
+      } as any),
+      TableColumnSelectModule,
+      DefaultContextSerializationModule,
+      BrowserAnimationsModule,
+    ],
   },
 });
+primary.args = {
+  context: {
+    value: 'Option 3',
+  },
+};
+primary.argTypes = {
+  config: {
+    table: {
+      disable: false,
+    },
+  },
+  context: {
+    table: {
+      disable: false,
+    },
+  },
+};
 
-export const withTable = (): IStory => ({
+export const withTable = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [
       HttpClientTestingModule,
@@ -83,7 +136,7 @@ export const withTable = (): IStory => ({
       } as any),
       DatasourceModule.withDatasources({
         'mock-data': MockTableDatasourceService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
     ],
@@ -98,43 +151,44 @@ export const withTable = (): IStory => ({
   template: `
     <spy-table [config]="config"></spy-table>
   `,
-  props: {
-    config: {
-      dataSource: {
-        type: 'mock-data',
-        dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
-      columns: [
-        { id: 'col1', sortable: true, title: 'Column #1' },
-        {
-          id: 'col2',
-          title: 'Column #2',
-          type: 'select',
-          typeOptions: {
-            options: [
-              {
-                title: 'Option 1',
-                value: 'Option 1',
-              },
-              {
-                title: 'Option 2',
-                value: 'Option 2',
-                isDisabled: true,
-              },
-              {
-                title: 'Option 3',
-                value: 'Option 3',
-              },
-            ],
-            placeholder: '123',
-          },
-        },
-      ],
-    },
-  },
 });
+withTable.args = {
+  config: {
+    dataSource: {
+      type: 'mock-data',
+      dataGenerator: tableDataGenerator,
+    } as unknown as MockTableDatasourceConfig,
+    columns: [
+      { id: 'col1', sortable: true, title: 'Column #1' },
+      {
+        id: 'col2',
+        title: 'Column #2',
+        type: 'select',
+        typeOptions: {
+          options: [
+            {
+              title: 'Option 1',
+              value: 'Option 1',
+            },
+            {
+              title: 'Option 2',
+              value: 'Option 2',
+              isDisabled: true,
+            },
+            {
+              title: 'Option 3',
+              value: 'Option 3',
+            },
+          ],
+          placeholder: '123',
+        },
+      },
+    ],
+  },
+};
 
-export const withInlineDependentColumns = (): IStory => ({
+export const withInlineDependentColumns = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [
       HttpClientTestingModule,
@@ -155,7 +209,7 @@ export const withInlineDependentColumns = (): IStory => ({
         'mock-data': MockTableDatasourceService,
         inline: DatasourceInlineService,
         dependable: TableDatasourceDependableService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
       NotificationModule.forRoot(),
@@ -173,65 +227,56 @@ export const withInlineDependentColumns = (): IStory => ({
   template: `
     <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
   `,
-  props: {
-    config: {
-      dataSource: {
-        type: 'mock-data',
-        dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+});
+withInlineDependentColumns.args = {
+  config: {
+    dataSource: {
+      type: 'mock-data',
+      dataGenerator: tableDataGenerator,
+    } as unknown as MockTableDatasourceConfig,
+    columns: [
+      { id: 'col1', sortable: true, title: 'Column #1' },
+      {
+        id: 'col2',
+        title: 'Column #2',
+      },
+      {
+        id: 'col3',
+        title: 'Column #3',
+      },
+    ],
+    editable: {
       columns: [
-        { id: 'col1', sortable: true, title: 'Column #1' },
         {
           id: 'col2',
-          title: 'Column #2',
-        },
-        {
-          id: 'col3',
-          title: 'Column #3',
-        },
-      ],
-      editable: {
-        columns: [
-          {
-            id: 'col2',
-            type: 'select',
-            typeOptions: {
+          type: 'select',
+          typeOptions: {
+            datasource: {
+              type: 'dependable',
+              dependsOn: 'col3',
               datasource: {
-                type: 'dependable',
-                dependsOn: 'col3',
-                datasource: {
-                  type: 'inline',
-                  data: ['Inline 1', 'Inline 2'],
-                },
+                type: 'inline',
+                data: ['Inline 1', 'Inline 2'],
               },
             },
           },
-          {
-            id: 'col3',
-            type: 'select',
-            typeOptions: {
-              options: ['Option 1', 'Option 2'],
-            },
+        },
+        {
+          id: 'col3',
+          type: 'select',
+          typeOptions: {
+            options: ['Option 1', 'Option 2'],
           },
-        ],
-        create: {},
-        update: { url: '/update-cell' },
-      },
+        },
+      ],
+      create: {},
+      update: { url: '/update-cell' },
     },
-    mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-      },
-      {
-        url: '/update-cell',
-        data: {},
-      },
-    ]),
   },
-});
+};
 
-export const withHttpDependentColumns = (): IStory => ({
+export const withHttpDependentColumns = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [
       HttpClientTestingModule,
@@ -252,7 +297,7 @@ export const withHttpDependentColumns = (): IStory => ({
         'mock-data': MockTableDatasourceService,
         http: DatasourceHttpService,
         dependable: TableDatasourceDependableService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
       NotificationModule.forRoot(),
@@ -270,67 +315,57 @@ export const withHttpDependentColumns = (): IStory => ({
   template: `
     <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
   `,
-  props: {
-    config: {
-      dataSource: {
-        type: 'mock-data',
-        dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+});
+withHttpDependentColumns.args = {
+  config: {
+    dataSource: {
+      type: 'mock-data',
+      dataGenerator: tableDataGenerator,
+    } as unknown as MockTableDatasourceConfig,
+    columns: [
+      {
+        id: 'col1',
+        sortable: true,
+        title: 'Column #1',
+      },
+      {
+        id: 'col2',
+        title: 'Column #2',
+      },
+      {
+        id: 'col3',
+        title: 'Column #3',
+      },
+    ],
+    editable: {
       columns: [
         {
-          id: 'col1',
-          sortable: true,
-          title: 'Column #1',
-        },
-        {
           id: 'col2',
-          title: 'Column #2',
-        },
-        {
-          id: 'col3',
-          title: 'Column #3',
-        },
-      ],
-      editable: {
-        columns: [
-          {
-            id: 'col2',
-            type: 'select',
-            typeOptions: {
+          type: 'select',
+          typeOptions: {
+            datasource: {
+              type: 'dependable',
+              dependsOn: 'col1',
               datasource: {
-                type: 'dependable',
-                dependsOn: 'col1',
-                datasource: {
-                  type: 'http',
-                  url: '/data-request-2',
-                },
+                type: 'http',
+                url: '/data-request-2',
               },
             },
           },
-          {
-            id: 'col3',
-            type: 'select',
-            typeOptions: {
-              options: ['Option 1', 'Option 2'],
-            },
-          },
-        ],
-        create: {
-          addButton: {},
-          cancelButton: {},
         },
-        update: { url: '/update-cell' },
+        {
+          id: 'col3',
+          type: 'select',
+          typeOptions: {
+            options: ['Option 1', 'Option 2'],
+          },
+        },
+      ],
+      create: {
+        addButton: {},
+        cancelButton: {},
       },
+      update: { url: '/update-cell' },
     },
-    mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-      },
-      {
-        url: '/update-cell',
-        data: {},
-      },
-    ]),
   },
-});
+};

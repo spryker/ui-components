@@ -15,6 +15,7 @@ import { ModalWrapperComponent } from './modal-wrapper.component';
 
 export class OverlayModalWrapperRef implements ModalWrapperRef {
   private destroyed$ = new Subject<void>();
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onDispose = () => {};
 
   constructor(
@@ -47,14 +48,14 @@ export class OverlayModalWrapperRef implements ModalWrapperRef {
 
   dispose(): void {
     // Refs cleanup requires assignment to `undefined`
-    // tslint:disable: no-non-null-assertion
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
     this.destroyed$.next();
     this.overlayRef.dispose();
     this.overlayRef = undefined!;
     this.componentRef = undefined!;
 
-    // tslint:enable: no-non-null-assertion
+    /* eslint-enable @typescript-eslint/no-non-null-assertion */
   }
 
   onDisposed(fn: () => void): void {

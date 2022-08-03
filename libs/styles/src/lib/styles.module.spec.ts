@@ -5,6 +5,7 @@ describe('StylesModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [StylesModule],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

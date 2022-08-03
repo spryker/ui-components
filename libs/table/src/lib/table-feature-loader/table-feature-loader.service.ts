@@ -89,7 +89,11 @@ export class TableFeatureLoaderService implements OnDestroy {
 
     // Cleanup refs to modules
     this.featuresRegistries = [];
-    this.featuresRegistry = this.compiledFeatures = this.featureModules = this.featureFactories = {};
+    this.featuresRegistry =
+      this.compiledFeatures =
+      this.featureModules =
+      this.featureFactories =
+        {};
   }
 
   loadFactoriesFor(

@@ -5,6 +5,7 @@ describe('LocaleModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [LocaleModule],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

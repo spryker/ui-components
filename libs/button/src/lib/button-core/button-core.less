@@ -5,24 +5,26 @@
   display: inline-flex;
   flex-direction: column;
 
+  .@{btn-prefix-core-btn-cls} {
+    &:hover {
+      color: @btn-primary-color;
+      box-shadow: @btn-shadow-hover;
+    }
+
+    &:focus {
+      color: @btn-primary-color;
+      box-shadow: @btn-shadow-default;
+
+      &::after {
+        box-shadow: @btn-shadow-focus;
+      }
+    }
+  }
+
   &--primary {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-primary-bg;
       border-color: @btn-primary-bg;
-
-      &:hover {
-        color: @btn-primary-color;
-        box-shadow: @btn-primary-shadow-hover;
-      }
-
-      &:focus {
-        color: @btn-primary-color;
-        box-shadow: @btn-shadow-default;
-
-        &::after {
-          box-shadow: @btn-primary-shadow-focus;
-        }
-      }
 
       &:active {
         color: @btn-primary-color;
@@ -39,28 +41,52 @@
   &--secondary {
     .@{btn-prefix-core-btn-cls} {
       background: @btn-default-bg;
-      color: @btn-secondary-color;
-      border-color: @btn-secondary-border;
+      border-color: @btn-default-border;
 
-      &:hover {
-        background: @btn-default-bg;
-        color: @btn-secondary-color;
-        border: @btn-border-secondary;
-        box-shadow: @btn-shadow-hovered-secondary;
-      }
-
-      &:focus,
-      &:active,
-      &:focus:active {
-        background: @btn-default-bg-active;
-        color: @btn-secondary-color;
-        border-color: @btn-default-border;
-      }
-
+      &,
+      &:hover,
       &:focus {
-        background: @btn-focus-bg;
-        border-color: @btn-default-border-focus;
-        box-shadow: @btn-shadow-secondary;
+        color: @btn-default-color;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
+      }
+    }
+  }
+
+  &--outline {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      border-color: @btn-outline-border;
+
+      &,
+      &:hover,
+      &:focus {
+        color: @btn-outline-color;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
+        border-color: @btn-outline-border;
+      }
+    }
+  }
+
+  &--critical-outline {
+    .@{btn-prefix-core-btn-cls} {
+      background: @btn-default-bg;
+      color: @btn-critical-outline-color;
+      border-color: @btn-critical-outline-border;
+
+      &,
+      &:hover,
+      &:focus {
+        color: @btn-critical-outline-color;
+      }
+
+      &:active {
+        background: @btn-default-bg-active;
       }
     }
   }
@@ -70,23 +96,11 @@
       background: @btn-danger-bg;
       border-color: @btn-danger-bg;
 
-      &:hover {
-        box-shadow: @btn-danger-shadow-hover;
-      }
-
       &:focus,
       &:active {
         color: @btn-danger-color;
         background: @btn-danger-active-bg;
         border-color: @btn-danger-active-bg;
-      }
-
-      &:focus {
-        box-shadow: @btn-shadow-default;
-
-        &::after {
-          box-shadow: @btn-danger-shadow-focus;
-        }
       }
 
       &:active::after {
@@ -100,7 +114,7 @@
       min-width: @btn-min-width-lg;
       padding-left: @btn-horizontal-padding-base-lg;
       padding-right: @btn-horizontal-padding-base-lg;
-      min-height: @btn-height-lg;
+      min-height: @spy-btn-height-lg;
 
       &.loading {
         padding: @btn-padding-with-loading-lg;
@@ -142,7 +156,7 @@
 
   &--sm {
     .@{btn-prefix-core-btn-cls} {
-      min-height: @btn-height-sm;
+      min-height: @spy-btn-height-sm;
     }
   }
 
@@ -171,38 +185,30 @@
       min-width: 0;
       min-height: 0;
       padding: @btn-link-padding;
-      background: transparent;
-      border-color: transparent;
+      background: @transparent;
+      border-color: @transparent;
       color: @btn-link-color;
       border-radius: @btn-border-radius-link;
 
-      &::after {
-        display: none;
-      }
-
       &:hover {
         color: @btn-link-color-hover;
-        box-shadow: none;
       }
 
-      &:focus {
-        color: @btn-link-color-hover;
-        background: @btn-link-bg-active;
-        border-color: transparent;
-        box-shadow: @btn-link-shadow-focus;
-      }
-
+      &:focus,
       &:active {
-        transform: none;
         color: @btn-link-color-hover;
         background: @btn-link-bg-active;
-        border-color: transparent;
+        border-color: @transparent;
+      }
+
+      &:hover,
+      &:active {
         box-shadow: none;
       }
 
       &[disabled] {
-        border-color: transparent;
-        background: transparent;
+        border-color: @transparent;
+        background: @transparent;
         pointer-events: none;
       }
     }
@@ -265,14 +271,10 @@
     outline: none;
   }
 
-  &:active {
-    transform: none;
-  }
-
   &[disabled] {
     border-color: @btn-disable-border;
-    color: @disabled-color;
-    background: @disabled-bg;
+    color: @spy-disabled-color;
+    background: @spy-disabled-bg;
     pointer-events: none;
   }
 

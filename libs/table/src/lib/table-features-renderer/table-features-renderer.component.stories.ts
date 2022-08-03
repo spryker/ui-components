@@ -6,16 +6,19 @@ import {
   QueryList,
   ContentChildren,
 } from '@angular/core';
-import { number } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
+import { Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 
-import { TableColumnsResolverService } from '../table/columns-resolver.service';
-import { TableDataConfiguratorService } from '../table/data-configurator.service';
-import { TableDatasourceService } from '../table/datasource.service';
-import { TableFeatureTplDirective } from '../table-feature/table-feature-tpl.directive';
-import { TableFeatureComponent } from '../table-feature/table-feature.component';
-import { CoreTableComponent } from '../table/table.component';
+import {
+  TableColumnsResolverService,
+  TableDataConfiguratorService,
+  TableDatasourceService,
+  CoreTableComponent,
+} from '../table';
+import {
+  TableFeatureTplDirective,
+  TableFeatureComponent,
+} from '../table-feature';
 import { TableFeaturesRendererComponent } from './table-features-renderer.component';
 import { TableFeaturesRendererDirective } from './table-features-renderer.directive';
 import { TableRenderFeatureDirective } from './table-render-feature.directive';
@@ -23,7 +26,15 @@ import { TableFeaturesRendererService } from './table-features-renderer.service'
 
 export default {
   title: 'TableFeaturesRendererComponent',
-};
+  argTypes: {
+    limit: {
+      control: { type: 'range', min: -1, max: 5, step: 1 },
+    },
+  },
+  args: {
+    limit: -1,
+  },
+} as Meta;
 
 class MockTableFeatureComponent extends TableFeatureComponent {
   name = 'mock-feature';
@@ -64,7 +75,8 @@ class RenderFeaturesComponent {
   features: MockTableFeatureComponent[] = [];
 }
 
-export const withFeatures = (): IStory => ({
+export const withFeatures = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [CommonModule],
     declarations: [
@@ -93,13 +105,7 @@ export const withFeatures = (): IStory => ({
       <div *spyTableFeatureTpl="'mocked-location'">feat</div>
       <div *spyTableFeatureTpl="'mocked-location'">feat2</div>
       <div *spyTableFeatureTpl="'mocked-location'">feat3</div>
+      <div *spyTableFeatureTpl="'mocked-location'">feat4</div>
     </spy-render-features>
   `,
-  props: {
-    limit: number('Max features (-1 is unlimited)', -1, {
-      min: -1,
-      max: 5,
-      range: true,
-    }),
-  },
 });

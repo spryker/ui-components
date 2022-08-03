@@ -30,7 +30,6 @@ import { I18nModule } from '@spryker/locale';
     I18nModule,
   ],
   exports: [TableSettingsFeatureComponent],
-  entryComponents: [TableSettingsFeatureComponent],
 })
 export class TableSettingsFeatureModule implements ModuleWithFeature {
   featureComponent = TableSettingsFeatureComponent;

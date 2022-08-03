@@ -1,13 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-
-import { ChainDataTransformerService } from './chain-data-transformer.service';
 import {
   DataTransformerService,
   DataTransformerConfig,
 } from '@spryker/data-transformer';
 import { of } from 'rxjs';
 
-const mockConfig = {
+import { ChainDataTransformerService } from './chain-data-transformer.service';
+import { ChainDataTransformerConfig } from './types';
+
+const mockConfig: ChainDataTransformerConfig = {
   type: 'type',
   transformers: [
     {
@@ -42,6 +43,7 @@ describe('ChainDataTransformerService', () => {
           useExisting: MockDataTransformerService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(ChainDataTransformerService);
     dataTransformerService = TestBed.inject(MockDataTransformerService);
@@ -60,7 +62,7 @@ describe('ChainDataTransformerService', () => {
     const resultValue = transformers[transformers.length - 1].value;
     transformObservable$.subscribe(callback);
 
-    mockConfig.transformers.forEach((config) => {
+    mockConfig.transformers.forEach((config: any) => {
       expect(dataTransformerService.transform).toBeCalledWith(
         mockData,
         config,

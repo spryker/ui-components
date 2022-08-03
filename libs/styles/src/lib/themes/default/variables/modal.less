@@ -1,18 +1,37 @@
 @modal-prefix-cls: ~'@{ant-prefix}-modal';
 
-@modal-backdrop-background: rgba(@ink, 50%);
-@modal-wrapper-padding: 20px;
-@modal-content-padding: 30px;
-@modal-footer-margin-top: 30px;
-@modal-header-indent-y: 17px;
-@modal-header-border-width: 1px;
-@modal-description-line-height: 1.7;
-@modal-confirmation-max-width: 407px;
-@modal-confirmation-actions-padding-x: 5px;
-@modal-footer-margin: @modal-footer-margin-top 0 0 0;
-@modal-header-margin: -@modal-content-padding -@modal-content-padding
-  @modal-header-indent-y;
-@modal-header-padding: @modal-header-indent-y @modal-content-padding;
-@modal-header-border-bottom: @modal-header-border-width solid @gray-light;
-@modal-confirmation-col-padding: 0 @modal-confirmation-actions-padding-x;
-@modal-confirmation-actions-margin: 0 -@modal-confirmation-actions-padding-x;
+@modal-backdrop-background: var(--spy-modal-backdrop-background, @overlay-3);
+@modal-wrapper-padding: var(--spy-modal-wrapper-padding, 20px);
+@modal-content-padding: var(--spy-modal-content-padding, 30px);
+@modal-content-shadow: var(--spy-modal-content-shadow, @box-shadow-base);
+@modal-description-line-height: var(--spy-modal-description-line-height, 1.7);
+@modal-header-indent-y: var(--spy-modal-header-indent-y, 17px);
+@modal-header-border-width: var(--spy-modal-header-border-width, 1px);
+@modal-header-margin: calc(@modal-content-padding * -1)
+  calc(@modal-content-padding * -1) @modal-header-indent-y;
+@modal-header-padding: var(
+  --spy-modal-header-padding,
+  @modal-header-indent-y @modal-content-padding
+);
+@modal-header-border-bottom: var(
+  --spy-modal-header-border-bottom,
+  @modal-header-border-width solid @gray-light
+);
+@modal-footer-margin-top: var(--spy-modal-footer-margin-top, 30px);
+@modal-footer-margin: var(
+  --spy-modal-footer-margin,
+  @modal-footer-margin-top 0 0 0
+);
+@modal-confirmation-max-width: var(--spy-modal-confirmation-max-width, 407px);
+@modal-confirmation-actions-padding-x: var(
+  --spy-modal-confirmation-actions-padding-x,
+  5px
+);
+@modal-confirmation-col-padding: var(
+  --spy-modal-confirmation-col-padding,
+  0 @modal-confirmation-actions-padding-x
+);
+@modal-confirmation-actions-margin: var(
+  --spy-modal-confirmation-actions-margin,
+  0 calc(@modal-confirmation-actions-padding-x * -1)
+);

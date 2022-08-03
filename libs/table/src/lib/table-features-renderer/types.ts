@@ -3,7 +3,6 @@ import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.direc
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { Observable } from 'rxjs';
 
-// tslint:disable-next-line: no-empty-interface
 export interface TableFeaturesRendererContext {
   $implicit: FeatureRecord;
 }

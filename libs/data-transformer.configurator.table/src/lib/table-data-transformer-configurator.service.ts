@@ -12,7 +12,8 @@ import { map, withLatestFrom } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class TableDataTransformerConfiguratorService
-  implements DataTransformerConfigurator {
+  implements DataTransformerConfigurator
+{
   resolve(injector: Injector): Observable<DataTransformerConfiguratorConfigT> {
     const tableComponent = injector.get(CoreTableComponent);
     const dataConfig$ = injector.get(TableDataConfiguratorService).config$;

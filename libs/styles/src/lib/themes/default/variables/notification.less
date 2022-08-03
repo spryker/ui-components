@@ -5,21 +5,51 @@
 @notification-toast-prefix-cls: ~'toast';
 @notification-toast-top-right-prefix-cls: ~'@{notification-toast-prefix-cls}-top-right';
 
-@notification-padding-y: 10px;
-@notification-padding-x: 14px;
-@notification-padding: @notification-padding-y @notification-padding-x;
-@notification-shadow: -2px 2px 20px @ink-effect;
-@notification-with-description-padding-right: @notification-close-icon-right-position +
-  5px;
-@notification-border-radius: 4px;
-@notification-border-width: 6px;
-@notification-border: @notification-border-width solid transparent;
-@notification-block-margin-bottom: 30px;
-@notification-min-width: 470px;
-@notification-icon-wrapper-width: 38px;
-@notification-icon-width: 25px;
-@notification-icon-padding: 15px;
-@notification-close-icon-right-position: 20px;
-@notification-close-hover-color: @gray-darker;
-@notification-toast-top-right-right-position: 30px;
-@notification-toast-top-right-top-position: 85px;
+@notification-padding-y: var(--spy-notification-padding-y, 10px);
+@notification-padding-x: var(--spy-notification-padding-x, 14px);
+@notification-padding: var(
+  --spy-notification-padding,
+  @notification-padding-y @notification-padding-x
+);
+@notification-shadow: var(--spy-notification-shadow, @box-shadow-3);
+@notification-with-description-padding-right: var(
+  --spy-notification-with-description-padding-right,
+  calc(@notification-close-icon-right-position + 5px)
+);
+@notification-border-radius: var(
+  --spy-notification-border-radius,
+  @border-radius-small
+);
+@notification-border-width: var(--spy-notification-border-width, 6px);
+@notification-border: var(
+  --spy-notification-border,
+  @notification-border-width solid @transparent
+);
+@notification-block-margin-bottom: var(
+  --spy-notification-block-margin-bottom,
+  30px
+);
+@notification-min-width: var(--spy-notification-min-width, 470px);
+@notification-icon-wrapper-width: var(
+  --spy-notification-icon-wrapper-width,
+  38px
+);
+@notification-icon-width: var(--spy-notification-icon-width, 25px);
+@notification-icon-padding: var(--spy-notification-icon-padding, 15px);
+@notification-close-icon-right-position: var(
+  --spy-notification-close-icon-right-position,
+  20px
+);
+@notification-close-hover-color: var(
+  --spy-notification-close-hover-color,
+  @gray-darker
+);
+@notification-toast-top-right-right-position: var(
+  --spy-notification-toast-top-right-right-position,
+  30px
+);
+@notification-toast-top-right-top-position: var(
+  --spy-notification-toast-top-right-top-position,
+  85px
+);
+@notification-z-index: var(--spy-notification-z-index, 0);

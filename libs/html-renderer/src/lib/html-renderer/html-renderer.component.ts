@@ -3,11 +3,13 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Input,
   Output,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SpinnerSize } from '@spryker/spinner';
 import { merge } from 'rxjs';
 import { map, mapTo, shareReplay } from 'rxjs/operators';
 
@@ -26,6 +28,7 @@ import { HtmlRendererProvider } from './html-renderer.provider';
 export class HtmlRendererComponent {
   @ViewChild('htmlRendererContent', { static: false })
   htmlRendererContent?: ElementRef<HTMLElement>;
+  @Input() spinnerSize = SpinnerSize.Small;
   @Output() htmlRendered = new EventEmitter<ElementRef>();
 
   htmlRenderer$ = this.htmlRendererProvider.getHtml().pipe(

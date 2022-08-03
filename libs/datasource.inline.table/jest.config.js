@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'datasource.inline.table',
-  preset: '../../jest.config.js',
+  displayName: 'datasource.inline.table',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/datasource.inline.table',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

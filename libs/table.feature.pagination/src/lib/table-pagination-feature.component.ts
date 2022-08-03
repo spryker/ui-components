@@ -27,9 +27,7 @@ import { TablePaginationConfig } from './types';
     },
   ],
 })
-export class TablePaginationFeatureComponent extends TableFeatureComponent<
-  TablePaginationConfig
-> {
+export class TablePaginationFeatureComponent extends TableFeatureComponent<TablePaginationConfig> {
   name = 'pagination';
   tableFeatureLocation = TableFeatureLocation;
   defaultSizes = [10, 20, 50];

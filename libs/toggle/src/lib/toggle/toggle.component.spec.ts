@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -23,7 +23,10 @@ describe('ToggleComponent', () => {
   const inputSelector = 'input[type=checkbox]';
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('should render nz-switch component from Ant Design', async () => {

@@ -12,7 +12,6 @@ import { TableFiltersDeclaration } from './types';
   imports: [CommonModule, DynamicIoModule, PluckModule, TableFeatureModule],
   declarations: [TableFiltersFeatureComponent],
   exports: [TableFiltersFeatureComponent],
-  entryComponents: [TableFiltersFeatureComponent],
 })
 export class TableFiltersFeatureModule implements ModuleWithFeature {
   featureComponent = TableFiltersFeatureComponent;

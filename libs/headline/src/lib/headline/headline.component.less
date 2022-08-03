@@ -8,16 +8,17 @@
 
   &__row {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: -@headline-col-spacing;
+    margin: calc(@headline-col-spacing * -1);
   }
 
   &__col {
     padding: @headline-col-spacing;
+    flex-shrink: 0;
 
     &--heading {
+      flex-shrink: 1;
       flex-grow: 1;
     }
 

@@ -33,7 +33,8 @@ export class ButtonCoreInputs {
 })
 export class ButtonCore
   extends ButtonCoreInputs
-  implements AfterViewInit, OnChanges {
+  implements AfterViewInit, OnChanges
+{
   @ViewChild('buttonRef') buttonRef?: ElementRef<HTMLElement>;
 
   protected buttonClassName = '';

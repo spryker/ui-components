@@ -38,7 +38,7 @@ export function setMockHttp(responses: MockHttpResponse[]) {
 
 @Directive({
   // This is for internal use only
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[mockHttp]',
 })
 export class MockHttpDirective implements DoCheck, OnDestroy {
@@ -145,7 +145,7 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
     response,
   }: MatchedHttpRequest<D>): Observable<D> {
     return 'data' in response
-      ? // tslint:disable-next-line: no-non-null-assertion
+      ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         ensureObservable(response.data!)
       : response.dataFn
       ? ensureObservable(response.dataFn(request, this.injector))
@@ -157,7 +157,7 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
     response,
   }: MatchedHttpRequest<any, E>): Observable<E> {
     return 'error' in response
-      ? // tslint:disable-next-line: no-non-null-assertion
+      ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         ensureObservable(response.error!)
       : response.errorFn
       ? ensureObservable(response.errorFn(request, this.injector))

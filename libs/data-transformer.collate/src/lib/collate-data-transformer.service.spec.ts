@@ -4,6 +4,7 @@ import { BehaviorSubject, of } from 'rxjs';
 import { CollateDataTransformerService } from './collate-data-transformer.service';
 import { DataTransformerConfiguratorService } from './data-transformer-configurator.service';
 import { DataTransformerFilterService } from './data-transformer-filter.service';
+import { CollateDataTransformerConfig } from './types';
 
 const mockIdFilter = 'idFilter';
 const mockAnotherIdFilter = 'mockAnotherIdFilter';
@@ -67,6 +68,7 @@ describe('CollateDataTransformerService', () => {
           useExisting: MockDataTransformerConfiguratorService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(CollateDataTransformerService);
     dataTransformerConfiguratorService = TestBed.inject(
@@ -84,7 +86,7 @@ describe('CollateDataTransformerService', () => {
       page: 3,
       pageSize: 2,
     };
-    const mockConfig = {
+    const mockConfig: CollateDataTransformerConfig = {
       type: 'data-manipulator',
       configurator: {
         type: 'table-data',
@@ -133,7 +135,7 @@ describe('CollateDataTransformerService', () => {
       page: 3,
       pageSize: 10,
     };
-    const mockConfig = {
+    const mockConfig: CollateDataTransformerConfig = {
       type: 'data-manipulator',
       configurator: {
         type: 'table-data',

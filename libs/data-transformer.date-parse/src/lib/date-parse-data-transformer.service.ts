@@ -17,7 +17,8 @@ export class DateParseDataTransformerService
     DataTransformer<
       DateParseDataTransformerData,
       DateParseDataTransformerDataT
-    > {
+    >
+{
   constructor(private dateService: DateService) {}
 
   transform(

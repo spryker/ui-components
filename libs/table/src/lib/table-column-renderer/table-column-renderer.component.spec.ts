@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   AfterViewInit,
   ANALYZE_FOR_ENTRY_COMPONENTS,
@@ -45,7 +45,7 @@ const mockData: TableDataRow = {
 };
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'test-host-wrapper',
   template: `
     <spy-table-column-renderer
@@ -80,19 +80,20 @@ class TestHostComponent implements AfterViewInit {
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
   @ColumnTypeOption()
-  text = this.contextService.wrap('value');
+  text = this.contextService.wrap('displayValue');
 
   constructor(private contextService: ContextService) {}
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'table-column-test',
   template: ` {{ config.text | context: context }} `,
 })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent
-  implements TableColumnComponent<TableColumnTestConfig> {
+  implements TableColumnComponent<TableColumnTestConfig>
+{
   @Input() config?: TableColumnTestConfig;
   @Input() context?: TableColumnContext;
 }
@@ -129,6 +130,7 @@ describe('TableColumnRendererComponent', () => {
           multi: true,
         },
       ],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

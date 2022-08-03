@@ -1,16 +1,13 @@
 import { TableFilterBase } from '@spryker/table.feature.filters';
-
-declare module '@spryker/table.feature.filters' {
-  interface TableFiltersRegistry {
-    'tree-select': TableFilterTreeSelect;
-  }
-}
+import { TreeSelectValue } from '@spryker/tree-select';
 
 /**
  * Interface {@link TableFilterTreeSelect} represents config of the Tree Select filters feature
  */
 export interface TableFilterTreeSelect
-  extends TableFilterBase<TableFilterTreeSelectValue> {
+  extends TableFilterBase<
+    TableFilterTreeSelectValue | TableFilterTreeSelectValue[]
+  > {
   type: 'tree-select';
   typeOptions: TableFilterTreeSelectOptions;
 }
@@ -32,4 +29,4 @@ export interface TableFilterTreeSelectOptionsValue {
   children?: TableFilterTreeSelectOptionsValue[];
 }
 
-export type TableFilterTreeSelectValue = unknown | unknown[];
+export type TableFilterTreeSelectValue = TreeSelectValue;

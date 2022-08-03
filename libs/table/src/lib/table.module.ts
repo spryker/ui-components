@@ -11,7 +11,7 @@ import { PopoverModule } from '@spryker/popover';
 import { ContextModule, InvokeModule, PluckModule } from '@spryker/utils';
 import { SelectComponentsModule } from '@spryker/web-components';
 import { ActionsModule } from '@spryker/actions';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { SpinnerModule } from '@spryker/spinner';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
 import { provideTableColumnComponents } from './column-type/tokens';
@@ -29,7 +29,6 @@ import { TableRenderFeatureDirective } from './table-features-renderer/table-ren
 import { ColTplDirective } from './table/col-tpl.directive';
 import { TableColumnComponentDeclaration } from './table/table';
 import { CoreTableComponent } from './table/table.component';
-import { SpinnerModule } from '@spryker/spinner';
 
 @NgModule({
   imports: [
@@ -44,7 +43,6 @@ import { SpinnerModule } from '@spryker/spinner';
     IconModule,
     IconNoDataModule,
     IconNoFilteredDataModule,
-    NzSpinModule,
     I18nModule,
     PopoverModule,
     InvokeModule,

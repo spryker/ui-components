@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -16,6 +16,7 @@ class MockDatasource {
 }
 
 describe('SelectComponent', () => {
+<<<<<<< HEAD
   describe('SelectComponent tests with input options', () => {
     @Component({
       // tslint:disable-next-line: component-selector
@@ -39,6 +40,37 @@ describe('SelectComponent', () => {
         },
       },
     );
+=======
+  @Component({
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'nz-select',
+    template: ` <ng-content></ng-content> `,
+  })
+  class MockNzSelectComponent {}
+
+  const { testModule, createComponent } = getTestingForComponent(
+    SelectComponent,
+    {
+      ngModule: {
+        imports: [
+          JoinModule,
+          DatasourceModule.withDatasources({
+            inline: MockDatasource,
+          }),
+        ],
+        schemas: [NO_ERRORS_SCHEMA],
+        declarations: [MockNzSelectComponent],
+      },
+    },
+  );
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
+  });
+>>>>>>> master
 
     beforeEach(() => {
       TestBed.configureTestingModule({ imports: [testModule] });

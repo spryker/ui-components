@@ -3,30 +3,331 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<<<<<<< HEAD
 # [0.3.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-beta.0...@spryker/select@0.3.0-beta.1) (2022-06-29)
+=======
+## [0.5.3](https://github.com/spryker/ui-components/compare/@spryker/select@0.5.3-next.1...@spryker/select@0.5.3) (2022-05-31)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.5.3-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.5.2...@spryker/select@0.5.3-next.1) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.5.3-next.0](https://github.com/spryker/zed-gui/compare/@spryker/select@0.5.2...@spryker/select@0.5.3-next.0) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.5.2](https://github.com/spryker/ui-components/compare/@spryker/select@0.5.2-next.0...@spryker/select@0.5.2) (2022-05-25)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.5.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.5.1...@spryker/select@0.5.2-next.0) (2022-05-25)
 
 
 ### Bug Fixes
 
-* **select:** fixed init value displaying when used custom option template ([2d05d63](https://github.com/spryker/ui-components/commit/2d05d63c2d6aac04766a0390a7f1a00183b2eb4b))
+* added `rxjs` to `allowedNonPeerDependencies` ([ec4a99c](https://github.com/spryker/ui-components/commit/ec4a99ccdcbfb16ae3076807e145942492443abf))
+* added missed / removed unused dependencies ([cee4a1f](https://github.com/spryker/ui-components/commit/cee4a1f4892bd36be77b03215f14870b0aaad8a4))
+* moved `rxjs` to the `peerDependencies` ([4deabb4](https://github.com/spryker/ui-components/commit/4deabb44aa6cc97998cdf5e2ddf27567e040a7c9))
 
 
 
 
 
-# [0.3.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8-beta.0...@spryker/select@0.3.0-beta.0) (2022-06-17)
+## [0.5.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.5.1-next.0...@spryker/select@0.5.1) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.5.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.2-next.0...@spryker/select@0.5.1-next.0) (2022-05-20)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.4.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.1-next.1...@spryker/select@0.4.2-next.0) (2022-05-11)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.4.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.1-next.0...@spryker/select@0.4.1) (2022-05-10)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.4.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.1-next.0...@spryker/select@0.4.1-next.1) (2022-05-11)
+
+
+### Bug Fixes
+
+* **select:** adjusted styles ([9e744f7](https://github.com/spryker/ui-components/commit/9e744f75c8d8b299e2836fe4be3678298b3bfdd4))
+
+
+
+
+
+## [0.4.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.0...@spryker/select@0.4.1-next.0) (2022-04-01)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+# [0.4.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.4.0-rc.1...@spryker/select@0.4.0) (2022-03-10)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+# [0.4.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0...@spryker/select@0.4.0-rc.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* **datasource.inline.table:** removed module declaration && added `data-transformer` declarations to the module ([90605a1](https://github.com/spryker/ui-components/commit/90605a1f38c154361571099155ed6a9d7bba1e7d))
+* disabled `ivy` compilation mode ([b73c8cd](https://github.com/spryker/ui-components/commit/b73c8cd6990e72e74b9f5c1a5ee0a76ba740c109))
+* **drawer:** added `drawer-container-proxy.component` export ([b945481](https://github.com/spryker/ui-components/commit/b945481c530944747fd7ca4d86bf6b4310504aa9))
+* fix libs peerDependencies on angular ([44bd351](https://github.com/spryker/ui-components/commit/44bd35192446358fa03f6523a04725763248e7fb))
+* fixed `jest-preset-angular` package deprecations ([7ae4dfa](https://github.com/spryker/ui-components/commit/7ae4dfa3e60b243490e2ccc50db4f2ffee0b8ab9))
 
 
 ### Features
 
+* migrated libraries from `tslint` to `eslint` ([b14f937](https://github.com/spryker/ui-components/commit/b14f937bfd7803341e6626dd491484aa4d9b1344))
+* migrated storybook to the latest version ([cac4528](https://github.com/spryker/ui-components/commit/cac45288f9644fc20c4cff6b4a658a74130fbe2e))
+* migrated to `nx` v13 ([6b67e50](https://github.com/spryker/ui-components/commit/6b67e504a2ff8e8a840f70e12aae056c31698b47))
+* updated peerDependencies ([9c034d5](https://github.com/spryker/ui-components/commit/9c034d5d972cbeb9fd90135dd901521b9877247e))
+
+
+
+
+
+# [0.3.0-rc.5](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-rc.4...@spryker/select@0.3.0-rc.5) (2022-01-20)
+
+
+### Bug Fixes
+
+* disabled `ivy` compilation mode ([b73c8cd](https://github.com/spryker/ui-components/commit/b73c8cd6990e72e74b9f5c1a5ee0a76ba740c109))
+
+
+
+
+
+# [0.3.0-rc.4](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-rc.3...@spryker/select@0.3.0-rc.4) (2022-01-17)
+
+
+### Bug Fixes
+
+* fix libs peerDependencies on angular ([44bd351](https://github.com/spryker/ui-components/commit/44bd35192446358fa03f6523a04725763248e7fb))
+
+
+
+
+
+# [0.3.0-rc.3](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-rc.2...@spryker/select@0.3.0-rc.3) (2021-12-28)
+
+
+### Features
+
+* migrated libraries from `tslint` to `eslint` ([b14f937](https://github.com/spryker/ui-components/commit/b14f937bfd7803341e6626dd491484aa4d9b1344))
+* migrated storybook to the latest version ([cac4528](https://github.com/spryker/ui-components/commit/cac45288f9644fc20c4cff6b4a658a74130fbe2e))
+* migrated to `nx` v13 ([6b67e50](https://github.com/spryker/ui-components/commit/6b67e504a2ff8e8a840f70e12aae056c31698b47))
+
+
+
+
+
+# [0.3.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-rc.1...@spryker/select@0.3.0-rc.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* replaced deprecated `whitelistedNonPeerDependencies` with `allowedNonPeerDependencies` ([b4f1592](https://github.com/spryker/ui-components/commit/b4f1592e940e5042a11aa6f2a0f955b145b0ed2b))
+
+
+
+
+
+# [0.3.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-rc.0...@spryker/select@0.3.0-rc.1) (2021-12-01)
+
+
+### Bug Fixes
+
+* fixed `jest-preset-angular` package deprecations ([7ae4dfa](https://github.com/spryker/ui-components/commit/7ae4dfa3e60b243490e2ccc50db4f2ffee0b8ab9))
+
+
+
+
+
+# [0.3.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8-next.1...@spryker/select@0.3.0-rc.0) (2021-11-23)
+
+
+### Features
+
+* updated `ng-zorro-antd` dependencies ([b9f894b](https://github.com/spryker/ui-components/commit/b9f894b5c6dd3e469bc8e0f01e251bb29e20e92d))
+* updated dependencies ([95dc0ab](https://github.com/spryker/ui-components/commit/95dc0ab04dd4612dc2476ed2b487aee7c7304497))
+* updated peerDependencies ([9c034d5](https://github.com/spryker/ui-components/commit/9c034d5d972cbeb9fd90135dd901521b9877247e))
+
+
+
+
+
+## [0.3.1-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0...@spryker/select@0.3.1-next.1) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.3.1-next.0](https://github.com/spryker/zed-gui/compare/@spryker/select@0.3.0...@spryker/select@0.3.1-next.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+# [0.3.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-next.1...@spryker/select@0.3.0) (2022-01-28)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+# [0.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-next.0...@spryker/select@0.3.0-next.1) (2022-01-28)
+>>>>>>> master
+
+
+### Bug Fixes
+
+<<<<<<< HEAD
+* **select:** fixed init value displaying when used custom option template ([2d05d63](https://github.com/spryker/ui-components/commit/2d05d63c2d6aac04766a0390a7f1a00183b2eb4b))
+=======
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+>>>>>>> master
+
+
+
+
+<<<<<<< HEAD
+
+# [0.3.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8-beta.0...@spryker/select@0.3.0-beta.0) (2022-06-17)
+=======
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.10-next.2...@spryker/select@0.3.0-next.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+>>>>>>> master
+
+
+### Features
+
+<<<<<<< HEAD
 * **select:** added custom option template ([3992140](https://github.com/spryker/ui-components/commit/3992140438dba54a72b43c51caf6001446a149f2))
 * **select:** added custom selected template ([5ff10db](https://github.com/spryker/ui-components/commit/5ff10dbd7b67b8b98b92c6588e6b5d2b7c9fae82))
+=======
+* **form-item:** introduced css variables ([18b6f4c](https://github.com/spryker/ui-components/commit/18b6f4cd160d1da7a90217ef4e270aaf59e1b9c1))
+* **select:** introduced css variables ([db36eee](https://github.com/spryker/ui-components/commit/db36eee2a061099a61942d4401cbbcbc4c1e3e41))
 
 
 
 
 
+## [0.2.10-next.2](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.10-next.1...@spryker/select@0.2.10-next.2) (2021-11-23)
+
+
+### Bug Fixes
+
+* **select:** adjusted styles ([f3d270d](https://github.com/spryker/ui-components/commit/f3d270d325010f5053700615e1ff1bec8334e3d2))
+* **select:** adjusted styles/template && updated peerDependencies ([82b4437](https://github.com/spryker/ui-components/commit/82b443781695fca5797a99488e759bbfa98889e2))
+* **select:** fixed styles and template ([6592c12](https://github.com/spryker/ui-components/commit/6592c12b165314a6fd90fd77e7d0842ff5eb5859))
+
+
+
+
+
+## [0.2.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.9...@spryker/select@0.2.10-next.1) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.2.10-next.0](https://github.com/spryker/zed-gui/compare/@spryker/select@0.2.8-next.1...@spryker/select@0.2.10-next.0) (2021-11-10)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.2.9](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.9-next.1...@spryker/select@0.2.9) (2021-11-09)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.2.9-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8...@spryker/select@0.2.9-next.1) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [0.2.9-next.0](https://github.com/spryker/zed-gui/compare/@spryker/select@0.2.8-next.1...@spryker/select@0.2.9-next.0) (2021-11-08)
+
+**Note:** Version bump only for package @spryker/select
+>>>>>>> master
+
+
+
+
+
+<<<<<<< HEAD
 ## [0.2.8-beta.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8-next.1...@spryker/select@0.2.8-beta.0) (2021-10-05)
+=======
+## [0.2.8](https://github.com/spryker/ui-components/compare/@spryker/select@0.2.8-next.1...@spryker/select@0.2.8) (2021-11-05)
+>>>>>>> master
 
 **Note:** Version bump only for package @spryker/select
 

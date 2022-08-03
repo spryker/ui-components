@@ -35,13 +35,14 @@ import { TableSearchConfig } from './types';
 })
 export class TableSearchFeatureComponent
   extends TableFeatureComponent<TableSearchConfig>
-  implements OnDestroy, OnInit {
+  implements OnDestroy, OnInit
+{
   name = 'search';
   tableFeatureLocation = TableFeatureLocation;
   suffixIcon = IconRemoveModule.icon;
   prefixIcon = IconMagnifierModule.icon;
 
-  destroyed$ = new Subject();
+  destroyed$ = new Subject<void>();
   inputValue$ = new Subject<string>();
   valueChange$ = this.inputValue$.pipe(
     debounceTime(300),

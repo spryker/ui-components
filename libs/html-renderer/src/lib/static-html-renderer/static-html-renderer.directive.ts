@@ -3,7 +3,7 @@ import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
 import { Observable, ReplaySubject, EMPTY } from 'rxjs';
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'spy-html-renderer[html]',
   exportAs: 'staticHtmlRendererProvider',
   providers: [
@@ -14,7 +14,8 @@ import { Observable, ReplaySubject, EMPTY } from 'rxjs';
   ],
 })
 export class StaticHtmlRendererDirective
-  implements HtmlRendererProvider, OnChanges {
+  implements HtmlRendererProvider, OnChanges
+{
   @Input() html = '';
 
   private html$ = new ReplaySubject<string>(1);

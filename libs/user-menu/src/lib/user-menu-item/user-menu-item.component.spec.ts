@@ -12,7 +12,12 @@ describe('UserMenuItemComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   it('should render <spy-user-menu-item> with default slot', async () => {
     const host = await createComponent({}, true);

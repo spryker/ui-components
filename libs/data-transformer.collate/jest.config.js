@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'data-transformer.collate',
-  preset: '../../jest.config.js',
+  displayName: 'data-transformer.collate',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/data-transformer.collate',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

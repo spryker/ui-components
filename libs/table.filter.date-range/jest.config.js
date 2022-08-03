@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'table.filter.date-range',
-  preset: '../../jest.config.js',
+  displayName: 'table.filter.date-range',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/table.filter.date-range',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { Meta } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import {
   DatasourceInlineModule,
@@ -40,14 +41,9 @@ import {
   ContextModule,
   DefaultContextSerializationModule,
 } from '@spryker/utils';
-import { IStory } from '@storybook/angular';
 
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 import { TableColumnDynamicModule } from './table-column-dynamic.module';
-
-export default {
-  title: 'TableColumnDynamicComponent',
-};
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `${i}`,
@@ -55,59 +51,34 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col3: `col3 #${i}`,
 });
 
-export const primary = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      HttpClientTestingModule,
-      ContextModule,
-      TableModule.forRoot(),
-      TableModule.withFeatures({
-        editable: () =>
-          import('@spryker/table.feature.editable').then(
-            (m) => m.TableEditableFeatureModule,
-          ),
-      } as any),
-      TableModule.withColumnComponents({
-        text: TableColumnTextComponent,
-        select: TableColumnSelectComponent,
-        dynamic: TableColumnDynamicComponent,
-      } as any),
-      DatasourceModule.withDatasources({
-        'mock-data': MockTableDatasourceService,
-        inline: DatasourceInlineService,
-      }),
-      DefaultContextSerializationModule,
-      BrowserAnimationsModule,
-      DatasourceInlineModule,
-      NotificationModule.forRoot(),
-      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-      EnLocaleModule,
-      TableColumnTextModule,
-      TableColumnSelectModule,
-      TableColumnDynamicModule,
-    ],
-    providers: [
-      {
-        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [
-          LayoutFlatHostComponent,
-          TableColumnTextComponent,
-          TableColumnSelectComponent,
-          TableColumnDynamicComponent,
-        ],
-        multi: true,
-      },
-    ],
+export default {
+  title: 'TableColumnDynamicComponent',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1365%3A7734',
+      allowFullscreen: true,
+    },
   },
-  template: `
-    <spy-table [config]="config"></spy-table>
-  `,
-  props: {
+  argTypes: {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+      table: {
+        disable: true,
+      },
+    },
+    mockHttp: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
     config: {
       dataSource: {
         type: 'mock-data',
         dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+      } as unknown as MockTableDatasourceConfig,
       columns: [
         { id: 'col1', sortable: true, title: 'Column #1' },
         {
@@ -200,9 +171,60 @@ export const primary = (): IStory => ({
       },
     },
   },
+} as Meta;
+
+export const primary = (args) => ({
+  props: args,
+  moduleMetadata: {
+    imports: [
+      HttpClientTestingModule,
+      ContextModule,
+      TableModule.forRoot(),
+      TableModule.withFeatures({
+        editable: () =>
+          import('@spryker/table.feature.editable').then(
+            (m) => m.TableEditableFeatureModule,
+          ),
+      } as any),
+      TableModule.withColumnComponents({
+        text: TableColumnTextComponent,
+        select: TableColumnSelectComponent,
+        dynamic: TableColumnDynamicComponent,
+      } as any),
+      DatasourceModule.withDatasources({
+        'mock-data': MockTableDatasourceService,
+        inline: DatasourceInlineService,
+      } as any),
+      DefaultContextSerializationModule,
+      BrowserAnimationsModule,
+      DatasourceInlineModule,
+      NotificationModule.forRoot(),
+      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+      EnLocaleModule,
+      TableColumnTextModule,
+      TableColumnSelectModule,
+      TableColumnDynamicModule,
+    ],
+    providers: [
+      {
+        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+        useValue: [
+          LayoutFlatHostComponent,
+          TableColumnTextComponent,
+          TableColumnSelectComponent,
+          TableColumnDynamicComponent,
+        ],
+        multi: true,
+      },
+    ],
+  },
+  template: `
+    <spy-table [config]="config"></spy-table>
+  `,
 });
 
-export const withDependentColumns = (): IStory => ({
+export const withDependentColumns = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [
       HttpClientTestingModule,
@@ -229,7 +251,7 @@ export const withDependentColumns = (): IStory => ({
         'mock-data': MockTableDatasourceService,
         dependable: TableDatasourceDependableService,
         http: DatasourceHttpService,
-      }),
+      } as any),
       DefaultContextSerializationModule,
       BrowserAnimationsModule,
       NotificationModule.forRoot(),
@@ -253,200 +275,200 @@ export const withDependentColumns = (): IStory => ({
   template: `
     <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
   `,
-  props: {
-    config: {
-      dataSource: {
-        type: 'mock-data',
-        dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
+});
+withDependentColumns.args = {
+  config: {
+    dataSource: {
+      type: 'mock-data',
+      dataGenerator: tableDataGenerator,
+    } as unknown as MockTableDatasourceConfig,
+    columns: [
+      {
+        id: 'col1',
+        sortable: true,
+        title: 'Column #1',
+      },
+      {
+        id: 'col2',
+        title: 'Column #2',
+      },
+      {
+        id: 'col3',
+        title: 'Column #3',
+      },
+    ],
+    editable: {
       columns: [
         {
           id: 'col1',
-          sortable: true,
-          title: 'Column #1',
-        },
-        {
-          id: 'col2',
-          title: 'Column #2',
-        },
-        {
-          id: 'col3',
-          title: 'Column #3',
-        },
-      ],
-      editable: {
-        columns: [
-          {
-            id: 'col1',
-            type: 'select',
-            typeOptions: {
-              options: [
-                {
-                  title: 'series',
-                  value: 'series',
-                },
-                {
-                  title: 'width',
-                  value: 'width',
-                },
-                {
-                  title: 'color',
-                  value: 'color',
-                },
-              ],
-            },
-          },
-          {
-            id: 'col2',
-            type: 'dynamic',
-            typeOptions: {
-              datasource: {
-                type: 'dependable',
-                dependsOn: 'col1',
-                datasource: {
-                  type: 'http',
-                  url: '${row.col1}',
-                },
-              },
-            },
-          },
-          {
-            id: 'col3',
-            type: 'dynamic',
-            typeOptions: {
-              datasource: {
-                type: 'dependable',
-                dependsOn: 'col1',
-                datasource: {
-                  type: 'http',
-                  url: '${row.col1}',
-                },
-              },
-            },
-          },
-        ],
-        create: {
-          addButton: {},
-          cancelButton: {},
-          initialData: {
-            data: [
-              {
-                editableNewRow: true,
-                col1: 'series',
-                col2: 'Dependable Option 1',
-              },
-              {
-                editableNewRow: true,
-                col1: 'color',
-                col2: 'Dependable Option 1',
-              },
-              {
-                editableNewRow: true,
-                col1: 'series',
-                col2: 'Dependable Option 2',
-              },
-              {
-                editableNewRow: true,
-                col1: 'width',
-                col2: 'Dependable Option 3',
-              },
-            ],
-            errors: [
-              {
-                rowError: null,
-                columnErrors: [],
-              },
-              {
-                rowError:
-                  'The combination [color] - Black already exists. Please define another one',
-                columnErrors: [],
-              },
-              {
-                rowError:
-                  'The combination [brand] - Samsung already exists. Please define another one',
-                columnErrors: [],
-              },
-            ],
-          },
-        },
-        update: { url: '/update-cell' },
-      },
-    },
-    mockHttp: setMockHttp([
-      {
-        url: '/data-request',
-        dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
-      },
-      {
-        url: '/update-cell',
-        data: {},
-      },
-      {
-        url: 'series',
-        data: {
-          type: 'input',
-          typeOptions: {
-            options: [
-              {
-                value: 'Dependable Option 1',
-                title: 'Dependable Option 1',
-              },
-              {
-                value: 'Dependable Option 2',
-                title: 'Dependable Option 2',
-              },
-              {
-                value: 'Dependable Option 3',
-                title: 'Dependable Option 3',
-              },
-            ],
-          },
-        },
-      },
-      {
-        url: 'width',
-        data: {
           type: 'select',
           typeOptions: {
             options: [
               {
-                value: 'Dependable Option 1',
-                title: 'Dependable Option 1',
+                title: 'series',
+                value: 'series',
               },
               {
-                value: 'Dependable Option 2',
-                title: 'Dependable Option 2',
+                title: 'width',
+                value: 'width',
               },
               {
-                value: 'Dependable Option 3',
-                title: 'Dependable Option 3',
+                title: 'color',
+                value: 'color',
               },
             ],
           },
         },
-      },
-      {
-        url: 'color',
-        data: {
-          type: 'autocomplete',
+        {
+          id: 'col2',
+          type: 'dynamic',
           typeOptions: {
-            options: [
-              {
-                value: 'Dependable Option 1',
-                title: 'Dependable Option 1',
+            datasource: {
+              type: 'dependable',
+              dependsOn: 'col1',
+              datasource: {
+                type: 'http',
+                url: '${row.col1}',
               },
-              {
-                value: 'Dependable Option 2',
-                title: 'Dependable Option 2',
-              },
-              {
-                value: 'Dependable Option 3',
-                title: 'Dependable Option 3',
-              },
-            ],
+            },
           },
         },
+        {
+          id: 'col3',
+          type: 'dynamic',
+          typeOptions: {
+            datasource: {
+              type: 'dependable',
+              dependsOn: 'col1',
+              datasource: {
+                type: 'http',
+                url: '${row.col1}',
+              },
+            },
+          },
+        },
+      ],
+      create: {
+        addButton: {},
+        cancelButton: {},
+        initialData: {
+          data: [
+            {
+              editableNewRow: true,
+              col1: 'series',
+              col2: 'Dependable Option 1',
+            },
+            {
+              editableNewRow: true,
+              col1: 'color',
+              col2: 'Dependable Option 1',
+            },
+            {
+              editableNewRow: true,
+              col1: 'series',
+              col2: 'Dependable Option 2',
+            },
+            {
+              editableNewRow: true,
+              col1: 'width',
+              col2: 'Dependable Option 3',
+            },
+          ],
+          errors: [
+            {
+              rowError: null,
+              columnErrors: [],
+            },
+            {
+              rowError:
+                'The combination [color] - Black already exists. Please define another one',
+              columnErrors: [],
+            },
+            {
+              rowError:
+                'The combination [brand] - Samsung already exists. Please define another one',
+              columnErrors: [],
+            },
+          ],
+        },
       },
-    ]),
+      update: { url: '/update-cell' },
+    },
   },
-});
+  mockHttp: setMockHttp([
+    {
+      url: '/data-request',
+      dataFn: (req) => generateMockTableDataFor(req, tableDataGenerator),
+    },
+    {
+      url: '/update-cell',
+      data: {},
+    },
+    {
+      url: 'series',
+      data: {
+        type: 'input',
+        typeOptions: {
+          options: [
+            {
+              value: 'Dependable Option 1',
+              title: 'Dependable Option 1',
+            },
+            {
+              value: 'Dependable Option 2',
+              title: 'Dependable Option 2',
+            },
+            {
+              value: 'Dependable Option 3',
+              title: 'Dependable Option 3',
+            },
+          ],
+        },
+      },
+    },
+    {
+      url: 'width',
+      data: {
+        type: 'select',
+        typeOptions: {
+          options: [
+            {
+              value: 'Dependable Option 1',
+              title: 'Dependable Option 1',
+            },
+            {
+              value: 'Dependable Option 2',
+              title: 'Dependable Option 2',
+            },
+            {
+              value: 'Dependable Option 3',
+              title: 'Dependable Option 3',
+            },
+          ],
+        },
+      },
+    },
+    {
+      url: 'color',
+      data: {
+        type: 'autocomplete',
+        typeOptions: {
+          options: [
+            {
+              value: 'Dependable Option 1',
+              title: 'Dependable Option 1',
+            },
+            {
+              value: 'Dependable Option 2',
+              title: 'Dependable Option 2',
+            },
+            {
+              value: 'Dependable Option 3',
+              title: 'Dependable Option 3',
+            },
+          ],
+        },
+      },
+    },
+  ]),
+};

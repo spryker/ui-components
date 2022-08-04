@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Injectable,
   Input,
   OnChanges,
 } from '@angular/core';
@@ -8,6 +9,7 @@ import { TypedSimpleChanges } from '@spryker/utils';
 
 import { LocaleService } from '../locale.service';
 
+@Injectable()
 export class LocaleSwitcherInputs {
   @Input() locale?: string;
 }
@@ -21,7 +23,8 @@ export class LocaleSwitcherInputs {
 })
 export class LocaleSwitcherComponent
   extends LocaleSwitcherInputs
-  implements OnChanges {
+  implements OnChanges
+{
   constructor(private localeService: LocaleService) {
     super();
   }

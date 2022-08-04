@@ -46,6 +46,7 @@ describe('TimeDurationService', () => {
           useExisting: MockDateService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(TimeDurationService);
     mockDateService = TestBed.inject(MockDateService);

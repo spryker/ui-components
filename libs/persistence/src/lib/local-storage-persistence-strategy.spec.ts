@@ -27,6 +27,7 @@ describe('LocalStoragePersistenceStrategy', () => {
           useExisting: MockWindowToken,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(LocalStoragePersistenceStrategy);
     windowToken = TestBed.inject(MockWindowToken);

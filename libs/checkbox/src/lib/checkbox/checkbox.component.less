@@ -6,6 +6,10 @@
   color: @checkbox-label-color;
   letter-spacing: @letter-spacing-base;
 
+  .has-error & .@{checkbox-prefix-cls}-inner {
+    border-color: @spy-error-color;
+  }
+
   &.cdk-focused .@{checkbox-prefix-cls}-checked {
     box-shadow: @checkbox-shadow-focus;
   }
@@ -33,11 +37,13 @@
 .@{checkbox-prefix-cls} {
   align-self: flex-start;
   flex-shrink: 0;
+  // TODO: why this got removed from beta?
+  top: @checkbox-shift-top;
   border: @checkbox-border;
   border-radius: @checkbox-border-radius;
   box-shadow: @checkbox-shadow-default;
-  width: @checkbox-size;
-  height: @checkbox-size;
+  width: @spy-checkbox-size;
+  height: @spy-checkbox-size;
   position: relative;
 
   &-checked {
@@ -110,7 +116,7 @@
       background-color: @input-disabled-bg;
 
       &::after {
-        background-color: @disabled-color;
+        background-color: @spy-disabled-color;
       }
     }
   }

@@ -1,14 +1,14 @@
+import { Meta } from '@storybook/angular';
 import { UnsavedChangesModule } from '@spryker/unsaved-changes';
 import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
-import { IStory } from '@storybook/angular';
 
 import { UnsavedChangesFormMonitorModule } from './unsaved-changes-form-monitor.module';
 
 export default {
   title: 'UnsavedChangesMonitorForm',
-};
+} as Meta;
 
-export const primary = (): IStory => ({
+export const primary = () => ({
   moduleMetadata: {
     imports: [
       UnsavedChangesFormMonitorModule,

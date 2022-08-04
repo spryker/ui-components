@@ -1,15 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IStory, storiesOf } from '@storybook/angular';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 import { LocaleModule } from './locale.module';
 
-// TODO(date-picker): Remove this style import when our date picker is used
-import '!style-loader!css-loader!less-loader?javascriptEnabled!ng-zorro-antd/date-picker/style/entry.less';
-
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'locale-story-component',
   styles: [
     `
@@ -23,10 +19,6 @@ import '!style-loader!css-loader!less-loader?javascriptEnabled!ng-zorro-antd/dat
       <p>Localized date: {{ date | date }}</p>
       <p>Localized time: {{ date | date: 'shortTime' }}</p>
       <p>Localized currency: {{ price | currency: 'EUR' }}</p>
-      <p>
-        <!-- TODO(date-picker): Replace Ant with our date picker when built -->
-        <nz-date-picker [(ngModel)]="date"></nz-date-picker>
-      </p>
     </ng-container>
   `,
 })
@@ -35,21 +27,16 @@ class LocaleStoryComponent {
   @Input() price = 100500;
 }
 
-function createStoryFor(locale: LocaleMeta): () => IStory {
-  return () => ({
+function createStoryFor(locale: LocaleMeta): (args) => IStory {
+  return (args) => ({
+    props: args,
     moduleMetadata: {
-      imports: [
-        BrowserAnimationsModule,
-        LocaleModule.forRoot(),
-        locale.module,
-        NzDatePickerModule,
-      ],
+      imports: [BrowserAnimationsModule, LocaleModule.forRoot(), locale.module],
     },
-    component: LocaleStoryComponent,
   });
 }
 
-declare var require: any;
+declare const require: any;
 
 interface LocaleMeta {
   name: string;
@@ -71,6 +58,19 @@ const locales: LocaleMeta[] = localeModulesLoader.keys().map(
 );
 
 const localeStories = storiesOf('LocaleModule', module);
+localeStories.addParameters({
+  component: LocaleStoryComponent,
+  argTypes: {
+    date: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
+    date: Date.now(),
+  },
+});
 
 locales.forEach((locale) => {
   localeStories.add(locale.name, createStoryFor(locale));

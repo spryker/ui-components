@@ -16,9 +16,8 @@ import {
 import { switchMap, delay } from 'rxjs/operators';
 import { InjectionTokenType } from '@spryker/utils';
 
-export const MockTableDatasourceToken = new InjectionToken<
-  TableDataMockGenerator
->('MockTableDatasource');
+export const MockTableDatasourceToken =
+  new InjectionToken<TableDataMockGenerator>('MockTableDatasource');
 
 export interface MockTableDatasourceConfig extends DatasourceConfig {
   dataGenerator?: TableDataMockGenerator;
@@ -26,7 +25,8 @@ export interface MockTableDatasourceConfig extends DatasourceConfig {
 
 @Injectable({ providedIn: 'root' })
 export class MockTableDatasourceService
-  implements Datasource<TableData, TableDataConfig> {
+  implements Datasource<TableData, TableDataConfig>
+{
   constructor(
     @Inject(MockTableDatasourceToken)
     @Optional()

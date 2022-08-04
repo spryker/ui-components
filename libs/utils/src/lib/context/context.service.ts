@@ -5,7 +5,7 @@ import { escapeRegex } from '../regex';
 import { ContextSerializationService } from './context-serialization.service';
 
 export interface AnyContext {
-  [key: string]: AnyContext;
+  [key: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })

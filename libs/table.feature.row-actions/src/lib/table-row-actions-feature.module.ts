@@ -18,7 +18,6 @@ import { TableRowActionsFeatureComponent } from './table-row-actions-feature.com
   ],
   exports: [TableRowActionsFeatureComponent],
   declarations: [TableRowActionsFeatureComponent, FilterAvailableActionsPipe],
-  entryComponents: [TableRowActionsFeatureComponent],
 })
 export class TableRowActionsFeatureModule implements ModuleWithFeature {
   featureComponent = TableRowActionsFeatureComponent;

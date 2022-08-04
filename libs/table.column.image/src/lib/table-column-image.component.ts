@@ -13,16 +13,12 @@ import {
 } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
-declare module '@spryker/table' {
-  interface TableColumnTypeRegistry {
-    image: TableColumnImageConfig;
-  }
-}
-
 @Injectable({ providedIn: 'root' })
 export class TableColumnImageConfig {
   @ColumnTypeOption()
-  src? = this.contextService.wrap('value');
+  src? = this.contextService.wrap('displayValue');
+  @ColumnTypeOption()
+  alt? = '';
 
   constructor(private contextService: ContextService) {}
 }
@@ -36,7 +32,8 @@ export class TableColumnImageConfig {
 })
 @TableColumnTypeComponent(TableColumnImageConfig)
 export class TableColumnImageComponent
-  implements TableColumnComponent<TableColumnImageConfig> {
+  implements TableColumnComponent<TableColumnImageConfig>
+{
   @Input() config?: TableColumnImageConfig;
   @Input() context?: TableColumnContext;
 }

@@ -1,9 +1,17 @@
 @table-search-feature-prefix-cls: ~'@{spryker-prefix}-table-search-feature';
 
-@magnifier-icon-width: 22px;
-@magnifier-icon-height: 22px;
-@magnifier-icon-font-size: 22px;
-@magnifier-icon-line-height: 1;
-@remove-icon-size: 24px;
-@remove-icon-font-size: 10px;
-@remove-icon-line-height: 27px;
+@magnifier-icon-size: var(--spy-magnifier-icon-size, 22px);
+@magnifier-icon-width: var(--spy-magnifier-icon-width, @magnifier-icon-size);
+@magnifier-icon-height: var(--spy-magnifier-icon-height, @magnifier-icon-size);
+@magnifier-icon-font-size: var(
+  --spy-magnifier-icon-font-size,
+  @magnifier-icon-size
+);
+@magnifier-icon-line-height: var(--spy-magnifier-icon-line-height, 1);
+@remove-icon-size: var(--spy-remove-icon-size, 24px);
+@remove-icon-font-size: var(--spy-remove-icon-font-size, 10px);
+@remove-icon-line-height: var(--spy-remove-icon-line-height, 27px);
+@table-search-feature-margin-bottom: var(
+  --spy-table-search-feature-margin-bottom,
+  20px
+);

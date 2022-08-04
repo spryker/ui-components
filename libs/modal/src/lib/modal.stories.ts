@@ -4,18 +4,23 @@ import {
   Input,
   TemplateRef,
 } from '@angular/core';
-import { IStory } from '@storybook/angular';
-import { boolean } from '@storybook/addon-knobs';
+import { Meta } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { ModalModule } from './modal.module';
 import { ModalService } from './modal.service';
 import { NzModalWrapperComponent } from './wrappers';
-import { HtmlModalStrategy } from './strategies/html.strategy';
+import { HtmlModalStrategy } from './strategies';
 
 export default {
   title: 'ModalComponent',
-};
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8988',
+      allowFullscreen: true,
+    },
+  },
+} as Meta;
 
 @Component({
   selector: 'spy-story',
@@ -85,7 +90,8 @@ class StoryComponent {
   }
 }
 
-export const primary = (): IStory => ({
+export const primary = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [ModalModule.forRoot(), BrowserAnimationsModule],
     providers: [
@@ -97,10 +103,10 @@ export const primary = (): IStory => ({
     ],
   },
   component: StoryComponent,
-  props: {
-    hasBackdrop: boolean('Has backdrop', true),
-  },
 });
+primary.args = {
+  hasBackdrop: true,
+};
 
 @Component({
   selector: 'spy-story',
@@ -119,7 +125,8 @@ class SimpleModalComponent {
   visible = false;
 }
 
-export const viaModalComponent = (): IStory => ({
+export const viaModalComponent = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [ModalModule.forRoot(), BrowserAnimationsModule],
     providers: [
@@ -131,7 +138,6 @@ export const viaModalComponent = (): IStory => ({
     ],
   },
   component: SimpleModalComponent,
-  props: {},
 });
 
 @Component({
@@ -172,7 +178,8 @@ class ConfirmationComponent {
   }
 }
 
-export const confirmation = (): IStory => ({
+export const confirmation = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [ModalModule.forRoot(), BrowserAnimationsModule],
     providers: [
@@ -184,8 +191,8 @@ export const confirmation = (): IStory => ({
     ],
   },
   component: ConfirmationComponent,
-  props: {
-    hasBackdrop: boolean('Has backdrop', true),
-    hasDescription: boolean('Has description', true),
-  },
 });
+confirmation.args = {
+  hasBackdrop: true,
+  hasDescription: true,
+};

@@ -11,7 +11,7 @@
     font-weight: @font-weight-semi-bold;
     border-bottom-width: @card-border-width;
     letter-spacing: @card-head-letter-spacing;
-    padding: @card-head-y-padding @card-padding-base;
+    padding: @card-head-y-padding @spy-card-padding-base;
 
     .head-title-position-left & {
       text-align: left;
@@ -33,8 +33,8 @@
 
   &-actions {
     border-top-width: @card-border-width;
-    border-radius: @spy-card-radius;
-    background: transparent;
+    border-radius: @card-actions-radius;
+    background: @transparent;
 
     & > li {
       box-sizing: border-box;
@@ -54,7 +54,7 @@
     box-shadow: none;
 
     .@{card-prefix-cls}-head {
-      font-size: @font-size-base;
+      font-size: @spy-font-size-base;
       font-weight: @font-weight-medium;
       border-color: @card-inner-head-border-color;
       padding: @card-head-padding-default;

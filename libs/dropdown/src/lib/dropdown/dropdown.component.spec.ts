@@ -7,7 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DropdownComponent', () => {
   @Component({
-    // tslint:disable-next-line: component-selector
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'test',
     template: `
       <spy-dropdown
@@ -39,6 +39,7 @@ describe('DropdownComponent', () => {
       imports: [DropdownModule, NoopAnimationsModule],
       declarations: [TestComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

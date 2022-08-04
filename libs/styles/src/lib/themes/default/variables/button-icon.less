@@ -1,28 +1,34 @@
 @btn-icon-prefix-cls: ~'@{spryker-prefix}-button-icon';
 
-@btn-icon-color: @gray-dark;
-@btn-icon-background: transparent;
-@btn-icon-padding: 0;
-@btn-icon-border: none;
-@btn-icon-border-radius: 50%;
-@btn-icon-shadow-size: 0 0 0 2px;
-@btn-icon-shadow: inset @btn-icon-shadow-size transparent;
-@btn-icon-background-hover: @gray-lighter;
-@btn-icon-shadow-hover: inset @btn-icon-shadow-size transparent;
-@btn-icon-background-focus: @gray-lighter;
-@btn-icon-shadow-focus: inset @btn-icon-shadow-size @green;
-@btn-icon-background-active: @gray-light;
-@btn-icon-color-active: @gray-darker;
-@btn-icon-color-disabled: @gray;
-@btn-icon-font-size-sm: 12px;
-@btn-icon-size-sm: 30px;
-@btn-icon-min-width-sm: @btn-icon-size-sm;
-@btn-icon-min-height-sm: @btn-icon-size-sm;
-@btn-icon-font-size-md: 16px;
-@btn-icon-size-md: 40px;
-@btn-icon-min-width-md: @btn-icon-size-md;
-@btn-icon-min-height-md: @btn-icon-size-md;
-@btn-icon-font-size-lg: 24px;
-@btn-icon-size-lg: 50px;
-@btn-icon-min-width-lg: @btn-icon-size-lg;
-@btn-icon-min-height-lg: @btn-icon-size-lg;
+@btn-icon-color: var(--spy-btn-icon-color, @gray-dark);
+@btn-icon-background: var(--spy-btn-icon-background, @transparent);
+@btn-icon-padding: var(--spy-btn-icon-padding, 0);
+@btn-icon-border: var(--spy-btn-icon-border, none);
+@btn-icon-border-radius: var(--spy-btn-icon-border-radius, 50%);
+@btn-icon-shadow-size: var(--spy-btn-icon-shadow-size, 0 0 0 1px);
+@btn-icon-shadow: var(
+  --spy-btn-icon-shadow,
+  @btn-icon-shadow-size @transparent
+);
+@btn-icon-background-hover: var(--spy-btn-icon-background-hover, @gray-lighter);
+@btn-icon-shadow-hover: var(
+  --spy-btn-icon-shadow-hover,
+  @btn-icon-shadow-size @gray
+);
+@btn-icon-background-focus: var(--spy-btn-icon-background-focus, @gray-lighter);
+@btn-icon-shadow-focus: var(--spy-btn-icon-shadow-focus, @box-shadow-focus);
+@btn-icon-background-active: var(--spy-btn-icon-background-active, @gray-light);
+@btn-icon-color-active: var(--spy-btn-icon-color-active, @gray-darker);
+@btn-icon-color-disabled: var(--spy-btn-icon-color-disabled, @gray);
+@btn-icon-font-size-sm: var(--spy-btn-icon-font-size-sm, 12px);
+@btn-icon-size-sm: var(--spy-btn-icon-size-sm, 30px);
+@btn-icon-min-width-sm: var(--spy-btn-icon-min-width-sm, @btn-icon-size-sm);
+@btn-icon-min-height-sm: var(--spy-btn-icon-min-height-sm, @btn-icon-size-sm);
+@btn-icon-font-size-md: var(--spy-btn-icon-font-size-md, 16px);
+@btn-icon-size-md: var(--spy-btn-icon-size-md, 40px);
+@btn-icon-min-width-md: var(--spy-btn-icon-min-width-md, @btn-icon-size-md);
+@btn-icon-min-height-md: var(--spy-btn-icon-min-height-md, @btn-icon-size-md);
+@btn-icon-font-size-lg: var(--spy-btn-icon-font-size-lg, 24px);
+@btn-icon-size-lg: var(--spy-btn-icon-size-lg, 50px);
+@btn-icon-min-width-lg: var(--spy-btn-icon-min-width-lg, @btn-icon-size-lg);
+@btn-icon-min-height-lg: var(--spy-btn-icon-min-height-lg, @btn-icon-size-lg);

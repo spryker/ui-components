@@ -15,12 +15,6 @@ import {
 } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
-declare module '@spryker/table' {
-  interface TableColumnTypeRegistry {
-    input: TableColumnInputConfig;
-  }
-}
-
 @Injectable({ providedIn: 'root' })
 export class TableColumnInputConfig {
   @ColumnTypeOption()
@@ -56,7 +50,8 @@ export class TableColumnInputConfig {
 })
 @TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent
-  implements TableColumnComponent<TableColumnInputConfig>, OnInit {
+  implements TableColumnComponent<TableColumnInputConfig>, OnInit
+{
   @Input() config?: TableColumnInputConfig;
   @Input() context?: TableColumnContext;
 
@@ -69,9 +64,9 @@ export class TableColumnInputComponent
   }
 
   valueChangeHandler(inputValue: string): void {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.context!.value = inputValue;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.tableEditableService.updateValue(inputValue, this.context!.config);
   }
 

@@ -18,7 +18,8 @@ import {
 })
 export class CollateDataTransformerService
   implements
-    DataTransformer<CollateDataTransformerData, CollateDataTransformerDataT> {
+    DataTransformer<CollateDataTransformerData, CollateDataTransformerDataT>
+{
   constructor(
     private dataTransformerFilter: DataTransformerFilterService,
     private collateDataConfigurator: DataTransformerConfiguratorService,
@@ -114,7 +115,7 @@ export class CollateDataTransformerService
           }
 
           return this.dataTransformerFilter.filter(
-            'text',
+            collateConfig.search.type,
             filteredData,
             collateConfig.search as DataTransformerFilterConfig,
             [configuratorConfig.search],

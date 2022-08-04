@@ -1,14 +1,15 @@
 {
   "name": "@spryker/data-transformer.filter.text",
-  "version": "0.1.8-beta.0",
+  "version": "0.2.4",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/data-transformer": "^0.1.0",
-    "@spryker/data-transformer.collate": "^0.1.0"
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
+    "@spryker/data-transformer": "^0.2.0",
+    "@spryker/data-transformer.collate": "^0.2.0",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

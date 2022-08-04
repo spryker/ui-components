@@ -24,7 +24,8 @@ import { NotificationInputs } from '../notification-inputs';
 })
 export class NotificationViewComponent
   extends NotificationInputs
-  implements OnInit {
+  implements OnInit
+{
   @ViewChild(NzAlertComponent) nzAlertComponent?: NzAlertComponent;
 
   removeIcon = IconRemoveModule.icon;

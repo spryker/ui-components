@@ -4,5 +4,6 @@
   "lib": {
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../styles/src/lib"]
-  }
+  },
+  "allowedNonPeerDependencies": ["ng-zorro-antd"]
 }

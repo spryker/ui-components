@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HtmlRendererComponent } from './html-renderer.component';
+import { SpinnerModule } from '@spryker/spinner';
 import { CustomElementBoundaryModule } from '@spryker/web-components';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { HtmlRendererComponent } from './html-renderer.component';
 
 @NgModule({
-  imports: [CommonModule, CustomElementBoundaryModule, NzSpinModule],
+  imports: [CommonModule, CustomElementBoundaryModule, SpinnerModule],
   declarations: [HtmlRendererComponent],
   exports: [HtmlRendererComponent],
 })

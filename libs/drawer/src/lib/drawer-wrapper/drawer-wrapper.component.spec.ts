@@ -33,6 +33,7 @@ describe('DrawerWrapperComponent', () => {
     TestBed.configureTestingModule({
       imports: [DrawerWrapperModule],
       declarations: [TestComponent],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

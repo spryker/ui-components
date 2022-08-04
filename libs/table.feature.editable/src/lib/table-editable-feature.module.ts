@@ -30,7 +30,6 @@ import { TableEditableFeatureComponent } from './table-editable-feature.componen
   ],
   exports: [TableEditableFeatureComponent],
   declarations: [TableEditableFeatureComponent],
-  entryComponents: [TableEditableFeatureComponent],
 })
 export class TableEditableFeatureModule implements ModuleWithFeature {
   featureComponent = TableEditableFeatureComponent;

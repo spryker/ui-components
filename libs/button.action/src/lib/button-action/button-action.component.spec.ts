@@ -49,6 +49,7 @@ describe('ButtonActionComponent', () => {
             useExisting: MockActionService,
           },
         ],
+        teardown: { destroyAfterEach: false },
       });
 
       mockActionService = TestBed.inject(MockActionService);
@@ -152,6 +153,7 @@ describe('ButtonActionComponent', () => {
             useExisting: MockActionService,
           },
         ],
+        teardown: { destroyAfterEach: false },
       });
 
       mockActionService = TestBed.inject(MockActionService);

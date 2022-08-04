@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { IStory } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IStory, Meta } from '@storybook/angular';
 import { TableModule } from '@spryker/table';
 import {
   TableFilterDateRangeComponent,
@@ -15,7 +15,7 @@ import {
   TableFilterTreeSelectComponent,
   TableFilterTreeSelectModule,
 } from '@spryker/table.filter.tree-select';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { MockHttpModule } from '@spryker/internal-utils';
 import {
   MockTableDatasourceConfig,
   MockTableDatasourceService,
@@ -37,10 +37,6 @@ import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 import { TableBatchActionsFeatureModule } from '@spryker/table.feature.batch-actions';
 import { TableTitleFeatureModule } from '@spryker/table.feature.title';
-
-export default {
-  title: 'TableFeaturesComponent',
-};
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
@@ -69,9 +65,179 @@ const availableActions = (index: number): string[] | undefined => {
   }
 };
 
+export default {
+  title: 'TableFeaturesComponent',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=319%3A445',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
+    config: {
+      dataSource: {
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as unknown as MockTableDatasourceConfig,
+      columns: [
+        { id: 'col1', title: 'Column #1', sortable: true, hideable: true },
+        { id: 'col2', title: 'Column #2', hideable: false },
+        { id: 'col3', title: 'Column #3', hideable: true },
+        { id: 'col4', title: 'Column #4', hideable: true },
+        { id: 'col5', title: 'Column #5', hideable: true },
+        { id: 'col6', title: 'Column #6', hideable: true },
+        { id: 'col7', title: 'Column #7', hideable: true },
+        { id: 'col8', title: 'Column #8', hideable: true },
+      ],
+      batchActions: {
+        enabled: true, // This will enable feature via config
+        noActionsMessage: 'No available actions for selected rows',
+        availableActionsPath: '_actionIds',
+        rowIdPath: 'sku',
+        actions: [
+          {
+            id: 'update-offer',
+            title: 'Update Offer(s)',
+            type: 'form-overlay',
+            typeOptions: {
+              url: 'https://.../?ids=${rowIds}',
+              method: 'GET',
+            },
+          },
+          {
+            id: 'ship',
+            title: 'Ship',
+            type: 'html-overlay',
+            typeOptions: {
+              url: 'https://.../?ids=${rowIds}',
+              method: 'GET',
+            },
+          },
+        ],
+      },
+      filters: {
+        enabled: true,
+        items: [
+          {
+            id: 'select',
+            title: 'Select',
+            type: 'select',
+            typeOptions: {
+              multiselect: false,
+              values: [
+                { value: 1, title: 'Option_1' },
+                { value: 0, title: 'Option_2' },
+              ],
+            },
+          },
+          {
+            id: 'select2',
+            title: 'Select',
+            type: 'select',
+            typeOptions: {
+              multiselect: false,
+              values: [
+                { value: '1', title: 'Option_1' },
+                { value: '0', title: 'Option_2' },
+              ],
+            },
+          },
+          {
+            id: 'select3',
+            title: 'Select',
+            type: 'select',
+            typeOptions: {
+              multiselect: true,
+              values: [
+                { value: 1, title: 'Option_1' },
+                { value: 2, title: 'Option_2' },
+                { value: 3, title: 'Option_3' },
+                { value: 4, title: 'Option_4' },
+                { value: 5, title: 'Option_5' },
+                { value: 0, title: 'Option_0' },
+              ],
+            },
+          },
+          {
+            id: 'tree-select',
+            title: 'Tree-Select',
+            type: 'tree-select',
+            typeOptions: {
+              multiselect: true,
+              values: [
+                {
+                  value: 1,
+                  title: 'Option_1',
+                  children: [
+                    { value: 5, title: 'Option_5' },
+                    { value: 6, title: 'Option_6' },
+                  ],
+                },
+                { value: 2, title: 'Option_2' },
+                { value: 3, title: 'Option_3' },
+                { value: 4, title: 'Option_4' },
+              ],
+            },
+          },
+          {
+            id: 'range',
+            title: 'Range',
+            type: 'range',
+            typeOptions: {
+              placeholderFrom: 'from',
+              format: 'yyyy-MM-dd',
+            },
+          },
+        ],
+      },
+      pagination: {
+        enabled: true,
+        sizes: [10, 50, 100],
+      },
+      rowActions: {
+        enabled: true,
+        actions: [
+          { id: '1234', title: '123' },
+          { id: '2345', title: '234' },
+        ],
+      },
+      search: {
+        enabled: true,
+        placeholder: 'Placeholder',
+      },
+      itemSelection: {
+        enabled: true,
+      },
+      syncStateUrl: {
+        enabled: true,
+      },
+      total: {
+        enabled: true,
+      },
+      settings: {
+        enabled: true,
+      },
+      title: {
+        title: 'Table title',
+        enabled: true,
+      },
+    },
+    tableId: 'someId',
+  },
+} as Meta;
+
 export const viaHtml = getFeaturesStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [tableId]="tableId" [mockHttp]="mockHttp">
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
       <spy-table-pagination-feature spy-table-feature></spy-table-pagination-feature>
       <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
@@ -100,7 +266,7 @@ export const viaHtml = getFeaturesStory(
 
 export const viaConfig = getFeaturesStory(
   `
-    <spy-table [config]="config" [mockHttp]="mockHttp">
+    <spy-table [config]="config" [tableId]="tableId" [mockHttp]="mockHttp">
   `,
   [
     TableModule.withFeatures({
@@ -151,8 +317,9 @@ export const viaConfig = getFeaturesStory(
 function getFeaturesStory(
   template: string,
   extraNgModules: any[] = [],
-): () => IStory {
-  return () => ({
+): (args) => IStory {
+  return (args) => ({
+    props: args,
     moduleMetadata: {
       imports: [
         HttpClientTestingModule,
@@ -166,7 +333,7 @@ function getFeaturesStory(
         } as any),
         DatasourceModule.withDatasources({
           'mock-data': MockTableDatasourceService,
-        }),
+        } as any),
         TableFilterDateRangeModule,
         TableFilterSelectModule,
         TableFilterTreeSelectModule,
@@ -189,155 +356,5 @@ function getFeaturesStory(
       ],
     },
     template,
-    props: {
-      config: {
-        dataSource: {
-          type: 'mock-data',
-          dataGenerator: tableDataGenerator,
-        } as MockTableDatasourceConfig,
-        columns: [
-          { id: 'col1', title: 'Column #1', sortable: true, hideable: true },
-          { id: 'col2', title: 'Column #2', hideable: false },
-          { id: 'col3', title: 'Column #3', hideable: true },
-          { id: 'col4', title: 'Column #4', hideable: true },
-          { id: 'col5', title: 'Column #5', hideable: true },
-          { id: 'col6', title: 'Column #6', hideable: true },
-          { id: 'col7', title: 'Column #7', hideable: true },
-          { id: 'col8', title: 'Column #8', hideable: true },
-        ],
-        batchActions: {
-          enabled: true, // This will enable feature via config
-          noActionsMessage: 'No available actions for selected rows',
-          availableActionsPath: '_actionIds',
-          rowIdPath: 'sku',
-          actions: [
-            {
-              id: 'update-offer',
-              title: 'Update Offer(s)',
-              type: 'form-overlay',
-              typeOptions: {
-                url: 'https://.../?ids=${rowIds}',
-                method: 'GET',
-              },
-            },
-            {
-              id: 'ship',
-              title: 'Ship',
-              type: 'html-overlay',
-              typeOptions: {
-                url: 'https://.../?ids=${rowIds}',
-                method: 'GET',
-              },
-            },
-          ],
-        },
-        filters: {
-          enabled: true,
-          items: [
-            {
-              id: 'select',
-              title: 'Select',
-              type: 'select',
-              typeOptions: {
-                multiselect: false,
-                values: [
-                  { value: 1, title: 'Option_1' },
-                  { value: 0, title: 'Option_2' },
-                ],
-              },
-            },
-            {
-              id: 'select2',
-              title: 'Select',
-              type: 'select',
-              typeOptions: {
-                multiselect: false,
-                values: [
-                  { value: '1', title: 'Option_1' },
-                  { value: '0', title: 'Option_2' },
-                ],
-              },
-            },
-            {
-              id: 'select3',
-              title: 'Select',
-              type: 'select',
-              typeOptions: {
-                multiselect: true,
-                values: [
-                  { value: 1, title: 'Option_1' },
-                  { value: 2, title: 'Option_2' },
-                  { value: 3, title: 'Option_3' },
-                  { value: 4, title: 'Option_4' },
-                  { value: 5, title: 'Option_5' },
-                  { value: 0, title: 'Option_0' },
-                ],
-              },
-            },
-            {
-              id: 'tree-select',
-              title: 'Tree-Select',
-              type: 'tree-select',
-              typeOptions: {
-                multiselect: true,
-                values: [
-                  {
-                    value: 1,
-                    title: 'Option_1',
-                    children: [
-                      { value: 5, title: 'Option_5' },
-                      { value: 6, title: 'Option_6' },
-                    ],
-                  },
-                  { value: 2, title: 'Option_2' },
-                  { value: 3, title: 'Option_3' },
-                  { value: 4, title: 'Option_4' },
-                ],
-              },
-            },
-            {
-              id: 'range',
-              title: 'Range',
-              type: 'range',
-              typeOptions: {
-                placeholderFrom: 'from',
-                format: 'yyyy-MM-dd',
-              },
-            },
-          ],
-        },
-        pagination: {
-          enabled: true,
-          sizes: [10, 50, 100],
-        },
-        rowActions: {
-          enabled: true,
-          actions: [
-            { id: '1234', title: '123' },
-            { id: '2345', title: '234' },
-          ],
-        },
-        search: {
-          enabled: true,
-          placeholder: 'Placeholder',
-        },
-        itemSelection: {
-          enabled: true,
-        },
-        syncStateUrl: {
-          enabled: true,
-        },
-        total: {
-          enabled: true,
-        },
-        settings: {
-          enabled: true,
-        },
-        title: {
-          title: 'Table title',
-          enabled: true,
-        },
-      },
-    },
   });
 }

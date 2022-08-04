@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -45,7 +45,10 @@ describe('TableFilterTreeSelectComponent', () => {
   );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
     service = TestBed.inject(I18nTestService);
   });
 
@@ -96,7 +99,7 @@ describe('TableFilterTreeSelectComponent', () => {
   describe('@Input(value)', () => {
     it('`value` must be bound to `value` input of the `spy-tree-select` element', async () => {
       const host = await createComponent(
-        { config: mockTreeSelectConfig, value: mockTreeSelectValues },
+        { config: mockTreeSelectConfig, value: mockTreeSelectValues as any },
         true,
       );
       const selectElem = host.queryCss('spy-tree-select');

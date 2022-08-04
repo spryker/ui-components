@@ -13,16 +13,10 @@ import {
 } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
-declare module '@spryker/table' {
-  interface TableColumnTypeRegistry {
-    date: TableColumnDateConfig;
-  }
-}
-
 @Injectable({ providedIn: 'root' })
 export class TableColumnDateConfig {
   @ColumnTypeOption()
-  date? = this.contextService.wrap('value');
+  date? = this.contextService.wrap('displayValue');
   @ColumnTypeOption()
   format? = 'shortDate';
 
@@ -38,7 +32,8 @@ export class TableColumnDateConfig {
 })
 @TableColumnTypeComponent(TableColumnDateConfig)
 export class TableColumnDateComponent
-  implements TableColumnComponent<TableColumnDateConfig> {
+  implements TableColumnComponent<TableColumnDateConfig>
+{
   @Input() config?: TableColumnDateConfig;
   @Input() context?: TableColumnContext;
 }

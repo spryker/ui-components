@@ -65,6 +65,7 @@ describe('HttpActionHandlerService', () => {
           useExisting: MockContextService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(HttpActionHandlerService);

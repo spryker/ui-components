@@ -60,6 +60,7 @@ describe('ModalComponent', () => {
         },
         MockModalService,
       ],
+      teardown: { destroyAfterEach: false },
     }).compileComponents();
   }));
 

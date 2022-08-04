@@ -33,8 +33,13 @@
   }
 
   &:focus {
-    border-color: @white;
-    box-shadow: @toggle-focus-box-shadow;
+    border-color: @spy-white;
+    box-shadow: @toggle-checked-focus-box-shadow;
+  }
+
+  &-handle {
+    top: @toggle-handle-position-top;
+    left: @toggle-handle-position-left;
   }
 
   &-checked {
@@ -43,17 +48,18 @@
       background-color: @green-dark;
     }
 
-    &:focus {
-      box-shadow: @toggle-checked-focus-box-shadow;
-    }
-
     &:hover {
       box-shadow: none;
+    }
+
+    .@{toggle-prefix-cls}-handle {
+      left: @toggle-checked-handle-position-left;
     }
   }
 
   &:disabled {
     background-color: @gray;
+
     &::after {
       background-color: @gray-darker;
     }

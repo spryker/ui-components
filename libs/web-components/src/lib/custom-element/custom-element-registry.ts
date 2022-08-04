@@ -18,14 +18,18 @@ export function registerComponents(
   function initComponents() {
     const componentDeclarations = componentDefsToDeclarations(components);
 
-    componentDeclarations.forEach((componentDeclaration) =>
-      customElements.define(
-        getComponentName(componentDeclaration),
-        createCustomElementFor(componentDeclaration, injector, {
-          timeoutMs: options.componentTimeoutMs,
-        }),
-      ),
-    );
+    componentDeclarations.forEach((componentDeclaration) => {
+      const componentName = getComponentName(componentDeclaration);
+
+      if (!customElements.get(componentName)) {
+        customElements.define(
+          componentName,
+          createCustomElementFor(componentDeclaration, injector, {
+            timeoutMs: options.componentTimeoutMs,
+          }),
+        );
+      }
+    });
   }
 
   function getComponentName(componentDeclaration: WebComponentDeclaration) {

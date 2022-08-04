@@ -1,14 +1,15 @@
 {
   "name": "@spryker/utils",
-  "version": "0.2.9-beta.0",
+  "version": "0.3.5",
   "peerDependencies": {
-    "@angular/cdk": "^9.2.3",
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12"
+    "@angular/cdk": ">=9.2.3",
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "tslib": "^1.10.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

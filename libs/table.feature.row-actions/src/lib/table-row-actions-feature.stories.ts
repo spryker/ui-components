@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { IStory, Meta } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableActionTriggeredEvent, TableModule } from '@spryker/table';
 import {
@@ -10,13 +11,8 @@ import {
   TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { IStory } from '@storybook/angular';
 
 import { TableRowActionsFeatureModule } from './table-row-actions-feature.module';
-
-export default {
-  title: 'TableRowActionsFeatureComponent',
-};
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col1: `col1 #${i}`,
@@ -24,6 +20,50 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
   col3: 'col3',
   availableActions: i % 2 === 0 ? ['add', 'edit', 'delete'] : undefined,
 });
+
+export default {
+  title: 'TableRowActionsFeatureComponent',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1365%3A7734',
+      allowFullscreen: true,
+    },
+  },
+  argTypes: {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  args: {
+    config: {
+      dataSource: {
+        type: 'mock-data',
+        dataGenerator: tableDataGenerator,
+      } as unknown as MockTableDatasourceConfig,
+      columns: [
+        { id: 'col1', title: 'Column #1' },
+        { id: 'col2', title: 'Column #2' },
+        { id: 'col3', title: 'Column #3' },
+      ],
+      rowActions: {
+        enabled: true, // This will enable feature via config
+        actions: [
+          { id: '1234', title: '123' },
+          { id: '2345', title: '234' },
+          { id: 'add', title: 'Add' },
+          { id: 'edit', title: 'Edit' },
+          { id: 'delete', title: 'Delete' },
+        ],
+        click: '1234',
+        availableActionsPath: 'availableActions',
+      },
+    },
+  },
+} as Meta;
 
 export const viaHtml = getRowActionsStory(
   `
@@ -51,8 +91,13 @@ export const viaConfig = getRowActionsStory(
 function getRowActionsStory(
   template: string,
   extraNgModules: any[] = [],
-): () => IStory {
-  return () => ({
+): (args) => IStory {
+  return (args) => ({
+    props: {
+      ...args,
+      logActionTriggered: (event: TableActionTriggeredEvent) =>
+        console.log('actionTriggered', event),
+    },
     moduleMetadata: {
       imports: [
         HttpClientTestingModule,
@@ -60,7 +105,7 @@ function getRowActionsStory(
         TableModule.forRoot(),
         DatasourceModule.withDatasources({
           'mock-data': MockTableDatasourceService,
-        }),
+        } as any),
         DefaultContextSerializationModule,
         ...extraNgModules,
       ],
@@ -73,33 +118,5 @@ function getRowActionsStory(
       ],
     },
     template,
-    props: {
-      config: {
-        dataSource: {
-          type: 'mock-data',
-          dataGenerator: tableDataGenerator,
-        } as MockTableDatasourceConfig,
-        columns: [
-          { id: 'col1', title: 'Column #1' },
-          { id: 'col2', title: 'Column #2' },
-          { id: 'col3', title: 'Column #3' },
-        ],
-        rowActions: {
-          enabled: true, // This will enable feature via config
-          actions: [
-            { id: '1234', title: '123' },
-            { id: '2345', title: '234' },
-            { id: 'add', title: 'Add' },
-            { id: 'edit', title: 'Edit' },
-            { id: 'delete', title: 'Delete' },
-          ],
-          click: '1234',
-          availableActionsPath: 'availableActions',
-        },
-      },
-
-      logActionTriggered: (event: TableActionTriggeredEvent) =>
-        console.log('actionTriggered', event),
-    },
   });
 }

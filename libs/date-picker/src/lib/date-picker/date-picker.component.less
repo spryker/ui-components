@@ -1,7 +1,14 @@
 @import './date-picker.component.theme.less';
 
-@icon-navigation-arrow-base64-url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGQ9Ik0xNi4zMDIgNS41MjRsLjAxMi4wMTIgNC45MDEgNC45NDVjLjQ3NC4zMjEuNzg1Ljg2NC43ODUgMS40OHYuMDMzYzAgLjUxOS0uMjIuOTg2LS41NzQgMS4zMTJsLTUuMTEyIDUuMTU4YTEuNzc5IDEuNzc5IDAgMDEtMi41MTUuMDEybC0uMDEyLS4wMTItLjAxOC0uMDE4YTEuNzg3IDEuNzg3IDAgMDEwLTIuNTE1TDE1LjkgMTMuNzhIMy43ODdDMi44IDEzLjc4IDIgMTIuOTggMiAxMS45OTV2LS4wMzRjMC0uOTg2LjgtMS43ODYgMS43ODctMS43ODZsMTIuMDY3LS4wMDEtMi4wODUtMi4xMDRhMS43ODcgMS43ODcgMCAwMTAtMi41MTVsLjAxOC0uMDE4YTEuNzc5IDEuNzc5IDAgMDEyLjUxNS0uMDEyeiIgaWQ9ImEiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48bWFzayBpZD0iYiI+PHVzZSB4bGluazpocmVmPSIjYSIvPjwvbWFzaz48dXNlIGZpbGw9IiM5RUExQTciIHhsaW5rOmhyZWY9IiNhIi8+PGcgbWFzaz0idXJsKCNiKSIgZmlsbD0iIzEyMTIxMiI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPjwvZz48L2c+PC9zdmc+Cg==';
-@icon-navigation-arrow-active-base64-url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGQ9Ik0xNi4zMDIgNS41MjRsLjAxMi4wMTIgNC45MDEgNC45NDVjLjQ3NC4zMjEuNzg1Ljg2NC43ODUgMS40OHYuMDMzYzAgLjUxOS0uMjIuOTg2LS41NzQgMS4zMTJsLTUuMTEyIDUuMTU4YTEuNzc5IDEuNzc5IDAgMDEtMi41MTUuMDEybC0uMDEyLS4wMTItLjAxOC0uMDE4YTEuNzg3IDEuNzg3IDAgMDEwLTIuNTE1TDE1LjkgMTMuNzhIMy43ODdDMi44IDEzLjc4IDIgMTIuOTggMiAxMS45OTV2LS4wMzRjMC0uOTg2LjgtMS43ODYgMS43ODctMS43ODZsMTIuMDY3LS4wMDEtMi4wODUtMi4xMDRhMS43ODcgMS43ODcgMCAwMTAtMi41MTVsLjAxOC0uMDE4YTEuNzc5IDEuNzc5IDAgMDEyLjUxNS0uMDEyeiIgaWQ9ImEiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48bWFzayBpZD0iYiI+PHVzZSB4bGluazpocmVmPSIjYSIvPjwvbWFzaz48dXNlIGZpbGw9IiNmZmYiIHhsaW5rOmhyZWY9IiNhIi8+PGcgbWFzaz0idXJsKCNiKSIgZmlsbD0iIzEyMTIxMiI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPjwvZz48L2c+PC9zdmc+Cg==';
+@date-picker-icon-navigation-arrow: var(
+  --spy-date-picker-icon-navigation-arrow,
+  url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGQ9Ik0xNi4zMDIgNS41MjRsLjAxMi4wMTIgNC45MDEgNC45NDVjLjQ3NC4zMjEuNzg1Ljg2NC43ODUgMS40OHYuMDMzYzAgLjUxOS0uMjIuOTg2LS41NzQgMS4zMTJsLTUuMTEyIDUuMTU4YTEuNzc5IDEuNzc5IDAgMDEtMi41MTUuMDEybC0uMDEyLS4wMTItLjAxOC0uMDE4YTEuNzg3IDEuNzg3IDAgMDEwLTIuNTE1TDE1LjkgMTMuNzhIMy43ODdDMi44IDEzLjc4IDIgMTIuOTggMiAxMS45OTV2LS4wMzRjMC0uOTg2LjgtMS43ODYgMS43ODctMS43ODZsMTIuMDY3LS4wMDEtMi4wODUtMi4xMDRhMS43ODcgMS43ODcgMCAwMTAtMi41MTVsLjAxOC0uMDE4YTEuNzc5IDEuNzc5IDAgMDEyLjUxNS0uMDEyeiIgaWQ9ImEiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48bWFzayBpZD0iYiI+PHVzZSB4bGluazpocmVmPSIjYSIvPjwvbWFzaz48dXNlIGZpbGw9IiM5RUExQTciIHhsaW5rOmhyZWY9IiNhIi8+PGcgbWFzaz0idXJsKCNiKSIgZmlsbD0iIzEyMTIxMiI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPjwvZz48L2c+PC9zdmc+Cg==')
+    no-repeat center/ @calendar-btn-background-size
+);
+@date-picker-icon-navigation-arrow-active: var(
+  --spy-date-picker-icon-navigation-arrow-active,
+  url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGQ9Ik0xNi4zMDIgNS41MjRsLjAxMi4wMTIgNC45MDEgNC45NDVjLjQ3NC4zMjEuNzg1Ljg2NC43ODUgMS40OHYuMDMzYzAgLjUxOS0uMjIuOTg2LS41NzQgMS4zMTJsLTUuMTEyIDUuMTU4YTEuNzc5IDEuNzc5IDAgMDEtMi41MTUuMDEybC0uMDEyLS4wMTItLjAxOC0uMDE4YTEuNzg3IDEuNzg3IDAgMDEwLTIuNTE1TDE1LjkgMTMuNzhIMy43ODdDMi44IDEzLjc4IDIgMTIuOTggMiAxMS45OTV2LS4wMzRjMC0uOTg2LjgtMS43ODYgMS43ODctMS43ODZsMTIuMDY3LS4wMDEtMi4wODUtMi4xMDRhMS43ODcgMS43ODcgMCAwMTAtMi41MTVsLjAxOC0uMDE4YTEuNzc5IDEuNzc5IDAgMDEyLjUxNS0uMDEyeiIgaWQ9ImEiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48bWFzayBpZD0iYiI+PHVzZSB4bGluazpocmVmPSIjYSIvPjwvbWFzaz48dXNlIGZpbGw9IiNmZmYiIHhsaW5rOmhyZWY9IiNhIi8+PGcgbWFzaz0idXJsKCNiKSIgZmlsbD0iIzEyMTIxMiI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPjwvZz48L2c+PC9zdmc+Cg==')
+);
 
 .@{calendar-prefix-cls} {
   display: block;
@@ -17,7 +24,6 @@
   }
 
   &-focused {
-    box-shadow: none;
     border-color: @green;
 
     &:hover {
@@ -27,7 +33,7 @@
 
   &.@{calendar-prefix-cls}-disabled {
     border-color: @gray-light;
-    background: @disabled-bg;
+    background: @spy-disabled-bg;
 
     .@{calendar-prefix-cls}-suffix {
       color: @gray;
@@ -40,9 +46,10 @@
 
     > input {
       font-size: inherit;
+      height: 100%;
 
       &.@{input-prefix-cls} {
-        background: transparent;
+        background: @transparent;
       }
     }
   }
@@ -60,7 +67,7 @@
   }
 
   &-clear {
-    z-index: 2;
+    z-index: @calendar-clear-z-index;
     background: @gray-light;
     border-radius: 50%;
 
@@ -98,7 +105,10 @@
 
   &-dropdown {
     top: @calendar-picker-container-top;
-    left: @calendar-picker-container-left;
+  }
+
+  &-panel-container {
+    box-shadow: @calendar-picker-container-shadow;
   }
 
   &-panel-container,
@@ -112,7 +122,7 @@
     height: @calendar-height;
     width: @calendar-width;
     border-radius: @calendar-border-radius;
-    background-color: @white;
+    background-color: @spy-white;
   }
 
   &-body {
@@ -134,8 +144,7 @@
       border-radius: @calendar-month-btn-border-radius;
       border: @calendar-month-btn-border;
       color: @gray-dark;
-      background: url(@icon-navigation-arrow-base64-url) no-repeat center/
-        @calendar-btn-background-size;
+      background: @date-picker-icon-navigation-arrow;
 
       &:hover {
         border-color: @gray;
@@ -148,8 +157,8 @@
       &:active {
         border-color: @green;
         background-color: @green;
-        background-image: url(@icon-navigation-arrow-active-base64-url);
-        color: @white;
+        background-image: @date-picker-icon-navigation-arrow-active;
+        color: @spy-white;
       }
 
       span {
@@ -253,7 +262,7 @@
     &-selected {
       .@{calendar-prefix-cls}-cell-inner {
         background-color: @green !important;
-        color: @white;
+        color: @spy-white;
       }
 
       &:focus,
@@ -261,7 +270,7 @@
       &:hover {
         .@{calendar-prefix-cls}-cell-inner {
           background-color: @green !important;
-          color: @white;
+          color: @spy-white;
         }
       }
     }
@@ -357,13 +366,13 @@
 
       .@{calendar-prefix-cls}-time-panel-cell-selected
         .@{calendar-prefix-cls}-time-panel-cell-inner {
-        background: @primary-color;
-        color: @white;
+        background: @spy-primary-color;
+        color: @spy-white;
 
         &:hover,
         &:focus {
-          background: @primary-color;
-          color: @white;
+          background: @spy-primary-color;
+          color: @spy-white;
         }
       }
     }

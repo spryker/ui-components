@@ -6,7 +6,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { BehaviorSubject, of } from 'rxjs';
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 const configMock: any = {
   datasource: {
@@ -67,6 +67,7 @@ describe('TableColumnDynamicComponent', () => {
           useExisting: MockDatasourceService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     datasource = TestBed.inject(MockDatasourceService);
   });

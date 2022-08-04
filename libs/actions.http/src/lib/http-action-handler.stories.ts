@@ -1,19 +1,30 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Injectable, Injector } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Observable, of } from 'rxjs';
+import { Meta } from '@storybook/angular';
 import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
 import { ButtonActionModule } from '@spryker/button.action';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { ContextService } from '@spryker/utils';
-import { object } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
-import { Observable, of } from 'rxjs';
 
 import { HttpActionHandlerService } from './http-action-handler.service';
 
 export default {
   title: 'HttpActionHandlerService',
-};
+  parameters: {
+    controls: {
+      include: ['action'],
+    },
+  },
+  args: {
+    action: {
+      type: 'http',
+      url: '/html-request',
+      method: 'GET',
+    },
+  },
+} as Meta;
 
 const mockResponse = () => ({
   actions: [
@@ -41,7 +52,7 @@ class TestActionHandlerService implements ActionHandler<unknown, void> {
     config: { random: string } & ActionConfig,
     context: unknown,
   ): Observable<void> {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.getElementById('test-id')!.innerHTML = `${config.random}`;
 
     return of(void 0);
@@ -57,14 +68,23 @@ class SecondTestActionHandlerService implements ActionHandler<unknown, void> {
     config: { random: string } & ActionConfig,
     context: unknown,
   ): Observable<void> {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.getElementById('second-test-id')!.innerHTML = `${config.random}`;
 
     return of(void 0);
   }
 }
 
-export const primary = (): IStory => ({
+export const primary = (args) => ({
+  props: {
+    ...args,
+    mockHttp: setMockHttp([
+      {
+        url: '/html-request',
+        dataFn: () => mockResponse(),
+      },
+    ]),
+  },
   moduleMetadata: {
     imports: [
       MockHttpModule,
@@ -94,17 +114,4 @@ export const primary = (): IStory => ({
       Http Action Via Service
     </spy-button-action>
   `,
-  props: {
-    mockHttp: setMockHttp([
-      {
-        url: '/html-request',
-        dataFn: () => mockResponse(),
-      },
-    ]),
-    action: object('action', {
-      type: 'http',
-      url: '/html-request',
-      method: 'GET',
-    }),
-  },
 });

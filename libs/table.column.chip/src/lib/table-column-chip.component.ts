@@ -13,16 +13,10 @@ import {
 } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
-declare module '@spryker/table' {
-  interface TableColumnTypeRegistry {
-    chip: TableColumnChipConfig;
-  }
-}
-
 @Injectable({ providedIn: 'root' })
 export class TableColumnChipConfig {
   @ColumnTypeOption()
-  text? = this.contextService.wrap('value');
+  text? = this.contextService.wrap('displayValue');
   @ColumnTypeOption()
   color?: string;
 
@@ -38,7 +32,8 @@ export class TableColumnChipConfig {
 })
 @TableColumnTypeComponent(TableColumnChipConfig)
 export class TableColumnChipComponent
-  implements TableColumnComponent<TableColumnChipConfig> {
+  implements TableColumnComponent<TableColumnChipConfig>
+{
   @Input() config?: TableColumnChipConfig;
   @Input() context?: TableColumnContext;
 }

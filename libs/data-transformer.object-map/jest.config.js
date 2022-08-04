@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'data-transformer.object-map',
-  preset: '../../jest.config.js',
+  displayName: 'data-transformer.object-map',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/data-transformer.object-map',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

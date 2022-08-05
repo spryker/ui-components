@@ -20,13 +20,11 @@ describe('SelectComponent', () => {
     @Component({
       // eslint-disable-next-line @angular-eslint/component-selector
       selector: 'nz-select',
-      template: `
-        <ng-content></ng-content> `,
+      template: ` <ng-content></ng-content> `,
     })
-    class MockNzSelectComponent {
-    }
+    class MockNzSelectComponent {}
 
-    const {testModule, createComponent} = getTestingForComponent(
+    const { testModule, createComponent } = getTestingForComponent(
       SelectComponent,
       {
         ngModule: {
@@ -45,7 +43,7 @@ describe('SelectComponent', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [testModule],
-        teardown: {destroyAfterEach: false},
+        teardown: { destroyAfterEach: false },
       });
     });
 
@@ -93,7 +91,7 @@ describe('SelectComponent', () => {
     describe('@Input(value) affects ngModel of nz-select', () => {
       it('should be set when value exists in options', async () => {
         const host = await createComponent(
-          {value: 'val1', options: ['val1', 'val2']},
+          { value: 'val1', options: ['val1', 'val2'] },
           true,
         );
         const nzSelectElem = host.queryCss('nz-select');
@@ -104,7 +102,7 @@ describe('SelectComponent', () => {
 
       it('should NOT be set when value does not exist in options', async () => {
         const host = await createComponent(
-          {value: 'val3', options: ['val1', 'val2']},
+          { value: 'val3', options: ['val1', 'val2'] },
           true,
         );
         const nzSelectElem = host.queryCss('nz-select');
@@ -116,7 +114,7 @@ describe('SelectComponent', () => {
 
     describe('Inputs must be bound to nz-select', () => {
       it('should bind search to nzShowSearch of nz-select', async () => {
-        const host = await createComponent({search: true}, true);
+        const host = await createComponent({ search: true }, true);
         const nzSelectElem = host.queryCss('nz-select');
 
         expect(nzSelectElem).toBeTruthy();
@@ -124,7 +122,7 @@ describe('SelectComponent', () => {
       });
 
       it('should bind disabled to nzDisabled of nz-select', async () => {
-        const host = await createComponent({disabled: true}, true);
+        const host = await createComponent({ disabled: true }, true);
         const nzSelectElem = host.queryCss('nz-select');
 
         expect(nzSelectElem).toBeTruthy();
@@ -132,7 +130,7 @@ describe('SelectComponent', () => {
       });
 
       it('should bind multiple to nzMode of nz-select', async () => {
-        const host = await createComponent({multiple: true}, true);
+        const host = await createComponent({ multiple: true }, true);
         const nzSelectElem = host.queryCss('nz-select');
 
         expect(nzSelectElem).toBeTruthy();
@@ -140,7 +138,10 @@ describe('SelectComponent', () => {
       });
 
       it('should bind placeholder to nzPlaceHolder of nz-select', async () => {
-        const host = await createComponent({placeholder: 'placeholder'}, true);
+        const host = await createComponent(
+          { placeholder: 'placeholder' },
+          true,
+        );
         const nzSelectElem = host.queryCss('nz-select');
 
         expect(nzSelectElem).toBeTruthy();
@@ -154,14 +155,14 @@ describe('SelectComponent', () => {
         expect(nzSelectElem).toBeTruthy();
         expect(nzSelectElem!.properties.nzAllowClear).toBe(true);
 
-        host.setInputs({disableClear: true}, true);
+        host.setInputs({ disableClear: true }, true);
 
         expect(nzSelectElem!.properties.nzAllowClear).toBe(false);
       });
     });
 
     it('options array must be correctly mapped and create each option of the dropdown', async () => {
-      const host = await createComponent({options: ['123']}, true);
+      const host = await createComponent({ options: ['123'] }, true);
       const nzOption = host.queryCss('nz-option');
 
       expect(nzOption).toBeTruthy();
@@ -183,7 +184,7 @@ describe('SelectComponent', () => {
 
     describe('native select', () => {
       it('should bind @Input(disabled) to `disabled` property', async () => {
-        const host = await createComponent({disabled: true}, true);
+        const host = await createComponent({ disabled: true }, true);
         const selectElem = host.queryCss('select');
 
         expect(selectElem).toBeTruthy();
@@ -191,7 +192,7 @@ describe('SelectComponent', () => {
       });
 
       it('should set multiple attribute when @Input(multiple) is `true`', async () => {
-        const host = await createComponent({multiple: true}, true);
+        const host = await createComponent({ multiple: true }, true);
         const selectElem = host.queryCss('select');
 
         expect(selectElem).toBeTruthy();
@@ -199,7 +200,7 @@ describe('SelectComponent', () => {
       });
 
       it('should NOT set multiple attribute when @Input(multiple) is `false`', async () => {
-        const host = await createComponent({multiple: false}, true);
+        const host = await createComponent({ multiple: false }, true);
         const selectElem = host.queryCss('select');
 
         expect(selectElem).toBeTruthy();
@@ -207,7 +208,7 @@ describe('SelectComponent', () => {
       });
 
       it('should bind @Input(name) to `name` attribute', async () => {
-        const host = await createComponent({name: 'mocked-name'}, true);
+        const host = await createComponent({ name: 'mocked-name' }, true);
         const selectElem = host.queryCss('select');
 
         expect(selectElem).toBeTruthy();
@@ -225,7 +226,7 @@ describe('SelectComponent', () => {
       });
 
       it('should render <option> tags for every @Input(options) value', async () => {
-        const host = await createComponent({options: [1, 2, 3]}, true);
+        const host = await createComponent({ options: [1, 2, 3] }, true);
         const optionElems = host.fixture.debugElement.queryAll(
           By.css('select option'),
         );
@@ -240,7 +241,7 @@ describe('SelectComponent', () => {
 
     describe('SelectComponent methods', () => {
       it('options array with numbers or strings should be correctly mapped', async () => {
-        const host = await createComponent({options: [123, '123']}, true);
+        const host = await createComponent({ options: [123, '123'] }, true);
         const nzOptionElems = host.fixture.debugElement.queryAll(
           By.css('nz-option'),
         );

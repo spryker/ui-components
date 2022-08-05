@@ -7,7 +7,6 @@ import { WebComponentsModule } from '@spryker/web-components';
 import { SelectModule } from '../select.module';
 import { SelectComponent } from './select.component';
 import { OptionComponent } from '../option/option.component';
-import { boolean } from '@storybook/addon-knobs';
 import { SelectedOptionComponent } from '../selected-option/selected-option.component';
 
 export default {
@@ -122,7 +121,8 @@ withSelectAll.args = {
   showSelectAll: true,
 };
 
-export const withCustomContent = () => ({
+export const withCustomContent = (args) => ({
+  props: args,
   moduleMetadata: { imports: [StoryModule, SelectModule] },
   template: `
     <spy-select
@@ -147,14 +147,15 @@ export const withCustomContent = () => ({
         </spy-selected-option>
     </spy-select>
   `,
-  props: {
-    value: ['option1', 'option2'],
-    placeholder: 'Select option...',
-    multiple: boolean('Multiple', false),
-    search: boolean('Searchable', false),
-    useCustomTemplate: boolean('Use custom selected template', true),
-  },
 });
+
+withCustomContent.args = {
+  multiple: false,
+  search: false,
+  useCustomTemplate: true,
+  value: ['option1', 'option2'],
+  placeholder: 'Select option...',
+};
 
 export const asWebComponents = () => ({
   moduleMetadata: {

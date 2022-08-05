@@ -5,7 +5,6 @@ import { StorybookModule } from '@spryker/web-components/storybook';
 import { RadioModule } from '../radio.module';
 import { RadioComponent } from '../radio/radio.component';
 import { RadioGroupComponent } from './radio-group.component';
-import { text } from '@storybook/addon-knobs';
 
 enum RadioGroupValue {
   FirstRadioValue = 'A',

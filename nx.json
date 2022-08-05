@@ -383,10 +383,7 @@
       "tags": ["type:service", "pkg:extension"]
     },
     "web-components": {
-      "tags": [
-        "pkg:primary",
-        "type:util"
-      ]
+      "tags": ["pkg:primary", "type:util"]
     }
   },
   "tasksRunnerOptions": {

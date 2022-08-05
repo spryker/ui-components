@@ -9,5 +9,5 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  testRunner: "jasmine2"
+  testRunner: 'jasmine2',
 };

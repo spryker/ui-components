@@ -24,7 +24,7 @@ import { IconRemoveModule } from '@spryker/icon/icons';
 export class TagComponent {
   @Input() @ToBoolean() @HostBinding('class.spy-tag-disabled') disabled = false;
   @Input() @ToBoolean() removable = true;
-  @Output() readonly onRemove = new EventEmitter<MouseEvent>();
+  @Output() onRemove = new EventEmitter<MouseEvent>();
   icon = IconRemoveModule.icon;
 
   removeTag(e: MouseEvent): void {

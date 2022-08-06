@@ -5,5 +5,5 @@
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../styles/src/lib"]
   },
-  "whitelistedNonPeerDependencies": ["swiper"]
+  "allowedNonPeerDependencies": ["swiper", "ng-zorro-antd"]
 }

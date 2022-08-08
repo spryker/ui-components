@@ -7,7 +7,7 @@ import { CacheService } from './cache.service';
 
 const mockStrategyType = 'mockStrategyType';
 
-class MockCacheStoragePersistanceAdapter {
+class MockCacheStoragePersistenceAdapter {
   clear = jest.fn();
 }
 
@@ -15,8 +15,8 @@ class MockCacheStorageFactoryService {
   createAll = jest
     .fn()
     .mockReturnValue([
-      new MockCacheStoragePersistanceAdapter(),
-      new MockCacheStoragePersistanceAdapter(),
+      new MockCacheStoragePersistenceAdapter(),
+      new MockCacheStoragePersistenceAdapter(),
     ]);
 }
 
@@ -44,6 +44,7 @@ describe('CacheService', () => {
           useExisting: MockCacheStorageFactoryService,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(CacheService);
     cacheStrategy = TestBed.inject(MockCacheStrategy);
@@ -90,7 +91,8 @@ describe('CacheService', () => {
     const clearObserver$ = service.clearCache(mockNamespace);
     clearObserver$.subscribe();
 
-    const cacheStorages: MockCacheStoragePersistanceAdapter[] = cacheFactory.createAll();
+    const cacheStorages: MockCacheStoragePersistenceAdapter[] =
+      cacheFactory.createAll();
 
     cacheStorages.forEach((cacheStorage) => {
       expect(cacheStorage.clear).toHaveBeenCalledWith(mockNamespace);

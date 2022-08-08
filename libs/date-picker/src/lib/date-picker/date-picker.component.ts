@@ -2,6 +2,7 @@ import {
   AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   HostBinding,
   Inject,
@@ -13,7 +14,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconCalendarModule } from '@spryker/icon/icons';
-import { InjectionTokenType, ToBoolean, ToJson } from '@spryker/utils';
+import {
+  InjectionTokenType,
+  ToBoolean,
+  ToJson,
+  triggerChangeEvent,
+} from '@spryker/utils';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 
 import { DateWorkDaysToken, DateWorkHoursToken } from './tokens';
@@ -78,6 +84,8 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
   @ViewChild('datePicker', { static: false })
   datePicker?: NzDatePickerComponent;
+  @ViewChild('inputElement', { static: true })
+  inputElement!: ElementRef<HTMLInputElement>;
 
   private _picker?: NzDatePickerComponent;
 
@@ -215,9 +223,9 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
 
     if (fromHours !== undefined && toHours !== undefined) {
       workHoursRanges.push([
-        // tslint:disable-next-line:no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         [fromHours, fromMinutes!],
-        // tslint:disable-next-line:no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         [toHours, toMinutes!],
       ]);
     }
@@ -371,16 +379,21 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     }
   }
 
+  dateChangeEvent(event: Date): void {
+    this.dateChange.emit(event);
+    triggerChangeEvent(this.inputElement.nativeElement);
+  }
+
   openChangeEvent(isOpen: boolean): void {
     this.isOpen = isOpen;
     this.openChange.emit(isOpen);
   }
 
   openPicker(): void {
-    this._picker?.picker.showOverlay(); // used private API of NzDatePickerComponent
+    this._picker?.open();
   }
 
   closePicker(): void {
-    this._picker?.picker.hideOverlay(); // used private API of NzDatePickerComponent
+    this._picker?.close();
   }
 }

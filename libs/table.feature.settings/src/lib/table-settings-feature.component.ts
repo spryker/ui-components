@@ -54,9 +54,7 @@ interface TableSettingsStorageData {
     },
   ],
 })
-export class TableSettingsFeatureComponent extends TableFeatureComponent<
-  TableSettingsConfig
-> {
+export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSettingsConfig> {
   name = 'columnConfigurator';
   settingsIcon = IconSettingsModule.icon;
   resetIcon = IconResetModule.icon;

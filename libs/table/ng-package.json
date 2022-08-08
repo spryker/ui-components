@@ -5,7 +5,7 @@
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["../styles/src/lib"]
   },
-  "whitelistedNonPeerDependencies": [
+  "allowedNonPeerDependencies": [
     "ng-zorro-antd",
     "ng-dynamic-component",
     "@orchestrator/core",

@@ -18,7 +18,7 @@ describe('TagComponent', () => {
     disabled = false;
     removable = true;
     clicked = false;
-    onRemoveButtonClick = jasmine.createSpy('on remove');
+    onRemoveButtonClick = jest.fn();
   }
 
   let component: TestComponent;

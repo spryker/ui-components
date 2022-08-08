@@ -8,7 +8,8 @@ import { RefreshDrawerActionConfig } from './types';
   providedIn: 'root',
 })
 export class RefreshDrawerActionHandlerService
-  implements ActionHandler<unknown, void> {
+  implements ActionHandler<unknown, void>
+{
   handleAction(
     injector: Injector,
     config: RefreshDrawerActionConfig,

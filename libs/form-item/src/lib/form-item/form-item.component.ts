@@ -7,6 +7,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { AbstractControl, NgModel } from '@angular/forms';
 import { ToBoolean } from '@spryker/utils';
 
 @Component({
@@ -17,9 +18,16 @@ import { ToBoolean } from '@spryker/utils';
 })
 export class FormItemComponent implements OnInit, OnChanges {
   @Input() for: string | undefined;
-  @Input() error: string | TemplateRef<void> = '';
-  @Input() warning: string | TemplateRef<void> = '';
-  @Input() hint: string | TemplateRef<void> = '';
+  @Input() error:
+    | string
+    | boolean
+    | TemplateRef<{ $implicit: AbstractControl | NgModel }> = '';
+  @Input() warning:
+    | string
+    | TemplateRef<{ $implicit: AbstractControl | NgModel }> = '';
+  @Input() hint:
+    | string
+    | TemplateRef<{ $implicit: AbstractControl | NgModel }> = '';
   @Input() @ToBoolean() required = false;
   @Input() @ToBoolean() noSpaces = false;
   @Input() @ToBoolean() noLabel = false;

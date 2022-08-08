@@ -14,7 +14,7 @@ import {
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/persistence';
 import { combineLatest, merge, Observable, of } from 'rxjs';
-import { pluck, switchMap, take, tap } from 'rxjs/operators';
+import { pluck, skip, switchMap, take, tap } from 'rxjs/operators';
 
 import { TableSyncStateConfig } from './types';
 
@@ -31,9 +31,7 @@ import { TableSyncStateConfig } from './types';
     },
   ],
 })
-export class TableSyncStateFeatureComponent extends TableFeatureComponent<
-  TableSyncStateConfig
-> {
+export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableSyncStateConfig> {
   name = 'syncStateUrl';
   tableFeatureLocation = TableFeatureLocation;
 
@@ -77,6 +75,7 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<
     );
 
     this.stateToConfig$ = urlState$.pipe(
+      skip(1),
       tap((state) => service.reset(state as Record<string, unknown>)),
     );
 

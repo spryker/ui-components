@@ -17,7 +17,7 @@ import { switchMap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DatasourceService {
-  dataSources: DatasourceTypesDeclaration =
+  dataSources: Partial<DatasourceTypesDeclaration> =
     this.dataSourceTypes?.reduce(
       (dataSources, dataSource) => ({ ...dataSources, ...dataSource }),
       {},
@@ -36,7 +36,9 @@ export class DatasourceService {
     context?: unknown,
   ): Observable<D> {
     if (!this.isDatasourceRegisteredType(config.type)) {
-      throw Error(`DatasourceService: Unknown datasource type ${config.type}`);
+      throw Error(
+        `DatasourceService: Unknown datasource type ${String(config.type)}`,
+      );
     }
 
     const dataSource: Datasource<unknown, unknown> = injector.get(
@@ -45,13 +47,15 @@ export class DatasourceService {
 
     return dataSource.resolve(injector, config, context).pipe(
       switchMap((data) => {
-        return (config.transform
-          ? this.dataTransformerService.transform(
-              data,
-              config.transform,
-              injector,
-            )
-          : of(data)) as Observable<D>;
+        return (
+          config.transform
+            ? this.dataTransformerService.transform(
+                data,
+                config.transform,
+                injector,
+              )
+            : of(data)
+        ) as Observable<D>;
       }),
     );
   }

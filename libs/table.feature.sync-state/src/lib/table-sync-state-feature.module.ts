@@ -8,7 +8,6 @@ import { TableSyncStateFeatureComponent } from './table-sync-state-feature.compo
   imports: [CommonModule, TableFeatureModule],
   exports: [TableSyncStateFeatureComponent],
   declarations: [TableSyncStateFeatureComponent],
-  entryComponents: [TableSyncStateFeatureComponent],
 })
 export class TableSyncStateFeatureModule implements ModuleWithFeature {
   featureComponent = TableSyncStateFeatureComponent;

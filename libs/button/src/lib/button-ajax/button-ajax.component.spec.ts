@@ -11,7 +11,7 @@ import {
 import { NotificationModule } from '@spryker/notification';
 import { ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('ButtonAjaxComponent', () => {
   let httpTestingController: HttpTestingController;
@@ -31,6 +31,7 @@ describe('ButtonAjaxComponent', () => {
         HttpClientTestingModule,
         NotificationModule.forRoot(),
       ],
+      teardown: { destroyAfterEach: false },
     }),
   );
 

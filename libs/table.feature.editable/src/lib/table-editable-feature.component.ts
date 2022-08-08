@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import {
+  AfterViewChecked,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -40,7 +41,7 @@ import {
   getElementOffset,
   provideInvokeContext,
 } from '@spryker/utils';
-import { NzResizeObserver } from 'ng-zorro-antd/core/resize-observers';
+import { NzResizeObserver } from 'ng-zorro-antd/cdk/resize-observer';
 import { combineLatest, EMPTY, merge, Subject } from 'rxjs';
 import {
   debounceTime,
@@ -98,7 +99,8 @@ interface TableEditCellModel {
 })
 export class TableEditableFeatureComponent
   extends TableFeatureComponent<TableEditableConfig>
-  implements OnInit, OnDestroy {
+  implements OnInit, AfterViewChecked, OnDestroy
+{
   @ViewChild('editableCell') editableCell?: TemplateRef<any>;
 
   name = 'editable';
@@ -157,7 +159,7 @@ export class TableEditableFeatureComponent
     map((createConfig) => {
       if (createConfig?.initialData?.errors) {
         Object.entries(createConfig.initialData.errors).map(([key, value]) => {
-          this.rowErrors[(key as unknown) as number] = value;
+          this.rowErrors[key as unknown as number] = value;
         });
       }
 
@@ -195,18 +197,19 @@ export class TableEditableFeatureComponent
     map((entries) => entries[0].contentRect.width),
     tap(() => this.zone.run(() => this.updateFloatCellPosition())),
   );
-  private updateFloatCellsPositionOnColumnConfigurator$ = this.tableEventBus$.pipe(
-    switchMap((eventBus) =>
-      eventBus.on<TableSettingsChangeEvent>('columnConfigurator'),
-    ),
-    tap(({ visibilityChanged }) => {
-      if (visibilityChanged !== undefined) {
-        this.changeColsVisibilityAfterColumnConfigurator(visibilityChanged);
-      }
+  private updateFloatCellsPositionOnColumnConfigurator$ =
+    this.tableEventBus$.pipe(
+      switchMap((eventBus) =>
+        eventBus.on<TableSettingsChangeEvent>('columnConfigurator'),
+      ),
+      tap(({ visibilityChanged }) => {
+        if (visibilityChanged !== undefined) {
+          this.changeColsVisibilityAfterColumnConfigurator(visibilityChanged);
+        }
 
-      this.updateFloatCellPosition();
-    }),
-  );
+        this.updateFloatCellPosition();
+      }),
+    );
   private updateEditableData$ = this.tableData$.pipe(
     tap(({ data }) => {
       this.tableEditableService.reset();
@@ -257,16 +260,19 @@ export class TableEditableFeatureComponent
 
   ngAfterViewChecked(): void {
     if (!this.tableElement && this.table?.tableElementRef) {
-      this.tableElement = this.table?.tableElementRef?.nativeElement?.querySelector(
-        'table',
-      ) as HTMLElement;
+      this.tableElement =
+        this.table?.tableElementRef?.nativeElement?.querySelector(
+          'table',
+        ) as HTMLElement;
     }
 
     if (this.tableElement && !this.table?.tableElementRef) {
       this.tableElement = undefined;
     }
 
-    this.updateTableElement$.next(this.tableElement);
+    if (this.tableElement) {
+      this.updateTableElement$.next(this.tableElement);
+    }
   }
 
   private changeColsVisibilityAfterColumnConfigurator(id: string): void {
@@ -457,7 +463,7 @@ export class TableEditableFeatureComponent
 
     this.editingModel = { ...this.editingModel };
 
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const tdElem = cellElement.closest('td')!;
     const { left: leftParentOffsetSum } = getElementOffset(tdElem, 'ant-table');
     const leftCellOffset =
@@ -465,9 +471,9 @@ export class TableEditableFeatureComponent
       cellElement.offsetWidth -
       this.tableElement.offsetWidth;
 
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.editingModel[rowIndex][cellIndex]!.cellElement = cellElement;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.editingModel[rowIndex][cellIndex]!.leftCellOffset =
       leftCellOffset > 0 ? `-${leftCellOffset}px` : '0';
 
@@ -517,7 +523,7 @@ export class TableEditableFeatureComponent
     colId: string,
   ): void {
     const { value } = event.detail;
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.editingModel[rowIndex][colId]!.value = value;
   }
 
@@ -548,22 +554,22 @@ export class TableEditableFeatureComponent
   }
 
   submitEdit(cellContext: TableColumnContext): void {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const url = typeof this.url === 'string' ? this.url : this.url!.url;
     const method = typeof this.url === 'string' ? 'GET' : this.url?.method;
     const parsedUrl = this.contextService.interpolate(
       url,
-      (cellContext as unknown) as AnyContext,
+      cellContext as unknown as AnyContext,
     );
-    // tslint:disable-next-line: no-non-null-assertion
-    const value = this.editingModel[cellContext.i][cellContext.config.id]!
-      .value;
+    const value =
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.editingModel[cellContext.i][cellContext.config.id]!.value;
     const requestData = {
       [cellContext.config.id]: value,
     };
 
     this.httpClient
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       .request(method!, parsedUrl, {
         body: {
           data: this.dataSerializerService.serialize(
@@ -584,10 +590,9 @@ export class TableEditableFeatureComponent
         },
         (error) => {
           this.editingModel = { ...this.editingModel };
-          // tslint:disable-next-line: no-non-null-assertion
-          this.editingModel[cellContext.i][
-            cellContext.config.id
-          ]!.value = undefined;
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          this.editingModel[cellContext.i][cellContext.config.id]!.value =
+            undefined;
           this.cellErrors = {
             ...this.cellErrors,
             [cellContext.j]: {

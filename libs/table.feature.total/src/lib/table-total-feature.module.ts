@@ -16,7 +16,6 @@ import { ChipsModule } from '@spryker/chips';
   ],
   exports: [TableTotalFeatureComponent],
   declarations: [TableTotalFeatureComponent],
-  entryComponents: [TableTotalFeatureComponent],
 })
 export class TableTotalFeatureModule implements ModuleWithFeature {
   featureComponent = TableTotalFeatureComponent;

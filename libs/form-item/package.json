@@ -1,16 +1,16 @@
 {
   "name": "@spryker/form-item",
-  "version": "0.2.8-beta.0",
+  "version": "0.4.5",
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/input": "^0.2.0",
-    "@spryker/styles": "^0.2.0",
-    "@spryker/utils": "^0.2.1"
+    "@angular/common": ">=9.1.12",
+    "@angular/core": ">=9.1.12",
+    "@angular/forms": ">=9.1.12",
+    "@spryker/styles": "^0.6.0",
+    "@spryker/utils": "^0.3.0"
   },
   "dependencies": {
-    "ng-zorro-antd": "9.3.0",
-    "tslib": "^1.10.0"
+    "ng-zorro-antd": "^12.0.1",
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

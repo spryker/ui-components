@@ -4,7 +4,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 import { DateRangePickerComponent } from './date-range-picker.component';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('DateRangePickerComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(
@@ -25,7 +25,10 @@ describe('DateRangePickerComponent', () => {
   const mockedName = 'mockedName';
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('should render two <spy-date-picker> elements', async () => {

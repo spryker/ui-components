@@ -1,15 +1,26 @@
 @dropdown-prefix-cls: ~'@{ant-prefix}-dropdown';
 
-@dropdown-menu-width: 214px;
-@dropdown-menu-padding: 0;
-@dropdown-menu-border-radius: 4px;
+@dropdown-menu-width: var(--spy-dropdown-menu-width, 214px);
+@dropdown-menu-padding: var(--spy-dropdown-menu-padding, 0);
 @dropdown-menu-border: 1px solid @green-lighter;
-@dropdown-menu-box-shadow: 0px 4px 12px @ink-effect;
-@dropdown-menu-item-height: auto;
+@dropdown-menu-border-radius: var(--spy-dropdown-menu-border-radius, 0);
+// TODO: @dropdown-menu-box-shadow: 0px 4px 12px @ink-effect;
+@dropdown-menu-box-shadow: var(--spy-dropdown-menu-box-shadow, @box-shadow-1);
+// TODO: this was set to auto
+@dropdown-menu-item-height: var(--spy-dropdown-menu-item-height, 40px);
+@dropdown-menu-item-line-height: var(
+  --spy-dropdown-menu-item-line-height,
+  30px
+);
+@dropdown-menu-item-border: var(
+  --spy-dropdown-menu-item-border,
+  @spy-border-width-base solid @spy-white
+);
+@dropdown-menu-item-border-focus-radius: var(
+  --spy-dropdown-menu-item-border-focus-radius,
+  @border-radius-small
+);
 @dropdown-menu-item-padding: 10px 12px;
-@dropdown-menu-item-line-height: 30px;
-@dropdown-menu-item-border: @border-width-base solid @white;
-@dropdown-menu-item-border-focus-radius: 4px;
 
 @dropdown-icon-margin: 0 12px 0 0;
 @dropdown-icon-line-height: 23px;

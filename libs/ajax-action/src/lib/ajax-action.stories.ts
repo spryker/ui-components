@@ -1,22 +1,16 @@
 import { Component, Injectable, Injector, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
+import { Meta } from '@storybook/angular';
 import { Observable, of } from 'rxjs';
-
+import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
 import { AjaxActionService } from './ajax-action.service';
-
-export default {
-  title: 'AjaxActionComponent',
-};
 
 @Injectable({
   providedIn: 'root',
 })
 class ActionMockService implements ActionHandler<unknown, void> {
-  constructor() {}
-
   handleAction(injector: Injector, action: ActionConfig): Observable<void> {
-    // tslint:disable-next-line: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.getElementById(
       'test-id',
     )!.innerHTML += `<div>${action.random}</div>`;
@@ -54,6 +48,12 @@ class StoryComponent {
     this.ajaxActionService.handle(actionObject, this.injector);
   }
 }
+
+export default {
+  title: 'AjaxActionComponent',
+  component: StoryComponent,
+} as Meta;
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -61,14 +61,14 @@ class StoryComponent {
       mock: ActionMockService,
     }),
   ],
+  exports: [StoryComponent],
   declarations: [StoryComponent],
 })
 class StoryModule {}
 
-export const primary = () => ({
+export const primary = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [StoryModule],
   },
-  component: StoryComponent,
-  props: {},
 });

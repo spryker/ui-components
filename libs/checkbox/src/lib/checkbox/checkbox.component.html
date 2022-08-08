@@ -4,6 +4,7 @@
   [nzDisabled]="disabled"
   [nzIndeterminate]="indeterminate"
   (ngModelChange)="checkedChange.emit($event)"
+  spyTriggerChangeEvent
 >
   <ng-content></ng-content>
 </label>

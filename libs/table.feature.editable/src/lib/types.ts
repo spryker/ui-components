@@ -4,20 +4,13 @@ import {
   TableDataRow,
   TableColumnTypeOptions,
 } from '@spryker/table';
-import { DatasourceConfig, Datasource } from '@spryker/datasource';
-import { TableDatasourceDependableService } from './table-datasource-dependable.service';
+import { DatasourceConfig } from '@spryker/datasource';
 import {
   ButtonShape,
   ButtonSize,
   ButtonType,
   ButtonVariant,
 } from '@spryker/button';
-
-declare module '@spryker/table' {
-  interface TableConfig {
-    editable?: TableEditableConfig;
-  }
-}
 
 export interface TableEditableColumn extends TableColumn {
   typeOptions?: TableEditableColumnTypeOptions;
@@ -104,11 +97,6 @@ export class TableEditableEvent<T = unknown> extends CustomEvent<
       composed: true,
       detail,
     });
-  }
-}
-declare module '@spryker/datasource' {
-  interface DatasourceRegistry {
-    'table.editable.dependable': TableDatasourceDependableService;
   }
 }
 

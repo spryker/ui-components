@@ -1,4 +1,4 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DatasourceModule } from '@spryker/datasource';
@@ -40,7 +40,6 @@ describe('TreeSelectComponent', () => {
   const mockedValue = 'mockedValue';
   const mockedPlaceholder = 'mockedPlaceholder';
   const mockedName = 'mockedName';
-  const mockedNoOptionsText = 'mockedNoOptionsText';
   const mockedCallValue = ['Option'];
   const mockItems = [
     {
@@ -56,7 +55,10 @@ describe('TreeSelectComponent', () => {
   ];
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [testModule] });
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    });
   });
 
   it('should render nz-tree-select component from Ant Design and native select', async () => {
@@ -83,11 +85,11 @@ describe('TreeSelectComponent', () => {
       expect(optionElems[0].attributes.value).toBe(undefined);
       expect(optionElems[1].properties.value).toBe(mockItems[0].value);
       expect(optionElems[2].properties.value).toBe(
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         mockItems[0].children![0].value,
       );
       expect(optionElems[3].properties.value).toBe(
-        // tslint:disable-next-line: no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         mockItems[0].children![1].value,
       );
       expect(optionElems[4].properties.value).toBe(mockItems[1].value);
@@ -151,15 +153,11 @@ describe('TreeSelectComponent', () => {
       expect(select?.attributes.name).toBe(mockedName);
     });
 
-    it('Input noOptionsText should be bound to nzNotFoundContent of nz-tree-select', async () => {
-      const host = await createComponent(
-        { items: mockItems, noOptionsText: mockedNoOptionsText },
-        true,
-      );
-
+    it('Should bind templateRef to `nzNotFoundContent` input of `nz-tree-select`', async () => {
+      const host = await createComponent({ items: mockItems }, true);
       const treeSelect = host.queryComponent(NzTreeSelectComponent);
 
-      expect(treeSelect?.nzNotFoundContent).toBe(mockedNoOptionsText);
+      expect(treeSelect?.nzNotFoundContent).toEqual(expect.any(TemplateRef));
     });
 
     it('Input disableClear should be bound to nzAllowClear of nz-tree-select', async () => {

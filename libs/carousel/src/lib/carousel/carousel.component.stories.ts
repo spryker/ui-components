@@ -1,12 +1,36 @@
+import { Meta } from '@storybook/angular';
 import { CarouselComponent } from './carousel.component';
 import { CarouselModule } from '../carousel.module';
-import { boolean, number } from '@storybook/addon-knobs';
 
 export default {
   title: 'CarouselComponent',
-};
+  parameters: {
+    controls: {
+      include: [
+        'slidesPerView',
+        'slidesSpaceBetween',
+        'withThumbs',
+        'thumbsPerView',
+        'thumbsSpaceBetween',
+      ],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2201%3A6727',
+      allowFullscreen: true,
+    },
+  },
+  args: {
+    slidesPerView: 1,
+    slidesSpaceBetween: 15,
+    withThumbs: true,
+    thumbsPerView: 6,
+    thumbsSpaceBetween: 15,
+  },
+} as Meta;
 
-export const primary = () => ({
+export const primary = (args) => ({
+  props: args,
   moduleMetadata: {
     imports: [CarouselModule],
   },
@@ -50,11 +74,4 @@ export const primary = () => ({
       </spy-carousel>
     </div>
   `,
-  props: {
-    slidesPerView: number('Slides per view', 1),
-    slidesSpaceBetween: number('Slides space between', 15),
-    withThumbs: boolean('With thumbs', true),
-    thumbsPerView: number('Thumbs per view', 6),
-    thumbsSpaceBetween: number('Thumbs space between', 15),
-  },
 });

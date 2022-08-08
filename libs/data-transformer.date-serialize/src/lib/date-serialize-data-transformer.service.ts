@@ -17,7 +17,8 @@ export class DateSerializeDataTransformerService
     DataTransformer<
       DateSerializeDataTransformerData,
       DateSerializeDataTransformerDataT
-    > {
+    >
+{
   transform(
     data: DateSerializeDataTransformerData,
     config: DateSerializeDataTransformerConfig,

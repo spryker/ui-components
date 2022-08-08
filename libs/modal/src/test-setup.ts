@@ -1,2 +1,2 @@
-export * from '../../../config/test-setup';
-import 'jest-preset-angular';
+import 'jest-preset-angular/setup-jest';
+import '../../../config/test-setup';

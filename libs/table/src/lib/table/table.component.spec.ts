@@ -1,4 +1,4 @@
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { HttpClient } from '@angular/common/http';
 import {
   HttpClientTestingModule,
@@ -138,6 +138,7 @@ describe('TableComponent', () => {
           multi: true,
         },
       ],
+      teardown: { destroyAfterEach: false },
     });
   });
 
@@ -222,6 +223,7 @@ describe('TableComponent', () => {
             multi: true,
           },
         ],
+        teardown: { destroyAfterEach: false },
       });
     });
 

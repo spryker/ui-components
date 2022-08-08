@@ -1,16 +1,22 @@
-<div class="ant-table-features ant-table-features--top">
-  <spy-table-features-renderer
-    [location]="featureLocation.top"
-    [features]="features$ | async"
-  ></spy-table-features-renderer>
-</div>
+<spy-spinner
+  [isSpinning]="isInitialLoading$ | async"
+  class="spy-table-initial-loading"
+></spy-spinner>
 
-<div class="ant-table-features ant-table-features--before-table">
-  <spy-table-features-renderer
-    [location]="featureLocation.beforeTable"
-    [features]="features$ | async"
-  ></spy-table-features-renderer>
-</div>
+<ng-container *ngIf="tableData$ | async">
+  <div class="ant-table-features ant-table-features--top">
+    <spy-table-features-renderer
+      [location]="featureLocation.top"
+      [features]="features$ | async"
+    ></spy-table-features-renderer>
+  </div>
+  <div class="ant-table-features ant-table-features--before-table">
+    <spy-table-features-renderer
+      [location]="featureLocation.beforeTable"
+      [features]="features$ | async"
+    ></spy-table-features-renderer>
+  </div>
+</ng-container>
 
 <ng-container *ngIf="featureHeaderContext$ | async as featureHeaderContext">
   <ng-container *ngIf="featureCellContext$ | async as featureCellContext">
@@ -199,19 +205,20 @@
   </spy-spinner>
 </ng-container>
 
-<div class="ant-table-features ant-table-features--after-table">
-  <spy-table-features-renderer
-    [location]="featureLocation.afterTable"
-    [features]="features$ | async"
-  ></spy-table-features-renderer>
-</div>
-
-<div class="ant-table-features ant-table-features--bottom">
-  <spy-table-features-renderer
-    [location]="featureLocation.bottom"
-    [features]="features$ | async"
-  ></spy-table-features-renderer>
-</div>
+<ng-container *ngIf="tableData$ | async">
+  <div class="ant-table-features ant-table-features--after-table">
+    <spy-table-features-renderer
+      [location]="featureLocation.afterTable"
+      [features]="features$ | async"
+    ></spy-table-features-renderer>
+  </div>
+  <div class="ant-table-features ant-table-features--bottom">
+    <spy-table-features-renderer
+      [location]="featureLocation.bottom"
+      [features]="features$ | async"
+    ></spy-table-features-renderer>
+  </div>
+</ng-container>
 
 <div
   class="ant-table-features ant-table-features--hidden"

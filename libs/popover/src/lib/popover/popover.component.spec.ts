@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { PopoverComponent, PopoverPosition } from '@spryker/popover';
 
-// tslint:disable: no-non-null-assertion
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('PopoverComponent', () => {
   const { testModule, createComponent } = getTestingForComponent(
@@ -14,7 +14,12 @@ describe('PopoverComponent', () => {
     },
   );
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [testModule],
+      teardown: { destroyAfterEach: false },
+    }),
+  );
 
   it('should render <spy-popover>', async () => {
     const host = await createComponent();

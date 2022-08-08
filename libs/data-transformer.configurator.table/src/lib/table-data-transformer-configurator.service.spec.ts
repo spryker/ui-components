@@ -47,6 +47,7 @@ describe('TableDataTransformerConfiguratorService', () => {
         MockCoreTableComponent,
         MockTableDataConfiguratorService,
       ],
+      teardown: { destroyAfterEach: false },
     });
 
     service = TestBed.inject(TableDataTransformerConfiguratorService);

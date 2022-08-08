@@ -1,3 +1,6 @@
 @table-row-actions-feature-prefix-cls: ~'@{ant-prefix}-table-row-actions-feature';
 
-@table-row-actions-feature-trigger-radius: 50%;
+@table-row-actions-feature-trigger-radius: var(
+  --spy-table-row-actions-feature-trigger-radius,
+  50%
+);

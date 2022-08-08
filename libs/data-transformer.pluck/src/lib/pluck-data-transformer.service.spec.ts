@@ -20,6 +20,7 @@ describe('PluckDataTransformerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [DefaultContextSerializationModule],
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(PluckDataTransformerService);
   });

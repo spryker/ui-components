@@ -30,13 +30,15 @@ export class ButtonComponent extends ButtonCore implements OnChanges {
   @HostBinding('class.spy-button--disabled')
   @ToBoolean()
   disabled = false;
-  @Input() loading?: Boolean;
+  @Input() @ToBoolean() loading?: boolean;
 
   spinnerSize = SpinnerSize.Small;
 
   protected buttonClassName = 'spy-button';
 
   ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+
     if ('type' in changes) {
       this.type = changes.type.currentValue ?? ButtonType.Button;
     }

@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   align-items: center;
   line-height: 1;
-  margin: -@table-column-list-indent;
+  margin: calc(@table-column-list-indent * -1);
 
   &__holder {
     padding: @table-column-list-indent;
@@ -13,7 +13,7 @@
 
   &__trigger {
     display: inline-block;
-    font-size: @font-size-base;
+    font-size: @spy-font-size-base;
     font-weight: @font-weight-medium;
     line-height: @table-column-list-trigger-line-height;
     padding: @table-column-list-trigger-padding;
@@ -43,7 +43,7 @@
     width: @table-column-list-popover-width;
     max-height: @table-column-list-popover-max-height;
     overflow-y: auto;
-    background: @white;
+    background: @spy-white;
 
     .@{table-column-list-prefix-cls}__holder {
       display: flex;

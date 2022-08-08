@@ -1,10 +1,12 @@
 module.exports = {
-  name: 'table.feature.editable',
-  preset: '../../jest.config.js',
+  displayName: 'table.feature.editable',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/libs/table.feature.editable',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+    },
+  },
 };

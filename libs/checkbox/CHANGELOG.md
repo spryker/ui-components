@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4-beta.0](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.5.3...@spryker/checkbox@0.5.4-beta.0) (2022-08-08)
+
+
+### Bug Fixes
+
+* **checkbox:** fixed styles for error state ([e90b035](https://github.com/spryker/ui-components/commit/e90b035d3b83df778aa32ee06313ced011509248))
+
+
+
+
+
 ## [0.5.3](https://github.com/spryker/ui-components/compare/@spryker/checkbox@0.5.3-next.0...@spryker/checkbox@0.5.3) (2022-07-06)
 
 **Note:** Version bump only for package @spryker/checkbox

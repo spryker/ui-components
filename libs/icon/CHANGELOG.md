@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/icon@0.4.3...@spryker/icon@0.5.0-beta.0) (2022-08-08)
+
+
+### Features
+
+* **rating:** implemented rating component ([4ef703a](https://github.com/spryker/ui-components/commit/4ef703a311aa9d99d9ac07c9261565285f73ca8d))
+
+
+
+
+
 ## [0.4.3](https://github.com/spryker/ui-components/compare/@spryker/icon@0.4.3-next.2...@spryker/icon@0.4.3) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/icon

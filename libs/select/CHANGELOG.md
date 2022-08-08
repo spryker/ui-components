@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-beta.1...@spryker/select@0.6.0-beta.0) (2022-08-08)
+
+
+### Bug Fixes
+
+* added `rxjs` to `allowedNonPeerDependencies` ([ec4a99c](https://github.com/spryker/ui-components/commit/ec4a99ccdcbfb16ae3076807e145942492443abf))
+* added missed / removed unused dependencies ([cee4a1f](https://github.com/spryker/ui-components/commit/cee4a1f4892bd36be77b03215f14870b0aaad8a4))
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+* moved `rxjs` to the `peerDependencies` ([4deabb4](https://github.com/spryker/ui-components/commit/4deabb44aa6cc97998cdf5e2ddf27567e040a7c9))
+* **select:** adjusted styles ([9e744f7](https://github.com/spryker/ui-components/commit/9e744f75c8d8b299e2836fe4be3678298b3bfdd4))
+* **select:** adjusted styles ([f3d270d](https://github.com/spryker/ui-components/commit/f3d270d325010f5053700615e1ff1bec8334e3d2))
+* **select:** adjusted styles/template && updated peerDependencies ([82b4437](https://github.com/spryker/ui-components/commit/82b443781695fca5797a99488e759bbfa98889e2))
+* updated `@spryker/*` peerDependencies ([e363ad1](https://github.com/spryker/ui-components/commit/e363ad1a40de047f58006b8d988f9c698e56b49b))
+
+
+### Features
+
+* introduced advanced css variables ([3c2c839](https://github.com/spryker/ui-components/commit/3c2c839c755a1ae05dc2b28bcd1a24691971c360))
+* **toggle:** introduced css variables ([6cc3b45](https://github.com/spryker/ui-components/commit/6cc3b45db103521b6bb42be5505bcccf9b4647da))
+
+
+
+
+
 ## [0.5.3](https://github.com/spryker/ui-components/compare/@spryker/select@0.5.3-next.1...@spryker/select@0.5.3) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/select

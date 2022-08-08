@@ -1,6 +1,6 @@
 {
   "name": "@spryker/utils.date.adapter.date-fns",
-  "version": "0.2.3",
+  "version": "0.2.4-beta.0",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",

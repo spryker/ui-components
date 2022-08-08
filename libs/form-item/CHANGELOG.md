@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.6-beta.0](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.4.5...@spryker/form-item@0.4.6-beta.0) (2022-08-08)
+
+**Note:** Version bump only for package @spryker/form-item
+
+
+
+
+
 ## [0.4.5](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.4.5-next.0...@spryker/form-item@0.4.5) (2022-07-06)
 
 **Note:** Version bump only for package @spryker/form-item

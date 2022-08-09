@@ -10,12 +10,11 @@ import { InvokeModule, PluckModule } from '@spryker/utils';
 import { ActionsService } from '@spryker/actions';
 import { DatasourceTypesToken } from '@spryker/datasource';
 import { Observable, of } from 'rxjs';
+
 import { TableFeaturesRegistryToken } from '../table-feature-loader';
-import {
-    TableRenderFeatureDirective,
-    TableFeaturesRendererComponent,
-    TableFeaturesRendererDirective,
-} from '../table-features-renderer';
+import { TableFeaturesRendererComponent } from '../table-features-renderer/table-features-renderer.component';
+import { TableFeaturesRendererDirective } from '../table-features-renderer/table-features-renderer.directive';
+import { TableRenderFeatureDirective } from '../table-features-renderer/table-render-feature.directive';
 import { TableColumns, TableConfig, TableData } from './table';
 import { CoreTableComponent } from './table.component';
 

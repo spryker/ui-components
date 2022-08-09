@@ -12,7 +12,7 @@ export function deLocaleFactory() {
     loaders: {
       ng: () =>
         Promise.all([
-          import('@angular/common/locales/de'),
+          import('@angular/common/locales/global/de'),
           import('@angular/common/locales/extra/de'),
         ]).then(([data, extra]) => ({
           data: data.default,

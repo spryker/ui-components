@@ -11,7 +11,7 @@ export function enLocaleFactory() {
     id: EN_LOCALE,
     loaders: {
       ng: () =>
-        import('@angular/common/locales/en').then((m) => ({
+        import('@angular/common/locales/global/en').then((m) => ({
           data: m.default,
         })),
       ant: () =>

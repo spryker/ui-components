@@ -492,8 +492,8 @@ export class TableEditableFeatureComponent
                     data: this.dataSerializerService.serialize(TableEditableEditRequestToken, requestData),
                 },
             })
-            .subscribe(
-                (response) => {
+            .subscribe({
+                next: (response) => {
                     this.ajaxActionService.handle(response, this.injector);
                     this.closeEditableCell(cellContext.i, cellContext.config.id);
                     this.tableEditableService.updateModel(
@@ -502,7 +502,7 @@ export class TableEditableFeatureComponent
                         cellContext.i + this.syncInput.length,
                     );
                 },
-                (error) => {
+                error: (error) => {
                     this.editingModel = { ...this.editingModel };
                     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                     this.editingModel[cellContext.i][cellContext.config.id]!.value = undefined;
@@ -517,7 +517,7 @@ export class TableEditableFeatureComponent
                         },
                     };
                 },
-            );
+            });
     }
 
     trackNewColumnsById(index: number, item: TableColumn): string {

@@ -15,9 +15,9 @@ import { InjectionTokenType } from '@spryker/utils';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
 
-import { TableFeatureConfig } from '../table-config/types';
-import { TableFeatureComponent } from '../table-feature/table-feature.component';
-import { TableConfig } from '../table/table';
+import { TableFeatureConfig } from '../table-config';
+import { TableFeatureComponent } from '../table-feature';
+import { TableConfig } from '../table';
 import { TableFeaturesRegistryToken } from './tokens';
 import { ModuleWithFeature, TableFeatureLoader, TableFeaturesRegistry } from './types';
 

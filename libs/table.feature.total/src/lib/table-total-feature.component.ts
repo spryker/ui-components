@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { TableFeatureComponent, TableFeatureConfig, TableFeatureLocation } from '@spryker/table';
+import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { map, mapTo, shareReplay, switchMap, take, pluck } from 'rxjs/operators';
 import { TableTotalConfig } from './types';
 

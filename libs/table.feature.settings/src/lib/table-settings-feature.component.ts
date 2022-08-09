@@ -62,13 +62,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSe
 
     columns$ = merge(
         this.setColumns$,
-        this.initialColumns$.pipe(
-            map((columns) => {
-                const filteredColumns = columns.filter((column) => !column.hidden);
-
-                return filteredColumns;
-            }),
-        ),
+        this.initialColumns$.pipe(map((columns) => columns.filter((column) => !column.hidden))),
     ).pipe(shareReplay({ bufferSize: 1, refCount: true }));
 
     isResetButtonDisabled$ = this.columns$.pipe(

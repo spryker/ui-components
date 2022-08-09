@@ -1,4 +1,3 @@
-import { Injector } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { PersistenceStrategyService } from './persistence-strategy.service';

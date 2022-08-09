@@ -23,7 +23,7 @@ import { DrawerComponent, DrawerComponentInputs } from './drawer.component';
     `,
 })
 class TestComponent extends DrawerComponentInputs {
-    isOpenChange = jest.fn();
+    isOpenChange = jest.fn<boolean, any[]>();
     closed = jest.fn();
 }
 

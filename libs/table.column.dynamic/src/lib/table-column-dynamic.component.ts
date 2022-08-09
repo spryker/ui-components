@@ -18,7 +18,7 @@ import {
     TableDataRow,
 } from '@spryker/table';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
-import { merge, of, ReplaySubject, Subject } from 'rxjs';
+import { merge, of, ReplaySubject } from 'rxjs';
 import { delay, map, mapTo, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })

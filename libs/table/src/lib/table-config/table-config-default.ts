@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { TableConfig } from '../table/table';
+import { TableConfig } from '../table';
 
 @Injectable({ providedIn: 'root' })
 export class TableDefaultConfig implements Partial<TableConfig> {}

@@ -1,4 +1,4 @@
-import { Injectable, Injector, Sanitizer, SecurityContext } from '@angular/core';
+import { Injectable, Injector, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActionHandler } from '@spryker/actions';
 import { UnsavedChangesMonitorToken } from '@spryker/unsaved-changes';

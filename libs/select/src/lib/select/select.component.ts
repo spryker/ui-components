@@ -19,7 +19,7 @@ import { IconArrowDownModule, IconCheckModule, IconRemoveModule } from '@spryker
 import { I18nService } from '@spryker/locale';
 import { ToBoolean, ToJson } from '@spryker/utils';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
+import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
 
 import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from './types';
 

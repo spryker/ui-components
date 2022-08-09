@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DateService } from '../date/date.service';
+import { DateService } from '../date';
 import { TimeDuration } from './time-duration';
 import { InvalidTimeDuration } from './invalid-time-duration';
 import { TimeDurationConfig } from './time-duration-config';

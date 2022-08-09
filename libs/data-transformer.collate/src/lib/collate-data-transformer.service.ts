@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { DataTransformer } from '@spryker/data-transformer';
 import { Observable, of } from 'rxjs';
-import { map, switchMap, delay, tap } from 'rxjs/operators';
+import { map, switchMap, delay } from 'rxjs/operators';
 
 import { DataTransformerConfiguratorService } from './data-transformer-configurator.service';
 import { DataTransformerFilterService } from './data-transformer-filter.service';

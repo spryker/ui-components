@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { TemplateRef } from '@angular/core';
 import { NotificationRef } from './notification-ref';
 

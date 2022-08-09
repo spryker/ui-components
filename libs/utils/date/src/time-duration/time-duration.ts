@@ -1,4 +1,4 @@
-import { DateAdapter } from '../date/types';
+import { DateAdapter } from '../date';
 import { TimeDurationData } from './types';
 
 export class TimeDuration {

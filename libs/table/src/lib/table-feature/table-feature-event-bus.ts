@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { TableEventBus } from '../table/table-event-bus';
+import { TableEventBus } from '../table';
 
 export class TableFeatureEventBus {
     constructor(private name: string, private tableEventBus: TableEventBus) {}

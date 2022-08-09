@@ -138,6 +138,7 @@ export default {
 class EditColumnConfig {
     type = 'text';
     value?: string;
+    editableError?: string;
 }
 
 @Component({

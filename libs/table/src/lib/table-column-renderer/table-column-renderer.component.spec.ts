@@ -14,16 +14,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { OrchestratorCoreModule } from '@orchestrator/core';
 import { LayoutFlatHostComponent, LayoutFlatHostModule } from '@orchestrator/layout';
-import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
-import { ColTplDirective } from '../table/col-tpl.directive';
 import { ContextModule, ContextService, DefaultContextSerializationModule } from '@spryker/utils';
+import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import {
+    ColTplDirective,
     TableColumn,
     TableColumnComponent,
     TableColumnContext,
     TableColumnTplContext,
     TableDataRow,
-} from '../table/table';
+} from '../table';
 import { TableColumnRendererComponent } from './table-column-renderer.component';
 
 const mockConfig: TableColumn = {

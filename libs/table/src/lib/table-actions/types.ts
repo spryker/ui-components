@@ -2,7 +2,7 @@ import { Injector } from '@angular/core';
 import { ActionConfig } from '@spryker/actions';
 import { Observable } from 'rxjs';
 
-import { TableDataRow } from '../table/table';
+import { TableDataRow } from '../table';
 
 export interface TableActionBase extends ActionConfig {
     id: string;

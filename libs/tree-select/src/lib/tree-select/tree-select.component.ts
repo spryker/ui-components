@@ -157,6 +157,8 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
     /**
      * @param value {@link TreeSelectValue}
      * Check if item value equal to the selected value or includes in selected values array if mode is multiple
+     * @param multiple
+     * @param state
      */
     checkSelectedState(value: TreeSelectValue, multiple: boolean, state: TreeSelectValue | TreeSelectValue[]): boolean {
         if (multiple && state && Array.isArray(state)) {

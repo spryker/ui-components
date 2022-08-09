@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { TableDataConfiguratorService, CoreTableComponent } from '@spryker/table';
+import { TableDataConfiguratorService } from '@spryker/table';
 
 import { RefreshParentTableActionHandlerService } from './refresh-parent-table-action-handler.service';
 

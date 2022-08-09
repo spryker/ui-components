@@ -17,9 +17,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { ModalService } from '../modal.service';
-import { ComponentModal } from '../strategies/component.strategy';
 import { ModalRef } from '../types';
-import { TemplateModalContext } from '../strategies/template.strategy';
+import { ComponentModal, TemplateModalContext } from '../strategies';
 
 @Component({
     selector: 'spy-modal',

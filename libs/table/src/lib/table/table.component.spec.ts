@@ -7,16 +7,17 @@ import { By } from '@angular/platform-browser';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { I18nModule } from '@spryker/locale';
 import { InvokeModule, PluckModule } from '@spryker/utils';
-import { Observable, of } from 'rxjs';
-
+import { ActionsService } from '@spryker/actions';
 import { DatasourceTypesToken } from '@spryker/datasource';
-import { TableFeaturesRegistryToken } from '../table-feature-loader/tokens';
-import { TableFeaturesRendererComponent } from '../table-features-renderer/table-features-renderer.component';
-import { TableFeaturesRendererDirective } from '../table-features-renderer/table-features-renderer.directive';
-import { TableRenderFeatureDirective } from '../table-features-renderer/table-render-feature.directive';
+import { Observable, of } from 'rxjs';
+import { TableFeaturesRegistryToken } from '../table-feature-loader';
+import {
+    TableRenderFeatureDirective,
+    TableFeaturesRendererComponent,
+    TableFeaturesRendererDirective,
+} from '../table-features-renderer';
 import { TableColumns, TableConfig, TableData } from './table';
 import { CoreTableComponent } from './table.component';
-import { ActionsService } from '@spryker/actions';
 
 const mockDataUrl = 'https://test-data-url.com';
 const mockColUrl = 'https://test-col-url.com';

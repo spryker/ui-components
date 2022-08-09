@@ -11,17 +11,19 @@ import { ActionsModule } from '@spryker/actions';
 import { SpinnerModule } from '@spryker/spinner';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
-import { provideTableColumnComponents } from './column-type/tokens';
+import { provideTableColumnComponents } from './column-type';
 import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
 import { TableColumnRendererComponent } from './table-column-renderer/table-column-renderer.component';
 import { provideTableFeatures, TableFeaturesRegistry } from './table-feature-loader';
-import { TableFeatureModule } from './table-feature/table-feature.module';
-import { TableFeaturesRendererComponent } from './table-features-renderer/table-features-renderer.component';
-import { TableFeaturesRendererDirective } from './table-features-renderer/table-features-renderer.directive';
-import { TableRenderFeatureDirective } from './table-features-renderer/table-render-feature.directive';
+import { TableFeatureModule } from './table-feature';
+import {
+    TableRenderFeatureDirective,
+    TableFeaturesRendererComponent,
+    TableFeaturesRendererDirective,
+} from './table-features-renderer';
+import { TableColumnComponentDeclaration } from './table';
 import { ColTplDirective } from './table/col-tpl.directive';
-import { TableColumnComponentDeclaration } from './table/table';
 import { CoreTableComponent } from './table/table.component';
 
 @NgModule({

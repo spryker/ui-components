@@ -16,7 +16,7 @@ describe('DropdownComponent', () => {
                 [visible]="visible"
                 [disabled]="disabled"
                 (visibleChange)="visibleChangeSpy($event)"
-                (actionTriggered)="actionTriggeredSpy(action)"
+                (actionTriggered)="actionTriggeredSpy($event)"
             ></spy-dropdown>
         `,
     })
@@ -25,8 +25,8 @@ describe('DropdownComponent', () => {
         placement: any;
         visible: any;
         disabled: any;
-        visibleChangeSpy = jest.fn();
-        actionTriggeredSpy = jest.fn();
+        visibleChangeSpy = jest.fn<boolean, any[]>();
+        actionTriggeredSpy = jest.fn<boolean, any[]>();
     }
 
     let component: TestComponent;

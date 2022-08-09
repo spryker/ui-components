@@ -11,7 +11,7 @@ import {
 import { combineLatest, of, ReplaySubject, Subject } from 'rxjs';
 import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
-import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
+import { TableFeatureTplContext } from '../table-feature';
 import { FeatureRecord } from './types';
 
 @Directive({

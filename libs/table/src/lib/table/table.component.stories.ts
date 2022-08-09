@@ -106,7 +106,7 @@ class TableColumnTestComponent implements TableColumnComponent<TableColumnTestCo
     @Input() context?: TableColumnContext;
 }
 
-declare module '../table/table' {
+declare module '../table' {
     interface TableColumnTypeRegistry {
         list: TableColumnListConfig;
     }

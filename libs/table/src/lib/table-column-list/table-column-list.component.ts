@@ -7,7 +7,7 @@ import {
     OnInit,
     OnChanges,
 } from '@angular/core';
-import { TableColumnComponent, TableColumn, TableColumnContext, TableColumnTypeDef } from '../table/table';
+import { TableColumnComponent, TableColumn, TableColumnContext, TableColumnTypeDef } from '../table';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
 

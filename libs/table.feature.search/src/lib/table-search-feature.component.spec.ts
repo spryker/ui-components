@@ -1,5 +1,5 @@
 import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, flush } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TestTableFeatureTplDirective, TestTableFeatureComponent, TestTableFeatureMocks } from '@spryker/table/testing';
 import { TableSearchFeatureComponent } from './table-search-feature.component';

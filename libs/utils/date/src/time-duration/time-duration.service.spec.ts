@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { DateService } from '../date/date.service';
-import { DateAdapter } from '../date/types';
+import { DateAdapter, DateService } from '../date';
 import { InvalidTimeDuration } from './invalid-time-duration';
 import { TimeDuration } from './time-duration';
 import { TimeDurationService } from './time-duration.service';

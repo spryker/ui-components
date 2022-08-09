@@ -1,12 +1,10 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
-
-import { ButtonAjaxMethod } from '../button-ajax/button-ajax.component';
-import { ButtonAjaxComponent } from './button-ajax.component';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NotificationModule } from '@spryker/notification';
 import { ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
+import { ButtonAjaxComponent, ButtonAjaxMethod } from './button-ajax.component';
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 

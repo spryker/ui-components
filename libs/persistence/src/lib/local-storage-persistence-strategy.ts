@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { InjectionTokenType, WindowToken } from '@spryker/utils';
-import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 
 import { PersistenceStrategy } from './types';
 

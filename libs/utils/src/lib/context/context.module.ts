@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 import { ContextSerializationStrategy, provideContextSerializationStrategies } from './serialization-strategy';
-import { ArrayContextSerializationStrategy } from './serialization-strategies';
 
 import { ContextPipe } from './context.pipe';
 import { ContextOptions } from './context.service';

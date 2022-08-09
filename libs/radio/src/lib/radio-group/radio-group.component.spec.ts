@@ -17,7 +17,7 @@ import { RadioGroupComponent } from './radio-group.component';
 class TestComponent {
     value: any;
     name: any;
-    selectedSpy = jest.fn();
+    selectedSpy = jest.fn<boolean, any[]>();
 }
 
 describe('RadioGroupComponent', () => {

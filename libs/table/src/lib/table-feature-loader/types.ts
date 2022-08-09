@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 
-import { TableFeatureComponent } from '../table-feature/table-feature.component';
+import { TableFeatureComponent } from '../table-feature';
 
 export interface ModuleWithFeature {
     featureComponent: Type<TableFeatureComponent>;

@@ -11,3 +11,8 @@
 
 # Generated icons font
 /libs/icon/src/lib/fontello/**/*
+
+/.angular/
+/node_modules/
+/tmp/
+/package-lock.json

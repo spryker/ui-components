@@ -7,9 +7,8 @@ import {
     PrefixComponentSelectorStrategyOptions,
 } from 'ngx-element-boundary';
 
-import { CustomElementOptions, provideCustomElementComponents, WebComponentDefs } from './custom-element';
+import { CustomElementOptions, provideCustomElementComponents, WebComponentDefs, CustomElementComponentsToken } from './custom-element';
 import { registerComponents } from './custom-element/custom-element-registry';
-import { CustomElementComponentsToken } from './custom-element/tokens';
 
 export interface WebComponentsModuleOptions {
     customElementOptions?: CustomElementOptions;

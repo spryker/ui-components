@@ -26,8 +26,8 @@ describe('PaginationComponent', () => {
         hideOnSinglePage: any;
         pageSizeOptions: any;
         placeholder: any;
-        pageChangeSpy = jest.fn();
-        pageSizeChangeSpy = jest.fn();
+        pageChangeSpy = jest.fn<number, any[]>();
+        pageSizeChangeSpy = jest.fn<number, any[]>();
     }
 
     let component: TestComponent;

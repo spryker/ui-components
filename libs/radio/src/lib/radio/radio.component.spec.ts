@@ -21,7 +21,7 @@ class TestComponent {
     value: any;
     disabled: any;
     hasError: any;
-    selectedSpy = jest.fn();
+    selectedSpy = jest.fn<string, any[]>();
 }
 
 @Component({
@@ -41,7 +41,7 @@ class TestGroupComponent {
     value: any;
     disabled: any;
     hasError: any;
-    selectedSpy = jest.fn();
+    selectedSpy = jest.fn<string, any[]>();
 }
 
 describe('RadioComponent', () => {

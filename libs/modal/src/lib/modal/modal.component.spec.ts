@@ -18,7 +18,7 @@ class TestComponent {
     visible: any;
     component: any;
     data: any;
-    visibleChange = jest.fn();
+    visibleChange = jest.fn<boolean, any[]>();
 }
 
 class MockModalRef {

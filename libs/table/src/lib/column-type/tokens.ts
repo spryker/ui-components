@@ -1,6 +1,6 @@
 import { InjectionToken, Provider } from '@angular/core';
 
-import { TableColumnComponentDeclaration } from '../table/table';
+import { TableColumnComponentDeclaration } from '../table';
 
 /**
  * Multi-provider that holds all column type components of table

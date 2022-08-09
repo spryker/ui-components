@@ -20,7 +20,7 @@ class MockAjaxActionService {
 })
 class TestComponent {
     urlHtml: any;
-    urlHtmlLoading = jest.fn();
+    urlHtmlLoading = jest.fn<boolean, any[]>();
 }
 
 describe('UrlHtmlRendererDirective', () => {

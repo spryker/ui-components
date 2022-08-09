@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { OrchestratorConfigItem } from '@orchestrator/core';
 
-import { TableColumn, TableColumnTplContext, TableColumnTypeDef, TableDataRow } from '../table/table';
+import { TableColumn, TableColumnTplContext, TableColumnTypeDef, TableDataRow } from '../table';
 import { ContextService } from '@spryker/utils';
 
 @Component({

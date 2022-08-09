@@ -93,7 +93,7 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
         const delayMs = this.getDelayFrom(req);
         const isError = this.getIsErrorFrom(req);
         const value$ = isError
-            ? this.getErrorFrom(req).pipe(switchMap((err) => throwError(err)))
+            ? this.getErrorFrom(req).pipe(switchMap((err) => throwError(() => err)))
             : this.getDataFrom(req);
 
         return forkJoin([value$.pipe(take(1)), of(null).pipe(delay(delayMs))]).pipe(map(([data]) => data));

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { mergeDeep } from '@spryker/utils';
 
-import { TableCoreConfig, TableConfig } from '../table/table';
+import { TableCoreConfig, TableConfig } from '../table';
 import { TableDefaultConfig } from './table-config-default';
 
 @Injectable({ providedIn: 'root' })

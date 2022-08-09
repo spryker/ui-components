@@ -5,7 +5,7 @@ import { triggerChangeEvent } from './trigger-change-event-function';
     selector: '[spyTriggerChangeEvent]',
 })
 export class TriggerChangeEventDirective {
-    @Input() spyTriggerChangeEvent: HTMLElement | string;
+    @Input() spyTriggerChangeEvent?: HTMLElement | string;
 
     @HostListener('click', ['$event'])
     onClick(): void {

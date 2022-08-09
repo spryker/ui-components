@@ -13,6 +13,7 @@
 /libs/icon/src/lib/fontello/**/*
 
 /.angular/
+/dist/
 /node_modules/
 /tmp/
 /package-lock.json

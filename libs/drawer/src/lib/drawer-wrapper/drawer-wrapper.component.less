@@ -11,6 +11,16 @@
   align-items: flex-start;
   pointer-events: none;
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: @drawer-content-width;
+    box-shadow: @drawer-wrapper-box-shadow;
+  }
+
   &__actions {
     display: flex;
     flex-direction: column;
@@ -53,6 +63,6 @@
     background-color: @drawer-wrapper-background;
     pointer-events: auto;
     border-radius: @drawer-wrapper-border-radius;
-    box-shadow: @drawer-wrapper-box-shadow;
+    z-index: @drawer-content-z-index;
   }
 }

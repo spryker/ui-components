@@ -11,6 +11,17 @@
   align-items: flex-start;
   pointer-events: none;
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: @drawer-wrapper-action-size;
+    height: 100%;
+    width: calc(100% - @drawer-wrapper-action-size);
+    z-index: @drawer-wrapper-shadow-z-index;
+    box-shadow: @drawer-wrapper-box-shadow;
+  }
+
   &__actions {
     display: flex;
     flex-direction: column;
@@ -53,6 +64,6 @@
     background-color: @drawer-wrapper-background;
     pointer-events: auto;
     border-radius: @drawer-wrapper-border-radius;
-    box-shadow: @drawer-wrapper-box-shadow;
+    z-index: @drawer-content-z-index;
   }
 }

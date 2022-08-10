@@ -438,7 +438,7 @@ export const push = (args) => ({
   `,
 });
 
-export const respectMaxWith = (args) => ({
+export const respectMaxWidth = (args) => ({
   props: args,
   moduleMetadata: {
     declarations: [StoryComponent],

@@ -1,12 +1,12 @@
 {
   "name": "@spryker/checkbox",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "peerDependencies": {
     "@angular/common": ">=9.1.12",
     "@angular/core": ">=9.1.12",
     "@angular/forms": ">=9.1.12",
     "@spryker/styles": "^0.7.0",
-    "@spryker/utils": "^0.3.0"
+    "@spryker/utils": "^0.3.5"
   },
   "dependencies": {
     "ng-zorro-antd": "^12.0.1",

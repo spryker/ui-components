@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.5.2-next.0...@spryker/date-picker@0.5.2) (2022-07-06)
+
+**Note:** Version bump only for package @spryker/date-picker
+
+
+
+
+
+## [0.5.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.5.1...@spryker/date-picker@0.5.2-next.0) (2022-06-29)
+
+
+### Bug Fixes
+
+* **date-picker:** dispatched `input` event by date change ([2121488](https://github.com/spryker/ui-components/commit/2121488bbafa9208c37a5c4231e08c66ef3c2e2a))
+* **date-picker:** dispatched date change event via `triggerChangeEvent` function ([d0e4f3f](https://github.com/spryker/ui-components/commit/d0e4f3f22c41ffc78866b04fb27c01fd7f62684e))
+
+
+
+
+
 ## [0.5.1](https://github.com/spryker/ui-components/compare/@spryker/date-picker@0.5.1-next.1...@spryker/date-picker@0.5.1) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/date-picker

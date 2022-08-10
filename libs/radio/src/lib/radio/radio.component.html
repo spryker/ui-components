@@ -5,6 +5,7 @@
     [nzValue]="value"
     [nzDisabled]="disabled"
     (ngModelChange)="selected.emit(value)"
+    spyTriggerChangeEvent
   >
     <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
   </label>

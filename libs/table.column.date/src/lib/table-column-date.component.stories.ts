@@ -60,11 +60,11 @@ export const primary = (args) => ({
 });
 primary.args = {
   config: {
-    date: '${value}',
+    date: '${displayValue}',
     format: 'mediumDate',
   },
   context: {
-    value: new Date('2020-01-01T17:25:00'),
+    displayValue: new Date('2020-01-01T17:25:00'),
   },
 };
 

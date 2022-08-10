@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/spryker/ui-components/compare/@spryker/radio@0.4.4-next.0...@spryker/radio@0.4.4) (2022-07-06)
+
+**Note:** Version bump only for package @spryker/radio
+
+
+
+
+
+## [0.4.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/radio@0.4.3...@spryker/radio@0.4.4-next.0) (2022-06-29)
+
+
+### Bug Fixes
+
+* **radio:** added spyTriggerChangeEvent directive ([36e825b](https://github.com/spryker/ui-components/commit/36e825b15532d3b0809337dc396a7343923f8fe8))
+* **radio:** dispatched `input` event by label click ([ee4efe0](https://github.com/spryker/ui-components/commit/ee4efe0380eaef684f3962f887752d074c20750e))
+
+
+
+
+
 ## [0.4.3](https://github.com/spryker/ui-components/compare/@spryker/radio@0.4.3-next.1...@spryker/radio@0.4.3) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/radio

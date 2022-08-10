@@ -40,7 +40,11 @@ export const primary = (args) => ({
     declarations: [StoryComponent],
   },
   template: `
-    <spy-collapsible [spyTitle]="spyTitle" [alwaysRender]="alwaysRender">
+    <spy-collapsible
+      [spyTitle]="spyTitle"
+      [active]="active"
+      [disabled]="disabled"
+      [alwaysRender]="alwaysRender">
       <spy-story></spy-story>
     </spy-collapsible>
   `,
@@ -53,7 +57,11 @@ export const withTemplate = (args) => ({
     declarations: [StoryComponent],
   },
   template: `
-    <spy-collapsible [spyTitle]="spyTitle" [alwaysRender]="alwaysRender">
+    <spy-collapsible
+      [spyTitle]="spyTitle"
+      [active]="active"
+      [disabled]="disabled"
+      [alwaysRender]="alwaysRender">
       <ng-template>
         <spy-story></spy-story>
       </ng-template>

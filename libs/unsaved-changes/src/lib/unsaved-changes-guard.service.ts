@@ -7,30 +7,30 @@ import { UnsavedChangesMonitor } from './unsaved-changes-monitor';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesGuardService extends UnsavedChangesGuardBase {
-  private rootGuards: UnsavedChangesGuard[] | null;
+    private rootGuards: UnsavedChangesGuard[] | null;
 
-  constructor(injector: Injector) {
-    super(injector);
+    constructor(injector: Injector) {
+        super(injector);
 
-    this.rootGuards = this.injector.get(UnsavedChangesRootGuardsToken, null);
-  }
+        this.rootGuards = this.injector.get(UnsavedChangesRootGuardsToken, null);
+    }
 
-  attachMonitor(monitor: UnsavedChangesMonitor): void {
-    super.attachMonitor(monitor);
+    attachMonitor(monitor: UnsavedChangesMonitor): void {
+        super.attachMonitor(monitor);
 
-    this.rootGuards?.forEach((guard) => guard.attachMonitor(monitor));
-  }
+        this.rootGuards?.forEach((guard) => guard.attachMonitor(monitor));
+    }
 
-  detachMonitor(monitor: UnsavedChangesMonitor): void {
-    super.detachMonitor(monitor);
+    detachMonitor(monitor: UnsavedChangesMonitor): void {
+        super.detachMonitor(monitor);
 
-    this.rootGuards?.forEach((guard) => guard.detachMonitor(monitor));
-  }
+        this.rootGuards?.forEach((guard) => guard.detachMonitor(monitor));
+    }
 
-  dispose(): void {
-    super.dispose();
+    dispose(): void {
+        super.dispose();
 
-    this.rootGuards?.forEach((guard) => guard.dispose());
-    this.rootGuards = null;
-  }
+        this.rootGuards?.forEach((guard) => guard.dispose());
+        this.rootGuards = null;
+    }
 }

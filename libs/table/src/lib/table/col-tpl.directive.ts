@@ -2,10 +2,10 @@ import { Directive, Input, TemplateRef } from '@angular/core';
 import { TableColumnTplContext } from './table';
 
 @Directive({
-  selector: '[spyColTpl]',
+    selector: '[spyColTpl]',
 })
 export class ColTplDirective {
-  @Input() spyColTpl = '';
+    @Input() spyColTpl = '';
 
-  constructor(public template: TemplateRef<TableColumnTplContext>) {}
+    constructor(public template: TemplateRef<TableColumnTplContext>) {}
 }

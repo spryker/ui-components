@@ -3,10 +3,7 @@ import { InterceptorService } from '@spryker/interception';
 import { I18nService } from '@spryker/locale';
 import { ModalService } from '@spryker/modal';
 import { NavigationRedirectInterceptionEvent } from '@spryker/navigation';
-import {
-  UnsavedChangesGuardBase,
-  UnsavedChangesGuardService,
-} from '@spryker/unsaved-changes';
+import { UnsavedChangesGuardBase, UnsavedChangesGuardService } from '@spryker/unsaved-changes';
 import { combineLatest, EMPTY, of, Subject } from 'rxjs';
 import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
 
@@ -15,63 +12,61 @@ import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
  */
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesNavigationGuard extends UnsavedChangesGuardBase {
-  private interceptorService: InterceptorService;
-  private modalService: ModalService;
-  private i18nService: I18nService;
+    private interceptorService: InterceptorService;
+    private modalService: ModalService;
+    private i18nService: I18nService;
 
-  private destroyed$ = new Subject<void>();
+    private destroyed$ = new Subject<void>();
 
-  constructor(injector: Injector) {
-    super(injector);
+    constructor(injector: Injector) {
+        super(injector);
 
-    this.interceptorService = this.injector.get(InterceptorService);
-    this.modalService = this.injector.get(ModalService);
-    this.i18nService = this.injector.get(I18nService);
+        this.interceptorService = this.injector.get(InterceptorService);
+        this.modalService = this.injector.get(ModalService);
+        this.i18nService = this.injector.get(I18nService);
 
-    const translations$ = combineLatest([
-      this.i18nService.translate('unsaved-changes.confirmation-title'),
-      this.i18nService.translate('unsaved-changes.confirmation-ok'),
-      this.i18nService.translate('unsaved-changes.confirmation-cancel'),
-    ]);
+        const translations$ = combineLatest([
+            this.i18nService.translate('unsaved-changes.confirmation-title'),
+            this.i18nService.translate('unsaved-changes.confirmation-ok'),
+            this.i18nService.translate('unsaved-changes.confirmation-cancel'),
+        ]);
 
-    this.interceptorService
-      .intercept(NavigationRedirectInterceptionEvent, () =>
-        this.hasDirtyStatus$.pipe(
-          take(1),
-          withLatestFrom(translations$),
-          switchMap(([hasDirtyStatus, [title, okText, cancelText]]) =>
-            hasDirtyStatus
-              ? this.modalService
-                  .openConfirm({
-                    title,
-                    okText,
-                    cancelText,
-                  })
-                  .afterDismissed()
-                  .pipe(
-                    switchMap((isDiscard) => {
-                      if (!isDiscard) {
-                        return EMPTY;
-                      }
+        this.interceptorService
+            .intercept(NavigationRedirectInterceptionEvent, () =>
+                this.hasDirtyStatus$.pipe(
+                    take(1),
+                    withLatestFrom(translations$),
+                    switchMap(([hasDirtyStatus, [title, okText, cancelText]]) =>
+                        hasDirtyStatus
+                            ? this.modalService
+                                  .openConfirm({
+                                      title,
+                                      okText,
+                                      cancelText,
+                                  })
+                                  .afterDismissed()
+                                  .pipe(
+                                      switchMap((isDiscard) => {
+                                          if (!isDiscard) {
+                                              return EMPTY;
+                                          }
 
-                      this.injector
-                        .get(UnsavedChangesGuardService)
-                        .resetMonitors();
+                                          this.injector.get(UnsavedChangesGuardService).resetMonitors();
 
-                      return of(null);
-                    }),
-                  )
-              : of(null),
-          ),
-        ),
-      )
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe();
-  }
+                                          return of(null);
+                                      }),
+                                  )
+                            : of(null),
+                    ),
+                ),
+            )
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe();
+    }
 
-  dispose() {
-    super.dispose();
+    dispose() {
+        super.dispose();
 
-    this.destroyed$.next();
-  }
+        this.destroyed$.next();
+    }
 }

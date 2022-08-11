@@ -3,38 +3,38 @@ import { CardComponent } from './card.component';
 import { CardModule } from '../card.module';
 
 export default {
-  title: 'CardComponent',
-  component: CardComponent,
-  parameters: {
-    controls: {
-      include: ['spyTitle', 'titlePosition', 'hoverable'],
+    title: 'CardComponent',
+    component: CardComponent,
+    parameters: {
+        controls: {
+            include: ['spyTitle', 'titlePosition', 'hoverable'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8982',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8982',
-      allowFullscreen: true,
+    argTypes: {
+        spyTitle: {
+            control: { type: 'text' },
+        },
+        titlePosition: {
+            control: { type: 'select' },
+        },
     },
-  },
-  argTypes: {
-    spyTitle: {
-      control: { type: 'text' },
+    args: {
+        spyTitle: 'Card Title',
+        titlePosition: 'left',
     },
-    titlePosition: {
-      control: { type: 'select' },
-    },
-  },
-  args: {
-    spyTitle: 'Card Title',
-    titlePosition: 'left',
-  },
 } as Meta;
 
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [CardModule],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [CardModule],
+    },
+    template: `
     <spy-card
       [spyTitle]="spyTitle"
       [titlePosition]="titlePosition"
@@ -53,11 +53,11 @@ export const primary = (args) => ({
 });
 
 export const withInnerCard = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [CardModule],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [CardModule],
+    },
+    template: `
     <spy-card
       [spyTitle]="spyTitle"
       [titlePosition]="titlePosition"

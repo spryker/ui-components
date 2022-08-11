@@ -9,7 +9,7 @@ setCompodocJson(docJson);
 
 export const decorators = [withDesign];
 export const parameters = {
-  controls: {
-    hideNoControlsWarning: true,
-  },
+    controls: {
+        hideNoControlsWarning: true,
+    },
 };

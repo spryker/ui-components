@@ -1,10 +1,10 @@
 <span
-  #htmlRendererContent
-  [innerHTML]="htmlRenderer$ | async"
-  spyCustomElementBoundary
-  class="spy-html-renderer__content"
+    #htmlRendererContent
+    [innerHTML]="htmlRenderer$ | async"
+    spyCustomElementBoundary
+    class="spy-html-renderer__content"
 ></span>
 
 <ng-container *ngIf="isLoading$ | async">
-  <spy-spinner [isSpinning]="true" [size]="spinnerSize"></spy-spinner>
+    <spy-spinner [isSpinning]="true" [size]="spinnerSize"></spy-spinner>
 </ng-container>

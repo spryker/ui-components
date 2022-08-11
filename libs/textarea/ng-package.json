@@ -1,9 +1,9 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/textarea",
-  "lib": {
-    "entryFile": "src/index.ts",
-    "styleIncludePaths": ["../styles/src/lib"]
-  },
-  "allowedNonPeerDependencies": ["ng-zorro-antd"]
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/libs/textarea",
+    "lib": {
+        "entryFile": "src/index.ts",
+        "styleIncludePaths": ["../styles/src/lib"]
+    },
+    "allowedNonPeerDependencies": ["ng-zorro-antd"]
 }

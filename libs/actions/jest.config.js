@@ -1,12 +1,12 @@
 module.exports = {
-  displayName: 'actions',
-  preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/libs/actions',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.(html|svg)$',
+    displayName: 'actions',
+    preset: '../../jest.preset.js',
+    coverageDirectory: '../../coverage/libs/actions',
+    setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+    globals: {
+        'ts-jest': {
+            tsconfig: '<rootDir>/tsconfig.spec.json',
+            stringifyContentPathRegex: '\\.(html|svg)$',
+        },
     },
-  },
 };

@@ -5,50 +5,47 @@ import { DatasourceModule, DatasourceService } from '@spryker/datasource';
 import { DatasourceInlineService } from './datasource-inline.service';
 
 export default {
-  title: 'DatasourceInline',
-  args: {
-    datasourceDataProp: 'new data',
-  },
+    title: 'DatasourceInline',
+    args: {
+        datasourceDataProp: 'new data',
+    },
 } as Meta;
 
 @Component({
-  selector: 'spy-test',
-  template: `
-    {{ datasourceData | async }}
-    <br />
-    <br />
-    <button (click)="getData()">Get Data From Datasource</button>
-  `,
+    selector: 'spy-test',
+    template: `
+        {{ datasourceData | async }}
+        <br />
+        <br />
+        <button (click)="getData()">Get Data From Datasource</button>
+    `,
 })
 class TestComponent {
-  @Input() datasourceDataProp = '';
+    @Input() datasourceDataProp = '';
 
-  datasourceData = of('initial data');
+    datasourceData = of('initial data');
 
-  constructor(
-    private injector: Injector,
-    private datasourceService: DatasourceService,
-  ) {}
+    constructor(private injector: Injector, private datasourceService: DatasourceService) {}
 
-  getData(): void {
-    this.datasourceData = this.datasourceService.resolve(this.injector, {
-      type: 'inline',
-      data: this.datasourceDataProp,
-    } as any);
-  }
+    getData(): void {
+        this.datasourceData = this.datasourceService.resolve(this.injector, {
+            type: 'inline',
+            data: this.datasourceDataProp,
+        } as any);
+    }
 }
 
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [
-      DatasourceModule.withDatasources({
-        inline: DatasourceInlineService,
-      } as any),
-    ],
-    declarations: [TestComponent],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [
+            DatasourceModule.withDatasources({
+                inline: DatasourceInlineService,
+            } as any),
+        ],
+        declarations: [TestComponent],
+    },
+    template: `
     <spy-test [datasourceDataProp]="datasourceDataProp"></spy-test>
   `,
 });

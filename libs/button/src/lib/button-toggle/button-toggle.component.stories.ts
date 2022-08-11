@@ -3,31 +3,31 @@ import { ButtonToggleComponent } from './button-toggle.component';
 import { ButtonToggleModule } from './button-toggle.module';
 
 export default {
-  title: 'ButtonToggleComponent',
-  component: ButtonToggleComponent,
-  parameters: {
-    controls: {
-      include: ['disabled', 'toggled', 'attrs'],
+    title: 'ButtonToggleComponent',
+    component: ButtonToggleComponent,
+    parameters: {
+        controls: {
+            include: ['disabled', 'toggled', 'attrs'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1989%3A9334',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1989%3A9334',
-      allowFullscreen: true,
+    args: {
+        disabled: false,
+        toggled: false,
+        attrs: { name: 'custom-name' },
     },
-  },
-  args: {
-    disabled: false,
-    toggled: false,
-    attrs: { name: 'custom-name' },
-  },
 } as Meta;
 
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [ButtonToggleModule],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [ButtonToggleModule],
+    },
+    template: `
     <spy-button-toggle
       [disabled]="disabled"
       [toggled]="toggled"

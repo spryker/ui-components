@@ -9,47 +9,46 @@ import { AutocompleteModule } from '../autocomplete.module';
 import { AutocompleteComponent } from './autocomplete.component';
 
 const mockAutocompleteOptions = [
-  {
-    value: 'Burns Bay Road',
-    title:
-      'Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road',
-    isDisabled: false,
-  },
-  {
-    value: 'Downing Street',
-    title: 'Downing Street',
-    isDisabled: true,
-  },
-  {
-    value: 'Wall Street',
-    title: 'Wall Street',
-  },
+    {
+        value: 'Burns Bay Road',
+        title: 'Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road Burns Bay Road',
+        isDisabled: false,
+    },
+    {
+        value: 'Downing Street',
+        title: 'Downing Street',
+        isDisabled: true,
+    },
+    {
+        value: 'Wall Street',
+        title: 'Wall Street',
+    },
 ];
 
 export default {
-  title: 'AutocompleteComponent',
-  component: AutocompleteComponent,
-  parameters: {
-    controls: {
-      include: ['options'],
+    title: 'AutocompleteComponent',
+    component: AutocompleteComponent,
+    parameters: {
+        controls: {
+            include: ['options'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9154',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9154',
-      allowFullscreen: true,
+    args: {
+        options: mockAutocompleteOptions,
     },
-  },
-  args: {
-    options: mockAutocompleteOptions,
-  },
 } as Meta;
 
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [AutocompleteModule, BrowserAnimationsModule, InputModule],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [AutocompleteModule, BrowserAnimationsModule, InputModule],
+    },
+    template: `
     <spy-input>
       <spy-autocomplete [options]="options"></spy-autocomplete>
     </spy-input>
@@ -57,22 +56,19 @@ export const primary = (args) => ({
 });
 
 export const autocompleteAsWebComponents = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [
-      BrowserAnimationsModule,
-      StorybookModule,
-      WebComponentsModule.withComponents([
-        InputComponent,
-        AutocompleteComponent,
-      ]),
-      InputModule,
-      AutocompleteModule,
-    ],
-    entryComponents: [InputComponent, AutocompleteComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [
+            BrowserAnimationsModule,
+            StorybookModule,
+            WebComponentsModule.withComponents([InputComponent, AutocompleteComponent]),
+            InputModule,
+            AutocompleteModule,
+        ],
+        entryComponents: [InputComponent, AutocompleteComponent],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    },
+    template: `
     <web-spy-storybook>
       <web-spy-input>
         <web-spy-autocomplete [attr.options]="options"></web-spy-autocomplete>
@@ -81,5 +77,5 @@ export const autocompleteAsWebComponents = (args) => ({
   `,
 });
 autocompleteAsWebComponents.args = {
-  options: JSON.stringify(mockAutocompleteOptions),
+    options: JSON.stringify(mockAutocompleteOptions),
 };

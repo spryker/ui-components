@@ -4,25 +4,21 @@ import { toIsoDateFormat } from '@spryker/utils';
 import { Observable, of } from 'rxjs';
 
 import {
-  DateSerializeDataTransformerConfig,
-  DateSerializeDataTransformerData,
-  DateSerializeDataTransformerDataT,
+    DateSerializeDataTransformerConfig,
+    DateSerializeDataTransformerData,
+    DateSerializeDataTransformerDataT,
 } from './types';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class DateSerializeDataTransformerService
-  implements
-    DataTransformer<
-      DateSerializeDataTransformerData,
-      DateSerializeDataTransformerDataT
-    >
+    implements DataTransformer<DateSerializeDataTransformerData, DateSerializeDataTransformerDataT>
 {
-  transform(
-    data: DateSerializeDataTransformerData,
-    config: DateSerializeDataTransformerConfig,
-  ): Observable<DateSerializeDataTransformerDataT> {
-    return of(toIsoDateFormat(new Date(data)));
-  }
+    transform(
+        data: DateSerializeDataTransformerData,
+        config: DateSerializeDataTransformerConfig,
+    ): Observable<DateSerializeDataTransformerDataT> {
+        return of(toIsoDateFormat(new Date(data)));
+    }
 }

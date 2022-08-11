@@ -20,15 +20,12 @@ import { I18nLocaleInterpolationData } from './types';
  * ```
  */
 @Pipe({
-  name: 'spyI18n',
+    name: 'spyI18n',
 })
 export class I18nPipe implements PipeTransform {
-  constructor(private i18nService: I18nService) {}
+    constructor(private i18nService: I18nService) {}
 
-  transform(
-    token: string,
-    data?: I18nLocaleInterpolationData,
-  ): Observable<string> {
-    return this.i18nService.translate(token, data);
-  }
+    transform(token: string, data?: I18nLocaleInterpolationData): Observable<string> {
+        return this.i18nService.translate(token, data);
+    }
 }

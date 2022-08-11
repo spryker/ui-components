@@ -5,8 +5,8 @@ import { IconModule } from '@spryker/icon';
 import { LinkComponent } from './link/link.component';
 
 @NgModule({
-  imports: [CommonModule, IconModule],
-  declarations: [LinkComponent],
-  exports: [LinkComponent],
+    imports: [CommonModule, IconModule],
+    declarations: [LinkComponent],
+    exports: [LinkComponent],
 })
 export class LinkModule {}

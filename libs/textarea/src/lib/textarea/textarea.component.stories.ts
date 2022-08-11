@@ -3,40 +3,31 @@ import { TextareaComponent } from './textarea.component';
 import { TextareaModule } from '../textarea.module';
 
 export default {
-  title: 'TextareaComponent',
-  component: TextareaComponent,
-  parameters: {
-    controls: {
-      include: [
-        'name',
-        'value',
-        'disabled',
-        'placeholder',
-        'rows',
-        'cols',
-        'attrs',
-        'spyId',
-      ],
+    title: 'TextareaComponent',
+    component: TextareaComponent,
+    parameters: {
+        controls: {
+            include: ['name', 'value', 'disabled', 'placeholder', 'rows', 'cols', 'attrs', 'spyId'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9147',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9147',
-      allowFullscreen: true,
+    args: {
+        name: 'textarea-name',
+        spyId: 'textarea-id',
+        placeholder: 'Some placeholder',
+        attrs: {
+            title: 'Some title',
+        },
     },
-  },
-  args: {
-    name: 'textarea-name',
-    spyId: 'textarea-id',
-    placeholder: 'Some placeholder',
-    attrs: {
-      title: 'Some title',
-    },
-  },
 } as Meta;
 
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [TextareaModule],
-  },
+    props: args,
+    moduleMetadata: {
+        imports: [TextareaModule],
+    },
 });

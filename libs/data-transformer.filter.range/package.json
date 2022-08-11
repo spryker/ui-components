@@ -1,17 +1,17 @@
 {
-  "name": "@spryker/data-transformer.filter.range",
-  "version": "0.2.4",
-  "peerDependencies": {
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/data-transformer": "^0.2.0",
-    "@spryker/data-transformer.collate": "^0.2.0",
-    "rxjs": "^7.4.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/data-transformer.filter.range",
+    "version": "0.2.4",
+    "peerDependencies": {
+        "@angular/common": ">=9.1.12",
+        "@angular/core": ">=9.1.12",
+        "@spryker/data-transformer": "^0.2.0",
+        "@spryker/data-transformer.collate": "^0.2.0",
+        "rxjs": "^7.4.0"
+    },
+    "dependencies": {
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

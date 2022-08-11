@@ -6,58 +6,56 @@ import { By } from '@angular/platform-browser';
 import { SidebarComponent } from './sidebar.component';
 
 describe('SidebarComponent', () => {
-  let triggerButton: DebugElement;
-  let component: SidebarComponent;
-  let fixture: ComponentFixture<SidebarComponent>;
+    let triggerButton: DebugElement;
+    let component: SidebarComponent;
+    let fixture: ComponentFixture<SidebarComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [NzLayoutModule],
-      providers: [],
-      declarations: [SidebarComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      teardown: { destroyAfterEach: false },
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [NzLayoutModule],
+            providers: [],
+            declarations: [SidebarComponent],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: false },
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SidebarComponent);
-    component = fixture.componentInstance;
+    beforeEach(() => {
+        fixture = TestBed.createComponent(SidebarComponent);
+        component = fixture.componentInstance;
 
-    fixture.detectChanges();
+        fixture.detectChanges();
 
-    triggerButton = fixture.debugElement.query(
-      By.css('.ant-layout-sider-trigger'),
-    );
-  });
+        triggerButton = fixture.debugElement.query(By.css('.ant-layout-sider-trigger'));
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 
-  it('should render trigger button', () => {
-    expect(triggerButton).toBeTruthy();
-  });
+    it('should render trigger button', () => {
+        expect(triggerButton).toBeTruthy();
+    });
 
-  it('should render icon into the button', () => {
-    const iconComponent = triggerButton.query(By.css('spy-icon'));
+    it('should render icon into the button', () => {
+        const iconComponent = triggerButton.query(By.css('spy-icon'));
 
-    expect(iconComponent).toBeTruthy();
-    expect(iconComponent.properties.name).toEqual('arrow-down');
-  });
+        expect(iconComponent).toBeTruthy();
+        expect(iconComponent.properties.name).toEqual('arrow-down');
+    });
 
-  it('should trigger sidebar', () => {
-    jest.spyOn(component.collapsedChange, 'emit');
-    triggerButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
+    it('should trigger sidebar', () => {
+        jest.spyOn(component.collapsedChange, 'emit');
+        triggerButton.triggerEventHandler('click', null);
+        fixture.detectChanges();
 
-    expect(component.collapsedChange.emit).toHaveBeenCalledWith(true);
-    expect(component.collapsed).toBeTruthy();
+        expect(component.collapsedChange.emit).toHaveBeenCalledWith(true);
+        expect(component.collapsed).toBeTruthy();
 
-    triggerButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
+        triggerButton.triggerEventHandler('click', null);
+        fixture.detectChanges();
 
-    expect(component.collapsedChange.emit).toHaveBeenCalledWith(false);
-    expect(component.collapsed).toBeFalsy();
-  });
+        expect(component.collapsedChange.emit).toHaveBeenCalledWith(false);
+        expect(component.collapsed).toBeFalsy();
+    });
 });

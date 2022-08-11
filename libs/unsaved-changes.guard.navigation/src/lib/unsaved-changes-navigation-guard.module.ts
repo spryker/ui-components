@@ -5,16 +5,13 @@ import { UnsavedChangesModule } from '@spryker/unsaved-changes';
 import { UnsavedChangesNavigationGuard } from './unsaved-changes-navigation-guard.service';
 
 @NgModule({
-  imports: [CommonModule],
+    imports: [CommonModule],
 })
 export class UnsavedChangesGuardNavigationModule {
-  static forRoot(): ModuleWithProviders<UnsavedChangesGuardNavigationModule> {
-    return {
-      ngModule: UnsavedChangesGuardNavigationModule,
-      providers: [
-        UnsavedChangesModule.withGuard(UnsavedChangesNavigationGuard)
-          .providers || [],
-      ],
-    };
-  }
+    static forRoot(): ModuleWithProviders<UnsavedChangesGuardNavigationModule> {
+        return {
+            ngModule: UnsavedChangesGuardNavigationModule,
+            providers: [UnsavedChangesModule.withGuard(UnsavedChangesNavigationGuard).providers || []],
+        };
+    }
 }

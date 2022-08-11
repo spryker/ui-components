@@ -1,15 +1,15 @@
 {
-  "name": "@spryker/logo",
-  "version": "0.4.4",
-  "peerDependencies": {
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/styles": "^0.6.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/logo",
+    "version": "0.4.4",
+    "peerDependencies": {
+        "@angular/common": ">=9.1.12",
+        "@angular/core": ">=9.1.12",
+        "@spryker/styles": "^0.6.0"
+    },
+    "dependencies": {
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

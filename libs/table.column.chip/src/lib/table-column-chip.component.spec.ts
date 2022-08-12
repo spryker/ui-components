@@ -6,64 +6,52 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ChipsModule } from '@spryker/chips';
 
 const configMock: any = [
-  {
-    text: 'mockedText',
-    color: 'green',
-  },
-  {
-    text: '${value}',
-  },
+    {
+        text: 'mockedText',
+        color: 'green',
+    },
+    {
+        text: '${value}',
+    },
 ];
 
 const context: any = {
-  value: 'mockedValue',
+    value: 'mockedValue',
 };
 
 describe('TableColumnChipComponent', () => {
-  const { testModule, createComponent } = getTestingForComponent(
-    TableColumnChipComponent,
-    {
-      ngModule: {
-        imports: [ChipsModule, DefaultContextSerializationModule],
-        declarations: [ContextPipe],
-      },
-    },
-  );
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [testModule],
-      teardown: { destroyAfterEach: false },
+    const { testModule, createComponent } = getTestingForComponent(TableColumnChipComponent, {
+        ngModule: {
+            imports: [ChipsModule, DefaultContextSerializationModule],
+            declarations: [ContextPipe],
+        },
     });
-  });
 
-  it('Template must render spy-chips node', async () => {
-    const host = await createComponent(
-      { config: configMock[0], context },
-      true,
-    );
-    const chipsElem = host.queryCss('spy-chips');
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
+    });
 
-    expect(chipsElem).toBeTruthy();
-  });
+    it('Template must render spy-chips node', async () => {
+        const host = await createComponent({ config: configMock[0], context }, true);
+        const chipsElem = host.queryCss('spy-chips');
 
-  it('Input color MUST be bound to className of spy-input', async () => {
-    const host = await createComponent(
-      { config: configMock[0], context },
-      true,
-    );
-    const chipsElem = host.queryCss('spy-chips');
+        expect(chipsElem).toBeTruthy();
+    });
 
-    expect(chipsElem!.properties.className).toContain(configMock[0].color);
-  });
+    it('Input color MUST be bound to className of spy-input', async () => {
+        const host = await createComponent({ config: configMock[0], context }, true);
+        const chipsElem = host.queryCss('spy-chips');
 
-  it('Input text with dynamic text string MUST be content of spy-chips element', async () => {
-    const host = await createComponent(
-      { config: configMock[1], context },
-      true,
-    );
-    const chipsElem = host.queryCss('spy-chips');
+        expect(chipsElem!.properties.className).toContain(configMock[0].color);
+    });
 
-    expect(chipsElem?.nativeElement.textContent).toContain(context.value);
-  });
+    it('Input text with dynamic text string MUST be content of spy-chips element', async () => {
+        const host = await createComponent({ config: configMock[1], context }, true);
+        const chipsElem = host.queryCss('spy-chips');
+
+        expect(chipsElem?.nativeElement.textContent).toContain(context.value);
+    });
 });

@@ -11,9 +11,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconOpenEyeModule])],
+    providers: [provideIcons([IconOpenEyeModule])],
 })
 export class IconOpenEyeModule {
-  static icon = 'open-eye';
-  static svg = svg;
+    static icon = 'open-eye';
+    static svg = svg;
 }

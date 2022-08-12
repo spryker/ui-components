@@ -16,9 +16,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconArrowDownModule])],
+    providers: [provideIcons([IconArrowDownModule])],
 })
 export class IconArrowDownModule {
-  static icon = 'arrow-down';
-  static svg = svg;
+    static icon = 'arrow-down';
+    static svg = svg;
 }

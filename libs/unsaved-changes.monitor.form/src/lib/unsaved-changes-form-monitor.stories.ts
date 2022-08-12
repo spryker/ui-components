@@ -1,22 +1,22 @@
+import { Meta } from '@storybook/angular';
 import { UnsavedChangesModule } from '@spryker/unsaved-changes';
 import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.browser';
-import { IStory } from '@storybook/angular';
 
 import { UnsavedChangesFormMonitorModule } from './unsaved-changes-form-monitor.module';
 
 export default {
-  title: 'UnsavedChangesMonitorForm',
-};
+    title: 'UnsavedChangesMonitorForm',
+} as Meta;
 
-export const primary = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      UnsavedChangesFormMonitorModule,
-      UnsavedChangesModule.forRoot(),
-      UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
-    ],
-  },
-  template: `
+export const primary = () => ({
+    moduleMetadata: {
+        imports: [
+            UnsavedChangesFormMonitorModule,
+            UnsavedChangesModule.forRoot(),
+            UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
+        ],
+    },
+    template: `
     <form spyUnsavedChangesFormMonitor>
       <input type="text" style="border: 1px solid red" />
 

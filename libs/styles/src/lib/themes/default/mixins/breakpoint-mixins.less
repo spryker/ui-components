@@ -2,12 +2,14 @@
  * Creates @breakpoint variable with 0 or the first value from the $edges list.
  * @param {List} @edges. List length must be less than or equal to 2.
  */
+/* stylelint-disable property-no-unknown */
 .breakpoint-edge-min-mixin(@edges) {
-  @breakpoint-edges: {
-    min: if(length(@edges) > 0, extract(@edges, 1), 0);
-    max: if(length(@edges) > 1, extract(@edges, 2), null);
-  };
+    @breakpoint-edges: {
+        min: if(length(@edges) > 0, extract(@edges, 1), 0);
+        max: if(length(@edges) > 1, extract(@edges, 2), null);
+    };
 }
+/* stylelint-enable */
 
 /**
  * Sets screen media query with min-width set to @min parameter.
@@ -15,9 +17,9 @@
  * @param @rules Extends mixin with properties for media query.
  */
 .breakpoint-media-min-mixin(@min: 0, @rules) {
-  @media only screen and (min-width: @min) {
-    @rules();
-  }
+    @media only screen and (min-width: @min) {
+        @rules();
+    }
 }
 
 /**
@@ -27,12 +29,12 @@
  * @param @rules Extends mixin with properties for media query.
  */
 .breakpoint-media-between-mixin(@min: 0, @max: null, @rules) {
-  & when not (@max = null) {
-    @media only screen and (min-width: @min) and (max-width: @max) {
-      @rules();
+    & when not (@max = null) {
+        @media only screen and (min-width: @min) and (max-width: @max) {
+            @rules();
+        }
     }
-  }
-  & when (@max = null) {
-    .breakpoint-media-min-mixin(@min, @rules);
-  }
+    & when (@max = null) {
+        .breakpoint-media-min-mixin(@min, @rules);
+    }
 }

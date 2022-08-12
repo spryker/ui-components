@@ -7,13 +7,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { CardComponent } from './card/card.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzCardModule,
-    CustomElementBoundaryModule,
-    ApplyContextsModule,
-  ],
-  declarations: [CardComponent],
-  exports: [CardComponent],
+    imports: [CommonModule, NzCardModule, CustomElementBoundaryModule, ApplyContextsModule],
+    declarations: [CardComponent],
+    exports: [CardComponent],
 })
 export class CardModule {}

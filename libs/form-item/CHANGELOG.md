@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.4.5...@spryker/form-item@0.4.6-next.0) (2022-08-11)
+
+**Note:** Version bump only for package @spryker/form-item
+
+
+
+
+
+## [0.4.5](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.4.5-next.0...@spryker/form-item@0.4.5) (2022-07-06)
+
+**Note:** Version bump only for package @spryker/form-item
+
+
+
+
+
+## [0.4.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.4.4...@spryker/form-item@0.4.5-next.0) (2022-06-29)
+
+
+### Bug Fixes
+
+* **form-item:** fix input boolean type ([db7ff01](https://github.com/spryker/ui-components/commit/db7ff01765eaa05f33956b81f8ab07e5a6b4d0c8))
+
+
+
+
+
 ## [0.4.4](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.4.4-next.1...@spryker/form-item@0.4.4) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/form-item

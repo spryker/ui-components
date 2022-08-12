@@ -9,16 +9,16 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzDatePickerModule,
-    FormsModule,
-    IconModule,
-    IconCalendarModule,
-    LocaleModule,
-    ToIsoDateFormatModule,
-  ],
-  declarations: [DatePickerComponent],
-  exports: [DatePickerComponent],
+    imports: [
+        CommonModule,
+        NzDatePickerModule,
+        FormsModule,
+        IconModule,
+        IconCalendarModule,
+        LocaleModule,
+        ToIsoDateFormatModule,
+    ],
+    declarations: [DatePickerComponent],
+    exports: [DatePickerComponent],
 })
 export class DatePickerModule {}

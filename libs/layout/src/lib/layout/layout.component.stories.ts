@@ -1,16 +1,18 @@
+import { Meta } from '@storybook/angular';
 import { LayoutComponent } from './layout.component';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { LayoutModule } from '../layout.module';
 
 export default {
-  title: 'LayoutComponent',
-};
+    title: 'LayoutComponent',
+    component: LayoutComponent,
+} as Meta;
 
-export const primary = () => ({
-  moduleMetadata: {
-    imports: [LayoutModule, NzLayoutModule],
-  },
-  template: `
+export const primary = (args) => ({
+    props: args,
+    moduleMetadata: {
+        imports: [LayoutModule],
+    },
+    template: `
     <spy-layout>
       Layout Content
     </spy-layout>

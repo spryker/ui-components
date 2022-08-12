@@ -4,7 +4,7 @@
  * @param @rules Extends mixin with properties.
  */
 .loop-mixin (@i, @rules) when (@i > 0) {
-  @rules();
+    @rules();
 
-  .loop-mixin(@i - 1, @rules);
+    .loop-mixin(@i - 1, @rules);
 }

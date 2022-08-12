@@ -1,17 +1,17 @@
 {
-  "name": "@spryker/table.column.text",
-  "version": "0.3.2",
-  "peerDependencies": {
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/styles": "^0.6.0",
-    "@spryker/table": "^0.6.0",
-    "@spryker/utils": "^0.3.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/table.column.text",
+    "version": "0.3.3-next.0",
+    "peerDependencies": {
+        "@angular/common": ">=9.1.12",
+        "@angular/core": ">=9.1.12",
+        "@spryker/styles": "^0.6.0",
+        "@spryker/table": "^0.6.0",
+        "@spryker/utils": "^0.3.0"
+    },
+    "dependencies": {
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

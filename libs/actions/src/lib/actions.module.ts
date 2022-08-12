@@ -4,15 +4,13 @@ import { ActionTypesDeclaration } from './types';
 import { provideActions } from './token';
 
 @NgModule({
-  imports: [CommonModule],
+    imports: [CommonModule],
 })
 export class ActionsModule {
-  static withActions(
-    actions: ActionTypesDeclaration,
-  ): ModuleWithProviders<ActionsModule> {
-    return {
-      ngModule: ActionsModule,
-      providers: [provideActions(actions)],
-    };
-  }
+    static withActions(actions: ActionTypesDeclaration): ModuleWithProviders<ActionsModule> {
+        return {
+            ngModule: ActionsModule,
+            providers: [provideActions(actions)],
+        };
+    }
 }

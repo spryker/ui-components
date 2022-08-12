@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/utils@0.3.5...@spryker/utils@0.3.6-next.0) (2022-08-11)
+
+**Note:** Version bump only for package @spryker/utils
+
+
+
+
+
+## [0.3.5](https://github.com/spryker/ui-components/compare/@spryker/utils@0.3.5-next.0...@spryker/utils@0.3.5) (2022-07-06)
+
+**Note:** Version bump only for package @spryker/utils
+
+
+
+
+
+## [0.3.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/utils@0.3.4...@spryker/utils@0.3.5-next.0) (2022-06-29)
+
+
+### Bug Fixes
+
+* **utils:** added `trigger-change-event` directive ([f0b6435](https://github.com/spryker/ui-components/commit/f0b6435512715917e8e6894b9adb8514652bf37c))
+* **utils:** fixed `onClick()` method implementation ([09c466d](https://github.com/spryker/ui-components/commit/09c466dd7215dde842a6e8b760c26a7591e35c33))
+* **utils:** fixed behavior with ElementRef in the `trigger-change-event` directive ([50a2cbd](https://github.com/spryker/ui-components/commit/50a2cbd0e840f9c355305a1f1b34f0ea294d8758))
+
+
+
+
+
 ## [0.3.4](https://github.com/spryker/ui-components/compare/@spryker/utils@0.3.4-next.1...@spryker/utils@0.3.4) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/utils

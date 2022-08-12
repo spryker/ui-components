@@ -1,53 +1,46 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  OnChanges,
-  Renderer2,
-  SimpleChanges,
-} from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
-  selector: '[spyApplyAttrs]',
+    selector: '[spyApplyAttrs]',
 })
 export class ApplyAttrsDirective implements OnChanges {
-  @Input() spyApplyAttrs: Record<string, string> = {};
+    @Input() spyApplyAttrs: Record<string, string> = {};
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+    constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  updateAttrs(): void {
-    if (!this.spyApplyAttrs) {
-      return;
+    updateAttrs(): void {
+        if (!this.spyApplyAttrs) {
+            return;
+        }
+
+        const element = this.el.nativeElement;
+        const attrArray: [string, string][] = Object.entries(this.spyApplyAttrs);
+
+        attrArray.forEach(([key, value]) => {
+            this.renderer.setAttribute(element, key, value);
+        });
     }
 
-    const element = this.el.nativeElement;
-    const attrArray: [string, string][] = Object.entries(this.spyApplyAttrs);
+    deleteAttrs(prevAttrs: Record<string, string>): void {
+        const element = this.el.nativeElement;
+        const prevAttrsArray = Object.entries(prevAttrs);
 
-    attrArray.forEach(([key, value]) => {
-      this.renderer.setAttribute(element, key, value);
-    });
-  }
+        prevAttrsArray.forEach(([key]) => {
+            const shouldKeepAttr = this.spyApplyAttrs && key in this.spyApplyAttrs;
 
-  deleteAttrs(prevAttrs: Record<string, string>): void {
-    const element = this.el.nativeElement;
-    const prevAttrsArray = Object.entries(prevAttrs);
+            if (shouldKeepAttr) {
+                return;
+            }
 
-    prevAttrsArray.forEach(([key]) => {
-      const shouldKeepAttr = this.spyApplyAttrs && key in this.spyApplyAttrs;
-
-      if (shouldKeepAttr) {
-        return;
-      }
-
-      this.renderer.removeAttribute(element, key);
-    });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.spyApplyAttrs && changes.spyApplyAttrs.previousValue) {
-      this.deleteAttrs(changes.spyApplyAttrs.previousValue);
+            this.renderer.removeAttribute(element, key);
+        });
     }
 
-    this.updateAttrs();
-  }
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.spyApplyAttrs && changes.spyApplyAttrs.previousValue) {
+            this.deleteAttrs(changes.spyApplyAttrs.previousValue);
+        }
+
+        this.updateAttrs();
+    }
 }

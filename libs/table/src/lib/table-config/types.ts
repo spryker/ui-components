@@ -1,4 +1,4 @@
 export interface TableFeatureConfig {
-  enabled?: boolean;
-  [k: string]: unknown;
+    enabled?: boolean;
+    [k: string]: unknown;
 }

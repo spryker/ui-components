@@ -1,131 +1,115 @@
 import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  TestTableFeatureTplDirective,
-  TestTableFeatureComponent,
-  TestTableFeatureMocks,
-} from '@spryker/table/testing';
+import { TestTableFeatureTplDirective, TestTableFeatureComponent, TestTableFeatureMocks } from '@spryker/table/testing';
 import { TableTotalFeatureComponent } from './table-total-feature.component';
 import {
-  TableColumnsResolverService,
-  TableData,
-  TableDataConfiguratorService,
-  TableDatasourceService,
+    TableColumnsResolverService,
+    TableData,
+    TableDataConfiguratorService,
+    TableDatasourceService,
 } from '@spryker/table';
 import { PluckModule } from '@spryker/utils';
 import { TestLocaleModule, I18nTestService } from '@spryker/locale/testing';
 
 @Component({
-  selector: 'spy-test-host',
-  template: `
-    <test-table-feature>
-      <spy-table-total-feature></spy-table-total-feature>
-    </test-table-feature>
-  `,
+    selector: 'spy-test-host',
+    template: `
+        <test-table-feature>
+            <spy-table-total-feature></spy-table-total-feature>
+        </test-table-feature>
+    `,
 })
 class TestHostComponent {}
 
 describe('TableTotalFeatureComponent', () => {
-  let fixture: ComponentFixture<TestHostComponent>;
-  let testTableFeature: TestTableFeatureComponent;
-  let mockData: TableData;
-  let service: I18nTestService;
+    let fixture: ComponentFixture<TestHostComponent>;
+    let testTableFeature: TestTableFeatureComponent;
+    let mockData: TableData;
+    let service: I18nTestService;
 
-  const totalContainer = '.spy-table-total-feature';
+    const totalContainer = '.spy-table-total-feature';
 
-  function queryTotal(): DebugElement {
-    return fixture.debugElement.query(By.css(totalContainer));
-  }
+    function queryTotal(): DebugElement {
+        return fixture.debugElement.query(By.css(totalContainer));
+    }
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [PluckModule, TestLocaleModule],
-      declarations: [
-        TestTableFeatureTplDirective,
-        TableTotalFeatureComponent,
-        TestTableFeatureComponent,
-        TestHostComponent,
-      ],
-      providers: [
-        {
-          provide: TableColumnsResolverService,
-          useValue: 'TableColumnsResolverService',
-        },
-        {
-          provide: TableDatasourceService,
-          useValue: 'TableDatasourceService',
-        },
-        {
-          provide: TableDataConfiguratorService,
-          useValue: 'TableDataConfiguratorService',
-        },
-        {
-          provide: TestTableFeatureMocks,
-          useValue: {
-            config: {
-              enabled: true,
-            },
-          },
-        },
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
-      teardown: { destroyAfterEach: false },
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [PluckModule, TestLocaleModule],
+            declarations: [
+                TestTableFeatureTplDirective,
+                TableTotalFeatureComponent,
+                TestTableFeatureComponent,
+                TestHostComponent,
+            ],
+            providers: [
+                {
+                    provide: TableColumnsResolverService,
+                    useValue: 'TableColumnsResolverService',
+                },
+                {
+                    provide: TableDatasourceService,
+                    useValue: 'TableDatasourceService',
+                },
+                {
+                    provide: TableDataConfiguratorService,
+                    useValue: 'TableDataConfiguratorService',
+                },
+                {
+                    provide: TestTableFeatureMocks,
+                    useValue: {
+                        config: {
+                            enabled: true,
+                        },
+                    },
+                },
+            ],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: false },
+        });
     });
-  });
 
-  beforeEach(fakeAsync(() => {
-    fixture = TestBed.createComponent(TestHostComponent);
-    testTableFeature = fixture.debugElement.query(
-      By.directive(TestTableFeatureComponent),
-    ).componentInstance;
+    beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(TestHostComponent);
+        testTableFeature = fixture.debugElement.query(By.directive(TestTableFeatureComponent)).componentInstance;
 
-    service = TestBed.inject(I18nTestService);
+        service = TestBed.inject(I18nTestService);
 
-    mockData = {
-      data: [{}],
-      page: 0,
-      pageSize: 0,
-      total: 10,
-    };
+        mockData = {
+            data: [{}],
+            page: 0,
+            pageSize: 0,
+            total: 10,
+        };
 
-    fixture.detectChanges();
-    tick();
+        fixture.detectChanges();
+        tick();
 
-    testTableFeature.featureMocks?.table.data$?.next(mockData);
-    fixture.detectChanges();
-  }));
+        testTableFeature.featureMocks?.table.data$?.next(mockData);
+        fixture.detectChanges();
+    }));
 
-  it('should render `.table-total-feature`', fakeAsync(() => {
-    expect(queryTotal()).toBeTruthy();
-  }));
+    it('should render `.table-total-feature`', fakeAsync(() => {
+        expect(queryTotal()).toBeTruthy();
+    }));
 
-  it('should render number of total items', fakeAsync(() => {
-    const token = 'table.feature.total.total:number';
+    it('should render number of total items', fakeAsync(() => {
+        const token = 'table.feature.total.total:number';
 
-    expect(queryTotal().nativeElement.textContent).toContain(token);
-    expect(service.getLocaleData(token, 'number')).toBe(mockData.total);
-  }));
+        expect(queryTotal().nativeElement.textContent).toContain(token);
+        expect(service.getLocaleData(token, 'number')).toBe(mockData.total);
+    }));
 
-  it('should render number of selected items', fakeAsync(() => {
-    const selectedItemsArr = [{}, {}, {}];
-    const token = 'table.feature.total.selected:number';
+    it('should render number of selected items', fakeAsync(() => {
+        const selectedItemsArr = [{}, {}, {}];
+        const token = 'table.feature.total.selected:number';
 
-    testTableFeature.featureMocks?.table?.eventBus?.emit(
-      'itemSelection',
-      selectedItemsArr,
-    );
+        testTableFeature.featureMocks?.table?.eventBus?.emit('itemSelection', selectedItemsArr);
 
-    fixture.detectChanges();
+        fixture.detectChanges();
 
-    expect(queryTotal().nativeElement.textContent).toContain(token);
-    expect(service.getLocaleData(token, 'number')).toBe(
-      selectedItemsArr.length,
-    );
-  }));
+        expect(queryTotal().nativeElement.textContent).toContain(token);
+        expect(service.getLocaleData(token, 'number')).toBe(selectedItemsArr.length);
+    }));
 });

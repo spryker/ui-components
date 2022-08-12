@@ -1,8 +1,8 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/table.filter.date-range",
-  "lib": {
-    "entryFile": "src/index.ts",
-    "styleIncludePaths": ["../styles/src/lib"]
-  }
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/libs/table.filter.date-range",
+    "lib": {
+        "entryFile": "src/index.ts",
+        "styleIncludePaths": ["../styles/src/lib"]
+    }
 }

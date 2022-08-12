@@ -1,23 +1,20 @@
 <nz-sider
-  [nzWidth]="width"
-  [nzCollapsedWidth]="collapsedWidth"
-  [nzCollapsed]="collapsed$ | async"
-  [nzTrigger]="trigger || triggerButton"
-  [nzReverseArrow]="true"
-  (nzCollapsedChange)="updateCollapse($event)"
-  nzCollapsible="true"
-  nzTheme="light"
-  spyApplyContexts="spy-bg-white"
+    [nzWidth]="width"
+    [nzCollapsedWidth]="collapsedWidth"
+    [nzCollapsed]="collapsed$ | async"
+    [nzTrigger]="trigger || triggerButton"
+    [nzReverseArrow]="true"
+    (nzCollapsedChange)="updateCollapse($event)"
+    nzCollapsible="true"
+    nzTheme="light"
+    spyApplyContexts="spy-bg-white"
 >
-  <span class="spy-sidebar__content" spyCustomElementBoundary>
-    <ng-content></ng-content>
-  </span>
+    <span class="spy-sidebar__content" spyCustomElementBoundary>
+        <ng-content></ng-content>
+    </span>
 </nz-sider>
 <ng-template #triggerButton>
-  <div class="ant-layout-sider-trigger-inner">
-    <spy-icon
-      [name]="arrowIcon"
-      class="ant-layout-sider-trigger-icon"
-    ></spy-icon>
-  </div>
+    <div class="ant-layout-sider-trigger-inner">
+        <spy-icon [name]="arrowIcon" class="ant-layout-sider-trigger-icon"></spy-icon>
+    </div>
 </ng-template>

@@ -3,27 +3,24 @@ import { I18nLocaleInterpolationData } from '@spryker/locale';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class I18nTestService {
-  private localeData: Record<string, Record<string, unknown>> = {};
+    private localeData: Record<string, Record<string, unknown>> = {};
 
-  setLocale = jest.fn();
+    setLocale = jest.fn();
 
-  addLocaleData(token: string, data: I18nLocaleInterpolationData = {}): void {
-    this.localeData[token] = data;
-  }
+    addLocaleData(token: string, data: I18nLocaleInterpolationData = {}): void {
+        this.localeData[token] = data;
+    }
 
-  getLocaleData(token: string, key: string): unknown {
-    return this.localeData[token][key];
-  }
+    getLocaleData(token: string, key: string): unknown {
+        return this.localeData[token][key];
+    }
 
-  translate(
-    token: string,
-    data?: I18nLocaleInterpolationData,
-  ): Observable<string> {
-    this.addLocaleData(token, data);
+    translate(token: string, data?: I18nLocaleInterpolationData): Observable<string> {
+        this.addLocaleData(token, data);
 
-    return of(token);
-  }
+        return of(token);
+    }
 }

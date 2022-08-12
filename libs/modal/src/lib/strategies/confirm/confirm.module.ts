@@ -6,7 +6,7 @@ import { OfTypePipeModule } from '@spryker/utils';
 import { ConfirmModalComponent } from './confirm.component';
 
 @NgModule({
-  imports: [CommonModule, ButtonModule, OfTypePipeModule],
-  declarations: [ConfirmModalComponent],
+    imports: [CommonModule, ButtonModule, OfTypePipeModule],
+    declarations: [ConfirmModalComponent],
 })
 export class ConfirmModalModule {}

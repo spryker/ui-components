@@ -48,6 +48,12 @@ nx test <my-lib>
 nx lint <my-lib>
 ```
 
+#### Lint styles
+
+```bash
+npm run stylelint
+```
+
 #### Storybook
 
 _NOTE:_ Before running any storybooks - make sure to cleanup libs from `dist` folder
@@ -104,19 +110,19 @@ For this every component library should have associated ONE level tag:
 
 ## Available Tags
 
-- `type:*` Describes types of library
-  - `type:component-service` Component with service library
-  - `type:component` Component library
-  - `type:service` Services library
-  - `type:style` Styles library
-  - `type:util` Helper utilities library
-  - `type:meta` Meta package that does not get deployed to NPM (internal infra)
-- `level:*` Describes type of component in Atomic Design framework
-  - `level:atom`
-  - `level:molecule`
-  - `level:organism`
-  - `level:template`
-  - `level:page`
+-   `type:*` Describes types of library
+    -   `type:component-service` Component with service library
+    -   `type:component` Component library
+    -   `type:service` Services library
+    -   `type:style` Styles library
+    -   `type:util` Helper utilities library
+    -   `type:meta` Meta package that does not get deployed to NPM (internal infra)
+-   `level:*` Describes type of component in Atomic Design framework
+    -   `level:atom`
+    -   `level:molecule`
+    -   `level:organism`
+    -   `level:template`
+    -   `level:page`
 
 ## Code generation
 
@@ -132,72 +138,72 @@ nx g @nrwl/angular:library <my-lib> --importPath=@spryker/<my-lib> --tags level:
 
 When library is generated please do the following:
 
-- In `tsconfig.base.json`
-  - remove newly generated path `paths[@spryker/<lib-name>]`:
-  ```json
-    "paths": {
-      - "@spryker/<lib-name>": [
-        "libs/<lib-name>/src/index.ts"
-      ]
-    }
-  ```
-- In `tsconfig.json`
-  - add the following to the `references`:
-  ```json
-    {
-      "path": "./libs/<lib-name>/tsconfig.lib.json"
-    },
-    {
-      "path": "./libs/<lib-name>/tsconfig.spec.json"
-    },
-  ```
-- In `libs/<lib-name>/.eslintrc.json`
-  - remove following section:
-  ```json
-    "extends": [
-      "plugin:@nrwl/nx/angular",
-      "plugin:@angular-eslint/template/process-inline-templates"
-    ],
-  ```
-- In `libs/<lib-name>/jest.config.js`
-  - remove following sections:
-  ```json
-    "transform": { ... },
-    "snapshotSerializers": { ... }
-  ```
-- In `libs/<lib-name>/ng-package.json`
-  - add `styleIncludePaths` to `lib` for theme imports:
-  ```json
-    "lib": {
-      ...
-      "styleIncludePaths": ["../styles/src/lib"]
-    }
-  ```
-- In `libs/<lib-name>/package.json`
-  - add `publishConfig` prop with `access=public` value:
-  ```json
-    "publishConfig": {
-      "access": "public"
-    },
-  ```
-- In `libs/<lib-name>/tsconfig.json`
-  - remove following sections:
-  ```json
-    "compilerOptions": { ... },
-    "angularCompilerOptions": { ... }
-  ```
-- In `libs/<lib-name>/tsconfig.lib.prod.json`
-  - remove following section:
-  ```json
-    "angularCompilerOptions": {
-      "compilationMode": "partial"
-    }
-  ```
-- In `lib/<lib-name>/src/test-setup.ts`
-  - add global setup import:
-  ```ts
-  import '../../../config/test-setup';
-  ```
+-   In `tsconfig.base.json`
+    -   remove newly generated path `paths[@spryker/<lib-name>]`:
+    ```json
+      "paths": {
+        - "@spryker/<lib-name>": [
+          "libs/<lib-name>/src/index.ts"
+        ]
+      }
+    ```
+-   In `tsconfig.json`
+    -   add the following to the `references`:
+    ```json
+      {
+        "path": "./libs/<lib-name>/tsconfig.lib.json"
+      },
+      {
+        "path": "./libs/<lib-name>/tsconfig.spec.json"
+      },
+    ```
+-   In `libs/<lib-name>/.eslintrc.json`
+    -   remove following section:
+    ```json
+      "extends": [
+        "plugin:@nrwl/nx/angular",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+    ```
+-   In `libs/<lib-name>/jest.config.js`
+    -   remove following sections:
+    ```json
+      "transform": { ... },
+      "snapshotSerializers": { ... }
+    ```
+-   In `libs/<lib-name>/ng-package.json`
+    -   add `styleIncludePaths` to `lib` for theme imports:
+    ```json
+      "lib": {
+        ...
+        "styleIncludePaths": ["../styles/src/lib"]
+      }
+    ```
+-   In `libs/<lib-name>/package.json`
+    -   add `publishConfig` prop with `access=public` value:
+    ```json
+      "publishConfig": {
+        "access": "public"
+      },
+    ```
+-   In `libs/<lib-name>/tsconfig.json`
+    -   remove following sections:
+    ```json
+      "compilerOptions": { ... },
+      "angularCompilerOptions": { ... }
+    ```
+-   In `libs/<lib-name>/tsconfig.lib.prod.json`
+    -   remove following section:
+    ```json
+      "angularCompilerOptions": {
+        "compilationMode": "partial"
+      }
+    ```
+-   In `lib/<lib-name>/src/test-setup.ts`
+    -   add global setup import:
+    ```ts
+    import '../../../config/test-setup';
+    ```
 
 ### Component
 
@@ -217,7 +223,7 @@ nx g @nrwl/storybook:configuration --name=<my-lib>
 
 _NOTE:_ Do the following updates after command above:
 
-- Add `import '../../../.storybook/preview';` to the `.storybook/preview.js`
+-   Add `import '../../../.storybook/preview';` to the `.storybook/preview.js`
 
 ### Library Stories
 
@@ -294,18 +300,18 @@ All releases are done by merging/pushing to release branches via Travis CI.
 
 During the release:
 
-- git tags are created
-- package versions updated
-- package changelogs updated
-- packages published to NPM registry
+-   git tags are created
+-   package versions updated
+-   package changelogs updated
+-   packages published to NPM registry
 
 These are the release branches (`git branch` => `@npm tag`):
 
-- `master` => `@latest`
-- `next` => `@next`
-- `beta` => `@beta`
-- `alpha` => `@alpha`
-- `rc` => `@rc`
+-   `master` => `@latest`
+-   `next` => `@next`
+-   `beta` => `@beta`
+-   `alpha` => `@alpha`
+-   `rc` => `@rc`
 
 ### Release Recovery
 
@@ -313,9 +319,9 @@ These are the release branches (`git branch` => `@npm tag`):
 
 Sometimes publishing to NPM may fail due to several reasons:
 
-- NPM services experience outages
-- Configuration of certain packages prevent them from being published by NPM
-  (ex. public access is not explicitly set)
+-   NPM services experience outages
+-   Configuration of certain packages prevent them from being published by NPM
+    (ex. public access is not explicitly set)
 
 This may result in some or all packages not published even when version
 and changelogs were updated and pushed back to git.
@@ -327,11 +333,11 @@ In this case you need to:
 
 **Recovery branches for republishing:**
 
-- `master` => `republish/master`
-- `next` => `republish/next`
-- `beta` => `republish/beta`
-- `alpha` => `republish/alpha`
-- `rc` => `republish/rc`
+-   `master` => `republish/master`
+-   `next` => `republish/next`
+-   `beta` => `republish/beta`
+-   `alpha` => `republish/alpha`
+-   `rc` => `republish/rc`
 
 After branch is pushed to CI it will attempt to find unpublished packages in NPM
 and try to publish them again with the same versions.
@@ -360,18 +366,18 @@ These capabilities include generating applications, libraries, etc as well as th
 
 Below are some plugins which you can add to your workspace:
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+-   [Angular](https://angular.io)
+    -   `ng add @nrwl/angular`
+-   [React](https://reactjs.org)
+    -   `ng add @nrwl/react`
+-   Web (no framework frontends)
+    -   `ng add @nrwl/web`
+-   [Nest](https://nestjs.com)
+    -   `ng add @nrwl/nest`
+-   [Express](https://expressjs.com)
+    -   `ng add @nrwl/express`
+-   [Node](https://nodejs.org)
+    -   `ng add @nrwl/node`
 
 ## Generate an application
 

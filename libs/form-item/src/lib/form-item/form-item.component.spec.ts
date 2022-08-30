@@ -2,9 +2,8 @@
 import { NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { OfTypePipeModule } from '@spryker/utils';
-
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { FormItemComponent } from './form-item.component';
 
 describe('FormItemModule', () => {
@@ -73,7 +72,6 @@ describe('FormItemModule', () => {
 
     it('should not render label on noLabel', async () => {
         const host = await createComponent({ noLabel: true }, true);
-
         const labelComponent = host.queryCss('nz-form-label');
 
         expect(labelComponent).toBeFalsy();
@@ -81,7 +79,6 @@ describe('FormItemModule', () => {
 
     it('should add no-spaces class to nz-form-item', async () => {
         const host = await createComponent({ noSpaces: true }, true);
-
         const formItemComponent = host.queryCss('nz-form-item');
 
         expect(formItemComponent).toBeTruthy();
@@ -90,7 +87,6 @@ describe('FormItemModule', () => {
 
     it('should show error validation message', async () => {
         const host = await createComponent({ error: 'Error Message' }, true);
-
         const formControlElem = host.queryCss('nz-form-control');
 
         expect(formControlElem).toBeTruthy();
@@ -100,7 +96,6 @@ describe('FormItemModule', () => {
 
     it('should show warning validation message', async () => {
         const host = await createComponent({ warning: 'Warning Message' }, true);
-
         const formControlElem = host.queryCss('nz-form-control');
 
         expect(formControlElem).toBeTruthy();
@@ -110,7 +105,6 @@ describe('FormItemModule', () => {
 
     it('should show hint validation message', async () => {
         const host = await createComponent({ hint: 'Hint Message' }, true);
-
         const formControlElem = host.queryCss('nz-form-control');
 
         expect(formControlElem).toBeTruthy();

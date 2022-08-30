@@ -1,6 +1,6 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { StaticHtmlRendererModule } from './static-html-renderer.module';
 
 const mockHtmlTemplate = `<p>Hello World!!!</p>`;
@@ -10,47 +10,39 @@ const mockHtmlTemplate = `<p>Hello World!!!</p>`;
     template: ` <spy-html-renderer [html]="html"></spy-html-renderer> `,
 })
 class TestComponent {
-    html: any;
+    @Input() html: any;
 }
 
 describe('StaticHtmlRendererDirective', () => {
-    let component: TestComponent;
-    let fixture: ComponentFixture<TestComponent>;
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
+    const { testModule, createComponent } = getTestingForComponent(TestComponent, {
+        ngModule: {
             imports: [StaticHtmlRendererModule],
-            declarations: [TestComponent],
             schemas: [NO_ERRORS_SCHEMA],
-            teardown: { destroyAfterEach: false },
-        }).compileComponents();
-    }));
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        component = fixture.componentInstance;
+        },
     });
 
-    it('should render @Input(html) inside of `spy-html-renderer`', () => {
-        const htmlRendererElem = fixture.debugElement.query(By.css('spy-html-renderer .spy-html-renderer__content'));
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
+    });
 
-        component.html = mockHtmlTemplate;
-        fixture.detectChanges();
+    it('should render @Input(html) inside of `spy-html-renderer`', async () => {
+        const host = await createComponent({ html: mockHtmlTemplate }, true);
+        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
 
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
     });
 
     it('should render html inside `spy-html-renderer` when @Input(html) was changes', async () => {
+        const host = await createComponent({ html: mockHtmlTemplate }, true);
         const mockRerenderHtml = `<p>Rerendered!!!</p>`;
-        const htmlRendererElem = fixture.debugElement.query(By.css('spy-html-renderer .spy-html-renderer__content'));
-
-        component.html = mockHtmlTemplate;
-        fixture.detectChanges();
+        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
 
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
 
-        component.html = mockRerenderHtml;
-        fixture.detectChanges();
+        host.setInputs({ html: mockRerenderHtml }, true);
 
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml);
     });

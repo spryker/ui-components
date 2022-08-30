@@ -1,9 +1,9 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { Component, Input, NO_ERRORS_SCHEMA, Output } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { By } from '@angular/platform-browser';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { UrlHtmlRendererModule } from './url-html-renderer.module';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 
 const mockUrl = '/html-request';
 const mockResponse = {
@@ -19,20 +19,24 @@ class MockAjaxActionService {
     template: ` <spy-html-renderer [urlHtml]="urlHtml" (urlHtmlLoading)="urlHtmlLoading($event)"></spy-html-renderer> `,
 })
 class TestComponent {
-    urlHtml: any;
+    @Input() urlHtml: any;
     urlHtmlLoading = jest.fn<boolean, any[]>();
 }
 
 describe('UrlHtmlRendererDirective', () => {
-    let component: TestComponent;
-    let fixture: ComponentFixture<TestComponent>;
     let httpTestingController: HttpTestingController;
     let mockAjaxActionService: MockAjaxActionService;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
+    const { testModule, createComponent } = getTestingForComponent(TestComponent, {
+        ngModule: {
             imports: [UrlHtmlRendererModule, HttpClientTestingModule],
-            declarations: [TestComponent],
+            schemas: [NO_ERRORS_SCHEMA],
+        },
+    });
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
             providers: [
                 MockAjaxActionService,
                 {
@@ -40,14 +44,9 @@ describe('UrlHtmlRendererDirective', () => {
                     useExisting: MockAjaxActionService,
                 },
             ],
-            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
-        }).compileComponents();
-    }));
+        });
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        component = fixture.componentInstance;
         httpTestingController = TestBed.inject(HttpTestingController);
         mockAjaxActionService = TestBed.inject(MockAjaxActionService);
     });
@@ -56,90 +55,77 @@ describe('UrlHtmlRendererDirective', () => {
         httpTestingController.verify();
     });
 
-    it('should render html response inside of `spy-html-renderer`', () => {
-        const htmlRendererElem = fixture.debugElement.query(By.css('spy-html-renderer .spy-html-renderer__content'));
-
-        component.urlHtml = mockUrl;
-        fixture.detectChanges();
-
+    it('should render html response inside of `spy-html-renderer`', async () => {
+        const host = await createComponent({ urlHtml: mockUrl }, true);
+        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 
         expect(htmlResponse.request.method).toBe('GET');
 
         htmlResponse.flush(mockResponse);
-        fixture.detectChanges();
+        host.detectChanges();
 
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockResponse.html);
     });
 
-    it('should render html response inside `spy-html-renderer` when @Input(urlHtml) was changes', () => {
+    it('should render html response inside `spy-html-renderer` when @Input(urlHtml) was changes', async () => {
+        const host = await createComponent({ urlHtml: mockUrl }, true);
         const mockRerenderHtml = {
             html: `<p>Rerendered!!!</p>`,
         };
         const mockRerenderUrl = '/new-html-request';
-        const htmlRendererElem = fixture.debugElement.query(By.css('spy-html-renderer .spy-html-renderer__content'));
-
-        component.urlHtml = mockUrl;
-        fixture.detectChanges();
-
+        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
         let htmlResponse = httpTestingController.expectOne(mockUrl);
 
         htmlResponse.flush(mockResponse);
-        fixture.detectChanges();
+        host.detectChanges();
 
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockResponse.html);
 
-        component.urlHtml = mockRerenderUrl;
-        fixture.detectChanges();
+        host.setInputs({ urlHtml: mockRerenderUrl }, true);
         htmlResponse = httpTestingController.expectOne(mockRerenderUrl);
-
         htmlResponse.flush(mockRerenderHtml);
-        fixture.detectChanges();
+        host.detectChanges();
 
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml.html);
     });
 
-    it('should call `handle` method from `AjaxActionService` with the response object', () => {
-        const htmlRendererElem = fixture.debugElement.query(By.css('spy-html-renderer'));
-
-        component.urlHtml = mockUrl;
-        fixture.detectChanges();
-
+    it('should call `handle` method from `AjaxActionService` with the response object', async () => {
+        const host = await createComponent({ urlHtml: mockUrl }, true);
+        const htmlRendererElem = host.queryCss('spy-html-renderer');
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 
         expect(htmlResponse.request.method).toBe('GET');
 
         htmlResponse.flush(mockResponse);
-        fixture.detectChanges();
+        host.detectChanges();
 
         expect(mockAjaxActionService.handle).toHaveBeenCalledWith(mockResponse, htmlRendererElem.injector);
     });
 
-    it('should emit @Output(urlHtmlLoading) on appropriate fetching process phases', () => {
-        component.urlHtml = mockUrl;
-        fixture.detectChanges();
+    it('should emit @Output(urlHtmlLoading) on appropriate fetching process phases', async () => {
+        const host = await createComponent({ urlHtml: mockUrl }, true);
 
-        expect(component.urlHtmlLoading).toHaveBeenCalledWith(true);
+        expect(host.component.urlHtmlLoading).toHaveBeenCalledWith(true);
 
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 
         htmlResponse.flush(mockResponse);
-        fixture.detectChanges();
+        host.detectChanges();
 
-        expect(component.urlHtmlLoading).toHaveBeenCalledWith(false);
+        expect(host.component.urlHtmlLoading).toHaveBeenCalledWith(false);
     });
 
-    it('should emit @Output(urlHtmlLoading) on unsuccessful response', () => {
-        component.urlHtml = mockUrl;
-        fixture.detectChanges();
+    it('should emit @Output(urlHtmlLoading) on unsuccessful response', async () => {
+        const host = await createComponent({ urlHtml: mockUrl }, true);
 
-        expect(component.urlHtmlLoading).toHaveBeenCalledWith(true);
+        expect(host.component.urlHtmlLoading).toHaveBeenCalledWith(true);
 
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 
         htmlResponse.error(new ErrorEvent('Error'));
-        fixture.detectChanges();
+        host.detectChanges();
 
-        expect(component.urlHtmlLoading).toHaveBeenCalledWith(false);
+        expect(host.component.urlHtmlLoading).toHaveBeenCalledWith(false);
     });
 });

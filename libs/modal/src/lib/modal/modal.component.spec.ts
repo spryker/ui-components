@@ -1,25 +1,9 @@
-import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { ReplaySubject } from 'rxjs';
-
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ModalComponent } from './modal.component';
 import { ModalService } from '../modal.service';
-
-@Component({
-    selector: 'spy-test',
-    template: `
-        <spy-modal [visible]="visible" (visibleChange)="visibleChange($event)" [data]="data" [component]="component">
-            <ng-template> Content </ng-template>
-        </spy-modal>
-    `,
-})
-class TestComponent {
-    visible: any;
-    component: any;
-    data: any;
-    visibleChange = jest.fn<boolean, any[]>();
-}
 
 class MockModalRef {
     afterClosed$ = new ReplaySubject<void>();
@@ -41,13 +25,16 @@ class MockModalService {
 class TestModalComponent {}
 
 describe('ModalComponent', () => {
-    let component: TestComponent;
-    let fixture: ComponentFixture<TestComponent>;
     let service: MockModalService;
 
-    beforeEach(async(() => {
+    const { testModule, createComponent } = getTestingForComponent(ModalComponent, {
+        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+        projectContent: `<ng-template> Content </ng-template>`,
+    });
+
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TestComponent, ModalComponent],
+            imports: [testModule],
             providers: [
                 {
                     provide: ModalService,
@@ -56,27 +43,22 @@ describe('ModalComponent', () => {
                 MockModalService,
             ],
             teardown: { destroyAfterEach: false },
-        }).compileComponents();
-    }));
+        });
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        component = fixture.componentInstance;
         service = TestBed.inject(MockModalService);
     });
 
-    it('should render `spy-modal` component', () => {
-        fixture.detectChanges();
-        const modalElem = fixture.debugElement.query(By.css('spy-modal'));
+    it('should render `spy-modal` component', async () => {
+        const host = await createComponent({}, true);
+        const modalElem = host.queryCss('spy-modal');
 
         expect(modalElem).toBeTruthy();
     });
 
-    it('should call `openTemplate` method from modalService if `open` method has been triggered', () => {
+    it('should call `openTemplate` method from modalService if `open` method has been triggered', async () => {
         const mockData = { test: 'data' };
-        component.data = mockData;
-        fixture.detectChanges();
-        const modalElem = fixture.debugElement.query(By.css('spy-modal'));
+        const host = await createComponent({ data: mockData }, true);
+        const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
 
@@ -85,59 +67,53 @@ describe('ModalComponent', () => {
         });
     });
 
-    it('should call `openComponent` method from modalService if @Input(component) assigned and `open` method has been triggered', () => {
+    it('should call `openComponent` method from modalService if @Input(component) assigned and `open` method has been triggered', async () => {
         const mockData = { test: 'data' };
-        component.data = mockData;
-        component.component = TestModalComponent;
-        fixture.detectChanges();
+        await createComponent({ data: mockData, component: TestModalComponent } as any, true);
 
         expect(service.openComponent).toHaveBeenCalledWith(TestModalComponent, {
             data: mockData,
         });
     });
 
-    it('should reopen modal when @Input(component) has been changed', () => {
+    it('should reopen modal when @Input(component) has been changed', async () => {
         const mockData = { test: 'data' };
         const reAssignedMockData = { new: 'data' };
         const mockComponent = { component: 'component' };
-        component.data = mockData;
-        component.component = mockComponent;
-        fixture.detectChanges();
+        const host = await createComponent({ data: mockData, component: mockComponent } as any, true);
 
         expect(service.openComponent).toHaveBeenCalledWith(mockComponent, {
             data: mockData,
         });
 
-        component.data = reAssignedMockData;
-        component.component = TestModalComponent;
-        fixture.detectChanges();
+        host.setInputs({ data: reAssignedMockData, component: TestModalComponent } as any, true);
 
         expect(service.openComponent).toHaveBeenCalledWith(TestModalComponent, {
             data: reAssignedMockData,
         });
     });
 
-    it('should change `visible` prop to `true` when `open` method has been triggered', () => {
-        fixture.detectChanges();
-        const modalElem = fixture.debugElement.query(By.css('spy-modal'));
+    it('should change `visible` prop to `true` when `open` method has been triggered', async () => {
+        const host = await createComponent({}, true);
+        const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
 
         expect(modalElem.componentInstance.visible).toBe(true);
     });
 
-    it('should emit @Output(visibleChange) with `true` parameter when `open` method  has been triggered', () => {
-        fixture.detectChanges();
-        const modalElem = fixture.debugElement.query(By.css('spy-modal'));
+    it('should emit @Output(visibleChange) with `true` parameter when `open` method has been triggered', async () => {
+        const host = await createComponent({}, true);
+        const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
 
-        expect(component.visibleChange).toHaveBeenCalledWith(true);
+        expect(host.hostComponent.visibleChange).toHaveBeenCalledWith(true);
     });
 
-    it('should change `visible` prop to `false` when `close` method  has been triggered if modal was opened', () => {
-        fixture.detectChanges();
-        const modalElem = fixture.debugElement.query(By.css('spy-modal'));
+    it('should change `visible` prop to `false` when `close` method has been triggered if modal was opened', async () => {
+        const host = await createComponent({}, true);
+        const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
         modalElem.componentInstance.close();
@@ -145,19 +121,19 @@ describe('ModalComponent', () => {
         expect(modalElem.componentInstance.visible).toBe(false);
     });
 
-    it('should emit @Output(visibleChange) with `false` parameter when `close` method  has been triggered if drawer was opened', () => {
-        fixture.detectChanges();
-        const modalElem = fixture.debugElement.query(By.css('spy-modal'));
+    it('should emit @Output(visibleChange) with `false` parameter when `close` method has been triggered if drawer was opened', async () => {
+        const host = await createComponent({}, true);
+        const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
         modalElem.componentInstance.close();
 
-        expect(component.visibleChange).toHaveBeenCalledWith(false);
+        expect(host.hostComponent.visibleChange).toHaveBeenCalledWith(false);
     });
 
-    it('should call `close` method from `modalRef` and assign `modalRef` to `undefined` when `close` method  has been triggered if modal was opened', () => {
-        fixture.detectChanges();
-        const modalElem = fixture.debugElement.query(By.css('spy-modal'));
+    it('should call `close` method from `modalRef` and assign `modalRef` to `undefined` when `close` method has been triggered if modal was opened', async () => {
+        const host = await createComponent({}, true);
+        const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
         modalElem.componentInstance.close();
@@ -166,14 +142,14 @@ describe('ModalComponent', () => {
         expect(modalElem.componentInstance.modalRef).toBeFalsy();
     });
 
-    it('should emit @Output(visibleChange) with `false` parameter when and assign `modalRef` to `undefined` when `modalRef.afterClosed$` has been triggered', () => {
-        fixture.detectChanges();
-        const modalElem = fixture.debugElement.query(By.css('spy-modal'));
+    it('should emit @Output(visibleChange) with `false` parameter when and assign `modalRef` to `undefined` when `modalRef.afterClosed$` has been triggered', async () => {
+        const host = await createComponent({}, true);
+        const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
         modalElem.componentInstance.modalRef.afterClosed$.next();
 
-        expect(component.visibleChange).toHaveBeenCalledWith(false);
+        expect(host.hostComponent.visibleChange).toHaveBeenCalledWith(false);
         expect(modalElem.componentInstance.modalRef).toBeFalsy();
     });
 });

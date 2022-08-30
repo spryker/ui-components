@@ -1,30 +1,31 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { Subject } from 'rxjs';
-
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NotificationService } from '../notification.service';
 import { NotificationComponent } from './notification.component';
 
+const mockedType: any = 'mockedType';
+const mockedClosable = true;
+const mockedConfig: any = { position: 'topLeft' };
+const mockedTitle = 'mockedTitle';
+const mockedDescription = 'mockedDescription';
+
+class MockNotificationRef {
+    afterClose$ = new Subject<void>();
+
+    afterClose = jest.fn().mockReturnValue(this.afterClose$);
+    close = jest.fn();
+}
+
+class MockNotificationService {
+    notificationRef = new MockNotificationRef();
+
+    show = jest.fn().mockReturnValue(this.notificationRef);
+}
+
 describe('NotificationWrapperComponent', () => {
     let notificationService: MockNotificationService;
-    const mockedType: any = 'mockedType';
-    const mockedClosable = true;
-    const mockedConfig: any = { position: 'topLeft' };
-    const mockedTitle = 'mockedTitle';
-    const mockedDescription = 'mockedDescription';
-
-    class MockNotificationRef {
-        afterClose$ = new Subject<void>();
-
-        afterClose = jest.fn().mockReturnValue(this.afterClose$);
-        close = jest.fn();
-    }
-    class MockNotificationService {
-        notificationRef = new MockNotificationRef();
-
-        show = jest.fn().mockReturnValue(this.notificationRef);
-    }
 
     const { testModule, createComponent } = getTestingForComponent(NotificationComponent, {
         ngModule: {
@@ -48,6 +49,7 @@ describe('NotificationWrapperComponent', () => {
             ],
             teardown: { destroyAfterEach: false },
         });
+
         notificationService = TestBed.inject(MockNotificationService);
     });
 
@@ -149,6 +151,7 @@ describe('NotificationWrapperComponent', () => {
                 true,
             );
             const notificationElem = host.queryCss('spy-notification-view');
+
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             notificationElem!.componentInstance.close = jest.fn();
             host.component.close();

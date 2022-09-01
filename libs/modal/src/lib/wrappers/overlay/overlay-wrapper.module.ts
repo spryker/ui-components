@@ -7,19 +7,19 @@ import { ModalWrapperComponent } from './modal-wrapper.component';
 import { OverlayModalWrapperFactory } from './modal-wrapper-factory';
 
 @NgModule({
-  imports: [CommonModule, OverlayModule],
-  declarations: [ModalWrapperComponent],
+    imports: [CommonModule, OverlayModule],
+    declarations: [ModalWrapperComponent],
 })
 export class OverlayWrapperModule {
-  static forRoot(): ModuleWithProviders<OverlayWrapperModule> {
-    return {
-      ngModule: OverlayWrapperModule,
-      providers: [
-        {
-          provide: ModalWrapperFactoryToken,
-          useExisting: OverlayModalWrapperFactory,
-        },
-      ],
-    };
-  }
+    static forRoot(): ModuleWithProviders<OverlayWrapperModule> {
+        return {
+            ngModule: OverlayWrapperModule,
+            providers: [
+                {
+                    provide: ModalWrapperFactoryToken,
+                    useExisting: OverlayModalWrapperFactory,
+                },
+            ],
+        };
+    }
 }

@@ -7,13 +7,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzLayoutModule,
-    CustomElementBoundaryModule,
-    ApplyContextsModule,
-  ],
-  declarations: [LayoutComponent],
-  exports: [LayoutComponent],
+    imports: [CommonModule, NzLayoutModule, CustomElementBoundaryModule, ApplyContextsModule],
+    declarations: [LayoutComponent],
+    exports: [LayoutComponent],
 })
 export class LayoutModule {}

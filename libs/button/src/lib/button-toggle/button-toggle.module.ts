@@ -4,8 +4,8 @@ import { ButtonToggleComponent } from './button-toggle.component';
 import { ApplyAttrsModule } from '@spryker/utils';
 
 @NgModule({
-  declarations: [ButtonToggleComponent],
-  imports: [CommonModule, ApplyAttrsModule],
-  exports: [ButtonToggleComponent],
+    declarations: [ButtonToggleComponent],
+    imports: [CommonModule, ApplyAttrsModule],
+    exports: [ButtonToggleComponent],
 })
 export class ButtonToggleModule {}

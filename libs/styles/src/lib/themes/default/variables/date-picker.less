@@ -3,151 +3,57 @@
 @calendar-spacing-small: var(--spy-calendar-spacing-small, 12px);
 @calendar-spacing-medium: var(--spy-calendar-spacing-medium, 24px);
 @calendar-spacing-big: var(--spy-calendar-spacing-big, 38px);
-@calendar-input-height: var(
-  --spy-calendar-input-height,
-  calc(@spy-input-height-base - (@spy-border-width-base * 2))
-);
-@calendar-input-vertical-padding: var(
-  --spy-calendar-input-vertical-padding,
-  @spy-input-padding-vertical-base
-);
-@calendar-input-horizontal-padding: var(
-  --spy-calendar-input-horizontal-padding,
-  @spy-input-padding-horizontal-base
-);
+@calendar-input-height: var(--spy-calendar-input-height, calc(@spy-input-height-base - (@spy-border-width-base * 2)));
+@calendar-input-vertical-padding: var(--spy-calendar-input-vertical-padding, @spy-input-padding-vertical-base);
+@calendar-input-horizontal-padding: var(--spy-calendar-input-horizontal-padding, @spy-input-padding-horizontal-base);
 @calendar-input-padding: var(
-  --spy-calendar-input-padding,
-  @spy-input-padding-vertical-base
-    calc(@spy-input-padding-horizontal-base + @calendar-picker-icon-width)
-    @spy-input-padding-vertical-base @spy-input-padding-horizontal-base
+    --spy-calendar-input-padding,
+    @spy-input-padding-vertical-base calc(@spy-input-padding-horizontal-base + @calendar-picker-icon-width)
+        @spy-input-padding-vertical-base @spy-input-padding-horizontal-base
 );
 @calendar-width: var(--spy-calendar-width, 314px);
 @calendar-height: var(--spy-calendar-height, 344px);
 @calendar-border-radius: var(--spy-calendar-border-radius, @border-radius-base);
-@calendar-input-border-width: var(
-  --spy-calendar-input-border-width,
-  @spy-border-width-base
-);
-@calendar-input-border: var(
-  --spy-calendar-input-border,
-  solid @calendar-input-border-width @gray-light
-);
+@calendar-input-border-width: var(--spy-calendar-input-border-width, @spy-border-width-base);
+@calendar-input-border: var(--spy-calendar-input-border, solid @calendar-input-border-width @gray-light);
 @calendar-picker-width: var(--spy-calendar-picker-width, 100%);
-@calendar-picker-container-shadow: var(
-  --spy-calendar-picker-container-shadow,
-  @box-shadow-1
-);
+@calendar-picker-container-shadow: var(--spy-calendar-picker-container-shadow, @box-shadow-1);
 @calendar-picker-container-top: var(--spy-calendar-picker-container-top, 2px);
-@calendar-picker-container-left: var(
-  --spy-calendar-picker-container-left,
-  10px
-);
-@calendar-body-horizontal-padding: var(
-  --spy-calendar-body-horizontal-padding,
-  @calendar-spacing-small
-);
-@calendar-body-padding: var(
-  --spy-calendar-body-padding,
-  4px @calendar-body-horizontal-padding
-);
+@calendar-picker-container-left: var(--spy-calendar-picker-container-left, 10px);
+@calendar-body-horizontal-padding: var(--spy-calendar-body-horizontal-padding, @calendar-spacing-small);
+@calendar-body-padding: var(--spy-calendar-body-padding, 4px @calendar-body-horizontal-padding);
 @calendar-header-margin-top: var(--spy-calendar-header-margin-top, 18px);
 @calendar-header-margin-bottom: var(--spy-calendar-header-margin-bottom, 0);
-@calendar-header-view-first-button-margin: var(
-  --spy-calendar-header-view-first-button-margin,
-  0 8px 0 0
-);
-@calendar-header-padding: var(
-  --spy-calendar-header-padding,
-  0 @calendar-body-horizontal-padding
-);
-@calendar-next-month-button-right: var(
-  --spy-calendar-next-month-button-right,
-  @calendar-spacing-small
-);
-@calendar-prev-month-button-left: var(
-  --spy-calendar-prev-month-button-left,
-  @calendar-spacing-small
-);
+@calendar-header-view-first-button-margin: var(--spy-calendar-header-view-first-button-margin, 0 8px 0 0);
+@calendar-header-padding: var(--spy-calendar-header-padding, 0 @calendar-body-horizontal-padding);
+@calendar-next-month-button-right: var(--spy-calendar-next-month-button-right, @calendar-spacing-small);
+@calendar-prev-month-button-left: var(--spy-calendar-prev-month-button-left, @calendar-spacing-small);
 @calendar-cell-padding: var(--spy-calendar-cell-padding, 0);
 @calendar-border-width: var(--spy-calendar-border-width, 1px);
-@calendar-tbody-border: var(
-  --spy-calendar-tbody-border,
-  @calendar-border-width solid @gray
-);
-@calendar-tbody-td-height: var(
-  --spy-calendar-tbody-td-height,
-  @calendar-spacing-big
-);
-@calendar-tbody-td-max-width-height: var(
-  --spy-calendar-tbody-td-max-width-height,
-  58px
-);
-@calendar-tbody-td-month-radius: var(
-  --spy-calendar-tbody-td-month-radius,
-  @border-radius-small
-);
-@calendar-tbody-td-border: var(
-  --spy-calendar-tbody-td-border,
-  @calendar-border-width solid @transparent
-);
+@calendar-tbody-border: var(--spy-calendar-tbody-border, @calendar-border-width solid @gray);
+@calendar-tbody-td-height: var(--spy-calendar-tbody-td-height, @calendar-spacing-big);
+@calendar-tbody-td-max-width-height: var(--spy-calendar-tbody-td-max-width-height, 58px);
+@calendar-tbody-td-month-radius: var(--spy-calendar-tbody-td-month-radius, @border-radius-small);
+@calendar-tbody-td-border: var(--spy-calendar-tbody-td-border, @calendar-border-width solid @transparent);
 @calendar-date-border-radius: var(--spy-calendar-date-border-radius, 0);
-@calendar-date-line-height: var(
-  --spy-calendar-date-line-height,
-  @calendar-spacing-big
-);
-@calendar-date-font-weight: var(
-  --spy-calendar-date-font-weight,
-  @font-weight-medium
-);
-@calendar-month-btn-width: var(
-  --spy-calendar-month-btn-width,
-  @calendar-spacing-big
-);
-@calendar-month-btn-height: var(
-  --spy-calendar-month-btn-height,
-  @calendar-spacing-big
-);
-@calendar-month-btn-border: var(
-  --spy-calendar-month-btn-border,
-  @calendar-border-width solid @gray-light
-);
-@calendar-month-btn-border-radius: var(
-  --spy-calendar-month-btn-border-radius,
-  @border-radius-small
-);
-@calendar-picker-icon-width: var(
-  --spy-calendar-picker-icon-width,
-  @calendar-spacing-medium
-);
-@calendar-picker-icon-height: var(
-  --spy-calendar-picker-icon-height,
-  @calendar-spacing-medium
-);
-@calendar-picker-icon-font-size: var(
-  --spy-calendar-picker-icon-font-size,
-  @calendar-spacing-medium
-);
-@calendar-next-btn-right: var(
-  --spy-calendar-next-btn-right,
-  @calendar-spacing-small
-);
-@calendar-prev-btn-left: var(
-  --spy-calendar-prev-btn-left,
-  @calendar-spacing-small
-);
+@calendar-date-line-height: var(--spy-calendar-date-line-height, @calendar-spacing-big);
+@calendar-date-font-weight: var(--spy-calendar-date-font-weight, @font-weight-medium);
+@calendar-month-btn-width: var(--spy-calendar-month-btn-width, @calendar-spacing-big);
+@calendar-month-btn-height: var(--spy-calendar-month-btn-height, @calendar-spacing-big);
+@calendar-month-btn-border: var(--spy-calendar-month-btn-border, @calendar-border-width solid @gray-light);
+@calendar-month-btn-border-radius: var(--spy-calendar-month-btn-border-radius, @border-radius-small);
+@calendar-picker-icon-width: var(--spy-calendar-picker-icon-width, @calendar-spacing-medium);
+@calendar-picker-icon-height: var(--spy-calendar-picker-icon-height, @calendar-spacing-medium);
+@calendar-picker-icon-font-size: var(--spy-calendar-picker-icon-font-size, @calendar-spacing-medium);
+@calendar-next-btn-right: var(--spy-calendar-next-btn-right, @calendar-spacing-small);
+@calendar-prev-btn-left: var(--spy-calendar-prev-btn-left, @calendar-spacing-small);
 @calendar-btn-background-size: var(--spy-calendar-btn-background-size, 19px);
 @calendar-clear-cross-width: var(--spy-calendar-clear-cross-width, 14px);
 @calendar-clear-cross-height: var(--spy-calendar-clear-cross-height, 3px);
-@calendar-clear-cross-radius: var(
-  --spy-calendar-clear-cross-radius,
-  @border-radius-base
-);
+@calendar-clear-cross-radius: var(--spy-calendar-clear-cross-radius, @border-radius-base);
 @calendar-clear-z-index: var(--spy-calendar-clear-z-index, 2);
 @calendar-time-content-height: var(--spy-calendar-time-content-height, 235px);
-@calendar-time-content-padding: var(
-  --spy-calendar-time-content-padding,
-  0 12px 13px 0
-);
+@calendar-time-content-padding: var(--spy-calendar-time-content-padding, 0 12px 13px 0);
 @calendar-time-cell-height: var(--spy-calendar-time-cell-height, 39px);
 @calendar-time-cell-width: var(--spy-calendar-time-cell-width, 50px);
 @calendar-time-title-height: var(--spy-calendar-time-title-height, 30px);

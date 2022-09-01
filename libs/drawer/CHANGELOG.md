@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5-next.1](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.3.5-next.0...@spryker/drawer@0.3.5-next.1) (2022-08-11)
+
+**Note:** Version bump only for package @spryker/drawer
+
+
+
+
+
+## [0.3.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.3.4...@spryker/drawer@0.3.5-next.0) (2022-08-10)
+
+
+### Bug Fixes
+
+* **drawer:** adjusted styles to fix wrapper shadow ([1c35bbe](https://github.com/spryker/ui-components/commit/1c35bbe581449a294c8fb92dbf97f213056f3d29))
+
+
+
+
+
 ## [0.3.4](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.3.4-next.1...@spryker/drawer@0.3.4) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/drawer

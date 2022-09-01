@@ -8,21 +8,17 @@ import { TableData } from './table';
 
 @Injectable()
 export class TableDatasourceService {
-  constructor(
-    private injector: Injector,
-    private dataConfiguratorService: TableDataConfiguratorService,
-    private datasourceService: DatasourceService,
-  ) {}
+    constructor(
+        private injector: Injector,
+        private dataConfiguratorService: TableDataConfiguratorService,
+        private datasourceService: DatasourceService,
+    ) {}
 
-  resolve(config: DatasourceConfig): Observable<TableData> {
-    return this.dataConfiguratorService.config$.pipe(
-      switchMap((dataConfig) => {
-        return this.datasourceService.resolve<TableData>(
-          this.injector,
-          config,
-          dataConfig,
+    resolve(config: DatasourceConfig): Observable<TableData> {
+        return this.dataConfiguratorService.config$.pipe(
+            switchMap((dataConfig) => {
+                return this.datasourceService.resolve<TableData>(this.injector, config, dataConfig);
+            }),
         );
-      }),
-    );
-  }
+    }
 }

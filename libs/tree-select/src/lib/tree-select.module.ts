@@ -8,15 +8,8 @@ import { I18nModule } from '@spryker/locale';
 import { TreeSelectExtractKeysPipe } from './tree-select/tree-select-extract.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzTreeSelectModule,
-    FormsModule,
-    I18nModule,
-    JoinModule,
-    InvokeModule,
-  ],
-  exports: [TreeSelectComponent],
-  declarations: [TreeSelectComponent, TreeSelectExtractKeysPipe],
+    imports: [CommonModule, NzTreeSelectModule, FormsModule, I18nModule, JoinModule, InvokeModule],
+    exports: [TreeSelectComponent],
+    declarations: [TreeSelectComponent, TreeSelectExtractKeysPipe],
 })
 export class TreeSelectModule {}

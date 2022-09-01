@@ -1,115 +1,93 @@
 import {
-  ComponentRef,
-  StaticProvider,
-  ComponentFactoryResolver,
-  NgModuleRef,
-  Type,
-  ViewContainerRef,
-  Injector,
+    ComponentRef,
+    StaticProvider,
+    ComponentFactoryResolver,
+    NgModuleRef,
+    Type,
+    ViewContainerRef,
+    Injector,
 } from '@angular/core';
 
-import {
-  AnyModal,
-  ModalRef,
-  InferModalData,
-  ModalRenderingRef,
-  ModalStrategy,
-} from '../types';
+import { AnyModal, ModalRef, InferModalData, ModalRenderingRef, ModalStrategy } from '../types';
 
 export interface ComponentModal extends AnyModal {
-  setModalRef(modalRef: ModalRef<this, ComponentModalExtras<this>>): void;
-  updateModalData(data: InferModalData<this>): void;
+    setModalRef(modalRef: ModalRef<this, ComponentModalExtras<this>>): void;
+    updateModalData(data: InferModalData<this>): void;
 }
 
 export interface ComponentModalExtras<T extends ComponentModal> {
-  getComponentRef(): ComponentRef<T>;
-  getComponent(): T;
+    getComponentRef(): ComponentRef<T>;
+    getComponent(): T;
 }
 
 export interface ComponentModalRenderingRef<T extends ComponentModal>
-  extends ModalRenderingRef<T, ComponentModalExtras<T>> {}
+    extends ModalRenderingRef<T, ComponentModalExtras<T>> {}
 
-class ComponentModalRenderingRefImpl<T extends ComponentModal>
-  implements ComponentModalRenderingRef<T>
-{
-  constructor(private componentRef: ComponentRef<T>) {}
+class ComponentModalRenderingRefImpl<T extends ComponentModal> implements ComponentModalRenderingRef<T> {
+    constructor(private componentRef: ComponentRef<T>) {}
 
-  getComponentRef(): ComponentRef<T> {
-    return this.componentRef;
-  }
+    getComponentRef(): ComponentRef<T> {
+        return this.componentRef;
+    }
 
-  getComponent(): T {
-    return this.componentRef.instance;
-  }
+    getComponent(): T {
+        return this.componentRef.instance;
+    }
 
-  updateData(data: InferModalData<T>): void {
-    this.componentRef.instance.updateModalData(data);
-    this.componentRef.changeDetectorRef.detectChanges();
-  }
+    updateData(data: InferModalData<T>): void {
+        this.componentRef.instance.updateModalData(data);
+        this.componentRef.changeDetectorRef.detectChanges();
+    }
 
-  getExtras(): ComponentModalExtras<T> {
-    return this;
-  }
+    getExtras(): ComponentModalExtras<T> {
+        return this;
+    }
 
-  dispose(): void {
-    // Refs cleanup requires assignment to `undefined`
-    /* eslint-disable @typescript-eslint/no-non-null-assertion */
+    dispose(): void {
+        // Refs cleanup requires assignment to `undefined`
+        /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-    this.componentRef.destroy();
-    this.componentRef = undefined!;
+        this.componentRef.destroy();
+        this.componentRef = undefined!;
 
-    /* eslint-enable @typescript-eslint/no-non-null-assertion */
-  }
+        /* eslint-enable @typescript-eslint/no-non-null-assertion */
+    }
 }
 
 export interface ComponentModalStrategyOptions {
-  providers?: StaticProvider[];
-  projectableNodes?: any[][];
-  componentFactoryResolver?: ComponentFactoryResolver;
-  ngModule?: NgModuleRef<any>;
+    providers?: StaticProvider[];
+    projectableNodes?: any[][];
+    componentFactoryResolver?: ComponentFactoryResolver;
+    ngModule?: NgModuleRef<any>;
 }
 
-export class ComponentModalStrategy<T extends ComponentModal>
-  implements ModalStrategy<T, ComponentModalExtras<T>>
-{
-  constructor(
-    private component: Type<T>,
-    private options?: ComponentModalStrategyOptions,
-  ) {}
+export class ComponentModalStrategy<T extends ComponentModal> implements ModalStrategy<T, ComponentModalExtras<T>> {
+    constructor(private component: Type<T>, private options?: ComponentModalStrategyOptions) {}
 
-  render(
-    vcr: ViewContainerRef,
-    modalRef: ModalRef<T, ComponentModalExtras<T>>,
-  ): ComponentModalRenderingRef<T> {
-    const injector = Injector.create({
-      name: `ComponentModalInjector_${this.component.name}`,
-      parent: vcr.injector,
-      providers: [
-        ...(this.options?.providers ?? []),
-        { provide: ModalRef, useValue: modalRef },
-      ],
-    });
+    render(vcr: ViewContainerRef, modalRef: ModalRef<T, ComponentModalExtras<T>>): ComponentModalRenderingRef<T> {
+        const injector = Injector.create({
+            name: `ComponentModalInjector_${this.component.name}`,
+            parent: vcr.injector,
+            providers: [...(this.options?.providers ?? []), { provide: ModalRef, useValue: modalRef }],
+        });
 
-    const componentFactoryResolver =
-      this.options?.componentFactoryResolver ??
-      vcr.injector.get(ComponentFactoryResolver);
+        const componentFactoryResolver =
+            this.options?.componentFactoryResolver ?? vcr.injector.get(ComponentFactoryResolver);
 
-    const componentFactory = componentFactoryResolver.resolveComponentFactory(
-      this.component,
-    );
+        const componentFactory = componentFactoryResolver.resolveComponentFactory(this.component);
 
-    const componentRef = componentFactory.create(
-      injector,
-      this.options?.projectableNodes,
-      undefined,
-      this.options?.ngModule,
-    );
+        const componentRef = componentFactory.create(
+            injector,
+            this.options?.projectableNodes,
+            undefined,
+            this.options?.ngModule,
+        );
 
-    componentRef.instance.setModalRef(modalRef);
-    componentRef.changeDetectorRef.detectChanges();
+        componentRef.instance.setModalRef(modalRef);
+        componentRef.changeDetectorRef.detectChanges();
 
-    vcr.insert(componentRef.hostView);
+        vcr.insert(componentRef.hostView);
 
-    return new ComponentModalRenderingRefImpl(componentRef);
-  }
+        return new ComponentModalRenderingRefImpl(componentRef);
+    }
 }

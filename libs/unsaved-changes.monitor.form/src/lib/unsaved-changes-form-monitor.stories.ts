@@ -5,18 +5,18 @@ import { UnsavedChangesBrowserGuard } from '@spryker/unsaved-changes.guard.brows
 import { UnsavedChangesFormMonitorModule } from './unsaved-changes-form-monitor.module';
 
 export default {
-  title: 'UnsavedChangesMonitorForm',
+    title: 'UnsavedChangesMonitorForm',
 } as Meta;
 
 export const primary = () => ({
-  moduleMetadata: {
-    imports: [
-      UnsavedChangesFormMonitorModule,
-      UnsavedChangesModule.forRoot(),
-      UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
-    ],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [
+            UnsavedChangesFormMonitorModule,
+            UnsavedChangesModule.forRoot(),
+            UnsavedChangesModule.withGuard(UnsavedChangesBrowserGuard),
+        ],
+    },
+    template: `
     <form spyUnsavedChangesFormMonitor>
       <input type="text" style="border: 1px solid red" />
 

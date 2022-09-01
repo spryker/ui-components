@@ -35,40 +35,40 @@ const mockHtmlTemplate = (template: string) => `
 `;
 
 function generateMockHtmlPage(template: string): { html: string } {
-  return { html: mockHtmlTemplate(template) };
+    return { html: mockHtmlTemplate(template) };
 }
 
 export default {
-  title: 'HtmlRendererComponent',
+    title: 'HtmlRendererComponent',
 } as Meta;
 
 export const withStaticHtml = (args) => ({
-  props: {
-    ...args,
-    html: mockHtmlTemplate('Static'),
-  },
-  moduleMetadata: {
-    imports: [StaticHtmlRendererModule],
-  },
-  template: `
+    props: {
+        ...args,
+        html: mockHtmlTemplate('Static'),
+    },
+    moduleMetadata: {
+        imports: [StaticHtmlRendererModule],
+    },
+    template: `
     <spy-html-renderer [html]="html"></spy-html-renderer>
   `,
 });
 
 export const withUrlHtml = (args) => ({
-  props: {
-    ...args,
-    mockHttp: setMockHttp([
-      {
-        url: '/html-request',
-        dataFn: () => generateMockHtmlPage('Url'),
-      },
-    ]),
-  },
-  moduleMetadata: {
-    imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
-  },
-  template: `
+    props: {
+        ...args,
+        mockHttp: setMockHttp([
+            {
+                url: '/html-request',
+                dataFn: () => generateMockHtmlPage('Url'),
+            },
+        ]),
+    },
+    moduleMetadata: {
+        imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
+    },
+    template: `
     <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>
   `,
 });

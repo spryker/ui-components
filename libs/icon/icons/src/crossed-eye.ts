@@ -11,9 +11,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconCrossedEyeModule])],
+    providers: [provideIcons([IconCrossedEyeModule])],
 })
 export class IconCrossedEyeModule {
-  static icon = 'crossed-eye';
-  static svg = svg;
+    static icon = 'crossed-eye';
+    static svg = svg;
 }

@@ -82,9 +82,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconNoFilteredDataModule])],
+    providers: [provideIcons([IconNoFilteredDataModule])],
 })
 export class IconNoFilteredDataModule {
-  static icon = 'no-filtered-data';
-  static svg = svg;
+    static icon = 'no-filtered-data';
+    static svg = svg;
 }

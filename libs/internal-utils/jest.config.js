@@ -1,12 +1,12 @@
 module.exports = {
-  displayName: 'internal-utils',
-  preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/libs/internal-utils',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.(html|svg)$',
+    displayName: 'internal-utils',
+    preset: '../../jest.preset.js',
+    coverageDirectory: '../../coverage/libs/internal-utils',
+    setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+    globals: {
+        'ts-jest': {
+            tsconfig: '<rootDir>/tsconfig.spec.json',
+            stringifyContentPathRegex: '\\.(html|svg)$',
+        },
     },
-  },
 };

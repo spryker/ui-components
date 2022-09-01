@@ -8,9 +8,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconMaximizeModule])],
+    providers: [provideIcons([IconMaximizeModule])],
 })
 export class IconMaximizeModule {
-  static icon = 'maximize';
-  static svg = svg;
+    static icon = 'maximize';
+    static svg = svg;
 }

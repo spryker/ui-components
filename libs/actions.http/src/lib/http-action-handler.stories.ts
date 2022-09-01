@@ -11,95 +11,83 @@ import { ContextService } from '@spryker/utils';
 import { HttpActionHandlerService } from './http-action-handler.service';
 
 export default {
-  title: 'HttpActionHandlerService',
-  parameters: {
-    controls: {
-      include: ['action'],
+    title: 'HttpActionHandlerService',
+    parameters: {
+        controls: {
+            include: ['action'],
+        },
     },
-  },
-  args: {
-    action: {
-      type: 'http',
-      url: '/html-request',
-      method: 'GET',
+    args: {
+        action: {
+            type: 'http',
+            url: '/html-request',
+            method: 'GET',
+        },
     },
-  },
 } as Meta;
 
 const mockResponse = () => ({
-  actions: [
-    {
-      type: 'test',
-      random: `${Math.floor(
-        Math.random() * 100,
-      )} - random value from TestActionHandlerService`,
-    },
-    {
-      type: 'second_test',
-      random: `${Math.floor(
-        Math.random() * 10,
-      )} - random value from SecondTestActionHandlerService`,
-    },
-  ],
+    actions: [
+        {
+            type: 'test',
+            random: `${Math.floor(Math.random() * 100)} - random value from TestActionHandlerService`,
+        },
+        {
+            type: 'second_test',
+            random: `${Math.floor(Math.random() * 10)} - random value from SecondTestActionHandlerService`,
+        },
+    ],
 });
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 class TestActionHandlerService implements ActionHandler<unknown, void> {
-  handleAction(
-    injector: Injector,
-    config: { random: string } & ActionConfig,
-    context: unknown,
-  ): Observable<void> {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    document.getElementById('test-id')!.innerHTML = `${config.random}`;
+    handleAction(injector: Injector, config: { random: string } & ActionConfig, context: unknown): Observable<void> {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        document.getElementById('test-id')!.innerHTML = `${config.random}`;
 
-    return of(void 0);
-  }
+        return of(void 0);
+    }
 }
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 class SecondTestActionHandlerService implements ActionHandler<unknown, void> {
-  handleAction(
-    injector: Injector,
-    config: { random: string } & ActionConfig,
-    context: unknown,
-  ): Observable<void> {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    document.getElementById('second-test-id')!.innerHTML = `${config.random}`;
+    handleAction(injector: Injector, config: { random: string } & ActionConfig, context: unknown): Observable<void> {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        document.getElementById('second-test-id')!.innerHTML = `${config.random}`;
 
-    return of(void 0);
-  }
+        return of(void 0);
+    }
 }
 
 export const primary = (args) => ({
-  props: {
-    ...args,
-    mockHttp: setMockHttp([
-      {
-        url: '/html-request',
-        dataFn: () => mockResponse(),
-      },
-    ]),
-  },
-  moduleMetadata: {
-    imports: [
-      MockHttpModule,
-      HttpClientTestingModule,
-      BrowserAnimationsModule,
-      ButtonActionModule,
-      ActionsModule.withActions({
-        http: HttpActionHandlerService,
-        test: TestActionHandlerService,
-        second_test: SecondTestActionHandlerService,
-      }),
-    ],
-    providers: [ContextService],
-  },
-  template: `
+    props: {
+        ...args,
+        mockHttp: setMockHttp([
+            {
+                url: '/html-request',
+                dataFn: () => mockResponse(),
+            },
+        ]),
+    },
+    moduleMetadata: {
+        imports: [
+            MockHttpModule,
+            HttpClientTestingModule,
+            BrowserAnimationsModule,
+            ButtonActionModule,
+            ActionsModule.withActions({
+                http: HttpActionHandlerService,
+                test: TestActionHandlerService,
+                second_test: SecondTestActionHandlerService,
+            }),
+        ],
+        providers: [ContextService],
+    },
+    template: `
     <div id="test-id"></div>
     <div id="second-test-id"></div>
     <br />

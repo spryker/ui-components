@@ -6,14 +6,8 @@ import { IconModule } from '@spryker/icon';
 import { IconOpenEyeModule, IconCrossedEyeModule } from '@spryker/icon/icons';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    InputModule,
-    IconModule,
-    IconOpenEyeModule,
-    IconCrossedEyeModule,
-  ],
-  declarations: [InputPasswordComponent],
-  exports: [InputPasswordComponent],
+    imports: [CommonModule, InputModule, IconModule, IconOpenEyeModule, IconCrossedEyeModule],
+    declarations: [InputPasswordComponent],
+    exports: [InputPasswordComponent],
 })
 export class InputPasswordModule {}

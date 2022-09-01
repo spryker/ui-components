@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.2](https://github.com/spryker/ui-components/compare/@spryker/tag@0.1.0-beta.1...@spryker/tag@0.1.0-beta.2) (2022-09-01)
+
+
+### Bug Fixes
+
+* update .storybook of tag and carousel component ([0ad06c9](https://github.com/spryker/ui-components/commit/0ad06c94ac39d4d0e2682c3d8649ebc90c0598d7))
+
+
+
+
+
 # [0.1.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/tag@0.1.0-beta.0...@spryker/tag@0.1.0-beta.1) (2022-08-08)
 
 **Note:** Version bump only for package @spryker/tag

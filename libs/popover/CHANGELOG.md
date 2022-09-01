@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/spryker/ui-components/compare/@spryker/popover@0.3.4-next.0...@spryker/popover@0.3.4) (2022-09-01)
+
+**Note:** Version bump only for package @spryker/popover
+
+
+
+
+
 ## [0.3.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/popover@0.3.3...@spryker/popover@0.3.4-next.0) (2022-08-11)
 
 **Note:** Version bump only for package @spryker/popover

@@ -9,10 +9,12 @@
   </ng-template>
 </swiper>
 <swiper
+  #thumbSwiper
   containerModifierClass="spy-carousel__"
+  class="thumbs-swiper"
   *ngIf="withThumbs"
-  [slidesPerView]="thumbConfig.slidesPerView"
-  [spaceBetween]="thumbConfig.spaceBetween"
+  [slidesPerView]="'auto'"
+  [spaceBetween]="10"
   (swiper)="thumbsSwiper = $event"
 >
   <ng-template swiperSlide *ngFor="let slide of slides$ | async">

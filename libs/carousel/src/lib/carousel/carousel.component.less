@@ -6,6 +6,19 @@
   display: block;
 
   &__horizontal {
+    &.thumbs-swiper {
+      .swiper-slide {
+        width: 70px;
+        height: 70px;
+      }
+
+      .swiper-wrapper {
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+      }
+    }
+
     .swiper-slide {
       border-radius: @carousel-slide-border-radius;
       overflow: hidden;
@@ -31,7 +44,9 @@
 
           img {
             display: block;
-            width: 100%;
+            width: 68px;
+            height: 68px;
+            object-fit: contain;
           }
         }
       }
@@ -39,6 +54,7 @@
       .swiper-slide-thumb-active {
         [thumb] {
           border: @carousel-thumb-active-border;
+
         }
       }
     }

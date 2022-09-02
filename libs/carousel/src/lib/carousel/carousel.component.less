@@ -8,7 +8,7 @@
   &__horizontal {
     &.thumbs-swiper {
       .swiper-slide {
-        width: 70px;
+        width: 120px;
         height: 70px;
       }
 
@@ -22,11 +22,15 @@
     .swiper-slide {
       border-radius: @carousel-slide-border-radius;
       overflow: hidden;
+      width: 100%;
+      height: 350px;
 
       img {
         display: block;
         margin: 0 auto;
-        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
     }
 
@@ -41,20 +45,12 @@
           overflow: hidden;
           border: @carousel-thumb-border;
           border-radius: @carousel-thumb-border-radius;
-
-          img {
-            display: block;
-            width: 68px;
-            height: 68px;
-            object-fit: contain;
-          }
         }
       }
 
       .swiper-slide-thumb-active {
         [thumb] {
           border: @carousel-thumb-active-border;
-
         }
       }
     }

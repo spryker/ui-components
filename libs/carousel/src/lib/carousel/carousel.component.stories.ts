@@ -1,6 +1,6 @@
-import {Meta} from '@storybook/angular';
-import {CarouselComponent} from './carousel.component';
-import {CarouselModule} from '../carousel.module';
+import { Meta } from '@storybook/angular';
+import { CarouselComponent } from './carousel.component';
+import { CarouselModule } from '../carousel.module';
 
 export default {
   title: 'CarouselComponent',
@@ -29,13 +29,13 @@ export default {
   },
 } as Meta;
 
-export const primary = (args) => ({
+export const noNavigation = (args) => ({
   props: args,
   moduleMetadata: {
     imports: [CarouselModule],
   },
   template: `
-    <div style="width: 800px">
+    <div style="width: 744px">
       <spy-carousel
         [config]="{
           slidesPerView: slidesPerView,
@@ -47,10 +47,39 @@ export const primary = (args) => ({
         }"
         [withThumbs]="withThumbs"
       >
-        <ng-container *ngFor="let i of ' '.repeat(9).split('')">
+        <ng-container *ngFor="let _ of ' '.repeat(5).split(''); let i = index;">
             <spy-carousel-slide>
-              <img src="https://source.unsplash.com/random/800x450" alt="slide 1">
-              <div thumb><img src="https://source.unsplash.com/160x90"  alt="slide 1 thumb"></div>
+              <img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}}">
+              <div thumb><img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}} thumb"></div>
+            </spy-carousel-slide>
+        </ng-container>
+      </spy-carousel>
+    </div>
+  `,
+});
+
+export const withNavigation = (args) => ({
+  props: args,
+  moduleMetadata: {
+    imports: [CarouselModule],
+  },
+  template: `
+    <div style="width: 744px">
+      <spy-carousel
+        [config]="{
+          slidesPerView: slidesPerView,
+          spaceBetween: slidesSpaceBetween
+        }"
+        [thumbConfig]="{
+          slidesPerView: thumbsPerView,
+          spaceBetween: thumbsSpaceBetween
+        }"
+        [withThumbs]="withThumbs"
+      >
+        <ng-container *ngFor="let _ of ' '.repeat(10).split(''); let i = index;">
+            <spy-carousel-slide>
+              <img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}}">
+              <div thumb><img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}} thumb"></div>
             </spy-carousel-slide>
         </ng-container>
       </spy-carousel>

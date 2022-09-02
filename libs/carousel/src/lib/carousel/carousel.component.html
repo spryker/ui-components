@@ -1,7 +1,8 @@
 <swiper
   #mainSwiper
   containerModifierClass="spy-carousel__"
-  [slidesPerView]="config?.slidesPerView"
+  [slidesPerView]="'auto'"
+  [centeredSlides]="true"
   [thumbs]="{ swiper: thumbsSwiper }"
 >
   <ng-template swiperSlide *ngFor="let slide of slides$ | async">
@@ -24,7 +25,7 @@
 <button
   class="spy-carousel__navigation-button spy-carousel__navigation-button--preview"
   (click)="slidePrev()"
-  [hidden]="firstSlide"
+  [hidden]="hidePrev"
 >
   <spy-icon
     class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--preview"
@@ -34,7 +35,7 @@
 <button
   class="spy-carousel__navigation-button spy-carousel__navigation-button--next"
   (click)="slideNext()"
-  [hidden]="lastSlide"
+  [hidden]="hideNext"
 >
   <spy-icon
     class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--next"

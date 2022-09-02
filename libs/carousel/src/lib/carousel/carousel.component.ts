@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   Input,
@@ -8,14 +9,14 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {CarouselOptions} from '../types';
+import { CarouselOptions } from '../types';
 
 import SwiperCore from 'swiper/core';
-import Swiper, {Navigation, Thumbs} from 'swiper/core';
-import {IconPaginationArrowModule} from '@spryker/icon/icons';
-import {BehaviorSubject} from 'rxjs';
-import {CarouselSlideComponent} from '../carousel-slide/carousel-slide.component';
-import {SwiperComponent} from 'swiper/angular';
+import Swiper, { Navigation, Thumbs } from 'swiper/core';
+import { IconPaginationArrowModule } from '@spryker/icon/icons';
+import { BehaviorSubject } from 'rxjs';
+import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
+import { SwiperComponent } from 'swiper/angular';
 
 @Component({
   selector: 'spy-carousel',
@@ -35,14 +36,14 @@ export class CarouselComponent implements AfterViewInit {
     SwiperCore.use([Navigation, Thumbs]);
   }
 
-  @Input() config: CarouselOptions = {slidesPerView: 1};
+  @Input() config: CarouselOptions = { slidesPerView: 1 };
   @Input() thumbConfig: CarouselOptions = {
     slidesPerView: 6,
     spaceBetween: 15,
   };
   @Input() withThumbs = false;
 
-  @ViewChild('mainSwiper', {static: false}) swiper!: SwiperComponent;
+  @ViewChild('mainSwiper', { static: false }) swiper!: SwiperComponent;
 
   thumbsSwiper: Swiper | undefined;
 
@@ -68,6 +69,6 @@ export class CarouselComponent implements AfterViewInit {
       this.firstSlide = this.swiper.swiperRef.isBeginning;
       this.lastSlide = this.swiper.swiperRef.isEnd;
       this.cdr.detectChanges();
-    })
+    });
   }
 }

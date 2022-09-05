@@ -1,7 +1,7 @@
 <swiper
   #mainSwiper
   containerModifierClass="spy-carousel__"
-  [slidesPerView]="'auto'"
+  [slidesPerView]="config.slidesPerView"
   [centeredSlides]="true"
   [thumbs]="withThumbs ? { swiper: thumbsSwiper } : null"
   [navigation]="!withThumbs"
@@ -15,8 +15,8 @@
   containerModifierClass="spy-carousel__"
   class="thumbs-swiper"
   *ngIf="withThumbs"
-  [slidesPerView]="'auto'"
-  [spaceBetween]="10"
+  [slidesPerView]="thumbConfig.slidesPerView"
+  [spaceBetween]="thumbConfig.spaceBetween"
   (swiper)="thumbsSwiper = $event"
 >
   <ng-template swiperSlide *ngFor="let slide of slides$ | async">

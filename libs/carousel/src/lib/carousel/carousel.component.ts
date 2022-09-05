@@ -32,11 +32,17 @@ export class CarouselComponent implements AfterViewInit {
   hidePrev = true;
   hideNext = false;
 
+  @Input() numSlidesWithoutNav = 5;
+  @Input() config: CarouselOptions = { slidesPerView: 'auto' };
+  @Input() thumbConfig: CarouselOptions = {
+    slidesPerView: 'auto',
+    spaceBetween: 10,
+  };
+  @Input() withThumbs = false;
+
   constructor(private cdr: ChangeDetectorRef) {
     SwiperCore.use([Navigation, Thumbs]);
   }
-
-  @Input() withThumbs = false;
 
   @ViewChild('mainSwiper', { static: false }) swiper!: SwiperComponent;
   @ViewChild('thumbSwiper', { static: false }) thumbSwiper!: SwiperComponent;
@@ -61,7 +67,9 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.thumbSwiper?.swiperRef?.slides?.length <= 6) {
+    if (
+      this.thumbSwiper?.swiperRef?.slides?.length <= this.numSlidesWithoutNav
+    ) {
       this.hideNext = true;
       this.hidePrev = true;
       return;

@@ -5,6 +5,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
 import { By } from '@angular/platform-browser';
+import { CarouselOptions } from '../types';
 
 describe('CarouselComponent', () => {
   const projectedContent = `
@@ -33,7 +34,20 @@ describe('CarouselComponent', () => {
       <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 6 thumb"></div>
     </spy-carousel-slide>`;
 
-  const defaultInputs: { withThumbs: boolean } = { withThumbs: true };
+  const defaultInputs: {
+    config: CarouselOptions;
+    thumbConfig: CarouselOptions;
+    withThumbs: boolean;
+  } = {
+    config: {
+      slidesPerView: 'auto',
+    },
+    thumbConfig: {
+      slidesPerView: 'auto',
+      spaceBetween: 10,
+    },
+    withThumbs: true,
+  };
 
   const { testModule, createComponent } = getTestingForComponent(
     CarouselComponent,
@@ -59,7 +73,9 @@ describe('CarouselComponent', () => {
     const host = await createComponent(defaultInputs, true);
     const mainSwiper = host.queryCss('swiper');
     expect(mainSwiper).toBeTruthy();
-    expect(mainSwiper?.properties['slidesPerView']).toBe('auto');
+    expect(mainSwiper?.properties['slidesPerView']).toBe(
+      defaultInputs.config.slidesPerView,
+    );
   });
 
   it('should render thumbs', async () => {
@@ -72,8 +88,12 @@ describe('CarouselComponent', () => {
     expect(swipers.length).toBe(2);
 
     const thumbsSwiper = swipers[1];
-    expect(thumbsSwiper.properties['slidesPerView']).toBe('auto');
-    expect(thumbsSwiper.properties['spaceBetween']).toBe(10);
+    expect(thumbsSwiper.properties['slidesPerView']).toBe(
+      defaultInputs.thumbConfig.slidesPerView,
+    );
+    expect(thumbsSwiper.properties['spaceBetween']).toBe(
+      defaultInputs.thumbConfig.spaceBetween,
+    );
 
     thumbsSwiper.triggerEventHandler('swiper', thumbsSwiper);
     expect(host.component.thumbsSwiper).toBe(thumbsSwiper);

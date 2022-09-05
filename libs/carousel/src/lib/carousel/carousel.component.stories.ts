@@ -21,11 +21,7 @@ export default {
     },
   },
   args: {
-    slidesPerView: 1,
-    slidesSpaceBetween: 15,
     withThumbs: true,
-    thumbsPerView: 6,
-    thumbsSpaceBetween: 15,
   },
 } as Meta;
 
@@ -37,14 +33,6 @@ export const noNavigation = (args) => ({
   template: `
     <div style="width: 100%">
       <spy-carousel
-        [config]="{
-          slidesPerView: slidesPerView,
-          spaceBetween: slidesSpaceBetween
-        }"
-        [thumbConfig]="{
-          slidesPerView: thumbsPerView,
-          spaceBetween: thumbsSpaceBetween
-        }"
         [withThumbs]="withThumbs"
       >
         <ng-container *ngFor="let _ of ' '.repeat(5).split(''); let i = index;">
@@ -66,14 +54,6 @@ export const withNavigation = (args) => ({
   template: `
     <div style="width: 100%">
       <spy-carousel
-        [config]="{
-          slidesPerView: slidesPerView,
-          spaceBetween: slidesSpaceBetween
-        }"
-        [thumbConfig]="{
-          slidesPerView: thumbsPerView,
-          spaceBetween: thumbsSpaceBetween
-        }"
         [withThumbs]="withThumbs"
       >
         <ng-container *ngFor="let _ of ' '.repeat(10).split(''); let i = index;">
@@ -87,3 +67,23 @@ export const withNavigation = (args) => ({
   `,
 });
 
+export const noThumbs = (args) => ({
+  props: args,
+  moduleMetadata: {
+    imports: [CarouselModule],
+  },
+  template: `
+    <div style="width: 100%">
+      <spy-carousel
+        [withThumbs]="false"
+      >
+        <ng-container *ngFor="let _ of ' '.repeat(10).split(''); let i = index;">
+            <spy-carousel-slide>
+              <img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}}">
+              <div thumb><img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}} thumb"></div>
+            </spy-carousel-slide>
+        </ng-container>
+      </spy-carousel>
+    </div>
+  `,
+});

@@ -36,7 +36,6 @@ export class CarouselComponent implements AfterViewInit {
     SwiperCore.use([Navigation, Thumbs]);
   }
 
-  @Input() config: CarouselOptions = { slidesPerView: 1 };
   @Input() withThumbs = false;
 
   @ViewChild('mainSwiper', { static: false }) swiper!: SwiperComponent;
@@ -62,18 +61,18 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.thumbSwiper.swiperRef.slides.length <= 6) {
+    if (this.thumbSwiper?.swiperRef?.slides?.length <= 6) {
       this.hideNext = true;
       this.hidePrev = true;
       return;
     }
     const slideHandler = () => {
-      this.hidePrev = this.thumbSwiper.swiperRef.isBeginning;
-      this.hideNext = this.thumbSwiper.swiperRef.isEnd;
+      this.hidePrev = this.thumbSwiper?.swiperRef?.isBeginning;
+      this.hideNext = this.thumbSwiper?.swiperRef?.isEnd;
       this.cdr.detectChanges();
     };
-    this.thumbSwiper.swiperRef.on('slideChange', slideHandler);
-    this.thumbSwiper.swiperRef.on('reachBeginning', slideHandler);
-    this.thumbSwiper.swiperRef.on('reachEnd', slideHandler);
+    this.thumbSwiper?.swiperRef?.on('slideChange', slideHandler);
+    this.thumbSwiper?.swiperRef?.on('reachBeginning', slideHandler);
+    this.thumbSwiper?.swiperRef?.on('reachEnd', slideHandler);
   }
 }

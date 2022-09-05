@@ -35,7 +35,7 @@ export const noNavigation = (args) => ({
     imports: [CarouselModule],
   },
   template: `
-    <div style="width: 744px">
+    <div style="width: 100%">
       <spy-carousel
         [config]="{
           slidesPerView: slidesPerView,
@@ -64,7 +64,7 @@ export const withNavigation = (args) => ({
     imports: [CarouselModule],
   },
   template: `
-    <div style="width: 744px">
+    <div style="width: 100%">
       <spy-carousel
         [config]="{
           slidesPerView: slidesPerView,
@@ -86,3 +86,4 @@ export const withNavigation = (args) => ({
     </div>
   `,
 });
+

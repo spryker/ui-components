@@ -4,12 +4,20 @@
 .@{carousel-prefix-cls} {
   position: relative;
   display: block;
+  max-width: 740px;
+  .sm({
+    max-width: 360px;
+  });
 
   &__horizontal {
     &.thumbs-swiper {
       .swiper-slide {
-        width: 120px;
-        height: 70px;
+        width: @carousel-thumb-swiper-slide-width;
+        height: @carousel-thumb-swiper-slide-height;
+        .sm({
+          width: @carousel-thumb-swiper-slide-width-sm;
+          height: @carousel-thumb-swiper-slide-height-sm;
+        });
       }
 
       .swiper-wrapper {
@@ -25,6 +33,10 @@
       width: 100%;
       height: 350px;
 
+      .sm({
+        height: 240px;
+      });
+
       img {
         display: block;
         margin: 0 auto;
@@ -35,7 +47,7 @@
     }
 
     &.swiper-container-thumbs {
-      padding: @carousel-thumbs-padding;
+      padding-top: @carousel-thumbs-padding-top;
       margin-left: @carousel-thumbs-margin-left;
       margin-right: @carousel-thumbs-margin-right;
 
@@ -60,7 +72,8 @@
     position: absolute;
     padding: @carousel-navigation-button-padding;
     z-index: @carousel-navigation-button-z-index;
-    top: @carousel-navigation-button-top;
+    bottom: calc(@carousel-thumb-swiper-slide-height / 2);
+    transform: translateY(50%);
     width: @carousel-navigation-button-width;
     height: @carousel-navigation-button-height;
     background-color: @carousel-navigation-button-background-color;
@@ -69,6 +82,10 @@
     color: @carousel-navigation-button-icon-color;
     box-shadow: @carousel-navigation-button-box-shadow;
     transition: @carousel-navigation-button-transition;
+
+    .sm({
+      display: none;
+    });
 
     &:hover {
       border: @carousel-navigation-button-hover-border;

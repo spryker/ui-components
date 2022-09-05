@@ -1,4 +1,6 @@
 @carousel-prefix-cls: ~'@{spryker-prefix}-carousel';
+@carousel-max-width: 740px;
+@carousel-max-width-sm: 360px;
 
 @carousel-thumbs-padding-top: 10px;
 @carousel-thumbs-margin-left: 0;
@@ -9,7 +11,9 @@
 @carousel-thumb-swiper-slide-height-sm: 48px;
 
 @carousel-navigation-button-z-index: 1;
-@carousel-navigation-button-top: 86%;
+@carousel-navigation-button-bottom: calc(
+  @carousel-thumb-swiper-slide-height / 2
+);
 @carousel-navigation-button-width: 38px;
 @carousel-navigation-button-height: 38px;
 @carousel-navigation-next-button-right: 0;
@@ -21,6 +25,8 @@
 @carousel-navigation-button-transition: border @common-transition-time;
 
 @carousel-slide-border-radius: 10px;
+@carousel-slide-height: 350px;
+@carousel-slide-height-sm: 240px;
 
 @carousel-thumb-border: 1px solid transparent;
 @carousel-thumb-border-radius: 10px;

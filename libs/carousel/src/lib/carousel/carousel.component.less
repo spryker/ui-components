@@ -4,9 +4,9 @@
 .@{carousel-prefix-cls} {
   position: relative;
   display: block;
-  max-width: 740px;
+  max-width: @carousel-max-width;
   .sm({
-    max-width: 360px;
+    max-width: @carousel-max-width-sm;
   });
 
   &__horizontal {
@@ -31,10 +31,10 @@
       border-radius: @carousel-slide-border-radius;
       overflow: hidden;
       width: 100%;
-      height: 350px;
+      height: @carousel-slide-height;
 
       .sm({
-        height: 240px;
+        height: @carousel-slide-height-sm;
       });
 
       img {
@@ -72,7 +72,7 @@
     position: absolute;
     padding: @carousel-navigation-button-padding;
     z-index: @carousel-navigation-button-z-index;
-    bottom: calc(@carousel-thumb-swiper-slide-height / 2);
+    bottom: @carousel-navigation-button-bottom;
     transform: translateY(50%);
     width: @carousel-navigation-button-width;
     height: @carousel-navigation-button-height;

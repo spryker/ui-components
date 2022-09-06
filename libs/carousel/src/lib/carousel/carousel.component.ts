@@ -67,15 +67,13 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   slideHandler() {
-    this.hidePrev = this.thumbSwiper.swiperRef.isBeginning;
-    this.hideNext = this.thumbSwiper.swiperRef.isEnd;
+    this.hidePrev = this.thumbSwiper?.swiperRef?.isBeginning;
+    this.hideNext = this.thumbSwiper?.swiperRef?.isEnd;
     this.cdr.detectChanges();
   }
 
   ngAfterViewInit() {
-    if (
-      this.thumbSwiper?.swiperRef?.slides?.length <= this.withoutNavSlidesAmount
-    ) {
+    if (this.slides$.value.length <= this.withoutNavSlidesAmount) {
       this.hideNext = true;
       this.hidePrev = true;
       this.cdr.detectChanges();

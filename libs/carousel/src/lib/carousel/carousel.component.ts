@@ -66,9 +66,9 @@ export class CarouselComponent implements AfterViewInit {
     this.thumbSwiper.swiperRef.slidePrev();
   }
 
-  slideHandler() {
-    this.hidePrev = this.thumbSwiper?.swiperRef?.isBeginning;
-    this.hideNext = this.thumbSwiper?.swiperRef?.isEnd;
+  slideHandler(thumbSwiper: Swiper) {
+    this.hidePrev = thumbSwiper.isBeginning;
+    this.hideNext = thumbSwiper.isEnd;
     this.cdr.detectChanges();
   }
 

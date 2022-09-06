@@ -32,7 +32,7 @@ export class CarouselComponent implements AfterViewInit {
   hidePrev = true;
   hideNext = false;
 
-  @Input() numSlidesWithoutNav = 5;
+  @Input() withoutNavSlidesAmount = 5;
   @Input() config: CarouselOptions = { slidesPerView: 'auto' };
   @Input() thumbConfig: CarouselOptions = {
     slidesPerView: 'auto',
@@ -66,21 +66,19 @@ export class CarouselComponent implements AfterViewInit {
     this.thumbSwiper.swiperRef.slidePrev();
   }
 
+  slideHandler() {
+    this.hidePrev = this.thumbSwiper.swiperRef.isBeginning;
+    this.hideNext = this.thumbSwiper.swiperRef.isEnd;
+    this.cdr.detectChanges();
+  }
+
   ngAfterViewInit() {
     if (
-      this.thumbSwiper?.swiperRef?.slides?.length <= this.numSlidesWithoutNav
+      this.thumbSwiper?.swiperRef?.slides?.length <= this.withoutNavSlidesAmount
     ) {
       this.hideNext = true;
       this.hidePrev = true;
-      return;
-    }
-    const slideHandler = () => {
-      this.hidePrev = this.thumbSwiper?.swiperRef?.isBeginning;
-      this.hideNext = this.thumbSwiper?.swiperRef?.isEnd;
       this.cdr.detectChanges();
-    };
-    this.thumbSwiper?.swiperRef?.on('slideChange', slideHandler);
-    this.thumbSwiper?.swiperRef?.on('reachBeginning', slideHandler);
-    this.thumbSwiper?.swiperRef?.on('reachEnd', slideHandler);
+    }
   }
 }

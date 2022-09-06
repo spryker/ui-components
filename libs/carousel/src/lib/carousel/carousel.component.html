@@ -18,6 +18,9 @@
   [slidesPerView]="thumbConfig.slidesPerView"
   [spaceBetween]="thumbConfig.spaceBetween"
   (swiper)="thumbsSwiper = $event"
+  (slideChange)="slideHandler()"
+  (reachBeginning)="slideHandler()"
+  (reachEnd)="slideHandler()"
 >
   <ng-template swiperSlide *ngFor="let slide of slides$ | async">
     <ng-container *ngTemplateOutlet="slide.thumbTemplate"></ng-container>

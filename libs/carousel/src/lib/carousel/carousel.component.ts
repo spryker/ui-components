@@ -1,5 +1,7 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   Input,
@@ -9,9 +11,9 @@ import {
 } from '@angular/core';
 import { CarouselOptions } from '../types';
 
-import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
+import SwiperCore from 'swiper/core';
+import Swiper, { Navigation, Thumbs } from 'swiper/core';
 import { IconPaginationArrowModule } from '@spryker/icon/icons';
-import Swiper from 'swiper/core';
 import { BehaviorSubject } from 'rxjs';
 import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
 import { SwiperComponent } from 'swiper/angular';
@@ -26,19 +28,24 @@ import { SwiperComponent } from 'swiper/angular';
     class: 'spy-carousel',
   },
 })
-export class CarouselComponent {
-  constructor() {
-    SwiperCore.use([Navigation, Thumbs]);
-  }
+export class CarouselComponent implements AfterViewInit {
+  hidePrev = true;
+  hideNext = false;
 
-  @Input() config: CarouselOptions = { slidesPerView: 1 };
+  @Input() withoutNavSlidesAmount = 5;
+  @Input() config: CarouselOptions = { slidesPerView: 'auto' };
   @Input() thumbConfig: CarouselOptions = {
-    slidesPerView: 6,
-    spaceBetween: 15,
+    slidesPerView: 'auto',
+    spaceBetween: 10,
   };
   @Input() withThumbs = false;
 
+  constructor(private cdr: ChangeDetectorRef) {
+    SwiperCore.use([Navigation, Thumbs]);
+  }
+
   @ViewChild('mainSwiper', { static: false }) swiper!: SwiperComponent;
+  @ViewChild('thumbSwiper', { static: false }) thumbSwiper!: SwiperComponent;
 
   thumbsSwiper: Swiper | undefined;
 
@@ -52,10 +59,24 @@ export class CarouselComponent {
   }
 
   slideNext() {
-    this.swiper.swiperRef.slideNext();
+    this.thumbSwiper.swiperRef.slideNext();
   }
 
   slidePrev() {
-    this.swiper.swiperRef.slidePrev();
+    this.thumbSwiper.swiperRef.slidePrev();
+  }
+
+  slideHandler(thumbSwiper: Swiper) {
+    this.hidePrev = thumbSwiper.isBeginning;
+    this.hideNext = thumbSwiper.isEnd;
+    this.cdr.detectChanges();
+  }
+
+  ngAfterViewInit() {
+    if (this.slides$.value.length <= this.withoutNavSlidesAmount) {
+      this.hideNext = true;
+      this.hidePrev = true;
+      this.cdr.detectChanges();
+    }
   }
 }

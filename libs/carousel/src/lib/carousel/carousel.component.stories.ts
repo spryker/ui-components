@@ -21,56 +21,68 @@ export default {
     },
   },
   args: {
-    slidesPerView: 1,
-    slidesSpaceBetween: 15,
     withThumbs: true,
-    thumbsPerView: 6,
-    thumbsSpaceBetween: 15,
   },
 } as Meta;
 
-export const primary = (args) => ({
+export const noNavigation = (args) => ({
   props: args,
   moduleMetadata: {
     imports: [CarouselModule],
   },
   template: `
-    <div style="width: 800px">
+    <div style="width: 100%">
       <spy-carousel
-        [config]="{
-          slidesPerView: slidesPerView,
-          spaceBetween: slidesSpaceBetween
-        }"
-        [thumbConfig]="{
-          slidesPerView: thumbsPerView,
-          spaceBetween: thumbsSpaceBetween
-        }"
         [withThumbs]="withThumbs"
       >
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 1">
-          <div thumb><img src="https://source.unsplash.com/160x90"  alt="slide 1 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 2">
-          <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 2 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <iframe width="800" height="450" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <div thumb><img src="https://source.unsplash.com/niUkImZcSP8/160x90" alt="slide 3 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 4">
-          <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 4 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 5">
-          <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 5 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 6">
-          <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 6 thumb"></div>
-        </spy-carousel-slide>
+        <ng-container *ngFor="let _ of ' '.repeat(5).split(''); let i = index;">
+            <spy-carousel-slide>
+              <img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}}">
+              <div thumb><img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}} thumb"></div>
+            </spy-carousel-slide>
+        </ng-container>
+      </spy-carousel>
+    </div>
+  `,
+});
+
+export const withNavigation = (args) => ({
+  props: args,
+  moduleMetadata: {
+    imports: [CarouselModule],
+  },
+  template: `
+    <div style="width: 100%">
+      <spy-carousel
+        [withThumbs]="withThumbs"
+      >
+        <ng-container *ngFor="let _ of ' '.repeat(10).split(''); let i = index;">
+            <spy-carousel-slide>
+              <img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}}">
+              <div thumb><img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}} thumb"></div>
+            </spy-carousel-slide>
+        </ng-container>
+      </spy-carousel>
+    </div>
+  `,
+});
+
+export const noThumbs = (args) => ({
+  props: args,
+  moduleMetadata: {
+    imports: [CarouselModule],
+  },
+  template: `
+    <div style="width: 100%">
+      <spy-carousel
+        [withThumbs]="false"
+      >
+        <ng-container *ngFor="let _ of ' '.repeat(10).split(''); let i = index;">
+            <spy-carousel-slide>
+              <img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}}">
+              <div thumb><img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}} thumb"></div>
+            </spy-carousel-slide>
+        </ng-container>
       </spy-carousel>
     </div>
   `,

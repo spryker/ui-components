@@ -1,4 +1,4 @@
 export interface CarouselOptions {
-  slidesPerView: number;
+  slidesPerView?: number | 'auto';
   spaceBetween?: number;
 }

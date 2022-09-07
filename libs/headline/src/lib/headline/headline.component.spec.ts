@@ -37,6 +37,6 @@ describe('HeadlineComponent', () => {
         const host = await createComponent({ level: Level.H3 }, true);
         const titleElement = host.queryCss('.spy-headline__title');
 
-        expect(titleElement.properties.className).toBe(`spy-headline__title spy-headline__title--${ Level.H3 }`);
+        expect(titleElement.properties.className).toBe(`spy-headline__title spy-headline__title--${Level.H3}`);
     });
 });

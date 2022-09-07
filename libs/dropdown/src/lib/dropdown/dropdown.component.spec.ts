@@ -1,14 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Directive, NO_ERRORS_SCHEMA } from '@angular/core';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { DropdownComponent } from './dropdown.component';
+
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: 'nz-dropdown-menu',
+    exportAs: 'nzDropdownMenu',
+})
+class MockNzDropDown {}
 
 describe('DropdownComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(DropdownComponent, {
         ngModule: {
-            imports: [NzDropDownModule, NoopAnimationsModule],
+            declarations: [MockNzDropDown],
             schemas: [NO_ERRORS_SCHEMA],
         },
     });
@@ -20,7 +25,7 @@ describe('DropdownComponent', () => {
         });
     });
 
-    xit('template must render span and nz-dropdown-menu from Ant Design', async () => {
+    it('template must render span and nz-dropdown-menu from Ant Design', async () => {
         const host = await createComponent({}, true);
         const spanElem = host.queryCss('span[nz-dropdown]');
         const nzDropdownElem = host.queryCss('nz-dropdown-menu');
@@ -35,21 +40,21 @@ describe('DropdownComponent', () => {
             const host = await createComponent({ placement: mockedValue }, true);
             const spanElem = host.queryCss('span[nz-dropdown]');
 
-            expect(spanElem.attributes['ng-reflect-nz-placement']).toBe(mockedValue);
+            expect(spanElem.properties.nzPlacement).toBe(mockedValue);
         });
 
         it('should bind disabled to nzDisabled of nz-dropdown', async () => {
             const host = await createComponent({ disabled: true }, true);
             const spanElem = host.queryCss('span[nz-dropdown]');
 
-            expect(spanElem.attributes['ng-reflect-nz-disabled']).toBe('true');
+            expect(spanElem.properties.nzDisabled).toBe(true);
         });
 
         it('should bind visible to nzVisible of nz-dropdown', async () => {
             const host = await createComponent({ visible: true }, true);
             const spanElem = host.queryCss('span[nz-dropdown]');
 
-            expect(spanElem.attributes['ng-reflect-nz-visible']).toBe('true');
+            expect(spanElem.properties.nzVisible).toBe(true);
         });
     });
 

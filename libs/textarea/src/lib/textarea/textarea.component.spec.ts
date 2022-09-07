@@ -19,14 +19,14 @@ describe('TextareaComponent', () => {
         });
     });
 
-    xit('template must render textarea with [nz-input] from Ant Design', async () => {
+    it('template must render textarea with [nz-input] from Ant Design', async () => {
         const host = await createComponent({}, true);
         const textareaElem = host.queryCss('textarea[nz-input]');
 
         expect(textareaElem).toBeTruthy();
     });
 
-    xdescribe('Inputs must be bound to internal textarea', () => {
+    describe('Inputs must be bound to internal textarea', () => {
         it('should bind placeholder to placeholder of textarea', async () => {
             const mockedPlaceholder = 'test placeholder';
             const host = await createComponent({ placeholder: mockedPlaceholder }, true);
@@ -59,23 +59,21 @@ describe('TextareaComponent', () => {
         });
 
         it('should bind rows to rows of textarea', async () => {
-            const testValue = 2;
-            const host = await createComponent({ rows: testValue }, true);
+            const host = await createComponent({ rows: 2 }, true);
             const textareaElem = host.queryCss('textarea');
 
-            expect(textareaElem.properties.rows).toBe(testValue);
+            expect(textareaElem.attributes.rows).toBe('2');
         });
 
         it('should bind cols to cols of textarea', async () => {
-            const testValue = 2;
-            const host = await createComponent({ cols: testValue }, true);
+            const host = await createComponent({ cols: 2 }, true);
             const textareaElem = host.queryCss('textarea');
 
-            expect(textareaElem.properties.cols).toBe(testValue);
+            expect(textareaElem.attributes.cols).toBe('2');
         });
     });
 
-    xdescribe('Input attrs', () => {
+    describe('Input attrs', () => {
         it('should parse and bind `attrs` to the appropriate attributes of textarea', async () => {
             const host = await createComponent({ attrs: { test: 'attr1', test2: 'attr2' } }, true);
             const textareaElem = host.queryCss('textarea');
@@ -99,7 +97,7 @@ describe('TextareaComponent', () => {
         });
     });
 
-    xit('template must render textarea with [nzautosize] from Ant Design', async () => {
+    it('template must render textarea with [nzautosize] from Ant Design', async () => {
         const host = await createComponent({}, true);
         const textareaElem = host.queryCss('textarea[nzautosize]');
 

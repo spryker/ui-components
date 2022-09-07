@@ -8,7 +8,7 @@ describe('CheckboxComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(CheckboxComponent, {
         ngModule: {
             imports: [ApplyAttrsModule],
-            schemas: [NO_ERRORS_SCHEMA]
+            schemas: [NO_ERRORS_SCHEMA],
         },
         projectContent: 'Label',
     });
@@ -114,7 +114,7 @@ describe('CheckboxComponent', () => {
 
     describe('@Input(attrs)', () => {
         it('must be bound to the appropriate attributes of hidden HTML <input>', async () => {
-            const host = await createComponent({ attrs: { test: 'attr1', test2: 'attr2'} }, true);
+            const host = await createComponent({ attrs: { test: 'attr1', test2: 'attr2' } }, true);
             const inputElem = host.queryCss(hiddenInputSelector);
 
             expect(inputElem.attributes['test']).toBe('attr1');

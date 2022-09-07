@@ -63,7 +63,7 @@ describe('CardComponent', () => {
         expect(cardTitleElement.nativeElement.textContent.trim()).toBe(cardTitleContent);
     });
 
-    it('should render card extra', async() => {
+    it('should render card extra', async () => {
         const host = await createComponent({ extra: {} as TemplateRef<void> }, true);
         const cardExtraElement = host.queryCss('.ant-card-extra');
 

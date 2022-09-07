@@ -20,7 +20,6 @@ class TestComponent {
 }
 
 describe('RadioGroupComponent', () => {
-
     const { testModule, createComponent } = getTestingForComponent(TestComponent, {
         ngModule: {
             imports: [RadioModule],

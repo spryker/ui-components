@@ -1,12 +1,12 @@
 module.exports = {
-  displayName: 'actions.refresh-parent-table',
-  preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/libs/actions.refresh-parent-table',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.(html|svg)$',
+    displayName: 'actions.refresh-parent-table',
+    preset: '../../jest.preset.js',
+    coverageDirectory: '../../coverage/libs/actions.refresh-parent-table',
+    setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+    globals: {
+        'ts-jest': {
+            tsconfig: '<rootDir>/tsconfig.spec.json',
+            stringifyContentPathRegex: '\\.(html|svg)$',
+        },
     },
-  },
 };

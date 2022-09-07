@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.5](https://github.com/spryker/ui-components/compare/@spryker/radio@0.4.5-next.0...@spryker/radio@0.4.5) (2022-09-01)
+
+**Note:** Version bump only for package @spryker/radio
+
+
+
+
+
+## [0.4.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/radio@0.4.4...@spryker/radio@0.4.5-next.0) (2022-08-11)
+
+**Note:** Version bump only for package @spryker/radio
+
+
+
+
+
 ## [0.4.4](https://github.com/spryker/ui-components/compare/@spryker/radio@0.4.4-next.0...@spryker/radio@0.4.4) (2022-07-06)
 
 **Note:** Version bump only for package @spryker/radio

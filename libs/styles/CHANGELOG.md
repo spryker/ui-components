@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.2-next.1...@spryker/styles@0.7.2) (2022-09-01)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+## [0.7.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.2-next.0...@spryker/styles@0.7.2-next.1) (2022-08-11)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+## [0.7.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.1...@spryker/styles@0.7.2-next.0) (2022-08-10)
+
+
+### Bug Fixes
+
+* **styles:** added variables for `z-index` to the drawer ([683a10c](https://github.com/spryker/ui-components/commit/683a10c9f9e9c52df503aabfc0fac9b7d5f248f2))
+
+
+
+
+
 ## [0.7.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.1-next.3...@spryker/styles@0.7.1) (2022-05-31)
 
 **Note:** Version bump only for package @spryker/styles

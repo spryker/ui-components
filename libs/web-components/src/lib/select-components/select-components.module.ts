@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { SelectComponentsDirective } from './select-components.directive';
 
 @NgModule({
-  imports: [CommonModule],
-  exports: [SelectComponentsDirective],
-  declarations: [SelectComponentsDirective],
+    imports: [CommonModule],
+    exports: [SelectComponentsDirective],
+    declarations: [SelectComponentsDirective],
 })
 export class SelectComponentsModule {}

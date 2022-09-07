@@ -1,39 +1,33 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
-  Input,
-  HostListener,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, HostListener } from '@angular/core';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
 
 export enum UserMenuLinkType {
-  Default = 'default',
-  Danger = 'danger',
+    Default = 'default',
+    Danger = 'danger',
 }
 
 @Component({
-  selector: 'spy-user-menu-link',
-  templateUrl: './user-menu-link.component.html',
-  styleUrls: ['./user-menu-link.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  host: {
-    class: 'spy-user-menu-link',
-    '[class.spy-user-menu-link--danger]': 'isTypeDanger',
-  },
+    selector: 'spy-user-menu-link',
+    templateUrl: './user-menu-link.component.html',
+    styleUrls: ['./user-menu-link.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'spy-user-menu-link',
+        '[class.spy-user-menu-link--danger]': 'isTypeDanger',
+    },
 })
 export class UserMenuLinkComponent {
-  @Input() type?: UserMenuLinkType = UserMenuLinkType.Default;
+    @Input() type?: UserMenuLinkType = UserMenuLinkType.Default;
 
-  @HostListener('click', ['$event'])
-  onClick(): void {
-    this.userMenuComponent.isPopoverOpened = false;
-  }
+    @HostListener('click', ['$event'])
+    onClick(): void {
+        this.userMenuComponent.isPopoverOpened = false;
+    }
 
-  constructor(private userMenuComponent: UserMenuComponent) {}
+    constructor(private userMenuComponent: UserMenuComponent) {}
 
-  get isTypeDanger(): boolean {
-    return this.type === UserMenuLinkType.Danger;
-  }
+    get isTypeDanger(): boolean {
+        return this.type === UserMenuLinkType.Danger;
+    }
 }

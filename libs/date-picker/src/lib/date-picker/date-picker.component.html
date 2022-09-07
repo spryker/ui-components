@@ -1,30 +1,30 @@
 <nz-date-picker
-  [nzAllowClear]="clearButton"
-  [nzDisabled]="disabled"
-  [(ngModel)]="date"
-  [nzFormat]="format"
-  [nzPlaceHolder]="placeholder"
-  [nzDisabledDate]="disabledDate"
-  [nzDisabledTime]="disabledTime"
-  [nzShowToday]="false"
-  [nzShowTime]="nzTime"
-  (ngModelChange)="dateChangeEvent($event)"
-  (nzOnOpenChange)="openChangeEvent($event)"
-  [nzSuffixIcon]="suffixTpl"
-  *spyLocaleRender
-  #datePicker
+    [nzAllowClear]="clearButton"
+    [nzDisabled]="disabled"
+    [(ngModel)]="date"
+    [nzFormat]="format"
+    [nzPlaceHolder]="placeholder"
+    [nzDisabledDate]="disabledDate"
+    [nzDisabledTime]="disabledTime"
+    [nzShowToday]="false"
+    [nzShowTime]="nzTime"
+    (ngModelChange)="dateChangeEvent($event)"
+    (nzOnOpenChange)="openChangeEvent($event)"
+    [nzSuffixIcon]="suffixTpl"
+    *spyLocaleRender
+    #datePicker
 >
 </nz-date-picker>
 
 <ng-template #suffixTpl>
-  <spy-icon [name]="suffixIcon"></spy-icon>
+    <spy-icon [name]="suffixIcon"></spy-icon>
 </ng-template>
 
 <input
-  #inputElement
-  type="hidden"
-  [ngModel]="date | spyToIsoDateFormat"
-  [name]="name"
-  [attr.name]="name"
-  [disabled]="disabled"
+    #inputElement
+    type="hidden"
+    [ngModel]="date | spyToIsoDateFormat"
+    [name]="name"
+    [attr.name]="name"
+    [disabled]="disabled"
 />

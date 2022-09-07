@@ -6,8 +6,8 @@ import { ButtonComponent } from './button.component';
 import { SpinnerModule } from '@spryker/spinner';
 
 @NgModule({
-  imports: [CommonModule, ApplyAttrsModule, SpinnerModule],
-  exports: [ButtonComponent],
-  declarations: [ButtonComponent],
+    imports: [CommonModule, ApplyAttrsModule, SpinnerModule],
+    exports: [ButtonComponent],
+    declarations: [ButtonComponent],
 })
 export class ButtonModule {}

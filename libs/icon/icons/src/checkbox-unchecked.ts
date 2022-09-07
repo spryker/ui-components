@@ -6,9 +6,9 @@ const svg = `
   `;
 
 @NgModule({
-  providers: [provideIcons([IconCheckboxUncheckedModule])],
+    providers: [provideIcons([IconCheckboxUncheckedModule])],
 })
 export class IconCheckboxUncheckedModule {
-  static icon = 'checkbox-unchecked';
-  static svg = svg;
+    static icon = 'checkbox-unchecked';
+    static svg = svg;
 }

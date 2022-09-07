@@ -1,8 +1,8 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/utils.date.adapter.date-fns",
-  "lib": {
-    "entryFile": "src/index.ts"
-  },
-  "allowedNonPeerDependencies": ["date-fns"]
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/libs/utils.date.adapter.date-fns",
+    "lib": {
+        "entryFile": "src/index.ts"
+    },
+    "allowedNonPeerDependencies": ["date-fns"]
 }

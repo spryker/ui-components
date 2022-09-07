@@ -5,8 +5,8 @@ import { ContextModule } from '@spryker/utils';
 import { ChipsModule } from '@spryker/chips';
 
 @NgModule({
-  imports: [CommonModule, ContextModule, ChipsModule],
-  exports: [TableColumnChipComponent],
-  declarations: [TableColumnChipComponent],
+    imports: [CommonModule, ContextModule, ChipsModule],
+    exports: [TableColumnChipComponent],
+    declarations: [TableColumnChipComponent],
 })
 export class TableColumnChipModule {}

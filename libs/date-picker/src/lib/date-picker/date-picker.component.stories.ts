@@ -6,53 +6,53 @@ import { DatePickerComponent } from './date-picker.component';
 import { DatePickerModule } from '../date-picker.module';
 
 export default {
-  title: 'DatePickerComponent',
-  component: DatePickerComponent,
-  parameters: {
-    controls: {
-      include: [
-        'clearButton',
-        'disabled',
-        'enableDate',
-        'enableTime',
-        'open',
-        'time',
-        'format',
-        'placeholder',
-        'name',
-      ],
+    title: 'DatePickerComponent',
+    component: DatePickerComponent,
+    parameters: {
+        controls: {
+            include: [
+                'clearButton',
+                'disabled',
+                'enableDate',
+                'enableTime',
+                'open',
+                'time',
+                'format',
+                'placeholder',
+                'name',
+            ],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9153',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9153',
-      allowFullscreen: true,
+    args: {
+        format: 'yyyy.MM.dd HH:mm',
+        placeholder: 'yyyy.MM.dd HH:mm',
+        enableDate: {
+            onlyWorkDays: false,
+        },
+        enableTime: {
+            onlyWorkHours: true,
+        },
+        name: 'custom-name',
+        time: true,
     },
-  },
-  args: {
-    format: 'yyyy.MM.dd HH:mm',
-    placeholder: 'yyyy.MM.dd HH:mm',
-    enableDate: {
-      onlyWorkDays: false,
-    },
-    enableTime: {
-      onlyWorkHours: true,
-    },
-    name: 'custom-name',
-    time: true,
-  },
 } as Meta;
 
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [
-      DatePickerModule,
-      BrowserAnimationsModule,
-      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-      EnLocaleModule,
-    ],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [
+            DatePickerModule,
+            BrowserAnimationsModule,
+            LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+            EnLocaleModule,
+        ],
+    },
+    template: `
     <spy-date-picker
       [clearButton]="clearButton"
       [disabled]="disabled"
@@ -68,16 +68,16 @@ export const primary = (args) => ({
 });
 
 export const disabledTimeViaFunction = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [
-      DatePickerModule,
-      BrowserAnimationsModule,
-      LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-      EnLocaleModule,
-    ],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [
+            DatePickerModule,
+            BrowserAnimationsModule,
+            LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
+            EnLocaleModule,
+        ],
+    },
+    template: `
     <spy-date-picker
       [clearButton]="clearButton"
       [disabled]="disabled"
@@ -92,16 +92,16 @@ export const disabledTimeViaFunction = (args) => ({
   `,
 });
 disabledTimeViaFunction.argTypes = {
-  enableTime: {
-    table: {
-      disable: true,
+    enableTime: {
+        table: {
+            disable: true,
+        },
     },
-  },
 };
 disabledTimeViaFunction.args = {
-  enableTime: () => ({
-    hours: () => [10, 11, 12, 13, 14, 15, 16, 17],
-    minutes: () => [...Array(25).keys()],
-    seconds: () => [],
-  }),
+    enableTime: () => ({
+        hours: () => [10, 11, 12, 13, 14, 15, 16, 17],
+        minutes: () => [...Array(25).keys()],
+        seconds: () => [],
+    }),
 };

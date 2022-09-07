@@ -1,19 +1,19 @@
 {
-  "name": "@spryker/web-components",
-  "version": "0.3.5",
-  "peerDependencies": {
-    "@angular/cdk": ">=9.2.3",
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@angular/elements": ">=9.1.12",
-    "@spryker/utils": "^0.3.0",
-    "rxjs": "^7.4.0"
-  },
-  "dependencies": {
-    "ngx-element-boundary": "^1.0.10",
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/web-components",
+    "version": "0.3.6",
+    "peerDependencies": {
+        "@angular/cdk": ">=9.2.3",
+        "@angular/common": ">=9.1.12",
+        "@angular/core": ">=9.1.12",
+        "@angular/elements": ">=9.1.12",
+        "@spryker/utils": "^0.3.0",
+        "rxjs": "^7.4.0"
+    },
+    "dependencies": {
+        "ngx-element-boundary": "^1.0.10",
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

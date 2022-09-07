@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
+import { DataTransformerService, DataTransformerType } from '@spryker/data-transformer';
 import {
-  DataTransformerService,
-  DataTransformerType,
-} from '@spryker/data-transformer';
-import {
-  DataFilterTransformerByPropName,
-  DataTransformerFilter,
-  DataTransformerFilterByValue,
-  DataTransformerFilterConfig,
-  DataTransformerFilterData,
+    DataFilterTransformerByPropName,
+    DataTransformerFilter,
+    DataTransformerFilterByValue,
+    DataTransformerFilterConfig,
+    DataTransformerFilterData,
 } from '@spryker/data-transformer.collate';
 import { forkJoin, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,48 +15,42 @@ import { map } from 'rxjs/operators';
  */
 @Injectable({ providedIn: 'root' })
 export class TextDataTransformerFilterService implements DataTransformerFilter {
-  constructor(private dataTransformerService: DataTransformerService) {}
+    constructor(private dataTransformerService: DataTransformerService) {}
 
-  filter(
-    data: DataTransformerFilterData,
-    options: DataTransformerFilterConfig,
-    byValue: DataTransformerFilterByValue,
-    transformerByPropName: DataFilterTransformerByPropName,
-  ): Observable<DataTransformerFilterData> {
-    const propNames = Array.isArray(options.propNames)
-      ? options.propNames
-      : [options.propNames];
-    const transformedValuesByPropNames$ = propNames.reduce(
-      (allPropNamesData, propName) => {
-        const transformedValues = transformerByPropName?.[propName]
-          ? forkJoin(
-              byValue.map((valueToCompare) =>
-                this.dataTransformerService.transform(valueToCompare, {
-                  type: transformerByPropName[propName] as DataTransformerType,
-                }),
-              ),
-            )
-          : of(byValue);
+    filter(
+        data: DataTransformerFilterData,
+        options: DataTransformerFilterConfig,
+        byValue: DataTransformerFilterByValue,
+        transformerByPropName: DataFilterTransformerByPropName,
+    ): Observable<DataTransformerFilterData> {
+        const propNames = Array.isArray(options.propNames) ? options.propNames : [options.propNames];
+        const transformedValuesByPropNames$ = propNames.reduce((allPropNamesData, propName) => {
+            const transformedValues = transformerByPropName?.[propName]
+                ? forkJoin(
+                      byValue.map((valueToCompare) =>
+                          this.dataTransformerService.transform(valueToCompare, {
+                              type: transformerByPropName[propName] as DataTransformerType,
+                          }),
+                      ),
+                  )
+                : of(byValue);
 
-        return {
-          ...allPropNamesData,
-          [propName]: transformedValues,
-        };
-      },
-      {},
-    );
+            return {
+                ...allPropNamesData,
+                [propName]: transformedValues,
+            };
+        }, {});
 
-    return forkJoin(transformedValuesByPropNames$).pipe(
-      map((transformedValuesByPropNames: Record<string, unknown[]>) =>
-        data.filter((row) =>
-          propNames.some((propName) =>
-            transformedValuesByPropNames?.[propName].some(
-              (byTransformedValue) =>
-                String(row[propName]).includes(String(byTransformedValue)),
+        return forkJoin(transformedValuesByPropNames$).pipe(
+            map((transformedValuesByPropNames: Record<string, unknown[]>) =>
+                data.filter((row) =>
+                    propNames.some((propName) =>
+                        transformedValuesByPropNames?.[propName].some((byTransformedValue) =>
+                            String(row[propName]).includes(String(byTransformedValue)),
+                        ),
+                    ),
+                ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
+        );
+    }
 }

@@ -9,18 +9,8 @@ import { UserMenuItemComponent } from './user-menu-item/user-menu-item.component
 import { UserMenuLinkComponent } from './user-menu-link/user-menu-link.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    PopoverModule,
-    IconModule,
-    IconUserModule,
-    CustomElementBoundaryModule,
-  ],
-  declarations: [
-    UserMenuComponent,
-    UserMenuItemComponent,
-    UserMenuLinkComponent,
-  ],
-  exports: [UserMenuComponent, UserMenuItemComponent, UserMenuLinkComponent],
+    imports: [CommonModule, PopoverModule, IconModule, IconUserModule, CustomElementBoundaryModule],
+    declarations: [UserMenuComponent, UserMenuItemComponent, UserMenuLinkComponent],
+    exports: [UserMenuComponent, UserMenuItemComponent, UserMenuLinkComponent],
 })
 export class UserMenuModule {}

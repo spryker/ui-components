@@ -5,8 +5,8 @@ import { SelectModule } from '@spryker/select';
 import { I18nModule } from '@spryker/locale';
 
 @NgModule({
-  imports: [CommonModule, SelectModule, I18nModule],
-  declarations: [TableFilterSelectComponent],
-  exports: [TableFilterSelectComponent],
+    imports: [CommonModule, SelectModule, I18nModule],
+    declarations: [TableFilterSelectComponent],
+    exports: [TableFilterSelectComponent],
 })
 export class TableFilterSelectModule {}

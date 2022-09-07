@@ -12,7 +12,6 @@ describe('CollapsibleComponent', () => {
             imports: [NzCollapseModule, NoopAnimationsModule],
             schemas: [NO_ERRORS_SCHEMA],
         },
-        projectContent: 'Content',
     });
 
     beforeEach(() => {

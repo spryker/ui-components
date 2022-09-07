@@ -26,7 +26,6 @@ describe('CardComponent', () => {
             imports: [CardModule],
             schemas: [NO_ERRORS_SCHEMA],
         },
-        projectContent: 'Content',
     });
 
     beforeEach(() => {

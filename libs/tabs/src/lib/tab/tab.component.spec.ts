@@ -8,7 +8,6 @@ import { TabComponent } from './tab.component';
 describe('TabComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(TabComponent, {
         ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-        projectContent: 'Content',
     });
 
     beforeEach(() =>

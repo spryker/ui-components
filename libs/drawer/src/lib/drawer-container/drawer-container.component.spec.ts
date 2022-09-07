@@ -1,8 +1,9 @@
 import { Component, Input, NO_ERRORS_SCHEMA, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { PortalModule } from '@angular/cdk/portal';
+import { DynamicIoModule } from 'ng-dynamic-component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DrawerContainerComponent } from './drawer-container.component';
-import { DrawerContainerModule } from './drawer-container.module';
 
 @Component({
     selector: 'spy-test',
@@ -32,10 +33,11 @@ class TestComponent implements OnInit {
     }
 }
 
-xdescribe('DrawerContainerComponent', () => {
+describe('DrawerContainerComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(TestComponent, {
         ngModule: {
-            imports: [DrawerContainerModule],
+            imports: [PortalModule, DynamicIoModule],
+            declarations: [TestComponent, DrawerContainerComponent],
             schemas: [NO_ERRORS_SCHEMA],
         },
         projectContent: 'Content',

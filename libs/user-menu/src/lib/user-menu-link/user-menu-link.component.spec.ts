@@ -13,7 +13,6 @@ describe('UserMenuLinkComponent', () => {
 
     const { testModule, createComponent } = getTestingForComponent(UserMenuLinkComponent, {
         ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-        projectContent: 'Content',
     });
 
     beforeEach(() => {

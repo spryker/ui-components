@@ -36,7 +36,6 @@ describe('AjaxFormComponent', () => {
             imports: [StaticHtmlRendererModule, HttpClientTestingModule],
             schemas: [NO_ERRORS_SCHEMA],
         },
-        projectContent: 'Content',
     });
 
     beforeEach(() => {

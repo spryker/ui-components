@@ -7,7 +7,6 @@ import { UserMenuComponent } from './user-menu.component';
 describe('UserMenuComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(UserMenuComponent, {
         ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-        projectContent: 'Content',
     });
 
     beforeEach(() =>

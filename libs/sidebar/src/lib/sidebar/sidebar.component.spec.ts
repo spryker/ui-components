@@ -1,61 +1,60 @@
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { SidebarComponent } from './sidebar.component';
 
 describe('SidebarComponent', () => {
-    let triggerButton: DebugElement;
-    let component: SidebarComponent;
-    let fixture: ComponentFixture<SidebarComponent>;
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
+    const { testModule, createComponent } = getTestingForComponent(SidebarComponent, {
+        ngModule: {
             imports: [NzLayoutModule],
-            providers: [],
-            declarations: [SidebarComponent],
             schemas: [NO_ERRORS_SCHEMA],
-            teardown: { destroyAfterEach: false },
-        }).compileComponents();
-    }));
+        },
+    });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SidebarComponent);
-        component = fixture.componentInstance;
-
-        fixture.detectChanges();
-
-        triggerButton = fixture.debugElement.query(By.css('.ant-layout-sider-trigger'));
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    it('should create', async () => {
+        const host = await createComponent({}, true);
+
+        expect(host.component).toBeTruthy();
     });
 
-    it('should render trigger button', () => {
+    it('should render trigger button', async () => {
+        const host = await createComponent({}, true);
+        const triggerButton = host.queryCss('.ant-layout-sider-trigger');
+
         expect(triggerButton).toBeTruthy();
     });
 
-    it('should render icon into the button', () => {
+    it('should render icon into the button', async () => {
+        const host = await createComponent({}, true);
+        const triggerButton = host.queryCss('.ant-layout-sider-trigger');
         const iconComponent = triggerButton.query(By.css('spy-icon'));
 
         expect(iconComponent).toBeTruthy();
         expect(iconComponent.properties.name).toEqual('arrow-down');
     });
 
-    it('should trigger sidebar', () => {
-        jest.spyOn(component.collapsedChange, 'emit');
-        triggerButton.triggerEventHandler('click', null);
-        fixture.detectChanges();
+    it('should trigger sidebar', async () => {
+        const host = await createComponent({}, true);
 
-        expect(component.collapsedChange.emit).toHaveBeenCalledWith(true);
-        expect(component.collapsed).toBeTruthy();
+        host.component.updateCollapse(true);
+        host.detectChanges();
 
-        triggerButton.triggerEventHandler('click', null);
-        fixture.detectChanges();
+        expect(host.hostComponent.collapsedChange).toHaveBeenCalledWith(true);
+        expect(host.component.collapsed).toBeTruthy();
 
-        expect(component.collapsedChange.emit).toHaveBeenCalledWith(false);
-        expect(component.collapsed).toBeFalsy();
+        host.component.updateCollapse(false);
+        host.detectChanges();
+
+        expect(host.hostComponent.collapsedChange).toHaveBeenCalledWith(false);
+        expect(host.component.collapsed).toBeFalsy();
     });
 });

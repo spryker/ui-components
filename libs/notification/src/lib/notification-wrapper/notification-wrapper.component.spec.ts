@@ -1,11 +1,10 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OfTypePipeModule } from '@spryker/utils';
 import { ToastPackage, ToastRef, ToastrService } from 'ngx-toastr';
-import { NotificationWrapperComponent } from './notification-wrapper.component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { NotificationWrapperComponent } from './notification-wrapper.component';
 
 const mockedType = 'mockedType';
 const mockedConfig = { closeButton: true };
@@ -68,14 +67,19 @@ describe('NotificationWrapperComponent', () => {
         expect(notificationElem.properties.closeable).toBe(mockedConfig.closeButton);
     });
 
-    xit('closed output of <spy-notification-view> should call notificationRef.close', async () => {
-        const host = await createComponent({ notificationRef: { close: jest.fn() } as any }, true);
+    it('closed output of <spy-notification-view> should call notificationRef.close', async () => {
+        const host = await createComponent({}, true);
+
+        host.component.notificationRef = {
+            close: jest.fn(),
+        } as any;
+        host.detectChanges();
+
         const notificationElem = host.queryCss('spy-notification-view');
 
         notificationElem.triggerEventHandler('closed', null);
         host.detectChanges();
 
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        expect(host.hostComponent.notificationRef!.close).toHaveBeenCalled();
+        expect(host.component.notificationRef.close).toHaveBeenCalled();
     });
 });

@@ -8,7 +8,6 @@ import { AutocompleteComponent } from './autocomplete.component';
 describe('AutocompleteComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(AutocompleteComponent, {
         ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-        projectContent: 'Content',
     });
 
     beforeEach(() => {

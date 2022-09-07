@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.7](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.6...@spryker/carousel@0.1.0-beta.7) (2022-09-07)
+
+
+### Bug Fixes
+
+* update the behaviour of the arrow buttons ([067f4b1](https://github.com/spryker/ui-components/commit/067f4b18102dcf7c13b4cb1d650087adfea2cd65))
+
+
+### Features
+
+* hide prev button and next button at beginning and end of slides ([29414a5](https://github.com/spryker/ui-components/commit/29414a5fef0361d24d1de3eb9e9c2b36aa707b1b))
+
+
+
+
+
 # [0.1.0-beta.6](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.5...@spryker/carousel@0.1.0-beta.6) (2022-09-01)
 
 

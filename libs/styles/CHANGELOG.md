@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.8.0-beta.0...@spryker/styles@0.8.0-beta.1) (2022-09-07)
+
+
+### Bug Fixes
+
+* update the behaviour of the arrow buttons ([067f4b1](https://github.com/spryker/ui-components/commit/067f4b18102dcf7c13b4cb1d650087adfea2cd65))
+
+
+
+
+
 # [0.8.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.5...@spryker/styles@0.8.0-beta.0) (2022-08-08)
 
 

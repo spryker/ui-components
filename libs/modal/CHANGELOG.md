@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/modal@0.2.5...@spryker/modal@0.2.6-next.0) (2022-09-07)
+
+
+### Bug Fixes
+
+* removed `ie-styles-only-mixin` usage ([84a591c](https://github.com/spryker/ui-components/commit/84a591c9492ce44dbf50d69d66656652d7018fc7))
+
+
+
+
+
+## [0.2.5](https://github.com/spryker/ui-components/compare/@spryker/modal@0.2.5-next.0...@spryker/modal@0.2.5) (2022-09-01)
+
+**Note:** Version bump only for package @spryker/modal
+
+
+
+
+
 ## [0.2.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/modal@0.2.4...@spryker/modal@0.2.5-next.0) (2022-08-11)
 
 **Note:** Version bump only for package @spryker/modal

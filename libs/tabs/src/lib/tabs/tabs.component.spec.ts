@@ -1,30 +1,28 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { By } from '@angular/platform-browser';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TabsComponent, TabsMode } from './tabs.component';
 import { TabComponent } from '../tab/tab.component';
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 describe('TabsComponent', () => {
     const projectedContent = `
-    <spy-tab title="Tab Title 1" iconName="user">
-      Tab Content 1
-    </spy-tab>
-    <spy-tab title="Tab Title 2" hasWarning="true">
-      Tab Content 2
-    </spy-tab>
-    <spy-tab title="Tab Title 3" hasWarning="true" iconName="user">
-      Tab Content 3
-    </spy-tab>
-  `;
+        <spy-tab title="Tab Title 1" iconName="user">
+            Tab Content 1
+        </spy-tab>
+        <spy-tab title="Tab Title 2" hasWarning="true">
+            Tab Content 2
+        </spy-tab>
+        <spy-tab title="Tab Title 3" hasWarning="true" iconName="user">
+            Tab Content 3
+        </spy-tab>
+    `;
 
     describe('Host functionality', () => {
         const { testModule, createComponent } = getTestingForComponent(TabsComponent, {
             ngModule: {
-                imports: [],
                 declarations: [TabComponent],
                 exports: [TabComponent],
                 schemas: [NO_ERRORS_SCHEMA],
@@ -40,31 +38,29 @@ describe('TabsComponent', () => {
         );
 
         it('should render <nz-tabset>', async () => {
-            const host = await createComponent();
-            const tabsElement = host.queryCss('nz-tabset')!;
-
-            host.detectChanges();
+            const host = await createComponentWrapper(createComponent);
+            const tabsElement = host.queryCss('nz-tabset');
 
             expect(tabsElement).toBeTruthy();
         });
 
         it('should render projected content inside <span class="ant-tabs-projected-content">', async () => {
-            const host = await createComponent({}, true);
-            const spanWrapper = host.queryCss('.ant-tabs-projected-content')!;
+            const host = await createComponentWrapper(createComponent);
+            const spanWrapper = host.queryCss('.ant-tabs-projected-content');
 
             expect(spanWrapper.nativeElement.querySelector('spy-tab')).toBeTruthy();
         });
 
         describe('@Input(tab)', () => {
             it('should by default have value 0', async () => {
-                const host = await createComponent();
+                const host = await createComponentWrapper(createComponent, {}, false);
 
                 expect(host.component.tab).toBe(0);
             });
 
-            it('should bind on nzSelectedIndex of nz-tabset', async () => {
-                const host = await createComponent({ tab: 1 }, true);
-                const tabsElement = host.queryCss('nz-tabset')!;
+            it('should bind to `nzSelectedIndex` of <nz-tabset>', async () => {
+                const host = await createComponentWrapper(createComponent, { tab: 1 });
+                const tabsElement = host.queryCss('nz-tabset');
 
                 expect(tabsElement.properties.nzSelectedIndex).toBe(1);
             });
@@ -72,23 +68,23 @@ describe('TabsComponent', () => {
 
         describe('@Input(mode)', () => {
             it('should by default have value `line`', async () => {
-                const host = await createComponent();
+                const host = await createComponentWrapper(createComponent, {}, false);
 
                 expect(host.component.mode).toBe('line');
             });
 
-            it('should bind on nzType of nz-tabset', async () => {
-                const host = await createComponent({ mode: TabsMode.Card }, true);
-                const tabsElement = host.queryCss('nz-tabset')!;
+            it('should bind to `nzType` of <nz-tabset>', async () => {
+                const host = await createComponentWrapper(createComponent, { mode: TabsMode.Card });
+                const tabsElement = host.queryCss('nz-tabset');
 
-                expect(tabsElement.properties.nzType).toBe('card');
+                expect(tabsElement.properties.nzType).toBe(TabsMode.Card);
             });
         });
 
         describe('@Input(animateSlides)', () => {
             it('should bind to `nzAnimated` of <nz-tabset>', async () => {
-                const host = await createComponent({ animateSlides: true }, true);
-                const tabsElement = host.queryCss('nz-tabset')!;
+                const host = await createComponentWrapper(createComponent, { animateSlides: true });
+                const tabsElement = host.queryCss('nz-tabset');
 
                 expect(tabsElement.properties.nzAnimated).toBe(true);
             });
@@ -96,7 +92,7 @@ describe('TabsComponent', () => {
 
         describe('component.toNextTab', () => {
             it('should increase tab property', async () => {
-                const host = await createComponent({ tab: 0, mode: TabsMode.Line }, true);
+                const host = await createComponentWrapper(createComponent, { tab: 0, mode: TabsMode.Line });
 
                 host.component.toNextTab();
                 host.detectChanges();
@@ -105,7 +101,7 @@ describe('TabsComponent', () => {
             });
 
             it('should emit tabChange on toNextTab', async () => {
-                const host = await createComponent({ tab: 0 }, true);
+                const host = await createComponentWrapper(createComponent, { tab: 0 });
 
                 host.component.toNextTab();
                 host.detectChanges();
@@ -116,16 +112,16 @@ describe('TabsComponent', () => {
 
         describe('component.toPrevTab', () => {
             it('should decrease tab property', async () => {
-                const host = await createComponent({ tab: 1 }, true);
-                host.component.toPrevTab();
+                const host = await createComponentWrapper(createComponent, { tab: 1 });
 
+                host.component.toPrevTab();
                 host.detectChanges();
 
                 expect(host.component.tab).toBe(0);
             });
 
             it('should emit tabChange on toPrevTab', async () => {
-                const host = await createComponent({ tab: 1 }, true);
+                const host = await createComponentWrapper(createComponent, { tab: 1 });
 
                 host.component.toPrevTab();
                 host.detectChanges();
@@ -136,16 +132,16 @@ describe('TabsComponent', () => {
 
         describe('component.activateTab', () => {
             it('should change tab property with new value', async () => {
-                const host = await createComponent({ tab: 0 }, true);
-                host.component.activateTab(1);
+                const host = await createComponentWrapper(createComponent, { tab: 0 });
 
+                host.component.activateTab(1);
                 host.detectChanges();
 
                 expect(host.component.tab).toBe(1);
             });
 
             it('should emit tabChange on activateTab', async () => {
-                const host = await createComponent({ tab: 0 }, true);
+                const host = await createComponentWrapper(createComponent, { tab: 0 });
 
                 host.component.activateTab(1);
                 host.detectChanges();
@@ -173,9 +169,9 @@ describe('TabsComponent', () => {
             }),
         );
 
-        it('should render <spy-icon> component inside the tab if `iconName` attribute exists', fakeAsync(async () => {
+        it('should render <spy-icon> element inside the tab if `iconName` attribute exists', fakeAsync(async () => {
             const mockIconName = 'user';
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
 
             tick(500);
             host.detectChanges();
@@ -186,9 +182,9 @@ describe('TabsComponent', () => {
             expect(iconElems[0].properties.name).toBe(mockIconName);
         }));
 
-        it('should render <spy-icon> component inside the tab if `hasWarning` attribute exists', fakeAsync(async () => {
+        it('should render <spy-icon> element inside the tab if `hasWarning` attribute exists', fakeAsync(async () => {
             const mockIconName = 'error';
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
 
             tick(500);
             host.detectChanges();
@@ -199,9 +195,9 @@ describe('TabsComponent', () => {
             expect(iconElems[1].properties.name).toBe(mockIconName);
         }));
 
-        it('should render <spy-icon> component inside the tab if `hasWarning` and `iconName` attributes exists', fakeAsync(async () => {
+        it('should render <spy-icon> element inside the tab if `hasWarning` and `iconName` attributes exists', fakeAsync(async () => {
             const mockIconName = 'user';
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
 
             tick(500);
             host.detectChanges();

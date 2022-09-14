@@ -1,9 +1,10 @@
-import { Component, Input, NO_ERRORS_SCHEMA, Output } from '@angular/core';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { AjaxActionService } from '@spryker/ajax-action';
-import { UrlHtmlRendererModule } from './url-html-renderer.module';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { UrlHtmlRendererModule } from './url-html-renderer.module';
 
 const mockUrl = '/html-request';
 const mockResponse = {
@@ -55,8 +56,8 @@ describe('UrlHtmlRendererDirective', () => {
         httpTestingController.verify();
     });
 
-    it('should render html response inside of `spy-html-renderer`', async () => {
-        const host = await createComponent({ urlHtml: mockUrl }, true);
+    it('should render html response inside of <spy-html-renderer>', async () => {
+        const host = await createComponentWrapper(createComponent, { urlHtml: mockUrl });
         const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 
@@ -68,12 +69,12 @@ describe('UrlHtmlRendererDirective', () => {
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockResponse.html);
     });
 
-    it('should render html response inside `spy-html-renderer` when @Input(urlHtml) was changes', async () => {
-        const host = await createComponent({ urlHtml: mockUrl }, true);
+    it('should render html response inside <spy-html-renderer> when @Input(urlHtml) was changes', async () => {
         const mockRerenderHtml = {
             html: `<p>Rerendered!!!</p>`,
         };
         const mockRerenderUrl = '/new-html-request';
+        const host = await createComponentWrapper(createComponent, { urlHtml: mockUrl });
         const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
         let htmlResponse = httpTestingController.expectOne(mockUrl);
 
@@ -91,7 +92,7 @@ describe('UrlHtmlRendererDirective', () => {
     });
 
     it('should call `handle` method from `AjaxActionService` with the response object', async () => {
-        const host = await createComponent({ urlHtml: mockUrl }, true);
+        const host = await createComponentWrapper(createComponent, { urlHtml: mockUrl });
         const htmlRendererElem = host.queryCss('spy-html-renderer');
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 
@@ -104,7 +105,7 @@ describe('UrlHtmlRendererDirective', () => {
     });
 
     it('should emit @Output(urlHtmlLoading) on appropriate fetching process phases', async () => {
-        const host = await createComponent({ urlHtml: mockUrl }, true);
+        const host = await createComponentWrapper(createComponent, { urlHtml: mockUrl });
 
         expect(host.component.urlHtmlLoading).toHaveBeenCalledWith(true);
 
@@ -117,7 +118,7 @@ describe('UrlHtmlRendererDirective', () => {
     });
 
     it('should emit @Output(urlHtmlLoading) on unsuccessful response', async () => {
-        const host = await createComponent({ urlHtml: mockUrl }, true);
+        const host = await createComponentWrapper(createComponent, { urlHtml: mockUrl });
 
         expect(host.component.urlHtmlLoading).toHaveBeenCalledWith(true);
 

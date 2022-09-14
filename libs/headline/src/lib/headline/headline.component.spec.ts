@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { HeadlineComponent, Level } from './headline.component';
 
@@ -20,21 +21,21 @@ describe('HeadlineComponent', () => {
     });
 
     it('should render default content in the `.spy-headline__col--heading` element', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const headingContentElement = host.queryCss('.spy-headline__col--heading .default-content');
 
         expect(headingContentElement).toBeTruthy();
     });
 
     it('should render actions content in the last `.spy-headline__col` element', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const actionsContentElement = host.queryCss('.spy-headline__col:last-child .actions-content');
 
         expect(actionsContentElement).toBeTruthy();
     });
 
     it('should render `.spy-headline__title` element with headline level', async () => {
-        const host = await createComponent({ level: Level.H3 }, true);
+        const host = await createComponentWrapper(createComponent, { level: Level.H3 });
         const titleElement = host.queryCss('.spy-headline__title');
 
         expect(titleElement.properties.className).toBe(`spy-headline__title spy-headline__title--${Level.H3}`);

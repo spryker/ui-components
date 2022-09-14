@@ -3,13 +3,14 @@ import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { StaticHtmlRendererModule } from '@spryker/html-renderer';
 import { AjaxActionService } from '@spryker/ajax-action';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { AjaxFormComponent } from './ajax-form.component';
 
 const mockFirstHtmlTemplate = `
-  <input type="text" name="name" id="name">
-  <button type="submit">Submit</button>
-  <button type="submit" name="submitter" value="mockSubmit">Submit #2</button>
+    <input type="text" name="name" id="name">
+    <button type="submit">Submit</button>
+    <button type="submit" name="submitter" value="mockSubmit">Submit #2</button>
 `;
 const mockSecondHtmlTemplate = `<p>Hello World!!!</p>`;
 const mockUrl = '/html-request';
@@ -59,7 +60,7 @@ describe('AjaxFormComponent', () => {
     });
 
     it('component should send GET request to get HTML on the initialization stage', async () => {
-        await createComponent({ action: mockUrl }, true);
+        await createComponentWrapper(createComponent, { action: mockUrl });
 
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 
@@ -67,7 +68,7 @@ describe('AjaxFormComponent', () => {
     });
 
     it('component should not render spy-html-renderer if response doesn`t have form property', fakeAsync(async () => {
-        const host = await createComponent({ action: mockUrl }, true);
+        const host = await createComponentWrapper(createComponent, { action: mockUrl });
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 
         htmlResponse.flush({});
@@ -80,7 +81,7 @@ describe('AjaxFormComponent', () => {
     }));
 
     it('component should render loading state nz-spin while request is in progress', fakeAsync(async () => {
-        const host = await createComponent({ action: mockUrl }, true);
+        const host = await createComponentWrapper(createComponent, { action: mockUrl });
         let nzSpinElem = host.queryCss('.spy-ajax-form-container + nz-spin');
 
         expect(nzSpinElem).toBeTruthy();
@@ -97,7 +98,7 @@ describe('AjaxFormComponent', () => {
     }));
 
     it('component should render html that comes as a response', fakeAsync(async () => {
-        const host = await createComponent({ action: mockUrl }, true);
+        const host = await createComponentWrapper(createComponent, { action: mockUrl });
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 
         htmlResponse.flush(mockFirstResponse);
@@ -110,7 +111,7 @@ describe('AjaxFormComponent', () => {
     }));
 
     it('component should submit form data and rerender html that comes from response', fakeAsync(async () => {
-        const host = await createComponent({ action: mockUrl, method: 'POST' }, true);
+        const host = await createComponentWrapper(createComponent, { action: mockUrl, method: 'POST' });
         const event = new MockEvent();
         const ajaxFormElem = host.queryCss('spy-ajax-form');
 
@@ -145,7 +146,7 @@ describe('AjaxFormComponent', () => {
     }));
 
     it('component should submit form via button with name attribute and FormData should contain this name/value', fakeAsync(async () => {
-        const host = await createComponent({ action: mockUrl, method: 'POST' }, true);
+        const host = await createComponentWrapper(createComponent, { action: mockUrl, method: 'POST' });
         let httpResponse = httpTestingController.expectOne(mockUrl);
 
         httpResponse.flush(mockFirstResponse);
@@ -167,7 +168,7 @@ describe('AjaxFormComponent', () => {
     }));
 
     it('if first form was submitted component should render nz-spinner over the current form', fakeAsync(async () => {
-        const host = await createComponent({ action: mockUrl, method: 'POST' }, true);
+        const host = await createComponentWrapper(createComponent, { action: mockUrl, method: 'POST' });
         const event = new MockEvent();
         const ajaxFormElem = host.queryCss('spy-ajax-form');
 
@@ -206,7 +207,7 @@ describe('AjaxFormComponent', () => {
     }));
 
     it('should override `action` and `method` from response', fakeAsync(async () => {
-        const host = await createComponent({ action: mockUrl }, true);
+        const host = await createComponentWrapper(createComponent, { action: mockUrl });
         const mockResponse = {
             form: mockFirstHtmlTemplate,
             action: '/html-request-2',

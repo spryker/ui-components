@@ -1,6 +1,7 @@
-import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { ApplyAttrsModule } from '@spryker/utils';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { InputComponent } from './input.component';
 
@@ -20,7 +21,7 @@ describe('InputComponent', () => {
     });
 
     it('template must render input with [nz-input] from Ant Design inside nz-input-group component', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const inputGroupElem = host.queryCss('nz-input-group');
 
         expect(inputGroupElem).toBeTruthy();
@@ -33,7 +34,7 @@ describe('InputComponent', () => {
     describe('Inputs must be bound to internal input', () => {
         it('should bind placeholder to placeholder of input', async () => {
             const mockedPlaceholder = 'test placeholder';
-            const host = await createComponent({ placeholder: mockedPlaceholder }, true);
+            const host = await createComponentWrapper(createComponent, { placeholder: mockedPlaceholder });
             const inputElem = host.queryCss('input');
 
             expect(inputElem.attributes.placeholder).toBe(mockedPlaceholder);
@@ -41,7 +42,7 @@ describe('InputComponent', () => {
 
         it('should bind value to ngModel of input', async () => {
             const mockedValue = 'test value';
-            const host = await createComponent({ value: mockedValue }, true);
+            const host = await createComponentWrapper(createComponent, { value: mockedValue });
             const inputElem = host.queryCss('input');
 
             expect(inputElem.properties.ngModel).toBe(mockedValue);
@@ -49,7 +50,7 @@ describe('InputComponent', () => {
 
         it('should bind name to name attribute of input', async () => {
             const mockedName = 'test name';
-            const host = await createComponent({ name: mockedName }, true);
+            const host = await createComponentWrapper(createComponent, { name: mockedName });
             const inputElem = host.queryCss('input');
 
             expect(inputElem.attributes.name).toBe(mockedName);
@@ -57,21 +58,21 @@ describe('InputComponent', () => {
 
         it('should bind type to type of input', async () => {
             const mockedType = 'text';
-            const host = await createComponent({ type: mockedType }, true);
+            const host = await createComponentWrapper(createComponent, { type: mockedType });
             const inputElem = host.queryCss('input');
 
             expect(inputElem.properties.type).toBe(mockedType);
         });
 
         it('should bind disabled to disabled of input', async () => {
-            const host = await createComponent({ disabled: true }, true);
+            const host = await createComponentWrapper(createComponent, { disabled: true });
             const inputElem = host.queryCss('input');
 
             expect(inputElem.properties.disabled).toBe(true);
         });
 
         it('should bind readOnly to readOnly of input', async () => {
-            const host = await createComponent({ readOnly: true }, true);
+            const host = await createComponentWrapper(createComponent, { readOnly: true });
             const inputElem = host.queryCss('input');
 
             expect(inputElem.properties.readOnly).toBe(true);
@@ -80,7 +81,7 @@ describe('InputComponent', () => {
 
     describe('Input attrs', () => {
         it('should parse and bind `attrs` to the appropriate attributes of input', async () => {
-            const host = await createComponent({ attrs: { test: 'attr1', test2: 'attr2' } }, true);
+            const host = await createComponentWrapper(createComponent, { attrs: { test: 'attr1', test2: 'attr2' } });
             const inputElem = host.queryCss('input');
 
             expect(inputElem.attributes['test']).toBe('attr1');
@@ -88,7 +89,7 @@ describe('InputComponent', () => {
         });
 
         it('should `attrs` updates appropriate attributes when changed', async () => {
-            const host = await createComponent({ attrs: { test: 'attr1', test2: 'attr2' } }, true);
+            const host = await createComponentWrapper(createComponent, { attrs: { test: 'attr1', test2: 'attr2' } });
             const inputElem = host.queryCss('input');
 
             host.setInputs({ attrs: { test: 'attr6' } }, true);
@@ -105,7 +106,7 @@ describe('InputComponent', () => {
     describe('Input prefix and suffix must be bound to nz-input-group', () => {
         it('should bind suffix to nzSuffix of nz-input-group', async () => {
             const mockedSuffix = 'suffix';
-            const host = await createComponent({ suffix: mockedSuffix }, true);
+            const host = await createComponentWrapper(createComponent, { suffix: mockedSuffix });
             const inputElem = host.queryCss('nz-input-group');
 
             expect(inputElem.properties.nzSuffix).toBe(mockedSuffix);
@@ -113,7 +114,7 @@ describe('InputComponent', () => {
 
         it('should bind prefix to nzPrefix of nz-input-group', async () => {
             const mockedPrefix = 'prefix';
-            const host = await createComponent({ prefix: mockedPrefix }, true);
+            const host = await createComponentWrapper(createComponent, { prefix: mockedPrefix });
             const inputElem = host.queryCss('nz-input-group');
 
             expect(inputElem.properties.nzPrefix).toBe(mockedPrefix);
@@ -123,7 +124,7 @@ describe('InputComponent', () => {
     describe('Input outerPrefix and outerSuffix must be bound to nz-input-group', () => {
         it('should bind outerPrefix to nzAddOnBefore of nz-input-group', async () => {
             const mockedData = 'outerPrefix';
-            const host = await createComponent({ outerPrefix: mockedData }, true);
+            const host = await createComponentWrapper(createComponent, { outerPrefix: mockedData });
             const inputElem = host.queryCss('nz-input-group');
 
             expect(inputElem.properties.nzAddOnBefore).toBe(mockedData);
@@ -131,7 +132,7 @@ describe('InputComponent', () => {
 
         it('should bind outerSuffix to nzAddOnAfter of nz-input-group', async () => {
             const mockedData = 'outerSuffix';
-            const host = await createComponent({ outerSuffix: mockedData }, true);
+            const host = await createComponentWrapper(createComponent, { outerSuffix: mockedData });
             const inputElem = host.queryCss('nz-input-group');
 
             expect(inputElem.properties.nzAddOnAfter).toBe(mockedData);
@@ -140,7 +141,7 @@ describe('InputComponent', () => {
 
     describe('valueChange', () => {
         it('should trigger change callback when ngModelChange was triggered', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const inputElem = host.queryCss('input');
 
             inputElem.triggerEventHandler('ngModelChange', {});

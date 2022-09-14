@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { SidebarComponent } from './sidebar.component';
@@ -21,20 +22,20 @@ describe('SidebarComponent', () => {
     });
 
     it('should create', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
 
         expect(host.component).toBeTruthy();
     });
 
     it('should render trigger button', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const triggerButton = host.queryCss('.ant-layout-sider-trigger');
 
         expect(triggerButton).toBeTruthy();
     });
 
     it('should render icon into the button', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const triggerButton = host.queryCss('.ant-layout-sider-trigger');
         const iconComponent = triggerButton.query(By.css('spy-icon'));
 
@@ -43,7 +44,7 @@ describe('SidebarComponent', () => {
     });
 
     it('should trigger sidebar', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
 
         host.component.updateCollapse(true);
         host.detectChanges();

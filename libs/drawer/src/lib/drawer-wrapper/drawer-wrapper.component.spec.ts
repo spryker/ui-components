@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DrawerWrapperComponent } from './drawer-wrapper.component';
 
@@ -17,7 +18,7 @@ describe('DrawerWrapperComponent', () => {
     });
 
     it('should render `spy-drawer-wrapper__actions` and `spy-drawer-wrapper__content` elements', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const contentElem = host.queryCss('.spy-drawer-wrapper__content');
         const actionsElem = host.queryCss('.spy-drawer-wrapper__actions');
 
@@ -26,52 +27,52 @@ describe('DrawerWrapperComponent', () => {
     });
 
     it('should render content inside `spy-drawer-wrapper__content` element as content projection', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const contentElem = host.queryCss('.spy-drawer-wrapper__content');
 
         expect(contentElem.nativeElement.textContent).toContain('Content');
     });
 
     it('should show `spy-drawer-wrapper__action--close` button if @Input(closeable) is true', async () => {
-        const host = await createComponent({ closeable: true }, true);
+        const host = await createComponentWrapper(createComponent, { closeable: true });
         const buttonElem = host.queryCss('.spy-drawer-wrapper__action--close');
 
         expect(buttonElem).toBeTruthy();
     });
 
     it('should not show `spy-drawer-wrapper__action--close` button if @Input(closeable) is false', async () => {
-        const host = await createComponent({ closeable: false }, true);
+        const host = await createComponentWrapper(createComponent, { closeable: false });
         const buttonElem = host.queryCss('.spy-drawer-wrapper__action--close');
 
         expect(buttonElem).toBeFalsy();
     });
 
     it('should show `spy-drawer-wrapper__action--resize` button if @Input(resizable) is true', async () => {
-        const host = await createComponent({ resizable: true }, true);
+        const host = await createComponentWrapper(createComponent, { resizable: true });
         const buttonElem = host.queryCss('.spy-drawer-wrapper__action--resize');
 
         expect(buttonElem).toBeTruthy();
     });
 
     it('should not show `spy-drawer-wrapper__action--resize` button if @Input(resizable) is false', async () => {
-        const host = await createComponent({ resizable: false }, true);
+        const host = await createComponentWrapper(createComponent, { resizable: false });
         const buttonElem = host.queryCss('.spy-drawer-wrapper__action--resize');
 
         expect(buttonElem).toBeFalsy();
     });
 
-    it('should bind @Input(width) to the `spy-drawer-wrapper` host element', async () => {
+    it('should bind @Input(width) to the <spy-drawer-wrapper> host element', async () => {
         const width = '20%';
-        const host = await createComponent({ width: width }, true);
+        const host = await createComponentWrapper(createComponent, { width: width });
         const hostElem = host.queryCss('.spy-drawer-wrapper');
 
         expect(hostElem).toBeTruthy();
         expect(hostElem.styles.width).toBe(width);
     });
 
-    it('should change `spy-drawer-wrapper` host element width when `spy-drawer-wrapper__action--resize` button has been triggered', async () => {
+    it('should change <spy-drawer-wrapper> host element width when `spy-drawer-wrapper__action--resize` button has been triggered', async () => {
         const width = '20%';
-        const host = await createComponent({ width: width, resizable: true }, true);
+        const host = await createComponentWrapper(createComponent, { width: width, resizable: true });
         const buttonElem = host.queryCss('.spy-drawer-wrapper__action--resize');
         const hostElem = host.queryCss('.spy-drawer-wrapper');
 
@@ -90,7 +91,7 @@ describe('DrawerWrapperComponent', () => {
     });
 
     it('should emit @Output(closed) when `spy-drawer-wrapper__action--close` button has been triggered', async () => {
-        const host = await createComponent({ closeable: true }, true);
+        const host = await createComponentWrapper(createComponent, { closeable: true });
         const buttonElem = host.queryCss('.spy-drawer-wrapper__action--close');
 
         buttonElem.triggerEventHandler('click', null);

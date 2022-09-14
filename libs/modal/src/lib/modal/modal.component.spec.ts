@@ -1,5 +1,6 @@
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { ReplaySubject } from 'rxjs';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ModalComponent } from './modal.component';
@@ -11,6 +12,7 @@ class MockModalRef {
     close = jest.fn();
     afterClosed = jest.fn().mockReturnValue(this.afterClosed$.asObservable());
 }
+
 class MockModalService {
     modalRef = new MockModalRef();
 
@@ -48,8 +50,8 @@ describe('ModalComponent', () => {
         service = TestBed.inject(MockModalService);
     });
 
-    it('should render `spy-modal` component', async () => {
-        const host = await createComponent({}, true);
+    it('should render <spy-modal> component', async () => {
+        const host = await createComponentWrapper(createComponent);
         const modalElem = host.queryCss('spy-modal');
 
         expect(modalElem).toBeTruthy();
@@ -57,7 +59,7 @@ describe('ModalComponent', () => {
 
     it('should call `openTemplate` method from modalService if `open` method has been triggered', async () => {
         const mockData = { test: 'data' };
-        const host = await createComponent({ data: mockData }, true);
+        const host = await createComponentWrapper(createComponent, { data: mockData });
         const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
@@ -69,7 +71,7 @@ describe('ModalComponent', () => {
 
     it('should call `openComponent` method from modalService if @Input(component) assigned and `open` method has been triggered', async () => {
         const mockData = { test: 'data' };
-        await createComponent({ data: mockData, component: TestModalComponent } as any, true);
+        await createComponentWrapper(createComponent, { data: mockData, component: TestModalComponent });
 
         expect(service.openComponent).toHaveBeenCalledWith(TestModalComponent, {
             data: mockData,
@@ -80,7 +82,7 @@ describe('ModalComponent', () => {
         const mockData = { test: 'data' };
         const reAssignedMockData = { new: 'data' };
         const mockComponent = { component: 'component' };
-        const host = await createComponent({ data: mockData, component: mockComponent } as any, true);
+        const host = await createComponentWrapper(createComponent, { data: mockData, component: mockComponent });
 
         expect(service.openComponent).toHaveBeenCalledWith(mockComponent, {
             data: mockData,
@@ -94,7 +96,7 @@ describe('ModalComponent', () => {
     });
 
     it('should change `visible` prop to `true` when `open` method has been triggered', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
@@ -103,7 +105,7 @@ describe('ModalComponent', () => {
     });
 
     it('should emit @Output(visibleChange) with `true` parameter when `open` method has been triggered', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
@@ -112,7 +114,7 @@ describe('ModalComponent', () => {
     });
 
     it('should change `visible` prop to `false` when `close` method has been triggered if modal was opened', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
@@ -122,7 +124,7 @@ describe('ModalComponent', () => {
     });
 
     it('should emit @Output(visibleChange) with `false` parameter when `close` method has been triggered if drawer was opened', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
@@ -132,7 +134,7 @@ describe('ModalComponent', () => {
     });
 
     it('should call `close` method from `modalRef` and assign `modalRef` to `undefined` when `close` method has been triggered if modal was opened', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();
@@ -143,7 +145,7 @@ describe('ModalComponent', () => {
     });
 
     it('should emit @Output(visibleChange) with `false` parameter when and assign `modalRef` to `undefined` when `modalRef.afterClosed$` has been triggered', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const modalElem = host.queryCss('spy-modal');
 
         modalElem.componentInstance.open();

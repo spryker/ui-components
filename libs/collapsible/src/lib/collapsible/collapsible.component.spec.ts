@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { CollapsibleComponent } from './collapsible.component';
 
@@ -22,13 +23,13 @@ describe('CollapsibleComponent', () => {
     });
 
     it('should create', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
 
         expect(host.component).toBeTruthy();
     });
 
     it('template must render nz-collapse-panel from Ant Design inside nz-collapse component', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const collapseElem = host.queryCss('nz-collapse');
 
         expect(collapseElem).toBeTruthy();
@@ -39,17 +40,18 @@ describe('CollapsibleComponent', () => {
     });
 
     it('should render icon component', async () => {
-        const host = await createComponent({ titleIcon: 'title-icon' }, true);
+        const mockTitle = 'title-icon';
+        const host = await createComponentWrapper(createComponent, { titleIcon: mockTitle });
         const collapsibleHeaderElem = host.queryCss('.ant-collapse-header');
         const headerIcon = collapsibleHeaderElem.query(By.css('spy-icon'));
 
         expect(headerIcon).toBeTruthy();
-        expect(headerIcon.properties.name).toBe('title-icon');
+        expect(headerIcon.properties.name).toBe(mockTitle);
     });
 
     describe('Toggling functionality', () => {
         it('Should change active on opposite by toggle method', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
 
             host.component.toggle();
             host.detectChanges();
@@ -63,7 +65,7 @@ describe('CollapsibleComponent', () => {
         });
 
         it('Should emit event on collapsible header click', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const collapsibleHeaderElem = host.queryCss('.ant-collapse-header');
             const callback = jest.fn();
 

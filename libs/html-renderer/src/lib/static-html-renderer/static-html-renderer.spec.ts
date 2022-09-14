@@ -1,5 +1,6 @@
 import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { StaticHtmlRendererModule } from './static-html-renderer.module';
 
@@ -28,16 +29,16 @@ describe('StaticHtmlRendererDirective', () => {
         });
     });
 
-    it('should render @Input(html) inside of `spy-html-renderer`', async () => {
-        const host = await createComponent({ html: mockHtmlTemplate }, true);
+    it('should render @Input(html) inside of <spy-html-renderer>', async () => {
+        const host = await createComponentWrapper(createComponent, { html: mockHtmlTemplate });
         const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
 
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
     });
 
-    it('should render html inside `spy-html-renderer` when @Input(html) was changes', async () => {
-        const host = await createComponent({ html: mockHtmlTemplate }, true);
+    it('should render html inside <spy-html-renderer> when @Input(html) was changes', async () => {
         const mockRerenderHtml = `<p>Rerendered!!!</p>`;
+        const host = await createComponentWrapper(createComponent, { html: mockHtmlTemplate });
         const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
 
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);

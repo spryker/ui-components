@@ -1,7 +1,8 @@
-import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { TestBed } from '@angular/core/testing';
 import { ApplyAttrsModule } from '@spryker/utils';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
@@ -21,7 +22,7 @@ describe('CheckboxComponent', () => {
     });
 
     it('should create', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
 
         expect(host.component).toBeTruthy();
     });
@@ -31,21 +32,21 @@ describe('CheckboxComponent', () => {
 
     describe('Template', () => {
         it('must render <label> with `nz-checkbox` from Ant Design', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const labelElem = host.queryCss(checkboxSelector);
 
             expect(labelElem).toBeTruthy();
         });
 
         it('must render hidden HTML <input>', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const inputElem = host.queryCss(hiddenInputSelector);
 
             expect(inputElem).toBeTruthy();
         });
 
         it('must render default slot', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const labelElem = host.queryCss(checkboxSelector);
 
             expect(labelElem.nativeElement.textContent).toMatch('Label');
@@ -55,11 +56,9 @@ describe('CheckboxComponent', () => {
     describe('@Input(spyId)', () => {
         it('must be bound to id property of hidden HTML <input>', async () => {
             const testId = 'testId';
-            const host = await createComponent({ spyId: testId }, true);
+            const host = await createComponentWrapper(createComponent, { spyId: testId });
             const inputElem = host.queryCss(hiddenInputSelector);
 
-            host.detectChanges();
-            console.log(inputElem);
             expect(inputElem.attributes.id).toBe(testId);
         });
     });
@@ -67,7 +66,7 @@ describe('CheckboxComponent', () => {
     describe('@Input(name)', () => {
         it('must be bound to name attribute of hidden HTML <input>', async () => {
             const testName = 'testName';
-            const host = await createComponent({ name: testName }, true);
+            const host = await createComponentWrapper(createComponent, { name: testName });
             const inputElem = host.queryCss(hiddenInputSelector);
 
             expect(inputElem.attributes.name).toBe(testName);
@@ -77,7 +76,7 @@ describe('CheckboxComponent', () => {
     describe('@Input(required)', () => {
         it('must be bound to required property of hidden HTML <input>', async () => {
             const testRequired = true;
-            const host = await createComponent({ required: testRequired }, true);
+            const host = await createComponentWrapper(createComponent, { required: testRequired });
             const inputElem = host.queryCss(hiddenInputSelector);
 
             expect(inputElem.properties.required).toBe(testRequired);
@@ -87,7 +86,7 @@ describe('CheckboxComponent', () => {
     describe('@Input(indeterminate)', () => {
         it('must be bound to `nzIndeterminate` input of `nz-checkbox`', async () => {
             const testIndeterminate = true;
-            const host = await createComponent({ indeterminate: testIndeterminate }, true);
+            const host = await createComponentWrapper(createComponent, { indeterminate: testIndeterminate });
             const labelElem = host.queryCss(checkboxSelector);
 
             expect(labelElem.properties.nzIndeterminate).toBe(testIndeterminate);
@@ -97,7 +96,7 @@ describe('CheckboxComponent', () => {
     describe('@Input(disabled)', () => {
         it('must be bound to disabled property of hidden HTML <input>', async () => {
             const testDisabled = true;
-            const host = await createComponent({ disabled: testDisabled }, true);
+            const host = await createComponentWrapper(createComponent, { disabled: testDisabled });
             const inputElem = host.queryCss(hiddenInputSelector);
 
             expect(inputElem.properties.disabled).toBe(testDisabled);
@@ -105,7 +104,7 @@ describe('CheckboxComponent', () => {
 
         it('must be bound to `nzDisabled` input of `nz-checkbox`', async () => {
             const testDisabled = true;
-            const host = await createComponent({ disabled: testDisabled }, true);
+            const host = await createComponentWrapper(createComponent, { disabled: testDisabled });
             const labelElem = host.queryCss(checkboxSelector);
 
             expect(labelElem.properties.nzDisabled).toBe(testDisabled);
@@ -114,7 +113,7 @@ describe('CheckboxComponent', () => {
 
     describe('@Input(attrs)', () => {
         it('must be bound to the appropriate attributes of hidden HTML <input>', async () => {
-            const host = await createComponent({ attrs: { test: 'attr1', test2: 'attr2' } }, true);
+            const host = await createComponentWrapper(createComponent, { attrs: { test: 'attr1', test2: 'attr2' } });
             const inputElem = host.queryCss(hiddenInputSelector);
 
             expect(inputElem.attributes['test']).toBe('attr1');
@@ -122,7 +121,7 @@ describe('CheckboxComponent', () => {
         });
 
         it('must parses to JSON format if it string', async () => {
-            const host = await createComponent({ attrs: '{"test":"attr1","test2":"attr2"}' as any }, true);
+            const host = await createComponentWrapper(createComponent, { attrs: '{"test":"attr1","test2":"attr2"}' });
             const inputElem = host.queryCss(hiddenInputSelector);
 
             expect(inputElem.attributes['test']).toBe('attr1');
@@ -130,7 +129,7 @@ describe('CheckboxComponent', () => {
         });
 
         it('must updates when changed', async () => {
-            const host = await createComponent({ attrs: { test: 'attr1', test2: 'attr2' } }, true);
+            const host = await createComponentWrapper(createComponent, { attrs: { test: 'attr1', test2: 'attr2' } });
             const inputElem = host.queryCss(hiddenInputSelector);
 
             host.setInputs({ attrs: { test: 'attr6' } }, true);
@@ -152,7 +151,10 @@ describe('CheckboxComponent', () => {
         it('must be bound to ngModel property of hidden HTML <input> with negative `indeterminate` input', async () => {
             const testChecked = true;
             const testIndeterminate = false;
-            const host = await createComponent({ checked: testChecked, indeterminate: testIndeterminate }, true);
+            const host = await createComponentWrapper(createComponent, {
+                checked: testChecked,
+                indeterminate: testIndeterminate,
+            });
             const inputElem = host.queryCss(hiddenInputSelector);
 
             expect(inputElem.properties.ngModel).toBe(testChecked && !testIndeterminate);
@@ -160,7 +162,7 @@ describe('CheckboxComponent', () => {
 
         it('must be bound to `ngModel` input of `nz-checkbox`', async () => {
             const testChecked = true;
-            const host = await createComponent({ checked: testChecked }, true);
+            const host = await createComponentWrapper(createComponent, { checked: testChecked });
             const labelElem = host.queryCss(checkboxSelector);
 
             expect(labelElem.properties.ngModel).toBe(testChecked);
@@ -169,7 +171,7 @@ describe('CheckboxComponent', () => {
 
     describe('@Output(checkedChange)', () => {
         it('must be emitted every time `ngModelChange` emits from `nz-checkbox`', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const labelElem = host.queryCss(checkboxSelector);
 
             labelElem.triggerEventHandler('ngModelChange', null);

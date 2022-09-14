@@ -1,7 +1,8 @@
-import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { TestBed } from '@angular/core/testing';
 import { ApplyAttrsModule } from '@spryker/utils';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TextareaComponent } from './textarea.component';
 
 describe('TextareaComponent', () => {
@@ -19,54 +20,54 @@ describe('TextareaComponent', () => {
         });
     });
 
-    it('template must render textarea with [nz-input] from Ant Design', async () => {
-        const host = await createComponent({}, true);
+    it('template must render <textarea> with [nz-input] from Ant Design', async () => {
+        const host = await createComponentWrapper(createComponent);
         const textareaElem = host.queryCss('textarea[nz-input]');
 
         expect(textareaElem).toBeTruthy();
     });
 
-    describe('Inputs must be bound to internal textarea', () => {
-        it('should bind placeholder to placeholder of textarea', async () => {
+    describe('Inputs must be bound to internal <textarea>', () => {
+        it('should bind `placeholder` to `placeholder` attribute of <textarea>', async () => {
             const mockedPlaceholder = 'test placeholder';
-            const host = await createComponent({ placeholder: mockedPlaceholder }, true);
+            const host = await createComponentWrapper(createComponent, { placeholder: mockedPlaceholder });
             const textareaElem = host.queryCss('textarea');
 
             expect(textareaElem.attributes.placeholder).toBe(mockedPlaceholder);
         });
 
-        it('should bind value to value of textarea', async () => {
+        it('should bind `value` to `value` of <textarea>', async () => {
             const mockedValue = 'test value';
-            const host = await createComponent({ value: mockedValue }, true);
+            const host = await createComponentWrapper(createComponent, { value: mockedValue });
             const textareaElem = host.queryCss('textarea');
 
             expect(textareaElem.properties.value).toBe(mockedValue);
         });
 
-        it('should bind name to name attribute of textarea', async () => {
+        it('should bind `name` to `name` attribute of <textarea>', async () => {
             const mockedName = 'test name';
-            const host = await createComponent({ name: mockedName }, true);
+            const host = await createComponentWrapper(createComponent, { name: mockedName });
             const textareaElem = host.queryCss('textarea');
 
             expect(textareaElem.attributes.name).toBe(mockedName);
         });
 
-        it('should bind disabled to disabled of textarea', async () => {
-            const host = await createComponent({ disabled: true }, true);
+        it('should bind `disabled` to `disabled` of <textarea>', async () => {
+            const host = await createComponentWrapper(createComponent, { disabled: true });
             const textareaElem = host.queryCss('textarea');
 
             expect(textareaElem.properties.disabled).toBe(true);
         });
 
-        it('should bind rows to rows of textarea', async () => {
-            const host = await createComponent({ rows: 2 }, true);
+        it('should bind `rows` to `rows` attribute of <textarea>', async () => {
+            const host = await createComponentWrapper(createComponent, { rows: 2 });
             const textareaElem = host.queryCss('textarea');
 
             expect(textareaElem.attributes.rows).toBe('2');
         });
 
-        it('should bind cols to cols of textarea', async () => {
-            const host = await createComponent({ cols: 2 }, true);
+        it('should bind `cols` to `cols` attribute of <textarea>', async () => {
+            const host = await createComponentWrapper(createComponent, { cols: 2 });
             const textareaElem = host.queryCss('textarea');
 
             expect(textareaElem.attributes.cols).toBe('2');
@@ -74,8 +75,8 @@ describe('TextareaComponent', () => {
     });
 
     describe('Input attrs', () => {
-        it('should parse and bind `attrs` to the appropriate attributes of textarea', async () => {
-            const host = await createComponent({ attrs: { test: 'attr1', test2: 'attr2' } }, true);
+        it('should parse and bind `attrs` to the appropriate attributes of <textarea>', async () => {
+            const host = await createComponentWrapper(createComponent, { attrs: { test: 'attr1', test2: 'attr2' } });
             const textareaElem = host.queryCss('textarea');
 
             expect(textareaElem.attributes['test']).toBe('attr1');
@@ -83,7 +84,7 @@ describe('TextareaComponent', () => {
         });
 
         it('should `attrs` updates appropriate attributes when changed', async () => {
-            const host = await createComponent({ attrs: { test: 'attr1', test2: 'attr2' } }, true);
+            const host = await createComponentWrapper(createComponent, { attrs: { test: 'attr1', test2: 'attr2' } });
             const textareaElem = host.queryCss('textarea');
 
             host.setInputs({ attrs: { test: 'attr6' } }, true);
@@ -97,8 +98,8 @@ describe('TextareaComponent', () => {
         });
     });
 
-    it('template must render textarea with [nzautosize] from Ant Design', async () => {
-        const host = await createComponent({}, true);
+    it('template must render <textarea> with [nzautosize] from Ant Design', async () => {
+        const host = await createComponentWrapper(createComponent);
         const textareaElem = host.queryCss('textarea[nzautosize]');
 
         expect(textareaElem).toBeTruthy();

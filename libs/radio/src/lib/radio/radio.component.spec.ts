@@ -1,7 +1,8 @@
 import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { RadioModule } from '../radio.module';
 import { RadioComponent } from './radio.component';
 
@@ -39,7 +40,7 @@ describe('RadioComponent', () => {
         });
 
         it('should render `label[nz-radio]`', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const labelElem = host.queryCss('label[nz-radio]');
 
             expect(labelElem).toBeTruthy();
@@ -47,7 +48,7 @@ describe('RadioComponent', () => {
 
         it('should bound @Input(value) to the input `nzValue` of `label` element', async () => {
             const mockValue = 'mockValue';
-            const host = await createComponent({ value: mockValue }, true);
+            const host = await createComponentWrapper(createComponent, { value: mockValue });
             const labelElem = host.queryCss('label');
 
             expect(labelElem.properties.nzValue).toBe(mockValue);
@@ -55,14 +56,14 @@ describe('RadioComponent', () => {
 
         it('should bound @Input(disabled) to the input `nzDisabled` of `label` element', async () => {
             const mockDisabled = true;
-            const host = await createComponent({ disabled: mockDisabled }, true);
+            const host = await createComponentWrapper(createComponent, { disabled: mockDisabled });
             const labelElem = host.queryCss('label');
 
             expect(labelElem.properties.nzDisabled).toBe(mockDisabled);
         });
 
         it('should add `spy-radio--disabled` to the host if @Input(disabled) is `true`', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const radioComponent = host.queryCss('spy-radio');
 
             expect(radioComponent.classes['spy-radio--disabled']).toBeFalsy();
@@ -73,7 +74,7 @@ describe('RadioComponent', () => {
         });
 
         it('should add `spy-radio--error` to the host if @Input(hasError) is `true`', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const radioComponent = host.queryCss('spy-radio');
 
             expect(radioComponent.classes['spy-radio--error']).toBeFalsy();
@@ -85,7 +86,7 @@ describe('RadioComponent', () => {
 
         it('should trigger `selected` callback when `ngModelChange` on `label` element was triggered', async () => {
             const mockValue = 'mockValue';
-            const host = await createComponent({ value: mockValue }, true);
+            const host = await createComponentWrapper(createComponent, { value: mockValue });
             const labelElem = host.queryCss('label');
 
             labelElem.triggerEventHandler('ngModelChange', {});
@@ -112,7 +113,7 @@ describe('RadioComponent', () => {
 
         it('should set @Input(value) to the input element', async () => {
             const mockValue = 'mockValue';
-            const host = await createComponent({ value: mockValue }, true);
+            const host = await createComponentWrapper(createComponent, { value: mockValue });
             const inputElem = host.queryCss('label[nz-radio] input');
 
             expect(inputElem.nativeElement.value).toBe(mockValue);
@@ -136,21 +137,21 @@ describe('RadioComponent', () => {
 
         it('should bound @Input(value) to the input `nzValue` of `label` element', async () => {
             const mockValue = 'mockValue';
-            const host = await createComponent({ value: mockValue }, true);
+            const host = await createComponentWrapper(createComponent, { value: mockValue });
             const labelElem = host.queryCss('label');
 
             expect(labelElem.attributes['ng-reflect-nz-value']).toBe(mockValue);
         });
 
         it('should bound @Input(disabled) to the input `nzDisabled` of `label` element', async () => {
-            const host = await createComponent({ disabled: true }, true);
+            const host = await createComponentWrapper(createComponent, { disabled: true });
             const labelElem = host.queryCss('label');
 
             expect(labelElem.attributes['ng-reflect-nz-disabled']).toBe('true');
         });
 
         it('should add `spy-radio--disabled` to the `.spy-radio` if @Input(disabled) is `true`', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const radioElement = host.queryCss('.spy-radio');
 
             expect(radioElement.classes['spy-radio--disabled']).toBeFalsy();
@@ -161,7 +162,7 @@ describe('RadioComponent', () => {
         });
 
         it('should add `spy-radio--error` to the `.spy-radio` if @Input(hasError) is `true`', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const radioElement = host.queryCss('.spy-radio');
 
             expect(radioElement.classes['spy-radio--error']).toBeFalsy();

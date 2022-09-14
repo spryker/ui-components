@@ -2,6 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OfTypePipeModule } from '@spryker/utils';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { ToastPackage, ToastRef, ToastrService } from 'ngx-toastr';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NotificationWrapperComponent } from './notification-wrapper.component';
@@ -47,28 +48,28 @@ describe('NotificationWrapperComponent', () => {
     });
 
     it('should render <spy-notification-view>', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const notificationElem = host.queryCss('spy-notification-view');
 
         expect(notificationElem).toBeTruthy();
     });
 
     it('should bind toastPackage.toastType to type of <spy-notification-view>', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const notificationElem = host.queryCss('spy-notification-view');
 
         expect(notificationElem.properties.type).toBe(mockedType);
     });
 
     it('should bind toastPackage.closeButton to closeable of <spy-notification-view>', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const notificationElem = host.queryCss('spy-notification-view');
 
         expect(notificationElem.properties.closeable).toBe(mockedConfig.closeButton);
     });
 
     it('closed output of <spy-notification-view> should call notificationRef.close', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
 
         host.component.notificationRef = {
             close: jest.fn(),

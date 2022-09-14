@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { LogoComponent } from './logo.component';
 
@@ -16,14 +17,14 @@ describe('LogoComponent', () => {
     });
 
     it('should create', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
 
         expect(host.component).toBeTruthy();
     });
 
     it('should change image modifier', async () => {
         const logoImageModifier = 'full';
-        const host = await createComponent({ size: logoImageModifier }, true);
+        const host = await createComponentWrapper(createComponent, { size: logoImageModifier });
         const logoElement = host.queryCss(`.spy-logo--${logoImageModifier}`);
 
         expect(logoElement).toBeTruthy();

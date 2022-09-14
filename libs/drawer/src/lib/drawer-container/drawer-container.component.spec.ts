@@ -1,6 +1,7 @@
 import { Component, Input, NO_ERRORS_SCHEMA, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { PortalModule } from '@angular/cdk/portal';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { DynamicIoModule } from 'ng-dynamic-component';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DrawerContainerComponent } from './drawer-container.component';
@@ -50,37 +51,37 @@ describe('DrawerContainerComponent', () => {
         });
     });
 
-    it('should render `spy-drawer-wrapper` element', async () => {
-        const host = await createComponent({}, true);
+    it('should render <spy-drawer-wrapper> element', async () => {
+        const host = await createComponentWrapper(createComponent);
         const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
         expect(wrapperElem).toBeTruthy();
     });
 
-    it('should bind @Input(closeable) to `closeable` of `spy-drawer-wrapper`', async () => {
-        const host = await createComponent({ closeable: true }, true);
+    it('should bind @Input(closeable) to `closeable` of <spy-drawer-wrapper>', async () => {
+        const host = await createComponentWrapper(createComponent, { closeable: true });
         const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
         expect(wrapperElem.properties.closeable).toBe(true);
     });
 
-    it('should bind @Input(resizable) to `resizable` of `spy-drawer-wrapper`', async () => {
-        const host = await createComponent({ resizable: true }, true);
+    it('should bind @Input(resizable) to `resizable` of <spy-drawer-wrapper>', async () => {
+        const host = await createComponentWrapper(createComponent, { resizable: true });
         const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
         expect(wrapperElem.properties.resizable).toBe(true);
     });
 
-    it('should bind @Input(width) to `width` of `spy-drawer-wrapper`', async () => {
+    it('should bind @Input(width) to `width` of <spy-drawer-wrapper>', async () => {
         const width = '30%';
-        const host = await createComponent({ width: width }, true);
+        const host = await createComponentWrapper(createComponent, { width: width });
         const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
         expect(wrapperElem.properties.width).toBe(width);
     });
 
     it('should render content inside `spy-drawer-wrapper__content` element as content projection', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
         expect(wrapperElem.nativeElement.textContent).toContain('Content');

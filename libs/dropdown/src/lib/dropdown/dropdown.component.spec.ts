@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Directive, NO_ERRORS_SCHEMA } from '@angular/core';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DropdownComponent } from './dropdown.component';
 
@@ -26,7 +27,7 @@ describe('DropdownComponent', () => {
     });
 
     it('template must render span and nz-dropdown-menu from Ant Design', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const spanElem = host.queryCss('span[nz-dropdown]');
         const nzDropdownElem = host.queryCss('nz-dropdown-menu');
 
@@ -37,21 +38,21 @@ describe('DropdownComponent', () => {
     describe('Inputs must be bound to span', () => {
         it('should bind placement to nzPlacement of nz-dropdown', async () => {
             const mockedValue = 'bottomLeft';
-            const host = await createComponent({ placement: mockedValue }, true);
+            const host = await createComponentWrapper(createComponent, { placement: mockedValue });
             const spanElem = host.queryCss('span[nz-dropdown]');
 
             expect(spanElem.properties.nzPlacement).toBe(mockedValue);
         });
 
         it('should bind disabled to nzDisabled of nz-dropdown', async () => {
-            const host = await createComponent({ disabled: true }, true);
+            const host = await createComponentWrapper(createComponent, { disabled: true });
             const spanElem = host.queryCss('span[nz-dropdown]');
 
             expect(spanElem.properties.nzDisabled).toBe(true);
         });
 
         it('should bind visible to nzVisible of nz-dropdown', async () => {
-            const host = await createComponent({ visible: true }, true);
+            const host = await createComponentWrapper(createComponent, { visible: true });
             const spanElem = host.queryCss('span[nz-dropdown]');
 
             expect(spanElem.properties.nzVisible).toBe(true);
@@ -59,7 +60,7 @@ describe('DropdownComponent', () => {
     });
 
     it('visibleChange must be emitted every time nzVisibleChange emits with $event', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const spanElem = host.queryCss('span[nz-dropdown]');
 
         spanElem.triggerEventHandler('nzVisibleChange', false);

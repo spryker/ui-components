@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ReplaySubject } from 'rxjs';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DrawerComponent } from './drawer.component';
 import { DrawerService } from '../drawer.service';
@@ -42,15 +43,15 @@ describe('DrawerComponent', () => {
         service = TestBed.inject(MockDrawerService);
     });
 
-    it('should render `spy-drawer` component', async () => {
-        const host = await createComponent({}, true);
+    it('should render <spy-drawer> component', async () => {
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         expect(drawerElem).toBeTruthy();
     });
 
     it('should call `openTemplate` method from drawerService if `open` method has been triggered', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         drawerElem.componentInstance.open();
@@ -62,7 +63,7 @@ describe('DrawerComponent', () => {
     });
 
     it('should call `maximize` method from `drawerRef` when `maximize` method has been triggered if drawer was opened', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         drawerElem.componentInstance.open();
@@ -72,7 +73,7 @@ describe('DrawerComponent', () => {
     });
 
     it('should call `minimize` method from `drawerRef` when `minimize` method has been triggered if drawer was opened', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         drawerElem.componentInstance.open();
@@ -82,7 +83,7 @@ describe('DrawerComponent', () => {
     });
 
     it('should change `isOpen` prop to `true` when `open` method has been triggered', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         drawerElem.componentInstance.open();
@@ -91,7 +92,7 @@ describe('DrawerComponent', () => {
     });
 
     it('should emit @Output(isOpenChange) with `true` parameter when `open` method has been triggered', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         drawerElem.componentInstance.open();
@@ -100,7 +101,7 @@ describe('DrawerComponent', () => {
     });
 
     it('should change `isOpen` prop to `false` when `close` method has been triggered if drawer was opened', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         drawerElem.componentInstance.open();
@@ -110,7 +111,7 @@ describe('DrawerComponent', () => {
     });
 
     it('should emit @Output(isOpenChange) with `false` parameter when `close` method has been triggered if drawer was opened', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         drawerElem.componentInstance.open();
@@ -120,7 +121,7 @@ describe('DrawerComponent', () => {
     });
 
     it('should emit @Output(closed) when `close` method has been triggered if drawer was opened', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         drawerElem.componentInstance.open();
@@ -130,7 +131,7 @@ describe('DrawerComponent', () => {
     });
 
     it('should call `close` method from `drawerRef` and assign `drawerRef` to `undefined` when `close` method has been triggered if drawer was opened', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const drawerElem = host.queryCss('spy-drawer');
 
         drawerElem.componentInstance.open();

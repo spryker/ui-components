@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { UserMenuItemComponent } from './user-menu-item.component';
 
@@ -17,10 +18,10 @@ describe('UserMenuItemComponent', () => {
     );
 
     it('should render <spy-user-menu-item> with default slot', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const userMenuItemElem = host.queryCss('spy-user-menu-item');
 
         expect(userMenuItemElem).toBeTruthy();
-        expect(userMenuItemElem?.nativeElement.textContent).toMatch('Content');
+        expect(userMenuItemElem.nativeElement.textContent).toMatch('Content');
     });
 });

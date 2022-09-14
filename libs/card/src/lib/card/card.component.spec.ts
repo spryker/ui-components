@@ -1,5 +1,6 @@
 import { Component, TemplateRef, NO_ERRORS_SCHEMA, Input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { CardComponent } from './card.component';
 import { CardModule } from '../card.module';
@@ -36,13 +37,13 @@ describe('CardComponent', () => {
     });
 
     it('should create component', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
 
         expect(host.component).toBeTruthy();
     });
 
     it('should be hoverable', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const card = host.queryCss('nz-card');
 
         expect(card).toBeTruthy();
@@ -55,7 +56,7 @@ describe('CardComponent', () => {
 
     it('should render card title with content', async () => {
         const cardTitleContent = 'Card Title';
-        const host = await createComponent({ title: cardTitleContent }, true);
+        const host = await createComponentWrapper(createComponent, { title: cardTitleContent });
 
         const cardTitleElement = host.queryCss('.ant-card-head-title');
 
@@ -64,14 +65,14 @@ describe('CardComponent', () => {
     });
 
     it('should render card extra', async () => {
-        const host = await createComponent({ extra: {} as TemplateRef<void> }, true);
+        const host = await createComponentWrapper(createComponent, { extra: {} });
         const cardExtraElement = host.queryCss('.ant-card-extra');
 
         expect(cardExtraElement).toBeTruthy();
     });
 
     it('should render actions wrapper with actions', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const actionsElement = host.queryCss('.ant-card-actions');
 
         expect(actionsElement).toBeTruthy();

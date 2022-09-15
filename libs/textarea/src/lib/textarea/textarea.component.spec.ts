@@ -60,17 +60,19 @@ describe('TextareaComponent', () => {
         });
 
         it('should bind `rows` to `rows` attribute of <textarea>', async () => {
-            const host = await createComponentWrapper(createComponent, { rows: 2 });
+            const mockValue = 2;
+            const host = await createComponentWrapper(createComponent, { rows: mockValue });
             const textareaElem = host.queryCss('textarea');
 
-            expect(textareaElem.attributes.rows).toBe('2');
+            expect(Number(textareaElem.attributes.rows)).toBe(mockValue);
         });
 
         it('should bind `cols` to `cols` attribute of <textarea>', async () => {
-            const host = await createComponentWrapper(createComponent, { cols: 2 });
+            const mockValue = 2;
+            const host = await createComponentWrapper(createComponent, { cols: mockValue });
             const textareaElem = host.queryCss('textarea');
 
-            expect(textareaElem.attributes.cols).toBe('2');
+            expect(Number(textareaElem.attributes.cols)).toBe(mockValue);
         });
     });
 

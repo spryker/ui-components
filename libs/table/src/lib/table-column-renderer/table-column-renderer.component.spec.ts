@@ -53,6 +53,7 @@ class TestHostComponent implements AfterViewInit {
     templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
 
     ngAfterViewInit() {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.templatesObj = this.slotTemplates!.reduce(
             (templates, slot) => ({
                 ...templates,

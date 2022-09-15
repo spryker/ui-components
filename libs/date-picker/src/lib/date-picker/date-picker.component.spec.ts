@@ -22,20 +22,16 @@ const mockedEnableTimeObject = {
     from: '2020.11.05 8:30',
     to: '2020.11.05 17:30',
 };
-const mockedEnableTimeFunction = () => {
-    return {
-        hours: () => [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-        minutes: () => [...Array(31).keys()],
-        seconds: () => [],
-    };
-};
-const mockedDisabledTime = () => {
-    return {
-        nzDisabledHours: () => [0, 1, 2, 3, 4, 5, 6, 7, 18, 19, 20, 21, 22, 23],
-        nzDisabledMinutes: () => [...Array(29).keys()].map((_, index) => 31 + index),
-        nzDisabledSeconds: () => [],
-    };
-};
+const mockedEnableTimeFunction = () => ({
+    hours: () => [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+    minutes: () => [...Array(31).keys()],
+    seconds: () => [],
+});
+const mockedDisabledTime = () => ({
+    nzDisabledHours: () => [0, 1, 2, 3, 4, 5, 6, 7, 18, 19, 20, 21, 22, 23],
+    nzDisabledMinutes: () => [...Array(29).keys()].map((_, index) => 31 + index),
+    nzDisabledSeconds: () => [],
+});
 
 describe('DatePickerComponent', () => {
     let { testModule, createComponent } = getTestingForComponent(DatePickerComponent, {

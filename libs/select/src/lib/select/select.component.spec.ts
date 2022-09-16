@@ -1,26 +1,25 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DatasourceModule } from '@spryker/datasource';
 import { IconRemoveModule } from '@spryker/icon/icons';
 import { JoinModule } from '@spryker/utils';
-
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { SelectComponent } from './select.component';
+
+@Component({
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'nz-select',
+    template: ` <ng-content></ng-content> `,
+})
+class MockNzSelectComponent {}
 
 class MockDatasource {
     resolve = jest.fn();
 }
 
 describe('SelectComponent', () => {
-    @Component({
-        // eslint-disable-next-line @angular-eslint/component-selector
-        selector: 'nz-select',
-        template: ` <ng-content></ng-content> `,
-    })
-    class MockNzSelectComponent {}
-
     const { testModule, createComponent } = getTestingForComponent(SelectComponent, {
         ngModule: {
             imports: [
@@ -29,8 +28,8 @@ describe('SelectComponent', () => {
                     inline: MockDatasource,
                 }),
             ],
-            schemas: [NO_ERRORS_SCHEMA],
             declarations: [MockNzSelectComponent],
+            schemas: [NO_ERRORS_SCHEMA],
         },
     });
 
@@ -42,7 +41,7 @@ describe('SelectComponent', () => {
     });
 
     it('template must render nz-select from Ant Design and default select', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const nzSelectElem = host.queryCss('nz-select');
         const selectElem = host.queryCss('select');
 
@@ -51,12 +50,12 @@ describe('SelectComponent', () => {
     });
 
     describe('custom clear icon', () => {
-        it('should bind templateRef to `nzClearIcon` input of `nz-select`', async () => {
-            const host = await createComponent({}, true);
+        it('should bind templateRef to `nzClearIcon` input of <nz-select>', async () => {
+            const host = await createComponentWrapper(createComponent);
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
-            expect(nzSelectElem!.properties.nzClearIcon).toEqual(expect.any(TemplateRef));
+            expect(nzSelectElem.properties.nzClearIcon).toEqual(expect.any(TemplateRef));
         });
 
         it('should render <spy-icon> with `IconRemoveModule` icon', async () => {
@@ -67,95 +66,97 @@ describe('SelectComponent', () => {
                 },
             });
 
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const clearIconElem = host.queryCss('nz-select spy-icon');
 
             expect(clearIconElem).toBeTruthy();
-            expect(clearIconElem!.properties.name).toBe(IconRemoveModule.icon);
-            expect(clearIconElem!.nativeElement.classList.contains('ant-select-selection__clear-icon')).toBe(true);
+            expect(clearIconElem.properties.name).toBe(IconRemoveModule.icon);
+            expect(clearIconElem.nativeElement.classList.contains('ant-select-selection__clear-icon')).toBe(true);
         });
     });
 
     describe('@Input(value) affects ngModel of nz-select', () => {
         it('should be set when value exists in options', async () => {
-            const host = await createComponent({ value: 'val1', options: ['val1', 'val2'] }, true);
+            const host = await createComponentWrapper(createComponent, { value: 'val1', options: ['val1', 'val2'] });
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
-            expect(nzSelectElem!.properties.ngModel).toBe('val1');
+            expect(nzSelectElem.properties.ngModel).toBe('val1');
         });
 
         it('should NOT be set when value does not exist in options', async () => {
-            const host = await createComponent({ value: 'val3', options: ['val1', 'val2'] }, true);
+            const host = await createComponentWrapper(createComponent, { value: 'val3', options: ['val1', 'val2'] });
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
-            expect(nzSelectElem!.properties.ngModel).toBe(undefined);
+            expect(nzSelectElem.properties.ngModel).toBe(undefined);
         });
     });
 
     describe('Inputs must be bound to nz-select', () => {
         it('should bind search to nzShowSearch of nz-select', async () => {
-            const host = await createComponent({ search: true }, true);
+            const host = await createComponentWrapper(createComponent, { search: true });
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
-            expect(nzSelectElem!.properties.nzShowSearch).toBe(true);
+            expect(nzSelectElem.properties.nzShowSearch).toBe(true);
         });
 
         it('should bind disabled to nzDisabled of nz-select', async () => {
-            const host = await createComponent({ disabled: true }, true);
+            const host = await createComponentWrapper(createComponent, { disabled: true });
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
-            expect(nzSelectElem!.properties.nzDisabled).toBe(true);
+            expect(nzSelectElem.properties.nzDisabled).toBe(true);
         });
 
         it('should bind multiple to nzMode of nz-select', async () => {
-            const host = await createComponent({ multiple: true }, true);
+            const host = await createComponentWrapper(createComponent, { multiple: true });
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
-            expect(nzSelectElem!.properties.nzMode).toBe('multiple');
+            expect(nzSelectElem.properties.nzMode).toBe('multiple');
         });
 
         it('should bind placeholder to nzPlaceHolder of nz-select', async () => {
-            const host = await createComponent({ placeholder: 'placeholder' }, true);
+            const mockPlaceholder = 'placeholder';
+            const host = await createComponentWrapper(createComponent, { placeholder: mockPlaceholder });
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
-            expect(nzSelectElem!.properties.nzPlaceHolder).toBe('placeholder');
+            expect(nzSelectElem.properties.nzPlaceHolder).toBe(mockPlaceholder);
         });
 
         it('should bind disableClear inverted to nzAllowClear of nz-select', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
-            expect(nzSelectElem!.properties.nzAllowClear).toBe(true);
+            expect(nzSelectElem.properties.nzAllowClear).toBe(true);
 
             host.setInputs({ disableClear: true }, true);
 
-            expect(nzSelectElem!.properties.nzAllowClear).toBe(false);
+            expect(nzSelectElem.properties.nzAllowClear).toBe(false);
         });
     });
 
     it('options array must be correctly mapped and create each option of the dropdown', async () => {
-        const host = await createComponent({ options: ['123'] }, true);
+        const mockOption = '123';
+        const host = await createComponentWrapper(createComponent, { options: [mockOption] });
         const nzOption = host.queryCss('nz-option');
 
         expect(nzOption).toBeTruthy();
-        expect(nzOption!.properties.nzValue).toBe('123');
-        expect(nzOption!.properties.nzLabel).toBe('123');
+        expect(nzOption.properties.nzValue).toBe(mockOption);
+        expect(nzOption.properties.nzLabel).toBe(mockOption);
     });
 
     it('valueChange must be emitted every time ngModelChange emits from nz-select', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
         const nzSelectElem = host.queryCss('nz-select');
 
         expect(nzSelectElem).toBeTruthy();
 
-        nzSelectElem!.triggerEventHandler('ngModelChange', []);
+        nzSelectElem.triggerEventHandler('ngModelChange', []);
         host.detectChanges();
 
         expect(host.hostComponent.valueChange).toHaveBeenCalled();
@@ -163,39 +164,40 @@ describe('SelectComponent', () => {
 
     describe('native select', () => {
         it('should bind @Input(disabled) to `disabled` property', async () => {
-            const host = await createComponent({ disabled: true }, true);
+            const host = await createComponentWrapper(createComponent, { disabled: true });
             const selectElem = host.queryCss('select');
 
             expect(selectElem).toBeTruthy();
-            expect(selectElem!.properties.disabled).toBe(true);
+            expect(selectElem.properties.disabled).toBe(true);
         });
 
         it('should set multiple attribute when @Input(multiple) is `true`', async () => {
-            const host = await createComponent({ multiple: true }, true);
+            const host = await createComponentWrapper(createComponent, { multiple: true });
             const selectElem = host.queryCss('select');
 
             expect(selectElem).toBeTruthy();
-            expect(selectElem!.attributes.multiple).toBe('');
+            expect(selectElem.attributes.multiple).toBe('');
         });
 
         it('should NOT set multiple attribute when @Input(multiple) is `false`', async () => {
-            const host = await createComponent({ multiple: false }, true);
+            const host = await createComponentWrapper(createComponent, { multiple: false });
             const selectElem = host.queryCss('select');
 
             expect(selectElem).toBeTruthy();
-            expect(selectElem!.attributes.multiple).toBeFalsy();
+            expect(selectElem.attributes.multiple).toBeFalsy();
         });
 
         it('should bind @Input(name) to `name` attribute', async () => {
-            const host = await createComponent({ name: 'mocked-name' }, true);
+            const mockName = 'mocked-name';
+            const host = await createComponentWrapper(createComponent, { name: mockName });
             const selectElem = host.queryCss('select');
 
             expect(selectElem).toBeTruthy();
-            expect(selectElem!.attributes.name).toBe('mocked-name');
+            expect(selectElem.attributes.name).toBe(mockName);
         });
 
         it('should render empty <option> tag', async () => {
-            const host = await createComponent({}, true);
+            const host = await createComponentWrapper(createComponent);
             const optionElems = host.fixture.debugElement.queryAll(By.css('select option'));
 
             expect(optionElems.length).toBe(1);
@@ -203,68 +205,66 @@ describe('SelectComponent', () => {
         });
 
         it('should render <option> tags for every @Input(options) value', async () => {
-            const host = await createComponent({ options: [1, 2, 3] }, true);
+            const mockOptions = [1, 2, 3];
+            const host = await createComponentWrapper(createComponent, { options: mockOptions });
             const optionElems = host.fixture.debugElement.queryAll(By.css('select option'));
 
             expect(optionElems.length).toBe(4); // +1 for empty option
             expect(optionElems[0].properties.value).toBe(undefined);
-            expect(optionElems[1].properties.value).toBe(1);
-            expect(optionElems[2].properties.value).toBe(2);
-            expect(optionElems[3].properties.value).toBe(3);
+            expect(optionElems[1].properties.value).toBe(mockOptions[0]);
+            expect(optionElems[2].properties.value).toBe(mockOptions[1]);
+            expect(optionElems[3].properties.value).toBe(mockOptions[2]);
         });
     });
 
     describe('SelectComponent methods', () => {
         it('options array with numbers or strings should be correctly mapped', async () => {
-            const host = await createComponent({ options: [123, '123'] }, true);
+            const mockOptions = [123, '123'];
+            const host = await createComponentWrapper(createComponent, { options: mockOptions });
             const nzOptionElems = host.fixture.debugElement.queryAll(By.css('nz-option'));
 
             expect(nzOptionElems.length).toBe(2);
-            expect(nzOptionElems[0].properties.nzValue).toBe(123);
-            expect(nzOptionElems[0].properties.nzLabel).toBe(123);
-            expect(nzOptionElems[1].properties.nzValue).toBe('123');
-            expect(nzOptionElems[1].properties.nzLabel).toBe('123');
+            expect(nzOptionElems[0].properties.nzValue).toBe(mockOptions[0]);
+            expect(nzOptionElems[0].properties.nzLabel).toBe(mockOptions[0]);
+            expect(nzOptionElems[1].properties.nzValue).toBe(mockOptions[1]);
+            expect(nzOptionElems[1].properties.nzLabel).toBe(mockOptions[1]);
         });
 
         it('Select All correctly triggers selection of all items', async () => {
-            const host = await createComponent(
-                {
-                    options: [123, 234, 345],
-                    multiple: true,
-                    showSelectAll: true,
-                    selectAllTitle: 'Select All',
-                },
-                true,
-            );
+            const mockOptions = [123, 234, 345];
+            const host = await createComponentWrapper(createComponent, {
+                options: mockOptions,
+                multiple: true,
+                showSelectAll: true,
+                selectAllTitle: 'Select All',
+            });
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
 
-            nzSelectElem!.triggerEventHandler('ngModelChange', [host.component.selectAllValue]);
+            nzSelectElem.triggerEventHandler('ngModelChange', [host.component.selectAllValue]);
             host.detectChanges();
 
-            expect(nzSelectElem!.properties.ngModel).toEqual([123, 234, 345]);
+            expect(nzSelectElem.properties.ngModel).toEqual(mockOptions);
         });
 
         it('Select All correctly triggers deselection of all items', async () => {
-            const host = await createComponent(
-                {
-                    options: [123, 234, 345],
-                    value: [123, 234, 345],
-                    multiple: true,
-                    showSelectAll: true,
-                    selectAllTitle: 'Select All',
-                },
-                true,
-            );
+            const mockOptions = [123, 234, 345];
+            const host = await createComponentWrapper(createComponent, {
+                options: mockOptions,
+                value: mockOptions,
+                multiple: true,
+                showSelectAll: true,
+                selectAllTitle: 'Select All',
+            });
             const nzSelectElem = host.queryCss('nz-select');
 
             expect(nzSelectElem).toBeTruthy();
 
-            nzSelectElem!.triggerEventHandler('ngModelChange', [123, 234, 345, host.component.selectAllValue]);
+            nzSelectElem.triggerEventHandler('ngModelChange', [...mockOptions, host.component.selectAllValue]);
             host.detectChanges();
 
-            expect(nzSelectElem!.properties.ngModel).toEqual([]);
+            expect(nzSelectElem.properties.ngModel).toEqual([]);
         });
     });
 });

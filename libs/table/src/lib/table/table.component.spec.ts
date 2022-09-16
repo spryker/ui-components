@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
 import { fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { I18nModule } from '@spryker/locale';
 import { InvokeModule, PluckModule } from '@spryker/utils';
 import { ActionsService } from '@spryker/actions';
 import { DatasourceTypesToken } from '@spryker/datasource';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { Observable, of } from 'rxjs';
-
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TableFeaturesRegistryToken } from '../table-feature-loader';
 import { TableFeaturesRendererComponent } from '../table-features-renderer/table-features-renderer.component';
 import { TableFeaturesRendererDirective } from '../table-features-renderer/table-features-renderer.directive';
@@ -133,8 +132,8 @@ describe('TableComponent', () => {
             httpTestingController.verify();
         });
 
-        it('must render `nz-table`', fakeAsync(async () => {
-            const host = await createComponent({ config: mockConfig }, true);
+        it('must render <nz-table>', fakeAsync(async () => {
+            const host = await createComponentWrapper(createComponent, { config: mockConfig });
 
             tick();
             host.detectChanges();
@@ -152,8 +151,8 @@ describe('TableComponent', () => {
             expect(tableElem).toBeTruthy();
         }));
 
-        it('must render `thead` with input `nzSortFn` must be `true`', fakeAsync(async () => {
-            const host = await createComponent({ config: mockConfig }, true);
+        it('must render <thead> with input `nzSortFn` must be `true`', fakeAsync(async () => {
+            const host = await createComponentWrapper(createComponent, { config: mockConfig });
 
             tick();
             host.detectChanges();
@@ -169,13 +168,13 @@ describe('TableComponent', () => {
             const tableHeadElem = host.queryCss('thead');
 
             expect(tableHeadElem).toBeTruthy();
-            expect(tableHeadElem!.attributes.nzSortFn).toBe('true');
+            expect(tableHeadElem.attributes.nzSortFn).toBe('true');
         }));
     });
 
     describe('Host', () => {
-        it('should have class `spy-table`', fakeAsync(async () => {
-            const host = await createComponent({ config: mockConfig }, true);
+        it('should have class <spy-table>', fakeAsync(async () => {
+            const host = await createComponentWrapper(createComponent, { config: mockConfig });
 
             tick();
             host.detectChanges();
@@ -216,7 +215,8 @@ describe('TableComponent', () => {
         });
 
         it('must render features in the appropriate blocks', fakeAsync(async () => {
-            const host = await createComponent({ config: mockConfig }, true);
+            const host = await createComponentWrapper(createComponent, { config: mockConfig });
+
             host.component.tableData$ = of([{}]);
 
             tick();
@@ -277,8 +277,8 @@ describe('TableComponent', () => {
         });
 
         describe('columnsUrl dataSourceUrl columns', () => {
-            it('returned columns$ Observable should match the right data with `columnsUrl key`', fakeAsync(async () => {
-                const host = await createComponent({ config: mockConfig }, true);
+            it('returned columns$ Observable should match the right data with `columnsUrl` key', fakeAsync(async () => {
+                const host = await createComponentWrapper(createComponent, { config: mockConfig });
                 const callback = jest.fn();
 
                 tick();
@@ -298,7 +298,7 @@ describe('TableComponent', () => {
             }));
 
             it('returned columns$ Observable should match the right data with `columns` key', fakeAsync(async () => {
-                const host = await createComponent({ config: mockConfigCols }, true);
+                const host = await createComponentWrapper(createComponent, { config: mockConfigCols });
                 const callback = jest.fn();
 
                 tick();
@@ -315,7 +315,7 @@ describe('TableComponent', () => {
             }));
 
             it('returned data$ Observable should match the right data', fakeAsync(async () => {
-                const host = await createComponent({ config: mockConfig }, true);
+                const host = await createComponentWrapper(createComponent, { config: mockConfig });
                 const callback = jest.fn();
 
                 tick();
@@ -334,8 +334,8 @@ describe('TableComponent', () => {
                 expect(callback).toHaveBeenCalledWith(mockData);
             }));
 
-            it('prop data$ must be mapped into tbody and render spy-table-column-renderer at each td', fakeAsync(async () => {
-                const host = await createComponent({ config: mockConfig }, true);
+            it('prop data$ must be mapped into <tbody> and render <spy-table-column-renderer> at each <td>', fakeAsync(async () => {
+                const host = await createComponentWrapper(createComponent, { config: mockConfig });
 
                 tick();
                 host.detectChanges();
@@ -353,13 +353,13 @@ describe('TableComponent', () => {
 
                 expect(tdElements.length).toBe(mockData.data.length);
                 expect(columnElement).toBeTruthy();
-                expect(columnElement!.properties.config).toBe(mockCols[0]);
-                expect(columnElement!.properties.data).toBe(mockData.data[0]);
-                expect(columnElement!.properties.template).toBe(undefined);
+                expect(columnElement.properties.config).toBe(mockCols[0]);
+                expect(columnElement.properties.data).toBe(mockData.data[0]);
+                expect(columnElement.properties.template).toBe(undefined);
             }));
 
-            it('prop columns$ must be mapped into thead and create with tr and each th of the table', fakeAsync(async () => {
-                const host = await createComponent({ config: mockConfig }, true);
+            it('prop columns$ must be mapped into <thead> and create with <tr> and each <th> of the <table>', fakeAsync(async () => {
+                const host = await createComponentWrapper(createComponent, { config: mockConfig });
 
                 tick();
                 host.detectChanges();

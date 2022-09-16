@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
     AfterViewInit,
     ANALYZE_FOR_ENTRY_COMPONENTS,
@@ -10,11 +9,12 @@ import {
     TemplateRef,
     ViewChildren,
 } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { OrchestratorCoreModule } from '@orchestrator/core';
-import { LayoutFlatHostComponent, LayoutFlatHostModule } from '@orchestrator/layout';
+import { TestBed } from '@angular/core/testing';
 import { ContextModule, ContextService, DefaultContextSerializationModule } from '@spryker/utils';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { LayoutFlatHostComponent, LayoutFlatHostModule } from '@orchestrator/layout';
+import { OrchestratorCoreModule } from '@orchestrator/core';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import {
     ColTplDirective,
@@ -32,7 +32,6 @@ const mockConfig: TableColumn = {
     sortable: true,
     width: '40%',
 };
-
 const mockData: TableDataRow = {
     name: 'test',
 };
@@ -54,6 +53,7 @@ class TestHostComponent implements AfterViewInit {
     templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
 
     ngAfterViewInit() {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.templatesObj = this.slotTemplates!.reduce(
             (templates, slot) => ({
                 ...templates,
@@ -84,14 +84,17 @@ class TableColumnTestComponent implements TableColumnComponent<TableColumnTestCo
 }
 
 describe('TableColumnRendererComponent', () => {
-    let component: TestHostComponent;
-    let fixture: ComponentFixture<TestHostComponent>;
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
+    const { testModule, createComponent } = getTestingForComponent(TestHostComponent, {
+        ngModule: {
             imports: [OrchestratorCoreModule, LayoutFlatHostModule, ContextModule, DefaultContextSerializationModule],
-            declarations: [TestHostComponent, TableColumnRendererComponent, ColTplDirective, TableColumnTestComponent],
+            declarations: [TableColumnRendererComponent, ColTplDirective, TableColumnTestComponent, TestHostComponent],
             schemas: [NO_ERRORS_SCHEMA],
+        },
+    });
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
             providers: [
                 ...(OrchestratorCoreModule.forRoot().providers || []),
                 ...OrchestratorCoreModule.registerComponents({
@@ -106,54 +109,36 @@ describe('TableColumnRendererComponent', () => {
                 },
             ],
             teardown: { destroyAfterEach: false },
-        }).compileComponents();
-    }));
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(TestHostComponent);
-        component = fixture.componentInstance;
+        });
     });
 
-    it('must render `data[config.id]` when input config.type and template are undefined', () => {
-        component.config = mockConfig;
-        component.data = mockData;
+    it('must render `data[config.id]` when input `config.type` and template are undefined', async () => {
+        const host = await createComponentWrapper(createComponent, { config: mockConfig, data: mockData });
+        const rendererElem = host.queryCss('spy-table-column-renderer');
 
-        fixture.detectChanges();
-
-        const rendererElem = fixture.debugElement.query(By.css('spy-table-column-renderer'));
-
-        expect(rendererElem!.nativeElement.textContent).toMatch(mockData[mockConfig.id] as string);
+        expect(rendererElem.nativeElement.textContent).toMatch(mockData[mockConfig.id] as string);
     });
 
-    it('must render `template` when input `template` is set', () => {
-        component.config = mockConfig;
-        component.data = mockData;
+    it('must render `template` when input `template` is set', async () => {
+        const host = await createComponentWrapper(createComponent, { config: mockConfig, data: mockData });
+        const templateRef = host.component.templatesObj;
 
-        fixture.detectChanges();
+        host.setInputs({ template: templateRef[mockConfig.id] }, true);
 
-        const templateRef = component.templatesObj;
+        const rendererElem = host.queryCss('spy-table-column-renderer');
 
-        component.template = templateRef[mockConfig.id];
-
-        fixture.detectChanges();
-
-        const rendererElem = fixture.debugElement.query(By.css('spy-table-column-renderer'));
-
-        expect(rendererElem!.nativeElement.textContent).toMatch('Name is: test');
+        expect(rendererElem.nativeElement.textContent).toMatch('Name is: test');
     });
 
-    it('must render `orc-orchestrator` when input `config` has key `type`', () => {
-        component.config = {
+    it('must render `orc-orchestrator` when input `config` has key `type`', async () => {
+        const config = {
             ...mockConfig,
             type: 'test',
             typeOptions: { text: '${value} orc-orchestrator' },
         };
-        component.data = mockData;
+        const host = await createComponentWrapper(createComponent, { config: config, data: mockData });
+        const rendererElem = host.queryCss('spy-table-column-renderer');
 
-        fixture.detectChanges();
-
-        const rendererElem = fixture.debugElement.query(By.css('spy-table-column-renderer'));
-
-        expect(rendererElem!.nativeElement.textContent).toMatch('test orc-orchestrator');
+        expect(rendererElem.nativeElement.textContent).toMatch('test orc-orchestrator');
     });
 });

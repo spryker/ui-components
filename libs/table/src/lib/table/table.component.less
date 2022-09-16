@@ -193,11 +193,6 @@
                 border-bottom: none;
                 position: relative;
 
-                .ie-styles-only-mixin({
-          height: inherit;
-          position: static;
-        });
-
                 .@{table-prefix-cls}-column-inner {
                     padding: @table-column-inner-padding;
                     color: @table-column-body-color;
@@ -206,10 +201,6 @@
                     justify-content: center;
                     height: 100%;
                     z-index: @table-column-inner-z-index;
-
-                    .ie-styles-only-mixin({
-            position: relative;
-          });
 
                     &::after {
                         .transition-mixin(background, border, box-shadow;);
@@ -259,10 +250,6 @@
                     width: 100%;
                     padding: @table-head-padding;
 
-                    .ie-styles-only-mixin({
-            position: relative;
-          });
-
                     &::after {
                         .transition-mixin(background, border, box-shadow;);
                         content: '';
@@ -295,10 +282,6 @@
 
                 .@{table-prefix-cls}-column-inner {
                     padding: 0;
-
-                    .ie-styles-only-mixin({
-            position: static;
-          });
 
                     &::after {
                         display: none;

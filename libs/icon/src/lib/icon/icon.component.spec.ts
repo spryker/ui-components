@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-
 import { IconComponent } from './icon.component';
 import { InternalIconService } from './internal-icon.service';
 import { provideIcons } from './tokens';
@@ -14,9 +13,7 @@ const svgIcon = `<svg viewBox="0 0 576 512"><path fill="currentColor" d="M280.37
 
 describe('IconComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(IconComponent, {
-        ngModule: {
-            schemas: [NO_ERRORS_SCHEMA],
-        },
+        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
     });
 
     beforeEach(() => {
@@ -44,18 +41,20 @@ describe('IconComponent', () => {
     });
 
     it('should compile', async () => {
-        await createComponent();
+        await createComponentWrapper(createComponent);
     });
 
     describe('host class `spy-icon-[name]`', () => {
         it('should add when @Input(name) set', async () => {
-            const host = await createComponent({ name: 'name' }, true);
+            const host = await createComponentWrapper(createComponent, { name: 'name' });
 
             expect(host.element.classes['spy-icon-name']).toBeTruthy();
         });
 
         it('should update when @Input(name) updated', async () => {
-            const host = await createComponent({ name: 'name' }, true);
+            const host = await createComponentWrapper(createComponent, { name: 'name' });
+
+            expect(host.element.classes['spy-icon-name']).toBeTruthy();
 
             host.setInputs({ name: 'new-name' }, true);
 
@@ -63,7 +62,9 @@ describe('IconComponent', () => {
         });
 
         it('should remove old class when @Input(name) updated', async () => {
-            const host = await createComponent({ name: 'name' }, true);
+            const host = await createComponentWrapper(createComponent, { name: 'name' });
+
+            expect(host.element.classes['spy-icon-name']).toBeTruthy();
 
             host.setInputs({ name: 'new-name' }, true);
 
@@ -73,36 +74,39 @@ describe('IconComponent', () => {
 
     describe('@Input(name)', () => {
         it('should render <i> from promise', fakeAsync(async () => {
-            const host = await createComponent({ name: promiseIcon }, true);
+            const host = await createComponentWrapper(createComponent, { name: promiseIcon });
+
             tick();
             host.detectChanges();
 
             const iconElem = host.queryCss('i');
 
             expect(iconElem).toBeTruthy();
-            expect(iconElem!.properties.nzType).toEqual(promiseIcon);
+            expect(iconElem.properties.nzType).toEqual(promiseIcon);
         }));
 
         it('should render <i> from string', fakeAsync(async () => {
-            const host = await createComponent({ name: stringIcon }, true);
+            const host = await createComponentWrapper(createComponent, { name: stringIcon });
+
             tick();
             host.detectChanges();
 
             const iconComponent = host.queryCss('i');
 
             expect(iconComponent).toBeTruthy();
-            expect(iconComponent!.properties.nzType).toEqual(stringIcon);
+            expect(iconComponent.properties.nzType).toEqual(stringIcon);
         }));
 
         it('should re-render <i> when changed', fakeAsync(async () => {
-            const host = await createComponent({ name: promiseIcon }, true);
+            const host = await createComponentWrapper(createComponent, { name: promiseIcon });
+
             tick();
             host.detectChanges();
 
             const firstIconElem = host.queryCss('i');
 
             expect(firstIconElem).toBeTruthy();
-            expect(firstIconElem!.properties.nzType).toEqual(promiseIcon);
+            expect(firstIconElem.properties.nzType).toEqual(promiseIcon);
 
             host.setInputs({ name: stringIcon }, true);
             tick();
@@ -111,7 +115,7 @@ describe('IconComponent', () => {
             const secondIconElem = host.queryCss('i');
 
             expect(secondIconElem).toBeTruthy();
-            expect(secondIconElem!.properties.nzType).toEqual(stringIcon);
+            expect(secondIconElem.properties.nzType).toEqual(stringIcon);
         }));
     });
 });

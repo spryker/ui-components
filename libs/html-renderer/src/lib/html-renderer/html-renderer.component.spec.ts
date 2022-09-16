@@ -1,13 +1,11 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { SpinnerSize } from '@spryker/spinner';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { Observable, ReplaySubject } from 'rxjs';
-
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { HtmlRendererComponent } from './html-renderer.component';
 import { HtmlRendererProvider } from './html-renderer.provider';
-
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 const mockHtmlTemplate = `
   <p>Hello World!!!</p>
@@ -33,7 +31,7 @@ describe('HtmlRendererComponent', () => {
         ngModule: { schemas: [NO_ERRORS_SCHEMA] },
     });
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [testModule],
             providers: [
@@ -45,19 +43,20 @@ describe('HtmlRendererComponent', () => {
             ],
             teardown: { destroyAfterEach: false },
         });
-        testHtmlRendererProvider = TestBed.inject(MockHtmlRendererProvider);
-    }));
 
-    it('should render `spy-html-renderer` component', async () => {
-        const host = await createComponent({}, true);
-        const htmlRendererElem = host.queryCss('spy-html-renderer')!;
+        testHtmlRendererProvider = TestBed.inject(MockHtmlRendererProvider);
+    });
+
+    it('should render <spy-html-renderer> component', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const htmlRendererElem = host.queryCss('spy-html-renderer');
 
         expect(htmlRendererElem).toBeTruthy();
     });
 
-    it('should render html inside `spy-html-renderer`', async () => {
-        const host = await createComponent({}, true);
-        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content')!;
+    it('should render html inside <spy-html-renderer>', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
 
         testHtmlRendererProvider.html$.next(mockHtmlTemplate);
         host.detectChanges();
@@ -65,56 +64,56 @@ describe('HtmlRendererComponent', () => {
         expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
     });
 
-    it('should render `spy-spinner` if `isLoading$` signal invokes', async () => {
-        const host = await createComponent({}, true);
+    it('should render <spy-spinner> if `isLoading$` signal invokes', async () => {
+        const host = await createComponentWrapper(createComponent);
+
         testHtmlRendererProvider.isLoading$.next();
         host.detectChanges();
 
-        const spinElem = host.queryCss('spy-spinner')!;
+        const spinElem = host.queryCss('spy-spinner');
 
         expect(spinElem).toBeTruthy();
     });
 
-    it('should not render `spy-spinner` if `isLoading$` signal does not invoke', async () => {
-        const host = await createComponent({}, true);
-        host.detectChanges();
-
-        const spinElem = host.queryCss('spy-spinner')!;
+    it('should not render <spy-spinner> if `isLoading$` signal does not invoke', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const spinElem = host.queryCss('spy-spinner');
 
         expect(spinElem).toBeFalsy();
     });
 
-    it('should not render `spy-spinner` if `html$` signal invokes', async () => {
-        const host = await createComponent({}, true);
+    it('should not render <spy-spinner> if `html$` signal invokes', async () => {
+        const host = await createComponentWrapper(createComponent);
+
         testHtmlRendererProvider.isLoading$.next();
         host.detectChanges();
 
-        let spinElem = host.queryCss('spy-spinner')!;
+        let spinElem = host.queryCss('spy-spinner');
 
         expect(spinElem).toBeTruthy();
 
         testHtmlRendererProvider.html$.next(mockHtmlTemplate);
         host.detectChanges();
-
-        spinElem = host.queryCss('spy-spinner')!;
+        spinElem = host.queryCss('spy-spinner');
 
         expect(spinElem).toBeFalsy();
     });
 
-    it('should apply `size` attribute for `spy-spinner` element', async () => {
-        const host = await createComponent({ spinnerSize: SpinnerSize.Default }, true);
+    it('should apply `size` attribute for <spy-spinner> element', async () => {
+        const host = await createComponentWrapper(createComponent, { spinnerSize: SpinnerSize.Default });
+
         testHtmlRendererProvider.isLoading$.next();
         host.detectChanges();
 
-        const spinElem = host.queryCss('spy-spinner')!;
+        const spinElem = host.queryCss('spy-spinner');
 
         expect(spinElem.properties.size).toBe(SpinnerSize.Default);
     });
 
-    it('should render html inside `spy-html-renderer` when html was changes', async () => {
+    it('should render html inside <spy-html-renderer> when html was changes', async () => {
         const mockRerenderHtml = `<p>Rerendered!!!</p>`;
-        const host = await createComponent({}, true);
-        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content')!;
+        const host = await createComponentWrapper(createComponent);
+        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
 
         testHtmlRendererProvider.html$.next(mockHtmlTemplate);
         host.detectChanges();
@@ -128,7 +127,7 @@ describe('HtmlRendererComponent', () => {
     });
 
     it('should emit @Output(htmlRendered) when component renders HTML code', fakeAsync(async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
 
         host.hostComponent.htmlRendered = jest.fn();
         testHtmlRendererProvider.html$.next(mockHtmlTemplate);

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/textarea@0.4.4...@spryker/textarea@0.4.5-next.0) (2022-09-16)
+
+
+### Bug Fixes
+
+* **textarea:** bind `rows/cols` as attributes ([29d4b14](https://github.com/spryker/ui-components/commit/29d4b149ae320690310539c7584b6aff6785290b))
+
+
+
+
+
 ## [0.4.4](https://github.com/spryker/ui-components/compare/@spryker/textarea@0.4.4-next.0...@spryker/textarea@0.4.4) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/textarea

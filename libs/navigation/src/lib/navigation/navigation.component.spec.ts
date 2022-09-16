@@ -1,8 +1,9 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NavigationComponent } from './navigation.component';
 
 const mockedData = [
@@ -32,206 +33,145 @@ const mockedData = [
 ];
 
 describe('NavigationComponent', () => {
-    let component: TestComponent;
-    let fixture: ComponentFixture<TestComponent>;
-
-    @Component({
-        // eslint-disable-next-line @angular-eslint/component-selector
-        selector: 'test',
-        template: ` <spy-navigation [items]="items" [collapsed]="collapsed"></spy-navigation> `,
-    })
-    class TestComponent {
-        items: any;
-        collapsed: any;
-    }
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
+    const { testModule, createComponent } = getTestingForComponent(NavigationComponent, {
+        ngModule: {
             imports: [NoopAnimationsModule],
-            declarations: [TestComponent, NavigationComponent],
             schemas: [NO_ERRORS_SCHEMA],
-            teardown: { destroyAfterEach: false },
-        }).compileComponents();
-    }));
+        },
+    });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        component = fixture.componentInstance;
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
     });
 
     describe('Component structure', () => {
-        it('should render <ul> with `nz-menu` attribute', () => {
-            const ulElem = fixture.debugElement.query(By.css('ul'));
+        it('should render <ul> with `nz-menu` attribute', async () => {
+            const host = await createComponentWrapper(createComponent);
+            const ulElem = host.queryCss('ul');
 
             expect(ulElem).toBeTruthy();
             expect(ulElem.attributes['nz-menu']).toBeDefined();
         });
 
-        it('should not render <li> with empty array `items` input', () => {
-            const liElem = fixture.debugElement.query(By.css('li'));
+        it('should not render <li> with empty array `items` input', async () => {
+            const host = await createComponentWrapper(createComponent);
+            const liElem = host.queryCss('li');
 
             expect(liElem).toBeFalsy();
         });
     });
 
     describe('@Input(items)', () => {
-        it('should render <li> with empty array `items` input', () => {
-            component.items = mockedData;
+        it('should render <li> with empty array `items` input', async () => {
+            const host = await createComponentWrapper(createComponent, { items: mockedData });
+            const liElem = host.queryCss('li');
 
-            fixture.detectChanges();
-
-            const liElem = fixture.debugElement.query(By.css('li'));
             expect(liElem).toBeTruthy();
         });
 
-        it('should render <li> with `nz-menu` attribute with empty `subItems` array', () => {
-            component.items = [mockedData[0]];
-
-            fixture.detectChanges();
-
-            const liElem = fixture.debugElement.query(By.css('li'));
+        it('should render <li> with `nz-menu` attribute with empty `subItems` array', async () => {
+            const host = await createComponentWrapper(createComponent, { items: [mockedData[0]] });
+            const liElem = host.queryCss('li');
 
             expect(liElem.attributes['nz-menu-item']).toBeDefined();
         });
 
-        it('should render <li> with `nz-submenu` attribute with non empty `subItems` array', () => {
-            component.items = [mockedData[1]];
-
-            fixture.detectChanges();
-
-            const liElem = fixture.debugElement.query(By.css('li'));
+        it('should render <li> with `nz-submenu` attribute with non empty `subItems` array', async () => {
+            const host = await createComponentWrapper(createComponent, { items: [mockedData[1]] });
+            const liElem = host.queryCss('li');
 
             expect(liElem.attributes['nz-submenu']).toBeDefined();
         });
 
-        it('should render submenu with non empty `subItems` array', () => {
-            component.items = [mockedData[1]];
-
-            fixture.detectChanges();
-
-            const subElem = fixture.debugElement.query(By.css('li ul'));
+        it('should render submenu with non empty `subItems` array', async () => {
+            const host = await createComponentWrapper(createComponent, { items: [mockedData[1]] });
+            const subElem = host.queryCss('li ul');
 
             expect(subElem).toBeTruthy();
         });
 
-        it('should render <li> inside submenu with `nz-menu` attribute with empty `subItems` array', () => {
-            component.items = [mockedData[1]];
-
-            fixture.detectChanges();
-
-            const subLiElem = fixture.debugElement.query(By.css('li ul li'));
+        it('should render <li> inside submenu with `nz-menu` attribute with empty `subItems` array', async () => {
+            const host = await createComponentWrapper(createComponent, { items: [mockedData[1]] });
+            const subLiElem = host.queryCss('li ul li');
 
             expect(subLiElem.attributes['nz-menu-item']).toBeDefined();
         });
 
-        it('should render <li> correct amount', () => {
-            component.items = [mockedData[1]];
-
-            fixture.detectChanges();
-
-            const subLiElem = fixture.debugElement.query(By.css('li ul li'));
+        it('should render <li> correct amount', async () => {
+            const host = await createComponentWrapper(createComponent, { items: [mockedData[1]] });
+            const subLiElem = host.queryCss('li ul li');
 
             expect(subLiElem.attributes['nz-menu-item']).toBeDefined();
         });
 
-        it('should update binding when changed', () => {
-            component.items = [mockedData[0]];
+        it('should update binding when changed', async () => {
+            const host = await createComponentWrapper(createComponent, { items: [mockedData[0]] });
+            const subLiElem = host.fixture.debugElement.queryAll(By.css('li'));
 
-            fixture.detectChanges();
+            expect(host.hostComponent.items.length).toBe(subLiElem.length);
 
-            const subLiElem = fixture.debugElement.queryAll(By.css('li'));
+            host.setInputs({ items: [mockedData[0], mockedData[0]] }, true);
 
-            expect(component.items.length).toBe(subLiElem.length);
+            const updatedSubLiElem = host.fixture.debugElement.queryAll(By.css('li'));
 
-            component.items = [mockedData[0], mockedData[0]];
-
-            fixture.detectChanges();
-
-            const updatedSubLiElem = fixture.debugElement.queryAll(By.css('li'));
-
-            expect(component.items.length).toBe(updatedSubLiElem.length);
+            expect(host.hostComponent.items.length).toBe(updatedSubLiElem.length);
         });
     });
 
     describe('@Input(collapsed)', () => {
-        it('should bind `nzInlineCollapsed` input of `nz-menu`', () => {
-            component.collapsed = false;
-
-            fixture.detectChanges();
-
-            const ulElem = fixture.debugElement.query(By.css('ul[nz-menu]'));
+        it('should bind `nzInlineCollapsed` input of `nz-menu`', async () => {
+            const host = await createComponentWrapper(createComponent, { collapsed: false });
+            const ulElem = host.queryCss('ul[nz-menu]');
 
             expect(ulElem.properties.nzInlineCollapsed).toBe(false);
         });
 
-        it('should update binding when changed', () => {
-            component.collapsed = false;
-
-            fixture.detectChanges();
-
-            const ulElem = fixture.debugElement.query(By.css('ul[nz-menu]'));
+        it('should update binding when changed', async () => {
+            const host = await createComponentWrapper(createComponent, { collapsed: false });
+            const ulElem = host.queryCss('ul[nz-menu]');
 
             expect(ulElem.properties.nzInlineCollapsed).toBe(false);
 
-            component.collapsed = true;
-
-            fixture.detectChanges();
-
-            const updatedUlElem = fixture.debugElement.query(By.css('ul[nz-menu]'));
+            host.setInputs({ collapsed: true }, true);
 
             expect(ulElem.properties.nzInlineCollapsed).toBe(true);
         });
     });
 
     describe('Component methods', () => {
-        let navComponent: NavigationComponent;
-        let nvFixture: ComponentFixture<NavigationComponent>;
+        it('collapse() method should change the collapsed input to true', async () => {
+            const host = await createComponentWrapper(createComponent, { collapsed: false });
 
-        beforeEach(() => {
-            nvFixture = TestBed.createComponent(NavigationComponent);
-            navComponent = nvFixture.componentInstance;
+            host.component.collapse();
+            host.detectChanges();
+
+            expect(host.component.collapsed).toBe(true);
         });
 
-        it('collapse() method should change the collapsed input to true', () => {
-            navComponent.collapsed = false;
+        it('expand() method should change the collapsed input to false', async () => {
+            const host = await createComponentWrapper(createComponent, { collapsed: true });
 
-            nvFixture.detectChanges();
+            host.component.expand();
+            host.detectChanges();
 
-            navComponent.collapse();
-
-            nvFixture.detectChanges();
-
-            expect(navComponent.collapsed).toBe(true);
+            expect(host.component.collapsed).toBe(false);
         });
 
-        it('expand() method should change the collapsed input to false', () => {
-            navComponent.collapsed = true;
+        it('toggle() method should change the collapsed input to the opposite value', async () => {
+            const host = await createComponentWrapper(createComponent, { collapsed: true });
 
-            nvFixture.detectChanges();
+            host.component.toggle();
+            host.detectChanges();
 
-            navComponent.expand();
+            expect(host.component.collapsed).toBe(false);
 
-            nvFixture.detectChanges();
+            host.component.toggle();
+            host.detectChanges();
 
-            expect(navComponent.collapsed).toBe(false);
-        });
-
-        it('toggle() method should change the collapsed input to the opposite value', () => {
-            navComponent.collapsed = true;
-
-            nvFixture.detectChanges();
-
-            navComponent.toggle();
-
-            nvFixture.detectChanges();
-
-            expect(navComponent.collapsed).toBe(false);
-
-            navComponent.toggle();
-
-            nvFixture.detectChanges();
-
-            expect(navComponent.collapsed).toBe(true);
+            expect(host.component.collapsed).toBe(true);
         });
     });
 });

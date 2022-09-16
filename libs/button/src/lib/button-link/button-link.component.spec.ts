@@ -1,12 +1,10 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
-
 import { buttonClassName } from '../button-core/button-core';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonLinkComponent } from './button-link.component';
-
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 describe('ButtonLinkComponent', () => {
     const buttonLinkCls = 'spy-button-link';
@@ -24,34 +22,29 @@ describe('ButtonLinkComponent', () => {
     );
 
     it('should render <a>', async () => {
-        const host = await createComponent();
-
-        host.detectChanges();
-
+        const host = await createComponentWrapper(createComponent);
         const buttonLinkElem = host.queryCss('a');
 
         expect(buttonLinkElem).toBeTruthy();
     });
 
     it('should render projected content inside <a>', async () => {
-        const host = await createComponent();
-        const buttonElem = host.queryCss('a')!;
-
-        host.detectChanges();
+        const host = await createComponentWrapper(createComponent);
+        const buttonElem = host.queryCss('a');
 
         expect(buttonElem.nativeElement.textContent).toMatch('Content');
     });
 
     it('should add static classes to host element', async () => {
-        const host = await createComponent({}, true);
+        const host = await createComponentWrapper(createComponent);
 
         expect(host.element.classes[buttonClassName]).toBeTruthy();
         expect(host.element.classes[buttonLinkCls]).toBeTruthy();
     });
 
     it('should add static classes to `a` element', async () => {
-        const host = await createComponent({}, true);
-        const linkElem = host.queryCss('a')!;
+        const host = await createComponentWrapper(createComponent);
+        const linkElem = host.queryCss('a');
 
         expect(linkElem.classes[`${buttonClassName}__btn`]).toBeTruthy();
         expect(linkElem.classes[`${buttonLinkCls}__btn`]).toBeTruthy();
@@ -59,21 +52,19 @@ describe('ButtonLinkComponent', () => {
 
     describe('@Inputs', () => {
         it('should bind input url to href of <a>', async () => {
-            const host = await createComponent({ url: 'someUrl' as any }, true);
-            const buttonLinkElem = host.queryCss('a')!;
+            const mockUrl = 'mockUrl';
+            const host = await createComponentWrapper(createComponent, { url: mockUrl });
+            const buttonLinkElem = host.queryCss('a');
 
-            expect(buttonLinkElem.properties.href).toBe('someUrl');
+            expect(buttonLinkElem.properties.href).toBe(mockUrl);
         });
 
         it('should add appropriate @Input(variant), @Input(shape), @Input(size) classes to the host', async () => {
-            const host = await createComponent(
-                {
-                    variant: ButtonVariant.Critical,
-                    shape: ButtonShape.Circle,
-                    size: ButtonSize.Large,
-                },
-                true,
-            );
+            const host = await createComponentWrapper(createComponent, {
+                variant: ButtonVariant.Critical,
+                shape: ButtonShape.Circle,
+                size: ButtonSize.Large,
+            });
 
             expect(host.element.classes[`${buttonClassName}--${ButtonVariant.Critical}`]).toBeTruthy();
             expect(host.element.classes[`${buttonLinkCls}--${ButtonVariant.Critical}`]).toBeTruthy();
@@ -85,8 +76,8 @@ describe('ButtonLinkComponent', () => {
 
         it('should bind attrs to spyApplyAttrs properties of <a>', async () => {
             const mockedAttrs = { mockAttr: 'mockAttr' };
-            const host = await createComponent({ attrs: mockedAttrs }, true);
-            const buttonLinkElem = host.queryCss('a')!;
+            const host = await createComponentWrapper(createComponent, { attrs: mockedAttrs });
+            const buttonLinkElem = host.queryCss('a');
 
             expect(buttonLinkElem.properties.spyApplyAttrs).toBe(mockedAttrs);
         });

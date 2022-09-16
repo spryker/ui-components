@@ -1,9 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
-
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NotificationViewComponent } from './notification-view.component';
 
 describe('NotificationViewComponent', () => {
@@ -13,13 +13,13 @@ describe('NotificationViewComponent', () => {
             schemas: [NO_ERRORS_SCHEMA],
         },
         projectContent: `
-        <span title>
-          <span class="test-title">Title...</span>
-        </span>
-        <span description>
-          <span class="test-description">Description...</span>
-        </span>
-      `,
+            <span title>
+                <span class="test-title">Title</span>
+            </span>
+            <span description>
+                <span class="test-description">Description</span>
+            </span>
+        `,
     });
 
     beforeEach(() =>
@@ -29,15 +29,15 @@ describe('NotificationViewComponent', () => {
         }),
     );
 
-    it('should render nz-alert', async () => {
-        const host = await createComponent({}, true);
+    it('should render <nz-alert>', async () => {
+        const host = await createComponentWrapper(createComponent);
         const alert = host.queryCss('nz-alert');
 
         expect(alert).toBeTruthy();
     });
 
-    it('should render title with icon in nzMessage', async () => {
-        const host = await createComponent({}, true);
+    it('should render title with icon in `nzMessage`', async () => {
+        const host = await createComponentWrapper(createComponent);
         const alertMessage = host.queryCss('.ant-alert-message');
         const messageIcon = host.queryCss('.ant-alert-message spy-icon');
         const messageTitle = host.queryCss('.ant-alert-message .test-title');
@@ -47,8 +47,8 @@ describe('NotificationViewComponent', () => {
         expect(messageTitle).toBeTruthy();
     });
 
-    it('should render description in nzDescription', async () => {
-        const host = await createComponent({}, true);
+    it('should render description in `nzDescription`', async () => {
+        const host = await createComponentWrapper(createComponent);
         const alertDescription = host.queryCss('.ant-alert-description');
         const descriptionContent = host.queryCss('.ant-alert-description .test-description');
 
@@ -56,13 +56,8 @@ describe('NotificationViewComponent', () => {
         expect(descriptionContent).toBeTruthy();
     });
 
-    it('should render close icon in nzCloseText', async () => {
-        const host = await createComponent(
-            {
-                closeable: true,
-            },
-            true,
-        );
+    it('should render close icon in `nzCloseText`', async () => {
+        const host = await createComponentWrapper(createComponent, { closeable: true });
         const closeLink = host.queryCss('.ant-alert-close-icon');
         const closeIcon = host.queryCss('.ant-alert-close-icon spy-icon');
 
@@ -70,27 +65,17 @@ describe('NotificationViewComponent', () => {
         expect(closeIcon).toBeTruthy();
     });
 
-    describe('Inputs must be bound to internal nz-alert', () => {
-        it('should bound type to nzType', async () => {
+    describe('Inputs must be bound to internal <nz-alert>', () => {
+        it('should bound type to `nzType`', async () => {
             const type: any = 'success';
-            const host = await createComponent(
-                {
-                    type,
-                },
-                true,
-            );
+            const host = await createComponentWrapper(createComponent, { type });
             const nzAlert = host.queryCss('nz-alert');
 
             expect(nzAlert?.componentInstance.nzType).toBe(type);
         });
 
-        it('should bound closeable to nzCloseable', async () => {
-            const host = await createComponent(
-                {
-                    closeable: true,
-                },
-                true,
-            );
+        it('should bound closeable to `nzCloseable`', async () => {
+            const host = await createComponentWrapper(createComponent, { closeable: true });
             const nzAlert = host.queryCss('nz-alert');
 
             expect(nzAlert?.componentInstance.nzCloseable).toBe(true);
@@ -99,29 +84,19 @@ describe('NotificationViewComponent', () => {
 
     describe('Closeable functionality', () => {
         it('should emit closed on alert close', async () => {
-            const host = await createComponent(
-                {
-                    closeable: true,
-                },
-                true,
-            );
+            const host = await createComponentWrapper(createComponent, { closeable: true });
             const closeBtn = host.queryCss('.ant-alert-close-icon spy-icon');
 
             expect(closeBtn).toBeTruthy();
 
-            closeBtn?.triggerEventHandler('click', null);
+            closeBtn.triggerEventHandler('click', null);
             host.detectChanges();
 
             expect(host.hostComponent.closed).toHaveBeenCalled();
         });
 
         it('should emit closed when method `closed` was executed', async () => {
-            const host = await createComponent(
-                {
-                    closeable: true,
-                },
-                true,
-            );
+            const host = await createComponentWrapper(createComponent, { closeable: true });
 
             host.component.close();
 

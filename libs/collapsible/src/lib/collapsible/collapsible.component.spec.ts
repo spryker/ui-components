@@ -1,78 +1,83 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
-
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { CollapsibleComponent } from './collapsible.component';
 
 describe('CollapsibleComponent', () => {
-    let component: CollapsibleComponent;
-    let fixture: ComponentFixture<CollapsibleComponent>;
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
+    const { testModule, createComponent } = getTestingForComponent(CollapsibleComponent, {
+        ngModule: {
             imports: [NzCollapseModule, NoopAnimationsModule],
-            declarations: [CollapsibleComponent],
             schemas: [NO_ERRORS_SCHEMA],
-            providers: [],
-            teardown: { destroyAfterEach: false },
-        }).compileComponents();
-    }));
+        },
+    });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(CollapsibleComponent);
-        component = fixture.componentInstance;
-        component.titleIcon = 'title-icon';
-        fixture.detectChanges();
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    it('should create', async () => {
+        const host = await createComponentWrapper(createComponent);
+
+        expect(host.component).toBeTruthy();
     });
 
-    it('template must render nz-collapse-panel from Ant Design inside nz-collapse component', () => {
-        const collapseElem = fixture.debugElement.query(By.css('nz-collapse'));
+    it('template must render nz-collapse-panel from Ant Design inside nz-collapse component', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const collapseElem = host.queryCss('nz-collapse');
+
         expect(collapseElem).toBeTruthy();
 
-        const panelElem = collapseElem.query(By.css('nz-collapse-panel'));
+        const panelElem = host.queryCss('nz-collapse-panel');
+
         expect(panelElem).toBeTruthy();
     });
 
-    it('should render icon component', () => {
-        const collapsibleHeaderElem = fixture.debugElement.query(By.css('.ant-collapse-header'));
+    it('should render icon component', async () => {
+        const mockTitle = 'title-icon';
+        const host = await createComponentWrapper(createComponent, { titleIcon: mockTitle });
+        const collapsibleHeaderElem = host.queryCss('.ant-collapse-header');
         const headerIcon = collapsibleHeaderElem.query(By.css('spy-icon'));
 
         expect(headerIcon).toBeTruthy();
-        expect(headerIcon.properties.name).toBe('title-icon');
+        expect(headerIcon.properties.name).toBe(mockTitle);
     });
 
     describe('Toggling functionality', () => {
-        it('Should change active on opposite by toggle method', () => {
-            component.toggle();
-            fixture.detectChanges();
+        it('Should change active on opposite by toggle method', async () => {
+            const host = await createComponentWrapper(createComponent);
 
-            expect(component.active).toBeTruthy();
+            host.component.toggle();
+            host.detectChanges();
 
-            component.toggle();
-            fixture.detectChanges();
+            expect(host.component.active).toBeTruthy();
 
-            expect(component.active).toBeFalsy();
+            host.component.toggle();
+            host.detectChanges();
+
+            expect(host.component.active).toBeFalsy();
         });
 
-        it('Should emit event on collapsible header click', () => {
-            const collapsibleHeaderElem = fixture.debugElement.query(By.css('.ant-collapse-header'));
+        it('Should emit event on collapsible header click', async () => {
+            const host = await createComponentWrapper(createComponent);
+            const collapsibleHeaderElem = host.queryCss('.ant-collapse-header');
             const callback = jest.fn();
 
-            component.activeChange.subscribe(callback);
+            host.component.activeChange.subscribe(callback);
             collapsibleHeaderElem.triggerEventHandler('click', null);
+            host.detectChanges();
 
-            fixture.detectChanges();
             expect(callback).toHaveBeenCalledWith(true);
 
             collapsibleHeaderElem.triggerEventHandler('click', null);
+            host.detectChanges();
 
-            fixture.detectChanges();
             expect(callback).toHaveBeenCalledWith(false);
         });
     });

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.3...@spryker/styles@0.7.4-next.0) (2022-09-19)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `table` by updating `table-column-body-color` variable ([9c81249](https://github.com/spryker/ui-components/commit/9c8124942ba10b5fe4f05802d9c567327ae5df47))
+* **styles:** updated `table-feature-search` by adding `[@input-min-width](https://github.com/input-min-width)` variable ([604c12d](https://github.com/spryker/ui-components/commit/604c12de4702faa9816f558c3c9bd6dbccec46b9))
+
+
+
+
+
 ## [0.7.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.3-next.0...@spryker/styles@0.7.3) (2022-09-16)
 
 **Note:** Version bump only for package @spryker/styles

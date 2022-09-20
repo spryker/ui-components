@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/card@0.6.2...@spryker/card@0.6.3-next.0) (2022-09-20)
+
+
+### Bug Fixes
+
+* **card:** updated `@spryker/styles` dependency ([270e7d0](https://github.com/spryker/ui-components/commit/270e7d069595a02f762fb4b343c50041e89b6eb0))
+
+
+
+
+
 ## [0.6.2](https://github.com/spryker/ui-components/compare/@spryker/card@0.6.2-next.0...@spryker/card@0.6.2) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/card

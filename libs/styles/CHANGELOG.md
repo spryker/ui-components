@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.1...@spryker/styles@0.7.4-next.2) (2022-09-20)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `card` to fix content padding ([136e79a](https://github.com/spryker/ui-components/commit/136e79a826d4314a0f23cb16b2f303a82968a6b6))
+* **styles:** adjusted `notification` to add variable for description `line-height` ([f839344](https://github.com/spryker/ui-components/commit/f83934431b83839603329590ffe6e96d027a4a87))
+
+
+
+
+
 ## [0.7.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.0...@spryker/styles@0.7.4-next.1) (2022-09-20)
 
 

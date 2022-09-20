@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.0...@spryker/styles@0.7.4-next.1) (2022-09-20)
+
+
+### Bug Fixes
+
+* **styles:** adjusted `checkbox` by updating background color ([35e19e3](https://github.com/spryker/ui-components/commit/35e19e3f80036de4ff626bd0cd52b397b0ddb27e))
+
+
+
+
+
 ## [0.7.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.3...@spryker/styles@0.7.4-next.0) (2022-09-19)
 
 

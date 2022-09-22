@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.8](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.7...@spryker/carousel@0.1.0-beta.8) (2022-09-22)
+
+
+### Features
+
+* **carousel:** allow input number of slides per navigation instead of 1 ([d17fa4e](https://github.com/spryker/ui-components/commit/d17fa4e88fc3e56aeacf671d757ae395209f3697))
+
+
+
+
+
 # [0.1.0-beta.7](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.6...@spryker/carousel@0.1.0-beta.7) (2022-09-07)
 
 

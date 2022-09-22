@@ -39,6 +39,7 @@ export class CarouselComponent implements AfterViewInit {
     spaceBetween: 10,
   };
   @Input() withThumbs = false;
+  @Input() slidesPerClick = 2;
 
   constructor(private cdr: ChangeDetectorRef) {
     SwiperCore.use([Navigation, Thumbs]);
@@ -59,11 +60,15 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   slideNext() {
-    this.thumbSwiper.swiperRef.slideNext();
+    this.thumbSwiper.swiperRef.slideTo(
+      this.thumbSwiper.swiperRef.activeIndex + this.slidesPerClick,
+    );
   }
 
   slidePrev() {
-    this.thumbSwiper.swiperRef.slidePrev();
+    this.thumbSwiper.swiperRef.slideTo(
+      this.thumbSwiper.swiperRef.activeIndex - this.slidesPerClick,
+    );
   }
 
   slideHandler(thumbSwiper: Swiper) {

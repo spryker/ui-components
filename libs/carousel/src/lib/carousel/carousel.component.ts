@@ -60,11 +60,15 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   slideNext() {
-    this.thumbSwiper.swiperRef.slideTo(this.thumbSwiper.swiperRef.activeIndex + this.slidesPerClick);
+    this.thumbSwiper.swiperRef.slideTo(
+      this.thumbSwiper.swiperRef.activeIndex + this.slidesPerClick,
+    );
   }
 
   slidePrev() {
-    this.thumbSwiper.swiperRef.slideTo(this.thumbSwiper.swiperRef.activeIndex - this.slidesPerClick);
+    this.thumbSwiper.swiperRef.slideTo(
+      this.thumbSwiper.swiperRef.activeIndex - this.slidesPerClick,
+    );
   }
 
   slideHandler(thumbSwiper: Swiper) {

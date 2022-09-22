@@ -229,9 +229,11 @@
         }
 
         &:hover:not(&:focus):not(.@{table-prefix-cls}-placeholder) {
+            /* stylelint-disable selector-max-pseudo-class */
             &::after {
                 box-shadow: @table-body-hover-row-border-shadow;
             }
+            /* stylelint-enable */
         }
 
         &:focus {

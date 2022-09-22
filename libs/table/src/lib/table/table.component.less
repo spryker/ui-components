@@ -42,15 +42,31 @@
 
     &-content {
         overflow-x: auto;
+
+        table {
+            padding: @border-width-base;
+        }
     }
 
     &-features {
         &--before-table {
-            padding-bottom: @table-features-padding-vertical;
+            @{table-feature-renderer-prefix-cls} > div {
+                padding-bottom: @table-features-padding-vertical;
+
+                &:empty {
+                    padding: 0;
+                }
+            }
         }
 
         &--after-table {
-            padding-top: @table-features-after-table-padding-top;
+            @{table-feature-renderer-prefix-cls} > div {
+                padding-top: @table-features-after-table-padding-top;
+
+                &:empty {
+                    padding: 0;
+                }
+            }
         }
 
         @{table-feature-renderer-prefix-cls} {
@@ -141,44 +157,104 @@
     }
 
     &-tbody > tr {
+        outline: none;
+        position: relative;
+
+        &::after {
+            .transition-mixin(box-shadow);
+            content: '';
+            position: absolute;
+            display: block;
+            left: 0;
+            right: 0;
+            top: @border-width-base;
+            bottom: @border-width-base;
+            border-radius: @border-radius-base;
+        }
+
+        &:first-child {
+            &::after,
+            & > td::before {
+                top: 0;
+            }
+        }
+
+        &:last-child {
+            &::after,
+            & > td::before {
+                bottom: 0;
+            }
+        }
+
+        & > td {
+            position: relative;
+
+            &::before {
+                .transition-mixin(border-color);
+                content: '';
+                position: absolute;
+                display: block;
+                left: 0;
+                right: 0;
+                top: @border-width-base;
+                bottom: @border-width-base;
+                border-top: @table-body-row-border-default;
+                border-bottom: @table-body-row-border-default;
+            }
+
+            &:first-child {
+                &::before {
+                    border-left: @table-body-row-border-default;
+                    border-top-left-radius: @border-radius-base;
+                    border-bottom-left-radius: @border-radius-base;
+                }
+            }
+
+            &:last-child {
+                &::before {
+                    border-right: @table-body-row-border-default;
+                    border-top-right-radius: @border-radius-base;
+                    border-bottom-right-radius: @border-radius-base;
+                }
+            }
+        }
+
         &.@{table-prefix-cls}-row-hover,
         &:hover {
             background: none;
-            box-shadow: @table-body-hover-row-border-shadow;
 
             &:not(.@{table-prefix-cls}-expanded-row):not(.@{table-prefix-cls}-row-selected) > td {
                 background: none;
             }
         }
 
+        &:hover:not(&:focus):not(.@{table-prefix-cls}-placeholder) {
+            &::after {
+                box-shadow: @table-body-hover-row-border-shadow;
+            }
+        }
+
         &:focus {
-            border-radius: @table-body-focus-row-border-radius;
-            box-shadow: @table-body-focus-row-border-shadow;
+            &::after {
+                box-shadow: @table-body-focus-row-border-shadow;
+            }
+
+            & > td {
+                &::before,
+                &::after {
+                    border-color: @green;
+                }
+            }
+        }
+
+        &.@{table-prefix-cls}-placeholder:hover > td {
+            border-radius: @border-radius-base;
         }
     }
 
     &-thead,
     &-tbody {
         & > tr {
-            &:focus {
-                & > td {
-                    border-top: @table-body-focus-row-border;
-                    border-bottom: @table-body-focus-row-border;
-
-                    &:first-child {
-                        border-left: @table-body-focus-row-border;
-                        border-top-left-radius: @table-body-focus-row-border-radius;
-                        border-bottom-left-radius: @table-body-focus-row-border-radius;
-                    }
-
-                    &:last-child {
-                        border-right: @table-body-focus-row-border;
-                        border-top-right-radius: @table-body-focus-row-border-radius;
-                        border-bottom-right-radius: @table-body-focus-row-border-radius;
-                    }
-                }
-            }
-
             &:first-child > th {
                 &:last-child,
                 &:first-child {
@@ -308,10 +384,6 @@
         }
     }
 
-    &-placeholder {
-        display: none;
-    }
-
     &-header {
         background: @transparent;
     }
@@ -325,16 +397,17 @@
         border-radius: @border-radius-base;
         background: @spy-white;
         padding: @table-empty-container-padding;
+        min-height: @table-empty-container-min-height;
         color: @gray-dark;
 
         &__title {
-            padding-bottom: @table-empty-title-padding-bottom;
             font-weight: @font-weight-semi-bold;
             font-size: @heading-5-font-size;
+            letter-spacing: @letter-spacing-base;
             color: @gray-darker;
 
-            &--sm {
-                font-size: @heading-5-font-size;
+            &--spacing-bottom {
+                margin-bottom: @table-empty-title-margin-bottom;
             }
         }
 
@@ -342,10 +415,12 @@
             display: block;
             font-size: @table-empty-icon-size;
             margin-bottom: @table-empty-icon-margin-bottom;
+        }
+    }
 
-            &--sm {
-                font-size: @table-empty-icon-size-sm;
-            }
+    &-pagination {
+        &:empty {
+            display: none;
         }
     }
 

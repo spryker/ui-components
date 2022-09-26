@@ -90,7 +90,8 @@
     }
 
     &-description {
-        padding-left: 53px;
+        padding-left: @notification-description-padding-left;
+        line-height: @notification-description-line-height;
     }
 
     &,
@@ -99,6 +100,7 @@
             display: flex;
             align-items: center;
             padding-right: calc(@notification-with-description-padding-right + @notification-icon-width);
+            line-height: @notification-description-line-height;
             margin-bottom: 0;
             color: inherit;
             font-size: inherit;

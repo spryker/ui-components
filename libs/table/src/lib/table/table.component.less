@@ -189,9 +189,11 @@
 
         &:hover {
             &:not(&:focus):not(.@{table-prefix-cls}-placeholder) {
+                /* stylelint-disable selector-max-pseudo-class */
                 &::after {
                     border-color: @gray-light;
                 }
+                /* stylelint-enable */
 
                 &.@{table-prefix-cls}-row--selected::after {
                     border-color: @green;

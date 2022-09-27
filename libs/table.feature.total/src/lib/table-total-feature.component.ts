@@ -29,7 +29,7 @@ export class TableTotalFeatureComponent extends TableFeatureComponent<TableTotal
 
     total$ = this.tableData$.pipe(
         pluck('total'),
-        map(total => total.toString()),
+        map((total) => total.toString()),
         shareReplay({ bufferSize: 1, refCount: true }),
     );
 

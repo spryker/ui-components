@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
-import { combineLatest, merge, Subject } from 'rxjs';
+import { merge, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, pluck, shareReplay, switchMap, takeUntil } from 'rxjs/operators';
 
 import { TableSearchConfig } from './types';
@@ -42,22 +42,6 @@ export class TableSearchFeatureComponent extends TableFeatureComponent<TableSear
         switchMap((table) => table.data$),
         pluck('data'),
         shareReplay({ bufferSize: 1, refCount: true }),
-    );
-    isVisible$ = combineLatest([
-        this.dataConfig$,
-        this.data$,
-        this.table$.pipe(switchMap((table) => table.isLoading$)),
-    ]).pipe(
-        map(([config, data, isLoading]) => {
-            const isFiltered = config?.filter
-                ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)
-                : false;
-            const isSearched = config?.search ? (config.search as string).length : false;
-            const isChanged = isFiltered || isSearched;
-            const isData = Boolean(data.length);
-
-            return isData || (!isData && (isChanged || isLoading));
-        }),
     );
 
     ngOnInit(): void {

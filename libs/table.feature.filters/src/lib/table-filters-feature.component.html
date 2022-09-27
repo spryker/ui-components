@@ -1,5 +1,5 @@
 <ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { width: '100%', order: '-1' }">
-    <div class="spy-table-filters-feature" *ngIf="isVisible$ | async">
+    <div class="spy-table-filters-feature">
         <div class="spy-table-filters-feature__inner">
             <div
                 *ngFor="let filter of filters$ | async; trackBy: trackByFilter"

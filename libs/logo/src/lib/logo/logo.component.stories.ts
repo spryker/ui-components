@@ -25,7 +25,7 @@ export const primary = (args) => ({
         imports: [LogoModule],
     },
     template: `
-    <div style="width: 100px; height: 70px;">
+    <div style="width: 200px; height: 76px;">
       <spy-logo [size]="size"></spy-logo>
     </div>
   `,

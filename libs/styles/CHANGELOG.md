@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.2...@spryker/styles@0.7.4-next.3) (2022-09-28)
+
+
+### Bug Fixes
+
+* **styles:** adjust bottom indent for `headline` ([09f7b02](https://github.com/spryker/ui-components/commit/09f7b0225f9e28fd7ad7fb2003d3317b75475207))
+* **styles:** adjust bottom indent for `table-feature-search` ([5440a15](https://github.com/spryker/ui-components/commit/5440a1563ef1b8cf0d08f587971097d3734ee470))
+
+
+
+
+
 ## [0.7.4-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.1...@spryker/styles@0.7.4-next.2) (2022-09-20)
 
 

@@ -308,4 +308,10 @@
     &-native {
         display: none;
     }
+
+    &:not(.@{select-prefix-cls}-customize-input) {
+        .@{select-prefix-cls}-selector {
+            border-color: @gray-light;
+        }
+    }
 }

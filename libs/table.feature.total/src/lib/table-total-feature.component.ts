@@ -28,9 +28,13 @@ export class TableTotalFeatureComponent extends TableFeatureComponent<TableTotal
     isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
 
     total$ = this.tableData$.pipe(
-        pluck('total'),
-        map((total) => total.toString()),
-        shareReplay({ bufferSize: 1, refCount: true }),
+        map((data) => {
+            if (data.total === 0) {
+                return data.total.toString();
+            }
+
+            return data.total;
+        }),
     );
 
     data$ = this.tableData$.pipe(pluck('data'));

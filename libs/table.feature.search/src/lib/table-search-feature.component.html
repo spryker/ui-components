@@ -1,5 +1,6 @@
 <ng-container *spyTableFeatureTpl="tableFeatureLocation.top; styles: { marginLeft: 'auto', display: 'flex' }">
     <spy-input
+        *ngIf="isVisible$ | async"
         [value]="value$ | async"
         [prefix]="prefixTmpl"
         [suffix]="suffixTpl"

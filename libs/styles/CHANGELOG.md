@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4-next.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.3...@spryker/styles@0.7.4-next.4) (2022-10-10)
+
+
+### Bug Fixes
+
+* **styles:** add `border-radius` for the default input ([61fb299](https://github.com/spryker/ui-components/commit/61fb2994e71874bd709f668ef056894974590c60))
+* **styles:** adjust `menu` variables to fix item focus state ([86cd43a](https://github.com/spryker/ui-components/commit/86cd43a04bf49a4a617357e6acf1939932cd3c2a))
+* **styles:** adjust `table` variables ([4c3a02c](https://github.com/spryker/ui-components/commit/4c3a02cfafa84ed57aad0db4a62040fc67914633))
+
+
+
+
+
 ## [0.7.4-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.2...@spryker/styles@0.7.4-next.3) (2022-09-28)
 
 

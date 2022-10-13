@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/user-menu@0.3.4...@spryker/user-menu@0.3.5-next.0) (2022-10-13)
+
+
+### Bug Fixes
+
+* **user-menu:** adjust styles according to styleguide ([8b4e88c](https://github.com/spryker/ui-components/commit/8b4e88c04bbdd3dbe22087a63f40b52c863aefc7))
+* **user-menu:** update `styles` peerDependency ([cc12358](https://github.com/spryker/ui-components/commit/cc12358fb57ba4e9e6040f9f422652f73a4b9b8f))
+
+
+
+
+
 ## [0.3.4](https://github.com/spryker/ui-components/compare/@spryker/user-menu@0.3.4-next.0...@spryker/user-menu@0.3.4) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/user-menu

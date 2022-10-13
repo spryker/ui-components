@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.3.4-next.0...@spryker/table.feature.filters@0.3.4-next.1) (2022-10-13)
+
+
+### Bug Fixes
+
+* **table.feature.filters:** adjust form label styles ([e93f277](https://github.com/spryker/ui-components/commit/e93f2777211c0797a28189f695735f57e2cbfda4))
+
+
+
+
+
 ## [0.3.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.3.3...@spryker/table.feature.filters@0.3.4-next.0) (2022-10-10)
 
 

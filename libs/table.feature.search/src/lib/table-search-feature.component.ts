@@ -51,7 +51,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent<TableSear
         this.table$.pipe(switchMap((table) => table.isLoading$)),
     ]).pipe(
         map(([config, data, isLoading]) => {
-            if (!this.isVisibilityEnabled) {
+            if (!this.isVisibilityEnabled || !config.isVisibilityEnabled) {
                 return true;
             }
 

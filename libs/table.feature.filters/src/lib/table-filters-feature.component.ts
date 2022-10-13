@@ -82,7 +82,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
         this.table$.pipe(switchMap((table) => table.isLoading$)),
     ]).pipe(
         map(([config, data, isLoading]) => {
-            if (!this.isVisibilityEnabled) {
+            if (!this.isVisibilityEnabled || !config.isVisibilityEnabled) {
                 return true;
             }
 

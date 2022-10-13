@@ -32,7 +32,6 @@
     &-disabled {
         &,
         .has-error & {
-            pointer-events: none;
             border-color: @input-disabled-border;
         }
     }
@@ -121,6 +120,10 @@
             .@{input-prefix-cls}-affix-wrapper,
             .@{input-prefix-cls} {
                 border-color: @gray;
+            }
+
+            .@{input-prefix-cls}-disabled {
+                border-color: @gray-light;
             }
         }
 

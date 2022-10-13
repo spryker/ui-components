@@ -97,6 +97,10 @@
             .@{select-prefix-cls}-arrow {
                 color: @gray;
             }
+
+            .@{select-prefix-cls}-selector:hover {
+                border-color: @gray-light;
+            }
         }
 
         .@{select-prefix-cls}-selection {
@@ -303,5 +307,11 @@
     &--not-searchable .@{select-prefix-cls}-selection-search,
     &-native {
         display: none;
+    }
+
+    &:not(.@{select-prefix-cls}-customize-input) {
+        .@{select-prefix-cls}-selector {
+            border-color: @gray-light;
+        }
     }
 }

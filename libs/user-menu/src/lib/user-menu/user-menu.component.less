@@ -4,25 +4,26 @@
     float: right;
 
     &__action {
-        .transition-mixin(background-color, border-color;);
+        .transition-mixin(background-color, box-shadow;);
         display: flex;
         align-items: center;
         justify-content: center;
         width: @user-menu-action-size;
         height: @user-menu-action-size;
-        border: @user-menu-action-border;
         border-radius: @user-menu-action-border-radius;
         background-color: @transparent;
+        border: none;
         cursor: pointer;
+        outline: none;
 
         &:hover {
             background-color: @gray-lighter;
-            border-color: @gray-lighter;
         }
 
+        &:focus,
         &--active {
             background-color: @gray-lighter;
-            border-color: @green;
+            box-shadow: @user-menu-action-focus-box-shadow;
         }
     }
 
@@ -33,8 +34,8 @@
 
     &__content {
         width: @user-menu-content-width;
-        padding: @user-menu-content-padding;
         background-color: @spy-white;
         border-radius: @user-menu-content-border-radius;
+        border: @user-menu-content-border;
     }
 }

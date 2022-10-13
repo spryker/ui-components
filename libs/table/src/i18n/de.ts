@@ -4,7 +4,7 @@ export default {
     name: 'table',
     data: {
         'no-results': 'Keine Ergebnisse gefunden',
-        'no-results-suggest': 'Keine Ergebnisse gefunden. Versuchen Sie, die Filterkriterien anzupassen.',
-        'empty-table': 'Noch keine Einträge.',
+        'no-results-suggest': 'Versuchen Sie, die Filterkriterien anzupassen',
+        'empty-table': 'Es existieren noch keine Daten',
     },
 } as I18nLocaleDataPackage;

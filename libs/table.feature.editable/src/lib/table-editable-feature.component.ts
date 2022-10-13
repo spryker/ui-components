@@ -407,8 +407,9 @@ export class TableEditableFeatureComponent
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.editingModel[rowIndex][cellIndex]!.cellElement = cellElement;
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        this.editingModel[rowIndex][cellIndex]!.leftCellOffset = leftCellOffset > 0 ? `-${leftCellOffset}px` : '0';
+        this.editingModel[rowIndex][cellIndex]!.leftCellOffset = leftCellOffset > 0 ? `-${leftCellOffset}px` : '4px';
 
+        this.updateFloatCellPosition();
         this.cdr.markForCheck();
     }
 

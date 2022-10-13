@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.5...@spryker/table@0.7.6-next.0) (2022-10-10)
+
+
+### Bug Fixes
+
+* **table:** adjust `i18n` translations ([a86d82a](https://github.com/spryker/ui-components/commit/a86d82af496e94899628a1f08308cfa7d5bb60b9))
+* **table:** adjust styles ([b758f53](https://github.com/spryker/ui-components/commit/b758f536f3e9d315a779f9440adbb256e09ce9b1))
+* **table:** fix table empty state & adjust styles ([9e76daa](https://github.com/spryker/ui-components/commit/9e76daa6861637b699f9f6e47024b6ac4280c288))
+* **table:** update `styles` peerDependency ([f774a72](https://github.com/spryker/ui-components/commit/f774a7233d9429807ebfae6a8660cf9a4d4852aa))
+
+
+
+
+
 ## [0.7.5](https://github.com/spryker/ui-components/compare/@spryker/table@0.7.5-next.0...@spryker/table@0.7.5) (2022-09-16)
 
 **Note:** Version bump only for package @spryker/table

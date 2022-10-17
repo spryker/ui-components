@@ -27,15 +27,7 @@ export class TableTotalFeatureComponent extends TableFeatureComponent<TableTotal
 
     isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
 
-    total$ = this.tableData$.pipe(
-        map((data) => {
-            if (data.total === 0) {
-                return data.total.toString();
-            }
-
-            return data.total;
-        }),
-    );
+    total$ = this.tableData$.pipe(map((data) => data.total.toString()));
 
     data$ = this.tableData$.pipe(pluck('data'));
 

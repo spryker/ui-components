@@ -98,7 +98,7 @@ describe('TableTotalFeatureComponent', () => {
         const token = 'table.feature.total.total:number';
 
         expect(queryTotal().nativeElement.textContent).toContain(token);
-        expect(service.getLocaleData(token, 'number')).toBe(mockData.total);
+        expect(service.getLocaleData(token, 'number')).toBe(mockData.total.toString());
     }));
 
     it('should render number of selected items', fakeAsync(() => {

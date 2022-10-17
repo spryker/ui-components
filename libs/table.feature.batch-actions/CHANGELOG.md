@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.3.3...@spryker/table.feature.batch-actions@0.3.4-next.0) (2022-10-13)
+
+
+### Bug Fixes
+
+* **table.feature.batch-actions:** adjust styles to set button top indent ([f3ec158](https://github.com/spryker/ui-components/commit/f3ec158f81760494eee74bddf0a5e6e7f80953b4))
+
+
+
+
+
 ## [0.3.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.3.3-next.0...@spryker/table.feature.batch-actions@0.3.3) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/table.feature.batch-actions

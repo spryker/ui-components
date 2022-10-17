@@ -12,7 +12,7 @@ import { TableFeatureComponent, TableFeatureTplContext } from '../table-feature'
             [spyTableFeaturesRendererContext]="context"
             let-feature
         >
-            <div [ngStyle]="feature.featureStyles$ | async">
+            <div class="spy-table-features-renderer__content" [ngStyle]="feature.featureStyles$ | async">
                 <ng-template [spyTableRenderFeature]="feature"></ng-template>
             </div>
         </ng-template>

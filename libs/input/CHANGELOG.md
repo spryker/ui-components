@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/input@0.4.5...@spryker/input@0.4.6-next.0) (2022-10-10)
+
+
+### Bug Fixes
+
+* **input:** update `styles` peerDependency ([be6292c](https://github.com/spryker/ui-components/commit/be6292c6599506418fe51c207fe630d9f99fb75b))
+
+
+
+
+
 ## [0.4.5](https://github.com/spryker/ui-components/compare/@spryker/input@0.4.5-next.0...@spryker/input@0.4.5) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/input

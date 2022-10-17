@@ -72,7 +72,7 @@
 
         > a:only-child,
         > .@{menu-prefix-cls}-submenu-title {
-            .transition-mixin(background, color;);
+            .transition-mixin(background, color, border;);
             border: @menu-item-border;
             width: @menu-item-width;
             display: flex;
@@ -82,7 +82,6 @@
 
             &:focus {
                 border: @menu-item-focus-border;
-                box-shadow: @menu-item-focus-box-shadow;
             }
 
             &:hover {

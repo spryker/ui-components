@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4-next.5](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.4...@spryker/styles@0.7.4-next.5) (2022-10-13)
+
+
+### Bug Fixes
+
+* **styles:** add focus state variable for `user-menu` ([a3207df](https://github.com/spryker/ui-components/commit/a3207df2cf1985b3c410c1a0cd3c92f8457033ee))
+* **styles:** adjust `table-feature-filters` variables ([698ff92](https://github.com/spryker/ui-components/commit/698ff920bb3edc9ded0cf75cf29f71b2f1e7796a))
+* **styles:** adjust `user-menu` variables according to styleguide ([97e55f4](https://github.com/spryker/ui-components/commit/97e55f4fea4d04f8238179b2a8e3712dd1cba57a))
+* **styles:** adjust hover state for disabled `input` ([4b725ac](https://github.com/spryker/ui-components/commit/4b725aca5e4f9190ad47df39221760adc33056e1))
+* **styles:** remove unused styles from `input` ([8f5ce76](https://github.com/spryker/ui-components/commit/8f5ce766e7d4aa9491003e2fba7e424acb180d56))
+
+
+
+
+
+## [0.7.4-next.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.3...@spryker/styles@0.7.4-next.4) (2022-10-10)
+
+
+### Bug Fixes
+
+* **styles:** add `border-radius` for the default input ([61fb299](https://github.com/spryker/ui-components/commit/61fb2994e71874bd709f668ef056894974590c60))
+* **styles:** adjust `menu` variables to fix item focus state ([86cd43a](https://github.com/spryker/ui-components/commit/86cd43a04bf49a4a617357e6acf1939932cd3c2a))
+* **styles:** adjust `table` variables ([4c3a02c](https://github.com/spryker/ui-components/commit/4c3a02cfafa84ed57aad0db4a62040fc67914633))
+
+
+
+
+
+## [0.7.4-next.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.2...@spryker/styles@0.7.4-next.3) (2022-09-28)
+
+
+### Bug Fixes
+
+* **styles:** adjust bottom indent for `headline` ([09f7b02](https://github.com/spryker/ui-components/commit/09f7b0225f9e28fd7ad7fb2003d3317b75475207))
+* **styles:** adjust bottom indent for `table-feature-search` ([5440a15](https://github.com/spryker/ui-components/commit/5440a1563ef1b8cf0d08f587971097d3734ee470))
+
+
+
+
+
 ## [0.7.4-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.7.4-next.1...@spryker/styles@0.7.4-next.2) (2022-09-20)
 
 

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.3.4-next.0...@spryker/table.feature.filters@0.3.4-next.1) (2022-10-13)
+
+
+### Bug Fixes
+
+* **table.feature.filters:** adjust form label styles ([e93f277](https://github.com/spryker/ui-components/commit/e93f2777211c0797a28189f695735f57e2cbfda4))
+
+
+
+
+
+## [0.3.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.3.3...@spryker/table.feature.filters@0.3.4-next.0) (2022-10-10)
+
+
+### Bug Fixes
+
+* **table.feature.filters:** adjust styles ([ae782c5](https://github.com/spryker/ui-components/commit/ae782c5e9daed3209c7a7fd3c705e75b8cf09ca0))
+* **table.feature.filters:** update `styles` peerDependency ([fedacb8](https://github.com/spryker/ui-components/commit/fedacb86fa738a45cba61df24e428b1ed98895b6))
+
+
+
+
+
 ## [0.3.3](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.3.3-next.0...@spryker/table.feature.filters@0.3.3) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/table.feature.filters

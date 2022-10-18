@@ -59,6 +59,6 @@ export class I18nService {
     private interpolate(localeString: string, data: I18nLocaleInterpolationData): string {
         this.interpolationRegex.lastIndex = 0; // Reset global Regex state
 
-        return localeString.replace(this.interpolationRegex, (_, name: string) => String(data[name] || ''));
+        return localeString.replace(this.interpolationRegex, (_, name: string) => String(data[name] ?? ''));
     }
 }

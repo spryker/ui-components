@@ -5,7 +5,7 @@ import { TableFeatureConfig } from '@spryker/table';
 
 export interface TableFiltersConfig extends TableFeatureConfig {
     items: TableFilterBase[];
-    isVisibilityEnabled?: boolean;
+    forceAlwaysVisible?: boolean;
 }
 
 export interface TableFilterBase<V = unknown> {

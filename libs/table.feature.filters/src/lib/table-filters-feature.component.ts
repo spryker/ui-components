@@ -4,7 +4,6 @@ import {
     forwardRef,
     Inject,
     Injector,
-    Input,
     Type,
     ViewEncapsulation,
 } from '@angular/core';
@@ -29,8 +28,6 @@ import { TableFilterBase, TableFilterComponent, TableFiltersConfig, TableFilters
     ],
 })
 export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFiltersConfig> {
-    @Input() isVisibilityEnabled? = false;
-
     name = 'filters';
     tableFeatureLocation = TableFeatureLocation;
     filterClasses: Record<string, string | string[]> = {};
@@ -82,7 +79,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
         this.table$.pipe(switchMap((table) => table.isLoading$)),
     ]).pipe(
         map(([config, data, isLoading]) => {
-            if (!this.isVisibilityEnabled || !config.isVisibilityEnabled) {
+            if (!config.forceAlwaysVisible) {
                 return true;
             }
 

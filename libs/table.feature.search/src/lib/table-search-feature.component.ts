@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { combineLatest, merge, Subject } from 'rxjs';
@@ -20,8 +20,6 @@ import { TableSearchConfig } from './types';
     ],
 })
 export class TableSearchFeatureComponent extends TableFeatureComponent<TableSearchConfig> implements OnDestroy, OnInit {
-    @Input() isVisibilityEnabled? = false;
-
     name = 'search';
     tableFeatureLocation = TableFeatureLocation;
     suffixIcon = IconRemoveModule.icon;
@@ -51,7 +49,7 @@ export class TableSearchFeatureComponent extends TableFeatureComponent<TableSear
         this.table$.pipe(switchMap((table) => table.isLoading$)),
     ]).pipe(
         map(([config, data, isLoading]) => {
-            if (!this.isVisibilityEnabled || !config.isVisibilityEnabled) {
+            if (!config.forceAlwaysVisible) {
                 return true;
             }
 

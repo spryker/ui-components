@@ -5,7 +5,7 @@
         "@angular/common": ">=9.1.12",
         "@angular/core": ">=9.1.12",
         "@spryker/chips": "^0.3.0",
-        "@spryker/locale": "^0.3.0",
+        "@spryker/locale": "^0.3.6",
         "@spryker/styles": "^0.6.0",
         "@spryker/table": "^0.5.0",
         "@spryker/utils": "^0.3.0",

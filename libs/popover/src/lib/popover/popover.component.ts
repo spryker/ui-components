@@ -45,6 +45,7 @@ export class PopoverComponent {
   @Input() open = false;
   @Input() popoverTrigger = PopoverTrigger.Click;
   @Input() position?: PopoverPosition = PopoverPosition.Bottom;
+  @Input() popoverOverlayClassname? = '';
   @Output() openChange = new EventEmitter<boolean>();
 
   openChangeEvent(isOpen: boolean): void {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/popover@0.3.4-beta.0...@spryker/popover@0.4.0-beta.0) (2022-10-20)
+
+
+### Features
+
+* [APPS-5538] Enable class name input for popover overlay ([524220c](https://github.com/spryker/ui-components/commit/524220caf350cde5c1a3778820dfb8fc6783fe21))
+
+
+
+
+
 ## [0.3.4-beta.0](https://github.com/spryker/ui-components/compare/@spryker/popover@0.3.3...@spryker/popover@0.3.4-beta.0) (2022-08-08)
 
 **Note:** Version bump only for package @spryker/popover

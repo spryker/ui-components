@@ -9,6 +9,7 @@ export class DrawerOptionsBase<D = DrawerData> {
   readonly resizable: boolean;
   readonly width: string;
   readonly hasBackdrop: boolean;
+  readonly closeOnBackdrop: boolean;
   readonly data?: D;
 
   constructor({
@@ -16,12 +17,14 @@ export class DrawerOptionsBase<D = DrawerData> {
     resizable = true,
     width = '50%',
     hasBackdrop = false,
+    closeOnBackdrop = false,
     data,
   }: Partial<DrawerOptionsBase<D>> = {}) {
     this.closeable = closeable;
     this.resizable = resizable;
     this.width = width;
     this.hasBackdrop = hasBackdrop;
+    this.closeOnBackdrop = closeOnBackdrop;
     this.data = data;
   }
 }

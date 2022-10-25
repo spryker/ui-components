@@ -116,14 +116,16 @@ export class DrawerService implements OnDestroy {
 
     const containerEmpty$ = record.container.afterClosed().pipe(take(1));
 
-    merge(
-      overlay.backdropClick(),
-      overlay.keydownEvents().pipe(filter((e) => e.key === 'Escape')),
-    )
-      .pipe(takeUntil(merge(containerEmpty$, this.allClosed$)))
-      .subscribe(() => {
-        this.removeDrawerRecord(record);
-      });
+    if (options.closeable && options.closeOnBackdrop) {
+      merge(
+        overlay.backdropClick(),
+        overlay.keydownEvents().pipe(filter((e) => e.key === 'Escape')),
+      )
+        .pipe(takeUntil(merge(containerEmpty$, this.allClosed$)))
+        .subscribe(() => {
+          this.removeDrawerRecord(record);
+        });
+    }
 
     containerEmpty$
       .pipe(takeUntil(this.allClosed$))

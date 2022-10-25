@@ -30,6 +30,7 @@ export class DrawerComponentInputs {
   @Input() resizable?: boolean;
   @Input() width?: string;
   @Input() hasBackdrop?: boolean;
+  @Input() closeOnBackdrop?: boolean;
   @Input() data?: DrawerData;
 }
 

@@ -35,6 +35,7 @@ class TestComponent implements OnInit {
       closeable: this.closeable,
       width: this.width,
       hasBackdrop: false,
+      closeOnBackdrop: false,
       resizable: this.resizable,
     });
   }

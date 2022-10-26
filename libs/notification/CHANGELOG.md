@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4-next.0](https://github.com/spryker/ui-components/compare/@spryker/notification@0.5.3...@spryker/notification@0.5.4-next.0) (2022-09-20)
+
+
+### Bug Fixes
+
+* **notification:** added `line-height` to description ([7effeb4](https://github.com/spryker/ui-components/commit/7effeb4f9c401ed8050e324eb0e1cb96774f9a5d))
+* **notification:** updated `@spryker/styles` dependency ([b4b229d](https://github.com/spryker/ui-components/commit/b4b229ddd36ab211ebe419bb516b54bdec8516c0))
+
+
+
+
+
 ## [0.5.3](https://github.com/spryker/ui-components/compare/@spryker/notification@0.5.3-next.0...@spryker/notification@0.5.3) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/notification

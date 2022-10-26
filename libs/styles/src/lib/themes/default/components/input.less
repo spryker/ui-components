@@ -32,7 +32,6 @@
     &-disabled {
         &,
         .has-error & {
-            pointer-events: none;
             border-color: @input-disabled-border;
         }
     }
@@ -66,6 +65,7 @@
         input.@{input-prefix-cls} {
             height: 100%;
             padding: @input-padding-base;
+            border-radius: @input-default-border-radius;
         }
 
         &--suffix input.@{input-prefix-cls} {
@@ -120,6 +120,10 @@
             .@{input-prefix-cls}-affix-wrapper,
             .@{input-prefix-cls} {
                 border-color: @gray;
+            }
+
+            .@{input-prefix-cls}-disabled {
+                border-color: @gray-light;
             }
         }
 

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.2.6-next.0...@spryker/table.feature.search@0.3.0-next.0) (2022-10-18)
+
+
+### Bug Fixes
+
+* **table.feature.search:** remove `isVisible` condition to always render component ([51433d8](https://github.com/spryker/ui-components/commit/51433d87d55af01a61b8b801d2cc79f1087115a1))
+* **table.feature.search:** rename config property `isVisibilityEnabled` to `forceAlwaysVisible` ([d053875](https://github.com/spryker/ui-components/commit/d053875aa03dce3a84cee0f70bf44f9ec70fb403))
+
+
+### Features
+
+* **table.feature.search:** add `isVisibilityEnabled` input ([98d2077](https://github.com/spryker/ui-components/commit/98d2077c8d763f9da3628c3e5de3c44e884ad0ea))
+
+
+
+
+
+## [0.2.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.2.5...@spryker/table.feature.search@0.2.6-next.0) (2022-09-19)
+
+
+### Bug Fixes
+
+* **table.feature.search:** provided min-width for `search` field ([e4662dd](https://github.com/spryker/ui-components/commit/e4662dd010bdd89396fef1ec1df0d2201fbc36ea))
+
+
+
+
+
 ## [0.2.5](https://github.com/spryker/ui-components/compare/@spryker/table.feature.search@0.2.5-next.0...@spryker/table.feature.search@0.2.5) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/table.feature.search

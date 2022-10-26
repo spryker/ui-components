@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/headline@0.5.2...@spryker/headline@0.5.3-next.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* **headline:** update `styles` peerDependency ([f19a2b8](https://github.com/spryker/ui-components/commit/f19a2b886ec74668aebe0a068b344269bd81c2d7))
+
+
+
+
+
 ## [0.5.2](https://github.com/spryker/ui-components/compare/@spryker/headline@0.5.2-next.0...@spryker/headline@0.5.2) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/headline

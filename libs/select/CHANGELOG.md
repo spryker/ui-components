@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.5-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.5.4...@spryker/select@0.5.5-next.0) (2022-10-13)
+
+
+### Bug Fixes
+
+* **select:** adjust hover state for disabled `select` ([b074cbe](https://github.com/spryker/ui-components/commit/b074cbeef9ea7f174e250740556e9cb3688b407a))
+* **select:** adjust styles to change select border color ([a9faa5c](https://github.com/spryker/ui-components/commit/a9faa5c267a1fce210d50915aa93b8a386a8f009))
+
+
+
+
+
 ## [0.5.4](https://github.com/spryker/ui-components/compare/@spryker/select@0.5.4-next.0...@spryker/select@0.5.4) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/select

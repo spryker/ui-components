@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.2.5...@spryker/table.feature.total@0.2.6-next.0) (2022-10-18)
+
+
+### Bug Fixes
+
+* **table.feature.total:** render component with empty data ([81f816b](https://github.com/spryker/ui-components/commit/81f816b51515e2f170f8fc211da1f2143b2c6dbd))
+* **table.feature.total:** update `locale` peer dependency ([3bc06bc](https://github.com/spryker/ui-components/commit/3bc06bccf5baa5a6e70b4418e29c443ebacc7088))
+* **table.feature.total:** update unit tests ([0eafe2d](https://github.com/spryker/ui-components/commit/0eafe2d3c84cc79b03dc168e64c0c5e34bb650db))
+
+
+
+
+
 ## [0.2.5](https://github.com/spryker/ui-components/compare/@spryker/table.feature.total@0.2.5-next.0...@spryker/table.feature.total@0.2.5) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/table.feature.total

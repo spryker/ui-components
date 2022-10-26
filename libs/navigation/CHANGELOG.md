@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.5...@spryker/navigation@0.5.6-next.0) (2022-10-10)
+
+
+### Bug Fixes
+
+* **navigation:** adjust menu item focus state ([d6daabe](https://github.com/spryker/ui-components/commit/d6daabe5f59db0694c69325621b59cd957d07f75))
+* **navigation:** update `styles` peerDependency ([6a0344a](https://github.com/spryker/ui-components/commit/6a0344acb6b1db965257671e878b9f91685acd93))
+
+
+
+
+
 ## [0.5.5](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.5.5-next.0...@spryker/navigation@0.5.5) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/navigation

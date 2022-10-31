@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/spryker/ui-components/compare/@spryker/locale@0.3.6-next.0...@spryker/locale@0.3.6) (2022-10-26)
+
+**Note:** Version bump only for package @spryker/locale
+
+
+
+
+
+## [0.3.6-next.0](https://github.com/spryker/ui-components/compare/@spryker/locale@0.3.5...@spryker/locale@0.3.6-next.0) (2022-10-18)
+
+
+### Bug Fixes
+
+* **locale:** fix `I18nService` interpolation ([41d8f3f](https://github.com/spryker/ui-components/commit/41d8f3f72832e9be5ad188edc5337d268c965547))
+
+
+
+
+
 ## [0.3.5](https://github.com/spryker/ui-components/compare/@spryker/locale@0.3.5-next.0...@spryker/locale@0.3.5) (2022-09-01)
 
 **Note:** Version bump only for package @spryker/locale

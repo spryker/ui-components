@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.4.0-next.0...@spryker/table.feature.filters@0.4.0) (2022-10-26)
+
+**Note:** Version bump only for package @spryker/table.feature.filters
+
+
+
+
+
+# [0.4.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.3.4-next.1...@spryker/table.feature.filters@0.4.0-next.0) (2022-10-18)
+
+
+### Bug Fixes
+
+* **table.feature.filters:** remove `isVisible` condition to always render component ([2056e52](https://github.com/spryker/ui-components/commit/2056e526d8001c9ef8bf8605c99c26aae44b51d6))
+* **table.feature.filters:** rename config property `isVisibilityEnabled` to `forceAlwaysVisible` ([25e3d82](https://github.com/spryker/ui-components/commit/25e3d82d0bc2e19486437eb3c3cc2006f5bcc051))
+
+
+### Features
+
+* **table.feature.filters:** add `isVisibilityEnabled` input ([baf8a9c](https://github.com/spryker/ui-components/commit/baf8a9ca5a495c6d636b6fc763c7a230e9d82c96))
+
+
+
+
+
 ## [0.3.4-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.3.4-next.0...@spryker/table.feature.filters@0.3.4-next.1) (2022-10-13)
 
 

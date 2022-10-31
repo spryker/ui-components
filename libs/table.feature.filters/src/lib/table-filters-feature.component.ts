@@ -79,6 +79,10 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
         this.table$.pipe(switchMap((table) => table.isLoading$)),
     ]).pipe(
         map(([config, data, isLoading]) => {
+            if (!config.forceAlwaysVisible) {
+                return true;
+            }
+
             const isFiltered = config?.filter
                 ? Boolean(Object.keys(config.filter as Record<string, unknown>).length)
                 : false;

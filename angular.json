@@ -37,7 +37,8 @@
                         "lintFilePatterns": ["libs/actions/**/*.ts", "libs/actions/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:primary"]
         },
         "actions.close-drawer": {
             "projectType": "library",
@@ -106,7 +107,8 @@
                         "lintFilePatterns": ["libs/actions.close-drawer/**/*.ts", "libs/actions.close-drawer/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "actions.drawer": {
             "projectType": "library",
@@ -175,7 +177,8 @@
                         "lintFilePatterns": ["libs/actions.drawer/**/*.ts", "libs/actions.drawer/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "actions.http": {
             "projectType": "library",
@@ -244,7 +247,8 @@
                         "lintFilePatterns": ["libs/actions.http/**/*.ts", "libs/actions.http/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "actions.notification": {
             "projectType": "library",
@@ -313,7 +317,8 @@
                         "lintFilePatterns": ["libs/actions.notification/**/*.ts", "libs/actions.notification/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "actions.redirect": {
             "projectType": "library",
@@ -382,7 +387,8 @@
                         "lintFilePatterns": ["libs/actions.redirect/**/*.ts", "libs/actions.redirect/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "actions.refresh-drawer": {
             "projectType": "library",
@@ -454,7 +460,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "actions.refresh-parent-table": {
             "projectType": "library",
@@ -526,7 +533,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "actions.refresh-table": {
             "projectType": "library",
@@ -598,7 +606,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "ajax-action": {
             "projectType": "library",
@@ -667,7 +676,8 @@
                         "lintFilePatterns": ["libs/ajax-action/**/*.ts", "libs/ajax-action/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["pkg:primary", "type:service"]
         },
         "ajax-form": {
             "projectType": "library",
@@ -736,7 +746,8 @@
                         "lintFilePatterns": ["libs/ajax-form/**/*.ts", "libs/ajax-form/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "autocomplete": {
             "projectType": "library",
@@ -806,7 +817,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["level:molecule", "type:component", "pkg:primary"]
         },
         "button": {
             "projectType": "library",
@@ -876,7 +888,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "type:component", "level:atom"]
         },
         "button.action": {
             "projectType": "library",
@@ -945,7 +958,8 @@
                         "lintFilePatterns": ["libs/button.action/**/*.ts", "libs/button.action/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:component", "level:atom", "pkg:primary"]
         },
         "button.icon": {
             "projectType": "library",
@@ -1014,7 +1028,8 @@
                         "lintFilePatterns": ["libs/button.icon/**/*.ts", "libs/button.icon/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:component", "level:atom", "pkg:primary"]
         },
         "cache": {
             "projectType": "library",
@@ -1052,7 +1067,8 @@
                         "lintFilePatterns": ["libs/cache/**/*.ts", "libs/cache/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:primary"]
         },
         "cache.static": {
             "projectType": "library",
@@ -1090,7 +1106,8 @@
                         "lintFilePatterns": ["libs/cache.static/**/*.ts", "libs/cache.static/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "card": {
             "projectType": "library",
@@ -1160,7 +1177,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "checkbox": {
             "projectType": "library",
@@ -1230,7 +1248,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "chips": {
             "projectType": "library",
@@ -1300,7 +1319,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "collapsible": {
             "projectType": "library",
@@ -1369,7 +1389,8 @@
                         "lintFilePatterns": ["libs/collapsible/**/*.ts", "libs/collapsible/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "data-serializer": {
             "projectType": "library",
@@ -1407,7 +1428,8 @@
                         "lintFilePatterns": ["libs/data-serializer/**/*.ts", "libs/data-serializer/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:primary"]
         },
         "data-transformer": {
             "projectType": "library",
@@ -1445,7 +1467,8 @@
                         "lintFilePatterns": ["libs/data-transformer/**/*.ts", "libs/data-transformer/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:primary"]
         },
         "data-transformer.array-map": {
             "projectType": "library",
@@ -1486,7 +1509,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.chain": {
             "projectType": "library",
@@ -1527,7 +1551,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.collate": {
             "projectType": "library",
@@ -1568,7 +1593,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.configurator.table": {
             "projectType": "library",
@@ -1609,7 +1635,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.date-parse": {
             "projectType": "library",
@@ -1650,7 +1677,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.date-serialize": {
             "projectType": "library",
@@ -1691,7 +1719,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.filter.equals": {
             "projectType": "library",
@@ -1732,7 +1761,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.filter.range": {
             "projectType": "library",
@@ -1773,7 +1803,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.filter.text": {
             "projectType": "library",
@@ -1814,7 +1845,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.lens": {
             "projectType": "library",
@@ -1855,7 +1887,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.object-map": {
             "projectType": "library",
@@ -1896,7 +1929,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "data-transformer.pluck": {
             "projectType": "library",
@@ -1937,7 +1971,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "datasource": {
             "projectType": "library",
@@ -1975,7 +2010,8 @@
                         "lintFilePatterns": ["libs/datasource/**/*.ts", "libs/datasource/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:primary"]
         },
         "datasource.http": {
             "projectType": "library",
@@ -2013,7 +2049,8 @@
                         "lintFilePatterns": ["libs/datasource.http/**/*.ts", "libs/datasource.http/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "datasource.inline": {
             "projectType": "library",
@@ -2082,7 +2119,8 @@
                         "lintFilePatterns": ["libs/datasource.inline/**/*.ts", "libs/datasource.inline/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "datasource.inline.table": {
             "projectType": "library",
@@ -2154,7 +2192,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "date-picker": {
             "projectType": "library",
@@ -2224,7 +2263,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "drawer": {
             "projectType": "library",
@@ -2294,7 +2334,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:molecule", "type:component-service"]
         },
         "dropdown": {
             "projectType": "library",
@@ -2364,7 +2405,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "form-item": {
             "projectType": "library",
@@ -2434,7 +2476,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "grid": {
             "projectType": "library",
@@ -2504,7 +2547,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "type:style"]
         },
         "header": {
             "projectType": "library",
@@ -2574,7 +2618,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:organism", "type:component"]
         },
         "headline": {
             "projectType": "library",
@@ -2644,7 +2689,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "html-renderer": {
             "projectType": "library",
@@ -2713,7 +2759,8 @@
                         "lintFilePatterns": ["libs/html-renderer/**/*.ts", "libs/html-renderer/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "icon": {
             "projectType": "library",
@@ -2783,7 +2830,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "input": {
             "projectType": "library",
@@ -2853,7 +2901,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "input.password": {
             "projectType": "library",
@@ -2922,7 +2971,8 @@
                         "lintFilePatterns": ["libs/input.password/**/*.ts", "libs/input.password/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:component", "level:atom", "pkg:primary"]
         },
         "interception": {
             "projectType": "library",
@@ -2960,7 +3010,8 @@
                         "lintFilePatterns": ["libs/interception/**/*.ts", "libs/interception/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:primary"]
         },
         "internal-utils": {
             "projectType": "library",
@@ -2982,7 +3033,8 @@
                         "lintFilePatterns": ["libs/internal-utils/**/*.ts", "libs/internal-utils/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["pkg:primary", "type:meta"]
         },
         "label": {
             "projectType": "library",
@@ -3052,7 +3104,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "layout": {
             "projectType": "library",
@@ -3122,7 +3175,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "link": {
             "projectType": "library",
@@ -3192,7 +3246,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "locale": {
             "projectType": "library",
@@ -3261,7 +3316,8 @@
                         "lintFilePatterns": ["libs/locale/**/*.ts", "libs/locale/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["pkg:primary", "type:util"]
         },
         "logo": {
             "projectType": "library",
@@ -3331,7 +3387,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "modal": {
             "projectType": "library",
@@ -3401,7 +3458,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["level:molecule", "type:component-service", "pkg:primary"]
         },
         "navigation": {
             "projectType": "library",
@@ -3471,7 +3529,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:molecule", "type:component-service"]
         },
         "notification": {
             "projectType": "library",
@@ -3541,7 +3600,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:molecule", "type:component-service"]
         },
         "pagination": {
             "projectType": "library",
@@ -3611,7 +3671,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "persistence": {
             "projectType": "library",
@@ -3649,7 +3710,8 @@
                         "lintFilePatterns": ["libs/persistence/**/*.ts", "libs/persistence/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:primary"]
         },
         "popover": {
             "projectType": "library",
@@ -3719,7 +3781,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "radio": {
             "projectType": "library",
@@ -3789,7 +3852,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["level:atom", "type:component", "pkg:primary"]
         },
         "select": {
             "projectType": "library",
@@ -3859,7 +3923,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "sidebar": {
             "projectType": "library",
@@ -3929,7 +3994,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "spinner": {
             "projectType": "library",
@@ -3998,7 +4064,8 @@
                         "lintFilePatterns": ["libs/spinner/**/*.ts", "libs/spinner/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:component", "level:atom", "pkg:primary"]
         },
         "storybook": {
             "projectType": "library",
@@ -4042,7 +4109,8 @@
                         }
                     }
                 }
-            }
+            },
+            "tags": ["pkg:primary", "type:meta"]
         },
         "styles": {
             "projectType": "library",
@@ -4080,7 +4148,8 @@
                         "lintFilePatterns": ["libs/styles/**/*.ts", "libs/styles/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["pkg:primary", "type:style"]
         },
         "table": {
             "projectType": "library",
@@ -4150,7 +4219,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["pkg:primary", "level:organism", "type:component-service"]
         },
         "table-integration-internal": {
             "projectType": "library",
@@ -4206,7 +4276,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:meta"]
         },
         "table.column.autocomplete": {
             "projectType": "library",
@@ -4278,7 +4349,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:component", "level:atom", "pkg:extension"]
         },
         "table.column.chip": {
             "projectType": "library",
@@ -4347,7 +4419,8 @@
                         "lintFilePatterns": ["libs/table.column.chip/**/*.ts", "libs/table.column.chip/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["level:atom", "type:component", "pkg:extension"]
         },
         "table.column.date": {
             "projectType": "library",
@@ -4416,7 +4489,8 @@
                         "lintFilePatterns": ["libs/table.column.date/**/*.ts", "libs/table.column.date/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["level:atom", "type:component", "pkg:extension"]
         },
         "table.column.dynamic": {
             "projectType": "library",
@@ -4485,7 +4559,8 @@
                         "lintFilePatterns": ["libs/table.column.dynamic/**/*.ts", "libs/table.column.dynamic/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:component", "level:atom", "pkg:extension"]
         },
         "table.column.image": {
             "projectType": "library",
@@ -4554,7 +4629,8 @@
                         "lintFilePatterns": ["libs/table.column.image/**/*.ts", "libs/table.column.image/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["level:atom", "type:component", "pkg:extension"]
         },
         "table.column.input": {
             "projectType": "library",
@@ -4623,7 +4699,8 @@
                         "lintFilePatterns": ["libs/table.column.input/**/*.ts", "libs/table.column.input/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:component", "level:atom", "pkg:extension"]
         },
         "table.column.select": {
             "projectType": "library",
@@ -4693,7 +4770,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["locale"]
+            "implicitDependencies": ["locale"],
+            "tags": ["type:component", "level:molecule", "pkg:extension"]
         },
         "table.column.text": {
             "projectType": "library",
@@ -4762,7 +4840,8 @@
                         "lintFilePatterns": ["libs/table.column.text/**/*.ts", "libs/table.column.text/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["level:atom", "type:component", "pkg:extension"]
         },
         "table.feature.batch-actions": {
             "projectType": "library",
@@ -4835,7 +4914,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.feature.editable": {
             "projectType": "library",
@@ -4908,7 +4988,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["type:component", "level:molecule", "pkg:extension"]
         },
         "table.feature.filters": {
             "projectType": "library",
@@ -4981,7 +5062,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.feature.pagination": {
             "projectType": "library",
@@ -5054,7 +5136,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.feature.row-actions": {
             "projectType": "library",
@@ -5127,7 +5210,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.feature.search": {
             "projectType": "library",
@@ -5197,7 +5281,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.feature.selectable": {
             "projectType": "library",
@@ -5270,7 +5355,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.feature.settings": {
             "projectType": "library",
@@ -5343,7 +5429,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.feature.sync-state": {
             "projectType": "library",
@@ -5415,7 +5502,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.feature.title": {
             "projectType": "library",
@@ -5485,7 +5573,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.feature.total": {
             "projectType": "library",
@@ -5555,7 +5644,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.filter.date-range": {
             "projectType": "library",
@@ -5628,7 +5718,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.filter.select": {
             "projectType": "library",
@@ -5698,7 +5789,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["locale"]
+            "implicitDependencies": ["locale"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "table.filter.tree-select": {
             "projectType": "library",
@@ -5771,7 +5863,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["locale"]
+            "implicitDependencies": ["locale"],
+            "tags": ["level:molecule", "type:component", "pkg:extension"]
         },
         "tabs": {
             "projectType": "library",
@@ -5841,7 +5934,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "textarea": {
             "projectType": "library",
@@ -5911,7 +6005,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "toggle": {
             "projectType": "library",
@@ -5981,7 +6076,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles"]
+            "implicitDependencies": ["styles"],
+            "tags": ["pkg:primary", "level:atom", "type:component"]
         },
         "tree-select": {
             "projectType": "library",
@@ -6051,7 +6147,8 @@
                     }
                 }
             },
-            "implicitDependencies": ["styles", "locale"]
+            "implicitDependencies": ["styles", "locale"],
+            "tags": ["pkg:primary", "level:molecule", "type:component"]
         },
         "unsaved-changes": {
             "projectType": "library",
@@ -6089,7 +6186,8 @@
                         "lintFilePatterns": ["libs/unsaved-changes/**/*.ts", "libs/unsaved-changes/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["type:component-service", "pkg:primary"]
         },
         "unsaved-changes.guard.browser": {
             "projectType": "library",
@@ -6130,7 +6228,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "unsaved-changes.guard.drawer": {
             "projectType": "library",
@@ -6202,7 +6301,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "unsaved-changes.guard.navigation": {
             "projectType": "library",
@@ -6274,7 +6374,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "unsaved-changes.monitor.form": {
             "projectType": "library",
@@ -6346,7 +6447,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:component-service", "pkg:primary"]
         },
         "user-menu": {
             "projectType": "library",
@@ -6415,7 +6517,8 @@
                         "lintFilePatterns": ["libs/user-menu/**/*.ts", "libs/user-menu/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["level:molecule", "type:component", "pkg:primary"]
         },
         "utils": {
             "projectType": "library",
@@ -6453,7 +6556,8 @@
                         "lintFilePatterns": ["libs/utils/**/*.ts", "libs/utils/**/*.html"]
                     }
                 }
-            }
+            },
+            "tags": ["pkg:primary", "type:util"]
         },
         "utils.date.adapter.date-fns": {
             "projectType": "library",
@@ -6494,7 +6598,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "tags": ["type:service", "pkg:extension"]
         },
         "web-components": {
             "projectType": "library",
@@ -6532,40 +6637,8 @@
                         "lintFilePatterns": ["libs/web-components/**/*.ts", "libs/web-components/**/*.html"]
                     }
                 }
-            }
-        }
-    },
-    "cli": {
-        "analytics": false,
-        "defaultCollection": "@nrwl/angular"
-    },
-    "defaultProject": "utils",
-    "schematics": {
-        "@nrwl/angular:application": {
-            "style": "less",
-            "linter": "eslint",
-            "unitTestRunner": "jest",
-            "e2eTestRunner": "protractor",
-            "prefix": "spy"
-        },
-        "@nrwl/angular:library": {
-            "style": "less",
-            "linter": "eslint",
-            "unitTestRunner": "jest",
-            "prefix": "spy",
-            "publishable": true
-        },
-        "@schematics/angular:component": {
-            "style": "less",
-            "prefix": "spy",
-            "changeDetection": "OnPush",
-            "viewEncapsulation": "None"
-        },
-        "@nrwl/storybook:configuration": {
-            "uiFramework": "@storybook/angular"
-        },
-        "@nrwl/angular:component": {
-            "style": "less"
+            },
+            "tags": ["pkg:primary", "type:util"]
         }
     }
 }

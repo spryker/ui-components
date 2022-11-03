@@ -3,15 +3,6 @@
     "affected": {
         "defaultBase": "master"
     },
-    "implicitDependencies": {
-        "angular.json": "*",
-        "package.json": {
-            "dependencies": "*",
-            "devDependencies": "*"
-        },
-        "tsconfig.json": "*",
-        "nx.json": "*"
-    },
     "tasksRunnerOptions": {
         "default": {
             "runner": "@nrwl/nx-cloud",
@@ -24,18 +15,6 @@
             }
         }
     },
-    "targetDependencies": {
-        "build": [
-            {
-                "target": "build",
-                "projects": "dependencies"
-            }
-        ]
-    },
-    "cli": {
-        "analytics": false,
-        "defaultCollection": "@nrwl/angular"
-    },
     "defaultProject": "utils",
     "generators": {
         "@nrwl/angular:application": {
@@ -46,7 +25,6 @@
             "prefix": "spy"
         },
         "@nrwl/angular:library": {
-            "style": "less",
             "linter": "eslint",
             "unitTestRunner": "jest",
             "prefix": "spy",
@@ -64,5 +42,37 @@
         "@nrwl/angular:component": {
             "style": "less"
         }
+    },
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "targetDefaults": {
+        "build": {
+            "dependsOn": ["^build"],
+            "inputs": ["production", "^production"]
+        },
+        "test": {
+            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+        },
+        "lint": {
+            "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+        },
+        "build-storybook": {
+            "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
+        },
+        "compile": {
+            "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
+        }
+    },
+    "namedInputs": {
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "sharedGlobals": ["{workspaceRoot}/angular.json", "{workspaceRoot}/tsconfig.json", "{workspaceRoot}/nx.json"],
+        "production": [
+            "default",
+            "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+            "!{projectRoot}/tsconfig.spec.json",
+            "!{projectRoot}/jest.config.[jt]s",
+            "!{projectRoot}/.eslintrc.json",
+            "!{projectRoot}/.storybook/**/*",
+            "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
+        ]
     }
 }

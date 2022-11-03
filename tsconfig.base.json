@@ -22,14 +22,12 @@
         }
     },
     "angularCompilerOptions": {
-        "enableIvy": false,
         "annotateForClosureCompiler": true,
         "skipTemplateCodegen": true,
         "strictMetadataEmit": true,
         "strictInjectionParameters": true,
         "enableResourceInlining": true,
-        "strictInputAccessModifiers": true,
-        "strictTemplates": true
+        "strictInputAccessModifiers": true
     },
     "exclude": ["node_modules", "tmp", "dist"]
 }

@@ -74,5 +74,8 @@
             "!{projectRoot}/.storybook/**/*",
             "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
         ]
+    },
+    "cli": {
+        "analytics": false
     }
 }

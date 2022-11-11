@@ -64,18 +64,17 @@ describe('CollapsibleComponent', () => {
             expect(host.component.active).toBeFalsy();
         });
 
-        it('Should emit event on collapsible header click', async () => {
+        it('Should emit event on collapsible header active state change', async () => {
             const host = await createComponentWrapper(createComponent);
-            const collapsibleHeaderElem = host.queryCss('.ant-collapse-header');
             const callback = jest.fn();
 
             host.component.activeChange.subscribe(callback);
-            collapsibleHeaderElem.triggerEventHandler('click', null);
+            host.component.updateActive(true);
             host.detectChanges();
 
             expect(callback).toHaveBeenCalledWith(true);
 
-            collapsibleHeaderElem.triggerEventHandler('click', null);
+            host.component.updateActive(false);
             host.detectChanges();
 
             expect(callback).toHaveBeenCalledWith(false);

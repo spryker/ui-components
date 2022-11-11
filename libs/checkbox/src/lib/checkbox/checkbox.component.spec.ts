@@ -135,11 +135,11 @@ describe('CheckboxComponent', () => {
             host.setInputs({ attrs: { test: 'attr6' } }, true);
 
             expect(inputElem.attributes['test']).toBe('attr6');
-            expect(inputElem.attributes['test2']).toBe(null);
+            expect(inputElem.attributes['test2']).toBe(undefined);
 
             host.setInputs({ attrs: { test: null } }, true);
 
-            expect(inputElem.attributes['test']).toBe(null);
+            expect(inputElem.attributes['test']).toBe('null');
 
             host.setInputs({ attrs: { test: '' } }, true);
 

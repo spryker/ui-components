@@ -16,7 +16,7 @@ export function enLocaleFactory() {
                 })),
             ant: () =>
                 Promise.all([
-                    import('ng-zorro-antd/esm2015/i18n/languages/en_US' as any),
+                    import('node_modules/ng-zorro-antd/esm2020/i18n/languages/en_US' as any),
                     import('date-fns/locale/en-US'),
                 ]).then(([data, date]) => ({
                     data: data.default,

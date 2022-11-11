@@ -7,7 +7,7 @@
         "@spryker/actions": "^0.2.0",
         "@spryker/notification": "^0.4.0",
         "@spryker/utils": "^0.3.0",
-        "rxjs": "^7.4.0"
+        "rxjs": "^7.5.7"
     },
     "dependencies": {
         "tslib": "^2.3.1"

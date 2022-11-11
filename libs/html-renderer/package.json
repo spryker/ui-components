@@ -9,7 +9,7 @@
         "@spryker/spinner": "^0.3.3",
         "@spryker/styles": "^0.7.1",
         "@spryker/web-components": "^0.3.0",
-        "rxjs": "^7.4.0"
+        "rxjs": "^7.5.7"
     },
     "dependencies": {
         "tslib": "^2.3.1"

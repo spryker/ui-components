@@ -16,7 +16,7 @@
         "@spryker/table": "^0.5.0",
         "@spryker/table.feature.settings": "^0.2.0",
         "@spryker/utils": "^0.3.0",
-        "rxjs": "^7.4.0"
+        "rxjs": "^7.5.7"
     },
     "dependencies": {
         "ng-zorro-antd": "^14.1.1",

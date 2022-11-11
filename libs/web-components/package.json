@@ -7,10 +7,10 @@
         "@angular/core": ">=9.1.12",
         "@angular/elements": ">=9.1.12",
         "@spryker/utils": "^0.3.0",
-        "rxjs": "^7.4.0"
+        "rxjs": "^7.5.7"
     },
     "dependencies": {
-        "ngx-element-boundary": "^1.0.10",
+        "ngx-element-boundary": "^2.0.0",
         "tslib": "^2.3.1"
     },
     "publishConfig": {

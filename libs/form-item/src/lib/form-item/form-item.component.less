@@ -58,12 +58,8 @@
     }
 
     &.@{form-item-prefix-cls}-has-error.@{form-item-prefix-cls}-with-help {
-        .@{select-prefix-cls}:not(.@{select-prefix-cls}-borderless).@{select-prefix-cls}-open
-            .@{select-prefix-cls}-selector,
-        .@{select-prefix-cls}:not(.@{select-prefix-cls}-borderless).@{select-prefix-cls}-focused
-            .@{select-prefix-cls}-selector,
-        .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--hover,
-        .@{input-prefix-cls}-affix-wrapper.@{input-prefix-cls}-container--focus,
+        .@{select-prefix-cls}:not(.@{select-prefix-cls}-borderless) .@{select-prefix-cls}-selector,
+        .@{input-prefix-cls}-affix-wrapper,
         .@{input-prefix-cls}-container--hover,
         .@{input-prefix-cls}-container--focus,
         .@{input-prefix-cls}-group-addon,
@@ -71,6 +67,7 @@
         .@{input-prefix-cls} {
             &,
             &:focus,
+            &:hover,
             .@{input-prefix-cls},
             .@{input-prefix-cls}-group-addon {
                 border-color: @red;

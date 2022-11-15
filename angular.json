@@ -4009,7 +4009,8 @@
                         "port": 4400,
                         "configDir": ".storybook/global",
                         "browserTarget": "storybook:compile",
-                        "compodoc": false
+                        "compodoc": false,
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -6484,8 +6485,5 @@
             },
             "tags": ["pkg:primary", "type:util"]
         }
-    },
-    "cli": {
-        "analytics": false
     }
 }

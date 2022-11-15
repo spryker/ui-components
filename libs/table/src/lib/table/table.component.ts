@@ -46,7 +46,8 @@ import { TableConfigService } from '../table-config/table-config.service';
 import { TableFeatureConfig } from '../table-config';
 import { TableFeatureLoaderService } from '../table-feature-loader/table-feature-loader.service';
 import { TableFeatureDirective, TableFeatureEventBus, TableFeatureComponent } from '../table-feature';
-import { TableFeaturesRendererService } from '../table-features-renderer';
+// Do not change, absolute path is needed to avoid circular dependency.
+import { TableFeaturesRendererService } from '../table-features-renderer/table-features-renderer.service';
 import { ColTplDirective } from './col-tpl.directive';
 import { TableColumnsResolverService } from './columns-resolver.service';
 import { TableDataConfiguratorService } from './data-configurator.service';

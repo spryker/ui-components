@@ -6,6 +6,11 @@
         &:only-child {
             border-radius: @border-radius-base;
         }
+
+        &:hover,
+        &:focus {
+            border-right-width: @spy-border-width-base;
+        }
     }
 
     .@{input-prefix-cls}-group-addon {
@@ -77,7 +82,7 @@
         }
 
         &-focused {
-            .transition-mixin(border-color box-shadow);
+            .transition-mixin(border-color, box-shadow; 0.3s; ease;);
             border-radius: @input-wrapper-border-radius;
 
             .@{input-prefix-cls} {
@@ -134,6 +139,10 @@
             .@{input-prefix-cls} {
                 border-color: @spy-primary-color;
                 border-width: @spy-border-width-base;
+            }
+
+            &.@{input-prefix-cls}-affix-wrapper-focused .@{input-prefix-cls}-affix-wrapper {
+                box-shadow: none;
             }
         }
     }

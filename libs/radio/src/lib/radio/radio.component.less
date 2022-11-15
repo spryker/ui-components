@@ -13,6 +13,10 @@
     }
 
     &-checked:not(&-disabled) {
+        .@{radio-prefix-cls}-inner::after {
+            transform: scale(1);
+        }
+
         &:hover {
             .@{radio-prefix-cls} {
                 &-inner {

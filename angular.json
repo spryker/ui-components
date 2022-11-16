@@ -6485,5 +6485,8 @@
             },
             "tags": ["pkg:primary", "type:util"]
         }
+    },
+    "cli": {
+      "analytics": false
     }
 }

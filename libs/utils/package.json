@@ -2,9 +2,9 @@
     "name": "@spryker/utils",
     "version": "0.3.6",
     "peerDependencies": {
-        "@angular/cdk": ">=9.2.3",
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
+        "@angular/cdk": "^14.2.7",
+        "@angular/common": "^14.2.10",
+        "@angular/core": "^14.2.10",
         "rxjs": "^7.5.7"
     },
     "dependencies": {

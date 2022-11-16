@@ -2,16 +2,16 @@
     "name": "@spryker/table.column.select",
     "version": "0.2.5",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/data-transformer": "^0.2.0",
-        "@spryker/datasource": "^0.2.0",
-        "@spryker/form-item": "^0.4.0",
-        "@spryker/select": "^0.4.0",
-        "@spryker/styles": "^0.7.0",
-        "@spryker/table": "^0.5.0",
-        "@spryker/table.feature.editable": "^0.3.0",
-        "@spryker/utils": "^0.3.0"
+        "@angular/common": "^14.2.10",
+        "@angular/core": "^14.2.10",
+        "@spryker/data-transformer": "^1.0.0",
+        "@spryker/datasource": "^1.0.0",
+        "@spryker/form-item": "^1.0.0",
+        "@spryker/select": "^1.0.0",
+        "@spryker/styles": "^1.0.0",
+        "@spryker/table": "^1.0.0",
+        "@spryker/table.feature.editable": "^1.0.0",
+        "@spryker/utils": "^1.0.0"
     },
     "dependencies": {
         "tslib": "^2.3.1"

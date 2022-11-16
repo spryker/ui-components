@@ -2,10 +2,10 @@
     "name": "@spryker/table.column.date",
     "version": "0.2.3",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/table": "^0.6.0",
-        "@spryker/utils": "^0.3.0"
+        "@angular/common": "^14.2.10",
+        "@angular/core": "^14.2.10",
+        "@spryker/table": "^1.0.0",
+        "@spryker/utils": "^1.0.0"
     },
     "dependencies": {
         "tslib": "^2.3.1"

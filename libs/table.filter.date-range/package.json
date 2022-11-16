@@ -2,12 +2,12 @@
     "name": "@spryker/table.filter.date-range",
     "version": "0.2.5",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/date-picker": "^0.4.0",
-        "@spryker/locale": "^0.3.0",
-        "@spryker/styles": "^0.6.0",
-        "@spryker/table.feature.filters": "^0.2.0",
+        "@angular/common": "^14.2.10",
+        "@angular/core": "^14.2.10",
+        "@spryker/date-picker": "^1.0.0",
+        "@spryker/locale": "^1.0.0",
+        "@spryker/styles": "^1.0.0",
+        "@spryker/table.feature.filters": "^1.0.0",
         "rxjs": "^7.5.7"
     },
     "dependencies": {

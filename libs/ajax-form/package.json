@@ -2,13 +2,13 @@
     "name": "@spryker/ajax-form",
     "version": "0.3.5",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/ajax-action": "^0.3.0",
-        "@spryker/data-serializer": "^0.1.0",
-        "@spryker/html-renderer": "^0.2.0",
-        "@spryker/styles": "^0.7.0",
-        "@spryker/unsaved-changes.monitor.form": "^0.2.0",
+        "@angular/common": "^14.2.10",
+        "@angular/core": "^14.2.10",
+        "@spryker/ajax-action": "^1.0.0",
+        "@spryker/data-serializer": "^1.0.0",
+        "@spryker/html-renderer": "^1.0.0",
+        "@spryker/styles": "^1.0.0",
+        "@spryker/unsaved-changes.monitor.form": "^1.0.0",
         "rxjs": "^7.5.7"
     },
     "dependencies": {

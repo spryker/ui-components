@@ -21,11 +21,14 @@ export class OverlayModalWrapperRef implements ModalWrapperRef {
   constructor(
     private overlayRef: OverlayRef,
     private componentRef: ComponentRef<ModalWrapperComponent>,
+    closeOnBackDrop: boolean,
   ) {
     this.overlayRef
       .backdropClick()
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(() => this.onDispose());
+      .subscribe(() => {
+        if (closeOnBackDrop) this.onDispose();
+      });
   }
 
   setModalRef(modalRef: ModalRef<any, any>): void {
@@ -86,6 +89,10 @@ export class OverlayModalWrapperFactory implements ModalWrapperFactory {
 
     wrapperComponentRef.instance.setModalOptions(options);
 
-    return new OverlayModalWrapperRef(overlayRef, wrapperComponentRef);
+    return new OverlayModalWrapperRef(
+      overlayRef,
+      wrapperComponentRef,
+      options.closeOnBackdrop,
+    );
   }
 }

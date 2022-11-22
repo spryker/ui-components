@@ -25,6 +25,7 @@ export interface ModalOptions<T> {
   width?: string | number;
   closeable?: boolean;
   backdrop?: boolean;
+  closeOnBackdrop?: boolean;
   class?: string;
   wrapperClass?: string;
 }

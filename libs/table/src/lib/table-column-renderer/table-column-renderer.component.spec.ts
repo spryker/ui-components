@@ -75,10 +75,11 @@ class TableColumnTestConfig {
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'table-column-test',
-    template: ` {{ config.text | context: context }} `,
+    template: ` {{ config.text | context : context }} `,
 })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent implements TableColumnComponent<TableColumnTestConfig> {
+    @Input() items?: any;
     @Input() config?: TableColumnTestConfig;
     @Input() context?: TableColumnContext;
 }

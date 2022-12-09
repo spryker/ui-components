@@ -1,6 +1,6 @@
 <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterTable; styles: { width: '100%' }">
     <spy-pagination
-        *ngIf="data$ | async | pluck: 'length'"
+        *ngIf="data$ | async | pluck : 'length'"
         [pageSizeOptions]="sizes$ | async"
         [total]="total$ | async"
         [pageSize]="pageSize$ | async"

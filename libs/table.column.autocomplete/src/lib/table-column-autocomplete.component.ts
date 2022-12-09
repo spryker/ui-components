@@ -96,6 +96,7 @@ export class TableColumnAutocompleteConfig {
 export class TableColumnAutocompleteComponent implements TableColumnComponent<TableColumnAutocompleteConfig>, OnInit {
     @Input() config?: TableColumnAutocompleteConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
 
     constructor(private tableEditableService: TableEditableService) {}
 

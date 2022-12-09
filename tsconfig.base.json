@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "esModuleInterop": true,
         "sourceMap": true,
         "declaration": false,
         "downlevelIteration": true,
@@ -17,12 +18,15 @@
         "lib": ["es2015", "es2019", "dom"],
         "baseUrl": ".",
         "rootDir": ".",
+        "useDefineForClassFields": false,
         "paths": {
             "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
         }
     },
     "angularCompilerOptions": {
+        "compilationMode": "partial",
         "annotateForClosureCompiler": true,
+        "fullTemplateTypeCheck": true,
         "skipTemplateCodegen": true,
         "strictMetadataEmit": true,
         "strictInjectionParameters": true,

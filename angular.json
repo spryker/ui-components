@@ -76,7 +76,9 @@
                         "port": 4400,
                         "configDir": "libs/actions.close-drawer/.storybook",
                         "browserTarget": "actions.close-drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -91,7 +93,8 @@
                         "outputDir": "dist/storybook/actions.close-drawer",
                         "configDir": "libs/actions.close-drawer/.storybook",
                         "browserTarget": "actions.close-drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -144,7 +147,9 @@
                         "port": 4400,
                         "configDir": "libs/actions.drawer/.storybook",
                         "browserTarget": "actions.drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -159,7 +164,8 @@
                         "outputDir": "dist/storybook/actions.drawer",
                         "configDir": "libs/actions.drawer/.storybook",
                         "browserTarget": "actions.drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -212,7 +218,9 @@
                         "port": 4400,
                         "configDir": "libs/actions.http/.storybook",
                         "browserTarget": "actions.http:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -227,7 +235,8 @@
                         "outputDir": "dist/storybook/actions.http",
                         "configDir": "libs/actions.http/.storybook",
                         "browserTarget": "actions.http:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -280,7 +289,9 @@
                         "port": 4400,
                         "configDir": "libs/actions.notification/.storybook",
                         "browserTarget": "actions.notification:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -295,7 +306,8 @@
                         "outputDir": "dist/storybook/actions.notification",
                         "configDir": "libs/actions.notification/.storybook",
                         "browserTarget": "actions.notification:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -348,7 +360,9 @@
                         "port": 4400,
                         "configDir": "libs/actions.redirect/.storybook",
                         "browserTarget": "actions.redirect:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -363,7 +377,8 @@
                         "outputDir": "dist/storybook/actions.redirect",
                         "configDir": "libs/actions.redirect/.storybook",
                         "browserTarget": "actions.redirect:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -416,7 +431,9 @@
                         "port": 4400,
                         "configDir": "libs/actions.refresh-drawer/.storybook",
                         "browserTarget": "actions.refresh-drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -431,7 +448,8 @@
                         "outputDir": "dist/storybook/actions.refresh-drawer",
                         "configDir": "libs/actions.refresh-drawer/.storybook",
                         "browserTarget": "actions.refresh-drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -487,7 +505,9 @@
                         "port": 4400,
                         "configDir": "libs/actions.refresh-parent-table/.storybook",
                         "browserTarget": "actions.refresh-parent-table:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -502,7 +522,8 @@
                         "outputDir": "dist/storybook/actions.refresh-parent-table",
                         "configDir": "libs/actions.refresh-parent-table/.storybook",
                         "browserTarget": "actions.refresh-parent-table:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -558,7 +579,9 @@
                         "port": 4400,
                         "configDir": "libs/actions.refresh-table/.storybook",
                         "browserTarget": "actions.refresh-table:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -573,7 +596,8 @@
                         "outputDir": "dist/storybook/actions.refresh-table",
                         "configDir": "libs/actions.refresh-table/.storybook",
                         "browserTarget": "actions.refresh-table:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -629,7 +653,9 @@
                         "port": 4400,
                         "configDir": "libs/ajax-action/.storybook",
                         "browserTarget": "ajax-action:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -644,7 +670,8 @@
                         "outputDir": "dist/storybook/ajax-action",
                         "configDir": "libs/ajax-action/.storybook",
                         "browserTarget": "ajax-action:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -697,7 +724,9 @@
                         "port": 4400,
                         "configDir": "libs/ajax-form/.storybook",
                         "browserTarget": "ajax-form:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -712,7 +741,8 @@
                         "outputDir": "dist/storybook/ajax-form",
                         "configDir": "libs/ajax-form/.storybook",
                         "browserTarget": "ajax-form:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -765,7 +795,9 @@
                         "port": 4400,
                         "configDir": "libs/autocomplete/.storybook",
                         "browserTarget": "autocomplete:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -780,7 +812,8 @@
                         "outputDir": "dist/storybook/autocomplete",
                         "configDir": "libs/autocomplete/.storybook",
                         "browserTarget": "autocomplete:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -834,7 +867,9 @@
                         "port": 4400,
                         "configDir": "libs/button/.storybook",
                         "browserTarget": "button:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -849,7 +884,8 @@
                         "outputDir": "dist/storybook/button",
                         "configDir": "libs/button/.storybook",
                         "browserTarget": "button:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -903,7 +939,9 @@
                         "port": 4400,
                         "configDir": "libs/button.action/.storybook",
                         "browserTarget": "button.action:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -918,7 +956,8 @@
                         "outputDir": "dist/storybook/button.action",
                         "configDir": "libs/button.action/.storybook",
                         "browserTarget": "button.action:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -971,7 +1010,9 @@
                         "port": 4400,
                         "configDir": "libs/button.icon/.storybook",
                         "browserTarget": "button.icon:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -986,7 +1027,8 @@
                         "outputDir": "dist/storybook/button.icon",
                         "configDir": "libs/button.icon/.storybook",
                         "browserTarget": "button.icon:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -1117,7 +1159,9 @@
                         "port": 4400,
                         "configDir": "libs/card/.storybook",
                         "browserTarget": "card:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -1132,7 +1176,8 @@
                         "outputDir": "dist/storybook/card",
                         "configDir": "libs/card/.storybook",
                         "browserTarget": "card:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -1186,7 +1231,9 @@
                         "port": 4400,
                         "configDir": "libs/checkbox/.storybook",
                         "browserTarget": "checkbox:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -1201,7 +1248,8 @@
                         "outputDir": "dist/storybook/checkbox",
                         "configDir": "libs/checkbox/.storybook",
                         "browserTarget": "checkbox:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -1255,7 +1303,9 @@
                         "port": 4400,
                         "configDir": "libs/chips/.storybook",
                         "browserTarget": "chips:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -1270,7 +1320,8 @@
                         "outputDir": "dist/storybook/chips",
                         "configDir": "libs/chips/.storybook",
                         "browserTarget": "chips:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -1324,7 +1375,9 @@
                         "port": 4400,
                         "configDir": "libs/collapsible/.storybook",
                         "browserTarget": "collapsible:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -1339,7 +1392,8 @@
                         "outputDir": "dist/storybook/collapsible",
                         "configDir": "libs/collapsible/.storybook",
                         "browserTarget": "collapsible:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2052,7 +2106,9 @@
                         "port": 4400,
                         "configDir": "libs/datasource.inline/.storybook",
                         "browserTarget": "datasource.inline:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2067,7 +2123,8 @@
                         "outputDir": "dist/storybook/datasource.inline",
                         "configDir": "libs/datasource.inline/.storybook",
                         "browserTarget": "datasource.inline:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2120,7 +2177,9 @@
                         "port": 4400,
                         "configDir": "libs/datasource.inline.table/.storybook",
                         "browserTarget": "datasource.inline.table:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2135,7 +2194,8 @@
                         "outputDir": "dist/storybook/datasource.inline.table",
                         "configDir": "libs/datasource.inline.table/.storybook",
                         "browserTarget": "datasource.inline.table:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2191,7 +2251,9 @@
                         "port": 4400,
                         "configDir": "libs/date-picker/.storybook",
                         "browserTarget": "date-picker:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2206,7 +2268,8 @@
                         "outputDir": "dist/storybook/date-picker",
                         "configDir": "libs/date-picker/.storybook",
                         "browserTarget": "date-picker:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2260,7 +2323,9 @@
                         "port": 4400,
                         "configDir": "libs/drawer/.storybook",
                         "browserTarget": "drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2275,7 +2340,8 @@
                         "outputDir": "dist/storybook/drawer",
                         "configDir": "libs/drawer/.storybook",
                         "browserTarget": "drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2329,7 +2395,9 @@
                         "port": 4400,
                         "configDir": "libs/dropdown/.storybook",
                         "browserTarget": "dropdown:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2344,7 +2412,8 @@
                         "outputDir": "dist/storybook/dropdown",
                         "configDir": "libs/dropdown/.storybook",
                         "browserTarget": "dropdown:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2398,7 +2467,9 @@
                         "port": 4400,
                         "configDir": "libs/form-item/.storybook",
                         "browserTarget": "form-item:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2413,7 +2484,8 @@
                         "outputDir": "dist/storybook/form-item",
                         "configDir": "libs/form-item/.storybook",
                         "browserTarget": "form-item:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2467,7 +2539,9 @@
                         "port": 4400,
                         "configDir": "libs/grid/.storybook",
                         "browserTarget": "grid:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2482,7 +2556,8 @@
                         "outputDir": "dist/storybook/grid",
                         "configDir": "libs/grid/.storybook",
                         "browserTarget": "grid:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2536,7 +2611,9 @@
                         "port": 4400,
                         "configDir": "libs/header/.storybook",
                         "browserTarget": "header:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2551,7 +2628,8 @@
                         "outputDir": "dist/storybook/header",
                         "configDir": "libs/header/.storybook",
                         "browserTarget": "header:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2605,7 +2683,9 @@
                         "port": 4400,
                         "configDir": "libs/headline/.storybook",
                         "browserTarget": "headline:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2620,7 +2700,8 @@
                         "outputDir": "dist/storybook/headline",
                         "configDir": "libs/headline/.storybook",
                         "browserTarget": "headline:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2674,7 +2755,9 @@
                         "port": 4400,
                         "configDir": "libs/html-renderer/.storybook",
                         "browserTarget": "html-renderer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2689,7 +2772,8 @@
                         "outputDir": "dist/storybook/html-renderer",
                         "configDir": "libs/html-renderer/.storybook",
                         "browserTarget": "html-renderer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2742,7 +2826,9 @@
                         "port": 4400,
                         "configDir": "libs/icon/.storybook",
                         "browserTarget": "icon:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2757,7 +2843,8 @@
                         "outputDir": "dist/storybook/icon",
                         "configDir": "libs/icon/.storybook",
                         "browserTarget": "icon:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2811,7 +2898,9 @@
                         "port": 4400,
                         "configDir": "libs/input/.storybook",
                         "browserTarget": "input:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2826,7 +2915,8 @@
                         "outputDir": "dist/storybook/input",
                         "configDir": "libs/input/.storybook",
                         "browserTarget": "input:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -2880,7 +2970,9 @@
                         "port": 4400,
                         "configDir": "libs/input.password/.storybook",
                         "browserTarget": "input.password:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -2895,7 +2987,8 @@
                         "outputDir": "dist/storybook/input.password",
                         "configDir": "libs/input.password/.storybook",
                         "browserTarget": "input.password:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3010,7 +3103,9 @@
                         "port": 4400,
                         "configDir": "libs/label/.storybook",
                         "browserTarget": "label:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3025,7 +3120,8 @@
                         "outputDir": "dist/storybook/label",
                         "configDir": "libs/label/.storybook",
                         "browserTarget": "label:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3079,7 +3175,9 @@
                         "port": 4400,
                         "configDir": "libs/layout/.storybook",
                         "browserTarget": "layout:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3094,7 +3192,8 @@
                         "outputDir": "dist/storybook/layout",
                         "configDir": "libs/layout/.storybook",
                         "browserTarget": "layout:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3148,7 +3247,9 @@
                         "port": 4400,
                         "configDir": "libs/link/.storybook",
                         "browserTarget": "link:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3163,7 +3264,8 @@
                         "outputDir": "dist/storybook/link",
                         "configDir": "libs/link/.storybook",
                         "browserTarget": "link:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3217,7 +3319,9 @@
                         "port": 4400,
                         "configDir": "libs/locale/.storybook",
                         "browserTarget": "locale:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3232,7 +3336,8 @@
                         "outputDir": "dist/storybook/locale",
                         "configDir": "libs/locale/.storybook",
                         "browserTarget": "locale:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3285,7 +3390,9 @@
                         "port": 4400,
                         "configDir": "libs/logo/.storybook",
                         "browserTarget": "logo:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3300,7 +3407,8 @@
                         "outputDir": "dist/storybook/logo",
                         "configDir": "libs/logo/.storybook",
                         "browserTarget": "logo:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3354,7 +3462,9 @@
                         "port": 4400,
                         "configDir": "libs/modal/.storybook",
                         "browserTarget": "modal:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3369,7 +3479,8 @@
                         "outputDir": "dist/storybook/modal",
                         "configDir": "libs/modal/.storybook",
                         "browserTarget": "modal:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3423,7 +3534,9 @@
                         "port": 4400,
                         "configDir": "libs/navigation/.storybook",
                         "browserTarget": "navigation:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3438,7 +3551,8 @@
                         "outputDir": "dist/storybook/navigation",
                         "configDir": "libs/navigation/.storybook",
                         "browserTarget": "navigation:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3492,7 +3606,9 @@
                         "port": 4400,
                         "configDir": "libs/notification/.storybook",
                         "browserTarget": "notification:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3507,7 +3623,8 @@
                         "outputDir": "dist/storybook/notification",
                         "configDir": "libs/notification/.storybook",
                         "browserTarget": "notification:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3561,7 +3678,9 @@
                         "port": 4400,
                         "configDir": "libs/pagination/.storybook",
                         "browserTarget": "pagination:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3576,7 +3695,8 @@
                         "outputDir": "dist/storybook/pagination",
                         "configDir": "libs/pagination/.storybook",
                         "browserTarget": "pagination:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3669,7 +3789,9 @@
                         "port": 4400,
                         "configDir": "libs/popover/.storybook",
                         "browserTarget": "popover:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3684,7 +3806,8 @@
                         "outputDir": "dist/storybook/popover",
                         "configDir": "libs/popover/.storybook",
                         "browserTarget": "popover:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3738,7 +3861,9 @@
                         "port": 4400,
                         "configDir": "libs/radio/.storybook",
                         "browserTarget": "radio:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3753,7 +3878,8 @@
                         "outputDir": "dist/storybook/radio",
                         "configDir": "libs/radio/.storybook",
                         "browserTarget": "radio:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3807,7 +3933,9 @@
                         "port": 4400,
                         "configDir": "libs/select/.storybook",
                         "browserTarget": "select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3822,7 +3950,8 @@
                         "outputDir": "dist/storybook/select",
                         "configDir": "libs/select/.storybook",
                         "browserTarget": "select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3876,7 +4005,9 @@
                         "port": 4400,
                         "configDir": "libs/sidebar/.storybook",
                         "browserTarget": "sidebar:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3891,7 +4022,8 @@
                         "outputDir": "dist/storybook/sidebar",
                         "configDir": "libs/sidebar/.storybook",
                         "browserTarget": "sidebar:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3945,7 +4077,9 @@
                         "port": 4400,
                         "configDir": "libs/spinner/.storybook",
                         "browserTarget": "spinner:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -3960,7 +4094,8 @@
                         "outputDir": "dist/storybook/spinner",
                         "configDir": "libs/spinner/.storybook",
                         "browserTarget": "spinner:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -3995,7 +4130,8 @@
                         "outputDir": "dist/storybook/global",
                         "configDir": ".storybook/global",
                         "browserTarget": "storybook:compile",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4009,7 +4145,8 @@
                         "port": 4400,
                         "configDir": ".storybook/global",
                         "browserTarget": "storybook:compile",
-                        "compodoc": false,
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4096,7 +4233,9 @@
                         "port": 4400,
                         "configDir": "libs/table/.storybook",
                         "browserTarget": "table:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4111,7 +4250,8 @@
                         "outputDir": "dist/storybook/table",
                         "configDir": "libs/table/.storybook",
                         "browserTarget": "table:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4149,7 +4289,9 @@
                         "port": 4400,
                         "configDir": "libs/table-integration-internal/.storybook",
                         "browserTarget": "table-integration-internal:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4164,7 +4306,8 @@
                         "outputDir": "dist/storybook/table-integration-internal",
                         "configDir": "libs/table-integration-internal/.storybook",
                         "browserTarget": "table-integration-internal:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4220,7 +4363,9 @@
                         "port": 4400,
                         "configDir": "libs/table.column.autocomplete/.storybook",
                         "browserTarget": "table.column.autocomplete:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4235,7 +4380,8 @@
                         "outputDir": "dist/storybook/table.column.autocomplete",
                         "configDir": "libs/table.column.autocomplete/.storybook",
                         "browserTarget": "table.column.autocomplete:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4291,7 +4437,9 @@
                         "port": 4400,
                         "configDir": "libs/table.column.chip/.storybook",
                         "browserTarget": "table.column.chip:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4306,7 +4454,8 @@
                         "outputDir": "dist/storybook/table.column.chip",
                         "configDir": "libs/table.column.chip/.storybook",
                         "browserTarget": "table.column.chip:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4359,7 +4508,9 @@
                         "port": 4400,
                         "configDir": "libs/table.column.date/.storybook",
                         "browserTarget": "table.column.date:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4374,7 +4525,8 @@
                         "outputDir": "dist/storybook/table.column.date",
                         "configDir": "libs/table.column.date/.storybook",
                         "browserTarget": "table.column.date:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4427,7 +4579,9 @@
                         "port": 4400,
                         "configDir": "libs/table.column.dynamic/.storybook",
                         "browserTarget": "table.column.dynamic:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4442,7 +4596,8 @@
                         "outputDir": "dist/storybook/table.column.dynamic",
                         "configDir": "libs/table.column.dynamic/.storybook",
                         "browserTarget": "table.column.dynamic:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4495,7 +4650,9 @@
                         "port": 4400,
                         "configDir": "libs/table.column.image/.storybook",
                         "browserTarget": "table.column.image:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4510,7 +4667,8 @@
                         "outputDir": "dist/storybook/table.column.image",
                         "configDir": "libs/table.column.image/.storybook",
                         "browserTarget": "table.column.image:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4563,7 +4721,9 @@
                         "port": 4400,
                         "configDir": "libs/table.column.input/.storybook",
                         "browserTarget": "table.column.input:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4578,7 +4738,8 @@
                         "outputDir": "dist/storybook/table.column.input",
                         "configDir": "libs/table.column.input/.storybook",
                         "browserTarget": "table.column.input:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4631,7 +4792,9 @@
                         "port": 4400,
                         "configDir": "libs/table.column.select/.storybook",
                         "browserTarget": "table.column.select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4646,7 +4809,8 @@
                         "outputDir": "dist/storybook/table.column.select",
                         "configDir": "libs/table.column.select/.storybook",
                         "browserTarget": "table.column.select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4700,7 +4864,9 @@
                         "port": 4400,
                         "configDir": "libs/table.column.text/.storybook",
                         "browserTarget": "table.column.text:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4715,7 +4881,8 @@
                         "outputDir": "dist/storybook/table.column.text",
                         "configDir": "libs/table.column.text/.storybook",
                         "browserTarget": "table.column.text:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4768,7 +4935,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.batch-actions/.storybook",
                         "browserTarget": "table.feature.batch-actions:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4783,7 +4952,8 @@
                         "outputDir": "dist/storybook/table.feature.batch-actions",
                         "configDir": "libs/table.feature.batch-actions/.storybook",
                         "browserTarget": "table.feature.batch-actions:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4840,7 +5010,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.editable/.storybook",
                         "browserTarget": "table.feature.editable:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4855,7 +5027,8 @@
                         "outputDir": "dist/storybook/table.feature.editable",
                         "configDir": "libs/table.feature.editable/.storybook",
                         "browserTarget": "table.feature.editable:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4912,7 +5085,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.filters/.storybook",
                         "browserTarget": "table.feature.filters:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4927,7 +5102,8 @@
                         "outputDir": "dist/storybook/table.feature.filters",
                         "configDir": "libs/table.feature.filters/.storybook",
                         "browserTarget": "table.feature.filters:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -4984,7 +5160,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.pagination/.storybook",
                         "browserTarget": "table.feature.pagination:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -4999,7 +5177,8 @@
                         "outputDir": "dist/storybook/table.feature.pagination",
                         "configDir": "libs/table.feature.pagination/.storybook",
                         "browserTarget": "table.feature.pagination:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5056,7 +5235,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.row-actions/.storybook",
                         "browserTarget": "table.feature.row-actions:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5071,7 +5252,8 @@
                         "outputDir": "dist/storybook/table.feature.row-actions",
                         "configDir": "libs/table.feature.row-actions/.storybook",
                         "browserTarget": "table.feature.row-actions:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5128,7 +5310,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.search/.storybook",
                         "browserTarget": "table.feature.search:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5143,7 +5327,8 @@
                         "outputDir": "dist/storybook/table.feature.search",
                         "configDir": "libs/table.feature.search/.storybook",
                         "browserTarget": "table.feature.search:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5197,7 +5382,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.selectable/.storybook",
                         "browserTarget": "table.feature.selectable:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5212,7 +5399,8 @@
                         "outputDir": "dist/storybook/table.feature.selectable",
                         "configDir": "libs/table.feature.selectable/.storybook",
                         "browserTarget": "table.feature.selectable:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5269,7 +5457,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.settings/.storybook",
                         "browserTarget": "table.feature.settings:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5284,7 +5474,8 @@
                         "outputDir": "dist/storybook/table.feature.settings",
                         "configDir": "libs/table.feature.settings/.storybook",
                         "browserTarget": "table.feature.settings:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5341,7 +5532,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.sync-state/.storybook",
                         "browserTarget": "table.feature.sync-state:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5356,7 +5549,8 @@
                         "outputDir": "dist/storybook/table.feature.sync-state",
                         "configDir": "libs/table.feature.sync-state/.storybook",
                         "browserTarget": "table.feature.sync-state:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5412,7 +5606,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.title/.storybook",
                         "browserTarget": "table.feature.title:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5427,7 +5623,8 @@
                         "outputDir": "dist/storybook/table.feature.title",
                         "configDir": "libs/table.feature.title/.storybook",
                         "browserTarget": "table.feature.title:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5481,7 +5678,9 @@
                         "port": 4400,
                         "configDir": "libs/table.feature.total/.storybook",
                         "browserTarget": "table.feature.total:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5496,7 +5695,8 @@
                         "outputDir": "dist/storybook/table.feature.total",
                         "configDir": "libs/table.feature.total/.storybook",
                         "browserTarget": "table.feature.total:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5550,7 +5750,9 @@
                         "port": 4400,
                         "configDir": "libs/table.filter.date-range/.storybook",
                         "browserTarget": "table.filter.date-range:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5565,7 +5767,8 @@
                         "outputDir": "dist/storybook/table.filter.date-range",
                         "configDir": "libs/table.filter.date-range/.storybook",
                         "browserTarget": "table.filter.date-range:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5622,7 +5825,9 @@
                         "port": 4400,
                         "configDir": "libs/table.filter.select/.storybook",
                         "browserTarget": "table.filter.select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5637,7 +5842,8 @@
                         "outputDir": "dist/storybook/table.filter.select",
                         "configDir": "libs/table.filter.select/.storybook",
                         "browserTarget": "table.filter.select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5691,7 +5897,9 @@
                         "port": 4400,
                         "configDir": "libs/table.filter.tree-select/.storybook",
                         "browserTarget": "table.filter.tree-select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5706,7 +5914,8 @@
                         "outputDir": "dist/storybook/table.filter.tree-select",
                         "configDir": "libs/table.filter.tree-select/.storybook",
                         "browserTarget": "table.filter.tree-select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5763,7 +5972,9 @@
                         "port": 4400,
                         "configDir": "libs/tabs/.storybook",
                         "browserTarget": "tabs:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5778,7 +5989,8 @@
                         "outputDir": "dist/storybook/tabs",
                         "configDir": "libs/tabs/.storybook",
                         "browserTarget": "tabs:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5832,7 +6044,9 @@
                         "port": 4400,
                         "configDir": "libs/textarea/.storybook",
                         "browserTarget": "textarea:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5847,7 +6061,8 @@
                         "outputDir": "dist/storybook/textarea",
                         "configDir": "libs/textarea/.storybook",
                         "browserTarget": "textarea:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5901,7 +6116,9 @@
                         "port": 4400,
                         "configDir": "libs/toggle/.storybook",
                         "browserTarget": "toggle:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5916,7 +6133,8 @@
                         "outputDir": "dist/storybook/toggle",
                         "configDir": "libs/toggle/.storybook",
                         "browserTarget": "toggle:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -5970,7 +6188,9 @@
                         "port": 4400,
                         "configDir": "libs/tree-select/.storybook",
                         "browserTarget": "tree-select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -5985,7 +6205,8 @@
                         "outputDir": "dist/storybook/tree-select",
                         "configDir": "libs/tree-select/.storybook",
                         "browserTarget": "tree-select:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -6120,7 +6341,9 @@
                         "port": 4400,
                         "configDir": "libs/unsaved-changes.guard.drawer/.storybook",
                         "browserTarget": "unsaved-changes.guard.drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -6135,7 +6358,8 @@
                         "outputDir": "dist/storybook/unsaved-changes.guard.drawer",
                         "configDir": "libs/unsaved-changes.guard.drawer/.storybook",
                         "browserTarget": "unsaved-changes.guard.drawer:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -6191,7 +6415,9 @@
                         "port": 4400,
                         "configDir": "libs/unsaved-changes.guard.navigation/.storybook",
                         "browserTarget": "unsaved-changes.guard.navigation:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -6206,7 +6432,8 @@
                         "outputDir": "dist/storybook/unsaved-changes.guard.navigation",
                         "configDir": "libs/unsaved-changes.guard.navigation/.storybook",
                         "browserTarget": "unsaved-changes.guard.navigation:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -6262,7 +6489,9 @@
                         "port": 4400,
                         "configDir": "libs/unsaved-changes.monitor.form/.storybook",
                         "browserTarget": "unsaved-changes.monitor.form:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -6277,7 +6506,8 @@
                         "outputDir": "dist/storybook/unsaved-changes.monitor.form",
                         "configDir": "libs/unsaved-changes.monitor.form/.storybook",
                         "browserTarget": "unsaved-changes.monitor.form:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {
@@ -6333,7 +6563,9 @@
                         "port": 4400,
                         "configDir": "libs/user-menu/.storybook",
                         "browserTarget": "user-menu:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
                         "ci": {
@@ -6348,7 +6580,8 @@
                         "outputDir": "dist/storybook/user-menu",
                         "configDir": "libs/user-menu/.storybook",
                         "browserTarget": "user-menu:build-storybook",
-                        "compodoc": false
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
                     },
                     "configurations": {
                         "ci": {

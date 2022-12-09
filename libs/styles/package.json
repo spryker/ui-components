@@ -2,8 +2,8 @@
     "name": "@spryker/styles",
     "version": "0.7.4",
     "peerDependencies": {
-        "@angular/common": "^14.2.10",
-        "@angular/core": "^14.2.10"
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0"
     },
     "dependencies": {
         "ng-zorro-antd": "^14.1.1",

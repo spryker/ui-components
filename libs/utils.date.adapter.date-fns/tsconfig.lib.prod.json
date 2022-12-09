@@ -3,9 +3,5 @@
     "compilerOptions": {
         "declarationMap": false
     },
-    "angularCompilerOptions": {
-        "fullTemplateTypeCheck": true,
-        "compilationMode": "partial"
-    },
     "exclude": ["jest.config.ts"]
 }

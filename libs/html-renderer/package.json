@@ -2,9 +2,9 @@
     "name": "@spryker/html-renderer",
     "version": "0.2.5",
     "peerDependencies": {
-        "@angular/common": "^14.2.10",
-        "@angular/core": "^14.2.10",
-        "@angular/platform-browser": "^14.2.10",
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@angular/platform-browser": "^15.0.0",
         "@spryker/ajax-action": "^1.0.0",
         "@spryker/spinner": "^1.0.0",
         "@spryker/styles": "^1.0.0",

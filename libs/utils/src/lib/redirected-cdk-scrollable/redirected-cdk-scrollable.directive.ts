@@ -1,5 +1,6 @@
-import { CdkScrollable } from '@angular/cdk/scrolling';
-import { AfterViewInit, Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { Directionality } from '@angular/cdk/bidi';
+import { AfterViewInit, Directive, ElementRef, Input, NgZone, OnChanges, Optional, SimpleChanges } from '@angular/core';
 import { fromEvent, Observable, ReplaySubject, Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
@@ -21,6 +22,15 @@ export class RedirectedCdkScrollableDirective extends CdkScrollable implements A
         ),
         takeUntil(this.destroyed$),
     );
+
+    constructor(
+        elementRef: ElementRef<HTMLElement>,
+        scrollDispatcher: ScrollDispatcher,
+        ngZone: NgZone,
+        @Optional() dir?: Directionality,
+    ) {
+        super(elementRef, scrollDispatcher, ngZone, dir);
+    }
 
     ngAfterViewInit(): void {
         this.updateElementRef();

@@ -2,9 +2,9 @@
     "name": "@spryker/notification",
     "version": "0.5.4",
     "peerDependencies": {
-        "@angular/animations": "^14.2.10",
-        "@angular/common": "^14.2.10",
-        "@angular/core": "^14.2.10",
+        "@angular/animations": "^15.0.0",
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
         "@spryker/icon": "^1.0.0",
         "@spryker/styles": "^1.0.0",
         "@spryker/utils": "^1.0.0",

@@ -2,8 +2,8 @@
     "name": "@spryker/collapsible",
     "version": "0.4.4",
     "peerDependencies": {
-        "@angular/common": "^14.2.10",
-        "@angular/core": "^14.2.10",
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
         "@spryker/icon": "^1.0.0",
         "@spryker/styles": "^1.0.0",
         "@spryker/utils": "^1.0.0"

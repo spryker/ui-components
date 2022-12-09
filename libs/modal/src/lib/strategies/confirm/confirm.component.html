@@ -49,7 +49,7 @@
 <ng-template #genericTemplate let-context="context" let-data>
     <ng-container
         *ngTemplateOutlet="
-            data | ofType: 'string':stringTmpl:alternativeTmpl;
+            data | ofType : 'string' : stringTmpl : alternativeTmpl;
             context: {
                 $implicit: data,
                 context: context

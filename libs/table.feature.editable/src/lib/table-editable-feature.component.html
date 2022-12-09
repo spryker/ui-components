@@ -56,8 +56,8 @@
                 <ng-container *ngFor="let row of createDataRows; let i = index">
                     <tr
                         class="ant-table-row spy-table-editable-feature__row"
-                        [class.ant-table-row--with-errors]="getRowError | spyInvoke: i"
-                        [class.ant-table-row--editable]="isRowEditable | spyInvoke: i:row"
+                        [class.ant-table-row--with-errors]="getRowError | spyInvoke : i"
+                        [class.ant-table-row--editable]="isRowEditable | spyInvoke : i : row"
                     >
                         <td
                             class="ant-table-cell spy-table-editable-feature__cell"
@@ -77,7 +77,7 @@
                                 >
                                     <spy-table-column-renderer
                                         [context]="{ isCreateMode: true }"
-                                        [config]="getEditColumn | spyInvoke: column:editColumns:i:rowErrors"
+                                        [config]="getEditColumn | spyInvoke : column : editColumns : i : rowErrors"
                                         [data]="row"
                                         [i]="i"
                                         [j]="j"
@@ -123,7 +123,7 @@
                         </td>
                     </tr>
 
-                    <ng-container *ngIf="getRowError | spyInvoke: i as rowError">
+                    <ng-container *ngIf="getRowError | spyInvoke : i as rowError">
                         <tr>
                             <td [colSpan]="columns.length">
                                 <span class="spy-table-editable-feature__error">
@@ -163,7 +163,12 @@
             <ng-container
                 *ngIf="
                     findColumnByColumn
-                        | spyInvoke: updateConfig?.disableForCols:config:editColumns:row:(disableRowKey$ | async);
+                        | spyInvoke
+                            : updateConfig?.disableForCols
+                            : config
+                            : editColumns
+                            : row
+                            : (disableRowKey$ | async);
                     else defaultCell
                 "
             >
@@ -175,7 +180,7 @@
                 </span>
 
                 <ng-container
-                    *ngIf="isCellUpdating | spyInvoke: i:config.id:editingModel"
+                    *ngIf="isCellUpdating | spyInvoke : i : config.id : editingModel"
                     (spyAfterContentInit)="setFloatCellPosition(i, config.id, editableCellRef)"
                 >
                     <div
@@ -183,7 +188,7 @@
                         class="spy-table-editable-feature__float-cell"
                         (click)="$event.stopPropagation()"
                         [ngStyle]="{
-                            left: getLeftCellOffset | spyInvoke: i:config.id:editingModel
+                            left: getLeftCellOffset | spyInvoke : i : config.id : editingModel
                         }"
                     >
                         <ng-container
@@ -195,7 +200,8 @@
                                     j: j,
                                     row: row,
                                     cellContext: cellContext,
-                                    config: getEditColumn | spyInvoke: cellContext.config:editColumns:i:cellErrors
+                                    config:
+                                        getEditColumn | spyInvoke : cellContext.config : editColumns : i : cellErrors
                                 }
                             "
                         ></ng-container>
@@ -223,7 +229,7 @@
         <div class="spy-table-editable-feature__float-col">
             <spy-table-column-renderer
                 [config]="config"
-                [data]="editableRowData | spyInvoke: row:config.id"
+                [data]="editableRowData | spyInvoke : row : config.id"
                 [i]="i"
                 [j]="j"
                 (spy-table-editable)="onEditUpdated($event, i, config.id)"

@@ -42,9 +42,7 @@ export interface TableEditableConfigDataErrorsFields {
     columnErrors?: { [columnId: string]: string | undefined };
 }
 
-export interface TableEditableConfigDataErrors {
-    [rowIdx: string]: TableEditableConfigDataErrorsFields;
-}
+export type TableEditableConfigDataErrors = TableEditableConfigDataErrorsFields[];
 
 export interface TableEditableConfigUrlObject {
     url: string;

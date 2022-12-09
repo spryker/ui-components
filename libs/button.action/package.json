@@ -2,8 +2,8 @@
     "name": "@spryker/button.action",
     "version": "0.2.5",
     "peerDependencies": {
-        "@angular/common": "^14.2.10",
-        "@angular/core": "^14.2.10",
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
         "@spryker/actions": "^1.0.0",
         "@spryker/button": "^1.0.0",
         "@spryker/utils": "^1.0.0",

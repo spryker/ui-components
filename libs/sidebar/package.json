@@ -2,8 +2,8 @@
     "name": "@spryker/sidebar",
     "version": "0.5.5",
     "peerDependencies": {
-        "@angular/common": "^14.2.10",
-        "@angular/core": "^14.2.10",
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
         "@spryker/icon": "^1.0.0",
         "@spryker/persistence": "^1.0.0",
         "@spryker/styles": "^1.0.0",

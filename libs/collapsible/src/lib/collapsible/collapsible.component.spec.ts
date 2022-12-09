@@ -64,7 +64,25 @@ describe('CollapsibleComponent', () => {
             expect(host.component.active).toBeFalsy();
         });
 
-        it('Should emit event on collapsible header active state change', async () => {
+        it('Should emit event on collapsible header click', async () => {
+            const host = await createComponentWrapper(createComponent);
+            const collapsibleHeaderElem = host.queryCss('.ant-collapse-header');
+            const callback = jest.fn();
+
+            host.component.activeChange.subscribe(callback);
+            // `triggerEventHandler` doesn't work here (maybe Ant Design issue) that is why we are using native click event.
+            collapsibleHeaderElem.nativeElement.click();
+            host.detectChanges();
+
+            expect(callback).toHaveBeenCalledWith(true);
+
+            collapsibleHeaderElem.nativeElement.click();
+            host.detectChanges();
+
+            expect(callback).toHaveBeenCalledWith(false);
+        });
+
+        it('Should emit event on collapsible header by `updateActive()` method call', async () => {
             const host = await createComponentWrapper(createComponent);
             const callback = jest.fn();
 

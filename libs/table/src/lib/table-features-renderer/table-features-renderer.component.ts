@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { TableFeatureComponent, TableFeatureTplContext } from '../table-feature';
+import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
 
 @Component({
     selector: 'spy-table-features-renderer',

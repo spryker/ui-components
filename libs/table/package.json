@@ -2,9 +2,9 @@
     "name": "@spryker/table",
     "version": "0.7.6",
     "peerDependencies": {
-        "@angular/cdk": "^14.2.7",
-        "@angular/common": "^14.2.10",
-        "@angular/core": "^14.2.10",
+        "@angular/cdk": "^15.0.0",
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
         "@spryker/actions": "^1.0.0",
         "@spryker/datasource": "^1.0.0",
         "@spryker/icon": "^1.0.0",

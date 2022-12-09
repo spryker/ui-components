@@ -2,8 +2,8 @@
     "name": "@spryker/table.feature.pagination",
     "version": "0.1.5",
     "peerDependencies": {
-        "@angular/common": "^14.2.10",
-        "@angular/core": "^14.2.10",
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
         "@spryker/pagination": "^1.0.0",
         "@spryker/table": "^1.0.0",
         "@spryker/utils": "^1.0.0",

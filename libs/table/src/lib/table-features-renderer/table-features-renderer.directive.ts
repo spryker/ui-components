@@ -15,10 +15,11 @@ import { isNonNullable } from '@spryker/utils';
 import { combineLatest, Observable, ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, filter, map, startWith, switchAll, takeUntil } from 'rxjs/operators';
 
-import { TableFeatureComponent, TableFeatureTplContext } from '../table-feature';
+import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableFeaturesRendererService } from './table-features-renderer.service';
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
-import { TableFeatureLocation } from '../table';
+import { TableFeatureLocation } from '../table/table';
 
 @Directive({
     selector: '[spyTableFeaturesRenderer]',

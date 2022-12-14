@@ -29,21 +29,18 @@ export class DatasourceHttpService implements Datasource {
         let contextParams: Record<string, unknown>;
 
         if (this.isContextObject(context)) {
-            contextParams = Object.assign({}, context);
-
-            Object.keys(contextParams).forEach((key) => {
-                if (typeof contextParams[key] === 'object') {
-                    contextParams[key] = JSON.stringify(contextParams[key]);
-                } else if (contextParams[key] === undefined) {
-                    delete contextParams[key];
-                }
-            });
-
             for (const key in context) {
                 if (context[key] === undefined) {
                     delete context[key];
                 }
             }
+
+            contextParams = Object.assign({}, context);
+            Object.keys(contextParams).forEach((key) => {
+                if (this.isContextObject(contextParams[key])) {
+                    contextParams[key] = JSON.stringify(contextParams[key]);
+                }
+            });
         }
 
         const params =

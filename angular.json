@@ -9,7 +9,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/actions"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/actions/ng-package.json"
                     },
@@ -25,7 +25,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/actions"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/actions/jest.config.ts",
                         "passWithNoTests": true
@@ -48,7 +48,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/actions.close-drawer"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/actions.close-drawer/ng-package.json"
                     },
@@ -64,7 +64,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/actions.close-drawer"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/actions.close-drawer/jest.config.ts",
                         "passWithNoTests": true
@@ -119,7 +119,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/actions.drawer"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/actions.drawer/ng-package.json"
                     },
@@ -135,7 +135,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/actions.drawer"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/actions.drawer/jest.config.ts",
                         "passWithNoTests": true
@@ -190,7 +190,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/actions.http"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/actions.http/ng-package.json"
                     },
@@ -206,7 +206,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/actions.http"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/actions.http/jest.config.ts",
                         "passWithNoTests": true
@@ -261,7 +261,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/actions.notification"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/actions.notification/ng-package.json"
                     },
@@ -277,7 +277,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/actions.notification"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/actions.notification/jest.config.ts",
                         "passWithNoTests": true
@@ -332,7 +332,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/actions.redirect"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/actions.redirect/ng-package.json"
                     },
@@ -348,7 +348,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/actions.redirect"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/actions.redirect/jest.config.ts",
                         "passWithNoTests": true
@@ -403,7 +403,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/actions.refresh-drawer"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/actions.refresh-drawer/ng-package.json"
                     },
@@ -419,7 +419,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/actions.refresh-drawer"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/actions.refresh-drawer/jest.config.ts",
                         "passWithNoTests": true
@@ -477,7 +477,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/actions.refresh-parent-table"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/actions.refresh-parent-table/ng-package.json"
                     },
@@ -493,7 +493,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/actions.refresh-parent-table"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/actions.refresh-parent-table/jest.config.ts",
                         "passWithNoTests": true
@@ -551,7 +551,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/actions.refresh-table"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/actions.refresh-table/ng-package.json"
                     },
@@ -567,7 +567,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/actions.refresh-table"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/actions.refresh-table/jest.config.ts",
                         "passWithNoTests": true
@@ -625,7 +625,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/ajax-action"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/ajax-action/ng-package.json"
                     },
@@ -641,7 +641,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/ajax-action"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/ajax-action/jest.config.ts",
                         "passWithNoTests": true
@@ -696,7 +696,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/ajax-form"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/ajax-form/ng-package.json"
                     },
@@ -712,7 +712,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/ajax-form"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/ajax-form/jest.config.ts",
                         "passWithNoTests": true
@@ -767,7 +767,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/autocomplete"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/autocomplete/ng-package.json"
                     },
@@ -783,7 +783,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/autocomplete"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/autocomplete/jest.config.ts",
                         "passWithNoTests": true
@@ -839,7 +839,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/button"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/button/ng-package.json"
                     },
@@ -855,7 +855,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/button"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/button/jest.config.ts",
                         "passWithNoTests": true
@@ -911,7 +911,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/button.action"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/button.action/ng-package.json"
                     },
@@ -927,7 +927,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/button.action"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/button.action/jest.config.ts",
                         "passWithNoTests": true
@@ -982,7 +982,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/button.icon"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/button.icon/ng-package.json"
                     },
@@ -998,7 +998,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/button.icon"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/button.icon/jest.config.ts",
                         "passWithNoTests": true
@@ -1053,7 +1053,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/cache"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/cache/ng-package.json"
                     },
@@ -1069,7 +1069,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/cache"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/cache/jest.config.ts",
                         "passWithNoTests": true
@@ -1092,7 +1092,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/cache.static"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/cache.static/ng-package.json"
                     },
@@ -1108,7 +1108,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/cache.static"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/cache.static/jest.config.ts",
                         "passWithNoTests": true
@@ -1131,7 +1131,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/card"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/card/ng-package.json"
                     },
@@ -1147,7 +1147,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/card"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/card/jest.config.ts",
                         "passWithNoTests": true
@@ -1203,7 +1203,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/checkbox"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/checkbox/ng-package.json"
                     },
@@ -1219,7 +1219,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/checkbox"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/checkbox/jest.config.ts",
                         "passWithNoTests": true
@@ -1275,7 +1275,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/chips"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/chips/ng-package.json"
                     },
@@ -1291,7 +1291,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/chips"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/chips/jest.config.ts",
                         "passWithNoTests": true
@@ -1347,7 +1347,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/collapsible"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/collapsible/ng-package.json"
                     },
@@ -1363,7 +1363,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/collapsible"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/collapsible/jest.config.ts",
                         "passWithNoTests": true
@@ -1418,7 +1418,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-serializer"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-serializer/ng-package.json"
                     },
@@ -1434,7 +1434,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-serializer"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-serializer/jest.config.ts",
                         "passWithNoTests": true
@@ -1457,7 +1457,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer/ng-package.json"
                     },
@@ -1473,7 +1473,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer/jest.config.ts",
                         "passWithNoTests": true
@@ -1496,7 +1496,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.array-map"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.array-map/ng-package.json"
                     },
@@ -1512,7 +1512,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.array-map"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.array-map/jest.config.ts",
                         "passWithNoTests": true
@@ -1538,7 +1538,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.chain"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.chain/ng-package.json"
                     },
@@ -1554,7 +1554,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.chain"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.chain/jest.config.ts",
                         "passWithNoTests": true
@@ -1580,7 +1580,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.collate"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.collate/ng-package.json"
                     },
@@ -1596,7 +1596,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.collate"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.collate/jest.config.ts",
                         "passWithNoTests": true
@@ -1622,7 +1622,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.configurator.table"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.configurator.table/ng-package.json"
                     },
@@ -1638,7 +1638,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.configurator.table"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.configurator.table/jest.config.ts",
                         "passWithNoTests": true
@@ -1664,7 +1664,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.date-parse"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.date-parse/ng-package.json"
                     },
@@ -1680,7 +1680,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.date-parse"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.date-parse/jest.config.ts",
                         "passWithNoTests": true
@@ -1706,7 +1706,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.date-serialize"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.date-serialize/ng-package.json"
                     },
@@ -1722,7 +1722,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.date-serialize"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.date-serialize/jest.config.ts",
                         "passWithNoTests": true
@@ -1748,7 +1748,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.filter.equals"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.filter.equals/ng-package.json"
                     },
@@ -1764,7 +1764,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.filter.equals"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.filter.equals/jest.config.ts",
                         "passWithNoTests": true
@@ -1790,7 +1790,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.filter.range"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.filter.range/ng-package.json"
                     },
@@ -1806,7 +1806,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.filter.range"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.filter.range/jest.config.ts",
                         "passWithNoTests": true
@@ -1832,7 +1832,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.filter.text"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.filter.text/ng-package.json"
                     },
@@ -1848,7 +1848,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.filter.text"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.filter.text/jest.config.ts",
                         "passWithNoTests": true
@@ -1874,7 +1874,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.lens"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.lens/ng-package.json"
                     },
@@ -1890,7 +1890,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.lens"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.lens/jest.config.ts",
                         "passWithNoTests": true
@@ -1916,7 +1916,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.object-map"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.object-map/ng-package.json"
                     },
@@ -1932,7 +1932,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.object-map"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.object-map/jest.config.ts",
                         "passWithNoTests": true
@@ -1958,7 +1958,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/data-transformer.pluck"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/data-transformer.pluck/ng-package.json"
                     },
@@ -1974,7 +1974,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/data-transformer.pluck"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/data-transformer.pluck/jest.config.ts",
                         "passWithNoTests": true
@@ -2000,7 +2000,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/datasource"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/datasource/ng-package.json"
                     },
@@ -2016,7 +2016,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/datasource"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/datasource/jest.config.ts",
                         "passWithNoTests": true
@@ -2039,7 +2039,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/datasource.http"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/datasource.http/ng-package.json"
                     },
@@ -2055,7 +2055,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/datasource.http"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/datasource.http/jest.config.ts",
                         "passWithNoTests": true
@@ -2078,7 +2078,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/datasource.inline"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/datasource.inline/ng-package.json"
                     },
@@ -2094,7 +2094,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/datasource.inline"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/datasource.inline/jest.config.ts",
                         "passWithNoTests": true
@@ -2149,7 +2149,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/datasource.inline.table"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/datasource.inline.table/ng-package.json"
                     },
@@ -2165,7 +2165,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/datasource.inline.table"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/datasource.inline.table/jest.config.ts",
                         "passWithNoTests": true
@@ -2223,7 +2223,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/date-picker"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/date-picker/ng-package.json"
                     },
@@ -2239,7 +2239,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/date-picker"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/date-picker/jest.config.ts",
                         "passWithNoTests": true
@@ -2295,7 +2295,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/drawer"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/drawer/ng-package.json"
                     },
@@ -2311,7 +2311,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/drawer"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/drawer/jest.config.ts",
                         "passWithNoTests": true
@@ -2367,7 +2367,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/dropdown"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/dropdown/ng-package.json"
                     },
@@ -2383,7 +2383,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/dropdown"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/dropdown/jest.config.ts",
                         "passWithNoTests": true
@@ -2439,7 +2439,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/form-item"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/form-item/ng-package.json"
                     },
@@ -2455,7 +2455,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/form-item"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/form-item/jest.config.ts",
                         "passWithNoTests": true
@@ -2511,7 +2511,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/grid"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/grid/ng-package.json"
                     },
@@ -2527,7 +2527,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/grid"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/grid/jest.config.ts",
                         "passWithNoTests": true
@@ -2583,7 +2583,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/header"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/header/ng-package.json"
                     },
@@ -2599,7 +2599,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/header"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/header/jest.config.ts",
                         "passWithNoTests": true
@@ -2655,7 +2655,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/headline"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/headline/ng-package.json"
                     },
@@ -2671,7 +2671,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/headline"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/headline/jest.config.ts",
                         "passWithNoTests": true
@@ -2727,7 +2727,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/html-renderer"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/html-renderer/ng-package.json"
                     },
@@ -2743,7 +2743,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/html-renderer"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/html-renderer/jest.config.ts",
                         "passWithNoTests": true
@@ -2798,7 +2798,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/icon"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/icon/ng-package.json"
                     },
@@ -2814,7 +2814,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/icon"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/icon/jest.config.ts",
                         "passWithNoTests": true
@@ -2870,7 +2870,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/input"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/input/ng-package.json"
                     },
@@ -2886,7 +2886,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/input"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/input/jest.config.ts",
                         "passWithNoTests": true
@@ -2942,7 +2942,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/input.password"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/input.password/ng-package.json"
                     },
@@ -2958,7 +2958,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/input.password"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/input.password/jest.config.ts",
                         "passWithNoTests": true
@@ -3013,7 +3013,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/interception"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/interception/ng-package.json"
                     },
@@ -3029,7 +3029,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/interception"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/interception/jest.config.ts",
                         "passWithNoTests": true
@@ -3052,7 +3052,7 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/internal-utils"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/internal-utils/jest.config.ts",
                         "passWithNoTests": true
@@ -3075,7 +3075,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/label"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/label/ng-package.json"
                     },
@@ -3091,7 +3091,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/label"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/label/jest.config.ts",
                         "passWithNoTests": true
@@ -3147,7 +3147,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/layout"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/layout/ng-package.json"
                     },
@@ -3163,7 +3163,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/layout"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/layout/jest.config.ts",
                         "passWithNoTests": true
@@ -3219,7 +3219,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/link"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/link/ng-package.json"
                     },
@@ -3235,7 +3235,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/link"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/link/jest.config.ts",
                         "passWithNoTests": true
@@ -3291,7 +3291,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/locale"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/locale/ng-package.json"
                     },
@@ -3307,7 +3307,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/locale"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/locale/jest.config.ts",
                         "passWithNoTests": true
@@ -3362,7 +3362,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/logo"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/logo/ng-package.json"
                     },
@@ -3378,7 +3378,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/logo"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/logo/jest.config.ts",
                         "passWithNoTests": true
@@ -3434,7 +3434,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/modal"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/modal/ng-package.json"
                     },
@@ -3450,7 +3450,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/modal"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/modal/jest.config.ts",
                         "passWithNoTests": true
@@ -3506,7 +3506,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/navigation"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/navigation/ng-package.json"
                     },
@@ -3522,7 +3522,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/navigation"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/navigation/jest.config.ts",
                         "passWithNoTests": true
@@ -3578,7 +3578,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/notification"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/notification/ng-package.json"
                     },
@@ -3594,7 +3594,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/notification"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/notification/jest.config.ts",
                         "passWithNoTests": true
@@ -3650,7 +3650,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/pagination"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/pagination/ng-package.json"
                     },
@@ -3666,7 +3666,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/pagination"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/pagination/jest.config.ts",
                         "passWithNoTests": true
@@ -3722,7 +3722,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/persistence"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/persistence/ng-package.json"
                     },
@@ -3738,7 +3738,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/persistence"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/persistence/jest.config.ts",
                         "passWithNoTests": true
@@ -3761,7 +3761,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/popover"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/popover/ng-package.json"
                     },
@@ -3777,7 +3777,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/popover"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/popover/jest.config.ts",
                         "passWithNoTests": true
@@ -3833,7 +3833,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/radio"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/radio/ng-package.json"
                     },
@@ -3849,7 +3849,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/radio"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/radio/jest.config.ts",
                         "passWithNoTests": true
@@ -3905,7 +3905,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/select"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/select/ng-package.json"
                     },
@@ -3921,7 +3921,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/select"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/select/jest.config.ts",
                         "passWithNoTests": true
@@ -3977,7 +3977,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/sidebar"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/sidebar/ng-package.json"
                     },
@@ -3993,7 +3993,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/sidebar"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/sidebar/jest.config.ts",
                         "passWithNoTests": true
@@ -4049,7 +4049,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/spinner"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/spinner/ng-package.json"
                     },
@@ -4065,7 +4065,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/spinner"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/spinner/jest.config.ts",
                         "passWithNoTests": true
@@ -4166,7 +4166,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/styles"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/styles/ng-package.json"
                     },
@@ -4182,7 +4182,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/styles"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/styles/jest.config.ts",
                         "passWithNoTests": true
@@ -4205,7 +4205,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table/ng-package.json"
                     },
@@ -4221,7 +4221,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table/jest.config.ts",
                         "passWithNoTests": true
@@ -4277,7 +4277,7 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table-integration-internal"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table-integration-internal/jest.config.ts",
                         "passWithNoTests": true
@@ -4335,7 +4335,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.column.autocomplete"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.column.autocomplete/ng-package.json"
                     },
@@ -4351,7 +4351,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.column.autocomplete"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.column.autocomplete/jest.config.ts",
                         "passWithNoTests": true
@@ -4409,7 +4409,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.column.chip"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.column.chip/ng-package.json"
                     },
@@ -4425,7 +4425,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.column.chip"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.column.chip/jest.config.ts",
                         "passWithNoTests": true
@@ -4480,7 +4480,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.column.date"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.column.date/ng-package.json"
                     },
@@ -4496,7 +4496,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.column.date"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.column.date/jest.config.ts",
                         "passWithNoTests": true
@@ -4551,7 +4551,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.column.dynamic"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.column.dynamic/ng-package.json"
                     },
@@ -4567,7 +4567,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.column.dynamic"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.column.dynamic/jest.config.ts",
                         "passWithNoTests": true
@@ -4622,7 +4622,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.column.image"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.column.image/ng-package.json"
                     },
@@ -4638,7 +4638,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.column.image"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.column.image/jest.config.ts",
                         "passWithNoTests": true
@@ -4693,7 +4693,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.column.input"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.column.input/ng-package.json"
                     },
@@ -4709,7 +4709,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.column.input"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.column.input/jest.config.ts",
                         "passWithNoTests": true
@@ -4764,7 +4764,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.column.select"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.column.select/ng-package.json"
                     },
@@ -4780,7 +4780,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.column.select"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.column.select/jest.config.ts",
                         "passWithNoTests": true
@@ -4836,7 +4836,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.column.text"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.column.text/ng-package.json"
                     },
@@ -4852,7 +4852,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.column.text"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.column.text/jest.config.ts",
                         "passWithNoTests": true
@@ -4907,7 +4907,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.batch-actions"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.batch-actions/ng-package.json"
                     },
@@ -4923,7 +4923,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.batch-actions"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.batch-actions/jest.config.ts",
                         "passWithNoTests": true
@@ -4982,7 +4982,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.editable"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.editable/ng-package.json"
                     },
@@ -4998,7 +4998,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.editable"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.editable/jest.config.ts",
                         "passWithNoTests": true
@@ -5057,7 +5057,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.filters"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.filters/ng-package.json"
                     },
@@ -5073,7 +5073,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.filters"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.filters/jest.config.ts",
                         "passWithNoTests": true
@@ -5132,7 +5132,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.pagination"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.pagination/ng-package.json"
                     },
@@ -5148,7 +5148,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.pagination"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.pagination/jest.config.ts",
                         "passWithNoTests": true
@@ -5207,7 +5207,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.row-actions"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.row-actions/ng-package.json"
                     },
@@ -5223,7 +5223,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.row-actions"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.row-actions/jest.config.ts",
                         "passWithNoTests": true
@@ -5282,7 +5282,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.search"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.search/ng-package.json"
                     },
@@ -5298,7 +5298,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.search"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.search/jest.config.ts",
                         "passWithNoTests": true
@@ -5354,7 +5354,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.selectable"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.selectable/ng-package.json"
                     },
@@ -5370,7 +5370,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.selectable"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.selectable/jest.config.ts",
                         "passWithNoTests": true
@@ -5429,7 +5429,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.settings"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.settings/ng-package.json"
                     },
@@ -5445,7 +5445,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.settings"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.settings/jest.config.ts",
                         "passWithNoTests": true
@@ -5504,7 +5504,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.sync-state"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.sync-state/ng-package.json"
                     },
@@ -5520,7 +5520,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.sync-state"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.sync-state/jest.config.ts",
                         "passWithNoTests": true
@@ -5578,7 +5578,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.title"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.title/ng-package.json"
                     },
@@ -5594,7 +5594,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.title"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.title/jest.config.ts",
                         "passWithNoTests": true
@@ -5650,7 +5650,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.feature.total"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.feature.total/ng-package.json"
                     },
@@ -5666,7 +5666,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.feature.total"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.feature.total/jest.config.ts",
                         "passWithNoTests": true
@@ -5722,7 +5722,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.filter.date-range"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.filter.date-range/ng-package.json"
                     },
@@ -5738,7 +5738,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.filter.date-range"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.filter.date-range/jest.config.ts",
                         "passWithNoTests": true
@@ -5797,7 +5797,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.filter.select"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.filter.select/ng-package.json"
                     },
@@ -5813,7 +5813,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.filter.select"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.filter.select/jest.config.ts",
                         "passWithNoTests": true
@@ -5869,7 +5869,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/table.filter.tree-select"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/table.filter.tree-select/ng-package.json"
                     },
@@ -5885,7 +5885,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/table.filter.tree-select"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/table.filter.tree-select/jest.config.ts",
                         "passWithNoTests": true
@@ -5944,7 +5944,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/tabs"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/tabs/ng-package.json"
                     },
@@ -5960,7 +5960,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/tabs"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/tabs/jest.config.ts",
                         "passWithNoTests": true
@@ -6016,7 +6016,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/textarea"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/textarea/ng-package.json"
                     },
@@ -6032,7 +6032,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/textarea"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/textarea/jest.config.ts",
                         "passWithNoTests": true
@@ -6088,7 +6088,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/toggle"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/toggle/ng-package.json"
                     },
@@ -6104,7 +6104,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/toggle"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/toggle/jest.config.ts",
                         "passWithNoTests": true
@@ -6160,7 +6160,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/tree-select"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/tree-select/ng-package.json"
                     },
@@ -6176,7 +6176,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/tree-select"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/tree-select/jest.config.ts",
                         "passWithNoTests": true
@@ -6232,7 +6232,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/unsaved-changes"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/unsaved-changes/ng-package.json"
                     },
@@ -6248,7 +6248,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/unsaved-changes"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/unsaved-changes/jest.config.ts",
                         "passWithNoTests": true
@@ -6271,7 +6271,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/unsaved-changes.guard.browser"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/unsaved-changes.guard.browser/ng-package.json"
                     },
@@ -6287,7 +6287,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/unsaved-changes.guard.browser"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/unsaved-changes.guard.browser/jest.config.ts",
                         "passWithNoTests": true
@@ -6313,7 +6313,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/unsaved-changes.guard.drawer"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/unsaved-changes.guard.drawer/ng-package.json"
                     },
@@ -6329,7 +6329,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/unsaved-changes.guard.drawer"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/unsaved-changes.guard.drawer/jest.config.ts",
                         "passWithNoTests": true
@@ -6387,7 +6387,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/unsaved-changes.guard.navigation"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/unsaved-changes.guard.navigation/ng-package.json"
                     },
@@ -6403,7 +6403,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/unsaved-changes.guard.navigation"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/unsaved-changes.guard.navigation/jest.config.ts",
                         "passWithNoTests": true
@@ -6461,7 +6461,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/unsaved-changes.monitor.form"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/unsaved-changes.monitor.form/ng-package.json"
                     },
@@ -6477,7 +6477,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/unsaved-changes.monitor.form"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/unsaved-changes.monitor.form/jest.config.ts",
                         "passWithNoTests": true
@@ -6535,7 +6535,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/user-menu"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/user-menu/ng-package.json"
                     },
@@ -6551,7 +6551,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/user-menu"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/user-menu/jest.config.ts",
                         "passWithNoTests": true
@@ -6606,7 +6606,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/utils"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/utils/ng-package.json"
                     },
@@ -6622,7 +6622,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/utils"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/utils/jest.config.ts",
                         "passWithNoTests": true
@@ -6645,7 +6645,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/utils.date.adapter.date-fns"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/utils.date.adapter.date-fns/ng-package.json"
                     },
@@ -6661,7 +6661,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/utils.date.adapter.date-fns"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/utils.date.adapter.date-fns/jest.config.ts",
                         "passWithNoTests": true
@@ -6687,7 +6687,7 @@
             "architect": {
                 "build": {
                     "builder": "@nrwl/angular:package",
-                    "outputs": ["{workspaceRoot}/dist/libs/web-components"],
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
                     "options": {
                         "project": "libs/web-components/ng-package.json"
                     },
@@ -6703,7 +6703,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["{workspaceRoot}/coverage/libs/web-components"],
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
                     "options": {
                         "jestConfig": "libs/web-components/jest.config.ts",
                         "passWithNoTests": true

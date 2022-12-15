@@ -21,4 +21,5 @@ export class TableColumnTextConfig {
 export class TableColumnTextComponent implements TableColumnComponent<TableColumnTextConfig> {
     @Input() config?: TableColumnTextConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
 }

@@ -27,6 +27,8 @@ import { TableBatchActionsFeatureModule } from './table-batch-actions-feature.mo
 })
 class SimpleComponent {
     @Input() test?: string;
+    @Input() method?: string;
+    @Input() action?: any;
 
     randomValue = Math.floor(Math.random() * 100);
 }

@@ -2,12 +2,12 @@
     "name": "@spryker/table.feature.pagination",
     "version": "0.1.5",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/pagination": "^0.4.0",
-        "@spryker/table": "^0.5.0",
-        "@spryker/utils": "^0.3.0",
-        "rxjs": "^7.4.0"
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/pagination": "^1.0.0",
+        "@spryker/table": "^1.0.0",
+        "@spryker/utils": "^1.0.0",
+        "rxjs": "^7.5.7"
     },
     "dependencies": {
         "tslib": "^2.3.1"

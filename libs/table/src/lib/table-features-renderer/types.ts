@@ -1,6 +1,7 @@
 import { TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TableFeatureComponent, TableFeatureTplContext } from '../table-feature';
+import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
 
 export interface TableFeaturesRendererContext {
     $implicit: FeatureRecord;

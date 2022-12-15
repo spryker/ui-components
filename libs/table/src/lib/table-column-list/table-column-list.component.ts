@@ -7,7 +7,7 @@ import {
     OnInit,
     OnChanges,
 } from '@angular/core';
-import { TableColumnComponent, TableColumn, TableColumnContext, TableColumnTypeDef } from '../table';
+import { TableColumnComponent, TableColumn, TableColumnContext, TableColumnTypeDef } from '../table/table';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
 
@@ -37,6 +37,7 @@ export class TableColumnListConfig extends TableColumnListConfigInner {
 export class TableColumnListComponent implements TableColumnComponent<TableColumnListConfig>, OnInit, OnChanges {
     @Input() config?: TableColumnListConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: any;
 
     values: unknown[] = [];
     valuesLimited: unknown[] = [];

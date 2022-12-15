@@ -11,7 +11,7 @@
                     [ngComponentOutlet]="filterComponentMap[filter.type]"
                     [ndcDynamicInputs]="{
                         config: filter,
-                        value: filterValues$ | async | pluck: filter.id
+                        value: filterValues$ | async | pluck : filter.id
                     }"
                     [ndcDynamicOutputs]="{
                         valueChange: {

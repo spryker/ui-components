@@ -2,13 +2,13 @@
     "name": "@spryker/datasource.http",
     "version": "0.2.5",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/cache": "^0.2.0",
-        "@spryker/data-serializer": "^0.1.0",
-        "@spryker/datasource": "^0.2.0",
-        "@spryker/utils": "^0.3.0",
-        "rxjs": "^7.4.0"
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/cache": "^1.0.0",
+        "@spryker/data-serializer": "^1.0.0",
+        "@spryker/datasource": "^1.0.0",
+        "@spryker/utils": "^1.0.0",
+        "rxjs": "^7.5.7"
     },
     "dependencies": {
         "tslib": "^2.3.1"

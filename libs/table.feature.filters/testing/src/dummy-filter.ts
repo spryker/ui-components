@@ -10,8 +10,8 @@ import { EMPTY } from 'rxjs';
 })
 export class TableDummyFilterComponent implements TableFilterComponent<any>, OnChanges {
     @Input() config?: any;
+    @Input() value?: any;
     valueChange: any;
-    value = '';
     classes = EMPTY;
 
     ngOnChanges(changes: SimpleChanges): void {

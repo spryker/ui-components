@@ -2,10 +2,10 @@ import { Injectable, OnDestroy, TemplateRef } from '@angular/core';
 import { combineLatest, EMPTY, Observable, of } from 'rxjs';
 import { debounceTime, map, shareReplay, switchMap, take, startWith } from 'rxjs/operators';
 
-import { TableFeatureComponent } from '../table-feature';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { FeatureRecord } from './types';
-import { TableFeatureConfig } from '../table-config';
-import { TableFeatureLocation } from '../table';
+import { TableFeatureConfig } from '../table-config/types';
+import { TableFeatureLocation } from '../table/table';
 
 export interface TableChainedContext<TContext = never> {
     $implicit: TemplateRef<TableChainedContext<TContext> & TContext>;

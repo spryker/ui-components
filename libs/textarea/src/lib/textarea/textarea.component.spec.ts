@@ -92,11 +92,11 @@ describe('TextareaComponent', () => {
             host.setInputs({ attrs: { test: 'attr6' } }, true);
 
             expect(textareaElem.attributes['test']).toBe('attr6');
-            expect(textareaElem.attributes['test2']).toBe(null);
+            expect(textareaElem.attributes['test2']).toBe(undefined);
 
             host.setInputs({ attrs: null }, true);
 
-            expect(textareaElem.attributes['test']).toBe(null);
+            expect(textareaElem.attributes['test']).toBe(undefined);
         });
     });
 

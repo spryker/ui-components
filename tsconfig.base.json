@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "esModuleInterop": true,
         "sourceMap": true,
         "declaration": false,
         "downlevelIteration": true,
@@ -11,25 +12,26 @@
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "strict": false,
-        "target": "es2015",
+        "target": "es2020",
         "module": "esnext",
         "typeRoots": ["node_modules/@types"],
         "lib": ["es2015", "es2019", "dom"],
         "baseUrl": ".",
         "rootDir": ".",
+        "useDefineForClassFields": false,
         "paths": {
             "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
         }
     },
     "angularCompilerOptions": {
-        "enableIvy": false,
+        "compilationMode": "partial",
         "annotateForClosureCompiler": true,
+        "fullTemplateTypeCheck": true,
         "skipTemplateCodegen": true,
         "strictMetadataEmit": true,
         "strictInjectionParameters": true,
         "enableResourceInlining": true,
-        "strictInputAccessModifiers": true,
-        "strictTemplates": true
+        "strictInputAccessModifiers": true
     },
     "exclude": ["node_modules", "tmp", "dist"]
 }

@@ -41,12 +41,14 @@ import {
     tap,
 } from 'rxjs/operators';
 
-import { TableActionsService } from '../table-actions';
+import { TableActionsService } from '../table-actions/table-actions.service';
 import { TableConfigService } from '../table-config/table-config.service';
-import { TableFeatureConfig } from '../table-config';
+import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureLoaderService } from '../table-feature-loader/table-feature-loader.service';
-import { TableFeatureDirective, TableFeatureEventBus, TableFeatureComponent } from '../table-feature';
-import { TableFeaturesRendererService } from '../table-features-renderer';
+import { TableFeatureEventBus } from '../table-feature/table-feature-event-bus';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
+import { TableFeatureDirective } from '../table-feature/table-feature.directive';
+import { TableFeaturesRendererService } from '../table-features-renderer/table-features-renderer.service';
 import { ColTplDirective } from './col-tpl.directive';
 import { TableColumnsResolverService } from './columns-resolver.service';
 import { TableDataConfiguratorService } from './data-configurator.service';

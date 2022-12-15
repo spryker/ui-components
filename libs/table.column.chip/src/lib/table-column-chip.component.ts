@@ -23,4 +23,5 @@ export class TableColumnChipConfig {
 export class TableColumnChipComponent implements TableColumnComponent<TableColumnChipConfig> {
     @Input() config?: TableColumnChipConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
 }

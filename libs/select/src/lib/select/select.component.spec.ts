@@ -201,7 +201,7 @@ describe('SelectComponent', () => {
             const optionElems = host.fixture.debugElement.queryAll(By.css('select option'));
 
             expect(optionElems.length).toBe(1);
-            expect(optionElems[0].properties.value).toBe(undefined);
+            expect(optionElems[0].properties.value).toBe('');
         });
 
         it('should render <option> tags for every @Input(options) value', async () => {
@@ -210,7 +210,7 @@ describe('SelectComponent', () => {
             const optionElems = host.fixture.debugElement.queryAll(By.css('select option'));
 
             expect(optionElems.length).toBe(4); // +1 for empty option
-            expect(optionElems[0].properties.value).toBe(undefined);
+            expect(optionElems[0].properties.value).toBe('');
             expect(optionElems[1].properties.value).toBe(mockOptions[0]);
             expect(optionElems[2].properties.value).toBe(mockOptions[1]);
             expect(optionElems[3].properties.value).toBe(mockOptions[2]);

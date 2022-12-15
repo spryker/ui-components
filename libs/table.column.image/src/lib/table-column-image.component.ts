@@ -23,4 +23,5 @@ export class TableColumnImageConfig {
 export class TableColumnImageComponent implements TableColumnComponent<TableColumnImageConfig> {
     @Input() config?: TableColumnImageConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
 }

@@ -43,19 +43,25 @@
                 border-color: @gray;
             }
 
-            .@{select-prefix-cls}-selection-item {
-                display: block;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
-                background: none;
-                border: none;
-                color: @ink;
-                padding: 0;
-            }
+            .@{select-prefix-cls}-selection {
+                &-item {
+                    display: block;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    background: none;
+                    border: none;
+                    color: @ink;
+                    padding: 0;
+                }
 
-            .@{select-prefix-cls}-selection-search {
-                min-width: 100%;
+                &-search {
+                    min-width: 100%;
+                }
+
+                &-placeholder {
+                    right: @select-selection-placeholder-spacing-right;
+                }
             }
         }
 

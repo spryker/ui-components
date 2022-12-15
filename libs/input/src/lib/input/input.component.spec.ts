@@ -95,11 +95,11 @@ describe('InputComponent', () => {
             host.setInputs({ attrs: { test: 'attr6' } }, true);
 
             expect(inputElem.attributes['test']).toBe('attr6');
-            expect(inputElem.attributes['test2']).toBe(null);
+            expect(inputElem.attributes['test2']).toBe(undefined);
 
             host.setInputs({ attrs: null }, true);
 
-            expect(inputElem.attributes['test']).toBe(null);
+            expect(inputElem.attributes['test']).toBe(undefined);
         });
     });
 

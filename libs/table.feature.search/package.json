@@ -2,14 +2,14 @@
     "name": "@spryker/table.feature.search",
     "version": "0.3.0",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/icon": "^0.4.0",
-        "@spryker/input": "^0.4.0",
-        "@spryker/styles": "^0.7.4",
-        "@spryker/table": "^0.5.0",
-        "@spryker/utils": "^0.3.0",
-        "rxjs": "^7.4.0"
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/icon": "^1.0.0",
+        "@spryker/input": "^1.0.0",
+        "@spryker/styles": "^1.0.0",
+        "@spryker/table": "^1.0.0",
+        "@spryker/utils": "^1.0.0",
+        "rxjs": "^7.5.7"
     },
     "dependencies": {
         "tslib": "^2.3.1"

@@ -50,6 +50,7 @@ export class TableColumnDynamicConfig {
 export class TableColumnDynamicComponent implements TableColumnComponent<TableColumnDynamicConfig>, OnChanges {
     @Input() config?: TableColumnDynamicConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
 
     colData?: TableDataRow;
 

@@ -3,7 +3,7 @@ import { ActionsService } from '@spryker/actions';
 import { Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
-import { TableEventBus } from '../table';
+import { TableEventBus } from '../table/table-event-bus';
 import { TableActionTriggeredEvent } from './types';
 
 /**

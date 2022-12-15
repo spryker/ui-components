@@ -633,13 +633,13 @@
         }
     ],
     "angularCompilerOptions": {
-        "enableIvy": false,
+        "compilationMode": "partial",
         "annotateForClosureCompiler": true,
+        "fullTemplateTypeCheck": true,
         "skipTemplateCodegen": true,
         "strictMetadataEmit": true,
         "strictInjectionParameters": true,
         "enableResourceInlining": true,
-        "strictInputAccessModifiers": true,
-        "strictTemplates": true
+        "strictInputAccessModifiers": true
     }
 }

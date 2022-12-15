@@ -2,9 +2,9 @@
     "name": "@spryker/headline",
     "version": "0.5.3",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/styles": "^0.7.4"
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/styles": "^1.0.0"
     },
     "dependencies": {
         "tslib": "^2.3.1"

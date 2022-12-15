@@ -7,10 +7,10 @@ import {
     TemplateRef,
     ViewEncapsulation,
 } from '@angular/core';
+import { ContextService } from '@spryker/utils';
 import { OrchestratorConfigItem } from '@orchestrator/core';
 
-import { TableColumn, TableColumnTplContext, TableColumnTypeDef, TableDataRow } from '../table';
-import { ContextService } from '@spryker/utils';
+import { TableColumn, TableColumnTplContext, TableColumnTypeDef, TableDataRow } from '../table/table';
 
 @Component({
     selector: 'spy-table-column-renderer',

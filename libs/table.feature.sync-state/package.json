@@ -2,11 +2,11 @@
     "name": "@spryker/table.feature.sync-state",
     "version": "0.1.5",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/persistence": "^0.2.0",
-        "@spryker/table": "^0.5.0",
-        "rxjs": "^7.4.0"
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/persistence": "^1.0.0",
+        "@spryker/table": "^1.0.0",
+        "rxjs": "^7.5.7"
     },
     "dependencies": {
         "tslib": "^2.3.1"

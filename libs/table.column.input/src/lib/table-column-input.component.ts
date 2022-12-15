@@ -45,6 +45,7 @@ export class TableColumnInputConfig {
 export class TableColumnInputComponent implements TableColumnComponent<TableColumnInputConfig>, OnInit {
     @Input() config?: TableColumnInputConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
 
     constructor(private tableEditableService: TableEditableService) {}
 

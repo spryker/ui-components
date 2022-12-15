@@ -194,7 +194,7 @@ _NOTE:_ When library is generated please do the following:
 -   In `lib/<lib-name>/src/test-setup.ts`
     -   add global setup import:
     ```ts
-        import '../../../config/test-setup';
+    import '../../../config/test-setup';
     ```
 
 ### Component

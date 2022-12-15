@@ -1,6 +1,6 @@
 {
     "name": "@spryker/form-item",
-    "version": "0.4.6",
+    "version": "1.0.0-rc.0",
     "peerDependencies": {
         "@angular/common": "^15.0.0",
         "@angular/core": "^15.0.0",

@@ -100,20 +100,20 @@ For this every component library should have associated ONE level tag:
 
 ## Available Tags
 
--   `type:*` Describes type of library
+-   `type:*` Describes the library type
     -   `type:component-service` Component with service library
     -   `type:component` Component library
     -   `type:service` Services library
     -   `type:style` Styles library
     -   `type:util` Helper utilities library
     -   `type:meta` Meta package that does not get deployed to NPM (internal infra)
--   `level:*` Describes type of component
+-   `level:*` Describes the component type according to the Atomic Design framework
     -   `level:atom`
     -   `level:molecule`
     -   `level:organism`
     -   `level:template`
     -   `level:page`
--   `pkg:*` Describes type of package
+-   `pkg:*` Describes the package type
     -   `pkg:primary`
     -   `pkg:extension`
 

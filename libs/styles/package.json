@@ -1,6 +1,6 @@
 {
     "name": "@spryker/styles",
-    "version": "1.0.0-rc.1",
+    "version": "1.0.0",
     "peerDependencies": {
         "@angular/common": "^15.0.0",
         "@angular/core": "^15.0.0"

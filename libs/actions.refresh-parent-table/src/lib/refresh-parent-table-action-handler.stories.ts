@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@storybook/angular';
 import { ActionsModule } from '@spryker/actions';
@@ -53,6 +53,8 @@ const tableConfig = {
     `,
 })
 class SimpleComponent {
+    @Input() test?: string;
+
     config = {
         ...tableConfig,
         rowActions: {

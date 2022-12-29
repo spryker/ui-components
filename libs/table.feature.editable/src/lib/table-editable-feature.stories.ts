@@ -164,6 +164,7 @@ class EditColumnConfig {
 class EditColumnComponent implements TableColumnComponent<EditColumnConfig>, OnInit {
     @Input() config?: EditColumnConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
 
     constructor(private tableEditableService: TableEditableService) {}
 

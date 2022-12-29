@@ -3,9 +3,9 @@ import { Observable } from 'rxjs';
 import { ElementRef, Injector, Type } from '@angular/core';
 import { DatasourceConfig } from '@spryker/datasource';
 import { AnyContext } from '@spryker/utils';
-import { TableFeatureConfig } from '../table-config';
-import { TableActionTriggeredEvent } from '../table-actions';
-import { TableFeatureComponent } from '../table-feature';
+import { TableFeatureConfig } from '../table-config/types';
+import { TableActionTriggeredEvent } from '../table-actions/types';
+import { TableFeatureComponent } from '../table-feature/table-feature.component';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
     id: string;

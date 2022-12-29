@@ -2,7 +2,7 @@
     <div class="ant-table-row-actions-feature" *spyTableFeatureTpl="tableFeatureLocation.afterCols; let data = data">
         <spy-dropdown
             class="ant-table-row-actions-feature__trigger"
-            [items]="actions | filterAvailableActions: data:(availableActionsPath$ | async)"
+            [items]="actions | filterAvailableActions : data : (availableActionsPath$ | async)"
             (actionTriggered)="actionTriggerHandler($event, [data])"
         >
             <spy-icon [name]="triggerIcon"></spy-icon>

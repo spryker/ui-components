@@ -1,7 +1,7 @@
 const { execSync } = require('child_process');
 
 const IGNORE_TAGS = ['type:meta'];
-const projects = require('../../nx.json').projects;
+const projects = require('../../angular.json').projects;
 
 /**
  * Spawns a command with all buildable projects from `angular.json`

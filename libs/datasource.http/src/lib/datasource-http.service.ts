@@ -26,6 +26,7 @@ export class DatasourceHttpService implements Datasource {
     resolve(injector: Injector, config: DatasourceHttpConfig, context?: unknown): Observable<unknown> {
         config = { ...config };
         config.url = this.contextService.interpolate(config.url, context as any);
+        let contextParams: Record<string, unknown>;
 
         if (this.isContextObject(context)) {
             for (const key in context) {
@@ -33,12 +34,19 @@ export class DatasourceHttpService implements Datasource {
                     delete context[key];
                 }
             }
+
+            contextParams = Object.assign({}, context);
+            Object.keys(contextParams).forEach((key) => {
+                if (this.isContextObject(contextParams[key])) {
+                    contextParams[key] = JSON.stringify(contextParams[key]);
+                }
+            });
         }
 
         const params =
             !config.dataIn || config.dataIn === DatasourceHttpConfigDataIn.Params
                 ? new HttpParams({
-                      fromObject: context as any, // any values can be used and custom codec supports it
+                      fromObject: this.isContextObject(context) ? contextParams : (context as any), // any values can be used and custom codec supports it
                       encoder: this.diEncodingCodecToken,
                   })
                 : undefined;

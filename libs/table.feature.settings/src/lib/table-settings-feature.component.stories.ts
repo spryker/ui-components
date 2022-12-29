@@ -39,7 +39,6 @@ export default {
         },
     },
     args: {
-        tableId: 'tableID',
         config: {
             dataSource: {
                 type: 'mock-data',
@@ -59,7 +58,7 @@ export default {
 
 export const viaHtml = getSettingsStory(
     `
-    <spy-table [config]="config" [tableId]="tableId">
+    <spy-table [config]="config">
         <spy-table-settings-feature spy-table-feature>
         </spy-table-settings-feature>
     </spy-table>
@@ -69,7 +68,7 @@ export const viaHtml = getSettingsStory(
 
 export const viaConfig = getSettingsStory(
     `
-    <spy-table [config]="config" [tableId]="tableId">
+    <spy-table [config]="config">
   `,
     [
         TableModule.withFeatures({

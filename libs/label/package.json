@@ -1,10 +1,10 @@
 {
     "name": "@spryker/label",
-    "version": "0.3.4",
+    "version": "1.0.0-rc.1",
     "peerDependencies": {
-        "@angular/common": ">=9.1.12",
-        "@angular/core": ">=9.1.12",
-        "@spryker/styles": "^0.6.0"
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/styles": "^1.0.0"
     },
     "dependencies": {
         "tslib": "^2.3.1"

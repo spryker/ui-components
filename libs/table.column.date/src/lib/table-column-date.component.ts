@@ -23,4 +23,5 @@ export class TableColumnDateConfig {
 export class TableColumnDateComponent implements TableColumnComponent<TableColumnDateConfig> {
     @Input() config?: TableColumnDateConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
 }

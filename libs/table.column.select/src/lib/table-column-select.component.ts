@@ -99,6 +99,7 @@ export class TableColumnSelectConfig {
 export class TableColumnSelectComponent implements TableColumnComponent<TableColumnSelectConfig>, OnInit {
     @Input() config?: TableColumnSelectConfig;
     @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
 
     constructor(private tableEditableService: TableEditableService) {}
 

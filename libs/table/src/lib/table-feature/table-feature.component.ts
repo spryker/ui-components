@@ -2,14 +2,12 @@ import { AfterViewInit, Component, Injector, Input, IterableDiffers, QueryList, 
 import { Observable, ReplaySubject } from 'rxjs';
 import { filter, map, publishBehavior, refCount, startWith, switchAll } from 'rxjs/operators';
 
-import { TableActionsService } from '../table-actions';
-import { TableFeatureConfig } from '../table-config';
-import {
-    TableComponent,
-    TableColumnsResolverService,
-    TableDataConfiguratorService,
-    TableDatasourceService,
-} from '../table';
+import { TableActionsService } from '../table-actions/table-actions.service';
+import { TableFeatureConfig } from '../table-config/types';
+import { TableColumnsResolverService } from '../table/columns-resolver.service';
+import { TableDataConfiguratorService } from '../table/data-configurator.service';
+import { TableDatasourceService } from '../table/datasource.service';
+import { TableComponent } from '../table/table';
 import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
 

@@ -6,7 +6,7 @@
         [floating]="true"
     >
         <ng-container title>
-            <span *ngIf="title | ofType: 'string'; else titleTmpl">{{ title }}</span>
+            <span *ngIf="title | ofType : 'string'; else titleTmpl">{{ title }}</span>
             <ng-template #titleTmpl>
                 <ng-template
                     [ngTemplateOutlet]="title"
@@ -16,7 +16,7 @@
         </ng-container>
 
         <ng-container description>
-            <span *ngIf="message | ofType: 'string'; else descriptionTmpl">{{ message }} </span>
+            <span *ngIf="message | ofType : 'string'; else descriptionTmpl">{{ message }} </span>
             <ng-template #descriptionTmpl>
                 <ng-template
                     [ngTemplateOutlet]="message"

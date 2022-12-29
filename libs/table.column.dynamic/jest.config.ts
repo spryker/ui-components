@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'table.column.dynamic',
     preset: '../../jest.preset.js',

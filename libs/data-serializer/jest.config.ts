@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'data-serializer',
     preset: '../../jest.preset.js',

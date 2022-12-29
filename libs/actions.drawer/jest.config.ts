@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'actions.drawer',
     preset: '../../jest.preset.js',

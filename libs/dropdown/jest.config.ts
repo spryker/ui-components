@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'dropdown',
     preset: '../../jest.preset.js',

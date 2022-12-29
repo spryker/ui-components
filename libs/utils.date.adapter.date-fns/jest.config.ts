@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'utils.date.adapter.date-fns',
     preset: '../../jest.preset.js',

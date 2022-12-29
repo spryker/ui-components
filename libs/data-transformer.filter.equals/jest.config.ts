@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'data-transformer.filter.equals',
     preset: '../../jest.preset.js',

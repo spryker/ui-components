@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'table.column.input',
     preset: '../../jest.preset.js',

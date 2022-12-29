@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'tabs',
     preset: '../../jest.preset.js',

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'unsaved-changes.guard.browser',
     preset: '../../jest.preset.js',

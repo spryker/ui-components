@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/utils.date.adapter.date-fns@1.0.0-rc.0...@spryker/utils.date.adapter.date-fns@1.0.0-rc.1) (2022-12-29)
+
+**Note:** Version bump only for package @spryker/utils.date.adapter.date-fns
+
 # [1.0.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/utils.date.adapter.date-fns@0.2.4...@spryker/utils.date.adapter.date-fns@1.0.0-rc.0) (2022-12-15)
 
 ### Features

@@ -1,23 +1,11 @@
-<ng-container
-  *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { order: '1' }"
->
-  <ng-container *ngIf="data$ | async | pluck: 'length'">
+<ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { order: '1' }">
     <span *ngIf="isDataResolved$ | async" class="spy-table-total-feature">
-      <spy-chips color="gray" maxWidth="200px">
-        <ng-container *ngIf="selected$ | async as selected">
-          {{
-            'table.feature.total.selected:number'
-              | spyI18n: { number: selected }
-              | async
-          }}
-          /
-        </ng-container>
-        {{
-          'table.feature.total.total:number'
-            | spyI18n: { number: total$ | async }
-            | async
-        }}
-      </spy-chips>
+        <spy-chips color="gray" maxWidth="200px">
+            <ng-container *ngIf="selected$ | async as selected">
+                {{ 'table.feature.total.selected:number' | spyI18n : { number: selected } | async }}
+                /
+            </ng-container>
+            {{ 'table.feature.total.total:number' | spyI18n : { number: total$ | async } | async }}
+        </spy-chips>
     </span>
-  </ng-container>
 </ng-container>

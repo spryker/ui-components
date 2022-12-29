@@ -8,9 +8,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconMinimizeModule])],
+    providers: [provideIcons([IconMinimizeModule])],
 })
 export class IconMinimizeModule {
-  static icon = 'minimize';
-  static svg = svg;
+    static icon = 'minimize';
+    static svg = svg;
 }

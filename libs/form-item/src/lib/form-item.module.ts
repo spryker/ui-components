@@ -8,14 +8,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormItemComponent } from './form-item/form-item.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzFormModule,
-    NzInputModule,
-    NzIconModule,
-    OfTypePipeModule,
-  ],
-  declarations: [FormItemComponent],
-  exports: [FormItemComponent],
+    imports: [CommonModule, NzFormModule, NzInputModule, NzIconModule, OfTypePipeModule],
+    declarations: [FormItemComponent],
+    exports: [FormItemComponent],
 })
 export class FormItemModule {}

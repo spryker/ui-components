@@ -1,15 +1,15 @@
 @pagination-prefix-cls: ~'@{ant-prefix}-pagination';
 
-@pagination-link-size: 38px;
-@pagination-link-border-radius: @border-radius-small;
-@pagination-link-margin-between-items: 3px;
-@pagination-link-border: 1px solid @gray-light;
-@pagination-icon-arrow-size: 14px;
-@pagination-jump-next-width: 22px;
-@pagination-jump-next-min-width: 0;
-@pagination-select-width: 75px;
-@pagination-wrapper-padding: 0 @pagination-select-width;
-@pagination-item-margin: 0 @pagination-link-margin-between-items;
+@pagination-link-size: var(--spy-pagination-link-size, 38px);
+@pagination-link-border-radius: var(--spy-pagination-link-border-radius, @border-radius-small);
+@pagination-link-margin-between-items: var(--spy-pagination-link-margin-between-items, 3px);
+@pagination-link-border: var(--spy-pagination-link-border, 1px solid @gray-light);
+@pagination-icon-arrow-size: var(--spy-pagination-icon-arrow-size, 14px);
+@pagination-jump-next-width: var(--spy-pagination-jump-next-width, 22px);
+@pagination-jump-next-min-width: var(--spy-pagination-jump-next-min-width, 0);
+@pagination-select-width: var(--spy-pagination-select-width, 75px);
+@pagination-wrapper-padding: var(--spy-pagination-wrapper-padding, 0 @pagination-select-width);
+@pagination-item-margin: var(--spy-pagination-item-margin, 0 @pagination-link-margin-between-items);
 // horizontal mirror reflection
-@pagination-item-prev-transform: scaleX(-1);
-@pagination-item-next-transform: scale(-1, 1);
+@pagination-item-prev-transform: var(--spy-pagination-item-prev-transform, scaleX(-1));
+@pagination-item-next-transform: var(--spy-pagination-item-next-transform, scale(-1, 1));

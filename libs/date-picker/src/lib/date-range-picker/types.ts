@@ -1,9 +1,9 @@
 export interface DateRangeValueInput {
-  from?: Date | string;
-  to?: Date | string;
+    from?: Date | string;
+    to?: Date | string;
 }
 
 export interface DateRangeValue {
-  from?: Date;
-  to?: Date;
+    from?: Date;
+    to?: Date;
 }

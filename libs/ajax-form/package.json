@@ -1,18 +1,21 @@
 {
-  "name": "@spryker/ajax-form",
-  "version": "0.3.0-rc.4",
-  "peerDependencies": {
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/ajax-action": "^0.3.0",
-    "@spryker/data-serializer": "^0.1.0",
-    "@spryker/html-renderer": "^0.2.0",
-    "@spryker/unsaved-changes.monitor.form": "^0.2.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/ajax-form",
+    "version": "1.0.0-rc.0",
+    "peerDependencies": {
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/ajax-action": "^1.0.0",
+        "@spryker/data-serializer": "^1.0.0",
+        "@spryker/html-renderer": "^1.0.0",
+        "@spryker/styles": "^1.0.0",
+        "@spryker/unsaved-changes.monitor.form": "^1.0.0",
+        "rxjs": "^7.5.7"
+    },
+    "dependencies": {
+        "ng-zorro-antd": "^14.1.1",
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

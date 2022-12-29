@@ -1,16 +1,16 @@
 {
-  "name": "@spryker/utils.date.adapter.date-fns",
-  "version": "0.2.0-rc.5",
-  "peerDependencies": {
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/utils": "^0.3.0"
-  },
-  "dependencies": {
-    "date-fns": "^2.25.0",
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/utils.date.adapter.date-fns",
+    "version": "1.0.0-rc.0",
+    "peerDependencies": {
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/utils": "^1.0.0"
+    },
+    "dependencies": {
+        "date-fns": "^2.25.0",
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

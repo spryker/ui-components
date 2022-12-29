@@ -1,19 +1,20 @@
 {
-  "name": "@spryker/table.column.dynamic",
-  "version": "0.3.0-rc.1",
-  "peerDependencies": {
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/datasource": "^0.2.0",
-    "@spryker/styles": "^0.6.0",
-    "@spryker/table": "^0.5.0",
-    "@spryker/utils": "^0.3.0"
-  },
-  "dependencies": {
-    "ng-zorro-antd": "^12.0.1",
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/table.column.dynamic",
+    "version": "1.0.0-rc.0",
+    "peerDependencies": {
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/datasource": "^1.0.0",
+        "@spryker/styles": "^1.0.0",
+        "@spryker/table": "^1.0.0",
+        "@spryker/utils": "^1.0.0",
+        "rxjs": "^7.5.7"
+    },
+    "dependencies": {
+        "ng-zorro-antd": "^14.1.1",
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

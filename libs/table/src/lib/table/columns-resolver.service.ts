@@ -7,36 +7,33 @@ import { ColumnsTransformer, TableColumns } from './table';
 
 @Injectable()
 export class TableColumnsResolverService {
-  private transformers$ = new BehaviorSubject(new Set<ColumnsTransformer>());
+    private transformers$ = new BehaviorSubject(new Set<ColumnsTransformer>());
 
-  constructor(private injector: Injector) {}
+    constructor(private injector: Injector) {}
 
-  resolve(colsOrUrl: string | TableColumns): Observable<TableColumns> {
-    const getCols =
-      typeof colsOrUrl === 'string'
-        ? () => this.injector.get(HttpClient).get<TableColumns>(colsOrUrl)
-        : () => of(colsOrUrl);
+    resolve(colsOrUrl: string | TableColumns): Observable<TableColumns> {
+        const getCols =
+            typeof colsOrUrl === 'string'
+                ? () => this.injector.get(HttpClient).get<TableColumns>(colsOrUrl)
+                : () => of(colsOrUrl);
 
-    return combineLatest([getCols(), this.transformers$]).pipe(
-      switchMap(([columns, transformers]) =>
-        [...transformers].reduce(
-          (columns$, transformer) => columns$.pipe(switchMap(transformer)),
-          of(columns),
-        ),
-      ),
-    );
-  }
-
-  addTransformer(transformer: ColumnsTransformer): void {
-    const transformers = this.transformers$.getValue();
-    const originalSize = transformers.size;
-
-    transformers.add(transformer);
-
-    if (originalSize === transformers.size) {
-      return;
+        return combineLatest([getCols(), this.transformers$]).pipe(
+            switchMap(([columns, transformers]) =>
+                [...transformers].reduce((columns$, transformer) => columns$.pipe(switchMap(transformer)), of(columns)),
+            ),
+        );
     }
 
-    this.transformers$.next(transformers);
-  }
+    addTransformer(transformer: ColumnsTransformer): void {
+        const transformers = this.transformers$.getValue();
+        const originalSize = transformers.size;
+
+        transformers.add(transformer);
+
+        if (originalSize === transformers.size) {
+            return;
+        }
+
+        this.transformers$.next(transformers);
+    }
 }

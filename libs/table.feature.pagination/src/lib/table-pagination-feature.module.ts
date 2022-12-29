@@ -7,10 +7,10 @@ import { PluckModule } from '@spryker/utils';
 import { TablePaginationFeatureComponent } from './table-pagination-feature.component';
 
 @NgModule({
-  imports: [CommonModule, PaginationModule, TableFeatureModule, PluckModule],
-  exports: [TablePaginationFeatureComponent],
-  declarations: [TablePaginationFeatureComponent],
+    imports: [CommonModule, PaginationModule, TableFeatureModule, PluckModule],
+    exports: [TablePaginationFeatureComponent],
+    declarations: [TablePaginationFeatureComponent],
 })
 export class TablePaginationFeatureModule implements ModuleWithFeature {
-  featureComponent = TablePaginationFeatureComponent;
+    featureComponent = TablePaginationFeatureComponent;
 }

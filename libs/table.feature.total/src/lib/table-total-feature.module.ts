@@ -7,16 +7,10 @@ import { TableTotalFeatureComponent } from './table-total-feature.component';
 import { ChipsModule } from '@spryker/chips';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TableFeatureModule,
-    PluckModule,
-    I18nModule,
-    ChipsModule,
-  ],
-  exports: [TableTotalFeatureComponent],
-  declarations: [TableTotalFeatureComponent],
+    imports: [CommonModule, TableFeatureModule, PluckModule, I18nModule, ChipsModule],
+    exports: [TableTotalFeatureComponent],
+    declarations: [TableTotalFeatureComponent],
 })
 export class TableTotalFeatureModule implements ModuleWithFeature {
-  featureComponent = TableTotalFeatureComponent;
+    featureComponent = TableTotalFeatureComponent;
 }

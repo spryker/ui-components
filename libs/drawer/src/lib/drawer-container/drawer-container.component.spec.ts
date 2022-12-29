@@ -1,108 +1,89 @@
+import { Component, Input, NO_ERRORS_SCHEMA, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { PortalModule } from '@angular/cdk/portal';
-import {
-  Component,
-  NO_ERRORS_SCHEMA,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { DynamicIoModule } from 'ng-dynamic-component';
-
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DrawerContainerComponent } from './drawer-container.component';
 
 @Component({
-  selector: 'spy-test',
-  template: `
-    <spy-drawer-container #drawerContainer></spy-drawer-container>
-    <ng-template #drawerTpl let-drawerRef> Content </ng-template>
-  `,
+    selector: 'spy-test',
+    template: `
+        <spy-drawer-container #drawerContainer></spy-drawer-container>
+        <ng-template #drawerTpl let-drawerRef> Content </ng-template>
+    `,
 })
 class TestComponent implements OnInit {
-  closeable = false;
-  width = '50%';
-  resizable = false;
+    @Input() closeable = false;
+    @Input() width = '50%';
+    @Input() resizable = false;
 
-  @ViewChild('drawerContainer', { static: true })
-  drawerContainer!: DrawerContainerComponent;
+    @ViewChild('drawerContainer', { static: true })
+    drawerContainer!: DrawerContainerComponent;
 
-  @ViewChild('drawerTpl', { static: true })
-  drawerTpl!: TemplateRef<any>;
+    @ViewChild('drawerTpl', { static: true })
+    drawerTpl!: TemplateRef<any>;
 
-  ngOnInit(): void {
-    this.drawerContainer.openTemplate(this.drawerTpl, {
-      closeable: this.closeable,
-      width: this.width,
-      hasBackdrop: false,
-      resizable: this.resizable,
-    });
-  }
+    ngOnInit(): void {
+        this.drawerContainer.openTemplate(this.drawerTpl, {
+            closeable: this.closeable,
+            width: this.width,
+            hasBackdrop: false,
+            resizable: this.resizable,
+        });
+    }
 }
 
 describe('DrawerContainerComponent', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+    const { testModule, createComponent } = getTestingForComponent(TestComponent, {
+        ngModule: {
+            imports: [PortalModule, DynamicIoModule],
+            declarations: [TestComponent, DrawerContainerComponent],
+            schemas: [NO_ERRORS_SCHEMA],
+        },
+        projectContent: 'Content',
+    });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [PortalModule, DynamicIoModule],
-      declarations: [TestComponent, DrawerContainerComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      teardown: { destroyAfterEach: false },
-    }).compileComponents();
-  }));
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-  });
+    it('should render <spy-drawer-wrapper> element', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
-  it('should render `spy-drawer-wrapper` element', () => {
-    fixture.detectChanges();
-    const wrapperElem = fixture.debugElement.query(
-      By.css('spy-drawer-wrapper'),
-    );
+        expect(wrapperElem).toBeTruthy();
+    });
 
-    expect(wrapperElem).toBeTruthy();
-  });
+    it('should bind @Input(closeable) to `closeable` of <spy-drawer-wrapper>', async () => {
+        const host = await createComponentWrapper(createComponent, { closeable: true });
+        const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
-  it('should bind @Input(closeable) to `closeable` of `spy-drawer-wrapper`', () => {
-    component.closeable = true;
-    fixture.detectChanges();
-    const wrapperElem = fixture.debugElement.query(
-      By.css('spy-drawer-wrapper'),
-    );
+        expect(wrapperElem.properties.closeable).toBe(true);
+    });
 
-    expect(wrapperElem.properties.closeable).toBe(true);
-  });
+    it('should bind @Input(resizable) to `resizable` of <spy-drawer-wrapper>', async () => {
+        const host = await createComponentWrapper(createComponent, { resizable: true });
+        const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
-  it('should bind @Input(resizable) to `resizable` of `spy-drawer-wrapper`', () => {
-    component.resizable = true;
-    fixture.detectChanges();
-    const wrapperElem = fixture.debugElement.query(
-      By.css('spy-drawer-wrapper'),
-    );
+        expect(wrapperElem.properties.resizable).toBe(true);
+    });
 
-    expect(wrapperElem.properties.resizable).toBe(true);
-  });
+    it('should bind @Input(width) to `width` of <spy-drawer-wrapper>', async () => {
+        const width = '30%';
+        const host = await createComponentWrapper(createComponent, { width: width });
+        const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
-  it('should bind @Input(width) to `width` of `spy-drawer-wrapper`', () => {
-    component.width = '30%';
-    fixture.detectChanges();
-    const wrapperElem = fixture.debugElement.query(
-      By.css('spy-drawer-wrapper'),
-    );
+        expect(wrapperElem.properties.width).toBe(width);
+    });
 
-    expect(wrapperElem.properties.width).toBe('30%');
-  });
+    it('should render content inside `spy-drawer-wrapper__content` element as content projection', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const wrapperElem = host.queryCss('spy-drawer-wrapper');
 
-  it('should render content inside `spy-drawer-wrapper__content` element as content projection', async () => {
-    fixture.detectChanges();
-    const wrapperElem = fixture.debugElement.query(
-      By.css('spy-drawer-wrapper'),
-    );
-
-    expect(wrapperElem.nativeElement.textContent).toContain('Content');
-  });
+        expect(wrapperElem.nativeElement.textContent).toContain('Content');
+    });
 });

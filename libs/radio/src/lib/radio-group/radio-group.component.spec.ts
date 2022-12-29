@@ -1,110 +1,98 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { RadioComponent } from '../radio/radio.component';
-import { RadioGroupComponent } from './radio-group.component';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { RadioModule } from '../radio.module';
 
 @Component({
-  selector: 'spy-test',
-  template: `
-    <spy-radio-group
-      [value]="value"
-      [name]="name"
-      (selected)="selectedSpy($event)"
-    >
-      <spy-radio [hasError]="true"></spy-radio>
-      <spy-radio></spy-radio>
-    </spy-radio-group>
-  `,
+    selector: 'spy-test',
+    template: `
+        <spy-radio-group [value]="value" [name]="name" (selected)="selectedSpy($event)">
+            <spy-radio [hasError]="true"></spy-radio>
+            <spy-radio></spy-radio>
+        </spy-radio-group>
+    `,
 })
 class TestComponent {
-  value: any;
-  name: any;
-  selectedSpy = jest.fn();
+    @Input() value: any;
+    @Input() name: any;
+    selectedSpy = jest.fn<boolean, any[]>();
 }
 
 describe('RadioGroupComponent', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+    const { testModule, createComponent } = getTestingForComponent(TestComponent, {
+        ngModule: {
+            imports: [RadioModule],
+            schemas: [NO_ERRORS_SCHEMA],
+        },
+    });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestComponent, RadioComponent, RadioGroupComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      teardown: { destroyAfterEach: false },
-    }).compileComponents();
-  }));
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-  });
+    it('should render <nz-radio-group>', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const radioGroupElem = host.queryCss('nz-radio-group');
 
-  it('should render `nz-radio-group`', () => {
-    const radioGroupElem = fixture.debugElement.query(By.css('nz-radio-group'));
+        expect(radioGroupElem).toBeTruthy();
+    });
 
-    expect(radioGroupElem).toBeTruthy();
-  });
+    it('should bound @Input(value) to the input `ngModel` of <nz-radio-group> element', async () => {
+        const mockValue = 'mockValue';
+        const host = await createComponentWrapper(createComponent, { value: mockValue });
+        const radioGroupElem = host.queryCss('nz-radio-group');
 
-  it('should bound @Input(value) to the input `ngModel` of `nz-radio-group` element', () => {
-    const mockValue = 'mockValue';
-    const radioGroupElem = fixture.debugElement.query(By.css('nz-radio-group'));
+        expect(radioGroupElem.attributes['ng-reflect-model']).toBe(mockValue);
+    });
 
-    component.value = mockValue;
-    fixture.detectChanges();
+    it('should add `spy-radio-group--selected` to the host if @Input(value) is not `undefined`', async () => {
+        const mockValue = 'mockValue';
+        const host = await createComponentWrapper(createComponent);
+        const radioGroupElem = host.queryCss('spy-radio-group');
 
-    expect(radioGroupElem.properties.ngModel).toBe(mockValue);
-  });
+        expect(radioGroupElem.classes['spy-radio-group--selected']).toBeFalsy();
 
-  it('should add `spy-radio-group--selected` to the host if @Input(value) is not `undefined`', () => {
-    const mockValue = 'mockValue';
-    const radioGroupElem = fixture.debugElement.query(
-      By.css('spy-radio-group'),
-    );
+        host.setInputs({ value: mockValue }, true);
 
-    expect('spy-radio-group--selected' in radioGroupElem.classes).toBeFalsy();
+        expect(radioGroupElem.classes['spy-radio-group--selected']).toBeTruthy();
+    });
 
-    component.value = mockValue;
-    fixture.detectChanges();
+    it('should add `spy-radio-group--error` to the host if projected any <spy-radio> element has input `hasError` `true`', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const radioGroupElem = host.queryCss('spy-radio-group');
 
-    expect('spy-radio-group--selected' in radioGroupElem.classes).toBeTruthy();
-  });
+        expect(radioGroupElem.classes['spy-radio-group--error']).toBeTruthy();
+    });
 
-  it('should add `spy-radio-group--error` to the host if projected any `spy-radio` component has input `hasError` `true`', () => {
-    const radioGroupElem = fixture.debugElement.query(
-      By.css('spy-radio-group'),
-    );
+    it('should bound @Input(name) to the input `nzName` of <nz-radio-group> element', async () => {
+        const mockName = 'mockName';
+        const host = await createComponentWrapper(createComponent, { name: mockName });
+        const radioGroupElem = host.queryCss('nz-radio-group');
 
-    fixture.detectChanges();
+        expect(radioGroupElem.attributes['ng-reflect-nz-name']).toBe(mockName);
+    });
 
-    expect('spy-radio-group--error' in radioGroupElem.classes).toBeTruthy();
-  });
+    it('should trigger `selected` callback when `ngModelChange` on <nz-radio-group> element was triggered', async () => {
+        const mockValue = 'mockValue';
+        const host = await createComponentWrapper(createComponent);
+        const radioGroupElem = host.queryCss('nz-radio-group');
 
-  it('should bound @Input(name) to the input `nzName` of `nz-radio-group` element', () => {
-    const mockName = 'mockName';
-    const radioGroupElem = fixture.debugElement.query(By.css('nz-radio-group'));
+        radioGroupElem.triggerEventHandler('ngModelChange', mockValue);
+        host.detectChanges();
 
-    component.name = mockName;
-    fixture.detectChanges();
+        expect(host.component.selectedSpy).toHaveBeenCalledWith(mockValue);
+    });
 
-    expect(radioGroupElem.properties.nzName).toBe(mockName);
-  });
+    it('should render same amount of <spy-radio> elements as <spy-radio> projected components', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const radioGroupElem = host.queryCss('nz-radio-group');
+        const radiosComponents = host.fixture.debugElement.queryAll(By.css('spy-radio'));
 
-  it('should trigger `selected` callback when `ngModelChange` on `nz-radio-group` element was triggered', () => {
-    const mockValue = 'mockValue';
-    const radioGroupElem = fixture.debugElement.query(By.css('nz-radio-group'));
-
-    radioGroupElem.triggerEventHandler('ngModelChange', mockValue);
-    fixture.detectChanges();
-
-    expect(component.selectedSpy).toHaveBeenCalledWith(mockValue);
-  });
-
-  it('should render same amount of `spy-radio` elements as `spy-radio` projected components', () => {
-    const radiosComponents = fixture.debugElement.queryAll(By.css('spy-radio'));
-    const radiosElems = fixture.debugElement.queryAll(By.css('.spy-radio'));
-
-    expect(radiosElems.length).toBe(radiosComponents.length);
-  });
+        expect(radioGroupElem.children.length).toBe(radiosComponents.length);
+    });
 });

@@ -1,43 +1,60 @@
 <ul nz-menu nzMode="inline" [nzInlineCollapsed]="collapsed">
-  <ng-container
-    *ngTemplateOutlet="menuTpl; context: { $implicit: items }"
-  ></ng-container>
-
-  <ng-template #menuTpl let-items>
     <ng-container *ngFor="let item of items">
-      <li
-        *ngIf="!item.subItems?.length"
-        nz-menu-item
-        [nzSelected]="item.isActive"
-      >
-        <a [href]="item.url" (click)="clickHandler($event, item.url)">
-          <ng-container *ngTemplateOutlet="titleTpl"></ng-container>
-        </a>
-      </li>
+        <ng-container *ngTemplateOutlet="menuItemTpl; context: { $implicit: item }"></ng-container>
 
-      <li
-        *ngIf="item.subItems?.length"
-        nz-submenu
-        [nzOpen]="item.isActive"
-        [nzTitle]="titleTpl"
-        [nzPaddingLeft]="$any('unset')"
-        [nzDisabled]="item.disabled"
-      >
-        <ul>
-          <ng-container
-            *ngTemplateOutlet="menuTpl; context: { $implicit: item.subItems }"
-          ></ng-container>
-        </ul>
-      </li>
+        <ng-template #parentTitleTpl>
+            <ng-container *ngTemplateOutlet="titleTpl; context: { $implicit: item }"></ng-container>
+        </ng-template>
 
-      <ng-template #titleTpl>
-        <spy-icon
-          class="spy-navigation__title-icon"
-          *ngIf="item.icon"
-          [name]="item.icon"
-        ></spy-icon>
-        <span class="spy-navigation__title-text">{{ item.title }}</span>
-      </ng-template>
+        <li
+            *ngIf="item.subItems?.length"
+            nz-submenu
+            [nzOpen]="item.isActive"
+            [nzTitle]="parentTitleTpl"
+            [nzPaddingLeft]="'unset'"
+            [nzDisabled]="item.isDisabled"
+        >
+            <ul>
+                <ng-container *ngTemplateOutlet="menutpl; context: { $implicit: item.subItems }"></ng-container>
+
+                <ng-template #menutpl let-subItems>
+                    <ng-container *ngFor="let item of subItems">
+                        <ng-container *ngTemplateOutlet="menuItemTpl; context: { $implicit: item }"></ng-container>
+
+                        <ng-template #childTitleTpl>
+                            <ng-container *ngTemplateOutlet="titleTpl; context: { $implicit: item }"></ng-container>
+                        </ng-template>
+
+                        <li
+                            *ngIf="item.subItems?.length"
+                            nz-submenu
+                            [nzOpen]="item.isActive"
+                            [nzTitle]="childTitleTpl"
+                            [nzPaddingLeft]="'unset'"
+                            [nzDisabled]="item.isDisabled"
+                        >
+                            <ul>
+                                <ng-container
+                                    *ngTemplateOutlet="menutpl; context: { $implicit: item.subItems }"
+                                ></ng-container>
+                            </ul>
+                        </li>
+                    </ng-container>
+                </ng-template>
+            </ul>
+        </li>
+
+        <ng-template #menuItemTpl let-item>
+            <li *ngIf="!item.subItems?.length" nz-menu-item [nzSelected]="item.isActive" [nzDisabled]="item.isDisabled">
+                <a [href]="item.url" (click)="clickHandler($event, item.url)">
+                    <ng-container *ngTemplateOutlet="titleTpl; context: { $implicit: item }"></ng-container>
+                </a>
+            </li>
+        </ng-template>
+
+        <ng-template #titleTpl let-item>
+            <spy-icon class="spy-navigation__title-icon" *ngIf="item.icon" [name]="item.icon"></spy-icon>
+            <span class="spy-navigation__title-text">{{ item.title }}</span>
+        </ng-template>
     </ng-container>
-  </ng-template>
 </ul>

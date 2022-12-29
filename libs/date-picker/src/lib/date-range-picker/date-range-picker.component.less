@@ -1,13 +1,13 @@
 @import './date-range-picker.component.theme.less';
 
 .@{range-calendar-prefix-cls} {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -@range-calendar-indents;
-  min-width: @range-min-width;
+    display: flex;
+    flex-wrap: wrap;
+    margin: calc(@range-calendar-indents * -1);
+    min-width: @range-min-width;
 
-  &-col {
-    width: 50%;
-    padding: @range-calendar-indents;
-  }
+    &-col {
+        width: 50%;
+        padding: @range-calendar-indents;
+    }
 }

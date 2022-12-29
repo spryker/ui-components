@@ -1,21 +1,15 @@
-import {
-  Directive,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[spyLocaleRender]',
+    selector: '[spyLocaleRender]',
 })
 export class TestLocaleRenderDirective implements OnInit {
-  constructor(
-    private templateRef: TemplateRef<any>,
-    private vcr: ViewContainerRef,
-  ) {}
+    constructor(private templateRef: TemplateRef<any>, private vcr: ViewContainerRef) {}
 
-  ngOnInit() {
-    this.vcr.clear();
-    this.vcr.createEmbeddedView(this.templateRef, { $implicit: 'mockLocale' });
-  }
+    ngOnInit() {
+        this.vcr.clear();
+        this.vcr.createEmbeddedView(this.templateRef, {
+            $implicit: 'mockLocale',
+        });
+    }
 }

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ChipsComponent } from './chips/chips.component';
 
 @NgModule({
-  imports: [CommonModule],
-  exports: [ChipsComponent],
-  declarations: [ChipsComponent],
+    imports: [CommonModule],
+    exports: [ChipsComponent],
+    declarations: [ChipsComponent],
 })
 export class ChipsModule {}

@@ -1,46 +1,32 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-
-import { HeaderModule } from '../header.module';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+    const { testModule, createComponent } = getTestingForComponent(HeaderComponent, {
+        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+        projectContent: `<div class="test-content">Header Content</div>`,
+    });
 
-  @Component({
-    template: `
-      <spy-header>
-        <div class="test-content">Header Content</div>
-      </spy-header>
-    `,
-  })
-  class TestComponent {}
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
+    });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [HeaderModule],
-      declarations: [TestComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      teardown: { destroyAfterEach: false },
-    }).compileComponents();
-  }));
+    it('should create', async () => {
+        const host = await createComponentWrapper(createComponent);
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        expect(host.component).toBeTruthy();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should render content', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const headerContentElement = host.queryCss('.test-content');
 
-  it('should render content', () => {
-    const headerContentElement = fixture.debugElement.query(
-      By.css('.test-content'),
-    );
-
-    expect(headerContentElement).toBeTruthy();
-  });
+        expect(headerContentElement).toBeTruthy();
+    });
 });

@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { HeadlineComponent } from './headline/headline.component';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [HeadlineComponent],
-  exports: [HeadlineComponent],
+    imports: [CommonModule],
+    declarations: [HeadlineComponent],
+    exports: [HeadlineComponent],
 })
 export class HeadlineModule {}

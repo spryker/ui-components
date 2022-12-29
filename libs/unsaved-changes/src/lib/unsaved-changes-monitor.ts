@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
 
 export enum UnsavedChangesMonitorStatus {
-  Clean,
-  Dirty,
+    Clean,
+    Dirty,
 }
 
 /**
@@ -10,6 +10,6 @@ export enum UnsavedChangesMonitorStatus {
  * Attaches to the elements in the view that represent the data.
  */
 export interface UnsavedChangesMonitor {
-  getStatus(): Observable<UnsavedChangesMonitorStatus>;
-  reset(): void;
+    getStatus(): Observable<UnsavedChangesMonitorStatus>;
+    reset(): void;
 }

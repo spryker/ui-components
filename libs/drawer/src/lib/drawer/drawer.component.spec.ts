@@ -1,166 +1,143 @@
-import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { ReplaySubject } from 'rxjs';
-
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { DrawerComponent } from './drawer.component';
 import { DrawerService } from '../drawer.service';
-import { DrawerComponent, DrawerComponentInputs } from './drawer.component';
-
-@Component({
-  selector: 'spy-test',
-  template: `
-    <spy-drawer
-      [isOpen]="isOpen"
-      [closeable]="closeable"
-      [resizable]="resizable"
-      [width]="width"
-      [hasBackdrop]="hasBackdrop"
-      (isOpenChange)="isOpenChange($event)"
-      (closed)="closed()"
-    >
-      <ng-template let-drawerRef> Content </ng-template>
-    </spy-drawer>
-  `,
-})
-class TestComponent extends DrawerComponentInputs {
-  isOpenChange = jest.fn();
-  closed = jest.fn();
-}
 
 class MockDrawerRef {
-  afterClosed$ = new ReplaySubject<void>();
-
-  close = jest.fn();
-  maximize = jest.fn();
-  minimize = jest.fn();
-  afterClosed = jest.fn().mockReturnValue(this.afterClosed$.asObservable());
+    afterClosed$ = new ReplaySubject<void>();
+    close = jest.fn();
+    maximize = jest.fn();
+    minimize = jest.fn();
+    afterClosed = jest.fn().mockReturnValue(this.afterClosed$.asObservable());
 }
-class MockDrawerService {
-  drawerRef = new MockDrawerRef();
 
-  openTemplate = jest.fn().mockReturnValue(this.drawerRef);
+class MockDrawerService {
+    drawerRef = new MockDrawerRef();
+    openTemplate = jest.fn().mockReturnValue(this.drawerRef);
 }
 
 describe('DrawerComponent', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
-  let service: MockDrawerService;
+    let service: MockDrawerService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestComponent, DrawerComponent],
-      providers: [
-        {
-          provide: DrawerService,
-          useExisting: MockDrawerService,
-        },
-        MockDrawerService,
-      ],
-      teardown: { destroyAfterEach: false },
-    }).compileComponents();
-  }));
+    const { testModule, createComponent } = getTestingForComponent(DrawerComponent, {
+        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+        projectContent: ` <ng-template let-drawerRef> Content </ng-template> `,
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-    service = TestBed.inject(MockDrawerService);
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            providers: [
+                {
+                    provide: DrawerService,
+                    useExisting: MockDrawerService,
+                },
+                MockDrawerService,
+            ],
+            teardown: { destroyAfterEach: false },
+        });
 
-  it('should render `spy-drawer` component', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        service = TestBed.inject(MockDrawerService);
+    });
 
-    expect(drawerElem).toBeTruthy();
-  });
+    it('should render <spy-drawer> component', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-  it('should call `openTemplate` method from drawerService if `open` method has been triggered', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        expect(drawerElem).toBeTruthy();
+    });
 
-    drawerElem.componentInstance.open();
+    it('should call `openTemplate` method from drawerService if `open` method has been triggered', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-    expect(service.openTemplate).toHaveBeenCalledWith(
-      drawerElem.componentInstance.templateRef,
-      drawerElem.componentInstance,
-    );
-  });
+        drawerElem.componentInstance.open();
 
-  it('should call `maximize` method from `drawerRef` when `maximize` method  has been triggered if drawer was opened', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        expect(service.openTemplate).toHaveBeenCalledWith(
+            drawerElem.componentInstance.templateRef,
+            drawerElem.componentInstance,
+        );
+    });
 
-    drawerElem.componentInstance.open();
-    drawerElem.componentInstance.maximize();
+    it('should call `maximize` method from `drawerRef` when `maximize` method has been triggered if drawer was opened', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-    expect(service.drawerRef.maximize).toHaveBeenCalled();
-  });
+        drawerElem.componentInstance.open();
+        drawerElem.componentInstance.maximize();
 
-  it('should call `minimize` method from `drawerRef` when `minimize` method  has been triggered if drawer was opened', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        expect(service.drawerRef.maximize).toHaveBeenCalled();
+    });
 
-    drawerElem.componentInstance.open();
-    drawerElem.componentInstance.minimize();
+    it('should call `minimize` method from `drawerRef` when `minimize` method has been triggered if drawer was opened', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-    expect(service.drawerRef.minimize).toHaveBeenCalled();
-  });
+        drawerElem.componentInstance.open();
+        drawerElem.componentInstance.minimize();
 
-  it('should change `isOpen` prop to `true` when `open` method has been triggered', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        expect(service.drawerRef.minimize).toHaveBeenCalled();
+    });
 
-    drawerElem.componentInstance.open();
+    it('should change `isOpen` prop to `true` when `open` method has been triggered', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-    expect(drawerElem.componentInstance.isOpen).toBe(true);
-  });
+        drawerElem.componentInstance.open();
 
-  it('should emit @Output(isOpenChange) with `true` parameter when `open` method  has been triggered', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        expect(drawerElem.componentInstance.isOpen).toBe(true);
+    });
 
-    drawerElem.componentInstance.open();
+    it('should emit @Output(isOpenChange) with `true` parameter when `open` method has been triggered', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-    expect(component.isOpenChange).toHaveBeenCalledWith(true);
-  });
+        drawerElem.componentInstance.open();
 
-  it('should change `isOpen` prop to `false` when `close` method  has been triggered if drawer was opened', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        expect(host.hostComponent.isOpenChange).toHaveBeenCalledWith(true);
+    });
 
-    drawerElem.componentInstance.open();
-    drawerElem.componentInstance.close();
+    it('should change `isOpen` prop to `false` when `close` method has been triggered if drawer was opened', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-    expect(drawerElem.componentInstance.isOpen).toBe(false);
-  });
+        drawerElem.componentInstance.open();
+        drawerElem.componentInstance.close();
 
-  it('should emit @Output(isOpenChange) with `false` parameter when `close` method  has been triggered if drawer was opened', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        expect(drawerElem.componentInstance.isOpen).toBe(false);
+    });
 
-    drawerElem.componentInstance.open();
-    drawerElem.componentInstance.close();
+    it('should emit @Output(isOpenChange) with `false` parameter when `close` method has been triggered if drawer was opened', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-    expect(component.isOpenChange).toHaveBeenCalledWith(false);
-  });
+        drawerElem.componentInstance.open();
+        drawerElem.componentInstance.close();
 
-  it('should emit @Output(closed) when `close` method  has been triggered if drawer was opened', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        expect(host.hostComponent.isOpenChange).toHaveBeenCalledWith(false);
+    });
 
-    drawerElem.componentInstance.open();
-    drawerElem.componentInstance.close();
+    it('should emit @Output(closed) when `close` method has been triggered if drawer was opened', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-    expect(component.closed).toHaveBeenCalled();
-  });
+        drawerElem.componentInstance.open();
+        drawerElem.componentInstance.close();
 
-  it('should call `close` method from `drawerRef` and assign `drawerRef` to `undefined` when `close` method  has been triggered if drawer was opened', () => {
-    fixture.detectChanges();
-    const drawerElem = fixture.debugElement.query(By.css('spy-drawer'));
+        expect(host.hostComponent.closed).toHaveBeenCalled();
+    });
 
-    drawerElem.componentInstance.open();
-    drawerElem.componentInstance.close();
+    it('should call `close` method from `drawerRef` and assign `drawerRef` to `undefined` when `close` method has been triggered if drawer was opened', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const drawerElem = host.queryCss('spy-drawer');
 
-    expect(service.drawerRef.close).toHaveBeenCalled();
-    expect(drawerElem.componentInstance.drawerRef).toBeFalsy();
-  });
+        drawerElem.componentInstance.open();
+        drawerElem.componentInstance.close();
+
+        expect(service.drawerRef.close).toHaveBeenCalled();
+        expect(drawerElem.componentInstance.drawerRef).toBeFalsy();
+    });
 });

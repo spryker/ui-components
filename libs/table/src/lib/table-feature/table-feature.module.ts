@@ -5,8 +5,8 @@ import { TableFeatureTplDirective } from './table-feature-tpl.directive';
 import { TableFeatureDirective } from './table-feature.directive';
 
 @NgModule({
-  imports: [CommonModule],
-  exports: [TableFeatureTplDirective, TableFeatureDirective],
-  declarations: [TableFeatureTplDirective, TableFeatureDirective],
+    imports: [CommonModule],
+    exports: [TableFeatureTplDirective, TableFeatureDirective],
+    declarations: [TableFeatureTplDirective, TableFeatureDirective],
 })
 export class TableFeatureModule {}

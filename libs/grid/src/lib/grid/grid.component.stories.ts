@@ -1,23 +1,31 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { select } from '@storybook/addon-knobs';
+import { Meta } from '@storybook/angular';
 
 @Component({
-  selector: 'spy-story-component',
-  styleUrls: ['./grid.component.stories.less'],
-  template: '',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'spy-story-component',
+    styleUrls: ['./grid.component.stories.less'],
+    template: '',
+    encapsulation: ViewEncapsulation.None,
 })
 class StoryComponent {}
 
 export default {
-  title: 'GridComponent',
-};
+    title: 'GridComponent',
+    parameters: {
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8979',
+            allowFullscreen: true,
+        },
+    },
+} as Meta;
 
-export const primary = () => ({
-  moduleMetadata: {
-    declarations: [StoryComponent],
-  },
-  template: `
+export const primary = (args) => ({
+    props: args,
+    moduleMetadata: {
+        declarations: [StoryComponent],
+    },
+    template: `
     <spy-story-component></spy-story-component>
 
     <p>Row classes</p>
@@ -122,25 +130,28 @@ export const primary = () => ({
       </div>
     </div>
   `,
-  props: {
-    gutter: select(
-      'Gutter',
-      {
-        'None none (default)': 'none',
-        '8px sm': 'sm',
-        '16px md': 'md',
-        '24px lg': 'lg',
-      },
-      'none',
-    ),
-  },
 });
+primary.args = {
+    gutter: 'none',
+};
+primary.argTypes = {
+    gutter: {
+        control: { type: 'select' },
+        options: {
+            'None none (default)': 'none',
+            '8px sm': 'sm',
+            '16px md': 'md',
+            '24px lg': 'lg',
+        },
+    },
+};
 
-export const alignment = () => ({
-  moduleMetadata: {
-    declarations: [StoryComponent],
-  },
-  template: `
+export const alignment = (args) => ({
+    props: args,
+    moduleMetadata: {
+        declarations: [StoryComponent],
+    },
+    template: `
     <spy-story-component></spy-story-component>
 
     <p>Row classes</p>
@@ -246,73 +257,70 @@ export const alignment = () => ({
       </div>
     </div>
   `,
-  props: {
-    direction: select(
-      'Direction',
-      {
-        'Row (default)': 'row',
-        Column: 'column',
-        'Row reverse': 'row-reverse',
-        'Column reverse': 'column-reverse',
-      },
-      'row',
-    ),
-
-    alignCol: select(
-      'Align col',
-      {
-        'Stretch (default)': 'stretch',
-        'Flex-start': 'flex-start',
-        Center: 'center',
-        'Flex end': 'flex-end',
-        'Space between (work with column/column-reverse direction)':
-          'space-between',
-        'Space around (work with column/column-reverse direction)':
-          'space-around',
-        'Space evenly (work with column/column-reverse direction)':
-          'space-evenly',
-        'Baseline (work with row/row-reverse direction)': 'baseline',
-      },
-      'stretch',
-    ),
-
-    alignRow: select(
-      'Align row',
-      {
-        'Flex-start (default)': 'flex-start',
-        Center: 'center',
-        'Flex end': 'flex-end',
-        'Space between (work with row/row-reverse direction)': 'space-between',
-        'Space around (work with row/row-reverse direction)': 'space-around',
-        'Space evenly (work with row/row-reverse direction)': 'space-evenly',
-        Stretch: 'stretch',
-        'Baseline (work with column/column-reverse direction)': 'baseline',
-      },
-      'flex-start',
-    ),
-
-    alignContent: select(
-      'Align content',
-      {
-        'Normal (default)': 'normal',
-        'Flex-start': 'flex-start',
-        Center: 'center',
-        'Flex end': 'flex-end',
-        'Space between': 'space-between',
-        'Space around': 'space-around',
-        'Space evenly': 'space-evenly',
-        Stretch: 'stretch',
-      },
-      'flex-start',
-    ),
-  },
 });
+alignment.args = {
+    direction: 'row',
+    alignCol: 'stretch',
+    alignRow: 'flex-start',
+    alignContent: 'normal',
+};
+alignment.argTypes = {
+    direction: {
+        control: { type: 'select' },
+        options: {
+            'Row (default)': 'row',
+            Column: 'column',
+            'Row reverse': 'row-reverse',
+            'Column reverse': 'column-reverse',
+        },
+    },
+    alignCol: {
+        control: { type: 'select' },
+        options: {
+            'Stretch (default)': 'stretch',
+            'Flex-start': 'flex-start',
+            Center: 'center',
+            'Flex end': 'flex-end',
+            'Space between (work with column/column-reverse direction)': 'space-between',
+            'Space around (work with column/column-reverse direction)': 'space-around',
+            'Space evenly (work with column/column-reverse direction)': 'space-evenly',
+            'Baseline (work with row/row-reverse direction)': 'baseline',
+        },
+    },
+    alignRow: {
+        control: { type: 'select' },
+        options: {
+            'Flex-start (default)': 'flex-start',
+            Center: 'center',
+            'Flex end': 'flex-end',
+            'Space between (work with row/row-reverse direction)': 'space-between',
+            'Space around (work with row/row-reverse direction)': 'space-around',
+            'Space evenly (work with row/row-reverse direction)': 'space-evenly',
+            Stretch: 'stretch',
+            'Baseline (work with column/column-reverse direction)': 'baseline',
+        },
+    },
+    alignContent: {
+        control: { type: 'select' },
+        options: {
+            'Normal (default)': 'normal',
+            'Flex-start': 'flex-start',
+            Center: 'center',
+            'Flex end': 'flex-end',
+            'Space between': 'space-between',
+            'Space around': 'space-around',
+            'Space evenly': 'space-evenly',
+            Stretch: 'stretch',
+        },
+    },
+};
 
-export const wrap = () => ({
-  moduleMetadata: {
-    declarations: [StoryComponent],
-  },
-  template: `
+export const wrap = (args) => ({
+    props: args,
+    moduleMetadata: {
+        declarations: [StoryComponent],
+    },
+    template: `
     <spy-story-component></spy-story-component>
 
     <div class="tight-container">
@@ -369,24 +377,27 @@ export const wrap = () => ({
       </div>
     </div>
   `,
-  props: {
-    wrap: select(
-      'Wrap',
-      {
-        'Wrap (default)': 'wrap',
-        Nowrap: 'nowrap',
-        'Wrap Reverse': 'wrap-reverse',
-      },
-      'wrap',
-    ),
-  },
 });
+wrap.args = {
+    wrap: 'wrap',
+};
+wrap.argTypes = {
+    wrap: {
+        control: { type: 'select' },
+        options: {
+            'Wrap (default)': 'wrap',
+            Nowrap: 'nowrap',
+            'Wrap Reverse': 'wrap-reverse',
+        },
+    },
+};
 
-export const push = () => ({
-  moduleMetadata: {
-    declarations: [StoryComponent],
-  },
-  template: `
+export const push = (args) => ({
+    props: args,
+    moduleMetadata: {
+        declarations: [StoryComponent],
+    },
+    template: `
     <spy-story-component></spy-story-component>
 
     <div class="spy-row">
@@ -424,11 +435,12 @@ export const push = () => ({
   `,
 });
 
-export const respectMaxWith = () => ({
-  moduleMetadata: {
-    declarations: [StoryComponent],
-  },
-  template: `
+export const respectMaxWidth = (args) => ({
+    props: args,
+    moduleMetadata: {
+        declarations: [StoryComponent],
+    },
+    template: `
     <spy-story-component></spy-story-component>
 
     <div class="tight-container">

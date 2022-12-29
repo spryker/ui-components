@@ -8,9 +8,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconUserModule])],
+    providers: [provideIcons([IconUserModule])],
 })
 export class IconUserModule {
-  static icon = 'user';
-  static svg = svg;
+    static icon = 'user';
+    static svg = svg;
 }

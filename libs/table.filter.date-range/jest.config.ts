@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'table.filter.date-range',
     preset: '../../jest.preset.js',

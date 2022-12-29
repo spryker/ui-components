@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'datasource',
     preset: '../../jest.preset.js',

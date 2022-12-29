@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'sidebar',
     preset: '../../jest.preset.js',

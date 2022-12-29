@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'data-transformer.date-serialize',
     preset: '../../jest.preset.js',

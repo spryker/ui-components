@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'data-transformer.object-map',
     preset: '../../jest.preset.js',

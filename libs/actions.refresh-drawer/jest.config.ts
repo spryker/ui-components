@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'actions.refresh-drawer',
     preset: '../../jest.preset.js',

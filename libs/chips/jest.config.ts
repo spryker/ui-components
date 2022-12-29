@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'chips',
     preset: '../../jest.preset.js',

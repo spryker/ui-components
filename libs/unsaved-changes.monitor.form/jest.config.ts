@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'unsaved-changes.monitor.form',
     preset: '../../jest.preset.js',

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'cache.static',
     preset: '../../jest.preset.js',

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'ajax-action',
     preset: '../../jest.preset.js',

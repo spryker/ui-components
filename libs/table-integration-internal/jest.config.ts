@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'table-integration-internal',
     preset: '../../jest.preset.js',

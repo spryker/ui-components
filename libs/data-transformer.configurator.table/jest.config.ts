@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'data-transformer.configurator.table',
     preset: '../../jest.preset.js',

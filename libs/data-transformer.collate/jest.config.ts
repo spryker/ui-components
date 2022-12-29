@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'data-transformer.collate',
     preset: '../../jest.preset.js',

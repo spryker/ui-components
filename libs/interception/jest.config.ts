@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'interception',
     preset: '../../jest.preset.js',

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'pagination',
     preset: '../../jest.preset.js',

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'radio',
     preset: '../../jest.preset.js',

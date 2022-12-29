@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'ajax-form',
     preset: '../../jest.preset.js',

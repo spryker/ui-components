@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'actions.refresh-table',
     preset: '../../jest.preset.js',

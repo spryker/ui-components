@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'card',
     preset: '../../jest.preset.js',

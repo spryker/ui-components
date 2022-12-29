@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'table.feature.row-actions',
     preset: '../../jest.preset.js',

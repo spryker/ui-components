@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'label',
     preset: '../../jest.preset.js',

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'checkbox',
     preset: '../../jest.preset.js',

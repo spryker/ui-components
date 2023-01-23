@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'table.filter.tree-select',
     preset: '../../jest.preset.js',

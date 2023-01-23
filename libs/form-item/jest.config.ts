@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'form-item',
     preset: '../../jest.preset.js',

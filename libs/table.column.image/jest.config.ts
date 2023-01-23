@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'table.column.image',
     preset: '../../jest.preset.js',

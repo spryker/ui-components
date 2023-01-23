@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'html-renderer',
     preset: '../../jest.preset.js',

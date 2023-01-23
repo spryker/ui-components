@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'actions.redirect',
     preset: '../../jest.preset.js',

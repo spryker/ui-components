@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'table.feature.editable',
     preset: '../../jest.preset.js',

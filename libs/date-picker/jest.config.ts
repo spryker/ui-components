@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'date-picker',
     preset: '../../jest.preset.js',

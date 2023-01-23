@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'unsaved-changes.guard.drawer',
     preset: '../../jest.preset.js',

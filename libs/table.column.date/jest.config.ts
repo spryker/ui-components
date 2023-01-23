@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'table.column.date',
     preset: '../../jest.preset.js',

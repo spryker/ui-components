@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'data-transformer.chain',
     preset: '../../jest.preset.js',

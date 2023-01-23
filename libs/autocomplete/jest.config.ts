@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'autocomplete',
     preset: '../../jest.preset.js',

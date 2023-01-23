@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'textarea',
     preset: '../../jest.preset.js',

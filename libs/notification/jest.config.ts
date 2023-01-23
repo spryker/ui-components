@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'notification',
     preset: '../../jest.preset.js',

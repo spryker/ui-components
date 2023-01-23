@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'button.action',
     preset: '../../jest.preset.js',

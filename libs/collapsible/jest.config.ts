@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'collapsible',
     preset: '../../jest.preset.js',

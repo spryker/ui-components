@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-rc.0](https://github.com/spryker/ui-components/compare/@spryker/textarea@1.0.0-rc.2...@spryker/textarea@1.0.1-rc.0) (2023-01-23)
+
+**Note:** Version bump only for package @spryker/textarea
+
+# [1.0.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/textarea@1.0.0-rc.1...@spryker/textarea@1.0.0-rc.2) (2023-01-23)
+
+### Bug Fixes
+
+-   updated `ng-zorro-antd` version to 15 ([8fbe152](https://github.com/spryker/ui-components/commit/8fbe1529a99f0b82211e4eb4271b216232a500a9))
+
 # [1.0.0](https://github.com/spryker/ui-components/compare/@spryker/textarea@1.0.0-rc.1...@spryker/textarea@1.0.0) (2022-12-29)
 
 **Note:** Version bump only for package @spryker/textarea

@@ -1,6 +1,6 @@
 {
     "name": "@spryker/table",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "peerDependencies": {
         "@angular/cdk": "^15.0.0",
         "@angular/common": "^15.0.0",
@@ -20,7 +20,7 @@
         "@orchestrator/core": "^2.0.5",
         "@orchestrator/layout": "^2.0.2",
         "ng-dynamic-component": "^10.5.1",
-        "ng-zorro-antd": "^14.1.1",
+        "ng-zorro-antd": "^15.0.3",
         "tslib": "^2.3.1"
     },
     "publishConfig": {

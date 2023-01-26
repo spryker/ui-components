@@ -1,6 +1,6 @@
 {
     "name": "@spryker/checkbox",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "peerDependencies": {
         "@angular/common": "^15.0.0",
         "@angular/core": "^15.0.0",
@@ -9,7 +9,7 @@
         "@spryker/utils": "^1.0.0"
     },
     "dependencies": {
-        "ng-zorro-antd": "^14.1.1",
+        "ng-zorro-antd": "^15.0.3",
         "tslib": "^2.3.1"
     },
     "publishConfig": {

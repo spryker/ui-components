@@ -39,7 +39,7 @@
     <div class="ant-modal-confirm-col">
       <spy-button
         [size]="buttonSize.Small"
-        [variant]="buttonVariant.Critical"
+        [variant]="data?.okButtonVariant ?? buttonVariant.Critical"
         (click)="modalRef.close(true)"
         ><ng-template
           [ngTemplateOutlet]="genericTemplate"

@@ -7,6 +7,7 @@ export * from './lib/to-boolean';
 export * from './lib/join';
 export * from './lib/apply-contexts';
 export * from './lib/context';
+export * from './lib/file-saver';
 export * from './lib/types';
 export * from './lib/json-http-url-encoding-codec';
 export * from './lib/pluck';

@@ -482,6 +482,12 @@
             "path": "./libs/table.feature.batch-actions/tsconfig.spec.json"
         },
         {
+            "path": "./libs/table.feature.data-export/tsconfig.lib.json"
+        },
+        {
+            "path": "./libs/table.feature.data-export/tsconfig.spec.json"
+        },
+        {
             "path": "./libs/table.feature.editable/tsconfig.lib.json"
         },
         {

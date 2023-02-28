@@ -1,0 +1,9 @@
+<ng-container
+    *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { order: '2', flexGrow: '1', textAlign: 'right' }"
+>
+    <span *ngIf="isDataResolved$ | async" class="spy-table-data-export-feature">
+        <spy-button-action [action]="action$ | async" [size]="actionSize" [variant]="actionVariant">
+            {{ actionTitle$ | async }}
+        </spy-button-action>
+    </span>
+</ng-container>

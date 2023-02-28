@@ -617,6 +617,87 @@
             },
             "tags": ["type:service", "pkg:extension"]
         },
+        "actions.table-data-export": {
+            "projectType": "library",
+            "root": "libs/actions.table-data-export",
+            "sourceRoot": "libs/actions.table-data-export/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/actions.table-data-export/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/actions.table-data-export/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/actions.table-data-export/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/actions.table-data-export/jest.config.ts",
+                        "passWithNoTests": true
+                    },
+                    "configurations": {
+                        "ci": {
+                            "ci": true,
+                            "codeCoverage": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/actions.table-data-export/**/*.ts",
+                            "libs/actions.table-data-export/**/*.html"
+                        ]
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "port": 4400,
+                        "configDir": "libs/actions.table-data-export/.storybook",
+                        "browserTarget": "actions.table-data-export:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "outputs": ["{options.outputDir}"],
+                    "options": {
+                        "outputDir": "dist/storybook/actions.table-data-export",
+                        "configDir": "libs/actions.table-data-export/.storybook",
+                        "browserTarget": "actions.table-data-export:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                }
+            },
+            "tags": ["type:service", "pkg:extension"]
+        },
         "ajax-action": {
             "projectType": "library",
             "root": "libs/ajax-action",

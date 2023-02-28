@@ -30,6 +30,7 @@ class MockLocalStoragePersistenceStrategy {
 
 class MockTableDataConfiguratorService {
     readonly config$ = new ReplaySubject<TableDataConfig>(1);
+    update = jest.fn();
 }
 
 @Component({

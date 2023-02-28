@@ -83,7 +83,11 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSe
                 this.isColumnsRetrieved = false;
             }
         }),
-        map(([columns]) => columns),
+        map(([columns]) => {
+            this.dataConfiguratorService?.update({ settings: columns });
+
+            return columns;
+        }),
     );
 
     tableData$ = this.table$.pipe(

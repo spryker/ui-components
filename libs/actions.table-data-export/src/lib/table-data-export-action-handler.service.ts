@@ -64,7 +64,6 @@ export class TableDataExportActionHandlerService implements ActionHandler<unknow
                 : 'text/csv';
 
             return fileSaverService.fileSaver(
-                injector,
                 new Blob([response.body], { type: contentType }),
                 config.fileName || fileName,
             );

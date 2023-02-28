@@ -223,7 +223,7 @@ describe('TableDataExportActionHandlerService', () => {
         htmlResponse.flush(mockResponse);
         serviceObservable$.subscribe();
 
-        expect(fileSaverService.fileSaver).toHaveBeenCalledWith(injector, mockResponse, 'table-data');
+        expect(fileSaverService.fileSaver).toHaveBeenCalledWith(mockResponse, 'table-data');
     });
 
     it('should call `FileSaverService.fileSaver()` with the response object and file name from config', () => {
@@ -237,7 +237,7 @@ describe('TableDataExportActionHandlerService', () => {
         htmlResponse.flush(mockResponse);
         serviceObservable$.subscribe();
 
-        expect(fileSaverService.fileSaver).toHaveBeenCalledWith(injector, mockResponse, mockFileName);
+        expect(fileSaverService.fileSaver).toHaveBeenCalledWith(mockResponse, mockFileName);
     });
 
     it('should return stream that emits when HTTP request finishes', () => {

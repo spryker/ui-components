@@ -11,7 +11,7 @@ import { CollectedTableData, TableDataExportActionConfig } from './types';
     providedIn: 'root',
 })
 export class TableDataExportActionHandlerService implements ActionHandler<unknown, unknown> {
-    protected tableData: CollectedTableData;
+    tableData: CollectedTableData;
     protected defaultFileName = 'table-data';
     protected defaultContentType = 'text/csv';
 

@@ -20,9 +20,7 @@ export class FileSaverService {
         this.windowToken.document.body.appendChild(link);
         link.click();
 
-        setTimeout(() => {
-            this.windowToken.document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        }, 0);
+        this.windowToken.document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     }
 }

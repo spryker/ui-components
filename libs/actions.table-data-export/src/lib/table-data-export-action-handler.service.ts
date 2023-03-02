@@ -11,7 +11,9 @@ import { CollectedTableData, TableDataExportActionConfig } from './types';
     providedIn: 'root',
 })
 export class TableDataExportActionHandlerService implements ActionHandler<unknown, unknown> {
-    tableData: CollectedTableData;
+    protected tableData: CollectedTableData;
+    protected defaultFileName = 'table-data';
+    protected defaultContentType = 'text/csv';
 
     constructor(private http: HttpClient) {}
 
@@ -58,10 +60,10 @@ export class TableDataExportActionHandlerService implements ActionHandler<unknow
         request$.subscribe((response) => {
             const fileName = response.headers.get('content-disposition')
                 ? response.headers.get('content-disposition').split('filename=')[1].slice(1, -1)
-                : 'table-data';
+                : this.defaultFileName;
             const contentType = response.headers.get('content-type')
                 ? response.headers.get('content-type').split(';')[0]
-                : 'text/csv';
+                : this.defaultContentType;
 
             return fileSaverService.fileSaver(
                 new Blob([response.body], { type: contentType }),

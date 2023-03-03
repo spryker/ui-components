@@ -204,7 +204,7 @@ describe('TableDataExportActionHandlerService', () => {
         httpTestingController.expectOne(mockActionsConfig.url);
         serviceObservable$.subscribe();
 
-        expect(service.tableData).toStrictEqual(mockTableData);
+        expect(service['tableData']).toStrictEqual(mockTableData);
     });
 
     it('should process `config.url` via `ContextService.interpolate()`', () => {

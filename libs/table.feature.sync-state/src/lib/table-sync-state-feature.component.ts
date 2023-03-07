@@ -61,6 +61,7 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableS
         const syncStateInitialData = new SyncStateInitialDataStrategy(urlState$);
 
         service.provideInitialDataStrategy(syncStateInitialData);
+        service.triggerInitialData();
 
         this.configToState$ = combineLatest([this.tableId$, service.config$]).pipe(
             tap(([tableId, config]) => this.urlPersistenceStrategy.save(tableId, config)),

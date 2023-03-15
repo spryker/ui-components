@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@1.0.1...@spryker/table@1.0.2-next.0) (2023-03-15)
+
+
+### Bug Fixes
+
+* **table:** fix features loading behavior ([9bc8ed8](https://github.com/spryker/ui-components/commit/9bc8ed81514a61b5ada0d1bfc187293cffc65306))
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/table@1.0.1-rc.0...@spryker/table@1.0.1) (2023-01-24)
 
 **Note:** Version bump only for package @spryker/table

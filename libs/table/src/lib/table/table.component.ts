@@ -33,7 +33,6 @@ import {
     pairwise,
     pluck,
     shareReplay,
-    skip,
     startWith,
     switchMap,
     take,
@@ -190,20 +189,19 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges, Af
 
     configFeatures$ = this.featureRefs$.pipe(
         map((featureRefs) => featureRefs.map((featureRef) => featureRef.instance)),
-        startWith([]),
         shareReplaySafe(),
     );
 
-    projectedFeatures$ = new ReplaySubject<TableFeatureComponent[]>();
+    projectedFeatures$ = new ReplaySubject<TableFeatureComponent[]>(1);
     private projectedFeaturesEmitted = false;
 
-    features$ = combineLatest([this.configFeatures$, this.projectedFeatures$.pipe(startWith([]))]).pipe(
+    features$ = combineLatest([this.configFeatures$, this.projectedFeatures$]).pipe(
         map((allFeatures) => allFeatures.flat()),
         tap((features) => features.forEach((feature) => this.initFeature(feature))),
         shareReplaySafe(),
     );
 
-    private featuresLoaded$ = this.features$.pipe(delay(0), skip(1), take(1));
+    private featuresLoaded$ = this.features$.pipe(delay(0), take(1));
 
     featureHeaderContext$ = this.tableFeaturesRendererService.chainFeatureContexts(
         this.features$,

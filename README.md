@@ -216,18 +216,12 @@ nx g @nrwl/storybook:configuration --name=<lib-name>
 _NOTE:_ Do the following updates after command above:
 
 -   In `angular.json`:
-    -   add the following options to the `<lib-name>.architect.storybook.options`:
+    -   add the following options to `<lib-name>.architect.storybook.options` and `<lib-name>.architect.build-storybook.options`:
     ```json
         ...,
         "compodoc": true,
         "compodocArgs": ["-e", "json", "-d", "dist"],
         "styles": [".storybook/styles.less"]
-    ```
-    -   add the following options to the `<lib-name>.architect.build-storybook.options`:
-    ```json
-        ...,
-        "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "dist"]
     ```
 -   In `<lib-name>/.storybook/tsconfig.json`:
     -   replace `"include"` array with (add `"../../locale/data/**/src/index.ts"` to array if using localization):

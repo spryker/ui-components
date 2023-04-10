@@ -223,13 +223,11 @@ _NOTE:_ Do the following updates after command above:
         "compodocArgs": ["-e", "json", "-d", "dist"],
         "styles": [".storybook/styles.less"]
     ```
-    
 -   In `<lib-name>/.storybook/tsconfig.json`:
     -   replace `"include"` array with (add `"../../locale/data/**/src/index.ts"` to array if using localization):
     ```json
         "include": ["../src/**/*", "*.js"]
     ```
-    
 -   Add `import '../../../.storybook/preview';` to the `<lib-name>/.storybook/preview.js`
 
 ### Library Stories

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3-next.0](https://github.com/spryker/ui-components/compare/@spryker/table@1.0.2...@spryker/table@1.0.3-next.0) (2023-04-14)
+
+
+### Bug Fixes
+
+* **table:** fix `typeOptions` mapping in column renderer ([3e04763](https://github.com/spryker/ui-components/commit/3e04763a78d8034809271cd7c5c576186e3b8e71))
+
+
+
+
+
 ## [1.0.2](https://github.com/spryker/ui-components/compare/@spryker/table@1.0.2-next.0...@spryker/table@1.0.2) (2023-03-17)
 
 **Note:** Version bump only for package @spryker/table

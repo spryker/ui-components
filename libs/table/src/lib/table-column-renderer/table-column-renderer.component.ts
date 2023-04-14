@@ -129,15 +129,14 @@ export class TableColumnRendererComponent implements OnChanges {
 
         if (config.typeOptionsMappings) {
             typeOptions = Object.entries(config.typeOptionsMappings).reduce((mapOptions, [mapKey, mapOption]) => {
-                const matchedValue = mapOption[String(this.value)];
-
-                if (matchedValue) {
-                    this.contextService.interpolate(matchedValue, this.fullContext as any);
-
-                    return { ...mapOptions, [mapKey]: matchedValue };
+                if (!Object.prototype.hasOwnProperty.call(mapOption, String(this.value))) {
+                    return mapOptions;
                 }
 
-                return mapOptions;
+                const matchedValue = mapOption[String(this.value)];
+                const interpolatedValue = this.contextService.interpolate(matchedValue, this.fullContext as any);
+
+                return { ...mapOptions, [mapKey]: interpolatedValue };
             }, typeOptions);
         }
 

@@ -64,8 +64,8 @@
     },
     "private": true,
     "engines": {
-        "node": ">=16.0.0",
-        "npm": ">=8.0.0"
+        "node": ">=18.0.0",
+        "npm": ">=9.0.0"
     },
     "dependencies": {
         "@angular/animations": "^15.0.0",
@@ -142,7 +142,6 @@
         "dotenv": "^10.0.0",
         "eslint": "^8.15.0",
         "eslint-config-prettier": "^8.1.0",
-        "fast-glob": "^3.1.1",
         "firebase-tools": "^11.16.1",
         "globby": "^11.0.0",
         "husky": "^4.2.1",

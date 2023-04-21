@@ -1,6 +1,6 @@
 const promisify = require('util').promisify;
 const copyfiles = require('copyfiles');
-const glob = require('fast-glob');
+const globby = require('globby');
 const copyfilesAsync = promisify(copyfiles);
 
 const VERBOSE = !!process.env.VERBOSE;
@@ -22,7 +22,7 @@ async function main(files) {
 
     log(`Copying files ${sources.join(', ')} to ${destGlob}...`);
 
-    const destinations = await glob(destGlob, { onlyDirectories: true });
+    const destinations = await globby(destGlob, { onlyDirectories: true, expandDirectories: false });
 
     if (destinations.length === 0) {
         throw new NoDestError();

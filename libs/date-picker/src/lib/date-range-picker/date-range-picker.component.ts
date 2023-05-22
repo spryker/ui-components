@@ -3,6 +3,7 @@ import {
     Component,
     EventEmitter,
     Input,
+    OnInit,
     Output,
     ViewChild,
     ViewEncapsulation,
@@ -19,7 +20,7 @@ import { DateRangeValueInput } from './types';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateRangePickerComponent {
+export class DateRangePickerComponent implements OnInit {
     private static HoursRange = [...Array(24).keys()];
     private static MinutesRange = [...Array(60).keys()];
 
@@ -40,6 +41,10 @@ export class DateRangePickerComponent {
 
     timeTo = this.enabledTimeTo.bind(this);
     timeFrom = this.enabledTimeFrom.bind(this);
+
+    ngOnInit(): void {
+        this.normalizeDates(this.dates);
+    }
 
     enabledTimeFrom(current: Date) {
         const { hours, minutes } = this.getHoursAndMinutes(current, this.dates.to);
@@ -88,9 +93,7 @@ export class DateRangePickerComponent {
     }
 
     datesChangeHandler(dates: DateRangeValueInput): void {
-        dates.from = this.normalizeDate(dates.from, 0, 0, 0);
-        dates.to = this.normalizeDate(dates.to, 23, 59, 59);
-
+        this.normalizeDates(dates);
         this.datesChange.emit(dates);
     }
 
@@ -114,6 +117,11 @@ export class DateRangePickerComponent {
         copyDate.setHours(0, 0, 0, 0);
 
         return copyDate.getTime();
+    }
+
+    private normalizeDates(dates: DateRangeValueInput): void {
+        dates.from = this.normalizeDate(dates.from, 0, 0, 0);
+        dates.to = this.normalizeDate(dates.to, 23, 59, 59);
     }
 
     private normalizeDate(date: Date | string | undefined, hour: number, min: number, sec: number): Date | undefined {

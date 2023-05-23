@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/date-picker@1.0.1...@spryker/date-picker@1.0.2-next.0) (2023-05-23)
+
+
+### Bug Fixes
+
+* **date-picker:** adjust `date-range-picker` by normalizing dates on component init ([dc2fbec](https://github.com/spryker/ui-components/commit/dc2fbecf14ab4698c2baf1ac31b445d689ae27d9))
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/date-picker@1.0.1-rc.0...@spryker/date-picker@1.0.1) (2023-01-24)
 
 **Note:** Version bump only for package @spryker/date-picker

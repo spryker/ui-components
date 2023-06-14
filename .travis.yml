@@ -74,60 +74,70 @@ jobs:
               - git checkout $TRAVIS_BRANCH
           deploy:
               - provider: script
+                edge: true
                 script: npm run release
                 on:
                     tags: false
                     all_branches: true
                     condition: '$TRAVIS_BRANCH =~ ^(master)$'
               - provider: script
+                edge: true
                 script: npm run release from-package
                 on:
                     tags: false
                     all_branches: true
                     condition: '$TRAVIS_BRANCH =~ ^(republish/master)$'
               - provider: script
+                edge: true
                 script: npm run release-next
                 on:
                     tags: false
                     all_branches: true
                     condition: '$TRAVIS_BRANCH =~ ^(next)$'
               - provider: script
+                edge: true
                 script: npm run release-next from-package
                 on:
                     tags: false
                     all_branches: true
                     condition: '$TRAVIS_BRANCH =~ ^(republish/next)$'
               - provider: script
+                edge: true
                 script: npm run release-tag
                 on:
                     tags: false
                     all_branches: true
                     condition: '$TRAVIS_BRANCH =~ ^(beta)$'
               - provider: script
+                edge: true
                 script: npm run release-tag from-package
                 on:
                     tags: false
                     all_branches: true
                     condition: '$TRAVIS_BRANCH =~ ^(republish/beta)$'
               - provider: script
+                edge: true
                 script: npm run release-tag
                 on:
                     tags: false
                     all_branches: true
                     condition: '$TRAVIS_BRANCH =~ ^(alpha)$'
               - provider: script
+                edge: true
                 script: npm run release-tag from-package
                 on:
                     tags: false
                     all_branches: true
                     condition: '$TRAVIS_BRANCH =~ ^(republish/alpha)$'
               - provider: script
+                edge: true
                 script: npm run release-tag
                 on:
                     tags: false
                     all_branches: true
                     condition: '$TRAVIS_BRANCH =~ ^(rc)$'
               - provider: script
+                edge: true
                 script: npm run release-tag from-package
                 on:
                     tags: false

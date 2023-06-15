@@ -13,11 +13,13 @@ export type DrawerActionTypesDeclaration = RegistryDeclaration<DrawerActionCompo
 
 export interface DrawerActionConfigComponent extends ActionConfig {
     component: DrawerActionComponentType | Type<unknown>;
+    id?: string;
     options?: Partial<DrawerOptionsComponent>;
 }
 
 export interface DrawerActionConfigTemplate extends ActionConfig {
     template: TemplateRef<DrawerTemplateContext>;
+    id?: string;
     options?: Partial<DrawerOptionsTemplate>;
 }
 

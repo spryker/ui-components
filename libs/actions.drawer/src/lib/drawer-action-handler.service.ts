@@ -1,14 +1,8 @@
 import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { ActionHandler } from '@spryker/actions';
-import {
-    DrawerRef,
-    DrawerService,
-    DrawerOptionsComponent,
-    DrawerOptionsTemplate,
-    DrawerOptions,
-} from '@spryker/drawer';
+import { DrawerRef, DrawerService, DrawerOptionsComponent, DrawerOptionsTemplate } from '@spryker/drawer';
 import { ContextService, InjectionTokenType } from '@spryker/utils';
-import { Observable } from 'rxjs';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 import {
     DrawerActionComponentsRegistry,
     DrawerActionComponentType,
@@ -25,6 +19,7 @@ import { DrawerActionComponentTypesToken } from './token';
 export class DrawerActionHandlerService implements ActionHandler<unknown, DrawerRef<unknown>> {
     private drawerActionHandlerTypes: DrawerActionTypesDeclaration =
         this.drawerActionHandlers?.reduce((components, component) => ({ ...components, ...component }), {}) ?? {};
+    private drawerIdsMap = new Map<string, DrawerRef>();
 
     constructor(
         private drawerService: DrawerService,
@@ -37,19 +32,62 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
         return new Observable((subscriber) => {
             const contextService = injector.get(ContextService);
             const drawerData = { ...config } as DrawerActionConfig;
+            const drawerSubscription = new Subscription();
+            let isDrawerIdExist = this.drawerIdsMap.has(drawerData.id);
 
             drawerData.options = { ...drawerData.options };
+            drawerData.id = drawerData.id ?? 'default';
 
-            const drawerRef = drawerData.component
-                ? this.drawerDataComponent(drawerData as DrawerActionConfigComponent, contextService, context, injector)
-                : this.drawerDataTemplate(drawerData as DrawerActionConfigTemplate, contextService, context);
+            if (isDrawerIdExist) {
+                drawerSubscription.add(
+                    this.drawerIdsMap
+                        .get(drawerData.id)
+                        .close()
+                        .subscribe(() => {
+                            this.setDrawerData(
+                                drawerData,
+                                contextService,
+                                context,
+                                injector,
+                                subscriber,
+                                drawerSubscription,
+                            );
+                        }),
+                );
+            }
 
-            subscriber.next(drawerRef as DrawerRef<C, DrawerOptions<C>>);
+            if (!isDrawerIdExist) {
+                this.setDrawerData(drawerData, contextService, context, injector, subscriber, drawerSubscription);
+            }
 
             return () => {
-                drawerRef.close();
+                isDrawerIdExist = this.drawerIdsMap.has(drawerData.id);
+
+                if (isDrawerIdExist) {
+                    this.drawerIdsMap
+                        .get(drawerData.id)
+                        .afterClosed()
+                        .subscribe(() => drawerSubscription.unsubscribe());
+                }
             };
         });
+    }
+
+    private setDrawerData(
+        drawerData: DrawerActionConfig,
+        contextService: ContextService,
+        context: any,
+        injector: Injector,
+        subscriber: Subscriber<DrawerRef>,
+        drawerSubscription: Subscription,
+    ): void {
+        const drawerRef = drawerData.component
+            ? this.drawerDataComponent(drawerData as DrawerActionConfigComponent, contextService, context, injector)
+            : this.drawerDataTemplate(drawerData as DrawerActionConfigTemplate, contextService, context);
+
+        this.drawerIdsMap.set(drawerData.id, drawerRef);
+        subscriber.next(drawerRef as DrawerRef);
+        drawerSubscription.add(drawerRef.afterClosed().subscribe(() => this.drawerIdsMap.clear()));
     }
 
     private drawerDataComponent(

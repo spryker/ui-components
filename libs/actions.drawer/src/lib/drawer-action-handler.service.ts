@@ -33,12 +33,12 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
             const contextService = injector.get(ContextService);
             const drawerData = { ...config } as DrawerActionConfig;
             const drawerSubscription = new Subscription();
-            let isDrawerIdExist = this.drawerIdsMap.has(drawerData.id);
+            let hasDrawerId = this.drawerIdsMap.has(drawerData.id);
 
             drawerData.options = { ...drawerData.options };
             drawerData.id = drawerData.id ?? 'default';
 
-            if (isDrawerIdExist) {
+            if (hasDrawerId) {
                 drawerSubscription.add(
                     this.drawerIdsMap
                         .get(drawerData.id)
@@ -56,14 +56,14 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
                 );
             }
 
-            if (!isDrawerIdExist) {
+            if (!hasDrawerId) {
                 this.setDrawerData(drawerData, contextService, context, injector, subscriber, drawerSubscription);
             }
 
             return () => {
-                isDrawerIdExist = this.drawerIdsMap.has(drawerData.id);
+                hasDrawerId = this.drawerIdsMap.has(drawerData.id);
 
-                if (isDrawerIdExist) {
+                if (hasDrawerId) {
                     this.drawerIdsMap
                         .get(drawerData.id)
                         .afterClosed()

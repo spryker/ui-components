@@ -194,7 +194,10 @@ export class SelectComponent
             ) ?? [];
 
         this.allValues = this.mappedOptions.map((option) => option.value);
-        this.disabled = !this.mappedOptions.length && this.disabledWhenNoOptions;
+
+        if (this.disabledWhenNoOptions) {
+            this.disabled = !this.mappedOptions.length;
+        }
 
         this.updateValue();
     }

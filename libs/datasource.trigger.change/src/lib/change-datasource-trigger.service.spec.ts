@@ -26,8 +26,8 @@ describe('ChangeDatasourceTriggerService', () => {
                 MockChangeDatasourceTrigger,
                 {
                     provide: ChangeDatasourceTriggerService,
-                    useExisting: MockChangeDatasourceTrigger
-                }
+                    useExisting: MockChangeDatasourceTrigger,
+                },
             ],
             schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },

@@ -26,8 +26,8 @@ describe('InputDatasourceTriggerService', () => {
                 MockInputDatasourceTrigger,
                 {
                     provide: InputDatasourceTriggerService,
-                    useExisting: MockInputDatasourceTrigger
-                }
+                    useExisting: MockInputDatasourceTrigger,
+                },
             ],
             schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
@@ -39,7 +39,7 @@ describe('InputDatasourceTriggerService', () => {
     it('should return trigger element value from `subscribeToEvent()` method', () => {
         const triggerElement = document.createElement('input');
 
-        service.subscribeToEvent.mockReturnValue(of(mockValue))
+        service.subscribeToEvent.mockReturnValue(of(mockValue));
 
         const serviceObservable$ = service.subscribeToEvent(mockConfig, triggerElement);
 

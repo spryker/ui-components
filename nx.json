@@ -8,7 +8,7 @@
             "runner": "@nrwl/nx-cloud",
             "options": {
                 "accessToken": "MmFmYTcwM2MtNDI4Ny00ZDVkLTg1YjktYzZiYjI0ZWVkODU1fHJlYWQtd3JpdGU=",
-                "cacheableOperations": ["build", "test", "lint", "e2e", "build-storybook"],
+                "cacheableOperations": ["build", "test", "e2e", "build-storybook"],
                 "canTrackAnalytics": false,
                 "showUsageWarnings": true,
                 "parallel": 4

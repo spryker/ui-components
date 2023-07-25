@@ -2129,6 +2129,7 @@
                     }
                 }
             },
+            "implicitDependencies": ["!select", "!datasource.trigger.input"],
             "tags": ["type:service", "pkg:extension"]
         },
         "datasource.http": {

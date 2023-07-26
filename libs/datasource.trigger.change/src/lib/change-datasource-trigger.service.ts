@@ -15,10 +15,7 @@ export class ChangeDatasourceTriggerService implements DatasourceTriggerEvent {
         const context: Record<string, unknown> = {};
 
         config = { ...config };
-
-        if (!('minCharacters' in config)) {
-            config.minCharacters = this.minCharacters;
-        }
+        config.minCharacters ??= this.minCharacters;
 
         return fromEvent(triggerElement, config.event).pipe(
             map((event: any) => {

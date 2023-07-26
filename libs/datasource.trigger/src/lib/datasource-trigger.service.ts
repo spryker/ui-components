@@ -32,10 +32,7 @@ export class DatasourceTriggerService implements Datasource {
         const triggerElement$ = injector.get(DatasourceTriggerElement).getTriggerElement();
 
         config = { ...config };
-
-        if (!('debounce' in config)) {
-            config.debounce = this.debounce;
-        }
+        config.debounce ??= this.debounce;
 
         if (!this.isEventRegisteredType(config.event)) {
             throw Error(`DatasourceTriggerService: Unknown event type ${config.event}`);

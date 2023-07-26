@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DatasourceTriggerConfig, DatasourceTriggerEvent } from '@spryker/datasource.trigger';
-import { debounceTime, fromEvent, map, Observable } from 'rxjs';
+import { debounceTime, EMPTY, fromEvent, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -12,22 +12,15 @@ export class InputDatasourceTriggerService implements DatasourceTriggerEvent {
         config: DatasourceTriggerConfig,
         triggerElement: HTMLElement,
     ): Observable<Record<string, unknown>> {
-        const context: Record<string, unknown> = {};
-
-        config = { ...config };
-        config.minCharacters ??= this.minCharacters;
-
         return fromEvent(triggerElement, config.event).pipe(
-            map((event: any) => {
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                const isValid = event.target.value.length >= config.minCharacters!;
-
-                context['value'] = isValid ? event.target.value : '';
-
-                return context;
-            }),
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             debounceTime(config.debounce!),
+            switchMap((event) => {
+                const targetValue = (event.target as any).value;
+                const isValid = targetValue.length >= (config.minCharacters ?? this.minCharacters);
+
+                return isValid ? of({ value: targetValue }) : EMPTY;
+            }),
         );
     }
 }

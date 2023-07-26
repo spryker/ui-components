@@ -41,20 +41,10 @@ export class DatasourceTriggerService implements Datasource {
         const eventService: DatasourceTriggerEvent = injector.get(this.events[config.event]);
 
         return triggerElement$.pipe(
-            switchMap((trigger) => {
-                if (trigger) {
-                    return eventService.subscribeToEvent(config, trigger);
-                }
-
-                return EMPTY;
-            }),
-            switchMap((context) => {
-                if ((context as any).value) {
-                    return this.datasourceService.resolve(injector, config.datasource, context);
-                }
-
-                return EMPTY;
-            }),
+            switchMap((trigger) => (trigger ? eventService.subscribeToEvent(config, trigger) : EMPTY)),
+            switchMap((context) =>
+                (context as any).value ? this.datasourceService.resolve(injector, config.datasource, context) : EMPTY,
+            ),
         );
     }
 

@@ -43,7 +43,9 @@ export class DatasourceTriggerService implements Datasource {
         return triggerElement$.pipe(
             switchMap((trigger) => (trigger ? eventService.subscribeToEvent(config, trigger) : EMPTY)),
             switchMap((context) =>
-                (context as any).value ? this.datasourceService.resolve(injector, config.datasource, context) : EMPTY,
+                (context as Record<string, unknown>).value
+                    ? this.datasourceService.resolve(injector, config.datasource, context)
+                    : EMPTY,
             ),
         );
     }

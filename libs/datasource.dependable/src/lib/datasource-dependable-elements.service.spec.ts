@@ -63,18 +63,27 @@ describe('DatasourceDependableElementsService', () => {
         const callback = jest.fn();
         const secondCallback = jest.fn();
 
+        service.setElement({ mockId: testComponent });
+        service.setElement({ mockSecondId: testSecondComponent });
+
         const serviceObservable$ = service.resolve(mockId);
 
         serviceObservable$.subscribe(callback);
-        service.setElement({ mockId: testComponent });
 
         expect(callback).toHaveBeenCalledWith(testComponent);
 
         const serviceSecondObservable$ = service.resolve(mockSecondId);
 
         serviceSecondObservable$.subscribe(secondCallback);
-        service.setElement({ mockSecondId: testSecondComponent });
 
         expect(secondCallback).toHaveBeenCalledWith(testSecondComponent);
+
+        service.elements$.subscribe((elements) => {
+            for (const element of Object.values(elements)) {
+                expect(element).toBeInstanceOf(DatasourceDependableElement);
+            }
+
+            expect(Object.values(elements).length).toBe(2);
+        });
     });
 });

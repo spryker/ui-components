@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, skip } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { DatasourceDependableElement, DatasourceDependableElementsConfig } from './types';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class DatasourceDependableElementsService {
 
     resolve(id: string): Observable<DatasourceDependableElement> {
         return this.elements$.pipe(
-            skip(1),
+            filter((elements) => Boolean(elements[id])),
             map((elements) => elements[id]),
         );
     }

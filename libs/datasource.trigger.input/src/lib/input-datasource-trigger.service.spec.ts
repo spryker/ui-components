@@ -35,7 +35,7 @@ describe('InputDatasourceTriggerService', () => {
         expect(callback).toHaveBeenCalledWith({ value: mockValue });
     });
 
-    it('should not return value if it`s length less then `minCharacters` (`2` - by default)', () => {
+    it('should return a value only if the length is at least `minCharacters` (`2` - by default)', () => {
         const mockValue = '1';
         const triggerElement = document.createElement('input');
         const serviceObservable$ = service.subscribeToEvent(mockConfig, triggerElement);

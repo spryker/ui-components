@@ -17,9 +17,7 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { DatasourceTriggerElement } from '@spryker/datasource.trigger';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { DatasourceDependableElement } from '@spryker/datasource.dependable';
 import { IconArrowDownModule, IconCheckModule, IconRemoveModule } from '@spryker/icon/icons';
 import { I18nService } from '@spryker/locale';
@@ -76,6 +74,8 @@ export class SelectComponent
     arrowDownIcon = IconArrowDownModule.icon;
     removeIcon = IconRemoveModule.icon;
 
+    inputEvent = new Event('input', { bubbles: true });
+    changeEvent = new Event('change', { bubbles: true });
     allValues: SelectValue[] = [];
     mappedOptions: SelectOptionItem[] = [];
     mappedValue?: SelectValueSelected;
@@ -144,7 +144,7 @@ export class SelectComponent
         return this.triggerElement$;
     }
 
-    getValueChanges(): Observable<unknown> {
+    getValueChanges(): Observable<SelectValueSelected> {
         return this.mappedValue$;
     }
 
@@ -152,12 +152,15 @@ export class SelectComponent
         if (Array.isArray(value) && this.isSelectAllAction(value)) {
             value = this.getValueArrayForSelectAllAction(value);
         }
-        const changeEvent = new Event('change', { bubbles: true });
 
         this.updateTitlesArrayForSelectedValues(value);
         this.mappedValue = value;
         this.valueChange.emit(value);
-        this.selectRef?.nativeElement.dispatchEvent(changeEvent);
+        // FIXME: This is a workaround for the issue with the native select value emits the previous value
+        setTimeout(() => {
+            this.selectRef?.nativeElement.dispatchEvent(this.inputEvent);
+            this.selectRef?.nativeElement.dispatchEvent(this.changeEvent);
+        });
         this.mappedValue$.next(this.mappedValue);
     }
 

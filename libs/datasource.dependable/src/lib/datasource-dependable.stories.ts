@@ -41,6 +41,8 @@ export default {
         datasource: {
             type: 'trigger',
             event: 'input',
+            debounce: 400,
+            minCharacters: 2,
             datasource: {
                 type: 'http',
                 url: '/data-request',

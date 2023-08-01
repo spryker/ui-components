@@ -1,7 +1,7 @@
 import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { Datasource, DatasourceService } from '@spryker/datasource';
 import { InjectionTokenType } from '@spryker/utils';
-import { EMPTY, Observable, switchMap } from 'rxjs';
+import { debounceTime, EMPTY, Observable, switchMap } from 'rxjs';
 import { DatasourceEventTypesToken } from './tokens';
 import {
     DatasourceTriggerConfig,
@@ -31,10 +31,7 @@ export class DatasourceTriggerService implements Datasource {
     resolve(injector: Injector, config: DatasourceTriggerConfig, context?: unknown): Observable<unknown> {
         const triggerElement$ = injector.get(DatasourceTriggerElement).getTriggerElement();
 
-        config = { ...config };
-        config.debounce ??= this.debounce;
-
-        if (!this.isEventRegisteredType(config.event)) {
+        if (!this.isEventTypeRegistered(config.event)) {
             throw Error(`DatasourceTriggerService: Unknown event type ${config.event}`);
         }
 
@@ -42,6 +39,7 @@ export class DatasourceTriggerService implements Datasource {
 
         return triggerElement$.pipe(
             switchMap((trigger) => (trigger ? eventService.subscribeToEvent(config, trigger) : EMPTY)),
+            debounceTime(config.debounce ?? this.debounce),
             switchMap((context) =>
                 (context as Record<string, unknown>).value
                     ? this.datasourceService.resolve(injector, config.datasource, context)
@@ -50,7 +48,7 @@ export class DatasourceTriggerService implements Datasource {
         );
     }
 
-    private isEventRegisteredType(
+    private isEventTypeRegistered(
         type: DatasourceTriggerEventRegistryType | string,
     ): type is keyof DatasourceTriggerEventRegistry {
         return type in this.events;

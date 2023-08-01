@@ -1,9 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 import { InputDatasourceTriggerService } from './input-datasource-trigger.service';
 
-const mockValue = 'mockValue';
 const mockConfig = {
     type: 'trigger',
     event: 'input',
@@ -11,40 +9,50 @@ const mockConfig = {
         type: 'test',
     },
 };
-const callback = jest.fn();
-
-class MockInputDatasourceTrigger {
-    subscribeToEvent = jest.fn();
-}
 
 describe('InputDatasourceTriggerService', () => {
-    let service: MockInputDatasourceTrigger;
+    let service: InputDatasourceTriggerService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                MockInputDatasourceTrigger,
-                {
-                    provide: InputDatasourceTriggerService,
-                    useExisting: MockInputDatasourceTrigger,
-                },
-            ],
             schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
         });
 
-        service = TestBed.inject(MockInputDatasourceTrigger);
+        service = TestBed.inject(InputDatasourceTriggerService);
     });
 
     it('should return trigger element value from `subscribeToEvent()` method', () => {
+        const mockValue = 'mockValue';
         const triggerElement = document.createElement('input');
-
-        service.subscribeToEvent.mockReturnValue(of(mockValue));
-
         const serviceObservable$ = service.subscribeToEvent(mockConfig, triggerElement);
+        const callback = jest.fn();
 
+        triggerElement.value = mockValue;
         serviceObservable$.subscribe(callback);
+        triggerElement.dispatchEvent(new Event(mockConfig.event));
 
-        expect(callback).toHaveBeenCalledWith(mockValue);
+        expect(callback).toHaveBeenCalledWith({ value: mockValue });
+    });
+
+    it('should not return value if it`s length less then `minCharacters` (`2` - by default)', () => {
+        const mockValue = '1';
+        const triggerElement = document.createElement('input');
+        const serviceObservable$ = service.subscribeToEvent(mockConfig, triggerElement);
+        const callback = jest.fn();
+
+        triggerElement.value = mockValue;
+        serviceObservable$.subscribe(callback);
+        triggerElement.dispatchEvent(new Event(mockConfig.event));
+
+        expect(callback).not.toHaveBeenCalled();
+
+        const updatedMockConfig = { ...mockConfig, minCharacters: 1 };
+        const updatedServiceObservable$ = service.subscribeToEvent(updatedMockConfig, triggerElement);
+
+        updatedServiceObservable$.subscribe(callback);
+        triggerElement.dispatchEvent(new Event(mockConfig.event));
+
+        expect(callback).toHaveBeenCalledWith({ value: mockValue });
     });
 });

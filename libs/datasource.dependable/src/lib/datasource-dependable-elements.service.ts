@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, map, Observable, skip } from 'rxjs';
 import { DatasourceDependableElement, DatasourceDependableElementsConfig } from './types';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DatasourceDependableElementsService {
-    elements$ = new ReplaySubject<DatasourceDependableElementsConfig>(1);
+    elements$ = new BehaviorSubject<DatasourceDependableElementsConfig>({});
 
     resolve(id: string): Observable<DatasourceDependableElement> {
-        return this.elements$.pipe(map((elements) => elements[id]));
+        return this.elements$.pipe(
+            skip(1),
+            map((elements) => elements[id]),
+        );
     }
 
-    getElements(elements: DatasourceDependableElementsConfig): void {
-        this.elements$.next(elements);
+    setElement(element: DatasourceDependableElementsConfig): void {
+        this.elements$.next({ ...this.elements$.getValue(), ...element });
     }
 }

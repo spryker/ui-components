@@ -10,7 +10,7 @@ import { DatasourceDependableElement } from './types';
 const mockId = 'mockId';
 
 class MockDatasourceDependableElements {
-    getElements = jest.fn();
+    setElement = jest.fn();
 }
 
 @Component({
@@ -68,7 +68,7 @@ describe('DatasourceDependableComponent', () => {
         const host = await createComponentWrapper(createComponent, { id: mockId });
         const dependableComponent = host.queryCss('spy-datasource-dependable');
 
-        expect(dependableComponent?.attributes['ng-reflect-id']).toBe(mockId);
+        expect(dependableComponent.attributes.id).toBe(mockId);
     });
 
     it('should render projected content', async () => {
@@ -78,10 +78,10 @@ describe('DatasourceDependableComponent', () => {
         expect(childComponent).toBeTruthy();
     });
 
-    it('should call `DatasourceDependableElementsService.getElements()` method with the proper id and component instance', async () => {
+    it('should call `DatasourceDependableElementsService.setElement()` method with id and component instance', async () => {
         const host = await createComponentWrapper(createComponent, { id: mockId });
         const childComponent = host.queryCss('spy-test-component').componentInstance;
 
-        expect(service.getElements).toHaveBeenCalledWith({ mockId: childComponent });
+        expect(service.setElement).toHaveBeenCalledWith({ mockId: childComponent });
     });
 });

@@ -2130,7 +2130,7 @@
                 }
             },
             "implicitDependencies": ["!select", "!datasource.trigger.input"],
-            "tags": ["type:service", "pkg:extension"]
+            "tags": ["type:service", "pkg:primary"]
         },
         "datasource.http": {
             "projectType": "library",
@@ -2362,7 +2362,7 @@
                     }
                 }
             },
-            "tags": ["type:service", "pkg:extension"]
+            "tags": ["type:service", "pkg:primary"]
         },
         "datasource.trigger.change": {
             "projectType": "library",

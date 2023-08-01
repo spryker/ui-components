@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     ContentChild,
+    HostBinding,
     Input,
     ViewEncapsulation,
 } from '@angular/core';
@@ -17,11 +18,11 @@ import { DatasourceDependableElement } from './types';
 })
 export class DatasourceDependableComponent implements AfterContentInit {
     @ContentChild(DatasourceDependableElement) dependableElement!: DatasourceDependableElement;
-    @Input() id = '';
+    @Input() @HostBinding('attr.id') id = '';
 
     constructor(private datasourceDependableElementsService: DatasourceDependableElementsService) {}
 
     ngAfterContentInit(): void {
-        this.datasourceDependableElementsService.getElements({ [this.id]: this.dependableElement });
+        this.datasourceDependableElementsService.setElement({ [this.id]: this.dependableElement });
     }
 }

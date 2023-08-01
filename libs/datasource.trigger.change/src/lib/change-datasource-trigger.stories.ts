@@ -1,8 +1,9 @@
-import { Meta } from '@storybook/angular';
-import { Component, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta } from '@storybook/angular';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { InputModule } from '@spryker/input';
+import { SelectComponent, SelectModule } from '@spryker/select';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceHttpService } from '@spryker/datasource.http';
 import {
@@ -13,6 +14,20 @@ import {
 import { Observable, of, ReplaySubject } from 'rxjs';
 import { ChangeDatasourceTriggerService } from './change-datasource-trigger.service';
 
+const mockOptions = [
+    {
+        title: 'title1',
+        value: 'value1',
+    },
+    {
+        title: 'title2',
+        value: 'value2',
+    },
+    {
+        title: 'title3',
+        value: 'value3',
+    },
+];
 const mockResponseData = {
     id: 1,
     title: 'json-server',
@@ -26,6 +41,7 @@ export default {
         datasource: {
             type: 'trigger',
             event: 'change',
+            debounce: 400,
             datasource: {
                 type: 'http',
                 url: '/data-request',
@@ -37,16 +53,24 @@ export default {
 @Component({
     selector: 'spy-test',
     template: `
-        <label>Start typing and click outside to fire "change" event</label>
-        <spy-input [placeholder]="placeholder" class="test-input"></spy-input>
+        <div>Choose an option to fire "change" event</div>
+        <br />
+        <spy-select #selectComponent [options]="options"></spy-select>
         <br />
         Example Response Data:
         <br />
         <div>{{ datasourceData | async | json }}</div>
     `,
+    providers: [
+        {
+            provide: DatasourceTriggerElement,
+            useExisting: TestComponent,
+        },
+    ],
 })
-class TestComponent implements DatasourceTriggerElement, OnInit {
-    @Input() placeholder = '';
+class TestComponent implements DatasourceTriggerElement, OnInit, AfterViewInit {
+    @ViewChild('selectComponent', { static: true }) selectComponent: SelectComponent;
+    @Input() options: any;
     @Input() datasource: any;
 
     datasourceData = of('');
@@ -58,9 +82,11 @@ class TestComponent implements DatasourceTriggerElement, OnInit {
         this.datasourceData = this.datasourceTriggerService.resolve(this.injector, this.datasource) as any;
     }
 
-    getTriggerElement(): Observable<HTMLElement> {
-        this.triggerElement$.next(document.querySelector('.test-input'));
+    ngAfterViewInit(): void {
+        this.triggerElement$.next(this.selectComponent.selectRef.nativeElement);
+    }
 
+    getTriggerElement(): Observable<HTMLElement> {
         return this.triggerElement$;
     }
 }
@@ -68,17 +94,18 @@ class TestComponent implements DatasourceTriggerElement, OnInit {
 export const primary = (args: any) => ({
     props: {
         ...args,
-        placeholder: 'Start typing...',
         mockHttp: setMockHttp([
             {
                 url: '/data-request',
                 data: mockResponseData,
             },
         ]),
+        options: mockOptions,
     },
     moduleMetadata: {
         imports: [
-            InputModule,
+            BrowserAnimationsModule,
+            SelectModule,
             HttpClientTestingModule,
             MockHttpModule,
             DatasourceModule.withDatasources({
@@ -99,6 +126,6 @@ export const primary = (args: any) => ({
         ],
     },
     template: `
-        <spy-test [placeholder]="placeholder" [datasource]="datasource" [mockHttp]="mockHttp"></spy-test>
+        <spy-test [options]="options" [datasource]="datasource" [mockHttp]="mockHttp"></spy-test>
     `,
 });

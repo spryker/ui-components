@@ -13,8 +13,8 @@ export class DatasourceDependableService implements Datasource {
         private datasourceDependableElementsService: DatasourceDependableElementsService,
     ) {}
 
-    resolve(injector: Injector, config: DatasourceDependableConfig, context?: any): Observable<unknown> {
-        context = { ...context };
+    resolve(injector: Injector, config: DatasourceDependableConfig, context?: unknown): Observable<unknown> {
+        context = typeof context === 'object' ? { ...context } : {};
 
         return this.datasourceDependableElementsService.resolve(config.id).pipe(
             switchMap((element) => element.getValueChanges()),

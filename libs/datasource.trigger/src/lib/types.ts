@@ -12,7 +12,6 @@ export interface DatasourceTriggerConfig extends DatasourceConfig {
     event: DatasourceTriggerEventRegistryType | string;
     datasource: DatasourceConfig;
     debounce?: number;
-    minCharacters?: number;
 }
 
 export interface DatasourceTriggerEvent {

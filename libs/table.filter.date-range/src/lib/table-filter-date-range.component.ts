@@ -8,11 +8,12 @@ import {
     SimpleChanges,
     OnChanges,
 } from '@angular/core';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { TableFilterComponent } from '@spryker/table.feature.filters';
-import { TableFilterDateRange } from './types';
 import { DateRangeValueInput } from '@spryker/date-picker';
-import { Observable, of } from 'rxjs';
 import { I18nService } from '@spryker/locale';
+import { Observable, of } from 'rxjs';
+import { TableFilterDateRange } from './types';
 
 @Component({
     selector: 'spy-table-filter-date-range',

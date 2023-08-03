@@ -28,7 +28,7 @@ import { AutocompleteValue } from './types';
 })
 export class AutocompleteComponent implements OnChanges, OnInit, OnDestroy {
     @Input() @ToJson() options?: AutocompleteValue[];
-    @Input() datasource?: DatasourceConfig;
+    @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
 
     @ViewChild(NzAutocompleteComponent, { static: true })

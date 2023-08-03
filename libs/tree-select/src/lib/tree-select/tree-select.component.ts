@@ -51,7 +51,7 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
     @Input() name = '';
     @Input() noOptionsText = '';
     @Input() @ToBoolean() disableClear = false;
-    @Input() datasource?: DatasourceConfig;
+    @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
 
     @Output() valueChange = new EventEmitter<TreeSelectValue | TreeSelectValue[]>();

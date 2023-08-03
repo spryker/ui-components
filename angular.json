@@ -2049,6 +2049,89 @@
             },
             "tags": ["type:service", "pkg:primary"]
         },
+        "datasource.dependable": {
+            "projectType": "library",
+            "root": "libs/datasource.dependable",
+            "sourceRoot": "libs/datasource.dependable/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/datasource.dependable/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/datasource.dependable/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/datasource.dependable/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/datasource.dependable/jest.config.ts",
+                        "passWithNoTests": true
+                    },
+                    "configurations": {
+                        "ci": {
+                            "ci": true,
+                            "codeCoverage": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/datasource.dependable/**/*.ts",
+                            "libs/datasource.dependable/**/*.html"
+                        ]
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "port": 4400,
+                        "configDir": "libs/datasource.dependable/.storybook",
+                        "browserTarget": "datasource.dependable:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "outputs": ["{options.outputDir}"],
+                    "options": {
+                        "outputDir": "dist/storybook/datasource.dependable",
+                        "configDir": "libs/datasource.dependable/.storybook",
+                        "browserTarget": "datasource.dependable:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                }
+            },
+            "implicitDependencies": ["!select", "!datasource.trigger.input"],
+            "tags": ["type:service", "pkg:primary"]
+        },
         "datasource.http": {
             "projectType": "library",
             "root": "libs/datasource.http",
@@ -2230,6 +2313,216 @@
                             "libs/datasource.inline.table/**/*.ts",
                             "libs/datasource.inline.table/**/*.html"
                         ]
+                    }
+                }
+            },
+            "tags": ["type:service", "pkg:extension"]
+        },
+        "datasource.trigger": {
+            "projectType": "library",
+            "root": "libs/datasource.trigger",
+            "sourceRoot": "libs/datasource.trigger/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/datasource.trigger/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/datasource.trigger/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/datasource.trigger/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/datasource.trigger/jest.config.ts",
+                        "passWithNoTests": true
+                    },
+                    "configurations": {
+                        "ci": {
+                            "ci": true,
+                            "codeCoverage": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": ["libs/datasource.trigger/**/*.ts", "libs/datasource.trigger/**/*.html"]
+                    }
+                }
+            },
+            "tags": ["type:service", "pkg:primary"]
+        },
+        "datasource.trigger.change": {
+            "projectType": "library",
+            "root": "libs/datasource.trigger.change",
+            "sourceRoot": "libs/datasource.trigger.change/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/datasource.trigger.change/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/datasource.trigger.change/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/datasource.trigger.change/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/datasource.trigger.change/jest.config.ts",
+                        "passWithNoTests": true
+                    },
+                    "configurations": {
+                        "ci": {
+                            "ci": true,
+                            "codeCoverage": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/datasource.trigger.change/**/*.ts",
+                            "libs/datasource.trigger.change/**/*.html"
+                        ]
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "port": 4400,
+                        "configDir": "libs/datasource.trigger.change/.storybook",
+                        "browserTarget": "datasource.trigger.change:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "outputs": ["{options.outputDir}"],
+                    "options": {
+                        "outputDir": "dist/storybook/datasource.trigger.change",
+                        "configDir": "libs/datasource.trigger.change/.storybook",
+                        "browserTarget": "datasource.trigger.change:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                }
+            },
+            "tags": ["type:service", "pkg:extension"]
+        },
+        "datasource.trigger.input": {
+            "projectType": "library",
+            "root": "libs/datasource.trigger.input",
+            "sourceRoot": "libs/datasource.trigger.input/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/datasource.trigger.input/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/datasource.trigger.input/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/datasource.trigger.input/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/datasource.trigger.input/jest.config.ts",
+                        "passWithNoTests": true
+                    },
+                    "configurations": {
+                        "ci": {
+                            "ci": true,
+                            "codeCoverage": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/datasource.trigger.input/**/*.ts",
+                            "libs/datasource.trigger.input/**/*.html"
+                        ]
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "port": 4400,
+                        "configDir": "libs/datasource.trigger.input/.storybook",
+                        "browserTarget": "datasource.trigger.input:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "outputs": ["{options.outputDir}"],
+                    "options": {
+                        "outputDir": "dist/storybook/datasource.trigger.input",
+                        "configDir": "libs/datasource.trigger.input/.storybook",
+                        "browserTarget": "datasource.trigger.input:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
                     }
                 }
             },

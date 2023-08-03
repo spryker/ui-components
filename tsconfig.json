@@ -218,6 +218,12 @@
             "path": "./libs/datasource/tsconfig.spec.json"
         },
         {
+            "path": "./libs/datasource.dependable/tsconfig.lib.json"
+        },
+        {
+            "path": "./libs/datasource.dependable/tsconfig.spec.json"
+        },
+        {
             "path": "./libs/datasource.http/tsconfig.lib.json"
         },
         {
@@ -234,6 +240,24 @@
         },
         {
             "path": "./libs/datasource.inline.table/tsconfig.spec.json"
+        },
+        {
+            "path": "./libs/datasource.trigger/tsconfig.lib.json"
+        },
+        {
+            "path": "./libs/datasource.trigger/tsconfig.spec.json"
+        },
+        {
+            "path": "./libs/datasource.trigger.change/tsconfig.lib.json"
+        },
+        {
+            "path": "./libs/datasource.trigger.change/tsconfig.spec.json"
+        },
+        {
+            "path": "./libs/datasource.trigger.input/tsconfig.lib.json"
+        },
+        {
+            "path": "./libs/datasource.trigger.input/tsconfig.spec.json"
         },
         {
             "path": "./libs/date-picker/tsconfig.lib.json"

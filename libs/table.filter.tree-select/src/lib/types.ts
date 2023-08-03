@@ -1,3 +1,4 @@
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { TableFilterBase } from '@spryker/table.feature.filters';
 import { TreeSelectValue } from '@spryker/tree-select';
 

@@ -8,6 +8,7 @@ import {
     SimpleChanges,
     ViewEncapsulation,
 } from '@angular/core';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { TableFilterTreeSelect, TableFilterTreeSelectValue, TableFilterTreeSelectOptionsValue } from './types';
 import { EMPTY } from 'rxjs';

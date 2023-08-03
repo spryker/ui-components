@@ -1,5 +1,7 @@
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
@@ -15,11 +17,14 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
+import { DatasourceTriggerElement } from '@spryker/datasource.trigger';
+import { DatasourceDependableElement } from '@spryker/datasource.dependable';
 import { IconArrowDownModule, IconCheckModule, IconRemoveModule } from '@spryker/icon/icons';
 import { I18nService } from '@spryker/locale';
 import { ToBoolean, ToJson } from '@spryker/utils';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
+import { NzSelectComponent } from 'ng-zorro-antd/select';
 
 import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from './types';
 
@@ -29,14 +34,29 @@ import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from
     styleUrls: ['./select.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    providers: [
+        {
+            provide: DatasourceTriggerElement,
+            useExisting: SelectComponent,
+        },
+        {
+            provide: DatasourceDependableElement,
+            useExisting: SelectComponent,
+        },
+    ],
 })
-export class SelectComponent implements OnInit, OnChanges, OnDestroy {
-    @ViewChild('selectRef') selectRef?: ElementRef<HTMLInputElement>;
+export class SelectComponent
+    implements DatasourceTriggerElement, DatasourceDependableElement, OnInit, OnChanges, OnDestroy, AfterViewInit
+{
+    @ViewChild('selectRef') selectRef?: ElementRef<HTMLSelectElement>;
+    @ViewChild('selectContainerRef') selectContainerRef?: NzSelectComponent;
 
     @Input() @ToJson() options?: SelectOption[];
     @Input() @ToJson() value?: SelectValueSelected;
     @Input() @ToBoolean() search = false;
+    @Input() @ToBoolean() serverSearch = false;
     @Input() @ToBoolean() disabled = false;
+    @Input() @ToBoolean() disabledWhenNoOptions = false;
     @Input() @ToBoolean() multiple = false;
     @Input() placeholder: string | TemplateRef<void> = '';
     @Input() @ToBoolean() showSelectAll = false;
@@ -44,21 +64,26 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
     @Input() name = '';
     @Input() noOptionsText = '';
     @Input() @ToBoolean() disableClear = false;
-    @Input() datasource?: DatasourceConfig;
+    @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
 
     @Output() valueChange = new EventEmitter<SelectValueSelected>();
+    @Output() searchChange = new EventEmitter<string>();
 
     checkIcon = IconCheckModule.icon;
     arrowDownIcon = IconArrowDownModule.icon;
     removeIcon = IconRemoveModule.icon;
 
+    inputEvent = new Event('input', { bubbles: true });
+    changeEvent = new Event('change', { bubbles: true });
     allValues: SelectValue[] = [];
     mappedOptions: SelectOptionItem[] = [];
     mappedValue?: SelectValueSelected;
     selectAllValue = 'select-all';
     selectedList: string[] = [];
 
+    triggerElement$ = new ReplaySubject<HTMLElement>(1);
+    mappedValue$ = new ReplaySubject<SelectValueSelected>(1);
     datasourceOptions$ = new ReplaySubject<Observable<SelectOption[]>>(1);
     setNoOptionsText$ = new BehaviorSubject(this.noOptionsText);
     noOptionsText$ = this.setNoOptionsText$.pipe(
@@ -73,6 +98,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
         private injector: Injector,
         private datasourceService: DatasourceService,
         private i18nService: I18nService,
+        private cdr: ChangeDetectorRef,
     ) {}
 
     ngOnInit() {
@@ -82,6 +108,7 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
         this.datasourceOptions$.pipe(switchAll(), takeUntil(this.destroyed$)).subscribe((options) => {
             this.options = options;
             this.updateOptions();
+            this.cdr.detectChanges();
         });
     }
 
@@ -101,20 +128,44 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
         }
     }
 
+    ngAfterViewInit() {
+        const searchComponent = this.selectContainerRef.nzSelectTopControlComponent?.nzSelectSearchComponent;
+
+        if (searchComponent) {
+            this.triggerElement$.next(searchComponent.inputElement.nativeElement);
+        }
+    }
+
     ngOnDestroy(): void {
         this.destroyed$.next();
+    }
+
+    getTriggerElement(): Observable<HTMLElement> {
+        return this.triggerElement$;
+    }
+
+    getValueChanges(): Observable<SelectValueSelected> {
+        return this.mappedValue$;
     }
 
     handleValueChange(value: SelectValue | SelectValue[]): void {
         if (Array.isArray(value) && this.isSelectAllAction(value)) {
             value = this.getValueArrayForSelectAllAction(value);
         }
-        const inputEvent = new Event('input', { bubbles: true });
 
         this.updateTitlesArrayForSelectedValues(value);
         this.mappedValue = value;
         this.valueChange.emit(value);
-        this.selectRef?.nativeElement.dispatchEvent(inputEvent);
+        // FIXME: This is a workaround for the issue with the native select value emits the previous value
+        setTimeout(() => {
+            this.selectRef?.nativeElement.dispatchEvent(this.inputEvent);
+            this.selectRef?.nativeElement.dispatchEvent(this.changeEvent);
+        });
+        this.mappedValue$.next(this.mappedValue);
+    }
+
+    handleSearchChange(value: string): void {
+        this.searchChange.emit(value);
     }
 
     private updateDatasource() {
@@ -146,6 +197,10 @@ export class SelectComponent implements OnInit, OnChanges, OnDestroy {
             ) ?? [];
 
         this.allValues = this.mappedOptions.map((option) => option.value);
+
+        if (this.disabledWhenNoOptions) {
+            this.disabled = !this.mappedOptions.length;
+        }
 
         this.updateValue();
     }

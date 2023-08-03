@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@1.0.1...@spryker/select@1.1.0-next.0) (2023-08-03)
+
+
+### Features
+
+* **select:** add `datasource.dependable` and `datasource.trigger` libraries usage ([b6c4114](https://github.com/spryker/ui-components/commit/b6c4114798a974978248e6b98b6c6efd1d3fa023))
+* **select:** introduce new change event & fix dispatching events ([2042fdf](https://github.com/spryker/ui-components/commit/2042fdf536945ed3e817fcc854d76c06ce3210d2))
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/select@1.0.1-rc.0...@spryker/select@1.0.1) (2023-01-24)
 
 **Note:** Version bump only for package @spryker/select

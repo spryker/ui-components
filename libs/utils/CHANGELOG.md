@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/utils@1.0.0...@spryker/utils@1.1.0-next.0) (2023-08-03)
+
+
+### Features
+
+* **utils:** introduce new change event to the `trigger-change-event` ([20b69fd](https://github.com/spryker/ui-components/commit/20b69fd22cf1788c61389cc229dc96c2b76901d5))
+
+
+
+
+
 # [1.0.0](https://github.com/spryker/ui-components/compare/@spryker/utils@1.0.0-rc.1...@spryker/utils@1.0.0) (2022-12-29)
 
 **Note:** Version bump only for package @spryker/utils

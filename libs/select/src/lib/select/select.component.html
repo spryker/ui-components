@@ -1,7 +1,9 @@
 <nz-select
     [(ngModel)]="mappedValue"
     (ngModelChange)="handleValueChange($event)"
+    (nzOnSearch)="handleSearchChange($event)"
     [nzShowSearch]="search"
+    [nzServerSearch]="search && serverSearch"
     [nzShowArrow]="true"
     [nzDisabled]="disabled"
     [nzPlaceHolder]="placeholder"
@@ -17,6 +19,7 @@
     [class.ant-select--not-searchable]="!search"
     nzDropdownClassName="ant-select--dropdown"
     class="ant-select--custom"
+    #selectContainerRef
 >
     <nz-option *ngIf="showSelectAll" [nzValue]="selectAllValue" [nzCustomContent]="true">
         <div class="ant-select-item-option-content-wrapper">

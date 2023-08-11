@@ -26,7 +26,7 @@ export class DatasourceDependableComponent {
         }
     }
 
-    setDependableElement(dependableElement: DatasourceDependableElement): void {
+    private setDependableElement(dependableElement: DatasourceDependableElement): void {
         this.datasourceDependableElementsService.setElement({ [this.id]: dependableElement });
     }
 }

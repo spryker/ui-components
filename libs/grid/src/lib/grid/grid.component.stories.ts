@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 
 @Component({
     selector: 'spy-story-component',
@@ -11,6 +11,11 @@ class StoryComponent {}
 
 export default {
     title: 'GridComponent',
+    decorators: [
+        moduleMetadata({
+            declarations: [StoryComponent],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -22,9 +27,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        declarations: [StoryComponent],
-    },
     template: `
     <spy-story-component></spy-story-component>
 
@@ -148,9 +150,6 @@ primary.argTypes = {
 
 export const alignment = (args) => ({
     props: args,
-    moduleMetadata: {
-        declarations: [StoryComponent],
-    },
     template: `
     <spy-story-component></spy-story-component>
 
@@ -317,9 +316,6 @@ alignment.argTypes = {
 
 export const wrap = (args) => ({
     props: args,
-    moduleMetadata: {
-        declarations: [StoryComponent],
-    },
     template: `
     <spy-story-component></spy-story-component>
 
@@ -394,9 +390,6 @@ wrap.argTypes = {
 
 export const push = (args) => ({
     props: args,
-    moduleMetadata: {
-        declarations: [StoryComponent],
-    },
     template: `
     <spy-story-component></spy-story-component>
 
@@ -437,9 +430,6 @@ export const push = (args) => ({
 
 export const respectMaxWidth = (args) => ({
     props: args,
-    moduleMetadata: {
-        declarations: [StoryComponent],
-    },
     template: `
     <spy-story-component></spy-story-component>
 

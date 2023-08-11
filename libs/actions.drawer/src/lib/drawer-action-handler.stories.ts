@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { Component, importProvidersFrom, Input } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ActionsModule } from '@spryker/actions';
 import { ButtonActionModule } from '@spryker/button.action';
 import { DatasourceModule } from '@spryker/datasource';
@@ -12,20 +12,6 @@ import { DefaultContextSerializationModule } from '@spryker/utils';
 
 import { DrawerActionHandlerService } from './drawer-action-handler.service';
 import { DrawerActionModule } from './drawer-action.module';
-
-export default {
-    title: 'DrawerActionHandlerService',
-    parameters: {
-        controls: {
-            include: ['action', 'config'],
-        },
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
-            allowFullscreen: true,
-        },
-    },
-} as Meta;
 
 @Component({
     selector: 'spy-simple-component',
@@ -42,23 +28,44 @@ class SimpleComponent {
     randomValue = Math.floor(Math.random() * 100);
 }
 
+export default {
+    title: 'DrawerActionHandlerService',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(
+                    ActionsModule.withActions({
+                        drawer: DrawerActionHandlerService,
+                    }),
+                ),
+                importProvidersFrom(
+                    DrawerActionModule.withComponents({
+                        simple_component: SimpleComponent,
+                    }),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [DrawerModule, ButtonActionModule],
+            declarations: [SimpleComponent],
+            entryComponents: [DrawerContainerProxyComponent, SimpleComponent],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: ['action', 'config'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
+            allowFullscreen: true,
+        },
+    },
+} as Meta;
+
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            DrawerModule,
-            BrowserAnimationsModule,
-            ActionsModule.withActions({
-                drawer: DrawerActionHandlerService,
-            }),
-            DrawerActionModule.withComponents({
-                simple_component: SimpleComponent,
-            }),
-            ButtonActionModule,
-        ],
-        declarations: [SimpleComponent],
-        entryComponents: [DrawerContainerProxyComponent, SimpleComponent],
-    },
     template: `
     <spy-button-action
       [action]="action"
@@ -99,26 +106,18 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const withTable = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            BrowserAnimationsModule,
-            DrawerModule,
-            ActionsModule.withActions({
-                drawer: DrawerActionHandlerService,
-            }),
-            TableRowActionsFeatureModule,
-            ButtonActionModule,
-            TableModule.forRoot(),
-            DatasourceModule.withDatasources({
-                'mock-data': MockTableDatasourceService,
-            } as any),
-            DefaultContextSerializationModule,
-            DrawerActionModule.withComponents({
-                simple_component: SimpleComponent,
-            }),
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                DatasourceModule.withDatasources({
+                    'mock-data': MockTableDatasourceService,
+                } as any),
+            ),
+            importProvidersFrom(TableModule.forRoot()),
         ],
-        declarations: [SimpleComponent],
-        entryComponents: [DrawerContainerProxyComponent, SimpleComponent],
+    },
+    moduleMetadata: {
+        imports: [TableRowActionsFeatureModule, TableModule, DefaultContextSerializationModule],
     },
     template: `
     <h1 style="font: bold 30px Arial; padding: 15px"> Click on the table row to open drawer </h1>

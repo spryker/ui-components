@@ -1,13 +1,13 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
 import { TableDummyFilterComponent } from '@spryker/table.feature.filters/testing';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { IStory, Meta } from '@storybook/angular';
 
 import { TableFiltersFeatureModule } from './table-filters-feature.module';
 
@@ -19,6 +19,34 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
     title: 'TableFiltersFeatureComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    TableFiltersFeatureModule.withFilterComponents({
+                        filter: TableDummyFilterComponent,
+                    } as any),
+                ),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                {
+                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                    useValue: [LayoutFlatHostComponent, TableDummyFilterComponent],
+                    multi: true,
+                },
+            ],
+        }),
+        moduleMetadata({
+            imports: [TableModule, DefaultContextSerializationModule],
+            declarations: [TableDummyFilterComponent],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -62,52 +90,28 @@ export default {
     },
 } as Meta;
 
-export const viaHtml = getFiltersStory(
-    `
-    <spy-table [config]="config">
+export const viaHtml = (args) => ({
+    props: args,
+    moduleMetadata: { imports: [TableFiltersFeatureModule] },
+    template: `
+    <spy-table [config]='config'>
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
     </spy-table>
   `,
-    [TableFiltersFeatureModule],
-);
+});
 
-export const viaConfig = getFiltersStory(
-    `
+export const viaConfig = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    filters: () => import('./table-filters-feature.module').then((m) => m.TableFiltersFeatureModule),
+                }),
+            ),
+        ],
+    },
+    template: `
     <spy-table [config]="config"></spy-table>
   `,
-    [
-        TableModule.withFeatures({
-            filters: () => import('./table-filters-feature.module').then((m) => m.TableFiltersFeatureModule),
-        }),
-    ],
-);
-
-function getFiltersStory(template: string, extraNgModules: any[] = []): (args) => IStory {
-    return (args) => ({
-        props: args,
-        moduleMetadata: {
-            imports: [
-                HttpClientTestingModule,
-                BrowserAnimationsModule,
-                TableModule.forRoot(),
-                TableFiltersFeatureModule.withFilterComponents({
-                    filter: TableDummyFilterComponent,
-                } as any),
-                DefaultContextSerializationModule,
-                DatasourceModule.withDatasources({
-                    'mock-data': MockTableDatasourceService,
-                } as any),
-                ...extraNgModules,
-            ],
-            declarations: [TableDummyFilterComponent],
-            providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent, TableDummyFilterComponent],
-                    multi: true,
-                },
-            ],
-        },
-        template,
-    });
-}
+});

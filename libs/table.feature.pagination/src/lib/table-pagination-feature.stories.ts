@@ -1,12 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { IStory, Meta } from '@storybook/angular';
 
 import { TablePaginationFeatureModule } from './table-pagination-feature.module';
 
@@ -18,6 +18,28 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
     title: 'TablePaginationFeatureComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                {
+                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                    useValue: [LayoutFlatHostComponent],
+                    multi: true,
+                },
+            ],
+        }),
+        moduleMetadata({
+            imports: [TableModule, DefaultContextSerializationModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -52,48 +74,29 @@ export default {
     },
 } as Meta;
 
-export const viaHtml = getPaginationStory(
-    `
-    <spy-table [config]="config">
+export const viaHtml = (args) => ({
+    props: args,
+    moduleMetadata: { imports: [TablePaginationFeatureModule] },
+    template: `
+    <spy-table [config]='config'>
       <spy-table-pagination-feature spy-table-feature></spy-table-pagination-feature>
     </spy-table>
   `,
-    [TablePaginationFeatureModule],
-);
+});
 
-export const viaConfig = getPaginationStory(
-    `
+export const viaConfig = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    pagination: () =>
+                        import('./table-pagination-feature.module').then((m) => m.TablePaginationFeatureModule),
+                }),
+            ),
+        ],
+    },
+    template: `
     <spy-table [config]="config"></spy-table>
   `,
-    [
-        TableModule.withFeatures({
-            pagination: () => import('./table-pagination-feature.module').then((m) => m.TablePaginationFeatureModule),
-        }),
-    ],
-);
-
-function getPaginationStory(template: string, extraNgModules: any[] = []): (args) => IStory {
-    return (args) => ({
-        props: args,
-        moduleMetadata: {
-            imports: [
-                HttpClientTestingModule,
-                BrowserAnimationsModule,
-                TableModule.forRoot(),
-                DatasourceModule.withDatasources({
-                    'mock-data': MockTableDatasourceService,
-                } as any),
-                DefaultContextSerializationModule,
-                ...extraNgModules,
-            ],
-            providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent],
-                    multi: true,
-                },
-            ],
-        },
-        template,
-    });
-}
+});

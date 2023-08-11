@@ -1,6 +1,7 @@
-import { Meta } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { SelectModule } from '@spryker/select';
 import { DatasourceModule } from '@spryker/datasource';
@@ -37,6 +38,29 @@ const mockOptionsDependable = [
 
 export default {
     title: 'DatasourceDependableService',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'dependable-element': DatasourceDependableService,
+                        trigger: DatasourceTriggerService,
+                        http: DatasourceHttpService,
+                    }),
+                ),
+                importProvidersFrom(
+                    DatasourceTriggerModule.withEvents({
+                        input: InputDatasourceTriggerService,
+                    }),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [SelectModule, MockHttpModule, DatasourceDependableModule],
+        }),
+    ],
     args: {
         datasource: {
             type: 'trigger',
@@ -77,23 +101,6 @@ export const primary = (args: any) => ({
                 data: mockOptionsDependable,
             },
         ]),
-    },
-    moduleMetadata: {
-        imports: [
-            BrowserAnimationsModule,
-            SelectModule,
-            HttpClientTestingModule,
-            MockHttpModule,
-            DatasourceDependableModule,
-            DatasourceModule.withDatasources({
-                'dependable-element': DatasourceDependableService,
-                trigger: DatasourceTriggerService,
-                http: DatasourceHttpService,
-            }),
-            DatasourceTriggerModule.withEvents({
-                input: InputDatasourceTriggerService,
-            }),
-        ],
     },
     template: `
         <spy-datasource-dependable id="dependable-select">

@@ -1,5 +1,6 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { LocaleModule } from '@spryker/locale';
 import { EnLocaleModule, EN_LOCALE } from '@spryker/locale/locales/en';
 import { DatePickerComponent } from './date-picker.component';
@@ -8,6 +9,18 @@ import { DatePickerModule } from '../date-picker.module';
 export default {
     title: 'DatePickerComponent',
     component: DatePickerComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+            ],
+        }),
+        moduleMetadata({
+            imports: [DatePickerModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: [
@@ -44,14 +57,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            DatePickerModule,
-            BrowserAnimationsModule,
-            LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-            EnLocaleModule,
-        ],
-    },
     template: `
     <spy-date-picker
       [clearButton]="clearButton"
@@ -69,14 +74,6 @@ export const primary = (args) => ({
 
 export const disabledTimeViaFunction = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            DatePickerModule,
-            BrowserAnimationsModule,
-            LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-            EnLocaleModule,
-        ],
-    },
     template: `
     <spy-date-picker
       [clearButton]="clearButton"

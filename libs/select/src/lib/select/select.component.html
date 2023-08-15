@@ -2,6 +2,7 @@
     [(ngModel)]="mappedValue"
     (ngModelChange)="handleValueChange($event)"
     (nzOnSearch)="handleSearchChange($event)"
+    (nzBlur)="onBlur()"
     [nzShowSearch]="search"
     [nzServerSearch]="search && serverSearch"
     [nzShowArrow]="true"

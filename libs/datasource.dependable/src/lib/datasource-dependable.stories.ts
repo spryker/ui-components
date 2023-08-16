@@ -42,6 +42,7 @@ const additionalArgs = {
     search: true,
     serverSearch: true,
     disabledWhenNoOptions: true,
+    resetOptionsBeforeInvokingDatasource: false,
     noOptionsText: 'No results found',
     placeholder: 'Start typing to search...',
     mockHttp: setMockHttp([
@@ -107,6 +108,7 @@ export const primary = (args: any) => ({
             <spy-select
                 [search]="search"
                 [serverSearch]="serverSearch"
+                [resetOptionsBeforeInvokingDatasource]="resetOptionsBeforeInvokingDatasource"
                 [noOptionsText]="noOptionsText"
                 [placeholder]="placeholder"
                 [datasource]="datasource"
@@ -120,6 +122,7 @@ export const primary = (args: any) => ({
 
         <spy-select
             [disabledWhenNoOptions]="disabledWhenNoOptions"
+            [resetOptionsBeforeInvokingDatasource]="resetOptionsBeforeInvokingDatasource"
             [noOptionsText]="noOptionsText"
             [datasource]="datasourceDependable"
             [mockHttp]="mockHttp"

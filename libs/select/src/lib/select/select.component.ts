@@ -65,6 +65,7 @@ export class SelectComponent
     @Input() noOptionsText = '';
     @Input() @ToBoolean() disableClear = false;
     @Input() @ToJson() datasource?: DatasourceConfig;
+    @Input() @ToBoolean() resetOptionsBeforeInvokingDatasource = true;
     @Input() context?: unknown;
 
     @Output() valueChange = new EventEmitter<SelectValueSelected>();
@@ -173,8 +174,7 @@ export class SelectComponent
     }
 
     private updateDatasource() {
-        // Reset options before invoking datasource
-        if (this.datasource) {
+        if (this.datasource && this.resetOptionsBeforeInvokingDatasource) {
             this.options = undefined;
             this.updateOptions();
         }

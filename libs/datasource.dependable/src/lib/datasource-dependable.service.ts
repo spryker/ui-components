@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Datasource, DatasourceService } from '@spryker/datasource';
-import { Observable, of, switchMap } from 'rxjs';
+import { EMPTY, Observable, of, switchMap } from 'rxjs';
 import { DatasourceDependableConfig } from './types';
 import { DatasourceDependableElementsService } from './datasource-dependable-elements.service';
 
@@ -19,6 +19,10 @@ export class DatasourceDependableService implements Datasource {
         return this.datasourceDependableElementsService.resolve(config.id).pipe(
             switchMap((element) => element.getValueChanges()),
             switchMap((value) => {
+                if (context?.['value'] === value) {
+                    return EMPTY;
+                }
+
                 if (value) {
                     context['value'] = value;
 

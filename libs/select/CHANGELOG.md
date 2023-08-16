@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@1.1.0-next.0...@spryker/select@1.1.0-next.1) (2023-08-15)
+
+
+### Features
+
+* **select:** introduce `onBlur` public method ([2a31db6](https://github.com/spryker/ui-components/commit/2a31db60e516f0cce35e4b6c859a8cae7a4507fa))
+
+
+
+
+
 # [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@1.0.1...@spryker/select@1.1.0-next.0) (2023-08-03)
 
 

@@ -168,6 +168,10 @@ export class SelectComponent
         this.searchChange.emit(value);
     }
 
+    onBlur(): void {
+        this.mappedValue$.next(this.mappedValue);
+    }
+
     private updateDatasource() {
         // Reset options before invoking datasource
         if (this.datasource) {

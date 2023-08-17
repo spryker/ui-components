@@ -19,10 +19,6 @@ export class DatasourceDependableService implements Datasource {
         return this.datasourceDependableElementsService.resolve(config.id).pipe(
             switchMap((element) => element.getValueChanges()),
             switchMap((value) => {
-                if (context?.['value'] === value) {
-                    return EMPTY;
-                }
-
                 if (value) {
                     context['value'] = value;
 

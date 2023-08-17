@@ -65,7 +65,6 @@ export class SelectComponent
     @Input() noOptionsText = '';
     @Input() @ToBoolean() disableClear = false;
     @Input() @ToJson() datasource?: DatasourceConfig;
-    @Input() @ToBoolean() resetOptionsBeforeInvokingDatasource = true;
     @Input() context?: unknown;
 
     @Output() valueChange = new EventEmitter<SelectValueSelected>();
@@ -107,6 +106,8 @@ export class SelectComponent
         this.updateDatasource();
 
         this.datasourceOptions$.pipe(switchAll(), takeUntil(this.destroyed$)).subscribe((options) => {
+            this.value = '';
+            this.options = undefined;
             this.options = options;
             this.updateOptions();
             this.cdr.detectChanges();
@@ -170,15 +171,12 @@ export class SelectComponent
     }
 
     onBlur(): void {
-        this.mappedValue$.next(this.mappedValue);
+        if (!this.mappedValue) {
+            this.mappedValue$.next(this.mappedValue);
+        }
     }
 
     private updateDatasource() {
-        if (this.datasource && this.resetOptionsBeforeInvokingDatasource) {
-            this.options = undefined;
-            this.updateOptions();
-        }
-
         const options$ = this.datasource
             ? this.datasourceService?.resolve(this.injector, this.datasource, this.context)
             : EMPTY;

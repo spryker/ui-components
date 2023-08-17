@@ -106,6 +106,8 @@ export class SelectComponent
         this.updateDatasource();
 
         this.datasourceOptions$.pipe(switchAll(), takeUntil(this.destroyed$)).subscribe((options) => {
+            this.value = '';
+            this.options = undefined;
             this.options = options;
             this.updateOptions();
             this.cdr.detectChanges();
@@ -169,16 +171,12 @@ export class SelectComponent
     }
 
     onBlur(): void {
-        this.mappedValue$.next(this.mappedValue);
+        if (!this.mappedValue) {
+            this.mappedValue$.next(this.mappedValue);
+        }
     }
 
     private updateDatasource() {
-        // Reset options before invoking datasource
-        if (this.datasource) {
-            this.options = undefined;
-            this.updateOptions();
-        }
-
         const options$ = this.datasource
             ? this.datasourceService?.resolve(this.injector, this.datasource, this.context)
             : EMPTY;

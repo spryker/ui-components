@@ -15,7 +15,8 @@
         [value]="pageSize"
         [disableClear]="disableClear"
         [options]="pageSizeOptions"
-        (valueChange)="pageSizeChange.emit($event)"
+        [placeholder]="placeholder"
+        (valueChange)="pageSizeChangeHandler($event)"
     ></spy-select>
 </div>
 

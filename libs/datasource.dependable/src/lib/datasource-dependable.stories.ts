@@ -3,13 +3,16 @@ import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
-import { SelectModule } from '@spryker/select';
+import { SelectComponent, SelectModule } from '@spryker/select';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceHttpService } from '@spryker/datasource.http';
 import { DatasourceTriggerModule, DatasourceTriggerService } from '@spryker/datasource.trigger';
 import { InputDatasourceTriggerService } from '@spryker/datasource.trigger.input';
+import { WebComponentsModule } from '@spryker/web-components';
+import { StorybookModule } from '@spryker/web-components/storybook';
 import { DatasourceDependableModule } from './datasource-dependable.module';
 import { DatasourceDependableService } from './datasource-dependable.service';
+import { DatasourceDependableComponent } from './datasource-dependable.component';
 
 const mockOptions = [
     {
@@ -35,6 +38,24 @@ const mockOptionsDependable = [
         value: 'value5',
     },
 ];
+
+const additionalArgs = {
+    search: true,
+    serverSearch: true,
+    disabledWhenNoOptions: true,
+    noOptionsText: 'No results found',
+    placeholder: 'Start typing to search...',
+    mockHttp: setMockHttp([
+        {
+            url: '/data-request',
+            data: mockOptions,
+        },
+        {
+            url: '/dependable-data-request',
+            data: mockOptionsDependable,
+        },
+    ]),
+};
 
 export default {
     title: 'DatasourceDependableService',
@@ -86,21 +107,7 @@ export default {
 export const primary = (args: any) => ({
     props: {
         ...args,
-        search: true,
-        serverSearch: true,
-        disabledWhenNoOptions: true,
-        noOptionsText: 'No results found',
-        placeholder: 'Start typing to search...',
-        mockHttp: setMockHttp([
-            {
-                url: '/data-request',
-                data: mockOptions,
-            },
-            {
-                url: '/dependable-data-request',
-                data: mockOptionsDependable,
-            },
-        ]),
+        ...additionalArgs,
     },
     template: `
         <spy-datasource-dependable id="dependable-select">
@@ -125,5 +132,57 @@ export const primary = (args: any) => ({
             [mockHttp]="mockHttp"
         >
         </spy-select>
+    `,
+});
+
+export const asWebComponents = (args: any) => ({
+    props: {
+        ...args,
+        ...additionalArgs,
+    },
+    moduleMetadata: {
+        imports: [
+            BrowserAnimationsModule,
+            SelectModule,
+            HttpClientTestingModule,
+            MockHttpModule,
+            DatasourceDependableModule,
+            StorybookModule,
+            WebComponentsModule.withComponents([SelectComponent, DatasourceDependableComponent]),
+            DatasourceModule.withDatasources({
+                'dependable-element': DatasourceDependableService,
+                trigger: DatasourceTriggerService,
+                http: DatasourceHttpService,
+            }),
+            DatasourceTriggerModule.withEvents({
+                input: InputDatasourceTriggerService,
+            }),
+        ],
+    },
+    template: `
+        <web-spy-storybook>
+            <web-spy-datasource-dependable id="dependable-select">
+                <web-spy-select
+                    [search]="search"
+                    [serverSearch]="serverSearch"
+                    [noOptionsText]="noOptionsText"
+                    [placeholder]="placeholder"
+                    [datasource]="datasource"
+                    [mockHttp]="mockHttp"
+                >
+                </web-spy-select>
+            </web-spy-datasource-dependable>
+
+            <br />
+            <br />
+
+            <web-spy-select
+                [disabledWhenNoOptions]="disabledWhenNoOptions"
+                [noOptionsText]="noOptionsText"
+                [datasource]="datasourceDependable"
+                [mockHttp]="mockHttp"
+            >
+            </web-spy-select>
+        </web-spy-storybook>
     `,
 });

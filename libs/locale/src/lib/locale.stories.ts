@@ -5,7 +5,7 @@ import DeLocaleModule, { DE_LOCALE } from '../../locales/de/src';
 import { LocaleModule } from './locale.module';
 
 @Component({
-    selector: 'locale-story-component',
+    selector: 'spy-locale-story-component',
     template: `
         <ng-container *spyLocaleRender>
             <p>Localized date: {{ date | date }}</p>

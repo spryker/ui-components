@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { IconCalendarModule, IconUserModule } from '@spryker/icon/icons';
@@ -153,10 +153,6 @@ export const asWebComponents = (args) => ({
     props: args,
     applicationConfig: {
         providers: [importProvidersFrom(WebComponentsModule.withComponents([TabsComponent, TabComponent]))],
-    },
-    moduleMetadata: {
-        entryComponents: [TabsComponent, TabComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
     },
     template: `
       <web-spy-tabs

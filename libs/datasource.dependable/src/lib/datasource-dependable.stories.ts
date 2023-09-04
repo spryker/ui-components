@@ -1,4 +1,5 @@
 import { importProvidersFrom } from '@angular/core';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -9,7 +10,6 @@ import { DatasourceHttpService } from '@spryker/datasource.http';
 import { DatasourceTriggerModule, DatasourceTriggerService } from '@spryker/datasource.trigger';
 import { InputDatasourceTriggerService } from '@spryker/datasource.trigger.input';
 import { WebComponentsModule } from '@spryker/web-components';
-import { StorybookModule } from '@spryker/web-components/storybook';
 import { DatasourceDependableModule } from './datasource-dependable.module';
 import { DatasourceDependableService } from './datasource-dependable.service';
 import { DatasourceDependableComponent } from './datasource-dependable.component';
@@ -140,49 +140,34 @@ export const asWebComponents = (args: any) => ({
         ...args,
         ...additionalArgs,
     },
-    moduleMetadata: {
-        imports: [
-            BrowserAnimationsModule,
-            SelectModule,
-            HttpClientTestingModule,
-            MockHttpModule,
-            DatasourceDependableModule,
-            StorybookModule,
-            WebComponentsModule.withComponents([SelectComponent, DatasourceDependableComponent]),
-            DatasourceModule.withDatasources({
-                'dependable-element': DatasourceDependableService,
-                trigger: DatasourceTriggerService,
-                http: DatasourceHttpService,
-            }),
-            DatasourceTriggerModule.withEvents({
-                input: InputDatasourceTriggerService,
-            }),
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(WebComponentsModule.withComponents([SelectComponent, DatasourceDependableComponent])),
+            importProvidersFrom(OverlayModule),
         ],
     },
     template: `
-        <web-spy-storybook>
-            <web-spy-datasource-dependable id="dependable-select">
-                <web-spy-select
-                    [search]="search"
-                    [serverSearch]="serverSearch"
-                    [noOptionsText]="noOptionsText"
-                    [placeholder]="placeholder"
-                    [datasource]="datasource"
-                    [mockHttp]="mockHttp"
-                >
-                </web-spy-select>
-            </web-spy-datasource-dependable>
-
-            <br />
-            <br />
-
+        <web-spy-datasource-dependable id="dependable-select">
             <web-spy-select
-                [disabledWhenNoOptions]="disabledWhenNoOptions"
+                [search]="search"
+                [serverSearch]="serverSearch"
                 [noOptionsText]="noOptionsText"
-                [datasource]="datasourceDependable"
+                [placeholder]="placeholder"
+                [datasource]="datasource"
                 [mockHttp]="mockHttp"
             >
             </web-spy-select>
-        </web-spy-storybook>
+        </web-spy-datasource-dependable>
+
+        <br />
+        <br />
+
+        <web-spy-select
+            [disabledWhenNoOptions]="disabledWhenNoOptions"
+            [noOptionsText]="noOptionsText"
+            [datasource]="datasourceDependable"
+            [mockHttp]="mockHttp"
+        >
+        </web-spy-select>
     `,
 });

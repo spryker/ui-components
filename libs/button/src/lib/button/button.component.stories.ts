@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { WebComponentsModule } from '@spryker/web-components';
 import { Meta, moduleMetadata } from '@storybook/angular';
 
@@ -73,10 +73,6 @@ export const asWebComponent = (args) => ({
     props: args,
     applicationConfig: {
         providers: [importProvidersFrom(WebComponentsModule.withComponents([ButtonComponent]))],
-    },
-    moduleMetadata: {
-        entryComponents: [ButtonComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
     },
     template: `
       <web-spy-button

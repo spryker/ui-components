@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { InputComponent, InputModule } from '@spryker/input';
 import { WebComponentsModule } from '@spryker/web-components';
@@ -63,10 +63,6 @@ export const autocompleteAsWebComponents = (args) => ({
     props: args,
     applicationConfig: {
         providers: [importProvidersFrom(WebComponentsModule.withComponents([InputComponent, AutocompleteComponent]))],
-    },
-    moduleMetadata: {
-        entryComponents: [InputComponent, AutocompleteComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
     },
     template: `
       <web-spy-input>

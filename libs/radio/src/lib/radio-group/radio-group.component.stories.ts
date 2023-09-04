@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { Meta, moduleMetadata } from '@storybook/angular';
 import { WebComponentsModule } from '@spryker/web-components';
 import { RadioModule } from '../radio.module';
@@ -66,10 +66,6 @@ export const asWebComponents = (args) => ({
     props: args,
     applicationConfig: {
         providers: [importProvidersFrom(WebComponentsModule.withComponents([RadioGroupComponent, RadioComponent]))],
-    },
-    moduleMetadata: {
-        entryComponents: [RadioGroupComponent, RadioComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
     },
     template: `
       <web-spy-radio-group [attr.value]="value" [attr.name]="name">

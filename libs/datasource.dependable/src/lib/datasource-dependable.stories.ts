@@ -179,3 +179,60 @@ export const asWebComponents = (args: any) => ({
         </web-spy-storybook>
     `,
 });
+
+export const withInitialData = (args: any) => ({
+    props: {
+        ...args,
+        ...additionalArgs,
+        options: mockOptions,
+        optionsDependable: mockOptionsDependable,
+        value: mockOptions[0].value,
+        valueDependable: [mockOptionsDependable[0].value],
+    },
+    moduleMetadata: {
+        imports: [
+            BrowserAnimationsModule,
+            SelectModule,
+            HttpClientTestingModule,
+            MockHttpModule,
+            DatasourceDependableModule,
+            DatasourceModule.withDatasources({
+                'dependable-element': DatasourceDependableService,
+                trigger: DatasourceTriggerService,
+                http: DatasourceHttpService,
+            }),
+            DatasourceTriggerModule.withEvents({
+                input: InputDatasourceTriggerService,
+            }),
+        ],
+    },
+    template: `
+        <spy-datasource-dependable id="dependable-select">
+            <spy-select
+                [search]="search"
+                [serverSearch]="serverSearch"
+                [options]="options"
+                [value]="value"
+                [noOptionsText]="noOptionsText"
+                [placeholder]="placeholder"
+                [datasource]="datasource"
+                [mockHttp]="mockHttp"
+            >
+            </spy-select>
+        </spy-datasource-dependable>
+
+        <br />
+        <br />
+
+        <spy-select
+            [disabledWhenNoOptions]="disabledWhenNoOptions"
+            [options]="optionsDependable"
+            [value]="valueDependable"
+            [noOptionsText]="noOptionsText"
+            [datasource]="datasourceDependable"
+            [mockHttp]="mockHttp"
+            multiple
+        >
+        </spy-select>
+    `,
+});

@@ -101,20 +101,13 @@ export class SelectComponent
         private cdr: ChangeDetectorRef,
     ) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.updateOptions();
+        this.initDatasource();
         this.updateDatasource();
-
-        this.datasourceOptions$.pipe(switchAll(), takeUntil(this.destroyed$)).subscribe((options) => {
-            this.value = '';
-            this.options = undefined;
-            this.options = options;
-            this.updateOptions();
-            this.cdr.detectChanges();
-        });
     }
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes: SimpleChanges): void {
         if (changes.options && !changes.options.firstChange) {
             this.updateOptions();
         } else if (changes.value && !changes.value.firstChange) {
@@ -130,7 +123,7 @@ export class SelectComponent
         }
     }
 
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         const searchComponent = this.selectContainerRef.nzSelectTopControlComponent?.nzSelectSearchComponent;
 
         if (searchComponent) {
@@ -174,6 +167,15 @@ export class SelectComponent
         if (!this.mappedValue) {
             this.mappedValue$.next(this.mappedValue);
         }
+    }
+
+    private initDatasource() {
+        this.datasourceOptions$.pipe(switchAll(), takeUntil(this.destroyed$)).subscribe((options) => {
+            this.value = '';
+            this.options = options;
+            this.updateOptions();
+            this.cdr.detectChanges();
+        });
     }
 
     private updateDatasource() {

@@ -101,18 +101,13 @@ export class SelectComponent
         private cdr: ChangeDetectorRef,
     ) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.updateOptions();
+        this.initDatasource();
         this.updateDatasource();
-
-        this.datasourceOptions$.pipe(switchAll(), takeUntil(this.destroyed$)).subscribe((options) => {
-            this.options = options;
-            this.updateOptions();
-            this.cdr.detectChanges();
-        });
     }
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes: SimpleChanges): void {
         if (changes.options && !changes.options.firstChange) {
             this.updateOptions();
         } else if (changes.value && !changes.value.firstChange) {
@@ -128,7 +123,7 @@ export class SelectComponent
         }
     }
 
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         const searchComponent = this.selectContainerRef.nzSelectTopControlComponent?.nzSelectSearchComponent;
 
         if (searchComponent) {
@@ -169,16 +164,21 @@ export class SelectComponent
     }
 
     onBlur(): void {
-        this.mappedValue$.next(this.mappedValue);
+        if (!this.mappedValue) {
+            this.mappedValue$.next(this.mappedValue);
+        }
     }
 
-    private updateDatasource() {
-        // Reset options before invoking datasource
-        if (this.datasource) {
-            this.options = undefined;
+    private initDatasource(): void {
+        this.datasourceOptions$.pipe(switchAll(), takeUntil(this.destroyed$)).subscribe((options) => {
+            this.value = '';
+            this.options = options;
             this.updateOptions();
-        }
+            this.cdr.detectChanges();
+        });
+    }
 
+    private updateDatasource(): void {
         const options$ = this.datasource
             ? this.datasourceService?.resolve(this.injector, this.datasource, this.context)
             : EMPTY;
@@ -209,7 +209,7 @@ export class SelectComponent
         this.updateValue();
     }
 
-    private updateValue() {
+    private updateValue(): void {
         this.mappedValue =
             this.multiple && Array.isArray(this.value)
                 ? this.value.filter((value) => this.isValueExist(value))

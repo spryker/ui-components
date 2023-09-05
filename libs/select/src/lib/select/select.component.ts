@@ -169,7 +169,7 @@ export class SelectComponent
         }
     }
 
-    private initDatasource() {
+    private initDatasource(): void {
         this.datasourceOptions$.pipe(switchAll(), takeUntil(this.destroyed$)).subscribe((options) => {
             this.value = '';
             this.options = options;
@@ -178,7 +178,7 @@ export class SelectComponent
         });
     }
 
-    private updateDatasource() {
+    private updateDatasource(): void {
         const options$ = this.datasource
             ? this.datasourceService?.resolve(this.injector, this.datasource, this.context)
             : EMPTY;
@@ -209,7 +209,7 @@ export class SelectComponent
         this.updateValue();
     }
 
-    private updateValue() {
+    private updateValue(): void {
         this.mappedValue =
             this.multiple && Array.isArray(this.value)
                 ? this.value.filter((value) => this.isValueExist(value))

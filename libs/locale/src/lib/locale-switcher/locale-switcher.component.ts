@@ -1,5 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Directive, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { LocaleService } from '../locale.service';
+
+@Directive({
+    selector: '[spyLocaleSwitcherInputs]',
+})
+export class LocaleSwitcherInputs {
+    @Input() locale?: string;
+}
 
 @Component({
     selector: 'spy-locale-switcher',
@@ -8,10 +15,10 @@ import { LocaleService } from '../locale.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { style: 'display: none' },
 })
-export class LocaleSwitcherComponent implements OnChanges, OnInit {
-    @Input() locale?: string;
-
-    constructor(private localeService: LocaleService) {}
+export class LocaleSwitcherComponent extends LocaleSwitcherInputs implements OnInit, OnChanges {
+    constructor(private localeService: LocaleService) {
+        super();
+    }
 
     ngOnInit(): void {
         if (this.locale) {

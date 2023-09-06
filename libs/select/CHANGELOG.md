@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.2](https://github.com/spryker/ui-components/compare/@spryker/select@1.1.0-next.1...@spryker/select@1.1.0-next.2) (2023-09-05)
+
+
+### Bug Fixes
+
+* **select:** fix datasource behavior on init ([97f17e4](https://github.com/spryker/ui-components/commit/97f17e490e1606e78c3978d2593a965357ebe9fc))
+
+
+
+
+
 # [1.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/select@1.1.0-next.0...@spryker/select@1.1.0-next.1) (2023-08-15)
 
 

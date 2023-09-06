@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
@@ -14,6 +14,14 @@ import { TableColumnChipModule } from './table-column-chip.module';
 export default {
     title: 'TableColumnChipComponent',
     component: TableColumnChipComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [TableColumnChipModule, DefaultContextSerializationModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['config', 'context'],
@@ -42,9 +50,6 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [TableColumnChipModule, DefaultContextSerializationModule],
-    },
 });
 primary.args = {
     config: {
@@ -58,28 +63,29 @@ primary.args = {
 
 export const withTable = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            HttpClientTestingModule,
-            ContextModule,
-            TableColumnChipModule,
-            TableModule.forRoot(),
-            TableModule.withColumnComponents({
-                chip: TableColumnChipComponent,
-            } as any),
-            DatasourceModule.withDatasources({
-                'mock-data': MockTableDatasourceService,
-            } as any),
-            DefaultContextSerializationModule,
-            BrowserAnimationsModule,
-        ],
+    applicationConfig: {
         providers: [
+            importProvidersFrom(HttpClientTestingModule),
+            importProvidersFrom(TableModule.forRoot()),
+            importProvidersFrom(
+                TableModule.withColumnComponents({
+                    chip: TableColumnChipComponent,
+                } as any),
+            ),
+            importProvidersFrom(
+                DatasourceModule.withDatasources({
+                    'mock-data': MockTableDatasourceService,
+                } as any),
+            ),
             {
                 provide: ANALYZE_FOR_ENTRY_COMPONENTS,
                 useValue: [LayoutFlatHostComponent, TableColumnChipComponent],
                 multi: true,
             },
         ],
+    },
+    moduleMetadata: {
+        imports: [ContextModule, TableModule],
     },
     template: `
     <spy-table [config]="config"></spy-table>

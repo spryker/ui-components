@@ -1,14 +1,12 @@
-import { NgModule, Component, Input, OnChanges } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { Component, Input, OnChanges, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { NotificationModule } from '../notification.module';
 import { NotificationService } from '../notification.service';
-import { NotificationWrapperComponent } from './notification-wrapper.component';
 import { NotificationData, NotificationType } from '../types';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'story-selector',
+    selector: 'spy-story-selector',
     template: ` <button (click)="notificationService.show(data)">Show Notification</button> `,
 })
 class StoryComponent implements OnChanges {
@@ -32,16 +30,18 @@ class StoryComponent implements OnChanges {
     }
 }
 
-@NgModule({
-    imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
-    declarations: [StoryComponent],
-    exports: [NotificationModule, StoryComponent],
-})
-class StoryModule {}
-
 export default {
     title: 'NotificationWrapperComponent',
     component: StoryComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations(), importProvidersFrom(NotificationModule.forRoot())],
+        }),
+        moduleMetadata({
+            declarations: [StoryComponent],
+            imports: [NotificationModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['type', 'closeable', 'title', 'description', 'timeOut'],
@@ -69,7 +69,4 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [StoryModule],
-    },
 });

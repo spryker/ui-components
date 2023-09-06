@@ -1,10 +1,15 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { LabelComponent } from './label.component';
 import { LabelModule } from '../label.module';
 
 export default {
     title: 'LabelComponent',
     component: LabelComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [LabelModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -20,9 +25,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [LabelModule],
-    },
     template: `
     <spy-label [for]="for">
         {{ labelText }}

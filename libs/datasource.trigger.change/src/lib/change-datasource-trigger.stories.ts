@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, importProvidersFrom, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { SelectComponent, SelectModule } from '@spryker/select';
 import { DatasourceModule } from '@spryker/datasource';
@@ -34,21 +34,6 @@ const mockResponseData = {
     author: 'spryker',
     url: '/data-request',
 };
-
-export default {
-    title: 'ChangeDatasourceTriggerService',
-    args: {
-        datasource: {
-            type: 'trigger',
-            event: 'change',
-            debounce: 400,
-            datasource: {
-                type: 'http',
-                url: '/data-request',
-            },
-        },
-    },
-} as Meta;
 
 @Component({
     selector: 'spy-test',
@@ -91,6 +76,44 @@ class TestComponent implements DatasourceTriggerElement, OnInit, AfterViewInit {
     }
 }
 
+export default {
+    title: 'ChangeDatasourceTriggerService',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        trigger: DatasourceTriggerService,
+                        http: DatasourceHttpService,
+                    }),
+                ),
+                importProvidersFrom(
+                    DatasourceTriggerModule.withEvents({
+                        change: ChangeDatasourceTriggerService,
+                    }),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [SelectModule, MockHttpModule],
+            declarations: [TestComponent],
+        }),
+    ],
+    args: {
+        datasource: {
+            type: 'trigger',
+            event: 'change',
+            debounce: 400,
+            datasource: {
+                type: 'http',
+                url: '/data-request',
+            },
+        },
+    },
+} as Meta;
+
 export const primary = (args: any) => ({
     props: {
         ...args,
@@ -101,29 +124,6 @@ export const primary = (args: any) => ({
             },
         ]),
         options: mockOptions,
-    },
-    moduleMetadata: {
-        imports: [
-            BrowserAnimationsModule,
-            SelectModule,
-            HttpClientTestingModule,
-            MockHttpModule,
-            DatasourceModule.withDatasources({
-                trigger: DatasourceTriggerService,
-                http: DatasourceHttpService,
-            }),
-            DatasourceTriggerModule.withEvents({
-                change: ChangeDatasourceTriggerService,
-            }),
-        ],
-        declarations: [TestComponent],
-        providers: [
-            TestComponent,
-            {
-                provide: DatasourceTriggerElement,
-                useExisting: TestComponent,
-            },
-        ],
     },
     template: `
         <spy-test [options]="options" [datasource]="datasource" [mockHttp]="mockHttp"></spy-test>

@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ActionsModule } from '@spryker/actions';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
@@ -9,9 +9,36 @@ import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGen
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 import { RefreshTableActionHandlerService } from './refresh-table-action-handler.service';
+import { importProvidersFrom } from '@angular/core';
 
 export default {
     title: 'RefreshTableActionHandlerService',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(
+                    ActionsModule.withActions({
+                        'refresh-table': RefreshTableActionHandlerService,
+                    }),
+                ),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [
+                TableRowActionsFeatureModule,
+                HttpClientTestingModule,
+                TableModule,
+                DefaultContextSerializationModule,
+            ],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['config'],
@@ -27,21 +54,6 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            BrowserAnimationsModule,
-            ActionsModule.withActions({
-                'refresh-table': RefreshTableActionHandlerService,
-            }),
-            TableRowActionsFeatureModule,
-            HttpClientTestingModule,
-            TableModule.forRoot(),
-            DatasourceModule.withDatasources({
-                'mock-data': MockTableDatasourceService,
-            } as any),
-            DefaultContextSerializationModule,
-        ],
-    },
     template: `
     <h1 style="font: bold 30px Arial; padding: 15px"> Click on the table row to refresh the table </h1>
 

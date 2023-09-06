@@ -1,15 +1,46 @@
-import { Injectable, Injector } from '@angular/core';
+import { importProvidersFrom, Injectable, Injector } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
-import { Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
 
 import { ButtonActionComponent } from './button-action.component';
 import { ButtonActionModule } from '../button-action.module';
 
+@Injectable({
+    providedIn: 'root',
+})
+class MockActionHandlerService implements ActionHandler {
+    handleAction(injector: Injector, config: ActionConfig): Observable<void> {
+        const action = document.getElementsByClassName('action')[0];
+
+        action.innerHTML = `
+      ${config.type}
+      ${config.component}
+      ${(config.options as Record<string, string>).url}
+    `;
+
+        return EMPTY;
+    }
+}
+
 export default {
     title: 'ButtonActionComponent',
     component: ButtonActionComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                importProvidersFrom(
+                    ActionsModule.withActions({
+                        mock: MockActionHandlerService,
+                    }),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [ButtonActionModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['variant', 'size', 'shape', 'type', 'attrs'],
@@ -47,23 +78,6 @@ export default {
     },
 } as Meta;
 
-@Injectable({
-    providedIn: 'root',
-})
-class MockActionHandlerService implements ActionHandler {
-    handleAction(injector: Injector, config: ActionConfig): Observable<void> {
-        const action = document.getElementsByClassName('action')[0];
-
-        action.innerHTML = `
-      ${config.type}
-      ${config.component}
-      ${(config.options as Record<string, string>).url}
-    `;
-
-        return EMPTY;
-    }
-}
-
 export const primary = (args) => ({
     props: {
         ...args,
@@ -74,14 +88,6 @@ export const primary = (args) => ({
                 url: '/html-request',
             },
         },
-    },
-    moduleMetadata: {
-        imports: [
-            ButtonActionModule,
-            ActionsModule.withActions({
-                mock: MockActionHandlerService,
-            }),
-        ],
     },
     template: `
     <spy-button-action

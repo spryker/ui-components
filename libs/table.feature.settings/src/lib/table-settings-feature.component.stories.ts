@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { IStory, Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { CheckboxModule } from '@spryker/checkbox';
 import { DatasourceModule } from '@spryker/datasource';
 import { IconModule } from '@spryker/icon';
@@ -23,6 +23,37 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
     title: 'TableSettingsFeatureComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+                {
+                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                    useValue: [LayoutFlatHostComponent],
+                    multi: true,
+                },
+            ],
+        }),
+        moduleMetadata({
+            imports: [
+                TableModule,
+                TableSettingsFeatureModule,
+                DefaultContextSerializationModule,
+                CheckboxModule,
+                IconModule,
+                IconDragModule,
+            ],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -56,56 +87,30 @@ export default {
     },
 } as Meta;
 
-export const viaHtml = getSettingsStory(
-    `
-    <spy-table [config]="config">
+export const viaHtml = (args) => ({
+    props: args,
+    moduleMetadata: { imports: [TableSettingsFeatureModule] },
+    template: `
+    <spy-table [config]='config'>
         <spy-table-settings-feature spy-table-feature>
         </spy-table-settings-feature>
     </spy-table>
   `,
-    [TableSettingsFeatureModule],
-);
+});
 
-export const viaConfig = getSettingsStory(
-    `
-    <spy-table [config]="config">
+export const viaConfig = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    columnConfigurator: () =>
+                        import('./table-settings-feature.module').then((m) => m.TableSettingsFeatureModule),
+                }),
+            ),
+        ],
+    },
+    template: `
+    <spy-table [config]='config'>
   `,
-    [
-        TableModule.withFeatures({
-            columnConfigurator: () =>
-                import('./table-settings-feature.module').then((m) => m.TableSettingsFeatureModule),
-        }),
-    ],
-);
-
-function getSettingsStory(template: string, extraNgModules: any[] = []): (args) => IStory {
-    return (args) => ({
-        props: args,
-        moduleMetadata: {
-            imports: [
-                HttpClientTestingModule,
-                BrowserAnimationsModule,
-                TableModule.forRoot(),
-                DatasourceModule.withDatasources({
-                    'mock-data': MockTableDatasourceService,
-                } as any),
-                TableSettingsFeatureModule,
-                LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-                EnLocaleModule,
-                DefaultContextSerializationModule,
-                CheckboxModule,
-                IconModule,
-                IconDragModule,
-                ...extraNgModules,
-            ],
-            providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent],
-                    multi: true,
-                },
-            ],
-        },
-        template,
-    });
-}
+});

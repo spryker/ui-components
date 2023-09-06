@@ -72,13 +72,27 @@ describe('PaginationComponent', () => {
 
     it('pageSizeChange must be emitted every time valueChange emits from spy-select', async () => {
         const page = 2;
+        const mockedMultipleValue = ['5', '20'];
         const host = await createComponentWrapper(createComponent, { total: 1 });
-        const nzSelectElem = host.queryCss('spy-select');
+        const selectElem = host.queryCss('spy-select');
 
-        nzSelectElem.triggerEventHandler('valueChange', page);
+        selectElem.triggerEventHandler('valueChange', page);
         host.detectChanges();
 
-        expect(host.hostComponent.pageSizeChange).toHaveBeenCalled();
+        expect(host.hostComponent.pageSizeChange).toHaveBeenCalledWith(page);
+
+        selectElem.triggerEventHandler('valueChange', mockedMultipleValue);
+        host.detectChanges();
+
+        expect(host.hostComponent.pageSizeChange).toHaveBeenCalledWith(mockedMultipleValue[0]);
+    });
+
+    it('placeholder should be bounded to spy-select', async () => {
+        const mockedPlaceholder = 'test placeholder';
+        const host = await createComponentWrapper(createComponent, { total: 1, placeholder: mockedPlaceholder });
+        const selectElem = host.queryCss('spy-select');
+
+        expect(selectElem.properties.placeholder).toBe(mockedPlaceholder);
     });
 
     it('spy-select should not be rendered if total value is 0', async () => {

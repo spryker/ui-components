@@ -1,12 +1,25 @@
-import { Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import DeLocaleModule, { DE_LOCALE } from '@spryker/locale/locales/de';
 import EnLocaleModule, { EN_LOCALE } from '@spryker/locale/locales/en';
 import { LocaleModule } from '../locale.module';
+import { importProvidersFrom } from '@angular/core';
 
 const locales = { English: EN_LOCALE, German: DE_LOCALE };
 
 export default {
     title: 'LocaleSwitcherComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                importProvidersFrom(LocaleModule.forRoot()),
+                importProvidersFrom(EnLocaleModule),
+                importProvidersFrom(DeLocaleModule),
+            ],
+        }),
+        moduleMetadata({
+            imports: [LocaleModule],
+        }),
+    ],
     argTypes: {
         locale: {
             control: { type: 'select' },
@@ -22,9 +35,6 @@ export const primary = (args) => ({
     props: {
         ...args,
         now: Date.now(),
-    },
-    moduleMetadata: {
-        imports: [LocaleModule.forRoot(), EnLocaleModule, DeLocaleModule],
     },
     template: `
     <spy-locale-switcher [locale]="locale"></spy-locale-switcher>

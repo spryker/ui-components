@@ -1,9 +1,8 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { IconCalendarModule, IconUserModule } from '@spryker/icon/icons';
 import { WebComponentsModule } from '@spryker/web-components';
-import { StorybookModule } from '@spryker/web-components/storybook';
 
 import { TabComponent } from '../tab/tab.component';
 import { TabsModule } from '../tabs.module';
@@ -49,6 +48,14 @@ const tabsData = [
 export default {
     title: 'TabsComponent',
     component: TabsComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [TabsModule, IconUserModule, IconCalendarModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['tab', 'mode', 'animateSlides', 'tabsDataArray'],
@@ -79,9 +86,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [TabsModule, IconUserModule, IconCalendarModule, BrowserAnimationsModule],
-    },
     template: `
     <spy-tabs [tab]="tab" [mode]="mode" [animateSlides]="animateSlides">
       <spy-tab
@@ -99,9 +103,6 @@ export const primary = (args) => ({
 
 export const withLimitTabs = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [TabsModule, IconUserModule, IconCalendarModule, BrowserAnimationsModule],
-    },
     template: `
     <spy-tabs [tab]="tab" [mode]="mode" [animateSlides]="animateSlides">
       <spy-tab
@@ -150,13 +151,10 @@ withLimitTabs.argTypes = {
 
 export const asWebComponents = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [StorybookModule, WebComponentsModule.withComponents([TabsComponent, TabComponent]), TabsModule],
-        entryComponents: [TabsComponent, TabComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    applicationConfig: {
+        providers: [importProvidersFrom(WebComponentsModule.withComponents([TabsComponent, TabComponent]))],
     },
     template: `
-    <web-spy-storybook>
       <web-spy-tabs
         [attr.tab]="tab"
         [attr.mode]="mode"
@@ -171,7 +169,6 @@ export const asWebComponents = (args) => ({
           Tab Content 3
         </web-spy-tab>
       </web-spy-tabs>
-    </web-spy-storybook>
   `,
 });
 asWebComponents.argTypes = {

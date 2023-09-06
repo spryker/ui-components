@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Injector, Input, QueryList, ContentChildren } from '@angular/core';
-import { Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 
 import {
@@ -13,18 +13,6 @@ import { TableFeaturesRendererComponent } from './table-features-renderer.compon
 import { TableFeaturesRendererDirective } from './table-features-renderer.directive';
 import { TableRenderFeatureDirective } from './table-render-feature.directive';
 import { TableFeaturesRendererService } from './table-features-renderer.service';
-
-export default {
-    title: 'TableFeaturesRendererComponent',
-    argTypes: {
-        limit: {
-            control: { type: 'range', min: -1, max: 5, step: 1 },
-        },
-    },
-    args: {
-        limit: -1,
-    },
-} as Meta;
 
 class MockTableFeatureComponent extends TableFeatureComponent {
     name = 'mock-feature';
@@ -60,31 +48,47 @@ class RenderFeaturesComponent {
     features: MockTableFeatureComponent[] = [];
 }
 
-export const withFeatures = (args) => ({
-    props: args,
-    moduleMetadata: {
-        imports: [CommonModule],
-        declarations: [
-            RenderFeaturesComponent,
-            TableFeatureTplDirective,
-            TableFeaturesRendererComponent,
-            TableFeaturesRendererDirective,
-            TableRenderFeatureDirective,
-        ],
-        providers: [
-            { provide: CoreTableComponent, useValue: 'CoreTableComponent' },
-            {
-                provide: TableColumnsResolverService,
-                useValue: 'TableColumnsResolverService',
-            },
-            { provide: TableDatasourceService, useValue: 'TableDatasourceService' },
-            {
-                provide: TableDataConfiguratorService,
-                useValue: 'TableDataConfiguratorService',
-            },
-            TableFeaturesRendererService,
-        ],
+export default {
+    title: 'TableFeaturesRendererComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                { provide: CoreTableComponent, useValue: 'CoreTableComponent' },
+                {
+                    provide: TableColumnsResolverService,
+                    useValue: 'TableColumnsResolverService',
+                },
+                { provide: TableDatasourceService, useValue: 'TableDatasourceService' },
+                {
+                    provide: TableDataConfiguratorService,
+                    useValue: 'TableDataConfiguratorService',
+                },
+                TableFeaturesRendererService,
+            ],
+        }),
+        moduleMetadata({
+            imports: [CommonModule],
+            declarations: [
+                RenderFeaturesComponent,
+                TableFeatureTplDirective,
+                TableFeaturesRendererComponent,
+                TableFeaturesRendererDirective,
+                TableRenderFeatureDirective,
+            ],
+        }),
+    ],
+    argTypes: {
+        limit: {
+            control: { type: 'range', min: 1, max: 4, step: 1 },
+        },
     },
+    args: {
+        limit: 4,
+    },
+} as Meta;
+
+export const primary = (args) => ({
+    props: args,
     template: `
     <spy-render-features [limit]="limit">
       <div *spyTableFeatureTpl="'mocked-location'">feat</div>

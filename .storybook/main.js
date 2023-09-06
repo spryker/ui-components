@@ -1,15 +1,18 @@
 const path = require('path');
-
 module.exports = {
     stories: ['../**/*.stories.@(ts|mdx)'],
     addons: [
         '@storybook/addon-docs',
         '@storybook/addon-essentials',
         '@storybook/addon-a11y',
-        'storybook-addon-designs',
+        '@storybook/addon-designs',
     ],
     core: {
-        builder: 'webpack5',
+        disableTelemetry: true,
+    },
+    framework: {
+        name: '@storybook/angular',
+        options: {},
     },
     webpackFinal: async (config, { configType }) => {
         config.module = config.module || {};
@@ -27,7 +30,6 @@ module.exports = {
             path.resolve(__dirname, '../node_modules'),
             path.resolve(__dirname, '../libs/styles/src/lib'),
         ];
-
         return config;
     },
 };

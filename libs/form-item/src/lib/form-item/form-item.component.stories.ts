@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { InputModule } from '@spryker/input';
 import { TextareaModule } from '@spryker/textarea';
 import { AutocompleteModule } from '@spryker/autocomplete';
@@ -13,6 +12,14 @@ import { FormItemComponent } from './form-item.component';
 export default {
     title: 'FormItemComponent',
     component: FormItemComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [FormItemModule, InputModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: [
@@ -55,15 +62,8 @@ export default {
     },
 } as Meta;
 
-@NgModule({
-    imports: [BrowserAnimationsModule, FormItemModule],
-    exports: [FormItemModule, InputModule],
-})
-class StoryModule {}
-
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
     template: `
     <spy-form-item
       for="input-id1"
@@ -110,7 +110,6 @@ primary.args = {
 
 export const withPrefixAndSuffix = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
     template: `
     <spy-form-item
       for="input-id1"
@@ -147,7 +146,7 @@ withPrefixAndSuffix.args = {
 
 export const formWithErrors = (args) => ({
     moduleMetadata: {
-        imports: [StoryModule, TextareaModule, AutocompleteModule, SelectModule, TreeSelectModule, RadioModule],
+        imports: [TextareaModule, AutocompleteModule, SelectModule, TreeSelectModule, RadioModule],
     },
     template: `
     <spy-form-item

@@ -1,11 +1,19 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DropdownModule } from '../dropdown.module';
 import { DropdownComponent } from './dropdown.component';
 
 export default {
     title: 'DropdownComponent',
     component: DropdownComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [DropdownModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['items', 'placement', 'visible', 'disabled'],
@@ -21,14 +29,14 @@ export default {
             { action: 'action1', title: 'item1' },
             { action: 'action2', title: 'item2' },
         ],
+        placement: 'bottomRight',
+        visible: false,
+        disabled: false,
     },
 } as Meta;
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [DropdownModule, BrowserAnimationsModule],
-    },
     template: `
     <div style="padding: 80px; display: flex; justify-content: center;">
       <spy-dropdown

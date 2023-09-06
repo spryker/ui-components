@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { IStory, Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableActionTriggeredEvent, TableModule } from '@spryker/table';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
@@ -19,6 +19,28 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
     title: 'TableRowActionsFeatureComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                {
+                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                    useValue: [LayoutFlatHostComponent],
+                    multi: true,
+                },
+            ],
+        }),
+        moduleMetadata({
+            imports: [TableModule, DefaultContextSerializationModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -61,51 +83,39 @@ export default {
     },
 } as Meta;
 
-export const viaHtml = getRowActionsStory(
-    `
-    <spy-table [config]="config" [events]="{rowActions: logActionTriggered}">
+export const viaHtml = (args) => ({
+    props: {
+        ...args,
+        events: {
+            table: (event: TableActionTriggeredEvent) => console.log('actionTriggered', event),
+        },
+    },
+    moduleMetadata: { imports: [TableRowActionsFeatureModule] },
+    template: `
+    <spy-table [config]='config' [events]='events'>
       <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
     </spy-table>
   `,
-    [TableRowActionsFeatureModule],
-);
+});
 
-export const viaConfig = getRowActionsStory(
-    `
-    <spy-table [config]="config" [events]="{rowActions: logActionTriggered}">
+export const viaConfig = (args) => ({
+    props: {
+        ...args,
+        events: {
+            table: (event: TableActionTriggeredEvent) => console.log('actionTriggered', event),
+        },
+    },
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    rowActions: () =>
+                        import('./table-row-actions-feature.module').then((m) => m.TableRowActionsFeatureModule),
+                }),
+            ),
+        ],
+    },
+    template: `
+    <spy-table [config]='config' [events]='events'>
   `,
-    [
-        TableModule.withFeatures({
-            rowActions: () => import('./table-row-actions-feature.module').then((m) => m.TableRowActionsFeatureModule),
-        }),
-    ],
-);
-
-function getRowActionsStory(template: string, extraNgModules: any[] = []): (args) => IStory {
-    return (args) => ({
-        props: {
-            ...args,
-            logActionTriggered: (event: TableActionTriggeredEvent) => console.log('actionTriggered', event),
-        },
-        moduleMetadata: {
-            imports: [
-                HttpClientTestingModule,
-                BrowserAnimationsModule,
-                TableModule.forRoot(),
-                DatasourceModule.withDatasources({
-                    'mock-data': MockTableDatasourceService,
-                } as any),
-                DefaultContextSerializationModule,
-                ...extraNgModules,
-            ],
-            providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent],
-                    multi: true,
-                },
-            ],
-        },
-        template,
-    });
-}
+});

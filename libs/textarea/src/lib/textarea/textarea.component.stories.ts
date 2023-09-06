@@ -1,10 +1,15 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { TextareaComponent } from './textarea.component';
 import { TextareaModule } from '../textarea.module';
 
 export default {
     title: 'TextareaComponent',
     component: TextareaComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [TextareaModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['name', 'value', 'disabled', 'placeholder', 'rows', 'cols', 'attrs', 'spyId'],
@@ -27,7 +32,4 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [TextareaModule],
-    },
 });

@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import * as icons from '@spryker/icon/icons';
 import { Icon } from '@spryker/icon';
 import { LinkModule } from '../link.module';
@@ -10,6 +10,11 @@ const iconNames = iconsModules.map((i) => i.icon);
 export default {
     title: 'LinkComponent',
     component: LinkComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [LinkModule, ...iconsModules],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['icon', 'text'],
@@ -29,9 +34,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [LinkModule, ...iconsModules],
-    },
     template: `
     <spy-link [icon]="icon">{{ text }}</spy-link>
   `,

@@ -5,7 +5,7 @@ import { AntRegistrarService } from './loader-registrars/ant-registrar.service';
 import { NgRegistrarService } from './loader-registrars/ng-registrar.service';
 import { SprykerRegistrarService } from './loader-registrars/spryker-registrar.service';
 import { LocaleRenderDirective } from './locale-render/locale-render.directive';
-import { LocaleSwitcherComponent, LocaleSwitcherInputs } from './locale-switcher/locale-switcher.component';
+import { LocaleSwitcherComponent } from './locale-switcher/locale-switcher.component';
 import { provideDefaultLocale, provideLocaleId, provideLocaleLoaderRegistrars } from './providers';
 import { LocaleLoaderRegistrarMap } from './types';
 
@@ -17,7 +17,7 @@ export interface LocaleModuleOptions {
 @NgModule({
     imports: [CommonModule],
     exports: [LocaleRenderDirective, LocaleSwitcherComponent],
-    declarations: [LocaleRenderDirective, LocaleSwitcherComponent, LocaleSwitcherInputs],
+    declarations: [LocaleRenderDirective, LocaleSwitcherComponent],
 })
 export class LocaleModule {
     static forRoot({ defaultLocale, registrars }: LocaleModuleOptions = {}): ModuleWithProviders<LocaleModule> {

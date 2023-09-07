@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, Directive, Input, OnChanges, OnInit } from '@angular/core';
-import { TypedSimpleChanges } from '@spryker/utils';
+import { ChangeDetectionStrategy, Component, Injectable, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { LocaleService } from '../locale.service';
 
-@Directive({
-    selector: '[spyLocaleSwitcherInputs]',
-})
+/**
+ * @deprecated use `LocaleSwitcherComponent` instead.
+ */
+@Injectable()
 export class LocaleSwitcherInputs {
     @Input() locale?: string;
 }
@@ -16,10 +16,10 @@ export class LocaleSwitcherInputs {
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { style: 'display: none' },
 })
-export class LocaleSwitcherComponent extends LocaleSwitcherInputs implements OnInit, OnChanges {
-    constructor(private localeService: LocaleService) {
-        super();
-    }
+export class LocaleSwitcherComponent implements OnInit, OnChanges {
+    @Input() locale?: string;
+
+    constructor(private localeService: LocaleService) {}
 
     ngOnInit(): void {
         if (this.locale) {
@@ -27,7 +27,7 @@ export class LocaleSwitcherComponent extends LocaleSwitcherInputs implements OnI
         }
     }
 
-    ngOnChanges(changes: TypedSimpleChanges<LocaleSwitcherInputs>): void {
+    ngOnChanges(changes: SimpleChanges): void {
         if (changes.locale && this.locale) {
             this.setLocale(this.locale);
         }

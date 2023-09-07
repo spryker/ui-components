@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Directive, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Directive, Input, OnChanges, OnInit } from '@angular/core';
+import { TypedSimpleChanges } from '@spryker/utils';
 import { LocaleService } from '../locale.service';
 
 @Directive({
@@ -26,7 +27,7 @@ export class LocaleSwitcherComponent extends LocaleSwitcherInputs implements OnI
         }
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
+    ngOnChanges(changes: TypedSimpleChanges<LocaleSwitcherInputs>): void {
         if (changes.locale && this.locale) {
             this.setLocale(this.locale);
         }

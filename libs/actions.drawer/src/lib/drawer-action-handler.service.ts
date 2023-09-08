@@ -20,6 +20,7 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
     private drawerActionHandlerTypes: DrawerActionTypesDeclaration =
         this.drawerActionHandlers?.reduce((components, component) => ({ ...components, ...component }), {}) ?? {};
     private drawerIdsMap = new Map<string, DrawerRef>();
+    private drawerIdsCounter = 0;
 
     constructor(
         private drawerService: DrawerService,
@@ -36,7 +37,7 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
             let hasDrawerId = this.drawerIdsMap.has(drawerData.id);
 
             drawerData.options = { ...drawerData.options };
-            drawerData.id = drawerData.id ?? 'default';
+            drawerData.id = drawerData.id ?? `default-${this.drawerIdsCounter++}`;
 
             if (hasDrawerId) {
                 drawerSubscription.add(

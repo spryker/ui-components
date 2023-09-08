@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { IStory, Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
@@ -22,6 +22,35 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
     title: 'TableFilterTreeSelectComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    TableFiltersFeatureModule.withFilterComponents({
+                        'tree-select': TableFilterTreeSelectComponent,
+                    } as any),
+                ),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+                {
+                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                    useValue: [LayoutFlatHostComponent, TableFilterTreeSelectComponent],
+                    multi: true,
+                },
+            ],
+        }),
+        moduleMetadata({
+            imports: [TableModule, DefaultContextSerializationModule, TableFilterTreeSelectModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -82,54 +111,28 @@ export default {
     },
 } as Meta;
 
-export const viaHtml = getFiltersStory(
-    `
-    <spy-table [config]="config">
+export const viaHtml = (args) => ({
+    props: args,
+    moduleMetadata: { imports: [TableFiltersFeatureModule] },
+    template: `
+    <spy-table [config]='config'>
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
     </spy-table>
   `,
-    [TableFiltersFeatureModule],
-);
+});
 
-export const viaConfig = getFiltersStory(
-    `
-    <spy-table [config]="config"></spy-table>
+export const viaConfig = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    filters: () => import('@spryker/table.feature.filters').then((m) => m.TableFiltersFeatureModule),
+                }),
+            ),
+        ],
+    },
+    template: `
+    <spy-table [config]='config'></spy-table>
   `,
-    [
-        TableModule.withFeatures({
-            filters: () => import('@spryker/table.feature.filters').then((m) => m.TableFiltersFeatureModule),
-        }),
-    ],
-);
-
-function getFiltersStory(template: string, extraNgModules: any[] = []): (args) => IStory {
-    return (args) => ({
-        props: args,
-        moduleMetadata: {
-            imports: [
-                HttpClientTestingModule,
-                BrowserAnimationsModule,
-                TableModule.forRoot(),
-                TableFiltersFeatureModule.withFilterComponents({
-                    'tree-select': TableFilterTreeSelectComponent,
-                } as any),
-                DefaultContextSerializationModule,
-                DatasourceModule.withDatasources({
-                    'mock-data': MockTableDatasourceService,
-                } as any),
-                TableFilterTreeSelectModule,
-                LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-                EnLocaleModule,
-                ...extraNgModules,
-            ],
-            providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent, TableFilterTreeSelectComponent],
-                    multi: true,
-                },
-            ],
-        },
-        template,
-    });
-}
+});

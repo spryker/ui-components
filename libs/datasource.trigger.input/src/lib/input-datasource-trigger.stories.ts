@@ -1,12 +1,13 @@
-import { Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { SelectModule } from '@spryker/select';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceHttpService } from '@spryker/datasource.http';
 import { DatasourceTriggerModule, DatasourceTriggerService } from '@spryker/datasource.trigger';
 import { InputDatasourceTriggerService } from './input-datasource-trigger.service';
+import { importProvidersFrom } from '@angular/core';
 
 const mockOptions = [
     {
@@ -25,6 +26,28 @@ const mockOptions = [
 
 export default {
     title: 'InputDatasourceTriggerService',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        trigger: DatasourceTriggerService,
+                        http: DatasourceHttpService,
+                    }),
+                ),
+                importProvidersFrom(
+                    DatasourceTriggerModule.withEvents({
+                        input: InputDatasourceTriggerService,
+                    }),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [SelectModule, MockHttpModule],
+        }),
+    ],
     args: {
         datasource: {
             type: 'trigger',
@@ -52,21 +75,6 @@ export const primary = (args: any) => ({
                 data: mockOptions,
             },
         ]),
-    },
-    moduleMetadata: {
-        imports: [
-            BrowserAnimationsModule,
-            SelectModule,
-            HttpClientTestingModule,
-            MockHttpModule,
-            DatasourceModule.withDatasources({
-                trigger: DatasourceTriggerService,
-                http: DatasourceHttpService,
-            }),
-            DatasourceTriggerModule.withEvents({
-                input: InputDatasourceTriggerService,
-            }),
-        ],
     },
     template: `
         <spy-select

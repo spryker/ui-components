@@ -1,11 +1,23 @@
+import { importProvidersFrom } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule } from '@spryker/notification';
 import { AjaxFormModule } from '../ajax-form.module';
 
 export default {
     title: 'AjaxFormComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(NotificationModule.forRoot()),
+            ],
+        }),
+        moduleMetadata({
+            imports: [AjaxFormModule, MockHttpModule],
+        }),
+    ],
 } as Meta;
 
 const mockHtmlTemplate = () => `
@@ -42,9 +54,6 @@ export const primary = (args) => ({
                 dataFn: () => generateMockHtmlPage(),
             },
         ]),
-    },
-    moduleMetadata: {
-        imports: [AjaxFormModule, MockHttpModule, HttpClientTestingModule, NotificationModule.forRoot()],
     },
     template: `<spy-ajax-form [action]="action" [mockHttp]="mockHttp"></spy-ajax-form>`,
 });

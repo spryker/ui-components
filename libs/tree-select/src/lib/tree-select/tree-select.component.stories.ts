@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 
@@ -10,6 +10,18 @@ import { TreeSelectModule } from '../tree-select.module';
 export default {
     title: 'TreeSelectComponent',
     component: TreeSelectComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+            ],
+        }),
+        moduleMetadata({
+            imports: [TreeSelectModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: [
@@ -67,25 +79,12 @@ export default {
     },
 } as Meta;
 
-@NgModule({
-    imports: [
-        BrowserAnimationsModule,
-        TreeSelectModule,
-        LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-        EnLocaleModule,
-    ],
-    exports: [TreeSelectComponent],
-})
-class StoryModule {}
-
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
 });
 
 export const withoutOptions = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
 });
 withoutOptions.args = {
     items: [],

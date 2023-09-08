@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { SelectModule } from '../select.module';
@@ -9,6 +9,18 @@ import { SelectComponent } from './select.component';
 export default {
     title: 'SelectComponent',
     component: SelectComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+            ],
+        }),
+        moduleMetadata({
+            imports: [SelectModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: [
@@ -36,7 +48,7 @@ export default {
             control: { type: 'text' },
         },
         value: {
-            control: { type: 'text' },
+            control: { type: 'array' },
         },
     },
     args: {
@@ -49,24 +61,17 @@ export default {
     },
 } as Meta;
 
-@NgModule({
-    imports: [
-        BrowserAnimationsModule,
-        SelectModule,
-        LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-        EnLocaleModule,
-    ],
-    exports: [SelectComponent],
-})
-class StoryModule {}
-
 export const primary = (args) => ({
     props: {
         ...args,
         valueChange: console.log,
     },
-    moduleMetadata: { imports: [StoryModule] },
 });
+primary.argTypes = {
+    value: {
+        control: { type: 'text' },
+    },
+};
 primary.args = {
     options: [
         'Option 1',
@@ -86,7 +91,6 @@ primary.args = {
 
 export const multiSelect = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
 });
 multiSelect.args = {
     options: [
@@ -99,7 +103,6 @@ multiSelect.args = {
 
 export const multiSelectWithoutOptionsMapping = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
 });
 multiSelectWithoutOptionsMapping.args = {
     options: [
@@ -112,7 +115,6 @@ multiSelectWithoutOptionsMapping.args = {
 
 export const withSelectAll = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
 });
 withSelectAll.args = {
     showSelectAll: true,

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Component, Injectable, Input, NgModule, OnInit } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { Component, importProvidersFrom, Injectable, Input, OnInit } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
@@ -35,8 +35,86 @@ class TableEditableDataSerializer {
     }
 }
 
+@Injectable({ providedIn: 'root' })
+class EditColumnConfig {
+    type = 'text';
+    value?: string;
+    editableError?: string;
+}
+
+@Component({
+    selector: 'spy-edit-column',
+    template: `
+        Edit Column {{ context.config.id }}
+        <div>
+            <input
+                [type]="config?.type"
+                [value]="context?.value"
+                (input)="updateValue(input.value)"
+                [style.border]="'1px solid black'"
+                #input
+            />
+            <div>
+                {{ config?.editableError }}
+            </div>
+        </div>
+    `,
+    providers: [TableEditableService],
+})
+@TableColumnTypeComponent(EditColumnConfig)
+class EditColumnComponent implements TableColumnComponent<EditColumnConfig>, OnInit {
+    @Input() config?: EditColumnConfig;
+    @Input() context?: TableColumnContext;
+    @Input() items?: unknown;
+
+    constructor(private tableEditableService: TableEditableService) {}
+
+    ngOnInit(): void {
+        if (!this.context?.value && this.config?.value) {
+            this.updateValue(this.config?.value);
+        }
+    }
+
+    updateValue(value: string): void {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.context!.value = value;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.tableEditableService.updateValue(value, this.context!.config);
+    }
+}
+
 export default {
     title: 'TableEditableFeatureComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    TableModule.withColumnComponents({
+                        edit: EditColumnComponent,
+                    } as any),
+                ),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                importProvidersFrom(NotificationModule.forRoot()),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+                {
+                    provide: TableEditableEditRequestToken,
+                    useClass: TableEditableDataSerializer,
+                },
+            ],
+        }),
+        moduleMetadata({
+            imports: [CommonModule, MockHttpModule, TableModule, DefaultContextSerializationModule],
+            declarations: [EditColumnComponent],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -134,86 +212,9 @@ export default {
     },
 } as Meta;
 
-@Injectable({ providedIn: 'root' })
-class EditColumnConfig {
-    type = 'text';
-    value?: string;
-    editableError?: string;
-}
-
-@Component({
-    selector: 'spy-edit-column',
-    template: `
-        Edit Column {{ context.config.id }}
-        <div>
-            <input
-                [type]="config?.type"
-                [value]="context?.value"
-                (input)="updateValue(input.value)"
-                [style.border]="'1px solid black'"
-                #input
-            />
-            <div>
-                {{ config?.editableError }}
-            </div>
-        </div>
-    `,
-    providers: [TableEditableService],
-})
-@TableColumnTypeComponent(EditColumnConfig)
-class EditColumnComponent implements TableColumnComponent<EditColumnConfig>, OnInit {
-    @Input() config?: EditColumnConfig;
-    @Input() context?: TableColumnContext;
-    @Input() items?: unknown;
-
-    constructor(private tableEditableService: TableEditableService) {}
-
-    ngOnInit(): void {
-        if (!this.context?.value && this.config?.value) {
-            this.updateValue(this.config?.value);
-        }
-    }
-
-    updateValue(value: string): void {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        this.context!.value = value;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        this.tableEditableService.updateValue(value, this.context!.config);
-    }
-}
-
-@NgModule({
-    imports: [
-        CommonModule,
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        MockHttpModule,
-        TableModule.forRoot(),
-        DatasourceModule.withDatasources({
-            'mock-data': MockTableDatasourceService,
-        } as any),
-        TableModule.withColumnComponents({
-            edit: EditColumnComponent,
-        } as any),
-        DefaultContextSerializationModule,
-        NotificationModule.forRoot(),
-        LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-        EnLocaleModule,
-    ],
-    exports: [TableModule, MockHttpModule],
-    declarations: [EditColumnComponent],
-    providers: [
-        {
-            provide: TableEditableEditRequestToken,
-            useClass: TableEditableDataSerializer,
-        },
-    ],
-})
-class StoryModule {}
-
 export const viaHtml = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule, TableEditableFeatureModule] },
+    moduleMetadata: { imports: [TableEditableFeatureModule] },
     template: `
       <spy-table [config]="config" [mockHttp]="mockHttp">
         <spy-table-editable-feature spy-table-feature></spy-table-editable-feature>
@@ -223,12 +224,13 @@ export const viaHtml = (args) => ({
 
 export const viaConfig = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            StoryModule,
-            TableModule.withFeatures({
-                editable: () => import('./table-editable-feature.module').then((m) => m.TableEditableFeatureModule),
-            }),
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    editable: () => import('./table-editable-feature.module').then((m) => m.TableEditableFeatureModule),
+                }),
+            ),
         ],
     },
     template: `

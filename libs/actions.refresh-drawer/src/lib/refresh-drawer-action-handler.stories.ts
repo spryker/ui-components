@@ -1,21 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, importProvidersFrom } from '@angular/core';
 import { DrawerModule, DrawerService, DrawerContainerProxyComponent } from '@spryker/drawer';
 import { ButtonModule } from '@spryker/button';
 import { ButtonActionModule } from '@spryker/button.action';
 import { ActionsModule } from '@spryker/actions';
-import { Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { RefreshDrawerActionHandlerService } from './refresh-drawer-action-handler.service';
-
-export default {
-    title: 'RefreshDrawerActionHandlerService',
-    parameters: {
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
-            allowFullscreen: true,
-        },
-    },
-} as Meta;
 
 @Component({
     selector: 'spy-story',
@@ -41,24 +30,38 @@ class SimpleDrawerComponent {
 })
 class DrawerContentComponent {}
 
+export default {
+    title: 'RefreshDrawerActionHandlerService',
+    decorators: [
+        applicationConfig({
+            providers: [
+                importProvidersFrom(
+                    ActionsModule.withActions({
+                        'refresh-drawer': RefreshDrawerActionHandlerService,
+                    }),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [DrawerModule, ButtonModule, ButtonActionModule],
+            declarations: [SimpleDrawerComponent, DrawerContentComponent],
+            entryComponents: [DrawerContentComponent, DrawerContainerProxyComponent],
+        }),
+    ],
+    parameters: {
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
+            allowFullscreen: true,
+        },
+    },
+} as Meta;
 export const primary = (args) => ({
     props: {
         ...args,
         action: {
             type: 'refresh-drawer',
         },
-    },
-    moduleMetadata: {
-        imports: [
-            DrawerModule,
-            ButtonModule,
-            ButtonActionModule,
-            ActionsModule.withActions({
-                'refresh-drawer': RefreshDrawerActionHandlerService,
-            }),
-        ],
-        declarations: [SimpleDrawerComponent, DrawerContentComponent],
-        entryComponents: [DrawerContentComponent, DrawerContainerProxyComponent],
     },
     template: `
     <spy-story></spy-story>

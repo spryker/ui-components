@@ -1,10 +1,15 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { InputModule } from '../input.module';
 import { InputComponent } from './input.component';
 
 export default {
     title: 'InputComponent',
     component: InputComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [InputModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: [
@@ -30,6 +35,9 @@ export default {
         },
     },
     argTypes: {
+        value: {
+            control: { type: 'text' },
+        },
         outerPrefix: {
             control: { type: 'text' },
         },
@@ -45,6 +53,7 @@ export default {
     },
     args: {
         name: 'input-name',
+        type: 'text',
         spyId: 'input-id',
         placeholder: 'Some placeholder',
         outerPrefix: '',
@@ -59,16 +68,10 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [InputModule],
-    },
 });
 
 export const withPrefixAndSuffix = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [InputModule],
-    },
 });
 withPrefixAndSuffix.args = {
     prefix: 'P',
@@ -77,9 +80,6 @@ withPrefixAndSuffix.args = {
 
 export const withOuterPrefixAndOuterSuffix = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [InputModule],
-    },
 });
 withOuterPrefixAndOuterSuffix.args = {
     outerPrefix: 'prefix',

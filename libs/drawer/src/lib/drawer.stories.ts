@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, Output, TemplateRef } from '@angular/core';
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 import { DrawerModule } from './drawer.module';
 import { DrawerService } from './drawer.service';
@@ -7,7 +7,7 @@ import { DrawerComponentInputs } from './drawer/drawer.component';
 import { DrawerRef } from './drawer-ref';
 
 @Component({
-    selector: 'spy-story',
+    selector: 'spy-multiple-drawers',
     template: `
         <p><button (click)="addDrawer(drawerTpl)">Add drawer</button></p>
         <p><button (click)="closeAll()">Close all</button></p>
@@ -74,27 +74,6 @@ class SimpleDrawerComponent extends DrawerComponentInputs {
     openDrawer = false;
 }
 
-export default {
-    title: 'DrawersComponent',
-    component: SimpleDrawerComponent,
-    parameters: {
-        controls: {
-            include: ['closeable', 'resizable', 'width', 'hasBackdrop'],
-        },
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
-            allowFullscreen: true,
-        },
-    },
-    args: {
-        closeable: true,
-        resizable: true,
-        width: '50%',
-        hasBackdrop: false,
-    },
-} as Meta;
-
 @Component({
     selector: 'spy-drawer-example-component',
     template: `
@@ -147,31 +126,60 @@ class DrawerWithComponentComponent implements OnDestroy {
     }
 }
 
+export default {
+    title: 'DrawersComponent',
+    component: SimpleDrawerComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [DrawerModule],
+            entryComponents: [DrawerContainerProxyComponent],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: ['closeable', 'resizable', 'width', 'hasBackdrop'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8987',
+            allowFullscreen: true,
+        },
+    },
+    args: {
+        closeable: true,
+        resizable: true,
+        width: '50%',
+        hasBackdrop: false,
+    },
+} as Meta;
+
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [DrawerModule],
-        entryComponents: [DrawerContainerProxyComponent],
-    },
 });
 
 export const withMultipleDrawers = (args) => ({
     props: args,
     moduleMetadata: {
-        imports: [DrawerModule],
-        entryComponents: [DrawerContainerProxyComponent],
+        declarations: [MultipleDrawersComponent],
     },
-    component: MultipleDrawersComponent,
+    template: `
+      <spy-multiple-drawers
+        [closeable]='closeable'
+        [width]='width'
+        [hasBackdrop]='hasBackdrop'
+        [resizable]='resizable'
+        ></spy-multiple-drawers>
+    `,
 });
 
 export const withComponent = (args) => ({
     props: args,
     moduleMetadata: {
-        imports: [DrawerModule],
-        declarations: [DrawerExampleComponent],
-        entryComponents: [DrawerContainerProxyComponent, DrawerExampleComponent],
+        declarations: [DrawerWithComponentComponent],
     },
-    component: DrawerWithComponentComponent,
+    template: `
+        <spy-drawer-with-component></spy-drawer-with-component>
+    `,
 });
 withComponent.argTypes = {
     closeable: {

@@ -1,14 +1,31 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ActionsModule } from '@spryker/actions';
 import { ButtonActionModule } from '@spryker/button.action';
 import { NotificationModule, NotificationType, NotificationWrapperComponent } from '@spryker/notification';
-import { ContextService } from '@spryker/utils';
 
 import { NotificationActionHandlerService } from './notification-action-handler.service';
 
 export default {
     title: 'NotificationActionHandlerService',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(NotificationModule.forRoot()),
+                importProvidersFrom(
+                    ActionsModule.withActions({
+                        notification: NotificationActionHandlerService,
+                    }),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [ButtonActionModule],
+            entryComponents: [NotificationWrapperComponent],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['action'],
@@ -40,18 +57,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            BrowserAnimationsModule,
-            ButtonActionModule,
-            NotificationModule.forRoot(),
-            ActionsModule.withActions({
-                notification: NotificationActionHandlerService,
-            }),
-        ],
-        providers: [ContextService],
-        entryComponents: [NotificationWrapperComponent],
-    },
     template: `
     <spy-button-action
       [action]="action"

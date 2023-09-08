@@ -1,10 +1,15 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { InputPasswordModule } from '../input-password.module';
 import { InputPasswordComponent } from './input-password.component';
 
 export default {
     title: 'InputPasswordComponent',
     component: InputPasswordComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [InputPasswordModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: [
@@ -52,16 +57,10 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [InputPasswordModule],
-    },
 });
 
 export const withOuterPrefixAndOuterSuffix = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [InputPasswordModule],
-    },
 });
 withOuterPrefixAndOuterSuffix.args = {
     outerPrefix: 'prefix',

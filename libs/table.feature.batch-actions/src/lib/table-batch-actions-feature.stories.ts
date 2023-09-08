@@ -1,17 +1,17 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, Input } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, importProvidersFrom, Input } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { IStory, Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
-import { NotificationModule, NotificationWrapperComponent } from '@spryker/notification';
+import { NotificationModule } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
 import { TableSelectableFeatureModule } from '@spryker/table.feature.selectable';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { DrawerModule, DrawerContainerProxyComponent } from '@spryker/drawer';
+import { DrawerModule } from '@spryker/drawer';
 import { ActionsModule } from '@spryker/actions';
 import { DrawerActionHandlerService, DrawerActionModule } from '@spryker/actions.drawer';
 import { TableBatchActionsFeatureModule } from './table-batch-actions-feature.module';
@@ -71,6 +71,42 @@ const availableActionsTitle = (index: number): string => {
 
 export default {
     title: 'TableBatchActionsFeatureComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(NotificationModule.forRoot()),
+                importProvidersFrom(
+                    ActionsModule.withActions({
+                        drawer: DrawerActionHandlerService,
+                    }),
+                ),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                importProvidersFrom(
+                    DrawerActionModule.withComponents({
+                        simple_component: SimpleComponent,
+                    }),
+                ),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+                {
+                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                    useValue: [LayoutFlatHostComponent],
+                    multi: true,
+                },
+            ],
+        }),
+        moduleMetadata({
+            imports: [TableModule, DrawerModule, DefaultContextSerializationModule],
+            declarations: [SimpleComponent],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -135,64 +171,34 @@ export default {
     },
 } as Meta;
 
-export const viaHtml = getTotalStory(
-    `
+export const viaHtml = (args) => ({
+    props: args,
+    moduleMetadata: {
+        imports: [TableBatchActionsFeatureModule, TableSelectableFeatureModule],
+    },
+    template: `
     <spy-table [config]="config">
       <spy-table-batch-actions-feature spy-table-feature></spy-table-batch-actions-feature>
       <spy-table-selectable-feature spy-table-feature></spy-table-selectable-feature>
     </spy-table>
   `,
-    [TableBatchActionsFeatureModule, TableSelectableFeatureModule],
-);
+});
 
-export const viaConfig = getTotalStory(
-    `
-    <spy-table [config]="config"></spy-table>
+export const viaConfig = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    batchActions: () =>
+                        import('./table-batch-actions-feature.module').then((m) => m.TableBatchActionsFeatureModule),
+                    itemSelection: () =>
+                        import('@spryker/table.feature.selectable').then((m) => m.TableSelectableFeatureModule),
+                }),
+            ),
+        ],
+    },
+    template: `
+    <spy-table [config]='config'></spy-table>
   `,
-    [
-        TableModule.withFeatures({
-            batchActions: () =>
-                import('./table-batch-actions-feature.module').then((m) => m.TableBatchActionsFeatureModule),
-            itemSelection: () =>
-                import('@spryker/table.feature.selectable').then((m) => m.TableSelectableFeatureModule),
-        }),
-    ],
-);
-
-function getTotalStory(template: string, extraNgModules: any[] = []): (args) => IStory {
-    return (args) => ({
-        props: args,
-        moduleMetadata: {
-            imports: [
-                HttpClientTestingModule,
-                BrowserAnimationsModule,
-                NotificationModule.forRoot(),
-                TableModule.forRoot(),
-                DrawerModule,
-                ActionsModule.withActions({
-                    drawer: DrawerActionHandlerService,
-                }),
-                DatasourceModule.withDatasources({
-                    'mock-data': MockTableDatasourceService,
-                } as any),
-                DrawerActionModule.withComponents({
-                    simple_component: SimpleComponent,
-                }),
-                LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-                EnLocaleModule,
-                DefaultContextSerializationModule,
-                ...extraNgModules,
-            ],
-            declarations: [SimpleComponent],
-            providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent],
-                    multi: true,
-                },
-            ],
-            entryComponents: [NotificationWrapperComponent, DrawerContainerProxyComponent, SimpleComponent],
-        },
-        template,
-    });
-}
+});

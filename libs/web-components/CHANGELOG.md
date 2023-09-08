@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@1.0.0...@spryker/web-components@1.0.1-next.0) (2023-08-11)
+
+
+### Bug Fixes
+
+* **web-components:** adjust `isNgWebComponentOf` function ([14898df](https://github.com/spryker/ui-components/commit/14898dfd863c9873b4d189a9a82e4cd0fad58890))
+
+
+
+
+
 # [1.0.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@1.0.0-rc.1...@spryker/web-components@1.0.0) (2022-12-29)
 
 **Note:** Version bump only for package @spryker/web-components

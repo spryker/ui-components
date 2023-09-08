@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/locale@1.0.2-next.0...@spryker/locale@1.0.2-next.1) (2023-09-07)
+
+
+### Bug Fixes
+
+* **locale:** adjust `locale-switcher` by setting locale on init ([9aa0d31](https://github.com/spryker/ui-components/commit/9aa0d319702394213b019847eb976dd408c2eb77))
+
+
+
+
+
+## [1.0.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/locale@1.0.1...@spryker/locale@1.0.2-next.0) (2023-09-06)
+
+**Note:** Version bump only for package @spryker/locale
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/locale@1.0.1-rc.0...@spryker/locale@1.0.1) (2023-01-24)
 
 **Note:** Version bump only for package @spryker/locale

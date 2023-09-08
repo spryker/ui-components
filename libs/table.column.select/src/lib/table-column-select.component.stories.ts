@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { DatasourceHttpService } from '@spryker/datasource.http';
@@ -32,6 +32,21 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 export default {
     title: 'TableColumnSelectComponent',
     component: TableColumnSelectComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [TableColumnSelectModule, DefaultContextSerializationModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['config', 'context', 'mockHttp'],
@@ -91,16 +106,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            DatasourceModule.withDatasources({
-                'mock-data': MockTableDatasourceService,
-            } as any),
-            TableColumnSelectModule,
-            DefaultContextSerializationModule,
-            BrowserAnimationsModule,
-        ],
-    },
 });
 primary.args = {
     context: {
@@ -122,28 +127,24 @@ primary.argTypes = {
 
 export const withTable = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            HttpClientTestingModule,
-            ContextModule,
-            TableColumnSelectModule,
-            TableModule.forRoot(),
-            TableModule.withColumnComponents({
-                select: TableColumnSelectComponent,
-            } as any),
-            DatasourceModule.withDatasources({
-                'mock-data': MockTableDatasourceService,
-            } as any),
-            DefaultContextSerializationModule,
-            BrowserAnimationsModule,
-        ],
+    applicationConfig: {
         providers: [
+            importProvidersFrom(HttpClientTestingModule),
+            importProvidersFrom(TableModule.forRoot()),
+            importProvidersFrom(
+                TableModule.withColumnComponents({
+                    select: TableColumnSelectComponent,
+                } as any),
+            ),
             {
                 provide: ANALYZE_FOR_ENTRY_COMPONENTS,
                 useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
                 multi: true,
             },
         ],
+    },
+    moduleMetadata: {
+        imports: [ContextModule, TableModule],
     },
     template: `
     <spy-table [config]="config"></spy-table>
@@ -186,37 +187,38 @@ withTable.args = {
 
 export const withInlineDependentColumns = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            HttpClientTestingModule,
-            ContextModule,
-            MockHttpModule,
-            TableColumnSelectModule,
-            TableModule.forRoot(),
-            TableModule.withFeatures({
-                editable: () => import('@spryker/table.feature.editable').then((m) => m.TableEditableFeatureModule),
-            }),
-            TableModule.withColumnComponents({
-                select: TableColumnSelectComponent,
-            } as any),
-            DatasourceModule.withDatasources({
-                'mock-data': MockTableDatasourceService,
-                inline: DatasourceInlineService,
-                dependable: TableDatasourceDependableService,
-            } as any),
-            DefaultContextSerializationModule,
-            BrowserAnimationsModule,
-            NotificationModule.forRoot(),
-            LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-            EnLocaleModule,
-        ],
+    applicationConfig: {
         providers: [
+            importProvidersFrom(HttpClientTestingModule),
+            importProvidersFrom(TableModule.forRoot()),
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    editable: () => import('@spryker/table.feature.editable').then((m) => m.TableEditableFeatureModule),
+                }),
+            ),
+            importProvidersFrom(
+                TableModule.withColumnComponents({
+                    select: TableColumnSelectComponent,
+                } as any),
+            ),
+            importProvidersFrom(
+                DatasourceModule.withDatasources({
+                    inline: DatasourceInlineService,
+                    dependable: TableDatasourceDependableService,
+                } as any),
+            ),
+            importProvidersFrom(NotificationModule.forRoot()),
+            importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+            importProvidersFrom(EnLocaleModule),
             {
                 provide: ANALYZE_FOR_ENTRY_COMPONENTS,
                 useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
                 multi: true,
             },
         ],
+    },
+    moduleMetadata: {
+        imports: [ContextModule, MockHttpModule, TableModule],
     },
     template: `
     <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
@@ -271,37 +273,38 @@ withInlineDependentColumns.args = {
 
 export const withHttpDependentColumns = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            HttpClientTestingModule,
-            ContextModule,
-            MockHttpModule,
-            TableColumnSelectModule,
-            TableModule.forRoot(),
-            TableModule.withFeatures({
-                editable: () => import('@spryker/table.feature.editable').then((m) => m.TableEditableFeatureModule),
-            }),
-            TableModule.withColumnComponents({
-                select: TableColumnSelectComponent,
-            } as any),
-            DatasourceModule.withDatasources({
-                'mock-data': MockTableDatasourceService,
-                http: DatasourceHttpService,
-                dependable: TableDatasourceDependableService,
-            } as any),
-            DefaultContextSerializationModule,
-            BrowserAnimationsModule,
-            NotificationModule.forRoot(),
-            LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-            EnLocaleModule,
-        ],
+    applicationConfig: {
         providers: [
+            importProvidersFrom(HttpClientTestingModule),
+            importProvidersFrom(TableModule.forRoot()),
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    editable: () => import('@spryker/table.feature.editable').then((m) => m.TableEditableFeatureModule),
+                }),
+            ),
+            importProvidersFrom(
+                TableModule.withColumnComponents({
+                    select: TableColumnSelectComponent,
+                } as any),
+            ),
+            importProvidersFrom(
+                DatasourceModule.withDatasources({
+                    http: DatasourceHttpService,
+                    dependable: TableDatasourceDependableService,
+                } as any),
+            ),
+            importProvidersFrom(NotificationModule.forRoot()),
+            importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+            importProvidersFrom(EnLocaleModule),
             {
                 provide: ANALYZE_FOR_ENTRY_COMPONENTS,
                 useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
                 multi: true,
             },
         ],
+    },
+    moduleMetadata: {
+        imports: [ContextModule, MockHttpModule, TableModule],
     },
     template: `
     <spy-table [config]="config" [mockHttp]="mockHttp"></spy-table>
@@ -359,4 +362,19 @@ withHttpDependentColumns.args = {
             update: { url: '/update-cell' },
         },
     },
+    mockHttp: setMockHttp([
+        {
+            url: '/data-request-2',
+            data: [
+                {
+                    title: 'http1',
+                    value: 'http1',
+                },
+                {
+                    title: 'http2',
+                    value: 'http2',
+                },
+            ],
+        },
+    ]),
 };

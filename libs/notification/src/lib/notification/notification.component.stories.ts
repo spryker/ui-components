@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ApplyContextsModule } from '@spryker/utils';
 import { NotificationComponent } from './notification.component';
 import { NotificationModule } from '../notification.module';
@@ -9,6 +9,14 @@ import { NotificationEasing, NotificationPosition, NotificationType } from '../t
 export default {
     title: 'NotificationComponent',
     component: NotificationComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations(), importProvidersFrom(NotificationModule.forRoot())],
+        }),
+        moduleMetadata({
+            imports: [NotificationModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['type', 'closeable', 'floating', 'floatingConfig', 'title', 'description'],
@@ -37,18 +45,12 @@ export default {
         title: 'Title Template',
         description: 'Description...',
         floating: false,
+        closeable: false,
     },
 } as Meta;
 
-@NgModule({
-    imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
-    exports: [NotificationModule],
-})
-class StoryModule {}
-
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
     template: `
     <spy-notification
       [floating]="floating"
@@ -85,7 +87,6 @@ primary.argTypes = {
 
 export const staticNotification = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
     template: `
     <spy-notification
       [type]="type"
@@ -100,7 +101,7 @@ export const staticNotification = (args) => ({
 
 export const inWhiteBackground = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule, ApplyContextsModule] },
+    moduleMetadata: { imports: [ApplyContextsModule] },
     template: `
     <div spyApplyContexts="spy-bg-white" style="padding: 100px">
       <spy-notification
@@ -117,7 +118,7 @@ export const inWhiteBackground = (args) => ({
 
 export const inGrayBackground = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule, ApplyContextsModule] },
+    moduleMetadata: { imports: [ApplyContextsModule] },
     template: `
     <div spyApplyContexts="spy-bg-gray">
       <div spyApplyContexts="spy-bg-white">

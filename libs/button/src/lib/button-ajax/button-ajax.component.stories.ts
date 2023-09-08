@@ -1,8 +1,9 @@
+import { importProvidersFrom } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule, NotificationWrapperComponent } from '@spryker/notification';
-import { Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonAjaxComponent, ButtonAjaxMethod } from './button-ajax.component';
@@ -11,6 +12,19 @@ import { ButtonAjaxModule } from './button-ajax.module';
 export default {
     title: 'ButtonAjaxComponent',
     component: ButtonAjaxComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(NotificationModule.forRoot()),
+            ],
+        }),
+        moduleMetadata({
+            imports: [ButtonAjaxModule, MockHttpModule],
+            entryComponents: [NotificationWrapperComponent],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['variant', 'size', 'shape', 'attrs', 'method'],
@@ -57,17 +71,6 @@ export const primary = (args) => ({
                 dataFn: () => `<p>I am your response...</p>`,
             },
         ]),
-    },
-    moduleMetadata: {
-        imports: [
-            ButtonAjaxModule,
-            HttpClientTestingModule,
-            BrowserAnimationsModule,
-            NotificationModule.forRoot(),
-            MockHttpModule,
-        ],
-        declaration: [NotificationWrapperComponent],
-        entryComponents: [NotificationWrapperComponent],
     },
     template: `
     <spy-button-ajax

@@ -1,15 +1,8 @@
-import { Component, Injector, Input } from '@angular/core';
-import { Meta } from '@storybook/angular';
+import { Component, importProvidersFrom, Injector, Input } from '@angular/core';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { of } from 'rxjs';
 import { DatasourceModule, DatasourceService } from '@spryker/datasource';
 import { DatasourceInlineService } from './datasource-inline.service';
-
-export default {
-    title: 'DatasourceInline',
-    args: {
-        datasourceDataProp: 'new data',
-    },
-} as Meta;
 
 @Component({
     selector: 'spy-test',
@@ -35,16 +28,29 @@ class TestComponent {
     }
 }
 
+export default {
+    title: 'DatasourceInline',
+    decorators: [
+        applicationConfig({
+            providers: [
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        inline: DatasourceInlineService,
+                    } as any),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            declarations: [TestComponent],
+        }),
+    ],
+    args: {
+        datasourceDataProp: 'new data',
+    },
+} as Meta;
+
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            DatasourceModule.withDatasources({
-                inline: DatasourceInlineService,
-            } as any),
-        ],
-        declarations: [TestComponent],
-    },
     template: `
     <spy-test [datasourceDataProp]="datasourceDataProp"></spy-test>
   `,

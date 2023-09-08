@@ -1,8 +1,13 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { HeaderModule } from '../header.module';
 
 export default {
     title: 'HeaderComponent',
+    decorators: [
+        moduleMetadata({
+            imports: [HeaderModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -14,9 +19,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [HeaderModule],
-    },
     template: `
     <spy-header>
       Header Content

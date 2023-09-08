@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { IStory, Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
@@ -18,6 +18,28 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
     title: 'TableSearchFeatureComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                {
+                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                    useValue: [LayoutFlatHostComponent],
+                    multi: true,
+                },
+            ],
+        }),
+        moduleMetadata({
+            imports: [TableModule, DefaultContextSerializationModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -52,48 +74,28 @@ export default {
     },
 } as Meta;
 
-export const viaHtml = getSearchStory(
-    `
-    <spy-table [config]="config">
+export const viaHtml = (args) => ({
+    props: args,
+    moduleMetadata: { imports: [TableSearchFeatureModule] },
+    template: `
+    <spy-table [config]='config'>
       <spy-table-search-feature spy-table-feature></spy-table-search-feature>
     </spy-table>
   `,
-    [TableSearchFeatureModule],
-);
+});
 
-export const viaConfig = getSearchStory(
-    `
+export const viaConfig = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    search: () => import('./table-search-feature.module').then((m) => m.TableSearchFeatureModule),
+                }),
+            ),
+        ],
+    },
+    template: `
     <spy-table [config]="config"></spy-table>
   `,
-    [
-        TableModule.withFeatures({
-            search: () => import('./table-search-feature.module').then((m) => m.TableSearchFeatureModule),
-        }),
-    ],
-);
-
-function getSearchStory(template: string, extraNgModules: any[] = []): (args) => IStory {
-    return (args) => ({
-        props: args,
-        moduleMetadata: {
-            imports: [
-                HttpClientTestingModule,
-                BrowserAnimationsModule,
-                TableModule.forRoot(),
-                DatasourceModule.withDatasources({
-                    'mock-data': MockTableDatasourceService,
-                } as any),
-                DefaultContextSerializationModule,
-                ...extraNgModules,
-            ],
-            providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent],
-                    multi: true,
-                },
-            ],
-        },
-        template,
-    });
-}
+});

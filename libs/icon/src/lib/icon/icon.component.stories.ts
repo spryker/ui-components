@@ -1,12 +1,20 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import * as icons from '@spryker/icon/icons';
 import { IconModule } from '../icon.module';
 import { IconComponent } from './icon.component';
 import { Icon } from './types';
 
+const iconsModules = Object.keys(icons).map((name) => (icons as any)[name] as Icon);
+const iconNames = iconsModules.map((i) => i.icon);
+
 export default {
     title: 'IconComponent',
     component: IconComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [IconModule, ...iconsModules],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['name', 'iconColor'],
@@ -19,16 +27,10 @@ export default {
     },
 } as Meta;
 
-const iconsModules = Object.keys(icons).map((name) => (icons as any)[name] as Icon);
-const iconNames = iconsModules.map((i) => i.icon);
-
 export const allIcons = (args) => ({
     props: {
         ...args,
         icons: iconNames,
-    },
-    moduleMetadata: {
-        imports: [IconModule, ...iconsModules],
     },
     template: `
     <p *ngFor="let icon of icons">
@@ -50,9 +52,6 @@ allIcons.argTypes = {
 
 export const icon = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [IconModule, ...iconsModules],
-    },
 });
 icon.args = {
     name: iconNames[0],

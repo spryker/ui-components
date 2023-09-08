@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { SpinnerSize } from '../types';
 import { SpinnerComponent } from './spinner.component';
 import { SpinnerModule } from '../spinner.module';
@@ -6,6 +6,11 @@ import { SpinnerModule } from '../spinner.module';
 export default {
     title: 'SpinnerComponent',
     component: SpinnerComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [SpinnerModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -28,9 +33,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [SpinnerModule],
-    },
     template: `
     <spy-spinner
       [delay]="delay"

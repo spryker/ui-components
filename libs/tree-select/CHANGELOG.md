@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@1.0.2-next.0...@spryker/tree-select@1.0.2-next.1) (2023-09-06)
+
+**Note:** Version bump only for package @spryker/tree-select
+
+
+
+
+
+## [1.0.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/tree-select@1.0.1...@spryker/tree-select@1.0.2-next.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* **tree-select:** add `@ToJson` decorator to the `datasource` input ([aed6da4](https://github.com/spryker/ui-components/commit/aed6da423f8efd03d36ddb6baedf10587adbf14f))
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@1.0.1-rc.0...@spryker/tree-select@1.0.1) (2023-01-24)
 
 **Note:** Version bump only for package @spryker/tree-select

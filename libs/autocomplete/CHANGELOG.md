@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@1.0.2-next.0...@spryker/autocomplete@1.0.2-next.1) (2023-09-06)
+
+**Note:** Version bump only for package @spryker/autocomplete
+
+
+
+
+
+## [1.0.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@1.0.1...@spryker/autocomplete@1.0.2-next.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* **autocomplete:** add `@ToJson` decorator to the `datasource` input ([e21112b](https://github.com/spryker/ui-components/commit/e21112bcc3836755631a9d71f1c39f6245c55089))
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@1.0.1-rc.0...@spryker/autocomplete@1.0.1) (2023-01-24)
 
 **Note:** Version bump only for package @spryker/autocomplete

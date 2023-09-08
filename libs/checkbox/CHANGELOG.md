@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-next.1](https://github.com/spryker/ui-components/compare/@spryker/checkbox@1.0.2-next.0...@spryker/checkbox@1.0.2-next.1) (2023-09-06)
+
+**Note:** Version bump only for package @spryker/checkbox
+
+
+
+
+
+## [1.0.2-next.0](https://github.com/spryker/ui-components/compare/@spryker/checkbox@1.0.1...@spryker/checkbox@1.0.2-next.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* **checkbox:** update `@spryker/utils` dependency version ([b9bd025](https://github.com/spryker/ui-components/commit/b9bd025b0dfc0b40f378cf32aaa42c7786c74268))
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/checkbox@1.0.1-rc.0...@spryker/checkbox@1.0.1) (2023-01-24)
 
 **Note:** Version bump only for package @spryker/checkbox

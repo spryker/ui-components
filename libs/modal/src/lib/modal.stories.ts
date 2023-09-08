@@ -1,13 +1,20 @@
-import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, Input, TemplateRef } from '@angular/core';
-import { Meta } from '@storybook/angular';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Component, importProvidersFrom, Input, TemplateRef } from '@angular/core';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ModalModule } from './modal.module';
 import { ModalService } from './modal.service';
-import { NzModalWrapperComponent } from './wrappers';
 import { HtmlModalStrategy } from './strategies';
 
 export default {
     title: 'ModalComponent',
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations(), importProvidersFrom(ModalModule.forRoot())],
+        }),
+        moduleMetadata({
+            imports: [ModalModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -63,10 +70,10 @@ class StoryComponent {
         const modal = this.modalService.open(
             new HtmlModalStrategy({
                 html: (name) => `
-          <h3>Hello ${name}</h3>
-          Content from <b>html</b>!
-          <button class="close">Close</button>
-        `,
+                  <h3>Hello ${name}</h3>
+                  Content from <b>html</b>!
+                  <button class="close">Close</button>
+                `,
                 process: (children, modalRef) => {
                     const button = children.find((c) => (c as HTMLElement).classList?.contains('close')) as HTMLElement;
                     button.addEventListener('click', () => modalRef.close());
@@ -86,23 +93,16 @@ class StoryComponent {
 export const primary = (args) => ({
     props: args,
     moduleMetadata: {
-        imports: [ModalModule.forRoot(), BrowserAnimationsModule],
-        providers: [
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [NzModalWrapperComponent],
-                multi: true,
-            },
-        ],
+        declarations: [StoryComponent],
     },
-    component: StoryComponent,
+    template: `<spy-story [hasBackdrop]="hasBackdrop"></spy-story>`,
 });
 primary.args = {
     hasBackdrop: true,
 };
 
 @Component({
-    selector: 'spy-story',
+    selector: 'spy-simple-modal',
     template: `
         <spy-modal [(visible)]="visible">
             <ng-template let-modalRef="modalRef">
@@ -121,20 +121,13 @@ class SimpleModalComponent {
 export const viaModalComponent = (args) => ({
     props: args,
     moduleMetadata: {
-        imports: [ModalModule.forRoot(), BrowserAnimationsModule],
-        providers: [
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [NzModalWrapperComponent],
-                multi: true,
-            },
-        ],
+        declarations: [SimpleModalComponent],
     },
-    component: SimpleModalComponent,
+    template: `<spy-simple-modal></spy-simple-modal>`,
 });
 
 @Component({
-    selector: 'spy-story',
+    selector: 'spy-confirm-modal',
     template: `
         <p>
             <button (click)="openConfirm()">Open Confirm</button>
@@ -170,16 +163,9 @@ class ConfirmationComponent {
 export const confirmation = (args) => ({
     props: args,
     moduleMetadata: {
-        imports: [ModalModule.forRoot(), BrowserAnimationsModule],
-        providers: [
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [NzModalWrapperComponent],
-                multi: true,
-            },
-        ],
+        declarations: [ConfirmationComponent],
     },
-    component: ConfirmationComponent,
+    template: `<spy-confirm-modal [hasBackdrop]="hasBackdrop" [hasDescription]="hasDescription"></spy-confirm-modal>`,
 });
 confirmation.args = {
     hasBackdrop: true,

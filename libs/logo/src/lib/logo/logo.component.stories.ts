@@ -1,10 +1,15 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { LogoModule } from '../logo.module';
 import { LogoComponent } from './logo.component';
 
 export default {
     title: 'LogoComponent',
     component: LogoComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [LogoModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -17,13 +22,13 @@ export default {
             control: { type: 'select' },
         },
     },
+    args: {
+        size: 'full',
+    },
 } as Meta;
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [LogoModule],
-    },
     template: `
     <div style="width: 160px; height: 62px;">
       <spy-logo [size]="size"></spy-logo>

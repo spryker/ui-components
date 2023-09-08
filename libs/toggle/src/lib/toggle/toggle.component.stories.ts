@@ -1,10 +1,15 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { ToggleComponent } from './toggle.component';
 import { ToggleModule } from '../toggle.module';
 
 export default {
     title: 'ToggleComponent',
     component: ToggleComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [ToggleModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['value', 'disabled', 'name'],
@@ -22,16 +27,10 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [ToggleModule],
-    },
 });
 
 export const withLabel = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [ToggleModule],
-    },
     template: `
     <spy-toggle [value]="value" [disabled]="disabled" [name]="name">Label</spy-toggle>
   `,

@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IStory, Meta } from '@storybook/angular';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { TableModule } from '@spryker/table';
 import { TableFilterDateRangeComponent, TableFilterDateRangeModule } from '@spryker/table.filter.date-range';
 import { TableFilterSelectComponent, TableFilterSelectModule } from '@spryker/table.filter.select';
@@ -9,7 +9,6 @@ import { TableFilterTreeSelectComponent, TableFilterTreeSelectModule } from '@sp
 import { MockHttpModule } from '@spryker/internal-utils';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-
 import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
 import { TablePaginationFeatureModule } from '@spryker/table.feature.pagination';
 import { TableSettingsFeatureModule } from '@spryker/table.feature.settings';
@@ -22,6 +21,7 @@ import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { NotificationModule } from '@spryker/notification';
 import { TableBatchActionsFeatureModule } from '@spryker/table.feature.batch-actions';
 import { TableTitleFeatureModule } from '@spryker/table.feature.title';
 
@@ -54,6 +54,50 @@ const availableActions = (index: number): string[] | undefined => {
 
 export default {
     title: 'TableFeaturesComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    TableFiltersFeatureModule.withFilterComponents({
+                        select: TableFilterSelectComponent,
+                        'tree-select': TableFilterTreeSelectComponent,
+                        range: TableFilterDateRangeComponent,
+                    } as any),
+                ),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+                {
+                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                    useValue: [
+                        LayoutFlatHostComponent,
+                        TableFilterSelectComponent,
+                        TableFilterTreeSelectComponent,
+                        TableFilterDateRangeComponent,
+                    ],
+                    multi: true,
+                },
+                importProvidersFrom(NotificationModule.forRoot()),
+            ],
+        }),
+        moduleMetadata({
+            imports: [
+                MockHttpModule,
+                TableModule,
+                TableFilterDateRangeModule,
+                TableFilterSelectModule,
+                TableFilterTreeSelectModule,
+                DefaultContextSerializationModule,
+            ],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -222,9 +266,24 @@ export default {
     },
 } as Meta;
 
-export const viaHtml = getFeaturesStory(
-    `
-    <spy-table [config]="config" [tableId]="tableId" [mockHttp]="mockHttp">
+export const viaHtml = (args) => ({
+    props: args,
+    moduleMetadata: {
+        imports: [
+            TableFiltersFeatureModule,
+            TablePaginationFeatureModule,
+            TableRowActionsFeatureModule,
+            TableSearchFeatureModule,
+            TableSyncStateFeatureModule,
+            TableSelectableFeatureModule,
+            TableTotalFeatureModule,
+            TableSettingsFeatureModule,
+            TableBatchActionsFeatureModule,
+            TableTitleFeatureModule,
+        ],
+    },
+    template: `
+    <spy-table [config]='config' [tableId]='tableId' [mockHttp]='mockHttp'>
       <spy-table-filters-feature spy-table-feature></spy-table-filters-feature>
       <spy-table-pagination-feature spy-table-feature></spy-table-pagination-feature>
       <spy-table-row-actions-feature spy-table-feature></spy-table-row-actions-feature>
@@ -237,80 +296,34 @@ export const viaHtml = getFeaturesStory(
       <spy-table-title-feature spy-table-feature></spy-table-title-feature>
     </spy-table>
   `,
-    [
-        TableFiltersFeatureModule,
-        TablePaginationFeatureModule,
-        TableRowActionsFeatureModule,
-        TableSearchFeatureModule,
-        TableSyncStateFeatureModule,
-        TableSelectableFeatureModule,
-        TableTotalFeatureModule,
-        TableSettingsFeatureModule,
-        TableBatchActionsFeatureModule,
-        TableTitleFeatureModule,
-    ],
-);
+});
 
-export const viaConfig = getFeaturesStory(
-    `
-    <spy-table [config]="config" [tableId]="tableId" [mockHttp]="mockHttp">
-  `,
-    [
-        TableModule.withFeatures({
-            filters: () => import('@spryker/table.feature.filters').then((m) => m.TableFiltersFeatureModule),
-            pagination: () => import('@spryker/table.feature.pagination').then((m) => m.TablePaginationFeatureModule),
-            rowActions: () => import('@spryker/table.feature.row-actions').then((m) => m.TableRowActionsFeatureModule),
-            search: () => import('@spryker/table.feature.search').then((m) => m.TableSearchFeatureModule),
-            syncStateUrl: () => import('@spryker/table.feature.sync-state').then((m) => m.TableSyncStateFeatureModule),
-            total: () => import('@spryker/table.feature.total').then((m) => m.TableTotalFeatureModule),
-            itemSelection: () =>
-                import('@spryker/table.feature.selectable').then((m) => m.TableSelectableFeatureModule),
-            batchActions: () =>
-                import('@spryker/table.feature.batch-actions').then((m) => m.TableBatchActionsFeatureModule),
-            settings: () => import('@spryker/table.feature.settings').then((m) => m.TableSettingsFeatureModule),
-            title: () => import('@spryker/table.feature.title').then((m) => m.TableTitleFeatureModule),
-        }),
-    ],
-);
-
-function getFeaturesStory(template: string, extraNgModules: any[] = []): (args) => IStory {
-    return (args) => ({
-        props: args,
-        moduleMetadata: {
-            imports: [
-                HttpClientTestingModule,
-                BrowserAnimationsModule,
-                MockHttpModule,
-                TableModule.forRoot(),
-                TableFiltersFeatureModule.withFilterComponents({
-                    select: TableFilterSelectComponent,
-                    'tree-select': TableFilterTreeSelectComponent,
-                    range: TableFilterDateRangeComponent,
-                } as any),
-                DatasourceModule.withDatasources({
-                    'mock-data': MockTableDatasourceService,
-                } as any),
-                TableFilterDateRangeModule,
-                TableFilterSelectModule,
-                TableFilterTreeSelectModule,
-                LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-                EnLocaleModule,
-                DefaultContextSerializationModule,
-                ...extraNgModules,
-            ],
-            providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [
-                        LayoutFlatHostComponent,
-                        TableFilterSelectComponent,
-                        TableFilterTreeSelectComponent,
-                        TableFilterDateRangeComponent,
-                    ],
-                    multi: true,
-                },
-            ],
-        },
-        template,
-    });
-}
+export const viaConfig = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    filters: () => import('@spryker/table.feature.filters').then((m) => m.TableFiltersFeatureModule),
+                    pagination: () =>
+                        import('@spryker/table.feature.pagination').then((m) => m.TablePaginationFeatureModule),
+                    rowActions: () =>
+                        import('@spryker/table.feature.row-actions').then((m) => m.TableRowActionsFeatureModule),
+                    search: () => import('@spryker/table.feature.search').then((m) => m.TableSearchFeatureModule),
+                    syncStateUrl: () =>
+                        import('@spryker/table.feature.sync-state').then((m) => m.TableSyncStateFeatureModule),
+                    total: () => import('@spryker/table.feature.total').then((m) => m.TableTotalFeatureModule),
+                    itemSelection: () =>
+                        import('@spryker/table.feature.selectable').then((m) => m.TableSelectableFeatureModule),
+                    batchActions: () =>
+                        import('@spryker/table.feature.batch-actions').then((m) => m.TableBatchActionsFeatureModule),
+                    settings: () => import('@spryker/table.feature.settings').then((m) => m.TableSettingsFeatureModule),
+                    title: () => import('@spryker/table.feature.title').then((m) => m.TableTitleFeatureModule),
+                }),
+            ),
+        ],
+    },
+    template: `
+      <spy-table [config]='config' [tableId]='tableId' [mockHttp]='mockHttp'>
+    `,
+});

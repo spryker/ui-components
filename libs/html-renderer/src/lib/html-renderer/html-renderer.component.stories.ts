@@ -1,4 +1,5 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { StaticHtmlRendererModule } from '../static-html-renderer/static-html-renderer.module';
@@ -40,15 +41,17 @@ function generateMockHtmlPage(template: string): { html: string } {
 
 export default {
     title: 'HtmlRendererComponent',
+    decorators: [
+        moduleMetadata({
+            imports: [StaticHtmlRendererModule],
+        }),
+    ],
 } as Meta;
 
 export const withStaticHtml = (args) => ({
     props: {
         ...args,
         html: mockHtmlTemplate('Static'),
-    },
-    moduleMetadata: {
-        imports: [StaticHtmlRendererModule],
     },
     template: `
     <spy-html-renderer [html]="html"></spy-html-renderer>
@@ -65,8 +68,11 @@ export const withUrlHtml = (args) => ({
             },
         ]),
     },
+    applicationConfig: {
+        providers: [importProvidersFrom(HttpClientTestingModule)],
+    },
     moduleMetadata: {
-        imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
+        imports: [UrlHtmlRendererModule, MockHttpModule],
     },
     template: `
     <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>

@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LayoutFlatHostComponent } from '@orchestrator/layout';
-import { IStory, Meta } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
@@ -20,6 +20,30 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
 
 export default {
     title: 'TableTotalFeatureComponent',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+                {
+                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
+                    useValue: [LayoutFlatHostComponent],
+                    multi: true,
+                },
+            ],
+        }),
+        moduleMetadata({
+            imports: [TableModule, DefaultContextSerializationModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -53,50 +77,28 @@ export default {
     },
 } as Meta;
 
-export const viaHtml = getTotalStory(
-    `
-    <spy-table [config]="config">
+export const viaHtml = (args) => ({
+    props: args,
+    moduleMetadata: { imports: [TableTotalFeatureModule] },
+    template: `
+    <spy-table [config]='config'>
       <spy-table-total-feature spy-table-feature></spy-table-total-feature>
     </spy-table>
   `,
-    [TableTotalFeatureModule],
-);
+});
 
-export const viaConfig = getTotalStory(
-    `
-    <spy-table [config]="config"></spy-table>
+export const viaConfig = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                TableModule.withFeatures({
+                    total: () => import('./table-total-feature.module').then((m) => m.TableTotalFeatureModule),
+                }),
+            ),
+        ],
+    },
+    template: `
+    <spy-table [config]='config'></spy-table>
   `,
-    [
-        TableModule.withFeatures({
-            total: () => import('./table-total-feature.module').then((m) => m.TableTotalFeatureModule),
-        }),
-    ],
-);
-
-function getTotalStory(template: string, extraNgModules: any[] = []): (args) => IStory {
-    return (args) => ({
-        props: args,
-        moduleMetadata: {
-            imports: [
-                HttpClientTestingModule,
-                BrowserAnimationsModule,
-                TableModule.forRoot(),
-                DatasourceModule.withDatasources({
-                    'mock-data': MockTableDatasourceService,
-                } as any),
-                LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-                EnLocaleModule,
-                DefaultContextSerializationModule,
-                ...extraNgModules,
-            ],
-            providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent],
-                    multi: true,
-                },
-            ],
-        },
-        template,
-    });
-}
+});

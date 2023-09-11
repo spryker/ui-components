@@ -1,6 +1,6 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
-import { IconUserModule } from '@spryker/icon/icons';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
+import { IconUserModule, IconSettingsModule, IconInfoModule } from '@spryker/icon/icons';
 import { UserMenuModule } from '../user-menu.module';
 import { UserMenuLinkType } from '../user-menu-link/user-menu-link.component';
 import { UserMenuComponent } from './user-menu.component';
@@ -8,6 +8,14 @@ import { UserMenuComponent } from './user-menu.component';
 export default {
     title: 'UserMenuComponent',
     component: UserMenuComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [UserMenuModule, IconUserModule, IconSettingsModule, IconInfoModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: [
@@ -24,6 +32,10 @@ export default {
             control: { type: 'select' },
             options: UserMenuLinkType,
         },
+        icon: {
+            control: { type: 'select' },
+            options: [IconUserModule.icon, IconSettingsModule.icon, IconInfoModule.icon],
+        },
     },
     args: {
         icon: IconUserModule.icon,
@@ -36,9 +48,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [UserMenuModule, BrowserAnimationsModule, IconUserModule],
-    },
     template: `
     <spy-user-menu [icon]="icon">
       <spy-user-menu-item>{{ userMenuItemText }}</spy-user-menu-item>

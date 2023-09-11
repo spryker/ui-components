@@ -1,5 +1,5 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ApplyContextsModule } from '@spryker/utils';
 import { NotificationModule } from '../notification.module';
 import { NotificationViewComponent } from './notification-view.component';
@@ -8,6 +8,14 @@ import { NotificationType } from '../types';
 export default {
     title: 'NotificationViewComponent',
     component: NotificationViewComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [NotificationModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['type', 'closeable', 'title', 'description'],
@@ -28,12 +36,12 @@ export default {
         title: 'Title Template',
         description: 'Description...',
         type: NotificationType.Info,
+        closeable: false,
     },
 } as Meta;
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: { imports: [NotificationModule, BrowserAnimationsModule] },
     template: `
     <spy-notification-view [type]="type" [closeable]="closeable">
       <span title>{{ title }}</span>
@@ -45,7 +53,7 @@ export const primary = (args) => ({
 export const inWhiteBackground = (args) => ({
     props: args,
     moduleMetadata: {
-        imports: [NotificationModule, BrowserAnimationsModule, ApplyContextsModule],
+        imports: [ApplyContextsModule],
     },
     template: `
     <div spyApplyContexts="spy-bg-white" style="padding: 100px">
@@ -60,7 +68,7 @@ export const inWhiteBackground = (args) => ({
 export const inGrayBackground = (args) => ({
     props: args,
     moduleMetadata: {
-        imports: [NotificationModule, BrowserAnimationsModule, ApplyContextsModule],
+        imports: [ApplyContextsModule],
     },
     template: `
     <div spyApplyContexts="spy-bg-gray">

@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Component, Injectable, Input, NgModule, OnInit } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { Component, importProvidersFrom, Injectable, Input, OnInit } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
@@ -61,33 +61,6 @@ const tableConfig: TableConfig = {
     ],
 };
 
-export default {
-    title: 'TableComponent',
-    component: CoreTableComponent,
-    parameters: {
-        controls: {
-            include: ['config', 'tableId'],
-        },
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=319%3A445',
-            allowFullscreen: true,
-        },
-    },
-    argTypes: {
-        //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
-        config: {
-            table: {
-                disable: true,
-            },
-        },
-    },
-    args: {
-        config: tableConfig,
-        tableId: 'someId',
-    },
-} as Meta;
-
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
     @ColumnTypeOption()
@@ -113,37 +86,66 @@ declare module '../table' {
     }
 }
 
-@NgModule({
-    imports: [
-        HttpClientTestingModule,
-        ContextModule,
-        MockHttpModule,
-        TableModule.forRoot(),
-        TableModule.withColumnComponents({
-            test: TableColumnTestComponent,
-        } as any),
-        DatasourceModule.withDatasources({
-            'mock-data': MockTableDatasourceService,
-        } as any),
-        LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-        EnLocaleModule,
-        BrowserAnimationsModule,
-        DefaultContextSerializationModule,
+export default {
+    title: 'TableComponent',
+    component: CoreTableComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(
+                    TableModule.withColumnComponents({
+                        test: TableColumnTestComponent,
+                    } as any),
+                ),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+            ],
+        }),
+        moduleMetadata({
+            imports: [ContextModule, MockHttpModule, TableModule, DefaultContextSerializationModule],
+            declarations: [TableColumnTestComponent],
+        }),
     ],
-    exports: [TableModule, MockHttpModule],
-    declarations: [TableColumnTestComponent],
-})
-class StoryModule {}
+    parameters: {
+        controls: {
+            include: ['config', 'tableId'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=319%3A445',
+            allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+        config: {
+            table: {
+                disable: true,
+            },
+        },
+    },
+    args: {
+        config: tableConfig,
+        tableId: 'someId',
+    },
+} as Meta;
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule] },
     template: `
-    <spy-table [config]="config" [tableId]="tableId">
-      <div *spyColTpl="'col1'; let col1">spyColTpl: {{ col1 }}</div>
-      <ng-template spyColTpl="col2" let-col2>spyColTpl Template: {{ col2 }}</ng-template>
-    </spy-table>
-  `,
+        <spy-table [config]="config" [tableId]="tableId">
+            <div *spyColTpl="'col1'; let col1">spyColTpl: {{ col1 }}</div>
+            <ng-template spyColTpl="col2" let-col2>spyColTpl Template: {{ col2 }}</ng-template>
+        </spy-table>
+    `,
 });
 
 @Component({
@@ -228,14 +230,14 @@ function getFeatureStory(location: TableFeatureLocation) {
             location,
         },
         moduleMetadata: {
-            imports: [StoryModule, InvokeModule],
+            imports: [InvokeModule],
             declarations: [CustomFeatureComponent],
         },
         template: `
-      <spy-table [config]="config" [tableId]="tableId">
-        <spy-custom-feature spy-table-feature [location]="location"></spy-custom-feature>
-      </spy-table>
-    `,
+            <spy-table [config]="config" [tableId]="tableId">
+              <spy-custom-feature spy-table-feature [location]="location"></spy-custom-feature>
+            </spy-table>
+        `,
     });
 }
 

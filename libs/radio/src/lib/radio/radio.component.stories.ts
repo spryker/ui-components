@@ -1,10 +1,15 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { RadioModule } from '../radio.module';
 import { RadioComponent } from './radio.component';
 
 export default {
     title: 'RadioComponent',
     component: RadioComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [RadioModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['value', 'disabled', 'hasError'],
@@ -22,9 +27,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [RadioModule],
-    },
     template: `
     <spy-radio [disabled]="disabled" [hasError]="hasError" [value]="value">Label</spy-radio>
   `,

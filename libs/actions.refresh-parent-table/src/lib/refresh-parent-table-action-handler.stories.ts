@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Component, Input } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { Component, importProvidersFrom, Input } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ActionsModule } from '@spryker/actions';
 import { DrawerActionHandlerService } from '@spryker/actions.drawer';
 import { ButtonActionModule } from '@spryker/button.action';
@@ -12,15 +12,6 @@ import { TableRowActionsFeatureModule } from '@spryker/table.feature.row-actions
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 import { RefreshParentTableActionHandlerService } from './refresh-parent-table-action-handler.service';
-
-export default {
-    title: 'RefreshParentTableActionHandlerService',
-    parameters: {
-        controls: {
-            include: ['config'],
-        },
-    },
-} as Meta;
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col1: `col1 #${i}`,
@@ -71,28 +62,48 @@ class SimpleComponent {
     };
 }
 
+export default {
+    title: 'RefreshParentTableActionHandlerService',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(
+                    ActionsModule.withActions({
+                        drawer: DrawerActionHandlerService,
+                        'refresh-parent-table': RefreshParentTableActionHandlerService,
+                    }),
+                ),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'mock-data': MockTableDatasourceService,
+                    } as any),
+                ),
+                importProvidersFrom(TableModule.forRoot()),
+            ],
+        }),
+        moduleMetadata({
+            imports: [
+                DrawerModule,
+                TableRowActionsFeatureModule,
+                HttpClientTestingModule,
+                ButtonActionModule,
+                TableModule,
+                DefaultContextSerializationModule,
+            ],
+            declarations: [SimpleComponent],
+            entryComponents: [SimpleComponent, DrawerContainerProxyComponent],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: ['config'],
+        },
+    },
+} as Meta;
+
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            BrowserAnimationsModule,
-            DrawerModule,
-            ActionsModule.withActions({
-                drawer: DrawerActionHandlerService,
-                'refresh-parent-table': RefreshParentTableActionHandlerService,
-            }),
-            TableRowActionsFeatureModule,
-            HttpClientTestingModule,
-            ButtonActionModule,
-            TableModule.forRoot(),
-            DatasourceModule.withDatasources({
-                'mock-data': MockTableDatasourceService,
-            } as any),
-            DefaultContextSerializationModule,
-        ],
-        declarations: [SimpleComponent],
-        entryComponents: [SimpleComponent, DrawerContainerProxyComponent],
-    },
     template: `
     <h1 style="font: bold 30px Arial; padding: 15px"> Click on the table row to open drawer </h1>
 

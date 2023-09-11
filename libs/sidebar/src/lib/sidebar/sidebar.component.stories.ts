@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { IconModule } from '@spryker/icon';
 import { SidebarComponent } from './sidebar.component';
 import { SidebarModule } from '../sidebar.module';
@@ -6,6 +6,11 @@ import { SidebarModule } from '../sidebar.module';
 export default {
     title: 'SidebarComponent',
     component: SidebarComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [SidebarModule, IconModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['width', 'collapsedWidth', 'spyId', 'collapsed', 'innerText'],
@@ -19,21 +24,20 @@ export default {
     args: {
         spyId: 'someId',
         innerText: 'SideBar Content',
+        width: 250,
+        collapsedWidth: 96,
     },
 } as Meta;
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [SidebarModule, IconModule],
-    },
     template: `
-    <spy-sidebar
-      [width]="width"
-      [collapsedWidth]="collapsedWidth"
-      [spyId]="spyId"
-      [collapsed]="collapsed">
-       <div>{{ innerText }}</div>
-    </spy-sidebar>
-  `,
+        <spy-sidebar
+            [width]="width"
+            [collapsedWidth]="collapsedWidth"
+            [spyId]="spyId"
+            [collapsed]="collapsed">
+            <div>{{ innerText }}</div>
+        </spy-sidebar>
+    `,
 });

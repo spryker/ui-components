@@ -78,6 +78,7 @@
                         "browserTarget": "actions.close-drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -95,6 +96,7 @@
                         "browserTarget": "actions.close-drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -150,6 +152,7 @@
                         "browserTarget": "actions.drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -167,6 +170,7 @@
                         "browserTarget": "actions.drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -222,6 +226,7 @@
                         "browserTarget": "actions.http:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -239,6 +244,7 @@
                         "browserTarget": "actions.http:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -294,6 +300,7 @@
                         "browserTarget": "actions.notification:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -311,6 +318,7 @@
                         "browserTarget": "actions.notification:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -366,6 +374,7 @@
                         "browserTarget": "actions.redirect:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -383,6 +392,7 @@
                         "browserTarget": "actions.redirect:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -438,6 +448,7 @@
                         "browserTarget": "actions.refresh-drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -455,6 +466,7 @@
                         "browserTarget": "actions.refresh-drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -513,6 +525,7 @@
                         "browserTarget": "actions.refresh-parent-table:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -530,6 +543,7 @@
                         "browserTarget": "actions.refresh-parent-table:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -588,6 +602,7 @@
                         "browserTarget": "actions.refresh-table:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -605,6 +620,7 @@
                         "browserTarget": "actions.refresh-table:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -663,6 +679,7 @@
                         "browserTarget": "ajax-action:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -680,6 +697,7 @@
                         "browserTarget": "ajax-action:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -735,6 +753,7 @@
                         "browserTarget": "ajax-form:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -752,6 +771,7 @@
                         "browserTarget": "ajax-form:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -807,6 +827,7 @@
                         "browserTarget": "autocomplete:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -824,6 +845,7 @@
                         "browserTarget": "autocomplete:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -880,6 +902,7 @@
                         "browserTarget": "button:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -897,6 +920,7 @@
                         "browserTarget": "button:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -953,6 +977,7 @@
                         "browserTarget": "button.action:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -970,6 +995,7 @@
                         "browserTarget": "button.action:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1025,6 +1051,7 @@
                         "browserTarget": "button.icon:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1042,6 +1069,7 @@
                         "browserTarget": "button.icon:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1175,6 +1203,7 @@
                         "browserTarget": "card:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1192,6 +1221,7 @@
                         "browserTarget": "card:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1248,6 +1278,7 @@
                         "browserTarget": "checkbox:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1265,6 +1296,7 @@
                         "browserTarget": "checkbox:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1321,6 +1353,7 @@
                         "browserTarget": "chips:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1338,6 +1371,7 @@
                         "browserTarget": "chips:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1394,6 +1428,7 @@
                         "browserTarget": "collapsible:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -1411,6 +1446,7 @@
                         "browserTarget": "collapsible:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2049,6 +2085,91 @@
             },
             "tags": ["type:service", "pkg:primary"]
         },
+        "datasource.dependable": {
+            "projectType": "library",
+            "root": "libs/datasource.dependable",
+            "sourceRoot": "libs/datasource.dependable/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/datasource.dependable/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/datasource.dependable/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/datasource.dependable/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/datasource.dependable/jest.config.ts",
+                        "passWithNoTests": true
+                    },
+                    "configurations": {
+                        "ci": {
+                            "ci": true,
+                            "codeCoverage": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/datasource.dependable/**/*.ts",
+                            "libs/datasource.dependable/**/*.html"
+                        ]
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "port": 4400,
+                        "configDir": "libs/datasource.dependable/.storybook",
+                        "browserTarget": "datasource.dependable:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "outputs": ["{options.outputDir}"],
+                    "options": {
+                        "outputDir": "dist/storybook/datasource.dependable",
+                        "configDir": "libs/datasource.dependable/.storybook",
+                        "browserTarget": "datasource.dependable:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                }
+            },
+            "implicitDependencies": ["!select", "!datasource.trigger.input"],
+            "tags": ["type:service", "pkg:primary"]
+        },
         "datasource.http": {
             "projectType": "library",
             "root": "libs/datasource.http",
@@ -2126,6 +2247,7 @@
                         "browserTarget": "datasource.inline:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2143,6 +2265,7 @@
                         "browserTarget": "datasource.inline:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2198,6 +2321,7 @@
                         "browserTarget": "datasource.inline.table:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2215,6 +2339,7 @@
                         "browserTarget": "datasource.inline.table:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2230,6 +2355,220 @@
                             "libs/datasource.inline.table/**/*.ts",
                             "libs/datasource.inline.table/**/*.html"
                         ]
+                    }
+                }
+            },
+            "tags": ["type:service", "pkg:extension"]
+        },
+        "datasource.trigger": {
+            "projectType": "library",
+            "root": "libs/datasource.trigger",
+            "sourceRoot": "libs/datasource.trigger/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/datasource.trigger/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/datasource.trigger/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/datasource.trigger/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/datasource.trigger/jest.config.ts",
+                        "passWithNoTests": true
+                    },
+                    "configurations": {
+                        "ci": {
+                            "ci": true,
+                            "codeCoverage": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": ["libs/datasource.trigger/**/*.ts", "libs/datasource.trigger/**/*.html"]
+                    }
+                }
+            },
+            "tags": ["type:service", "pkg:primary"]
+        },
+        "datasource.trigger.change": {
+            "projectType": "library",
+            "root": "libs/datasource.trigger.change",
+            "sourceRoot": "libs/datasource.trigger.change/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/datasource.trigger.change/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/datasource.trigger.change/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/datasource.trigger.change/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/datasource.trigger.change/jest.config.ts",
+                        "passWithNoTests": true
+                    },
+                    "configurations": {
+                        "ci": {
+                            "ci": true,
+                            "codeCoverage": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/datasource.trigger.change/**/*.ts",
+                            "libs/datasource.trigger.change/**/*.html"
+                        ]
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "port": 4400,
+                        "configDir": "libs/datasource.trigger.change/.storybook",
+                        "browserTarget": "datasource.trigger.change:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "outputs": ["{options.outputDir}"],
+                    "options": {
+                        "outputDir": "dist/storybook/datasource.trigger.change",
+                        "configDir": "libs/datasource.trigger.change/.storybook",
+                        "browserTarget": "datasource.trigger.change:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                }
+            },
+            "tags": ["type:service", "pkg:extension"]
+        },
+        "datasource.trigger.input": {
+            "projectType": "library",
+            "root": "libs/datasource.trigger.input",
+            "sourceRoot": "libs/datasource.trigger.input/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/datasource.trigger.input/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/datasource.trigger.input/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/datasource.trigger.input/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/datasource.trigger.input/jest.config.ts",
+                        "passWithNoTests": true
+                    },
+                    "configurations": {
+                        "ci": {
+                            "ci": true,
+                            "codeCoverage": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/datasource.trigger.input/**/*.ts",
+                            "libs/datasource.trigger.input/**/*.html"
+                        ]
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "port": 4400,
+                        "configDir": "libs/datasource.trigger.input/.storybook",
+                        "browserTarget": "datasource.trigger.input:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "outputs": ["{options.outputDir}"],
+                    "options": {
+                        "outputDir": "dist/storybook/datasource.trigger.input",
+                        "configDir": "libs/datasource.trigger.input/.storybook",
+                        "browserTarget": "datasource.trigger.input:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
                     }
                 }
             },
@@ -2273,6 +2612,7 @@
                         "browserTarget": "date-picker:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2290,6 +2630,7 @@
                         "browserTarget": "date-picker:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2346,6 +2687,7 @@
                         "browserTarget": "drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2363,6 +2705,7 @@
                         "browserTarget": "drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2419,6 +2762,7 @@
                         "browserTarget": "dropdown:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2436,6 +2780,7 @@
                         "browserTarget": "dropdown:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2492,6 +2837,7 @@
                         "browserTarget": "form-item:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2509,6 +2855,7 @@
                         "browserTarget": "form-item:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2565,6 +2912,7 @@
                         "browserTarget": "grid:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2582,6 +2930,7 @@
                         "browserTarget": "grid:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2638,6 +2987,7 @@
                         "browserTarget": "header:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2655,6 +3005,7 @@
                         "browserTarget": "header:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2711,6 +3062,7 @@
                         "browserTarget": "headline:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2728,6 +3080,7 @@
                         "browserTarget": "headline:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2784,6 +3137,7 @@
                         "browserTarget": "html-renderer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2801,6 +3155,7 @@
                         "browserTarget": "html-renderer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2856,6 +3211,7 @@
                         "browserTarget": "icon:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2873,6 +3229,7 @@
                         "browserTarget": "icon:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2929,6 +3286,7 @@
                         "browserTarget": "input:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -2946,6 +3304,7 @@
                         "browserTarget": "input:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3002,6 +3361,7 @@
                         "browserTarget": "input.password:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3019,6 +3379,7 @@
                         "browserTarget": "input.password:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3136,6 +3497,7 @@
                         "browserTarget": "label:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3153,6 +3515,7 @@
                         "browserTarget": "label:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3209,6 +3572,7 @@
                         "browserTarget": "layout:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3226,6 +3590,7 @@
                         "browserTarget": "layout:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3282,6 +3647,7 @@
                         "browserTarget": "link:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3299,6 +3665,7 @@
                         "browserTarget": "link:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3355,6 +3722,7 @@
                         "browserTarget": "locale:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3372,6 +3740,7 @@
                         "browserTarget": "locale:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3427,6 +3796,7 @@
                         "browserTarget": "logo:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3444,6 +3814,7 @@
                         "browserTarget": "logo:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3500,6 +3871,7 @@
                         "browserTarget": "modal:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3517,6 +3889,7 @@
                         "browserTarget": "modal:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3573,6 +3946,7 @@
                         "browserTarget": "navigation:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3590,6 +3964,7 @@
                         "browserTarget": "navigation:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3646,6 +4021,7 @@
                         "browserTarget": "notification:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3663,6 +4039,7 @@
                         "browserTarget": "notification:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3719,6 +4096,7 @@
                         "browserTarget": "pagination:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3736,6 +4114,7 @@
                         "browserTarget": "pagination:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3831,6 +4210,7 @@
                         "browserTarget": "popover:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3848,6 +4228,7 @@
                         "browserTarget": "popover:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3904,6 +4285,7 @@
                         "browserTarget": "radio:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3921,6 +4303,7 @@
                         "browserTarget": "radio:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3977,6 +4360,7 @@
                         "browserTarget": "select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -3994,6 +4378,7 @@
                         "browserTarget": "select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4050,6 +4435,7 @@
                         "browserTarget": "sidebar:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4067,6 +4453,7 @@
                         "browserTarget": "sidebar:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4123,6 +4510,7 @@
                         "browserTarget": "spinner:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4140,6 +4528,7 @@
                         "browserTarget": "spinner:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4177,6 +4566,7 @@
                         "browserTarget": "storybook:compile",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4193,6 +4583,7 @@
                         "browserTarget": "storybook:compile",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4281,6 +4672,7 @@
                         "browserTarget": "table:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4298,6 +4690,7 @@
                         "browserTarget": "table:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4338,6 +4731,7 @@
                         "browserTarget": "table-integration-internal:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4355,6 +4749,7 @@
                         "browserTarget": "table-integration-internal:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4413,6 +4808,7 @@
                         "browserTarget": "table.column.autocomplete:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4430,6 +4826,7 @@
                         "browserTarget": "table.column.autocomplete:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4488,6 +4885,7 @@
                         "browserTarget": "table.column.chip:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4505,6 +4903,7 @@
                         "browserTarget": "table.column.chip:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4560,6 +4959,7 @@
                         "browserTarget": "table.column.date:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4577,6 +4977,7 @@
                         "browserTarget": "table.column.date:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4632,6 +5033,7 @@
                         "browserTarget": "table.column.dynamic:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4649,6 +5051,7 @@
                         "browserTarget": "table.column.dynamic:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4704,6 +5107,7 @@
                         "browserTarget": "table.column.image:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4721,6 +5125,7 @@
                         "browserTarget": "table.column.image:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4776,6 +5181,7 @@
                         "browserTarget": "table.column.input:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4793,6 +5199,7 @@
                         "browserTarget": "table.column.input:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4848,6 +5255,7 @@
                         "browserTarget": "table.column.select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4865,6 +5273,7 @@
                         "browserTarget": "table.column.select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4921,6 +5330,7 @@
                         "browserTarget": "table.column.text:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4938,6 +5348,7 @@
                         "browserTarget": "table.column.text:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -4993,6 +5404,7 @@
                         "browserTarget": "table.feature.batch-actions:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5010,6 +5422,7 @@
                         "browserTarget": "table.feature.batch-actions:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5069,6 +5482,7 @@
                         "browserTarget": "table.feature.editable:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5086,6 +5500,7 @@
                         "browserTarget": "table.feature.editable:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5145,6 +5560,7 @@
                         "browserTarget": "table.feature.filters:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5162,6 +5578,7 @@
                         "browserTarget": "table.feature.filters:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5221,6 +5638,7 @@
                         "browserTarget": "table.feature.pagination:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5238,6 +5656,7 @@
                         "browserTarget": "table.feature.pagination:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5297,6 +5716,7 @@
                         "browserTarget": "table.feature.row-actions:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5314,6 +5734,7 @@
                         "browserTarget": "table.feature.row-actions:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5373,6 +5794,7 @@
                         "browserTarget": "table.feature.search:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5390,6 +5812,7 @@
                         "browserTarget": "table.feature.search:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5446,6 +5869,7 @@
                         "browserTarget": "table.feature.selectable:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5463,6 +5887,7 @@
                         "browserTarget": "table.feature.selectable:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5522,6 +5947,7 @@
                         "browserTarget": "table.feature.settings:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5539,6 +5965,7 @@
                         "browserTarget": "table.feature.settings:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5598,6 +6025,7 @@
                         "browserTarget": "table.feature.sync-state:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5615,6 +6043,7 @@
                         "browserTarget": "table.feature.sync-state:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5673,6 +6102,7 @@
                         "browserTarget": "table.feature.title:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5690,6 +6120,7 @@
                         "browserTarget": "table.feature.title:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5746,6 +6177,7 @@
                         "browserTarget": "table.feature.total:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5763,6 +6195,7 @@
                         "browserTarget": "table.feature.total:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5819,6 +6252,7 @@
                         "browserTarget": "table.filter.date-range:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5836,6 +6270,7 @@
                         "browserTarget": "table.filter.date-range:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5895,6 +6330,7 @@
                         "browserTarget": "table.filter.select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5912,6 +6348,7 @@
                         "browserTarget": "table.filter.select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5968,6 +6405,7 @@
                         "browserTarget": "table.filter.tree-select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -5985,6 +6423,7 @@
                         "browserTarget": "table.filter.tree-select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6044,6 +6483,7 @@
                         "browserTarget": "tabs:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6061,6 +6501,7 @@
                         "browserTarget": "tabs:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6117,6 +6558,7 @@
                         "browserTarget": "textarea:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6134,6 +6576,7 @@
                         "browserTarget": "textarea:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6190,6 +6633,7 @@
                         "browserTarget": "toggle:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6207,6 +6651,7 @@
                         "browserTarget": "toggle:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6263,6 +6708,7 @@
                         "browserTarget": "tree-select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6280,6 +6726,7 @@
                         "browserTarget": "tree-select:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6417,6 +6864,7 @@
                         "browserTarget": "unsaved-changes.guard.drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6434,6 +6882,7 @@
                         "browserTarget": "unsaved-changes.guard.drawer:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6492,6 +6941,7 @@
                         "browserTarget": "unsaved-changes.guard.navigation:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6509,6 +6959,7 @@
                         "browserTarget": "unsaved-changes.guard.navigation:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6567,6 +7018,7 @@
                         "browserTarget": "unsaved-changes.monitor.form:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6584,6 +7036,7 @@
                         "browserTarget": "unsaved-changes.monitor.form:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6642,6 +7095,7 @@
                         "browserTarget": "user-menu:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {
@@ -6659,6 +7113,7 @@
                         "browserTarget": "user-menu:build-storybook",
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
                         "styles": [".storybook/styles.less"]
                     },
                     "configurations": {

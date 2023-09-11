@@ -1,10 +1,15 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { HeadlineModule } from '../headline.module';
 import { HeadlineComponent, Level } from './headline.component';
 
 export default {
     title: 'HeadlineComponent',
     component: HeadlineComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [HeadlineModule],
+        }),
+    ],
     parameters: {
         design: {
             type: 'figma',
@@ -21,9 +26,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [HeadlineModule],
-    },
     template: `
     <spy-headline [level]="level">
       {{ title }}

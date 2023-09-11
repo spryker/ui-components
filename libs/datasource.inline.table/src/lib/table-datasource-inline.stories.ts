@@ -1,8 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
@@ -11,7 +10,6 @@ import { TableModule } from '@spryker/table';
 import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
 import { TableFilterDateRangeComponent, TableFilterDateRangeModule } from '@spryker/table.filter.date-range';
 import { TableFilterSelectComponent, TableFilterSelectModule } from '@spryker/table.filter.select';
-import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils';
 import { DateFnsDateAdapterModule } from '@spryker/utils.date.adapter.date-fns';
 
 import { TableDatasourceInlineModule } from './table-datasource-inline.module';
@@ -19,6 +17,42 @@ import { TableDatasourceInlineService } from './table-datasource-inline.service'
 
 export default {
     title: 'TableDatasourceInlineService',
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(HttpClientTestingModule),
+                importProvidersFrom(TableDatasourceInlineModule.withConfig()),
+                importProvidersFrom(TableModule.forRoot()),
+                importProvidersFrom(DateFnsDateAdapterModule),
+                importProvidersFrom(
+                    DatasourceModule.withDatasources({
+                        'inline.table': TableDatasourceInlineService,
+                    } as any),
+                ),
+                importProvidersFrom(
+                    TableModule.withFeatures({
+                        pagination: () =>
+                            import('@spryker/table.feature.pagination').then((m) => m.TablePaginationFeatureModule),
+                        filters: () =>
+                            import('@spryker/table.feature.filters').then((m) => m.TableFiltersFeatureModule),
+                        search: () => import('@spryker/table.feature.search').then((m) => m.TableSearchFeatureModule),
+                    }),
+                ),
+                importProvidersFrom(
+                    TableFiltersFeatureModule.withFilterComponents({
+                        select: TableFilterSelectComponent,
+                        'date-range': TableFilterDateRangeComponent,
+                    } as any),
+                ),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+            ],
+        }),
+        moduleMetadata({
+            imports: [MockHttpModule, TableModule, TableFilterSelectModule, TableFilterDateRangeModule],
+        }),
+    ],
     args: {
         config: {
             dataSource: {
@@ -152,42 +186,6 @@ export default {
 
 export const withTable = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [
-            DateFnsDateAdapterModule,
-            TableDatasourceInlineModule.withConfig(),
-            HttpClientTestingModule,
-            ContextModule,
-            MockHttpModule,
-            TableModule.forRoot(),
-            DatasourceModule.withDatasources({
-                'inline.table': TableDatasourceInlineService,
-            } as any),
-            TableModule.withFeatures({
-                pagination: () =>
-                    import('@spryker/table.feature.pagination').then((m) => m.TablePaginationFeatureModule),
-                filters: () => import('@spryker/table.feature.filters').then((m) => m.TableFiltersFeatureModule),
-                search: () => import('@spryker/table.feature.search').then((m) => m.TableSearchFeatureModule),
-            }),
-            TableFiltersFeatureModule.withFilterComponents({
-                select: TableFilterSelectComponent,
-                'date-range': TableFilterDateRangeComponent,
-            } as any),
-            TableFilterSelectModule,
-            TableFilterDateRangeModule,
-            DefaultContextSerializationModule,
-            BrowserAnimationsModule,
-            LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-            EnLocaleModule,
-        ],
-        providers: [
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [LayoutFlatHostComponent, TableFilterDateRangeComponent, TableFilterSelectComponent],
-                multi: true,
-            },
-        ],
-    },
     template: `
     <spy-table [config]="config"></spy-table>
   `,

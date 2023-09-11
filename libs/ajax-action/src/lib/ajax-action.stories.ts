@@ -1,6 +1,6 @@
-import { Component, Injectable, Injector, NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { Component, importProvidersFrom, Injectable, Injector, NgModule } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { Observable, of } from 'rxjs';
 import { ActionConfig, ActionHandler, ActionsModule } from '@spryker/actions';
 import { AjaxActionService } from './ajax-action.service';
@@ -44,26 +44,32 @@ class StoryComponent {
     }
 }
 
-export default {
-    title: 'AjaxActionComponent',
-    component: StoryComponent,
-} as Meta;
-
 @NgModule({
-    imports: [
-        BrowserAnimationsModule,
-        ActionsModule.withActions({
-            mock: ActionMockService,
-        }),
-    ],
     exports: [StoryComponent],
     declarations: [StoryComponent],
 })
 class StoryModule {}
 
+export default {
+    title: 'AjaxActionComponent',
+    component: StoryComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(
+                    ActionsModule.withActions({
+                        mock: ActionMockService,
+                    }),
+                ),
+            ],
+        }),
+        moduleMetadata({
+            imports: [StoryModule],
+        }),
+    ],
+} as Meta;
+
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [StoryModule],
-    },
 });

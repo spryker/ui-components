@@ -221,6 +221,7 @@ _NOTE:_ Do the following updates after command above:
         ...,
         "compodoc": true,
         "compodocArgs": ["-e", "json", "-d", "dist"],
+        "enableProdMode": false,
         "styles": [".storybook/styles.less"]
     ```
 -   In `<lib-name>/.storybook/tsconfig.json`:

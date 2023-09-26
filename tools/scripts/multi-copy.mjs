@@ -1,10 +1,9 @@
-const promisify = require('util').promisify;
-const copyfiles = require('copyfiles');
-const globby = require('globby');
+import { promisify } from 'util';
+import { globby } from 'globby';
+import copyfiles from 'copyfiles';
+
 const copyfilesAsync = promisify(copyfiles);
-
 const VERBOSE = !!process.env.VERBOSE;
-
 const log = console.log;
 const info = VERBOSE ? console.info : () => {};
 

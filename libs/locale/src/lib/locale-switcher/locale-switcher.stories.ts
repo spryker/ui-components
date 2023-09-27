@@ -1,8 +1,8 @@
+import { importProvidersFrom } from '@angular/core';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import DeLocaleModule, { DE_LOCALE } from '@spryker/locale/locales/de';
 import EnLocaleModule, { EN_LOCALE } from '@spryker/locale/locales/en';
 import { LocaleModule } from '../locale.module';
-import { importProvidersFrom } from '@angular/core';
 
 const locales = { English: EN_LOCALE, German: DE_LOCALE };
 

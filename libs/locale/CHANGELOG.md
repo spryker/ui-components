@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/locale@1.1.0-next.0...@spryker/locale@1.1.0-next.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **locale:** fix imports ordering ([5c89e75](https://github.com/spryker/ui-components/commit/5c89e7527f701bd19b141db6f6ec7836f7e75e00))
+
+
+
+
+
 # [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/locale@1.0.2...@spryker/locale@1.1.0-next.0) (2023-09-26)
 
 

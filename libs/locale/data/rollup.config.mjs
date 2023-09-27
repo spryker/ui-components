@@ -1,14 +1,16 @@
 import typescript from '@rollup/plugin-typescript';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-
+import { fileURLToPath } from 'url';
+import { globbySync } from 'globby';
 import path from 'path';
-import globby from 'globby';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '../..');
 const ROOT_GAP = path.relative(process.cwd(), ROOT_DIR);
 
-const locales = globby.sync('*', {
+const locales = globbySync('*', {
     cwd: __dirname,
     deep: 1,
     onlyDirectories: true,
@@ -17,7 +19,7 @@ const locales = globby.sync('*', {
 const localeFiles = locales.reduce(
     (acc, locale) => ({
         ...acc,
-        [locale]: globby.sync(`*/src/i18n/${locale}.ts`, {
+        [locale]: globbySync(`*/src/i18n/${locale}.ts`, {
             cwd: ROOT_DIR,
         }),
     }),
@@ -40,7 +42,7 @@ const localeInputs = Object.fromEntries(
     ]),
 );
 
-module.exports = locales
+export default locales
     .filter((locale) => localeFiles[locale].length)
     .map((locale) => ({
         input: localeInputs[locale],

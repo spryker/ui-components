@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.4](https://github.com/spryker/ui-components/compare/@spryker/locale@1.1.0-next.3...@spryker/locale@1.1.0-next.4) (2023-09-27)
+
+
+### Bug Fixes
+
+* **locale:** fix imports ordering ([33a9a56](https://github.com/spryker/ui-components/commit/33a9a569d2c953273dc92b39a473929f1dae3ecf))
+
+
+
+
+
+# [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/locale@1.0.2...@spryker/locale@1.1.0-next.0) (2023-09-26)
+
+### Features
+
+* **locale:** migrate `rollup` config to ESM ([649430b](https://github.com/spryker/ui-components/commit/649430b93cce1ccba4ef6e969c5c6ee128c6fb90))
+
+
+
+
+
 ## [1.0.2](https://github.com/spryker/ui-components/compare/@spryker/locale@1.0.2-next.1...@spryker/locale@1.0.2) (2023-09-11)
 
 **Note:** Version bump only for package @spryker/locale

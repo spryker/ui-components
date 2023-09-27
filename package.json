@@ -61,7 +61,7 @@
         "prerelease-tag": "npm run pack",
         "release-tag": "lerna publish --yes --conventional-prerelease --dist-tag $TRAVIS_BRANCH --preid $TRAVIS_BRANCH",
         "postversion": "lerna exec --concurrency 1 --stream -- node \\$LERNA_ROOT_PATH/tools/scripts/update-lib.js",
-        "postinstall": "husky install"
+        "prepare": "if [ \"$CI\" != \"true\" ]; then husky install; fi"
     },
     "private": true,
     "engines": {

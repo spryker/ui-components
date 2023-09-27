@@ -60,8 +60,7 @@
         "release-next": "run-s \"release-tag -- {@}\" deploy:storybook:next --",
         "prerelease-tag": "npm run pack",
         "release-tag": "lerna publish --yes --conventional-prerelease --dist-tag $TRAVIS_BRANCH --preid $TRAVIS_BRANCH",
-        "postversion": "lerna exec --concurrency 1 --stream -- node \\$LERNA_ROOT_PATH/tools/scripts/update-lib.js",
-        "prepare": "husky install"
+        "postversion": "lerna exec --concurrency 1 --stream -- node \\$LERNA_ROOT_PATH/tools/scripts/update-lib.js"
     },
     "private": true,
     "engines": {

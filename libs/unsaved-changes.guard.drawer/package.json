@@ -4,7 +4,7 @@
     "peerDependencies": {
         "@angular/common": "^15.0.0",
         "@angular/core": "^15.0.0",
-                "@spryker/drawer": "^1.0.0",
+        "@spryker/drawer": "^1.0.0",
         "@spryker/interception": "^1.0.0",
         "@spryker/locale": "^1.0.0",
         "@spryker/modal": "^1.0.0",

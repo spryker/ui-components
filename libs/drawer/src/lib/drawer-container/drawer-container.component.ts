@@ -63,6 +63,8 @@ export class DrawerContainerComponent implements OnInit, OnDestroy {
     };
     drawerRef?: DrawerRef;
 
+    isPending = false;
+
     destroyed$ = new Subject<void>();
     addCloseObs$ = new Subject<Observable<void>>();
     closeObs$ = this.addCloseObs$.pipe(mergeAll());
@@ -91,6 +93,10 @@ export class DrawerContainerComponent implements OnInit, OnDestroy {
 
     trackByIndex(idx: number): number {
         return idx;
+    }
+
+    setPending(isPending: boolean): void {
+        this.isPending = isPending;
     }
 
     refreshDrawer(): void {
@@ -160,7 +166,18 @@ export class DrawerContainerComponent implements OnInit, OnDestroy {
     }
 
     afterClosed(): Observable<void> {
-        return this.afterClosed$.asObservable();
+        return this.afterClosed$.pipe(tap(() => {
+            const drawerStack = this.drawerRef.options.drawerStack.at(-1);
+            const container = drawerStack.container;
+            
+            if (container.isPending) {
+                container.setPending(false);
+
+                drawerStack.component 
+                ? container.openComponent(drawerStack.component as any, drawerStack.options)
+                : container.openTemplate(drawerStack.template as any, drawerStack.options);
+            }
+        }));
     }
 
     private createDrawerRef<D, O extends DrawerOptions<D>>(options: O): DrawerRef<D, O> {

@@ -34,16 +34,21 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
     ) {}
 
     handleAction<C>(injector: Injector, config: DrawerActionConfig, context: C): Observable<DrawerRef<C>> {
+        const contextService = injector.get(ContextService);
+        const drawerData = { ...config } as DrawerActionConfig;
+        const drawerStack = this.drawerService.getDrawerStack();
+
+        drawerData.options = { ...drawerData.options };
+
+        let drawerRef = drawerData.component
+            ? this.drawerDataComponent(drawerData as DrawerActionConfigComponent, contextService, context, injector)
+            : this.drawerDataTemplate(drawerData as DrawerActionConfigTemplate, contextService, context);
+
+        if (!drawerRef) {
+            drawerRef = drawerStack[0].container.drawerRef;
+        }
+
         return new Observable((subscriber) => {
-            const contextService = injector.get(ContextService);
-            const drawerData = { ...config } as DrawerActionConfig;
-
-            drawerData.options = { ...drawerData.options };
-
-            const drawerRef = drawerData.component
-                ? this.drawerDataComponent(drawerData as DrawerActionConfigComponent, contextService, context, injector)
-                : this.drawerDataTemplate(drawerData as DrawerActionConfigTemplate, contextService, context);
-
             subscriber.next(drawerRef as DrawerRef<C, DrawerOptions<C>>);
 
             return () => {
@@ -82,7 +87,7 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
             });
         }
 
-        return this.drawerService.openComponent(drawerData.component as any, options);
+        return this.drawerService.openComponent(drawerData.component as any, options); 
     }
 
     private drawerDataTemplate(

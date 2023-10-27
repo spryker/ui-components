@@ -6,6 +6,7 @@ import { DrawerData, DrawerOptions } from './drawer-options';
 export class DrawerRef<D = DrawerData, O extends DrawerOptions<D> = DrawerOptions<D>> {
     private setClose$ = new ReplaySubject<Observable<void>>(1);
     private afterClosed$ = this.setClose$.pipe(switchAll(), shareReplay({ bufferSize: 1, refCount: true }));
+    isClosing = false;
 
     constructor(
         public options: O,
@@ -19,11 +20,14 @@ export class DrawerRef<D = DrawerData, O extends DrawerOptions<D> = DrawerOption
         const close$ = this.closeFn();
 
         this.setClose$.next(close$);
+        this.isClosing = true;
 
         return close$;
     }
 
     afterClosed(): Observable<void> {
+        this.isClosing = false;
+
         return this.afterClosed$;
     }
 

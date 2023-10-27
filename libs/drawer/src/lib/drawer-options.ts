@@ -1,4 +1,5 @@
 import { Injector } from '@angular/core';
+import { DrawerRecord } from './types';
 
 export interface DrawerData {
     [key: string]: any;
@@ -30,21 +31,25 @@ export class DrawerOptionsComponent<D = DrawerData, T = {}> extends DrawerOption
     readonly injector?: Injector;
     readonly inputs?: Partial<Record<keyof T, unknown>>;
     readonly outputs?: Partial<Record<keyof T, (event?: unknown) => void>>;
+    readonly drawerStack?: DrawerRecord[];
 
-    constructor({ injector, inputs, outputs, ...options }: Partial<DrawerOptionsComponent<D, T>> = {}) {
+    constructor({ injector, inputs, outputs, drawerStack, ...options }: Partial<DrawerOptionsComponent<D, T>> = {}) {
         super(options);
         this.injector = injector;
         this.inputs = inputs;
         this.outputs = outputs;
+        this.drawerStack = drawerStack;
     }
 }
 
 export class DrawerOptionsTemplate<D = DrawerData, C = {}> extends DrawerOptionsBase<D> {
     readonly context?: C;
+    readonly drawerStack?: DrawerRecord[];
 
-    constructor({ context, ...options }: Partial<DrawerOptionsTemplate<D, C>> = {}) {
+    constructor({ context, drawerStack, ...options }: Partial<DrawerOptionsTemplate<D, C>> = {}) {
         super(options);
         this.context = context;
+        this.drawerStack = drawerStack;
     }
 }
 

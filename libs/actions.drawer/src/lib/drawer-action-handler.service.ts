@@ -2,7 +2,7 @@ import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { ActionHandler } from '@spryker/actions';
 import { DrawerRef, DrawerService, DrawerOptionsComponent, DrawerOptionsTemplate } from '@spryker/drawer';
 import { ContextService, InjectionTokenType } from '@spryker/utils';
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import { Observable, takeUntil } from 'rxjs';
 import {
     DrawerActionComponentsRegistry,
     DrawerActionComponentType,
@@ -30,46 +30,39 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
     ) {}
 
     handleAction<C>(injector: Injector, config: DrawerActionConfig, context: C): Observable<DrawerRef<C>> {
-        return new Observable((subscriber) => {
+        return new Observable(() => {
             const contextService = injector.get(ContextService);
             const drawerData = { ...config } as DrawerActionConfig;
-            const drawerSubscription = new Subscription();
-            let hasDrawerId = this.drawerIdsMap.has(drawerData.id);
+            const hasDrawerId = this.drawerIdsMap.has(drawerData.id);
 
             drawerData.options = { ...drawerData.options };
             drawerData.id = drawerData.id ?? `default-${this.drawerIdsCounter++}`;
 
             if (hasDrawerId) {
-                drawerSubscription.add(
-                    this.drawerIdsMap
-                        .get(drawerData.id)
-                        .close()
-                        .subscribe(() => {
-                            this.setDrawerData(
-                                drawerData,
-                                contextService,
-                                context,
-                                injector,
-                                subscriber,
-                                drawerSubscription,
-                            );
-                        }),
-                );
+                this.drawerIdsMap
+                    .get(drawerData.id)
+                    .afterClosed()
+                    .pipe(takeUntil(this.drawerService.canceled$))
+                    .subscribe(() => {
+                        this.setDrawerData(
+                            drawerData,
+                            contextService,
+                            context,
+                            injector,
+                        );
+                    });
             }
 
             if (!hasDrawerId) {
-                this.setDrawerData(drawerData, contextService, context, injector, subscriber, drawerSubscription);
+                this.setDrawerData(drawerData, contextService, context, injector);
             }
 
             return () => {
-                hasDrawerId = this.drawerIdsMap.has(drawerData.id);
-
-                if (hasDrawerId) {
-                    this.drawerIdsMap
-                        .get(drawerData.id)
-                        .afterClosed()
-                        .subscribe(() => drawerSubscription.unsubscribe());
-                }
+                this.drawerIdsMap.forEach((drawerRef) => {
+                    if (drawerRef === this.drawerIdsMap.get(drawerData.id)) {
+                        drawerRef.close();
+                    }
+                });
             };
         });
     }
@@ -79,16 +72,20 @@ export class DrawerActionHandlerService implements ActionHandler<unknown, Drawer
         contextService: ContextService,
         context: any,
         injector: Injector,
-        subscriber: Subscriber<DrawerRef>,
-        drawerSubscription: Subscription,
     ): void {
         const drawerRef = drawerData.component
             ? this.drawerDataComponent(drawerData as DrawerActionConfigComponent, contextService, context, injector)
             : this.drawerDataTemplate(drawerData as DrawerActionConfigTemplate, contextService, context);
 
         this.drawerIdsMap.set(drawerData.id, drawerRef);
-        subscriber.next(drawerRef as DrawerRef);
-        drawerSubscription.add(drawerRef.afterClosed().subscribe(() => this.drawerIdsMap.clear()));
+
+        drawerRef
+            .afterClosed()
+            .subscribe(() => {
+                if (!this.drawerService.getDrawerStack().length) {
+                    this.drawerIdsMap.clear();
+                }
+            });
     }
 
     private drawerDataComponent(

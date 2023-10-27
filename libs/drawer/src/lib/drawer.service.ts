@@ -22,6 +22,7 @@ interface DrawerRecord {
 export class DrawerService implements OnDestroy {
     private drawerStack: DrawerRecord[] = [];
     private allClosed$ = new Subject<void>();
+    canceled$ = new Subject();
 
     constructor(private overlay: Overlay, @Optional() private defaultOptions?: DrawerOptionsBase) {}
 
@@ -51,6 +52,10 @@ export class DrawerService implements OnDestroy {
         this.allClosed$.next();
         this.drawerStack.forEach((drawer) => this.destroyDrawerRecord(drawer));
         this.drawerStack = [];
+    }
+
+    getDrawerStack(): DrawerRecord[] {
+        return this.drawerStack;
     }
 
     private getOptionsComponent<D, T>(options?: Partial<DrawerOptionsComponent<D, T>>): DrawerOptionsComponent<D, T> {

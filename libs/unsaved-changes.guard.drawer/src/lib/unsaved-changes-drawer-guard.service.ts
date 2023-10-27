@@ -1,5 +1,5 @@
 import { AbstractType, Injectable, InjectionToken, Injector, Provider, Type } from '@angular/core';
-import { DrawerCloseInterceptionEvent, DrawerContainerComponent } from '@spryker/drawer';
+import { DrawerCloseInterceptionEvent, DrawerContainerComponent, DrawerService } from '@spryker/drawer';
 import { InterceptionComposableFactory, InterceptorService } from '@spryker/interception';
 import { I18nService } from '@spryker/locale';
 import { ModalService } from '@spryker/modal';
@@ -43,6 +43,7 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
     private interceptorService: InterceptorService;
     private modalService: ModalService;
     private i18nService: I18nService;
+    private drawerService?: DrawerService;
 
     private destroyed$ = new Subject<void>();
 
@@ -52,6 +53,7 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
         this.interceptorService = this.injector.get(InterceptorService);
         this.modalService = this.injector.get(ModalService);
         this.i18nService = this.injector.get(I18nService);
+        this.drawerService = this.injector.get(DrawerService);
 
         const translations$ = combineLatest([
             this.i18nService.translate('unsaved-changes.confirmation-title'),
@@ -73,7 +75,13 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
                                       cancelText,
                                   })
                                   .afterDismissed()
-                                  .pipe(switchMap((isDiscard) => (isDiscard ? of(null) : EMPTY)))
+                                  .pipe(switchMap((isDiscard) => {
+                                        if (!isDiscard) {
+                                            this.drawerService.canceled$.next(!isDiscard);
+                                        }
+
+                                        return isDiscard ? of(null) : EMPTY;
+                                  }))
                             : of(null),
                     ),
                 ),

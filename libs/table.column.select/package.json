@@ -8,7 +8,7 @@
         "@spryker/datasource": "^1.0.0",
         "@spryker/form-item": "^1.0.0",
         "@spryker/select": "^1.0.0",
-        "@spryker/styles": "^1.0.0",
+        "@spryker/styles": "^1.1.0",
         "@spryker/table": "^1.0.0",
         "@spryker/table.feature.editable": "^1.0.0",
         "@spryker/utils": "^1.0.0"

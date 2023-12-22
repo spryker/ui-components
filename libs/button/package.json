@@ -8,7 +8,7 @@
         "@spryker/icon": "^1.0.0",
         "@spryker/notification": "^1.0.0",
         "@spryker/spinner": "^1.0.0",
-        "@spryker/styles": "^1.0.0",
+        "@spryker/styles": "^1.1.0",
         "@spryker/utils": "^1.0.0",
         "rxjs": "^7.5.7"
     },

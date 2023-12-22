@@ -6,7 +6,7 @@
         "@angular/core": "^15.0.0",
         "@spryker/button": "^1.0.0",
         "@spryker/notification": "^1.0.0",
-        "@spryker/styles": "^1.0.0",
+        "@spryker/styles": "^1.1.0",
         "@spryker/table": "^1.0.0",
         "@spryker/table.feature.selectable": "^1.0.0",
         "@spryker/utils": "^1.0.0",

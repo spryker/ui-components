@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/date-picker@1.0.3...@spryker/date-picker@1.1.0-next.0) (2023-12-22)
+
+
+### Features
+
+* updated base colors ([aa9f8e0](https://github.com/spryker/ui-components/commit/aa9f8e022e5c101d51ab8e6621eed36eb4ac96a1))
+
+
+
+
+
 ## [1.0.3](https://github.com/spryker/ui-components/compare/@spryker/date-picker@1.0.3-next.0...@spryker/date-picker@1.0.3) (2023-09-11)
 
 **Note:** Version bump only for package @spryker/date-picker

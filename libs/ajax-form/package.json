@@ -7,7 +7,7 @@
         "@spryker/ajax-action": "^1.0.0",
         "@spryker/data-serializer": "^1.0.0",
         "@spryker/html-renderer": "^1.0.0",
-        "@spryker/styles": "^1.0.0",
+        "@spryker/styles": "^1.1.0",
         "@spryker/unsaved-changes.monitor.form": "^1.0.0",
         "rxjs": "^7.5.7"
     },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/logo@1.1.0-next.0...@spryker/logo@1.1.0-next.1) (2023-12-22)
+
+
+### Features
+
+* **logo:** updated logo image color ([bee9665](https://github.com/spryker/ui-components/commit/bee9665b4f062e7cb9c175818ddce196fe4df6d1))
+
+
+
+
+
 # [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/logo@1.0.1...@spryker/logo@1.1.0-next.0) (2023-12-22)
 
 

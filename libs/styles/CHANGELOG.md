@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/styles@1.1.0-next.0...@spryker/styles@1.1.0-next.1) (2023-12-22)
+
+
+### Bug Fixes
+
+* clear button alignment ([51e8cd3](https://github.com/spryker/ui-components/commit/51e8cd328260bd9ad22e78153efeb4c574acc9e7))
+
+
+
+
+
+# [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@1.0.1...@spryker/styles@1.1.0-next.0) (2023-12-22)
+
+
+### Features
+
+* **styles:** update base colors ([f423a7a](https://github.com/spryker/ui-components/commit/f423a7a68344fd40f2f101eab1579c151371de5a))
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/styles@1.0.1-rc.0...@spryker/styles@1.0.1) (2023-01-24)
 
 **Note:** Version bump only for package @spryker/styles

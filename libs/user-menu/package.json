@@ -1,12 +1,12 @@
 {
     "name": "@spryker/user-menu",
-    "version": "1.0.1",
+    "version": "1.1.0-next.0",
     "peerDependencies": {
         "@angular/common": "^15.0.0",
         "@angular/core": "^15.0.0",
         "@spryker/icon": "^1.0.0",
         "@spryker/popover": "^1.0.0",
-        "@spryker/styles": "^1.0.0",
+        "@spryker/styles": "^1.1.0",
         "@spryker/web-components": "^1.0.0"
     },
     "dependencies": {

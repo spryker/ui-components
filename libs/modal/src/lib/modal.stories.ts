@@ -1,6 +1,8 @@
 import { Component, importProvidersFrom, Input, TemplateRef } from '@angular/core';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { LocaleModule } from '@spryker/locale';
+import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { ModalModule } from './modal.module';
 import { ModalService } from './modal.service';
 import { HtmlModalStrategy } from './strategies';
@@ -9,7 +11,12 @@ export default {
     title: 'ModalComponent',
     decorators: [
         applicationConfig({
-            providers: [provideAnimations(), importProvidersFrom(ModalModule.forRoot())],
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(ModalModule.forRoot()),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+            ],
         }),
         moduleMetadata({
             imports: [ModalModule],
@@ -149,10 +156,7 @@ class ConfirmationComponent {
     openConfirm() {
         this.modalService
             .openConfirm({
-                title: 'Discard unsaved changes?',
                 description: this.hasDescription ? 'Explanatory text goes here.' : undefined,
-                okText: 'Button',
-                cancelText: 'Cancel',
                 backdrop: this.hasBackdrop,
             })
             .afterDismissed()

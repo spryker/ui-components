@@ -3,7 +3,7 @@
         [ngTemplateOutlet]="genericTemplate"
         [ngTemplateOutletContext]="{
             context: modalContext,
-            $implicit: data.title
+            $implicit: data.title ?? ('modal.confirmation-title' | spyI18n | async)
         }"
     ></ng-template>
 </ng-template>
@@ -26,7 +26,7 @@
                     [ngTemplateOutlet]="genericTemplate"
                     [ngTemplateOutletContext]="{
                         context: modalContext,
-                        $implicit: data.cancelText
+                        $implicit: data.cancelText ?? ('modal.confirmation-cancel' | spyI18n | async)
                     }"
                 ></ng-template>
             </spy-button>
@@ -38,7 +38,7 @@
                     [ngTemplateOutlet]="genericTemplate"
                     [ngTemplateOutletContext]="{
                         context: modalContext,
-                        $implicit: data.okText
+                        $implicit: data.okText ?? ('modal.confirmation-ok' | spyI18n | async)
                     }"
                 ></ng-template
             ></spy-button>

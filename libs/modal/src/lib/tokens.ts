@@ -5,6 +5,7 @@ import { ModalWrapperFactory, AnyModal, ModalWrapperRef, ModalOptions } from './
 export function defaultModalOptionsFactory(): ModalOptions<any> {
     return {
         backdrop: true,
+        closeable: false,
     };
 }
 

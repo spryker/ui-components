@@ -33,11 +33,11 @@ function mapNzOptions(options: ModalOptions<AnyModal>): NzModalOptions {
         nzOptions.nzWidth = options.width;
     }
 
-    if (options.closeable) {
+    if (options.closeable !== undefined) {
         nzOptions.nzClosable = options.closeable;
     }
 
-    if (options.backdrop) {
+    if (options.backdrop !== undefined) {
         nzOptions.nzMask = options.backdrop;
         nzOptions.nzMaskStyle = {
             background: undefined as any,

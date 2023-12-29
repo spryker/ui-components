@@ -11,6 +11,7 @@ import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { ConfirmationActionHandlerService } from './confirmation-action-handler.service';
 
 const url = 'https://spryker.com';
+
 export default {
     title: 'ConfirmationActionHandlerService',
     decorators: [

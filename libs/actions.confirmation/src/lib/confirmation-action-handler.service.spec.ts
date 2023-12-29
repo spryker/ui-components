@@ -40,6 +40,7 @@ class MockModalService {
 class MockActionsService {
     trigger = jest.fn().mockReturnValue(of(void 0));
 }
+
 describe('ConfirmationActionHandlerService', () => {
     let service: ConfirmationActionHandlerService;
     let actionsService: MockActionsService;

@@ -1,6 +1,5 @@
 import {
     AfterViewInit,
-    ANALYZE_FOR_ENTRY_COMPONENTS,
     Component,
     Injectable,
     Input,
@@ -103,11 +102,6 @@ describe('TableColumnRendererComponent', () => {
                     'layout-flat': LayoutFlatHostComponent,
                 }),
                 ...(LayoutFlatHostModule.forRoot().providers || []),
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent, TableColumnTestComponent],
-                    multi: true,
-                },
             ],
             teardown: { destroyAfterEach: false },
         });

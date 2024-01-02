@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { TableModule } from '@spryker/table';
@@ -8,7 +8,6 @@ import { TableFilterSelectComponent, TableFilterSelectModule } from '@spryker/ta
 import { TableFilterTreeSelectComponent, TableFilterTreeSelectModule } from '@spryker/table.filter.tree-select';
 import { MockHttpModule } from '@spryker/internal-utils';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { TableFiltersFeatureModule } from '@spryker/table.feature.filters';
 import { TablePaginationFeatureModule } from '@spryker/table.feature.pagination';
 import { TableSettingsFeatureModule } from '@spryker/table.feature.settings';
@@ -74,16 +73,6 @@ export default {
                 ),
                 importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
                 importProvidersFrom(EnLocaleModule),
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [
-                        LayoutFlatHostComponent,
-                        TableFilterSelectComponent,
-                        TableFilterTreeSelectComponent,
-                        TableFilterDateRangeComponent,
-                    ],
-                    multi: true,
-                },
                 importProvidersFrom(NotificationModule.forRoot()),
             ],
         }),

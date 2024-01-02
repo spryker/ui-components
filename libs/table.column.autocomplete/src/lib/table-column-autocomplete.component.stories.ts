@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
@@ -111,11 +110,6 @@ export const withTable = (args) => ({
                     autocomplete: TableColumnAutocompleteComponent,
                 } as any),
             ),
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [LayoutFlatHostComponent, TableColumnAutocompleteComponent],
-                multi: true,
-            },
         ],
     },
     moduleMetadata: {
@@ -197,11 +191,6 @@ export const withDependentColumns = (args) => ({
             importProvidersFrom(NotificationModule.forRoot()),
             importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
             importProvidersFrom(EnLocaleModule),
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [LayoutFlatHostComponent, TableColumnAutocompleteComponent],
-                multi: true,
-            },
         ],
     },
     moduleMetadata: {

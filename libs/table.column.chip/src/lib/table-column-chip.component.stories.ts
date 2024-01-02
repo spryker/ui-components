@@ -32,14 +32,6 @@ export default {
             allowFullscreen: true,
         },
     },
-    argTypes: {
-        //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
-        config: {
-            table: {
-                disable: true,
-            },
-        },
-    },
 } as Meta;
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
@@ -124,6 +116,12 @@ withTable.args = {
     },
 };
 withTable.argTypes = {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+        table: {
+            disable: true,
+        },
+    },
     context: {
         table: {
             disable: true,

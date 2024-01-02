@@ -5,6 +5,6 @@ export default {
     data: {
         'confirmation-title': 'Bestätigung',
         'confirmation-ok': 'Bestätigen',
-        'confirmation-cancel': 'Stornieren',
+        'confirmation-cancel': 'Abbrechen',
     },
 } as I18nLocaleDataPackage;

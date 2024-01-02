@@ -4921,6 +4921,83 @@
             },
             "tags": ["type:component", "level:atom", "pkg:extension"]
         },
+        "table.column.button-action": {
+            "projectType": "library",
+            "root": "libs/table.column.button-action",
+            "sourceRoot": "libs/table.column.button-action/src",
+            "prefix": "spy",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+                    "options": {
+                        "project": "libs/table.column.button-action/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/table.column.button-action/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/table.column.button-action/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+                    "options": {
+                        "jestConfig": "libs/table.column.button-action/jest.config.ts",
+                        "passWithNoTests": true
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "port": 4400,
+                        "configDir": "libs/table.column.button-action/.storybook",
+                        "browserTarget": "table.column.button-action:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputDir": "dist/storybook/table.column.button-action",
+                        "configDir": "libs/table.column.button-action/.storybook",
+                        "browserTarget": "table.column.button-action:build-storybook",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "dist"],
+                        "enableProdMode": false,
+                        "styles": [".storybook/styles.less"]
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/table.column.button-action/**/*.ts",
+                            "libs/table.column.button-action/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": ["level:atom", "type:component", "pkg:extension"]
+        },
         "table.column.chip": {
             "projectType": "library",
             "root": "libs/table.column.chip",

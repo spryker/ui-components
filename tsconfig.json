@@ -458,6 +458,12 @@
             "path": "./libs/table.column.autocomplete/tsconfig.spec.json"
         },
         {
+            "path": "./libs/table.column.button-action/tsconfig.lib.json"
+        },
+        {
+            "path": "./libs/table.column.button-action/tsconfig.spec.json"
+        },
+        {
             "path": "./libs/table.column.chip/tsconfig.lib.json"
         },
         {

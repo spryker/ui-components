@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
@@ -136,11 +135,6 @@ export const withTable = (args) => ({
                     select: TableColumnSelectComponent,
                 } as any),
             ),
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
-                multi: true,
-            },
         ],
     },
     moduleMetadata: {
@@ -210,11 +204,6 @@ export const withInlineDependentColumns = (args) => ({
             importProvidersFrom(NotificationModule.forRoot()),
             importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
             importProvidersFrom(EnLocaleModule),
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
-                multi: true,
-            },
         ],
     },
     moduleMetadata: {
@@ -296,11 +285,6 @@ export const withHttpDependentColumns = (args) => ({
             importProvidersFrom(NotificationModule.forRoot()),
             importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
             importProvidersFrom(EnLocaleModule),
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [LayoutFlatHostComponent, TableColumnSelectComponent],
-                multi: true,
-            },
         ],
     },
     moduleMetadata: {

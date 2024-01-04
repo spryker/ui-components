@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { DatasourceInlineModule, DatasourceInlineService } from '@spryker/datasource.inline';
@@ -63,16 +62,6 @@ export default {
                 importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
                 importProvidersFrom(EnLocaleModule),
                 importProvidersFrom(NotificationModule.forRoot()),
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [
-                        LayoutFlatHostComponent,
-                        TableColumnTextComponent,
-                        TableColumnSelectComponent,
-                        TableColumnDynamicComponent,
-                    ],
-                    multi: true,
-                },
             ],
         }),
         moduleMetadata({
@@ -230,11 +219,6 @@ export const withDependentColumns = (args) => ({
                     http: DatasourceHttpService,
                 } as any),
             ),
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [TableColumnAutocompleteComponent, TableColumnInputComponent],
-                multi: true,
-            },
         ],
     },
     moduleMetadata: {

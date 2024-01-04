@@ -5,6 +5,6 @@ export default {
     data: {
         'confirmation-title': 'Nicht gespeicherte Änderungen verwerfen?',
         'confirmation-ok': 'Verwerfen',
-        'confirmation-cancel': 'Stornieren',
+        'confirmation-cancel': 'Abbrechen',
     },
 } as I18nLocaleDataPackage;

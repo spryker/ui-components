@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
@@ -76,11 +75,6 @@ export const withTable = (args) => ({
                     'mock-data': MockTableDatasourceService,
                 } as any),
             ),
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [LayoutFlatHostComponent, TableColumnInputComponent],
-                multi: true,
-            },
         ],
     },
     moduleMetadata: {

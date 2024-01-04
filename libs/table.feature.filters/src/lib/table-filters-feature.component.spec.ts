@@ -1,6 +1,6 @@
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestTableFeatureComponent, TestTableFeatureMocks, TestTableFeatureTplDirective } from '@spryker/table/testing';
 import {
     TableColumnsResolverService,
@@ -63,11 +63,6 @@ describe('TableFiltersFeatureComponent', () => {
                     useValue: {
                         filter: TableDummyFilterComponent as any,
                     },
-                    multi: true,
-                },
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [TableDummyFilterComponent],
                     multi: true,
                 },
                 {

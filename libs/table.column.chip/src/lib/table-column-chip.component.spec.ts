@@ -42,7 +42,7 @@ describe('TableColumnChipComponent', () => {
         expect(chipsElem).toBeTruthy();
     });
 
-    it('Input color must be bound to `className` of <spy-input>', async () => {
+    it('Input color must be bound to `className` of <spy-chips>', async () => {
         const host = await createComponentWrapper(createComponent, { config: configMock[0], context });
         const chipsElem = host.queryCss('spy-chips');
 

@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, importProvidersFrom, Input } from '@angular/core';
+import { Component, importProvidersFrom, Input } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { LocaleModule } from '@spryker/locale';
@@ -95,11 +94,6 @@ export default {
                 ),
                 importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
                 importProvidersFrom(EnLocaleModule),
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: [LayoutFlatHostComponent],
-                    multi: true,
-                },
             ],
         }),
         moduleMetadata({

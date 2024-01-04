@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ButtonActionModule, ButtonActionComponent } from '@spryker/button.action';
 import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { TableColumnButtonActionComponent } from './table-column-button-action.component';
-import { createComponentWrapper } from '../../../internal-utils/src';
 
 const configMock = [
     {

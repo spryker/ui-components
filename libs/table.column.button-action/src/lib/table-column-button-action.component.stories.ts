@@ -152,8 +152,8 @@ export const withTable = (args) => ({
         entryComponents: [NotificationWrapperComponent],
     },
     template: `
-    <spy-table [config]="config"></spy-table>
-  `,
+        <spy-table [config]="config"></spy-table>
+    `,
 });
 withTable.args = {
     config: {

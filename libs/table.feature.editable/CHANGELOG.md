@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@1.1.0...@spryker/table.feature.editable@1.1.1-next.0) (2024-01-04)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** adjust cancel button DE translation ([091c0c4](https://github.com/spryker/ui-components/commit/091c0c4880e082f747000cdc984a6d2f557a37a7))
+
+
+
+
+
 # [1.1.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@1.1.0-next.0...@spryker/table.feature.editable@1.1.0) (2023-12-22)
 
 **Note:** Version bump only for package @spryker/table.feature.editable

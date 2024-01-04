@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/user-menu@1.1.0...@spryker/user-menu@1.2.0-next.0) (2024-01-04)
+
+
+### Features
+
+* **user-menu:** introduced padding ([ef6dd45](https://github.com/spryker/ui-components/commit/ef6dd457a54cdd2601137fdd51b06e9ab6f42617))
+* **user-menu:** updated default icon ([8aaa74a](https://github.com/spryker/ui-components/commit/8aaa74ad3ec15d0bf563ec47ecad07957be25bf6))
+
+
+
+
+
 # [1.1.0](https://github.com/spryker/ui-components/compare/@spryker/user-menu@1.1.0-next.0...@spryker/user-menu@1.1.0) (2023-12-22)
 
 **Note:** Version bump only for package @spryker/user-menu

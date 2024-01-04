@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/locale@1.1.1...@spryker/locale@1.2.0-next.0) (2024-01-04)
+
+
+### Features
+
+* **locale:** introduce modal confirm translations ([3cb95ff](https://github.com/spryker/ui-components/commit/3cb95ffeea3af11f422dcfe9294eec16cf4d5565))
+
+
+
+
+
 ## [1.1.1](https://github.com/spryker/ui-components/compare/@spryker/locale@1.1.1-next.0...@spryker/locale@1.1.1) (2023-12-22)
 
 **Note:** Version bump only for package @spryker/locale

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/header@1.1.0...@spryker/header@1.1.1-next.0) (2024-01-05)
+
+
+### Bug Fixes
+
+* **header:** updated header padding ([95b7f52](https://github.com/spryker/ui-components/commit/95b7f528eda5e43f44ffef45586c35c787ef8a42))
+
+
+
+
+
 # [1.1.0](https://github.com/spryker/ui-components/compare/@spryker/header@1.1.0-next.0...@spryker/header@1.1.0) (2023-12-22)
 
 **Note:** Version bump only for package @spryker/header

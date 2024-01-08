@@ -8,6 +8,8 @@ export class TableColumnChipConfig {
     text? = this.contextService.wrap('displayValue');
     @ColumnTypeOption()
     color?: string;
+    @ColumnTypeOption()
+    maxWidth?: string = '145px';
 
     constructor(private contextService: ContextService) {}
 }

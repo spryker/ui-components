@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/modal@1.2.0-next.0...@spryker/modal@1.2.0-next.1) (2024-01-08)
+
+
+### Features
+
+* **modal:** adjusted ConfirmModalData interface by introducing okVariant, okSize, cancelVariant, cancelSize properties. ([f0ad93a](https://github.com/spryker/ui-components/commit/f0ad93a062dfa020544a915173a9986536bab88b))
+
+
+
+
+
 # [1.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/modal@1.1.0...@spryker/modal@1.2.0-next.0) (2024-01-04)
 
 

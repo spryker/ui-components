@@ -104,6 +104,7 @@ withTable.args = {
                 typeOptions: {
                     text: '${value}',
                     color: 'blue',
+                    maxWidth: '100px',
                 },
             },
         ],

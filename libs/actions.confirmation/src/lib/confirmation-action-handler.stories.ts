@@ -47,6 +47,7 @@ export default {
             },
             modal: {
                 description: 'Redirect to ${url}',
+                okVariant: 'primary',
             },
         },
         actionContext: {

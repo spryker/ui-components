@@ -35,6 +35,7 @@ export class SidebarComponent implements OnChanges, OnInit {
     @Output() collapsedChange = new EventEmitter<boolean>();
 
     private isCollapsedStateRetrieved = false;
+    private defaultId = 'default-sidebar';
     arrowIcon = IconArrowDownModule.icon;
 
     setCollapsedState$ = new ReplaySubject<boolean>();

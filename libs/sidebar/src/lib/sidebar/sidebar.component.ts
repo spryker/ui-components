@@ -35,6 +35,7 @@ export class SidebarComponent implements OnChanges, OnInit {
     @Output() collapsedChange = new EventEmitter<boolean>();
 
     private isCollapsedStateRetrieved = false;
+    private defaultId = 'default-sidebar';
     arrowIcon = IconArrowDownModule.icon;
 
     setCollapsedState$ = new ReplaySubject<boolean>();
@@ -64,9 +65,7 @@ export class SidebarComponent implements OnChanges, OnInit {
     constructor(private persistenceService: PersistenceService) {}
 
     ngOnInit(): void {
-        if (this.spyId) {
-            this.spyId$.next(this.spyId);
-        }
+        this.spyId$.next(this.spyId ?? this.defaultId);
     }
 
     ngOnChanges(changes: SimpleChanges): void {

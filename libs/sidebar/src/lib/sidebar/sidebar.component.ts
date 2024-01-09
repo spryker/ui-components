@@ -64,9 +64,7 @@ export class SidebarComponent implements OnChanges, OnInit {
     constructor(private persistenceService: PersistenceService) {}
 
     ngOnInit(): void {
-        if (this.spyId) {
-            this.spyId$.next(this.spyId);
-        }
+        this.spyId$.next(this.spyId);
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -74,7 +72,7 @@ export class SidebarComponent implements OnChanges, OnInit {
             this.setCollapsedState$.next(this.collapsed);
         }
 
-        if (changes.spyId && this.spyId && !changes.spyId.firstChange) {
+        if (changes.spyId && !changes.spyId.firstChange) {
             this.spyId$.next(this.spyId);
         }
     }

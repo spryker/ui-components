@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@1.1.0...@spryker/sidebar@1.1.1-next.0) (2024-01-09)
-
-
-### Bug Fixes
-
-* **sidebar:** fix persistence initialization ([e0c87b2](https://github.com/spryker/ui-components/commit/e0c87b2974bf3d4d8f6f4c379fc40d9942b89c61))
-
-
-
-
-
 # [1.1.0](https://github.com/spryker/ui-components/compare/@spryker/sidebar@1.1.0-next.0...@spryker/sidebar@1.1.0) (2023-12-22)
 
 **Note:** Version bump only for package @spryker/sidebar

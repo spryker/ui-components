@@ -26,6 +26,7 @@ export default {
         innerText: 'SideBar Content',
         width: 250,
         collapsedWidth: 96,
+        collapsed: false,
     },
 } as Meta;
 
@@ -36,7 +37,8 @@ export const primary = (args) => ({
             [width]="width"
             [collapsedWidth]="collapsedWidth"
             [spyId]="spyId"
-            [collapsed]="collapsed">
+            [collapsed]="collapsed"
+        >
             <div>{{ innerText }}</div>
         </spy-sidebar>
     `,

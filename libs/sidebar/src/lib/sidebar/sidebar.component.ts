@@ -13,8 +13,9 @@ import {
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService } from '@spryker/persistence';
 import { ToBoolean } from '@spryker/utils';
+import { is } from 'date-fns/locale';
 import { merge, ReplaySubject } from 'rxjs';
-import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { map, shareReplay, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
 
 @Component({
     selector: 'spy-sidebar',
@@ -44,8 +45,9 @@ export class SidebarComponent implements OnChanges, OnInit {
         switchMap((persistenceKey) => {
             return this.persistenceService.retrieve<boolean>(persistenceKey);
         }),
-        tap(() => {
+        tap((isCollapsed) => {
             this.isCollapsedStateRetrieved = true;
+            this.setCollapsedState(isCollapsed);
         }),
     );
 
@@ -53,10 +55,10 @@ export class SidebarComponent implements OnChanges, OnInit {
         withLatestFrom(this.persistenceKey$),
         tap(([isCollapsed, persistenceKey]) => {
             if (this.isCollapsedStateRetrieved) {
-                this.isCollapsedStateRetrieved = false;
-            } else {
-                this.persistenceService.save(persistenceKey, isCollapsed);
+                return;
             }
+
+            this.persistenceService.save(persistenceKey, isCollapsed);
         }),
         map(([isCollapsed]) => isCollapsed),
     );
@@ -78,19 +80,17 @@ export class SidebarComponent implements OnChanges, OnInit {
     }
 
     updateCollapse(isCollapsed: boolean): void {
-        this.collapsed = isCollapsed;
-        this.setCollapsedState$.next(this.collapsed);
+        this.isCollapsedStateRetrieved = false;
+        this.setCollapsedState(isCollapsed);
         this.collapsedChange.emit(this.isCollapsed());
     }
 
     collapse(): void {
-        this.collapsed = true;
-        this.setCollapsedState$.next(this.collapsed);
+        this.setCollapsedState(true);
     }
 
     expand(): void {
-        this.collapsed = false;
-        this.setCollapsedState$.next(this.collapsed);
+        this.setCollapsedState(false);
     }
 
     toggle(): boolean {
@@ -105,5 +105,10 @@ export class SidebarComponent implements OnChanges, OnInit {
 
     isCollapsed(): boolean {
         return this.collapsed;
+    }
+
+    protected setCollapsedState(isCollapsed: boolean): void {
+        this.collapsed = isCollapsed;
+        this.setCollapsedState$.next(this.collapsed);
     }
 }

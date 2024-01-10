@@ -22,6 +22,7 @@ export default {
         },
     },
     args: {
+        spyId: 'someId',
         innerText: 'SideBar Content',
         width: 250,
         collapsedWidth: 96,

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/chips@1.1.0...@spryker/chips@1.1.1-next.0) (2024-01-10)
+
+
+### Bug Fixes
+
+* **chip:** updated red color background ([ca6cecc](https://github.com/spryker/ui-components/commit/ca6cecc3f61a903632fd0f86bc8acc4f366c16cb))
+
+
+
+
+
 # [1.1.0](https://github.com/spryker/ui-components/compare/@spryker/chips@1.1.0-next.0...@spryker/chips@1.1.0) (2023-12-22)
 
 **Note:** Version bump only for package @spryker/chips

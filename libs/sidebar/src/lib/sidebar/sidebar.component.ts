@@ -13,9 +13,8 @@ import {
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService } from '@spryker/persistence';
 import { ToBoolean } from '@spryker/utils';
-import { is } from 'date-fns/locale';
 import { merge, ReplaySubject } from 'rxjs';
-import { map, shareReplay, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
+import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
 @Component({
     selector: 'spy-sidebar',
@@ -45,10 +44,7 @@ export class SidebarComponent implements OnChanges, OnInit {
         switchMap((persistenceKey) => {
             return this.persistenceService.retrieve<boolean>(persistenceKey);
         }),
-        tap((isCollapsed) => {
-            this.isCollapsedStateRetrieved = true;
-            this.setCollapsedState(isCollapsed);
-        }),
+        tap((isCollapsed) => this.updateCollapse(isCollapsed, true)),
     );
 
     collapsed$ = merge(this.initialState$, this.setCollapsedState$).pipe(
@@ -79,8 +75,8 @@ export class SidebarComponent implements OnChanges, OnInit {
         }
     }
 
-    updateCollapse(isCollapsed: boolean): void {
-        this.isCollapsedStateRetrieved = false;
+    updateCollapse(isCollapsed: boolean, isStateRetrieved = false): void {
+        this.isCollapsedStateRetrieved = isStateRetrieved;
         this.setCollapsedState(isCollapsed);
         this.collapsedChange.emit(this.isCollapsed());
     }

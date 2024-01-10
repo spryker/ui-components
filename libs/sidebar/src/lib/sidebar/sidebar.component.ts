@@ -44,11 +44,7 @@ export class SidebarComponent implements OnChanges, OnInit {
         switchMap((persistenceKey) => {
             return this.persistenceService.retrieve<boolean>(persistenceKey);
         }),
-        tap((isCollapsed) => {
-            console.log('isCollapsed', isCollapsed);
-
-            this.updateCollapse(isCollapsed, true);
-        }),
+        tap((isCollapsed) => this.updateCollapse(isCollapsed, true)),
     );
 
     collapsed$ = merge(this.initialState$, this.setCollapsedState$).pipe(

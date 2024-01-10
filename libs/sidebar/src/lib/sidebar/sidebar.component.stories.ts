@@ -36,7 +36,7 @@ export const primary = (args) => ({
             [width]="width"
             [collapsedWidth]="collapsedWidth"
             [spyId]="spyId"
-            [collapsed]="collapsed">
+        >
             <div>{{ innerText }}</div>
         </spy-sidebar>
     `,

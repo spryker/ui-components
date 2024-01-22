@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/spryker/ui-components/compare/@spryker/actions.confirmation@0.1.0-next.0...@spryker/actions.confirmation@0.1.0) (2024-01-22)
+
+**Note:** Version bump only for package @spryker/actions.confirmation
+
+
+
+
+
 # 0.1.0-next.0 (2024-01-04)
 
 

@@ -12,9 +12,10 @@ import {
     TemplateModalStrategy,
     TemplateModalExtras,
     ConfirmModalStrategy,
+    ConfirmModalData,
 } from './strategies';
 import { ModalOptionsToken, ModalWrapperFactoryToken } from './tokens';
-import { AnyModal, ModalOptions, ModalRef, ModalStrategy } from './types';
+import { AnyModal, Modal, ModalOptions, ModalRef, ModalStrategy } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class ModalService implements OnDestroy {
@@ -87,7 +88,7 @@ export class ModalService implements OnDestroy {
 
     openConfirm(
         options?: ModalOptions<ConfirmModalComponent> & ConfirmModalStrategyOptions,
-    ): ModalRef<AnyModal, ComponentModalExtras<ConfirmModalComponent>> {
+    ): ModalRef<Modal<ConfirmModalData, boolean>, ComponentModalExtras<ConfirmModalComponent>> {
         return this.open(new ConfirmModalStrategy(options), options);
     }
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/icon@1.1.0...@spryker/icon@1.2.0-next.0) (2024-01-04)
+
+
+### Features
+
+* **icon:** updated user icon ([f3fdc17](https://github.com/spryker/ui-components/commit/f3fdc17c4f10bc4ad475616870f25159161db427))
+
+
+
+
+
 # [1.1.0](https://github.com/spryker/ui-components/compare/@spryker/icon@1.1.0-next.1...@spryker/icon@1.1.0) (2023-12-22)
 
 **Note:** Version bump only for package @spryker/icon

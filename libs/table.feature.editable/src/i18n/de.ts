@@ -4,8 +4,8 @@ export default {
     name: 'table.feature.editable',
     data: {
         'add-button-title': 'Preis hinzufügen',
-        'cancel-button-title': 'Stornieren',
+        'cancel-button-title': 'Abbrechen',
         'save-updates-title': 'Speichern',
-        'cancel-updates-title': 'Stornieren',
+        'cancel-updates-title': 'Abbrechen',
     },
 } as I18nLocaleDataPackage;

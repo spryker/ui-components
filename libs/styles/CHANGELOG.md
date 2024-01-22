@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@1.1.0...@spryker/styles@1.2.0-next.0) (2024-01-04)
+
+
+### Bug Fixes
+
+* **styles:** adjusted header padding ([d7b2659](https://github.com/spryker/ui-components/commit/d7b265958e2b90c7fb6a9b4d5d816f16319c24f2))
+
+
+### Features
+
+* **styles:** adjusted user-menu styles by introducing [@user-menu-padding](https://github.com/user-menu-padding) variable and changing icon size ([71b19ee](https://github.com/spryker/ui-components/commit/71b19eeaead9da2b90528763d7dd9bcf655f906f))
+
+
+
+
+
 # [1.1.0](https://github.com/spryker/ui-components/compare/@spryker/styles@1.1.0-next.1...@spryker/styles@1.1.0) (2023-12-22)
 
 **Note:** Version bump only for package @spryker/styles

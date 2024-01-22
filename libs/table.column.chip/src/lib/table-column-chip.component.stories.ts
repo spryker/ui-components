@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
@@ -30,14 +29,6 @@ export default {
             type: 'figma',
             url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1365%3A7734',
             allowFullscreen: true,
-        },
-    },
-    argTypes: {
-        //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
-        config: {
-            table: {
-                disable: true,
-            },
         },
     },
 } as Meta;
@@ -77,11 +68,6 @@ export const withTable = (args) => ({
                     'mock-data': MockTableDatasourceService,
                 } as any),
             ),
-            {
-                provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                useValue: [LayoutFlatHostComponent, TableColumnChipComponent],
-                multi: true,
-            },
         ],
     },
     moduleMetadata: {
@@ -118,12 +104,19 @@ withTable.args = {
                 typeOptions: {
                     text: '${value}',
                     color: 'blue',
+                    maxWidth: '100px',
                 },
             },
         ],
     },
 };
 withTable.argTypes = {
+    //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+    config: {
+        table: {
+            disable: true,
+        },
+    },
     context: {
         table: {
             disable: true,

@@ -1,0 +1,9 @@
+<spy-button-action
+    [action]="config?.action"
+    [actionContext]="config?.actionContext ?? context"
+    [variant]="config?.variant"
+    [shape]="config?.shape"
+    [size]="config?.size"
+    [attrs]="config?.attrs"
+    >{{ config.text | context : context }}</spy-button-action
+>

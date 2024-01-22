@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.chip@1.0.1...@spryker/table.column.chip@1.1.0-next.0) (2024-01-08)
+
+
+### Features
+
+* **table.column.chip:** introduced maxWidth to the TableColumnChipConfig class ([1ae8325](https://github.com/spryker/ui-components/commit/1ae832537df544bb70f0087e34b1b4ccb74d82fd))
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.chip@1.0.1-next.0...@spryker/table.column.chip@1.0.1) (2023-09-11)
 
 **Note:** Version bump only for package @spryker/table.column.chip

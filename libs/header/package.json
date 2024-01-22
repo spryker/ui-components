@@ -1,10 +1,10 @@
 {
     "name": "@spryker/header",
-    "version": "1.1.0",
+    "version": "1.1.1-next.0",
     "peerDependencies": {
         "@angular/common": "^15.0.0",
         "@angular/core": "^15.0.0",
-        "@spryker/styles": "^1.1.0",
+        "@spryker/styles": "^1.2.0",
         "@spryker/utils": "^1.0.0",
         "@spryker/web-components": "^1.0.0"
     },

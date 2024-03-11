@@ -45,3 +45,6 @@ Thumbs.db
 # Compiled i18n data
 /libs/locale/data/*/src/data/*
 !/libs/locale/data/*/src/data/data.d.ts
+
+.angular
+.nx

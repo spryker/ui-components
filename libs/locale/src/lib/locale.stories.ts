@@ -2,6 +2,7 @@ import { Component, importProvidersFrom, Input } from '@angular/core';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import EnLocaleModule, { EN_LOCALE } from '../../locales/en/src';
 import DeLocaleModule, { DE_LOCALE } from '../../locales/de/src';
+import TrLocaleModule, { TR_LOCALE } from '../../locales/tr/src';
 import { LocaleModule } from './locale.module';
 
 @Component({
@@ -57,6 +58,16 @@ export const de = (args) => ({
         providers: [
             importProvidersFrom(LocaleModule.forRoot({ defaultLocale: DE_LOCALE })),
             importProvidersFrom(DeLocaleModule),
+        ],
+    },
+});
+
+export const tr = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(LocaleModule.forRoot({ defaultLocale: TR_LOCALE })),
+            importProvidersFrom(TrLocaleModule),
         ],
     },
 });

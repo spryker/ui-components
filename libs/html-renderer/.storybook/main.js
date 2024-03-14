@@ -14,5 +14,5 @@ module.exports = {
         return config;
     },
 
-    stories: ['../**/*.@(mdx|stories.@(ts))']
+    stories: ['../**/*.@(mdx|stories.@(ts))'],
 };

@@ -5,9 +5,5 @@
         "entryFile": "src/index.ts",
         "styleIncludePaths": ["../styles/src/lib"]
     },
-    "allowedNonPeerDependencies": [
-        "ng-zorro-antd",
-        "@orchestrator/core",
-        "@orchestrator/layout"
-    ]
+    "allowedNonPeerDependencies": ["ng-zorro-antd", "@orchestrator/core", "@orchestrator/layout"]
 }

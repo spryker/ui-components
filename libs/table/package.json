@@ -3,8 +3,8 @@
     "version": "1.1.0",
     "peerDependencies": {
         "@angular/cdk": "^15.0.0",
-        "@angular/common": "^15.0.0",
-        "@angular/core": "^15.0.0",
+        "@angular/common": "^17.2.4",
+        "@angular/core": "^17.2.4",
         "@spryker/actions": "^1.0.0",
         "@spryker/datasource": "^1.0.0",
         "@spryker/icon": "^1.0.0",
@@ -20,8 +20,8 @@
         "@orchestrator/core": "^2.0.5",
         "@orchestrator/layout": "^2.0.2",
         "ng-dynamic-component": "^10.5.1",
-        "ng-zorro-antd": "^15.0.3",
-        "tslib": "^2.3.1"
+        "ng-zorro-antd": "^17.3.0",
+        "tslib": "^2.6.2"
     },
     "publishConfig": {
         "access": "public"

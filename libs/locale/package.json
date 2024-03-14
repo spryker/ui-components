@@ -2,14 +2,14 @@
     "name": "@spryker/locale",
     "version": "1.2.0",
     "peerDependencies": {
-        "@angular/common": "^15.0.0",
-        "@angular/core": "^15.0.0",
+        "@angular/common": "^17.2.4",
+        "@angular/core": "^17.2.4",
         "@spryker/utils": "^1.0.0",
         "rxjs": "^7.5.7"
     },
     "dependencies": {
-        "ng-zorro-antd": "^15.0.3",
-        "tslib": "^2.3.1"
+        "ng-zorro-antd": "^17.3.0",
+        "tslib": "^2.6.2"
     },
     "publishConfig": {
         "access": "public"

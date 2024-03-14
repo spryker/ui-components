@@ -9,8 +9,7 @@
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
             "options": {
-                "project": "libs/unsaved-changes.guard.navigation/ng-package.json",
-                "updateBuildableProjectDepsInPackageJson": true
+                "project": "libs/unsaved-changes.guard.navigation/ng-package.json"
             },
             "configurations": {
                 "production": {

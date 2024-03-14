@@ -9,8 +9,7 @@
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
             "options": {
-                "project": "libs/checkbox/ng-package.json",
-                "updateBuildableProjectDepsInPackageJson": true
+                "project": "libs/checkbox/ng-package.json"
             },
             "configurations": {
                 "production": {

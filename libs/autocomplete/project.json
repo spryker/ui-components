@@ -9,8 +9,7 @@
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
             "options": {
-                "project": "libs/autocomplete/ng-package.json",
-                "updateBuildableProjectDepsInPackageJson": true
+                "project": "libs/autocomplete/ng-package.json"
             },
             "configurations": {
                 "production": {

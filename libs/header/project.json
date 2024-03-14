@@ -9,8 +9,7 @@
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
             "options": {
-                "project": "libs/header/ng-package.json",
-                "updateBuildableProjectDepsInPackageJson": true
+                "project": "libs/header/ng-package.json"
             },
             "configurations": {
                 "production": {

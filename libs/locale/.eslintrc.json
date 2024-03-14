@@ -1,6 +1,10 @@
 {
     "extends": ["../../.eslintrc.json"],
     "ignorePatterns": ["!**/*"],
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2022
+    },
     "overrides": [
         {
             "files": ["./data/**/src/*.ts", "./data/**/src/data/*.ts", "./locales/**/src/index.ts"],

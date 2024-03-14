@@ -1,6 +1,6 @@
 dist: focal
 language: node_js
-node_js: 18
+node_js: 18.13.0
 cache:
     npm: true
 stages:

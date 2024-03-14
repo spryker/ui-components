@@ -7,5 +7,5 @@
         "emitDecoratorMetadata": false
     },
     "files": ["src/test-setup.ts"],
-    "include": ["**/*.test.ts", "**/*.spec.ts", "**/*.d.ts", "jest.config.ts"]
+    "include": ["**/*.test.ts", "**/*.spec.ts", "**/*.d.ts", "jest.config.ts", "data/de/src/data/data.ts", "data/en/src/data/data.ts"]
 }

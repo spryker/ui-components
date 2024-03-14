@@ -60,7 +60,7 @@
     },
     "private": true,
     "engines": {
-        "node": ">=18.13.0",
+        "node": ">=18.19.0",
         "npm": ">=10.0.0"
     },
     "dependencies": {

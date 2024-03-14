@@ -8,7 +8,7 @@ import {
     SimpleChanges,
     OnChanges,
 } from '@angular/core';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { DateRangeValueInput } from '@spryker/date-picker';
 import { I18nService } from '@spryker/locale';

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { InjectionTokenType } from '@spryker/utils';
 import { DateAdapterToken } from './token';
 import { DateAdapter } from './types';

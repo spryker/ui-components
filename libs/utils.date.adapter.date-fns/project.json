@@ -1,0 +1,37 @@
+{
+    "name": "utils.date.adapter.date-fns",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/utils.date.adapter.date-fns/src",
+    "prefix": "spy",
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:package",
+            "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "options": {
+                "project": "libs/utils.date.adapter.date-fns/ng-package.json",
+                "updateBuildableProjectDepsInPackageJson": true
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/utils.date.adapter.date-fns/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/utils.date.adapter.date-fns/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/utils.date.adapter.date-fns/jest.config.ts"
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        }
+    },
+    "tags": ["type:service", "pkg:extension"]
+}

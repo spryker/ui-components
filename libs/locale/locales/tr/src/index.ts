@@ -7,7 +7,7 @@ export const TR_LOCALE = 'tr';
 export function trLocaleFactory() {
     // FIXME(angular/angular#23629): Use factory with internal const to workaround AOT error
     // @see https://github.com/angular/angular/issues/23629
-    const enLocale: LocaleRecord = {
+    const trLocale: LocaleRecord = {
         id: TR_LOCALE,
         loaders: {
             ng: () =>
@@ -28,7 +28,7 @@ export function trLocaleFactory() {
                 })),
         },
     };
-    return [enLocale];
+    return [trLocale];
 }
 
 @NgModule({

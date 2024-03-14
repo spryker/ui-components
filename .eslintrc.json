@@ -96,7 +96,17 @@
             "parser": "jsonc-eslint-parser",
             "rules": {
               "@nx/dependency-checks": ["error", {
-                "ignoredDependencies": ["tslib", "@spryker/styles"]
+                "ignoredDependencies": [
+                    "tslib", 
+                    "@spryker/styles", 
+                    "ng-zorro-antd", 
+                    "@rollup/plugin-typescript", 
+                    "@rollup/plugin-node-resolve", 
+                    "@rollup/plugin-commonjs", 
+                    "url", 
+                    "globby", 
+                    "date-fns"
+                ]
               }]
             }
         }

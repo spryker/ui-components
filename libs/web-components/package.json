@@ -2,10 +2,10 @@
     "name": "@spryker/web-components",
     "version": "1.0.1",
     "peerDependencies": {
-        "@angular/cdk": "^15.0.0",
+        "@angular/cdk": "^17.2.2",
         "@angular/common": "^17.2.4",
         "@angular/core": "^17.2.4",
-        "@angular/elements": "^15.0.0",
+        "@angular/elements": "^17.2.4",
         "@spryker/utils": "^1.0.0",
         "rxjs": "^7.5.7"
     },

@@ -7,7 +7,6 @@
     },
     "allowedNonPeerDependencies": [
         "ng-zorro-antd",
-        "ng-dynamic-component",
         "@orchestrator/core",
         "@orchestrator/layout"
     ]

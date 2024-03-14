@@ -2,7 +2,7 @@
     "name": "@spryker/notification",
     "version": "1.1.0",
     "peerDependencies": {
-        "@angular/animations": "^15.0.0",
+        "@angular/animations": "^17.2.4",
         "@angular/common": "^17.2.4",
         "@angular/core": "^17.2.4",
         "@spryker/icon": "^1.0.0",
@@ -12,7 +12,7 @@
     },
     "dependencies": {
         "ng-zorro-antd": "^17.3.0",
-        "ngx-toastr": "^15.2.1",
+        "ngx-toastr": "^18.0.0",
         "tslib": "^2.6.2"
     },
     "publishConfig": {

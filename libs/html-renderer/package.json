@@ -4,7 +4,7 @@
     "peerDependencies": {
         "@angular/common": "^17.2.4",
         "@angular/core": "^17.2.4",
-        "@angular/platform-browser": "^15.0.0",
+        "@angular/platform-browser": "^17.2.4",
         "@spryker/ajax-action": "^1.0.0",
         "@spryker/spinner": "^1.0.0",
         "@spryker/styles": "^1.1.0",

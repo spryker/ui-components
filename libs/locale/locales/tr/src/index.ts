@@ -16,7 +16,7 @@ export function trLocaleFactory() {
                 })),
             ant: () =>
                 Promise.all([
-                    import('node_modules/ng-zorro-antd/esm2020/i18n/languages/tr_TR' as any),
+                    import('node_modules/ng-zorro-antd/esm2022/i18n/languages/tr_TR' as any),
                     import('date-fns/locale/tr'),
                 ]).then(([data, date]) => ({
                     data: data.default,

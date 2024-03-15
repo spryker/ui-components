@@ -50,6 +50,8 @@ export default locales
             dir: path.resolve(__dirname, locale, 'src/data'),
             format: 'es',
             chunkFileNames: '[name].ts',
+            sourcemap: false,
+            manualChunks: () => 'data',
         },
         plugins: [
             nodeResolve(),
@@ -57,9 +59,7 @@ export default locales
             typescript({
                 types: ['node', 'jest'],
                 exclude: ['**/*.spec.ts', '**/*.stories.ts'],
-                tsconfig: path.resolve(ROOT_DIR, '../', './tsconfig.base.json'),
-                target: 'es2022',
-                module: 'esnext',
+                tsconfig: './tsconfig.base.json',
                 sourceMap: false,
             }),
         ],

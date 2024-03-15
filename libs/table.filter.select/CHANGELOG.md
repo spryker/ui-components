@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.filter.select@1.0.1...@spryker/table.filter.select@1.1.0-next.0) (2024-03-14)
+
+
+### Features
+
+* add turkish locale ([3dae079](https://github.com/spryker/ui-components/commit/3dae079b7b5be8affaeb2440d62ca0f750db715f))
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.select@1.0.1-next.1...@spryker/table.filter.select@1.0.1) (2023-09-11)
 
 **Note:** Version bump only for package @spryker/table.filter.select

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@1.1.1...@spryker/table.feature.editable@1.2.0-next.0) (2024-03-14)
+
+
+### Features
+
+* add turkish locale ([3dae079](https://github.com/spryker/ui-components/commit/3dae079b7b5be8affaeb2440d62ca0f750db715f))
+
+
+
+
+
 ## [1.1.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@1.1.1-next.0...@spryker/table.feature.editable@1.1.1) (2024-01-22)
 
 **Note:** Version bump only for package @spryker/table.feature.editable

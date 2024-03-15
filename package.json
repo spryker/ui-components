@@ -4,11 +4,11 @@
     "license": "MIT",
     "scripts": {
         "build": "run-s build-non-libs build-libs",
-        "build-libs": "node tools/scripts/build-libs.js",
+        "build-libs": "nx build locale",
         "build-non-libs": "run-s build:*",
         "build:themes": "npm run compile:themes",
         "build:i18n": "rollup --config libs/locale/data/rollup.config.mjs",
-        "build:storybook": "nx run storybook:compile --skip-nx-cache",
+        "build:storybook": "nx run storybook:compile --debug-webpack",
         "serve:storybook": "nx run storybook:serve",
         "pretest": "npm run clean:dist",
         "test": "npm run run:all -- test",

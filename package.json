@@ -18,7 +18,8 @@
         "stylelint:fix": "node ./tools/scripts/stylelint --fix",
         "affected:apps": "nx affected:apps",
         "affected:libs": "nx affected:libs",
-        "affected:build": "nx build locale",
+        "affected:build": "nx affected:build",
+        "affected:e2e": "nx affected:e2e",
         "preaffected:test": "npm run clean:dist",
         "affected:test": "nx affected:test",
         "affected:lint": "nx affected:lint",
@@ -59,7 +60,7 @@
     },
     "private": true,
     "engines": {
-        "node": ">=18.19.0",
+        "node": ">=18.13.0",
         "npm": ">=10.0.0"
     },
     "dependencies": {

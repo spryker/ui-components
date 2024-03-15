@@ -4,5 +4,5 @@
         "baseUrl": "../.."
     },
     "exclude": ["../../**/*.spec.ts"],
-    "include": ["../../libs/**/*.stories.ts"]
+    "include": ["../../libs/**/*"]
 }

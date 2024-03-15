@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
-import { TextareaComponent } from './textarea.component';
 import { TextareaModule } from '../textarea.module';
+import { TextareaComponent } from './textarea.component';
 
 export default {
     title: 'TextareaComponent',
@@ -24,6 +24,9 @@ export default {
         name: 'textarea-name',
         spyId: 'textarea-id',
         placeholder: 'Some placeholder',
+        rows: 4,
+        cols: 4,
+        disabled: false,
         attrs: {
             title: 'Some title',
         },

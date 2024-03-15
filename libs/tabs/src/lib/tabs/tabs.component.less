@@ -81,8 +81,17 @@
                 line-height: 1;
             }
 
+            &-disabled .@{tab-prefix-cls}-tab-btn:hover {
+                cursor: not-allowed;
+            }
+
             &-btn {
                 transition: none;
+                background: none;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
             &-active {

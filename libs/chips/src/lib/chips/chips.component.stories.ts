@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/angular';
-import { ChipsComponent } from './chips.component';
 import { ChipsModule } from '../chips.module';
+import { ChipsComponent } from './chips.component';
 
 export default {
     title: 'ChipsComponent',
@@ -23,6 +23,7 @@ export default {
     },
     args: {
         text: 'Text',
+        maxWidth: '',
     },
 } as Meta;
 

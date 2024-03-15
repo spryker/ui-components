@@ -17,6 +17,12 @@ export default {
             allowFullscreen: true,
         },
     },
+    argTypes: {
+        level: {
+            control: 'select',
+            options: Level,
+        },
+    },
     args: {
         level: Level.H1,
         title: 'Title Content',

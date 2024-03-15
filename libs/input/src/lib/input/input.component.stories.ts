@@ -50,6 +50,15 @@ export default {
         suffix: {
             control: { type: 'text' },
         },
+        readOnly: {
+            control: 'boolean',
+        },
+        disabled: {
+            control: 'boolean',
+        },
+        required: {
+            control: 'boolean',
+        },
     },
     args: {
         name: 'input-name',

@@ -41,6 +41,15 @@ export default {
         attrs: {
             control: { type: 'object' },
         },
+        readOnly: {
+            control: 'boolean',
+        },
+        disabled: {
+            control: 'boolean',
+        },
+        required: {
+            control: 'boolean',
+        },
     },
     args: {
         name: 'input-name',

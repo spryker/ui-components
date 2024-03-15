@@ -57,7 +57,10 @@ export default locales
             typescript({
                 types: ['node', 'jest'],
                 exclude: ['**/*.spec.ts', '**/*.stories.ts'],
-                tsconfig: './tsconfig.base.json',
+                tsconfig: path.resolve(ROOT_DIR, '../', './tsconfig.base.json'),
+                target: 'es2022',
+                module: 'esnext',
+                sourceMap: false,
             }),
         ],
     }));

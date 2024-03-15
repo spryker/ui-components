@@ -121,6 +121,8 @@
         "@storybook/core-server": "^8.0.0",
         "@types/jest": "^29.5.12",
         "@types/node": "18.16.9",
+        "@typescript-eslint/eslint-plugin": "^7.2.0",
+        "@typescript-eslint/parser": "^7.2.0",
         "@webcomponents/webcomponentsjs": "^2.6.0",
         "autoprefixer": "^10.4.0",
         "babel-loader": "^8.2.3",

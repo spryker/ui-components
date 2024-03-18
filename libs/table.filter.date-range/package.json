@@ -2,8 +2,8 @@
     "name": "@spryker/table.filter.date-range",
     "version": "1.2.0-next.0",
     "peerDependencies": {
-        "@angular/common": "^17.2.4",
-        "@angular/core": "^17.2.4",
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
         "@spryker/date-picker": "^1.0.0",
         "@spryker/locale": "^1.0.0",
         "@spryker/styles": "^1.1.0",

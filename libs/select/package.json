@@ -2,9 +2,9 @@
     "name": "@spryker/select",
     "version": "1.3.0-next.0",
     "peerDependencies": {
-        "@angular/common": "^17.2.4",
-        "@angular/core": "^17.2.4",
-        "@angular/forms": "^17.2.4",
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "@angular/forms": "^17.3.0",
         "@spryker/datasource": "^1.0.0",
         "@spryker/datasource.dependable": "^0.1.0",
         "@spryker/datasource.trigger": "^0.1.0",

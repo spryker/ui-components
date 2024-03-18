@@ -2,9 +2,9 @@
     "name": "@spryker/actions.redirect",
     "version": "1.0.1",
     "peerDependencies": {
-        "@angular/common": "^17.2.4",
-        "@angular/core": "^17.2.4",
-        "@angular/platform-browser": "^17.2.4",
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "@angular/platform-browser": "^17.3.0",
         "@spryker/actions": "^1.0.0",
         "@spryker/unsaved-changes": "^1.0.0",
         "@spryker/utils": "^1.0.0",

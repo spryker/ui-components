@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.3.0](https://github.com/spryker/ui-components/compare/@spryker/modal@1.3.0-next.0...@spryker/modal@1.3.0) (2024-03-15)
+# [1.3.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/modal@1.3.0-next.0...@spryker/modal@1.3.0-next.1) (2024-03-19)
 
 **Note:** Version bump only for package @spryker/modal
 

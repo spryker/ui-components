@@ -87,5 +87,11 @@ module.exports = {
         'selector-class-pattern': null,
         'less/no-duplicate-variables': null,
         'less/color-no-invalid-hex': null,
+        'value-keyword-case': [
+            'lower',
+            {
+                camelCaseSvgKeywords: true,
+            },
+        ],
     },
 };

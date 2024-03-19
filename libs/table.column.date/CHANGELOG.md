@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@1.0.1...@spryker/table.column.date@1.0.2) (2024-03-19)
+
+**Note:** Version bump only for package @spryker/table.column.date
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/table.column.date@1.0.1-next.0...@spryker/table.column.date@1.0.1) (2023-09-11)
 
 **Note:** Version bump only for package @spryker/table.column.date

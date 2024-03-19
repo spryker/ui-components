@@ -1,6 +1,6 @@
 {
     "name": "@spryker/datasource.trigger.change",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "peerDependencies": {
         "@angular/core": "^15.0.0",
         "@spryker/datasource.trigger": "^0.1.0",

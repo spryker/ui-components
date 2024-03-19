@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.date-range@1.2.0-next.1...@spryker/table.filter.date-range@1.2.1) (2024-03-19)
+
+**Note:** Version bump only for package @spryker/table.filter.date-range
+
+
+
+
+
 # [1.2.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.date-range@1.2.0-next.0...@spryker/table.filter.date-range@1.2.0-next.1) (2024-03-19)
 
 **Note:** Version bump only for package @spryker/table.filter.date-range

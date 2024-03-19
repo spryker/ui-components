@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { IconComponent } from './icon.component';
 import { InternalIconService } from './internal-icon.service';
 import { provideIcons } from './tokens';

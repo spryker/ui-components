@@ -1,0 +1,50 @@
+{
+    "name": "storybook",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": ".storybook/global",
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/architect:true",
+            "options": {
+                "tsConfig": ".storybook/global/tsconfig.json"
+            }
+        },
+        "compile": {
+            "executor": "@storybook/angular:build-storybook",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputDir": "dist/storybook/global",
+                "configDir": ".storybook/global",
+                "browserTarget": "storybook:compile",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "serve": {
+            "executor": "@storybook/angular:start-storybook",
+            "options": {
+                "port": 4400,
+                "configDir": ".storybook/global",
+                "browserTarget": "storybook:compile",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        }
+    },
+    "tags": ["pkg:primary", "type:meta"]
+}

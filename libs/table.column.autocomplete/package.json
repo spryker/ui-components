@@ -2,8 +2,8 @@
     "name": "@spryker/table.column.autocomplete",
     "version": "1.1.0",
     "peerDependencies": {
-        "@angular/common": "^15.0.0",
-        "@angular/core": "^15.0.0",
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
         "@spryker/autocomplete": "^1.0.0",
         "@spryker/data-transformer": "^1.0.0",
         "@spryker/datasource": "^1.0.0",
@@ -15,7 +15,7 @@
         "@spryker/utils": "^1.0.0"
     },
     "dependencies": {
-        "tslib": "^2.3.1"
+        "tslib": "^2.6.2"
     },
     "publishConfig": {
         "access": "public"

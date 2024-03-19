@@ -2,6 +2,7 @@ const rootMain = require('../../../.storybook/main');
 
 module.exports = {
     ...rootMain,
+
     webpackFinal: async (config, { configType }) => {
         // apply any global webpack configs that might have been specified in .storybook/main.js
         if (rootMain.webpackFinal) {
@@ -12,4 +13,6 @@ module.exports = {
 
         return config;
     },
+
+    stories: ['../**/*.@(mdx|stories.@(ts))'],
 };

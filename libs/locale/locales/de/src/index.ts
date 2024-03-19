@@ -19,7 +19,7 @@ export function deLocaleFactory() {
                 ),
             ant: () =>
                 Promise.all([
-                    import('node_modules/ng-zorro-antd/esm2020/i18n/languages/de_DE' as any),
+                    import('node_modules/ng-zorro-antd/esm2022/i18n/languages/de_DE' as any),
                     import('date-fns/locale/de'),
                 ]).then(([data, date]) => ({
                     data: data.default,

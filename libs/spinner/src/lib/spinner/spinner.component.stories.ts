@@ -1,7 +1,7 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
+import { SpinnerModule } from '../spinner.module';
 import { SpinnerSize } from '../types';
 import { SpinnerComponent } from './spinner.component';
-import { SpinnerModule } from '../spinner.module';
 
 export default {
     title: 'SpinnerComponent',
@@ -28,6 +28,7 @@ export default {
         delay: 200,
         size: SpinnerSize.Default,
         isSpinning: true,
+        overlayContent: false,
     },
 } as Meta;
 

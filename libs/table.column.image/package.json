@@ -2,14 +2,14 @@
     "name": "@spryker/table.column.image",
     "version": "1.1.0",
     "peerDependencies": {
-        "@angular/common": "^15.0.0",
-        "@angular/core": "^15.0.0",
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
         "@spryker/styles": "^1.1.0",
         "@spryker/table": "^1.0.0",
         "@spryker/utils": "^1.0.0"
     },
     "dependencies": {
-        "tslib": "^2.3.1"
+        "tslib": "^2.6.2"
     },
     "publishConfig": {
         "access": "public"

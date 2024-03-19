@@ -9,7 +9,7 @@ import {
     TableColumnContext,
     TableColumnTypeComponent,
 } from '@spryker/table';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableEditableService } from '@spryker/table.feature.editable';
 
 @Injectable({ providedIn: 'root' })

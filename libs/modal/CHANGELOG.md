@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/modal@1.2.0...@spryker/modal@1.3.0-next.0) (2024-03-14)
+
+
+### Features
+
+* add turkish locale ([3dae079](https://github.com/spryker/ui-components/commit/3dae079b7b5be8affaeb2440d62ca0f750db715f))
+
+
+
+
+
 # [1.2.0](https://github.com/spryker/ui-components/compare/@spryker/modal@1.2.0-next.1...@spryker/modal@1.2.0) (2024-01-22)
 
 **Note:** Version bump only for package @spryker/modal

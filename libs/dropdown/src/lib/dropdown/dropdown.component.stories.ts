@@ -24,6 +24,12 @@ export default {
             allowFullscreen: true,
         },
     },
+    argTypes: {
+        placement: {
+            control: 'select',
+            options: ['bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'],
+        },
+    },
     args: {
         items: [
             { action: 'action1', title: 'item1' },

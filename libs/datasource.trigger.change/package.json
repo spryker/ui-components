@@ -2,7 +2,7 @@
     "name": "@spryker/datasource.trigger.change",
     "version": "0.1.0",
     "peerDependencies": {
-        "@angular/core": "^15.0.0",
+        "@angular/core": "^17.3.0",
         "@spryker/datasource.trigger": "^0.1.0",
         "rxjs": "^7.5.7"
     },

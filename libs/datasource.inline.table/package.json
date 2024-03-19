@@ -2,8 +2,7 @@
     "name": "@spryker/datasource.inline.table",
     "version": "1.0.1",
     "peerDependencies": {
-        "@angular/common": "^15.0.0",
-        "@angular/core": "^15.0.0",
+        "@angular/core": "^17.3.0",
         "@spryker/data-transformer": "^1.0.0",
         "@spryker/data-transformer.array-map": "^1.0.0",
         "@spryker/data-transformer.chain": "^1.0.0",
@@ -19,10 +18,11 @@
         "@spryker/datasource": "^1.0.0",
         "@spryker/datasource.inline": "^1.0.0",
         "@spryker/table": "^1.0.0",
-        "@spryker/utils": "^1.0.0"
+        "@spryker/utils": "^1.0.0",
+        "rxjs": "^7.5.7"
     },
     "dependencies": {
-        "tslib": "^2.3.1"
+        "tslib": "^2.6.2"
     },
     "publishConfig": {
         "access": "public"

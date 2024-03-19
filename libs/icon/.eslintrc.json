@@ -5,7 +5,7 @@
         {
             "files": ["./icons/src/*.ts"],
             "rules": {
-                "@nrwl/nx/enforce-module-boundaries": 0
+                "@nx/enforce-module-boundaries": 0
             }
         },
         {
@@ -31,7 +31,7 @@
         },
         {
             "files": ["*.html"],
-            "extends": ["plugin:@nrwl/nx/angular-template"],
+            "extends": ["plugin:@nx/angular-template"],
             "rules": {}
         }
     ]

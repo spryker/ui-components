@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/locale@1.2.0...@spryker/locale@1.3.0-next.0) (2024-03-14)
+
+
+### Bug Fixes
+
+* add tr locale module ([e8fa61a](https://github.com/spryker/ui-components/commit/e8fa61ae0ea266438db66866a0101ef8e976a1d2))
+* trLocale name ([f2c7af6](https://github.com/spryker/ui-components/commit/f2c7af602794ee15e957962f97e8d156c8855880))
+
+
+### Features
+
+* add turkish locale ([3dae079](https://github.com/spryker/ui-components/commit/3dae079b7b5be8affaeb2440d62ca0f750db715f))
+
+
+
+
+
 # [1.2.0](https://github.com/spryker/ui-components/compare/@spryker/locale@1.2.0-next.0...@spryker/locale@1.2.0) (2024-01-22)
 
 **Note:** Version bump only for package @spryker/locale

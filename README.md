@@ -121,10 +121,10 @@ For this every component library should have associated ONE level tag:
 
 ### Library
 
-Every new library should be generated via NX CLI with `@nrwl/angular:library` schematic:
+Every new library should be generated via NX CLI with `@nx/angular:library` schematic:
 
 ```bash
-nx g @nrwl/angular:library <lib-name> --publishable --import-path @spryker/<lib-name> --tags level:<level>,type:<type>,pkg:<pkg>
+nx g @nx/angular:library <lib-name> --publishable --import-path @spryker/<lib-name> --tags level:<level>,type:<type>,pkg:<pkg>
 ```
 
 _NOTE:_ When library is generated please do the following:
@@ -207,10 +207,10 @@ nx g @schematics/angular:component --name=<component-name> --project=<lib-name>
 
 ### Storybook Setup
 
-Storybook setup should be added via NX CLI with `@nrwl/storybook:configuration` schematic:
+Storybook setup should be added via NX CLI with `@nx/storybook:configuration` schematic:
 
 ```bash
-nx g @nrwl/storybook:configuration --name=<lib-name>
+nx g @nx/storybook:configuration --name=<lib-name>
 ```
 
 _NOTE:_ Do the following updates after command above:
@@ -233,10 +233,10 @@ _NOTE:_ Do the following updates after command above:
 
 ### Library Stories
 
-Generate stories for library module via NX CLI with `@nrwl/angular:stories` schematic:
+Generate stories for library module via NX CLI with `@nx/angular:stories` schematic:
 
 ```bash
-nx g @nrwl/angular:stories --name=<lib-name>
+nx g @nx/angular:stories --name=<lib-name>
 ```
 
 _NOTE_: `NgModule`s of the library should declare components for which stories should be generated.  
@@ -244,10 +244,10 @@ This command can be re-run many times - it will only generate missing stories an
 
 ### Component Stories
 
-Generate stories for components via NX CLI with `@nrwl/angular:component-story` schematic:
+Generate stories for components via NX CLI with `@nx/angular:component-story` schematic:
 
 ```bash
-nx g @nrwl/angular:component-story --project-path libs/<lib-name> --component-path src/lib/<lib-name> --component-name <ComponentName> --component-file-name <name.component>
+nx g @nx/angular:component-story --project-path libs/<lib-name> --component-path src/lib/<lib-name> --component-name <ComponentName> --component-file-name <name.component>
 ```
 
 ## Localisation / I18N

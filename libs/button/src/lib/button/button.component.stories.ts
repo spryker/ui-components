@@ -41,6 +41,12 @@ export default {
             control: { type: 'select' },
             options: ButtonType,
         },
+        loading: {
+            control: 'boolean',
+        },
+        disabled: {
+            control: 'boolean',
+        },
     },
     args: {
         variant: ButtonVariant.Primary,

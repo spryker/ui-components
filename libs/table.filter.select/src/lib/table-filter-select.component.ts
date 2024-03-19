@@ -10,7 +10,7 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { TableFilterSelect, TableFilterSelectValue } from './types';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { EMPTY } from 'rxjs';
 

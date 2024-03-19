@@ -4,5 +4,5 @@
         "baseUrl": "../.."
     },
     "exclude": ["../../**/*.spec.ts"],
-    "include": ["../../libs/**/*"]
+    "include": ["../../libs/**/*.stories.ts", "../../libs/locale/data/**/src/index.ts"]
 }

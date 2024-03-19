@@ -54,7 +54,7 @@
         "pack": "run-s pack:*",
         "pack:files": "node tools/scripts/multi-copy.mjs LICENSE dist/libs/*",
         "pack:libs": "lerna exec --concurrency 1 --stream -- node \\$LERNA_ROOT_PATH/tools/scripts/pack-lib.js",
-        "release": "run-s \"release:lerna -- {@}\" deploy:storybook --",
+        "release": "run-s \"release:lerna -- {@}\" --",
         "prerelease:lerna": "npm run pack",
         "release:lerna": "lerna publish --yes --conventional-graduate",
         "release-next": "run-s \"release-tag -- {@}\" deploy:storybook:next --",

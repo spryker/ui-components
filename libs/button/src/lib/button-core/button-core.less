@@ -255,10 +255,7 @@
         .transition-mixin(box-shadow);
         content: '';
         position: absolute;
-        top: @btn-decoration-size;
-        left: @btn-decoration-size;
-        bottom: @btn-decoration-size;
-        right: @btn-decoration-size;
+        inset: @btn-decoration-size @btn-decoration-size @btn-decoration-size @btn-decoration-size;
         border-radius: inherit;
         box-shadow: @btn-shadow-default;
         animation: none;

@@ -1,8 +1,9 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/table.feature.editable",
-  "lib": {
-    "entryFile": "src/index.ts",
-    "styleIncludePaths": ["../styles/src/lib"]
-  }
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/libs/table.feature.editable",
+    "lib": {
+        "entryFile": "src/index.ts",
+        "styleIncludePaths": ["../styles/src/lib"]
+    },
+    "allowedNonPeerDependencies": ["ng-zorro-antd"]
 }

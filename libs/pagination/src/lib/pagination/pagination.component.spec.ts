@@ -1,134 +1,104 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { PaginationComponent } from './pagination.component';
 
 describe('PaginationComponent', () => {
-  @Component({
-    // tslint:disable-next-line: component-selector
-    selector: 'test-component',
-    template: `
-      <spy-pagination
-        [total]="total"
-        [page]="page"
-        [pageSize]="pageSize"
-        [hideOnSinglePage]="hideOnSinglePage"
-        (pageChange)="pageChangeSpy($event)"
-        (pageSizeChange)="pageSizeChangeSpy($event)"
-      ></spy-pagination>
-    `,
-  })
-  class TestComponent {
-    total: any;
-    page: any;
-    pageSize: any;
-    hideOnSinglePage: any;
-    pageSizeOptions: any;
-    placeholder: any;
-    pageChangeSpy = jest.fn();
-    pageSizeChangeSpy = jest.fn();
-  }
-
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [PaginationComponent, TestComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-  }));
-
-  it('template must render nz-pagination from Ant Design and spy-select', () => {
-    component.total = 1;
-    fixture.detectChanges();
-
-    const nzPagElem = fixture.debugElement.query(By.css('nz-pagination'));
-    const selectElem = fixture.debugElement.query(By.css('spy-select'));
-
-    expect(nzPagElem).toBeTruthy();
-    expect(selectElem).toBeTruthy();
-  });
-
-  describe('Inputs must be bound to nz-pagination', () => {
-    it('should bind total to nzTotal of nz-pagination', () => {
-      const nzPagElem = fixture.debugElement.query(By.css('nz-pagination'));
-      const mockedValue = 2;
-
-      component.total = mockedValue;
-
-      fixture.detectChanges();
-
-      expect(nzPagElem.properties.nzTotal).toBe(mockedValue);
+    const { testModule, createComponent } = getTestingForComponent(PaginationComponent, {
+        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
     });
 
-    it('should bind page to nzPageIndex of nz-pagination', () => {
-      const nzPagElem = fixture.debugElement.query(By.css('nz-pagination'));
-      const mockedValue = 2;
-
-      component.page = mockedValue;
-
-      fixture.detectChanges();
-
-      expect(nzPagElem.properties.nzPageIndex).toBe(mockedValue);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
     });
 
-    it('should bind pageSize to nzPageSize of nz-pagination', () => {
-      const nzPagElem = fixture.debugElement.query(By.css('nz-pagination'));
-      const mockedValue = [10, 20, 50];
+    it('template must render nz-pagination from Ant Design and spy-select', async () => {
+        const host = await createComponentWrapper(createComponent, { total: 1 });
+        const nzPagElem = host.queryCss('nz-pagination');
+        const selectElem = host.queryCss('spy-select');
 
-      component.pageSize = mockedValue;
-
-      fixture.detectChanges();
-
-      expect(nzPagElem.properties.nzPageSize).toBe(mockedValue);
+        expect(nzPagElem).toBeTruthy();
+        expect(selectElem).toBeTruthy();
     });
 
-    it('should bind hideOnSinglePage to nzHideOnSinglePage of nz-pagination', () => {
-      const nzPagElem = fixture.debugElement.query(By.css('nz-pagination'));
-      const mockedValue = true;
+    describe('Inputs must be bound to nz-pagination', () => {
+        it('should bind total to nzTotal of nz-pagination', async () => {
+            const mockedValue = 2;
+            const host = await createComponentWrapper(createComponent, { total: mockedValue });
+            const nzPagElem = host.queryCss('nz-pagination');
 
-      component.hideOnSinglePage = mockedValue;
+            expect(nzPagElem.properties.nzTotal).toBe(mockedValue);
+        });
 
-      fixture.detectChanges();
+        it('should bind page to nzPageIndex of nz-pagination', async () => {
+            const mockedValue = 2;
+            const host = await createComponentWrapper(createComponent, { page: mockedValue });
+            const nzPagElem = host.queryCss('nz-pagination');
 
-      expect(nzPagElem.properties.nzHideOnSinglePage).toBe(mockedValue);
+            expect(nzPagElem.properties.nzPageIndex).toBe(mockedValue);
+        });
+
+        it('should bind pageSize to nzPageSize of nz-pagination', async () => {
+            const mockedValue = [10, 20, 50];
+            const host = await createComponentWrapper(createComponent, { pageSize: mockedValue });
+            const nzPagElem = host.queryCss('nz-pagination');
+
+            expect(nzPagElem.properties.nzPageSize).toBe(mockedValue);
+        });
+
+        it('should bind hideOnSinglePage to nzHideOnSinglePage of nz-pagination', async () => {
+            const mockedValue = true;
+            const host = await createComponentWrapper(createComponent, { hideOnSinglePage: true });
+            const nzPagElem = host.queryCss('nz-pagination');
+
+            expect(nzPagElem.properties.nzHideOnSinglePage).toBe(mockedValue);
+        });
     });
-  });
 
-  it('pageChange must be emitted every time nzPageIndexChange emits from nz-select', () => {
-    const nzPagElem = fixture.debugElement.query(By.css('nz-pagination'));
-    const page = 2;
+    it('pageChange must be emitted every time nzPageIndexChange emits from nz-select', async () => {
+        const page = 2;
+        const host = await createComponentWrapper(createComponent);
+        const nzPagElem = host.queryCss('nz-pagination');
 
-    nzPagElem.triggerEventHandler('nzPageIndexChange', page);
-    fixture.detectChanges();
+        nzPagElem.triggerEventHandler('nzPageIndexChange', page);
+        host.detectChanges();
 
-    expect(component.pageChangeSpy).toHaveBeenCalled();
-  });
+        expect(host.hostComponent.pageChange).toHaveBeenCalled();
+    });
 
-  it('pageSizeChange must be emitted every time valueChange emits from spy-select', () => {
-    component.total = 1;
-    fixture.detectChanges();
+    it('pageSizeChange must be emitted every time valueChange emits from spy-select', async () => {
+        const page = 2;
+        const mockedMultipleValue = ['5', '20'];
+        const host = await createComponentWrapper(createComponent, { total: 1 });
+        const selectElem = host.queryCss('spy-select');
 
-    const nzSelectElem = fixture.debugElement.query(By.css('spy-select'));
-    const page = 2;
+        selectElem.triggerEventHandler('valueChange', page);
+        host.detectChanges();
 
-    nzSelectElem.triggerEventHandler('valueChange', page);
-    fixture.detectChanges();
+        expect(host.hostComponent.pageSizeChange).toHaveBeenCalledWith(page);
 
-    expect(component.pageSizeChangeSpy).toHaveBeenCalled();
-  });
+        selectElem.triggerEventHandler('valueChange', mockedMultipleValue);
+        host.detectChanges();
 
-  it('spy-select should not be rendered if total value is 0', () => {
-    component.total = 0;
-    fixture.detectChanges();
+        expect(host.hostComponent.pageSizeChange).toHaveBeenCalledWith(mockedMultipleValue[0]);
+    });
 
-    const nzSelectElem = fixture.debugElement.query(By.css('spy-select'));
+    it('placeholder should be bounded to spy-select', async () => {
+        const mockedPlaceholder = 'test placeholder';
+        const host = await createComponentWrapper(createComponent, { total: 1, placeholder: mockedPlaceholder });
+        const selectElem = host.queryCss('spy-select');
 
-    expect(nzSelectElem).toBeFalsy();
-  });
+        expect(selectElem.properties.placeholder).toBe(mockedPlaceholder);
+    });
+
+    it('spy-select should not be rendered if total value is 0', async () => {
+        const host = await createComponentWrapper(createComponent, { total: 0 });
+        const nzSelectElem = host.queryCss('spy-select');
+
+        expect(nzSelectElem).toBeFalsy();
+    });
 });

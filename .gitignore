@@ -18,13 +18,11 @@
 *.sublime-workspace
 
 # IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+/.vscode
 
 # misc
+/.angular/cache
+/.angular
 /.sass-cache
 /connect.lock
 /coverage

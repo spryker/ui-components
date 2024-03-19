@@ -1,19 +1,21 @@
 {
-  "name": "@spryker/button",
-  "version": "0.2.4",
-  "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/ajax-action": "^0.2.0",
-    "@spryker/icon": "^0.2.0",
-    "@spryker/notification": "^0.2.0",
-    "@spryker/styles": "^0.2.0",
-    "@spryker/utils": "^0.2.1"
-  },
-  "dependencies": {
-    "tslib": "^1.10.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/button",
+    "version": "1.1.0",
+    "peerDependencies": {
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/ajax-action": "^1.0.0",
+        "@spryker/icon": "^1.0.0",
+        "@spryker/notification": "^1.0.0",
+        "@spryker/spinner": "^1.0.0",
+        "@spryker/styles": "^1.1.0",
+        "@spryker/utils": "^1.0.0",
+        "rxjs": "^7.5.7"
+    },
+    "dependencies": {
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

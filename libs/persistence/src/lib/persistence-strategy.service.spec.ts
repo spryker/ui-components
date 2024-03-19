@@ -1,4 +1,3 @@
-import { Injector } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { PersistenceStrategyService } from './persistence-strategy.service';
@@ -7,47 +6,45 @@ import { PersistenceModule } from './persistence.module';
 const mockStrategyType = 'mockStrategyType';
 
 class MockPersistenceStrategy {
-  save = jest.fn();
-  retrieve = jest.fn();
-  remove = jest.fn();
+    save = jest.fn();
+    retrieve = jest.fn();
+    remove = jest.fn();
 }
 
 describe('PersistenceStrategyService', () => {
-  let service: PersistenceStrategyService;
-  let persistenceStrategy: MockPersistenceStrategy;
+    let service: PersistenceStrategyService;
+    let persistenceStrategy: MockPersistenceStrategy;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        PersistenceModule.withStrategies({
-          [mockStrategyType]: MockPersistenceStrategy,
-          mockSecondStrategyType: MockPersistenceStrategy,
-        }),
-      ],
-      providers: [MockPersistenceStrategy],
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                PersistenceModule.withStrategies({
+                    [mockStrategyType]: MockPersistenceStrategy,
+                    mockSecondStrategyType: MockPersistenceStrategy,
+                }),
+            ],
+            providers: [MockPersistenceStrategy],
+            teardown: { destroyAfterEach: false },
+        });
+        service = TestBed.inject(PersistenceStrategyService);
+        persistenceStrategy = TestBed.inject(MockPersistenceStrategy);
     });
-    service = TestBed.inject(PersistenceStrategyService);
-    persistenceStrategy = TestBed.inject(MockPersistenceStrategy);
-  });
 
-  it('select method must return PersistenceStrategy', () => {
-    const returnedStrategy = service.select(mockStrategyType);
+    it('select method must return PersistenceStrategy', () => {
+        const returnedStrategy = service.select(mockStrategyType);
 
-    expect(returnedStrategy).toEqual(persistenceStrategy);
-  });
+        expect(returnedStrategy).toEqual(persistenceStrategy);
+    });
 
-  it('select method must throw error if no PersistenceStrategy found', () => {
-    expect(() => {
-      service.select('mockInvalidStrategyType');
-    }).toThrow();
-  });
+    it('select method must throw error if no PersistenceStrategy found', () => {
+        expect(() => {
+            service.select('mockInvalidStrategyType');
+        }).toThrow();
+    });
 
-  it('getAll method must all PersistenceStrategies from object PersistenceStrategyTypesToken', () => {
-    const returnedStrategies = service.getAll();
+    it('getAll method must all PersistenceStrategies from object PersistenceStrategyTypesToken', () => {
+        const returnedStrategies = service.getAll();
 
-    expect(returnedStrategies).toEqual([
-      persistenceStrategy,
-      persistenceStrategy,
-    ]);
-  });
+        expect(returnedStrategies).toEqual([persistenceStrategy, persistenceStrategy]);
+    });
 });

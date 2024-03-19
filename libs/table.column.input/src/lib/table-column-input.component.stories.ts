@@ -1,97 +1,124 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutFlatHostComponent } from '@orchestrator/layout';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { TableModule } from '@spryker/table';
-import {
-  MockTableDatasourceConfig,
-  MockTableDatasourceService,
-  TableDataMockGenerator,
-} from '@spryker/table/testing';
-import {
-  ContextModule,
-  DefaultContextSerializationModule,
-} from '@spryker/utils';
-import { object } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
+import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
+import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils';
 
 import { TableColumnInputComponent } from './table-column-input.component';
 import { TableColumnInputModule } from './table-column-input.module';
 
 export default {
-  title: 'TableColumnInputComponent',
-};
+    title: 'TableColumnInputComponent',
+    component: TableColumnInputComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [TableColumnInputModule, DefaultContextSerializationModule],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: ['config', 'context'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1365%3A7734',
+            allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
+        config: {
+            table: {
+                disable: true,
+            },
+        },
+    },
+} as Meta;
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
-  col1: `col1`,
-  col2: `${i}`,
+    col1: `col1`,
+    col2: `${i}`,
+    col3: `#${i}`,
 });
 
-export const primary = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      TableColumnInputModule,
-      DefaultContextSerializationModule,
-      BrowserAnimationsModule,
-    ],
-  },
-  component: TableColumnInputComponent,
-  props: {
-    config: object('Config', {}),
-    context: object('Context', {
-      placeholder: '123',
-    }),
-  },
+export const primary = (args) => ({
+    props: args,
 });
+primary.args = {
+    config: {
+        placeholder: '${placeholder}',
+    },
+    context: {
+        placeholder: '123',
+    },
+};
 
-export const withTable = (): IStory => ({
-  moduleMetadata: {
-    imports: [
-      HttpClientTestingModule,
-      ContextModule,
-      TableColumnInputModule,
-      TableModule.forRoot(),
-      TableModule.withColumnComponents({
-        input: TableColumnInputComponent,
-      } as any),
-      DatasourceModule.withDatasources({
-        'mock-data': MockTableDatasourceService,
-      }),
-      DefaultContextSerializationModule,
-      BrowserAnimationsModule,
-    ],
-    providers: [
-      {
-        provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-        useValue: [LayoutFlatHostComponent, TableColumnInputComponent],
-        multi: true,
-      },
-    ],
-  },
-  template: `
+export const withTable = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(HttpClientTestingModule),
+            importProvidersFrom(TableModule.forRoot()),
+            importProvidersFrom(
+                TableModule.withColumnComponents({
+                    input: TableColumnInputComponent,
+                } as any),
+            ),
+            importProvidersFrom(
+                DatasourceModule.withDatasources({
+                    'mock-data': MockTableDatasourceService,
+                } as any),
+            ),
+        ],
+    },
+    moduleMetadata: {
+        imports: [ContextModule, TableModule],
+    },
+    template: `
     <spy-table [config]="config"></spy-table>
   `,
-  props: {
-    config: {
-      dataSource: {
-        type: 'mock-data',
-        dataGenerator: tableDataGenerator,
-      } as MockTableDatasourceConfig,
-      columns: [
-        { id: 'col1', sortable: true, title: 'Column #1' },
-        {
-          id: 'col2',
-          title: 'Column #2',
-          type: 'input',
-          typeOptions: {
-            type: 'number',
-            attrs: {
-              step: 0.05,
-            },
-          },
-        },
-      ],
-    },
-  },
 });
+withTable.args = {
+    config: {
+        dataSource: {
+            type: 'mock-data',
+            dataGenerator: tableDataGenerator,
+        } as unknown as MockTableDatasourceConfig,
+        columns: [
+            { id: 'col1', sortable: true, title: 'Column #1' },
+            {
+                id: 'col2',
+                title: 'Column #2',
+                type: 'input',
+                typeOptions: {
+                    type: 'number',
+                    attrs: {
+                        step: 0.05,
+                    },
+                },
+            },
+            {
+                id: 'col3',
+                title: 'Column #3',
+                type: 'input',
+                typeOptions: {
+                    prefix: 'pre',
+                    suffix: 'suf',
+                },
+            },
+        ],
+    },
+};
+withTable.argTypes = {
+    context: {
+        table: {
+            disable: true,
+        },
+    },
+};

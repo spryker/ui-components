@@ -6,87 +6,84 @@ import { UnsavedChangesMonitorToken } from '@spryker/unsaved-changes';
 import { CloseDrawerActionHandlerService } from './close-drawer-action-handler.service';
 
 const mockActionsConfig = {
-  type: 'close-drawer',
+    type: 'close-drawer',
 };
 const mockContext = 'mockContext';
 
 @Injectable()
 class MockInjector {
-  get = jest.fn();
+    get = jest.fn();
 }
 
 @Injectable()
 class MockUnsavedChangesMonitorToken {
-  reset = jest.fn();
+    reset = jest.fn();
 }
 
 @Injectable()
 class MockDrawerRef {
-  close = jest.fn();
+    close = jest.fn();
 }
 
 describe('CloseDrawerActionHandlerService', () => {
-  let service: CloseDrawerActionHandlerService;
-  let injector: MockInjector;
-  let unsavedChangesMonitor: MockUnsavedChangesMonitorToken;
-  let drawerRef: MockDrawerRef;
+    let service: CloseDrawerActionHandlerService;
+    let injector: MockInjector;
+    let unsavedChangesMonitor: MockUnsavedChangesMonitorToken;
+    let drawerRef: MockDrawerRef;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        MockInjector,
-        MockUnsavedChangesMonitorToken,
-        MockDrawerRef,
-        {
-          provide: UnsavedChangesMonitorToken,
-          useExisting: MockUnsavedChangesMonitorToken,
-        },
-        {
-          provide: DrawerRef,
-          useExisting: MockDrawerRef,
-        },
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                MockInjector,
+                MockUnsavedChangesMonitorToken,
+                MockDrawerRef,
+                {
+                    provide: UnsavedChangesMonitorToken,
+                    useExisting: MockUnsavedChangesMonitorToken,
+                },
+                {
+                    provide: DrawerRef,
+                    useExisting: MockDrawerRef,
+                },
+            ],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: false },
+        });
+
+        service = TestBed.inject(CloseDrawerActionHandlerService);
+        injector = TestBed.inject(MockInjector);
+        unsavedChangesMonitor = TestBed.inject(MockUnsavedChangesMonitorToken);
+        drawerRef = TestBed.inject(MockDrawerRef);
+
+        injector.get.mockImplementation((instance) => {
+            if (instance === UnsavedChangesMonitorToken) {
+                return unsavedChangesMonitor;
+            }
+
+            if (instance === DrawerRef) {
+                return drawerRef;
+            }
+        });
     });
 
-    service = TestBed.inject(CloseDrawerActionHandlerService);
-    injector = TestBed.inject(MockInjector);
-    unsavedChangesMonitor = TestBed.inject(MockUnsavedChangesMonitorToken);
-    drawerRef = TestBed.inject(MockDrawerRef);
+    it('should call `UnsavedChangesFormMonitorDirective.reset()` method', () => {
+        service.handleAction(injector, mockActionsConfig, mockContext);
 
-    injector.get.mockImplementation((instance) => {
-      if (instance === UnsavedChangesMonitorToken) {
-        return unsavedChangesMonitor;
-      }
-
-      if (instance === DrawerRef) {
-        return drawerRef;
-      }
+        expect(unsavedChangesMonitor.reset).toHaveBeenCalled();
     });
-  });
 
-  it('should call `UnsavedChangesFormMonitorDirective.reset()` method', () => {
-    service.handleAction(injector, mockActionsConfig, mockContext);
+    it('should call `DrawerRef.close()` method', () => {
+        service.handleAction(injector, mockActionsConfig, mockContext);
 
-    expect(unsavedChangesMonitor.reset).toHaveBeenCalled();
-  });
+        expect(drawerRef.close).toHaveBeenCalled();
+    });
 
-  it('should call `DrawerRef.close()` method', () => {
-    service.handleAction(injector, mockActionsConfig, mockContext);
+    it('should return stream that emits empty value', () => {
+        const callback = jest.fn();
+        const closeDrawerActionService$ = service.handleAction(injector, mockActionsConfig, mockContext);
 
-    expect(drawerRef.close).toHaveBeenCalled();
-  });
+        closeDrawerActionService$.subscribe(callback);
 
-  it('should return stream that emits empty value', () => {
-    const callback = jest.fn();
-    const closeDrawerActionService$ = service.handleAction(
-      injector,
-      mockActionsConfig,
-      mockContext,
-    );
-
-    closeDrawerActionService$.subscribe(callback);
-
-    expect(callback).toHaveBeenCalledWith(undefined);
-  });
+        expect(callback).toHaveBeenCalledWith(undefined);
+    });
 });

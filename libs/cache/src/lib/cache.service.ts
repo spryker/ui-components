@@ -6,63 +6,50 @@ import { mapTo } from 'rxjs/operators';
 import { CacheStorageFactoryService } from './cache-storage-factory.service';
 import { CacheStrategyTypesToken } from './token';
 import {
-  CacheId,
-  CacheOperation,
-  CacheStrategy,
-  CacheStrategyConfig,
-  CacheStrategyRegistry,
-  CacheStrategyType,
-  CacheStrategyTypesDeclaration,
+    CacheId,
+    CacheOperation,
+    CacheStrategy,
+    CacheStrategyConfig,
+    CacheStrategyRegistry,
+    CacheStrategyType,
+    CacheStrategyTypesDeclaration,
 } from './types';
 
 /**
  * Provides general capabilities to interact with different caching strategies.
  */
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class CacheService {
-  private caches: CacheStrategyTypesDeclaration =
-    this.cachesTypes?.reduce(
-      (caches, cache) => ({ ...caches, ...cache }),
-      {},
-    ) ?? {};
+    private caches: Partial<CacheStrategyTypesDeclaration> =
+        this.cachesTypes?.reduce((caches, cache) => ({ ...caches, ...cache }), {}) ?? {};
 
-  constructor(
-    private cacheStorageFactoryService: CacheStorageFactoryService,
-    private injector: Injector,
-    @Optional()
-    @Inject(CacheStrategyTypesToken)
-    private cachesTypes?: InjectionTokenType<typeof CacheStrategyTypesToken>,
-  ) {}
+    constructor(
+        private cacheStorageFactoryService: CacheStorageFactoryService,
+        private injector: Injector,
+        @Optional()
+        @Inject(CacheStrategyTypesToken)
+        private cachesTypes?: InjectionTokenType<typeof CacheStrategyTypesToken>,
+    ) {}
 
-  getCached<T>(
-    id: CacheId,
-    config: CacheStrategyConfig,
-    operation: CacheOperation<T>,
-  ): Observable<T> {
-    if (!this.isCacheStrategyRegisteredType(config.type)) {
-      throw Error(`CacheService: Unknown cache type ${config.type}`);
+    getCached<T>(id: CacheId, config: CacheStrategyConfig, operation: CacheOperation<T>): Observable<T> {
+        if (!this.isCacheStrategyRegisteredType(config.type)) {
+            throw Error(`CacheService: Unknown cache type ${config.type}`);
+        }
+
+        const cacheStrategy: CacheStrategy = this.injector.get(this.caches[config.type]);
+
+        return cacheStrategy.getCached(id, config, operation);
     }
 
-    const cacheStrategy: CacheStrategy = this.injector.get(
-      this.caches[config.type],
-    );
+    clearCache(namespace?: string): Observable<void> {
+        const cacheStorages = this.cacheStorageFactoryService.createAll();
 
-    return cacheStrategy.getCached(id, config, operation);
-  }
+        return forkJoin(cacheStorages.map((cacheStorage) => cacheStorage.clear(namespace))).pipe(mapTo(void 0));
+    }
 
-  clearCache(namespace?: string): Observable<void> {
-    const cacheStorages = this.cacheStorageFactoryService.createAll();
-
-    return forkJoin(
-      cacheStorages.map((cacheStorage) => cacheStorage.clear(namespace)),
-    ).pipe(mapTo(void 0));
-  }
-
-  private isCacheStrategyRegisteredType(
-    type: CacheStrategyType,
-  ): type is keyof CacheStrategyRegistry {
-    return type in this.caches;
-  }
+    private isCacheStrategyRegisteredType(type: CacheStrategyType): type is keyof CacheStrategyRegistry {
+        return type in this.caches;
+    }
 }

@@ -1,25 +1,20 @@
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { TableFilterBase } from '@spryker/table.feature.filters';
+import { SelectValueSelected } from '@spryker/select';
 
-declare module '@spryker/table.feature.filters' {
-  interface TableFiltersRegistry {
-    select: TableFilterSelect;
-  }
-}
-
-export interface TableFilterSelect
-  extends TableFilterBase<TableFilterSelectValue> {
-  type: 'select';
-  typeOptions: TableFilterSelectOptions;
+export interface TableFilterSelect extends TableFilterBase<TableFilterSelectValue> {
+    type: 'select';
+    typeOptions: TableFilterSelectOptions;
 }
 
 export interface TableFilterSelectOptions {
-  values: TableFilterSelectOptionsValue[];
-  multiselect?: boolean;
+    values: TableFilterSelectOptionsValue[];
+    multiselect?: boolean;
 }
 
 export interface TableFilterSelectOptionsValue {
-  value: TableFilterSelectValue;
-  title: string;
+    value: TableFilterSelectValue;
+    title: string;
 }
 
-export type TableFilterSelectValue = unknown | unknown[];
+export type TableFilterSelectValue = SelectValueSelected;

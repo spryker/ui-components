@@ -6,8 +6,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 
 @NgModule({
-  imports: [CommonModule, ContextModule, TableModule, NzSpinModule],
-  declarations: [TableColumnDynamicComponent],
-  exports: [TableColumnDynamicComponent],
+    imports: [CommonModule, ContextModule, TableModule, NzSpinModule],
+    declarations: [TableColumnDynamicComponent],
+    exports: [TableColumnDynamicComponent],
 })
 export class TableColumnDynamicModule {}

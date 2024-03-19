@@ -1,197 +1,155 @@
+import { Inject, Injectable, Injector, OnDestroy, Optional, Type } from '@angular/core';
+import { combineLatest, forkJoin, from, merge, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import {
-  Inject,
-  Injectable,
-  Injector,
-  OnDestroy,
-  Optional,
-  Type,
-} from '@angular/core';
-import {
-  combineLatest,
-  forkJoin,
-  from,
-  merge,
-  Observable,
-  of,
-  ReplaySubject,
-  Subject,
-} from 'rxjs';
-import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-  mapTo,
-  share,
-  shareReplay,
-  switchMap,
-  takeUntil,
-  tap,
+    catchError,
+    debounceTime,
+    distinctUntilChanged,
+    filter,
+    map,
+    mapTo,
+    share,
+    shareReplay,
+    switchMap,
+    takeUntil,
+    tap,
 } from 'rxjs/operators';
 
-import {
-  LocaleDefaultToken,
-  LocaleLoaderRegistrarsToken,
-  LocaleRecordsToken,
-} from './tokens';
+import { LocaleDefaultToken, LocaleLoaderRegistrarsToken, LocaleRecordsToken } from './tokens';
 import { LocaleLoader, LocaleLoaderRegistrar, LocaleRecord } from './types';
 
 type UnknownLocaleLoaderMap = Record<string, LocaleLoader<unknown> | undefined>;
-type UnknownLocaleLoaderRegistrarMap = Record<
-  string,
-  Type<LocaleLoaderRegistrar<unknown>> | undefined
->;
+type UnknownLocaleLoaderRegistrarMap = Record<string, Type<LocaleLoaderRegistrar<unknown>> | undefined>;
 
 @Injectable({ providedIn: 'root' })
 export class LocaleService implements OnDestroy {
-  private locales: LocaleRecord[] = this.localeRecords?.flat() ?? [];
+    private locales: LocaleRecord[] = this.localeRecords?.flat() ?? [];
 
-  locale?: string;
-  supportedLocales = this.locales.map((locale) => locale.id);
+    locale?: string;
+    supportedLocales = this.locales.map((locale) => locale.id);
 
-  private knownLocales = this.locales.reduce<
-    Record<string, boolean | undefined>
-  >((acc, locale) => ({ ...acc, [locale.id]: true }), Object.create(null));
-
-  private loaderRegistrars: UnknownLocaleLoaderRegistrarMap =
-    this.loaderRegistrarsArr?.reduce(
-      (acc, loaderRegistrars) => ({ ...acc, ...loaderRegistrars }),
-      Object.create(null),
-    ) ?? {};
-
-  private loaders = this.locales
-    .filter((locale) => !!locale.loaders)
-    .reduce<Record<string, UnknownLocaleLoaderMap | undefined>>(
-      (acc, locale) => ({
-        ...acc,
-        // tslint:disable-next-line: no-non-null-assertion
-        [locale.id]: this.pickRegisteredLoaders(locale.loaders!),
-      }),
-      Object.create(null),
+    private knownLocales = this.locales.reduce<Record<string, boolean | undefined>>(
+        (acc, locale) => ({ ...acc, [locale.id]: true }),
+        Object.create(null),
     );
 
-  private destroyed$ = new Subject<void>();
-  private setLocale$ = new ReplaySubject<string>(1);
+    private loaderRegistrars: UnknownLocaleLoaderRegistrarMap =
+        this.loaderRegistrarsArr?.reduce(
+            (acc, loaderRegistrars) => ({ ...acc, ...loaderRegistrars }),
+            Object.create(null),
+        ) ?? {};
 
-  locale$ = this.setLocale$.pipe(distinctUntilChanged());
+    private loaders = this.locales
+        .filter((locale) => !!locale.loaders)
+        .reduce<Record<string, UnknownLocaleLoaderMap | undefined>>(
+            (acc, locale) => ({
+                ...acc,
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                [locale.id]: this.pickRegisteredLoaders(locale.loaders!),
+            }),
+            Object.create(null),
+        );
 
-  private localeLoad$ = this.locale$.pipe(
-    switchMap((locale) =>
-      this.loadLocale(locale).pipe(catchError(() => of(locale))),
-    ),
-    share(),
-  );
+    private destroyed$ = new Subject<void>();
+    private setLocale$ = new ReplaySubject<string>(1);
 
-  localeLoading$ = merge(
-    this.locale$.pipe(mapTo(true)),
-    this.localeLoad$.pipe(mapTo(false)),
-  ).pipe(shareReplay({ bufferSize: 1, refCount: false }));
+    locale$ = this.setLocale$.pipe(distinctUntilChanged());
 
-  localeLoaded$ = combineLatest([this.localeLoading$, this.locale$]).pipe(
-    debounceTime(0),
-    filter(([isLoaded]) => !isLoaded),
-    map(([_, locale]) => locale),
-    shareReplay({ bufferSize: 1, refCount: false }),
-  );
+    private localeLoad$ = this.locale$.pipe(
+        switchMap((locale) => this.loadLocale(locale).pipe(catchError(() => of(locale)))),
+        share(),
+    );
 
-  constructor(
-    @Optional()
-    @Inject(LocaleDefaultToken)
-    public defaultLocale: string | null,
-    @Optional()
-    @Inject(LocaleRecordsToken)
-    private localeRecords: LocaleRecord[][] | null,
-    @Optional()
-    @Inject(LocaleLoaderRegistrarsToken)
-    private loaderRegistrarsArr: UnknownLocaleLoaderRegistrarMap[] | null,
-    private injector: Injector,
-  ) {
-    if (!this.defaultLocale) {
-      this.defaultLocale =
-        this.locales.length === 1
-          ? this.locales[0].id
-          : this.locales.find((locale) => locale.default)?.id ?? null;
+    localeLoading$ = merge(this.locale$.pipe(mapTo(true)), this.localeLoad$.pipe(mapTo(false))).pipe(
+        shareReplay({ bufferSize: 1, refCount: false }),
+    );
+
+    localeLoaded$ = combineLatest([this.localeLoading$, this.locale$]).pipe(
+        debounceTime(0),
+        filter(([isLoaded]) => !isLoaded),
+        map(([_, locale]) => locale),
+        shareReplay({ bufferSize: 1, refCount: false }),
+    );
+
+    constructor(
+        @Optional()
+        @Inject(LocaleDefaultToken)
+        public defaultLocale: string | null,
+        @Optional()
+        @Inject(LocaleRecordsToken)
+        private localeRecords: LocaleRecord[][] | null,
+        @Optional()
+        @Inject(LocaleLoaderRegistrarsToken)
+        private loaderRegistrarsArr: UnknownLocaleLoaderRegistrarMap[] | null,
+        private injector: Injector,
+    ) {
+        if (!this.defaultLocale) {
+            this.defaultLocale =
+                this.locales.length === 1
+                    ? this.locales[0].id
+                    : this.locales.find((locale) => locale.default)?.id ?? null;
+        }
+
+        if (this.defaultLocale) {
+            this.setLocale(this.defaultLocale);
+        }
+
+        this.localeLoaded$.pipe(takeUntil(this.destroyed$)).subscribe();
     }
 
-    if (this.defaultLocale) {
-      this.setLocale(this.defaultLocale);
+    ngOnDestroy(): void {
+        this.destroyed$.next();
     }
 
-    this.localeLoaded$.pipe(takeUntil(this.destroyed$)).subscribe();
-  }
+    setLocale(locale: string) {
+        if (locale in this.knownLocales === false) {
+            throw new Error(`LocaleService: Cannot switch to unknown locale ${locale}`);
+        }
 
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-  }
+        this.setLocale$.next(locale);
 
-  setLocale(locale: string) {
-    if (locale in this.knownLocales === false) {
-      throw new Error(
-        `LocaleService: Cannot switch to unknown locale ${locale}`,
-      );
+        return this.localeLoaded$;
     }
 
-    this.setLocale$.next(locale);
+    private loadLocale(locale: string) {
+        return this.invokeLoaders(locale, this.loaders[locale] || {}).pipe(
+            tap(() => {
+                delete this.loaders[locale];
+                this.locale = locale;
+            }),
+            mapTo(locale),
+        );
+    }
 
-    return this.localeLoaded$;
-  }
+    private invokeLoaders(locale: string, loaders: UnknownLocaleLoaderMap): Observable<unknown> {
+        const loadersMap = Object.entries(this.loaderRegistrars).map(([name, registrarType]) => ({
+            // Iterating over existing values
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            registrarType: registrarType!,
+            loader: loaders[name],
+        }));
 
-  private loadLocale(locale: string) {
-    return this.invokeLoaders(locale, this.loaders[locale] || {}).pipe(
-      tap(() => {
-        delete this.loaders[locale];
-        this.locale = locale;
-      }),
-      mapTo(locale),
-    );
-  }
+        const registerLocaleIn = (registrarType: Type<LocaleLoaderRegistrar<unknown>>, data: unknown) =>
+            this.injector.get(registrarType).registerLocale(locale, data);
 
-  private invokeLoaders(
-    locale: string,
-    loaders: UnknownLocaleLoaderMap,
-  ): Observable<unknown> {
-    const loadersMap = Object.entries(this.loaderRegistrars).map(
-      ([name, registrarType]) => ({
-        // Iterating over existing values
-        // tslint:disable-next-line: no-non-null-assertion
-        registrarType: registrarType!,
-        loader: loaders[name],
-      }),
-    );
+        const changeLocaleIn = (registrarType: Type<LocaleLoaderRegistrar<unknown>>) => {
+            const registrar = this.injector.get(registrarType);
+            return registrar.changeLocale ? registrar.changeLocale(locale) : of(null);
+        };
 
-    const registerLocaleIn = (
-      registrarType: Type<LocaleLoaderRegistrar<unknown>>,
-      data: unknown,
-    ) => this.injector.get(registrarType).registerLocale(locale, data);
+        const loaderStreams = loadersMap.map(({ loader, registrarType }) =>
+            loader
+                ? from(loader()).pipe(
+                      switchMap((data) =>
+                          registerLocaleIn(registrarType, data).pipe(switchMap(() => changeLocaleIn(registrarType))),
+                      ),
+                  )
+                : changeLocaleIn(registrarType),
+        );
 
-    const changeLocaleIn = (
-      registrarType: Type<LocaleLoaderRegistrar<unknown>>,
-    ) => {
-      const registrar = this.injector.get(registrarType);
-      return registrar.changeLocale ? registrar.changeLocale(locale) : of(null);
-    };
+        return forkJoin(loaderStreams);
+    }
 
-    const loaderStreams = loadersMap.map(({ loader, registrarType }) =>
-      loader
-        ? from(loader()).pipe(
-            switchMap((data) =>
-              registerLocaleIn(registrarType, data).pipe(
-                switchMap(() => changeLocaleIn(registrarType)),
-              ),
-            ),
-          )
-        : changeLocaleIn(registrarType),
-    );
-
-    return forkJoin(loaderStreams);
-  }
-
-  private pickRegisteredLoaders(
-    loaders: UnknownLocaleLoaderMap,
-  ): UnknownLocaleLoaderMap {
-    return Object.fromEntries(
-      Object.entries(loaders).filter(([name]) => name in this.loaderRegistrars),
-    );
-  }
+    private pickRegisteredLoaders(loaders: UnknownLocaleLoaderMap): UnknownLocaleLoaderMap {
+        return Object.fromEntries(Object.entries(loaders).filter(([name]) => name in this.loaderRegistrars));
+    }
 }

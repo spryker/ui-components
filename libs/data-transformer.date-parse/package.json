@@ -1,16 +1,17 @@
 {
-  "name": "@spryker/data-transformer.date-parse",
-  "version": "0.1.4",
-  "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/data-transformer": "^0.1.0",
-    "@spryker/utils": "^0.2.1"
-  },
-  "dependencies": {
-    "tslib": "^1.10.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/data-transformer.date-parse",
+    "version": "1.0.0",
+    "peerDependencies": {
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/data-transformer": "^1.0.0",
+        "@spryker/utils": "^1.0.0",
+        "rxjs": "^7.5.7"
+    },
+    "dependencies": {
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

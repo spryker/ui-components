@@ -7,155 +7,143 @@ import { ContextService, WindowToken } from '@spryker/utils';
 import { RedirectActionHandlerService } from './redirect-action-handler.service';
 
 const mockActionsConfig = {
-  type: 'redirect',
-  url: 'mockUrl',
+    type: 'redirect',
+    url: 'mockUrl',
 };
 const mockContext = 'mockContext';
 
 @Injectable()
 class MockInjector {
-  get = jest.fn();
+    get = jest.fn();
 }
 
 const mockInterpolate = (value: string) => `Interpolated${value}`;
 
 @Injectable()
 class MockContextService {
-  interpolate = jest.fn().mockImplementation(mockInterpolate);
+    interpolate = jest.fn().mockImplementation(mockInterpolate);
 }
 
 @Injectable()
 class MockWindowToken {
-  location = {
-    href: '',
-  };
+    location = {
+        href: '',
+    };
 }
 
 @Injectable()
 class MockSanitizer {
-  sanitize = jest.fn();
+    sanitize = jest.fn();
 }
 
 @Injectable()
 class MockUnsavedChangesMonitorToken {
-  reset = jest.fn();
+    reset = jest.fn();
 }
 
 describe('RedirectActionHandlerService', () => {
-  let service: RedirectActionHandlerService;
-  let injector: MockInjector;
-  let contextService: MockContextService;
-  let windowToken: MockWindowToken;
-  let sanitizer: MockSanitizer;
-  let unsavedChangesMonitor: MockUnsavedChangesMonitorToken;
+    let service: RedirectActionHandlerService;
+    let injector: MockInjector;
+    let contextService: MockContextService;
+    let windowToken: MockWindowToken;
+    let sanitizer: MockSanitizer;
+    let unsavedChangesMonitor: MockUnsavedChangesMonitorToken;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        MockContextService,
-        MockInjector,
-        MockWindowToken,
-        MockSanitizer,
-        MockUnsavedChangesMonitorToken,
-        {
-          provide: UnsavedChangesMonitorToken,
-          useExisting: MockUnsavedChangesMonitorToken,
-        },
-        {
-          provide: DomSanitizer,
-          useExisting: MockSanitizer,
-        },
-        {
-          provide: ContextService,
-          useExisting: MockContextService,
-        },
-        {
-          provide: WindowToken,
-          useExisting: MockWindowToken,
-        },
-      ],
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                MockContextService,
+                MockInjector,
+                MockWindowToken,
+                MockSanitizer,
+                MockUnsavedChangesMonitorToken,
+                {
+                    provide: UnsavedChangesMonitorToken,
+                    useExisting: MockUnsavedChangesMonitorToken,
+                },
+                {
+                    provide: DomSanitizer,
+                    useExisting: MockSanitizer,
+                },
+                {
+                    provide: ContextService,
+                    useExisting: MockContextService,
+                },
+                {
+                    provide: WindowToken,
+                    useExisting: MockWindowToken,
+                },
+            ],
+            teardown: { destroyAfterEach: false },
+        });
+
+        service = TestBed.inject(RedirectActionHandlerService);
+        injector = TestBed.inject(MockInjector);
+        contextService = TestBed.inject(MockContextService);
+        sanitizer = TestBed.inject(MockSanitizer);
+        unsavedChangesMonitor = TestBed.inject(MockUnsavedChangesMonitorToken);
+        windowToken = TestBed.inject(MockWindowToken);
+
+        injector.get.mockImplementation((instance) => {
+            if (instance === ContextService) {
+                return contextService;
+            }
+
+            if (instance === DomSanitizer) {
+                return sanitizer;
+            }
+
+            if (instance === UnsavedChangesMonitorToken) {
+                return unsavedChangesMonitor;
+            }
+
+            if (instance === WindowToken) {
+                return windowToken;
+            }
+        });
     });
 
-    service = TestBed.inject(RedirectActionHandlerService);
-    injector = TestBed.inject(MockInjector);
-    contextService = TestBed.inject(MockContextService);
-    sanitizer = TestBed.inject(MockSanitizer);
-    unsavedChangesMonitor = TestBed.inject(MockUnsavedChangesMonitorToken);
-    windowToken = TestBed.inject(MockWindowToken);
+    it('should process config.url via ContextService.interpolate()', () => {
+        service.handleAction(injector, mockActionsConfig, mockContext);
 
-    injector.get.mockImplementation((instance) => {
-      if (instance === ContextService) {
-        return contextService;
-      }
-
-      if (instance === DomSanitizer) {
-        return sanitizer;
-      }
-
-      if (instance === UnsavedChangesMonitorToken) {
-        return unsavedChangesMonitor;
-      }
-
-      if (instance === WindowToken) {
-        return windowToken;
-      }
+        expect(contextService.interpolate).toHaveBeenCalledWith(mockActionsConfig.url, mockContext);
     });
-  });
 
-  it('should process config.url via ContextService.interpolate()', () => {
-    service.handleAction(injector, mockActionsConfig, mockContext);
+    it('should sanitize config.url via Sanitizer.sanitize() API with argument SecurityContext.URL and config.url after ContextService.interpolate()', () => {
+        const internalActionsConfig = { ...mockActionsConfig };
 
-    expect(contextService.interpolate).toHaveBeenCalledWith(
-      mockActionsConfig.url,
-      mockContext,
-    );
-  });
+        service.handleAction(injector, internalActionsConfig, mockContext);
 
-  it('should sanitize config.url via Sanitizer.sanitize() API with argument SecurityContext.URL and config.url after ContextService.interpolate()', () => {
-    const internalActionsConfig = { ...mockActionsConfig };
+        expect(contextService.interpolate).toHaveBeenCalledWith(internalActionsConfig.url, mockContext);
 
-    service.handleAction(injector, internalActionsConfig, mockContext);
+        internalActionsConfig.url = mockInterpolate(internalActionsConfig.url);
 
-    expect(contextService.interpolate).toHaveBeenCalledWith(
-      internalActionsConfig.url,
-      mockContext,
-    );
+        expect(sanitizer.sanitize).toHaveBeenCalledWith(SecurityContext.URL, internalActionsConfig.url);
+    });
 
-    internalActionsConfig.url = mockInterpolate(internalActionsConfig.url);
+    it('should call UnsavedChangesFormMonitorDirective.reset method', () => {
+        service.handleAction(injector, mockActionsConfig, mockContext);
 
-    expect(sanitizer.sanitize).toHaveBeenCalledWith(
-      SecurityContext.URL,
-      internalActionsConfig.url,
-    );
-  });
+        expect(unsavedChangesMonitor.reset).toHaveBeenCalled();
+    });
 
-  it('should call UnsavedChangesFormMonitorDirective.reset method', () => {
-    service.handleAction(injector, mockActionsConfig, mockContext);
+    it('should change location via WindowToken.location.href API after ContextService.interpolate() and Sanitizer.sanitize()', () => {
+        const mockValueAfterSanitizing = 'mockValueAfterSanitizing';
 
-    expect(unsavedChangesMonitor.reset).toHaveBeenCalled();
-  });
+        sanitizer.sanitize.mockReturnValue(mockValueAfterSanitizing);
 
-  it('should change location via WindowToken.location.href API after ContextService.interpolate() and Sanitizer.sanitize()', () => {
-    const mockValueAfterSanitizing = 'mockValueAfterSanitizing';
+        service.handleAction(injector, mockActionsConfig, mockContext);
 
-    sanitizer.sanitize.mockReturnValue(mockValueAfterSanitizing);
+        expect(windowToken.location.href).toBe(mockValueAfterSanitizing);
+    });
 
-    service.handleAction(injector, mockActionsConfig, mockContext);
+    it('should return stream that emits empty value', () => {
+        const callback = jest.fn();
 
-    expect(windowToken.location.href).toBe(mockValueAfterSanitizing);
-  });
+        const redirectActionService$ = service.handleAction(injector, mockActionsConfig, mockContext);
 
-  it('should return stream that emits empty value', () => {
-    const callback = jest.fn();
+        redirectActionService$.subscribe(callback);
 
-    const redirectActionService$ = service.handleAction(
-      injector,
-      mockActionsConfig,
-      mockContext,
-    );
-
-    redirectActionService$.subscribe(callback);
-
-    expect(callback).toHaveBeenCalledWith(undefined);
-  });
+        expect(callback).toHaveBeenCalledWith(undefined);
+    });
 });

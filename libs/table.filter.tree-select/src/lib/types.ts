@@ -1,35 +1,31 @@
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { TableFilterBase } from '@spryker/table.feature.filters';
-
-declare module '@spryker/table.feature.filters' {
-  interface TableFiltersRegistry {
-    'tree-select': TableFilterTreeSelect;
-  }
-}
+import { TreeSelectValue } from '@spryker/tree-select';
 
 /**
  * Interface {@link TableFilterTreeSelect} represents config of the Tree Select filters feature
  */
 export interface TableFilterTreeSelect
-  extends TableFilterBase<TableFilterTreeSelectValue> {
-  type: 'tree-select';
-  typeOptions: TableFilterTreeSelectOptions;
+    extends TableFilterBase<TableFilterTreeSelectValue | TableFilterTreeSelectValue[]> {
+    type: 'tree-select';
+    typeOptions: TableFilterTreeSelectOptions;
 }
 
 /**
  * Interface represents typeOptions of {@link TableFilterTreeSelectComponent}
  */
 export interface TableFilterTreeSelectOptions {
-  values: TableFilterTreeSelectOptionsValue[];
-  multiselect?: boolean;
+    values: TableFilterTreeSelectOptionsValue[];
+    multiselect?: boolean;
 }
 
 /**
  * Represents how values array should look like for the usage with {@link TreeSelectComponent}
  */
 export interface TableFilterTreeSelectOptionsValue {
-  value: TableFilterTreeSelectValue;
-  title: string;
-  children?: TableFilterTreeSelectOptionsValue[];
+    value: TableFilterTreeSelectValue;
+    title: string;
+    children?: TableFilterTreeSelectOptionsValue[];
 }
 
-export type TableFilterTreeSelectValue = unknown | unknown[];
+export type TableFilterTreeSelectValue = TreeSelectValue;

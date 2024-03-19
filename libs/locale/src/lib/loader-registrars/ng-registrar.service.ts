@@ -6,28 +6,25 @@ import { LocaleService } from '../locale.service';
 import { LocaleLoaderRegistrar } from '../types';
 
 declare module '../types' {
-  interface LocaleLoaderRegistry {
-    ng: NgLocaleData;
-  }
+    interface LocaleLoaderRegistry {
+        ng: NgLocaleData;
+    }
 }
 
 export interface NgLocaleData {
-  data: any;
-  extraData?: any;
+    data: any;
+    extraData?: any;
 }
 
 @Injectable({ providedIn: 'root' })
 export class NgRegistrarService implements LocaleLoaderRegistrar<NgLocaleData> {
-  constructor(private localeService: LocaleService) {}
+    constructor(private localeService: LocaleService) {}
 
-  registerLocale(
-    locale: string,
-    { data, extraData }: NgLocaleData,
-  ): Observable<unknown> {
-    const isDefault = locale === this.localeService.defaultLocale;
+    registerLocale(locale: string, { data, extraData }: NgLocaleData): Observable<unknown> {
+        const isDefault = locale === this.localeService.defaultLocale;
 
-    registerLocaleData(data, isDefault ? undefined : locale, extraData);
+        registerLocaleData(data, isDefault ? undefined : locale, extraData);
 
-    return of(null);
-  }
+        return of(null);
+    }
 }

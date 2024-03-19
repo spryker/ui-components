@@ -9,51 +9,48 @@ const mockInjector = {} as any;
 const mockContext = {} as any;
 
 class MockActionHandler {
-  handleAction = jest.fn();
+    handleAction = jest.fn();
 }
 
 describe('ActionsService', () => {
-  let service: ActionsService;
-  let mockActionHandler: MockActionHandler;
+    let service: ActionsService;
+    let mockActionHandler: MockActionHandler;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        ActionsModule.withActions({
-          [mockActionType]: MockActionHandler,
-        }),
-      ],
-      providers: [MockActionHandler],
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                ActionsModule.withActions({
+                    [mockActionType]: MockActionHandler,
+                }),
+            ],
+            providers: [MockActionHandler],
+            teardown: { destroyAfterEach: false },
+        });
+
+        service = TestBed.inject(ActionsService);
+        mockActionHandler = TestBed.inject(MockActionHandler);
     });
 
-    service = TestBed.inject(ActionsService);
-    mockActionHandler = TestBed.inject(MockActionHandler);
-  });
+    it('trigger method returns the result from call ActionHandler.handleAction() with arguments', () => {
+        const mockConfig = {
+            type: mockActionType,
+        };
 
-  it('trigger method returns the result from call ActionHandler.handleAction() with arguments', () => {
-    const mockConfig = {
-      type: mockActionType,
-    };
+        mockActionHandler.handleAction.mockReturnValue(mockActionValue);
 
-    mockActionHandler.handleAction.mockReturnValue(mockActionValue);
+        const serviceValue = service.trigger(mockInjector, mockConfig, mockContext);
 
-    const serviceValue = service.trigger(mockInjector, mockConfig, mockContext);
+        expect(mockActionHandler.handleAction).toHaveBeenCalledWith(mockInjector, mockConfig, mockContext);
+        expect(serviceValue).toBe(mockActionValue);
+    });
 
-    expect(mockActionHandler.handleAction).toHaveBeenCalledWith(
-      mockInjector,
-      mockConfig,
-      mockContext,
-    );
-    expect(serviceValue).toBe(mockActionValue);
-  });
+    it('throw an error if no Actions found', () => {
+        const mockConfig = {
+            type: mockActionInvalidType,
+        };
 
-  it('throw an error if no Actions found', () => {
-    const mockConfig = {
-      type: mockActionInvalidType,
-    };
-
-    expect(() => {
-      service.trigger(mockInjector, mockConfig, mockContext);
-    }).toThrow();
-  });
+        expect(() => {
+            service.trigger(mockInjector, mockConfig, mockContext);
+        }).toThrow();
+    });
 });

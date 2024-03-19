@@ -1,0 +1,99 @@
+{
+    "root": true,
+    "ignorePatterns": ["**/*"],
+    "plugins": ["@nrwl/nx"],
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+            "rules": {
+                "@nrwl/nx/enforce-module-boundaries": [
+                    "error",
+                    {
+                        "enforceBuildableLibDependency": true,
+                        "allow": ["@orchestrator/core/testing"],
+                        "depConstraints": [
+                            // package rules START
+                            {
+                                "sourceTag": "pkg:primary",
+                                "onlyDependOnLibsWithTags": ["pkg:primary"]
+                            },
+                            {
+                                "sourceTag": "pkg:extension",
+                                "onlyDependOnLibsWithTags": ["pkg:primary", "pkg:extension"]
+                            },
+                            // package rules END
+                            // type rules START
+                            {
+                                "sourceTag": "type:meta",
+                                "onlyDependOnLibsWithTags": ["type:meta", "type:util"]
+                            },
+                            {
+                                "sourceTag": "type:util",
+                                "onlyDependOnLibsWithTags": ["type:util"]
+                            },
+                            {
+                                "sourceTag": "type:style",
+                                "onlyDependOnLibsWithTags": ["type:style"]
+                            },
+                            {
+                                "sourceTag": "type:service",
+                                "onlyDependOnLibsWithTags": ["type:util", "type:service", "type:component-service"]
+                            },
+                            {
+                                "sourceTag": "type:component",
+                                "onlyDependOnLibsWithTags": [
+                                    "type:util",
+                                    "type:service",
+                                    "type:component",
+                                    "type:component-service"
+                                ]
+                            },
+                            {
+                                "sourceTag": "type:component-service",
+                                "onlyDependOnLibsWithTags": [
+                                    "type:util",
+                                    "type:service",
+                                    "type:component",
+                                    "type:component-service"
+                                ]
+                            },
+                            // type rules END
+                            {
+                                "sourceTag": "*",
+                                "onlyDependOnLibsWithTags": ["*"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "files": ["*.spec.ts", "*.stories.ts", "./testing/src/*.ts"],
+            "rules": {
+                "@nrwl/nx/enforce-module-boundaries": 0
+            }
+        },
+        {
+            "files": ["*.ts", "*.tsx"],
+            "extends": [
+                "plugin:@nrwl/nx/typescript",
+                "plugin:@nrwl/nx/angular",
+                "plugin:@angular-eslint/template/process-inline-templates"
+            ],
+            "rules": {
+                "@typescript-eslint/ban-types": 0,
+                "@typescript-eslint/no-empty-interface": 0,
+                "@typescript-eslint/no-explicit-any": 0,
+                "@typescript-eslint/no-unused-vars": 0,
+                "@angular-eslint/no-host-metadata-property": 0,
+                "@angular-eslint/directive-class-suffix": 0,
+                "no-prototype-builtins": 0
+            }
+        },
+        {
+            "files": ["*.js", "*.jsx"],
+            "extends": ["plugin:@nrwl/nx/javascript"],
+            "rules": {}
+        }
+    ]
+}

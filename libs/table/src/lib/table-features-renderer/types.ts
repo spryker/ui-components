@@ -1,17 +1,16 @@
 import { TemplateRef } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
-import { Observable } from 'rxjs';
 
-// tslint:disable-next-line: no-empty-interface
 export interface TableFeaturesRendererContext {
-  $implicit: FeatureRecord;
+    $implicit: FeatureRecord;
 }
 
 export interface FeatureRecord {
-  component: TableFeatureComponent;
-  template: TemplateRef<TableFeaturesRendererContext>;
-  featureTemplate: TemplateRef<TableFeatureTplContext>;
-  featureContext$?: Observable<TableFeatureTplContext>;
-  featureStyles$?: Observable<Record<string, any>>;
+    component: TableFeatureComponent;
+    template: TemplateRef<TableFeaturesRendererContext>;
+    featureTemplate: TemplateRef<TableFeatureTplContext>;
+    featureContext$?: Observable<TableFeatureTplContext>;
+    featureStyles$?: Observable<Record<string, any>>;
 }

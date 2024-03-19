@@ -8,14 +8,8 @@ import { TabComponent } from './tab/tab.component';
 import { IconErrorModule } from '@spryker/icon/icons';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzTabsModule,
-    IconModule,
-    SelectComponentsModule,
-    IconErrorModule,
-  ],
-  declarations: [TabsComponent, TabComponent],
-  exports: [TabsComponent, TabComponent],
+    imports: [CommonModule, NzTabsModule, IconModule, SelectComponentsModule, IconErrorModule],
+    declarations: [TabsComponent, TabComponent],
+    exports: [TabsComponent, TabComponent],
 })
 export class TabsModule {}

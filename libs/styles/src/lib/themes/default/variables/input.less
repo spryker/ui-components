@@ -1,31 +1,40 @@
 @input-prefix-cls: ~'@{ant-prefix}-input';
 
 @input-height-base: 42px;
+@spy-input-height-base: var(--spy-input-height-base, @input-height-base);
 @input-padding-horizontal-base: 11px;
+@spy-input-padding-horizontal-base: var(--spy-input-padding-horizontal-base, @input-padding-horizontal-base);
 @input-padding-vertical-base: 4px;
-@input-padding-padding-base: @input-padding-vertical-base
-  @input-padding-horizontal-base;
-@input-bg: @white;
-@input-placeholder-color: @gray-dark;
-@input-color: @ink;
-@input-border-color: @gray-light;
-@input-hover-border-color: @border-color-base;
-@input-focus-border-color: @green;
-@input-disabled-bg: @disabled-bg;
-@input-disabled-border: @gray-light;
-@input-icon-color: @input-placeholder-color;
-@input-icon-hover-color: @input-placeholder-color;
-@input-add-before-spacing: 35px;
-@input-affix-padding: 40px;
+@spy-input-padding-vertical-base: var(--spy-input-padding-vertical-base, @input-padding-vertical-base);
+@input-padding-base: var(--spy-input-padding-base, @spy-input-padding-vertical-base @spy-input-padding-horizontal-base);
+@input-bg: var(--spy-input-bg, @spy-white);
+@input-placeholder-color: var(--spy-input-placeholder-color, @gray-dark);
+@input-color: var(--spy-input-color, @ink);
+@input-border-color: var(--spy-input-border-color, @gray-light);
+@input-hover-border-color: var(--spy-input-hover-border-color, @border-color-base);
+@input-focus-border-color: var(--spy-input-focus-border-color, @green);
+@input-disabled-bg: var(--spy-input-disabled-bg, @spy-disabled-bg);
+@input-disabled-border: var(--spy-input-disabled-border, @gray-light);
+@input-icon-color: var(--spy-input-icon-color, @input-placeholder-color);
+@input-icon-hover-color: var(--spy-input-icon-hover-color, @input-placeholder-color);
+@input-add-before-spacing: var(--spy-input-add-before-spacing, 35px);
+@input-affix-padding: var(--spy-input-affix-padding, 40px);
+@input-wrapper-border-radius: var(--spy-input-wrapper-border-radius, @border-radius-base);
+@input-default-border-radius: var(--spy-input-default-border-radius, calc(@border-radius-base - @border-width-base));
+@input-prefix-suffix-position-top: var(--spy-input-prefix-suffix-position-top, 50%);
+@input-prefix-suffix-transform: var(--spy-input-prefix-suffix-transform, translateY(-50%));
+@input-prefix-suffix-z-index: var(--spy-input-prefix-suffix-z-index, 2);
+@input-prefix-position-left: var(--spy-input-prefix-position-left, 10px);
+@input-suffix-position-right: var(--spy-input-suffix-position-right, 10px);
 
 // Textarea
 @textarea-prefix-cls: ~'@{spryker-prefix}-textarea';
 
-@textarea-vertical-padding: 7px;
-@textarea-horizontal-padding: 11px;
-@textarea-padding: @textarea-vertical-padding @textarea-horizontal-padding;
+@textarea-vertical-padding: var(--spy-textarea-vertical-padding, 10px);
+@textarea-horizontal-padding: var(--spy-textarea-horizontal-padding, 11px);
+@textarea-padding: var(--spy-textarea-padding, @textarea-vertical-padding @textarea-horizontal-padding);
 
 // Password
 @input-password-prefix-cls: ~'@{spryker-prefix}-input-password';
 
-@input-password-icon-hover: @gray-darker;
+@input-password-icon-hover: var(--spy-input-password-icon-hover, @gray-darker);

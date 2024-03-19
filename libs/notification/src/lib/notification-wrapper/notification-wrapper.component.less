@@ -1,36 +1,36 @@
 @import './notification-wrapper.theme.less';
 
 .@{notification-wrapper-prefix-cls} {
-  .@{notification-spryker-prefix-cls} {
-    pointer-events: auto;
-  }
+    .@{notification-spryker-prefix-cls} {
+        pointer-events: auto;
+    }
 
-  .@{notification-prefix-cls} {
-    min-width: @notification-min-width;
-  }
+    .@{notification-prefix-cls} {
+        min-width: @notification-min-width;
+    }
 }
 
 .@{notification-toast-prefix-cls} {
-  &-container .ngx-toastr {
-    display: block;
-    padding: 0;
-    background: none;
-    min-width: @notification-min-width;
-    width: auto;
-    margin: 0;
-    border-radius: 0;
-    overflow: visible;
-    color: inherit;
+    &-container .ngx-toastr {
+        display: block;
+        padding: 0;
+        background: none;
+        min-width: @notification-min-width;
+        width: auto;
+        margin: 0;
+        border-radius: 0;
+        overflow: visible;
+        color: inherit;
 
-    &,
-    &:hover {
-      box-shadow: none;
-      cursor: auto;
+        &,
+        &:hover {
+            box-shadow: @notification-shadow;
+            cursor: auto;
+        }
     }
-  }
 }
 
 .@{notification-toast-top-right-prefix-cls} {
-  top: @notification-toast-top-right-top-position;
-  right: @notification-toast-top-right-right-position;
+    top: @notification-toast-top-right-top-position;
+    right: @notification-toast-top-right-right-position;
 }

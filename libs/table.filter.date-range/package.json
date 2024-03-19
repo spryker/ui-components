@@ -1,18 +1,19 @@
 {
-  "name": "@spryker/table.filter.date-range",
-  "version": "0.0.6",
-  "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12",
-    "@spryker/date-picker": "^0.2.0",
-    "@spryker/locale": "^0.2.0",
-    "@spryker/styles": "^0.2.0",
-    "@spryker/table.feature.filters": "^0.0.2"
-  },
-  "dependencies": {
-    "tslib": "^1.10.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/table.filter.date-range",
+    "version": "1.2.0",
+    "peerDependencies": {
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/date-picker": "^1.0.0",
+        "@spryker/locale": "^1.0.0",
+        "@spryker/styles": "^1.1.0",
+        "@spryker/table.feature.filters": "^1.0.0",
+        "rxjs": "^7.5.7"
+    },
+    "dependencies": {
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

@@ -1,32 +1,32 @@
 @layout-prefix-cls: ~'@{ant-prefix}-layout';
 
-@layout-body-background: @gray-lighter;
+@layout-body-background: var(--spy-layout-body-background, @gray-lighter);
 
 // Sidebar
 @layout-sidebar-prefix-cls: ~'@{spryker-prefix}-sidebar';
 
-@layout-sidebar-min-height: 300px;
-@layout-sidebar-inner-box-shadow: 0 2px 4px 0 @gray;
-@layout-trigger-inner-size: 30px;
-@layout-trigger-inner-font-size: @font-size-sm;
-@layout-trigger-icon-collapsed-transform: rotate(-90deg);
-@layout-trigger-icon-transform: rotate(90deg);
-@layout-trigger-right-shift: -15px;
-@layout-trigger-bottom-shift: 30px;
-@layout-trigger-height: auto;
-@layout-trigger-width: auto;
-@layout-trigger-background: @white;
-@layout-trigger-background-hover: @primary-color;
-@layout-trigger-color-light: @gray-dark;
-@layout-trigger-background-light: @layout-trigger-background;
-@layout-trigger-border-radius: 50%;
-@layout-trigger-border-size: 1px;
-@layout-trigger-border: @layout-trigger-border-size solid
-  @layout-trigger-background;
+@layout-sidebar-min-height: var(--spy-layout-sidebar-min-height, 300px);
+@layout-sidebar-box-shadow: var(--spy-layout-sidebar-box-shadow, @box-shadow-1);
+@layout-trigger-box-shadow: var(--spy-layout-trigger-box-shadow, @box-shadow-2);
+@layout-trigger-inner-size: var(--spy-layout-trigger-inner-size, 30px);
+@layout-trigger-inner-font-size: var(--spy-layout-trigger-inner-font-size, @spy-font-size-sm);
+@layout-trigger-icon-collapsed-transform: var(--spy-layout-trigger-icon-collapsed-transform, rotate(-90deg));
+@layout-trigger-icon-transform: var(--spy-layout-trigger-icon-transform, rotate(90deg));
+@layout-trigger-right-shift: var(--spy-layout-trigger-right-shift, -15px);
+@layout-trigger-bottom-shift: var(--spy-layout-trigger-bottom-shift, 30px);
+@layout-trigger-height: var(--spy-layout-trigger-height, auto);
+@layout-trigger-width: var(--spy-layout-trigger-width, auto);
+@layout-trigger-background: var(--spy-layout-trigger-background, @spy-white);
+@layout-trigger-background-hover: var(--spy-layout-trigger-background-hover, @spy-primary-color);
+@layout-trigger-color-light: var(--spy-layout-trigger-color-light, @gray-dark);
+@layout-trigger-background-light: var(--spy-layout-trigger-background-light, @layout-trigger-background);
+@layout-trigger-border-radius: var(--spy-layout-trigger-border-radius, 50%);
+@layout-trigger-border-size: var(--spy-layout-trigger-border-size, 1px);
+@layout-trigger-border: var(--spy-layout-trigger-border, @layout-trigger-border-size solid @layout-trigger-background);
 
 // Header
 @header-prefix-cls: ~'@{layout-prefix-cls}-header';
 
-@layout-header-height: inherit;
-@layout-header-background: @white;
-@layout-header-padding: 16px 43px 16px 0;
+@layout-header-height: var(--spy-layout-header-height, inherit);
+@layout-header-background: var(--spy-layout-header-background, @white);
+@layout-header-padding: var(--spy-layout-header-padding, 0 43px 0 0);

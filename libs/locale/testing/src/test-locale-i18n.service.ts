@@ -1,34 +1,26 @@
-import { Inject, Injectable, Optional } from '@angular/core';
-import {
-  I18nConfig,
-  I18nLocaleDataToken,
-  I18nLocaleInterpolationData,
-  LocaleService,
-} from '@spryker/locale';
+import { Injectable } from '@angular/core';
+import { I18nLocaleInterpolationData } from '@spryker/locale';
 import { Observable, of } from 'rxjs';
-import { InjectionTokenType } from '@spryker/utils';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class I18nTestService {
-  private localeData: Record<string, Record<string, unknown>> = {};
+    private localeData: Record<string, Record<string, unknown>> = {};
 
-  setLocale = jest.fn();
+    setLocale = jest.fn();
 
-  addLocaleData(token: string, data: I18nLocaleInterpolationData = {}): void {
-    this.localeData[token] = data;
-  }
+    addLocaleData(token: string, data: I18nLocaleInterpolationData = {}): void {
+        this.localeData[token] = data;
+    }
 
-  getLocaleData(token: string, key: string): unknown {
-    return this.localeData[token][key];
-  }
+    getLocaleData(token: string, key: string): unknown {
+        return this.localeData[token][key];
+    }
 
-  translate(
-    token: string,
-    data?: I18nLocaleInterpolationData,
-  ): Observable<string> {
-    this.addLocaleData(token, data);
-    return of(token);
-  }
+    translate(token: string, data?: I18nLocaleInterpolationData): Observable<string> {
+        this.addLocaleData(token, data);
+
+        return of(token);
+    }
 }

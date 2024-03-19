@@ -1,74 +1,66 @@
 import { CommonModule } from '@angular/common';
-import {
-  Inject,
-  Injector,
-  ModuleWithProviders,
-  NgModule,
-  Self,
-  Optional,
-} from '@angular/core';
+import { Inject, Injector, ModuleWithProviders, NgModule, Self, Optional } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import {
-  ComponentSelectorStrategy,
-  PrefixComponentSelectorStrategy,
-  PrefixComponentSelectorStrategyOptions,
+    ComponentSelectorStrategy,
+    PrefixComponentSelectorStrategy,
+    PrefixComponentSelectorStrategyOptions,
 } from 'ngx-element-boundary';
 
 import {
-  CustomElementOptions,
-  provideCustomElementComponents,
-  WebComponentDefs,
+    CustomElementOptions,
+    provideCustomElementComponents,
+    WebComponentDefs,
+    CustomElementComponentsToken,
 } from './custom-element';
 import { registerComponents } from './custom-element/custom-element-registry';
-import { CustomElementComponentsToken } from './custom-element/tokens';
 
 export interface WebComponentsModuleOptions {
-  customElementOptions?: CustomElementOptions;
+    customElementOptions?: CustomElementOptions;
 }
 
 @NgModule({
-  imports: [CommonModule],
+    imports: [CommonModule],
 })
 export class WebComponentsModule {
-  static forRoot({
-    customElementOptions,
-  }: WebComponentsModuleOptions = {}): ModuleWithProviders<
-    WebComponentsModule
-  > {
-    return {
-      ngModule: WebComponentsModule,
-      providers: [
-        {
-          provide: ComponentSelectorStrategy,
-          useClass: PrefixComponentSelectorStrategy,
-        },
-        {
-          provide: PrefixComponentSelectorStrategyOptions,
-          useExisting: CustomElementOptions,
-        },
-        customElementOptions
-          ? { provide: CustomElementOptions, useValue: customElementOptions }
-          : [],
-      ],
-    };
-  }
+    static forRoot({
+        customElementOptions,
+    }: WebComponentsModuleOptions = {}): ModuleWithProviders<WebComponentsModule> {
+        return {
+            ngModule: WebComponentsModule,
+            providers: [
+                {
+                    provide: ComponentSelectorStrategy,
+                    useClass: PrefixComponentSelectorStrategy,
+                },
+                {
+                    provide: PrefixComponentSelectorStrategyOptions,
+                    useExisting: CustomElementOptions,
+                },
+                customElementOptions
+                    ? {
+                          provide: CustomElementOptions,
+                          useValue: customElementOptions,
+                      }
+                    : [],
+            ],
+        };
+    }
 
-  static withComponents(
-    components: WebComponentDefs,
-  ): ModuleWithProviders<WebComponentsModule> {
-    return {
-      ngModule: WebComponentsModule,
-      providers: [provideCustomElementComponents(components)],
-    };
-  }
+    static withComponents(components: WebComponentDefs): ModuleWithProviders<WebComponentsModule> {
+        return {
+            ngModule: WebComponentsModule,
+            providers: [provideCustomElementComponents(components)],
+        };
+    }
 
-  constructor(
-    injector: Injector,
-    @Inject(CustomElementComponentsToken)
-    @Self()
-    @Optional()
-    components?: InjectionTokenType<typeof CustomElementComponentsToken>,
-  ) {
-    registerComponents(components?.flat() ?? [], injector);
-  }
+    constructor(
+        injector: Injector,
+        @Inject(CustomElementComponentsToken)
+        @Self()
+        @Optional()
+        components?: InjectionTokenType<typeof CustomElementComponentsToken>,
+    ) {
+        registerComponents(components?.flat() ?? [], injector);
+    }
 }

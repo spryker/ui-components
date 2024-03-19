@@ -1,70 +1,64 @@
 @import './nz-modal-wrapper.component.theme.less';
 
 .@{modal-prefix-cls} {
-  top: 0;
+    top: 0;
 
-  .ie-styles-only-mixin({margin: 0;});
+    &--confirmation {
+        width: 100%;
+        max-width: @modal-confirmation-max-width;
+    }
 
-  &.zoom-appear,
-  &.zoom-enter {
-    .ie-styles-only-mixin({opacity: 1;});
-  }
+    &-mask {
+        background: @modal-backdrop-background;
+    }
 
-  &--confirmation {
-    width: 100%;
-    max-width: @modal-confirmation-max-width;
-  }
+    &-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: @modal-wrapper-padding;
+    }
 
-  &-mask {
-    background: @modal-backdrop-background;
-  }
+    &-content {
+        font: @font-default;
+        padding: @modal-content-padding;
+        color: @gray-darker;
+        box-shadow: @modal-content-shadow;
+    }
 
-  &-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: @modal-wrapper-padding;
-  }
+    &-body,
+    &-header,
+    &-footer {
+        padding: 0;
+        border-radius: 0;
+        border: none;
+        background: none;
+    }
 
-  &-content {
-    font: @font-default;
-    padding: @modal-content-padding;
-    color: @gray-darker;
-  }
+    &-footer {
+        margin: @modal-footer-margin;
+    }
 
-  &-body,
-  &-header,
-  &-footer {
-    padding: 0;
-    border-radius: 0;
-    border: none;
-    background: none;
-  }
+    &-header {
+        margin: @modal-header-margin;
+        padding: @modal-header-padding;
+        border-bottom: @modal-header-border-bottom;
+        font-size: @heading-5-font-size;
+        color: @ink;
+        font-weight: @font-weight-semi-bold;
+    }
 
-  &-footer {
-    margin: @modal-footer-margin;
-  }
+    &-description {
+        line-height: @modal-description-line-height;
+    }
 
-  &-header {
-    margin: @modal-header-margin;
-    padding: @modal-header-padding;
-    border-bottom: @modal-header-border-bottom;
-    font-size: @heading-5-font-size;
-    color: @ink;
-    font-weight: @font-weight-semi-bold;
-  }
+    &-confirm-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin: @modal-confirmation-actions-margin;
+    }
 
-  &-description {
-    line-height: @modal-description-line-height;
-  }
-
-  &-confirm-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin: @modal-confirmation-actions-margin;
-  }
-
-  &-confirm-col {
-    padding: @modal-confirmation-col-padding;
-  }
+    &-confirm-col {
+        padding: @modal-confirmation-col-padding;
+    }
 }

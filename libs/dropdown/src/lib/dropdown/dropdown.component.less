@@ -1,38 +1,40 @@
 @import './dropdown.component.theme.less';
 
 .@{dropdown-prefix-cls} {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
 
-  &-trigger {
-    display: flex;
-    height: 100%;
-  }
-
-  &-menu {
-    width: @dropdown-menu-width;
-    border-radius: @dropdown-menu-border-radius;
-    box-shadow: @dropdown-menu-box-shadow;
-    background-color: @white;
-    padding: @dropdown-menu-padding;
-
-    &-item {
-      height: @dropdown-menu-item-height;
-      font: @font-default;
-      color: @ink;
-      border: @dropdown-menu-item-border;
-
-      &:hover {
-        background-color: @gray-lighter;
-        border-color: @gray-lighter;
-      }
-
-      &:focus {
-        border-radius: @dropdown-menu-item-border-focus-radius;
-        border-color: @green;
-      }
+    &-trigger {
+        display: flex;
+        height: 100%;
     }
-  }
+
+    &-menu {
+        width: @dropdown-menu-width;
+        border-radius: @dropdown-menu-border-radius;
+        box-shadow: @dropdown-menu-box-shadow;
+        background-color: @spy-white;
+        padding: @dropdown-menu-padding;
+
+        &-item {
+            height: @dropdown-menu-item-height;
+            font: @font-default;
+            color: @ink;
+            border: @dropdown-menu-item-border;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                background-color: @gray-lighter;
+                border-color: @gray-lighter;
+            }
+
+            &:focus {
+                border-radius: @dropdown-menu-item-border-focus-radius;
+                border-color: @green;
+            }
+        }
+    }
 }

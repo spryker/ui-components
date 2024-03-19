@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { ApplyAttrsModule } from '@spryker/utils';
 
 import { ButtonComponent } from './button.component';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { SpinnerModule } from '@spryker/spinner';
 
 @NgModule({
-  imports: [CommonModule, ApplyAttrsModule, NzSpinModule],
-  exports: [ButtonComponent],
-  declarations: [ButtonComponent],
+    imports: [CommonModule, ApplyAttrsModule, SpinnerModule],
+    exports: [ButtonComponent],
+    declarations: [ButtonComponent],
 })
 export class ButtonModule {}

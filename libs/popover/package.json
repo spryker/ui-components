@@ -1,15 +1,16 @@
 {
-  "name": "@spryker/popover",
-  "version": "0.1.0",
-  "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12"
-  },
-  "dependencies": {
-    "ng-zorro-antd": "9.3.0",
-    "tslib": "^1.10.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/popover",
+    "version": "1.1.0",
+    "peerDependencies": {
+        "@angular/common": "^15.0.0",
+        "@angular/core": "^15.0.0",
+        "@spryker/styles": "^1.1.0"
+    },
+    "dependencies": {
+        "ng-zorro-antd": "^15.0.3",
+        "tslib": "^2.3.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

@@ -1,45 +1,68 @@
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { InputPasswordModule } from '../input-password.module';
-import { boolean } from '@storybook/addon-knobs';
 import { InputPasswordComponent } from './input-password.component';
 
 export default {
-  title: 'InputPasswordComponent',
-};
+    title: 'InputPasswordComponent',
+    component: InputPasswordComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [InputPasswordModule],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: [
+                'name',
+                'value',
+                'spyId',
+                'placeholder',
+                'outerPrefix',
+                'outerSuffix',
+                'readOnly',
+                'disabled',
+                'required',
+                'attrs',
+            ],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9150',
+            allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        outerPrefix: {
+            control: { type: 'text' },
+        },
+        outerSuffix: {
+            control: { type: 'text' },
+        },
+        attrs: {
+            control: { type: 'object' },
+        },
+    },
+    args: {
+        name: 'input-name',
+        value: 'Password',
+        spyId: 'input-id',
+        placeholder: 'Enter password',
+        outerPrefix: '',
+        outerSuffix: '',
+        attrs: {
+            title: 'Some title',
+        },
+    },
+} as Meta;
 
-export const primary = () => ({
-  moduleMetadata: {
-    imports: [InputPasswordModule],
-  },
-  component: InputPasswordComponent,
-  props: {
-    value: 'Password',
-    disabled: boolean('Disabled', false),
-    readOnly: boolean('ReadOnly', false),
-  },
+export const primary = (args) => ({
+    props: args,
 });
 
-export const withOuterPrefix = () => ({
-  moduleMetadata: {
-    imports: [InputPasswordModule],
-  },
-  component: InputPasswordComponent,
-  props: {
+export const withOuterPrefixAndOuterSuffix = (args) => ({
+    props: args,
+});
+withOuterPrefixAndOuterSuffix.args = {
     outerPrefix: 'prefix',
-    value: 'Password',
-    disabled: boolean('Disabled', false),
-    readOnly: boolean('ReadOnly', false),
-  },
-});
-
-export const withOuterSuffix = () => ({
-  moduleMetadata: {
-    imports: [InputPasswordModule],
-  },
-  component: InputPasswordComponent,
-  props: {
     outerSuffix: 'suffix',
-    value: 'Password',
-    disabled: boolean('Disabled', false),
-    readOnly: boolean('ReadOnly', false),
-  },
-});
+};

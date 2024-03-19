@@ -6,14 +6,8 @@ import { ContextModule, InvokeModule } from '@spryker/utils';
 import { FormItemModule } from '@spryker/form-item';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    InputModule,
-    ContextModule,
-    FormItemModule,
-    InvokeModule,
-  ],
-  declarations: [TableColumnInputComponent],
-  exports: [TableColumnInputComponent],
+    imports: [CommonModule, InputModule, ContextModule, FormItemModule, InvokeModule],
+    declarations: [TableColumnInputComponent],
+    exports: [TableColumnInputComponent],
 })
 export class TableColumnInputModule {}

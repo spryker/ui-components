@@ -110,7 +110,7 @@
         "@rollup/plugin-node-resolve": "^15.2.3",
         "@rollup/plugin-typescript": "^11.1.6",
         "@spryker/frontend-config.prettier": "^0.0.5",
-        "@spryker/frontend-config.stylelint": "^0.0.5",
+        "@spryker/frontend-config.stylelint": "^0.0.6",
         "@storybook/addon-a11y": "^8.0.0",
         "@storybook/addon-designs": "^7.0.9",
         "@storybook/addon-docs": "^8.0.0",

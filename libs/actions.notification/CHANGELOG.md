@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-rc.0](https://github.com/spryker/ui-components/compare/@spryker/actions.notification@1.0.1...@spryker/actions.notification@1.0.2-rc.0) (2024-03-19)
+
+**Note:** Version bump only for package @spryker/actions.notification
+
+
+
+
+
 ## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/actions.notification@1.0.1-next.0...@spryker/actions.notification@1.0.1) (2023-09-11)
 
 **Note:** Version bump only for package @spryker/actions.notification

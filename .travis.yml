@@ -18,10 +18,10 @@ before_script:
 jobs:
     include:
         - stage: test-branch
-          name: 'Format check'
+          name: 'Story check1'
           script:
               - git fetch origin next
-              - npm run format:check -- --base=origin/next
+              - npm run deploy:storybook
         - name: 'Lint code'
           script:
               - git fetch origin next

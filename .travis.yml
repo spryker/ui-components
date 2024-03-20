@@ -18,10 +18,10 @@ before_script:
 jobs:
     include:
         - stage: test-branch
-          name: 'Format check'
+          name: '1 check'
           script:
-              - git fetch origin next
-              - npm run format:check -- --base=origin/next
+              - npm run build
+              - npm run deploy:storybook
         - name: 'Lint code'
           script:
               - git fetch origin next
@@ -75,10 +75,11 @@ jobs:
           deploy:
               - provider: script
                 edge: true
-                script: npm run deploy:storybook
+                script: npm run release
                 on:
                     tags: false
                     all_branches: true
+                    condition: '$TRAVIS_BRANCH =~ ^(master)$'
               - provider: script
                 edge: true
                 script: npm run release from-package

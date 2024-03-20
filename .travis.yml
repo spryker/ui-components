@@ -20,8 +20,8 @@ jobs:
         - stage: test-branch
           name: 'Format check'
           script:
-              - npm run build
-              - npm run deploy:storybook
+              - git fetch origin next
+              - npm run format:check -- --base=origin/next
         - name: 'Lint code'
           script:
               - git fetch origin next
@@ -67,7 +67,6 @@ jobs:
         - stage: deploy
           script:
               - npm run build
-              - npm run deploy:storybook
           before_deploy:
               - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
               - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git

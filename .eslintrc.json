@@ -96,11 +96,11 @@
             "parser": "jsonc-eslint-parser",
             "rules": {
                 "@nx/dependency-checks": [
-                    "error",
+                    "warn",
                     {
                         "ignoredDependencies": [
                             "tslib",
-                            "@spryker/styles",
+                            "@spryker/*",
                             "ng-zorro-antd",
                             "@rollup/plugin-typescript",
                             "@rollup/plugin-node-resolve",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.configurator.table@1.0.1-rc.0...@spryker/data-transformer.configurator.table@2.0.0-rc.1) (2024-03-20)
+
+**Note:** Version bump only for package @spryker/data-transformer.configurator.table
+
+
+
+
+
 ## [1.0.1-rc.0](https://github.com/spryker/ui-components/compare/@spryker/data-transformer.configurator.table@1.0.0...@spryker/data-transformer.configurator.table@1.0.1-rc.0) (2024-03-19)
 
 **Note:** Version bump only for package @spryker/data-transformer.configurator.table

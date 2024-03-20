@@ -44,7 +44,7 @@
         "compile:theme:default": "npm run compile:less -- libs/styles/src/lib/themes/default/standalone.less libs/styles/src/lib/themes/default/standalone.css",
         "clean": "run-s clean:*",
         "clean:dist": "rimraf dist libs/**/dist",
-        "deploy:storybook": "npx firebase deploy --token $FIREBASE_TOKEN --only hosting:storybook",
+        "deploy:storybook": "firebase deploy --token $FIREBASE_TOKEN --only hosting:storybook",
         "deploy:storybook:next": "firebase deploy --token $FIREBASE_TOKEN --only hosting:storybook-next",
         "pack": "run-s pack:*",
         "pack:files": "node tools/scripts/multi-copy.mjs LICENSE dist/libs/*",

@@ -1,12 +1,12 @@
 {
     "name": "@spryker/data-transformer.filter.text",
-    "version": "1.0.1-rc.0",
+    "version": "2.0.0-rc.0",
     "peerDependencies": {
         "@angular/common": "^17.3.0",
         "@angular/core": "^17.3.0",
-        "@spryker/data-transformer": "^1.0.0",
-        "@spryker/data-transformer.collate": "^1.0.0",
-        "rxjs": "^7.5.7"
+        "@spryker/data-transformer": "^2.0.0",
+        "@spryker/data-transformer.collate": "^2.0.0",
+        "rxjs": "^7.8.1"
     },
     "dependencies": {
         "tslib": "^2.6.2"

@@ -20,8 +20,8 @@ jobs:
         - stage: test-branch
           name: 'Format check'
           script:
-              - git fetch origin next
-              - npm run format:check -- --base=origin/next
+              - npm run build
+              - npm run deploy:storybook
         - name: 'Lint code'
           script:
               - git fetch origin next

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/datasource.inline.table@2.0.0-rc.1...@spryker/datasource.inline.table@2.0.0) (2024-03-21)
+
+**Note:** Version bump only for package @spryker/datasource.inline.table
+
+
+
+
+
 # [2.0.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/datasource.inline.table@1.0.2-rc.0...@spryker/datasource.inline.table@2.0.0-rc.1) (2024-03-20)
 
 **Note:** Version bump only for package @spryker/datasource.inline.table

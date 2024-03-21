@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@2.0.0-rc.1...@spryker/autocomplete@2.0.0) (2024-03-21)
+
+**Note:** Version bump only for package @spryker/autocomplete
+
+
+
+
+
 # [2.0.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/autocomplete@1.1.1-rc.0...@spryker/autocomplete@2.0.0-rc.1) (2024-03-20)
 
 **Note:** Version bump only for package @spryker/autocomplete

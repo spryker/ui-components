@@ -1,6 +1,6 @@
 {
     "name": "@spryker/datasource.inline.table",
-    "version": "2.0.0-rc.1",
+    "version": "2.0.0",
     "peerDependencies": {
         "@angular/core": "^17.3.0",
         "@spryker/data-transformer": "^2.0.0",

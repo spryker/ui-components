@@ -1,0 +1,36 @@
+{
+    "name": "actions",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/actions/src",
+    "prefix": "spy",
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:package",
+            "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "options": {
+                "project": "libs/actions/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/actions/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/actions/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/actions/jest.config.ts"
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        }
+    },
+    "tags": ["type:service", "pkg:primary"]
+}

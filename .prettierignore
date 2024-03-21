@@ -18,3 +18,8 @@
 /node_modules/
 /tmp/
 /package-lock.json
+
+.angular
+.nx
+
+/.nx/cache

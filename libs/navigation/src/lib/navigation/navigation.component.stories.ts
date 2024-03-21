@@ -1,7 +1,7 @@
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { Icon, provideIcons } from '@spryker/icon';
 import { SidebarModule } from '@spryker/sidebar';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { NavigationModule } from '../navigation.module';
 import { NavigationComponent } from './navigation.component';
 

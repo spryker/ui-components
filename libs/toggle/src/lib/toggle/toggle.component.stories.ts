@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
-import { ToggleComponent } from './toggle.component';
 import { ToggleModule } from '../toggle.module';
+import { ToggleComponent } from './toggle.component';
 
 export default {
     title: 'ToggleComponent',
@@ -22,6 +22,8 @@ export default {
     },
     args: {
         name: 'toggle-name',
+        disabled: false,
+        value: '',
     },
 } as Meta;
 

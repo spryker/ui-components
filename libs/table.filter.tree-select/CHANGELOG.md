@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.tree-select@1.1.0-next.1...@spryker/table.filter.tree-select@2.0.0-rc.1) (2024-03-20)
+
+**Note:** Version bump only for package @spryker/table.filter.tree-select
+
+
+
+
+
 ## [1.1.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.tree-select@1.1.0-next.1...@spryker/table.filter.tree-select@1.1.1) (2024-03-19)
 
 **Note:** Version bump only for package @spryker/table.filter.tree-select
@@ -12,6 +20,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.1.0-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.filter.tree-select@1.1.0-next.0...@spryker/table.filter.tree-select@1.1.0-next.1) (2024-03-19)
+
+**Note:** Version bump only for package @spryker/table.filter.tree-select
+
+
+
+
+
+# [1.1.0-rc.0](https://github.com/spryker/ui-components/compare/@spryker/table.filter.tree-select@1.1.0-next.0...@spryker/table.filter.tree-select@1.1.0-rc.0) (2024-03-19)
 
 **Note:** Version bump only for package @spryker/table.filter.tree-select
 

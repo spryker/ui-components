@@ -1,5 +1,5 @@
 import { TableActionBase, TableFeatureConfig } from '@spryker/table';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableSelectionRow } from '@spryker/table.feature.selectable';
 
 export interface TableBatchActionsConfig extends TableFeatureConfig {

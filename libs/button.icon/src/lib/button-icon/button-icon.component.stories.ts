@@ -1,8 +1,8 @@
+import { ButtonSize, ButtonType } from '@spryker/button';
+import { IconPlusModule } from '@spryker/icon/icons';
 import { Meta } from '@storybook/angular';
 import { ButtonIconModule } from '../button-icon.module';
 import { ButtonIconComponent } from './button-icon.component';
-import { ButtonSize, ButtonType } from '@spryker/button';
-import { IconPlusModule } from '@spryker/icon/icons';
 
 export default {
     title: 'ButtonIconComponent',
@@ -25,6 +25,9 @@ export default {
         type: {
             control: { type: 'select' },
             options: ButtonType,
+        },
+        disabled: {
+            control: 'boolean',
         },
     },
     args: {

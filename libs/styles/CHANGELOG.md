@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.2](https://github.com/spryker/ui-components/compare/@spryker/styles@1.2.1-rc.1...@spryker/styles@2.0.0-rc.2) (2024-03-20)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+## [1.2.1-rc.1](https://github.com/spryker/ui-components/compare/@spryker/styles@1.2.1-rc.0...@spryker/styles@1.2.1-rc.1) (2024-03-19)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+## [1.2.1-rc.0](https://github.com/spryker/ui-components/compare/@spryker/styles@1.2.0...@spryker/styles@1.2.1-rc.0) (2024-03-19)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
 # [1.2.0](https://github.com/spryker/ui-components/compare/@spryker/styles@1.2.0-next.0...@spryker/styles@1.2.0) (2024-01-22)
 
 **Note:** Version bump only for package @spryker/styles

@@ -55,7 +55,7 @@ export class NotificationWrapperComponent extends Toast {
     state = {
         value: 'inactive',
         params: this.toastPackage.config,
-    };
+    } as const;
 
     constructor(toastrService: ToastrService, toastPackage: ToastPackage) {
         super(toastrService, toastPackage);

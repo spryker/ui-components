@@ -2,7 +2,7 @@ const rootMain = require('../main');
 
 module.exports = {
     ...rootMain,
-    stories: rootMain.stories.map((path) => `../${path}`),
+    stories: ['../../**/*.@(mdx|stories.@(ts))'],
     webpackFinal: async (config, { configType }) => {
         // apply any global webpack configs that might have been specified in .storybook/main.js
         if (rootMain.webpackFinal) {

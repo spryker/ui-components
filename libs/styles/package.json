@@ -1,13 +1,13 @@
 {
     "name": "@spryker/styles",
-    "version": "1.2.0",
+    "version": "2.0.0-rc.2",
     "peerDependencies": {
-        "@angular/common": "^15.0.0",
-        "@angular/core": "^15.0.0"
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0"
     },
     "dependencies": {
-        "ng-zorro-antd": "^15.0.3",
-        "tslib": "^2.3.1"
+        "ng-zorro-antd": "^17.3.0",
+        "tslib": "^2.6.2"
     },
     "publishConfig": {
         "access": "public"

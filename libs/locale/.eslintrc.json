@@ -1,12 +1,16 @@
 {
     "extends": ["../../.eslintrc.json"],
     "ignorePatterns": ["!**/*"],
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2022
+    },
     "overrides": [
         {
             "files": ["./data/**/src/*.ts", "./data/**/src/data/*.ts", "./locales/**/src/index.ts"],
             "rules": {
                 "no-var": 0,
-                "@nrwl/nx/enforce-module-boundaries": 0
+                "@nx/enforce-module-boundaries": 0
             }
         },
         {
@@ -32,7 +36,7 @@
         },
         {
             "files": ["*.html"],
-            "extends": ["plugin:@nrwl/nx/angular-template"],
+            "extends": ["plugin:@nx/angular-template"],
             "rules": {}
         }
     ]

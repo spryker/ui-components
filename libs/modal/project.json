@@ -1,0 +1,72 @@
+{
+    "name": "modal",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/modal/src",
+    "prefix": "spy",
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:package",
+            "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "options": {
+                "project": "libs/modal/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/modal/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/modal/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/modal/jest.config.ts"
+            }
+        },
+        "storybook": {
+            "executor": "@storybook/angular:start-storybook",
+            "options": {
+                "port": 4400,
+                "configDir": "libs/modal/.storybook",
+                "browserTarget": "modal:build-storybook",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "build-storybook": {
+            "executor": "@storybook/angular:build-storybook",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputDir": "dist/storybook/modal",
+                "configDir": "libs/modal/.storybook",
+                "browserTarget": "modal:build-storybook",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        }
+    },
+    "implicitDependencies": ["styles", "locale"],
+    "tags": ["level:molecule", "type:component-service", "pkg:primary"]
+}

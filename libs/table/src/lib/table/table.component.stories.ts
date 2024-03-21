@@ -1,19 +1,19 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, importProvidersFrom, Injectable, Input, OnInit } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { ContextModule, ContextService, DefaultContextSerializationModule, InvokeModule } from '@spryker/utils';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '../../../testing/src';
 import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableColumnListConfig } from '../table-column-list/table-column-list.component';
 import { TableFeatureComponent } from '../table-feature';
-import { CoreTableComponent } from './table.component';
 import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext, TableConfig, TableFeatureLocation } from './table';
+import { CoreTableComponent } from './table.component';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col1: `col1 #${i}`,
@@ -201,7 +201,7 @@ export const primary = (args) => ({
 
             <ng-container *ngSwitchDefault>
                 <div *spyTableFeatureTpl="location; let data = data; let i = i">
-                    Custom Table Feature @ {{ location }}!
+                    Custom Table Feature &#64; {{ location }}!
                     {{ log | spyInvoke : { data: data, i: i } }}
                 </div>
             </ng-container>

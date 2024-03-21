@@ -62,7 +62,7 @@ export class InterceptionComposerImplementation implements InterceptionComposer,
 
     getService<T, N = undefined>(
         token: Type<T> | AbstractType<T> | InjectionToken<T>,
-        skipSelf: boolean = false,
+        skipSelf = false,
         notFoundValue?: N,
     ): T | N {
         const resolvers = [(t: any) => this.getServiceFromParent(t)];

@@ -5,7 +5,7 @@ import {
     TableFeatureComponent,
     TableFeatureLocation,
 } from '@spryker/table';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableSelectionChangeEvent, TableSelectionRow } from '@spryker/table.feature.selectable';
 import { ContextService, multipleIntersectionOfString } from '@spryker/utils';
 import { ButtonSize } from '@spryker/button';

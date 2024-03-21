@@ -1,30 +1,24 @@
 {
-    "npmScope": "spryker",
     "affected": {
         "defaultBase": "master"
     },
     "tasksRunnerOptions": {
         "default": {
-            "runner": "@nrwl/nx-cloud",
             "options": {
-                "accessToken": "MmFmYTcwM2MtNDI4Ny00ZDVkLTg1YjktYzZiYjI0ZWVkODU1fHJlYWQtd3JpdGU=",
-                "cacheableOperations": ["build", "test", "lint", "e2e", "build-storybook"],
                 "canTrackAnalytics": false,
-                "showUsageWarnings": true,
-                "parallel": 4
+                "showUsageWarnings": true
             }
         }
     },
     "defaultProject": "utils",
     "generators": {
-        "@nrwl/angular:application": {
+        "@nx/angular:application": {
             "style": "less",
             "linter": "eslint",
             "unitTestRunner": "jest",
-            "e2eTestRunner": "protractor",
             "prefix": "spy"
         },
-        "@nrwl/angular:library": {
+        "@nx/angular:library": {
             "linter": "eslint",
             "unitTestRunner": "jest",
             "prefix": "spy",
@@ -36,10 +30,10 @@
             "changeDetection": "OnPush",
             "viewEncapsulation": "None"
         },
-        "@nrwl/storybook:configuration": {
+        "@nx/storybook:configuration": {
             "uiFramework": "@storybook/angular"
         },
-        "@nrwl/angular:component": {
+        "@nx/angular:component": {
             "style": "less"
         }
     },
@@ -47,19 +41,38 @@
     "targetDefaults": {
         "build": {
             "dependsOn": ["^build"],
-            "inputs": ["production", "^production"]
-        },
-        "test": {
-            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
-        },
-        "lint": {
-            "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+            "inputs": ["production", "^production"],
+            "cache": true
         },
         "build-storybook": {
-            "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
+            "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/.storybook/**/*",
+                "{projectRoot}/.storybook/**/*",
+                "{projectRoot}/tsconfig.storybook.json"
+            ],
+            "cache": true
         },
         "compile": {
             "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
+        },
+        "@nx/jest:jest": {
+            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+            "cache": true,
+            "options": {
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        },
+        "@nx/eslint:lint": {
+            "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+            "cache": true
         }
     },
     "namedInputs": {
@@ -72,10 +85,14 @@
             "!{projectRoot}/jest.config.[jt]s",
             "!{projectRoot}/.eslintrc.json",
             "!{projectRoot}/.storybook/**/*",
-            "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
+            "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+            "!{projectRoot}/tsconfig.storybook.json",
+            "!{projectRoot}/src/test-setup.[jt]s"
         ]
     },
     "cli": {
         "analytics": false
-    }
+    },
+    "nxCloudAccessToken": "MmFmYTcwM2MtNDI4Ny00ZDVkLTg1YjktYzZiYjI0ZWVkODU1fHJlYWQtd3JpdGU=",
+    "parallel": 4
 }

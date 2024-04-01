@@ -109,12 +109,23 @@
             - 'COVERAGE=true npm run affected:test -- --all --parallel'
         shell: 'BASH'
 - pipeline: 'Deploy'
-  events:
-      - type: 'PUSH'
-        refs:
-            - '(^((?!(master|republish/master|next|republish/next|beta|republish/beta|alpha|republish/alpha|rc|republish/rc)$).)*$)'
+  on: 'CLICK'
+  refs:
+      - 'refs/heads/manual-run-disabled'
   auto_clear_cache: true
   fail_on_prepare_env_warning: true
+  trigger_conditions:
+      - trigger_condition: 'OR'
+        trigger_operands:
+            - trigger_condition: 'SUCCESS_PIPELINE'
+              trigger_project_name: 'ui-components'
+              trigger_pipeline_name: 'Format check / Lint code / Unit Tests / Build (test-branch)'
+            - trigger_condition: 'SUCCESS_PIPELINE'
+              trigger_project_name: 'ui-components'
+              trigger_pipeline_name: 'Format check / Lint code / Unit Tests / Build (test-master)'
+            - trigger_condition: 'SUCCESS_PIPELINE'
+              trigger_project_name: 'ui-components'
+              trigger_pipeline_name: 'Format check / Lint code / Unit Tests / Build (test-next)'
   resources: 'NANO'
   actions:
       - action: 'npm run release'

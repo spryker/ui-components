@@ -41,6 +41,14 @@
             - 'npm run build-non-libs'
             - 'npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --all --parallel'
         shell: 'BASH'
+      - action: 'Trigger Deploy pipeline'
+        type: 'RUN_NEXT_PIPELINE'
+        clear_cache: true
+        comment: 'Triggered by $BUDDY_PIPELINE_NAME execution #$BUDDY_EXECUTION_ID'
+        priority: 'NORMAL'
+        revision: 'INHERIT'
+        next_project_name: 'ui-components'
+        next_pipeline_name: 'Deploy'
 - pipeline: 'Format check / Lint code / Unit Tests / Build (test-next)'
   events:
       - type: 'PUSH'
@@ -75,6 +83,14 @@
         execute_commands:
             - 'COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --all --parallel'
         shell: 'BASH'
+      - action: 'Trigger Deploy Pipeline'
+        type: 'RUN_NEXT_PIPELINE'
+        clear_cache: true
+        comment: 'Triggered by $BUDDY_PIPELINE_NAME execution #$BUDDY_EXECUTION_ID'
+        priority: 'NORMAL'
+        revision: 'INHERIT'
+        next_project_name: 'ui-components'
+        next_pipeline_name: 'Deploy'
 - pipeline: 'Format check / Lint code / Unit Tests / Build (test-master)'
   events:
       - type: 'PUSH'
@@ -108,24 +124,20 @@
         execute_commands:
             - 'COVERAGE=true npm run affected:test -- --all --parallel'
         shell: 'BASH'
+      - action: 'Trigger Deploy pipeline'
+        type: 'RUN_NEXT_PIPELINE'
+        clear_cache: true
+        comment: 'Triggered by $BUDDY_PIPELINE_NAME execution #$BUDDY_EXECUTION_ID'
+        priority: 'NORMAL'
+        revision: 'INHERIT'
+        next_project_name: 'ui-components'
+        next_pipeline_name: 'Deploy'
 - pipeline: 'Deploy'
   on: 'CLICK'
   refs:
-      - 'refs/heads/manual-run-disabled'
+      - 'refs/heads/*'
   auto_clear_cache: true
   fail_on_prepare_env_warning: true
-  trigger_conditions:
-      - trigger_condition: 'OR'
-        trigger_operands:
-            - trigger_condition: 'SUCCESS_PIPELINE'
-              trigger_project_name: 'ui-components'
-              trigger_pipeline_name: 'Format check / Lint code / Unit Tests / Build (test-branch)'
-            - trigger_condition: 'SUCCESS_PIPELINE'
-              trigger_project_name: 'ui-components'
-              trigger_pipeline_name: 'Format check / Lint code / Unit Tests / Build (test-master)'
-            - trigger_condition: 'SUCCESS_PIPELINE'
-              trigger_project_name: 'ui-components'
-              trigger_pipeline_name: 'Format check / Lint code / Unit Tests / Build (test-next)'
   resources: 'NANO'
   actions:
       - action: 'npm run release'

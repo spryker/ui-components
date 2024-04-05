@@ -1,151 +1,28 @@
-- pipeline: 'Format check / Lint code / Unit Tests / Build (test-branch)'
-  events:
-      - type: 'PUSH'
-        refs:
-            - '(^((?!(master|next)$).)*$)'
-  terminate_stale_runs: true
-  auto_clear_cache: true
-  fail_on_prepare_env_warning: true
-  resources: 'LARGE'
-  actions:
-      - action: 'Format check'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'git fetch origin next'
-            - 'npm ci'
-            - 'npm run format:check -- --base=origin/next'
-        shell: 'BASH'
-      - action: 'Lint code'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --all --parallel'
-            - 'npm run stylelint'
-        shell: 'BASH'
-      - action: 'Unit Tests'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --all --parallel'
-        shell: 'BASH'
-      - action: 'Build'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'git fetch origin next'
-            - 'npm run build-non-libs'
-            - 'npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --all --parallel'
-        shell: 'BASH'
-      - action: 'Trigger Deploy pipeline'
-        type: 'RUN_NEXT_PIPELINE'
-        clear_cache: true
-        comment: 'Triggered by $BUDDY_PIPELINE_NAME execution #$BUDDY_EXECUTION_ID'
-        priority: 'NORMAL'
-        revision: 'INHERIT'
-        next_project_name: 'ui-components'
-        next_pipeline_name: 'Deploy'
-- pipeline: 'Format check / Lint code / Unit Tests / Build (test-next)'
-  events:
-      - type: 'PUSH'
-        refs:
-            - 'refs/heads/next'
-  terminate_stale_runs: true
-  auto_clear_cache: true
-  fail_on_prepare_env_warning: true
-  resources: 'NANO'
-  actions:
-      - action: 'Format check'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'git fetch origin master'
-            - 'npm ci'
-            - 'npm run format:check -- --base=origin/master'
-        shell: 'BASH'
-      - action: 'Lint code'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --all --parallel'
-            - 'npm run stylelint'
-        shell: 'BASH'
-      - action: 'Unit Tests'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --all --parallel'
-        shell: 'BASH'
-      - action: 'Trigger Deploy Pipeline'
-        type: 'RUN_NEXT_PIPELINE'
-        clear_cache: true
-        comment: 'Triggered by $BUDDY_PIPELINE_NAME execution #$BUDDY_EXECUTION_ID'
-        priority: 'NORMAL'
-        revision: 'INHERIT'
-        next_project_name: 'ui-components'
-        next_pipeline_name: 'Deploy'
-- pipeline: 'Format check / Lint code / Unit Tests / Build (test-master)'
-  events:
-      - type: 'PUSH'
-        refs:
-            - 'refs/heads/master'
-  terminate_stale_runs: true
-  auto_clear_cache: true
-  fail_on_prepare_env_warning: true
-  resources: 'NANO'
-  actions:
-      - action: 'Format check'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'npm ci'
-            - 'npm run format:check'
-        shell: 'BASH'
-      - action: 'Lint code'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'npm run affected:lint -- --all --parallel'
-            - 'npm run stylelint'
-        shell: 'BASH'
-      - action: 'Unit Tests'
-        type: 'BUILD'
-        docker_image_name: 'library/node'
-        docker_image_tag: '18.13.0'
-        execute_commands:
-            - 'COVERAGE=true npm run affected:test -- --all --parallel'
-        shell: 'BASH'
-      - action: 'Trigger Deploy pipeline'
-        type: 'RUN_NEXT_PIPELINE'
-        clear_cache: true
-        comment: 'Triggered by $BUDDY_PIPELINE_NAME execution #$BUDDY_EXECUTION_ID'
-        priority: 'NORMAL'
-        revision: 'INHERIT'
-        next_project_name: 'ui-components'
-        next_pipeline_name: 'Deploy'
 - pipeline: 'Deploy'
   on: 'CLICK'
   refs:
       - 'refs/heads/*'
   auto_clear_cache: true
   fail_on_prepare_env_warning: true
-  resources: 'NANO'
+  resources: 'LARGE'
   actions:
+      - action: 'Checkout & Build'
+        type: 'BUILD'
+        docker_image_name: 'library/node'
+        docker_image_tag: '18.13.0'
+        execute_commands:
+            - 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
+            - 'git remote add -f pub https://${GITHUB_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
+            - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
+            - 'git checkout $BUDDY_EXECUTION_BRANCH'
+            - 'npm ci'
+            - 'npm run build'
+        shell: 'BASH'
       - action: 'npm run release'
         type: 'BUILD'
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
             - 'npm run release'
         shell: 'BASH'
         trigger_conditions:
@@ -160,7 +37,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
             - 'npm run release from-package'
         shell: 'BASH'
         trigger_conditions:
@@ -175,7 +51,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
             - 'npm run release-next'
         shell: 'BASH'
         trigger_conditions:
@@ -190,7 +65,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
             - 'npm run release-next from-package'
         shell: 'BASH'
         trigger_conditions:
@@ -205,7 +79,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
             - 'npm run release-tag'
         shell: 'BASH'
         trigger_conditions:
@@ -228,7 +101,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
             - 'npm run release-tag from-package'
         shell: 'BASH'
         trigger_conditions:

@@ -135,7 +135,16 @@
 - pipeline: 'Deploy'
   on: 'CLICK'
   refs:
-      - 'refs/heads/*'
+      - 'refs/heads/master'
+      - 'refs/heads/republish/master'
+      - 'refs/heads/next'
+      - 'refs/heads/republish/next'
+      - 'refs/heads/alpha'
+      - 'refs/heads/beta'
+      - 'refs/heads/rc'
+      - 'refs/heads/republish/alpha'
+      - 'refs/heads/republish/beta'
+      - 'refs/heads/republish/rc'
   auto_clear_cache: true
   fail_on_prepare_env_warning: true
   resources: 'LARGE'
@@ -147,17 +156,17 @@
         execute_commands:
             - 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
             - 'git remote rm repository_url'
+            - 'npm ci'
+            - 'npm run build'
+            - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
+            - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
+            - 'git checkout $BUDDY_EXECUTION_BRANCH'
         shell: 'BASH'
       - action: 'npm run release'
         type: 'BUILD'
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
-            - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
-            - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
-            - 'git checkout $BUDDY_EXECUTION_BRANCH'
             - 'npm run release'
         shell: 'BASH'
         trigger_conditions:
@@ -172,11 +181,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
-            - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
-            - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
-            - 'git checkout $BUDDY_EXECUTION_BRANCH'
             - 'npm run release from-package'
         shell: 'BASH'
         trigger_conditions:
@@ -191,11 +195,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
-            - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
-            - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
-            - 'git checkout $BUDDY_EXECUTION_BRANCH'
             - 'npm run release-next'
         shell: 'BASH'
         trigger_conditions:
@@ -210,11 +209,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
-            - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
-            - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
-            - 'git checkout $BUDDY_EXECUTION_BRANCH'
             - 'npm run release-next from-package'
         shell: 'BASH'
         trigger_conditions:
@@ -229,11 +223,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
-            - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
-            - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
-            - 'git checkout $BUDDY_EXECUTION_BRANCH'
             - 'npm run release-tag'
         shell: 'BASH'
         trigger_conditions:
@@ -256,11 +245,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
-            - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
-            - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
-            - 'git checkout $BUDDY_EXECUTION_BRANCH'
             - 'npm run release-tag from-package'
         shell: 'BASH'
         trigger_conditions:

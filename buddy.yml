@@ -1,4 +1,4 @@
-- pipeline: 'Format check / Lint code / Unit Tests / Build (test-branch)'
+- pipeline: 'Format check / Lint code / Unit Tests / Build (not releasable branches)'
   events:
       - type: 'PUSH'
         refs:
@@ -49,7 +49,7 @@
         revision: 'INHERIT'
         next_project_name: 'ui-components'
         next_pipeline_name: 'Deploy'
-- pipeline: 'Format check / Lint code / Unit Tests / Build (test-next)'
+- pipeline: 'Format check / Lint code / Unit Tests / Build (next)'
   events:
       - type: 'PUSH'
         refs:
@@ -91,7 +91,7 @@
         revision: 'INHERIT'
         next_project_name: 'ui-components'
         next_pipeline_name: 'Deploy'
-- pipeline: 'Format check / Lint code / Unit Tests / Build (test-master)'
+- pipeline: 'Format check / Lint code / Unit Tests / Build (master)'
   events:
       - type: 'PUSH'
         refs:

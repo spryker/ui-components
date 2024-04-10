@@ -11,8 +11,11 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
+            - 'npm ci'
+            - 'npm run build'
             - 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
-            - 'git remote add -f pub https://${GITHUB_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
+            - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
+            - 'git remote rm repository_url'
             - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
             - 'git checkout $BUDDY_EXECUTION_BRANCH'
         shell: 'BASH'
@@ -21,8 +24,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
             - 'npm run release'
         shell: 'BASH'
         trigger_conditions:
@@ -37,8 +38,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
             - 'npm run release from-package'
         shell: 'BASH'
         trigger_conditions:
@@ -53,8 +52,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
             - 'npm run release-next'
         shell: 'BASH'
         trigger_conditions:
@@ -69,8 +66,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
             - 'npm run release-next from-package'
         shell: 'BASH'
         trigger_conditions:
@@ -85,8 +80,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
             - 'npm run release-tag'
         shell: 'BASH'
         trigger_conditions:
@@ -109,8 +102,6 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm ci'
-            - 'npm run build'
             - 'npm run release-tag from-package'
         shell: 'BASH'
         trigger_conditions:

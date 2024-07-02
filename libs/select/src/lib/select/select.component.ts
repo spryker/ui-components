@@ -17,14 +17,14 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
-import { DatasourceTriggerElement } from '@spryker/datasource.trigger';
 import { DatasourceDependableElement } from '@spryker/datasource.dependable';
+import { DatasourceTriggerElement } from '@spryker/datasource.trigger';
 import { IconArrowDownModule, IconCheckModule, IconRemoveModule } from '@spryker/icon/icons';
 import { I18nService } from '@spryker/locale';
 import { ToBoolean, ToJson } from '@spryker/utils';
+import { NzSelectComponent } from 'ng-zorro-antd/select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
-import { NzSelectComponent } from 'ng-zorro-antd/select';
 
 import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from './types';
 
@@ -66,6 +66,17 @@ export class SelectComponent
     @Input() @ToBoolean() disableClear = false;
     @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
+
+    _tags: boolean;
+    get tags(): boolean {
+        return this._tags;
+    }
+    @Input() @ToBoolean() set tags(value: boolean) {
+        if (value) {
+            this.multiple = true;
+            this._tags = value;
+        }
+    }
 
     @Output() valueChange = new EventEmitter<SelectValueSelected>();
     @Output() searchChange = new EventEmitter<string>();
@@ -148,6 +159,10 @@ export class SelectComponent
             value = this.getValueArrayForSelectAllAction(value);
         }
 
+        if (Array.isArray(value) && this.tags) {
+            this.updateSelectWithNewTags(value);
+        }
+
         this.updateTitlesArrayForSelectedValues(value);
         this.mappedValue = value;
         this.valueChange.emit(value);
@@ -206,6 +221,13 @@ export class SelectComponent
             this.disabled = !this.mappedOptions.length;
         }
 
+        this.updateValue();
+    }
+
+    private updateSelectWithNewTags(value: SelectValue[]): void {
+        const newValues = value.filter((value) => !this.isValueExist(value));
+        this.allValues = [...this.allValues, ...newValues];
+        this.mappedOptions = [...this.mappedOptions, ...newValues.map((value) => ({ value, title: String(value) }))];
         this.updateValue();
     }
 

@@ -12,7 +12,11 @@
     --spy-select-dropdown-menu-item-border,
     @spy-border-width-base solid @transparent
 );
-@select-dropdown-menu-item-wrapped-padding: var(--spy-select-dropdown-menu-item-wrapped-padding, 0 12px);
+@select-dropdown-menu-item-wrapped-padding-x: var(--spy-select-dropdown-menu-item-wrapped-padding-x, 12px);
+@select-dropdown-menu-item-wrapped-padding: var(
+    --spy-select-dropdown-menu-item-wrapped-padding,
+    0 @select-dropdown-menu-item-wrapped-padding-x
+);
 @select-arrow-right: var(--spy-select-arrow-right, 14px);
 @select-arrow-size: var(--spy-select-arrow-size, 12px);
 @select-border-radius: var(--spy-select-border-radius, @border-radius-small);
@@ -26,6 +30,7 @@
     --spy-select-multiple-unchecked-border,
     @checkbox-icon-border-width solid @gray-light
 );
+@select-tag-unchecked-icon-left: var(-spy-select-tag-unchecked-icon-left, 2p);
 @select-selection-clear-right: var(--spy-select-selection-clear-right, 9px);
 @select-selection-clear-btn-size: var(--spy-select-selection-clear-btn-size, 24px);
 @select-selection-clear-btn-line-height: var(--spy-select-selection-clear-btn-line-height, 24px);

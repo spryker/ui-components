@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, importProvidersFrom, Injectable, Input, OnInit } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
@@ -17,6 +16,7 @@ import {
 } from '@spryker/table';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 
 import { TableEditableFeatureModule } from './table-editable-feature.module';
 import { TableEditableService } from './table-editable-feature.service';
@@ -171,7 +171,7 @@ export default {
                     formInputName: 'form-input-name',
                     initialData: {
                         data: [
-                            { col3: 'Option 1' },
+                            { col3: 'Option 1', hideCancel: true },
                             { col1: 'value' },
                             { col1: 'value', col3: 'Option 1', col4: 'value' },
                             { col2: 'value' },

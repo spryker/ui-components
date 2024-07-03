@@ -155,7 +155,7 @@
         docker_image_tag: '18.13.0'
         execute_commands:
             - 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
-            - 'git remote rm repository_url'
+            - 'git remote rm origin'
             - 'npm ci'
             - 'npm run build'
             - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'

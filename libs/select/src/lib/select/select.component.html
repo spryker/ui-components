@@ -19,7 +19,7 @@
     [nzMaxTagCount]="0"
     [nzMaxTagPlaceholder]="tagPlaceholder"
     [class.ant-select--not-searchable]="!search"
-    nzDropdownClassName="ant-select--dropdown"
+    [nzDropdownClassName]="['ant-select--dropdown', tags ? 'ant-select--dropdown-tags' : '']"
     class="ant-select--custom"
     #selectContainerRef
 >
@@ -40,6 +40,7 @@
             class="ant-select-item-option-content-wrapper"
             [class.ant-select-item-option-content-wrapper-selected]="checkSelectedState(option.value)"
             [title]="option.title"
+            [attr.value]="option.value"
         >
             @if (multiple) {
             <span class="ant-select-item-option-state__multiChecked"></span>

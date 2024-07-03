@@ -207,22 +207,6 @@
                         align-items: center;
                         padding: @select-dropdown-menu-item-wrapped-padding;
                         border: @select-dropdown-menu-item-border;
-
-                        &-selected {
-                            &:not(.@{select-prefix-cls}-item-option-disabled) {
-                                color: @green;
-                                background-color: @green-lighter;
-                            }
-
-                            .@{select-prefix-cls}-item-option__icon--checked,
-                            .@{select-prefix-cls}-item-option-state__multiChecked {
-                                display: block;
-                            }
-
-                            .@{select-prefix-cls}-item-option-state__multiUnChecked {
-                                display: none;
-                            }
-                        }
                     }
 
                     &-label {
@@ -298,6 +282,23 @@
                     .@{select-prefix-cls}-item-option-state__multiUnChecked {
                         border-color: @gray-light;
                         background-color: @gray-lighter;
+                    }
+                }
+
+                &-content-wrapper-selected,
+                &-selected {
+                    &:not(.@{select-prefix-cls}-item-option-disabled) {
+                        color: @green;
+                        background-color: @green-lighter;
+                    }
+
+                    .@{select-prefix-cls}-item-option__icon--checked,
+                    .@{select-prefix-cls}-item-option-state__multiChecked {
+                        display: block;
+                    }
+
+                    .@{select-prefix-cls}-item-option-state__multiUnChecked {
+                        display: none;
                     }
                 }
             }

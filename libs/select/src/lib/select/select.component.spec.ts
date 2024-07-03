@@ -245,7 +245,7 @@ describe('SelectComponent', () => {
             host.detectChanges();
 
             nzOptionElems = host.fixture.debugElement.queryAll(By.css('nz-option'));
-            expect(nzOptionElems[2].properties.nzValue).toBe('A');
+            expect(nzOptionElems[0].properties.nzValue).toBe('A');
         });
 
         it('Select All correctly triggers selection of all items', async () => {

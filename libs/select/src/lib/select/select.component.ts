@@ -92,6 +92,7 @@ export class SelectComponent
     mappedValue?: SelectValueSelected;
     selectAllValue = 'select-all';
     selectedList: string[] = [];
+    allTags: SelectValue[] = [];
 
     triggerElement$ = new ReplaySubject<HTMLElement>(1);
     mappedValue$ = new ReplaySubject<SelectValueSelected>(1);
@@ -201,11 +202,17 @@ export class SelectComponent
         this.datasourceOptions$.next(options$ as Observable<SelectOption[]>);
     }
 
-    private updateTitlesArrayForSelectedValues(value: SelectValue | SelectValue[]): void {
+    private updateTitlesArrayForSelectedValues(value?: SelectValue | SelectValue[]): void {
+        if (!value) {
+            return;
+        }
+
         if (Array.isArray(value)) {
-            this.selectedList = this.mappedOptions
-                .filter((option) => value.includes(option.value))
-                .map((selectOption) => selectOption.title);
+            this.selectedList = value.map((_value) => {
+                const title = this.mappedOptions.find((option) => option.value === _value)?.title;
+
+                return title ?? String(_value);
+            });
         }
     }
 
@@ -221,27 +228,37 @@ export class SelectComponent
             this.disabled = !this.mappedOptions.length;
         }
 
-        this.updateValue();
-    }
+        if (this.tags) {
+            this.updateSelectWithNewTags();
+        }
 
-    private updateSelectWithNewTags(value: SelectValue[]): void {
-        const newValues = value.filter((value) => !this.isValueExist(value));
-        this.allValues = [...this.allValues, ...newValues];
-        this.mappedOptions = [...this.mappedOptions, ...newValues.map((value) => ({ value, title: String(value) }))];
         this.updateValue();
     }
 
     private updateValue(): void {
         this.mappedValue =
-            this.multiple && Array.isArray(this.value)
+            this.multiple && this.serverSearch
+                ? this.value
+                : this.multiple && Array.isArray(this.value)
                 ? this.value.filter((value) => this.isValueExist(value))
                 : this.isValueExist(this.value)
                 ? this.value
                 : undefined;
 
-        if (this.mappedValue) {
-            this.updateTitlesArrayForSelectedValues(this.mappedValue);
-        }
+        this.updateTitlesArrayForSelectedValues(this.mappedValue);
+    }
+
+    private updateSelectWithNewTags(value?: SelectValue[]): void {
+        const tags = value !== undefined ? value.filter((value) => !this.isValueExist(value)) : this.allTags;
+        const newTags = tags.filter((tag) => !this.allTags.includes(tag));
+
+        this.allValues = [...tags, ...this.allValues];
+        this.mappedOptions = [
+            ...tags.map((value) => ({ value, title: String(value) })),
+            ...this.mappedOptions.filter((option) => !tags.includes(option.value)),
+        ];
+        this.allTags = [...newTags, ...this.allTags];
+        this.updateValue();
     }
 
     private isValueExist(value?: any): boolean {
@@ -249,7 +266,7 @@ export class SelectComponent
     }
 
     private isSelectAllAction(value: SelectValue[]): boolean {
-        return this.multiple && value[value.length - 1] === this.selectAllValue;
+        return this.multiple && value.at(-1) === this.selectAllValue;
     }
 
     private getValueArrayForSelectAllAction(value: SelectValue[]): SelectValue[] {

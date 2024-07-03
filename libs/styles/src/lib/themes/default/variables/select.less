@@ -12,7 +12,11 @@
     --spy-select-dropdown-menu-item-border,
     @spy-border-width-base solid @transparent
 );
-@select-dropdown-menu-item-wrapped-padding: var(--spy-select-dropdown-menu-item-wrapped-padding, 0 12px);
+@select-dropdown-menu-item-wrapped-padding-x: var(--spy-select-dropdown-menu-item-wrapped-padding-x, 12px);
+@select-dropdown-menu-item-wrapped-padding: var(
+    --spy-select-dropdown-menu-item-wrapped-padding,
+    0 @select-dropdown-menu-item-wrapped-padding-x
+);
 @select-arrow-right: var(--spy-select-arrow-right, 14px);
 @select-arrow-size: var(--spy-select-arrow-size, 12px);
 @select-border-radius: var(--spy-select-border-radius, @border-radius-small);
@@ -20,12 +24,14 @@
 @select-menu-horizontal-padding: var(--spy-select-menu-horizontal-padding, 15px);
 @select-menu-margin: var(--spy-select-menu-margin, 7px 0);
 @select-multiple-selector-padding: var(--spy-select-multiple-selector-padding, 0 30px 0 11px);
+@select-tag-selector-padding: var(--spy-select-tag-selector-padding, 5px 30px 5px 11px);
 @select-multiple-padding-vertical: var(--spy-select-multiple-padding-vertical, 0px);
 @select-multiple-padding-horizontal: var(--spy-select-multiple-padding-horizontal, 4px);
 @select-multiple-unchecked-border: var(
     --spy-select-multiple-unchecked-border,
     @checkbox-icon-border-width solid @gray-light
 );
+@select-tag-unchecked-icon-left: var(--spy-select-tag-unchecked-icon-left, 2px);
 @select-selection-clear-right: var(--spy-select-selection-clear-right, 9px);
 @select-selection-clear-btn-size: var(--spy-select-selection-clear-btn-size, 24px);
 @select-selection-clear-btn-line-height: var(--spy-select-selection-clear-btn-line-height, 24px);
@@ -50,3 +56,7 @@
 @checkbox-multi-select-checked-top: var(--spy-checkbox-multi-select-checked-top, 3px);
 @checkbox-multi-select-checked-left: var(--spy-checkbox-multi-select-checked-left, 6px);
 @checkbox-multi-select-checked-transform: var(--spy-checkbox-multi-select-checked-transform, rotate(45deg));
+@select-tag-width: var(--spy-select-tag-width, 20px);
+@select-tag-icon-size: var(--spy-select-tag-icon-size, 8px);
+@select-tag-gap: var(--spy-select-tag-gap, 8px);
+@select-tag-input-min-width: var(--spy-select-tag-input-min-width, 100px);

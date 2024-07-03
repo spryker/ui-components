@@ -17,14 +17,14 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
-import { DatasourceTriggerElement } from '@spryker/datasource.trigger';
 import { DatasourceDependableElement } from '@spryker/datasource.dependable';
+import { DatasourceTriggerElement } from '@spryker/datasource.trigger';
 import { IconArrowDownModule, IconCheckModule, IconRemoveModule } from '@spryker/icon/icons';
 import { I18nService } from '@spryker/locale';
 import { ToBoolean, ToJson } from '@spryker/utils';
+import { NzOptionComponent, NzSelectComponent } from 'ng-zorro-antd/select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
-import { NzSelectComponent } from 'ng-zorro-antd/select';
 
 import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from './types';
 
@@ -67,8 +67,20 @@ export class SelectComponent
     @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
 
+    _tags: boolean;
+    get tags(): boolean {
+        return this._tags;
+    }
+    @Input() @ToBoolean() set tags(value: boolean) {
+        if (value) {
+            this.multiple = true;
+            this._tags = value;
+        }
+    }
+
     @Output() valueChange = new EventEmitter<SelectValueSelected>();
     @Output() searchChange = new EventEmitter<string>();
+    @Output() tagClick = new EventEmitter<SelectValue>();
 
     checkIcon = IconCheckModule.icon;
     arrowDownIcon = IconArrowDownModule.icon;
@@ -81,6 +93,8 @@ export class SelectComponent
     mappedValue?: SelectValueSelected;
     selectAllValue = 'select-all';
     selectedList: string[] = [];
+    allTags: SelectValue[] = [];
+    maxTagCount = this.tags ? Infinity : 0;
 
     triggerElement$ = new ReplaySubject<HTMLElement>(1);
     mappedValue$ = new ReplaySubject<SelectValueSelected>(1);
@@ -148,15 +162,19 @@ export class SelectComponent
             value = this.getValueArrayForSelectAllAction(value);
         }
 
+        if (Array.isArray(value) && this.tags) {
+            this.updateSelectWithNewTags(value);
+        }
+
         this.updateTitlesArrayForSelectedValues(value);
-        this.mappedValue = value;
-        this.valueChange.emit(value);
-        // FIXME: This is a workaround for the issue with the native select value emits the previous value
-        setTimeout(() => {
-            this.selectRef?.nativeElement.dispatchEvent(this.inputEvent);
-            this.selectRef?.nativeElement.dispatchEvent(this.changeEvent);
-        });
-        this.mappedValue$.next(this.mappedValue);
+        this.emitValueChange(value);
+    }
+
+    onTagClick(event: Event, item: NzOptionComponent): void {
+        event.stopPropagation();
+        const value = (this.mappedValue as SelectValue[])?.filter((value) => value !== item.nzValue);
+        this.emitValueChange(value);
+        this.tagClick.emit(item.nzValue);
     }
 
     handleSearchChange(value: string): void {
@@ -167,6 +185,17 @@ export class SelectComponent
         if (!this.mappedValue) {
             this.mappedValue$.next(this.mappedValue);
         }
+    }
+
+    private emitValueChange(value: SelectValue | SelectValue[]): void {
+        this.mappedValue = value;
+        this.valueChange.emit(value);
+        // FIXME: This is a workaround for the issue with the native select value emits the previous value
+        setTimeout(() => {
+            this.selectRef?.nativeElement.dispatchEvent(this.inputEvent);
+            this.selectRef?.nativeElement.dispatchEvent(this.changeEvent);
+        });
+        this.mappedValue$.next(this.mappedValue);
     }
 
     private initDatasource(): void {
@@ -186,11 +215,17 @@ export class SelectComponent
         this.datasourceOptions$.next(options$ as Observable<SelectOption[]>);
     }
 
-    private updateTitlesArrayForSelectedValues(value: SelectValue | SelectValue[]): void {
+    private updateTitlesArrayForSelectedValues(value?: SelectValue | SelectValue[]): void {
+        if (!value) {
+            return;
+        }
+
         if (Array.isArray(value)) {
-            this.selectedList = this.mappedOptions
-                .filter((option) => value.includes(option.value))
-                .map((selectOption) => selectOption.title);
+            this.selectedList = value.map((_value) => {
+                const title = this.mappedOptions.find((option) => option.value === _value)?.title;
+
+                return title ?? String(_value);
+            });
         }
     }
 
@@ -206,20 +241,40 @@ export class SelectComponent
             this.disabled = !this.mappedOptions.length;
         }
 
+        if (this.tags) {
+            this.updateSelectWithNewTags();
+        }
+
         this.updateValue();
     }
 
     private updateValue(): void {
         this.mappedValue =
-            this.multiple && Array.isArray(this.value)
+            this.multiple && this.serverSearch
+                ? this.value
+                : this.multiple && Array.isArray(this.value)
                 ? this.value.filter((value) => this.isValueExist(value))
                 : this.isValueExist(this.value)
                 ? this.value
                 : undefined;
 
-        if (this.mappedValue) {
-            this.updateTitlesArrayForSelectedValues(this.mappedValue);
-        }
+        this.updateTitlesArrayForSelectedValues(this.mappedValue);
+    }
+
+    private updateSelectWithNewTags(value?: SelectValue[]): void {
+        const _tags =
+            value !== undefined
+                ? value.filter((value) => !this.isValueExist(value))
+                : [...this.allTags, ...(this.serverSearch ? (this.value as SelectValue[]) : [])];
+        const tags = [...new Set(_tags)];
+        const newTags = tags.filter((tag) => !this.allTags.includes(tag));
+        const newValues = tags.filter((tag) => !this.mappedOptions.find((option) => option.value === tag));
+
+        this.allValues = [...newValues, ...this.allValues];
+        this.mappedOptions = [...newValues.map((value) => ({ value, title: String(value) })), ...this.mappedOptions];
+        this.allTags = [...newTags, ...this.allTags];
+
+        this.updateValue();
     }
 
     private isValueExist(value?: any): boolean {
@@ -227,7 +282,7 @@ export class SelectComponent
     }
 
     private isSelectAllAction(value: SelectValue[]): boolean {
-        return this.multiple && value[value.length - 1] === this.selectAllValue;
+        return this.multiple && value.at(-1) === this.selectAllValue;
     }
 
     private getValueArrayForSelectAllAction(value: SelectValue[]): SelectValue[] {

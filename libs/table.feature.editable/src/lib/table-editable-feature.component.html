@@ -97,6 +97,7 @@
                         </td>
                         <td class="ant-table-cell">
                             <div class="ant-table-column-inner">
+                                @if (!row.hideCancel) {
                                 <spy-button
                                     class="spy-table-editable-feature__cancel-row"
                                     [variant]="buttonVariant.Link"
@@ -119,6 +120,7 @@
                                         {{ 'table.feature.editable.cancel-button-title' | spyI18n | async }}
                                     </ng-template>
                                 </spy-button>
+                                }
                             </div>
                         </td>
                     </tr>

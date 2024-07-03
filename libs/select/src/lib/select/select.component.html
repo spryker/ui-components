@@ -16,7 +16,7 @@
     [nzRemoveIcon]="crossIconTpl"
     [nzAllowClear]="!disableClear"
     [nzClearIcon]="clearIconTpl"
-    [nzMaxTagCount]="tags ? Infinity : 0"
+    [nzMaxTagCount]="maxTagCount"
     [nzMaxTagPlaceholder]="tagPlaceholder"
     [nzCustomTemplate]="tags ? tagPlaceholder : null"
     [class.ant-select--not-searchable]="!search"

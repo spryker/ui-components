@@ -94,6 +94,7 @@ export class SelectComponent
     selectAllValue = 'select-all';
     selectedList: string[] = [];
     allTags: SelectValue[] = [];
+    maxTagCount = this.tags ? Infinity : 0;
 
     triggerElement$ = new ReplaySubject<HTMLElement>(1);
     mappedValue$ = new ReplaySubject<SelectValueSelected>(1);

@@ -249,15 +249,18 @@ export class SelectComponent
     }
 
     private updateSelectWithNewTags(value?: SelectValue[]): void {
-        const tags = value !== undefined ? value.filter((value) => !this.isValueExist(value)) : this.allTags;
+        const _tags =
+            value !== undefined
+                ? value.filter((value) => !this.isValueExist(value))
+                : [...this.allTags, ...(this.serverSearch ? (this.value as SelectValue[]) : [])];
+        const tags = [...new Set(_tags)];
         const newTags = tags.filter((tag) => !this.allTags.includes(tag));
+        const newValues = tags.filter((tag) => !this.mappedOptions.find((option) => option.value === tag));
 
-        this.allValues = [...tags, ...this.allValues];
-        this.mappedOptions = [
-            ...tags.map((value) => ({ value, title: String(value) })),
-            ...this.mappedOptions.filter((option) => !tags.includes(option.value)),
-        ];
+        this.allValues = [...newValues, ...this.allValues];
+        this.mappedOptions = [...newValues.map((value) => ({ value, title: String(value) })), ...this.mappedOptions];
         this.allTags = [...newTags, ...this.allTags];
+
         this.updateValue();
     }
 

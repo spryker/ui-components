@@ -22,7 +22,7 @@ import { DatasourceTriggerElement } from '@spryker/datasource.trigger';
 import { IconArrowDownModule, IconCheckModule, IconRemoveModule } from '@spryker/icon/icons';
 import { I18nService } from '@spryker/locale';
 import { ToBoolean, ToJson } from '@spryker/utils';
-import { NzSelectComponent } from 'ng-zorro-antd/select';
+import { NzOptionComponent, NzSelectComponent } from 'ng-zorro-antd/select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
 
@@ -80,6 +80,7 @@ export class SelectComponent
 
     @Output() valueChange = new EventEmitter<SelectValueSelected>();
     @Output() searchChange = new EventEmitter<string>();
+    @Output() tagClick = new EventEmitter<SelectValue>();
 
     checkIcon = IconCheckModule.icon;
     arrowDownIcon = IconArrowDownModule.icon;
@@ -165,14 +166,14 @@ export class SelectComponent
         }
 
         this.updateTitlesArrayForSelectedValues(value);
-        this.mappedValue = value;
-        this.valueChange.emit(value);
-        // FIXME: This is a workaround for the issue with the native select value emits the previous value
-        setTimeout(() => {
-            this.selectRef?.nativeElement.dispatchEvent(this.inputEvent);
-            this.selectRef?.nativeElement.dispatchEvent(this.changeEvent);
-        });
-        this.mappedValue$.next(this.mappedValue);
+        this.emitValueChange(value);
+    }
+
+    onTagClick(event: Event, item: NzOptionComponent): void {
+        event.stopPropagation();
+        const value = (this.mappedValue as SelectValue[])?.filter((value) => value !== item.nzValue);
+        this.emitValueChange(value);
+        this.tagClick.emit(item.nzValue);
     }
 
     handleSearchChange(value: string): void {
@@ -183,6 +184,17 @@ export class SelectComponent
         if (!this.mappedValue) {
             this.mappedValue$.next(this.mappedValue);
         }
+    }
+
+    private emitValueChange(value: SelectValue | SelectValue[]): void {
+        this.mappedValue = value;
+        this.valueChange.emit(value);
+        // FIXME: This is a workaround for the issue with the native select value emits the previous value
+        setTimeout(() => {
+            this.selectRef?.nativeElement.dispatchEvent(this.inputEvent);
+            this.selectRef?.nativeElement.dispatchEvent(this.changeEvent);
+        });
+        this.mappedValue$.next(this.mappedValue);
     }
 
     private initDatasource(): void {

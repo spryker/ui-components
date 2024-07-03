@@ -16,11 +16,12 @@
     [nzRemoveIcon]="crossIconTpl"
     [nzAllowClear]="!disableClear"
     [nzClearIcon]="clearIconTpl"
-    [nzMaxTagCount]="0"
+    [nzMaxTagCount]="tags ? Infinity : 0"
     [nzMaxTagPlaceholder]="tagPlaceholder"
+    [nzCustomTemplate]="tags ? tagPlaceholder : null"
     [class.ant-select--not-searchable]="!search"
     [nzDropdownClassName]="['ant-select--dropdown', tags ? 'ant-select--dropdown-tags' : '']"
-    class="ant-select--custom"
+    [class]="['ant-select--custom', tags ? 'ant-select--custom-tags' : '']"
     #selectContainerRef
 >
     <nz-option *ngIf="showSelectAll" [nzValue]="selectAllValue" [nzCustomContent]="true">
@@ -84,6 +85,17 @@
     <spy-icon class="ant-select-selection__clear-icon" [name]="removeIcon"></spy-icon>
 </ng-template>
 
-<ng-template #tagPlaceholder>{{ selectedList | spyJoin : ', ' }}</ng-template>
+<ng-template #tagPlaceholder let-item>
+    @if (tags) {
+    <spy-chips (click)="onTagClick($event, item)" color="gray" class="ant-select__chip">
+        {{ item.nzLabel }}
+        <span class="ant-select__chip-decor">
+            <spy-icon [name]="removeIcon"></spy-icon>
+        </span>
+    </spy-chips>
+    } @else {
+    {{ selectedList | spyJoin : ', ' }}
+    }
+</ng-template>
 
 <ng-template #notFoundContent>{{ noOptionsText$ | async }}</ng-template>

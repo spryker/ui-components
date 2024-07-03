@@ -22,7 +22,7 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --all --parallel'
+            - 'npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel'
             - 'npm run stylelint'
         shell: 'BASH'
       - action: 'Unit Tests'
@@ -30,7 +30,7 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --all --parallel'
+            - 'COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel'
         shell: 'BASH'
       - action: 'Build'
         type: 'BUILD'
@@ -39,7 +39,7 @@
         execute_commands:
             - 'git fetch origin next'
             - 'npm run build-non-libs'
-            - 'npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --all --parallel'
+            - 'npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel'
         shell: 'BASH'
       - action: 'Trigger Deploy pipeline'
         type: 'RUN_NEXT_PIPELINE'
@@ -73,7 +73,7 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --all --parallel'
+            - 'npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --parallel'
             - 'npm run stylelint'
         shell: 'BASH'
       - action: 'Unit Tests'
@@ -81,7 +81,7 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --all --parallel'
+            - 'COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel'
         shell: 'BASH'
       - action: 'Trigger Deploy Pipeline'
         type: 'RUN_NEXT_PIPELINE'
@@ -114,7 +114,7 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'npm run affected:lint -- --all --parallel'
+            - 'npm run affected:lint -- --parallel'
             - 'npm run stylelint'
         shell: 'BASH'
       - action: 'Unit Tests'
@@ -122,7 +122,7 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'COVERAGE=true npm run affected:test -- --all --parallel'
+            - 'COVERAGE=true npm run affected:test -- --parallel'
         shell: 'BASH'
       - action: 'Trigger Deploy pipeline'
         type: 'RUN_NEXT_PIPELINE'

@@ -158,6 +158,8 @@
             - 'git remote rm repository_url'
             - 'npm ci'
             - 'npm run build'
+            - 'git config --global user.email "default@example.com"'
+            - 'git config --global user.name "Default User"'
             - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
             - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
             - 'git checkout $BUDDY_EXECUTION_BRANCH'

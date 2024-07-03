@@ -197,6 +197,8 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
+            - 'git config --global user.email "default@example.com"'
+            - 'git config --global user.name "Default User"'
             - 'npm run release-next'
         shell: 'BASH'
         trigger_conditions:

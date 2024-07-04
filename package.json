@@ -53,7 +53,7 @@
         "release:lerna": "lerna publish --yes --conventional-graduate",
         "release-next": "run-s \"release-tag -- {@}\" deploy:storybook:next --",
         "prerelease-tag": "npm run pack",
-        "release-tag": "lerna publish --yes --conventional-prerelease --dist-tag next --preid next",
+        "release-tag": "lerna publish --yes --conventional-prerelease --dist-tag $BUDDY_EXECUTION_BRANCH --preid $BUDDY_EXECUTION_BRANCH",
         "postversion": "lerna exec --concurrency 1 --stream -- node \\$LERNA_ROOT_PATH/tools/scripts/update-lib.js",
         "prepare": "if [ \"$CI\" != \"true\" ]; then husky install; fi"
     },

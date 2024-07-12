@@ -18,10 +18,10 @@
     [nzClearIcon]="clearIconTpl"
     [nzMaxTagCount]="maxTagCount"
     [nzMaxTagPlaceholder]="tagPlaceholder"
-    [nzCustomTemplate]="tags ? tagPlaceholder : null"
+    [nzCustomTemplate]="tagView || tags ? tagPlaceholder : null"
     [class.ant-select--not-searchable]="!search"
-    [nzDropdownClassName]="['ant-select--dropdown', tags ? 'ant-select--dropdown-tags' : '']"
-    [class]="['ant-select--custom', tags ? 'ant-select--custom-tags' : '']"
+    [nzDropdownClassName]="['ant-select--dropdown', tags || tagView ? 'ant-select--dropdown-tags' : '']"
+    [class]="['ant-select--custom', tags || tagView ? 'ant-select--custom-tags' : '']"
     #selectContainerRef
 >
     <nz-option *ngIf="showSelectAll" [nzValue]="selectAllValue" [nzCustomContent]="true">
@@ -86,7 +86,7 @@
 </ng-template>
 
 <ng-template #tagPlaceholder let-item>
-    @if (tags) {
+    @if (tags || tagView) {
     <spy-chips (click)="onTagClick($event, item)" color="gray" class="ant-select__chip">
         {{ item.nzLabel }}
         <span class="ant-select__chip-decor">

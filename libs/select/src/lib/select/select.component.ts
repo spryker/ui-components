@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    booleanAttribute,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
@@ -21,7 +22,7 @@ import { DatasourceDependableElement } from '@spryker/datasource.dependable';
 import { DatasourceTriggerElement } from '@spryker/datasource.trigger';
 import { IconArrowDownModule, IconCheckModule, IconRemoveModule } from '@spryker/icon/icons';
 import { I18nService } from '@spryker/locale';
-import { ToBoolean, ToJson } from '@spryker/utils';
+import { ToJson } from '@spryker/utils';
 import { NzOptionComponent, NzSelectComponent } from 'ng-zorro-antd/select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
@@ -53,17 +54,18 @@ export class SelectComponent
 
     @Input() @ToJson() options?: SelectOption[];
     @Input() @ToJson() value?: SelectValueSelected;
-    @Input() @ToBoolean() search = false;
-    @Input() @ToBoolean() serverSearch = false;
-    @Input() @ToBoolean() disabled = false;
-    @Input() @ToBoolean() disabledWhenNoOptions = false;
-    @Input() @ToBoolean() multiple = false;
+    @Input({ transform: booleanAttribute }) search = false;
+    @Input({ transform: booleanAttribute }) serverSearch = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) disabledWhenNoOptions = false;
+    @Input({ transform: booleanAttribute }) multiple = false;
     @Input() placeholder: string | TemplateRef<void> = '';
-    @Input() @ToBoolean() showSelectAll = false;
+    @Input({ transform: booleanAttribute }) showSelectAll = false;
     @Input() selectAllTitle = '';
     @Input() name = '';
     @Input() noOptionsText = '';
-    @Input() @ToBoolean() disableClear = false;
+    @Input({ transform: booleanAttribute }) disableClear = false;
+    @Input({ transform: booleanAttribute }) tagView = false;
     @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
 
@@ -71,7 +73,7 @@ export class SelectComponent
     get tags(): boolean {
         return this._tags;
     }
-    @Input() @ToBoolean() set tags(value: boolean) {
+    @Input({ transform: booleanAttribute }) set tags(value: boolean) {
         if (value) {
             this.multiple = true;
             this._tags = value;
@@ -94,7 +96,7 @@ export class SelectComponent
     selectAllValue = 'select-all';
     selectedList: string[] = [];
     allTags: SelectValue[] = [];
-    maxTagCount = this.tags ? Infinity : 0;
+    maxTagCount = 0;
 
     triggerElement$ = new ReplaySubject<HTMLElement>(1);
     mappedValue$ = new ReplaySubject<SelectValueSelected>(1);
@@ -116,6 +118,10 @@ export class SelectComponent
     ) {}
 
     ngOnInit(): void {
+        if (this.tags || this.tagView) {
+            this.maxTagCount = Infinity;
+        }
+
         this.updateOptions();
         this.initDatasource();
         this.updateDatasource();
@@ -250,9 +256,7 @@ export class SelectComponent
 
     private updateValue(): void {
         this.mappedValue =
-            this.multiple && this.serverSearch
-                ? this.value
-                : this.multiple && Array.isArray(this.value)
+            this.multiple && Array.isArray(this.value)
                 ? this.value.filter((value) => this.isValueExist(value))
                 : this.isValueExist(this.value)
                 ? this.value

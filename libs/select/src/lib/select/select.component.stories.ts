@@ -36,6 +36,7 @@ export default {
                 'noOptionsText',
                 'disableClear',
                 'tags',
+                'tagView',
             ],
         },
         design: {
@@ -53,6 +54,7 @@ export default {
         },
     },
     args: {
+        tagView: false,
         options: ['Option 1', 'Option 2', 'Option 3'],
         tags: false,
         multiple: true,

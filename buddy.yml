@@ -154,8 +154,7 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - git config user.name github-actions
-            - git config user.email github-actions@github.com
+            - 'export GH_TOKEN=${GH_TOKEN}'
             - 'git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*'
             - 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
             - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'

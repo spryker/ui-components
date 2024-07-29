@@ -154,13 +154,14 @@
         docker_image_name: 'library/node'
         docker_image_tag: '18.13.0'
         execute_commands:
-            - 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
-            - 'git remote rm repository_url'
-            - 'git remote add -f pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git'
-            - 'git fetch pub $BUDDY_EXECUTION_BRANCH'
-            - 'git checkout $BUDDY_EXECUTION_BRANCH'
-            - 'git config user.email "${GIT_EMAIL}"'
-            - 'git config user.name "${GIT_USER}"'
+            - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+            - npm ci
+            - npm run build
+            - git remote add pub https://${GH_TOKEN}@github.com/${BUDDY_REPO_SLUG}.git
+            - git fetch pub $BUDDY_EXECUTION_BRANCH
+            - git checkout $BUDDY_EXECUTION_BRANCH
+            - git config user.email "${GIT_EMAIL}"
+            - git config user.name "${GIT_USER}"
         shell: 'BASH'
       - action: 'npm run release'
         type: 'BUILD'

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.0...@spryker/select@2.0.1-next.0) (2024-07-30)
+
+
+### Bug Fixes
+
+* **select:** add tags functionality ([6da7653](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/6da7653a36ca68f4cf5019a27813e394ca9af2e7))
+* **select:** add tags placeholder ([a6a89e5](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/a6a89e507342dd691382282fc157cb5f19c58a12))
+* **select:** fix order for serverSearch ([b4536d7](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/b4536d7feb58f9b80b283f5048dabc806a80b92a))
+* **select:** leftovers ([cfeb015](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/cfeb015a3b678746d9db6c5b3c9de018297c34cf))
+* **select:** prepare select for external dynamic search ([e99f714](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/e99f714dee3a68f696978b6c46930caff76ee755))
+* **select:** revert select ([1b79942](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/1b79942c18a7db8d2a8410d1dcc0afaaf56d5fea))
+* **select:** styles ([4ff7e83](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/4ff7e8395eb480929ca7498652e06c54c276998b))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/select@2.0.0-rc.1...@spryker/select@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/select

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/navigation@2.0.1-next.0...@spryker/navigation@2.0.1-next.1) (2024-07-30)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
 ## [2.0.1-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/navigation@2.0.0...@spryker/navigation@2.0.1-next.0) (2024-07-30)
 
 

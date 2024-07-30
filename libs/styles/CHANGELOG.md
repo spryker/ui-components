@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.0...@spryker/styles@2.0.1-next.0) (2024-07-30)
+
+
+### Bug Fixes
+
+* **select:** add tags functionality ([6da7653](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/6da7653a36ca68f4cf5019a27813e394ca9af2e7))
+* **select:** add tags placeholder ([a6a89e5](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/a6a89e507342dd691382282fc157cb5f19c58a12))
+* **select:** leftovers ([cfeb015](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/cfeb015a3b678746d9db6c5b3c9de018297c34cf))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/styles@2.0.0-rc.2...@spryker/styles@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/styles

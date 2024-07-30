@@ -61,7 +61,8 @@
             "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
             "cache": true,
             "options": {
-                "passWithNoTests": true
+                "passWithNoTests": true,
+                "runInBand": true
             },
             "configurations": {
                 "ci": {

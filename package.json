@@ -32,8 +32,7 @@
         "workspace-schematic": "nx workspace-schematic",
         "dep-graph": "nx dep-graph",
         "help": "nx help",
-        "run:all": "nx run-many --all --target",
-        "hook:commit": "npm run clean:dist && lint-staged --relative",
+        "run:all": "nx run-many --target",
         "hook:push": "run-s hook:push:*",
         "hook:push:format": "npm run format:check",
         "hook:push:lint": "npm run affected:lint -- --parallel",
@@ -54,7 +53,7 @@
         "release:lerna": "lerna publish --yes --conventional-graduate",
         "release-next": "run-s \"release-tag -- {@}\" deploy:storybook:next --",
         "prerelease-tag": "npm run pack",
-        "release-tag": "lerna publish --yes --conventional-prerelease --dist-tag $TRAVIS_BRANCH --preid $TRAVIS_BRANCH",
+        "release-tag": "lerna publish --yes --conventional-prerelease --dist-tag $BUDDY_EXECUTION_BRANCH --preid $BUDDY_EXECUTION_BRANCH",
         "postversion": "lerna exec --concurrency 1 --stream -- node \\$LERNA_ROOT_PATH/tools/scripts/update-lib.js",
         "prepare": "if [ \"$CI\" != \"true\" ]; then husky install; fi"
     },

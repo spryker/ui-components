@@ -4,6 +4,8 @@ import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { AjaxActionService } from '@spryker/ajax-action';
+import { buttonClassName, ButtonModule, ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
+import { TestLocaleModule } from '@spryker/locale/testing';
 import {
     TableColumnsResolverService,
     TableDataConfiguratorService,
@@ -11,7 +13,6 @@ import {
     TableFeatureLocation,
     TableFeaturesRendererService,
 } from '@spryker/table';
-import { buttonClassName, ButtonModule, ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
 import {
     TestTableFeatureComponent,
     TestTableFeatureMocks,
@@ -19,7 +20,6 @@ import {
     TestTableFeatureTplDirective,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule, InvokeModule } from '@spryker/utils';
-import { TestLocaleModule } from '@spryker/locale/testing';
 
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
 
@@ -64,7 +64,7 @@ const mockConfig = {
         formInputName: 'form-input-name',
         initialData: {
             data: [
-                { col1: 'value 2', col2: 'value' },
+                { col1: 'value 2', col2: 'value', hideCancel: true },
                 { col1: 'value', col2: 'value', col3: 'value' },
             ],
             errors: {
@@ -231,6 +231,16 @@ describe('TableEditableFeatureComponent', () => {
 
             expect(cancelButtonElem).toBeTruthy();
             expect(cancelButtonElem.nativeElement.textContent).toContain(mockConfig.create.cancelButton.title);
+        });
+
+        it('should not render `cancel spy-button` if `hideCancel` is true', () => {
+            const cancelButtonElem = fixture.debugElement
+                .queryAll(By.css('tr'))[1]
+                .queryAll(By.css('td'))
+                .at(-1)
+                .query(By.css('spy-button.spy-table-editable-feature__cancel-row'));
+
+            expect(cancelButtonElem).toBeFalsy();
         });
 
         it('should render `spy-icon` inside `spy-button` with `config.create.cancelButton.icon` name', () => {

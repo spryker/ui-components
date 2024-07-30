@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/table.feature.editable@2.0.1-next.0...@spryker/table.feature.editable@2.0.1-next.1) (2024-07-30)
+
+**Note:** Version bump only for package @spryker/table.feature.editable
+
+
+
+
+
+## [2.0.1-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/table.feature.editable@2.0.0...@spryker/table.feature.editable@2.0.1-next.0) (2024-07-30)
+
+
+### Bug Fixes
+
+* **table.feature.editable:** add hideCancel row prop ([3a07e6e](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/3a07e6effcb749b570d698a43f71c774b5f39e46))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@2.0.0-rc.2...@spryker/table.feature.editable@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/table.feature.editable

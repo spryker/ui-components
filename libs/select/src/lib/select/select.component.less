@@ -207,22 +207,6 @@
                         align-items: center;
                         padding: @select-dropdown-menu-item-wrapped-padding;
                         border: @select-dropdown-menu-item-border;
-
-                        &-selected {
-                            &:not(.@{select-prefix-cls}-item-option-disabled) {
-                                color: @green;
-                                background-color: @green-lighter;
-                            }
-
-                            .@{select-prefix-cls}-item-option__icon--checked,
-                            .@{select-prefix-cls}-item-option-state__multiChecked {
-                                display: block;
-                            }
-
-                            .@{select-prefix-cls}-item-option-state__multiUnChecked {
-                                display: none;
-                            }
-                        }
                     }
 
                     &-label {
@@ -300,6 +284,23 @@
                         background-color: @gray-lighter;
                     }
                 }
+
+                &-content-wrapper-selected,
+                &-selected {
+                    &:not(.@{select-prefix-cls}-item-option-disabled) {
+                        color: @green;
+                        background-color: @green-lighter;
+                    }
+
+                    .@{select-prefix-cls}-item-option__icon--checked,
+                    .@{select-prefix-cls}-item-option-state__multiChecked {
+                        display: block;
+                    }
+
+                    .@{select-prefix-cls}-item-option-state__multiUnChecked {
+                        display: none;
+                    }
+                }
             }
 
             &-empty {
@@ -309,6 +310,25 @@
                 font: @font-default;
                 height: @select-empty-item-height;
                 color: @ink;
+            }
+
+            &:not(:has(.@{select-prefix-cls}-item-option-content-wrapper)) {
+                padding-left: @select-dropdown-menu-item-wrapped-padding-x;
+                padding-right: @select-dropdown-menu-item-wrapped-padding-x;
+                display: flex;
+                align-items: center;
+
+                &::before {
+                    content: '';
+                    height: @checkbox-icon-size;
+                    width: @checkbox-icon-size;
+                    margin-right: @checkbox-icon-margin-right;
+                    margin-left: @select-tag-unchecked-icon-left;
+                    border-radius: @checkbox-icon-border-radius;
+                    border-color: @gray;
+                    border: @select-multiple-unchecked-border;
+                    background-color: @spy-white;
+                }
             }
         }
     }
@@ -322,5 +342,57 @@
         .@{select-prefix-cls}-selector {
             border-color: @gray-light;
         }
+    }
+
+    &--custom-tags.@{select-prefix-cls}-multiple {
+        height: auto;
+
+        .@{select-prefix-cls}-selection-search {
+            flex: 1;
+            min-width: @select-tag-input-min-width;
+        }
+
+        .@{select-prefix-cls}-selection-search-input {
+            line-height: 1;
+            height: auto;
+        }
+
+        .@{select-prefix-cls}-selection-item,
+        &.@{select-prefix-cls}-allow-clear .@{select-prefix-cls}-selector {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            height: auto;
+            gap: @select-tag-gap;
+        }
+
+        &.@{select-prefix-cls}-allow-clear .@{select-prefix-cls}-selector {
+            padding: @select-tag-selector-padding;
+            min-height: @select-component-height;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    .@{chips-prefix-cls}&__chip {
+        position: relative;
+        padding-right: calc(@chips-padding-x + @select-tag-width);
+        cursor: pointer;
+    }
+
+    &__chip-decor {
+        position: absolute;
+        height: 100%;
+        width: @select-tag-width;
+        background: @gray-dark;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        right: 0;
+        color: @white;
+        font-size: @select-tag-icon-size;
     }
 }

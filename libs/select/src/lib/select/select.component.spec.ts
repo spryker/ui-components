@@ -1,11 +1,11 @@
 import { Component, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DatasourceModule } from '@spryker/datasource';
 import { IconRemoveModule } from '@spryker/icon/icons';
-import { JoinModule } from '@spryker/utils';
 import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { JoinModule } from '@spryker/utils';
 import { SelectComponent } from './select.component';
 
 @Component({
@@ -228,6 +228,24 @@ describe('SelectComponent', () => {
             expect(nzOptionElems[0].properties.nzLabel).toBe(mockOptions[0]);
             expect(nzOptionElems[1].properties.nzValue).toBe(mockOptions[1]);
             expect(nzOptionElems[1].properties.nzLabel).toBe(mockOptions[1]);
+        });
+
+        it('should add new option if `tags` is true', async () => {
+            const mockOptions = [123, 234];
+            const host = await createComponentWrapper(createComponent, {
+                options: mockOptions,
+                tags: true,
+            });
+            const nzSelectElem = host.queryCss('nz-select');
+            let nzOptionElems = host.fixture.debugElement.queryAll(By.css('nz-option'));
+
+            expect(nzOptionElems[2]).toBeFalsy();
+
+            nzSelectElem.triggerEventHandler('ngModelChange', ['A']);
+            host.detectChanges();
+
+            nzOptionElems = host.fixture.debugElement.queryAll(By.css('nz-option'));
+            expect(nzOptionElems[0].properties.nzValue).toBe('A');
         });
 
         it('Select All correctly triggers selection of all items', async () => {

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/navigation@2.0.1-next.0...@spryker/navigation@2.0.1-next.1) (2024-07-30)
+
+**Note:** Version bump only for package @spryker/navigation
+
+
+
+
+
+## [2.0.1-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/navigation@2.0.0...@spryker/navigation@2.0.1-next.0) (2024-07-30)
+
+
+### Bug Fixes
+
+* **navigation:** navigation title ellipsis are working correctly when text doesn't fit ([b9174d7](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/b9174d789caf346db763268da262cb70646aa920))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@2.0.0-rc.1...@spryker/navigation@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/navigation

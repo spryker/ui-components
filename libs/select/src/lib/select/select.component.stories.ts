@@ -1,8 +1,8 @@
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { SelectModule } from '../select.module';
 import { SelectComponent } from './select.component';
 
@@ -35,6 +35,8 @@ export default {
                 'name',
                 'noOptionsText',
                 'disableClear',
+                'tags',
+                'tagView',
             ],
         },
         design: {
@@ -52,7 +54,9 @@ export default {
         },
     },
     args: {
+        tagView: false,
         options: ['Option 1', 'Option 2', 'Option 3'],
+        tags: false,
         multiple: true,
         placeholder: 'Select option...',
         selectAllTitle: 'Select All',
@@ -87,6 +91,7 @@ primary.args = {
     ],
     value: 'Option 1',
     multiple: false,
+    tags: false,
 };
 
 export const multiSelect = (args) => ({
@@ -118,4 +123,11 @@ export const withSelectAll = (args) => ({
 });
 withSelectAll.args = {
     showSelectAll: true,
+};
+
+export const withTags = (args) => ({
+    props: args,
+});
+withTags.args = {
+    tags: true,
 };

@@ -1,6 +1,6 @@
-import { TableFeatureConfig, TableColumn, TableDataRow, TableColumnTypeOptions } from '@spryker/table';
-import { DatasourceConfig } from '@spryker/datasource';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
+import { DatasourceConfig } from '@spryker/datasource';
+import { TableColumn, TableColumnTypeOptions, TableDataRow, TableFeatureConfig } from '@spryker/table';
 
 export interface TableEditableColumn extends TableColumn {
     typeOptions?: TableEditableColumnTypeOptions;
@@ -33,7 +33,7 @@ export interface TableEditableConfigUpdate {
 }
 
 export interface TableEditableConfigCreateData {
-    data: TableDataRow[];
+    data: (TableDataRow & { hideCancel?: boolean })[];
     errors?: TableEditableConfigDataErrors;
 }
 

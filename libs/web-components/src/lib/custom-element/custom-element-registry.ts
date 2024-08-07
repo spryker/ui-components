@@ -15,9 +15,11 @@ export function registerComponents(components: WebComponentDefs, injector: Injec
     function initComponents() {
         const componentDeclarations = componentDefsToDeclarations(components);
 
-        componentDeclarations.forEach((componentDeclaration) => {
-            const componentName = getComponentName(componentDeclaration);
+        const resolvedComponents = Object.fromEntries(
+            componentDeclarations.map((component) => [getComponentName(component), component]),
+        );
 
+        Object.entries(resolvedComponents).forEach(([componentName, componentDeclaration]) => {
             if (!customElements.get(componentName)) {
                 customElements.define(
                     componentName,

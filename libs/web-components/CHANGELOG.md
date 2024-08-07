@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/web-components@2.0.0...@spryker/web-components@2.0.1-next.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* fix web-components registration ([c7d901b](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/c7d901bcfe1b83ec50c9895e7f3a0c845a51f075))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/web-components@2.0.0-rc.1...@spryker/web-components@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/web-components

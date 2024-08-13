@@ -151,7 +151,7 @@ export const withSidebar = (args) => ({
         imports: [SidebarModule],
     },
     template: `
-    <spy-sidebar [collapsed]="collapsed" (collapsedChange)="collapsed = !collapsed">
+    <spy-sidebar [collapsed]="collapsed" (collapsedChange)="collapsed = $event">
       <spy-navigation [items]="items" [collapsed]="collapsed"></spy-navigation>
     </spy-sidebar>
   `,

@@ -79,8 +79,11 @@ export class TableColumnDynamicComponent implements TableColumnComponent<TableCo
     colConfig$ = this.colConfigEmission$.pipe(
         distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
         shareReplay({ bufferSize: 1, refCount: true }),
-    )
-    isColConfigLoading$ = merge(this.updateColConfig$.pipe(map(() => true)), this.colConfigEmission$.pipe(map(() => false))).pipe(
+    );
+    isColConfigLoading$ = merge(
+        this.updateColConfig$.pipe(map(() => true)),
+        this.colConfigEmission$.pipe(map(() => false)),
+    ).pipe(
         tap(() => this.cdr.markForCheck()),
         shareReplay({ bufferSize: 1, refCount: true }),
     );

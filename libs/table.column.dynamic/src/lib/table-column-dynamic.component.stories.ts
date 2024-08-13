@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
+import { DatasourceHttpService } from '@spryker/datasource.http';
 import { DatasourceInlineModule, DatasourceInlineService } from '@spryker/datasource.inline';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
@@ -10,11 +10,10 @@ import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { NotificationModule } from '@spryker/notification';
 import { TableModule } from '@spryker/table';
 import { TableColumnAutocompleteComponent, TableColumnAutocompleteModule } from '@spryker/table.column.autocomplete';
+import { TableColumnInputComponent, TableColumnInputModule } from '@spryker/table.column.input';
 import { TableColumnSelectComponent, TableColumnSelectModule } from '@spryker/table.column.select';
 import { TableColumnTextComponent, TableColumnTextModule } from '@spryker/table.column.text';
 import { TableDatasourceDependableService } from '@spryker/table.feature.editable';
-import { DatasourceHttpService } from '@spryker/datasource.http';
-import { TableColumnInputComponent, TableColumnInputModule } from '@spryker/table.column.input';
 import {
     generateMockTableDataFor,
     MockTableDatasourceConfig,
@@ -22,6 +21,7 @@ import {
     TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 import { TableColumnDynamicModule } from './table-column-dynamic.module';
@@ -358,22 +358,6 @@ withDependentColumns.args = {
             url: 'series',
             data: {
                 type: 'input',
-                typeOptions: {
-                    options: [
-                        {
-                            value: 'Dependable Option 1',
-                            title: 'Dependable Option 1',
-                        },
-                        {
-                            value: 'Dependable Option 2',
-                            title: 'Dependable Option 2',
-                        },
-                        {
-                            value: 'Dependable Option 3',
-                            title: 'Dependable Option 3',
-                        },
-                    ],
-                },
             },
         },
         {

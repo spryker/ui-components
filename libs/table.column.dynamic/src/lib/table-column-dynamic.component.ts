@@ -19,7 +19,7 @@ import {
 } from '@spryker/table';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
 import { merge, of, ReplaySubject } from 'rxjs';
-import { delay, map, mapTo, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { delay, distinctUntilChanged, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnDynamicDatasourceConfig implements DatasourceConfig {
@@ -56,7 +56,7 @@ export class TableColumnDynamicComponent implements TableColumnComponent<TableCo
 
     private updateColConfig$ = new ReplaySubject<void>(1);
 
-    colConfig$ = this.updateColConfig$.pipe(
+    colConfigEmission$ = this.updateColConfig$.pipe(
         switchMap(() => {
             if (!this.config || !this.context) {
                 return of(void 0);
@@ -76,7 +76,11 @@ export class TableColumnDynamicComponent implements TableColumnComponent<TableCo
         }),
         shareReplay({ bufferSize: 1, refCount: true }),
     );
-    isColConfigLoading$ = merge(this.updateColConfig$.pipe(mapTo(true)), this.colConfig$.pipe(mapTo(false))).pipe(
+    colConfig$ = this.colConfigEmission$.pipe(
+        distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+        shareReplay({ bufferSize: 1, refCount: true }),
+    )
+    isColConfigLoading$ = merge(this.updateColConfig$.pipe(map(() => true)), this.colConfigEmission$.pipe(map(() => false))).pipe(
         tap(() => this.cdr.markForCheck()),
         shareReplay({ bufferSize: 1, refCount: true }),
     );

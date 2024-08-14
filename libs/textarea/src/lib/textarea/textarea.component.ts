@@ -17,6 +17,6 @@ export class TextareaComponent {
     @Input() cols = 4;
     @Input() @ToJson() attrs: Record<string, string> = {};
     @Input() spyId?: string;
-    @Input() autoSize: boolean | { minRows: number, maxRows: number } = true;
+    @Input() autoSize: boolean | { minRows: number; maxRows: number } = true;
     @Output() valueChange = new EventEmitter<any>();
 }

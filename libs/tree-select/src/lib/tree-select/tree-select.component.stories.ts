@@ -72,7 +72,8 @@ export default {
         value: 'Option 2',
         search: true,
         multiple: true,
-        placeholder: 'Long placeholder Long placeholder  Long placeholder  Long placeholder  Long placeholder Select Select option...',
+        placeholder:
+            'Long placeholder Long placeholder  Long placeholder  Long placeholder  Long placeholder Select Select option...',
         name: 'some-name',
         noOptionsText: 'No options...',
         valueChange: console.log,

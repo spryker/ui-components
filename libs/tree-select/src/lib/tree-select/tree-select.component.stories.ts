@@ -1,11 +1,11 @@
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 
-import { TreeSelectComponent } from './tree-select.component';
 import { TreeSelectModule } from '../tree-select.module';
+import { TreeSelectComponent } from './tree-select.component';
 
 export default {
     title: 'TreeSelectComponent',
@@ -56,7 +56,7 @@ export default {
     args: {
         items: [
             {
-                title: 'Option 1',
+                title: 'Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1',
                 value: 'Option 1',
                 children: [
                     { title: 'Option 7', value: 'Option 7' },
@@ -72,7 +72,7 @@ export default {
         value: 'Option 2',
         search: true,
         multiple: true,
-        placeholder: 'Select option...',
+        placeholder: 'Long placeholder Long placeholder  Long placeholder  Long placeholder  Long placeholder Select Select option...',
         name: 'some-name',
         noOptionsText: 'No options...',
         valueChange: console.log,

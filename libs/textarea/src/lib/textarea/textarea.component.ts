@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { ToBoolean, ToJson } from '@spryker/utils';
 
 @Component({
@@ -17,5 +17,6 @@ export class TextareaComponent {
     @Input() cols = 4;
     @Input() @ToJson() attrs: Record<string, string> = {};
     @Input() spyId?: string;
+    @Input() autoSize: boolean | { minRows: number, maxRows: number } = true;
     @Output() valueChange = new EventEmitter<any>();
 }

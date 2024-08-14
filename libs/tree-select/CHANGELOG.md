@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/tree-select@2.0.0...@spryker/tree-select@2.0.1-next.0) (2024-08-14)
+
+
+### Bug Fixes
+
+* **tree-select:** fix placholder indent ([a4504d1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/a4504d1f73bbb9d55f0ef49a3421463c17feda8d))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/tree-select@2.0.0-rc.1...@spryker/tree-select@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/tree-select

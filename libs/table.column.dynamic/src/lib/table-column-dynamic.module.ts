@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContextModule } from '@spryker/utils';
+import { NgModule } from '@angular/core';
 import { TableModule } from '@spryker/table';
+import { ContextModule } from '@spryker/utils';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { TableColumnDynamicComponent } from './table-column-dynamic.component';
 

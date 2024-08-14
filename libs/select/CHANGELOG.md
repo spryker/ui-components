@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.1...@spryker/select@2.0.2-next.0) (2024-08-14)
+
+
+### Bug Fixes
+
+* **select:** fix check icon position ([cbd984c](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/cbd984cc98e3f9b896e943091797f33c59854e31))
+
+
+
+
+
 ## [2.0.1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.1-next.1...@spryker/select@2.0.1) (2024-07-30)
 
 **Note:** Version bump only for package @spryker/select

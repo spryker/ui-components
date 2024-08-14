@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.1...@spryker/styles@2.0.2-next.0) (2024-08-14)
+
+
+### Bug Fixes
+
+* **select:** fix check icon position ([cbd984c](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/cbd984cc98e3f9b896e943091797f33c59854e31))
+* **tree-select:** fix placholder indent ([a4504d1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/a4504d1f73bbb9d55f0ef49a3421463c17feda8d))
+
+
+
+
+
 ## [2.0.1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.1-next.1...@spryker/styles@2.0.1) (2024-07-30)
 
 **Note:** Version bump only for package @spryker/styles

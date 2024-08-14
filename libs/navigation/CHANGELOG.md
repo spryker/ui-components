@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/navigation@2.0.1...@spryker/navigation@2.0.2-next.0) (2024-08-14)
+
+
+### Bug Fixes
+
+* **navigation:** fix items alignment ([99f304f](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/99f304fbc7eae9356de7343d58d3b707e3d00cd0))
+
+
+
+
+
 ## [2.0.1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/navigation@2.0.1-next.1...@spryker/navigation@2.0.1) (2024-07-30)
 
 **Note:** Version bump only for package @spryker/navigation

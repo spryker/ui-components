@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.dynamic@2.0.0...@spryker/table.column.dynamic@2.0.1-next.0) (2024-08-14)
+
+
+### Bug Fixes
+
+* format ([e1c49e7](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/e1c49e785eb6257dd876301a6141fb0bb799f791))
+* **table.column.dynamic:** fix updating while changing value ([dd0a9c4](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/dd0a9c44a951802c69350ccc39a655d024b71d2b))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/table.column.dynamic@2.0.0-rc.1...@spryker/table.column.dynamic@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/table.column.dynamic

@@ -1,8 +1,8 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ApplyAttrsModule } from '@spryker/utils';
-import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { ApplyAttrsModule } from '@spryker/utils';
 import { TextareaComponent } from './textarea.component';
 
 describe('TextareaComponent', () => {
@@ -100,10 +100,10 @@ describe('TextareaComponent', () => {
         });
     });
 
-    it('template must render <textarea> with [nzautosize] from Ant Design', async () => {
+    it('template must render <textarea> with [nzAutosize] property', async () => {
         const host = await createComponentWrapper(createComponent);
-        const textareaElem = host.queryCss('textarea[nzautosize]');
+        const textAreaProps = host.queryCss('textarea').properties;
 
-        expect(textareaElem).toBeTruthy();
+        expect(textAreaProps).toHaveProperty('nzAutosize');
     });
 });

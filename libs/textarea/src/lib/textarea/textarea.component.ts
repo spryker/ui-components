@@ -1,5 +1,8 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { ToBoolean, ToJson } from '@spryker/utils';
+import { AutoSizeType } from 'ng-zorro-antd/input';
+
+interface TextareaAutoSize extends AutoSizeType {}
 
 @Component({
     selector: 'spy-textarea',
@@ -17,5 +20,6 @@ export class TextareaComponent {
     @Input() cols = 4;
     @Input() @ToJson() attrs: Record<string, string> = {};
     @Input() spyId?: string;
+    @Input() autoSize: boolean | TextareaAutoSize = true;
     @Output() valueChange = new EventEmitter<any>();
 }

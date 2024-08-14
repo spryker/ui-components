@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.0](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/textarea@2.0.0...@spryker/textarea@2.0.1-next.0) (2024-08-14)
+
+
+### Bug Fixes
+
+* **textarea:** fix harcoded autosize ([678c11b](http://172.31.43.110:9292/spryker-internal-ci/ui-components/commits/678c11b7d4fb534d3cca2bed65cc29accedd9452))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/textarea@2.0.0-rc.1...@spryker/textarea@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/textarea

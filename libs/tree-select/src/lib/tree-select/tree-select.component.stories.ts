@@ -56,7 +56,7 @@ export default {
     args: {
         items: [
             {
-                title: 'Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1 Option 1',
+                title: 'Anim ad aute culpa adipisicing aute ad mollit deserunt tempor incididunt. Reprehenderit incididunt nostrud ut eiusmod quis sint tempor ex ipsum aute.',
                 value: 'Option 1',
                 children: [
                     { title: 'Option 7', value: 'Option 7' },
@@ -73,7 +73,7 @@ export default {
         search: true,
         multiple: true,
         placeholder:
-            'Long placeholder Long placeholder  Long placeholder  Long placeholder  Long placeholder Select Select option...',
+            'Anim ad aute culpa adipisicing aute ad mollit deserunt tempor incididunt. Reprehenderit incididunt nostrud ut eiusmod quis sint tempor ex ipsum aute.',
         name: 'some-name',
         noOptionsText: 'No options...',
         valueChange: console.log,

@@ -1,5 +1,7 @@
 import {
+    AfterViewChecked,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     EventEmitter,
     Injector,
@@ -43,7 +45,7 @@ interface TreeSelectItemWithKey extends TreeSelectItem {
         class: 'spy-tree-select',
     },
 })
-export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
+export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy, AfterViewChecked {
     @Input() @ToJson() items?: TreeSelectItem[];
     @Input() @ToJson() value?: TreeSelectValue | TreeSelectValue[];
     @Input() @ToBoolean() search = false;
@@ -72,10 +74,13 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
         ),
     );
 
-    @ViewChild('treeSelect')
+    @ViewChild('treeSelect', { static: true })
     protected treeSelect: NzTreeSelectComponent;
+    protected checkedState: TreeSelectValue | TreeSelectValue[];
+    private viewUpdated = false;
 
     constructor(
+        private cdr: ChangeDetectorRef,
         private injector: Injector,
         private datasourceService: DatasourceService,
         private i18nService: I18nService,
@@ -108,6 +113,14 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
         this.destroyed$.next();
     }
 
+    ngAfterViewChecked(): void {
+        const hasValue = (Array.isArray(this.value) && this.value.length) || this.value;
+
+        if (hasValue && !this.viewUpdated) {
+            this.updateCheckedState();
+        }
+    }
+
     private updateDatasource() {
         // Reset items before invoking datasource
         if (this.datasource) {
@@ -128,6 +141,7 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
             (selectItems: TreeSelectItem[], item) => [...selectItems, ...this.mapFlatTreeItems(item)],
             [],
         );
+        this.updateCheckedState();
     }
 
     private mapFlatTreeItems(item: TreeSelectItem): TreeSelectItem[] {
@@ -173,15 +187,25 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
         return value === state;
     }
 
-    protected onValueChange(value: TreeSelectValue[]): void {
+    protected onValueChange(): void {
+        this.updateCheckedState();
+        this.valueChange.emit(this.checkedState);
+    }
+
+    protected updateCheckedState = (): void => {
         if (!this.multiple) {
-            this.valueChange.emit(value);
+            this.checkedState = this.value;
+            this.viewUpdated = true;
 
             return;
         }
 
         const nodes = this.treeSelect.getCheckedNodeList().map((node) => node.origin);
         const result = [];
+
+        if (!nodes.length && !this.viewUpdated) {
+            return;
+        }
 
         for (const node of nodes) {
             if (node.children) {
@@ -191,6 +215,12 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
             result.push(node.value);
         }
 
-        this.valueChange.emit(result);
-    }
+        this.checkedState ??= [];
+        this.checkedState = [...result];
+
+        if (!this.viewUpdated) {
+            this.viewUpdated = true;
+            this.cdr.detectChanges();
+        }
+    };
 }

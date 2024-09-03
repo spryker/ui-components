@@ -10,9 +10,10 @@
     [nzMaxTagPlaceholder]="tagPlaceholder"
     [class.ant-select-show-search]="search"
     [(ngModel)]="value"
-    (ngModelChange)="valueChange.emit($event)"
-    nzCheckable
+    (ngModelChange)="onValueChange()"
+    [nzCheckable]="multiple"
     nzDropdownClassName="spy-tree-select-dropdown"
+    #treeSelect
 ></nz-tree-select>
 
 <select class="ant-select-native" [multiple]="multiple" [attr.name]="name" [disabled]="disabled">
@@ -21,7 +22,7 @@
         *ngFor="let item of mappedFlatItems"
         [value]="item.value"
         [disabled]="item.isDisabled"
-        [selected]="checkSelectedState | spyInvoke : item.value : multiple : value"
+        [selected]="checkSelectedState | spyInvoke : item.value : multiple : checkedState"
     >
         {{ item.title }}
     </option>

@@ -1,19 +1,21 @@
 import {
-    Component,
     ChangeDetectionStrategy,
-    Input,
-    Output,
+    Component,
     EventEmitter,
-    ViewEncapsulation,
-    OnChanges,
-    SimpleChanges,
     Injector,
-    OnInit,
+    Input,
+    OnChanges,
     OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild,
+    ViewEncapsulation,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
-import { ToBoolean, ToJson } from '@spryker/utils';
 import { I18nService } from '@spryker/locale';
+import { ToBoolean, ToJson } from '@spryker/utils';
+import { NzTreeSelectComponent } from 'ng-zorro-antd/tree-select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
 import { TreeSelectItem, TreeSelectValue } from './types';
@@ -69,6 +71,9 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
             noOptionsText ? of(noOptionsText) : this.i18nService.translate('tree-select.no-results'),
         ),
     );
+
+    @ViewChild('treeSelect')
+    protected treeSelect: NzTreeSelectComponent;
 
     constructor(
         private injector: Injector,
@@ -166,5 +171,26 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy {
         }
 
         return value === state;
+    }
+
+    protected onValueChange(value: TreeSelectValue[]): void {
+        if (!this.multiple) {
+            this.valueChange.emit(value);
+
+            return;
+        }
+
+        const nodes = this.treeSelect.getCheckedNodeList().map((node) => node.origin);
+        const result = [];
+
+        for (const node of nodes) {
+            if (node.children) {
+                nodes.push(...node.children);
+            }
+
+            result.push(node.value);
+        }
+
+        this.valueChange.emit(result);
     }
 }

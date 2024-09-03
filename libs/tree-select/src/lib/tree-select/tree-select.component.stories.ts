@@ -6,6 +6,17 @@ import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 
 import { TreeSelectModule } from '../tree-select.module';
 import { TreeSelectComponent } from './tree-select.component';
+import { TreeSelectItem } from './types';
+
+let counter = 0;
+
+const option = (title?: string, isDisabled = false): TreeSelectItem => {
+    counter += 1;
+
+    const value = `Option ${counter}`;
+
+    return { title: title ?? value, value, isDisabled };
+};
 
 export default {
     title: 'TreeSelectComponent',
@@ -56,18 +67,25 @@ export default {
     args: {
         items: [
             {
-                title: 'Anim ad aute culpa adipisicing aute ad mollit deserunt tempor incididunt. Reprehenderit incididunt nostrud ut eiusmod quis sint tempor ex ipsum aute.',
-                value: 'Option 1',
+                ...option(
+                    'Anim ad aute culpa adipisicing aute ad mollit deserunt tempor incididunt. Reprehenderit incididunt nostrud ut eiusmod quis sint tempor ex ipsum aute.',
+                ),
+                children: [option(), option()],
+            },
+            {
+                ...option(),
                 children: [
-                    { title: 'Option 7', value: 'Option 7' },
-                    { title: 'Option 8', value: 'Option 8' },
+                    option(),
+                    {
+                        ...option(),
+                        children: [option(), option()],
+                    },
                 ],
             },
-            { title: 'Option 2', value: 'Option 2' },
-            { title: 'Option 3', value: 'Option 3' },
-            { title: 'Option 4', isDisabled: true, value: 'Option 4' },
-            { title: 'Option 5', value: 'Option 5' },
-            { title: 'Option 6', value: 'Option 6' },
+            option(),
+            option('disabled', true),
+            option(),
+            option(),
         ],
         value: 'Option 2',
         search: true,

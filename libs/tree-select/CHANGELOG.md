@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/tree-select@2.0.1...@spryker/tree-select@2.0.2-next.0) (2024-09-03)
+
+
+### Bug Fixes
+
+* fix native select selection ([5e58b90](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/5e58b90679049fb16b0cf7404d0ec43fd0b9e575))
+* **tree-select:** fix output data with full list of options ([7eb5528](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/7eb5528bab0081fb206cf4e3ac21d4d1c0637c48))
+
+
+
+
+
 ## [2.0.1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/tree-select@2.0.1-next.0...@spryker/tree-select@2.0.1) (2024-08-14)
 
 **Note:** Version bump only for package @spryker/tree-select

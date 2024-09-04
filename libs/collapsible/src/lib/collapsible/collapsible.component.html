@@ -5,6 +5,8 @@
         [nzDisabled]="disabled"
         [nzShowArrow]="false"
         (nzActiveChange)="updateActive($event)"
+        (keyup.enter)="toggle()"
+        tabindex="0"
     >
         <ng-container *ngIf="alwaysRender || active">
             <ng-content></ng-content>

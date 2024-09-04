@@ -25,7 +25,11 @@ export class RedirectActionHandlerService implements ActionHandler<unknown, void
 
         url = String(sanitizer.sanitize(SecurityContext.URL, url));
 
-        windowToken.location.href = url;
+        if (config.newTab) {
+            windowToken.open(url, '_blank');
+        } else {
+            windowToken.location.href = url;
+        }
 
         return of(void 0);
     }

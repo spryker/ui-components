@@ -32,6 +32,7 @@ export default {
         action: {
             type: 'redirect',
             url: 'https://spryker.com',
+            newTab: false,
         },
     },
 } as Meta;

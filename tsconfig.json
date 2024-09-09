@@ -59,6 +59,9 @@
             "path": "./libs/card/tsconfig.json"
         },
         {
+            "path": "./libs/carousel/tsconfig.json"
+        },
+        {
             "path": "./libs/checkbox/tsconfig.json"
         },
         {

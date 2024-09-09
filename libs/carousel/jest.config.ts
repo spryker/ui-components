@@ -9,4 +9,7 @@ export default {
             stringifyContentPathRegex: '\\.(html|svg)$',
         },
     },
+    "moduleNameMapper": {
+        "swiper": "swiper/core/core.js",
+    },
 };

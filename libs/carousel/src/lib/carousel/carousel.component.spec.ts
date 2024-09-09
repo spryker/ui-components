@@ -1,11 +1,17 @@
-import { TestBed } from '@angular/core/testing';
-
-import { CarouselComponent } from './carousel.component';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
 import { CarouselOptions } from '../types';
+import { CarouselComponent } from './carousel.component';
+
+jest.mock('swiper', () => ({
+    __esModule: true,
+    default: {
+        use: jest.fn(),
+    },
+}))
 
 describe('CarouselComponent', () => {
     const projectedContent = `

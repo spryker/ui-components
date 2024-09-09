@@ -9,14 +9,12 @@ import {
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
-import { CarouselOptions } from '../types';
-
-import SwiperCore from 'swiper/core';
-import Swiper, { Navigation, Thumbs } from 'swiper/core';
 import { IconPaginationArrowModule } from '@spryker/icon/icons';
 import { BehaviorSubject } from 'rxjs';
-import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
+import Swiper, { Navigation, Thumbs } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
+import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
+import { CarouselOptions } from '../types';
 
 @Component({
     selector: 'spy-carousel',
@@ -42,7 +40,7 @@ export class CarouselComponent implements AfterViewInit {
     @Input() slidesPerClick = 2;
 
     constructor(private cdr: ChangeDetectorRef) {
-        SwiperCore.use([Navigation, Thumbs]);
+        Swiper.use([Navigation, Thumbs]);
     }
 
     @ViewChild('mainSwiper', { static: false }) swiper!: SwiperComponent;

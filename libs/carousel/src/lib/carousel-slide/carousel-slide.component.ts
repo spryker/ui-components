@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, ViewEncapsu
 @Component({
     selector: 'spy-carousel-slide',
     templateUrl: './carousel-slide.component.html',
-    styleUrls: ['./carousel-slide.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     host: {

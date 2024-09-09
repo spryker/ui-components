@@ -1,9 +1,17 @@
-import { Meta } from '@storybook/angular';
-import { CarouselComponent } from './carousel.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { CarouselModule } from '../carousel.module';
 
 export default {
     title: 'CarouselComponent',
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [CarouselModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['slidesPerView', 'slidesSpaceBetween', 'withThumbs', 'thumbsPerView', 'thumbsSpaceBetween'],
@@ -19,11 +27,8 @@ export default {
     },
 } as Meta;
 
-export const noNavigation = (args) => ({
+export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [CarouselModule],
-    },
     template: `
     <div style="width: 100%">
       <spy-carousel
@@ -42,9 +47,6 @@ export const noNavigation = (args) => ({
 
 export const withNavigation = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [CarouselModule],
-    },
     template: `
     <div style="width: 100%">
       <spy-carousel
@@ -63,9 +65,6 @@ export const withNavigation = (args) => ({
 
 export const noThumbs = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [CarouselModule],
-    },
     template: `
     <div style="width: 100%">
       <spy-carousel

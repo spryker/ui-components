@@ -1,5 +1,5 @@
-module.exports = {
-    name: 'carousel',
+export default {
+    displayName: 'carousel',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/carousel',
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],

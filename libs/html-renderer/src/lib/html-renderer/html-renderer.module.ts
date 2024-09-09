@@ -5,8 +5,8 @@ import { CustomElementBoundaryModule } from '@spryker/web-components';
 import { HtmlRendererComponent } from './html-renderer.component';
 
 @NgModule({
-  imports: [CommonModule, CustomElementBoundaryModule, SpinnerModule],
-  declarations: [HtmlRendererComponent],
-  exports: [HtmlRendererComponent],
+    imports: [CommonModule, CustomElementBoundaryModule, SpinnerModule],
+    declarations: [HtmlRendererComponent],
+    exports: [HtmlRendererComponent],
 })
 export class HtmlRendererComponentModule {}

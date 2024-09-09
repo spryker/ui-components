@@ -3,41 +3,33 @@ import { CheckboxComponent } from './checkbox.component';
 import { CheckboxModule } from '../checkbox.module';
 
 export default {
-  title: 'CheckboxComponent',
-  component: CheckboxComponent,
-  parameters: {
-    controls: {
-      include: [
-        'spyId',
-        'checked',
-        'disabled',
-        'indeterminate',
-        'required',
-        'name',
-        'attrs',
-      ],
+    title: 'CheckboxComponent',
+    component: CheckboxComponent,
+    parameters: {
+        controls: {
+            include: ['spyId', 'checked', 'disabled', 'indeterminate', 'required', 'name', 'attrs'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2001%3A9336',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2001%3A9336',
-      allowFullscreen: true,
+    args: {
+        spyId: 'some-id',
+        name: 'some-name',
+        attrs: {
+            attr1: 'attr1',
+        },
     },
-  },
-  args: {
-    spyId: 'some-id',
-    name: 'some-name',
-    attrs: {
-      attr1: 'attr1',
-    },
-  },
 } as Meta;
 
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [CheckboxModule],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [CheckboxModule],
+    },
+    template: `
     <spy-checkbox
       [spyId]="spyId"
       [checked]="checked"

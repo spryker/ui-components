@@ -1,123 +1,123 @@
 @import './notification-view.component.theme.less';
 
 .@{notification-view-spryker-prefix-cls} {
-  &.host-ctx-spy-bg-white,
-  &:not([class^='host-ctx-spy-bg']) {
-    .@{notification-prefix-cls} {
-      background: @gray-lighter;
+    &.host-ctx-spy-bg-white,
+    &:not([class^='host-ctx-spy-bg']) {
+        .@{notification-prefix-cls} {
+            background: @gray-lighter;
+        }
     }
-  }
 
-  &.host-ctx-spy-bg-gray {
-    .@{notification-prefix-cls} {
-      background: @spy-white;
+    &.host-ctx-spy-bg-gray {
+        .@{notification-prefix-cls} {
+            background: @spy-white;
+        }
     }
-  }
 }
 
 .@{notification-prefix-cls} {
-  padding: @notification-padding;
-  font: @font-default;
-  border-radius: @notification-border-radius;
-  border: none;
-  border-left: @notification-border;
-  margin-bottom: @notification-block-margin-bottom;
-
-  &__icon-wrapper {
-    padding-right: @notification-icon-padding;
-  }
-
-  &__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: @notification-icon-wrapper-width;
-    height: @notification-icon-wrapper-width;
-    position: static;
-    line-height: 0;
-    border-radius: 50%;
-    font-size: @notification-icon-width;
-    z-index: @notification-z-index;
-
-    &--success {
-      color: @green;
-      background: @green-lighter;
-    }
-
-    &--info {
-      color: @blue;
-      background: @blue-light;
-    }
-
-    &--warning {
-      color: @orange;
-      background: @orange-light;
-    }
-
-    &--error {
-      color: @red;
-      background: @red-light;
-    }
-  }
-
-  &__inner {
-    background: @spy-white;
-    border-radius: 50%;
-  }
-
-  &__title {
-    color: @ink;
-  }
-
-  &&-no-icon {
     padding: @notification-padding;
-  }
+    font: @font-default;
+    border-radius: @notification-border-radius;
+    border: none;
+    border-left: @notification-border;
+    margin-bottom: @notification-block-margin-bottom;
 
-  &-success {
-    border-left-color: @green;
-  }
-
-  &-info {
-    border-left-color: @blue;
-  }
-
-  &-warning {
-    border-left-color: @orange;
-  }
-
-  &-error {
-    border-left-color: @red;
-  }
-
-  &-description {
-    padding-left: 53px;
-  }
-
-  &,
-  &-with-description {
-    .@{notification-prefix-cls}-message {
-      display: flex;
-      align-items: center;
-      padding-right: calc(
-        @notification-with-description-padding-right + @notification-icon-width
-      );
-      margin-bottom: 0;
-      color: inherit;
-      font-size: inherit;
+    &__icon-wrapper {
+        padding-right: @notification-icon-padding;
     }
 
-    .@{notification-prefix-cls}-close-icon {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      line-height: 0;
-      right: @notification-close-icon-right-position;
-      font-size: @spy-font-size-lg;
-      color: @gray-dark;
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: @notification-icon-wrapper-width;
+        height: @notification-icon-wrapper-width;
+        position: static;
+        line-height: 0;
+        border-radius: 50%;
+        font-size: @notification-icon-width;
+        z-index: @notification-z-index;
 
-      &:hover {
-        color: @notification-close-hover-color;
-      }
+        &--success {
+            color: @green;
+            background: @green-lighter;
+        }
+
+        &--info {
+            color: @blue;
+            background: @blue-light;
+        }
+
+        &--warning {
+            color: @orange;
+            background: @orange-light;
+        }
+
+        &--error {
+            color: @red;
+            background: @red-light;
+        }
     }
-  }
+
+    &__inner {
+        background: @spy-white;
+        border-radius: 50%;
+    }
+
+    &__title {
+        color: @ink;
+    }
+
+    &&-no-icon {
+        padding: @notification-padding;
+    }
+
+    &-success {
+        border-left-color: @green;
+    }
+
+    &-info {
+        border-left-color: @blue;
+    }
+
+    &-warning {
+        border-left-color: @orange;
+    }
+
+    &-error {
+        border-left-color: @red;
+    }
+
+    &-description {
+        padding-left: @notification-description-padding-left;
+        line-height: @notification-description-line-height;
+    }
+
+    &,
+    &-with-description {
+        .@{notification-prefix-cls}-message {
+            display: flex;
+            align-items: center;
+            padding-right: calc(@notification-with-description-padding-right + @notification-icon-width);
+            line-height: @notification-description-line-height;
+            margin-bottom: 0;
+            color: inherit;
+            font-size: inherit;
+        }
+
+        .@{notification-prefix-cls}-close-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            line-height: 0;
+            right: @notification-close-icon-right-position;
+            font-size: @spy-font-size-lg;
+            color: @gray-dark;
+
+            &:hover {
+                color: @notification-close-hover-color;
+            }
+        }
+    }
 }

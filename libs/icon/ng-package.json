@@ -1,10 +1,10 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/icon",
-  "lib": {
-    "entryFile": "src/index.ts",
-    "styleIncludePaths": ["../styles/src/lib"]
-  },
-  "allowedNonPeerDependencies": ["ng-zorro-antd"],
-  "assets": ["src/lib/fontello"]
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/libs/icon",
+    "lib": {
+        "entryFile": "src/index.ts",
+        "styleIncludePaths": ["../styles/src/lib"]
+    },
+    "allowedNonPeerDependencies": ["ng-zorro-antd"],
+    "assets": ["src/lib/fontello"]
 }

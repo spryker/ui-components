@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { InputModule } from '@spryker/input';
 import { TextareaModule } from '@spryker/textarea';
 import { AutocompleteModule } from '@spryker/autocomplete';
@@ -11,60 +10,61 @@ import { FormItemModule } from '../form-item.module';
 import { FormItemComponent } from './form-item.component';
 
 export default {
-  title: 'FormItemComponent',
-  component: FormItemComponent,
-  parameters: {
-    controls: {
-      include: [
-        'error',
-        'warning',
-        'hint',
-        'required',
-        'noSpaces',
-        'noLabel',
-        'withErrorTitle',
-        'prefix',
-        'suffix',
-        'outerPrefix',
-        'outerSuffix',
-        'autocomplete',
-        'select',
-        'treeSelect',
-      ],
+    title: 'FormItemComponent',
+    component: FormItemComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [FormItemModule, InputModule],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: [
+                'error',
+                'warning',
+                'hint',
+                'required',
+                'noSpaces',
+                'noLabel',
+                'withErrorTitle',
+                'prefix',
+                'suffix',
+                'outerPrefix',
+                'outerSuffix',
+                'autocomplete',
+                'select',
+                'treeSelect',
+            ],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=303%3A632',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=303%3A632',
-      allowFullscreen: true,
+    argTypes: {
+        error: {
+            control: { type: 'text' },
+        },
+        warning: {
+            control: { type: 'text' },
+        },
+        hint: {
+            control: { type: 'text' },
+        },
     },
-  },
-  argTypes: {
-    error: {
-      control: { type: 'text' },
+    args: {
+        error: 'Error message',
+        withErrorTitle: true,
     },
-    warning: {
-      control: { type: 'text' },
-    },
-    hint: {
-      control: { type: 'text' },
-    },
-  },
-  args: {
-    error: 'Error message',
-    withErrorTitle: true,
-  },
 } as Meta;
 
-@NgModule({
-  imports: [BrowserAnimationsModule, FormItemModule],
-  exports: [FormItemModule, InputModule],
-})
-class StoryModule {}
-
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    props: args,
+    template: `
     <spy-form-item
       for="input-id1"
       [required]="required"
@@ -104,14 +104,13 @@ export const primary = (args) => ({
   `,
 });
 primary.args = {
-  warning: 'Warning message',
-  hint: 'Hint message',
+    warning: 'Warning message',
+    hint: 'Hint message',
 };
 
 export const withPrefixAndSuffix = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    props: args,
+    template: `
     <spy-form-item
       for="input-id1"
       [required]="required"
@@ -139,24 +138,17 @@ export const withPrefixAndSuffix = (args) => ({
   `,
 });
 withPrefixAndSuffix.args = {
-  prefix: 'P',
-  suffix: 'S',
-  outerPrefix: 'Prefix',
-  outerSuffix: 'Suffix',
+    prefix: 'P',
+    suffix: 'S',
+    outerPrefix: 'Prefix',
+    outerSuffix: 'Suffix',
 };
 
 export const formWithErrors = (args) => ({
-  moduleMetadata: {
-    imports: [
-      StoryModule,
-      TextareaModule,
-      AutocompleteModule,
-      SelectModule,
-      TreeSelectModule,
-      RadioModule,
-    ],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [TextareaModule, AutocompleteModule, SelectModule, TreeSelectModule, RadioModule],
+    },
+    template: `
     <spy-form-item
       [required]="required"
       [noSpaces]="noSpaces"
@@ -217,35 +209,35 @@ export const formWithErrors = (args) => ({
       </spy-radio-group>
     </spy-form-item>
   `,
-  props: args,
+    props: args,
 });
 formWithErrors.args = {
-  autocomplete: [
-    {
-      value: 'Option 1',
-      title: 'Option 1',
-    },
-    {
-      value: 'Option 2',
-      title: 'Option 2',
-      isDisabled: true,
-    },
-    {
-      value: 'Option 3',
-      title: 'Option 3',
-    },
-  ],
-  select: ['Option 1', 'Option 2', 'Option 3'],
-  treeSelect: [
-    {
-      title: 'Option 1',
-      value: 'Option 1',
-      children: [
-        { title: 'Option 4', value: 'Option 4' },
-        { title: 'Option 5', value: 'Option 5' },
-      ],
-    },
-    { title: 'Option 2', value: 'Option 2' },
-    { title: 'Option 3', value: 'Option 3' },
-  ],
+    autocomplete: [
+        {
+            value: 'Option 1',
+            title: 'Option 1',
+        },
+        {
+            value: 'Option 2',
+            title: 'Option 2',
+            isDisabled: true,
+        },
+        {
+            value: 'Option 3',
+            title: 'Option 3',
+        },
+    ],
+    select: ['Option 1', 'Option 2', 'Option 3'],
+    treeSelect: [
+        {
+            title: 'Option 1',
+            value: 'Option 1',
+            children: [
+                { title: 'Option 4', value: 'Option 4' },
+                { title: 'Option 5', value: 'Option 5' },
+            ],
+        },
+        { title: 'Option 2', value: 'Option 2' },
+        { title: 'Option 3', value: 'Option 3' },
+    ],
 };

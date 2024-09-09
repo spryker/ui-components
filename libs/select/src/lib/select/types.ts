@@ -5,8 +5,8 @@ export type SelectValueSelected = SelectValue | SelectValue[];
 export type SelectOption = SelectValue | SelectOptionItem;
 
 export interface SelectOptionItem {
-  title: string;
-  value: SelectValue;
-  isDisabled?: boolean;
-  template?: TemplateRef<void>;
+    title: string;
+    value: SelectValue;
+    isDisabled?: boolean;
+    template?: TemplateRef<void>;
 }

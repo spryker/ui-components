@@ -1,79 +1,83 @@
 @import './radio.component.theme.less';
 
 .@{radio-prefix-cls}-wrapper {
-  font: @font-default;
-  white-space: normal;
-  display: flex;
-  margin: 0;
+    font: @font-default;
+    white-space: normal;
+    display: flex;
+    margin: 0;
 
-  &:hover {
-    .@{radio-prefix-cls}-inner {
-      border-color: @radio-hover-border-color;
-    }
-  }
-
-  &-checked:not(&-disabled) {
     &:hover {
-      .@{radio-prefix-cls} {
-        &-inner {
-          border-color: @radio-checked-background;
-
-          &::after {
-            background: @radio-checked-background;
-          }
+        .@{radio-prefix-cls}-inner {
+            border-color: @radio-hover-border-color;
         }
-      }
     }
 
-    .@{radio-prefix-cls}-input:focus + .@{radio-prefix-cls}-inner {
-      box-shadow: @radio-checked-focus-shadow;
+    &-checked:not(&-disabled) {
+        .@{radio-prefix-cls}-inner::after {
+            transform: scale(1);
+        }
+
+        &:hover {
+            .@{radio-prefix-cls} {
+                &-inner {
+                    border-color: @radio-checked-background;
+
+                    &::after {
+                        background: @radio-checked-background;
+                    }
+                }
+            }
+        }
+
+        .@{radio-prefix-cls}-input:focus + .@{radio-prefix-cls}-inner {
+            box-shadow: @radio-checked-focus-shadow;
+        }
     }
-  }
 }
 
 .@{radio-prefix-cls} {
-  &-inner {
-    width: @spy-radio-size;
-    height: @spy-radio-size;
-    border: @radio-border;
+    &-inner {
+        width: @spy-radio-size;
+        height: @spy-radio-size;
+        border: @radio-border;
 
-    &::after {
-      width: @radio-inner-size;
-      height: @radio-inner-size;
-      top: 50%;
-      left: 50%;
-      margin: @radio-inner-margin;
+        &::after {
+            width: @radio-inner-size;
+            height: @radio-inner-size;
+            top: 50%;
+            left: 50%;
+            margin: @radio-inner-margin;
+        }
     }
-  }
 
-  &-input:focus + &-inner {
-    box-shadow: none;
-    border-color: @radio-focus-border-color;
-  }
-
-  &-disabled .@{radio-prefix-cls}-inner {
-    pointer-events: none;
-    background: @spy-disabled-bg;
-    border-color: @radio-disabled-border-color !important;
-
-    &::after {
-      background: @radio-inner-disabled-background;
+    &-input:focus + &-inner {
+        box-shadow: none;
+        border-color: @radio-focus-border-color;
     }
-  }
 
-  span& + span {
-    color: @radio-label-color;
-    padding-right: @radio-label-indent-x;
-    padding-left: @radio-label-indent-x;
-  }
+    &-disabled .@{radio-prefix-cls}-inner {
+        pointer-events: none;
+        background: @spy-disabled-bg;
+        border-color: @radio-disabled-border-color !important;
+
+        &::after {
+            background: @radio-inner-disabled-background;
+        }
+    }
+
+    span& + span {
+        color: @radio-label-color;
+        padding-right: @radio-label-indent-x;
+        padding-left: @radio-label-indent-x;
+    }
 }
 
 .@{radio-spryker-prefix-cls} {
-  &--error {
-    .@{radio-prefix-cls}-wrapper:hover .@{radio-prefix-cls}-inner,
-    .@{radio-prefix-cls}-input:focus + .@{radio-prefix-cls}-inner,
-    .@{radio-prefix-cls}-inner {
-      border-color: @spy-error-color;
+    &--error {
+        .@{radio-prefix-cls}-wrapper:hover .@{radio-prefix-cls}-inner,
+        .@{radio-prefix-cls}-input:focus + .@{radio-prefix-cls}-inner,
+        .@{radio-prefix-cls}-inner {
+            border-color: @spy-error-color;
+        }
     }
-  }
 }

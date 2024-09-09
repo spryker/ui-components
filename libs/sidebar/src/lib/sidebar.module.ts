@@ -9,15 +9,15 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzLayoutModule,
-    IconModule,
-    IconArrowDownModule,
-    CustomElementBoundaryModule,
-    ApplyContextsModule,
-  ],
-  declarations: [SidebarComponent],
-  exports: [SidebarComponent],
+    imports: [
+        CommonModule,
+        NzLayoutModule,
+        IconModule,
+        IconArrowDownModule,
+        CustomElementBoundaryModule,
+        ApplyContextsModule,
+    ],
+    declarations: [SidebarComponent],
+    exports: [SidebarComponent],
 })
 export class SidebarModule {}

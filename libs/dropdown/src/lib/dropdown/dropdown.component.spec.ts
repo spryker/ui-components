@@ -1,120 +1,82 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { Directive, NO_ERRORS_SCHEMA } from '@angular/core';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { DropdownComponent } from './dropdown.component';
 
-import { DropdownModule } from '../dropdown.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: 'nz-dropdown-menu',
+    exportAs: 'nzDropdownMenu',
+})
+class MockNzDropDown { }
 
 describe('DropdownComponent', () => {
-  @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'test',
-    template: `
-      <spy-dropdown
-        [items]="items"
-        [placement]="placement"
-        [visible]="visible"
-        [disabled]="disabled"
-        [trigger]="trigger"
-        (visibleChange)="visibleChangeSpy($event)"
-        (actionTriggered)="actionTriggeredSpy(action)"
-      ></spy-dropdown>
-    `,
-  })
-  class TestComponent {
-    items: any;
-    placement: any;
-    visible: any;
-    disabled: any;
-    trigger: any;
-    visibleChangeSpy = jest.fn();
-    actionTriggeredSpy = jest.fn();
-  }
-
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [DropdownModule, NoopAnimationsModule],
-      declarations: [TestComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      teardown: { destroyAfterEach: false },
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-  }));
-  afterEach(() => {
-    fixture.destroy();
-  });
-
-  it('template must render span and nz-dropdown-menu from Ant Design', () => {
-    const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
-    const nzDropdownElem = fixture.debugElement.query(
-      By.css('nz-dropdown-menu'),
-    );
-
-    expect(spanElem).toBeTruthy();
-    expect(nzDropdownElem).toBeTruthy();
-  });
-
-  describe('Inputs must be bound to span', () => {
-    it('should bind placement to nzPlacement of nz-dropdown', () => {
-      const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
-      const mockedValue = 'bottomLeft';
-
-      component.placement = mockedValue;
-
-      fixture.detectChanges();
-
-      expect(spanElem.attributes['ng-reflect-nz-placement']).toBe(mockedValue);
+    const { testModule, createComponent } = getTestingForComponent(DropdownComponent, {
+        ngModule: {
+            declarations: [MockNzDropDown],
+            schemas: [NO_ERRORS_SCHEMA],
+        },
     });
 
-    it('should bind disabled to nzDisabled of nz-dropdown', () => {
-      const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
-      component.disabled = true;
-
-      const mockedValue = 'bottomLeft';
-      component.placement = mockedValue;
-
-      fixture.detectChanges();
-
-      expect(spanElem.attributes['ng-reflect-nz-disabled']).toBe('true');
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
     });
 
-    it('should bind visible to nzVisible of nz-dropdown', () => {
-      const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
-      component.visible = true;
+    it('template must render span and nz-dropdown-menu from Ant Design', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const spanElem = host.queryCss('span[nz-dropdown]');
+        const nzDropdownElem = host.queryCss('nz-dropdown-menu');
 
-      const mockedValue = 'bottomLeft';
-      component.placement = mockedValue;
-
-      fixture.detectChanges();
-
-      expect(spanElem.attributes['ng-reflect-nz-visible']).toBe('true');
+        expect(spanElem).toBeTruthy();
+        expect(nzDropdownElem).toBeTruthy();
     });
 
-    it('should bind trigger to nzTrigger of nz-dropdown', () => {
-      const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
+    describe('Inputs must be bound to span', () => {
+        it('should bind placement to nzPlacement of nz-dropdown', async () => {
+            const mockedValue = 'bottomLeft';
+            const host = await createComponentWrapper(createComponent, { placement: mockedValue });
+            const spanElem = host.queryCss('span[nz-dropdown]');
 
-      const mockedValue = 'hover';
-      component.trigger = mockedValue;
+            expect(spanElem.properties.nzPlacement).toBe(mockedValue);
+        });
 
-      fixture.detectChanges();
-      expect(spanElem.attributes['ng-reflect-nz-trigger']).toBe(mockedValue);
+        it('should bind disabled to nzDisabled of nz-dropdown', async () => {
+            const host = await createComponentWrapper(createComponent, { disabled: true });
+            const spanElem = host.queryCss('span[nz-dropdown]');
+
+            expect(spanElem.properties.nzDisabled).toBe(true);
+        });
+
+        it('should bind trigger to nzTrigger of nz-dropdown', () => {
+            const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
+
+            const mockedValue = 'hover';
+            component.trigger = mockedValue;
+
+            fixture.detectChanges();
+            expect(spanElem.attributes['ng-reflect-nz-trigger']).toBe(mockedValue);
+        });
     });
-  });
 
-  it('visibleChange must be emitted every time nzVisibleChange emits with $event', () => {
-    const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
+    it('should bind visible to nzVisible of nz-dropdown', async () => {
+        const host = await createComponentWrapper(createComponent, { visible: true });
+        const spanElem = host.queryCss('span[nz-dropdown]');
 
-    const mockedValue = 'bottomLeft';
-    component.placement = mockedValue;
+        expect(spanElem.properties.nzVisible).toBe(true);
+    });
+});
+
+it('visibleChange must be emitted every time nzVisibleChange emits with $event', async () => {
+    const host = await createComponentWrapper(createComponent);
+    const spanElem = host.queryCss('span[nz-dropdown]');
 
     spanElem.triggerEventHandler('nzVisibleChange', false);
-    fixture.detectChanges();
+    host.detectChanges();
 
-    expect(component.visibleChangeSpy).toHaveBeenCalledWith(false);
-  });
+    expect(host.hostComponent.visibleChange).toHaveBeenCalledWith(false);
+});
 });

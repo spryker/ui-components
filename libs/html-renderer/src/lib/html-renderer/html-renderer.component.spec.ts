@@ -1,151 +1,140 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { SpinnerSize } from '@spryker/spinner';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { Observable, ReplaySubject } from 'rxjs';
-
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { HtmlRendererComponent } from './html-renderer.component';
 import { HtmlRendererProvider } from './html-renderer.provider';
-
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 const mockHtmlTemplate = `
   <p>Hello World!!!</p>
 `;
 
 class MockHtmlRendererProvider {
-  html$ = new ReplaySubject<string>(1);
-  isLoading$ = new ReplaySubject<void>(1);
+    html$ = new ReplaySubject<string>(1);
+    isLoading$ = new ReplaySubject<void>(1);
 
-  getHtml(): Observable<string> {
-    return this.html$;
-  }
+    getHtml(): Observable<string> {
+        return this.html$;
+    }
 
-  isLoading(): Observable<void> {
-    return this.isLoading$;
-  }
+    isLoading(): Observable<void> {
+        return this.isLoading$;
+    }
 }
 
 describe('HtmlRendererComponent', () => {
-  let testHtmlRendererProvider: MockHtmlRendererProvider;
+    let testHtmlRendererProvider: MockHtmlRendererProvider;
 
-  const { testModule, createComponent } = getTestingForComponent(
-    HtmlRendererComponent,
-    {
-      ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-    },
-  );
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [testModule],
-      providers: [
-        {
-          provide: HtmlRendererProvider,
-          useExisting: MockHtmlRendererProvider,
-        },
-        MockHtmlRendererProvider,
-      ],
-      teardown: { destroyAfterEach: false },
+    const { testModule, createComponent } = getTestingForComponent(HtmlRendererComponent, {
+        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
     });
-    testHtmlRendererProvider = TestBed.inject(MockHtmlRendererProvider);
-  }));
 
-  it('should render `spy-html-renderer` component', async () => {
-    const host = await createComponent({}, true);
-    const htmlRendererElem = host.queryCss('spy-html-renderer')!;
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            providers: [
+                {
+                    provide: HtmlRendererProvider,
+                    useExisting: MockHtmlRendererProvider,
+                },
+                MockHtmlRendererProvider,
+            ],
+            teardown: { destroyAfterEach: false },
+        });
 
-    expect(htmlRendererElem).toBeTruthy();
-  });
+        testHtmlRendererProvider = TestBed.inject(MockHtmlRendererProvider);
+    });
 
-  it('should render html inside `spy-html-renderer`', async () => {
-    const host = await createComponent({}, true);
-    const htmlRendererElem = host.queryCss(
-      'spy-html-renderer .spy-html-renderer__content',
-    )!;
+    it('should render <spy-html-renderer> component', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const htmlRendererElem = host.queryCss('spy-html-renderer');
 
-    testHtmlRendererProvider.html$.next(mockHtmlTemplate);
-    host.detectChanges();
+        expect(htmlRendererElem).toBeTruthy();
+    });
 
-    expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
-  });
+    it('should render html inside <spy-html-renderer>', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
 
-  it('should render `spy-spinner` if `isLoading$` signal invokes', async () => {
-    const host = await createComponent({}, true);
-    testHtmlRendererProvider.isLoading$.next();
-    host.detectChanges();
+        testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+        host.detectChanges();
 
-    const spinElem = host.queryCss('spy-spinner')!;
+        expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
+    });
 
-    expect(spinElem).toBeTruthy();
-  });
+    it('should render <spy-spinner> if `isLoading$` signal invokes', async () => {
+        const host = await createComponentWrapper(createComponent);
 
-  it('should not render `spy-spinner` if `isLoading$` signal does not invoke', async () => {
-    const host = await createComponent({}, true);
-    host.detectChanges();
+        testHtmlRendererProvider.isLoading$.next();
+        host.detectChanges();
 
-    const spinElem = host.queryCss('spy-spinner')!;
+        const spinElem = host.queryCss('spy-spinner');
 
-    expect(spinElem).toBeFalsy();
-  });
+        expect(spinElem).toBeTruthy();
+    });
 
-  it('should not render `spy-spinner` if `html$` signal invokes', async () => {
-    const host = await createComponent({}, true);
-    testHtmlRendererProvider.isLoading$.next();
-    host.detectChanges();
+    it('should not render <spy-spinner> if `isLoading$` signal does not invoke', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const spinElem = host.queryCss('spy-spinner');
 
-    let spinElem = host.queryCss('spy-spinner')!;
+        expect(spinElem).toBeFalsy();
+    });
 
-    expect(spinElem).toBeTruthy();
+    it('should not render <spy-spinner> if `html$` signal invokes', async () => {
+        const host = await createComponentWrapper(createComponent);
 
-    testHtmlRendererProvider.html$.next(mockHtmlTemplate);
-    host.detectChanges();
+        testHtmlRendererProvider.isLoading$.next();
+        host.detectChanges();
 
-    spinElem = host.queryCss('spy-spinner')!;
+        let spinElem = host.queryCss('spy-spinner');
 
-    expect(spinElem).toBeFalsy();
-  });
+        expect(spinElem).toBeTruthy();
 
-  it('should apply `size` attribute for `spy-spinner` element', async () => {
-    const host = await createComponent(
-      { spinnerSize: SpinnerSize.Default },
-      true,
-    );
-    testHtmlRendererProvider.isLoading$.next();
-    host.detectChanges();
+        testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+        host.detectChanges();
+        spinElem = host.queryCss('spy-spinner');
 
-    const spinElem = host.queryCss('spy-spinner')!;
+        expect(spinElem).toBeFalsy();
+    });
 
-    expect(spinElem.properties.size).toBe(SpinnerSize.Default);
-  });
+    it('should apply `size` attribute for <spy-spinner> element', async () => {
+        const host = await createComponentWrapper(createComponent, { spinnerSize: SpinnerSize.Default });
 
-  it('should render html inside `spy-html-renderer` when html was changes', async () => {
-    const mockRerenderHtml = `<p>Rerendered!!!</p>`;
-    const host = await createComponent({}, true);
-    const htmlRendererElem = host.queryCss(
-      'spy-html-renderer .spy-html-renderer__content',
-    )!;
+        testHtmlRendererProvider.isLoading$.next();
+        host.detectChanges();
 
-    testHtmlRendererProvider.html$.next(mockHtmlTemplate);
-    host.detectChanges();
+        const spinElem = host.queryCss('spy-spinner');
 
-    expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
+        expect(spinElem.properties.size).toBe(SpinnerSize.Default);
+    });
 
-    testHtmlRendererProvider.html$.next(mockRerenderHtml);
-    host.detectChanges();
+    it('should render html inside <spy-html-renderer> when html was changes', async () => {
+        const mockRerenderHtml = `<p>Rerendered!!!</p>`;
+        const host = await createComponentWrapper(createComponent);
+        const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
 
-    expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml);
-  });
+        testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+        host.detectChanges();
 
-  it('should emit @Output(htmlRendered) when component renders HTML code', fakeAsync(async () => {
-    const host = await createComponent({}, true);
+        expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockHtmlTemplate);
 
-    host.hostComponent.htmlRendered = jest.fn();
-    testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+        testHtmlRendererProvider.html$.next(mockRerenderHtml);
+        host.detectChanges();
 
-    host.detectChanges();
-    tick();
+        expect(htmlRendererElem.nativeElement.innerHTML).toBe(mockRerenderHtml);
+    });
 
-    expect(host.hostComponent.htmlRendered).toHaveBeenCalled();
-  }));
+    it('should emit @Output(htmlRendered) when component renders HTML code', fakeAsync(async () => {
+        const host = await createComponentWrapper(createComponent);
+
+        host.hostComponent.htmlRendered = jest.fn();
+        testHtmlRendererProvider.html$.next(mockHtmlTemplate);
+
+        host.detectChanges();
+        tick();
+
+        expect(host.hostComponent.htmlRendered).toHaveBeenCalled();
+    }));
 });

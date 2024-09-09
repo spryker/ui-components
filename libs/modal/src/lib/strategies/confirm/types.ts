@@ -1,17 +1,20 @@
 import { TemplateRef } from '@angular/core';
-import { ModalTemplateContext, AnyModal } from '../../types';
-import { ButtonVariant } from '@spryker/button';
+import { ButtonSize, ButtonVariant } from '@spryker/button';
+import { AnyModal, ModalTemplateContext } from '../../types';
 
-export interface ConfirmModalStrategyOptions extends ConfirmModalData {}
+export interface ConfirmModalStrategyOptions extends ConfirmModalData { }
 
 export interface ConfirmModalData {
-  title?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  description?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  icon?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  okText?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  okType?: string;
-  okButtonVariant?: ButtonVariant;
-  cancelText?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  cancelType?: string;
-  class?: string;
+    title?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    description?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    icon?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    okText?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    okType?: string;
+    okVariant?: ButtonVariant;
+    okSize?: ButtonSize;
+    cancelText?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    cancelType?: string;
+    cancelVariant?: ButtonVariant;
+    cancelSize?: ButtonSize;
+    class?: string;
 }

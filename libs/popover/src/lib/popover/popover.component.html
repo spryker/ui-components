@@ -1,15 +1,15 @@
 <span
-  nz-popover
-  [nzPopoverPlacement]="position"
-  [nzPopoverOverlayClassName]="popoverOverlayClassname"
-  [nzPopoverVisible]="open"
-  [nzPopoverContent]="content"
-  [nzPopoverTrigger]="popoverTrigger"
-  (nzPopoverVisibleChange)="openChangeEvent($event)"
+    nz-popover
+    [nzPopoverPlacement]="position"
+    [nzPopoverOverlayClassName]="popoverOverlayClassname"
+    [nzPopoverVisible]="open"
+    [nzPopoverContent]="content"
+    [nzPopoverTrigger]="popoverTrigger"
+    (nzPopoverVisibleChange)="openChangeEvent($event)"
 >
-  <ng-content select="[trigger]"></ng-content>
+    <ng-content select="[trigger]"></ng-content>
 </span>
 
 <ng-template #content>
-  <ng-content></ng-content>
+    <ng-content></ng-content>
 </ng-template>

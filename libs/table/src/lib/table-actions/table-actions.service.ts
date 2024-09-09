@@ -11,66 +11,56 @@ import { TableActionTriggeredEvent } from './types';
  * from all registered handlers in {@link ActionsService}
  */
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class TableActionsService implements OnDestroy {
-  tableEventBus?: TableEventBus;
+    tableEventBus?: TableEventBus;
 
-  triggerAction$ = new ReplaySubject<{
-    actionEvent: TableActionTriggeredEvent;
-    context: unknown;
-  }>(1);
+    triggerAction$ = new ReplaySubject<{
+        actionEvent: TableActionTriggeredEvent;
+        context: unknown;
+    }>(1);
 
-  destroyed$ = new Subject<void>();
-  action$ = this.triggerAction$.pipe(
-    switchMap(({ actionEvent, context }) =>
-      this.actionsService.trigger(this.injector, actionEvent.action, context),
-    ),
-  );
+    destroyed$ = new Subject<void>();
+    action$ = this.triggerAction$.pipe(
+        switchMap(({ actionEvent, context }) =>
+            this.actionsService.trigger(this.injector, actionEvent.action, context),
+        ),
+    );
 
-  constructor(
-    private injector: Injector,
-    private actionsService: ActionsService,
-  ) {
-    this.action$.pipe(takeUntil(this.destroyed$)).subscribe();
-  }
-
-  /**
-   * Handle actions of {@link ActionsService}
-   * and calls {@method trigger} of {@link ActionHandler}
-   * provided from {@link ActionTypesToken}
-   */
-  trigger(
-    actionEvent: TableActionTriggeredEvent,
-    context?: unknown,
-  ): Observable<unknown> {
-    if (this.actionsService.isActionRegisteredType(actionEvent.action.type)) {
-      this.triggerAction$.next({
-        actionEvent,
-        context,
-      });
-
-      return this.action$;
+    constructor(private injector: Injector, private actionsService: ActionsService) {
+        this.action$.pipe(takeUntil(this.destroyed$)).subscribe();
     }
 
-    this.tableEventBus?.emit<TableActionTriggeredEvent>(
-      'table',
-      actionEvent,
-      actionEvent.action.type,
-    );
-    this.tableEventBus?.emit<TableActionTriggeredEvent>('table', actionEvent);
+    /**
+     * Handle actions of {@link ActionsService}
+     * and calls {@method trigger} of {@link ActionHandler}
+     * provided from {@link ActionTypesToken}
+     */
+    trigger(actionEvent: TableActionTriggeredEvent, context?: unknown): Observable<unknown> {
+        if (this.actionsService.isActionRegisteredType(actionEvent.action.type)) {
+            this.triggerAction$.next({
+                actionEvent,
+                context,
+            });
 
-    return of(void 0);
-  }
+            return this.action$;
+        }
 
-  /**
-   * Sets {@link TableEventBus} that comes from {@link TableComponent}
-   */
-  _setEventBus(tableEventBus: TableEventBus): void {
-    this.tableEventBus = tableEventBus;
-  }
+        this.tableEventBus?.emit<TableActionTriggeredEvent>('table', actionEvent, actionEvent.action.type);
+        this.tableEventBus?.emit<TableActionTriggeredEvent>('table', actionEvent);
 
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-  }
+        return of(void 0);
+    }
+
+    /**
+     * Sets {@link TableEventBus} that comes from {@link TableComponent}
+     */
+    _setEventBus(tableEventBus: TableEventBus): void {
+        this.tableEventBus = tableEventBus;
+    }
+
+    ngOnDestroy(): void {
+        this.destroyed$.next();
+    }
 }

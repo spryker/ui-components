@@ -1,11 +1,8 @@
 module.exports = {
-  '*.{jsx?,tsx?,json,s?css,less,html}': (files) => [
-    `npm run format:write -- --files ${files.join(',')}`,
-  ],
-  '{libs,apps}/**/*.{tsx?,jsx?}': (files) => [
-    `npm run affected:lint -- --fix --files ${files.join(',')}`,
-  ],
-  '{libs,apps}/**/*.{tsx?,jsx?}': (files) => [
-    `npm run affected:test -- --files ${files.join(',')}`,
-  ],
+    '*.{js?(x),ts?(x),json,css,less,html}': (files) => [`npm run format -- --files ${files.join(',')}`],
+    '{libs,apps}/**/*.{less,css}': (files) => [`npm run stylelint:fix ${files.join(',')}`],
+    '{libs,apps}/**/*.{ts?(x),js?(x)}': (files) => [
+        `npm run affected:lint -- --fix --files ${files.join(',')}`,
+        `npm run affected:test -- --files ${files.join(',')}`,
+    ],
 };

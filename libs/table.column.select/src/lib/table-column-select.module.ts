@@ -6,14 +6,8 @@ import { SelectModule } from '@spryker/select';
 import { FormItemModule } from '@spryker/form-item';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ContextModule,
-    SelectModule,
-    FormItemModule,
-    InvokeModule,
-  ],
-  declarations: [TableColumnSelectComponent],
-  exports: [TableColumnSelectComponent],
+    imports: [CommonModule, ContextModule, SelectModule, FormItemModule, InvokeModule],
+    declarations: [TableColumnSelectComponent],
+    exports: [TableColumnSelectComponent],
 })
 export class TableColumnSelectModule {}

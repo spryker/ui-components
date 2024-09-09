@@ -1,17 +1,12 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'spy-logo',
-  templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+    selector: 'spy-logo',
+    templateUrl: './logo.component.html',
+    styleUrls: ['./logo.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
 })
 export class LogoComponent {
-  @Input() size: 'full' | 'icon' = 'full';
+    @Input() size: 'full' | 'icon' = 'full';
 }

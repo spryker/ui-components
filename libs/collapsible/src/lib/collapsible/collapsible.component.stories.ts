@@ -1,45 +1,50 @@
 import { Component } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { CollapsibleComponent } from './collapsible.component';
 import { CollapsibleModule } from '../collapsible.module';
 
-export default {
-  title: 'CollapsibleComponent',
-  component: CollapsibleComponent,
-  parameters: {
-    controls: {
-      include: ['spyTitle', 'active', 'disabled', 'alwaysRender'],
-    },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8983',
-      allowFullscreen: true,
-    },
-  },
-  args: {
-    spyTitle: 'Collapsible Title',
-    alwaysRender: false,
-  },
-} as Meta;
-
 @Component({
-  selector: 'spy-story',
-  template: ` Collapse Content `,
+    selector: 'spy-story',
+    template: ` Collapse Content `,
 })
 class StoryComponent {
-  constructor() {
-    console.log('Story component initialized');
-  }
+    constructor() {
+        console.log('Story component initialized');
+    }
 }
 
+export default {
+    title: 'CollapsibleComponent',
+    component: CollapsibleComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations()],
+        }),
+        moduleMetadata({
+            imports: [CollapsibleModule],
+            declarations: [StoryComponent],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: ['spyTitle', 'active', 'disabled', 'alwaysRender'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8983',
+            allowFullscreen: true,
+        },
+    },
+    args: {
+        spyTitle: 'Collapsible Title',
+        alwaysRender: false,
+    },
+} as Meta;
+
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [CollapsibleModule, BrowserAnimationsModule],
-    declarations: [StoryComponent],
-  },
-  template: `
+    props: args,
+    template: `
     <spy-collapsible
       [spyTitle]="spyTitle"
       [active]="active"
@@ -51,12 +56,8 @@ export const primary = (args) => ({
 });
 
 export const withTemplate = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [CollapsibleModule, BrowserAnimationsModule],
-    declarations: [StoryComponent],
-  },
-  template: `
+    props: args,
+    template: `
     <spy-collapsible
       [spyTitle]="spyTitle"
       [active]="active"
@@ -69,5 +70,5 @@ export const withTemplate = (args) => ({
   `,
 });
 withTemplate.args = {
-  spyTitle: 'Collapsible Template Title',
+    spyTitle: 'Collapsible Template Title',
 };

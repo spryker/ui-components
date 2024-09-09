@@ -1,20 +1,20 @@
 {
-  "name": "@spryker/unsaved-changes.guard.drawer",
-  "version": "0.2.5-beta.0",
-  "peerDependencies": {
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/drawer": "^0.3.0",
-    "@spryker/interception": "^0.2.0",
-    "@spryker/locale": "^0.3.2",
-    "@spryker/modal": "^0.2.0",
-    "@spryker/unsaved-changes": "^0.2.0",
-    "rxjs": "^7.4.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/unsaved-changes.guard.drawer",
+    "version": "2.0.0",
+    "peerDependencies": {
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "@spryker/drawer": "^2.0.0",
+        "@spryker/interception": "^2.0.0",
+        "@spryker/locale": "^2.0.0",
+        "@spryker/modal": "^2.0.0",
+        "@spryker/unsaved-changes": "^2.0.0",
+        "rxjs": "^7.8.1"
+    },
+    "dependencies": {
+        "tslib": "^2.6.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

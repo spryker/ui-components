@@ -2,123 +2,61 @@
 
 @select-component-width: var(--spy-select-component-width, 100%);
 @select-component-height: var(--spy-select-component-height, 42px);
-@select-dropdown-box-shadow: var(
-  --spy-select-dropdown-box-shadow,
-  @box-shadow-1
-);
-@select-dropdown-menu-max-height: var(
-  --spy-select-dropdown-menu-max-height,
-  320px
-);
-@select-dropdown-menu-item-height: var(
-  --spy-select-dropdown-menu-item-height,
-  42px
-);
-@select-dropdown-menu-item-line-height: var(
-  --spy-select-dropdown-menu-item-line-height,
-  38px
-);
-@select-dropdown-menu-item-font-weight: var(
-  --spy-select-dropdown-menu-item-font-weight,
-  @font-weight-medium
-);
-@select-dropdown-menu-item-padding: var(
-  --spy-select-dropdown-menu-item-padding,
-  0
-);
+@select-dropdown-box-shadow: var(--spy-select-dropdown-box-shadow, @box-shadow-1);
+@select-dropdown-menu-max-height: var(--spy-select-dropdown-menu-max-height, 320px);
+@select-dropdown-menu-item-height: var(--spy-select-dropdown-menu-item-height, 42px);
+@select-dropdown-menu-item-line-height: var(--spy-select-dropdown-menu-item-line-height, 38px);
+@select-dropdown-menu-item-font-weight: var(--spy-select-dropdown-menu-item-font-weight, @font-weight-medium);
+@select-dropdown-menu-item-padding: var(--spy-select-dropdown-menu-item-padding, 0);
 @select-dropdown-menu-item-border: var(
-  --spy-select-dropdown-menu-item-border,
-  @spy-border-width-base solid @transparent
+    --spy-select-dropdown-menu-item-border,
+    @spy-border-width-base solid @transparent
 );
+@select-dropdown-menu-item-wrapped-padding-x: var(--spy-select-dropdown-menu-item-wrapped-padding-x, 12px);
 @select-dropdown-menu-item-wrapped-padding: var(
-  --spy-select-dropdown-menu-item-wrapped-padding,
-  0 12px
+    --spy-select-dropdown-menu-item-wrapped-padding,
+    0 @select-dropdown-menu-item-wrapped-padding-x
 );
 @select-arrow-right: var(--spy-select-arrow-right, 14px);
 @select-arrow-size: var(--spy-select-arrow-size, 12px);
 @select-border-radius: var(--spy-select-border-radius, @border-radius-small);
 @select-menu-vertical-padding: var(--spy-select-menu-vertical-padding, 12px);
-@select-menu-horizontal-padding: var(
-  --spy-select-menu-horizontal-padding,
-  15px
-);
+@select-menu-horizontal-padding: var(--spy-select-menu-horizontal-padding, 8px);
 @select-menu-margin: var(--spy-select-menu-margin, 7px 0);
-@select-multiple-selector-padding: var(
-  --spy-select-multiple-selector-padding,
-  0 30px 0 11px
-);
-@select-multiple-padding-vertical: var(
-  --spy-select-multiple-padding-vertical,
-  0px
-);
-@select-multiple-padding-horizontal: var(
-  --spy-select-multiple-padding-horizontal,
-  4px
-);
+@select-multiple-selector-padding: var(--spy-select-multiple-selector-padding, 0 30px 0 11px);
+@select-tag-selector-padding: var(--spy-select-tag-selector-padding, 5px 30px 5px 11px);
+@select-multiple-padding-vertical: var(--spy-select-multiple-padding-vertical, 0px);
+@select-multiple-padding-horizontal: var(--spy-select-multiple-padding-horizontal, 4px);
 @select-multiple-unchecked-border: var(
-  --spy-select-multiple-unchecked-border,
-  @checkbox-icon-border-width solid @gray-light
+    --spy-select-multiple-unchecked-border,
+    @checkbox-icon-border-width solid @gray-light
 );
+@select-tag-unchecked-icon-left: var(--spy-select-tag-unchecked-icon-left, 2px);
 @select-selection-clear-right: var(--spy-select-selection-clear-right, 9px);
-@select-selection-clear-btn-size: var(
-  --spy-select-selection-clear-btn-size,
-  24px
-);
-@select-selection-clear-btn-line-height: var(
-  --spy-select-selection-clear-btn-line-height,
-  25px
-);
-@select-selection-clear-icon-size: var(
-  --spy-select-selection-clear-icon-size,
-  9px
-);
+@select-selection-clear-btn-size: var(--spy-select-selection-clear-btn-size, 24px);
+@select-selection-clear-btn-line-height: var(--spy-select-selection-clear-btn-line-height, 24px);
+@select-selection-clear-icon-size: var(--spy-select-selection-clear-icon-size, 9px);
 @select-selection-clear-margin-top: var(
-  --spy-select-selection-clear-margin-top,
-  calc(@select-selection-clear-btn-size / -2)
+    --spy-select-selection-clear-margin-top,
+    calc(@select-selection-clear-btn-size / -2)
 );
-@select-selection-placeholder-spacing-right: var(
-  --spy-select-placeholder-selection-spacing-right,
-  30px
-);
+@select-selection-placeholder-spacing-right: var(--spy-select-placeholder-selection-spacing-right, 30px);
 @select-empty-item-height: var(--spy-select-empty-item-height, 120px);
 @check-icon-size: var(--spy-check-icon-size, 12px);
 @checkbox-icon-size: var(--spy-checkbox-icon-size, 18px);
 @checkbox-icon-line-height: var(--spy-checkbox-icon-line-height, 28px);
 @checkbox-icon-margin-right: var(--spy-checkbox-icon-margin-right, 8px);
 @checkbox-icon-font-size: var(--spy-checkbox-icon-font-size, 19px);
-@checkbox-icon-border-radius: var(
-  --spy-checkbox-icon-border-radius,
-  @border-radius-small
-);
-@checkbox-icon-border-width: var(
-  --spy-checkbox-icon-border-width,
-  @spy-border-width-base
-);
-@checkbox-multi-select-checked-line-height: var(
-  --spy-checkbox-multi-select-checked-line-height,
-  21px
-);
-@checkbox-multi-select-checked-border: var(
-  --spy-checkbox-multi-select-checked-border,
-  2px solid @spy-white
-);
-@checkbox-multi-select-checked-width: var(
-  --spy-checkbox-multi-select-checked-width,
-  6px
-);
-@checkbox-multi-select-checked-height: var(
-  --spy-checkbox-multi-select-checked-height,
-  10px
-);
-@checkbox-multi-select-checked-top: var(
-  --spy-checkbox-multi-select-checked-top,
-  3px
-);
-@checkbox-multi-select-checked-left: var(
-  --spy-checkbox-multi-select-checked-left,
-  6px
-);
-@checkbox-multi-select-checked-transform: var(
-  --spy-checkbox-multi-select-checked-transform,
-  rotate(45deg)
-);
+@checkbox-icon-border-radius: var(--spy-checkbox-icon-border-radius, @border-radius-small);
+@checkbox-icon-border-width: var(--spy-checkbox-icon-border-width, @spy-border-width-base);
+@checkbox-multi-select-checked-line-height: var(--spy-checkbox-multi-select-checked-line-height, 21px);
+@checkbox-multi-select-checked-border: var(--spy-checkbox-multi-select-checked-border, 2px solid @spy-white);
+@checkbox-multi-select-checked-width: var(--spy-checkbox-multi-select-checked-width, 6px);
+@checkbox-multi-select-checked-height: var(--spy-checkbox-multi-select-checked-height, 10px);
+@checkbox-multi-select-checked-top: var(--spy-checkbox-multi-select-checked-top, 3px);
+@checkbox-multi-select-checked-left: var(--spy-checkbox-multi-select-checked-left, 6px);
+@checkbox-multi-select-checked-transform: var(--spy-checkbox-multi-select-checked-transform, rotate(45deg));
+@select-tag-width: var(--spy-select-tag-width, 20px);
+@select-tag-icon-size: var(--spy-select-tag-icon-size, 8px);
+@select-tag-gap: var(--spy-select-tag-gap, 8px);
+@select-tag-input-min-width: var(--spy-select-tag-input-min-width, 100px);

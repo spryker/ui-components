@@ -1,17 +1,17 @@
 {
-  "name": "@spryker/utils",
-  "version": "0.3.6-beta.0",
-  "peerDependencies": {
-    "@angular/cdk": ">=9.2.3",
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "rxjs": "^7.4.0"
-  },
-  "dependencies": {
-    "deepmerge": "^4.2.2",
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/utils",
+    "version": "2.0.0",
+    "peerDependencies": {
+        "@angular/cdk": "^17.2.2",
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "rxjs": "^7.8.1"
+    },
+    "dependencies": {
+        "deepmerge": "^4.2.2",
+        "tslib": "^2.6.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

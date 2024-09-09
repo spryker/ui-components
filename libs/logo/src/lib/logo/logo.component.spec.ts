@@ -1,37 +1,32 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { LogoComponent } from './logo.component';
 
 describe('LogoComponent', () => {
-  let component: LogoComponent;
-  let fixture: ComponentFixture<LogoComponent>;
+    const { testModule, createComponent } = getTestingForComponent(LogoComponent, {
+        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+    });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [LogoComponent],
-      teardown: { destroyAfterEach: false },
-    }).compileComponents();
-  }));
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LogoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    it('should create', async () => {
+        const host = await createComponentWrapper(createComponent);
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        expect(host.component).toBeTruthy();
+    });
 
-  it('should change image modifier', () => {
-    const logoImageModifier = 'full';
+    it('should change image modifier', async () => {
+        const logoImageModifier = 'full';
+        const host = await createComponentWrapper(createComponent, { size: logoImageModifier });
+        const logoElement = host.queryCss(`.spy-logo--${logoImageModifier}`);
 
-    component.size = logoImageModifier;
-    fixture.detectChanges();
-    const logoElement = fixture.debugElement.query(
-      By.css(`.spy-logo--${logoImageModifier}`),
-    );
-    expect(logoElement).toBeTruthy();
-  });
+        expect(logoElement).toBeTruthy();
+    });
 });

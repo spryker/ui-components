@@ -1,129 +1,129 @@
 @import 'themes/default/theme.less';
 
 .@{table-settings-feature-prefix-cls} {
-  min-width: @table-settings-feature-min-width;
-  max-height: @table-settings-feature-height;
-  overflow-y: auto;
-  padding: @table-settings-feature-padding;
-  width: @table-settings-feature-width;
+    min-width: @table-settings-feature-min-width;
+    max-height: @table-settings-feature-height;
+    overflow-y: auto;
+    padding: @table-settings-feature-padding;
+    width: @table-settings-feature-width;
 
-  &-popover {
-    padding-left: @table-settings-feature-popover-padding-left;
-  }
-
-  &__title {
-    background: @spy-white;
-    padding: @table-settings-feature-header-footer-padding;
-    font: @font-default;
-    color: @ink;
-    box-shadow: @table-settings-feature-title-shadow;
-    position: relative;
-    z-index: @table-settings-feature-header-footer-z-index;
-  }
-
-  &__footer {
-    background: @spy-white;
-    padding: @table-settings-feature-header-footer-padding;
-    text-align: right;
-    box-shadow: @table-settings-feature-footer-shadow;
-    position: relative;
-    z-index: @table-settings-feature-header-footer-z-index;
-  }
-
-  &__item {
-    display: flex;
-    align-items: center;
-    padding: @table-settings-feature-item-padding;
-    background: @spy-white;
-    cursor: pointer;
-
-    &.cdk-drag-disabled {
-      cursor: not-allowed;
+    &-popover {
+        padding-left: @table-settings-feature-popover-padding-left;
     }
 
-    &:not(.cdk-drag-placeholder) {
-      .transition-mixin(
+    &__title {
+        background: @spy-white;
+        padding: @table-settings-feature-header-footer-padding;
+        font: @font-default;
+        color: @ink;
+        box-shadow: @table-settings-feature-title-shadow;
+        position: relative;
+        z-index: @table-settings-feature-header-footer-z-index;
+    }
+
+    &__footer {
+        background: @spy-white;
+        padding: @table-settings-feature-header-footer-padding;
+        text-align: right;
+        box-shadow: @table-settings-feature-footer-shadow;
+        position: relative;
+        z-index: @table-settings-feature-header-footer-z-index;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: @table-settings-feature-item-padding;
+        background: @spy-white;
+        cursor: pointer;
+
+        &.cdk-drag-disabled {
+            cursor: not-allowed;
+        }
+
+        &:not(.cdk-drag-placeholder) {
+            .transition-mixin(
         transform;
         @common-transition-time;
         @table-settings-feature-drag-transition-function
       );
+        }
+
+        &:not(:last-child) {
+            margin-bottom: @table-settings-feature-item-bottom-margin;
+        }
+
+        &:hover {
+            background: @green-lighter;
+        }
     }
 
-    &:not(:last-child) {
-      margin-bottom: @table-settings-feature-item-bottom-margin;
+    &__item-name {
+        flex-grow: 1;
+        margin: 0 @table-settings-feature-item-name-side-margin;
+        color: @ink;
     }
 
-    &:hover {
-      background: @green-lighter;
-    }
-  }
-
-  &__item-name {
-    flex-grow: 1;
-    margin: 0 @table-settings-feature-item-name-side-margin;
-    color: @ink;
-  }
-
-  &__item-check {
-    margin-top: @table-settings-feature-item-checkbox-top-margin;
-  }
-
-  &__icon {
-    color: @gray;
-    flex-shrink: 0;
-    font-size: @table-settings-feature-icon-size;
-  }
-
-  &__reset-button {
-    background: none;
-    display: inline-flex;
-    padding: 0;
-    align-items: center;
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-      color: @green;
+    &__item-check {
+        margin-top: @table-settings-feature-item-checkbox-top-margin;
     }
 
-    &:active {
-      color: @green-dark;
-    }
-
-    &--disabled {
-      color: @gray;
-      cursor: not-allowed;
-
-      &:hover,
-      &:focus {
+    &__icon {
         color: @gray;
-      }
+        flex-shrink: 0;
+        font-size: @table-settings-feature-icon-size;
     }
 
-    &-icon {
-      margin-right: @table-settings-feature-reset-icon-spacing;
-      width: @table-settings-feature-reset-icon-size;
-      height: @table-settings-feature-reset-icon-size;
-    }
-  }
+    &__reset-button {
+        background: none;
+        display: inline-flex;
+        padding: 0;
+        align-items: center;
+        cursor: pointer;
 
-  &__drag-placeholder {
-    .transition-mixin(
+        &:hover,
+        &:focus {
+            color: @green;
+        }
+
+        &:active {
+            color: @green-dark;
+        }
+
+        &--disabled {
+            color: @gray;
+            cursor: not-allowed;
+
+            &:hover,
+            &:focus {
+                color: @gray;
+            }
+        }
+
+        &-icon {
+            margin-right: @table-settings-feature-reset-icon-spacing;
+            width: @table-settings-feature-reset-icon-size;
+            height: @table-settings-feature-reset-icon-size;
+        }
+    }
+
+    &__drag-placeholder {
+        .transition-mixin(
       transform;
       @common-transition-time;
       @table-settings-feature-drag-transition-function
     );
-    background: @green-lighter;
-    min-height: @table-settings-feature-drag-placeholder-height;
-  }
-
-  &-drag {
-    box-shadow: @table-settings-feature-cdk-drag-preview-shadow;
-    background: @green-lighter;
-    font: @font-default;
-
-    .@{table-settings-feature-prefix-cls}__icon {
-      color: @gray-dark;
+        background: @green-lighter;
+        min-height: @table-settings-feature-drag-placeholder-height;
     }
-  }
+
+    &-drag {
+        box-shadow: @table-settings-feature-cdk-drag-preview-shadow;
+        background: @green-lighter;
+        font: @font-default;
+
+        .@{table-settings-feature-prefix-cls}__icon {
+            color: @gray-dark;
+        }
+    }
 }

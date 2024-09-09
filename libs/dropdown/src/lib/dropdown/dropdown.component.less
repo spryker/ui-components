@@ -1,15 +1,15 @@
 @import './dropdown.component.theme.less';
 
 .@{dropdown-prefix-cls} {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
 
-  &-trigger {
-    display: flex;
-    height: 100%;
-  }
+    &-trigger {
+        display: flex;
+        height: 100%;
+    }
 
   &-menu {
     width: @dropdown-menu-width;
@@ -27,19 +27,19 @@
       color: @ink;
       border: @dropdown-menu-item-border;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
 
-      &:hover {
-        background-color: @gray-lighter;
-        border-color: @gray-lighter;
-      }
+            &:hover {
+                background-color: @gray-lighter;
+                border-color: @gray-lighter;
+            }
 
-      &:focus {
-        border-radius: @dropdown-menu-item-border-focus-radius;
-        border-color: @green;
-      }
+            &:focus {
+                border-radius: @dropdown-menu-item-border-focus-radius;
+                border-color: @green;
+            }
+        }
     }
-  }
 }
 
 .@{spryker-prefix}-dropdown-item {

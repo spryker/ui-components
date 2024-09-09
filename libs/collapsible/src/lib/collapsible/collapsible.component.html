@@ -1,25 +1,27 @@
 <nz-collapse>
-  <nz-collapse-panel
-    [nzHeader]="titleTmpl"
-    [(nzActive)]="active"
-    [nzDisabled]="disabled"
-    [nzShowArrow]="false"
-    (nzActiveChange)="updateActive($event)"
-  >
-    <ng-container *ngIf="alwaysRender || active">
-      <ng-content></ng-content>
-      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-    </ng-container>
-  </nz-collapse-panel>
+    <nz-collapse-panel
+        [nzHeader]="titleTmpl"
+        [(nzActive)]="active"
+        [nzDisabled]="disabled"
+        [nzShowArrow]="false"
+        (nzActiveChange)="updateActive($event)"
+        (keyup.enter)="toggle()"
+        tabindex="0"
+    >
+        <ng-container *ngIf="alwaysRender || active">
+            <ng-content></ng-content>
+            <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+        </ng-container>
+    </nz-collapse-panel>
 </nz-collapse>
 
 <ng-template #titleTmpl>
-  <div class="ant-collapse-header-inner">
-    <div *ngIf="titleIcon">
-      <spy-icon [name]="titleIcon" class="ant-collapse-header-icon"></spy-icon>
+    <div class="ant-collapse-header-inner">
+        <div *ngIf="titleIcon">
+            <spy-icon [name]="titleIcon" class="ant-collapse-header-icon"></spy-icon>
+        </div>
+        <div>
+            {{ spyTitle }}
+        </div>
     </div>
-    <div>
-      {{ spyTitle }}
-    </div>
-  </div>
 </ng-template>

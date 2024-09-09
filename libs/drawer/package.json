@@ -1,22 +1,22 @@
 {
-  "name": "@spryker/drawer",
-  "version": "0.4.0-beta.0",
-  "peerDependencies": {
-    "@angular/cdk": ">=9.2.3",
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/icon": "^0.4.0",
-    "@spryker/interception": "^0.2.0",
-    "@spryker/styles": "^0.7.0",
-    "@spryker/utils": "^0.3.0",
-    "@spryker/web-components": "^0.3.0",
-    "rxjs": "^7.4.0"
-  },
-  "dependencies": {
-    "ng-dynamic-component": "^9.0.0",
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/drawer",
+    "version": "2.0.0",
+    "peerDependencies": {
+        "@angular/cdk": "^17.2.2",
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "@spryker/icon": "^2.0.0",
+        "@spryker/interception": "^2.0.0",
+        "@spryker/styles": "^2.0.0",
+        "@spryker/utils": "^2.0.0",
+        "@spryker/web-components": "^2.0.0",
+        "rxjs": "^7.8.1"
+    },
+    "dependencies": {
+        "ng-dynamic-component": "^10.5.1",
+        "tslib": "^2.6.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

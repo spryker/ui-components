@@ -1,21 +1,21 @@
 <ng-container *ngIf="isValueUndefined; else definedValue">
-  {{ emptyValue | context: fullContext }}
+    {{ emptyValue | context : fullContext }}
 </ng-container>
 
 <ng-template #definedValue>
-  <ng-container
-    *ngIf="template; else typeTpl"
-    [ngTemplateOutlet]="template"
-    [ngTemplateOutletContext]="fullContext"
-  ></ng-container>
+    <ng-container
+        *ngIf="template; else typeTpl"
+        [ngTemplateOutlet]="template"
+        [ngTemplateOutletContext]="fullContext"
+    ></ng-container>
 </ng-template>
 
 <ng-template #typeTpl>
-  <orc-orchestrator
-    *ngIf="config?.type; else defaultTpl"
-    [config]="itemConfig"
-    [context]="fullContext"
-  ></orc-orchestrator>
+    <orc-orchestrator
+        *ngIf="config?.type; else defaultTpl"
+        [config]="itemConfig"
+        [context]="fullContext"
+    ></orc-orchestrator>
 </ng-template>
 
 <ng-template #defaultTpl>{{ displayValue }}</ng-template>

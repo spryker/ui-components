@@ -1,4 +1,5 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { StaticHtmlRendererModule } from '../static-html-renderer/static-html-renderer.module';
@@ -35,40 +36,45 @@ const mockHtmlTemplate = (template: string) => `
 `;
 
 function generateMockHtmlPage(template: string): { html: string } {
-  return { html: mockHtmlTemplate(template) };
+    return { html: mockHtmlTemplate(template) };
 }
 
 export default {
-  title: 'HtmlRendererComponent',
+    title: 'HtmlRendererComponent',
+    decorators: [
+        moduleMetadata({
+            imports: [StaticHtmlRendererModule],
+        }),
+    ],
 } as Meta;
 
 export const withStaticHtml = (args) => ({
-  props: {
-    ...args,
-    html: mockHtmlTemplate('Static'),
-  },
-  moduleMetadata: {
-    imports: [StaticHtmlRendererModule],
-  },
-  template: `
+    props: {
+        ...args,
+        html: mockHtmlTemplate('Static'),
+    },
+    template: `
     <spy-html-renderer [html]="html"></spy-html-renderer>
   `,
 });
 
 export const withUrlHtml = (args) => ({
-  props: {
-    ...args,
-    mockHttp: setMockHttp([
-      {
-        url: '/html-request',
-        dataFn: () => generateMockHtmlPage('Url'),
-      },
-    ]),
-  },
-  moduleMetadata: {
-    imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
-  },
-  template: `
+    props: {
+        ...args,
+        mockHttp: setMockHttp([
+            {
+                url: '/html-request',
+                dataFn: () => generateMockHtmlPage('Url'),
+            },
+        ]),
+    },
+    applicationConfig: {
+        providers: [importProvidersFrom(HttpClientTestingModule)],
+    },
+    moduleMetadata: {
+        imports: [UrlHtmlRendererModule, MockHttpModule],
+    },
+    template: `
     <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>
   `,
 });

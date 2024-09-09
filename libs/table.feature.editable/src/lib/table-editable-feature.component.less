@@ -1,106 +1,101 @@
 @import 'themes/default/theme.less';
 
 .@{table-prefix-cls} {
-  &-tbody > tr {
-    &.@{table-prefix-cls}-row--editable
-      > td
-      .@{table-prefix-cls}-column-inner::after {
-      border-color: @green;
+    &-tbody > tr {
+        &.@{table-prefix-cls}-row--editable > td .@{table-prefix-cls}-column-inner::after {
+            border-color: @green;
+        }
     }
-  }
 }
 
 .@{table-editable-feature-prefix-cls} {
-  &__float {
-    &-cell {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 0;
-      padding: @table-editable-feature-float-cell-padding;
-      background: @spy-white;
-      box-shadow: @table-editable-feature-float-cell-shadow;
-      border-radius: @table-editable-feature-float-border-radius;
-      z-index: @table-editable-feature-float-cell-z-index;
-      cursor: auto;
+    &__float {
+        &-cell {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            padding: @table-editable-feature-float-cell-padding;
+            background: @spy-white;
+            box-shadow: @table-editable-feature-float-cell-shadow;
+            border-radius: @table-editable-feature-float-border-radius;
+            z-index: @table-editable-feature-float-cell-z-index;
+            cursor: auto;
+        }
+
+        &-grid {
+            display: flex;
+            align-items: center;
+            margin: @table-editable-feature-float-grid-margin;
+        }
+
+        &-col {
+            padding: @table-editable-feature-float-col-padding;
+
+            .@{btn-prefix-cls}-core .@{btn-prefix-cls}-core__btn {
+                min-width: @table-editable-feature-float-btn-min-width;
+            }
+
+            .@{form-item-prefix-cls} {
+                width: @table-column-input-field-width;
+            }
+        }
     }
 
-    &-grid {
-      display: flex;
-      align-items: center;
-      margin: @table-editable-feature-float-grid-margin;
+    &__wrapper {
+        display: inline-block;
+        position: relative;
+        padding: @table-editable-feature-wrapper-padding;
+        z-index: @table-editable-feature-wrapper-z-index;
+        cursor: text;
+
+        &::before {
+            .transition-mixin(background);
+            content: '';
+            position: absolute;
+            inset: @table-editable-feature-wrapper-bg-y-indents 0;
+            background: @transparent;
+            z-index: @table-editable-feature-wrapper-before-z-index;
+            border-radius: @table-editable-feature-wrapper-border-radius;
+        }
+
+        &-icon {
+            .transition-mixin(opacity);
+            opacity: 0;
+            position: absolute;
+            right: @table-editable-feature-wrapper-right-position;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: @table-editable-feature-wrapper-icon-size;
+            line-height: 0;
+            color: @gray-dark;
+        }
+
+        &:hover {
+            &::before {
+                background: @gray-lighter;
+            }
+
+            .spy-table-editable-feature__wrapper-icon {
+                opacity: 1;
+            }
+        }
     }
 
-    &-col {
-      padding: @table-editable-feature-float-col-padding;
+    &__error {
+        display: flex;
+        align-items: center;
+        padding: @table-editable-feature-error-padding;
+        font-size: @table-editable-feature-error-size;
+        color: @red;
 
-      .@{btn-prefix-cls}-core .@{btn-prefix-cls}-core__btn {
-        min-width: @table-editable-feature-float-btn-min-width;
-      }
-
-      .@{form-item-prefix-cls} {
-        width: @table-column-input-field-width;
-      }
-    }
-  }
-
-  &__wrapper {
-    display: inline-block;
-    position: relative;
-    padding: @table-editable-feature-wrapper-padding;
-    z-index: @table-editable-feature-wrapper-z-index;
-    cursor: text;
-
-    &::before {
-      .transition-mixin(background);
-      content: '';
-      position: absolute;
-      top: @table-editable-feature-wrapper-bg-y-indents;
-      bottom: @table-editable-feature-wrapper-bg-y-indents;
-      left: 0;
-      right: 0;
-      background: @transparent;
-      z-index: @table-editable-feature-wrapper-before-z-index;
-      border-radius: @table-editable-feature-wrapper-border-radius;
+        &-icon {
+            padding-right: @table-editable-feature-error-icon-right-padding;
+            font-size: @table-editable-feature-error-icon-size;
+        }
     }
 
-    &-icon {
-      .transition-mixin(opacity);
-      opacity: 0;
-      position: absolute;
-      right: @table-editable-feature-wrapper-right-position;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: @table-editable-feature-wrapper-icon-size;
-      line-height: 0;
-      color: @gray-dark;
+    &__create-row {
+        margin-left: auto;
     }
-
-    &:hover {
-      &::before {
-        background: @gray-lighter;
-      }
-
-      .spy-table-editable-feature__wrapper-icon {
-        opacity: 1;
-      }
-    }
-  }
-
-  &__error {
-    display: flex;
-    align-items: center;
-    padding: @table-editable-feature-error-padding;
-    font-size: @table-editable-feature-error-size;
-    color: @red;
-
-    &-icon {
-      padding-right: @table-editable-feature-error-icon-right-padding;
-      font-size: @table-editable-feature-error-icon-size;
-    }
-  }
-
-  &__create-row {
-    margin-left: auto;
-  }
 }

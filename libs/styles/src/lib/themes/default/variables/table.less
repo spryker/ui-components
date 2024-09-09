@@ -4,138 +4,59 @@
 @table-z-index: var(--spy-table-z-index, 2);
 @table-after-z-index: var(--spy-table-after-z-index, -1);
 @table-header-icon-color: @gray-static;
-@spy-table-header-icon-color: var(
-  --spy-table-header-icon-color,
-  @table-header-icon-color
-);
+@spy-table-header-icon-color: var(--spy-table-header-icon-color, @table-header-icon-color);
 @table-body-row-bg: var(--spy-table-body-row-bg, @spy-white);
-@table-body-selected-row-bg: var(
-  --spy-table-body-selected-row-bg,
-  @green-lighter
-);
-@table-body-active-row-border-bg: var(
-  --spy-table-body-active-row-border-bg,
-  @green-light
-);
+@table-body-selected-row-bg: var(--spy-table-body-selected-row-bg, @green-lighter);
+@table-body-active-row-border-bg: var(--spy-table-body-active-row-border-bg, @green-light);
 @table-body-padding-top: var(--spy-table-body-padding-top, 10px);
 @table-body-padding-bottom: var(--spy-table-body-padding-bottom, 12px);
-@table-body-focus-row-border: var(
-  --spy-table-body-focus-row-border,
-  2px solid @green
-);
-@table-body-margin-vertical: var(--spy-table-body-margin-vertical, 3px);
-@table-body-focus-row-border-radius: var(
-  --spy-table-body-focus-row-border-radius,
-  @border-radius-base
-);
-@table-body-hover-row-border-shadow: var(
-  --spy-table-body-hover-row-border-shadow,
-  @box-shadow-1
-);
-@table-body-focus-row-border-shadow: var(
-  --spy-table-body-focus-row-border-shadow,
-  @box-shadow-focus
-);
-@table-column-body-color: var(--spy-table-column-body-color, @gray-dark);
-@table-column-sorters-margin-top: var(
-  --spy-table-column-sorters-margin-top,
-  2px
-);
+@table-body-margin-vertical: var(--spy-table-body-margin-vertical, 2px);
+@table-body-row-border-default: var(--spy-table-body-row-border-default, 2px solid @transparent);
+@table-column-body-color: var(--spy-table-column-body-color, @gray-darker);
+@table-column-sorters-margin-top: var(--spy-table-column-sorters-margin-top, 2px);
 @table-column-head-color: var(--spy-table-column-head-color, @ink);
 @table-column-title-font-size: var(--spy-table-column-title-font-size, 12px);
-@table-column-sorter-down-margin-top: var(
-  --spy-table-column-sorter-down-margin-top,
-  -5px
-);
-@table-border-width-base: var(
-  --spy-table-border-width-base,
-  @spy-border-width-base
-);
-@table-border-base: var(
-  --spy-table-border-base,
-  @table-border-width-base solid @transparent
-);
+@table-column-sorter-down-margin-top: var(--spy-table-column-sorter-down-margin-top, -5px);
+@table-border-width-base: var(--spy-table-border-width-base, @spy-border-width-base);
+@table-border-base: var(--spy-table-border-base, @table-border-width-base solid @transparent);
 @table-top-features-padding: var(--spy-table-top-features-padding, 5px);
-@table-selection-column-min-height: var(
-  --spy-table-selection-column-min-height,
-  70px
-);
+@table-selection-column-min-height: var(--spy-table-selection-column-min-height, 70px);
 @table-head-padding-vertical: var(--spy-table-head-padding-vertical, 15px);
-@table-head-padding: var(
-  --spy-table-head-padding,
-  @table-head-padding-vertical @spy-table-padding-horizontal
-);
+@table-head-padding: var(--spy-table-head-padding, @table-head-padding-vertical @spy-table-padding-horizontal);
 @table-padding-horizontal: 25px;
-@spy-table-padding-horizontal: var(
-  --spy-table-padding-horizontal,
-  @table-padding-horizontal
-);
+@spy-table-padding-horizontal: var(--spy-table-padding-horizontal, @table-padding-horizontal);
 @table-column-inner-padding: var(
-  --spy-table-column-inner-padding,
-  @table-body-padding-top @spy-table-padding-horizontal
-    @table-body-padding-bottom
+    --spy-table-column-inner-padding,
+    @table-body-padding-top @spy-table-padding-horizontal @table-body-padding-bottom
 );
 @table-column-inner-z-index: var(--spy-table-column-inner-z-index, 0);
 @table-column-first-border-radius: var(
-  --spy-table-column-first-border-radius,
-  @border-radius-base 0 0 @border-radius-base
+    --spy-table-column-first-border-radius,
+    @border-radius-base 0 0 @border-radius-base
 );
 @table-column-last-border-radius: var(
-  --spy-table-column-last-border-radius,
-  0 @border-radius-base @border-radius-base 0
+    --spy-table-column-last-border-radius,
+    0 @border-radius-base @border-radius-base 0
 );
-@table-features-padding-vertical: var(
-  --spy-table-features-padding-vertical,
-  10px
-);
-@table-features-after-table-padding-top: var(
-  --spy-table-features-after-table-padding-top,
-  30px
-);
+@table-features-padding-vertical: var(--spy-table-features-padding-vertical, 10px);
+@table-features-after-table-padding-top: var(--spy-table-features-after-table-padding-top, 30px);
 @table-features-col-padding: var(--spy-table-features-col-padding, 5px);
 @table-sorts-holder-height: var(--spy-table-sorts-holder-height, 14px);
 @table-sorts-holder-width: var(--spy-table-sorts-holder-width, 20px);
-@table-head-checkbox-wrapper-size: var(
-  --spy-table-head-checkbox-wrapper-size,
-  32px
-);
-@table-head-checkbox-wrapper-bg: var(
-  --spy-table-head-checkbox-wrapper-bg,
-  @gray-light
-);
+@table-head-checkbox-wrapper-size: var(--spy-table-head-checkbox-wrapper-size, 32px);
+@table-head-checkbox-wrapper-bg: var(--spy-table-head-checkbox-wrapper-bg, @gray-light);
 @table-row-height: var(--spy-table-row-height, 70px);
 @table-row-head-height: var(--spy-table-row-head-height, 45px);
 @table-row-bg-with-errors: var(--spy-table-row-bg-with-errors, @red-lighter);
-@table-row-border-color-with-errors: var(
-  --spy-table-row-border-color-with-errors,
-  @spy-white
-);
+@table-row-border-color-with-errors: var(--spy-table-row-border-color-with-errors, @spy-white);
 @table-dropdown-trigger-size: var(--spy-table-dropdown-trigger-size, 50px);
-@table-dropdown-trigger-icon-size: var(
-  --spy-table-dropdown-trigger-icon-size,
-  18px
-);
-@table-dropdown-trigger-color: var(
-  --spy-table-dropdown-trigger-color,
-  @gray-dark
-);
-@table-dropdown-trigger-hover-color: var(
-  --spy-table-dropdown-trigger-hover-color,
-  @spy-primary-color
-);
-@table-dropdown-trigger-hover-bg: var(
-  --spy-table-dropdown-trigger-hover-bg,
-  @gray-lighter
-);
+@table-dropdown-trigger-icon-size: var(--spy-table-dropdown-trigger-icon-size, 18px);
+@table-dropdown-trigger-color: var(--spy-table-dropdown-trigger-color, @gray-dark);
+@table-dropdown-trigger-hover-color: var(--spy-table-dropdown-trigger-hover-color, @spy-primary-color);
+@table-dropdown-trigger-hover-bg: var(--spy-table-dropdown-trigger-hover-bg, @gray-lighter);
 @table-empty-container-padding: var(--spy-table-empty-container-padding, 20px);
-@table-empty-title-padding-bottom: var(
-  --spy-table-empty-title-padding-bottom,
-  9px
-);
-@table-empty-icon-size: var(--spy-table-empty-icon-size, 192px);
-@table-empty-icon-size-sm: var(--spy-table-empty-icon-size-sm, 200px);
-@table-empty-icon-margin-bottom: var(
-  --spy-table-empty-icon-margin-bottom,
-  10px
-);
+@table-empty-container-min-height: var(--spy-table-empty-container-min-height, 230px);
+@table-empty-title-margin-bottom: var(--spy-table-empty-title-margin-bottom, 8px);
+@table-empty-icon-size: var(--spy-table-empty-icon-size, 130px);
+@table-empty-icon-margin-bottom: var(--spy-table-empty-icon-margin-bottom, 10px);
 @table-initial-loading-height: var(--spy-table-initial-loading-height, 200px);

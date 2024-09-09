@@ -1,27 +1,24 @@
 <div
-  class="spy-table-column-input"
-  [class.spy-table-column-input--error-with-message]="
-    getErrorType | spyInvoke: (config?.editableError | context: context)
-  "
+    class="spy-table-column-input"
+    [class.spy-table-column-input--error-with-message]="
+        getErrorType | spyInvoke : (config?.editableError | context : context)
+    "
 >
-  <spy-form-item
-    [error]="config?.editableError | context: context"
-    withErrorTitle="true"
-  >
-    <spy-select
-      [value]="context?.value | context: context"
-      [options]="config?.options | context: context"
-      [multiple]="config?.multiple | context: context"
-      [search]="config?.search | context: context"
-      [disableClear]="config?.disableClear | context: context"
-      [placeholder]="config?.placeholder | context: context"
-      [showSelectAll]="config?.showSelectAll | context: context"
-      [selectAllTitle]="config?.selectAllTitle | context: context"
-      [noOptionsText]="config?.noOptionsText | context: context"
-      [datasource]="config?.datasource"
-      [context]="context"
-      (valueChange)="valueChangeHandler($event)"
-      control
-    ></spy-select>
-  </spy-form-item>
+    <spy-form-item [error]="config?.editableError | context : context" withErrorTitle="true">
+        <spy-select
+            [value]="context?.value | context : context"
+            [options]="config?.options | context : context"
+            [multiple]="config?.multiple | context : context"
+            [search]="config?.search | context : context"
+            [disableClear]="config?.disableClear | context : context"
+            [placeholder]="config?.placeholder | context : context"
+            [showSelectAll]="config?.showSelectAll | context : context"
+            [selectAllTitle]="config?.selectAllTitle | context : context"
+            [noOptionsText]="config?.noOptionsText | context : context"
+            [datasource]="config?.datasource"
+            [context]="context"
+            (valueChange)="valueChangeHandler($event)"
+            control
+        ></spy-select>
+    </spy-form-item>
 </div>

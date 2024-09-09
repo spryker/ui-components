@@ -1,66 +1,57 @@
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ApplyContextsModule } from '@spryker/utils';
 import { NotificationComponent } from './notification.component';
 import { NotificationModule } from '../notification.module';
-import {
-  NotificationEasing,
-  NotificationPosition,
-  NotificationType,
-} from '../types';
+import { NotificationEasing, NotificationPosition, NotificationType } from '../types';
 
 export default {
-  title: 'NotificationComponent',
-  component: NotificationComponent,
-  parameters: {
-    controls: {
-      include: [
-        'type',
-        'closeable',
-        'floating',
-        'floatingConfig',
-        'title',
-        'description',
-      ],
+    title: 'NotificationComponent',
+    component: NotificationComponent,
+    decorators: [
+        applicationConfig({
+            providers: [provideAnimations(), importProvidersFrom(NotificationModule.forRoot())],
+        }),
+        moduleMetadata({
+            imports: [NotificationModule],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: ['type', 'closeable', 'floating', 'floatingConfig', 'title', 'description'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8980',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8980',
-      allowFullscreen: true,
+    argTypes: {
+        type: {
+            control: { type: 'select' },
+            options: NotificationType,
+        },
+        floatingConfig: {
+            table: { disable: true },
+        },
+        position: {
+            control: { type: 'select' },
+            options: NotificationPosition,
+        },
     },
-  },
-  argTypes: {
-    type: {
-      control: { type: 'select' },
-      options: NotificationType,
+    args: {
+        type: NotificationType.Info,
+        title: 'Title Template',
+        description: 'Description...',
+        floating: false,
+        closeable: false,
     },
-    floatingConfig: {
-      table: { disable: true },
-    },
-    position: {
-      control: { type: 'select' },
-      options: NotificationPosition,
-    },
-  },
-  args: {
-    type: NotificationType.Info,
-    title: 'Title Template',
-    description: 'Description...',
-    floating: false,
-  },
 } as Meta;
 
-@NgModule({
-  imports: [BrowserAnimationsModule, NotificationModule.forRoot()],
-  exports: [NotificationModule],
-})
-class StoryModule {}
-
 export const primary = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    props: args,
+    template: `
     <spy-notification
       [floating]="floating"
       [type]="type"
@@ -77,27 +68,26 @@ export const primary = (args) => ({
   `,
 });
 primary.args = {
-  floating: true,
-  floatingConfig: {
-    position: NotificationPosition.TopRight,
-    timeOut: 3000,
-    disableTimeOut: false,
-    easing: NotificationEasing.EaseIn,
-    easeTime: 300,
-  },
+    floating: true,
+    floatingConfig: {
+        position: NotificationPosition.TopRight,
+        timeOut: 3000,
+        disableTimeOut: false,
+        easing: NotificationEasing.EaseIn,
+        easeTime: 300,
+    },
 };
 primary.argTypes = {
-  floatingConfig: {
-    table: {
-      disable: false,
+    floatingConfig: {
+        table: {
+            disable: false,
+        },
     },
-  },
 };
 
 export const staticNotification = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule] },
-  template: `
+    props: args,
+    template: `
     <spy-notification
       [type]="type"
       [closeable]="closeable"
@@ -110,9 +100,9 @@ export const staticNotification = (args) => ({
 });
 
 export const inWhiteBackground = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule, ApplyContextsModule] },
-  template: `
+    props: args,
+    moduleMetadata: { imports: [ApplyContextsModule] },
+    template: `
     <div spyApplyContexts="spy-bg-white" style="padding: 100px">
       <spy-notification
         [type]="type"
@@ -127,9 +117,9 @@ export const inWhiteBackground = (args) => ({
 });
 
 export const inGrayBackground = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule, ApplyContextsModule] },
-  template: `
+    props: args,
+    moduleMetadata: { imports: [ApplyContextsModule] },
+    template: `
     <div spyApplyContexts="spy-bg-gray">
       <div spyApplyContexts="spy-bg-white">
         <div spyApplyContexts="spy-bg-gray" style="padding: 100px">

@@ -6,14 +6,8 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzCheckboxModule,
-    ApplyAttrsModule,
-    TriggerChangeEventModule,
-    FormsModule,
-  ],
-  declarations: [CheckboxComponent],
-  exports: [CheckboxComponent],
+    imports: [CommonModule, NzCheckboxModule, ApplyAttrsModule, TriggerChangeEventModule, FormsModule],
+    declarations: [CheckboxComponent],
+    exports: [CheckboxComponent],
 })
 export class CheckboxModule {}

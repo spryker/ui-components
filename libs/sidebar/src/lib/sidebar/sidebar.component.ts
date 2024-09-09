@@ -1,14 +1,14 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  TemplateRef,
-  ViewEncapsulation,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    TemplateRef,
+    ViewEncapsulation,
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService } from '@spryker/persistence';
@@ -17,97 +17,94 @@ import { merge, ReplaySubject } from 'rxjs';
 import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
 @Component({
-  selector: 'spy-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  host: {
-    class: 'spy-sidebar',
-  },
+    selector: 'spy-sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'spy-sidebar',
+    },
 })
 export class SidebarComponent implements OnChanges, OnInit {
-  @Input() width = 250;
-  @Input() collapsedWidth = 96;
-  @Input() spyId?: string;
-  @Input() trigger: undefined | TemplateRef<void>;
-  @Input() @ToBoolean() collapsed = false;
-  @Output() collapsedChange = new EventEmitter<boolean>();
+    @Input() width = 250;
+    @Input() collapsedWidth = 96;
+    @Input() spyId?: string;
+    @Input() trigger: undefined | TemplateRef<void>;
+    @Input() @ToBoolean() collapsed = false;
+    @Output() collapsedChange = new EventEmitter<boolean>();
 
-  private isCollapsedStateRetrieved = false;
-  arrowIcon = IconArrowDownModule.icon;
+    private isCollapsedStateRetrieved = false;
+    arrowIcon = IconArrowDownModule.icon;
 
-  setCollapsedState$ = new ReplaySubject<boolean>();
-  spyId$ = new ReplaySubject<string>();
-  persistenceKey$ = this.spyId$.pipe(
-    map((spyId) => `spy-sidebar-${spyId ?? ''}-is-collapsed`),
-  );
-  initialState$ = this.persistenceKey$.pipe(
-    switchMap((persistenceKey) => {
-      return this.persistenceService.retrieve<boolean>(persistenceKey);
-    }),
-    tap(() => {
-      this.isCollapsedStateRetrieved = true;
-    }),
-  );
+    setCollapsedState$ = new ReplaySubject<boolean>();
+    spyId$ = new ReplaySubject<string>();
+    persistenceKey$ = this.spyId$.pipe(map((spyId) => `spy-sidebar-${spyId ?? ''}-is-collapsed`));
+    initialState$ = this.persistenceKey$.pipe(
+        switchMap((persistenceKey) => {
+            return this.persistenceService.retrieve<boolean>(persistenceKey);
+        }),
+        tap((isCollapsed) => this.updateCollapse(isCollapsed ?? this.collapsed, true)),
+    );
 
-  collapsed$ = merge(this.initialState$, this.setCollapsedState$).pipe(
-    withLatestFrom(this.persistenceKey$),
-    tap(([isCollapsed, persistenceKey]) => {
-      if (this.isCollapsedStateRetrieved) {
-        this.isCollapsedStateRetrieved = false;
-      } else {
-        this.persistenceService.save(persistenceKey, isCollapsed);
-      }
-    }),
-    map(([isCollapsed]) => isCollapsed),
-  );
+    collapsed$ = merge(this.initialState$, this.setCollapsedState$).pipe(
+        withLatestFrom(this.persistenceKey$),
+        tap(([isCollapsed, persistenceKey]) => {
+            if (this.isCollapsedStateRetrieved) {
+                return;
+            }
 
-  constructor(private persistenceService: PersistenceService) {}
+            this.persistenceService.save(persistenceKey, isCollapsed);
+        }),
+        map(([isCollapsed]) => isCollapsed),
+    );
 
-  ngOnInit(): void {
-    if (this.spyId) {
-      this.spyId$.next(this.spyId);
-    }
-  }
+    constructor(private persistenceService: PersistenceService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.collapsed) {
-      this.setCollapsedState$.next(this.collapsed);
+    ngOnInit(): void {
+        this.spyId$.next(this.spyId);
     }
 
-    if (changes.spyId && this.spyId && !changes.spyId.firstChange) {
-      this.spyId$.next(this.spyId);
-    }
-  }
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.collapsed) {
+            this.updateCollapse(this.collapsed, changes.collapsed.firstChange);
+        }
 
-  updateCollapse(isCollapsed: boolean): void {
-    this.collapsed = isCollapsed;
-    this.setCollapsedState$.next(this.collapsed);
-    this.collapsedChange.emit(this.isCollapsed());
-  }
-
-  collapse(): void {
-    this.collapsed = true;
-    this.setCollapsedState$.next(this.collapsed);
-  }
-
-  expand(): void {
-    this.collapsed = false;
-    this.setCollapsedState$.next(this.collapsed);
-  }
-
-  toggle(): boolean {
-    if (this.collapsed) {
-      this.expand();
-    } else {
-      this.collapse();
+        if (changes.spyId && !changes.spyId.firstChange) {
+            this.spyId$.next(this.spyId);
+        }
     }
 
-    return this.isCollapsed();
-  }
+    updateCollapse(isCollapsed: boolean, isStateRetrieved = false): void {
+        this.isCollapsedStateRetrieved = isStateRetrieved;
+        this.setCollapsedState(isCollapsed);
+        this.collapsedChange.emit(this.isCollapsed());
+    }
 
-  isCollapsed(): boolean {
-    return this.collapsed;
-  }
+    collapse(): void {
+        this.setCollapsedState(true);
+    }
+
+    expand(): void {
+        this.setCollapsedState(false);
+    }
+
+    toggle(): boolean {
+        if (this.collapsed) {
+            this.expand();
+        } else {
+            this.collapse();
+        }
+
+        return this.isCollapsed();
+    }
+
+    isCollapsed(): boolean {
+        return this.collapsed;
+    }
+
+    protected setCollapsedState(isCollapsed: boolean): void {
+        this.collapsed = isCollapsed;
+        this.setCollapsedState$.next(this.collapsed);
+    }
 }

@@ -6,15 +6,13 @@ import { DrawerActionTypesDeclaration } from './types';
 import { provideDrawerActionType } from './token';
 
 @NgModule({
-  imports: [CommonModule, DrawerModule, ActionsModule],
+    imports: [CommonModule, DrawerModule, ActionsModule],
 })
 export class DrawerActionModule {
-  static withComponents(
-    components: DrawerActionTypesDeclaration,
-  ): ModuleWithProviders<DrawerActionModule> {
-    return {
-      ngModule: DrawerActionModule,
-      providers: [provideDrawerActionType(components)],
-    };
-  }
+    static withComponents(components: DrawerActionTypesDeclaration): ModuleWithProviders<DrawerActionModule> {
+        return {
+            ngModule: DrawerActionModule,
+            providers: [provideDrawerActionType(components)],
+        };
+    }
 }

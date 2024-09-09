@@ -1,21 +1,21 @@
 {
-  "name": "@spryker/notification",
-  "version": "0.5.3-beta.0",
-  "peerDependencies": {
-    "@angular/animations": ">=9.1.12",
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/icon": "^0.4.0",
-    "@spryker/styles": "^0.7.0",
-    "@spryker/utils": "^0.3.0",
-    "rxjs": "^7.4.0"
-  },
-  "dependencies": {
-    "ng-zorro-antd": "^12.0.1",
-    "ngx-toastr": "^12.1.0",
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/notification",
+    "version": "2.0.0",
+    "peerDependencies": {
+        "@angular/animations": "^17.3.0",
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "@spryker/icon": "^2.0.0",
+        "@spryker/styles": "^2.0.0",
+        "@spryker/utils": "^2.0.0",
+        "rxjs": "^7.8.1"
+    },
+    "dependencies": {
+        "ng-zorro-antd": "^17.3.0",
+        "ngx-toastr": "^18.0.0",
+        "tslib": "^2.6.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

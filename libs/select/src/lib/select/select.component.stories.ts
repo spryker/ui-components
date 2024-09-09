@@ -1,130 +1,143 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Meta } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
-import { WebComponentsModule } from '@spryker/web-components';
-import { SelectModule } from '../select.module';
-import { SelectComponent } from './select.component';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { OptionComponent } from '../option/option.component';
+import { SelectModule } from '../select.module';
 import { SelectedOptionComponent } from '../selected-option/selected-option.component';
+import { SelectComponent } from './select.component';
 
 export default {
-  title: 'SelectComponent',
-  component: SelectComponent,
-  parameters: {
-    controls: {
-      include: [
-        'options',
-        'value',
-        'search',
-        'disabled',
-        'multiple',
-        'placeholder',
-        'showSelectAll',
-        'selectAllTitle',
-        'name',
-        'noOptionsText',
-        'disableClear',
-      ],
+    title: 'SelectComponent',
+    component: SelectComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+            ],
+        }),
+        moduleMetadata({
+            imports: [SelectModule],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: [
+                'options',
+                'value',
+                'search',
+                'disabled',
+                'multiple',
+                'placeholder',
+                'showSelectAll',
+                'selectAllTitle',
+                'name',
+                'noOptionsText',
+                'disableClear',
+                'tags',
+                'tagView',
+            ],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9152',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9152',
-      allowFullscreen: true,
+    argTypes: {
+        placeholder: {
+            control: { type: 'text' },
+        },
+        value: {
+            control: { type: 'array' },
+        },
     },
-  },
-  argTypes: {
-    placeholder: {
-      control: { type: 'text' },
+    args: {
+        tagView: false,
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        tags: false,
+        multiple: true,
+        placeholder: 'Select option...',
+        selectAllTitle: 'Select All',
+        name: 'some-name',
+        noOptionsText: 'No options',
     },
-    value: {
-      control: { type: 'text' },
-    },
-  },
-  args: {
-    options: ['Option 1', 'Option 2', 'Option 3'],
-    multiple: true,
-    placeholder: 'Select option...',
-    selectAllTitle: 'Select All',
-    name: 'some-name',
-    noOptionsText: 'No options',
-  },
 } as Meta;
 
-@NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    SelectModule,
-    LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-    EnLocaleModule,
-  ],
-  exports: [SelectComponent],
-})
-class StoryModule {}
-
 export const primary = (args) => ({
-  props: {
-    ...args,
-    valueChange: console.log,
-  },
-  moduleMetadata: { imports: [StoryModule] },
+    props: {
+        ...args,
+        valueChange: console.log,
+    },
 });
+primary.argTypes = {
+    value: {
+        control: { type: 'text' },
+    },
+};
 primary.args = {
-  options: [
-    'Option 1',
-    'Option 2',
-    'Option 3',
-    'Option 4',
-    'Option 5',
-    'Option 6',
-    'Option 7',
-    'Option 8',
-    'Option 9',
-    'Option 10',
-  ],
-  value: 'Option 1',
-  multiple: false,
+    options: [
+        'Option 1',
+        'Option 2',
+        'Option 3',
+        'Option 4',
+        'Option 5',
+        'Option 6',
+        'Option 7',
+        'Option 8',
+        'Option 9',
+        'Option 10',
+    ],
+    value: 'Option 1',
+    multiple: false,
+    tags: false,
 };
 
 export const multiSelect = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule] },
+    props: args,
 });
 multiSelect.args = {
-  options: [
-    'Option 1',
-    'Option 2',
-    'Option 3',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  ],
+    options: [
+        'Option 1',
+        'Option 2',
+        'Option 3',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    ],
 };
 
 export const multiSelectWithoutOptionsMapping = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule] },
+    props: args,
 });
 multiSelectWithoutOptionsMapping.args = {
-  options: [
-    { value: 1, title: 'Option 1' },
-    { value: '2', title: 'Option 2' },
-    { value: '3', title: 'Option 3' },
-  ],
-  value: [1, '2'],
+    options: [
+        { value: 1, title: 'Option 1' },
+        { value: '2', title: 'Option 2' },
+        { value: '3', title: 'Option 3' },
+    ],
+    value: [1, '2'],
 };
 
 export const withSelectAll = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule] },
+    props: args,
 });
 withSelectAll.args = {
-  showSelectAll: true,
+    showSelectAll: true,
+};
+
+export const withTags = (args) => ({
+    props: args,
+});
+withTags.args = {
+    tags: true,
 };
 
 export const withCustomContent = (args) => ({
-  props: args,
-  moduleMetadata: { imports: [StoryModule, SelectModule] },
-  template: `
+    props: args,
+    moduleMetadata: { imports: [StoryModule, SelectModule] },
+    template: `
     <spy-select
         customOptionTemplate="true"
         [placeholder]="placeholder"
@@ -150,33 +163,33 @@ export const withCustomContent = (args) => ({
 });
 
 withCustomContent.args = {
-  multiple: false,
-  search: false,
-  useCustomTemplate: true,
-  value: ['option1', 'option2'],
-  placeholder: 'Select option...',
+    multiple: false,
+    search: false,
+    useCustomTemplate: true,
+    value: ['option1', 'option2'],
+    placeholder: 'Select option...',
 };
 
 export const asWebComponents = () => ({
-  moduleMetadata: {
-    imports: [
-      WebComponentsModule.forRoot(),
-      WebComponentsModule.withComponents([
-        { component: SelectComponent, isRoot: true },
-        { component: OptionComponent },
-        { component: SelectedOptionComponent },
-      ]),
-      SelectModule,
-      BrowserAnimationsModule,
-    ],
-    entryComponents: [
-      SelectComponent,
-      OptionComponent,
-      SelectedOptionComponent,
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  },
-  template: `
+    moduleMetadata: {
+        imports: [
+            WebComponentsModule.forRoot(),
+            WebComponentsModule.withComponents([
+                { component: SelectComponent, isRoot: true },
+                { component: OptionComponent },
+                { component: SelectedOptionComponent },
+            ]),
+            SelectModule,
+            BrowserAnimationsModule,
+        ],
+        entryComponents: [
+            SelectComponent,
+            OptionComponent,
+            SelectedOptionComponent,
+        ],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    },
+    template: `
     <web-spy-select custom-option-template="true">
       <web-spy-option value="option1" title="Red text">
           <span style="color: red; font-weight: 400">Red text</span>

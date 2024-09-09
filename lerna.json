@@ -1,26 +1,27 @@
 {
-  "packages": ["libs/*"],
-  "version": "independent",
-  "npmClient": "npm",
-  "command": {
-    "publish": {
-      "conventionalCommits": true,
-      "gitRemote": "pub",
-      "allowBranch": [
-        "master",
-        "republish/master",
-        "next",
-        "republish/next",
-        "beta",
-        "republish/beta",
-        "alpha",
-        "republish/alpha",
-        "rc",
-        "republish/rc"
-      ],
-      "contents": "dist",
-      "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
-      "message": "chore(release): publish [skip ci]"
-    }
-  }
+    "packages": ["libs/*"],
+    "version": "independent",
+    "npmClient": "npm",
+    "command": {
+        "publish": {
+            "conventionalCommits": true,
+            "gitRemote": "pub",
+            "allowBranch": [
+                "master",
+                "republish/master",
+                "next",
+                "republish/next",
+                "beta",
+                "republish/beta",
+                "alpha",
+                "republish/alpha",
+                "rc",
+                "republish/rc"
+            ],
+            "contents": "dist",
+            "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
+            "message": "chore(release): publish [skip ci]"
+        }
+    },
+    "useNx": true
 }

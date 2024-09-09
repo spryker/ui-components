@@ -1,19 +1,19 @@
 {
-  "name": "@spryker/datasource.http",
-  "version": "0.2.5-beta.0",
-  "peerDependencies": {
-    "@angular/common": ">=9.1.12",
-    "@angular/core": ">=9.1.12",
-    "@spryker/cache": "^0.2.0",
-    "@spryker/data-serializer": "^0.1.0",
-    "@spryker/datasource": "^0.2.0",
-    "@spryker/utils": "^0.3.0",
-    "rxjs": "^7.4.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/datasource.http",
+    "version": "2.0.0",
+    "peerDependencies": {
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "@spryker/cache": "^2.0.0",
+        "@spryker/data-serializer": "^2.0.0",
+        "@spryker/datasource": "^2.0.0",
+        "@spryker/utils": "^2.0.0",
+        "rxjs": "^7.8.1"
+    },
+    "dependencies": {
+        "tslib": "^2.6.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

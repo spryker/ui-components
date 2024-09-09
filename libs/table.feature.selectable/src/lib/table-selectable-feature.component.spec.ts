@@ -1,241 +1,232 @@
 import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
-  TableColumnsResolverService,
-  TableData,
-  TableDataConfiguratorService,
-  TableDatasourceService,
-  TableFeatureLocation,
+    TableColumnsResolverService,
+    TableData,
+    TableDataConfiguratorService,
+    TableDatasourceService,
+    TableFeatureLocation,
 } from '@spryker/table';
 import {
-  TestTableFeatureComponent,
-  TestTableFeatureMocks,
-  TestTableFeatureTplDirective,
-  TestTableFeatureTplContext,
+    TestTableFeatureComponent,
+    TestTableFeatureMocks,
+    TestTableFeatureTplDirective,
+    TestTableFeatureTplContext,
 } from '@spryker/table/testing';
 
 import { TableSelectableFeatureComponent } from './table-selectable-feature.component';
 
 @Component({
-  selector: 'spy-test-host',
-  template: `
-    <test-table-feature>
-      <spy-table-selectable-feature></spy-table-selectable-feature>
-    </test-table-feature>
-  `,
+    selector: 'spy-test-host',
+    template: `
+        <test-table-feature>
+            <spy-table-selectable-feature></spy-table-selectable-feature>
+        </test-table-feature>
+    `,
 })
 class TestHostComponent {}
 
 describe('TableSelectableFeatureComponent', () => {
-  let fixture: ComponentFixture<TestHostComponent>;
-  let testTableFeature: TestTableFeatureComponent;
-  let mockData: TableData;
-  const mockItemSelectionEventData = [{ data: {}, index: 0 }];
+    let fixture: ComponentFixture<TestHostComponent>;
+    let testTableFeature: TestTableFeatureComponent;
+    let mockData: TableData;
+    const mockItemSelectionEventData = [{ data: {}, index: 0 }];
 
-  const checkboxSelector = 'spy-checkbox';
+    const checkboxSelector = 'spy-checkbox';
 
-  function queryHeaderCheckbox(): DebugElement {
-    return fixture.debugElement.queryAll(By.css(checkboxSelector))[0];
-  }
+    function queryHeaderCheckbox(): DebugElement {
+        return fixture.debugElement.queryAll(By.css(checkboxSelector))[0];
+    }
 
-  function queryColumnCheckbox(): DebugElement {
-    return fixture.debugElement.queryAll(By.css(checkboxSelector))[1];
-  }
+    function queryColumnCheckbox(): DebugElement {
+        return fixture.debugElement.queryAll(By.css(checkboxSelector))[1];
+    }
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        TestTableFeatureTplDirective,
-        TableSelectableFeatureComponent,
-        TestHostComponent,
-        TestTableFeatureComponent,
-      ],
-      providers: [
-        {
-          provide: TableColumnsResolverService,
-          useValue: 'TableColumnsResolverService',
-        },
-        {
-          provide: TableDatasourceService,
-          useValue: 'TableDatasourceService',
-        },
-        {
-          provide: TableDataConfiguratorService,
-          useValue: 'TableDataConfiguratorService',
-        },
-        {
-          provide: TestTableFeatureMocks,
-          useValue: {
-            config: {
-              enabled: true,
-            },
-          },
-        },
-        {
-          provide: TestTableFeatureTplContext,
-          useValue: {
-            [TableFeatureLocation.beforeCols]: {
-              i: 0,
-            },
-          },
-        },
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
-      teardown: { destroyAfterEach: false },
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                TestTableFeatureTplDirective,
+                TableSelectableFeatureComponent,
+                TestHostComponent,
+                TestTableFeatureComponent,
+            ],
+            providers: [
+                {
+                    provide: TableColumnsResolverService,
+                    useValue: 'TableColumnsResolverService',
+                },
+                {
+                    provide: TableDatasourceService,
+                    useValue: 'TableDatasourceService',
+                },
+                {
+                    provide: TableDataConfiguratorService,
+                    useValue: 'TableDataConfiguratorService',
+                },
+                {
+                    provide: TestTableFeatureMocks,
+                    useValue: {
+                        config: {
+                            enabled: true,
+                        },
+                    },
+                },
+                {
+                    provide: TestTableFeatureTplContext,
+                    useValue: {
+                        [TableFeatureLocation.beforeCols]: {
+                            i: 0,
+                        },
+                    },
+                },
+            ],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: false },
+        });
     });
-  });
 
-  beforeEach(fakeAsync(() => {
-    fixture = TestBed.createComponent(TestHostComponent);
-    testTableFeature = fixture.debugElement.query(
-      By.directive(TestTableFeatureComponent),
-    ).componentInstance;
+    beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(TestHostComponent);
+        testTableFeature = fixture.debugElement.query(By.directive(TestTableFeatureComponent)).componentInstance;
 
-    mockData = {
-      data: [{}],
-      page: 0,
-      pageSize: 0,
-      total: 0,
-    };
+        mockData = {
+            data: [{}],
+            page: 0,
+            pageSize: 0,
+            total: 0,
+        };
 
-    fixture.detectChanges();
-    tick();
+        fixture.detectChanges();
+        tick();
 
-    testTableFeature.featureMocks?.table.data$?.next(mockData);
-    fixture.detectChanges();
-  }));
-
-  describe('header template', () => {
-    it('should render `spy-checkbox`', fakeAsync(() => {
-      fixture.detectChanges();
-
-      expect(queryHeaderCheckbox()).toBeTruthy();
+        testTableFeature.featureMocks?.table.data$?.next(mockData);
+        fixture.detectChanges();
     }));
 
-    it('should bind `false` by default to `checked` property of `spy-checkbox`', fakeAsync(() => {
-      expect(queryHeaderCheckbox().properties.checked).toBe(false);
-    }));
+    describe('header template', () => {
+        it('should render `spy-checkbox`', fakeAsync(() => {
+            fixture.detectChanges();
 
-    it('should bind `false` by default to `indeterminate` input of `spy-checkbox``', fakeAsync(() => {
-      expect(queryHeaderCheckbox().properties.indeterminate).toBe(false);
-    }));
+            expect(queryHeaderCheckbox()).toBeTruthy();
+        }));
 
-    it('should toggle column checkbox when checked', fakeAsync(() => {
-      queryHeaderCheckbox().triggerEventHandler('checkedChange', true);
+        it('should bind `false` by default to `checked` property of `spy-checkbox`', fakeAsync(() => {
+            expect(queryHeaderCheckbox().properties.checked).toBe(false);
+        }));
 
-      fixture.detectChanges();
+        it('should bind `false` by default to `indeterminate` input of `spy-checkbox``', fakeAsync(() => {
+            expect(queryHeaderCheckbox().properties.indeterminate).toBe(false);
+        }));
 
-      expect(queryColumnCheckbox().properties.checked).toBe(true);
+        it('should toggle column checkbox when checked', fakeAsync(() => {
+            queryHeaderCheckbox().triggerEventHandler('checkedChange', true);
 
-      queryHeaderCheckbox().triggerEventHandler('checkedChange', false);
+            fixture.detectChanges();
 
-      fixture.detectChanges();
+            expect(queryColumnCheckbox().properties.checked).toBe(true);
 
-      expect(queryColumnCheckbox().properties.checked).toBe(false);
-    }));
+            queryHeaderCheckbox().triggerEventHandler('checkedChange', false);
 
-    it('should emit `itemSelection` with data when check changes', fakeAsync(() => {
-      queryHeaderCheckbox().triggerEventHandler('checkedChange', true);
+            fixture.detectChanges();
 
-      fixture.detectChanges();
+            expect(queryColumnCheckbox().properties.checked).toBe(false);
+        }));
 
-      expect(
-        testTableFeature.featureMocks?.table.eventHandler,
-      ).toHaveBeenCalledWith('itemSelection', mockItemSelectionEventData);
+        it('should emit `itemSelection` with data when check changes', fakeAsync(() => {
+            queryHeaderCheckbox().triggerEventHandler('checkedChange', true);
 
-      queryHeaderCheckbox().triggerEventHandler('checkedChange', false);
+            fixture.detectChanges();
 
-      fixture.detectChanges();
+            expect(testTableFeature.featureMocks?.table.eventHandler).toHaveBeenCalledWith(
+                'itemSelection',
+                mockItemSelectionEventData,
+            );
 
-      expect(
-        testTableFeature.featureMocks?.table.eventHandler,
-      ).toHaveBeenCalledWith('itemSelection', []);
-    }));
-  });
+            queryHeaderCheckbox().triggerEventHandler('checkedChange', false);
 
-  describe('column template', () => {
-    it('should render `spy-checkbox`', fakeAsync(() => {
-      expect(queryColumnCheckbox()).toBeTruthy();
-    }));
+            fixture.detectChanges();
 
-    it('should bind `false` by default to `checked` property of `spy-checkbox`', fakeAsync(() => {
-      expect(queryColumnCheckbox().properties.checked).toBeFalsy();
-    }));
+            expect(testTableFeature.featureMocks?.table.eventHandler).toHaveBeenCalledWith('itemSelection', []);
+        }));
+    });
 
-    it('should set check checkbox when it is checked', fakeAsync(() => {
-      expect(queryColumnCheckbox().properties.checked).toBeFalsy();
+    describe('column template', () => {
+        it('should render `spy-checkbox`', fakeAsync(() => {
+            expect(queryColumnCheckbox()).toBeTruthy();
+        }));
 
-      queryColumnCheckbox().triggerEventHandler('checkedChange', true);
+        it('should bind `false` by default to `checked` property of `spy-checkbox`', fakeAsync(() => {
+            expect(queryColumnCheckbox().properties.checked).toBeFalsy();
+        }));
 
-      fixture.detectChanges();
+        it('should set check checkbox when it is checked', fakeAsync(() => {
+            expect(queryColumnCheckbox().properties.checked).toBeFalsy();
 
-      expect(queryColumnCheckbox().properties.checked).toBe(true);
-    }));
+            queryColumnCheckbox().triggerEventHandler('checkedChange', true);
 
-    it('should check header checkbox when all checked', fakeAsync(() => {
-      queryColumnCheckbox().triggerEventHandler('checkedChange', true);
+            fixture.detectChanges();
 
-      fixture.detectChanges();
+            expect(queryColumnCheckbox().properties.checked).toBe(true);
+        }));
 
-      expect(queryHeaderCheckbox().properties.checked).toBe(true);
-    }));
+        it('should check header checkbox when all checked', fakeAsync(() => {
+            queryColumnCheckbox().triggerEventHandler('checkedChange', true);
 
-    it('should set header checkbox indeterminate when some checked', fakeAsync(() => {
-      mockData.data = [{}, {}]; // This will simulate partial check
-      testTableFeature.featureMocks?.table.data$?.next(mockData);
+            fixture.detectChanges();
 
-      fixture.detectChanges();
+            expect(queryHeaderCheckbox().properties.checked).toBe(true);
+        }));
 
-      queryColumnCheckbox().triggerEventHandler('checkedChange', true);
+        it('should set header checkbox indeterminate when some checked', fakeAsync(() => {
+            mockData.data = [{}, {}]; // This will simulate partial check
+            testTableFeature.featureMocks?.table.data$?.next(mockData);
 
-      fixture.detectChanges();
+            fixture.detectChanges();
 
-      expect(queryHeaderCheckbox().properties.checked).toBe(false);
-      expect(queryHeaderCheckbox().properties.indeterminate).toBe(true);
-    }));
+            queryColumnCheckbox().triggerEventHandler('checkedChange', true);
 
-    it('should call `TableComponent.updateRowClasses` when checked changes', fakeAsync(() => {
-      queryColumnCheckbox().triggerEventHandler('checkedChange', true);
+            fixture.detectChanges();
 
-      fixture.detectChanges();
+            expect(queryHeaderCheckbox().properties.checked).toBe(false);
+            expect(queryHeaderCheckbox().properties.indeterminate).toBe(true);
+        }));
 
-      // Verify class set
-      expect(
-        testTableFeature.featureMocks?.table.updateRowClasses,
-      ).toHaveBeenCalledWith('0', { 'ant-table-row--selected': true });
+        it('should call `TableComponent.updateRowClasses` when checked changes', fakeAsync(() => {
+            queryColumnCheckbox().triggerEventHandler('checkedChange', true);
 
-      queryColumnCheckbox().triggerEventHandler('checkedChange', false);
+            fixture.detectChanges();
 
-      fixture.detectChanges();
+            // Verify class set
+            expect(testTableFeature.featureMocks?.table.updateRowClasses).toHaveBeenCalledWith('0', {
+                'ant-table-row--selected': true,
+            });
 
-      // Verify class unset
-      expect(
-        testTableFeature.featureMocks?.table.updateRowClasses,
-      ).toHaveBeenCalledWith('0', { 'ant-table-row--selected': false });
-    }));
+            queryColumnCheckbox().triggerEventHandler('checkedChange', false);
 
-    it('should emit `itemSelection` with data when check changes', fakeAsync(() => {
-      queryColumnCheckbox().triggerEventHandler('checkedChange', true);
+            fixture.detectChanges();
 
-      fixture.detectChanges();
+            // Verify class unset
+            expect(testTableFeature.featureMocks?.table.updateRowClasses).toHaveBeenCalledWith('0', {
+                'ant-table-row--selected': false,
+            });
+        }));
 
-      expect(
-        testTableFeature.featureMocks?.table.eventHandler,
-      ).toHaveBeenCalledWith('itemSelection', mockItemSelectionEventData);
+        it('should emit `itemSelection` with data when check changes', fakeAsync(() => {
+            queryColumnCheckbox().triggerEventHandler('checkedChange', true);
 
-      queryColumnCheckbox().triggerEventHandler('checkedChange', false);
+            fixture.detectChanges();
 
-      fixture.detectChanges();
+            expect(testTableFeature.featureMocks?.table.eventHandler).toHaveBeenCalledWith(
+                'itemSelection',
+                mockItemSelectionEventData,
+            );
 
-      expect(
-        testTableFeature.featureMocks?.table.eventHandler,
-      ).toHaveBeenCalledWith('itemSelection', []);
-    }));
-  });
+            queryColumnCheckbox().triggerEventHandler('checkedChange', false);
+
+            fixture.detectChanges();
+
+            expect(testTableFeature.featureMocks?.table.eventHandler).toHaveBeenCalledWith('itemSelection', []);
+        }));
+    });
 });

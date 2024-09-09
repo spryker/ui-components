@@ -1,6 +1,6 @@
 {
-  "extends": "./tsconfig.lib.json",
-  "compilerOptions": {
-    "declarationMap": false
-  }
+    "extends": "./tsconfig.lib.json",
+    "compilerOptions": {
+        "declarationMap": false
+    }
 }

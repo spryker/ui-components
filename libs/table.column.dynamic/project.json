@@ -1,0 +1,71 @@
+{
+    "name": "table.column.dynamic",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/table.column.dynamic/src",
+    "prefix": "spy",
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:package",
+            "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "options": {
+                "project": "libs/table.column.dynamic/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/table.column.dynamic/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/table.column.dynamic/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/table.column.dynamic/jest.config.ts"
+            }
+        },
+        "storybook": {
+            "executor": "@storybook/angular:start-storybook",
+            "options": {
+                "port": 4400,
+                "configDir": "libs/table.column.dynamic/.storybook",
+                "browserTarget": "table.column.dynamic:build-storybook",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "build-storybook": {
+            "executor": "@storybook/angular:build-storybook",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputDir": "dist/storybook/table.column.dynamic",
+                "configDir": "libs/table.column.dynamic/.storybook",
+                "browserTarget": "table.column.dynamic:build-storybook",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        }
+    },
+    "tags": ["type:component", "level:atom", "pkg:extension"]
+}

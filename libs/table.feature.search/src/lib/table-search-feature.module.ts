@@ -8,17 +8,10 @@ import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
 import { TableSearchFeatureComponent } from './table-search-feature.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IconModule,
-    IconMagnifierModule,
-    IconRemoveModule,
-    InputModule,
-    TableFeatureModule,
-  ],
-  exports: [TableSearchFeatureComponent],
-  declarations: [TableSearchFeatureComponent],
+    imports: [CommonModule, IconModule, IconMagnifierModule, IconRemoveModule, InputModule, TableFeatureModule],
+    exports: [TableSearchFeatureComponent],
+    declarations: [TableSearchFeatureComponent],
 })
 export class TableSearchFeatureModule implements ModuleWithFeature {
-  featureComponent = TableSearchFeatureComponent;
+    featureComponent = TableSearchFeatureComponent;
 }

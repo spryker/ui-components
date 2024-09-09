@@ -2,140 +2,148 @@
 @import '../theme.less';
 
 .@{input-prefix-cls}-group {
-  .@{input-prefix-cls} {
-    &:only-child {
-      border-radius: @border-radius-base;
+    .@{input-prefix-cls} {
+        &:only-child {
+            border-radius: @border-radius-base;
+        }
+
+        &:hover,
+        &:focus {
+            border-right-width: @spy-border-width-base;
+        }
     }
-  }
 
-  .@{input-prefix-cls}-group-addon {
-    background: @gray-lighter;
-    color: @gray-dark;
-    font-family: @font-family;
+    .@{input-prefix-cls}-group-addon {
+        background: @gray-lighter;
+        color: @gray-dark;
+        font-family: @font-family;
 
-    &:first-of-type {
-      padding-right: @input-add-before-spacing;
+        &:first-of-type {
+            padding-right: @input-add-before-spacing;
+        }
     }
-  }
 
-  &-wrapper {
-    border-radius: @input-wrapper-border-radius;
-  }
+    &-wrapper {
+        border-radius: @input-wrapper-border-radius;
+    }
 }
 
 .@{input-prefix-cls} {
-  height: @spy-input-height-base;
-  font: @font-default;
-  padding: @input-padding-base;
-
-  &:read-only,
-  &-disabled {
-    &,
-    .has-error & {
-      pointer-events: none;
-      border-color: @input-disabled-border;
-    }
-  }
-
-  &:read-only {
-    &,
-    .has-error & {
-      color: @ink;
-      background: @input-disabled-bg;
-    }
-  }
-
-  &:focus {
-    .has-error & {
-      box-shadow: none;
-    }
-
-    &::placeholder {
-      color: @transparent;
-    }
-  }
-
-  &:invalid {
-    box-shadow: none;
-  }
-
-  &::-ms-clear {
-    display: none;
-  }
-
-  &-affix-wrapper {
     height: @spy-input-height-base;
-    padding: 0;
+    font: @font-default;
+    padding: @input-padding-base;
 
-    input.@{input-prefix-cls} {
-      height: 100%;
-      padding: @input-padding-base;
+    &:read-only,
+    &-disabled {
+        &,
+        .has-error & {
+            border-color: @input-disabled-border;
+        }
     }
 
-    &--suffix input.@{input-prefix-cls} {
-      padding-right: @input-affix-padding;
+    &:read-only {
+        &,
+        .has-error & {
+            color: @ink;
+            background: @input-disabled-bg;
+        }
     }
 
-    &--prefix input.@{input-prefix-cls} {
-      padding-left: @input-affix-padding;
+    &:focus {
+        .has-error & {
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: @transparent;
+        }
     }
 
-    &-focused {
-      .transition-mixin(border-color box-shadow);
-      border-radius: @input-wrapper-border-radius;
-
-      .@{input-prefix-cls} {
+    &:invalid {
         box-shadow: none;
-      }
     }
 
-    .@{input-prefix-cls} {
-      &-prefix,
-      &-suffix {
-        position: absolute;
-        top: @input-prefix-suffix-position-top;
-        transform: @input-prefix-suffix-transform;
-        color: @input-icon-color;
-        z-index: @input-prefix-suffix-z-index;
-        line-height: 0;
-        font-family: @font-family;
-      }
+    &-affix-wrapper {
+        height: @spy-input-height-base;
+        padding: 0;
 
-      &-prefix {
-        left: @input-prefix-position-left;
-      }
+        input.@{input-prefix-cls} {
+            height: 100%;
+            padding: @input-padding-base;
+            border-radius: @input-default-border-radius;
+        }
 
-      &-suffix {
-        right: @input-suffix-position-right;
-      }
+        &--suffix input.@{input-prefix-cls} {
+            padding-right: @input-affix-padding;
+        }
+
+        &--prefix input.@{input-prefix-cls} {
+            padding-left: @input-affix-padding;
+        }
+
+        &-focused {
+            .transition-mixin(border-color, box-shadow;);
+            border-radius: @input-wrapper-border-radius;
+
+            .@{input-prefix-cls} {
+                box-shadow: none;
+            }
+        }
+
+        .@{input-prefix-cls} {
+            &-prefix,
+            &-suffix {
+                position: absolute;
+                top: @input-prefix-suffix-position-top;
+                transform: @input-prefix-suffix-transform;
+                color: @input-icon-color;
+                z-index: @input-prefix-suffix-z-index;
+                line-height: 0;
+                font-family: @font-family;
+            }
+
+            &-prefix {
+                left: @input-prefix-position-left;
+            }
+
+            &-suffix {
+                right: @input-suffix-position-right;
+            }
+        }
+
+        &:hover {
+            .@{input-prefix-cls}-disabled,
+            .@{input-prefix-cls}:read-only {
+                border-color: @input-disabled-border;
+            }
+        }
     }
 
-    &:hover {
-      .@{input-prefix-cls}-disabled,
-      .@{input-prefix-cls}:read-only {
-        border-color: @input-disabled-border;
-      }
-    }
-  }
+    &-container {
+        &--hover {
+            .@{input-prefix-cls}-group-addon,
+            .@{input-prefix-cls}-affix-wrapper,
+            .@{input-prefix-cls} {
+                border-color: @gray;
+            }
 
-  &-container {
-    &--hover {
-      .@{input-prefix-cls}-group-addon,
-      .@{input-prefix-cls}-affix-wrapper,
-      .@{input-prefix-cls} {
-        border-color: @gray;
-      }
-    }
+            .@{input-prefix-cls}-disabled {
+                border-color: @gray-light;
+            }
+        }
 
-    &--focus {
-      &.@{input-prefix-cls}-affix-wrapper-focused
-        .@{input-prefix-cls}-affix-wrapper,
-      &.@{input-prefix-cls}-affix-wrapper-focused.@{input-prefix-cls}-affix-wrapper,
-      .@{input-prefix-cls}-group-addon,
-      .@{input-prefix-cls} {
-        border-color: @spy-primary-color;
-        border-width: @spy-border-width-base;
-      }
+        &--focus {
+            &.@{input-prefix-cls}-affix-wrapper-focused .@{input-prefix-cls}-affix-wrapper,
+            &.@{input-prefix-cls}-affix-wrapper-focused.@{input-prefix-cls}-affix-wrapper,
+            .@{input-prefix-cls}-group-addon,
+            .@{input-prefix-cls} {
+                border-color: @spy-primary-color;
+                border-width: @spy-border-width-base;
+            }
+
+            &.@{input-prefix-cls}-affix-wrapper-focused .@{input-prefix-cls}-affix-wrapper {
+                box-shadow: none;
+            }
+        }
     }
-  }
 }

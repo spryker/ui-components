@@ -1,20 +1,16 @@
 const rootMain = require('../main');
 
 module.exports = {
-  ...rootMain,
+    ...rootMain,
+    stories: ['../../**/*.@(mdx|stories.@(ts))'],
+    webpackFinal: async (config, { configType }) => {
+        // apply any global webpack configs that might have been specified in .storybook/main.js
+        if (rootMain.webpackFinal) {
+            config = await rootMain.webpackFinal(config, { configType });
+        }
 
-  core: { ...rootMain.core, builder: 'webpack5' },
+        // add your own webpack tweaks if needed
 
-  stories: rootMain.stories.map((path) => `../${path}`),
-  addons: [...rootMain.addons],
-  webpackFinal: async (config, { configType }) => {
-    // apply any global webpack configs that might have been specified in .storybook/main.js
-    if (rootMain.webpackFinal) {
-      config = await rootMain.webpackFinal(config, { configType });
-    }
-
-    // add your own webpack tweaks if needed
-
-    return config;
-  },
+        return config;
+    },
 };

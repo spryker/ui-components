@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.4-beta.0](https://github.com/spryker/ui-components/compare/@spryker/chips@0.3.3...@spryker/chips@0.3.4-beta.0) (2022-08-08)
-
-**Note:** Version bump only for package @spryker/chips
-
-
-
-
-
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/chips@2.0.0-rc.1...@spryker/chips@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/chips
@@ -253,14 +245,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 **Note:** Version bump only for package @spryker/chips
 
 ## [0.1.8](https://github.com/spryker/ui-components/compare/@spryker/chips@0.1.8-next.1...@spryker/chips@0.1.8) (2021-11-05)
-
-**Note:** Version bump only for package @spryker/chips
-
-
-
-
-
-## [0.1.8-beta.0](https://github.com/spryker/ui-components/compare/@spryker/chips@0.1.8-next.1...@spryker/chips@0.1.8-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/chips
 

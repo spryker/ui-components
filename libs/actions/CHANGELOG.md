@@ -71,7 +71,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @spryker/actions
 
-## [1.0.1-rc.0](https://github.com/spryker/ui-components/compare/@spryker/actions@1.0.0...@spryker/actions@1.0.1-rc.0) (2024-03-19)
+## [0.2.3](https://github.com/spryker/ui-components/compare/@spryker/actions@0.2.3-next.0...@spryker/actions@0.2.3) (2022-05-25)
 
 **Note:** Version bump only for package @spryker/actions
 

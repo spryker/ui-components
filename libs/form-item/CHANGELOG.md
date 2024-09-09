@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.6-beta.0](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.4.5...@spryker/form-item@0.4.6-beta.0) (2022-08-08)
-
-**Note:** Version bump only for package @spryker/form-item
-
-
-
-
-
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/form-item@2.0.0-rc.1...@spryker/form-item@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/form-item
@@ -299,14 +291,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 **Note:** Version bump only for package @spryker/form-item
 
 ## [0.2.8](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.2.8-next.1...@spryker/form-item@0.2.8) (2021-11-05)
-
-**Note:** Version bump only for package @spryker/form-item
-
-
-
-
-
-## [0.2.8-beta.0](https://github.com/spryker/ui-components/compare/@spryker/form-item@0.2.8-next.1...@spryker/form-item@0.2.8-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/form-item
 

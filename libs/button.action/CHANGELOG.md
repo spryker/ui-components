@@ -99,7 +99,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   added missed / removed unused dependencies ([cee4a1f](https://github.com/spryker/ui-components/commit/cee4a1f4892bd36be77b03215f14870b0aaad8a4))
 -   moved `rxjs` to the `peerDependencies` ([4deabb4](https://github.com/spryker/ui-components/commit/4deabb44aa6cc97998cdf5e2ddf27567e040a7c9))
 
-## [1.0.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/button.action@1.0.0...@spryker/button.action@1.0.1-next.0) (2023-09-06)
+## [0.2.2](https://github.com/spryker/ui-components/compare/@spryker/button.action@0.2.2-next.0...@spryker/button.action@0.2.2) (2022-05-20)
 
 **Note:** Version bump only for package @spryker/button.action
 

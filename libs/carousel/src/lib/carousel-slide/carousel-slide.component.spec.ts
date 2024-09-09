@@ -5,13 +5,13 @@ import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 describe('CarouselSlideComponent', () => {
-  let component: TestHostComponent;
-  let fixture: ComponentFixture<TestHostComponent>;
+    let component: TestHostComponent;
+    let fixture: ComponentFixture<TestHostComponent>;
 
-  const slideContent = 'Slide content';
-  const thumbContent = 'Thumb content';
+    const slideContent = 'Slide content';
+    const thumbContent = 'Thumb content';
 
-  const projectedContent = `
+    const projectedContent = `
     <spy-carousel-slide #carouselSlide>
       <div class="slide-content">${slideContent}</div>
       <div thumb class="thumb-content">${thumbContent}</div>
@@ -24,40 +24,36 @@ describe('CarouselSlideComponent', () => {
     </div>
     `;
 
-  @Component({
-    template: projectedContent,
-  })
-  class TestHostComponent {}
+    @Component({
+        template: projectedContent,
+    })
+    class TestHostComponent {}
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [CarouselSlideComponent, TestHostComponent],
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [CarouselSlideComponent, TestHostComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestHostComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TestHostComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 
-  it('should render slide content', () => {
-    const slideContentEl = fixture.debugElement.query(
-      By.css('.slide-content-outlet .slide-content'),
-    );
-    expect(slideContentEl).toBeTruthy();
-    expect(slideContentEl.nativeElement.textContent).toBe(slideContent);
-  });
+    it('should render slide content', () => {
+        const slideContentEl = fixture.debugElement.query(By.css('.slide-content-outlet .slide-content'));
+        expect(slideContentEl).toBeTruthy();
+        expect(slideContentEl.nativeElement.textContent).toBe(slideContent);
+    });
 
-  it('should render thumb content', () => {
-    const thumbContentEl = fixture.debugElement.query(
-      By.css('.thumb-content-outlet .thumb-content'),
-    );
-    expect(thumbContentEl).toBeTruthy();
-    expect(thumbContentEl.nativeElement.textContent).toBe(thumbContent);
-  });
+    it('should render thumb content', () => {
+        const thumbContentEl = fixture.debugElement.query(By.css('.thumb-content-outlet .thumb-content'));
+        expect(thumbContentEl).toBeTruthy();
+        expect(thumbContentEl.nativeElement.textContent).toBe(thumbContent);
+    });
 });

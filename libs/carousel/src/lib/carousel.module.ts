@@ -7,8 +7,8 @@ import { IconModule } from '@spryker/icon';
 import { IconPaginationArrowModule } from '@spryker/icon/icons';
 
 @NgModule({
-  imports: [CommonModule, SwiperModule, IconModule, IconPaginationArrowModule],
-  declarations: [CarouselComponent, CarouselSlideComponent],
-  exports: [CarouselComponent, CarouselSlideComponent],
+    imports: [CommonModule, SwiperModule, IconModule, IconPaginationArrowModule],
+    declarations: [CarouselComponent, CarouselSlideComponent],
+    exports: [CarouselComponent, CarouselSlideComponent],
 })
 export class CarouselModule {}

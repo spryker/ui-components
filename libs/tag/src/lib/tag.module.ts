@@ -6,8 +6,8 @@ import { ButtonIconModule } from '@spryker/button.icon';
 import { TagComponent } from './tag/tag.component';
 
 @NgModule({
-  imports: [CommonModule, ButtonIconModule, IconRemoveModule],
-  declarations: [TagComponent],
-  exports: [TagComponent],
+    imports: [CommonModule, ButtonIconModule, IconRemoveModule],
+    declarations: [TagComponent],
+    exports: [TagComponent],
 })
 export class TagModule {}

@@ -53,13 +53,13 @@
 
             <span class="ant-select-item-option-content-label">
                 <ng-container
-                  *ngIf="customOptionTemplate; else inputOptionsTemplateRef"
-                  [ngTemplateOutlet]="option.template"
+                    *ngIf="customOptionTemplate; else inputOptionsTemplateRef"
+                    [ngTemplateOutlet]="option.template"
                 ></ng-container>
                 <ng-template #inputOptionsTemplateRef>
-                  {{ option.title }}
+                    {{ option.title }}
                 </ng-template>
-              </span>
+            </span>
         </div>
     </nz-option>
 </nz-select>
@@ -107,16 +107,16 @@
 
 <ng-template #notFoundContent>{{ noOptionsText$ | async }}</ng-template>
 <span
-  [spySelectComponents]="optionReference"
-  (spySelectComponentsFound)="optionsFound($event)"
-  class="ant-options-projected-content"
+    [spySelectComponents]="optionReference"
+    (spySelectComponentsFound)="optionsFound($event)"
+    class="ant-options-projected-content"
 >
-  <ng-content></ng-content>
+    <ng-content></ng-content>
 </span>
 <span
-  [spySelectComponents]="selectedOptionReference"
-  (spySelectComponentsFound)="selectedOptionFound($event)"
-  class="ant-options-projected-content"
+    [spySelectComponents]="selectedOptionReference"
+    (spySelectComponentsFound)="selectedOptionFound($event)"
+    class="ant-options-projected-content"
 >
-  <ng-content select="[selected]"></ng-content>
+    <ng-content select="[selected]"></ng-content>
 </span>

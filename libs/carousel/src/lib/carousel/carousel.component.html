@@ -1,48 +1,48 @@
 <swiper
-  #mainSwiper
-  containerModifierClass="spy-carousel__"
-  [slidesPerView]="config.slidesPerView"
-  [centeredSlides]="true"
-  [thumbs]="withThumbs ? { swiper: thumbsSwiper } : null"
-  [navigation]="!withThumbs"
+    #mainSwiper
+    containerModifierClass="spy-carousel__"
+    [slidesPerView]="config.slidesPerView"
+    [centeredSlides]="true"
+    [thumbs]="withThumbs ? { swiper: thumbsSwiper } : null"
+    [navigation]="!withThumbs"
 >
-  <ng-template swiperSlide *ngFor="let slide of slides$ | async">
-    <ng-container *ngTemplateOutlet="slide.template"></ng-container>
-  </ng-template>
+    <ng-template swiperSlide *ngFor="let slide of slides$ | async">
+        <ng-container *ngTemplateOutlet="slide.template"></ng-container>
+    </ng-template>
 </swiper>
 <swiper
-  #thumbSwiper
-  containerModifierClass="spy-carousel__"
-  class="thumbs-swiper"
-  *ngIf="withThumbs"
-  [slidesPerView]="thumbConfig.slidesPerView"
-  [spaceBetween]="thumbConfig.spaceBetween"
-  (swiper)="thumbsSwiper = $event"
-  (slideChange)="slideHandler($event)"
-  (reachBeginning)="slideHandler($event)"
-  (reachEnd)="slideHandler($event)"
+    #thumbSwiper
+    containerModifierClass="spy-carousel__"
+    class="thumbs-swiper"
+    *ngIf="withThumbs"
+    [slidesPerView]="thumbConfig.slidesPerView"
+    [spaceBetween]="thumbConfig.spaceBetween"
+    (swiper)="thumbsSwiper = $event"
+    (slideChange)="slideHandler($event)"
+    (reachBeginning)="slideHandler($event)"
+    (reachEnd)="slideHandler($event)"
 >
-  <ng-template swiperSlide *ngFor="let slide of slides$ | async">
-    <ng-container *ngTemplateOutlet="slide.thumbTemplate"></ng-container>
-  </ng-template>
+    <ng-template swiperSlide *ngFor="let slide of slides$ | async">
+        <ng-container *ngTemplateOutlet="slide.thumbTemplate"></ng-container>
+    </ng-template>
 </swiper>
 <button
-  class="spy-carousel__navigation-button spy-carousel__navigation-button--preview"
-  (click)="slidePrev()"
-  [hidden]="!withThumbs || hidePrev"
+    class="spy-carousel__navigation-button spy-carousel__navigation-button--preview"
+    (click)="slidePrev()"
+    [hidden]="!withThumbs || hidePrev"
 >
-  <spy-icon
-    class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--preview"
-    [name]="paginationArrowIcon"
-  ></spy-icon>
+    <spy-icon
+        class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--preview"
+        [name]="paginationArrowIcon"
+    ></spy-icon>
 </button>
 <button
-  class="spy-carousel__navigation-button spy-carousel__navigation-button--next"
-  (click)="slideNext()"
-  [hidden]="!withThumbs || hideNext"
+    class="spy-carousel__navigation-button spy-carousel__navigation-button--next"
+    (click)="slideNext()"
+    [hidden]="!withThumbs || hideNext"
 >
-  <spy-icon
-    class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--next"
-    [name]="paginationArrowIcon"
-  ></spy-icon>
+    <spy-icon
+        class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--next"
+        [name]="paginationArrowIcon"
+    ></spy-icon>
 </button>

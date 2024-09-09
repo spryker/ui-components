@@ -7,14 +7,8 @@ import { IconModule } from '@spryker/icon';
 import { IconStarModule } from '@spryker/icon/icons';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzRateModule,
-    FormsModule,
-    IconModule,
-    IconStarModule,
-  ],
-  declarations: [RatingComponent],
-  exports: [RatingComponent],
+    imports: [CommonModule, NzRateModule, FormsModule, IconModule, IconStarModule],
+    declarations: [RatingComponent],
+    exports: [RatingComponent],
 })
 export class RatingModule {}

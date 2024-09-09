@@ -28,4 +28,4 @@ import { SelectComponent } from './select/select.component';
     declarations: [SelectComponent],
     exports: [SelectComponent],
 })
-export class SelectModule { }
+export class SelectModule {}

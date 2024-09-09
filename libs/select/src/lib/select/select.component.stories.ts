@@ -182,11 +182,7 @@ export const asWebComponents = () => ({
             SelectModule,
             BrowserAnimationsModule,
         ],
-        entryComponents: [
-            SelectComponent,
-            OptionComponent,
-            SelectedOptionComponent,
-        ],
+        entryComponents: [SelectComponent, OptionComponent, SelectedOptionComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
     },
     template: `

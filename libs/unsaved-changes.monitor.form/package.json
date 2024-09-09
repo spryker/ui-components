@@ -1,18 +1,18 @@
 {
-  "name": "@spryker/unsaved-changes.monitor.form",
-  "version": "2.0.0",
-  "peerDependencies": {
-    "@angular/common": "^17.3.0",
-    "@angular/core": "^17.3.0",
-    "@spryker/interception": "^2.0.0",
-    "@spryker/unsaved-changes": "^2.0.0",
-    "@spryker/utils": "^2.0.0",
-    "rxjs": "^7.8.1"
-  },
-  "dependencies": {
-    "tslib": "^2.6.2"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/unsaved-changes.monitor.form",
+    "version": "2.0.0",
+    "peerDependencies": {
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "@spryker/interception": "^2.0.0",
+        "@spryker/unsaved-changes": "^2.0.0",
+        "@spryker/utils": "^2.0.0",
+        "rxjs": "^7.8.1"
+    },
+    "dependencies": {
+        "tslib": "^2.6.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

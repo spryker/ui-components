@@ -3,34 +3,28 @@ import { CarouselComponent } from './carousel.component';
 import { CarouselModule } from '../carousel.module';
 
 export default {
-  title: 'CarouselComponent',
-  parameters: {
-    controls: {
-      include: [
-        'slidesPerView',
-        'slidesSpaceBetween',
-        'withThumbs',
-        'thumbsPerView',
-        'thumbsSpaceBetween',
-      ],
+    title: 'CarouselComponent',
+    parameters: {
+        controls: {
+            include: ['slidesPerView', 'slidesSpaceBetween', 'withThumbs', 'thumbsPerView', 'thumbsSpaceBetween'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2201%3A6727',
+            allowFullscreen: true,
+        },
     },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2201%3A6727',
-      allowFullscreen: true,
+    args: {
+        withThumbs: true,
     },
-  },
-  args: {
-    withThumbs: true,
-  },
 } as Meta;
 
 export const noNavigation = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [CarouselModule],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [CarouselModule],
+    },
+    template: `
     <div style="width: 100%">
       <spy-carousel
         [withThumbs]="withThumbs"
@@ -47,11 +41,11 @@ export const noNavigation = (args) => ({
 });
 
 export const withNavigation = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [CarouselModule],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [CarouselModule],
+    },
+    template: `
     <div style="width: 100%">
       <spy-carousel
         [withThumbs]="withThumbs"
@@ -68,11 +62,11 @@ export const withNavigation = (args) => ({
 });
 
 export const noThumbs = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [CarouselModule],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [CarouselModule],
+    },
+    template: `
     <div style="width: 100%">
       <spy-carousel
         [withThumbs]="false"

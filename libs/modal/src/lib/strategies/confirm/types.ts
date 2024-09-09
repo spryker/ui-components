@@ -2,7 +2,7 @@ import { TemplateRef } from '@angular/core';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
 import { AnyModal, ModalTemplateContext } from '../../types';
 
-export interface ConfirmModalStrategyOptions extends ConfirmModalData { }
+export interface ConfirmModalStrategyOptions extends ConfirmModalData {}
 
 export interface ConfirmModalData {
     title?: string | TemplateRef<ModalTemplateContext<AnyModal>>;

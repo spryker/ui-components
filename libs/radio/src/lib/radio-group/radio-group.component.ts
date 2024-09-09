@@ -41,7 +41,7 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
     radios$ = new BehaviorSubject(new Set<RadioComponent>());
     private destroyed$ = new Subject<void>();
 
-    constructor(private cdr: ChangeDetectorRef) { }
+    constructor(private cdr: ChangeDetectorRef) {}
 
     ngOnInit(): void {
         this.radios$

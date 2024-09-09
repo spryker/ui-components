@@ -1,18 +1,18 @@
 {
-  "name": "@spryker/user-menu",
-  "version": "2.0.0",
-  "peerDependencies": {
-    "@angular/common": "^17.3.0",
-    "@angular/core": "^17.3.0",
-    "@spryker/icon": "^2.0.0",
-    "@spryker/popover": "^2.0.0",
-    "@spryker/styles": "^2.0.0",
-    "@spryker/web-components": "^2.0.0"
-  },
-  "dependencies": {
-    "tslib": "^2.6.2"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/user-menu",
+    "version": "2.0.0",
+    "peerDependencies": {
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "@spryker/icon": "^2.0.0",
+        "@spryker/popover": "^2.0.0",
+        "@spryker/styles": "^2.0.0",
+        "@spryker/web-components": "^2.0.0"
+    },
+    "dependencies": {
+        "tslib": "^2.6.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

@@ -1,13 +1,13 @@
 <nz-rate
-  class="spy-rating__control"
-  [(ngModel)]="rating"
-  [nzCount]="maxRating"
-  [nzDisabled]="readOnly"
-  [nzAllowHalf]="allowHalf"
-  nzAllowClear
-  [nzCharacter]="icon"
-  (ngModelChange)="ratingChange.emit($event)"
+    class="spy-rating__control"
+    [(ngModel)]="rating"
+    [nzCount]="maxRating"
+    [nzDisabled]="readOnly"
+    [nzAllowHalf]="allowHalf"
+    nzAllowClear
+    [nzCharacter]="icon"
+    (ngModelChange)="ratingChange.emit($event)"
 ></nz-rate>
 <ng-template #icon>
-  <spy-icon class="spy-rating__icon" [name]="starIcon"></spy-icon>
+    <spy-icon class="spy-rating__icon" [name]="starIcon"></spy-icon>
 </ng-template>

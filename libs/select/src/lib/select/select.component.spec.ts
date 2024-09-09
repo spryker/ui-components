@@ -13,7 +13,7 @@ import { SelectComponent } from './select.component';
     selector: 'nz-select',
     template: ` <ng-content></ng-content> `,
 })
-class MockNzSelectComponent { }
+class MockNzSelectComponent {}
 
 class MockDatasource {
     resolve = jest.fn();

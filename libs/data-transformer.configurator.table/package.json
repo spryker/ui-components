@@ -1,17 +1,17 @@
 {
-  "name": "@spryker/data-transformer.configurator.table",
-  "version": "2.0.0",
-  "peerDependencies": {
-    "@angular/common": "^17.3.0",
-    "@angular/core": "^17.3.0",
-    "@spryker/data-transformer.collate": "^2.0.0",
-    "@spryker/table": "^2.0.0",
-    "rxjs": "^7.8.1"
-  },
-  "dependencies": {
-    "tslib": "^2.6.2"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@spryker/data-transformer.configurator.table",
+    "version": "2.0.0",
+    "peerDependencies": {
+        "@angular/common": "^17.3.0",
+        "@angular/core": "^17.3.0",
+        "@spryker/data-transformer.collate": "^2.0.0",
+        "@spryker/table": "^2.0.0",
+        "rxjs": "^7.8.1"
+    },
+    "dependencies": {
+        "tslib": "^2.6.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

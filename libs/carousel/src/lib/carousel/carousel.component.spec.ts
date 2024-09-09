@@ -8,7 +8,7 @@ import { By } from '@angular/platform-browser';
 import { CarouselOptions } from '../types';
 
 describe('CarouselComponent', () => {
-  const projectedContent = `
+    const projectedContent = `
     <spy-carousel-slide>
       <img src="https://source.unsplash.com/random/800x450" alt="slide 1">
       <div thumb><img src="https://source.unsplash.com/160x90"  alt="slide 1 thumb"></div>
@@ -34,120 +34,90 @@ describe('CarouselComponent', () => {
       <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 6 thumb"></div>
     </spy-carousel-slide>`;
 
-  const defaultInputs: {
-    config: CarouselOptions;
-    thumbConfig: CarouselOptions;
-    withThumbs: boolean;
-    withoutNavSlidesAmount: number;
-  } = {
-    config: {
-      slidesPerView: 'auto',
-    },
-    thumbConfig: {
-      slidesPerView: 'auto',
-      spaceBetween: 10,
-    },
-    withThumbs: true,
-    withoutNavSlidesAmount: 6,
-  };
+    const defaultInputs: {
+        config: CarouselOptions;
+        thumbConfig: CarouselOptions;
+        withThumbs: boolean;
+        withoutNavSlidesAmount: number;
+    } = {
+        config: {
+            slidesPerView: 'auto',
+        },
+        thumbConfig: {
+            slidesPerView: 'auto',
+            spaceBetween: 10,
+        },
+        withThumbs: true,
+        withoutNavSlidesAmount: 6,
+    };
 
-  const { testModule, createComponent } = getTestingForComponent(
-    CarouselComponent,
-    {
-      ngModule: {
-        imports: [],
-        declarations: [CarouselSlideComponent],
-        exports: [CarouselSlideComponent],
-        schemas: [NO_ERRORS_SCHEMA],
-      },
-      projectContent: projectedContent,
-    },
-  );
+    const { testModule, createComponent } = getTestingForComponent(CarouselComponent, {
+        ngModule: {
+            imports: [],
+            declarations: [CarouselSlideComponent],
+            exports: [CarouselSlideComponent],
+            schemas: [NO_ERRORS_SCHEMA],
+        },
+        projectContent: projectedContent,
+    });
 
-  beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
+    beforeEach(() => TestBed.configureTestingModule({ imports: [testModule] }));
 
-  it('should create', async () => {
-    const host = await createComponent(defaultInputs, true);
-    expect(host.component).toBeTruthy();
-  });
+    it('should create', async () => {
+        const host = await createComponent(defaultInputs, true);
+        expect(host.component).toBeTruthy();
+    });
 
-  it('should render main swiper', async () => {
-    const host = await createComponent(defaultInputs, true);
-    const mainSwiper = host.queryCss('swiper');
-    expect(mainSwiper).toBeTruthy();
-    expect(mainSwiper?.properties['slidesPerView']).toBe(
-      defaultInputs.config.slidesPerView,
-    );
-  });
+    it('should render main swiper', async () => {
+        const host = await createComponent(defaultInputs, true);
+        const mainSwiper = host.queryCss('swiper');
+        expect(mainSwiper).toBeTruthy();
+        expect(mainSwiper?.properties['slidesPerView']).toBe(defaultInputs.config.slidesPerView);
+    });
 
-  it('should not render thumbs if not withThumbs', async () => {
-    const host = await createComponent(
-      { ...defaultInputs, withThumbs: false },
-      true,
-    );
-    const swipers = host.fixture.debugElement.queryAll(By.css('swiper'));
-    expect(swipers).toBeTruthy();
-    expect(swipers.length).toBe(1);
-    const nextButton = host.fixture.debugElement.query(
-      By.css('.spy-carousel__navigation-button--next'),
-    );
-    expect(nextButton.properties['hidden']).toBe(true);
+    it('should not render thumbs if not withThumbs', async () => {
+        const host = await createComponent({ ...defaultInputs, withThumbs: false }, true);
+        const swipers = host.fixture.debugElement.queryAll(By.css('swiper'));
+        expect(swipers).toBeTruthy();
+        expect(swipers.length).toBe(1);
+        const nextButton = host.fixture.debugElement.query(By.css('.spy-carousel__navigation-button--next'));
+        expect(nextButton.properties['hidden']).toBe(true);
 
-    const prevButton = host.fixture.debugElement.query(
-      By.css('.spy-carousel__navigation-button--preview'),
-    );
-    expect(prevButton.properties['hidden']).toBe(true);
-  });
+        const prevButton = host.fixture.debugElement.query(By.css('.spy-carousel__navigation-button--preview'));
+        expect(prevButton.properties['hidden']).toBe(true);
+    });
 
-  it('should render thumbs', async () => {
-    const host = await createComponent(
-      { ...defaultInputs, withThumbs: true },
-      true,
-    );
-    const swipers = host.fixture.debugElement.queryAll(By.css('swiper'));
-    expect(swipers).toBeTruthy();
-    expect(swipers.length).toBe(2);
+    it('should render thumbs', async () => {
+        const host = await createComponent({ ...defaultInputs, withThumbs: true }, true);
+        const swipers = host.fixture.debugElement.queryAll(By.css('swiper'));
+        expect(swipers).toBeTruthy();
+        expect(swipers.length).toBe(2);
 
-    const thumbsSwiper = swipers[1];
-    expect(thumbsSwiper.properties['slidesPerView']).toBe(
-      defaultInputs.thumbConfig.slidesPerView,
-    );
-    expect(thumbsSwiper.properties['spaceBetween']).toBe(
-      defaultInputs.thumbConfig.spaceBetween,
-    );
+        const thumbsSwiper = swipers[1];
+        expect(thumbsSwiper.properties['slidesPerView']).toBe(defaultInputs.thumbConfig.slidesPerView);
+        expect(thumbsSwiper.properties['spaceBetween']).toBe(defaultInputs.thumbConfig.spaceBetween);
 
-    thumbsSwiper.triggerEventHandler('swiper', thumbsSwiper);
-    expect(host.component.thumbsSwiper).toBe(thumbsSwiper);
-  });
+        thumbsSwiper.triggerEventHandler('swiper', thumbsSwiper);
+        expect(host.component.thumbsSwiper).toBe(thumbsSwiper);
+    });
 
-  it('should not render navigation buttons if less than withoutNavSlidesAmount', async () => {
-    const host = await createComponent({ ...defaultInputs }, true);
+    it('should not render navigation buttons if less than withoutNavSlidesAmount', async () => {
+        const host = await createComponent({ ...defaultInputs }, true);
 
-    const nextButton = host.fixture.debugElement.query(
-      By.css('.spy-carousel__navigation-button--next'),
-    );
-    expect(nextButton.properties['hidden']).toBe(true);
+        const nextButton = host.fixture.debugElement.query(By.css('.spy-carousel__navigation-button--next'));
+        expect(nextButton.properties['hidden']).toBe(true);
 
-    const prevButton = host.fixture.debugElement.query(
-      By.css('.spy-carousel__navigation-button--preview'),
-    );
-    expect(prevButton.properties['hidden']).toBe(true);
-  });
+        const prevButton = host.fixture.debugElement.query(By.css('.spy-carousel__navigation-button--preview'));
+        expect(prevButton.properties['hidden']).toBe(true);
+    });
 
-  it('should render navigation buttons', async () => {
-    const host = await createComponent(
-      { ...defaultInputs, withoutNavSlidesAmount: 5 },
-      true,
-    );
+    it('should render navigation buttons', async () => {
+        const host = await createComponent({ ...defaultInputs, withoutNavSlidesAmount: 5 }, true);
 
-    const nextButton = host.fixture.debugElement.query(
-      By.css('.spy-carousel__navigation-button--next'),
-    );
-    expect(nextButton.properties['hidden']).toBe(false);
+        const nextButton = host.fixture.debugElement.query(By.css('.spy-carousel__navigation-button--next'));
+        expect(nextButton.properties['hidden']).toBe(false);
 
-    const prevButton = host.fixture.debugElement.query(
-      By.css('.spy-carousel__navigation-button--preview'),
-    );
-    expect(prevButton.properties['hidden']).toBe(true);
-  });
+        const prevButton = host.fixture.debugElement.query(By.css('.spy-carousel__navigation-button--preview'));
+        expect(prevButton.properties['hidden']).toBe(true);
+    });
 });

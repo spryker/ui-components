@@ -59,42 +59,35 @@ export const primary = (args) => ({
 });
 
 export const withIcon = (args) => ({
-  props: args,
-  moduleMetadata: {
-    imports: [
-      DropdownModule,
-      BrowserAnimationsModule,
-      IconModule,
-      IconCheckModule,
-      IconInfoModule,
-    ],
-  },
-  template: `
+    props: args,
+    moduleMetadata: {
+        imports: [DropdownModule, BrowserAnimationsModule, IconModule, IconCheckModule, IconInfoModule],
+    },
+    template: `
     <spy-dropdown [items]="items" [trigger]="trigger">ICON</spy-dropdown>
   `,
 });
 
 withIcon.args = {
-  items: [
-    {
-      action: 'action1',
-      title:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam amet consectetur harum maxime optio porro quam ratione unde velit',
-      icon: IconCheckModule.icon,
-    },
-    {
-      action: 'action2',
-      title: 'One line item',
-      icon: IconInfoModule.icon,
-    },
-    { action: 'action3', title: 'Without icon' },
-  ],
-  trigger: 'hover',
+    items: [
+        {
+            action: 'action1',
+            title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam amet consectetur harum maxime optio porro quam ratione unde velit',
+            icon: IconCheckModule.icon,
+        },
+        {
+            action: 'action2',
+            title: 'One line item',
+            icon: IconInfoModule.icon,
+        },
+        { action: 'action3', title: 'Without icon' },
+    ],
+    trigger: 'hover',
 };
 
 withIcon.argTypes = {
-  trigger: {
-    control: { type: 'select' },
-    options: ['click', 'hover'],
-  },
+    trigger: {
+        control: { type: 'select' },
+        options: ['click', 'hover'],
+    },
 };

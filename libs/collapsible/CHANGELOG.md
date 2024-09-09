@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/collapsible@2.0.0...@spryker/collapsible@2.0.1-next.0) (2024-09-04)
+
+
+### Bug Fixes
+
+* **collapsible:** fix collapsible component to navigable via keyboard ([#613](http://172.31.33.130:9292/spryker-internal-ci/ui-components/issues/613)) ([b22f205](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/b22f205b49f9c52135f30c551b8c24b853dbda65))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/collapsible@2.0.0-rc.1...@spryker/collapsible@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/collapsible

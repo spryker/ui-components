@@ -29,6 +29,7 @@ class MockWindowToken {
     location = {
         href: '',
     };
+    open = jest.fn();
 }
 
 @Injectable()
@@ -135,6 +136,16 @@ describe('RedirectActionHandlerService', () => {
         service.handleAction(injector, mockActionsConfig, mockContext);
 
         expect(windowToken.location.href).toBe(mockValueAfterSanitizing);
+    });
+
+    it('should call windowToken.open with proper params', () => {
+        const mockValueAfterSanitizing = 'mockValueAfterSanitizing';
+
+        sanitizer.sanitize.mockReturnValue(mockValueAfterSanitizing);
+
+        service.handleAction(injector, { ...mockActionsConfig, newTab: true }, mockContext);
+
+        expect(windowToken.open).toHaveBeenCalledWith(mockValueAfterSanitizing, '_blank');
     });
 
     it('should return stream that emits empty value', () => {

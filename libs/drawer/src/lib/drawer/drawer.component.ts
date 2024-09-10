@@ -55,7 +55,10 @@ export class DrawerComponent extends DrawerComponentInputs implements OnInit, On
     private destroyed$ = new Subject<void>();
     private afterClosed$ = new Subject<Observable<void>>();
 
-    constructor(private cdr: ChangeDetectorRef, private drawerService: DrawerService) {
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private drawerService: DrawerService,
+    ) {
         super();
     }
 

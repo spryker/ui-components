@@ -25,7 +25,11 @@ export class UrlHtmlRendererDirective implements HtmlRendererProvider, OnChanges
     private html$ = new ReplaySubject<string>(1);
     private isLoading$ = new ReplaySubject<void>(1);
 
-    constructor(private injector: Injector, private http: HttpClient, private ajaxActionService: AjaxActionService) {}
+    constructor(
+        private injector: Injector,
+        private http: HttpClient,
+        private ajaxActionService: AjaxActionService,
+    ) {}
 
     ngOnChanges(): void {
         this.html$.next(this.urlHtml);

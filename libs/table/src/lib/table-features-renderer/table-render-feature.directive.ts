@@ -29,7 +29,10 @@ export class TableRenderFeatureDirective implements OnInit, OnChanges {
         startWith(undefined),
     );
 
-    constructor(private vcr: ViewContainerRef, private cdr: ChangeDetectorRef) {}
+    constructor(
+        private vcr: ViewContainerRef,
+        private cdr: ChangeDetectorRef,
+    ) {}
 
     ngOnInit(): void {
         combineLatest([this.template$, this.templateContext$])

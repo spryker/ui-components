@@ -222,7 +222,7 @@ export class SelectComponent
                     value: optionComp.value,
                     isDisabled: optionComp.disabled,
                     template: optionComp.template,
-                } as SelectOptionItem),
+                }) as SelectOptionItem,
         );
         this.updateOptions();
     }
@@ -310,8 +310,8 @@ export class SelectComponent
             this.multiple && Array.isArray(this.value)
                 ? this.value.filter((value) => this.isValueExist(value))
                 : this.isValueExist(this.value)
-                ? this.value
-                : undefined;
+                  ? this.value
+                  : undefined;
 
         this.updateTitlesArrayForSelectedValues(this.mappedValue);
     }

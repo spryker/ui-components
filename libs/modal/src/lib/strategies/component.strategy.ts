@@ -62,7 +62,10 @@ export interface ComponentModalStrategyOptions {
 }
 
 export class ComponentModalStrategy<T extends ComponentModal> implements ModalStrategy<T, ComponentModalExtras<T>> {
-    constructor(private component: Type<T>, private options?: ComponentModalStrategyOptions) {}
+    constructor(
+        private component: Type<T>,
+        private options?: ComponentModalStrategyOptions,
+    ) {}
 
     render(vcr: ViewContainerRef, modalRef: ModalRef<T, ComponentModalExtras<T>>): ComponentModalRenderingRef<T> {
         const injector = Injector.create({

@@ -24,7 +24,10 @@ export class ContextService {
         'g',
     );
 
-    constructor(private options: ContextOptions, private contextSerializationService: ContextSerializationService) {}
+    constructor(
+        private options: ContextOptions,
+        private contextSerializationService: ContextSerializationService,
+    ) {}
 
     /**
      * Just like {@link ContextService.interpolate()} but

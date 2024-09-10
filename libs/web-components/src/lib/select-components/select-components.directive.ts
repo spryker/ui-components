@@ -59,7 +59,10 @@ export class SelectComponentsDirective<T = unknown> implements OnChanges, OnDest
         shareReplay({ refCount: true, bufferSize: 1 }),
     );
 
-    constructor(private elemRef: ElementRef<Element>, private observer: ContentObserver) {}
+    constructor(
+        private elemRef: ElementRef<Element>,
+        private observer: ContentObserver,
+    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('spySelectComponentsObserve' in changes) {

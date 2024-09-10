@@ -22,7 +22,7 @@ export function componentDefsToDeclarations(def: WebComponentDefs): WebComponent
                 ({
                     component,
                     selector: component.selector,
-                } as WebComponentDeclaration),
+                }) as WebComponentDeclaration,
         ),
     ];
 }

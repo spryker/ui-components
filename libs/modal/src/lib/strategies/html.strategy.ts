@@ -33,7 +33,11 @@ type HtmlModalRenderingFunction = (modalData: any) => Node[];
 type HtmlNodesFactory<T> = (options: HtmlModalStrategyOptions<T>, html: HtmlType) => Node[];
 
 export class HtmlModalRenderingRef<T> implements ModalRenderingRef<T, HtmlModalExtras>, HtmlModalExtras {
-    constructor(private parentElement: Node, private elements: Node[], private renderFn: HtmlModalRenderingFunction) {}
+    constructor(
+        private parentElement: Node,
+        private elements: Node[],
+        private renderFn: HtmlModalRenderingFunction,
+    ) {}
 
     getElements(): Node[] {
         return this.elements;

@@ -23,7 +23,10 @@ export class DrawerService implements OnDestroy {
     private drawerStack: DrawerRecord[] = [];
     private allClosed$ = new Subject<void>();
 
-    constructor(private overlay: Overlay, @Optional() private defaultOptions?: DrawerOptionsBase) {}
+    constructor(
+        private overlay: Overlay,
+        @Optional() private defaultOptions?: DrawerOptionsBase,
+    ) {}
 
     ngOnDestroy(): void {
         this.closeAll();

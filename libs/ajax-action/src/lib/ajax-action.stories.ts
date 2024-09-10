@@ -26,7 +26,10 @@ class ActionMockService implements ActionHandler<unknown, void> {
     providers: [AjaxActionService],
 })
 class StoryComponent {
-    constructor(private injector: Injector, private ajaxActionService: AjaxActionService) {}
+    constructor(
+        private injector: Injector,
+        private ajaxActionService: AjaxActionService,
+    ) {}
 
     clickHandler() {
         const random = Math.random().toFixed(4);

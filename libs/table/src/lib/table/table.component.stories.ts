@@ -71,7 +71,7 @@ class TableColumnTestConfig {
 
 @Component({
     selector: 'spy-table-column-test',
-    template: ` {{ config.text | context : context }} `,
+    template: ` {{ config.text | context: context }} `,
 })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent implements TableColumnComponent<TableColumnTestConfig> {
@@ -166,7 +166,7 @@ export const primary = (args) => ({
                     <div style="outline: 1px solid gray">
                         <ng-container *ngTemplateOutlet="cellTpl; context: cellContext"></ng-container>
                     </div>
-                    {{ log | spyInvoke : { config: config, i: i } }}
+                    {{ log | spyInvoke: { config: config, i: i } }}
                 </div>
             </ng-container>
 
@@ -193,7 +193,7 @@ export const primary = (args) => ({
                                       config: config,
                                       row: row,
                                       value: value,
-                                      i: i
+                                      i: i,
                                   }
                     }}
                 </div>
@@ -202,7 +202,7 @@ export const primary = (args) => ({
             <ng-container *ngSwitchDefault>
                 <div *spyTableFeatureTpl="location; let data = data; let i = i">
                     Custom Table Feature &#64; {{ location }}!
-                    {{ log | spyInvoke : { data: data, i: i } }}
+                    {{ log | spyInvoke: { data: data, i: i } }}
                 </div>
             </ng-container>
         </ng-container>

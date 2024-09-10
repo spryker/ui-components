@@ -9,7 +9,7 @@ import { DropdownComponent } from './dropdown.component';
     selector: 'nz-dropdown-menu',
     exportAs: 'nzDropdownMenu',
 })
-class MockNzDropDown { }
+class MockNzDropDown {}
 
 describe('DropdownComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(DropdownComponent, {

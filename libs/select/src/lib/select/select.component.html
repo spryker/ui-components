@@ -44,18 +44,17 @@
             [attr.value]="option.value"
         >
             @if (multiple) {
-            <span class="ant-select-item-option-state__multiChecked"></span>
-            <span class="ant-select-item-option-state__multiUnChecked"></span>
+                <span class="ant-select-item-option-state__multiChecked"></span>
+                <span class="ant-select-item-option-state__multiUnChecked"></span>
             } @else {
-            <spy-icon class="ant-select-item-option__icon--checked" [name]="checkIcon"></spy-icon>
+                <spy-icon class="ant-select-item-option__icon--checked" [name]="checkIcon"></spy-icon>
             }
 
             <span class="ant-select-item-option-content-label">
                 @if (customOptionTemplate) {
                     <ng-container [ngTemplateOutlet]="option.template"></ng-container>
-                }
-                @else {
-                {{ option.title }}
+                } @else {
+                    {{ option.title }}
                 }
             </span>
         </div>
@@ -63,19 +62,23 @@
 </nz-select>
 
 @if (multiple) {
-<select class="ant-select-native" multiple [attr.name]="name" [disabled]="disabled" #selectRef>
-    <option></option>
-    <option *ngFor="let option of mappedOptions" [value]="option.value" [selected]="checkSelectedState(option.value)">
-        {{ option.title }}
-    </option>
-</select>
+    <select class="ant-select-native" multiple [attr.name]="name" [disabled]="disabled" #selectRef>
+        <option></option>
+        <option
+            *ngFor="let option of mappedOptions"
+            [value]="option.value"
+            [selected]="checkSelectedState(option.value)"
+        >
+            {{ option.title }}
+        </option>
+    </select>
 } @else {
-<select class="ant-select-native" [ngModel]="mappedValue" [attr.name]="name" [disabled]="disabled" #selectRef>
-    <option></option>
-    <option *ngFor="let option of mappedOptions" [value]="option.value">
-        {{ option.title }}
-    </option>
-</select>
+    <select class="ant-select-native" [ngModel]="mappedValue" [attr.name]="name" [disabled]="disabled" #selectRef>
+        <option></option>
+        <option *ngFor="let option of mappedOptions" [value]="option.value">
+            {{ option.title }}
+        </option>
+    </select>
 }
 
 <ng-template #suffixIconTpl>
@@ -92,11 +95,11 @@
 
 <ng-template #tagPlaceholder let-item>
     @if (tags || tagView) {
-    <spy-tag (click)="onTagClick($event, item)" class="ant-select__chip">
-        {{ item.nzLabel }}
-    </spy-tag>
+        <spy-tag (click)="onTagClick($event, item)" class="ant-select__chip">
+            {{ item.nzLabel }}
+        </spy-tag>
     } @else {
-    {{ selectedList | spyJoin : ', ' }}
+        {{ selectedList | spyJoin: ', ' }}
     }
 </ng-template>
 

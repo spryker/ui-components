@@ -22,12 +22,12 @@
         *ngFor="let item of mappedFlatItems"
         [value]="item.value"
         [disabled]="item.isDisabled"
-        [selected]="checkSelectedState | spyInvoke : item.value : multiple : checkedState"
+        [selected]="checkSelectedState | spyInvoke: item.value : multiple : checkedState"
     >
         {{ item.title }}
     </option>
 </select>
 
-<ng-template #tagPlaceholder let-selectedList>{{ selectedList | treeSelectExtractKeys | spyJoin : ', ' }}</ng-template>
+<ng-template #tagPlaceholder let-selectedList>{{ selectedList | treeSelectExtractKeys | spyJoin: ', ' }}</ng-template>
 
 <ng-template #notFoundContent>{{ noOptionsText$ | async }}</ng-template>

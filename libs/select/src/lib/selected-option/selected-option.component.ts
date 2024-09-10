@@ -1,9 +1,8 @@
-import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'spy-selected-option',
     templateUrl: './selected-option.component.html',
-    styleUrls: ['./selected-option.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectedOptionComponent {

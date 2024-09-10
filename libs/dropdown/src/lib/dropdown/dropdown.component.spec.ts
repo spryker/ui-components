@@ -9,7 +9,7 @@ import { DropdownComponent } from './dropdown.component';
     selector: 'nz-dropdown-menu',
     exportAs: 'nzDropdownMenu',
 })
-class MockNzDropDown {}
+class MockNzDropDown { }
 
 describe('DropdownComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(DropdownComponent, {
@@ -51,19 +51,19 @@ describe('DropdownComponent', () => {
             expect(spanElem.properties.nzDisabled).toBe(true);
         });
 
+        it('should bind visible to nzVisible of nz-dropdown', async () => {
+            const host = await createComponentWrapper(createComponent, { visible: true });
+            const spanElem = host.queryCss('span[nz-dropdown]');
+
+            expect(spanElem.properties.nzVisible).toBe(true);
+        });
+
         it('should bind trigger to nzTrigger of nz-dropdown', async () => {
             const host = await createComponentWrapper(createComponent, { trigger: 'hover' });
             const spanElem = host.queryCss('span[nz-dropdown]');
 
             expect(spanElem.properties.nzTrigger).toBe('hover');
         });
-    });
-
-    it('should bind visible to nzVisible of nz-dropdown', async () => {
-        const host = await createComponentWrapper(createComponent, { visible: true });
-        const spanElem = host.queryCss('span[nz-dropdown]');
-
-        expect(spanElem.properties.nzVisible).toBe(true);
     });
 
     it('visibleChange must be emitted every time nzVisibleChange emits with $event', async () => {

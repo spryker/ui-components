@@ -51,13 +51,12 @@
             }
 
             <span class="ant-select-item-option-content-label">
-                <ng-container
-                    *ngIf="customOptionTemplate; else inputOptionsTemplateRef"
-                    [ngTemplateOutlet]="option.template"
-                ></ng-container>
-                <ng-template #inputOptionsTemplateRef>
-                    {{ option.title }}
-                </ng-template>
+                @if (customOptionTemplate) {
+                    <ng-container [ngTemplateOutlet]="option.template"></ng-container>
+                }
+                @else {
+                {{ option.title }}
+                }
             </span>
         </div>
     </nz-option>

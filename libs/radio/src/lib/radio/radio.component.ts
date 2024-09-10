@@ -16,7 +16,6 @@ import {
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 import { NzRadioComponent } from 'ng-zorro-antd/radio';
-
 import { RadioGroupComponent } from '../radio-group/radio-group.component';
 
 @Component({

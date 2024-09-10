@@ -15,7 +15,8 @@ import { NzRadioComponent } from 'ng-zorro-antd/radio';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { RadioComponent } from '../radio/radio.component';
-import { RadioValue } from '../types';
+
+export type RadioValue = string | number;
 
 @Component({
     selector: 'spy-radio-group',
@@ -56,7 +57,7 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
     valueChanged(prev: RadioValue) {
         if (this.value === prev) {
             this.value = undefined;
-            this.selected.emit(this.value);
+            this.selected.emit(Boolean(this.value));
         }
 
         this.updateInputsValue();

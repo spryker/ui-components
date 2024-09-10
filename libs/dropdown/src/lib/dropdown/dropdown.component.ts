@@ -17,6 +17,7 @@ export interface DropdownItem {
     subItems?: DropdownItem[];
 }
 export type Placement = 'bottomLeft' | 'bottomCenter' | 'bottomRight' | 'topLeft' | 'topCenter' | 'topRight';
+export type Trigger = 'click' | 'hover';
 
 @Component({
     selector: 'spy-dropdown',

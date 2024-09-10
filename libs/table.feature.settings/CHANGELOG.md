@@ -313,14 +313,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   **table.feature.settings:** adjusted `table-settings-feature` layout by updating styles ([5d1a74d](https://github.com/spryker/ui-components/commit/5d1a74dafcddadced51113e6f02db60f59df8494))
 -   **table.feature.settings:** updated the `styles` dependency to change features positioning ([da9a589](https://github.com/spryker/ui-components/commit/da9a5894832062d9dddff50456e71f380d6cd19c))
 
-## [0.0.11-beta.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.11-next.1...@spryker/table.feature.settings@0.0.11-beta.0) (2021-10-05)
-
-**Note:** Version bump only for package @spryker/table.feature.settings
-
-
-
-
-
 ## [0.0.11-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.settings@0.0.10...@spryker/table.feature.settings@0.0.11-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/table.feature.settings

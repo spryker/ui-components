@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
 import { Directive, NO_ERRORS_SCHEMA } from '@angular/core';
-import { createComponentWrapper } from '@spryker/internal-utils';
+import { TestBed } from '@angular/core/testing';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { createComponentWrapper } from '@spryker/internal-utils';
 import { DropdownComponent } from './dropdown.component';
 
 @Directive({
@@ -9,7 +9,7 @@ import { DropdownComponent } from './dropdown.component';
     selector: 'nz-dropdown-menu',
     exportAs: 'nzDropdownMenu',
 })
-class MockNzDropDown { }
+class MockNzDropDown {}
 
 describe('DropdownComponent', () => {
     const { testModule, createComponent } = getTestingForComponent(DropdownComponent, {
@@ -51,14 +51,11 @@ describe('DropdownComponent', () => {
             expect(spanElem.properties.nzDisabled).toBe(true);
         });
 
-        it('should bind trigger to nzTrigger of nz-dropdown', () => {
-            const spanElem = fixture.debugElement.query(By.css('span[nz-dropdown]'));
+        it('should bind trigger to nzTrigger of nz-dropdown', async () => {
+            const host = await createComponentWrapper(createComponent, { trigger: 'hover' });
+            const spanElem = host.queryCss('span[nz-dropdown]');
 
-            const mockedValue = 'hover';
-            component.trigger = mockedValue;
-
-            fixture.detectChanges();
-            expect(spanElem.attributes['ng-reflect-nz-trigger']).toBe(mockedValue);
+            expect(spanElem.properties.nzTrigger).toBe('hover');
         });
     });
 
@@ -68,15 +65,14 @@ describe('DropdownComponent', () => {
 
         expect(spanElem.properties.nzVisible).toBe(true);
     });
-});
 
-it('visibleChange must be emitted every time nzVisibleChange emits with $event', async () => {
-    const host = await createComponentWrapper(createComponent);
-    const spanElem = host.queryCss('span[nz-dropdown]');
+    it('visibleChange must be emitted every time nzVisibleChange emits with $event', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const spanElem = host.queryCss('span[nz-dropdown]');
 
-    spanElem.triggerEventHandler('nzVisibleChange', false);
-    host.detectChanges();
+        spanElem.triggerEventHandler('nzVisibleChange', false);
+        host.detectChanges();
 
-    expect(host.hostComponent.visibleChange).toHaveBeenCalledWith(false);
-});
+        expect(host.hostComponent.visibleChange).toHaveBeenCalledWith(false);
+    });
 });

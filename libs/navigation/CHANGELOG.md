@@ -364,14 +364,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 -   **navigation:** add new styles ([a30899c](https://github.com/spryker/ui-components/commit/a30899cb222ebbca323df5f8c57131492ba982e7))
 
-## [0.2.8-beta.0](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.2.8-next.1...@spryker/navigation@0.2.8-beta.0) (2021-10-05)
-
-**Note:** Version bump only for package @spryker/navigation
-
-
-
-
-
 ## [0.2.8-next.1](https://github.com/spryker/ui-components/compare/@spryker/navigation@0.2.7...@spryker/navigation@0.2.8-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/navigation

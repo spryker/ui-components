@@ -1,9 +1,9 @@
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { IconModule } from '@spryker/icon';
+import { IconCheckModule, IconInfoModule } from '@spryker/icon/icons';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DropdownModule } from '../dropdown.module';
 import { DropdownComponent } from './dropdown.component';
-import { IconModule } from '@spryker/icon';
-import { IconCheckModule, IconInfoModule } from '@spryker/icon/icons';
 
 export default {
     title: 'DropdownComponent',
@@ -13,12 +13,12 @@ export default {
             providers: [provideAnimations()],
         }),
         moduleMetadata({
-            imports: [DropdownModule],
+            imports: [DropdownModule, IconModule, IconCheckModule, IconInfoModule],
         }),
     ],
     parameters: {
         controls: {
-            include: ['items', 'placement', 'visible', 'disabled'],
+            include: ['items', 'placement', 'visible', 'disabled', 'trigger'],
         },
         design: {
             type: 'figma',
@@ -30,6 +30,10 @@ export default {
         placement: {
             control: 'select',
             options: ['bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'],
+        },
+        trigger: {
+            control: { type: 'select' },
+            options: ['click', 'hover'],
         },
     },
     args: {
@@ -60,9 +64,6 @@ export const primary = (args) => ({
 
 export const withIcon = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [DropdownModule, BrowserAnimationsModule, IconModule, IconCheckModule, IconInfoModule],
-    },
     template: `
     <spy-dropdown [items]="items" [trigger]="trigger">ICON</spy-dropdown>
   `,
@@ -83,11 +84,4 @@ withIcon.args = {
         { action: 'action3', title: 'Without icon' },
     ],
     trigger: 'hover',
-};
-
-withIcon.argTypes = {
-    trigger: {
-        control: { type: 'select' },
-        options: ['click', 'hover'],
-    },
 };

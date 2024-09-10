@@ -11,7 +11,7 @@ jest.mock('swiper', () => ({
     default: {
         use: jest.fn(),
     },
-}))
+}));
 
 describe('CarouselComponent', () => {
     const projectedContent = `

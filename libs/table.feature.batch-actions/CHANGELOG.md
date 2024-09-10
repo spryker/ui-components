@@ -290,14 +290,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 -   **table.feature.batch-actions:** adjusted `table-batch-actions-feature` by updating padding ([bfc04f1](https://github.com/spryker/ui-components/commit/bfc04f120b80de93a33d652391137a7ad22c316d))
 
-## [0.0.10-beta.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.0.10-next.1...@spryker/table.feature.batch-actions@0.0.10-beta.0) (2021-10-05)
-
-**Note:** Version bump only for package @spryker/table.feature.batch-actions
-
-
-
-
-
 ## [0.0.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.batch-actions@0.0.9...@spryker/table.feature.batch-actions@0.0.10-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/table.feature.batch-actions

@@ -436,14 +436,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   **table.feature.editable:** adjusted `table-editable-feature` by updating styles ([bf29b88](https://github.com/spryker/ui-components/commit/bf29b88d2e4ef8c6f68d673f6edcb9fa553710b8))
 -   **table.feature.editable:** adjusted `table-editable-feature` layout by updating styles ([c3416cd](https://github.com/spryker/ui-components/commit/c3416cda8c6dc72121f1a8b3690c05c9e35f907b))
 
-## [0.1.8-beta.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-next.4...@spryker/table.feature.editable@0.1.8-beta.0) (2021-10-05)
-
-**Note:** Version bump only for package @spryker/table.feature.editable
-
-
-
-
-
 ## [0.1.8-next.4](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@0.1.8-next.3...@spryker/table.feature.editable@0.1.8-next.4) (2021-10-01)
 
 **Note:** Version bump only for package @spryker/table.feature.editable

@@ -317,14 +317,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   **table.feature.filters:** updated the `styles` dependency to change features positioning ([15d20a9](https://github.com/spryker/ui-components/commit/15d20a936a8183eaf9f1a3b98a0523e437e3d7c9))
 -   **table.feature.filters:** updated the `styles` dependency to change features positioning ([e9d077c](https://github.com/spryker/ui-components/commit/e9d077cd4eb2581f6c76d1ef9cbcd36182dac4f5))
 
-## [0.0.10-beta.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.0.10-next.1...@spryker/table.feature.filters@0.0.10-beta.0) (2021-10-05)
-
-**Note:** Version bump only for package @spryker/table.feature.filters
-
-
-
-
-
 ## [0.0.10-next.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.filters@0.0.9...@spryker/table.feature.filters@0.0.10-next.1) (2021-09-27)
 
 **Note:** Version bump only for package @spryker/table.feature.filters

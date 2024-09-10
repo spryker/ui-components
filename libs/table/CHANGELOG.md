@@ -508,14 +508,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   **table:** adjusted `table` by updating empty state flex-flow & title font-size ([e4c1c35](https://github.com/spryker/ui-components/commit/e4c1c35aef0d883a52a492b63d66b496ec9ff51b))
 -   **table:** updated `styles` dependency ([e5817c6](https://github.com/spryker/ui-components/commit/e5817c68ff6e4175fba447cbb5c64f02e996a1ac))
 
-## [0.3.5-beta.0](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.5-next.2...@spryker/table@0.3.5-beta.0) (2021-10-05)
-
-**Note:** Version bump only for package @spryker/table
-
-
-
-
-
 ## [0.3.5-next.2](https://github.com/spryker/ui-components/compare/@spryker/table@0.3.5-next.1...@spryker/table@0.3.5-next.2) (2021-10-05)
 
 ### Bug Fixes

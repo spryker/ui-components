@@ -39,12 +39,17 @@
                 border-color: @green;
             }
         }
+
+        &-title-content {
+            display: flex;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
     }
 }
 
 .@{spryker-prefix}-dropdown-item {
-    display: flex;
-
     &__icon {
         display: block;
         margin: @dropdown-icon-margin;

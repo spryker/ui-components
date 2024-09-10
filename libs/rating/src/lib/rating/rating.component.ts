@@ -1,4 +1,12 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+    booleanAttribute,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    ViewEncapsulation,
+} from '@angular/core';
 import { IconStarModule } from '@spryker/icon/icons';
 
 @Component({

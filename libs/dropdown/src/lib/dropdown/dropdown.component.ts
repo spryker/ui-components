@@ -31,7 +31,8 @@ export class DropdownComponent {
     @Input() placement: Placement = 'bottomRight';
     @Input() trigger: Trigger = 'hover';
     @HostBinding('class.spy-dropdown--open')
-    @Input({ transform: booleanAttribute }) visible = false;
+    @Input({ transform: booleanAttribute })
+    visible = false;
     @Input({ transform: booleanAttribute }) disabled = false;
     @Output() visibleChange = new EventEmitter<boolean>();
     @Output() actionTriggered = new EventEmitter<string>();

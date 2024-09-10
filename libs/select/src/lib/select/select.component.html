@@ -18,7 +18,7 @@
     [nzClearIcon]="clearIconTpl"
     [nzMaxTagCount]="maxTagCount"
     [nzMaxTagPlaceholder]="tagPlaceholder"
-    [nzCustomTemplate]="tagView || tags ? tagPlaceholder : selectedOption$ | async"
+    [nzCustomTemplate]="tagView || tags ? tagPlaceholder : (selectedOption$ | async)"
     [class.ant-select--not-searchable]="!search"
     [nzDropdownClassName]="['ant-select--dropdown', tags || tagView ? 'ant-select--dropdown-tags' : '']"
     [class]="['ant-select--custom', tags || tagView ? 'ant-select--custom-tags' : '']"

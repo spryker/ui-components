@@ -168,7 +168,11 @@ withCustomContent.args = {
 
 export const asWebComponents = () => ({
     applicationConfig: {
-        providers: [importProvidersFrom(WebComponentsModule.withComponents([SelectComponent, OptionComponent, SelectedOptionComponent]))],
+        providers: [
+            importProvidersFrom(
+                WebComponentsModule.withComponents([SelectComponent, OptionComponent, SelectedOptionComponent]),
+            ),
+        ],
     },
     template: `
     <web-spy-select custom-option-template="true">

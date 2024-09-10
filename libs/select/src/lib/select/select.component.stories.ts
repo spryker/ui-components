@@ -2,6 +2,7 @@ import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { WebComponentsModule } from '@spryker/web-components';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { OptionComponent } from '../option/option.component';
 import { SelectModule } from '../select.module';
@@ -136,7 +137,6 @@ withTags.args = {
 
 export const withCustomContent = (args) => ({
     props: args,
-    moduleMetadata: { imports: [StoryModule, SelectModule] },
     template: `
     <spy-select
         customOptionTemplate="true"
@@ -154,7 +154,7 @@ export const withCustomContent = (args) => ({
         <spy-option value="option3" title="Italic text">
             <span style="font-style: italic">Italic text</span>
         </spy-option>
-        <spy-selected-option *ngIf="useCustomTemplate">
+        <spy-selected-option>
             <span before>before </span>
             <span after> after</span>
         </spy-selected-option>
@@ -164,26 +164,11 @@ export const withCustomContent = (args) => ({
 
 withCustomContent.args = {
     multiple: false,
-    search: false,
-    useCustomTemplate: true,
-    value: ['option1', 'option2'],
-    placeholder: 'Select option...',
 };
 
 export const asWebComponents = () => ({
-    moduleMetadata: {
-        imports: [
-            WebComponentsModule.forRoot(),
-            WebComponentsModule.withComponents([
-                { component: SelectComponent, isRoot: true },
-                { component: OptionComponent },
-                { component: SelectedOptionComponent },
-            ]),
-            SelectModule,
-            BrowserAnimationsModule,
-        ],
-        entryComponents: [SelectComponent, OptionComponent, SelectedOptionComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    applicationConfig: {
+        providers: [importProvidersFrom(WebComponentsModule.withComponents([SelectComponent, OptionComponent, SelectedOptionComponent]))],
     },
     template: `
     <web-spy-select custom-option-template="true">

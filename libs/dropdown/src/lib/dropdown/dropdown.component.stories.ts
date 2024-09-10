@@ -44,6 +44,7 @@ export default {
         placement: 'bottomRight',
         visible: false,
         disabled: false,
+        trigger: 'hover',
     },
 } as Meta;
 
@@ -56,7 +57,7 @@ export const primary = (args) => ({
         [placement]="placement"
         [visible]="visible"
         [disabled]="disabled">
-        ICON
+        {{ trigger }} me
       </spy-dropdown>
     </div>
   `,
@@ -65,7 +66,9 @@ export const primary = (args) => ({
 export const withIcon = (args) => ({
     props: args,
     template: `
-    <spy-dropdown [items]="items" [trigger]="trigger">ICON</spy-dropdown>
+    <div style="padding: 80px; display: flex; justify-content: center;">
+        <spy-dropdown [items]="items" [trigger]="trigger">{{ trigger }} me</spy-dropdown>
+    </div>
   `,
 });
 
@@ -83,5 +86,4 @@ withIcon.args = {
         },
         { action: 'action3', title: 'Without icon' },
     ],
-    trigger: 'hover',
 };

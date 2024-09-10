@@ -4,6 +4,8 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    ContentChild,
+    ContentChildren,
     ElementRef,
     EventEmitter,
     Injector,
@@ -12,6 +14,7 @@ import {
     OnDestroy,
     OnInit,
     Output,
+    QueryList,
     SimpleChanges,
     TemplateRef,
     ViewChild,
@@ -27,6 +30,8 @@ import { NzOptionComponent, NzSelectComponent } from 'ng-zorro-antd/select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
 
+import { OptionComponent } from '../option/option.component';
+import { SelectedOptionComponent } from '../selected-option/selected-option.component';
 import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from './types';
 
 @Component({
@@ -47,8 +52,7 @@ import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from
     ],
 })
 export class SelectComponent
-    implements DatasourceTriggerElement, DatasourceDependableElement, OnInit, OnChanges, OnDestroy, AfterViewInit
-{
+    implements DatasourceTriggerElement, DatasourceDependableElement, OnInit, OnChanges, OnDestroy, AfterViewInit {
     @ViewChild('selectRef') selectRef?: ElementRef<HTMLSelectElement>;
     @ViewChild('selectContainerRef') selectContainerRef?: NzSelectComponent;
 
@@ -138,7 +142,7 @@ export class SelectComponent
         private datasourceService: DatasourceService,
         private i18nService: I18nService,
         private cdr: ChangeDetectorRef,
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         if (this.tags || this.tagView) {
@@ -212,12 +216,12 @@ export class SelectComponent
     private setTemplateOptions(options: OptionComponent[]) {
         this.options = options.map(
             (optionComp) =>
-                ({
-                    title: optionComp.title,
-                    value: optionComp.value,
-                    isDisabled: optionComp.disabled,
-                    template: optionComp.template,
-                } as SelectOptionItem),
+            ({
+                title: optionComp.title,
+                value: optionComp.value,
+                isDisabled: optionComp.disabled,
+                template: optionComp.template,
+            } as SelectOptionItem),
         );
         this.updateOptions();
     }
@@ -305,8 +309,8 @@ export class SelectComponent
             this.multiple && Array.isArray(this.value)
                 ? this.value.filter((value) => this.isValueExist(value))
                 : this.isValueExist(this.value)
-                ? this.value
-                : undefined;
+                    ? this.value
+                    : undefined;
 
         this.updateTitlesArrayForSelectedValues(this.mappedValue);
     }

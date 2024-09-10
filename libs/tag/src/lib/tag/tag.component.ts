@@ -1,13 +1,13 @@
 import {
-    Component,
     ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    HostBinding,
     Input,
     Output,
     ViewEncapsulation,
-    EventEmitter,
-    HostBinding,
+    booleanAttribute,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
 import { IconRemoveModule } from '@spryker/icon/icons';
 
 @Component({
@@ -18,18 +18,17 @@ import { IconRemoveModule } from '@spryker/icon/icons';
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'spy-tag',
-        tabIndex: '-1',
     },
 })
 export class TagComponent {
-    @Input() @ToBoolean() @HostBinding('class.spy-tag-disabled') disabled = false;
-    @Input() @ToBoolean() removable = true;
-    @Output() onRemove = new EventEmitter<MouseEvent>();
+    @Input({ transform: booleanAttribute }) @HostBinding('class.spy-tag-disabled') disabled = false;
+    @Input({ transform: booleanAttribute }) removable = true;
+    @Output() remove = new EventEmitter<MouseEvent>();
     icon = IconRemoveModule.icon;
 
-    removeTag(e: MouseEvent): void {
-        if (!this.disabled) {
-            this.onRemove.emit(e);
+    removeTag(event: MouseEvent): void {
+        if (!this.disabled && this.removable) {
+            this.remove.emit(event);
         }
     }
 }

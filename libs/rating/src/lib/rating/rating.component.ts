@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { IconStarModule } from '@spryker/icon/icons';
-import { ToBoolean } from '@spryker/utils';
 
 @Component({
     selector: 'spy-rating',
@@ -13,8 +12,8 @@ import { ToBoolean } from '@spryker/utils';
 export class RatingComponent {
     @Input() rating?: number;
     @Input() maxRating = 5;
-    @Input() @ToBoolean() allowHalf = true;
-    @Input() @ToBoolean() readOnly = false;
+    @Input({ transform: booleanAttribute }) allowHalf = true;
+    @Input({ transform: booleanAttribute }) readOnly = false;
 
     @Output() ratingChange = new EventEmitter<number>();
 

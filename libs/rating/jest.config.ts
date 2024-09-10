@@ -1,7 +1,7 @@
-module.exports = {
-    name: 'tag',
+export default {
+    displayName: 'rating',
     preset: '../../jest.preset.js',
-    coverageDirectory: '../../coverage/libs/tag',
+    coverageDirectory: '../../coverage/libs/rating',
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     globals: {
         'ts-jest': {

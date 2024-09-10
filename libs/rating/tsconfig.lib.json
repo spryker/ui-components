@@ -2,17 +2,20 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../../dist/out-tsc",
-        "target": "es2015",
         "declaration": true,
+        "declarationMap": true,
         "inlineSources": true,
-        "types": [],
-        "lib": ["dom", "es2018"]
+        "types": []
     },
-    "angularCompilerOptions": {
-        "skipTemplateCodegen": true,
-        "strictMetadataEmit": true,
-        "enableResourceInlining": true,
-        "enableIvy": false
-    },
-    "exclude": ["src/test-setup.ts", "**/*.spec.ts", "**/*.stories.ts", "**/*.stories.js"]
+    "exclude": [
+        "src/test-setup.ts",
+        "**/*.spec.ts",
+        "**/*.test.ts",
+        "**/*.stories.ts",
+        "**/*.stories.js",
+        "jest.config.ts"
+    ],
+    "include": [
+        "**/*.ts"
+    ]
 }

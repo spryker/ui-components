@@ -13,7 +13,6 @@
 
     &-menu {
         width: @dropdown-menu-width;
-        border: @dropdown-menu-border;
         border-radius: @dropdown-menu-border-radius;
         box-shadow: @dropdown-menu-box-shadow;
         background-color: @spy-white;
@@ -47,19 +46,24 @@
             overflow: hidden;
         }
     }
+
+    .@{menu-prefix-cls}-title-content {
+        display: flex;
+        min-width: 0;
+    }
 }
 
 .@{spryker-prefix}-dropdown-item {
     &__icon {
-        display: block;
+        flex-shrink: 0;
         margin: @dropdown-icon-margin;
         height: @dropdown-icon-height;
         line-height: @dropdown-icon-line-height;
-        overflow: visible;
     }
 
     &__text {
-        display: block;
-        white-space: normal;
+        white-space: @dropdown-text-white-space;
+        text-overflow: @dropdown-text-overflow;
+        overflow: hidden;
     }
 }

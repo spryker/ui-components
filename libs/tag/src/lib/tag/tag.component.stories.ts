@@ -1,8 +1,13 @@
-import { Meta } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { TagModule } from '../tag.module';
 
 export default {
     title: 'TagComponent',
+    decorators: [
+        moduleMetadata({
+            imports: [TagModule],
+        }),
+    ],
     parameters: {
         controls: {
             include: ['disabled', 'removable'],
@@ -21,9 +26,6 @@ export default {
 
 export const primary = (args) => ({
     props: args,
-    moduleMetadata: {
-        imports: [TagModule],
-    },
     template: `
     <spy-tag [removable]="removable" [disabled]="disabled">This is a tag</spy-tag>
   `,

@@ -17,8 +17,8 @@
         <ng-template #dropdownTpl let-items>
             <ng-container *ngFor="let item of items">
                 <li *ngIf="!item.subItems" (click)="actionTriggered.emit(item.action)" nz-menu-item>
-                    <spy-icon *ngIf="item.icon" [name]="item.icon"></spy-icon>
-                    {{ item.title }}
+                    <spy-icon class="spy-dropdown-item__icon" *ngIf="item.icon" [name]="item.icon"></spy-icon>
+                    <span class="spy-dropdown-item__text">{{ item.title }}</span>
                 </li>
                 <li *ngIf="item.subItems" (click)="actionTriggered.emit(item.action)" nz-submenu>
                     <ul>

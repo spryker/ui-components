@@ -18,10 +18,9 @@
     [nzClearIcon]="clearIconTpl"
     [nzMaxTagCount]="maxTagCount"
     [nzMaxTagPlaceholder]="tagPlaceholder"
-    [nzCustomTemplate]="tagView || tags ? tagPlaceholder : null"
+    [nzCustomTemplate]="tagView || tags ? tagPlaceholder : selectedOption$ | async"
     [class.ant-select--not-searchable]="!search"
     [nzDropdownClassName]="['ant-select--dropdown', tags || tagView ? 'ant-select--dropdown-tags' : '']"
-    [nzCustomTemplate]="selectedOption$ | async"
     [class]="['ant-select--custom', tags || tagView ? 'ant-select--custom-tags' : '']"
     #selectContainerRef
 >
@@ -94,12 +93,9 @@
 
 <ng-template #tagPlaceholder let-item>
     @if (tags || tagView) {
-    <spy-chips (click)="onTagClick($event, item)" color="gray" class="ant-select__chip">
+    <spy-tag (click)="onTagClick($event, item)" class="ant-select__chip">
         {{ item.nzLabel }}
-        <span class="ant-select__chip-decor">
-            <spy-icon [name]="removeIcon"></spy-icon>
-        </span>
-    </spy-chips>
+    </spy-tag>
     } @else {
     {{ selectedList | spyJoin : ', ' }}
     }

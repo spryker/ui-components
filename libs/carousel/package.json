@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "ng-zorro-antd": "^17.3.0",
-        "swiper": "^6.5.0",
+        "swiper": "^11.1.14",
         "tslib": "^2.6.2"
     },
     "publishConfig": {

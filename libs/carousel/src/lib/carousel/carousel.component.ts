@@ -1,9 +1,9 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ContentChildren,
+    ElementRef,
     Input,
     QueryList,
     ViewChild,
@@ -11,8 +11,8 @@ import {
 } from '@angular/core';
 import { IconPaginationArrowModule } from '@spryker/icon/icons';
 import { BehaviorSubject } from 'rxjs';
-import Swiper, { Navigation, Thumbs } from 'swiper';
-import { SwiperComponent } from 'swiper/angular';
+import { register, SwiperContainer } from 'swiper/element/bundle';
+import { SwiperOptions } from 'swiper/types';
 import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
 import { CarouselOptions } from '../types';
 
@@ -27,26 +27,16 @@ import { CarouselOptions } from '../types';
     },
 })
 export class CarouselComponent implements AfterViewInit {
-    hidePrev = true;
-    hideNext = false;
-
-    @Input() withoutNavSlidesAmount = 5;
-    @Input() config: CarouselOptions = { slidesPerView: 'auto' };
-    @Input() thumbConfig: CarouselOptions = {
-        slidesPerView: 'auto',
-        spaceBetween: 10,
-    };
-    @Input() withThumbs = false;
-    @Input() slidesPerClick = 2;
-
-    constructor(private cdr: ChangeDetectorRef) {
-        Swiper.use([Navigation, Thumbs]);
+    constructor() {
+        register();
     }
 
-    @ViewChild('mainSwiper', { static: false }) swiper!: SwiperComponent;
-    @ViewChild('thumbSwiper', { static: false }) thumbSwiper!: SwiperComponent;
+    @Input() config!: CarouselOptions;
+    @Input() thumbConfig?: CarouselOptions;
+    @Input() withThumbs = false;
 
-    thumbsSwiper: Swiper | undefined;
+    @ViewChild('carousel', { static: false }) carousel!: ElementRef<SwiperContainer>;
+    @ViewChild('thumbs', { static: false }) thumbs?: ElementRef<SwiperContainer>;
 
     paginationArrowIcon = IconPaginationArrowModule.icon;
 
@@ -57,25 +47,25 @@ export class CarouselComponent implements AfterViewInit {
         this.slides$.next(slides.toArray());
     }
 
-    slideNext() {
-        this.thumbSwiper.swiperRef.slideTo(this.thumbSwiper.swiperRef.activeIndex + this.slidesPerClick);
-    }
+    ngAfterViewInit(): void {
+        Object.assign(this.carousel.nativeElement, {
+            navigation: true,
+            ...this.config,
+        } satisfies SwiperOptions);
+        this.carousel.nativeElement.initialize();
 
-    slidePrev() {
-        this.thumbSwiper.swiperRef.slideTo(this.thumbSwiper.swiperRef.activeIndex - this.slidesPerClick);
-    }
-
-    slideHandler(thumbSwiper: Swiper) {
-        this.hidePrev = thumbSwiper.isBeginning;
-        this.hideNext = thumbSwiper.isEnd;
-        this.cdr.detectChanges();
-    }
-
-    ngAfterViewInit() {
-        if (this.slides$.value.length <= this.withoutNavSlidesAmount) {
-            this.hideNext = true;
-            this.hidePrev = true;
-            this.cdr.detectChanges();
+        if (!this.withThumbs) {
+            return;
         }
+
+        Object.assign(this.thumbs.nativeElement, {
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.spy-carousel__navigation-button--next',
+                prevEl: '.spy-carousel__navigation-button--prev',
+            },
+            ...this.thumbConfig,
+        } satisfies SwiperOptions);
+        this.thumbs.nativeElement.initialize();
     }
 }

@@ -5,12 +5,12 @@
         "@angular/common": "^17.3.0",
         "@angular/core": "^17.3.0",
         "@angular/forms": "^17.3.0",
-        "@spryker/chips": "^2.0.0",
         "@spryker/datasource": "^2.0.0",
         "@spryker/datasource.dependable": "^1.0.0",
         "@spryker/datasource.trigger": "^1.0.0",
         "@spryker/icon": "^2.0.0",
         "@spryker/locale": "^2.0.0",
+        "@spryker/tag": "^1.0.0",
         "@spryker/styles": "^2.0.0",
         "@spryker/utils": "^2.0.0",
         "rxjs": "^7.8.1"

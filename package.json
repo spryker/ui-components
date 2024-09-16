@@ -82,9 +82,9 @@
         "ngx-element-boundary": "^2.0.0",
         "ngx-toastr": "^18.0.0",
         "rxjs": "^7.8.1",
+        "swiper": "^11.1.14",
         "tslib": "^2.6.2",
-        "zone.js": "^0.14.4",
-        "swiper": "^8.0.0"
+        "zone.js": "^0.14.4"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^17.2.3",

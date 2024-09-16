@@ -24,11 +24,13 @@
     [class]="['ant-select--custom', tags || tagView ? 'ant-select--custom-tags' : '']"
     #selectContainerRef
 >
-    <nz-option *ngIf="showSelectAll" [nzValue]="selectAllValue" [nzCustomContent]="true">
-        <div class="ant-select-item-option-content-wrapper">
-            {{ selectAllTitle }}
-        </div>
-    </nz-option>
+    @if (showSelectAll) {
+        <nz-option [nzValue]="selectAllValue" [nzCustomContent]="true">
+            <div class="ant-select-item-option-content-wrapper">
+                {{ selectAllTitle }}
+            </div>
+        </nz-option>
+    }
 
     <nz-option
         *ngFor="let option of mappedOptions"

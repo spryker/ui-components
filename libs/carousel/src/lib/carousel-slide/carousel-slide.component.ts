@@ -5,9 +5,6 @@ import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, ViewEncapsu
     templateUrl: './carousel-slide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    host: {
-        class: 'spy-carousel-slide',
-    },
 })
 export class CarouselSlideComponent {
     @ViewChild('contentTpl', { static: true })

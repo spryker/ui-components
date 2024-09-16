@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ChipsModule } from '@spryker/chips';
 import { IconModule } from '@spryker/icon';
 import { IconArrowDownModule, IconCheckModule, IconRemoveModule } from '@spryker/icon/icons';
 import { I18nModule } from '@spryker/locale';
@@ -24,7 +23,6 @@ import { SelectedOptionComponent } from './selected-option/selected-option.compo
         IconCheckModule,
         IconRemoveModule,
         JoinModule,
-        ChipsModule,
         SelectComponentsModule,
         TagModule,
     ],

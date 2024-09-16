@@ -1,48 +1,27 @@
-<swiper
-    #mainSwiper
-    containerModifierClass="spy-carousel__"
-    [slidesPerView]="config.slidesPerView"
-    [centeredSlides]="true"
-    [thumbs]="withThumbs ? { swiper: thumbsSwiper } : null"
-    [navigation]="!withThumbs"
->
-    <ng-template swiperSlide *ngFor="let slide of slides$ | async">
-        <ng-container *ngTemplateOutlet="slide.template"></ng-container>
-    </ng-template>
-</swiper>
-<swiper
-    #thumbSwiper
-    containerModifierClass="spy-carousel__"
-    class="thumbs-swiper"
-    *ngIf="withThumbs"
-    [slidesPerView]="thumbConfig.slidesPerView"
-    [spaceBetween]="thumbConfig.spaceBetween"
-    (swiper)="thumbsSwiper = $event"
-    (slideChange)="slideHandler($event)"
-    (reachBeginning)="slideHandler($event)"
-    (reachEnd)="slideHandler($event)"
->
-    <ng-template swiperSlide *ngFor="let slide of slides$ | async">
-        <ng-container *ngTemplateOutlet="slide.thumbTemplate"></ng-container>
-    </ng-template>
-</swiper>
-<button
-    class="spy-carousel__navigation-button spy-carousel__navigation-button--preview"
-    (click)="slidePrev()"
-    [hidden]="!withThumbs || hidePrev"
->
-    <spy-icon
-        class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--preview"
-        [name]="paginationArrowIcon"
-    ></spy-icon>
-</button>
-<button
-    class="spy-carousel__navigation-button spy-carousel__navigation-button--next"
-    (click)="slideNext()"
-    [hidden]="!withThumbs || hideNext"
->
-    <spy-icon
-        class="spy-carousel__navigation-button-icon spy-carousel__navigation-button-icon--next"
-        [name]="paginationArrowIcon"
-    ></spy-icon>
-</button>
+<swiper-container class="spy-carousel__main" thumbs-swiper=".spy-carousel__thumbs" #carousel init="false">
+    <ng-container *ngTemplateOutlet="slides; context: { $implicit: 'template' }"></ng-container>
+</swiper-container>
+
+@if (withThumbs) {
+    <swiper-container slides-per-view="auto" class="spy-carousel__thumbs" #thumbs init="false">
+        <ng-container
+            *ngTemplateOutlet="slides; context: { $implicit: 'thumbTemplate' }"
+        ></ng-container>
+    </swiper-container>
+
+    <button class="spy-carousel__navigation-button spy-carousel__navigation-button--prev">
+        <spy-icon [name]="paginationArrowIcon"></spy-icon>
+    </button>
+
+    <button class="spy-carousel__navigation-button spy-carousel__navigation-button--next">
+        <spy-icon [name]="paginationArrowIcon"></spy-icon>
+    </button>
+}
+
+<ng-template #slides let-prop>
+    @for (slide of slides$ | async; track $index) {
+        <swiper-slide class="spy-carousel__slide spy-carousel__slide--{{ prop === 'template' ? 'main' : 'thumb' }}">
+            <ng-container *ngTemplateOutlet="slide[prop]"></ng-container>
+        </swiper-slide>
+    }
+</ng-template>

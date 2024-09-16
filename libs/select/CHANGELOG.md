@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-beta.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.2...@spryker/select@2.1.0-beta.0) (2024-09-16)
+
+
+### Bug Fixes
+
+* carousel ([0732199](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/07321993222c08bb01f6b1cfcec28febfc2bcd66))
+* **select:** fixed init value displaying when used custom option template ([2d05d63](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/2d05d63c2d6aac04766a0390a7f1a00183b2eb4b))
+
+
+### Features
+
+* **select:** added custom option template ([3992140](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/3992140438dba54a72b43c51caf6001446a149f2))
+* **select:** added custom selected template ([5ff10db](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/5ff10dbd7b67b8b98b92c6588e6b5d2b7c9fae82))
+
+
+
+
+
 # [0.6.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/select@0.3.0-beta.1...@spryker/select@0.6.0-beta.0) (2022-08-08)
 
 

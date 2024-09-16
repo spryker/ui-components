@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-beta.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/cache.static@2.0.0...@spryker/cache.static@2.0.1-beta.0) (2024-09-16)
+
+
+### Bug Fixes
+
+* carousel build ([e6f2966](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/e6f2966f26451f1a56d6ffe72d04b89f07366c33))
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/cache.static@2.0.0-rc.1...@spryker/cache.static@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/cache.static

@@ -51,7 +51,9 @@ export const primary = (args) => ({
 export const asWebComponents = (args) => ({
     props: args,
     applicationConfig: {
-        providers: [importProvidersFrom(WebComponentsModule.withComponents([CarouselComponent, CarouselSlideComponent]))],
+        providers: [
+            importProvidersFrom(WebComponentsModule.withComponents([CarouselComponent, CarouselSlideComponent])),
+        ],
     },
     template: `
         <div style="width: 100%">

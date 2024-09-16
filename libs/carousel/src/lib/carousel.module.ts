@@ -12,4 +12,4 @@ import { CarouselComponent } from './carousel/carousel.component';
     exports: [CarouselComponent, CarouselSlideComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CarouselModule { }
+export class CarouselModule {}

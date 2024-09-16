@@ -4,9 +4,7 @@
 
 @if (withThumbs) {
     <swiper-container slides-per-view="auto" class="spy-carousel__thumbs" #thumbs init="false">
-        <ng-container
-            *ngTemplateOutlet="slides; context: { $implicit: 'thumbTemplate' }"
-        ></ng-container>
+        <ng-container *ngTemplateOutlet="slides; context: { $implicit: 'thumbTemplate' }"></ng-container>
     </swiper-container>
 
     <button class="spy-carousel__navigation-button spy-carousel__navigation-button--prev">

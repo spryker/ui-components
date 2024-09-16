@@ -23,3 +23,11 @@
         </swiper-slide>
     }
 </ng-template>
+
+<span
+    [spySelectComponents]="slideReference"
+    (spySelectComponentsFound)="slidesFound($event)"
+    style="display: none;"
+>
+    <ng-content></ng-content>
+</span>

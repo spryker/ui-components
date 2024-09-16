@@ -38,6 +38,8 @@ export class CarouselComponent implements AfterViewInit {
     @ViewChild('carousel', { static: false }) carousel!: ElementRef<SwiperContainer>;
     @ViewChild('thumbs', { static: false }) thumbs?: ElementRef<SwiperContainer>;
 
+    slideReference = CarouselSlideComponent;
+
     paginationArrowIcon = IconPaginationArrowModule.icon;
 
     slides$ = new BehaviorSubject<CarouselSlideComponent[]>([]);
@@ -67,5 +69,9 @@ export class CarouselComponent implements AfterViewInit {
             ...this.thumbConfig,
         } satisfies SwiperOptions);
         this.thumbs.nativeElement.initialize();
+    }
+
+    slidesFound(slides: CarouselSlideComponent[]): void {
+        this.slides$.next(slides);
     }
 }

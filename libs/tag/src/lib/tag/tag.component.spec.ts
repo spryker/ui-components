@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TagComponent } from './tag.component';
-import { Component, NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
+import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { TagComponent } from './tag.component';
 
 describe('TagComponent', () => {
     @Component({
-        template: `<spy-tag (onRemove)="onRemoveButtonClick($event)" [disabled]="disabled" [removable]="removable">{{
+        template: `<spy-tag (remove)="onRemoveButtonClick($event)" [disabled]="disabled" [removable]="removable">{{
             label
         }}</spy-tag>`,
     })

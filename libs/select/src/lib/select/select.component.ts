@@ -52,8 +52,7 @@ import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from
     ],
 })
 export class SelectComponent
-    implements DatasourceTriggerElement, DatasourceDependableElement, OnInit, OnChanges, OnDestroy, AfterViewInit
-{
+    implements DatasourceTriggerElement, DatasourceDependableElement, OnInit, OnChanges, OnDestroy, AfterViewInit {
     @ViewChild('selectRef') selectRef?: ElementRef<HTMLSelectElement>;
     @ViewChild('selectContainerRef') selectContainerRef?: NzSelectComponent;
 
@@ -143,7 +142,7 @@ export class SelectComponent
         private datasourceService: DatasourceService,
         private i18nService: I18nService,
         private cdr: ChangeDetectorRef,
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         if (this.tags || this.tagView) {
@@ -313,8 +312,8 @@ export class SelectComponent
             this.multiple && Array.isArray(this.value)
                 ? this.value.filter((value) => this.isValueExist(value))
                 : this.isValueExist(this.value)
-                  ? this.value
-                  : undefined;
+                    ? this.value
+                    : undefined;
 
         this.updateTitlesArrayForSelectedValues(this.mappedValue);
     }
@@ -336,6 +335,10 @@ export class SelectComponent
     }
 
     private isValueExist(value?: any): boolean {
+        if ((this.tags || this.tagView) && !Array.isArray(this.value)) {
+            return false;
+        }
+
         return value !== undefined ? this.allValues.includes(value) : false;
     }
 

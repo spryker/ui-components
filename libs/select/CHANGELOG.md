@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5-next.1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.5-next.0...@spryker/select@2.0.5-next.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* **select:** add tags guard ([f325865](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/f3258651e5b5929803c4aa513f742a83e7321a45))
+
+
+
+
+
 ## [2.0.5-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.4...@spryker/select@2.0.5-next.0) (2024-09-17)
 
 **Note:** Version bump only for package @spryker/select

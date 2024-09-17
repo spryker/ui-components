@@ -22,6 +22,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+
+
 # [2.2.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/actions.redirect@2.1.2...@spryker/actions.redirect@2.2.0) (2024-09-17)
 
 **Note:** Version bump only for package @spryker/actions.redirect

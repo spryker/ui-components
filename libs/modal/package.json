@@ -1,6 +1,6 @@
 {
     "name": "@spryker/modal",
-    "version": "2.0.2-next.0",
+    "version": "2.0.2",
     "peerDependencies": {
         "@angular/cdk": "^17.2.2",
         "@angular/common": "^17.3.0",

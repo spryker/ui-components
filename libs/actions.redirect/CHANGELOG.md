@@ -8,7 +8,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 **Note:** Version bump only for package @spryker/actions.redirect
 
 
-### Features
 
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1-beta.2](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/rating@0.2.1-beta.1...@spryker/rating@0.2.1-beta.2) (2024-09-17)
+
+**Note:** Version bump only for package @spryker/rating
+
+
+
+
+
 ## [0.2.1-beta.1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/rating@0.2.1-beta.0...@spryker/rating@0.2.1-beta.1) (2024-09-16)
 
 **Note:** Version bump only for package @spryker/rating

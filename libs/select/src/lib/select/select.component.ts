@@ -336,6 +336,10 @@ export class SelectComponent
     }
 
     private isValueExist(value?: any): boolean {
+        if ((this.tags || this.tagView) && !Array.isArray(this.value)) {
+            return false;
+        }
+
         return value !== undefined ? this.allValues.includes(value) : false;
     }
 

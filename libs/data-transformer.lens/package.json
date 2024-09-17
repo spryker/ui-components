@@ -1,6 +1,6 @@
 {
     "name": "@spryker/data-transformer.lens",
-    "version": "2.0.3-next.0",
+    "version": "2.0.3",
     "peerDependencies": {
         "@angular/common": "^17.3.0",
         "@angular/core": "^17.3.0",

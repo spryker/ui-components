@@ -7,6 +7,7 @@
   auto_clear_cache: true
   fail_on_prepare_env_warning: true
   resources: 'LARGE'
+
   actions:
       - action: 'Format check'
         type: 'BUILD'

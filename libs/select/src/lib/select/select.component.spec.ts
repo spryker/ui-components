@@ -225,7 +225,7 @@ describe('SelectComponent', () => {
 
             expect(nzOptionElems.length).toBe(2);
             expect(nzOptionElems[0].properties.nzValue).toBe(mockOptions[0]);
-            expect(nzOptionElems[0].properties.nzLabel).toBe(mockOptions[0]);
+            expect(nzOptionElems[0].properties.nzLabel).toBe(String(mockOptions[0]));
             expect(nzOptionElems[1].properties.nzValue).toBe(mockOptions[1]);
             expect(nzOptionElems[1].properties.nzLabel).toBe(mockOptions[1]);
         });

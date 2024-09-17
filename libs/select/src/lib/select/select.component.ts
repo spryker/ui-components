@@ -287,10 +287,9 @@ export class SelectComponent
     }
 
     private updateOptions(): void {
-        this.mappedOptions =
-            this.options?.map((option) =>
-                typeof option !== 'object' ? ({ value: option, title: option } as SelectOptionItem) : option,
-            ) ?? [];
+        this.mappedOptions = (this.options ?? []).map((option) =>
+            typeof option !== 'object' ? ({ value: option, title: String(option) } satisfies SelectOptionItem) : option,
+        );
 
         this.allValues = this.mappedOptions.map((option) => option.value);
 
@@ -299,6 +298,8 @@ export class SelectComponent
         }
 
         if (this.tags) {
+            this.allTags = ((this.value ?? []) as SelectValue[]).filter((value) => !this.allValues.includes(value));
+
             this.updateSelectWithNewTags();
         }
 

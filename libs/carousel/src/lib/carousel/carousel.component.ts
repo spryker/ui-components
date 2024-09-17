@@ -31,8 +31,8 @@ export class CarouselComponent implements AfterViewInit {
         register();
     }
 
-    @Input() config!: CarouselOptions;
-    @Input() thumbConfig?: CarouselOptions;
+    @Input() config: CarouselOptions = {};
+    @Input() thumbConfig: CarouselOptions = {};
     @Input() withThumbs = false;
 
     @ViewChild('carousel', { static: false }) carousel!: ElementRef<SwiperContainer>;

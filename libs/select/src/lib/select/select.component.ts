@@ -297,9 +297,11 @@ export class SelectComponent
             this.disabled = !this.mappedOptions.length;
         }
 
-        if (this.tags) {
-            this.allTags = ((this.value ?? []) as SelectValue[]).filter((value) => !this.allValues.includes(value));
+        if (this.tags && Array.isArray(this.value)) {
+            this.allTags = this.value.filter((value) => !this.allValues.includes(value));
+        }
 
+        if (this.tags) {
             this.updateSelectWithNewTags();
         }
 

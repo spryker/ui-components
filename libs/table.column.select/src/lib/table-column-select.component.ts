@@ -83,6 +83,8 @@ export class TableColumnSelectConfig {
     editableError?: string | boolean;
     @ColumnTypeOption()
     datasource?: ColumnSelectDatasource;
+    @ColumnTypeOption()
+    tags? = false;
 }
 
 @Component({

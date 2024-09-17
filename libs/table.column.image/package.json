@@ -1,6 +1,6 @@
 {
     "name": "@spryker/table.column.image",
-    "version": "2.0.4-next.0",
+    "version": "2.0.4",
     "peerDependencies": {
         "@angular/common": "^17.3.0",
         "@angular/core": "^17.3.0",

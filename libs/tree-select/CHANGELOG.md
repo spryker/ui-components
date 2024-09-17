@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3-beta.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/tree-select@2.0.2...@spryker/tree-select@2.0.3-beta.0) (2024-09-16)
+
+**Note:** Version bump only for package @spryker/tree-select
+
+
+
+
+
 ## [2.0.2](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/tree-select@2.0.2-next.0...@spryker/tree-select@2.0.2) (2024-09-03)
 
 **Note:** Version bump only for package @spryker/tree-select

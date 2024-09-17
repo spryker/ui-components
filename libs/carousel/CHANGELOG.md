@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.9](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/carousel@0.1.0-beta.8...@spryker/carousel@0.1.0-beta.9) (2024-09-16)
+
+
+### Bug Fixes
+
+* carousel ([0732199](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/07321993222c08bb01f6b1cfcec28febfc2bcd66))
+* carousel build ([e6f2966](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/e6f2966f26451f1a56d6ffe72d04b89f07366c33))
+* **carousel:** as web components ([1bc9e00](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/1bc9e00912847e1382d18e88e91e68b5711347ed))
+* **carousel:** fix for v17 ([41ffd5c](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/41ffd5c93b937167b25cfb94ac58049cf6632460))
+* chore ([d43a77e](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/d43a77e200f94e5dc3277eebb23e7a8dc2d4b669))
+
+
+
+
+
 # [0.1.0-beta.8](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.0-beta.7...@spryker/carousel@0.1.0-beta.8) (2022-09-22)
 
 

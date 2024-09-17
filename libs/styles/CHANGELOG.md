@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-beta.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.3-next.0...@spryker/styles@2.1.0-beta.0) (2024-09-16)
+
+
+### Bug Fixes
+
+* carousel ([0732199](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/07321993222c08bb01f6b1cfcec28febfc2bcd66))
+* **carousel:** added styles to different states for navigation buttons ([b0c8036](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/b0c803674c2d6c0a33d9721006ff5143307baad6))
+* **carousel:** as web components ([1bc9e00](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/1bc9e00912847e1382d18e88e91e68b5711347ed))
+* **carousel:** fixed next/prev button working, fixed styles ([a1832a1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/a1832a13f40b9f7896ac49eef0b19075be1e0470))
+* **carousel:** fixed some styles ([1d678d4](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/1d678d472713c120c751a8b6ecefe6fd1f05b7d6))
+* **checkbox:** fixed styles for error state ([e90b035](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/e90b035d3b83df778aa32ee06313ced011509248))
+* chore ([d43a77e](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/d43a77e200f94e5dc3277eebb23e7a8dc2d4b669))
+* **dropdown:** dropdown border and shadow styles adjusted according to design ([9688aa0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/9688aa0bd1a15ccd6390934fa69706c6cf74c13c))
+* **dropdown:** dropdown styles refreshed according the styleguide, added classes to icon and text ([7c4a6d6](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/7c4a6d6b507734a3f35bf3804add4bafb8357cfa))
+* **dropdown:** extended storybook examples and fixed styles for icons in dropdown menu items ([70a6270](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/70a62707013404e5ecfa838b2ca6dcf603a857aa))
+* update the behaviour of the arrow buttons ([067f4b1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/067f4b18102dcf7c13b4cb1d650087adfea2cd65))
+
+
+### Features
+
+* **rating:** implemented rating component ([4ef703a](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/4ef703a311aa9d99d9ac07c9261565285f73ca8d))
+* **styles:** added short media query mixins ([31037f5](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/31037f578286bf732861cae2feb401008142b4fb))
+* **tag:** configure stories for storybook for tag component ([a8a215a](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/a8a215a45557856e62ff1e9e19cf96f599d7722f))
+
+
+### Reverts
+
+* Revert "Revert "refactor(carousel): some code improvements and fixed potentially bugs"" ([6fec210](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/6fec21015ce1274587bb93878a06c963b8c0ed6f))
+* Revert "Revert "fix(carousel): added shadow to next/prev buttons"" ([da0a3e7](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/da0a3e722a2a3fbdebb0f45bff3182228a12951b))
+* Revert "Revert "feat(carousel): added styles to carousel"" ([f663b0e](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/f663b0e03a1d1e4dce7503dab99d24e5fb04a87c))
+
+
+
+
+
 # [0.8.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.8.0-beta.0...@spryker/styles@0.8.0-beta.1) (2022-09-07)
 
 

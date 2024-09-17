@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-beta.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/dropdown@2.0.0...@spryker/dropdown@2.1.0-beta.0) (2024-09-16)
+
+
+### Bug Fixes
+
+* **dropdown:** dropdown border and shadow styles adjusted according to design ([9688aa0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/9688aa0bd1a15ccd6390934fa69706c6cf74c13c))
+* **dropdown:** dropdown styles refreshed according the styleguide, added classes to icon and text ([7c4a6d6](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/7c4a6d6b507734a3f35bf3804add4bafb8357cfa))
+* **dropdown:** extended storybook examples and fixed styles for icons in dropdown menu items ([70a6270](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/70a62707013404e5ecfa838b2ca6dcf603a857aa))
+* **dropdown:** fix typo in test case name ([81c18d3](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/81c18d3c34a916b4d12bee3f506fc4ad540366d3))
+
+
+### Features
+
+* **dropdown:** add trigger type feature (opening by hover, by click) ([58a505e](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/58a505e3a3d9654747c16854c42bbca4b6455902))
+
+
+
+
+
 # [0.5.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/dropdown@0.4.3...@spryker/dropdown@0.5.0-beta.0) (2022-08-08)
 
 

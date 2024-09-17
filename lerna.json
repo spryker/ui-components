@@ -20,7 +20,7 @@
             ],
             "contents": "dist",
             "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
-            "message": "chore(release): publish [skip ci]"
+            "message": "chore(release): publish --skip-ci"
         }
     },
     "useNx": true

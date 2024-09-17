@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0 (2024-09-17)
+
+
+### Reverts
+
+* Revert "feat(carousel): added main functionality of carousel" ([5aa1b08](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/5aa1b08528265fbf3270dc8d9c6a8822ba03fd3b))
+* Revert "feat(carousel): added styles to carousel" ([fd15ef4](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/fd15ef4662bdeb7080d8e9d1f19d1651135285b0))
+* Revert "feat(carousel): added unit tests for carousel" ([1c39431](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/1c394317918fe3de276468b5e630e063f696b5a5))
+* Revert "refactor(carousel): renamed css classes according BEM" ([2db2ba7](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/2db2ba7c834f840b562e27487092d3ed54e2efff))
+* Revert "fix(carousel): added shadow to next/prev buttons" ([c2d4ce1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/c2d4ce11615d3500e3278a478df16e7c839e46b6))
+
+
+
+
+
 # [0.1.0-next.3](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/carousel@0.1.0-next.2...@spryker/carousel@0.1.0-next.3) (2024-09-17)
 
 **Note:** Version bump only for package @spryker/carousel

@@ -44,7 +44,10 @@ export class ButtonActionComponent implements OnInit, OnDestroy {
         ),
     );
 
-    constructor(private injector: Injector, private actionsService: ActionsService) {}
+    constructor(
+        private injector: Injector,
+        private actionsService: ActionsService,
+    ) {}
 
     ngOnInit(): void {
         this.action$.pipe(takeUntil(this.destroyed$)).subscribe();

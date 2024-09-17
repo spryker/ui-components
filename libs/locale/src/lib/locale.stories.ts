@@ -11,9 +11,9 @@ import { LocaleModule } from './locale.module';
         <ng-container *spyLocaleRender>
             <p>Localized date: {{ date | date }}</p>
             <br />
-            <p>Localized time: {{ date | date : 'shortTime' }}</p>
+            <p>Localized time: {{ date | date: 'shortTime' }}</p>
             <br />
-            <p>Localized currency: {{ price | currency : 'EUR' }}</p>
+            <p>Localized currency: {{ price | currency: 'EUR' }}</p>
         </ng-container>
     `,
 })

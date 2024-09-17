@@ -28,7 +28,10 @@ export class TableActionsService implements OnDestroy {
         ),
     );
 
-    constructor(private injector: Injector, private actionsService: ActionsService) {
+    constructor(
+        private injector: Injector,
+        private actionsService: ActionsService,
+    ) {
         this.action$.pipe(takeUntil(this.destroyed$)).subscribe();
     }
 

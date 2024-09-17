@@ -4,11 +4,11 @@ import { Injectable, OnDestroy, Optional, TemplateRef, Type } from '@angular/cor
 import { merge, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
 
+import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 import { DrawerContainerComponent } from './drawer-container/drawer-container.component';
 import { DrawerOptions, DrawerOptionsBase, DrawerOptionsComponent, DrawerOptionsTemplate } from './drawer-options';
 import { DrawerRef } from './drawer-ref';
 import { DrawerTemplateContext } from './types';
-import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 
 interface DrawerRecord {
     options: DrawerOptions;
@@ -23,7 +23,10 @@ export class DrawerService implements OnDestroy {
     private drawerStack: DrawerRecord[] = [];
     private allClosed$ = new Subject<void>();
 
-    constructor(private overlay: Overlay, @Optional() private defaultOptions?: DrawerOptionsBase) {}
+    constructor(
+        private overlay: Overlay,
+        @Optional() private defaultOptions?: DrawerOptionsBase,
+    ) {}
 
     ngOnDestroy(): void {
         this.closeAll();
@@ -94,11 +97,13 @@ export class DrawerService implements OnDestroy {
 
         const containerEmpty$ = record.container.afterClosed().pipe(take(1));
 
-        merge(overlay.backdropClick(), overlay.keydownEvents().pipe(filter((e) => e.key === 'Escape')))
-            .pipe(takeUntil(merge(containerEmpty$, this.allClosed$)))
-            .subscribe(() => {
-                this.removeDrawerRecord(record);
-            });
+        if (options.closeable && options.closeOnBackdrop) {
+            merge(overlay.backdropClick(), overlay.keydownEvents().pipe(filter((e) => e.key === 'Escape')))
+                .pipe(takeUntil(merge(containerEmpty$, this.allClosed$)))
+                .subscribe(() => {
+                    this.removeDrawerRecord(record);
+                });
+        }
 
         containerEmpty$.pipe(takeUntil(this.allClosed$)).subscribe(() => this.removeDrawerRecord(record));
 

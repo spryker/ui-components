@@ -1,0 +1,13 @@
+@import 'rating.component.theme.less';
+
+.@{rating-prefix-cls} {
+    .@{rate-prefix-cls} {
+        color: @rating-stars-color;
+
+        &-star {
+            &:not(:last-child) {
+                margin: @rating-stars-margin;
+            }
+        }
+    }
+}

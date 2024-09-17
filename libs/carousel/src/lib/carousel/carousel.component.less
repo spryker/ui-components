@@ -1,0 +1,98 @@
+@import 'swiper/swiper-bundle.css';
+@import './carousel.component.theme.less';
+
+.@{carousel-prefix-cls} {
+    position: relative;
+    display: block;
+
+    &__thumbs {
+        padding-top: @carousel-thumbs-padding-top;
+
+        &::part(wrapper) {
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
+        }
+    }
+
+    &__slide {
+        border-radius: @carousel-slide-border-radius;
+        overflow: hidden;
+
+        &--main {
+            width: 100%;
+            height: @carousel-slide-height;
+
+            .sm({
+                height: @carousel-slide-height-sm;
+            });
+        }
+
+        &--thumb {
+            width: @carousel-thumb-swiper-slide-width;
+            height: @carousel-thumb-swiper-slide-height;
+            border: @carousel-thumb-border;
+
+            .sm({
+                width: @carousel-thumb-swiper-slide-width-sm;
+                height: @carousel-thumb-swiper-slide-height-sm;
+            });
+
+            &.swiper-slide-thumb-active {
+                border: @carousel-thumb-active-border;
+            }
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &__navigation-button {
+        position: absolute;
+        padding: @carousel-navigation-button-padding;
+        z-index: @carousel-navigation-button-z-index;
+        bottom: @carousel-navigation-button-bottom;
+        width: @carousel-navigation-button-width;
+        height: @carousel-navigation-button-height;
+        background-color: @carousel-navigation-button-background-color;
+        border: @carousel-navigation-button-border;
+        border-radius: @carousel-navigation-button-border-radius;
+        color: @carousel-navigation-button-icon-color;
+        box-shadow: @carousel-navigation-button-box-shadow;
+        transition: @carousel-navigation-button-transition;
+        translate: 0 50%;
+        cursor: pointer;
+
+        .sm({
+      display: none;
+    });
+
+        &:hover {
+            border: @carousel-navigation-button-hover-border;
+        }
+
+        &:active {
+            background-color: @green;
+            border-color: @transparent;
+            color: @white;
+        }
+
+        &:disabled {
+            display: none;
+        }
+
+        &--next {
+            right: @carousel-navigation-next-button-right;
+        }
+
+        &--prev {
+            left: @carousel-navigation-prev-button-left;
+            rotate: 180deg;
+        }
+    }
+}

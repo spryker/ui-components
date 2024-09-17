@@ -44,7 +44,7 @@ export function generateMockTableDataForOptions<T extends TableDataRow>(
 
 function generateMockTableData<T extends TableDataRow>(
     options: TableDataMockGeneratorOptions,
-    dataGenerator: TableDataMockGenerator<T> = () => ({} as T),
+    dataGenerator: TableDataMockGenerator<T> = () => ({}) as T,
 ): T[] {
     const offset = (options.page - 1) * options.pageSize;
 

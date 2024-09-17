@@ -59,6 +59,9 @@
             "path": "./libs/card/tsconfig.json"
         },
         {
+            "path": "./libs/carousel/tsconfig.json"
+        },
+        {
             "path": "./libs/checkbox/tsconfig.json"
         },
         {
@@ -209,6 +212,9 @@
             "path": "./libs/radio/tsconfig.json"
         },
         {
+            "path": "./libs/rating/tsconfig.json"
+        },
+        {
             "path": "./libs/select/tsconfig.json"
         },
         {
@@ -297,6 +303,9 @@
         },
         {
             "path": "./libs/tabs/tsconfig.json"
+        },
+        {
+            "path": "./libs/tag/tsconfig.json"
         },
         {
             "path": "./libs/textarea/tsconfig.json"

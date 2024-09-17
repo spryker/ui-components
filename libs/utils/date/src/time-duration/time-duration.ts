@@ -10,7 +10,10 @@ export class TimeDuration {
     readonly seconds?: number;
     readonly milliseconds?: number;
 
-    constructor(private data: TimeDurationData, private dateAdapter: DateAdapter) {
+    constructor(
+        private data: TimeDurationData,
+        private dateAdapter: DateAdapter,
+    ) {
         this.dateAdapter = dateAdapter;
         this.years = data.years;
         this.months = data.months;

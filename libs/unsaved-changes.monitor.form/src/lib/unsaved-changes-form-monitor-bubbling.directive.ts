@@ -9,7 +9,10 @@ import { Directive, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/co
 export class UnsavedChangesFormMonitorBubblingDirective implements OnInit, OnDestroy {
     private disposeInputEvent?: () => void;
 
-    constructor(private elementRef: ElementRef<HTMLElement>, private renderer: Renderer2) {}
+    constructor(
+        private elementRef: ElementRef<HTMLElement>,
+        private renderer: Renderer2,
+    ) {}
 
     ngOnInit(): void {
         this.disposeInputEvent = this.renderer.listen(this.elementRef.nativeElement, 'input', (event) => {

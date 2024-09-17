@@ -49,7 +49,11 @@ export class ButtonAjaxComponent extends ButtonCoreInputs implements OnInit, OnD
 
     isLoading$ = merge(this.click$.pipe(mapTo(true)), this.request$.pipe(mapTo(false)));
 
-    constructor(private ajaxActionService: AjaxActionService, private http: HttpClient, private injector: Injector) {
+    constructor(
+        private ajaxActionService: AjaxActionService,
+        private http: HttpClient,
+        private injector: Injector,
+    ) {
         super();
     }
 

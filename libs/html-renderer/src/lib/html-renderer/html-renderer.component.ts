@@ -41,5 +41,8 @@ export class HtmlRendererComponent {
     );
     isLoading$ = merge(this.htmlRenderer$.pipe(mapTo(false)), this.htmlRendererProvider.isLoading().pipe(mapTo(true)));
 
-    constructor(private htmlRendererProvider: HtmlRendererProvider, private domSanitizer: DomSanitizer) {}
+    constructor(
+        private htmlRendererProvider: HtmlRendererProvider,
+        private domSanitizer: DomSanitizer,
+    ) {}
 }

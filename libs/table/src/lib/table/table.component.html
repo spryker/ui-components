@@ -33,7 +33,7 @@
                                     *ngTemplateOutlet="
                                         thFeaturesTpl;
                                         context: {
-                                            $implicit: featureLocation.beforeColsHeader
+                                            $implicit: featureLocation.beforeColsHeader,
                                         }
                                     "
                                 ></ng-container>
@@ -43,15 +43,15 @@
                                     [nzShowSort]="column.sortable"
                                     [nzColumnKey]="column.id"
                                     [nzSortOrder]="
-                                        (sortingData$ | async | pluck : 'sortBy') === column.id
-                                            ? (sortingData$ | async | pluck : 'sortDirection')
+                                        (sortingData$ | async | pluck: 'sortBy') === column.id
+                                            ? (sortingData$ | async | pluck: 'sortDirection')
                                             : null
                                     "
                                     [nzWidth]="column.width"
                                 >
                                     <div class="ant-table-column-inner">
                                         <ng-container
-                                            *ngIf="featureHeaderContext | spyInvoke : column : i as headerContext"
+                                            *ngIf="featureHeaderContext | spyInvoke: column : i as headerContext"
                                         >
                                             <ng-container
                                                 *ngTemplateOutlet="
@@ -67,7 +67,7 @@
                                     *ngTemplateOutlet="
                                         thFeaturesTpl;
                                         context: {
-                                            $implicit: featureLocation.afterColsHeader
+                                            $implicit: featureLocation.afterColsHeader,
                                         }
                                     "
                                 ></ng-container>
@@ -93,8 +93,8 @@
                                     $implicit: featureLocation.beforeRows,
                                     context: {
                                         data: tableData,
-                                        columns: columns
-                                    }
+                                        columns: columns,
+                                    },
                                 }
                             "
                         ></ng-container>
@@ -112,8 +112,8 @@
                                         $implicit: featureLocation.beforeCols,
                                         context: {
                                             data: data,
-                                            i: indexOfRow
-                                        }
+                                            i: indexOfRow,
+                                        },
                                     }
                                 "
                             ></ng-container>
@@ -123,7 +123,7 @@
                                     <ng-container
                                         *ngIf="
                                             featureCellContext
-                                                | spyInvoke : column : data : indexOfRow : indexOfCell as cellContext
+                                                | spyInvoke: column : data : indexOfRow : indexOfCell as cellContext
                                         "
                                     >
                                         <ng-container
@@ -140,8 +140,8 @@
                                         $implicit: featureLocation.afterCols,
                                         context: {
                                             data: data,
-                                            i: indexOfRow
-                                        }
+                                            i: indexOfRow,
+                                        },
                                     }
                                 "
                             ></ng-container>
@@ -154,8 +154,8 @@
                                     $implicit: featureLocation.afterRows,
                                     context: {
                                         data: tableData,
-                                        columns: columns
-                                    }
+                                        columns: columns,
+                                    },
                                 }
                             "
                         ></ng-container>

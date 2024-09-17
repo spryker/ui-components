@@ -110,8 +110,8 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
             ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               ensureObservable(response.data!)
             : response.dataFn
-            ? ensureObservable(response.dataFn(request, this.injector))
-            : EMPTY;
+              ? ensureObservable(response.dataFn(request, this.injector))
+              : EMPTY;
     }
 
     private getErrorFrom<E>({ request, response }: MatchedHttpRequest<any, E>): Observable<E> {
@@ -119,8 +119,8 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
             ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               ensureObservable(response.error!)
             : response.errorFn
-            ? ensureObservable(response.errorFn(request, this.injector))
-            : EMPTY;
+              ? ensureObservable(response.errorFn(request, this.injector))
+              : EMPTY;
     }
 
     private getDelayFrom({ response }: MatchedHttpRequest): number {

@@ -6,7 +6,10 @@ import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } fro
 export class ApplyAttrsDirective implements OnChanges {
     @Input() spyApplyAttrs: Record<string, string> = {};
 
-    constructor(private el: ElementRef, private renderer: Renderer2) {}
+    constructor(
+        private el: ElementRef,
+        private renderer: Renderer2,
+    ) {}
 
     updateAttrs(): void {
         if (!this.spyApplyAttrs) {

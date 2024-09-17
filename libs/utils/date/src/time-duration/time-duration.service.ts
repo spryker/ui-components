@@ -13,7 +13,10 @@ import { TimeDurationString, TimeDurationData } from './types';
     providedIn: 'root',
 })
 export class TimeDurationService {
-    constructor(private dateService: DateService, private config: TimeDurationConfig) {}
+    constructor(
+        private dateService: DateService,
+        private config: TimeDurationConfig,
+    ) {}
 
     parse(interval: TimeDurationString): TimeDuration {
         const durationComponents = interval.split(this.config.separator);

@@ -86,7 +86,7 @@ export class LocaleService implements OnDestroy {
             this.defaultLocale =
                 this.locales.length === 1
                     ? this.locales[0].id
-                    : this.locales.find((locale) => locale.default)?.id ?? null;
+                    : (this.locales.find((locale) => locale.default)?.id ?? null);
         }
 
         if (this.defaultLocale) {

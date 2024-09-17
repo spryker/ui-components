@@ -22,8 +22,8 @@ export class TableFeatureTplDirective implements OnChanges {
                 !this.spyTableFeatureTpl
                     ? []
                     : Array.isArray(this.spyTableFeatureTpl)
-                    ? this.spyTableFeatureTpl
-                    : [this.spyTableFeatureTpl],
+                      ? this.spyTableFeatureTpl
+                      : [this.spyTableFeatureTpl],
             );
         }
 

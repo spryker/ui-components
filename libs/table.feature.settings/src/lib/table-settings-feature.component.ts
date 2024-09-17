@@ -93,7 +93,10 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSe
 
     isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
 
-    constructor(private persistenceService: PersistenceService, injector: Injector) {
+    constructor(
+        private persistenceService: PersistenceService,
+        injector: Injector,
+    ) {
         super(injector);
     }
 

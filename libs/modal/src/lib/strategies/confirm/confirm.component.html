@@ -3,7 +3,7 @@
         [ngTemplateOutlet]="genericTemplate"
         [ngTemplateOutletContext]="{
             context: modalContext,
-            $implicit: data.title ?? ('modal.confirmation-title' | spyI18n | async)
+            $implicit: data.title ?? ('modal.confirmation-title' | spyI18n | async),
         }"
     ></ng-template>
 </ng-template>
@@ -13,7 +13,7 @@
         [ngTemplateOutlet]="genericTemplate"
         [ngTemplateOutletContext]="{
             context: modalContext,
-            $implicit: data.description
+            $implicit: data.description,
         }"
     ></ng-template>
 </div>
@@ -30,7 +30,7 @@
                     [ngTemplateOutlet]="genericTemplate"
                     [ngTemplateOutletContext]="{
                         context: modalContext,
-                        $implicit: data.cancelText ?? ('modal.confirmation-cancel' | spyI18n | async)
+                        $implicit: data.cancelText ?? ('modal.confirmation-cancel' | spyI18n | async),
                     }"
                 ></ng-template>
             </spy-button>
@@ -45,7 +45,7 @@
                     [ngTemplateOutlet]="genericTemplate"
                     [ngTemplateOutletContext]="{
                         context: modalContext,
-                        $implicit: data.okText ?? ('modal.confirmation-ok' | spyI18n | async)
+                        $implicit: data.okText ?? ('modal.confirmation-ok' | spyI18n | async),
                     }"
                 ></ng-template
             ></spy-button>
@@ -56,10 +56,10 @@
 <ng-template #genericTemplate let-context="context" let-data>
     <ng-container
         *ngTemplateOutlet="
-            data | ofType : 'string' : stringTmpl : alternativeTmpl;
+            data | ofType: 'string' : stringTmpl : alternativeTmpl;
             context: {
                 $implicit: data,
-                context: context
+                context: context,
             }
         "
     ></ng-container>

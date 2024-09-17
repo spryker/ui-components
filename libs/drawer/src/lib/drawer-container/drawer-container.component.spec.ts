@@ -1,9 +1,9 @@
+import { PortalModule } from '@angular/cdk/portal';
 import { Component, Input, NO_ERRORS_SCHEMA, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { PortalModule } from '@angular/cdk/portal';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { createComponentWrapper } from '@spryker/internal-utils';
 import { DynamicIoModule } from 'ng-dynamic-component';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DrawerContainerComponent } from './drawer-container.component';
 
 @Component({
@@ -29,6 +29,7 @@ class TestComponent implements OnInit {
             closeable: this.closeable,
             width: this.width,
             hasBackdrop: false,
+            closeOnBackdrop: false,
             resizable: this.resizable,
         });
     }

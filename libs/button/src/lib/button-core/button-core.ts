@@ -31,7 +31,10 @@ export class ButtonCore extends ButtonCoreInputs implements AfterViewInit, OnCha
 
     protected buttonClassName = '';
 
-    constructor(protected renderer: Renderer2, protected elemRef: ElementRef) {
+    constructor(
+        protected renderer: Renderer2,
+        protected elemRef: ElementRef,
+    ) {
         super();
     }
 

@@ -67,7 +67,7 @@ export class NotificationComponent extends NotificationInputs implements OnChang
                     title: this.titleTpl ?? '',
                     description: this.descriptionTpl,
                     closeable: this.closeable,
-                } as NotificationData),
+                }) as NotificationData,
         ),
     );
 
@@ -93,7 +93,10 @@ export class NotificationComponent extends NotificationInputs implements OnChang
 
     private floatingSink$ = merge(this.floatingClosed$, this.closingFloating$, this.closePrevFloating$);
 
-    constructor(private notificationService: NotificationService, private cdr: ChangeDetectorRef) {
+    constructor(
+        private notificationService: NotificationService,
+        private cdr: ChangeDetectorRef,
+    ) {
         super();
     }
 

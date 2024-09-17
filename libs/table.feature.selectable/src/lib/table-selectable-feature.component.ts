@@ -44,7 +44,10 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent<Table
     private destroyed$ = new Subject<void>();
     private rowsData: TableDataRow[] = [];
 
-    constructor(private cdr: ChangeDetectorRef, injector: Injector) {
+    constructor(
+        private cdr: ChangeDetectorRef,
+        injector: Injector,
+    ) {
         super(injector);
     }
 

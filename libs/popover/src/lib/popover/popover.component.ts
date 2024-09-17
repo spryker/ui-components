@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 export enum PopoverPosition {
     TopLeft = 'topLeft',
@@ -38,6 +38,7 @@ export class PopoverComponent {
     @Input() open = false;
     @Input() popoverTrigger = PopoverTrigger.Click;
     @Input() position?: PopoverPosition = PopoverPosition.Bottom;
+    @Input() popoverOverlayClassname? = '';
     @Output() openChange = new EventEmitter<boolean>();
 
     openChangeEvent(isOpen: boolean): void {

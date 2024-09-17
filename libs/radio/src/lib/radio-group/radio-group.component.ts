@@ -1,20 +1,22 @@
 import {
-    Component,
-    OnInit,
     ChangeDetectionStrategy,
-    ViewEncapsulation,
-    Input,
-    EventEmitter,
-    Output,
     ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
     OnDestroy,
-    ViewChildren,
+    OnInit,
+    Output,
     QueryList,
+    ViewChildren,
+    ViewEncapsulation,
 } from '@angular/core';
+import { NzRadioComponent } from 'ng-zorro-antd/radio';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { NzRadioComponent } from 'ng-zorro-antd/radio';
 import { RadioComponent } from '../radio/radio.component';
+
+export type RadioValue = string | number;
 
 @Component({
     selector: 'spy-radio-group',
@@ -29,7 +31,7 @@ import { RadioComponent } from '../radio/radio.component';
     },
 })
 export class RadioGroupComponent implements OnInit, OnDestroy {
-    @Input() value?: string;
+    @Input() value?: RadioValue;
     @Input() name?: string;
 
     @Output() selected = new EventEmitter<boolean>();
@@ -52,7 +54,7 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
         this.destroyed$.next();
     }
 
-    valueChanged(prev: string) {
+    valueChanged(prev: RadioValue) {
         if (this.value === prev) {
             this.value = undefined;
             this.selected.emit(Boolean(this.value));

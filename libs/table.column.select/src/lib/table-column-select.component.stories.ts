@@ -1,10 +1,9 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DatasourceModule } from '@spryker/datasource';
-import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { DatasourceHttpService } from '@spryker/datasource.http';
+import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
@@ -18,6 +17,7 @@ import {
     TableDataMockGenerator,
 } from '@spryker/table/testing';
 import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 
 import { TableColumnSelectComponent } from './table-column-select.component';
 import { TableColumnSelectModule } from './table-column-select.module';
@@ -173,6 +173,7 @@ withTable.args = {
                         },
                     ],
                     placeholder: '123',
+                    tags: true,
                 },
             },
         ],

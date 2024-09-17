@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/drawer@2.0.1-next.0...@spryker/drawer@2.0.1-next.1) (2024-09-17)
+
+**Note:** Version bump only for package @spryker/drawer
+
+
+
+
+
+## [2.0.1-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/drawer@2.0.0...@spryker/drawer@2.0.1-next.0) (2024-09-17)
+
+**Note:** Version bump only for package @spryker/drawer
+
+
+
+
+
+# [0.4.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.3.5-beta.0...@spryker/drawer@0.4.0-beta.0) (2022-10-25)
+
+
+### Features
+
+* add closeOnBackdrop Input to prevent close by clicking on backdrop ([9dffc02](https://github.com/spryker/ui-components/commit/9dffc02fd7504ad4d2dc4fde261b470a97d1572a))
+
+
+
+
+
+## [0.3.5-beta.0](https://github.com/spryker/ui-components/compare/@spryker/drawer@0.3.4...@spryker/drawer@0.3.5-beta.0) (2022-08-08)
+
+**Note:** Version bump only for package @spryker/drawer
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/drawer@2.0.0-rc.1...@spryker/drawer@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/drawer

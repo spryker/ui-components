@@ -5,23 +5,23 @@ import {
     Component,
     ContentChild,
     EventEmitter,
+    Injectable,
     Input,
     OnChanges,
     OnDestroy,
+    OnInit,
     Output,
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
-    OnInit,
-    Injectable,
 } from '@angular/core';
-import { take, takeUntil, switchMap } from 'rxjs/operators';
+import { switchMap, take, takeUntil } from 'rxjs/operators';
 
+import { Observable, Subject } from 'rxjs';
 import { DrawerData } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerService } from '../drawer.service';
 import { DrawerTemplateContext } from '../types';
-import { Subject, Observable } from 'rxjs';
 
 @Injectable()
 export class DrawerComponentInputs {
@@ -30,6 +30,7 @@ export class DrawerComponentInputs {
     @Input() resizable?: boolean;
     @Input() width?: string;
     @Input() hasBackdrop?: boolean;
+    @Input() closeOnBackdrop?: boolean;
     @Input() data?: DrawerData;
 }
 
@@ -54,7 +55,10 @@ export class DrawerComponent extends DrawerComponentInputs implements OnInit, On
     private destroyed$ = new Subject<void>();
     private afterClosed$ = new Subject<Observable<void>>();
 
-    constructor(private cdr: ChangeDetectorRef, private drawerService: DrawerService) {
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private drawerService: DrawerService,
+    ) {
         super();
     }
 

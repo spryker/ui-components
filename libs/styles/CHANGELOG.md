@@ -3,9 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4-next.2](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.4-next.1...@spryker/styles@2.0.4-next.2) (2024-09-17)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+## [2.0.4-next.1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.4-next.0...@spryker/styles@2.0.4-next.1) (2024-09-17)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+## [2.0.4-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.3...@spryker/styles@2.0.4-next.0) (2024-09-17)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
 ## [2.0.3](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.2...@spryker/styles@2.0.3) (2024-09-09)
 
 **Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.8.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.8.0-beta.0...@spryker/styles@0.8.0-beta.1) (2022-09-07)
+
+
+### Bug Fixes
+
+* update the behaviour of the arrow buttons ([067f4b1](https://github.com/spryker/ui-components/commit/067f4b18102dcf7c13b4cb1d650087adfea2cd65))
+
+
+
+
+
+# [0.8.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.5...@spryker/styles@0.8.0-beta.0) (2022-08-08)
+
+
+### Bug Fixes
+
+* adjusted css variables usage ([1d93490](https://github.com/spryker/ui-components/commit/1d93490f88ae49fb0fbe142de298c0935abc2ae9))
+* adjusted css variables usage ([75edc24](https://github.com/spryker/ui-components/commit/75edc244ee7b725a666ec7a9dc3bf2ce3cdc1021))
+* adjusted css variables usage ([5926e3b](https://github.com/spryker/ui-components/commit/5926e3b6a159115115924a9d7ff72d1b6b047d89))
+* **style:** introduce [@spy-border-color-split](https://github.com/spy-border-color-split) and [@spy-disabled-color](https://github.com/spy-disabled-color) variables ([5f09454](https://github.com/spryker/ui-components/commit/5f094541f2416dbec5b04ac126325a13649bdefd))
+* **style:** introduce variables for z-index ([0efa6fb](https://github.com/spryker/ui-components/commit/0efa6fb581120de71a224b2de930a63d2f7df22b))
+* **styles:** added `[@spinner-prefix-cls](https://github.com/spinner-prefix-cls)` variable to the `spin` ([e92cdfc](https://github.com/spryker/ui-components/commit/e92cdfc55e22cd8a055497af2befa4aa286a6ee8))
+* **styles:** added a new `table` variable ([6f20830](https://github.com/spryker/ui-components/commit/6f208303c157e12c9f2fc561d22e749715cd36b4))
+* **styles:** adjusted `button` by removing variable ([aeb6ad3](https://github.com/spryker/ui-components/commit/aeb6ad3e8f47975707ccb63005178462ac2bff8d))
+* **styles:** adjusted `button` by updating variables ([0b16e17](https://github.com/spryker/ui-components/commit/0b16e17caeb33b6a62bbbebc7dfd2193e4bd5153))
+* **styles:** adjusted `button` variables ([cc63b93](https://github.com/spryker/ui-components/commit/cc63b932b985ef80afe42714b27a30386f65d4e6))
+* **styles:** adjusted `date-picker` variables ([8cb2c74](https://github.com/spryker/ui-components/commit/8cb2c742011631095e98de9baea41370596895ae))
+* **styles:** adjusted `input` component/variables ([daaebdf](https://github.com/spryker/ui-components/commit/daaebdfa058492144afba47ad9c0dff1e4518255))
+* **styles:** adjusted `input` styles && `radio` variables ([2711e42](https://github.com/spryker/ui-components/commit/2711e42d1dae388d8c3b75438f759dfeee2e73d3))
+* **styles:** adjusted `input` styles && adjusted `form-item`/`tree-select` variables ([3bd9e53](https://github.com/spryker/ui-components/commit/3bd9e53162a73eb9f628d645d13017e51d518279))
+* **styles:** adjusted `link` variables ([2f15268](https://github.com/spryker/ui-components/commit/2f1526835d464a32de8c98388ad9224a9a455dee))
+* **styles:** adjusted `select` variables ([70aaeb7](https://github.com/spryker/ui-components/commit/70aaeb7a8a9fcea196f752d520bec253fc167d8e))
+* **styles:** adjusted styles and variables ([480f9ef](https://github.com/spryker/ui-components/commit/480f9ef9d65b08970925127e200d474ff37f6c6c))
+* **styles:** adjusted variables ([89eab98](https://github.com/spryker/ui-components/commit/89eab98c2d75752885b83b06661710537e45dada))
+* **styles:** adjusted variables ([6df8024](https://github.com/spryker/ui-components/commit/6df8024edaf558386d3302892d1ae9970fa26544))
+* **styles:** cleanup button variables ([9373c93](https://github.com/spryker/ui-components/commit/9373c932c404ab371f04561c70e07fbd91df3546))
+* **styles:** fixed `form-item` variables ([329c647](https://github.com/spryker/ui-components/commit/329c647a9213c2b667d1bd9809112527c438eabe))
+* **styles:** fixed `grid` variables ([0ea0f73](https://github.com/spryker/ui-components/commit/0ea0f734124a09ab493db6df0dbc7c0dc59a5f05))
+* **styles:** fixed `radio`/`tabs` variables ([93ae3b9](https://github.com/spryker/ui-components/commit/93ae3b96071210a0c76d2a032073ee8fa008d81e))
+* **styles:** replaced static `font-weight` with variable ([dc10669](https://github.com/spryker/ui-components/commit/dc106699b0647b77b3a5a761444d3628567397c5))
+* **styles:** updated `table-feature-filters` variable to update table-filters-feature-margin-bottom ([0ab2882](https://github.com/spryker/ui-components/commit/0ab28825a2f7140958d852eb589c444cd58e4dbe))
+* **styles:** updated `table` variable by adding [@table-features-after-table-padding-vertical](https://github.com/table-features-after-table-padding-vertical) ([95d76d7](https://github.com/spryker/ui-components/commit/95d76d71e9cf82e5b05d5d5855967393eb002da1))
+* **styles:** updated `table` variable by removing unneeded one & refactoring one ([edcf4cc](https://github.com/spryker/ui-components/commit/edcf4cc5e9d4973152c4d52ebb3df99ed9b562e4))
+* **styles:** updated `table` variable to decrease table-feature--before-table padding ([43c64b5](https://github.com/spryker/ui-components/commit/43c64b57be198717ab8258de1f3df1f6dd44659a))
+
+
+### Features
+
+* introduced `border-radius` variables ([0ab637a](https://github.com/spryker/ui-components/commit/0ab637a6637fc7e2fbe29263013b39844cb83de9))
+* introduced `box-shadow` variables ([18814bc](https://github.com/spryker/ui-components/commit/18814bc82e3278a2fc41866504b6faa74f18565f))
+* introduced advanced css variables ([3c2c839](https://github.com/spryker/ui-components/commit/3c2c839c755a1ae05dc2b28bcd1a24691971c360))
+* **toggle:** introduced css variables ([6cc3b45](https://github.com/spryker/ui-components/commit/6cc3b45db103521b6bb42be5505bcccf9b4647da))
 
 
 
@@ -113,8 +194,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.2.0-next.0](https://github.com/spryker/ui-components/compare/@spryker/styles@1.1.0...@spryker/styles@1.2.0-next.0) (2024-01-04)
 
+**Note:** Version bump only for package @spryker/styles
 
-### Bug Fixes
 
 * **styles:** adjusted header padding ([d7b2659](https://github.com/spryker/ui-components/commit/d7b265958e2b90c7fb6a9b4d5d816f16319c24f2))
 
@@ -123,6 +204,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **styles:** adjusted user-menu styles by introducing [@user-menu-padding](https://github.com/user-menu-padding) variable and changing icon size ([71b19ee](https://github.com/spryker/ui-components/commit/71b19eeaead9da2b90528763d7dd9bcf655f906f))
 
+**Note:** Version bump only for package @spryker/styles
 
 
 
@@ -131,6 +213,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @spryker/styles
 
+**Note:** Version bump only for package @spryker/styles
 
 
 
@@ -315,7 +398,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   **styles:** adjusted variables ([6df8024](https://github.com/spryker/ui-components/commit/6df8024edaf558386d3302892d1ae9970fa26544))
 -   **styles:** fixed `form-item` variables ([329c647](https://github.com/spryker/ui-components/commit/329c647a9213c2b667d1bd9809112527c438eabe))
 
-### Features
+### Bug Fixes
 
 -   introduced advanced css variables ([3c2c839](https://github.com/spryker/ui-components/commit/3c2c839c755a1ae05dc2b28bcd1a24691971c360))
 
@@ -545,6 +628,83 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
+* **styles:** adjusted `table-feature-filters` variables by updating margin-bottom ([33b0357](https://github.com/spryker/ui-components/commit/33b035711e07ac2a100c047bf4fbaa855224d1fb))
+* **styles:** adjusted `table-feature-search` variables by adding margin-bottom variable ([3c74a6c](https://github.com/spryker/ui-components/commit/3c74a6c08857c2a8b516cf68bef804664e00676b))
+* **styles:** adjusted `table-feature-settings` variables by adding padding-left variable ([639f0fb](https://github.com/spryker/ui-components/commit/639f0fb538ef23458aced40d4cde441082ccd9e2))
+
+
+
+
+
+# [0.4.0-beta.5](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.4...@spryker/styles@0.4.0-beta.5) (2022-06-21)
+
+
+### Features
+
+* **tag:** configure stories for storybook for tag component ([a8a215a](https://github.com/spryker/ui-components/commit/a8a215a45557856e62ff1e9e19cf96f599d7722f))
+
+
+
+
+
+# [0.4.0-beta.4](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.3...@spryker/styles@0.4.0-beta.4) (2022-02-01)
+
+**Note:** Version bump only for package @spryker/styles
+
+
+
+
+
+# [0.4.0-beta.3](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.2...@spryker/styles@0.4.0-beta.3) (2022-02-01)
+
+
+### Bug Fixes
+
+* **carousel:** added styles to different states for navigation buttons ([b0c8036](https://github.com/spryker/ui-components/commit/b0c803674c2d6c0a33d9721006ff5143307baad6))
+* **dropdown:** extended storybook examples and fixed styles for icons in dropdown menu items ([70a6270](https://github.com/spryker/ui-components/commit/70a62707013404e5ecfa838b2ca6dcf603a857aa))
+
+
+
+
+
+# [0.4.0-beta.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.1...@spryker/styles@0.4.0-beta.2) (2021-10-26)
+
+
+### Features
+
+* **styles:** added short media query mixins ([31037f5](https://github.com/spryker/ui-components/commit/31037f578286bf732861cae2feb401008142b4fb))
+
+
+
+
+
+# [0.4.0-beta.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.4.0-beta.0...@spryker/styles@0.4.0-beta.1) (2021-10-25)
+
+
+### Features
+
+* **rating:** implemented rating component ([4ef703a](https://github.com/spryker/ui-components/commit/4ef703a311aa9d99d9ac07c9261565285f73ca8d))
+
+
+
+
+
+# [0.4.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-beta.1...@spryker/styles@0.4.0-beta.0) (2021-10-11)
+
+
+### Bug Fixes
+
+* **styles:** adjust `menu` styles ([f0d70d2](https://github.com/spryker/ui-components/commit/f0d70d21870d02401096fce931be2a0951a71331))
+
+
+### Features
+
+* **styles:** add new styles to `layout` and `menu` ([8a4d010](https://github.com/spryker/ui-components/commit/8a4d0103ca06b4b3fd6269e14585d2ab5f87e4cc))
+* **styles:** added `navigation` vars & adjusted `menu` vars ([ae62e2d](https://github.com/spryker/ui-components/commit/ae62e2d5c63c00414a4e66cffa77b1b2c9cacfad))
+
+
+
+
 -   **styles:** adjusted `table-feature-filters` variables by updating margin-bottom ([33b0357](https://github.com/spryker/ui-components/commit/33b035711e07ac2a100c047bf4fbaa855224d1fb))
 -   **styles:** adjusted `table-feature-search` variables by adding margin-bottom variable ([3c74a6c](https://github.com/spryker/ui-components/commit/3c74a6c08857c2a8b516cf68bef804664e00676b))
 -   **styles:** adjusted `table-feature-settings` variables by adding padding-left variable ([639f0fb](https://github.com/spryker/ui-components/commit/639f0fb538ef23458aced40d4cde441082ccd9e2))
@@ -556,6 +716,44 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   **styles:** adjust `menu` styles ([f0d70d2](https://github.com/spryker/ui-components/commit/f0d70d21870d02401096fce931be2a0951a71331))
 
 ### Features
+
+* **styles:** add new styles to `layout` and `menu` ([8a4d010](https://github.com/spryker/ui-components/commit/8a4d0103ca06b4b3fd6269e14585d2ab5f87e4cc))
+* **styles:** added `navigation` vars & adjusted `menu` vars ([ae62e2d](https://github.com/spryker/ui-components/commit/ae62e2d5c63c00414a4e66cffa77b1b2c9cacfad))
+
+
+
+
+
+## [0.3.3-beta.1](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-beta.0...@spryker/styles@0.3.3-beta.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* **carousel:** fixed next/prev button working, fixed styles ([a1832a1](https://github.com/spryker/ui-components/commit/a1832a13f40b9f7896ac49eef0b19075be1e0470))
+* **checkbox:** fixed styles for error state ([e90b035](https://github.com/spryker/ui-components/commit/e90b035d3b83df778aa32ee06313ced011509248))
+* **dropdown:** dropdown border and shadow styles adjusted according to design ([9688aa0](https://github.com/spryker/ui-components/commit/9688aa0bd1a15ccd6390934fa69706c6cf74c13c))
+* **dropdown:** dropdown styles refreshed according the styleguide, added classes to icon and text ([7c4a6d6](https://github.com/spryker/ui-components/commit/7c4a6d6b507734a3f35bf3804add4bafb8357cfa))
+
+
+
+
+
+## [0.3.3-beta.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.3-next.2...@spryker/styles@0.3.3-beta.0) (2021-10-05)
+
+
+### Bug Fixes
+
+* **carousel:** fixed some styles ([1d678d4](https://github.com/spryker/ui-components/commit/1d678d472713c120c751a8b6ecefe6fd1f05b7d6))
+
+
+### Reverts
+
+* Revert "Revert "refactor(carousel): some code improvements and fixed potentially bugs"" ([6fec210](https://github.com/spryker/ui-components/commit/6fec21015ce1274587bb93878a06c963b8c0ed6f))
+* Revert "Revert "fix(carousel): added shadow to next/prev buttons"" ([da0a3e7](https://github.com/spryker/ui-components/commit/da0a3e722a2a3fbdebb0f45bff3182228a12951b))
+* Revert "Revert "feat(carousel): added styles to carousel"" ([f663b0e](https://github.com/spryker/ui-components/commit/f663b0e03a1d1e4dce7503dab99d24e5fb04a87c))
+
+
+
 
 -   **styles:** add new styles to `layout` and `menu` ([8a4d010](https://github.com/spryker/ui-components/commit/8a4d0103ca06b4b3fd6269e14585d2ab5f87e4cc))
 -   **styles:** added `navigation` vars & adjusted `menu` vars ([ae62e2d](https://github.com/spryker/ui-components/commit/ae62e2d5c63c00414a4e66cffa77b1b2c9cacfad))
@@ -609,6 +807,30 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.3.2-next.2](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.2-next.1...@spryker/styles@0.3.2-next.2) (2021-09-22)
 
 ### Bug Fixes
+
+* **styles:** adjusted `button` variables by adding variables ([7b5430b](https://github.com/spryker/ui-components/commit/7b5430bb36b47315257233ab0c1625dd34a5d929))
+* **styles:** adjusted `button` variables by adding variables for secondary buttons ([28f8dfb](https://github.com/spryker/ui-components/commit/28f8dfbfbeb8bf93b6bd4c4047c565d0902ad4fd))
+
+
+
+
+
+# [0.3.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/styles@0.3.0-next.1...@spryker/styles@0.3.0-beta.0) (2021-09-17)
+
+
+### Bug Fixes
+
+* **carousel:** fixed some styles ([1d678d4](https://github.com/spryker/ui-components/commit/1d678d472713c120c751a8b6ecefe6fd1f05b7d6))
+
+
+### Reverts
+
+* Revert "Revert "refactor(carousel): some code improvements and fixed potentially bugs"" ([6fec210](https://github.com/spryker/ui-components/commit/6fec21015ce1274587bb93878a06c963b8c0ed6f))
+* Revert "Revert "fix(carousel): added shadow to next/prev buttons"" ([da0a3e7](https://github.com/spryker/ui-components/commit/da0a3e722a2a3fbdebb0f45bff3182228a12951b))
+* Revert "Revert "feat(carousel): added styles to carousel"" ([f663b0e](https://github.com/spryker/ui-components/commit/f663b0e03a1d1e4dce7503dab99d24e5fb04a87c))
+
+
+
 
 -   **styles:** adjusted `button` variables by adding variables ([7b5430b](https://github.com/spryker/ui-components/commit/7b5430bb36b47315257233ab0c1625dd34a5d929))
 -   **styles:** adjusted `button` variables by adding variables for secondary buttons ([28f8dfb](https://github.com/spryker/ui-components/commit/28f8dfbfbeb8bf93b6bd4c4047c565d0902ad4fd))

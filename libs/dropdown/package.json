@@ -1,12 +1,11 @@
 {
     "name": "@spryker/dropdown",
-    "version": "2.0.0",
+    "version": "2.0.1-next.1",
     "peerDependencies": {
         "@angular/common": "^17.3.0",
         "@angular/core": "^17.3.0",
         "@spryker/icon": "^2.0.0",
-        "@spryker/styles": "^2.0.0",
-        "@spryker/utils": "^2.0.0"
+        "@spryker/styles": "^2.0.0"
     },
     "dependencies": {
         "ng-zorro-antd": "^17.3.0",

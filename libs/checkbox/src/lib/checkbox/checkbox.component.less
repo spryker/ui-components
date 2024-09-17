@@ -120,7 +120,32 @@
         }
     }
 
-    + span:empty {
-        padding: 0;
+    + span {
+        line-height: @checkbox-label-line-height;
+
+        &:empty {
+            padding: 0;
+        }
+    }
+}
+
+.@{form-item-prefix-cls}-has-error {
+    .@{checkbox-prefix-cls},
+    .@{checkbox-prefix-cls}-wrapper {
+        &:hover,
+        &:active,
+        &:focus {
+            .@{checkbox-prefix-cls}-inner {
+                border-color: @error-color;
+            }
+        }
+
+        &-inner {
+            border-color: @error-color;
+        }
+    }
+
+    &-inner {
+        border-color: @error-color;
     }
 }

@@ -18,7 +18,10 @@ class TestComponent {
 
     datasourceData = of('initial data');
 
-    constructor(private injector: Injector, private datasourceService: DatasourceService) {}
+    constructor(
+        private injector: Injector,
+        private datasourceService: DatasourceService,
+    ) {}
 
     getData(): void {
         this.datasourceData = this.datasourceService.resolve(this.injector, {

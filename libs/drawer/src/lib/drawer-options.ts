@@ -9,6 +9,7 @@ export class DrawerOptionsBase<D = DrawerData> {
     readonly resizable: boolean;
     readonly width: string;
     readonly hasBackdrop: boolean;
+    readonly closeOnBackdrop: boolean;
     readonly data?: D;
 
     constructor({

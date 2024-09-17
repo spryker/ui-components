@@ -43,7 +43,10 @@ class RenderFeaturesComponent {
         this.cdr.detectChanges();
     }
 
-    constructor(private injector: Injector, private cdr: ChangeDetectorRef) {}
+    constructor(
+        private injector: Injector,
+        private cdr: ChangeDetectorRef,
+    ) {}
 
     features: MockTableFeatureComponent[] = [];
 }

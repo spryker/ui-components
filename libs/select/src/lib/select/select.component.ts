@@ -4,6 +4,8 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    ContentChild,
+    ContentChildren,
     ElementRef,
     EventEmitter,
     Injector,
@@ -12,6 +14,7 @@ import {
     OnDestroy,
     OnInit,
     Output,
+    QueryList,
     SimpleChanges,
     TemplateRef,
     ViewChild,
@@ -27,6 +30,8 @@ import { NzOptionComponent, NzSelectComponent } from 'ng-zorro-antd/select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
 
+import { OptionComponent } from '../option/option.component';
+import { SelectedOptionComponent } from '../selected-option/selected-option.component';
 import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from './types';
 
 @Component({
@@ -68,6 +73,7 @@ export class SelectComponent
     @Input({ transform: booleanAttribute }) tagView = false;
     @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
+    @Input() customOptionTemplate = false;
 
     _tags: boolean;
     get tags(): boolean {
@@ -109,6 +115,28 @@ export class SelectComponent
     );
 
     private destroyed$ = new Subject<void>();
+    optionReference = OptionComponent;
+    selectedOptionReference = SelectedOptionComponent;
+
+    selectedOption$ = new BehaviorSubject<any>(null);
+
+    @ContentChildren(OptionComponent)
+    set contentOptions(options: QueryList<OptionComponent>) {
+        setTimeout(() => {
+            if (this.customOptionTemplate) {
+                this.setTemplateOptions(options.toArray());
+            }
+        });
+    }
+
+    @ContentChild(SelectedOptionComponent)
+    set contentSelectedOption(option: SelectedOptionComponent) {
+        if (option) {
+            setTimeout(() => {
+                this.selectedOption$.next(option.template);
+            });
+        }
+    }
 
     constructor(
         private injector: Injector,
@@ -174,6 +202,29 @@ export class SelectComponent
 
         this.updateTitlesArrayForSelectedValues(value);
         this.emitValueChange(value);
+    }
+
+    optionsFound(options: OptionComponent[]) {
+        setTimeout(() => {
+            this.setTemplateOptions(options);
+        });
+    }
+
+    selectedOptionFound(options: SelectedOptionComponent[]) {
+        this.selectedOption$.next(options[0]?.template);
+    }
+
+    private setTemplateOptions(options: OptionComponent[]) {
+        this.options = options.map(
+            (optionComp) =>
+                ({
+                    title: optionComp.title,
+                    value: optionComp.value,
+                    isDisabled: optionComp.disabled,
+                    template: optionComp.template,
+                }) as SelectOptionItem,
+        );
+        this.updateOptions();
     }
 
     onTagClick(event: Event, item: NzOptionComponent): void {
@@ -259,8 +310,8 @@ export class SelectComponent
             this.multiple && Array.isArray(this.value)
                 ? this.value.filter((value) => this.isValueExist(value))
                 : this.isValueExist(this.value)
-                ? this.value
-                : undefined;
+                  ? this.value
+                  : undefined;
 
         this.updateTitlesArrayForSelectedValues(this.mappedValue);
     }

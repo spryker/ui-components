@@ -50,7 +50,7 @@ export class TableFeaturesRendererService implements OnDestroy {
                                                 featureTemplate: tplDirective.template,
                                                 featureContext$: EMPTY, // This will be mapped later
                                                 featureStyles$: tplDirective.styles$,
-                                            } as Omit<FeatureRecord, 'template'>),
+                                            }) as Omit<FeatureRecord, 'template'>,
                                     ),
                             ),
                         ),

@@ -2,8 +2,11 @@ import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { WebComponentsModule } from '@spryker/web-components';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
+import { OptionComponent } from '../option/option.component';
 import { SelectModule } from '../select.module';
+import { SelectedOptionComponent } from '../selected-option/selected-option.component';
 import { SelectComponent } from './select.component';
 
 export default {
@@ -131,3 +134,61 @@ export const withTags = (args) => ({
 withTags.args = {
     tags: true,
 };
+
+export const withCustomContent = (args) => ({
+    props: args,
+    template: `
+    <spy-select
+        customOptionTemplate="true"
+        [placeholder]="placeholder"
+        [multiple]="multiple"
+        [search]="search"
+        [value]="'option1'"
+    >
+        <spy-option value="option1" title="Red text">
+            <span style="color: red; font-weight: 400">Red text</span>
+        </spy-option>
+        <spy-option value="option2" title="Bold text" disabled>
+            <span style="font-weight: 700">Bold text</span>
+        </spy-option>
+        <spy-option value="option3" title="Italic text">
+            <span style="font-style: italic">Italic text</span>
+        </spy-option>
+        <spy-selected-option>
+            <span before>before </span>
+            <span after> after</span>
+        </spy-selected-option>
+    </spy-select>
+  `,
+});
+
+withCustomContent.args = {
+    multiple: false,
+};
+
+export const asWebComponents = () => ({
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(
+                WebComponentsModule.withComponents([SelectComponent, OptionComponent, SelectedOptionComponent]),
+            ),
+        ],
+    },
+    template: `
+    <web-spy-select custom-option-template="true">
+      <web-spy-option value="option1" title="Red text">
+          <span style="color: red; font-weight: 400">Red text</span>
+      </web-spy-option>
+      <web-spy-option value="option2" disabled="true" title="Bold text">
+          <span style="font-weight: 700">Bold text</span>
+      </web-spy-option>
+      <web-spy-option value="option3" title="Italic text">
+          <span style="font-style: italic">Italic text</span>
+      </web-spy-option>
+      <web-spy-selected-option selected>
+          <span before>before </span>
+          <span after> after</span>
+      </web-spy-selected-option>
+    </web-spy-select>
+  `,
+});

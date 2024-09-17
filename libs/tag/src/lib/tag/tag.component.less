@@ -1,0 +1,67 @@
+@import './tag.component.theme.less';
+
+.@{tag-prefix-cls} {
+    display: inline-flex;
+    flex-direction: row;
+    width: fit-content;
+    align-items: center;
+    cursor: pointer;
+    background: @tag-bg;
+    border-radius: @tag-border-radius;
+    color: @tag-label-color;
+
+    &__label {
+        padding: @tag-label-padding;
+        font-family: @font-family;
+        font-weight: @font-weight-medium;
+        font-size: @font-size-base;
+        line-height: @tag-label-height;
+    }
+
+    &__remove-button-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        height: @tag-remove-button-height;
+        background: @tag-remove-button-bg;
+        border-radius: @tag-remove-button-border-radius;
+
+        :hover > & {
+            background: @tag-remove-button-hover-bg;
+        }
+
+        .@{btn-icon-prefix-cls}__button {
+            background: none;
+
+            &:is(:hover, :focus) {
+                background: none;
+                box-shadow: none;
+            }
+
+            .@{btn-icon-prefix-cls}__icon {
+                color: @white;
+                width: @tag-remove-button-icon-width;
+                font-size: @tag-remove-button-icon-size;
+            }
+        }
+
+        :focus > & {
+            box-shadow: @box-shadow-focus;
+            background: @tag-remove-button-focus-bg;
+        }
+    }
+
+    &-disabled {
+        color: @tag-disabled-color;
+        pointer-events: none;
+
+        .@{btn-icon-prefix-cls}--disabled {
+            background: @tag-remove-button-disabled-color;
+
+            .@{icon-prefix-cls}-remove {
+                color: @tag-remove-button-icon-disabled-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+<swiper-container class="spy-carousel__main" thumbs-swiper=".spy-carousel__thumbs" #carousel init="false">
+    <ng-container *ngTemplateOutlet="slides; context: { $implicit: 'template' }"></ng-container>
+</swiper-container>
+
+@if (withThumbs) {
+    <swiper-container slides-per-view="auto" class="spy-carousel__thumbs" #thumbs init="false">
+        <ng-container *ngTemplateOutlet="slides; context: { $implicit: 'thumbTemplate' }"></ng-container>
+    </swiper-container>
+
+    <button class="spy-carousel__navigation-button spy-carousel__navigation-button--prev">
+        <spy-icon [name]="paginationArrowIcon"></spy-icon>
+    </button>
+
+    <button class="spy-carousel__navigation-button spy-carousel__navigation-button--next">
+        <spy-icon [name]="paginationArrowIcon"></spy-icon>
+    </button>
+}
+
+<ng-template #slides let-prop>
+    @for (slide of slides$ | async; track $index) {
+        <swiper-slide class="spy-carousel__slide spy-carousel__slide--{{ prop === 'template' ? 'main' : 'thumb' }}">
+            <ng-container *ngTemplateOutlet="slide[prop]"></ng-container>
+        </swiper-slide>
+    }
+</ng-template>
+
+<span [spySelectComponents]="slideReference" (spySelectComponentsFound)="slidesFound($event)" style="display: none">
+    <ng-content></ng-content>
+</span>

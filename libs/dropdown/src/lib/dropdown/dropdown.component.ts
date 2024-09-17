@@ -1,13 +1,13 @@
 import {
+    booleanAttribute,
+    ChangeDetectionStrategy,
     Component,
+    EventEmitter,
+    HostBinding,
     Input,
     Output,
-    EventEmitter,
     ViewEncapsulation,
-    ChangeDetectionStrategy,
-    HostBinding,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
 
 export interface DropdownItem {
     action: string;
@@ -17,6 +17,7 @@ export interface DropdownItem {
     subItems?: DropdownItem[];
 }
 export type Placement = 'bottomLeft' | 'bottomCenter' | 'bottomRight' | 'topLeft' | 'topCenter' | 'topRight';
+export type Trigger = 'click' | 'hover';
 
 @Component({
     selector: 'spy-dropdown',
@@ -28,11 +29,11 @@ export type Placement = 'bottomLeft' | 'bottomCenter' | 'bottomRight' | 'topLeft
 export class DropdownComponent {
     @Input() items: DropdownItem[] = [];
     @Input() placement: Placement = 'bottomRight';
+    @Input() trigger: Trigger = 'hover';
     @HostBinding('class.spy-dropdown--open')
-    @Input()
-    @ToBoolean()
+    @Input({ transform: booleanAttribute })
     visible = false;
-    @Input() @ToBoolean() disabled = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
     @Output() visibleChange = new EventEmitter<boolean>();
     @Output() actionTriggered = new EventEmitter<string>();
 }

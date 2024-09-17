@@ -12,7 +12,10 @@ export class OverlayModalWrapperRef implements ModalWrapperRef {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     private onDispose = () => {};
 
-    constructor(private overlayRef: OverlayRef, private componentRef: ComponentRef<ModalWrapperComponent>) {
+    constructor(
+        private overlayRef: OverlayRef,
+        private componentRef: ComponentRef<ModalWrapperComponent>,
+    ) {
         this.overlayRef
             .backdropClick()
             .pipe(takeUntil(this.destroyed$))

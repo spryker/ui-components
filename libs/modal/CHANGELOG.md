@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-next.1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/modal@2.0.1-next.0...@spryker/modal@2.0.1-next.1) (2024-09-17)
+
+**Note:** Version bump only for package @spryker/modal
+
+
+
+
+
+## [2.0.1-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/modal@2.0.0...@spryker/modal@2.0.1-next.0) (2024-09-17)
+
+**Note:** Version bump only for package @spryker/modal
+
+
+
+
+
+# [0.3.0-beta.0](https://github.com/spryker/ui-components/compare/@spryker/modal@0.2.5-beta.0...@spryker/modal@0.3.0-beta.0) (2023-02-01)
+
+
+### Features
+
+* add okButtonVariant to signature ([#534](https://github.com/spryker/ui-components/issues/534)) ([0af3e73](https://github.com/spryker/ui-components/commit/0af3e735aec77581b7dd9cd44ef6de1c5c83f594))
+
+
+
+
+
+## [0.2.5-beta.0](https://github.com/spryker/ui-components/compare/@spryker/modal@0.2.4...@spryker/modal@0.2.5-beta.0) (2022-08-08)
+
+**Note:** Version bump only for package @spryker/modal
+
+
+
+
+
 # [2.0.0](https://github.com/spryker/ui-components/compare/@spryker/modal@2.0.0-rc.1...@spryker/modal@2.0.0) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/modal
@@ -347,6 +382,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 **Note:** Version bump only for package @spryker/modal
 
 ## [0.0.10](https://github.com/spryker/ui-components/compare/@spryker/modal@0.0.10-next.1...@spryker/modal@0.0.10) (2021-11-05)
+
+**Note:** Version bump only for package @spryker/modal
+
+
+
+
+
+## [0.0.10-beta.0](https://github.com/spryker/ui-components/compare/@spryker/modal@0.0.10-next.1...@spryker/modal@0.0.10-beta.0) (2021-10-05)
 
 **Note:** Version bump only for package @spryker/modal
 

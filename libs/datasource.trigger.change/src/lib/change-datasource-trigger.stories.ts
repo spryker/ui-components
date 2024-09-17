@@ -61,7 +61,10 @@ class TestComponent implements DatasourceTriggerElement, OnInit, AfterViewInit {
     datasourceData = of('');
     triggerElement$ = new ReplaySubject<any>(1);
 
-    constructor(private injector: Injector, private datasourceTriggerService: DatasourceTriggerService) {}
+    constructor(
+        private injector: Injector,
+        private datasourceTriggerService: DatasourceTriggerService,
+    ) {}
 
     ngOnInit(): void {
         this.datasourceData = this.datasourceTriggerService.resolve(this.injector, this.datasource) as any;

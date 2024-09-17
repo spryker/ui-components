@@ -85,6 +85,8 @@ export class TableColumnSelectConfig {
     datasource?: ColumnSelectDatasource;
     @ColumnTypeOption()
     tags? = false;
+    @ColumnTypeOption()
+    tagView? = false;
 }
 
 @Component({

@@ -298,7 +298,7 @@ export class SelectComponent
         }
 
         if (this.tags) {
-            this.allTags = (this.value as SelectValue[]).filter((value) => !this.allValues.includes(value));
+            this.allTags = ((this.value ?? []) as SelectValue[]).filter((value) => !this.allValues.includes(value));
 
             this.updateSelectWithNewTags();
         }

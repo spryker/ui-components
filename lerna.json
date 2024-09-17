@@ -1,5 +1,7 @@
 {
-    "packages": ["libs/*"],
+    "packages": [
+        "libs/*"
+    ],
     "version": "independent",
     "npmClient": "npm",
     "command": {
@@ -19,8 +21,12 @@
                 "republish/rc"
             ],
             "contents": "dist",
-            "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
-            "message": "chore(release): publish [skip ci]"
+            "ignoreChanges": [
+                "*.md",
+                "**/*.spec.ts",
+                "**/*.stories.ts"
+            ],
+            "message": "chore(release): publish [ci skip]"
         }
     },
     "useNx": true

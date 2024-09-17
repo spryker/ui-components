@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.6-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.5...@spryker/select@2.0.6-next.0) (2024-09-17)
+
+
+### Bug Fixes
+
+* **select:** fix tag value parsing ([3202d21](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/3202d21e63b89967871394f404d1e6f3621355b5))
+
+
+
+
+
 ## [2.0.5](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.4...@spryker/select@2.0.5) (2024-09-17)
 
 **Note:** Version bump only for package @spryker/select

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8-next.1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.8-next.0...@spryker/styles@2.0.8-next.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* **color:** fixed color accessibility ([#624](http://172.31.33.130:9292/spryker-internal-ci/ui-components/issues/624)) ([efab327](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/efab327810fb39d3701a94ea538ce92812dfe6b9))
+
+
+
+
+
 ## [2.0.8-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/styles@2.0.7...@spryker/styles@2.0.8-next.0) (2024-09-17)
 
 **Note:** Version bump only for package @spryker/styles

@@ -5,5 +5,5 @@
         "entryFile": "src/index.ts",
         "styleIncludePaths": ["../styles/src/lib"]
     },
-    "allowedNonPeerDependencies": ["ng-zorro-antd"]
+    "allowedNonPeerDependencies": ["ng-zorro-antd", "@spryker/tag"]
 }

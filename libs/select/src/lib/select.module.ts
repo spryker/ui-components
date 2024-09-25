@@ -29,4 +29,4 @@ import { SelectedOptionComponent } from './selected-option/selected-option.compo
     declarations: [SelectComponent, OptionComponent, SelectedOptionComponent],
     exports: [SelectComponent, OptionComponent, SelectedOptionComponent],
 })
-export class SelectModule { }
+export class SelectModule {}

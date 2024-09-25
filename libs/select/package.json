@@ -1,6 +1,6 @@
 {
     "name": "@spryker/select",
-    "version": "2.0.8-next.0",
+    "version": "2.0.8",
     "peerDependencies": {
         "@angular/common": "^17.3.0",
         "@angular/core": "^17.3.0",

@@ -3,25 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.5.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/actions.redirect@2.4.0...@spryker/actions.redirect@2.5.0) (2024-09-25)
-
-**Note:** Version bump only for package @spryker/actions.redirect
-
-
-
-
-
-# [2.5.0-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/actions.redirect@2.4.0...@spryker/actions.redirect@2.5.0-next.0) (2024-09-25)
-
-
-### Features
-
-* **actions.redirect:** add newTab property ([#612](http://172.31.33.130:9292/spryker-internal-ci/ui-components/issues/612)) ([89874af](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/89874af11ec8750d28f8e8a0cf6bbd2326d65529))
-
-
-
-
-
 # [2.4.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/actions.redirect@2.3.0...@spryker/actions.redirect@2.4.0) (2024-09-23)
 
 **Note:** Version bump only for package @spryker/actions.redirect

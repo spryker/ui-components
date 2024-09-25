@@ -23,10 +23,10 @@ import { SelectedOptionComponent } from './selected-option/selected-option.compo
         IconCheckModule,
         IconRemoveModule,
         JoinModule,
-        SelectComponentsModule,
         TagModule,
+        SelectComponentsModule,
     ],
     declarations: [SelectComponent, OptionComponent, SelectedOptionComponent],
     exports: [SelectComponent, OptionComponent, SelectedOptionComponent],
 })
-export class SelectModule {}
+export class SelectModule { }

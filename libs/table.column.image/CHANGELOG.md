@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.image@2.0.4...@spryker/table.column.image@2.0.5) (2024-09-23)
+
+**Note:** Version bump only for package @spryker/table.column.image
+
+
+
+
+
 ## [2.0.5-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.image@2.0.4...@spryker/table.column.image@2.0.5-next.0) (2024-09-17)
 
 **Note:** Version bump only for package @spryker/table.column.image

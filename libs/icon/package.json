@@ -1,6 +1,6 @@
 {
     "name": "@spryker/icon",
-    "version": "2.0.5",
+    "version": "2.0.6-next.0",
     "peerDependencies": {
         "@angular/common": "^17.3.0",
         "@angular/core": "^17.3.0",

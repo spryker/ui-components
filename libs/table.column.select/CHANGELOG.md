@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.select@2.2.3...@spryker/table.column.select@2.3.0-next.0) (2024-09-25)
+
+
+### Bug Fixes
+
+* **select:** fix initial tags value ([c5ca804](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/c5ca8041b5ead934f94d87a960c6b0cdd850f093))
+
+
+### Features
+
+* **table.column.select:** add tags prop ([56bf761](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/56bf76187174d1ac80b210b5fca4d1d5c73034c2))
+
+
+
+
+
 ## [2.2.3](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.select@2.2.2...@spryker/table.column.select@2.2.3) (2024-09-23)
 
 **Note:** Version bump only for package @spryker/table.column.select

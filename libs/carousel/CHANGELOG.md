@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/carousel@0.1.4...@spryker/carousel@0.1.5-next.0) (2024-09-25)
+
+
+### Bug Fixes
+
+* update tag ([cbfa158](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/cbfa1586f07f74485fce9b817eccd0a2edac9700))
+
+
+
+
+
 ## [0.1.4](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/carousel@0.1.3...@spryker/carousel@0.1.4) (2024-09-23)
 
 **Note:** Version bump only for package @spryker/carousel

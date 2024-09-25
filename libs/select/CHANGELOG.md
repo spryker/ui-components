@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.7...@spryker/select@2.0.8-next.0) (2024-09-25)
+
+
+### Bug Fixes
+
+* allow non peer ([23747a3](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/23747a3f3fe9155319646ba1aa00c620dbdd321c))
+* ci backward compatibility with tag ([520c3a3](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/520c3a31b0299ce86025226aad8295310d607335))
+* **select:** add tags guard ([f325865](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/f3258651e5b5929803c4aa513f742a83e7321a45))
+* **select:** fix initial tags value ([c5ca804](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/c5ca8041b5ead934f94d87a960c6b0cdd850f093))
+* **select:** fix tag value parsing ([3202d21](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/3202d21e63b89967871394f404d1e6f3621355b5))
+
+
+
+
+
 ## [2.0.7](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.6...@spryker/select@2.0.7) (2024-09-23)
 
 **Note:** Version bump only for package @spryker/select

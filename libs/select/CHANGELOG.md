@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.9-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.8...@spryker/select@2.0.9-next.0) (2024-09-25)
+
+
+### Bug Fixes
+
+* fix tag vestion in deps ([65e82ad](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/65e82ade9ab4990925e08d8c537c6d6db2b5c689))
+
+
+
+
+
 ## [2.0.8](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.7...@spryker/select@2.0.8) (2024-09-25)
 
 **Note:** Version bump only for package @spryker/select

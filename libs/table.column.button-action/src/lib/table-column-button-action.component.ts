@@ -27,6 +27,8 @@ export class TableColumnButtonActionConfig {
     size?: ButtonSize;
     @ColumnTypeOption()
     attrs?: ButtonAttributes;
+    @ColumnTypeOption()
+    icon?: string;
 
     constructor(private contextService: ContextService) {}
 }

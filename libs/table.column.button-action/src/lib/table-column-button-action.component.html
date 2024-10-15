@@ -5,5 +5,10 @@
     [shape]="config?.shape"
     [size]="config?.size"
     [attrs]="config?.attrs"
-    >{{ config.text | context: context }}</spy-button-action
 >
+    @if (config.icon) {
+        <spy-icon icon [name]="config.icon"></spy-icon>
+    }
+
+    {{ config.text | context: context }}
+</spy-button-action>

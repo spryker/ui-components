@@ -1,7 +1,16 @@
 <button [type]="type" [disabled]="disabled" [spyApplyAttrs]="attrs" [class.loading]="loading" #buttonRef>
     <spy-spinner [isSpinning]="loading" [size]="spinnerSize"></spy-spinner>
-    <span class="spy-button-core__btn-icon" [class.spy-button-core__btn-icon--loading]="loading">
+    <span
+        class="spy-button-core__btn-icon"
+        [class.spy-button-core__btn-icon--loading]="loading"
+        [class.spy-button-core__btn-icon--icon-only]="
+            projected.children.length === 0 && projected.textContent.trim().length === 0
+        "
+    >
         <ng-content select="[icon]"></ng-content>
     </span>
-    <ng-content></ng-content>
+
+    <span #projected>
+        <ng-content></ng-content>
+    </span>
 </button>

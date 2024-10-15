@@ -1,16 +1,16 @@
 {
     "name": "@spryker/table.column.button-action",
-    "version": "1.0.6",
+    "version": "1.0.7-next.0",
     "peerDependencies": {
         "@angular/common": "^17.3.0",
-        "@angular/core": "^17.3.0",
-        "@spryker/actions": "^2.0.0",
-        "@spryker/button": "^2.0.0",
-        "@spryker/button.action": "^2.0.0",
-        "@spryker/table": "^2.0.0",
-        "@spryker/utils": "^2.0.0"
+        "@angular/core": "^17.3.0"
     },
     "dependencies": {
+        "@spryker/actions": "^2.0.0",
+        "@spryker/button": "^2.0.7-next.0",
+        "@spryker/button.action": "^2.0.0",
+        "@spryker/table": "^2.0.0",
+        "@spryker/utils": "^2.0.0",
         "tslib": "^2.6.2"
     },
     "publishConfig": {

@@ -17,7 +17,8 @@
                 },
                 "development": {
                     "tsConfig": "libs/table.column.button-action/tsconfig.lib.json"
-                }
+                },
+                "allowedNonPeerDependencies": ["*"]
             },
             "defaultConfiguration": "production"
         },

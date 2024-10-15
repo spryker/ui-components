@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ActionsModule } from '@spryker/actions';
 import { NotificationActionHandlerService } from '@spryker/actions.notification';
 import { RedirectActionHandlerService } from '@spryker/actions.redirect';
@@ -11,7 +10,9 @@ import { NotificationModule, NotificationWrapperComponent } from '@spryker/notif
 import { TableModule } from '@spryker/table';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 
+import { IconPlusModule } from '@spryker/icon/icons';
 import { TableColumnButtonActionComponent } from './table-column-button-action.component';
 import { TableColumnButtonActionModule } from './table-column-button-action.module';
 
@@ -148,7 +149,7 @@ export const withTable = (args) => ({
         ],
     },
     moduleMetadata: {
-        imports: [ContextModule, TableModule],
+        imports: [ContextModule, TableModule, IconPlusModule],
         entryComponents: [NotificationWrapperComponent],
     },
     template: `
@@ -171,6 +172,7 @@ withTable.args = {
                 type: 'button-action',
                 typeOptions: {
                     text: '${value}',
+                    icon: 'plus',
                     action: {
                         type: 'notification',
                         notifications: [

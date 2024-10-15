@@ -1,18 +1,18 @@
 {
     "name": "@spryker/button",
-    "version": "2.0.6",
+    "version": "2.0.7-next.0",
     "peerDependencies": {
         "@angular/common": "^17.3.0",
         "@angular/core": "^17.3.0",
         "rxjs": "^7.8.1"
     },
     "dependencies": {
-        "tslib": "^2.6.2",
         "@spryker/ajax-action": "^2.0.0",
+        "@spryker/icon": "^2.0.0",
         "@spryker/spinner": "^2.0.0",
         "@spryker/styles": "^2.0.0",
         "@spryker/utils": "^2.0.0",
-        "@spryker/icon": "^2.0.0"
+        "tslib": "^2.6.2"
     },
     "publishConfig": {
         "access": "public"

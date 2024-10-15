@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7-next.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/button@2.0.6...@spryker/button@2.0.7-next.0) (2024-10-15)
+
+
+### Bug Fixes
+
+* add missed icon ([#628](http://172.31.33.130:9292/spryker-internal-ci/ui-components/issues/628)) ([b8f16f6](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/b8f16f6ef56b99980d983167222f6c194f14dfac))
+
+
+
+
+
 ## [2.0.6](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/button@2.0.5...@spryker/button@2.0.6) (2024-09-25)
 
 **Note:** Version bump only for package @spryker/button

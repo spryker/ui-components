@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7-next.1](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.button-action@1.0.7...@spryker/table.column.button-action@1.0.7-next.1) (2024-10-16)
+
+
+### Bug Fixes
+
+* **table.column.button-action:** fix event propogation ([#630](http://172.31.33.130:9292/spryker-internal-ci/ui-components/issues/630)) ([a35fff4](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/a35fff439f6eb5ecd67a8aa224d66060a6eeae17))
+* **table.column.button-action:** fix version ([524f8f4](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/524f8f45564530a4cd37f8a721179c93cf952516))
+
+
+
+
+
 ## [1.0.7](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.button-action@1.0.6...@spryker/table.column.button-action@1.0.7) (2024-10-15)
 
 **Note:** Version bump only for package @spryker/table.column.button-action

@@ -6,13 +6,13 @@ import { NotificationActionHandlerService } from '@spryker/actions.notification'
 import { RedirectActionHandlerService } from '@spryker/actions.redirect';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
 import { DatasourceModule } from '@spryker/datasource';
+import { IconPlusModule } from '@spryker/icon/icons';
 import { NotificationModule, NotificationWrapperComponent } from '@spryker/notification';
-import { TableModule } from '@spryker/table';
+import { TableActionTriggeredEvent, TableModule } from '@spryker/table';
+import { TableRowActionsFeatureModule } from '@spryker/table.feature.row-actions';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
-
-import { IconPlusModule } from '@spryker/icon/icons';
 import { TableColumnButtonActionComponent } from './table-column-button-action.component';
 import { TableColumnButtonActionModule } from './table-column-button-action.module';
 
@@ -104,6 +104,7 @@ const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col2: mockUsers[i].name,
     col3: mockUsers[i].email,
     col4: mockUsers[i].id % 3 ? 'Assist' : 'Partially assist',
+    availableActions: i % 2 === 0 ? ['add', 'edit', 'delete'] : undefined,
 });
 
 export const primary = (args) => ({
@@ -125,7 +126,12 @@ primary.args = {
 };
 
 export const withTable = (args) => ({
-    props: args,
+    props: {
+        ...args,
+        events: {
+            table: (event: TableActionTriggeredEvent) => console.log('actionTriggered', event),
+        },
+    },
     applicationConfig: {
         providers: [
             importProvidersFrom(HttpClientTestingModule),
@@ -140,6 +146,10 @@ export const withTable = (args) => ({
                 ActionsModule.withActions({
                     notification: NotificationActionHandlerService,
                 }),
+                TableModule.withFeatures({
+                    rowActions: () =>
+                        import('@spryker/table.feature.row-actions').then((m) => m.TableRowActionsFeatureModule),
+                }),
             ),
             importProvidersFrom(
                 DatasourceModule.withDatasources({
@@ -149,11 +159,11 @@ export const withTable = (args) => ({
         ],
     },
     moduleMetadata: {
-        imports: [ContextModule, TableModule, IconPlusModule],
+        imports: [ContextModule, TableModule, IconPlusModule, TableRowActionsFeatureModule],
         entryComponents: [NotificationWrapperComponent],
     },
     template: `
-        <spy-table [config]="config"></spy-table>
+        <spy-table [events]='events' [config]="config"></spy-table>
     `,
 });
 withTable.args = {
@@ -162,6 +172,18 @@ withTable.args = {
             type: 'mock-data',
             dataGenerator: tableDataGenerator,
         } as unknown as MockTableDatasourceConfig,
+        rowActions: {
+            enabled: true, // This will enable feature via config
+            actions: [
+                { id: '1234', title: '123' },
+                { id: '2345', title: '234' },
+                { id: 'add', title: 'Add' },
+                { id: 'edit', title: 'Edit' },
+                { id: 'delete', title: 'Delete' },
+            ],
+            click: '1234',
+            availableActionsPath: 'availableActions',
+        },
         columns: [
             { id: 'col1', title: 'ID', sortable: true, width: '10%' },
             { id: 'col2', title: 'Name', sortable: true },

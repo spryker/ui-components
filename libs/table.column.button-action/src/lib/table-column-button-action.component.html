@@ -5,6 +5,7 @@
     [shape]="config?.shape"
     [size]="config?.size"
     [attrs]="config?.attrs"
+    (click)="$event.stopPropagation()"
 >
     @if (config.icon) {
         <spy-icon icon [name]="config.icon"></spy-icon>

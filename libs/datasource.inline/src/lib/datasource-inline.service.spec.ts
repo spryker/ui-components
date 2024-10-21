@@ -32,14 +32,14 @@ describe('DatasourceInlineService', () => {
     });
 
     it('resolve method should return value from config.data as observable', () => {
-        const mockReturnedValue = { test: 'test', depends: 'dependable', };
+        const mockReturnedValue = { test: 'test', depends: 'dependable' };
         const mockContext = { test2: 'depends' };
         const mockConfig: DatasourceInlineConfig = {
             type: 'inline-dependable',
             data: mockReturnedValue,
             dependsOnContext: {
                 contextKey: 'test2',
-            }
+            },
         };
         const mockInjector = {} as any;
         const callback = jest.fn();
@@ -59,7 +59,7 @@ describe('DatasourceInlineService', () => {
             dependsOnContext: {
                 contextKey: 'test2',
                 default: 'defaultValue',
-            }
+            },
         };
         const mockInjector = {} as any;
         const callback = jest.fn();

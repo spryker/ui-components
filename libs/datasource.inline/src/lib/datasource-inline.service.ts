@@ -8,7 +8,11 @@ import { DatasourceInlineConfig, DependableDatasourceInlineContext } from './typ
     providedIn: 'root',
 })
 export class DatasourceInlineService implements Datasource {
-    resolve(injector: Injector, config: DatasourceInlineConfig, context?: DependableDatasourceInlineContext): Observable<unknown> {
+    resolve(
+        injector: Injector,
+        config: DatasourceInlineConfig,
+        context?: DependableDatasourceInlineContext,
+    ): Observable<unknown> {
         if (!config.dependsOnContext) {
             return of(config.data);
         }

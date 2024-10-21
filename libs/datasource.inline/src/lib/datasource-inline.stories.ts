@@ -8,7 +8,7 @@ const context = {
     dependable1: 'data-1',
     dependable2: 'data-2',
     dependable3: 'data-3',
-}
+};
 
 @Component({
     selector: 'spy-test',
@@ -29,23 +29,31 @@ class TestComponent {
     constructor(
         private injector: Injector,
         private datasourceService: DatasourceService,
-    ) { }
+    ) {}
 
     getData(): void {
-        this.datasourceData = this.datasourceService.resolve(this.injector, {
-            type: 'inline',
-            data: !this.dependable ? this.datasourceDataProp : {
-                'data-1': 'data depends on context 1',
-                'data-2': 'data depends on context 2',
-                'data-3': 'data depends on context 3',
+        this.datasourceData = this.datasourceService.resolve(
+            this.injector,
+            {
+                type: 'inline',
+                data: !this.dependable
+                    ? this.datasourceDataProp
+                    : {
+                          'data-1': 'data depends on context 1',
+                          'data-2': 'data depends on context 2',
+                          'data-3': 'data depends on context 3',
+                      },
+                ...(this.dependable
+                    ? {
+                          dependsOnContext: {
+                              contextKey: this.contextKey,
+                              default: 'default data',
+                          },
+                      }
+                    : {}),
             },
-            ...(this.dependable ? {
-                dependsOnContext: {
-                    contextKey: this.contextKey,
-                    default: 'default data',
-                }
-            } : {})
-        }, this.dependable ? context : undefined);
+            this.dependable ? context : undefined,
+        );
     }
 }
 

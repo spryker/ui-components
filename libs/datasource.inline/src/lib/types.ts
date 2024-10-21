@@ -5,7 +5,7 @@ export interface DatasourceInlineConfig extends DatasourceConfig {
     dependsOnContext?: {
         contextKey: string;
         default?: unknown;
-    }
+    };
 }
 
 export type DependableDatasourceInlineContext = {

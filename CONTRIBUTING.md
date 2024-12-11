@@ -50,7 +50,7 @@ Thank you for considering contributing to our project! Your support and involvem
 
 -   Always work on a new branch.  
     \`\`\`bash
-    git checkout -b (feature or bugfix)/your-feature-name
+    git checkout -b (feature | bugfix)/your-feature-name
     \`\`\`
 
 ### 3. Make Your Changes

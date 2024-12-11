@@ -13,4 +13,4 @@ This is a mandatory step to make sure you are aware of the license agreement and
 
 ## Checklist
 
--   [x] I agree with the Code Contribution License Agreement in CONTRIBUTING.md
+-   [] I agree with the Code Contribution License Agreement in CONTRIBUTING.md

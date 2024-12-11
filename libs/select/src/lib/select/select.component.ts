@@ -309,12 +309,11 @@ export class SelectComponent
     }
 
     private updateValue(): void {
-        this.mappedValue =
-            this.multiple && Array.isArray(this.value)
-                ? this.value.filter((value) => this.isValueExist(value))
-                : this.isValueExist(this.value)
-                  ? this.value
-                  : undefined;
+        this.mappedValue = this.multiple
+            ? (Array.isArray(this.value) ? this.value : [this.value]).filter((value) => this.isValueExist(value))
+            : this.isValueExist(this.value)
+              ? this.value
+              : undefined;
 
         this.updateTitlesArrayForSelectedValues(this.mappedValue);
     }

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/carousel@0.1.5...@spryker/carousel@0.1.6) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/carousel
+
+
+
+
+
 ## [0.1.5](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/carousel@0.1.4...@spryker/carousel@0.1.5) (2024-09-25)
 
 **Note:** Version bump only for package @spryker/carousel

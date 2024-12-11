@@ -1,6 +1,6 @@
 {
     "name": "@spryker/utils",
-    "version": "2.0.6",
+    "version": "2.0.7",
     "peerDependencies": {
         "@angular/cdk": "^17.2.2",
         "@angular/common": "^17.3.0",

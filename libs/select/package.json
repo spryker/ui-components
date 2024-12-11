@@ -1,6 +1,6 @@
 {
     "name": "@spryker/select",
-    "version": "2.0.12",
+    "version": "2.0.13",
     "peerDependencies": {
         "@angular/common": "^17.3.0",
         "@angular/core": "^17.3.0",
@@ -15,7 +15,7 @@
         "rxjs": "^7.8.1"
     },
     "dependencies": {
-        "@spryker/tag": "^0.1.0",
+        "@spryker/tag": "^0.1.6",
         "ng-zorro-antd": "^17.3.0",
         "tslib": "^2.6.2"
     },

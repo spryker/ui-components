@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/radio@2.0.6...@spryker/radio@2.0.7) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/radio
+
+
+
+
+
 ## [2.0.6](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/radio@2.0.5...@spryker/radio@2.0.6) (2024-09-25)
 
 **Note:** Version bump only for package @spryker/radio

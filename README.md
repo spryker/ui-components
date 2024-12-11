@@ -136,10 +136,7 @@ _NOTE:_ When library is generated please do the following:
     -   add the following to the `references`:
     ```json
         {
-            "path": "./libs/<lib-name>/tsconfig.lib.json"
-        },
-        {
-            "path": "./libs/<lib-name>/tsconfig.spec.json"
+            "path": "./libs/<lib-name>/tsconfig.json"
         },
     ```
 -   In `libs/<lib-name>/.eslintrc.json`
@@ -150,12 +147,21 @@ _NOTE:_ When library is generated please do the following:
             "plugin:@angular-eslint/template/process-inline-templates"
         ],
     ```
--   In `libs/<lib-name>/jest.config.js`
+-   In `libs/<lib-name>/jest.config.ts`
     -   remove following sections:
     ```json
         "transform": { ... },
         "transformIgnorePatterns": [ ... ],
         "snapshotSerializers": [ ... ]
+    ```
+    -   add the following `globals`
+    ```json
+        globals: {
+            'ts-jest': {
+                tsconfig: '<rootDir>/tsconfig.spec.json',
+                stringifyContentPathRegex: '\\.(html|svg)$',
+            },
+        },
     ```
 -   In `libs/<lib-name>/ng-package.json`
     -   add `styleIncludePaths` to `lib` for theme imports (if needed):
@@ -178,6 +184,15 @@ _NOTE:_ When library is generated please do the following:
         "compilerOptions": { ... },
         "angularCompilerOptions": { ... }
     ```
+    -   add reference to prod config
+    ```json
+        "references": [
+            ...,
+            {
+                "path": "./tsconfig.lib.prod.json"
+            },
+        ]
+    ```
 -   In `libs/<lib-name>/tsconfig.lib.prod.json`
     -   remove following section:
     ```json
@@ -189,6 +204,11 @@ _NOTE:_ When library is generated please do the following:
     -   add global setup import:
     ```ts
     import '../../../config/test-setup';
+    ```
+-   In `lib/<lib-name>/src/project.json`
+    -   add `styles` as `implicitDependencies`
+    ```json
+        "implicitDependencies": ["styles"],
     ```
 
 ### Component
@@ -209,21 +229,90 @@ nx g @nx/storybook:configuration --name=<lib-name>
 
 _NOTE:_ Do the following updates after command above:
 
--   In `angular.json`:
-    -   add the following options to `<lib-name>.architect.storybook.options` and `<lib-name>.architect.build-storybook.options`:
-    ```json
-        ...,
-        "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "dist"],
-        "enableProdMode": false,
-        "styles": [".storybook/styles.less"]
-    ```
 -   In `<lib-name>/.storybook/tsconfig.json`:
     -   replace `"include"` array with (add `"../../locale/data/**/src/index.ts"` to array if using localization):
     ```json
         "include": ["../src/**/*", "*.js"]
     ```
+-   Change extension from `*.ts` into `*.js` for all files in the `<lib-name>/.storybook` folder
 -   Add `import '../../../.storybook/preview';` to the `<lib-name>/.storybook/preview.js`
+-   In `<lib-name>/.storybook/main.js`:
+
+    -   Replace the whole:
+
+        ```json
+            const rootMain = require('../../../.storybook/main');
+
+            module.exports = {
+                ...rootMain,
+
+                webpackFinal: async (config, { configType }) => {
+                    // apply any global webpack configs that might have been specified in .storybook/main.js
+                    if (rootMain.webpackFinal) {
+                        config = await rootMain.webpackFinal(config, { configType });
+                    }
+
+                    // add your own webpack tweaks if needed
+
+                    return config;
+                },
+
+                stories: ['../**/*.@(mdx|stories.@(ts))'],
+            };
+        ```
+
+-   In `libs/<lib-name>/tsconfig.json`:
+    -   add reference to prod config
+    ```json
+        "references": [
+            ...,
+            {
+                "path": "./.storybook/tsconfig.json"
+            },
+        ]
+    ```
+-   In `lib/<lib-name>/src/project.json`
+    -   add new configs for `targets` section
+    ```json
+        "targets": {
+            ...,
+             "storybook": {
+                "executor": "@storybook/angular:start-storybook",
+                "options": {
+                    "port": 4400,
+                    "configDir": "libs/<lib-name>/.storybook",
+                    "browserTarget": "<lib-name>:build-storybook",
+                    "compodoc": true,
+                    "compodocArgs": ["-e", "json", "-d", "dist"],
+                    "enableProdMode": false,
+                    "styles": [".storybook/styles.less"]
+                },
+                "configurations": {
+                    "ci": {
+                        "quiet": true
+                    }
+                }
+            },
+            "build-storybook": {
+                "executor": "@storybook/angular:build-storybook",
+                "outputs": ["{options.outputPath}"],
+                "options": {
+                    "outputDir": "dist/storybook/<lib-name>",
+                    "configDir": "libs/<lib-name>/.storybook",
+                    "browserTarget": "<lib-name>:build-storybook",
+                    "compodoc": true,
+                    "compodocArgs": ["-e", "json", "-d", "dist"],
+                    "enableProdMode": false,
+                    "styles": [".storybook/styles.less"]
+                },
+                "configurations": {
+                    "ci": {
+                        "quiet": true
+                    }
+                }
+            },
+        },
+    ```
 
 ### Library Stories
 

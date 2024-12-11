@@ -439,4 +439,4 @@ and try to publish them again with the same versions.
 -   [Angular](https://angular.io/docs)
 -   [RxJs](https://rxjs.dev/guide/overview)
 -   [Ant Design](https://ng.ant.design/docs/introduce/en)
--   [UI Components](https://docs.spryker.com/docs/dg/dev/frontend-development/202410.0/marketplace/ui-components-library/ui-components-library.html)
+-   [UI Components](https://docs.spryker.com/docs/dg/dev/frontend-development/202410.0/marketplace/marketplace-frontend.html)

@@ -1,7 +1,4 @@
 {
-    "affected": {
-        "defaultBase": "master"
-    },
     "tasksRunnerOptions": {
         "default": {
             "options": {
@@ -40,13 +37,8 @@
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "targetDefaults": {
         "build": {
-            "dependsOn": [
-                "^build"
-            ],
-            "inputs": [
-                "production",
-                "^production"
-            ],
+            "dependsOn": ["^build"],
+            "inputs": ["production", "^production"],
             "cache": true
         },
         "build-storybook": {
@@ -60,18 +52,10 @@
             "cache": true
         },
         "compile": {
-            "inputs": [
-                "default",
-                "^production",
-                "{workspaceRoot}/.storybook/**/*"
-            ]
+            "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
         },
         "@nx/jest:jest": {
-            "inputs": [
-                "default",
-                "^production",
-                "{workspaceRoot}/jest.preset.js"
-            ],
+            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
             "cache": true,
             "options": {
                 "passWithNoTests": true,
@@ -85,23 +69,13 @@
             }
         },
         "@nx/eslint:lint": {
-            "inputs": [
-                "default",
-                "{workspaceRoot}/.eslintrc.json"
-            ],
+            "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
             "cache": true
         }
     },
     "namedInputs": {
-        "default": [
-            "{projectRoot}/**/*",
-            "sharedGlobals"
-        ],
-        "sharedGlobals": [
-            "{workspaceRoot}/angular.json",
-            "{workspaceRoot}/tsconfig.json",
-            "{workspaceRoot}/nx.json"
-        ],
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "sharedGlobals": ["{workspaceRoot}/angular.json", "{workspaceRoot}/tsconfig.json", "{workspaceRoot}/nx.json"],
         "production": [
             "default",
             "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",

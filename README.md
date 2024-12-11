@@ -85,8 +85,6 @@ All components are classified according to Atomic Design into the following (for
 1. Atom
 2. Molecule
 3. Organism
-4. Template
-5. Page
 
 _NOTE:_ Components with lower level cannot depend on components with higher level.
 
@@ -95,8 +93,6 @@ For this every component library should have associated ONE level tag:
 1. `level:atom`
 2. `level:molecule`
 3. `level:organism`
-4. `level:template`
-5. `level:page`
 
 ## Available Tags
 
@@ -111,8 +107,6 @@ For this every component library should have associated ONE level tag:
     -   `level:atom`
     -   `level:molecule`
     -   `level:organism`
-    -   `level:template`
-    -   `level:page`
 -   `pkg:*` Describes the package type
     -   `pkg:primary`
     -   `pkg:extension`
@@ -356,3 +350,4 @@ and try to publish them again with the same versions.
 -   [Angular](https://angular.io/docs)
 -   [RxJs](https://rxjs.dev/guide/overview)
 -   [Ant Design](https://ng.ant.design/docs/introduce/en)
+-   [UI Components](https://docs.spryker.com/docs/dg/dev/frontend-development/202410.0/marketplace/ui-components-library/ui-components-library.html)

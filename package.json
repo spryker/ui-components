@@ -50,7 +50,7 @@
         "pack:libs": "lerna exec --concurrency 1 --stream -- node \\$LERNA_ROOT_PATH/tools/scripts/pack-lib.js",
         "release": "run-s \"release:lerna -- {@}\" deploy:storybook --",
         "prerelease:lerna": "npm run pack",
-        "release:lerna": "lerna publish --yes --conventional-graduate",
+        "release:lerna": "lerna publish --yes --conventional-graduate --force-publish",
         "release-next": "run-s \"release-tag -- {@}\" deploy:storybook:next --",
         "prerelease-tag": "npm run pack",
         "release-tag": "lerna publish --yes --conventional-prerelease --dist-tag $BUDDY_EXECUTION_BRANCH --preid $BUDDY_EXECUTION_BRANCH",

@@ -440,3 +440,7 @@ and try to publish them again with the same versions.
 -   [RxJs](https://rxjs.dev/guide/overview)
 -   [Ant Design](https://ng.ant.design/docs/introduce/en)
 -   [UI Components](https://docs.spryker.com/docs/dg/dev/frontend-development/202410.0/marketplace/marketplace-frontend.html)
+
+## Contributing to the repository
+
+For contribution guidelines, see [Code contribution guide](https://github.com/spryker/ui-components/blob/master/CONTRIBUTING.md).

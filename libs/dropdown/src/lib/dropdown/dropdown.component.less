@@ -9,6 +9,11 @@
     &-trigger {
         display: flex;
         height: 100%;
+
+        &:focus-visible {
+            outline: @outline;
+            outline-offset: @outline-offset;
+        }
     }
 
     &-menu {
@@ -18,26 +23,32 @@
         background-color: @spy-white;
         padding: @dropdown-menu-padding;
         overflow: hidden;
+    }
 
-        &-item {
-            height: @dropdown-menu-item-height;
-            padding: @dropdown-menu-item-padding;
-            font: @font-default;
-            color: @ink;
-            border: @dropdown-menu-item-border;
-            display: flex;
-            align-items: center;
+    &-menu-submenu-title,
+    &-menu-item {
+        height: @dropdown-menu-item-height;
+        padding: @dropdown-menu-item-padding;
+        font: @font-default;
+        color: @ink;
+        border: @dropdown-menu-item-border;
+        display: flex;
+        align-items: center;
 
-            &:hover {
-                background-color: @gray-lighter;
-                border-color: @gray-lighter;
-            }
-
-            &:focus {
-                border-radius: @dropdown-menu-item-border-focus-radius;
-                border-color: @green;
-            }
+        &:hover {
+            background-color: @gray-lighter;
+            border-color: @gray-lighter;
         }
+
+        &:focus {
+            border-radius: @dropdown-menu-item-border-focus-radius;
+            border-color: @green;
+        }
+    }
+
+    &-menu-submenu:focus .@{dropdown-prefix-cls}-menu-submenu-title {
+        border-radius: @dropdown-menu-item-border-focus-radius;
+        border-color: @green;
     }
 
     .@{menu-prefix-cls}-title-content {

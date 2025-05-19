@@ -10,5 +10,5 @@ describe('Directive: SelectComponents', () => {
     }));
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    it('should create an instance', () => { });
+    it('should create an instance', () => {});
 });

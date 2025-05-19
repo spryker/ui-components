@@ -10,7 +10,11 @@ export default {
     title: 'AjaxFormComponent',
     decorators: [
         applicationConfig({
-            providers: [provideHttpClient(), provideHttpClientTesting(), importProvidersFrom(NotificationModule.forRoot())],
+            providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
+                importProvidersFrom(NotificationModule.forRoot()),
+            ],
         }),
         moduleMetadata({
             imports: [AjaxFormModule, MockHttpModule],

@@ -57,7 +57,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
         private cdr: ChangeDetectorRef,
         private injector: Injector,
         private dataSerializerService: DataSerializerService,
-    ) { }
+    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('action' in changes) {

@@ -42,7 +42,7 @@ class MockTableDataConfiguratorService {
         </test-table-feature>
     `,
 })
-class TestHostComponent { }
+class TestHostComponent {}
 
 describe('TableSettingsFeatureComponent', () => {
     let fixture: ComponentFixture<TestHostComponent>;

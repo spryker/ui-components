@@ -67,7 +67,7 @@ class TableColumnTestConfig {
     @ColumnTypeOption()
     text? = this.contextService.wrap('displayValue');
 
-    constructor(private contextService: ContextService) { }
+    constructor(private contextService: ContextService) {}
 }
 
 @Component({

@@ -65,7 +65,7 @@ class TestComponent implements DatasourceTriggerElement, OnInit, AfterViewInit {
     constructor(
         private injector: Injector,
         private datasourceTriggerService: DatasourceTriggerService,
-    ) { }
+    ) {}
 
     ngOnInit(): void {
         this.datasourceData = this.datasourceTriggerService.resolve(this.injector, this.datasource) as any;

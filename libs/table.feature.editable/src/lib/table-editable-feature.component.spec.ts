@@ -90,7 +90,7 @@ const mockConfig = {
         </test-table-feature>
     `,
 })
-class TestHostComponent { }
+class TestHostComponent {}
 
 describe('TableEditableFeatureComponent', () => {
     let fixture: ComponentFixture<TestHostComponent>;

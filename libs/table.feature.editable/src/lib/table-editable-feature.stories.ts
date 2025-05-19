@@ -68,7 +68,7 @@ class EditColumnComponent implements TableColumnComponent<EditColumnConfig>, OnI
     @Input() context?: TableColumnContext;
     @Input() items?: unknown;
 
-    constructor(private tableEditableService: TableEditableService) { }
+    constructor(private tableEditableService: TableEditableService) {}
 
     ngOnInit(): void {
         if (!this.context?.value && this.config?.value) {

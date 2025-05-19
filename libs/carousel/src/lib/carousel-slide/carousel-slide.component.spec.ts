@@ -27,7 +27,7 @@ describe('CarouselSlideComponent', () => {
     @Component({
         template: projectedContent,
     })
-    class TestHostComponent { }
+    class TestHostComponent {}
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({

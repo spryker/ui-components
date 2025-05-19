@@ -10,7 +10,7 @@
                 "tsConfig": ".storybook/global/tsconfig.json"
             }
         },
-       "compile": {
+        "compile": {
             "executor": "@storybook/angular:build-storybook",
             "outputs": ["{options.outputPath}"],
             "options": {
@@ -28,7 +28,7 @@
                 }
             }
         },
-       "serve": {
+        "serve": {
             "executor": "@storybook/angular:start-storybook",
             "options": {
                 "port": 4400,

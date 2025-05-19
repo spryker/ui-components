@@ -1,11 +1,13 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { StaticHtmlRendererModule } from '@spryker/html-renderer';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { AjaxFormComponent } from './ajax-form.component';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockFirstHtmlTemplate = `
     <input type="text" name="name" id="name">
@@ -34,7 +36,7 @@ describe('AjaxFormComponent', () => {
 
     const { testModule, createComponent } = getTestingForComponent(AjaxFormComponent, {
         ngModule: {
-            imports: [StaticHtmlRendererModule, HttpClientTestingModule],
+            imports: [StaticHtmlRendererModule],
             schemas: [NO_ERRORS_SCHEMA],
         },
     });
@@ -43,6 +45,8 @@ describe('AjaxFormComponent', () => {
         TestBed.configureTestingModule({
             imports: [testModule],
             providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 {
                     provide: AjaxActionService,
                     useExisting: MockAjaxActionService,
@@ -169,6 +173,7 @@ describe('AjaxFormComponent', () => {
 
     it('if first form was submitted component should render nz-spinner over the current form', fakeAsync(async () => {
         const host = await createComponentWrapper(createComponent, { action: mockUrl, method: 'POST' });
+        host.detectChanges();
         const event = new MockEvent();
         const ajaxFormElem = host.queryCss('spy-ajax-form');
 
@@ -206,7 +211,7 @@ describe('AjaxFormComponent', () => {
         expect(staticHtml.nativeElement.innerHTML).toBe(mockSecondResponse.form);
     }));
 
-    it('should override `action` and `method` from response', fakeAsync(async () => {
+    it('should override `action` and `method` from response', async () => {
         const host = await createComponentWrapper(createComponent, { action: mockUrl });
         const mockResponse = {
             form: mockFirstHtmlTemplate,
@@ -228,5 +233,5 @@ describe('AjaxFormComponent', () => {
         htmlResponse = httpTestingController.expectOne(mockResponse.action);
 
         expect(htmlResponse.request.method).toBe(mockResponse.method);
-    }));
+    });
 });

@@ -1,7 +1,8 @@
 import { Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
 import { fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { I18nModule } from '@spryker/locale';
 import { InvokeModule, PluckModule } from '@spryker/utils';
@@ -79,7 +80,7 @@ const mockConfigCols: TableConfig = {
 
 @Injectable({ providedIn: 'root' })
 class MockTableDatasourceHttpService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     resolve(injector: {}, datasource: Record<string, string>): Observable<TableData> {
         return this.http.get<TableData>(datasource.url);
@@ -96,7 +97,7 @@ describe('TableComponent', () => {
 
     const { testModule, createComponent } = getTestingForComponent(CoreTableComponent, {
         ngModule: {
-            imports: [HttpClientTestingModule, PluckModule, I18nModule, InvokeModule],
+            imports: [PluckModule, I18nModule, InvokeModule],
             declarations: [TableFeaturesRendererComponent, TableFeaturesRendererDirective, TableRenderFeatureDirective],
             schemas: [NO_ERRORS_SCHEMA],
         },
@@ -106,6 +107,8 @@ describe('TableComponent', () => {
         TestBed.configureTestingModule({
             imports: [testModule],
             providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 MockActionsService,
                 {
                     provide: ActionsService,

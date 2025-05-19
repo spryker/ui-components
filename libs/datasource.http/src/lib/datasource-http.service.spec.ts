@@ -1,5 +1,6 @@
-import { HttpParams } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpParams, provideHttpClient } from '@angular/common/http';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { CacheService } from '@spryker/cache';
 import { DataSerializerService } from '@spryker/data-serializer';
@@ -35,8 +36,10 @@ describe('DatasourceHttpService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule, DefaultContextSerializationModule],
+            imports: [DefaultContextSerializationModule],
             providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 MockDataSerializerService,
                 MockCacheService,
                 MockEncoder,

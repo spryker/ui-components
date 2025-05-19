@@ -1,8 +1,8 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { LocaleRenderDirective } from './locale-render.directive';
 
-xdescribe('Directive: LocaleRender', () => {
-    beforeEach(async(() => {
+describe('Directive: LocaleRender', () => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [LocaleRenderDirective],
             teardown: { destroyAfterEach: false },
@@ -10,5 +10,5 @@ xdescribe('Directive: LocaleRender', () => {
     }));
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    it('should create an instance', () => {});
+    it('should create an instance', () => { });
 });

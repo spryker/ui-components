@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, importProvidersFrom, Injector, Input, OnInit, ViewChild } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
@@ -13,6 +13,7 @@ import {
 } from '@spryker/datasource.trigger';
 import { Observable, of, ReplaySubject } from 'rxjs';
 import { ChangeDatasourceTriggerService } from './change-datasource-trigger.service';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockOptions = [
     {
@@ -64,7 +65,7 @@ class TestComponent implements DatasourceTriggerElement, OnInit, AfterViewInit {
     constructor(
         private injector: Injector,
         private datasourceTriggerService: DatasourceTriggerService,
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.datasourceData = this.datasourceTriggerService.resolve(this.injector, this.datasource) as any;
@@ -85,7 +86,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(
                     DatasourceModule.withDatasources({
                         trigger: DatasourceTriggerService,

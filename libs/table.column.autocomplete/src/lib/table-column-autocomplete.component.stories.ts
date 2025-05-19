@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
@@ -20,6 +20,7 @@ import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils
 
 import { TableColumnAutocompleteComponent } from './table-column-autocomplete.component';
 import { TableColumnAutocompleteModule } from './table-column-autocomplete.module';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
     title: 'TableColumnAutocompleteComponent',
@@ -103,7 +104,8 @@ export const withTable = (args) => ({
     props: args,
     applicationConfig: {
         providers: [
-            importProvidersFrom(HttpClientTestingModule),
+            provideHttpClient(),
+            provideHttpClientTesting(),
             importProvidersFrom(TableModule.forRoot()),
             importProvidersFrom(
                 TableModule.withColumnComponents({
@@ -170,7 +172,8 @@ export const withDependentColumns = (args) => ({
     props: args,
     applicationConfig: {
         providers: [
-            importProvidersFrom(HttpClientTestingModule),
+            provideHttpClient(),
+            provideHttpClientTesting(),
             importProvidersFrom(TableModule.forRoot()),
             importProvidersFrom(
                 TableModule.withFeatures({

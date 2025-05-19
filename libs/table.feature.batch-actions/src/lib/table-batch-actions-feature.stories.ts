@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Component, importProvidersFrom, Input } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
@@ -14,6 +14,7 @@ import { DrawerModule } from '@spryker/drawer';
 import { ActionsModule } from '@spryker/actions';
 import { DrawerActionHandlerService, DrawerActionModule } from '@spryker/actions.drawer';
 import { TableBatchActionsFeatureModule } from './table-batch-actions-feature.module';
+import { provideHttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'spy-simple-component',
@@ -74,7 +75,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(TableModule.forRoot()),
                 importProvidersFrom(NotificationModule.forRoot()),
                 importProvidersFrom(

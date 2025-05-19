@@ -1,7 +1,8 @@
 import { Component, NO_ERRORS_SCHEMA, Injector, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TestTableFeatureComponent, TestTableFeatureMocks, TestTableFeatureTplDirective } from '@spryker/table/testing';
 import {
@@ -19,6 +20,7 @@ import { IconModule } from '@spryker/icon';
 import { ReplaySubject, Observable } from 'rxjs';
 import { TableSettingsFeatureComponent } from './table-settings-feature.component';
 import { TableSettingsColumn } from './types';
+import { provideHttpClient } from '@angular/common/http';
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
@@ -40,7 +42,7 @@ class MockTableDataConfiguratorService {
         </test-table-feature>
     `,
 })
-class TestHostComponent {}
+class TestHostComponent { }
 
 describe('TableSettingsFeatureComponent', () => {
     let fixture: ComponentFixture<TestHostComponent>;
@@ -108,7 +110,7 @@ describe('TableSettingsFeatureComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [DragDropModule, TestLocaleModule, IconModule, IconSettingsModule, HttpClientTestingModule],
+            imports: [DragDropModule, TestLocaleModule, IconModule, IconSettingsModule],
             declarations: [
                 TestTableFeatureTplDirective,
                 TableSettingsFeatureComponent,
@@ -116,6 +118,30 @@ describe('TableSettingsFeatureComponent', () => {
                 TestTableFeatureComponent,
             ],
             providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
+                {
+                    provide: TableDataConfiguratorService,
+                    useValue: {
+                        config$: new ReplaySubject<TableDataConfig>(1),
+                    },
+                },
+                {
+                    provide: 'TableData',
+                    useValue: {
+                        data$: new ReplaySubject<TableData>(1),
+                        page$: new ReplaySubject<number>(1),
+                        pageSize$: new ReplaySubject<number>(1),
+                        total$: new ReplaySubject<number>(1),
+                    },
+                },
+                {
+                    provide: 'TableDataConfig',
+                    useValue: {
+                        columns: [],
+                        dataSource: {},
+                    },
+                },
                 {
                     provide: TableDatasourceService,
                     useValue: 'TableDatasourceService',

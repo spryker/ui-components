@@ -11,12 +11,11 @@
             }
         },
         "compile": {
-            "executor": "@storybook/angular:build-storybook",
-            "outputs": ["{options.outputPath}"],
+            "executor": "@nx/storybook:build",
+            "outputs": ["{options.outputDir}"],
             "options": {
                 "outputDir": "dist/storybook/global",
                 "configDir": ".storybook/global",
-                "browserTarget": "storybook:compile",
                 "compodoc": true,
                 "compodocArgs": ["-e", "json", "-d", "dist"],
                 "enableProdMode": false,
@@ -29,11 +28,10 @@
             }
         },
         "serve": {
-            "executor": "@storybook/angular:start-storybook",
+            "executor": "@nx/storybook:storybook-dev-server",
             "options": {
                 "port": 4400,
                 "configDir": ".storybook/global",
-                "browserTarget": "storybook:compile",
                 "compodoc": true,
                 "compodocArgs": ["-e", "json", "-d", "dist"],
                 "enableProdMode": false,

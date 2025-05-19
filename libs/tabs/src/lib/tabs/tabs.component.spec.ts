@@ -6,6 +6,7 @@ import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TabsComponent, TabsMode } from './tabs.component';
 import { TabComponent } from '../tab/tab.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TabsComponent', () => {
     const projectedContent = `
@@ -154,7 +155,7 @@ describe('TabsComponent', () => {
     describe('Tabs header `icons`', () => {
         const { testModule, createComponent } = getTestingForComponent(TabsComponent, {
             ngModule: {
-                imports: [NzTabsModule],
+                imports: [NoopAnimationsModule, NzTabsModule],
                 declarations: [TabComponent],
                 exports: [TabComponent],
                 schemas: [NO_ERRORS_SCHEMA],

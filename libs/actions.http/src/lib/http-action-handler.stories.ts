@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { importProvidersFrom, Injectable, Injector } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { Observable, of } from 'rxjs';
@@ -8,6 +8,7 @@ import { ButtonActionModule } from '@spryker/button.action';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 
 import { HttpActionHandlerService } from './http-action-handler.service';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockResponse = () => ({
     actions: [
@@ -52,7 +53,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(
                     ActionsModule.withActions({
                         http: HttpActionHandlerService,

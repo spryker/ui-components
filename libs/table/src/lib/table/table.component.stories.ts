@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Component, importProvidersFrom, Injectable, Input, OnInit } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { DatasourceModule } from '@spryker/datasource';
@@ -14,6 +14,7 @@ import { TableFeatureComponent } from '../table-feature';
 import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext, TableConfig, TableFeatureLocation } from './table';
 import { CoreTableComponent } from './table.component';
+import { provideHttpClient } from '@angular/common/http';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col1: `col1 #${i}`,
@@ -66,7 +67,7 @@ class TableColumnTestConfig {
     @ColumnTypeOption()
     text? = this.contextService.wrap('displayValue');
 
-    constructor(private contextService: ContextService) {}
+    constructor(private contextService: ContextService) { }
 }
 
 @Component({
@@ -93,7 +94,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(TableModule.forRoot()),
                 importProvidersFrom(
                     TableModule.withColumnComponents({

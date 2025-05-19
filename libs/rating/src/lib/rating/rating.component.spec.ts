@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RatingComponent } from './rating.component';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -37,7 +37,7 @@ describe('RatingComponent', () => {
         }
     }
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [TestComponent, RatingComponent],
             schemas: [NO_ERRORS_SCHEMA],

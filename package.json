@@ -112,7 +112,7 @@
         "@spryker/frontend-config.prettier": "^0.0.5",
         "@spryker/frontend-config.stylelint": "^0.0.6",
         "@storybook/addon-a11y": "^8.0.0",
-        "@storybook/addon-designs": "^8.0.0",
+        "@storybook/addon-designs": "^7.0.9",
         "@storybook/addon-docs": "^8.0.0",
         "@storybook/addon-essentials": "^8.0.0",
         "@storybook/angular": "^8.0.0",

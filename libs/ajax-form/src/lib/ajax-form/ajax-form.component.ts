@@ -72,7 +72,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
     private fetchForm(): void {
         if (this.action) {
             this.isLoading = true;
-
+            console.log(this.action, 'this.action');
             this.subscription = this.http.get<AjaxFormResponse>(this.action).subscribe({
                 next: (response) => this.responseHandler(response),
                 error: (response) => this.responseHandler(response),
@@ -116,6 +116,7 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
     }
 
     private responseHandler(response: AjaxFormResponse): void {
+        console.log('responseHandler', response);
         this.ajaxFormResponse = response;
 
         if (response.form) {

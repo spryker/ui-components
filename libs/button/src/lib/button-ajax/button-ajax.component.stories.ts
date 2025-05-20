@@ -1,5 +1,5 @@
 import { importProvidersFrom } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule, NotificationWrapperComponent } from '@spryker/notification';
@@ -8,6 +8,7 @@ import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../button-core/types';
 import { ButtonAjaxComponent, ButtonAjaxMethod } from './button-ajax.component';
 import { ButtonAjaxModule } from './button-ajax.module';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
     title: 'ButtonAjaxComponent',
@@ -16,7 +17,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(NotificationModule.forRoot()),
             ],
         }),

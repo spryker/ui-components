@@ -1,10 +1,12 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Injectable } from '@angular/core';
 import { fakeAsync, TestBed } from '@angular/core/testing';
 import { ActionsService } from '@spryker/actions';
 import { ContextService } from '@spryker/utils';
 
 import { HttpActionHandlerService } from './http-action-handler.service';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockActionsConfig = {
     type: 'http',
@@ -48,8 +50,9 @@ describe('HttpActionHandlerService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
             providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 MockActionsServiceService,
                 MockInjector,
                 MockContextService,

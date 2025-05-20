@@ -1,5 +1,5 @@
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { SelectModule } from '@spryker/select';
@@ -8,6 +8,7 @@ import { DatasourceHttpService } from '@spryker/datasource.http';
 import { DatasourceTriggerModule, DatasourceTriggerService } from '@spryker/datasource.trigger';
 import { InputDatasourceTriggerService } from './input-datasource-trigger.service';
 import { importProvidersFrom } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockOptions = [
     {
@@ -30,7 +31,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(
                     DatasourceModule.withDatasources({
                         trigger: DatasourceTriggerService,

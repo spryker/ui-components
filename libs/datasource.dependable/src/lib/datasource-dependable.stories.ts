@@ -1,7 +1,7 @@
 import { importProvidersFrom } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { SelectComponent, SelectModule } from '@spryker/select';
@@ -13,6 +13,7 @@ import { WebComponentsModule } from '@spryker/web-components';
 import { DatasourceDependableModule } from './datasource-dependable.module';
 import { DatasourceDependableService } from './datasource-dependable.service';
 import { DatasourceDependableComponent } from './datasource-dependable.component';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockOptions = [
     {
@@ -63,7 +64,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(
                     DatasourceModule.withDatasources({
                         'dependable-element': DatasourceDependableService,

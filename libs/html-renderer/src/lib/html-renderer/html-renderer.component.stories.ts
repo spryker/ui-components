@@ -1,9 +1,10 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
 import { importProvidersFrom } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { StaticHtmlRendererModule } from '../static-html-renderer/static-html-renderer.module';
 import { UrlHtmlRendererModule } from '../url-html-renderer/url-html-renderer.module';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockHtmlTemplate = (template: string) => `
   <head>
@@ -69,7 +70,7 @@ export const withUrlHtml = (args) => ({
         ]),
     },
     applicationConfig: {
-        providers: [importProvidersFrom(HttpClientTestingModule)],
+        providers: [provideHttpClient(), provideHttpClientTesting()],
     },
     moduleMetadata: {
         imports: [UrlHtmlRendererModule, MockHttpModule],

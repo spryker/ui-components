@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
@@ -14,6 +14,7 @@ import { DateFnsDateAdapterModule } from '@spryker/utils.date.adapter.date-fns';
 
 import { TableDatasourceInlineModule } from './table-datasource-inline.module';
 import { TableDatasourceInlineService } from './table-datasource-inline.service';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
     title: 'TableDatasourceInlineService',
@@ -21,7 +22,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(TableDatasourceInlineModule.withConfig()),
                 importProvidersFrom(TableModule.forRoot()),
                 importProvidersFrom(DateFnsDateAdapterModule),

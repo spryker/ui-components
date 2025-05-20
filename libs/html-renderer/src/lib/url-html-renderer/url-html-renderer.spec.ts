@@ -1,10 +1,12 @@
 import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { UrlHtmlRendererModule } from './url-html-renderer.module';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockUrl = '/html-request';
 const mockResponse = {
@@ -30,7 +32,7 @@ describe('UrlHtmlRendererDirective', () => {
 
     const { testModule, createComponent } = getTestingForComponent(TestComponent, {
         ngModule: {
-            imports: [UrlHtmlRendererModule, HttpClientTestingModule],
+            imports: [UrlHtmlRendererModule],
             schemas: [NO_ERRORS_SCHEMA],
         },
     });
@@ -39,6 +41,8 @@ describe('UrlHtmlRendererDirective', () => {
         TestBed.configureTestingModule({
             imports: [testModule],
             providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 MockAjaxActionService,
                 {
                     provide: AjaxActionService,
@@ -58,6 +62,7 @@ describe('UrlHtmlRendererDirective', () => {
 
     it('should render html response inside of <spy-html-renderer>', async () => {
         const host = await createComponentWrapper(createComponent, { urlHtml: mockUrl });
+        host.detectChanges();
         const htmlRendererElem = host.queryCss('spy-html-renderer .spy-html-renderer__content');
         const htmlResponse = httpTestingController.expectOne(mockUrl);
 

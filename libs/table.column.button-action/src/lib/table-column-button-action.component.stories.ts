@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ActionsModule } from '@spryker/actions';
@@ -15,6 +15,7 @@ import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { TableColumnButtonActionComponent } from './table-column-button-action.component';
 import { TableColumnButtonActionModule } from './table-column-button-action.module';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
     title: 'TableColumnButtonActionComponent',
@@ -134,7 +135,8 @@ export const withTable = (args) => ({
     },
     applicationConfig: {
         providers: [
-            importProvidersFrom(HttpClientTestingModule),
+            provideHttpClient(),
+            provideHttpClientTesting(),
             importProvidersFrom(TableModule.forRoot()),
             importProvidersFrom(
                 TableModule.withColumnComponents({

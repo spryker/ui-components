@@ -1,9 +1,11 @@
 {
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "affected": {
         "defaultBase": "master"
     },
     "tasksRunnerOptions": {
         "default": {
+            "runner": "@nx/workspace/tasks-runners/default",
             "options": {
                 "canTrackAnalytics": false,
                 "showUsageWarnings": true
@@ -37,7 +39,6 @@
             "style": "less"
         }
     },
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "targetDefaults": {
         "build": {
             "dependsOn": ["^build"],

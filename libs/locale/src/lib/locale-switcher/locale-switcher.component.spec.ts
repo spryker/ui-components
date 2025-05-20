@@ -1,12 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LocaleSwitcherComponent } from './locale-switcher.component';
 
-xdescribe('LocaleSwitcherComponent', () => {
+describe('LocaleSwitcherComponent', () => {
     let component: LocaleSwitcherComponent;
     let fixture: ComponentFixture<LocaleSwitcherComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [LocaleSwitcherComponent],
             teardown: { destroyAfterEach: false },

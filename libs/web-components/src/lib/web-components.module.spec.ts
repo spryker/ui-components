@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { waitForAsync, TestBed } from '@angular/core/testing';
 import { WebComponentsModule } from './web-components.module';
 
 describe('WebComponentsModule', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [WebComponentsModule],
             teardown: { destroyAfterEach: false },

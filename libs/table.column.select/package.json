@@ -1,6 +1,6 @@
 {
     "name": "@spryker/table.column.select",
-    "version": "2.3.1",
+    "version": "2.3.2",
     "peerDependencies": {
         "@angular/common": ">=17.3.0 <19.0.0",
         "@angular/core": ">=17.3.0 <19.0.0",

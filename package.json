@@ -24,7 +24,7 @@
         "affected:test": "nx affected:test",
         "affected:lint": "nx affected:lint",
         "affected:dep-graph": "nx affected:dep-graph",
-        "affected": "nx affected",
+        "affected": "NX_CLOUD=false nx affected",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "update": "nx migrate latest",

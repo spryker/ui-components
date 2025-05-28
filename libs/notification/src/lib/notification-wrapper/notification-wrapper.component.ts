@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, ViewEncapsulation } from '@angular/core';
 import { Toast, ToastPackage, ToastrService } from 'ngx-toastr';
 
 import { NotificationRef } from '../notification-ref';
@@ -57,7 +57,11 @@ export class NotificationWrapperComponent extends Toast {
         params: this.toastPackage.config,
     } as const;
 
-    constructor(toastrService: ToastrService, toastPackage: ToastPackage) {
+    constructor(
+        toastrService: ToastrService,
+        toastPackage: ToastPackage,
+        private cdr: ChangeDetectorRef,
+    ) {
         super(toastrService, toastPackage);
     }
 
@@ -65,5 +69,10 @@ export class NotificationWrapperComponent extends Toast {
 
     closeHandler(): void {
         this.notificationRef?.close();
+    }
+
+    activateToast() {
+        super.activateToast();
+        this.cdr.markForCheck();
     }
 }

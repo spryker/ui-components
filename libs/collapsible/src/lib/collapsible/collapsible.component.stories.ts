@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
-import { CollapsibleComponent } from './collapsible.component';
 import { CollapsibleModule } from '../collapsible.module';
+import { CollapsibleComponent } from './collapsible.component';
 
 @Component({
     selector: 'spy-story',
-    template: ` Collapse Content `,
+    template: `<input /> Collapse Content `,
 })
 class StoryComponent {
     constructor() {

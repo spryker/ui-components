@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.9](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/notification@2.0.8...@spryker/notification@2.0.9) (2025-05-28)
+
+
+### Bug Fixes
+
+* **notification:** fix detection change ([#648](http://172.31.0.22:9292/spryker-internal-ci/ui-components/issues/648)) ([5ba6fe6](http://172.31.0.22:9292/spryker-internal-ci/ui-components/commits/5ba6fe654cd813933e59c58a419362b80e7b75cd))
+
+
+
+
+
 ## [2.0.8](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/notification@2.0.7...@spryker/notification@2.0.8) (2025-05-20)
 
 **Note:** Version bump only for package @spryker/notification

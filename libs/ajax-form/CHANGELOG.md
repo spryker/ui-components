@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/ajax-form@2.0.2...@spryker/ajax-form@2.0.3) (2025-05-28)
+
+
+### Bug Fixes
+
+* **notification:** fix detection change ([#648](http://172.31.0.22:9292/spryker-internal-ci/ui-components/issues/648)) ([5ba6fe6](http://172.31.0.22:9292/spryker-internal-ci/ui-components/commits/5ba6fe654cd813933e59c58a419362b80e7b75cd))
+
+
+
+
+
 ## [2.0.2](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/ajax-form@2.0.1...@spryker/ajax-form@2.0.2) (2025-05-20)
 
 **Note:** Version bump only for package @spryker/ajax-form

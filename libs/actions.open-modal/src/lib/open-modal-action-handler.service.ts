@@ -1,6 +1,6 @@
-import {Injectable, Injector, TemplateRef, Type} from '@angular/core';
+import { Injectable, Injector, TemplateRef, Type } from '@angular/core';
 import { ActionHandler } from '@spryker/actions';
-import {AnyModal, ComponentModal, ModalService, TemplateModalContext} from '@spryker/modal';
+import { AnyModal, ComponentModal, ModalService, TemplateModalContext } from '@spryker/modal';
 import { Observable, of } from 'rxjs';
 
 import { OpenModalAction } from './types';
@@ -26,19 +26,20 @@ export class OpenModalActionHandlerService implements ActionHandler<unknown, voi
         const strategies = [
             {
                 key: !!component,
-                handler: () => modalService.openComponent(component as Type<ComponentModal>, { data })
+                handler: () => modalService.openComponent(component as Type<ComponentModal>, { data }),
             },
             {
                 key: !!template,
-                handler: () => modalService.openTemplate(template as TemplateRef<TemplateModalContext<AnyModal>>, { data })
+                handler: () =>
+                    modalService.openTemplate(template as TemplateRef<TemplateModalContext<AnyModal>>, { data }),
             },
             {
                 key: !!confirm,
                 handler: () => {
                     const confirmOptions = typeof confirm === 'object' ? { ...confirm, data } : { data };
                     return modalService.openConfirm(confirmOptions);
-                }
-            }
+                },
+            },
         ];
 
         for (const { key, handler } of strategies) {

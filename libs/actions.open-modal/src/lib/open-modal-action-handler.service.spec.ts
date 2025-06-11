@@ -122,13 +122,18 @@ describe('OpenModalActionHandlerService', () => {
     it('should call `ModalService.openTemplate()` with template and data', () => {
         service.handleAction(injector, mockActionsConfigWithTemplate, mockContext);
 
-        expect(modalService.openTemplate).toHaveBeenCalledWith(mockTemplateRef, expect.objectContaining({ data: { info: 'template-data' } }));
+        expect(modalService.openTemplate).toHaveBeenCalledWith(
+            mockTemplateRef,
+            expect.objectContaining({ data: { info: 'template-data' } }),
+        );
     });
 
     it('should call `ModalService.openConfirm()` with confirm options and data', () => {
         service.handleAction(injector, mockActionsConfigWithConfirm, mockContext);
 
-        expect(modalService.openConfirm).toHaveBeenCalledWith(expect.objectContaining({ title: 'Confirm', message: 'Are you sure?', data: { confirm: true } }));
+        expect(modalService.openConfirm).toHaveBeenCalledWith(
+            expect.objectContaining({ title: 'Confirm', message: 'Are you sure?', data: { confirm: true } }),
+        );
     });
 
     it('should return stream that emits empty value', () => {

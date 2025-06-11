@@ -6,4 +6,3 @@
     "exclude": ["../**/*.spec.ts"],
     "include": ["../../locale/data/**/src/index.ts", "../src/**/*", "*.js"]
 }
-

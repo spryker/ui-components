@@ -28,7 +28,8 @@ class SimpleStoryComponent {
         <spy-button-action
             [action]="{ type: 'refresh-modal', data: { message: 'Data has been refreshed!' } }"
             variant="primary"
-            size="md">
+            size="md"
+        >
             Refresh Modal Content
         </spy-button-action>
     `,
@@ -64,9 +65,9 @@ export default {
         }),
         moduleMetadata({
             imports: [ButtonModule, ButtonActionModule],
-            declarations: [SimpleStoryComponent, ModalContentComponent]
+            declarations: [SimpleStoryComponent, ModalContentComponent],
         }),
-    ]
+    ],
 } as Meta;
 
 export const primary = (args) => ({

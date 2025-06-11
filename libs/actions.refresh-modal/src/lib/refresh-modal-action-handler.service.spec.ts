@@ -7,7 +7,7 @@ import { RefreshModalActionConfig } from './types';
 
 const mockActionsConfig: RefreshModalActionConfig = {
     type: 'refresh-modal',
-    data: { testKey: 'test-value' }
+    data: { testKey: 'test-value' },
 };
 
 const mockContext = 'mockContext';
@@ -18,7 +18,6 @@ class MockInjector {
 }
 
 @Injectable()
-
 @Injectable()
 class MockModalRef {
     updateData = jest.fn();

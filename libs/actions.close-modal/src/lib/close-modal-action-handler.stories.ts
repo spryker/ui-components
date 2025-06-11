@@ -23,11 +23,11 @@ class SimpleModalComponent {
     selector: 'spy-modal-content',
     template: `
         <h3>Modal content here...</h3>
-        <br>
+        <br />
         <spy-button-action [action]="{ type: 'close-modal' }" variant="primary" size="md">
             Close Modal Via Service
         </spy-button-action>
-        <br><br>
+        <br /><br />
         <spy-button-action [action]="{ type: 'close-modal', result: 'success' }" variant="primary" size="md">
             Close Modal Via Service with Result
         </spy-button-action>
@@ -58,7 +58,7 @@ export default {
                     ActionsModule.withActions({
                         'close-modal': CloseModalActionHandlerService,
                     }),
-                    ModalModule.forRoot()
+                    ModalModule.forRoot(),
                 ),
             ],
         }),

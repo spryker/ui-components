@@ -37,7 +37,8 @@ class ModalContentComponent implements ComponentModal {
         <spy-button-action
             [action]="{ type: 'open-modal', component: modalContentComponent }"
             variant="primary"
-            size="md">
+            size="md"
+        >
             Open Simple Modal
         </spy-button-action>
     `,
@@ -56,7 +57,8 @@ class SimpleStoryComponent {
         <spy-button-action
             [action]="{ type: 'open-modal', template: modalTemplate, data: { info: 'From template modal' } }"
             variant="primary"
-            size="md">
+            size="md"
+        >
             Open Template Modal
         </spy-button-action>
     `,
@@ -67,9 +69,18 @@ class TemplateModalStoryComponent {}
     selector: 'spy-confirm-modal-story',
     template: `
         <spy-button-action
-            [action]="{ type: 'open-modal', confirm: { title: 'Confirm Action', message: 'Are you sure you want to proceed?', okText: 'Yes', cancelText: 'No' } }"
+            [action]="{
+                type: 'open-modal',
+                confirm: {
+                    title: 'Confirm Action',
+                    message: 'Are you sure you want to proceed?',
+                    okText: 'Yes',
+                    cancelText: 'No',
+                },
+            }"
             variant="primary"
-            size="md">
+            size="md"
+        >
             Open Confirm Modal
         </spy-button-action>
     `,
@@ -92,9 +103,14 @@ export default {
         }),
         moduleMetadata({
             imports: [ButtonModule, ButtonActionModule],
-            declarations: [SimpleStoryComponent, ModalContentComponent, TemplateModalStoryComponent, ConfirmModalStoryComponent]
+            declarations: [
+                SimpleStoryComponent,
+                ModalContentComponent,
+                TemplateModalStoryComponent,
+                ConfirmModalStoryComponent,
+            ],
         }),
-    ]
+    ],
 } as Meta;
 
 export const primary = (args) => ({

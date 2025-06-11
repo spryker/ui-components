@@ -9,10 +9,6 @@ import { OpenModalAction } from './types';
  * Extended ModalOptions interface to include the id property
  * that is expected by our tests but not part of the standard ModalOptions
  */
-interface ExtendedModalOptions {
-    data?: unknown;
-    id?: string;
-}
 
 @Injectable({
     providedIn: 'root',
@@ -22,7 +18,6 @@ export class OpenModalActionHandlerService implements ActionHandler<unknown, voi
         const modalService = injector.get(ModalService);
         const { component, template, confirm, data, id } = config;
 
-        let modalRef;
         const strategies = [
             {
                 key: !!component,
@@ -42,6 +37,7 @@ export class OpenModalActionHandlerService implements ActionHandler<unknown, voi
             },
         ];
 
+        let modalRef;
         for (const { key, handler } of strategies) {
             if (key) {
                 modalRef = handler();

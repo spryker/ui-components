@@ -8,6 +8,15 @@
             "path": "./libs/actions.close-drawer/tsconfig.json"
         },
         {
+            "path": "./libs/actions.close-modal/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.refresh-modal/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.open-modal/tsconfig.json"
+        },
+        {
             "path": "./libs/actions.confirmation/tsconfig.json"
         },
         {

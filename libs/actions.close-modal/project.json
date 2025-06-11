@@ -59,6 +59,9 @@
                     "quiet": true
                 }
             }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
         }
     },
     "tags": ["type:service", "pkg:extension"]

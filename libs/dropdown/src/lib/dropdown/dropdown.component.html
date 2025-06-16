@@ -6,28 +6,55 @@
     [(nzVisible)]="visible"
     [nzTrigger]="trigger"
     (click)="$event.stopPropagation()"
+    (keydown)="onKeyDown($event)"
     (nzVisibleChange)="visibleChange.emit($event)"
+    tabindex="0"
+    [attr.aria-label]="ariaLabel"
 >
     <ng-content></ng-content>
 </span>
-<nz-dropdown-menu #menu="nzDropdownMenu">
-    <ul nz-menu>
-        <ng-container *ngTemplateOutlet="dropdownTpl; context: { $implicit: items }"></ng-container>
 
-        <ng-template #dropdownTpl let-items>
-            <ng-container *ngFor="let item of items">
-                <li *ngIf="!item.subItems" (click)="actionTriggered.emit(item.action)" nz-menu-item>
-                    <spy-icon class="spy-dropdown-item__icon" *ngIf="item.icon" [name]="item.icon"></spy-icon>
-                    <span class="spy-dropdown-item__text">{{ item.title }}</span>
-                </li>
-                <li *ngIf="item.subItems" (click)="actionTriggered.emit(item.action)" nz-submenu>
-                    <ul>
-                        <ng-container
-                            *ngTemplateOutlet="dropdownTpl; context: { $implicit: item.subItems }"
-                        ></ng-container>
-                    </ul>
-                </li>
-            </ng-container>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu (keydown)="onMenuKeyDown($event)">
+        <ng-container *ngTemplateOutlet="dropdownTpl; context: { $implicit: items, index: 0 }"></ng-container>
+
+        <ng-template #dropdownTpl let-items let-index="index">
+            @for (item of items; track $index) {
+                @if (item.subItems) {
+                    <li
+                        [attr.aria-label]="item.title"
+                        [attr.tabindex]="item.disabled ? null : '0'"
+                        #dropdownItem
+                        (click)="onItemClick(item.action)"
+                        (keydown)="onItemKeyDown($event, index)"
+                        nz-submenu
+                        [nzIcon]="item.icon"
+                        [nzTitle]="item.title"
+                        [nzDisabled]="item.disabled"
+                        class="spy-dropdown-item__item spy-dropdown-item__item--submenu"
+                    >
+                        <ul #submenu (keydown)="onMenuKeyDown($event, index)">
+                            <ng-container
+                                *ngTemplateOutlet="dropdownTpl; context: { $implicit: item.subItems, index: index + 1 }"
+                            ></ng-container>
+                        </ul>
+                    </li>
+                } @else {
+                    <li
+                        [attr.aria-label]="item.title"
+                        [attr.tabindex]="item.disabled ? null : '0'"
+                        [nzDisabled]="item.disabled"
+                        #dropdownItem
+                        (click)="onItemClick(item.action)"
+                        (keydown)="onItemKeyDown($event)"
+                        nz-menu-item
+                        class="spy-dropdown-item__item"
+                    >
+                        <spy-icon class="spy-dropdown-item__icon" *ngIf="item.icon" [name]="item.icon"></spy-icon>
+                        <span class="spy-dropdown-item__text">{{ item.title }}</span>
+                    </li>
+                }
+            }
         </ng-template>
     </ul>
 </nz-dropdown-menu>

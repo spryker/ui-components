@@ -65,11 +65,7 @@ describe('ModalComponent', () => {
 
         renderFn = jest.fn().mockReturnValue(initialElements);
 
-        htmlModalRenderingRef = new HtmlModalRenderingRef<any>(
-            parentElement,
-            initialElements,
-            renderFn
-        );
+        htmlModalRenderingRef = new HtmlModalRenderingRef<any>(parentElement, initialElements, renderFn);
     });
 
     afterEach(() => {

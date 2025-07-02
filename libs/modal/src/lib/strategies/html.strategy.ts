@@ -57,13 +57,10 @@ export class HtmlModalRenderingRef<T> implements ModalRenderingRef<T, HtmlModalE
             element.innerHTML = html;
             nodes = Array.from(element.childNodes);
         } else {
-            nodes = [html instanceof HTMLElement ? html.cloneNode(true) as Node : html];
+            nodes = [html instanceof HTMLElement ? (html.cloneNode(true) as Node) : html];
         }
 
-        nodes.reduceRight(
-            (prevNode, node) => this.parentElement.insertBefore(node, prevNode),
-            null
-        );
+        nodes.reduceRight((prevNode, node) => this.parentElement.insertBefore(node, prevNode), null);
 
         this.elements = nodes;
     }

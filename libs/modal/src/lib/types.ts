@@ -38,6 +38,7 @@ export abstract class ModalRef<T, TExtra = never> {
     abstract afterDismissed(): Observable<InferModalResult<T> | undefined>;
     /** Re-render inner view of the modal */
     abstract reset(): void;
+    abstract updateHtml(html: string | HTMLElement | Node): void;
 }
 
 export interface ModalRenderingRef<T, TExtra = never> {
@@ -45,6 +46,7 @@ export interface ModalRenderingRef<T, TExtra = never> {
     getModalOptions?(): ModalOptions<T>;
     getExtras(): TExtra;
     dispose(): void;
+    updateHtml?(html: string | HTMLElement | Node): void;
 }
 
 export interface ModalStrategy<T, TExtra = never> {

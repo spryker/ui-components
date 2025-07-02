@@ -75,8 +75,8 @@ export class ModalRefImpl<T> extends ModalRef<T, any> {
     updateHtml(html: string | HTMLElement | Node): void {
         this.assertDisposed();
 
-        if (this.renderingRef && 'getElements' in this.renderingRef) {
-            (this.renderingRef as any).updateHtml(html);
+        if (this.renderingRef && this.renderingRef.updateHtml) {
+            this.renderingRef.updateHtml(html);
         } else {
             throw new Error('This modal does not support HTML content replacement');
         }

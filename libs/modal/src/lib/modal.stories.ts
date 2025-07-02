@@ -62,7 +62,6 @@ class StoryComponent {
     @Input() hasBackdrop?: boolean;
 
     private modalNumber = 0;
-    private contentIterations = ['Initial content', 'Updated content', 'Final content'];
     private currentModal: any;
 
     constructor(private modalService: ModalService) {}
@@ -103,32 +102,22 @@ class StoryComponent {
     }
 
     openModalWithHtmlReplacement() {
-        let contentIndex = 0;
-
         const modal = this.modalService.open(
             new HtmlModalStrategy({
                 html: `
-                  <div class="html-content">
                     <h3>HTML Content Replacement Demo</h3>
-                    <p>${this.contentIterations[0]}</p>
+                    <div>Original content</div>
                     <button class="update">Replace Content</button>
                     <button class="close">Close</button>
-                  </div>
                 `,
                 process: (children, modalRef) => {
-                    const nodeElement = children[0] as HTMLElement;
-                    const updateButton = nodeElement.querySelector('.update') as HTMLElement;
-                    const closeButton = nodeElement.querySelector('.close') as HTMLElement;
+                    const updateButton = children.find((c) => (c as HTMLElement).classList?.contains('update')) as HTMLElement;
+                    const closeButton = children.find((c) => (c as HTMLElement).classList?.contains('close')) as HTMLElement;
 
                     updateButton?.addEventListener('click', () => {
-                        contentIndex = (contentIndex + 1) % this.contentIterations.length;
                         const newContent = `
-                          <div class="html-content">
                             <h3>HTML Content Replacement Demo</h3>
-                            <p>${this.contentIterations[contentIndex]}</p>
-                            <button class="update">Replace Content</button>
-                            <button class="close">Close</button>
-                          </div>
+                            <div>Replaced content</div>
                         `;
                         modalRef.updateHtml(newContent);
                     });

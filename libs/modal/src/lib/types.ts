@@ -38,7 +38,6 @@ export abstract class ModalRef<T, TExtra = never> {
     abstract afterDismissed(): Observable<InferModalResult<T> | undefined>;
     /** Re-render inner view of the modal */
     abstract reset(): void;
-    /** Replace HTML content for HTML modals */
     abstract updateHtml(html: string | HTMLElement | Node): void;
 }
 

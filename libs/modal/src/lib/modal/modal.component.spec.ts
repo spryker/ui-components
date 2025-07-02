@@ -54,7 +54,6 @@ describe('ModalComponent', () => {
 
         service = TestBed.inject(MockModalService);
 
-        // Setup for HTML content replacement tests
         parentElement = document.createElement('div');
         document.body.appendChild(parentElement);
 
@@ -214,7 +213,7 @@ describe('ModalComponent', () => {
 
     it('should remove old elements when replacing content with updateHtml', () => {
         const oldElement = parentElement.querySelector('.initial');
-        expect(oldElement).toBeTruthy(); // Sanity check
+        expect(oldElement).toBeTruthy();
 
         htmlModalRenderingRef.updateHtml('<div>New content</div>');
 

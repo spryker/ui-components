@@ -111,8 +111,12 @@ class StoryComponent {
                     <button class="close">Close</button>
                 `,
                 process: (children, modalRef) => {
-                    const updateButton = children.find((c) => (c as HTMLElement).classList?.contains('update')) as HTMLElement;
-                    const closeButton = children.find((c) => (c as HTMLElement).classList?.contains('close')) as HTMLElement;
+                    const updateButton = children.find((c) =>
+                        (c as HTMLElement).classList?.contains('update'),
+                    ) as HTMLElement;
+                    const closeButton = children.find((c) =>
+                        (c as HTMLElement).classList?.contains('close'),
+                    ) as HTMLElement;
 
                     updateButton?.addEventListener('click', () => {
                         const newContent = `

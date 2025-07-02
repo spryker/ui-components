@@ -5,12 +5,14 @@ import { ReplaySubject } from 'rxjs';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ModalComponent } from './modal.component';
 import { ModalService } from '../modal.service';
+import { HtmlModalRenderingRef } from '../strategies/html.strategy';
 
 class MockModalRef {
     afterClosed$ = new ReplaySubject<void>();
 
     close = jest.fn();
     afterClosed = jest.fn().mockReturnValue(this.afterClosed$.asObservable());
+    updateHtml = jest.fn();
 }
 
 class MockModalService {
@@ -28,6 +30,9 @@ class TestModalComponent {}
 
 describe('ModalComponent', () => {
     let service: MockModalService;
+    let parentElement: HTMLElement;
+    let renderFn: any;
+    let htmlModalRenderingRef: HtmlModalRenderingRef<any>;
 
     const { testModule, createComponent } = getTestingForComponent(ModalComponent, {
         ngModule: { schemas: [NO_ERRORS_SCHEMA] },
@@ -48,6 +53,29 @@ describe('ModalComponent', () => {
         });
 
         service = TestBed.inject(MockModalService);
+
+        // Setup for HTML content replacement tests
+        parentElement = document.createElement('div');
+        document.body.appendChild(parentElement);
+
+        const initialElements = [document.createElement('div')];
+        initialElements[0].innerHTML = '<p>Initial content</p>';
+        initialElements[0].classList.add('initial');
+        parentElement.appendChild(initialElements[0]);
+
+        renderFn = jest.fn().mockReturnValue(initialElements);
+
+        htmlModalRenderingRef = new HtmlModalRenderingRef<any>(
+            parentElement,
+            initialElements,
+            renderFn
+        );
+    });
+
+    afterEach(() => {
+        if (parentElement && parentElement.parentElement) {
+            document.body.removeChild(parentElement);
+        }
     });
 
     it('should render <spy-modal> component', async () => {
@@ -153,5 +181,47 @@ describe('ModalComponent', () => {
 
         expect(host.hostComponent.visibleChange).toHaveBeenCalledWith(false);
         expect(modalElem.componentInstance.modalRef).toBeFalsy();
+    });
+
+    it('should replace HTML content with string HTML when updateHtml is called', () => {
+        const newHtml = '<div class="new-content"><p>New content</p></div>';
+
+        htmlModalRenderingRef.updateHtml(newHtml);
+
+        const newElement = parentElement.querySelector('.new-content');
+        expect(newElement).toBeTruthy();
+        expect(parentElement.querySelector('.initial')).toBeFalsy();
+        expect(newElement?.textContent).toContain('New content');
+    });
+
+    it('should replace HTML content with HTMLElement when updateHtml is called', () => {
+        const newElement = document.createElement('div');
+        newElement.classList.add('element-content');
+        newElement.innerHTML = '<p>Element content</p>';
+
+        htmlModalRenderingRef.updateHtml(newElement);
+
+        const insertedElement = parentElement.querySelector('.element-content');
+        expect(insertedElement).toBeTruthy();
+        expect(parentElement.querySelector('.initial')).toBeFalsy();
+        expect(insertedElement?.textContent).toContain('Element content');
+    });
+
+    it('should replace HTML content with Node when updateHtml is called', () => {
+        const textNode = document.createTextNode('Text node content');
+
+        htmlModalRenderingRef.updateHtml(textNode);
+
+        expect(parentElement.querySelector('.initial')).toBeFalsy();
+        expect(parentElement.textContent).toContain('Text node content');
+    });
+
+    it('should remove old elements when replacing content with updateHtml', () => {
+        const oldElement = parentElement.querySelector('.initial');
+        expect(oldElement).toBeTruthy(); // Sanity check
+
+        htmlModalRenderingRef.updateHtml('<div>New content</div>');
+
+        expect(parentElement.querySelector('.initial')).toBeFalsy();
     });
 });

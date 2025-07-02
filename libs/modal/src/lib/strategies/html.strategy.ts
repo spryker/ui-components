@@ -48,6 +48,26 @@ export class HtmlModalRenderingRef<T> implements ModalRenderingRef<T, HtmlModalE
         this.elements = this.renderFn(data);
     }
 
+    updateHtml(html: string | HTMLElement | Node): void {
+        this.removeElements();
+
+        let nodes: Node[];
+        if (typeof html === 'string') {
+            const element = document.createElement('div');
+            element.innerHTML = html;
+            nodes = Array.from(element.childNodes);
+        } else {
+            nodes = [html instanceof HTMLElement ? html.cloneNode(true) as Node : html];
+        }
+
+        nodes.reduceRight(
+            (prevNode, node) => this.parentElement.insertBefore(node, prevNode),
+            null
+        );
+
+        this.elements = nodes;
+    }
+
     getExtras(): HtmlModalExtras {
         return this;
     }

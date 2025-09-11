@@ -1,24 +1,27 @@
 <div
-    class="spy-table-batch-actions-feature"
-    *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: styles$ | async"
->
-    <ng-container *ngIf="actions$ | async">
-        <ng-container *ngIf="itemActions$ | async as itemActions">
-            <ng-container *ngIf="shouldShowActions$ | async">
-                <div class="spy-table-batch-actions-feature__grid">
-                    <div class="spy-table-batch-actions-feature__col" *ngFor="let item of itemActions.actions">
-                        <spy-button [size]="buttonSize.Small" (click)="buttonClickHandler(item, itemActions)">{{
-                            item.title
-                        }}</spy-button>
-                    </div>
-                </div>
-            </ng-container>
-
-            <div spyApplyContexts="spy-bg-gray" *ngIf="noActionsMessage$ | async as noActionsMessage">
-                <spy-notification [type]="notificationType.Warning" floating="false">
-                    <span title>{{ noActionsMessage }}</span>
-                </spy-notification>
+  class="spy-table-batch-actions-feature"
+  *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: styles$ | async"
+  >
+  @if (actions$ | async) {
+    @if (itemActions$ | async; as itemActions) {
+      @if (shouldShowActions$ | async) {
+        <div class="spy-table-batch-actions-feature__grid">
+          @for (item of itemActions.actions; track item) {
+            <div class="spy-table-batch-actions-feature__col">
+              <spy-button [size]="buttonSize.Small" (click)="buttonClickHandler(item, itemActions)">{{
+                item.title
+              }}</spy-button>
             </div>
-        </ng-container>
-    </ng-container>
+          }
+        </div>
+      }
+      @if (noActionsMessage$ | async; as noActionsMessage) {
+        <div spyApplyContexts="spy-bg-gray">
+          <spy-notification [type]="notificationType.Warning" floating="false">
+            <span title>{{ noActionsMessage }}</span>
+          </spy-notification>
+        </div>
+      }
+    }
+  }
 </div>

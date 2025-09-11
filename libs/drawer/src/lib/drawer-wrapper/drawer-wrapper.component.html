@@ -1,16 +1,24 @@
 <div class="spy-drawer-wrapper__actions">
-    <button class="spy-drawer-wrapper__action spy-drawer-wrapper__action--close" *ngIf="closeable" (click)="close()">
-        <spy-icon [name]="removeIcon"></spy-icon>
+  @if (closeable) {
+    <button class="spy-drawer-wrapper__action spy-drawer-wrapper__action--close" (click)="close()">
+      <spy-icon [name]="removeIcon"></spy-icon>
     </button>
+  }
 
-    <button class="spy-drawer-wrapper__action spy-drawer-wrapper__action--resize" *ngIf="resizable" (click)="resize()">
-        <spy-icon [name]="minimizeIcon" *ngIf="isFullScreen"></spy-icon>
-        <spy-icon [name]="maximizeIcon" *ngIf="!isFullScreen"></spy-icon>
+  @if (resizable) {
+    <button class="spy-drawer-wrapper__action spy-drawer-wrapper__action--resize" (click)="resize()">
+      @if (isFullScreen) {
+        <spy-icon [name]="minimizeIcon"></spy-icon>
+      }
+      @if (!isFullScreen) {
+        <spy-icon [name]="maximizeIcon"></spy-icon>
+      }
     </button>
+  }
 </div>
 
 <div class="spy-drawer-wrapper__content">
-    <span spyCustomElementBoundary>
-        <ng-content></ng-content>
-    </span>
+  <span spyCustomElementBoundary>
+    <ng-content></ng-content>
+  </span>
 </div>

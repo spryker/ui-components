@@ -1,18 +1,19 @@
 <nz-tabset [nzSelectedIndex]="tab" [nzType]="mode" [nzAnimated]="animateSlides">
+  @for (tab of tabs$ | async; track tab) {
     <nz-tab
-        *ngFor="let tab of tabs$ | async"
-        [nzTitle]="tab.titleTemplate"
-        [nzDisabled]="tab.disabled"
-        [nzForceRender]="true"
-    >
-        <ng-container *ngTemplateOutlet="tab.template"></ng-container>
+      [nzTitle]="tab.titleTemplate"
+      [nzDisabled]="tab.disabled"
+      [nzForceRender]="true"
+      >
+      <ng-container *ngTemplateOutlet="tab.template"></ng-container>
     </nz-tab>
+  }
 </nz-tabset>
 
 <span
-    [spySelectComponents]="tabReference"
-    (spySelectComponentsFound)="tabsFound($event)"
-    class="ant-tabs-projected-content"
->
-    <ng-content></ng-content>
+  [spySelectComponents]="tabReference"
+  (spySelectComponentsFound)="tabsFound($event)"
+  class="ant-tabs-projected-content"
+  >
+  <ng-content></ng-content>
 </span>

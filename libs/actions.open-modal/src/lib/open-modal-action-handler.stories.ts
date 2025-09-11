@@ -13,8 +13,10 @@ import { OpenModalActionHandlerService } from './open-modal-action-handler.servi
     template: `
         <h3>Modal Content</h3>
         <p>This modal was opened via the OpenModalActionHandlerService</p>
-        <p *ngIf="__capturedData">Received data: {{ __capturedData | json }}</p>
-    `,
+        @if (__capturedData) {
+          <p>Received data: {{ __capturedData | json }}</p>
+        }
+        `,
 })
 class ModalContentComponent implements ComponentModal {
     __capturedData: any;

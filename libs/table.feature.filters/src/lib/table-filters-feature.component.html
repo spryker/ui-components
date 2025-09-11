@@ -1,14 +1,15 @@
 <ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { width: '100%', order: '-1' }">
-    <div class="spy-table-filters-feature" *ngIf="isVisible$ | async">
-        <div class="spy-table-filters-feature__inner">
-            <div
-                *ngFor="let filter of filters$ | async; trackBy: trackByFilter"
-                class="spy-table-filters-feature__item"
-                [ngClass]="filterClasses[filter.id]"
+  @if (isVisible$ | async) {
+    <div class="spy-table-filters-feature">
+      <div class="spy-table-filters-feature__inner">
+        @for (filter of filters$ | async; track trackByFilter($index, filter)) {
+          <div
+            class="spy-table-filters-feature__item"
+            [ngClass]="filterClasses[filter.id]"
             >
-                <span class="spy-table-filters-feature__item-title">{{ filter.title }}</span>
-                <ng-container
-                    [ngComponentOutlet]="filterComponentMap[filter.type]"
+            <span class="spy-table-filters-feature__item-title">{{ filter.title }}</span>
+            <ng-container
+              [ngComponentOutlet]="filterComponentMap[filter.type]"
                     [ndcDynamicInputs]="{
                         config: filter,
                         value: filterValues$ | async | pluck: filter.id,
@@ -23,8 +24,10 @@
                             args: [filter.id, '$event'],
                         },
                     }"
-                ></ng-container>
-            </div>
-        </div>
+            ></ng-container>
+          </div>
+        }
+      </div>
     </div>
+  }
 </ng-container>

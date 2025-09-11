@@ -1,21 +1,24 @@
 <ng-container *spyTableFeatureTpl="tableFeatureLocation.top; styles: { marginLeft: 'auto', display: 'flex' }">
+  @if (isVisible$ | async) {
     <spy-input
-        *ngIf="isVisible$ | async"
-        [value]="value$ | async"
-        [prefix]="prefixTmpl"
-        [suffix]="suffixTpl"
-        [placeholder]="placeholder$ | async"
-        (valueChange)="inputValueChange($event)"
-        class="spy-table-search-feature"
+      [value]="value$ | async"
+      [prefix]="prefixTmpl"
+      [suffix]="suffixTpl"
+      [placeholder]="placeholder$ | async"
+      (valueChange)="inputValueChange($event)"
+      class="spy-table-search-feature"
     ></spy-input>
+  }
 
-    <ng-template #prefixTmpl>
-        <spy-icon [name]="prefixIcon" class="spy-table-search-feature__magnifier-icon"></spy-icon>
-    </ng-template>
+  <ng-template #prefixTmpl>
+    <spy-icon [name]="prefixIcon" class="spy-table-search-feature__magnifier-icon"></spy-icon>
+  </ng-template>
 
-    <ng-template #suffixTpl>
-        <div *ngIf="value$ | async" (click)="clearInput()">
-            <spy-icon [name]="suffixIcon" class="spy-table-search-feature__remove-icon"></spy-icon>
-        </div>
-    </ng-template>
+  <ng-template #suffixTpl>
+    @if (value$ | async) {
+      <div (click)="clearInput()">
+        <spy-icon [name]="suffixIcon" class="spy-table-search-feature__remove-icon"></spy-icon>
+      </div>
+    }
+  </ng-template>
 </ng-container>

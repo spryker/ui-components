@@ -4,9 +4,8 @@ module.exports = {
 
     addons: [
         '@storybook/addon-docs',
-        '@storybook/addon-essentials',
         '@storybook/addon-a11y',
-        '@storybook/addon-designs',
+        '@storybook/addon-designs'
     ],
 
     core: {
@@ -35,9 +34,5 @@ module.exports = {
             path.resolve(__dirname, '../libs/styles/src/lib'),
         ];
         return config;
-    },
-
-    docs: {
-        autodocs: true,
-    },
+    }
 };

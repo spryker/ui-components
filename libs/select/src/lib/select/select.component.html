@@ -1,122 +1,125 @@
 <nz-select
-    [(ngModel)]="mappedValue"
-    (ngModelChange)="handleValueChange($event)"
-    (nzOnSearch)="handleSearchChange($event)"
-    (nzBlur)="onBlur()"
-    [nzShowSearch]="search"
-    [nzServerSearch]="search && serverSearch"
-    [nzShowArrow]="true"
-    [nzSelectOnTab]="true"
-    [nzDisabled]="disabled"
-    [nzPlaceHolder]="placeholder"
-    [nzMode]="tags ? 'tags' : multiple ? 'multiple' : 'default'"
-    [nzSuffixIcon]="suffixIconTpl"
-    [nzNotFoundContent]="notFoundContent"
-    [nzOptionHeightPx]="42"
-    [nzRemoveIcon]="crossIconTpl"
-    [nzAllowClear]="!disableClear"
-    [nzClearIcon]="clearIconTpl"
-    [nzMaxTagCount]="maxTagCount"
-    [nzMaxTagPlaceholder]="tagPlaceholder"
-    [nzCustomTemplate]="tagView || tags ? tagPlaceholder : (selectedOption$ | async)"
-    [class.ant-select--not-searchable]="!search"
-    [nzDropdownClassName]="['ant-select--dropdown', tags || tagView ? 'ant-select--dropdown-tags' : '']"
-    [class]="['ant-select--custom', tags || tagView ? 'ant-select--custom-tags' : '']"
-    #selectContainerRef
->
-    @if (showSelectAll) {
-        <nz-option [nzValue]="selectAllValue" [nzCustomContent]="true">
-            <div class="ant-select-item-option-content-wrapper">
-                {{ selectAllTitle }}
-            </div>
-        </nz-option>
-    }
-
-    <nz-option
-        *ngFor="let option of mappedOptions"
-        [nzValue]="option.value"
-        [nzLabel]="option.title"
-        [nzDisabled]="option.isDisabled"
-        [nzCustomContent]="true"
-    >
-        <div
-            class="ant-select-item-option-content-wrapper"
-            [class.ant-select-item-option-content-wrapper-selected]="checkSelectedState(option.value)"
-            [title]="option.title"
-            [attr.value]="option.value"
-        >
-            @if (multiple) {
-                <span class="ant-select-item-option-state__multiChecked"></span>
-                <span class="ant-select-item-option-state__multiUnChecked"></span>
-            } @else {
-                <spy-icon class="ant-select-item-option__icon--checked" [name]="checkIcon"></spy-icon>
-            }
-
-            <span class="ant-select-item-option-content-label">
-                @if (customOptionTemplate) {
-                    <ng-container [ngTemplateOutlet]="option.template"></ng-container>
-                } @else {
-                    {{ option.title }}
-                }
-            </span>
-        </div>
+  [(ngModel)]="mappedValue"
+  (ngModelChange)="handleValueChange($event)"
+  (nzOnSearch)="handleSearchChange($event)"
+  (nzBlur)="onBlur()"
+  [nzShowSearch]="search"
+  [nzServerSearch]="search && serverSearch"
+  [nzShowArrow]="true"
+  [nzSelectOnTab]="true"
+  [nzDisabled]="disabled"
+  [nzPlaceHolder]="placeholder"
+  [nzMode]="tags ? 'tags' : multiple ? 'multiple' : 'default'"
+  [nzSuffixIcon]="suffixIconTpl"
+  [nzNotFoundContent]="notFoundContent"
+  [nzOptionHeightPx]="42"
+  [nzRemoveIcon]="crossIconTpl"
+  [nzAllowClear]="!disableClear"
+  [nzClearIcon]="clearIconTpl"
+  [nzMaxTagCount]="maxTagCount"
+  [nzMaxTagPlaceholder]="tagPlaceholder"
+  [nzCustomTemplate]="tagView || tags ? tagPlaceholder : (selectedOption$ | async)"
+  [class.ant-select--not-searchable]="!search"
+  [nzDropdownClassName]="['ant-select--dropdown', tags || tagView ? 'ant-select--dropdown-tags' : '']"
+  [class]="['ant-select--custom', tags || tagView ? 'ant-select--custom-tags' : '']"
+  #selectContainerRef
+  >
+  @if (showSelectAll) {
+    <nz-option [nzValue]="selectAllValue" [nzCustomContent]="true">
+      <div class="ant-select-item-option-content-wrapper">
+        {{ selectAllTitle }}
+      </div>
     </nz-option>
+  }
+
+  @for (option of mappedOptions; track option) {
+    <nz-option
+      [nzValue]="option.value"
+      [nzLabel]="option.title"
+      [nzDisabled]="option.isDisabled"
+      [nzCustomContent]="true"
+      >
+      <div
+        class="ant-select-item-option-content-wrapper"
+        [class.ant-select-item-option-content-wrapper-selected]="checkSelectedState(option.value)"
+        [title]="option.title"
+        [attr.value]="option.value"
+        >
+        @if (multiple) {
+          <span class="ant-select-item-option-state__multiChecked"></span>
+          <span class="ant-select-item-option-state__multiUnChecked"></span>
+        } @else {
+          <spy-icon class="ant-select-item-option__icon--checked" [name]="checkIcon"></spy-icon>
+        }
+        <span class="ant-select-item-option-content-label">
+          @if (customOptionTemplate) {
+            <ng-container [ngTemplateOutlet]="option.template"></ng-container>
+          } @else {
+            {{ option.title }}
+          }
+        </span>
+      </div>
+    </nz-option>
+  }
 </nz-select>
 
 @if (multiple) {
-    <select class="ant-select-native" multiple [attr.name]="name" [disabled]="disabled" #selectRef>
-        <option></option>
-        <option
-            *ngFor="let option of mappedOptions"
-            [value]="option.value"
-            [selected]="checkSelectedState(option.value)"
+  <select class="ant-select-native" multiple [attr.name]="name" [disabled]="disabled" #selectRef>
+    <option></option>
+    @for (option of mappedOptions; track option) {
+      <option
+        [value]="option.value"
+        [selected]="checkSelectedState(option.value)"
         >
-            {{ option.title }}
-        </option>
-    </select>
+        {{ option.title }}
+      </option>
+    }
+  </select>
 } @else {
-    <select class="ant-select-native" [ngModel]="mappedValue" [attr.name]="name" [disabled]="disabled" #selectRef>
-        <option></option>
-        <option *ngFor="let option of mappedOptions" [value]="option.value">
-            {{ option.title }}
-        </option>
-    </select>
+  <select class="ant-select-native" [ngModel]="mappedValue" [attr.name]="name" [disabled]="disabled" #selectRef>
+    <option></option>
+    @for (option of mappedOptions; track option) {
+      <option [value]="option.value">
+        {{ option.title }}
+      </option>
+    }
+  </select>
 }
 
 <ng-template #suffixIconTpl>
-    <spy-icon class="ant-select-arrow__icon" [name]="arrowDownIcon"></spy-icon>
+  <spy-icon class="ant-select-arrow__icon" [name]="arrowDownIcon"></spy-icon>
 </ng-template>
 
 <ng-template #crossIconTpl>
-    <spy-icon class="ant-select-selector__choice__remove__icon" [name]="removeIcon"></spy-icon>
+  <spy-icon class="ant-select-selector__choice__remove__icon" [name]="removeIcon"></spy-icon>
 </ng-template>
 
 <ng-template #clearIconTpl>
-    <spy-icon class="ant-select-selection__clear-icon" [name]="removeIcon"></spy-icon>
+  <spy-icon class="ant-select-selection__clear-icon" [name]="removeIcon"></spy-icon>
 </ng-template>
 
 <ng-template #tagPlaceholder let-item>
-    @if (tags || tagView) {
-        <spy-tag (click)="onTagClick($event, item)" class="ant-select__chip">
-            {{ item.nzLabel }}
-        </spy-tag>
-    } @else {
-        {{ selectedList | spyJoin: ', ' }}
-    }
+  @if (tags || tagView) {
+    <spy-tag (click)="onTagClick($event, item)" class="ant-select__chip">
+      {{ item.nzLabel }}
+    </spy-tag>
+  } @else {
+    {{ selectedList | spyJoin: ', ' }}
+  }
 </ng-template>
 
 <ng-template #notFoundContent>{{ noOptionsText$ | async }}</ng-template>
 <span
-    [spySelectComponents]="optionReference"
-    (spySelectComponentsFound)="optionsFound($event)"
-    class="ant-options-projected-content"
->
-    <ng-content></ng-content>
+  [spySelectComponents]="optionReference"
+  (spySelectComponentsFound)="optionsFound($event)"
+  class="ant-options-projected-content"
+  >
+  <ng-content></ng-content>
 </span>
 <span
-    [spySelectComponents]="selectedOptionReference"
-    (spySelectComponentsFound)="selectedOptionFound($event)"
-    class="ant-options-projected-content"
->
-    <ng-content select="[selected]"></ng-content>
+  [spySelectComponents]="selectedOptionReference"
+  (spySelectComponentsFound)="selectedOptionFound($event)"
+  class="ant-options-projected-content"
+  >
+  <ng-content select="[selected]"></ng-content>
 </span>

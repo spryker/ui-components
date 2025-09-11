@@ -1,9 +1,10 @@
 <nz-autocomplete nzOverlayClassName="spy-autocomplete__dropdown">
+  @for (option of filteredOptions$ | async; track option) {
     <nz-auto-option
-        *ngFor="let option of filteredOptions$ | async"
-        [nzDisabled]="option.isDisabled"
-        [nzValue]="option.value"
-    >
-        {{ option.title }}
+      [nzDisabled]="option.isDisabled"
+      [nzValue]="option.value"
+      >
+      {{ option.title }}
     </nz-auto-option>
+  }
 </nz-autocomplete>

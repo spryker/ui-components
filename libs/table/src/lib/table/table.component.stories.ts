@@ -153,9 +153,9 @@ export const primary = (args) => ({
 @Component({
     selector: 'spy-custom-feature',
     template: `
-        <ng-container [ngSwitch]="location">
-            <ng-container *ngSwitchCase="tableFeatureLocation.header">
-                <div
+@switch (location) {
+  @case (tableFeatureLocation.header) {
+    <div
                     *spyTableFeatureTpl="
                         location;
                         let cellTpl;
@@ -163,17 +163,16 @@ export const primary = (args) => ({
                         let config = config;
                         let i = i
                     "
-                >
-                    Extended Custom Header!
-                    <div style="outline: 1px solid gray">
-                        <ng-container *ngTemplateOutlet="cellTpl; context: cellContext"></ng-container>
-                    </div>
-                    {{ log | spyInvoke: { config: config, i: i } }}
-                </div>
-            </ng-container>
-
-            <ng-container *ngSwitchCase="tableFeatureLocation.cell">
-                <div
+      >
+      Extended Custom Header!
+      <div style="outline: 1px solid gray">
+        <ng-container *ngTemplateOutlet="cellTpl; context: cellContext"></ng-container>
+      </div>
+      {{ log | spyInvoke: { config: config, i: i } }}
+    </div>
+  }
+  @case (tableFeatureLocation.cell) {
+    <div
                     *spyTableFeatureTpl="
                         location;
                         let cellTpl;
@@ -183,32 +182,31 @@ export const primary = (args) => ({
                         let value = value;
                         let i = i
                     "
-                >
-                    <p>Extended Custom Cell!</p>
-                    <div style="outline: 1px solid gray">
-                        <ng-container *ngTemplateOutlet="cellTpl; context: cellContext"></ng-container>
-                    </div>
-                    {{
-                        log
-                            | spyInvoke
-                                : {
-                                      config: config,
-                                      row: row,
-                                      value: value,
-                                      i: i,
-                                  }
-                    }}
-                </div>
-            </ng-container>
-
-            <ng-container *ngSwitchDefault>
-                <div *spyTableFeatureTpl="location; let data = data; let i = i">
-                    Custom Table Feature &#64; {{ location }}!
-                    {{ log | spyInvoke: { data: data, i: i } }}
-                </div>
-            </ng-container>
-        </ng-container>
-    `,
+      >
+      <p>Extended Custom Cell!</p>
+      <div style="outline: 1px solid gray">
+        <ng-container *ngTemplateOutlet="cellTpl; context: cellContext"></ng-container>
+      </div>
+      {{
+      log
+      | spyInvoke
+      : {
+      config: config,
+      row: row,
+      value: value,
+      i: i,
+    }
+    }}
+  </div>
+}
+@default {
+  <div *spyTableFeatureTpl="location; let data = data; let i = i">
+    Custom Table Feature &#64; {{ location }}!
+    {{ log | spyInvoke: { data: data, i: i } }}
+  </div>
+}
+}
+`,
     providers: [{ provide: TableFeatureComponent, useExisting: CustomFeatureComponent }],
 })
 class CustomFeatureComponent extends TableFeatureComponent implements OnInit {

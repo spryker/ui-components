@@ -1,5 +1,7 @@
-<ng-container *ngIf="title$ | async as tableTitle">
-    <ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { order: '0' }">
-        <span *ngIf="isDataResolved$ | async" class="spy-table-title-feature">{{ tableTitle }}</span>
-    </ng-container>
-</ng-container>
+@if (title$ | async; as tableTitle) {
+  <ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { order: '0' }">
+    @if (isDataResolved$ | async) {
+      <span class="spy-table-title-feature">{{ tableTitle }}</span>
+    }
+  </ng-container>
+}

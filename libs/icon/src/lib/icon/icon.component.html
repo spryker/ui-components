@@ -1,1 +1,3 @@
-<i nz-icon *ngIf="isIconResolved | async as iconName" [nzType]="iconName"></i>
+@if (isIconResolved | async; as iconName) {
+  <i nz-icon [nzType]="iconName"></i>
+}

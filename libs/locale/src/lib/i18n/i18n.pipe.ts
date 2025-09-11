@@ -19,9 +19,7 @@ import { I18nLocaleInterpolationData } from './types';
  *  <p>{{ 'some.token' | spyI18n:{ name: 'Hi' } | async }}</p>
  * ```
  */
-@Pipe({
-    name: 'spyI18n',
-})
+@Pipe({ standalone: false, name: 'spyI18n' })
 export class I18nPipe implements PipeTransform {
     constructor(private i18nService: I18nService) {}
 

@@ -20,6 +20,7 @@ import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
 import { AutocompleteValue } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-autocomplete',
     templateUrl: './autocomplete.component.html',
     styleUrls: ['./autocomplete.component.less'],

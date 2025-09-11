@@ -16,6 +16,7 @@ import { map, mapTo, shareReplay } from 'rxjs/operators';
 import { HtmlRendererProvider } from './html-renderer.provider';
 
 @Component({
+    standalone: false,
     selector: 'spy-html-renderer',
     templateUrl: './html-renderer.component.html',
     styleUrls: ['./html-renderer.component.less'],

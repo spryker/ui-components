@@ -11,6 +11,7 @@ export class TableColumnTextConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-text',
     templateUrl: './table-column-text.component.html',
     styleUrls: ['./table-column-text.component.less'],

@@ -86,6 +86,7 @@ export class TableColumnAutocompleteConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-autocomplete',
     templateUrl: './table-column-autocomplete.component.html',
     styleUrls: ['./table-column-autocomplete.component.less'],

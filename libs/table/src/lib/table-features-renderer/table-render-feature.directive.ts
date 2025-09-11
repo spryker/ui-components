@@ -14,9 +14,7 @@ import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { FeatureRecord } from './types';
 
-@Directive({
-    selector: '[spyTableRenderFeature]',
-})
+@Directive({ standalone: false, selector: '[spyTableRenderFeature]' })
 export class TableRenderFeatureDirective implements OnInit, OnChanges {
     @Input() spyTableRenderFeature?: FeatureRecord;
 

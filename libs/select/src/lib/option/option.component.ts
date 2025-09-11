@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild } fro
 import { ToBoolean } from '@spryker/utils';
 
 @Component({
+    standalone: false,
     selector: 'spy-option',
     templateUrl: './option.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

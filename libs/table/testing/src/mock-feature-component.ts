@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { ModuleWithFeature, TableFeatureComponent, TableFeatureLocation, TableFeatureModule } from '@spryker/table';
 
 @Component({
+    standalone: false,
     selector: 'spy-mock-feature',
     template: `
         <div *spyTableFeatureTpl="tableFeatureLocation.top" class="top-feature">Top Feature</div>

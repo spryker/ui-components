@@ -19,6 +19,7 @@ import { NzRadioComponent } from 'ng-zorro-antd/radio';
 import { RadioGroupComponent } from '../radio-group/radio-group.component';
 
 @Component({
+    standalone: false,
     selector: 'spy-radio',
     templateUrl: './radio.component.html',
     styleUrls: ['./radio.component.less'],

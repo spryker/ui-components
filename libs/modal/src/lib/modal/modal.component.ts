@@ -21,6 +21,7 @@ import { ModalRef } from '../types';
 import { ComponentModal, TemplateModalContext } from '../strategies';
 
 @Component({
+    standalone: false,
     selector: 'spy-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.less'],

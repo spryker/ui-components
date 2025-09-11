@@ -21,9 +21,7 @@ import { isNgWebComponent, isNgWebComponentOf, NgWebComponent } from '../ng-web-
  *  </span>
  * ```
  */
-@Directive({
-    selector: '[spySelectComponents]',
-})
+@Directive({ standalone: false, selector: '[spySelectComponents]' })
 export class SelectComponentsDirective<T = unknown> implements OnChanges, OnDestroy {
     /**
      * Angular component type that {@link NgWebComponent} should be instance of

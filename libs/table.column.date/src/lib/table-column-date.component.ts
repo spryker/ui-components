@@ -13,6 +13,7 @@ export class TableColumnDateConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-date',
     templateUrl: './table-column-date.component.html',
     styleUrls: ['./table-column-date.component.less'],

@@ -36,6 +36,7 @@ interface TreeSelectItemWithKey extends TreeSelectItem {
  * {@link TreeSelectComponent} represents select component with the opportunity to use the hierarchy structure of selecting
  */
 @Component({
+    standalone: false,
     selector: 'spy-tree-select',
     templateUrl: './tree-select.component.html',
     styleUrls: ['./tree-select.component.less'],

@@ -27,6 +27,7 @@ export interface SubmitEvent extends Event {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-ajax-form',
     templateUrl: './ajax-form.component.html',
     styleUrls: ['./ajax-form.component.less'],

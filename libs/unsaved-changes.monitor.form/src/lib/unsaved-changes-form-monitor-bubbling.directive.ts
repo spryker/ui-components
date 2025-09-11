@@ -3,9 +3,7 @@ import { Directive, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/co
 /**
  * Responsible prevent bubbling of input event.
  */
-@Directive({
-    selector: '[spyUnsavedChangesFormMonitorBubbling]',
-})
+@Directive({ standalone: false, selector: '[spyUnsavedChangesFormMonitorBubbling]' })
 export class UnsavedChangesFormMonitorBubblingDirective implements OnInit, OnDestroy {
     private disposeInputEvent?: () => void;
 

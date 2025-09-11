@@ -19,6 +19,7 @@ import { NavigationComponentMethods, NavigationItem } from './navigation';
 import { NavigationRedirectInterceptionEvent } from './navigation-interception';
 
 @Directive({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: 'spy-navigation',
     providers: [...provideInterceptionComposerToken(forwardRef(() => NavigationComponent))],
@@ -26,6 +27,7 @@ import { NavigationRedirectInterceptionEvent } from './navigation-interception';
 export class NavigationComposerDirective extends InterceptionComposerDirective {}
 
 @Component({
+    standalone: false,
     selector: 'spy-navigation',
     templateUrl: './navigation.component.html',
     styleUrls: ['./navigation.component.less'],

@@ -6,6 +6,7 @@ import TrLocaleModule, { TR_LOCALE } from '../../locales/tr/src';
 import { LocaleModule } from './locale.module';
 
 @Component({
+    standalone: false,
     selector: 'spy-locale-story-component',
     template: `
         <ng-container *spyLocaleRender>

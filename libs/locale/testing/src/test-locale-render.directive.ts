@@ -1,8 +1,6 @@
 import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 
-@Directive({
-    selector: '[spyLocaleRender]',
-})
+@Directive({ standalone: false, selector: '[spyLocaleRender]' })
 export class TestLocaleRenderDirective implements OnInit {
     constructor(
         private templateRef: TemplateRef<any>,

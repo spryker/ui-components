@@ -20,6 +20,7 @@ export type Placement = 'bottomLeft' | 'bottomCenter' | 'bottomRight' | 'topLeft
 export type Trigger = 'click' | 'hover';
 
 @Component({
+    standalone: false,
     selector: 'spy-dropdown',
     templateUrl: './dropdown.component.html',
     styleUrls: ['./dropdown.component.less'],

@@ -5,6 +5,7 @@ import { AutoSizeType } from 'ng-zorro-antd/input';
 interface TextareaAutoSize extends AutoSizeType {}
 
 @Component({
+    standalone: false,
     selector: 'spy-textarea',
     templateUrl: './textarea.component.html',
     styleUrls: ['./textarea.component.less'],

@@ -35,6 +35,7 @@ import { SelectedOptionComponent } from '../selected-option/selected-option.comp
 import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-select',
     templateUrl: './select.component.html',
     styleUrls: ['./select.component.less'],

@@ -7,6 +7,7 @@ import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
 import { UrlHtmlRendererResponse } from '../html-renderer/types';
 
 @Directive({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: 'spy-html-renderer[urlHtml]',
     exportAs: 'urlHtmlRendererProvider',

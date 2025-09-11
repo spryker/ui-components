@@ -23,6 +23,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
  * Responsible to track interactions of a user with the form it is attached to.
  */
 @Directive({
+    standalone: false,
     selector: 'form[spyUnsavedChangesFormMonitor]',
     providers: [
         {

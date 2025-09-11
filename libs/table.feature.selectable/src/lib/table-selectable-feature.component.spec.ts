@@ -18,6 +18,7 @@ import {
 import { TableSelectableFeatureComponent } from './table-selectable-feature.component';
 
 @Component({
+    standalone: false,
     selector: 'spy-test-host',
     template: `
         <test-table-feature>

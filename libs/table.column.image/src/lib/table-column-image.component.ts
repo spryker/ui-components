@@ -13,6 +13,7 @@ export class TableColumnImageConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-image',
     templateUrl: './table-column-image.component.html',
     styleUrls: ['./table-column-image.component.less'],

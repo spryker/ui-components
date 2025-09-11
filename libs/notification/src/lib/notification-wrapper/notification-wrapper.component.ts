@@ -5,6 +5,7 @@ import { Toast, ToastPackage, ToastrService } from 'ngx-toastr';
 import { NotificationRef } from '../notification-ref';
 
 @Component({
+    standalone: false,
     selector: 'spy-notification-wrapper',
     templateUrl: './notification-wrapper.component.html',
     styleUrls: ['./notification-wrapper.component.less'],

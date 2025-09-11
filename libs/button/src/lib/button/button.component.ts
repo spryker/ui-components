@@ -18,6 +18,7 @@ export enum ButtonType {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-button',
     templateUrl: './button.component.html',
     styleUrls: ['./button.component.less'],

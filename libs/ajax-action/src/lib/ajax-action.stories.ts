@@ -18,6 +18,7 @@ class ActionMockService implements ActionHandler<unknown, void> {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: `
         <button (click)="clickHandler()">Click to show random number</button>

@@ -11,6 +11,7 @@ import { ToBoolean, ToJson } from '@spryker/utils';
 import { IconOpenEyeModule, IconCrossedEyeModule } from '@spryker/icon/icons';
 
 @Component({
+    standalone: false,
     selector: 'spy-input-password',
     templateUrl: './input-password.component.html',
     styleUrls: ['./input-password.component.less'],

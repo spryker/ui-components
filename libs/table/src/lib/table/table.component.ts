@@ -72,6 +72,7 @@ import { InternalTableLocatorService } from '../table-locator';
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () => shareReplay({ bufferSize: 1, refCount: true });
 
 @Component({
+    standalone: false,
     selector: 'spy-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.less'],

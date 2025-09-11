@@ -5,6 +5,7 @@ import { createComponentWrapper } from '@spryker/internal-utils';
 import { DropdownComponent } from './dropdown.component';
 
 @Directive({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: 'nz-dropdown-menu',
     exportAs: 'nzDropdownMenu',

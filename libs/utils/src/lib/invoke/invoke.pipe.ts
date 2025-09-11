@@ -20,7 +20,7 @@ import { InvokeContext } from './invoke.token';
  * To invoke function with the context of current component
  * you may provide it on the component level providers:
  * ```ts
- *  @Component({
+ *  @Component({ standalone: false,
  *    selector: 'my-component',
  *    template: `...`,
  *    providers: [provideInvokeContext(MyComponent)],
@@ -31,7 +31,7 @@ import { InvokeContext } from './invoke.token';
  * In that case all calls via pipe will be done using component as the `this` context
  * and will be identical to when you invoke methods manually in templates.
  */
-@Pipe({ name: 'spyInvoke' })
+@Pipe({ standalone: false, name: 'spyInvoke' })
 export class InvokePipe implements PipeTransform {
     constructor(
         @Inject(InvokeContext)

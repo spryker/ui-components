@@ -10,6 +10,7 @@ export class LocaleSwitcherInputs {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-locale-switcher',
     templateUrl: './locale-switcher.component.html',
     styleUrls: ['./locale-switcher.component.less'],

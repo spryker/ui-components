@@ -7,6 +7,7 @@ import { ActionsModule } from '@spryker/actions';
 import { CloseDrawerActionHandlerService } from './close-drawer-action-handler.service';
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: ` <spy-button variant="primary" size="md" (click)="clickHandler()"> Open drawer </spy-button> `,
 })
@@ -19,6 +20,7 @@ class SimpleDrawerComponent {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-drawer-content',
     template: `
         <h3>Drawer content here...</h3>

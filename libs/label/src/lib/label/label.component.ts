@@ -1,6 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
 @Component({
+    standalone: false,
     selector: 'spy-label',
     templateUrl: './label.component.html',
     styleUrls: ['./label.component.less'],

@@ -6,10 +6,7 @@ import { AnyModal, InferModalData, ModalRef, ModalTemplateContext } from '../../
 import { ComponentModal, ComponentModalExtras } from '../component.strategy';
 import { ConfirmModalData } from './types';
 
-@Component({
-    selector: 'spy-confirm-modal',
-    templateUrl: './confirm.component.html',
-})
+@Component({ standalone: false, selector: 'spy-confirm-modal', templateUrl: './confirm.component.html' })
 export class ConfirmModalComponent extends asModal<ConfirmModalData, boolean>() implements ComponentModal {
     @ViewChild('title', { static: true }) title!: TemplateRef<ModalTemplateContext<AnyModal>>;
     @ViewChild('footer', { static: true }) footer!: TemplateRef<ModalTemplateContext<AnyModal>>;

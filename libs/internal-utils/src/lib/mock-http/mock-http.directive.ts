@@ -11,6 +11,7 @@ export function setMockHttp(responses: MockHttpResponse[]) {
 }
 
 @Directive({
+    standalone: false,
     // This is for internal use only
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[mockHttp]',

@@ -17,6 +17,7 @@ import { TableBatchActionsFeatureModule } from './table-batch-actions-feature.mo
 import { provideHttpClient } from '@angular/common/http';
 
 @Component({
+    standalone: false,
     selector: 'spy-simple-component',
     template: `
         <div>

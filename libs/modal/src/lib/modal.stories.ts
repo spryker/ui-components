@@ -32,6 +32,7 @@ export default {
 } as Meta;
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: `
         <h3>Content</h3>
@@ -152,6 +153,7 @@ primary.args = {
 };
 
 @Component({
+    standalone: false,
     selector: 'spy-simple-modal',
     template: `
         <spy-modal [(visible)]="visible">
@@ -177,6 +179,7 @@ export const viaModalComponent = (args) => ({
 });
 
 @Component({
+    standalone: false,
     selector: 'spy-confirm-modal',
     template: `
         <p>

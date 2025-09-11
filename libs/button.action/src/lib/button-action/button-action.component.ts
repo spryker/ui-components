@@ -14,6 +14,7 @@ import { Subject } from 'rxjs';
 import { switchMap, filter, takeUntil } from 'rxjs/operators';
 
 @Component({
+    standalone: false,
     selector: 'spy-button-action',
     templateUrl: './button-action.component.html',
     styleUrls: ['./button-action.component.less'],

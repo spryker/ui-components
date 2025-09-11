@@ -14,6 +14,7 @@ import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { DateRangeValueInput } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-date-range-picker',
     templateUrl: './date-range-picker.component.html',
     styleUrls: ['./date-range-picker.component.less'],

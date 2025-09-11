@@ -13,6 +13,7 @@ import { pluck, skip, switchMap, take, tap } from 'rxjs/operators';
 import { TableSyncStateConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-sync-state-feature',
     templateUrl: './table-sync-state-feature.component.html',
     styleUrls: ['./table-sync-state-feature.component.less'],

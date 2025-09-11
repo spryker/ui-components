@@ -11,6 +11,7 @@ const context = {
 };
 
 @Component({
+    standalone: false,
     selector: 'spy-test',
     template: `
         {{ datasourceData | async }}

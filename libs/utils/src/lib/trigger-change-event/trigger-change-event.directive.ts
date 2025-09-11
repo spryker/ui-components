@@ -1,9 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { triggerChangeEvent } from './trigger-change-event-function';
 
-@Directive({
-    selector: '[spyTriggerChangeEvent]',
-})
+@Directive({ standalone: false, selector: '[spyTriggerChangeEvent]' })
 export class TriggerChangeEventDirective {
     @Input() spyTriggerChangeEvent?: HTMLElement | string;
 

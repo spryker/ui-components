@@ -69,6 +69,7 @@ interface TableEditCellModel {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-editable-feature',
     templateUrl: './table-editable-feature.component.html',
     styleUrls: ['./table-editable-feature.component.less'],

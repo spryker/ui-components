@@ -13,9 +13,7 @@ import { ButtonAttributes, ButtonShape, ButtonSize, ButtonVariant } from './type
 
 export const buttonClassName = 'spy-button-core';
 
-@Directive({
-    selector: '[spyButtonCoreInputs]',
-})
+@Directive({ standalone: false, selector: '[spyButtonCoreInputs]' })
 export class ButtonCoreInputs {
     @Input() shape: ButtonShape = ButtonShape.Default;
     @Input() size: ButtonSize = ButtonSize.Medium;
@@ -23,9 +21,7 @@ export class ButtonCoreInputs {
     @Input() @ToJson() attrs?: ButtonAttributes;
 }
 
-@Directive({
-    selector: '[spyButtonCore]',
-})
+@Directive({ standalone: false, selector: '[spyButtonCore]' })
 export class ButtonCore extends ButtonCoreInputs implements AfterViewInit, OnChanges {
     @ViewChild('buttonRef') buttonRef?: ElementRef<HTMLElement>;
 

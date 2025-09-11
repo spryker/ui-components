@@ -7,9 +7,7 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 /**
  * Tracks scroll events in the children element by selector using {@link CdkScrollable} directive
  */
-@Directive({
-    selector: '[spyRedirectedCdkScrollable]',
-})
+@Directive({ standalone: false, selector: '[spyRedirectedCdkScrollable]' })
 export class RedirectedCdkScrollableDirective extends CdkScrollable implements AfterViewInit, OnChanges {
     @Input() spyRedirectedCdkScrollable?: string;
 

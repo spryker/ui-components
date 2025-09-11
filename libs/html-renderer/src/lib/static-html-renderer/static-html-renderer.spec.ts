@@ -7,6 +7,7 @@ import { StaticHtmlRendererModule } from './static-html-renderer.module';
 const mockHtmlTemplate = `<p>Hello World!!!</p>`;
 
 @Component({
+    standalone: false,
     selector: 'spy-test',
     template: ` <spy-html-renderer [html]="html"></spy-html-renderer> `,
 })

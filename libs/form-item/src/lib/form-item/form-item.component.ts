@@ -3,6 +3,7 @@ import { AbstractControl, NgModel } from '@angular/forms';
 import { ToBoolean } from '@spryker/utils';
 
 @Component({
+    standalone: false,
     selector: 'spy-form-item',
     templateUrl: './form-item.component.html',
     styleUrls: ['./form-item.component.less'],

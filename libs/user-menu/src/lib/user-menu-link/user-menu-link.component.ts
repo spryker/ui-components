@@ -7,6 +7,7 @@ export enum UserMenuLinkType {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-user-menu-link',
     templateUrl: './user-menu-link.component.html',
     styleUrls: ['./user-menu-link.component.less'],

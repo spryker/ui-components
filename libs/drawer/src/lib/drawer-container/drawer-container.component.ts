@@ -35,6 +35,7 @@ import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.compone
 import { DrawerTemplateContext } from '../types';
 
 @Directive({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: 'spy-drawer-container',
     providers: [...provideInterceptionComposerToken(forwardRef(() => DrawerContainerComponent))],
@@ -42,6 +43,7 @@ import { DrawerTemplateContext } from '../types';
 export class DrawerComposerDirective extends InterceptionComposerDirective {}
 
 @Component({
+    standalone: false,
     selector: 'spy-drawer-container',
     templateUrl: './drawer-container.component.html',
     styleUrls: ['./drawer-container.component.less'],

@@ -90,6 +90,7 @@ export class TableColumnSelectConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-select',
     templateUrl: './table-column-select.component.html',
     styleUrls: ['./table-column-select.component.less'],

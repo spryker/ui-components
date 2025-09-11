@@ -39,6 +39,7 @@ export class TableColumnDynamicConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-dynamic',
     templateUrl: './table-column-dynamic.component.html',
     styleUrls: ['./table-column-dynamic.component.less'],

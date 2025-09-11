@@ -16,6 +16,7 @@ import { map, pluck, shareReplay, switchMap, take, takeUntil, withLatestFrom } f
 import { TableRowActionBase, TableRowActionContext, TableRowActionsConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-row-actions-feature',
     templateUrl: './table-row-actions-feature.component.html',
     styleUrls: ['./table-row-actions-feature.component.less'],

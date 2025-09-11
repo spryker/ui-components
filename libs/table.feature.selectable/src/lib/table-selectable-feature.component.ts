@@ -20,6 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 import { TableSelectableConfig, TableSelectionRow, TableSelectionChangeEvent } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-selectable-feature',
     templateUrl: './table-selectable-feature.component.html',
     styleUrls: ['./table-selectable-feature.component.less'],

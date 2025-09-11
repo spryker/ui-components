@@ -15,9 +15,7 @@ import { map, pairwise, shareReplay, startWith, takeUntil } from 'rxjs/operators
 
 import { ApplyContextsOptions } from './apply-contexts-options';
 
-@Directive({
-    selector: '[spyApplyContexts]',
-})
+@Directive({ standalone: false, selector: '[spyApplyContexts]' })
 export class ApplyContextsDirective implements OnInit, OnChanges, OnDestroy {
     @Input() spyApplyContexts?: string | string[];
 

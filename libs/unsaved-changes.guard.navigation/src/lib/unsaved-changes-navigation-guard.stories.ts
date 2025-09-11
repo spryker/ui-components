@@ -12,6 +12,7 @@ import { UnsavedChangesFormMonitorModule } from '@spryker/unsaved-changes.monito
 import { UnsavedChangesGuardNavigationModule } from './unsaved-changes-navigation-guard.module';
 
 @Component({
+    standalone: false,
     selector: 'spy-content',
     template: `
         <spy-navigation [items]="items"></spy-navigation>

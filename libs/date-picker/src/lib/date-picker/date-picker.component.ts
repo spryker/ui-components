@@ -46,6 +46,7 @@ interface NzDisabledTimeConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-date-picker',
     templateUrl: './date-picker.component.html',
     styleUrls: ['./date-picker.component.less'],

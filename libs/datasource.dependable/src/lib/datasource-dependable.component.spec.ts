@@ -14,6 +14,7 @@ class MockDatasourceDependableElements {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-test-component',
     template: '',
     providers: [

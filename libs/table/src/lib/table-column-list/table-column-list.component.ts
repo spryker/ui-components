@@ -27,6 +27,7 @@ export class TableColumnListConfig extends TableColumnListConfigInner {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-list',
     templateUrl: './table-column-list.component.html',
     styleUrls: ['./table-column-list.component.less'],

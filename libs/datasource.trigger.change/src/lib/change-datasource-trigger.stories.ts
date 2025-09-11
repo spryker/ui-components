@@ -37,6 +37,7 @@ const mockResponseData = {
 };
 
 @Component({
+    standalone: false,
     selector: 'spy-test',
     template: `
         <div>Choose an option to fire "change" event</div>

@@ -6,6 +6,7 @@ import { NzAlertComponent } from 'ng-zorro-antd/alert';
 import { NotificationInputs } from '../notification-inputs';
 
 @Component({
+    standalone: false,
     selector: 'spy-notification-view',
     templateUrl: './notification-view.component.html',
     styleUrls: ['./notification-view.component.less'],

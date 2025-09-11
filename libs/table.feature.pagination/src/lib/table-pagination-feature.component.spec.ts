@@ -14,6 +14,7 @@ import { ReplaySubject } from 'rxjs';
 import { PluckModule } from '@spryker/utils';
 
 @Component({
+    standalone: false,
     selector: 'spy-test-host',
     template: `
         <test-table-feature>

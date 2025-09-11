@@ -19,6 +19,7 @@ import { RadioComponent } from '../radio/radio.component';
 export type RadioValue = string | number;
 
 @Component({
+    standalone: false,
     selector: 'spy-radio-group',
     templateUrl: './radio-group.component.html',
     styleUrls: ['./radio-group.component.less'],

@@ -1,9 +1,7 @@
 import { Directive, Input, TemplateRef } from '@angular/core';
 import { TableColumnTplContext } from './table';
 
-@Directive({
-    selector: '[spyColTpl]',
-})
+@Directive({ standalone: false, selector: '[spyColTpl]' })
 export class ColTplDirective {
     @Input() spyColTpl = '';
 

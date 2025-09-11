@@ -15,6 +15,7 @@ export class TableColumnChipConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-chip',
     templateUrl: './table-column-chip.component.html',
     styleUrls: ['./table-column-chip.component.less'],

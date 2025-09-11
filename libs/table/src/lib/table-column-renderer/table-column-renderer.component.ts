@@ -13,6 +13,7 @@ import { OrchestratorConfigItem } from '@orchestrator/core';
 import { TableColumn, TableColumnTplContext, TableColumnTypeDef, TableDataRow } from '../table/table';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-renderer',
     templateUrl: './table-column-renderer.component.html',
     styleUrls: ['./table-column-renderer.component.less'],

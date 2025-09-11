@@ -3,9 +3,7 @@ import { I18nLocaleInterpolationData } from '@spryker/locale';
 import { Observable, of } from 'rxjs';
 import { I18nTestService } from './test-locale-i18n.service';
 
-@Pipe({
-    name: 'spyI18n',
-})
+@Pipe({ standalone: false, name: 'spyI18n' })
 export class I18nTestPipe implements PipeTransform {
     constructor(private testI18nService: I18nTestService) {}
 

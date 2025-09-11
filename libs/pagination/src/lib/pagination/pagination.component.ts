@@ -3,6 +3,7 @@ import { SelectValueSelected } from '@spryker/select';
 import { ToBoolean } from '@spryker/utils';
 
 @Component({
+    standalone: false,
     selector: 'spy-pagination',
     templateUrl: './pagination.component.html',
     styleUrls: ['./pagination.component.less'],

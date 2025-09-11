@@ -8,6 +8,7 @@ import { ActionsModule } from '@spryker/actions';
 import { CloseModalActionHandlerService } from './close-modal-action-handler.service';
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: ` <spy-button variant="primary" size="md" (click)="clickHandler()"> Open modal </spy-button> `,
 })
@@ -20,6 +21,7 @@ class SimpleModalComponent {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-modal-content',
     template: `
         <h3>Modal content here...</h3>

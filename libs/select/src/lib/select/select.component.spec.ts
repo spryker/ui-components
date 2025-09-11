@@ -9,6 +9,7 @@ import { JoinModule } from '@spryker/utils';
 import { SelectComponent } from './select.component';
 
 @Component({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'nz-select',
     template: ` <ng-content></ng-content> `,

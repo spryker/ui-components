@@ -11,6 +11,7 @@ interface RenderTplContext {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-modal',
     template: `
         <div class="modal">

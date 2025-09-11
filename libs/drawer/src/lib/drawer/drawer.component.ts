@@ -35,6 +35,7 @@ export class DrawerComponentInputs {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-drawer',
     templateUrl: './drawer.component.html',
     styleUrls: ['./drawer.component.less'],

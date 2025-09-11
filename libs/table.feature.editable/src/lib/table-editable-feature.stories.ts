@@ -44,6 +44,7 @@ class EditColumnConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-edit-column',
     template: `
         Edit Column {{ context.config.id }}

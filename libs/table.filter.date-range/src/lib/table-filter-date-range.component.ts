@@ -16,6 +16,7 @@ import { Observable, of } from 'rxjs';
 import { TableFilterDateRange } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-filter-date-range',
     templateUrl: './table-filter-date-range.component.html',
     styleUrls: ['./table-filter-date-range.component.less'],

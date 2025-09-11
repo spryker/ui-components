@@ -34,6 +34,7 @@ export class TableColumnButtonActionConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-button-action',
     templateUrl: './table-column-button-action.component.html',
     styleUrls: ['./table-column-button-action.component.less'],

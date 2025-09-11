@@ -7,6 +7,7 @@ import { RadioModule } from '../radio.module';
 import { RadioComponent } from './radio.component';
 
 @Component({
+    standalone: false,
     selector: 'spy-test',
     template: `
         <spy-radio-group>

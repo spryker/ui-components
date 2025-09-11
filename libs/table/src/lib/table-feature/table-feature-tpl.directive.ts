@@ -5,9 +5,7 @@ export interface TableFeatureTplContext {
     [key: string]: any;
 }
 
-@Directive({
-    selector: '[spyTableFeatureTpl]',
-})
+@Directive({ standalone: false, selector: '[spyTableFeatureTpl]' })
 export class TableFeatureTplDirective implements OnChanges {
     @Input() spyTableFeatureTpl?: string | string[];
     @Input() spyTableFeatureTplStyles?: Record<string, any>;

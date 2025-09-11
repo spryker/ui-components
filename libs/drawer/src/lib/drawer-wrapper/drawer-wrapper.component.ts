@@ -14,6 +14,7 @@ import { IconMaximizeModule, IconMinimizeModule, IconRemoveModule } from '@spryk
 
 /** @internal */
 @Component({
+    standalone: false,
     selector: 'spy-drawer-wrapper',
     templateUrl: './drawer-wrapper.component.html',
     styleUrls: ['./drawer-wrapper.component.less'],

@@ -14,6 +14,7 @@ interface TableSettingsStorageData {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-settings-feature',
     templateUrl: './table-settings-feature.component.html',
     styleUrls: ['./table-settings-feature.component.less'],

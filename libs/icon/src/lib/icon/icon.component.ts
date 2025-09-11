@@ -15,6 +15,7 @@ import {
 import { InternalIconService } from './internal-icon.service';
 
 @Component({
+    standalone: false,
     selector: 'spy-icon',
     templateUrl: './icon.component.html',
     styleUrls: ['./icon.component.less'],

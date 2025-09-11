@@ -21,6 +21,7 @@ import { NotificationService } from '../notification.service';
 import { NotificationConfig, NotificationContext, NotificationData } from '../types';
 
 @Component({
+    standalone: false,
     selector: 'spy-notification',
     templateUrl: './notification.component.html',
     styleUrls: ['./notification.component.less'],

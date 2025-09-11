@@ -17,6 +17,7 @@ import { merge, ReplaySubject } from 'rxjs';
 import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
 @Component({
+    standalone: false,
     selector: 'spy-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.less'],

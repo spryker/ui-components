@@ -25,6 +25,7 @@ class MockTableFeatureComponent extends TableFeatureComponent {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-render-features',
     template: `
         <spy-table-features-renderer

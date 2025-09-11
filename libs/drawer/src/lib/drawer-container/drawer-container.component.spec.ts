@@ -7,6 +7,7 @@ import { DynamicIoModule } from 'ng-dynamic-component';
 import { DrawerContainerComponent } from './drawer-container.component';
 
 @Component({
+    standalone: false,
     selector: 'spy-test',
     template: `
         <spy-drawer-container #drawerContainer></spy-drawer-container>

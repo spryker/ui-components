@@ -6,6 +6,7 @@ import { NotificationService } from '../notification.service';
 import { NotificationData, NotificationType } from '../types';
 
 @Component({
+    standalone: false,
     selector: 'spy-story-selector',
     template: ` <button (click)="notificationService.show(data)">Show Notification</button> `,
 })

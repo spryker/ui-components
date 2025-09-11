@@ -21,10 +21,7 @@ import { TableFeaturesRendererService } from './table-features-renderer.service'
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
 import { TableFeatureLocation } from '../table/table';
 
-@Directive({
-    selector: '[spyTableFeaturesRenderer]',
-    exportAs: 'spyTableFeaturesRenderer',
-})
+@Directive({ standalone: false, selector: '[spyTableFeaturesRenderer]', exportAs: 'spyTableFeaturesRenderer' })
 export class TableFeaturesRendererDirective implements OnInit, OnChanges, OnDestroy {
     @Input() spyTableFeaturesRenderer?: TableFeatureLocation;
     @Input() spyTableFeaturesRendererFeatures?: TableFeatureComponent[];

@@ -6,6 +6,7 @@ import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { RadioModule } from '../radio.module';
 
 @Component({
+    standalone: false,
     selector: 'spy-test',
     template: `
         <spy-radio-group [value]="value" [name]="name" (selected)="selectedSpy($event)">

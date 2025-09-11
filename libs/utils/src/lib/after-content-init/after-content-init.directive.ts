@@ -1,6 +1,6 @@
 import { Directive, AfterContentInit, EventEmitter, Output } from '@angular/core';
 
-@Directive({ selector: '[spyAfterContentInit]' })
+@Directive({ standalone: false, selector: '[spyAfterContentInit]' })
 export class AfterContentInitDirective implements AfterContentInit {
     @Output()
     spyAfterContentInit = new EventEmitter<void>();

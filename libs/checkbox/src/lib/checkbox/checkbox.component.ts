@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEn
 import { ToJson, ToBoolean } from '@spryker/utils';
 
 @Component({
+    standalone: false,
     selector: 'spy-checkbox',
     templateUrl: './checkbox.component.html',
     styleUrls: ['./checkbox.component.less'],

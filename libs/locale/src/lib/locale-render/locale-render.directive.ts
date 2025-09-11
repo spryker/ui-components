@@ -8,9 +8,7 @@ export interface LocaleRenderTemplateCtx {
     $implicit: string; // LOCALE_ID
 }
 
-@Directive({
-    selector: '[spyLocaleRender]',
-})
+@Directive({ standalone: false, selector: '[spyLocaleRender]' })
 export class LocaleRenderDirective implements OnInit, OnDestroy {
     private destroyed$ = new Subject<void>();
 

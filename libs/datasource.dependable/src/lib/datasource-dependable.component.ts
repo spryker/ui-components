@@ -3,6 +3,7 @@ import { DatasourceDependableElementsService } from './datasource-dependable-ele
 import { DatasourceDependableElement } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-datasource-dependable',
     templateUrl: './datasource-dependable.component.html',
     encapsulation: ViewEncapsulation.None,

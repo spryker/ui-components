@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef } from '@angular/core';
 
 @Component({
+    standalone: false,
     selector: 'spy-link',
     templateUrl: './link.component.html',
     styleUrls: ['./link.component.less'],

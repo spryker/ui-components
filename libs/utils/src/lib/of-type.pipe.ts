@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'ofType' })
+@Pipe({ standalone: false, name: 'ofType' })
 export class OfTypePipe implements PipeTransform {
     transform<T = boolean, F = boolean>(
         value: any,

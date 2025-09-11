@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 
 @Component({
+    standalone: false,
     selector: 'spy-carousel-slide',
     templateUrl: './carousel-slide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

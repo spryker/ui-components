@@ -11,6 +11,7 @@ import {
 import { ToBoolean } from '@spryker/utils';
 
 @Component({
+    standalone: false,
     selector: 'spy-toggle',
     templateUrl: './toggle.component.html',
     styleUrls: ['./toggle.component.less'],

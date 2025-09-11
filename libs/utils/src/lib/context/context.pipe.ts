@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 import { AnyContext, ContextService } from './context.service';
 
-@Pipe({ name: 'context' })
+@Pipe({ standalone: false, name: 'context' })
 export class ContextPipe implements PipeTransform {
     constructor(private contextService: ContextService) {}
 

@@ -6,6 +6,7 @@ import { CardComponent } from './card.component';
 import { CardModule } from '../card.module';
 
 @Component({
+    standalone: false,
     template: `
         <spy-card [spyTitle]="title" [extra]="extra" [actions]="[button]" [hoverable]="hoverable">
             Card Content

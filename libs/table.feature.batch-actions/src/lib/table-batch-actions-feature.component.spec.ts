@@ -16,6 +16,7 @@ import { ReplaySubject } from 'rxjs';
 import { TableBatchActionsFeatureComponent } from './table-batch-actions-feature.component';
 
 @Component({
+    standalone: false,
     selector: 'spy-test-host',
     template: `
         <test-table-feature>

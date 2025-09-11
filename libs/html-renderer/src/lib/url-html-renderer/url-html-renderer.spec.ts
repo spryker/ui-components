@@ -18,6 +18,7 @@ class MockAjaxActionService {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-test',
     template: ` <spy-html-renderer [urlHtml]="urlHtml" (urlHtmlLoading)="urlHtmlLoading($event)"></spy-html-renderer> `,
 })

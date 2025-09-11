@@ -34,6 +34,7 @@ export class TableColumnInputConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-input',
     templateUrl: './table-column-input.component.html',
     styleUrls: ['./table-column-input.component.less'],

@@ -36,6 +36,7 @@ const mockData: TableDataRow = {
 };
 
 @Component({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'test-host-wrapper',
     template: `
@@ -72,6 +73,7 @@ class TableColumnTestConfig {
 }
 
 @Component({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'table-column-test',
     template: ` {{ config.text | context: context }} `,

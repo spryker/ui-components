@@ -11,6 +11,7 @@ import {
 import { ToBoolean } from '@spryker/utils';
 
 @Component({
+    standalone: false,
     selector: 'spy-collapsible',
     templateUrl: './collapsible.component.html',
     styleUrls: ['./collapsible.component.less'],

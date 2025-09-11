@@ -70,10 +70,7 @@ class TableColumnTestConfig {
     constructor(private contextService: ContextService) {}
 }
 
-@Component({
-    selector: 'spy-table-column-test',
-    template: ` {{ config.text | context: context }} `,
-})
+@Component({ standalone: false, selector: 'spy-table-column-test', template: ` {{ config.text | context: context }} ` })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent implements TableColumnComponent<TableColumnTestConfig> {
     @Input() items?: any;
@@ -151,6 +148,7 @@ export const primary = (args) => ({
 });
 
 @Component({
+    standalone: false,
     selector: 'spy-custom-feature',
     template: `
         @switch (location) {

@@ -12,6 +12,7 @@ import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
 
 @Component({
+    standalone: false,
     // This is abstract component so selector is ignored
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'selector',

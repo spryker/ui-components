@@ -22,6 +22,7 @@ export enum TabsMode {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-tabs',
     templateUrl: './tabs.component.html',
     styleUrls: ['./tabs.component.less'],

@@ -15,6 +15,7 @@ import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
 import { ReplaySubject } from 'rxjs';
 
 @Component({
+    standalone: false,
     selector: 'spy-input',
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.less'],

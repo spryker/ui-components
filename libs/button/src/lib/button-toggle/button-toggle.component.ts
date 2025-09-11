@@ -13,6 +13,7 @@ import { ToBoolean, ToJson } from '@spryker/utils';
 import { ButtonAttributes } from '../button-core/types';
 
 @Component({
+    standalone: false,
     selector: 'spy-button-toggle',
     templateUrl: './button-toggle.component.html',
     styleUrls: ['./button-toggle.component.less'],

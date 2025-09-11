@@ -104,6 +104,7 @@ export function initFeature<T>(
 }
 
 @Component({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'test-table-feature',
     template: ` <ng-content></ng-content> `,
@@ -134,9 +135,7 @@ export const TestTableFeatureTplContext = new InjectionToken<Record<string, Tabl
     'TestTableFeatureTplContext',
 );
 
-@Directive({
-    selector: '[spyTableFeatureTpl]',
-})
+@Directive({ standalone: false, selector: '[spyTableFeatureTpl]' })
 export class TestTableFeatureTplDirective implements OnChanges {
     @Input() spyTableFeatureTpl?: string | string[];
     @Input() spyTableFeatureTplStyles?: Record<string, any>;

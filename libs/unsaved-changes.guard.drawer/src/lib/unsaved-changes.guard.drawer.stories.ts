@@ -11,6 +11,7 @@ import { UnsavedChangesFormMonitorModule } from '@spryker/unsaved-changes.monito
 import { UnsavedChangesDrawerGuardModule } from './unsaved-changes-drawer-guard.module';
 
 @Component({
+    standalone: false,
     selector: 'spy-drawer-content',
     template: `
         <form spyUnsavedChangesFormMonitor>
@@ -24,6 +25,7 @@ import { UnsavedChangesDrawerGuardModule } from './unsaved-changes-drawer-guard.
 class DrawerContentComponent {}
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: ` <button (click)="toggleDrawer()">Toggle drawer</button> `,
 })

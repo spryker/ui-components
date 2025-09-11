@@ -7,6 +7,7 @@ import { DrawerComponentInputs } from './drawer/drawer.component';
 import { DrawerRef } from './drawer-ref';
 
 @Component({
+    standalone: false,
     selector: 'spy-multiple-drawers',
     template: `
         <p><button (click)="addDrawer(drawerTpl)">Add drawer</button></p>
@@ -47,6 +48,7 @@ class MultipleDrawersComponent {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: `
         <spy-drawer
@@ -75,6 +77,7 @@ class SimpleDrawerComponent extends DrawerComponentInputs {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-drawer-example-component',
     template: `
         <h1>Example Component</h1>
@@ -94,6 +97,7 @@ class DrawerExampleComponent {
 }
 
 @Component({
+    standalone: false,
     selector: `spy-drawer-with-component`,
     template: `<button (click)="openDrawer()">Open Drawer</button>`,
 })

@@ -22,6 +22,7 @@ export enum ButtonAjaxMethod {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-button-ajax',
     templateUrl: './button-ajax.component.html',
     styleUrls: ['./button-ajax.component.less'],

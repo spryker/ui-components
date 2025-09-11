@@ -15,6 +15,7 @@ import { IconErrorModule } from '@spryker/icon/icons';
 import { TabTemplateContext } from 'ng-zorro-antd/tabs';
 
 @Component({
+    standalone: false,
     selector: 'spy-tab',
     templateUrl: './tab.component.html',
     styleUrls: ['./tab.component.less'],

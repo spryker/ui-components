@@ -11,6 +11,7 @@ import { ButtonSize, ButtonType, ButtonAttributes } from '@spryker/button';
 import { ToBoolean, ToJson } from '@spryker/utils';
 
 @Component({
+    standalone: false,
     selector: 'spy-button-icon',
     host: { class: 'spy-button-icon' },
     templateUrl: './button-icon.component.html',

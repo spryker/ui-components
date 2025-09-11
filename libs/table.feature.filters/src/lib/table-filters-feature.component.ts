@@ -15,6 +15,7 @@ import { TABLE_FILTERS_TOKEN } from './tokens';
 import { TableFilterBase, TableFilterComponent, TableFiltersConfig, TableFiltersDeclaration } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-filters-feature',
     templateUrl: './table-filters-feature.component.html',
     styleUrls: ['./table-filters-feature.component.less'],

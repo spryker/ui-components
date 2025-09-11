@@ -22,10 +22,7 @@ class MockModalService {
     openComponent = jest.fn().mockReturnValue(this.modalRef);
 }
 
-@Component({
-    selector: 'spy-test-modal-component',
-    template: ``,
-})
+@Component({ standalone: false, selector: 'spy-test-modal-component', template: `` })
 class TestModalComponent {}
 
 describe('ModalComponent', () => {

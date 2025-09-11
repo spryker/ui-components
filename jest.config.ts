@@ -4,10 +4,8 @@ const { getJestProjectsAsync } = require('@nx/jest');
 export default async () => ({
     testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
     transform: {
-        '^.+\\.(ts|js|html)
-: 'ts-jest',
-        '^.+\\.mdx
-: '@storybook/addon-docs/jest-transform-mdx',
+        '^.+\\.(ts|mjs|js|html)$': 'ts-jest',
+        '^.+\\.mdx$': '@storybook/addon-docs/jest-transform-mdx',
     },
     resolver: '@nx/jest/plugins/resolver',
     moduleFileExtensions: ['ts', 'js', 'html'],

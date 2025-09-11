@@ -1,15 +1,15 @@
 <div
-  class="spy-table-column-dynamic__container"
-  [class.spy-table-column-dynamic__container--loading]="isColConfigLoading$ | async"
-  >
-  <spy-table-column-renderer
-    [config]="colConfig$ | async"
-    [data]="colData"
-    [i]="context?.i"
-    [j]="context?.j"
-  ></spy-table-column-renderer>
+    class="spy-table-column-dynamic__container"
+    [class.spy-table-column-dynamic__container--loading]="isColConfigLoading$ | async"
+>
+    <spy-table-column-renderer
+        [config]="colConfig$ | async"
+        [data]="colData"
+        [i]="context?.i"
+        [j]="context?.j"
+    ></spy-table-column-renderer>
 </div>
 <!-- TODO: replace with @spryker/spinner when it has been done -->
 @if (isColConfigLoading$ | async) {
-  <nz-spin nzSize="small" class="spy-table-column-dynamic__loader"></nz-spin>
+    <nz-spin nzSize="small" class="spy-table-column-dynamic__loader"></nz-spin>
 }

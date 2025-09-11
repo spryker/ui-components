@@ -1,10 +1,7 @@
 <nz-autocomplete nzOverlayClassName="spy-autocomplete__dropdown">
-  @for (option of filteredOptions$ | async; track option) {
-    <nz-auto-option
-      [nzDisabled]="option.isDisabled"
-      [nzValue]="option.value"
-      >
-      {{ option.title }}
-    </nz-auto-option>
-  }
+    @for (option of filteredOptions$ | async; track option) {
+        <nz-auto-option [nzDisabled]="option.isDisabled" [nzValue]="option.value">
+            {{ option.title }}
+        </nz-auto-option>
+    }
 </nz-autocomplete>

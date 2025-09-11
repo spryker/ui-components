@@ -1,22 +1,13 @@
 @if (isValueUndefined) {
-  {{ emptyValue | context: fullContext }}
+    {{ emptyValue | context: fullContext }}
 } @else {
-  @if (template) {
-    <ng-container
-      [ngTemplateOutlet]="template"
-      [ngTemplateOutletContext]="fullContext"
-    ></ng-container>
-  } @else {
-    @if (config?.type) {
-      <orc-orchestrator
-        [config]="itemConfig"
-        [context]="fullContext"
-      ></orc-orchestrator>
+    @if (template) {
+        <ng-container [ngTemplateOutlet]="template" [ngTemplateOutletContext]="fullContext"></ng-container>
     } @else {
-      {{ displayValue }}
+        @if (config?.type) {
+            <orc-orchestrator [config]="itemConfig" [context]="fullContext"></orc-orchestrator>
+        } @else {
+            {{ displayValue }}
+        }
     }
-  }
 }
-
-
-

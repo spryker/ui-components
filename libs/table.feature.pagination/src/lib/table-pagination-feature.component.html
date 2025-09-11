@@ -1,13 +1,13 @@
 <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterTable; styles: { width: '100%' }">
-  @if (data$ | async | pluck: 'length') {
-    <spy-pagination
-      [pageSizeOptions]="sizes$ | async"
-      [total]="total$ | async"
-      [pageSize]="pageSize$ | async"
-      [page]="page$ | async"
-      disableClear
-      (pageChange)="updatePagination($event)"
-      (pageSizeChange)="updatePageSize($event)"
-    ></spy-pagination>
-  }
+    @if (data$ | async | pluck: 'length') {
+        <spy-pagination
+            [pageSizeOptions]="sizes$ | async"
+            [total]="total$ | async"
+            [pageSize]="pageSize$ | async"
+            [page]="page$ | async"
+            disableClear
+            (pageChange)="updatePagination($event)"
+            (pageSizeChange)="updatePageSize($event)"
+        ></spy-pagination>
+    }
 </ng-container>

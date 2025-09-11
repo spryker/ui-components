@@ -1,23 +1,23 @@
 <nz-form-item [ngClass]="{ 'no-spaces': noSpaces }">
-  @if (!noLabel) {
-    <nz-form-label [nzNoColon]="true" [nzFor]="for" [nzRequired]="false">
-      <ng-content></ng-content>
-      @if (required) {
-        <span class="ant-form-item-label--required">*</span>
-      }
-    </nz-form-label>
-  }
-  <nz-form-control
-    [nzValidateStatus]="currentValidationStatus"
-    [nzErrorTip]="error | ofType: 'string' : errorMessageTpl : (error | ofType: 'boolean' : null : error)"
-    [nzWarningTip]="warning"
-    [nzValidatingTip]="hint"
+    @if (!noLabel) {
+        <nz-form-label [nzNoColon]="true" [nzFor]="for" [nzRequired]="false">
+            <ng-content></ng-content>
+            @if (required) {
+                <span class="ant-form-item-label--required">*</span>
+            }
+        </nz-form-label>
+    }
+    <nz-form-control
+        [nzValidateStatus]="currentValidationStatus"
+        [nzErrorTip]="error | ofType: 'string' : errorMessageTpl : (error | ofType: 'boolean' : null : error)"
+        [nzWarningTip]="warning"
+        [nzValidatingTip]="hint"
     >
-    <ng-template #errorMessageTpl>
-      <i nz-icon nzType="info-circle" nzTheme="outline"></i>
-      <span class="ant-form-item-explain-text" [attr.title]="withErrorTitle ? error : null">{{ error }}</span>
-    </ng-template>
+        <ng-template #errorMessageTpl>
+            <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+            <span class="ant-form-item-explain-text" [attr.title]="withErrorTitle ? error : null">{{ error }}</span>
+        </ng-template>
 
-    <ng-content select="[control]"></ng-content>
-  </nz-form-control>
+        <ng-content select="[control]"></ng-content>
+    </nz-form-control>
 </nz-form-item>

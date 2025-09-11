@@ -1,29 +1,26 @@
 <div class="spy-table-column-list">
-  <ng-container
-    [ngTemplateOutlet]="valuesTpl"
-    [ngTemplateOutletContext]="{ $implicit: valuesLimited }"
-  ></ng-container>
+    <ng-container
+        [ngTemplateOutlet]="valuesTpl"
+        [ngTemplateOutletContext]="{ $implicit: valuesLimited }"
+    ></ng-container>
 
-  @if (valuesLimited.length < values.length) {
-    <spy-popover
-      [position]="popoverPosition"
-      [popoverTrigger]="popoverTrigger"
-      >
-      <span trigger class="spy-table-column-list__trigger">({{ values.length }})</span>
-      <div class="spy-table-column-list__popover">
-        <ng-container
-          [ngTemplateOutlet]="valuesTpl"
-          [ngTemplateOutletContext]="{ $implicit: values }"
-        ></ng-container>
-      </div>
-    </spy-popover>
-  }
+    @if (valuesLimited.length < values.length) {
+        <spy-popover [position]="popoverPosition" [popoverTrigger]="popoverTrigger">
+            <span trigger class="spy-table-column-list__trigger">({{ values.length }})</span>
+            <div class="spy-table-column-list__popover">
+                <ng-container
+                    [ngTemplateOutlet]="valuesTpl"
+                    [ngTemplateOutletContext]="{ $implicit: values }"
+                ></ng-container>
+            </div>
+        </spy-popover>
+    }
 </div>
 
 <ng-template #valuesTpl let-values>
-  @for (value of values; track value; let i = $index) {
-    <div class="spy-table-column-list__holder">
-      <spy-table-column-renderer [config]="configs[i]" [data]="value"></spy-table-column-renderer>
-    </div>
-  }
+    @for (value of values; track value; let i = $index) {
+        <div class="spy-table-column-list__holder">
+            <spy-table-column-renderer [config]="configs[i]" [data]="value"></spy-table-column-renderer>
+        </div>
+    }
 </ng-template>

@@ -1,33 +1,30 @@
 <ng-container *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: { width: '100%', order: '-1' }">
-  @if (isVisible$ | async) {
-    <div class="spy-table-filters-feature">
-      <div class="spy-table-filters-feature__inner">
-        @for (filter of filters$ | async; track trackByFilter($index, filter)) {
-          <div
-            class="spy-table-filters-feature__item"
-            [ngClass]="filterClasses[filter.id]"
-            >
-            <span class="spy-table-filters-feature__item-title">{{ filter.title }}</span>
-            <ng-container
-              [ngComponentOutlet]="filterComponentMap[filter.type]"
-                    [ndcDynamicInputs]="{
-                        config: filter,
-                        value: filterValues$ | async | pluck: filter.id,
-                    }"
-                    [ndcDynamicOutputs]="{
-                        valueChange: {
-                            handler: updateFilterValue.bind(this),
-                            args: [filter.id, '$event'],
-                        },
-                        classes: {
-                            handler: updateFilterClasses.bind(this),
-                            args: [filter.id, '$event'],
-                        },
-                    }"
-            ></ng-container>
-          </div>
-        }
-      </div>
-    </div>
-  }
+    @if (isVisible$ | async) {
+        <div class="spy-table-filters-feature">
+            <div class="spy-table-filters-feature__inner">
+                @for (filter of filters$ | async; track trackByFilter($index, filter)) {
+                    <div class="spy-table-filters-feature__item" [ngClass]="filterClasses[filter.id]">
+                        <span class="spy-table-filters-feature__item-title">{{ filter.title }}</span>
+                        <ng-container
+                            [ngComponentOutlet]="filterComponentMap[filter.type]"
+                            [ndcDynamicInputs]="{
+                                config: filter,
+                                value: filterValues$ | async | pluck: filter.id,
+                            }"
+                            [ndcDynamicOutputs]="{
+                                valueChange: {
+                                    handler: updateFilterValue.bind(this),
+                                    args: [filter.id, '$event'],
+                                },
+                                classes: {
+                                    handler: updateFilterClasses.bind(this),
+                                    args: [filter.id, '$event'],
+                                },
+                            }"
+                        ></ng-container>
+                    </div>
+                }
+            </div>
+        </div>
+    }
 </ng-container>

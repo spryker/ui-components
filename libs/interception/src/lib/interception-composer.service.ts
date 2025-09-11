@@ -1,14 +1,14 @@
 import {
-  AbstractType,
-  Injectable,
-  InjectionToken,
-  Injector,
-  NgModuleRef,
-  OnDestroy,
-  OnInit,
-  Optional,
-  SkipSelf,
-  Type
+    AbstractType,
+    Injectable,
+    InjectionToken,
+    Injector,
+    NgModuleRef,
+    OnDestroy,
+    OnInit,
+    Optional,
+    SkipSelf,
+    Type,
 } from '@angular/core';
 
 import { InterceptionComposableFactoriesToken, InterceptionComposableToken } from './interception-composable.token';
@@ -86,11 +86,7 @@ export class InterceptionComposerImplementation implements InterceptionComposer,
             return InterceptionComposerImplementation.NO_SERVICE;
         }
 
-        return this.servicesInjector.get(
-            token,
-            InterceptionComposerImplementation.NO_SERVICE as never,
-            { self: true },
-        );
+        return this.servicesInjector.get(token, InterceptionComposerImplementation.NO_SERVICE as never, { self: true });
     }
 
     private getServiceFromParent<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>): any {

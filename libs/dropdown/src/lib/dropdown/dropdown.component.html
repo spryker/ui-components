@@ -1,39 +1,39 @@
 <span
-  nz-dropdown
-  [nzDropdownMenu]="menu"
-  [nzPlacement]="placement"
-  [nzDisabled]="disabled"
-  [(nzVisible)]="visible"
-  [nzTrigger]="trigger"
-  (click)="$event.stopPropagation()"
-  (nzVisibleChange)="visibleChange.emit($event)"
-  >
-  <ng-content></ng-content>
+    nz-dropdown
+    [nzDropdownMenu]="menu"
+    [nzPlacement]="placement"
+    [nzDisabled]="disabled"
+    [(nzVisible)]="visible"
+    [nzTrigger]="trigger"
+    (click)="$event.stopPropagation()"
+    (nzVisibleChange)="visibleChange.emit($event)"
+>
+    <ng-content></ng-content>
 </span>
 <nz-dropdown-menu #menu="nzDropdownMenu">
-  <ul nz-menu>
-    <ng-container *ngTemplateOutlet="dropdownTpl; context: { $implicit: items }"></ng-container>
+    <ul nz-menu>
+        <ng-container *ngTemplateOutlet="dropdownTpl; context: { $implicit: items }"></ng-container>
 
-    <ng-template #dropdownTpl let-items>
-      @for (item of items; track item) {
-        @if (!item.subItems) {
-          <li (click)="actionTriggered.emit(item.action)" nz-menu-item>
-            @if (item.icon) {
-              <spy-icon class="spy-dropdown-item__icon" [name]="item.icon"></spy-icon>
+        <ng-template #dropdownTpl let-items>
+            @for (item of items; track item) {
+                @if (!item.subItems) {
+                    <li (click)="actionTriggered.emit(item.action)" nz-menu-item>
+                        @if (item.icon) {
+                            <spy-icon class="spy-dropdown-item__icon" [name]="item.icon"></spy-icon>
+                        }
+                        <span class="spy-dropdown-item__text">{{ item.title }}</span>
+                    </li>
+                }
+                @if (item.subItems) {
+                    <li (click)="actionTriggered.emit(item.action)" nz-submenu>
+                        <ul>
+                            <ng-container
+                                *ngTemplateOutlet="dropdownTpl; context: { $implicit: item.subItems }"
+                            ></ng-container>
+                        </ul>
+                    </li>
+                }
             }
-            <span class="spy-dropdown-item__text">{{ item.title }}</span>
-          </li>
-        }
-        @if (item.subItems) {
-          <li (click)="actionTriggered.emit(item.action)" nz-submenu>
-            <ul>
-              <ng-container
-                *ngTemplateOutlet="dropdownTpl; context: { $implicit: item.subItems }"
-              ></ng-container>
-            </ul>
-          </li>
-        }
-      }
-    </ng-template>
-  </ul>
+        </ng-template>
+    </ul>
 </nz-dropdown-menu>

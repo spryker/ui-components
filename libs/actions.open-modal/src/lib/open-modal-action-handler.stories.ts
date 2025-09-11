@@ -14,9 +14,9 @@ import { OpenModalActionHandlerService } from './open-modal-action-handler.servi
         <h3>Modal Content</h3>
         <p>This modal was opened via the OpenModalActionHandlerService</p>
         @if (__capturedData) {
-          <p>Received data: {{ __capturedData | json }}</p>
+            <p>Received data: {{ __capturedData | json }}</p>
         }
-        `,
+    `,
 })
 class ModalContentComponent implements ComponentModal {
     __capturedData: any;

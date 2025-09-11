@@ -1,11 +1,11 @@
 <div class="spy-ajax-form-container" [class.spy-ajax-form-container--loading]="isLoading">
-  <form #submitForm (submit)="submitHandler(submitForm, $event)" spyUnsavedChangesFormMonitor>
-    @if (form) {
-      <spy-html-renderer [html]="form"></spy-html-renderer>
-    }
-  </form>
+    <form #submitForm (submit)="submitHandler(submitForm, $event)" spyUnsavedChangesFormMonitor>
+        @if (form) {
+            <spy-html-renderer [html]="form"></spy-html-renderer>
+        }
+    </form>
 </div>
 
 @if (isLoading) {
-  <nz-spin class="spy-ajax-form-empty-state"></nz-spin>
+    <nz-spin class="spy-ajax-form-empty-state"></nz-spin>
 }

@@ -1,32 +1,32 @@
 <nz-tree-select
-  [nzNodes]="mappedItems"
-  [nzShowSearch]="search"
-  [nzDisabled]="disabled"
-  [nzMultiple]="multiple"
-  [nzPlaceHolder]="placeholder"
-  [nzNotFoundContent]="notFoundContent"
-  [nzAllowClear]="!disableClear"
-  [nzMaxTagCount]="0"
-  [nzMaxTagPlaceholder]="tagPlaceholder"
-  [class.ant-select-show-search]="search"
-  [(ngModel)]="value"
-  (ngModelChange)="onValueChange()"
-  [nzCheckable]="multiple"
-  nzDropdownClassName="spy-tree-select-dropdown"
-  #treeSelect
+    [nzNodes]="mappedItems"
+    [nzShowSearch]="search"
+    [nzDisabled]="disabled"
+    [nzMultiple]="multiple"
+    [nzPlaceHolder]="placeholder"
+    [nzNotFoundContent]="notFoundContent"
+    [nzAllowClear]="!disableClear"
+    [nzMaxTagCount]="0"
+    [nzMaxTagPlaceholder]="tagPlaceholder"
+    [class.ant-select-show-search]="search"
+    [(ngModel)]="value"
+    (ngModelChange)="onValueChange()"
+    [nzCheckable]="multiple"
+    nzDropdownClassName="spy-tree-select-dropdown"
+    #treeSelect
 ></nz-tree-select>
 
 <select class="ant-select-native" [multiple]="multiple" [attr.name]="name" [disabled]="disabled">
-  <option></option>
-  @for (item of mappedFlatItems; track item) {
-    <option
-      [value]="item.value"
-      [disabled]="item.isDisabled"
-      [selected]="checkSelectedState | spyInvoke: item.value : multiple : checkedState"
-      >
-      {{ item.title }}
-    </option>
-  }
+    <option></option>
+    @for (item of mappedFlatItems; track item) {
+        <option
+            [value]="item.value"
+            [disabled]="item.isDisabled"
+            [selected]="checkSelectedState | spyInvoke: item.value : multiple : checkedState"
+        >
+            {{ item.title }}
+        </option>
+    }
 </select>
 
 <ng-template #tagPlaceholder let-selectedList>{{ selectedList | treeSelectExtractKeys | spyJoin: ', ' }}</ng-template>

@@ -2,11 +2,7 @@ const path = require('path');
 module.exports = {
     stories: ['../**/*.@(mdx|stories.@(ts))'],
 
-    addons: [
-        '@storybook/addon-docs',
-        '@storybook/addon-a11y',
-        '@storybook/addon-designs'
-    ],
+    addons: ['@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-designs'],
 
     core: {
         disableTelemetry: true,
@@ -34,5 +30,5 @@ module.exports = {
             path.resolve(__dirname, '../libs/styles/src/lib'),
         ];
         return config;
-    }
+    },
 };

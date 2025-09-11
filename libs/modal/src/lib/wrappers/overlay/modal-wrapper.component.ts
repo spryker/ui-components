@@ -14,28 +14,28 @@ interface RenderTplContext {
     selector: 'spy-modal',
     template: `
         <div class="modal">
-          @if (options.title) {
-            <div class="modal-header">
-              <ng-container *ngTemplateOutlet="headerTpl; context: headerCtx"></ng-container>
-            </div>
-          }
-          <section class="modal-content">
-            <ng-template #content></ng-template>
-          </section>
-          @if (options.footer) {
-            <div class="modal-footer">
-              <ng-container *ngTemplateOutlet="footerTpl; context: footerCtx"></ng-container>
-            </div>
-          }
-          <ng-template #headerBind let-value
-            ><h1>{{ value }}</h1></ng-template
+            @if (options.title) {
+                <div class="modal-header">
+                    <ng-container *ngTemplateOutlet="headerTpl; context: headerCtx"></ng-container>
+                </div>
+            }
+            <section class="modal-content">
+                <ng-template #content></ng-template>
+            </section>
+            @if (options.footer) {
+                <div class="modal-footer">
+                    <ng-container *ngTemplateOutlet="footerTpl; context: footerCtx"></ng-container>
+                </div>
+            }
+            <ng-template #headerBind let-value
+                ><h1>{{ value }}</h1></ng-template
             >
             <ng-template #renderBind let-value>{{ value }}</ng-template>
             <ng-template #renderTpl let-tpl>
-              <ng-container *ngTemplateOutlet="tpl; context: modalContext"></ng-container>
+                <ng-container *ngTemplateOutlet="tpl; context: modalContext"></ng-container>
             </ng-template>
-          </div>
-        `,
+        </div>
+    `,
     styles: [
         `
             .modal {

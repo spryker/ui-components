@@ -1,12 +1,12 @@
 @if (actions$ | async; as actions) {
-  <div class="ant-table-row-actions-feature" *spyTableFeatureTpl="tableFeatureLocation.afterCols; let data = data">
-    <spy-dropdown
-      class="ant-table-row-actions-feature__trigger"
-      [items]="actions | filterAvailableActions: data : (availableActionsPath$ | async)"
-      (actionTriggered)="actionTriggerHandler($event, [data])"
-      >
-      <spy-icon [name]="triggerIcon"></spy-icon>
-    </spy-dropdown>
-  </div>
-  <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader"></ng-container>
+    <div class="ant-table-row-actions-feature" *spyTableFeatureTpl="tableFeatureLocation.afterCols; let data = data">
+        <spy-dropdown
+            class="ant-table-row-actions-feature__trigger"
+            [items]="actions | filterAvailableActions: data : (availableActionsPath$ | async)"
+            (actionTriggered)="actionTriggerHandler($event, [data])"
+        >
+            <spy-icon [name]="triggerIcon"></spy-icon>
+        </spy-dropdown>
+    </div>
+    <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader"></ng-container>
 }

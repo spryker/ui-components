@@ -1,54 +1,54 @@
 <nz-input-group
-  [nzSuffix]="suffix"
-  [nzPrefix]="prefix"
-  [nzAddOnBefore]="outerPrefix"
-  [nzAddOnAfter]="outerSuffix"
-  [class.ant-input-container--hover]="isHovered"
-  [class.ant-input-container--focus]="isFocused"
-  [class.ant-input-affix-wrapper-focused]="isFocused"
-  [class.ant-input-affix-wrapper--suffix]="suffix"
-  [class.ant-input-affix-wrapper--prefix]="prefix"
-  (mouseover)="isHovered = true"
-  (mouseout)="isHovered = false"
-  >
-  @if (!nzAutocompleteComponent) {
-    <input
-      nz-input
-      [attr.placeholder]="placeholder"
-      [attr.name]="name"
-      [(ngModel)]="value"
-      [type]="type"
-      [readOnly]="readOnly"
-      [disabled]="disabled"
-      (ngModelChange)="valueChange.emit($event)"
-      [attr.id]="spyId"
-      [required]="required"
-      [spyApplyAttrs]="attrs"
-      (focus)="isFocused = true"
-      (blur)="isFocused = false"
-      />
-  }
+    [nzSuffix]="suffix"
+    [nzPrefix]="prefix"
+    [nzAddOnBefore]="outerPrefix"
+    [nzAddOnAfter]="outerSuffix"
+    [class.ant-input-container--hover]="isHovered"
+    [class.ant-input-container--focus]="isFocused"
+    [class.ant-input-affix-wrapper-focused]="isFocused"
+    [class.ant-input-affix-wrapper--suffix]="suffix"
+    [class.ant-input-affix-wrapper--prefix]="prefix"
+    (mouseover)="isHovered = true"
+    (mouseout)="isHovered = false"
+>
+    @if (!nzAutocompleteComponent) {
+        <input
+            nz-input
+            [attr.placeholder]="placeholder"
+            [attr.name]="name"
+            [(ngModel)]="value"
+            [type]="type"
+            [readOnly]="readOnly"
+            [disabled]="disabled"
+            (ngModelChange)="valueChange.emit($event)"
+            [attr.id]="spyId"
+            [required]="required"
+            [spyApplyAttrs]="attrs"
+            (focus)="isFocused = true"
+            (blur)="isFocused = false"
+        />
+    }
 
-  @if (nzAutocompleteComponent) {
-    <input
-      nz-input
-      [attr.placeholder]="placeholder"
-      [attr.name]="name"
-      [(ngModel)]="value"
-      [type]="type"
-      [readOnly]="readOnly"
-      [disabled]="disabled"
-      [attr.id]="spyId"
-      [required]="required"
-      [spyApplyAttrs]="attrs"
-      (focus)="isFocused = true"
-      (blur)="isFocused = false"
-      [nzAutocomplete]="nzAutocompleteComponent"
-      (ngModelChange)="onAutocompleteChange($event)"
-      />
-  }
+    @if (nzAutocompleteComponent) {
+        <input
+            nz-input
+            [attr.placeholder]="placeholder"
+            [attr.name]="name"
+            [(ngModel)]="value"
+            [type]="type"
+            [readOnly]="readOnly"
+            [disabled]="disabled"
+            [attr.id]="spyId"
+            [required]="required"
+            [spyApplyAttrs]="attrs"
+            (focus)="isFocused = true"
+            (blur)="isFocused = false"
+            [nzAutocomplete]="nzAutocompleteComponent"
+            (ngModelChange)="onAutocompleteChange($event)"
+        />
+    }
 </nz-input-group>
 
 <span spyCustomElementBoundary style="display: none">
-  <ng-content></ng-content>
+    <ng-content></ng-content>
 </span>

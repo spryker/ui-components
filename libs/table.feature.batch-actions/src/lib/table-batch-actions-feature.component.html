@@ -1,27 +1,27 @@
 <div
-  class="spy-table-batch-actions-feature"
-  *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: styles$ | async"
-  >
-  @if (actions$ | async) {
-    @if (itemActions$ | async; as itemActions) {
-      @if (shouldShowActions$ | async) {
-        <div class="spy-table-batch-actions-feature__grid">
-          @for (item of itemActions.actions; track item) {
-            <div class="spy-table-batch-actions-feature__col">
-              <spy-button [size]="buttonSize.Small" (click)="buttonClickHandler(item, itemActions)">{{
-                item.title
-              }}</spy-button>
-            </div>
-          }
-        </div>
-      }
-      @if (noActionsMessage$ | async; as noActionsMessage) {
-        <div spyApplyContexts="spy-bg-gray">
-          <spy-notification [type]="notificationType.Warning" floating="false">
-            <span title>{{ noActionsMessage }}</span>
-          </spy-notification>
-        </div>
-      }
+    class="spy-table-batch-actions-feature"
+    *spyTableFeatureTpl="tableFeatureLocation.beforeTable; styles: styles$ | async"
+>
+    @if (actions$ | async) {
+        @if (itemActions$ | async; as itemActions) {
+            @if (shouldShowActions$ | async) {
+                <div class="spy-table-batch-actions-feature__grid">
+                    @for (item of itemActions.actions; track item) {
+                        <div class="spy-table-batch-actions-feature__col">
+                            <spy-button [size]="buttonSize.Small" (click)="buttonClickHandler(item, itemActions)">{{
+                                item.title
+                            }}</spy-button>
+                        </div>
+                    }
+                </div>
+            }
+            @if (noActionsMessage$ | async; as noActionsMessage) {
+                <div spyApplyContexts="spy-bg-gray">
+                    <spy-notification [type]="notificationType.Warning" floating="false">
+                        <span title>{{ noActionsMessage }}</span>
+                    </spy-notification>
+                </div>
+            }
+        }
     }
-  }
 </div>

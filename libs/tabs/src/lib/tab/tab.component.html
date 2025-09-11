@@ -1,27 +1,27 @@
 <ng-template #contentTpl>
-  <ng-content></ng-content>
+    <ng-content></ng-content>
 </ng-template>
 
 <ng-template #titleTpl>
-  <div
+    <div
         [ngClass]="{
             'ant-tabs-custom-tab': true,
             'ant-tabs-custom-tab-warning': hasWarning,
             'ant-tabs-custom-tab-has-icon': iconName,
         }"
     >
-    @if (hasWarning && !iconName) {
-      <div class="ant-tabs-custom-tab-icon">
-        <spy-icon [name]="iconErrorReference.icon"></spy-icon>
-      </div>
-    }
-    @if (iconName) {
-      <div class="ant-tabs-custom-tab-icon">
-        <spy-icon [name]="iconName"></spy-icon>
-      </div>
-    }
-    <div>
-      {{ spyTitle }}
+        @if (hasWarning && !iconName) {
+            <div class="ant-tabs-custom-tab-icon">
+                <spy-icon [name]="iconErrorReference.icon"></spy-icon>
+            </div>
+        }
+        @if (iconName) {
+            <div class="ant-tabs-custom-tab-icon">
+                <spy-icon [name]="iconName"></spy-icon>
+            </div>
+        }
+        <div>
+            {{ spyTitle }}
+        </div>
     </div>
-  </div>
 </ng-template>

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5-next.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/chips@2.0.4...@spryker/chips@2.0.5-next.0) (2025-09-12)
+
+**Note:** Version bump only for package @spryker/chips
+
+
+
+
+
 ## [2.0.4](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/chips@2.0.3...@spryker/chips@2.0.4) (2025-05-20)
 
 **Note:** Version bump only for package @spryker/chips

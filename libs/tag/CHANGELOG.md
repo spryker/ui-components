@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-next.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/tag@0.1.7...@spryker/tag@0.1.8-next.0) (2025-09-12)
+
+**Note:** Version bump only for package @spryker/tag
+
+
+
+
+
 ## [0.1.7](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/tag@0.1.6...@spryker/tag@0.1.7) (2025-05-20)
 
 **Note:** Version bump only for package @spryker/tag

@@ -1,15 +1,15 @@
-import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Injectable } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Injectable, inject } from '@angular/core';
 import { ColumnTypeOption, TableColumnTypeComponent, TableColumnComponent, TableColumnContext } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnImageConfig {
+    private contextService = inject(ContextService);
+
     @ColumnTypeOption()
     src? = this.contextService.wrap('displayValue');
     @ColumnTypeOption()
     alt? = '';
-
-    constructor(private contextService: ContextService) {}
 }
 
 @Component({

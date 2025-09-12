@@ -1,4 +1,4 @@
-import { Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
+import { inject, Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
 import { fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { HttpTestingController } from '@angular/common/http/testing';
@@ -80,7 +80,7 @@ const mockConfigCols: TableConfig = {
 
 @Injectable({ providedIn: 'root' })
 class MockTableDatasourceHttpService {
-    constructor(private http: HttpClient) {}
+    private http = inject(HttpClient);
 
     resolve(injector: {}, datasource: Record<string, string>): Observable<TableData> {
         return this.http.get<TableData>(datasource.url);

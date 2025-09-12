@@ -1,6 +1,7 @@
 import {
     AfterViewInit,
     Component,
+    inject,
     Injectable,
     Input,
     NO_ERRORS_SCHEMA,
@@ -67,9 +68,7 @@ class TestHostComponent implements AfterViewInit {
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
     @ColumnTypeOption()
-    text = this.contextService.wrap('displayValue');
-
-    constructor(private contextService: ContextService) {}
+    text = inject(ContextService).wrap('displayValue');
 }
 
 @Component({

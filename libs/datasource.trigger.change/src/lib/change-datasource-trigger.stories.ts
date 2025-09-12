@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, importProvidersFrom, Injector, Input, OnInit, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    importProvidersFrom,
+    Injector,
+    Input,
+    OnInit,
+    ViewChild,
+    inject,
+} from '@angular/core';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
@@ -56,17 +65,15 @@ const mockResponseData = {
     ],
 })
 class TestComponent implements DatasourceTriggerElement, OnInit, AfterViewInit {
+    private injector = inject(Injector);
+    private datasourceTriggerService = inject(DatasourceTriggerService);
+
     @ViewChild('selectComponent', { static: true }) selectComponent: SelectComponent;
     @Input() options: any;
     @Input() datasource: any;
 
     datasourceData = of('');
     triggerElement$ = new ReplaySubject<any>(1);
-
-    constructor(
-        private injector: Injector,
-        private datasourceTriggerService: DatasourceTriggerService,
-    ) {}
 
     ngOnInit(): void {
         this.datasourceData = this.datasourceTriggerService.resolve(this.injector, this.datasource) as any;

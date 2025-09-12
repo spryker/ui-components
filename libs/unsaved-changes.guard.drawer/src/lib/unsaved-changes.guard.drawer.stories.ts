@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom } from '@angular/core';
+import { Component, importProvidersFrom, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DrawerModule, DrawerRef, DrawerService } from '@spryker/drawer';
@@ -30,9 +30,9 @@ class DrawerContentComponent {}
     template: ` <button (click)="toggleDrawer()">Toggle drawer</button> `,
 })
 class StoryComponent {
-    private drawerRef?: DrawerRef;
+    private drawerService = inject(DrawerService);
 
-    constructor(private drawerService: DrawerService) {}
+    private drawerRef?: DrawerRef;
 
     toggleDrawer() {
         if (this.drawerRef) {

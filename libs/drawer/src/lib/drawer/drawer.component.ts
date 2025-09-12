@@ -14,6 +14,7 @@ import {
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { switchMap, take, takeUntil } from 'rxjs/operators';
 
@@ -43,6 +44,9 @@ export class DrawerComponentInputs {
     encapsulation: ViewEncapsulation.None,
 })
 export class DrawerComponent extends DrawerComponentInputs implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+    private cdr = inject(ChangeDetectorRef);
+    private drawerService = inject(DrawerService);
+
     @Output() isOpenChange = new EventEmitter<boolean>();
     @Output() closed = new EventEmitter<void>();
 
@@ -55,13 +59,6 @@ export class DrawerComponent extends DrawerComponentInputs implements OnInit, On
     private closed$ = new Subject<void>();
     private destroyed$ = new Subject<void>();
     private afterClosed$ = new Subject<Observable<void>>();
-
-    constructor(
-        private cdr: ChangeDetectorRef,
-        private drawerService: DrawerService,
-    ) {
-        super();
-    }
 
     ngOnInit(): void {
         this.afterClosed$

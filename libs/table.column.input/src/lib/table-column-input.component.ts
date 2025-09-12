@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Injectable, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injectable,
+    Input,
+    OnInit,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import {
     ColumnTypeOption,
     ColumnTypeOptionsType,
@@ -44,11 +52,11 @@ export class TableColumnInputConfig {
 })
 @TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent implements TableColumnComponent<TableColumnInputConfig>, OnInit {
+    private tableEditableService = inject(TableEditableService);
+
     @Input() config?: TableColumnInputConfig;
     @Input() context?: TableColumnContext;
     @Input() items?: unknown;
-
-    constructor(private tableEditableService: TableEditableService) {}
 
     ngOnInit(): void {
         if (!this.context?.value && this.config?.value) {

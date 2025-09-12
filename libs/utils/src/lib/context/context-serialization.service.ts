@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 
 import { InjectionTokenType } from '../types';
 import { ContextSerializationStrategyToken } from './serialization-strategy';
@@ -7,14 +7,13 @@ import { ContextSerializationStrategyToken } from './serialization-strategy';
     providedIn: 'root',
 })
 export class ContextSerializationService {
-    private serializationStrategies = this.serializationStrategiesArray?.flat() ?? [];
+    private injector = inject(Injector);
+    private serializationStrategiesArray = inject<InjectionTokenType<typeof ContextSerializationStrategyToken>>(
+        ContextSerializationStrategyToken,
+        { optional: true },
+    );
 
-    constructor(
-        private injector: Injector,
-        @Inject(ContextSerializationStrategyToken)
-        @Optional()
-        private serializationStrategiesArray?: InjectionTokenType<typeof ContextSerializationStrategyToken>,
-    ) {}
+    private serializationStrategies = this.serializationStrategiesArray?.flat() ?? [];
 
     serialize(value: unknown): string {
         const strategy = this.serializationStrategies

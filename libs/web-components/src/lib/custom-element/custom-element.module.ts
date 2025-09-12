@@ -1,4 +1,4 @@
-import { DoBootstrap, Injector, NgModule } from '@angular/core';
+import { DoBootstrap, Injector, NgModule, inject } from '@angular/core';
 
 import { registerComponents } from './custom-element-registry';
 import { WebComponentDefs } from './types';
@@ -8,9 +8,9 @@ import { WebComponentDefs } from './types';
  */
 @NgModule({})
 export abstract class CustomElementModule implements DoBootstrap {
-    protected abstract components: WebComponentDefs;
+    private injector = inject(Injector);
 
-    constructor(private injector: Injector) {}
+    protected abstract components: WebComponentDefs;
 
     ngDoBootstrap() {
         registerComponents(this.components, this.injector);

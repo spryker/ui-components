@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom } from '@angular/core';
+import { Component, importProvidersFrom, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ModalModule, ModalService, ModalRef, ComponentModal, ComponentModalExtras } from '@spryker/modal';
@@ -13,7 +13,7 @@ import { CloseModalActionHandlerService } from './close-modal-action-handler.ser
     template: ` <spy-button variant="primary" size="md" (click)="clickHandler()"> Open modal </spy-button> `,
 })
 class SimpleModalComponent {
-    constructor(private modalService: ModalService) {}
+    private modalService = inject(ModalService);
 
     clickHandler(): void {
         this.modalService.openComponent(ModalContentComponent);

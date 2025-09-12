@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, inject } from '@angular/core';
 
 import { TableFeatureComponent } from './table-feature.component';
 
@@ -9,5 +9,5 @@ import { TableFeatureComponent } from './table-feature.component';
     selector: '[spy-table-feature]',
 })
 export class TableFeatureDirective {
-    constructor(public component: TableFeatureComponent) {}
+    component = inject(TableFeatureComponent);
 }

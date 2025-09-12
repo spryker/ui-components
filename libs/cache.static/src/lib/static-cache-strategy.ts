@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CacheId, CacheOperation, CacheStrategy, CacheStorageFactoryService, CacheEntry } from '@spryker/cache';
 import { of, Observable } from 'rxjs';
 import { TimeDurationService } from '@spryker/utils/date';
@@ -13,10 +13,8 @@ import { switchMap, mapTo } from 'rxjs/operators';
     providedIn: 'root',
 })
 export class StaticCacheStrategy implements CacheStrategy {
-    constructor(
-        private timeDurationService: TimeDurationService,
-        private cacheStorageFactoryService: CacheStorageFactoryService,
-    ) {}
+    private timeDurationService = inject(TimeDurationService);
+    private cacheStorageFactoryService = inject(CacheStorageFactoryService);
 
     getCached<T>(id: CacheId, config: StaticCacheStrategyConfig, operation: CacheOperation<T>): Observable<T> {
         const cacheDuration = this.timeDurationService.parse(config.expiresIn);

@@ -1,4 +1,4 @@
-import { Injectable, Injector, OnDestroy } from '@angular/core';
+import { Injectable, Injector, OnDestroy, inject } from '@angular/core';
 import { InterceptionComposerService } from '@spryker/interception';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { distinctUntilChanged, map, shareReplay, switchMap } from 'rxjs/operators';
@@ -13,6 +13,8 @@ import { UnsavedChangesMonitor, UnsavedChangesMonitorStatus } from './unsaved-ch
  */
 @Injectable()
 export abstract class UnsavedChangesGuardBase implements OnDestroy, UnsavedChangesGuard {
+    protected injector = inject(Injector);
+
     protected monitors$ = new BehaviorSubject(new Set<UnsavedChangesMonitor>());
 
     protected monitorStatuses$ = this.monitors$.pipe(
@@ -31,7 +33,7 @@ export abstract class UnsavedChangesGuardBase implements OnDestroy, UnsavedChang
     private interceptionComposer: InterceptionComposerService | null;
     protected parentGuard?: UnsavedChangesGuardToken;
 
-    constructor(protected injector: Injector) {
+    constructor() {
         this.interceptionComposer = this.injector.get(InterceptionComposerService, null);
         this.parentGuard = this.interceptionComposer?.getService(UnsavedChangesGuardToken, true);
     }

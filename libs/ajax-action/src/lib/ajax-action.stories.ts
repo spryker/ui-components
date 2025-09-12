@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom, Injectable, Injector, NgModule } from '@angular/core';
+import { Component, importProvidersFrom, Injectable, Injector, NgModule, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { Observable, of } from 'rxjs';
@@ -27,10 +27,8 @@ class ActionMockService implements ActionHandler<unknown, void> {
     providers: [AjaxActionService],
 })
 class StoryComponent {
-    constructor(
-        private injector: Injector,
-        private ajaxActionService: AjaxActionService,
-    ) {}
+    private injector = inject(Injector);
+    private ajaxActionService = inject(AjaxActionService);
 
     clickHandler() {
         const random = Math.random().toFixed(4);

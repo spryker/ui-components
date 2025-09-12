@@ -5,6 +5,7 @@ import {
     Injector,
     OnDestroy,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import {
     TableColumn,
@@ -34,6 +35,8 @@ import { TableSelectableConfig, TableSelectionRow, TableSelectionChangeEvent } f
     ],
 })
 export class TableSelectableFeatureComponent extends TableFeatureComponent<TableSelectableConfig> implements OnDestroy {
+    private cdr = inject(ChangeDetectorRef);
+
     name = 'itemSelection';
     tableFeatureLocation = TableFeatureLocation;
 
@@ -45,10 +48,9 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent<Table
     private destroyed$ = new Subject<void>();
     private rowsData: TableDataRow[] = [];
 
-    constructor(
-        private cdr: ChangeDetectorRef,
-        injector: Injector,
-    ) {
+    constructor() {
+        const injector = inject(Injector);
+
         super(injector);
     }
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation, inject } from '@angular/core';
 import {
     TableActionsService,
     TableActionTriggeredEvent,
@@ -42,6 +42,9 @@ import {
     ],
 })
 export class TableBatchActionsFeatureComponent extends TableFeatureComponent<TableBatchActionsConfig> {
+    private tableActionService = inject(TableActionsService);
+    private contextService = inject(ContextService);
+
     name = 'batchActions';
     tableFeatureLocation = TableFeatureLocation;
     buttonSize = ButtonSize;
@@ -109,11 +112,9 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<Tab
         }),
     );
 
-    constructor(
-        injector: Injector,
-        private tableActionService: TableActionsService,
-        private contextService: ContextService,
-    ) {
+    constructor() {
+        const injector = inject(Injector);
+
         super(injector);
     }
 

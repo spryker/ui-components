@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Component, importProvidersFrom, Injectable, Input, OnInit } from '@angular/core';
+import { Component, importProvidersFrom, Injectable, Input, OnInit, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
@@ -65,11 +65,11 @@ class EditColumnConfig {
 })
 @TableColumnTypeComponent(EditColumnConfig)
 class EditColumnComponent implements TableColumnComponent<EditColumnConfig>, OnInit {
+    private tableEditableService = inject(TableEditableService);
+
     @Input() config?: EditColumnConfig;
     @Input() context?: TableColumnContext;
     @Input() items?: unknown;
-
-    constructor(private tableEditableService: TableEditableService) {}
 
     ngOnInit(): void {
         if (!this.context?.value && this.config?.value) {

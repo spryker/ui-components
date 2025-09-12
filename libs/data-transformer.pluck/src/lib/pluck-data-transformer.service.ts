@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DataTransformer } from '@spryker/data-transformer';
 import { ContextService } from '@spryker/utils';
 import { Observable, of } from 'rxjs';
@@ -11,7 +11,7 @@ import { PluckDataTransformerConfig, PluckDataTransformerData, PluckDataTransfor
 export class PluckDataTransformerService
     implements DataTransformer<PluckDataTransformerData, PluckDataTransformerDataT>
 {
-    constructor(private contextService: ContextService) {}
+    private contextService = inject(ContextService);
 
     transform(
         data: PluckDataTransformerData,

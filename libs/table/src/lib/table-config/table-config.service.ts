@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { mergeDeep } from '@spryker/utils';
 
 import { TableCoreConfig, TableConfig } from '../table/table';
@@ -6,6 +6,8 @@ import { TableDefaultConfig } from './table-config-default';
 
 @Injectable({ providedIn: 'root' })
 export class TableConfigService {
+    private defaultConfig = inject(TableDefaultConfig);
+
     private knownProperties: {
         [P in keyof TableCoreConfig]-?: any;
     } = {
@@ -13,8 +15,6 @@ export class TableConfigService {
         columnsUrl: true,
         dataSource: true,
     };
-
-    constructor(private defaultConfig: TableDefaultConfig) {}
 
     normalize(config?: TableConfig): TableConfig {
         if (!config) {

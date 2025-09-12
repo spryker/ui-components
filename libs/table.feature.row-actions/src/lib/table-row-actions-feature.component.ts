@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Injector, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injector,
+    OnDestroy,
+    OnInit,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import { IconActionModule } from '@spryker/icon/icons';
 import {
     TableActionBase,
@@ -33,6 +41,9 @@ export class TableRowActionsFeatureComponent
     extends TableFeatureComponent<TableRowActionsConfig>
     implements OnDestroy, OnInit
 {
+    private tableActionsService = inject(TableActionsService);
+    private contextService = inject(ContextService);
+
     name = 'rowActions';
     tableFeatureLocation = TableFeatureLocation;
     triggerIcon = IconActionModule.icon;
@@ -66,11 +77,9 @@ export class TableRowActionsFeatureComponent
         pluck('data'),
     );
 
-    constructor(
-        private tableActionsService: TableActionsService,
-        private contextService: ContextService,
-        injector: Injector,
-    ) {
+    constructor() {
+        const injector = inject(Injector);
+
         super(injector);
     }
 

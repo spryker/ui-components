@@ -3,9 +3,9 @@ import {
     Component,
     Directive,
     forwardRef,
-    Inject,
     Input,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import {
     InterceptionComposerDirective,
@@ -39,14 +39,11 @@ export class NavigationComposerDirective extends InterceptionComposerDirective {
     },
 })
 export class NavigationComponent implements NavigationComponentMethods {
+    private windowToken = inject<InjectionTokenType<typeof WindowToken>>(WindowToken);
+    private interceptorDispatcherService = inject(InterceptorDispatcherService);
+
     @Input() @ToBoolean() collapsed = false;
     @Input() @ToJson() items: NavigationItem[] = [];
-
-    constructor(
-        @Inject(WindowToken)
-        private windowToken: InjectionTokenType<typeof WindowToken>,
-        private interceptorDispatcherService: InterceptorDispatcherService,
-    ) {}
 
     clickHandler(event: Event, url: string): void {
         event.stopPropagation();

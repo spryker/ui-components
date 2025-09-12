@@ -13,6 +13,7 @@ import {
     SimpleChanges,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { I18nService } from '@spryker/locale';
@@ -47,6 +48,11 @@ interface TreeSelectItemWithKey extends TreeSelectItem {
     },
 })
 export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy, AfterViewChecked {
+    private cdr = inject(ChangeDetectorRef);
+    private injector = inject(Injector);
+    private datasourceService = inject(DatasourceService);
+    private i18nService = inject(I18nService);
+
     @Input() @ToJson() items?: TreeSelectItem[];
     @Input() @ToJson() value?: TreeSelectValue | TreeSelectValue[];
     @Input() @ToBoolean() search = false;
@@ -79,13 +85,6 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy, AfterV
     protected treeSelect: NzTreeSelectComponent;
     protected checkedState: TreeSelectValue | TreeSelectValue[];
     private viewUpdated = false;
-
-    constructor(
-        private cdr: ChangeDetectorRef,
-        private injector: Injector,
-        private datasourceService: DatasourceService,
-        private i18nService: I18nService,
-    ) {}
 
     ngOnInit(): void {
         this.updateDatasource();

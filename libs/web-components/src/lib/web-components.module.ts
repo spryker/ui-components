@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Inject, Injector, ModuleWithProviders, NgModule, Self, Optional } from '@angular/core';
+import { Injector, ModuleWithProviders, NgModule, inject } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import {
     ComponentSelectorStrategy,
@@ -54,13 +54,13 @@ export class WebComponentsModule {
         };
     }
 
-    constructor(
-        injector: Injector,
-        @Inject(CustomElementComponentsToken)
-        @Self()
-        @Optional()
-        components?: InjectionTokenType<typeof CustomElementComponentsToken>,
-    ) {
+    constructor() {
+        const injector = inject(Injector);
+        const components = inject<InjectionTokenType<typeof CustomElementComponentsToken>>(
+            CustomElementComponentsToken,
+            { self: true, optional: true },
+        );
+
         registerComponents(components?.flat() ?? [], injector);
     }
 }

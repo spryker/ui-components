@@ -1,5 +1,5 @@
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Component, importProvidersFrom, Injectable, Input, OnInit } from '@angular/core';
+import { Component, importProvidersFrom, Injectable, Input, OnInit, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
@@ -64,10 +64,10 @@ const tableConfig: TableConfig = {
 
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
+    private contextService = inject(ContextService);
+
     @ColumnTypeOption()
     text? = this.contextService.wrap('displayValue');
-
-    constructor(private contextService: ContextService) {}
 }
 
 @Component({ standalone: false, selector: 'spy-table-column-test', template: ` {{ config.text | context: context }} ` })

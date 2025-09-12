@@ -9,6 +9,7 @@ import {
     SimpleChanges,
     TemplateRef,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService } from '@spryker/persistence';
@@ -28,6 +29,8 @@ import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
     },
 })
 export class SidebarComponent implements OnChanges, OnInit {
+    private persistenceService = inject(PersistenceService);
+
     @Input() width = 250;
     @Input() collapsedWidth = 96;
     @Input() spyId?: string;
@@ -59,8 +62,6 @@ export class SidebarComponent implements OnChanges, OnInit {
         }),
         map(([isCollapsed]) => isCollapsed),
     );
-
-    constructor(private persistenceService: PersistenceService) {}
 
     ngOnInit(): void {
         this.spyId$.next(this.spyId);

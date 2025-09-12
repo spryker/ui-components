@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { getPropByPath } from '../misc';
 import { escapeRegex } from '../regex';
@@ -17,17 +17,15 @@ export class ContextOptions {
 
 @Injectable({ providedIn: 'root' })
 export class ContextService {
+    private options = inject(ContextOptions);
+    private contextSerializationService = inject(ContextSerializationService);
+
     private interpolationStart = escapeRegex(this.options.interpolationStart);
     private interpolationEnd = escapeRegex(this.options.interpolationEnd);
     private expressionRegex = new RegExp(
         `${this.interpolationStart}([^${this.interpolationEnd}]+)${this.interpolationEnd}`,
         'g',
     );
-
-    constructor(
-        private options: ContextOptions,
-        private contextSerializationService: ContextSerializationService,
-    ) {}
 
     /**
      * Just like {@link ContextService.interpolate()} but

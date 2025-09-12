@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector, OnDestroy, Optional, Type } from '@angular/core';
+import { Injectable, Injector, OnDestroy, Type, inject } from '@angular/core';
 import { combineLatest, forkJoin, from, merge, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import {
     catchError,
@@ -22,6 +22,11 @@ type UnknownLocaleLoaderRegistrarMap = Record<string, Type<LocaleLoaderRegistrar
 
 @Injectable({ providedIn: 'root' })
 export class LocaleService implements OnDestroy {
+    defaultLocale = inject(LocaleDefaultToken, { optional: true });
+    private localeRecords = inject(LocaleRecordsToken, { optional: true });
+    private loaderRegistrarsArr = inject(LocaleLoaderRegistrarsToken, { optional: true });
+    private injector = inject(Injector);
+
     private locales: LocaleRecord[] = this.localeRecords?.flat() ?? [];
 
     locale?: string;
@@ -70,18 +75,7 @@ export class LocaleService implements OnDestroy {
         shareReplay({ bufferSize: 1, refCount: false }),
     );
 
-    constructor(
-        @Optional()
-        @Inject(LocaleDefaultToken)
-        public defaultLocale: string | null,
-        @Optional()
-        @Inject(LocaleRecordsToken)
-        private localeRecords: LocaleRecord[][] | null,
-        @Optional()
-        @Inject(LocaleLoaderRegistrarsToken)
-        private loaderRegistrarsArr: UnknownLocaleLoaderRegistrarMap[] | null,
-        private injector: Injector,
-    ) {
+    constructor() {
         if (!this.defaultLocale) {
             this.defaultLocale =
                 this.locales.length === 1

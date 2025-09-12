@@ -7,6 +7,7 @@ import {
     SimpleChanges,
     ViewChild,
     Directive,
+    inject,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import { ButtonAttributes, ButtonShape, ButtonSize, ButtonVariant } from './types';
@@ -23,16 +24,12 @@ export class ButtonCoreInputs {
 
 @Directive({ standalone: false, selector: '[spyButtonCore]' })
 export class ButtonCore extends ButtonCoreInputs implements AfterViewInit, OnChanges {
+    protected renderer = inject(Renderer2);
+    protected elemRef = inject(ElementRef);
+
     @ViewChild('buttonRef') buttonRef?: ElementRef<HTMLElement>;
 
     protected buttonClassName = '';
-
-    constructor(
-        protected renderer: Renderer2,
-        protected elemRef: ElementRef,
-    ) {
-        super();
-    }
 
     ngAfterViewInit(): void {
         this.setClassList();

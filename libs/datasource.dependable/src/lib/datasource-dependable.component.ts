@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, ContentChild, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ContentChild,
+    HostBinding,
+    Input,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import { DatasourceDependableElementsService } from './datasource-dependable-elements.service';
 import { DatasourceDependableElement } from './types';
 
@@ -10,6 +18,8 @@ import { DatasourceDependableElement } from './types';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatasourceDependableComponent {
+    private datasourceDependableElementsService = inject(DatasourceDependableElementsService);
+
     @Input() @HostBinding('attr.id') id = '';
 
     @ContentChild(DatasourceDependableElement)
@@ -18,8 +28,6 @@ export class DatasourceDependableComponent {
     }
 
     dependableElementRef = DatasourceDependableElement;
-
-    constructor(private datasourceDependableElementsService: DatasourceDependableElementsService) {}
 
     dependableElementsFound(dependableElements: DatasourceDependableElement[]): void {
         if (dependableElements.length) {

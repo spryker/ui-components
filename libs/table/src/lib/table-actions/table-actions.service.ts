@@ -1,4 +1,4 @@
-import { Injectable, Injector, OnDestroy } from '@angular/core';
+import { Injectable, Injector, OnDestroy, inject } from '@angular/core';
 import { ActionsService } from '@spryker/actions';
 import { Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
@@ -14,6 +14,9 @@ import { TableActionTriggeredEvent } from './types';
     providedIn: 'root',
 })
 export class TableActionsService implements OnDestroy {
+    private injector = inject(Injector);
+    private actionsService = inject(ActionsService);
+
     tableEventBus?: TableEventBus;
 
     triggerAction$ = new ReplaySubject<{
@@ -28,10 +31,7 @@ export class TableActionsService implements OnDestroy {
         ),
     );
 
-    constructor(
-        private injector: Injector,
-        private actionsService: ActionsService,
-    ) {
+    constructor() {
         this.action$.pipe(takeUntil(this.destroyed$)).subscribe();
     }
 

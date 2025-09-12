@@ -12,6 +12,7 @@ import {
     ViewChild,
     ViewEncapsulation,
     SimpleChanges,
+    inject,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -29,6 +30,8 @@ import { ComponentModal, TemplateModalContext } from '../strategies';
     encapsulation: ViewEncapsulation.None,
 })
 export class ModalComponent implements OnChanges, OnDestroy {
+    private modalService = inject(ModalService);
+
     @Input() visible = false;
     @Input() data?: unknown;
     @Input() component?: Type<ComponentModal>;
@@ -42,8 +45,6 @@ export class ModalComponent implements OnChanges, OnDestroy {
     private modalRef?: ModalRef<any, any>;
 
     private destroyed$ = new Subject<void>();
-
-    constructor(private modalService: ModalService) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('visible' in changes) {

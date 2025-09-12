@@ -1,4 +1,4 @@
-import { ElementRef, Injectable, OnDestroy } from '@angular/core';
+import { ElementRef, Injectable, OnDestroy, inject } from '@angular/core';
 import { Observable, OperatorFunction, Subject } from 'rxjs';
 import { distinctUntilChanged, map, scan } from 'rxjs/operators';
 
@@ -20,10 +20,10 @@ type ModelOperation = ModelOperationAdd | ModelOperationUpdate | ModelOperationR
 
 @Injectable()
 export class TableEditableService implements OnDestroy {
+    private elementRef = inject(ElementRef);
+
     private model: Record<string, unknown>[] = [];
     private modelUpdates$ = new Subject<ModelOperation>();
-
-    constructor(private elementRef: ElementRef) {}
 
     ngOnDestroy(): void {
         this.modelUpdates$.complete();

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEn
 import { ToBoolean, ToJson } from '@spryker/utils';
 import { AutoSizeType } from 'ng-zorro-antd/input';
 
-interface TextareaAutoSize extends AutoSizeType {}
+interface TextareaAutoSize extends AutoSizeType { }
 
 @Component({
     standalone: false,

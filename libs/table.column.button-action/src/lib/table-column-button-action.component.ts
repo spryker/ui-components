@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injectable, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injectable, Input, ViewEncapsulation, inject } from '@angular/core';
 import { ActionConfig, ActionType } from '@spryker/actions';
 import { ButtonAttributes, ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
 import { ColumnTypeOption, TableColumnComponent, TableColumnContext } from '@spryker/table';
@@ -13,6 +13,8 @@ export class TableColumnButtonAction implements ActionConfig {
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnButtonActionConfig {
+    private contextService = inject(ContextService);
+
     @ColumnTypeOption()
     text? = this.contextService.wrap('displayValue');
     @ColumnTypeOption()
@@ -29,8 +31,6 @@ export class TableColumnButtonActionConfig {
     attrs?: ButtonAttributes;
     @ColumnTypeOption()
     icon?: string;
-
-    constructor(private contextService: ContextService) {}
 }
 
 @Component({

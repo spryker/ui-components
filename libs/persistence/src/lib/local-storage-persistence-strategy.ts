@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { InjectionTokenType, WindowToken } from '@spryker/utils';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 
@@ -11,12 +11,9 @@ import { PersistenceStrategy } from './types';
     providedIn: 'root',
 })
 export class LocalStoragePersistenceStrategy implements PersistenceStrategy {
-    private items: Record<string, BehaviorSubject<any> | undefined> = {};
+    private windowToken = inject<InjectionTokenType<typeof WindowToken>>(WindowToken);
 
-    constructor(
-        @Inject(WindowToken)
-        private windowToken: InjectionTokenType<typeof WindowToken>,
-    ) {}
+    private items: Record<string, BehaviorSubject<any> | undefined> = {};
 
     save(key: string, value: unknown): Observable<void> {
         const value$ = this.initValue(key, value);

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, importProvidersFrom } from '@angular/core';
+import { Component, Input, OnChanges, importProvidersFrom, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { NotificationModule } from '../notification.module';
@@ -11,7 +11,8 @@ import { NotificationData, NotificationType } from '../types';
     template: ` <button (click)="notificationService.show(data)">Show Notification</button> `,
 })
 class StoryComponent implements OnChanges {
-    constructor(public notificationService: NotificationService) {}
+    notificationService = inject(NotificationService);
+
     @Input() title = '';
     @Input() type?: NotificationType;
     @Input() description?: string;

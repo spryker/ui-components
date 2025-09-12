@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injector } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injector, inject } from '@angular/core';
 import { TableFeatureComponent, TableFeatureLocation, TableColumns, TableColumnsResolverService } from '@spryker/table';
 import { IconSettingsModule, IconResetModule, IconDragModule } from '@spryker/icon/icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -28,6 +28,8 @@ interface TableSettingsStorageData {
     ],
 })
 export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSettingsConfig> {
+    private persistenceService = inject(PersistenceService);
+
     name = 'columnConfigurator';
     settingsIcon = IconSettingsModule.icon;
     resetIcon = IconResetModule.icon;
@@ -94,10 +96,9 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSe
 
     isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
 
-    constructor(
-        private persistenceService: PersistenceService,
-        injector: Injector,
-    ) {
+    constructor() {
+        const injector = inject(Injector);
+
         super(injector);
     }
 

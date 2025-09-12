@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Injector, Input, QueryList, ContentChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, Injector, Input, QueryList, ContentChildren, inject } from '@angular/core';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 
@@ -37,17 +37,15 @@ class MockTableFeatureComponent extends TableFeatureComponent {
     `,
 })
 class RenderFeaturesComponent {
+    private injector = inject(Injector);
+    private cdr = inject(ChangeDetectorRef);
+
     @Input() limit?: number;
 
     @ContentChildren(TableFeatureTplDirective) set tplDirectives(directives: QueryList<TableFeatureTplDirective>) {
         this.features = [new MockTableFeatureComponent(directives, this.injector)];
         this.cdr.detectChanges();
     }
-
-    constructor(
-        private injector: Injector,
-        private cdr: ChangeDetectorRef,
-    ) {}
 
     features: MockTableFeatureComponent[] = [];
 }

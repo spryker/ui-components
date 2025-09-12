@@ -7,6 +7,7 @@ import {
     Output,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SpinnerSize } from '@spryker/spinner';
@@ -27,6 +28,9 @@ import { HtmlRendererProvider } from './html-renderer.provider';
     encapsulation: ViewEncapsulation.None,
 })
 export class HtmlRendererComponent {
+    private htmlRendererProvider = inject(HtmlRendererProvider);
+    private domSanitizer = inject(DomSanitizer);
+
     @ViewChild('htmlRendererContent', { static: false })
     htmlRendererContent?: ElementRef<HTMLElement>;
     @Input() spinnerSize = SpinnerSize.Small;
@@ -41,9 +45,4 @@ export class HtmlRendererComponent {
         shareReplay({ bufferSize: 1, refCount: true }),
     );
     isLoading$ = merge(this.htmlRenderer$.pipe(mapTo(false)), this.htmlRendererProvider.isLoading().pipe(mapTo(true)));
-
-    constructor(
-        private htmlRendererProvider: HtmlRendererProvider,
-        private domSanitizer: DomSanitizer,
-    ) {}
 }

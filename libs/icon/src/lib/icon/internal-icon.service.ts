@@ -1,4 +1,4 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { InjectionTokenType } from '@spryker/utils';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
@@ -8,16 +8,12 @@ import { IconSvg, IconServiceInterface } from './types';
 /** @internal */
 @Injectable({ providedIn: 'root' })
 export class InternalIconService implements IconServiceInterface {
+    private icons = inject<InjectionTokenType<typeof ICONS_TOKEN> | null>(ICONS_TOKEN, { optional: true });
+    private nzIcon = inject(NzIconService);
+
     private isInited = false;
     private resolvedIcons: Record<string, Promise<string> | undefined> = {};
     private unresolvedIcons: Record<string, IconSvg | undefined> = {};
-
-    constructor(
-        @Inject(ICONS_TOKEN)
-        @Optional()
-        private icons: InjectionTokenType<typeof ICONS_TOKEN> | null,
-        private nzIcon: NzIconService,
-    ) {}
 
     async addIcon(name: string, svg: IconSvg): Promise<void> {
         this.nzIcon.addIcon({

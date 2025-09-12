@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { Datasource, DatasourceService } from '@spryker/datasource';
 import { InjectionTokenType } from '@spryker/utils';
 import { debounceTime, EMPTY, Observable, switchMap } from 'rxjs';
@@ -16,17 +16,15 @@ import {
     providedIn: 'root',
 })
 export class DatasourceTriggerService implements Datasource {
+    private datasourceService = inject(DatasourceService);
+    private eventsTypes = inject<InjectionTokenType<typeof DatasourceEventTypesToken>>(DatasourceEventTypesToken, {
+        optional: true,
+    });
+
     readonly debounce = 300;
 
     private events: Partial<DatasourceTriggerEventDeclaration> =
         this.eventsTypes?.reduce((events, event) => ({ ...events, ...event }), {}) ?? {};
-
-    constructor(
-        private datasourceService: DatasourceService,
-        @Optional()
-        @Inject(DatasourceEventTypesToken)
-        private eventsTypes?: InjectionTokenType<typeof DatasourceEventTypesToken>,
-    ) {}
 
     resolve(injector: Injector, config: DatasourceTriggerConfig, context?: unknown): Observable<unknown> {
         const triggerElement$ = injector.get(DatasourceTriggerElement).getTriggerElement();

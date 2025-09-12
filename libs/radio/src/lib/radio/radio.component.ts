@@ -7,12 +7,12 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    Optional,
     Output,
     SimpleChanges,
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 import { NzRadioComponent } from 'ng-zorro-antd/radio';
@@ -32,6 +32,8 @@ import { RadioGroupComponent } from '../radio-group/radio-group.component';
     },
 })
 export class RadioComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+    radioGroupComponent? = inject(RadioGroupComponent, { optional: true });
+
     @Input() value?: string;
     @Input() @ToBoolean() disabled = false;
     @Input() @ToBoolean() hasError = false;
@@ -40,11 +42,6 @@ export class RadioComponent implements OnInit, OnChanges, OnDestroy, AfterViewIn
 
     @ViewChild('contentTpl') template!: TemplateRef<void>;
     @ViewChild(NzRadioComponent, { static: false }) nzRadio?: NzRadioComponent;
-
-    constructor(
-        @Optional()
-        public radioGroupComponent?: RadioGroupComponent,
-    ) {}
 
     ngOnInit(): void {
         this.radioGroupComponent?.registerRadio(this);

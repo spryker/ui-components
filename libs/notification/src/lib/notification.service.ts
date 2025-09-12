@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { IndividualConfig, ToastrService } from 'ngx-toastr';
 
 import { NotificationRef } from './notification-ref';
@@ -10,7 +10,7 @@ import { mapDataToConfig } from './util';
     providedIn: 'root',
 })
 export class NotificationService {
-    constructor(private toastrService: ToastrService) {}
+    private toastrService = inject(ToastrService);
 
     show(data: NotificationData): NotificationRef {
         let individualConfig: Partial<IndividualConfig> = {

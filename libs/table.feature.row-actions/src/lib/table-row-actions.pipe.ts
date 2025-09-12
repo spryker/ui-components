@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import { DropdownItem } from '@spryker/dropdown';
 import { ContextService } from '@spryker/utils';
 
@@ -7,7 +7,7 @@ import { ContextService } from '@spryker/utils';
  */
 @Pipe({ standalone: false, name: 'filterAvailableActions' })
 export class FilterAvailableActionsPipe implements PipeTransform {
-    constructor(private contextService: ContextService) {}
+    private contextService = inject(ContextService);
 
     transform(actions: DropdownItem[], data: any, availableActionsPath: string): DropdownItem[] {
         if (!availableActionsPath) {

@@ -1,9 +1,9 @@
-import { Directive, Input, TemplateRef } from '@angular/core';
+import { Directive, Input, TemplateRef, inject } from '@angular/core';
 import { TableColumnTplContext } from './table';
 
 @Directive({ standalone: false, selector: '[spyColTpl]' })
 export class ColTplDirective {
-    @Input() spyColTpl = '';
+    template = inject<TemplateRef<TableColumnTplContext>>(TemplateRef);
 
-    constructor(public template: TemplateRef<TableColumnTplContext>) {}
+    @Input() spyColTpl = '';
 }

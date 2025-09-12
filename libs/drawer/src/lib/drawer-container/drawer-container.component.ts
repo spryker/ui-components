@@ -12,6 +12,7 @@ import {
     ViewContainerRef,
     ViewEncapsulation,
     OnInit,
+    inject,
 } from '@angular/core';
 import {
     InterceptionComposerDirective,
@@ -55,6 +56,10 @@ export class DrawerComposerDirective extends InterceptionComposerDirective {}
     providers: [...provideInterceptionService()],
 })
 export class DrawerContainerComponent implements OnInit, OnDestroy {
+    private vcr = inject(ViewContainerRef);
+    private cdr = inject(ChangeDetectorRef);
+    private interceptorDispatcherService = inject(InterceptorDispatcherService);
+
     drawerRecord?: {
         class?: Type<any>;
         injector?: Injector;
@@ -74,12 +79,6 @@ export class DrawerContainerComponent implements OnInit, OnDestroy {
 
     @ViewChild(DrawerWrapperComponent)
     private drawerWrapperComponent?: DrawerWrapperComponent;
-
-    constructor(
-        private vcr: ViewContainerRef,
-        private cdr: ChangeDetectorRef,
-        private interceptorDispatcherService: InterceptorDispatcherService,
-    ) {}
 
     ngOnInit(): void {
         this.closeObs$.pipe(takeUntil(this.destroyed$)).subscribe();

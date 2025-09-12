@@ -6,9 +6,8 @@ import {
     NgModuleRef,
     OnDestroy,
     OnInit,
-    Optional,
-    SkipSelf,
     Type,
+    inject,
 } from '@angular/core';
 
 import { InterceptionComposableFactoriesToken, InterceptionComposableToken } from './interception-composable.token';
@@ -25,19 +24,15 @@ interface DestructibleInjector extends Injector, Pick<NgModuleRef<any>, 'destroy
  */
 @Injectable()
 export class InterceptionComposerImplementation implements InterceptionComposer, OnDestroy, OnInit {
+    private injector = inject(Injector);
+    private parent = inject(InterceptionComposerImplementation, { skipSelf: true, optional: true });
+
     private static NO_SERVICE = { __noService: true };
 
     private factories = this.injector.get(InterceptionComposableFactoriesToken, []);
     private token = this.injector.get(InterceptionComposableToken);
 
     private servicesInjector?: DestructibleInjector;
-
-    constructor(
-        private injector: Injector,
-        @SkipSelf()
-        @Optional()
-        private parent?: InterceptionComposerImplementation,
-    ) {}
 
     ngOnDestroy(): void {
         this.servicesInjector?.destroy();

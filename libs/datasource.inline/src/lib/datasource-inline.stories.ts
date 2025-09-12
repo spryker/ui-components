@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom, Injector, Input } from '@angular/core';
+import { Component, importProvidersFrom, Injector, Input, inject } from '@angular/core';
 import { DatasourceModule, DatasourceService } from '@spryker/datasource';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { of } from 'rxjs';
@@ -21,16 +21,14 @@ const context = {
     `,
 })
 class TestComponent {
+    private injector = inject(Injector);
+    private datasourceService = inject(DatasourceService);
+
     @Input() datasourceDataProp = '';
     @Input() dependable = false;
     @Input() contextKey = '';
 
     datasourceData = of('initial data');
-
-    constructor(
-        private injector: Injector,
-        private datasourceService: DatasourceService,
-    ) {}
 
     getData(): void {
         this.datasourceData = this.datasourceService.resolve(

@@ -1,4 +1,4 @@
-import { Injectable, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Injectable, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { NzModalRef, NzModalService, ModalOptions as NzModalOptions } from 'ng-zorro-antd/modal';
 
 import { AnyModal, ModalOptions, ModalRef, ModalWrapperFactory, ModalWrapperRef } from '../../types';
@@ -105,7 +105,7 @@ export class NzModalWrapperRef implements ModalWrapperRef {
     providedIn: 'root',
 })
 export class NzModalWrapperFactory implements ModalWrapperFactory {
-    constructor(private nzModalService: NzModalService) {}
+    private nzModalService = inject(NzModalService);
 
     createWrapper(options: ModalOptions<AnyModal>): ModalWrapperRef {
         const nzModalRef = this.nzModalService.create(mapNzOptions(options));

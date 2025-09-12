@@ -1,4 +1,4 @@
-import { Injectable, Injector, InjectionToken, Inject, Optional } from '@angular/core';
+import { Injectable, Injector, InjectionToken, inject } from '@angular/core';
 import { TableData, TableDataConfig } from '@spryker/table';
 import { DatasourceConfig, Datasource } from '@spryker/datasource';
 import { Observable, of } from 'rxjs';
@@ -15,11 +15,9 @@ export interface MockTableDatasourceConfig extends DatasourceConfig {
 
 @Injectable({ providedIn: 'root' })
 export class MockTableDatasourceService implements Datasource<TableData, TableDataConfig> {
-    constructor(
-        @Inject(MockTableDatasourceToken)
-        @Optional()
-        private dataGenerator?: InjectionTokenType<typeof MockTableDatasourceToken>,
-    ) {}
+    private dataGenerator = inject<InjectionTokenType<typeof MockTableDatasourceToken>>(MockTableDatasourceToken, {
+        optional: true,
+    });
 
     resolve(
         injector: Injector,

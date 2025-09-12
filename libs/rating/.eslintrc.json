@@ -1,9 +1,16 @@
 {
-    "extends": ["../../.eslintrc.json", "plugin:storybook/recommended"],
-    "ignorePatterns": ["!**/*"],
+    "extends": [
+        "../../.eslintrc.json",
+        "plugin:storybook/recommended"
+    ],
+    "ignorePatterns": [
+        "!**/*"
+    ],
     "overrides": [
         {
-            "files": ["*.ts"],
+            "files": [
+                "*.ts"
+            ],
             "rules": {
                 "@angular-eslint/directive-selector": [
                     "error",
@@ -25,8 +32,12 @@
             }
         },
         {
-            "files": ["*.html"],
-            "extends": ["plugin:@nrwl/nx/angular-template"],
+            "files": [
+                "*.html"
+            ],
+            "extends": [
+                "plugin:@nx/angular-template"
+            ],
             "rules": {}
         }
     ]

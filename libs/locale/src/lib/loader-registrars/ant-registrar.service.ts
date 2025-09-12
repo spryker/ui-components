@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { NzI18nInterface, NzI18nService, DateLocale } from 'ng-zorro-antd/i18n';
 import { Observable, of } from 'rxjs';
 
@@ -17,9 +17,9 @@ export interface AntLocaleData {
 
 @Injectable({ providedIn: 'root' })
 export class AntRegistrarService implements LocaleLoaderRegistrar<AntLocaleData> {
-    private localeData: Record<string, AntLocaleData | undefined> = Object.create(null);
+    private nzI18nService = inject(NzI18nService);
 
-    constructor(private nzI18nService: NzI18nService) {}
+    private localeData: Record<string, AntLocaleData | undefined> = Object.create(null);
 
     registerLocale(locale: string, data: AntLocaleData): Observable<unknown> {
         this.localeData[locale] = data;

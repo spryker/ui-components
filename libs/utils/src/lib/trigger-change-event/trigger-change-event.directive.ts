@@ -1,8 +1,10 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, inject } from '@angular/core';
 import { triggerChangeEvent } from './trigger-change-event-function';
 
 @Directive({ standalone: false, selector: '[spyTriggerChangeEvent]' })
 export class TriggerChangeEventDirective {
+    private el = inject(ElementRef);
+
     @Input() spyTriggerChangeEvent?: HTMLElement | string;
 
     @HostListener('click', ['$event'])
@@ -11,6 +13,4 @@ export class TriggerChangeEventDirective {
             ? triggerChangeEvent(this.el.nativeElement.querySelector(this.spyTriggerChangeEvent || 'input'))
             : triggerChangeEvent(this.spyTriggerChangeEvent);
     }
-
-    constructor(private el: ElementRef) {}
 }

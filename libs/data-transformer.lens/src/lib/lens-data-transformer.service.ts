@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DataTransformer, DataTransformerService } from '@spryker/data-transformer';
 import { ContextService, mergeDeep } from '@spryker/utils';
 import { Observable } from 'rxjs';
@@ -10,10 +10,8 @@ import { LensDataTransformerConfig, LensDataTransformerData, LensDataTransformer
     providedIn: 'root',
 })
 export class LensDataTransformerService implements DataTransformer<LensDataTransformerData, LensDataTransformerDataT> {
-    constructor(
-        private contextService: ContextService,
-        private dataTransformerService: DataTransformerService,
-    ) {}
+    private contextService = inject(ContextService);
+    private dataTransformerService = inject(DataTransformerService);
 
     transform(data: LensDataTransformerData, config: LensDataTransformerConfig): Observable<LensDataTransformerDataT> {
         const copiedData = mergeDeep({}, data);

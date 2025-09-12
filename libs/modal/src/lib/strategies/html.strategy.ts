@@ -26,7 +26,7 @@ export interface HtmlModalStrategyOptionsString<T> extends HtmlModalStrategyOpti
 
 export type HtmlModalStrategyOptions<T> = HtmlModalStrategyOptionsElement<T> | HtmlModalStrategyOptionsString<T>;
 
-type HtmlType = Exclude<HtmlModalStrategyOptions<any>['html'], Function>;
+type HtmlType = Exclude<HtmlModalStrategyOptions<any>['html'], (...args: any[]) => any>;
 
 type HtmlModalRenderingFunction = (modalData: any) => Node[];
 
@@ -37,7 +37,7 @@ export class HtmlModalRenderingRef<T> implements ModalRenderingRef<T, HtmlModalE
         private parentElement: Node,
         private elements: Node[],
         private renderFn: HtmlModalRenderingFunction,
-    ) {}
+    ) { }
 
     getElements(): Node[] {
         return this.elements;
@@ -88,7 +88,7 @@ export class HtmlModalRenderingRef<T> implements ModalRenderingRef<T, HtmlModalE
 export class HtmlModalStrategy<T> implements ModalStrategy<T, HtmlModalExtras> {
     private createNodes = this.selectRenderFn().bind(this, this.options);
 
-    constructor(private options: HtmlModalStrategyOptions<T>) {}
+    constructor(private options: HtmlModalStrategyOptions<T>) { }
 
     render(vcr: ViewContainerRef, modalRef: ModalRef<T>): HtmlModalRenderingRef<T> {
         const renderElement: HTMLElement = vcr.element.nativeElement;

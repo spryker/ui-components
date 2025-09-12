@@ -7,6 +7,7 @@ import {
     TemplateRef,
     ViewContainerRef,
     SimpleChanges,
+    inject,
 } from '@angular/core';
 import { combineLatest, of, ReplaySubject, Subject } from 'rxjs';
 import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
@@ -16,6 +17,9 @@ import { FeatureRecord } from './types';
 
 @Directive({ standalone: false, selector: '[spyTableRenderFeature]' })
 export class TableRenderFeatureDirective implements OnInit, OnChanges {
+    private vcr = inject(ViewContainerRef);
+    private cdr = inject(ChangeDetectorRef);
+
     @Input() spyTableRenderFeature?: FeatureRecord;
 
     private destroyed$ = new Subject<void>();
@@ -26,11 +30,6 @@ export class TableRenderFeatureDirective implements OnInit, OnChanges {
         switchMap((feature) => feature.featureContext$ ?? of(undefined)),
         startWith(undefined),
     );
-
-    constructor(
-        private vcr: ViewContainerRef,
-        private cdr: ChangeDetectorRef,
-    ) {}
 
     ngOnInit(): void {
         combineLatest([this.template$, this.templateContext$])

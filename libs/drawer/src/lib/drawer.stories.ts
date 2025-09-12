@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, TemplateRef, inject } from '@angular/core';
 import { Meta, moduleMetadata } from '@storybook/angular';
 import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 import { DrawerModule } from './drawer.module';
@@ -22,12 +22,12 @@ import { DrawerRef } from './drawer-ref';
     `,
 })
 class MultipleDrawersComponent {
+    private drawerService = inject(DrawerService);
+
     @Input() closeable = true;
     @Input() width = '50%';
     @Input() hasBackdrop = false;
     @Input() resizable = true;
-
-    constructor(private drawerService: DrawerService) {}
 
     addDrawer(tplRef: TemplateRef<any>) {
         this.drawerService.openTemplate(tplRef, {
@@ -102,9 +102,9 @@ class DrawerExampleComponent {
     template: `<button (click)="openDrawer()">Open Drawer</button>`,
 })
 class DrawerWithComponentComponent implements OnDestroy {
-    private drawerRef?: DrawerRef;
+    private drawerService = inject(DrawerService);
 
-    constructor(private drawerService: DrawerService) {}
+    private drawerRef?: DrawerRef;
 
     ngOnDestroy(): void {
         this.closeDrawer();

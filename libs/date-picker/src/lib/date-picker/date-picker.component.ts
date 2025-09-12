@@ -5,13 +5,13 @@ import {
     ElementRef,
     EventEmitter,
     HostBinding,
-    Inject,
     Input,
     OnChanges,
     Output,
     SimpleChanges,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { IconCalendarModule } from '@spryker/icon/icons';
 import { InjectionTokenType, ToBoolean, ToJson, triggerChangeEvent } from '@spryker/utils';
@@ -54,6 +54,9 @@ interface NzDisabledTimeConfig {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatePickerComponent implements OnChanges, AfterViewChecked {
+    private dateWorkDaysToken = inject<InjectionTokenType<typeof DateWorkDaysToken>>(DateWorkDaysToken);
+    private dateWorkHoursToken = inject<InjectionTokenType<typeof DateWorkHoursToken>>(DateWorkHoursToken);
+
     private static DefaultFormat = 'dd.MM.yyyy';
     private static HoursRange = [...Array(24).keys()];
     private static MinutesRange = [...Array(60).keys()];
@@ -92,13 +95,6 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     @HostBinding('class.open') isOpen = false;
 
     suffixIcon = IconCalendarModule.icon;
-
-    constructor(
-        @Inject(DateWorkDaysToken)
-        private dateWorkDaysToken: InjectionTokenType<typeof DateWorkDaysToken>,
-        @Inject(DateWorkHoursToken)
-        private dateWorkHoursToken: InjectionTokenType<typeof DateWorkHoursToken>,
-    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         this.updatePicker();

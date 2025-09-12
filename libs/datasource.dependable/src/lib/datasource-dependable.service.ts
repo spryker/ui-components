@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { Datasource, DatasourceService } from '@spryker/datasource';
 import { Observable, of, switchMap } from 'rxjs';
 import { DatasourceDependableConfig } from './types';
@@ -8,10 +8,8 @@ import { DatasourceDependableElementsService } from './datasource-dependable-ele
     providedIn: 'root',
 })
 export class DatasourceDependableService implements Datasource {
-    constructor(
-        private datasourceService: DatasourceService,
-        private datasourceDependableElementsService: DatasourceDependableElementsService,
-    ) {}
+    private datasourceService = inject(DatasourceService);
+    private datasourceDependableElementsService = inject(DatasourceDependableElementsService);
 
     resolve(injector: Injector, config: DatasourceDependableConfig, context?: unknown): Observable<unknown> {
         context = typeof context === 'object' ? { ...context } : {};

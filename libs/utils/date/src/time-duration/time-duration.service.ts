@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DateService } from '../date';
 import { TimeDuration } from './time-duration';
 import { InvalidTimeDuration } from './invalid-time-duration';
@@ -13,10 +13,8 @@ import { TimeDurationString, TimeDurationData } from './types';
     providedIn: 'root',
 })
 export class TimeDurationService {
-    constructor(
-        private dateService: DateService,
-        private config: TimeDurationConfig,
-    ) {}
+    private dateService = inject(DateService);
+    private config = inject(TimeDurationConfig);
 
     parse(interval: TimeDurationString): TimeDuration {
         const durationComponents = interval.split(this.config.separator);

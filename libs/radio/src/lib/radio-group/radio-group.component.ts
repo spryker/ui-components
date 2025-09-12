@@ -10,6 +10,7 @@ import {
     QueryList,
     ViewChildren,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { NzRadioComponent } from 'ng-zorro-antd/radio';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -32,6 +33,8 @@ export type RadioValue = string | number;
     },
 })
 export class RadioGroupComponent implements OnInit, OnDestroy {
+    private cdr = inject(ChangeDetectorRef);
+
     @Input() value?: RadioValue;
     @Input() name?: string;
 
@@ -42,8 +45,6 @@ export class RadioGroupComponent implements OnInit, OnDestroy {
 
     radios$ = new BehaviorSubject(new Set<RadioComponent>());
     private destroyed$ = new Subject<void>();
-
-    constructor(private cdr: ChangeDetectorRef) {}
 
     ngOnInit(): void {
         this.radios$

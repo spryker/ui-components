@@ -1,5 +1,5 @@
 import { HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { ApplicationRef, Directive, DoCheck, Injector, Input, OnDestroy } from '@angular/core';
+import { ApplicationRef, Directive, DoCheck, Injector, Input, OnDestroy, inject } from '@angular/core';
 import { EMPTY, forkJoin, Observable, of, Subject, throwError } from 'rxjs';
 import { catchError, delay, filter, map, mergeAll, mergeMap, switchMap, take, takeUntil, tap } from 'rxjs/operators';
 
@@ -17,6 +17,10 @@ export function setMockHttp(responses: MockHttpResponse[]) {
     selector: '[mockHttp]',
 })
 export class MockHttpDirective implements DoCheck, OnDestroy {
+    private appRef = inject(ApplicationRef);
+    private injector = inject(Injector);
+    private httpController = inject(HttpTestingController);
+
     private static options: Required<MockHttpOptions> = {
         delay: 'random',
         maxDelay: 2500,
@@ -49,11 +53,7 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
         ),
     );
 
-    constructor(
-        private appRef: ApplicationRef,
-        private injector: Injector,
-        private httpController: HttpTestingController,
-    ) {
+    constructor() {
         this.requests$.pipe(takeUntil(this.destroyed$)).subscribe(() => this.appRef.tick());
     }
 

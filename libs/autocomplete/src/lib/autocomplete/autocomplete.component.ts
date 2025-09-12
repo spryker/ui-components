@@ -1,7 +1,6 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    Inject,
     Injector,
     Input,
     OnChanges,
@@ -10,6 +9,7 @@ import {
     SimpleChanges,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { AutocompleteWrapperToken, InjectionTokenType, ToJson } from '@spryker/utils';
@@ -28,6 +28,10 @@ import { AutocompleteValue } from './types';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteComponent implements OnChanges, OnInit, OnDestroy {
+    private injector = inject(Injector);
+    private datasourceService = inject(DatasourceService);
+    private autocompleteWrapper = inject<InjectionTokenType<typeof AutocompleteWrapperToken>>(AutocompleteWrapperToken);
+
     @Input() @ToJson() options?: AutocompleteValue[];
     @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
@@ -52,13 +56,6 @@ export class AutocompleteComponent implements OnChanges, OnInit, OnDestroy {
     );
 
     private destroyed$ = new Subject<void>();
-
-    constructor(
-        private injector: Injector,
-        private datasourceService: DatasourceService,
-        @Inject(AutocompleteWrapperToken)
-        private autocompleteWrapper?: InjectionTokenType<typeof AutocompleteWrapperToken>,
-    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.options) {

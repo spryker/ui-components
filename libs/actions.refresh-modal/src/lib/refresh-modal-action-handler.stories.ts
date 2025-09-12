@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom } from '@angular/core';
+import { Component, importProvidersFrom, inject } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ModalModule, ModalService } from '@spryker/modal';
@@ -14,7 +14,7 @@ import { RefreshModalActionHandlerService } from './refresh-modal-action-handler
     template: `<spy-button variant="primary" size="md" (click)="clickHandler()">Open Modal</spy-button>`,
 })
 class SimpleStoryComponent {
-    constructor(private modalService: ModalService) {}
+    private modalService = inject(ModalService);
 
     clickHandler(): void {
         this.modalService.openComponent(ModalContentComponent);

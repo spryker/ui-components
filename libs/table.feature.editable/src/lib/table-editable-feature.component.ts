@@ -11,6 +11,7 @@ import {
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
@@ -88,6 +89,16 @@ export class TableEditableFeatureComponent
     extends TableFeatureComponent<TableEditableConfig>
     implements OnInit, AfterViewChecked, OnDestroy
 {
+    private cdr = inject(ChangeDetectorRef);
+    private ajaxActionService = inject(AjaxActionService);
+    private contextService = inject(ContextService);
+    private httpClient = inject(HttpClient);
+    private tableFeaturesRendererService = inject(TableFeaturesRendererService);
+    private resizeObserver = inject(NzResizeObserver);
+    private zone = inject(NgZone);
+    private dataSerializerService = inject(DataSerializerService);
+    tableEditableService = inject(TableEditableService);
+
     @ViewChild('editableCell') editableCell?: TemplateRef<any>;
 
     name = 'editable';
@@ -196,19 +207,9 @@ export class TableEditableFeatureComponent
     );
     disableRowKey$ = this.config$.pipe(map((config) => config.disableRowKey ?? '_editableRowDisabled'));
 
-    constructor(
-        injector: Injector,
-        private cdr: ChangeDetectorRef,
-        private ajaxActionService: AjaxActionService,
-        private contextService: ContextService,
-        private httpClient: HttpClient,
-        private tableFeaturesRendererService: TableFeaturesRendererService,
-        private resizeObserver: NzResizeObserver,
-        private zone: NgZone,
-        private dataSerializerService: DataSerializerService,
-        /** @internal */
-        public tableEditableService: TableEditableService,
-    ) {
+    constructor() {
+        const injector = inject(Injector);
+
         super(injector);
     }
 

@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom } from '@angular/core';
+import { Component, importProvidersFrom, inject } from '@angular/core';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { DrawerModule, DrawerService, DrawerContainerProxyComponent } from '@spryker/drawer';
 import { ButtonModule } from '@spryker/button';
@@ -12,7 +12,7 @@ import { CloseDrawerActionHandlerService } from './close-drawer-action-handler.s
     template: ` <spy-button variant="primary" size="md" (click)="clickHandler()"> Open drawer </spy-button> `,
 })
 class SimpleDrawerComponent {
-    constructor(private drawerService: DrawerService) {}
+    private drawerService = inject(DrawerService);
 
     clickHandler(): void {
         this.drawerService.openComponent(DrawerContentComponent);

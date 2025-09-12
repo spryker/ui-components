@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Injector,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import {
     DefaultInitialDataStrategy,
     TableDataConfig,
@@ -27,6 +34,9 @@ import { TableSyncStateConfig } from './types';
     ],
 })
 export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableSyncStateConfig> {
+    private urlPersistenceStrategy = inject(UrlPersistenceStrategy);
+    private cdr = inject(ChangeDetectorRef);
+
     name = 'syncStateUrl';
     tableFeatureLocation = TableFeatureLocation;
 
@@ -44,11 +54,9 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableS
     configToState$?: Observable<any>;
     state$?: Observable<unknown>;
 
-    constructor(
-        private urlPersistenceStrategy: UrlPersistenceStrategy,
-        private cdr: ChangeDetectorRef,
-        injector: Injector,
-    ) {
+    constructor() {
+        const injector = inject(Injector);
+
         super(injector);
     }
 

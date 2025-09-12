@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { DataTransformer, DataTransformerService } from '@spryker/data-transformer';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { ChainDataTransformerConfig, ChainDataTransformerData, ChainDataTransfor
 export class ChainDataTransformerService
     implements DataTransformer<ChainDataTransformerData, ChainDataTransformerDataT>
 {
-    constructor(private dataTransformerService: DataTransformerService) {}
+    private dataTransformerService = inject(DataTransformerService);
 
     transform(
         data: ChainDataTransformerData,

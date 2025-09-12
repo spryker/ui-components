@@ -1,4 +1,4 @@
-import { AbstractType, Injectable, InjectionToken, Injector, Provider, Type } from '@angular/core';
+import { AbstractType, Injectable, InjectionToken, Injector, Provider, Type, inject } from '@angular/core';
 import { DrawerCloseInterceptionEvent, DrawerContainerComponent } from '@spryker/drawer';
 import { InterceptionComposableFactory, InterceptorService } from '@spryker/interception';
 import { I18nService } from '@spryker/locale';
@@ -46,7 +46,9 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
 
     private destroyed$ = new Subject<void>();
 
-    constructor(injector: Injector) {
+    constructor() {
+        const injector = inject(Injector);
+
         super(injector);
 
         this.interceptorService = this.injector.get(InterceptorService);

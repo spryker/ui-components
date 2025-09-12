@@ -7,6 +7,7 @@ import {
     Input,
     OnChanges,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService, DatasourceType } from '@spryker/datasource';
 import {
@@ -49,6 +50,11 @@ export class TableColumnDynamicConfig {
 })
 @TableColumnTypeComponent(TableColumnDynamicConfig)
 export class TableColumnDynamicComponent implements TableColumnComponent<TableColumnDynamicConfig>, OnChanges {
+    private injector = inject(Injector);
+    private datasourceService = inject(DatasourceService);
+    private contextService = inject(ContextService);
+    private cdr = inject(ChangeDetectorRef);
+
     @Input() config?: TableColumnDynamicConfig;
     @Input() context?: TableColumnContext;
     @Input() items?: unknown;
@@ -88,13 +94,6 @@ export class TableColumnDynamicComponent implements TableColumnComponent<TableCo
         tap(() => this.cdr.markForCheck()),
         shareReplay({ bufferSize: 1, refCount: true }),
     );
-
-    constructor(
-        private injector: Injector,
-        private datasourceService: DatasourceService,
-        private contextService: ContextService,
-        private cdr: ChangeDetectorRef,
-    ) {}
 
     ngOnChanges(changes: TypedSimpleChanges<TableColumnComponent>): void {
         if (changes.config || changes.context) {

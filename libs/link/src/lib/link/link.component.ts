@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, inject } from '@angular/core';
 
 @Component({
     standalone: false,
@@ -13,9 +13,9 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRe
     },
 })
 export class LinkComponent {
-    @Input() icon?: string;
+    private element = inject(ElementRef);
 
-    constructor(private element: ElementRef) {}
+    @Input() icon?: string;
 
     click(): void {
         this.element.nativeElement.click();

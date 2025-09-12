@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Directive, EventEmitter, Injector, Input, OnChanges, Output } from '@angular/core';
+import { Directive, EventEmitter, Injector, Input, OnChanges, Output, inject } from '@angular/core';
 import { EMPTY, Observable, ReplaySubject } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AjaxActionService } from '@spryker/ajax-action';
@@ -19,18 +19,16 @@ import { UrlHtmlRendererResponse } from '../html-renderer/types';
     ],
 })
 export class UrlHtmlRendererDirective implements HtmlRendererProvider, OnChanges {
+    private injector = inject(Injector);
+    private http = inject(HttpClient);
+    private ajaxActionService = inject(AjaxActionService);
+
     @Input() urlHtml = '';
     @Input() urlMethod = 'GET';
     @Output() urlHtmlLoading = new EventEmitter<boolean>();
 
     private html$ = new ReplaySubject<string>(1);
     private isLoading$ = new ReplaySubject<void>(1);
-
-    constructor(
-        private injector: Injector,
-        private http: HttpClient,
-        private ajaxActionService: AjaxActionService,
-    ) {}
 
     ngOnChanges(): void {
         this.html$.next(this.urlHtml);

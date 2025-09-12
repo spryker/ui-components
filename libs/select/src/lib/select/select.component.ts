@@ -19,6 +19,7 @@ import {
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { DatasourceDependableElement } from '@spryker/datasource.dependable';
@@ -55,6 +56,11 @@ import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from
 export class SelectComponent
     implements DatasourceTriggerElement, DatasourceDependableElement, OnInit, OnChanges, OnDestroy, AfterViewInit
 {
+    private injector = inject(Injector);
+    private datasourceService = inject(DatasourceService);
+    private i18nService = inject(I18nService);
+    private cdr = inject(ChangeDetectorRef);
+
     @ViewChild('selectRef') selectRef?: ElementRef<HTMLSelectElement>;
     @ViewChild('selectContainerRef') selectContainerRef?: NzSelectComponent;
 
@@ -138,13 +144,6 @@ export class SelectComponent
             });
         }
     }
-
-    constructor(
-        private injector: Injector,
-        private datasourceService: DatasourceService,
-        private i18nService: I18nService,
-        private cdr: ChangeDetectorRef,
-    ) {}
 
     ngOnInit(): void {
         if (this.tags || this.tagView) {

@@ -1,4 +1,4 @@
-import { Directive, Input, TemplateRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Directive, Input, TemplateRef, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 
 export interface TableFeatureTplContext {
@@ -7,12 +7,12 @@ export interface TableFeatureTplContext {
 
 @Directive({ standalone: false, selector: '[spyTableFeatureTpl]' })
 export class TableFeatureTplDirective implements OnChanges {
+    template = inject<TemplateRef<TableFeatureTplContext>>(TemplateRef);
+
     @Input() spyTableFeatureTpl?: string | string[];
     @Input() spyTableFeatureTplStyles?: Record<string, any>;
     locations$ = new ReplaySubject<string[]>(1);
     styles$ = new ReplaySubject<Record<string, any>>(1);
-
-    constructor(public template: TemplateRef<TableFeatureTplContext>) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.spyTableFeatureTpl) {

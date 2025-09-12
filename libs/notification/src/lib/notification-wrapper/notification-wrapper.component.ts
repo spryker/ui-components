@@ -1,5 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    HostBinding,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import { Toast, ToastPackage, ToastrService } from 'ngx-toastr';
 
 import { NotificationRef } from '../notification-ref';
@@ -52,17 +59,18 @@ import { NotificationRef } from '../notification-ref';
     ],
 })
 export class NotificationWrapperComponent extends Toast {
+    private cdr = inject(ChangeDetectorRef);
+
     @HostBinding('@flyInOut')
     state = {
         value: 'inactive',
         params: this.toastPackage.config,
     } as const;
 
-    constructor(
-        toastrService: ToastrService,
-        toastPackage: ToastPackage,
-        private cdr: ChangeDetectorRef,
-    ) {
+    constructor() {
+        const toastrService = inject(ToastrService);
+        const toastPackage = inject(ToastPackage);
+
         super(toastrService, toastPackage);
     }
 

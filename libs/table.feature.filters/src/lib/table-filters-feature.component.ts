@@ -2,10 +2,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     forwardRef,
-    Inject,
     Injector,
     Type,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { combineLatest, Observable, Subject } from 'rxjs';
@@ -29,6 +29,8 @@ import { TableFilterBase, TableFilterComponent, TableFiltersConfig, TableFilters
     ],
 })
 export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFiltersConfig> {
+    private tableFilterToken = inject(TABLE_FILTERS_TOKEN);
+
     name = 'filters';
     tableFeatureLocation = TableFeatureLocation;
     filterClasses: Record<string, string | string[]> = {};
@@ -95,11 +97,9 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
         }),
     );
 
-    constructor(
-        @Inject(TABLE_FILTERS_TOKEN)
-        private tableFilterToken: TableFiltersDeclaration[],
-        injector: Injector,
-    ) {
+    constructor() {
+        const injector = inject(Injector);
+
         super(injector);
     }
 

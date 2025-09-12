@@ -1,6 +1,6 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable, ViewContainerRef, inject } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -59,9 +59,9 @@ export class OverlayModalWrapperRef implements ModalWrapperRef {
 
 @Injectable({ providedIn: 'root' })
 export class OverlayModalWrapperFactory implements ModalWrapperFactory {
-    private overlayPosition = this.overlay.position().global().centerHorizontally().centerVertically();
+    private overlay = inject(Overlay);
 
-    constructor(private overlay: Overlay) {}
+    private overlayPosition = this.overlay.position().global().centerHorizontally().centerVertically();
 
     createWrapper(options: ModalOptions<AnyModal>): ModalWrapperRef {
         const overlayRef = this.overlay.create({

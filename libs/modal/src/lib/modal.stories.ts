@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom, Input, TemplateRef } from '@angular/core';
+import { Component, importProvidersFrom, Input, TemplateRef, inject } from '@angular/core';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
@@ -60,12 +60,12 @@ export default {
     `,
 })
 class StoryComponent {
+    private modalService = inject(ModalService);
+
     @Input() hasBackdrop?: boolean;
 
     private modalNumber = 0;
     private currentModal: any;
-
-    constructor(private modalService: ModalService) {}
 
     closeAll() {
         this.modalService.closeAll();
@@ -190,10 +190,10 @@ export const viaModalComponent = (args) => ({
     `,
 })
 class ConfirmationComponent {
+    private modalService = inject(ModalService);
+
     @Input() hasBackdrop?: boolean;
     @Input() hasDescription?: boolean;
-
-    constructor(private modalService: ModalService) {}
 
     closeAll() {
         this.modalService.closeAll();

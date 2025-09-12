@@ -1,4 +1,4 @@
-import { Inject, Optional, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 
 import { InjectionTokenType } from '../types';
 import { InvokeContext } from './invoke.token';
@@ -33,11 +33,7 @@ import { InvokeContext } from './invoke.token';
  */
 @Pipe({ standalone: false, name: 'spyInvoke' })
 export class InvokePipe implements PipeTransform {
-    constructor(
-        @Inject(InvokeContext)
-        @Optional()
-        private context: InjectionTokenType<typeof InvokeContext>,
-    ) {}
+    private context = inject<InjectionTokenType<typeof InvokeContext>>(InvokeContext, { optional: true })!;
 
     transform<TArgs extends any[], TReturn>(fn: (...args: TArgs) => TReturn, ...args: TArgs): TReturn {
         return fn.apply(this.context, args);

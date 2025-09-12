@@ -6,15 +6,14 @@ import {
     ContentChild,
     Directive,
     ElementRef,
-    Inject,
     InjectionToken,
     Injector,
     OnChanges,
-    Optional,
     TemplateRef,
     ViewContainerRef,
     SimpleChanges,
     Input,
+    inject,
 } from '@angular/core';
 import {
     TableColumns,
@@ -110,17 +109,13 @@ export function initFeature<T>(
     template: ` <ng-content></ng-content> `,
 })
 export class TestTableFeatureComponent<T = TableMockComponent> implements AfterContentInit {
+    private cdr = inject(ChangeDetectorRef);
+    private globalMocks = inject<TableFeatureMocks<T> | null>(TestTableFeatureMocks, { optional: true });
+    private injector = inject(Injector);
+
     @ContentChild(TableFeatureComponent) feature?: TableFeatureComponent;
 
     featureMocks?: TableFeatureMocks<T>;
-
-    constructor(
-        private cdr: ChangeDetectorRef,
-        @Inject(TestTableFeatureMocks)
-        @Optional()
-        private globalMocks: TableFeatureMocks<T> | null,
-        private injector: Injector,
-    ) {}
 
     ngAfterContentInit(): void {
         if (!this.feature) {
@@ -137,16 +132,14 @@ export const TestTableFeatureTplContext = new InjectionToken<Record<string, Tabl
 
 @Directive({ standalone: false, selector: '[spyTableFeatureTpl]' })
 export class TestTableFeatureTplDirective implements OnChanges {
+    template = inject<TemplateRef<TableFeatureTplContext>>(TemplateRef);
+    vcr = inject(ViewContainerRef);
+    locationContext? = inject<InjectionTokenType<typeof TestTableFeatureTplContext>>(TestTableFeatureTplContext, {
+        optional: true,
+    });
+
     @Input() spyTableFeatureTpl?: string | string[];
     @Input() spyTableFeatureTplStyles?: Record<string, any>;
-
-    constructor(
-        public template: TemplateRef<TableFeatureTplContext>,
-        public vcr: ViewContainerRef,
-        @Inject(TestTableFeatureTplContext)
-        @Optional()
-        public locationContext?: InjectionTokenType<typeof TestTableFeatureTplContext>,
-    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.spyTableFeatureTpl) {

@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Injectable, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injectable,
+    Input,
+    OnInit,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import { DataTransformerConfig, DataTransformerType } from '@spryker/data-transformer';
 import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
 import { SelectOption, SelectValue, SelectValueSelected } from '@spryker/select';
@@ -103,11 +111,11 @@ export class TableColumnSelectConfig {
 })
 @TableColumnTypeComponent(TableColumnSelectConfig)
 export class TableColumnSelectComponent implements TableColumnComponent<TableColumnSelectConfig>, OnInit {
+    private tableEditableService = inject(TableEditableService);
+
     @Input() config?: TableColumnSelectConfig;
     @Input() context?: TableColumnContext;
     @Input() items?: unknown;
-
-    constructor(private tableEditableService: TableEditableService) {}
 
     ngOnInit(): void {
         if (!this.context?.value && this.config?.value) {

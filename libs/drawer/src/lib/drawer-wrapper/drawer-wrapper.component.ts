@@ -9,6 +9,7 @@ import {
     Output,
     SimpleChanges,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { IconMaximizeModule, IconMinimizeModule, IconRemoveModule } from '@spryker/icon/icons';
 
@@ -25,6 +26,8 @@ import { IconMaximizeModule, IconMinimizeModule, IconRemoveModule } from '@spryk
     },
 })
 export class DrawerWrapperComponent implements OnChanges {
+    private cdr = inject(ChangeDetectorRef);
+
     @Input() closeable = true;
     @Input() resizable = true;
     @Input() @HostBinding('style.width') width?: string;
@@ -38,8 +41,6 @@ export class DrawerWrapperComponent implements OnChanges {
     removeIcon = IconRemoveModule.icon;
     maximizeIcon = IconMaximizeModule.icon;
     minimizeIcon = IconMinimizeModule.icon;
-
-    constructor(private cdr: ChangeDetectorRef) {}
 
     ngOnChanges(changes: SimpleChanges) {
         if ('width' in changes && this.isFullScreen) {

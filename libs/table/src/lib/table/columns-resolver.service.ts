@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -7,9 +7,9 @@ import { ColumnsTransformer, TableColumns } from './table';
 
 @Injectable()
 export class TableColumnsResolverService {
-    private transformers$ = new BehaviorSubject(new Set<ColumnsTransformer>());
+    private injector = inject(Injector);
 
-    constructor(private injector: Injector) {}
+    private transformers$ = new BehaviorSubject(new Set<ColumnsTransformer>());
 
     resolve(colsOrUrl: string | TableColumns): Observable<TableColumns> {
         const getCols =

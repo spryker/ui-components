@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Injectable, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injectable,
+    Input,
+    OnInit,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import { AutocompleteValue } from '@spryker/autocomplete';
 import { DataTransformerConfig, DataTransformerType } from '@spryker/data-transformer';
 import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
@@ -96,11 +104,11 @@ export class TableColumnAutocompleteConfig {
 })
 @TableColumnTypeComponent(TableColumnAutocompleteConfig)
 export class TableColumnAutocompleteComponent implements TableColumnComponent<TableColumnAutocompleteConfig>, OnInit {
+    private tableEditableService = inject(TableEditableService);
+
     @Input() config?: TableColumnAutocompleteConfig;
     @Input() context?: TableColumnContext;
     @Input() items?: unknown;
-
-    constructor(private tableEditableService: TableEditableService) {}
 
     ngOnInit(): void {
         if (!this.context?.value && this.config?.value) {

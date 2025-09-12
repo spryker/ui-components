@@ -2,15 +2,14 @@
     "name": "@spryker/table",
     "version": "2.0.8",
     "peerDependencies": {
-        "@angular/common": ">=17.3.0 <19.0.0",
-        "@angular/core": ">=17.3.0 <19.0.0",
+        "@angular/common": "20.3.0",
+        "@angular/core": "20.3.0",
         "@spryker/actions": "^2.0.0",
         "@spryker/datasource": "^2.0.0",
         "@spryker/icon": "^2.0.0",
         "@spryker/locale": "^2.0.0",
         "@spryker/popover": "^2.0.0",
         "@spryker/spinner": "^2.0.0",
-        "@spryker/styles": "^2.0.0",
         "@spryker/utils": "^2.0.0",
         "@spryker/web-components": "^2.0.0",
         "rxjs": "^7.8.1"

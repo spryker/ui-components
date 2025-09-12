@@ -15,7 +15,7 @@ export class TableColumnListConfigInner {
     @ColumnTypeOption()
     type?: string;
     @ColumnTypeOption()
-    typeOptions?: Object;
+    typeOptions?: object;
     @ColumnTypeOption()
     typeChildren?: TableColumnListConfigInner[];
 }

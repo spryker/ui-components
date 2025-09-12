@@ -5,10 +5,9 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    Optional,
     Renderer2,
     SimpleChanges,
-    SkipSelf,
+    inject,
 } from '@angular/core';
 import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { map, pairwise, shareReplay, startWith, takeUntil } from 'rxjs/operators';
@@ -17,6 +16,11 @@ import { ApplyContextsOptions } from './apply-contexts-options';
 
 @Directive({ standalone: false, selector: '[spyApplyContexts]' })
 export class ApplyContextsDirective implements OnInit, OnChanges, OnDestroy {
+    private elemRef = inject(ElementRef);
+    private renderer = inject(Renderer2);
+    private options = inject(ApplyContextsOptions);
+    private parent = inject(ApplyContextsDirective, { optional: true, skipSelf: true });
+
     @Input() spyApplyContexts?: string | string[];
 
     private contextGroup = new RegExp(`^${this.options.contextPrefix}([^-]+)-`);
@@ -36,15 +40,6 @@ export class ApplyContextsDirective implements OnInit, OnChanges, OnDestroy {
         ]),
         shareReplay({ bufferSize: 1, refCount: true }),
     );
-
-    constructor(
-        private elemRef: ElementRef,
-        private renderer: Renderer2,
-        private options: ApplyContextsOptions,
-        @Optional()
-        @SkipSelf()
-        private parent?: ApplyContextsDirective,
-    ) {}
 
     ngOnInit(): void {
         this.selfContexts$

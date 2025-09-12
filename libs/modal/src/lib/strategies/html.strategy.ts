@@ -37,7 +37,7 @@ export class HtmlModalRenderingRef<T> implements ModalRenderingRef<T, HtmlModalE
         private parentElement: Node,
         private elements: Node[],
         private renderFn: HtmlModalRenderingFunction,
-    ) { }
+    ) {}
 
     getElements(): Node[] {
         return this.elements;
@@ -88,7 +88,7 @@ export class HtmlModalRenderingRef<T> implements ModalRenderingRef<T, HtmlModalE
 export class HtmlModalStrategy<T> implements ModalStrategy<T, HtmlModalExtras> {
     private createNodes = this.selectRenderFn().bind(this, this.options);
 
-    constructor(private options: HtmlModalStrategyOptions<T>) { }
+    constructor(private options: HtmlModalStrategyOptions<T>) {}
 
     render(vcr: ViewContainerRef, modalRef: ModalRef<T>): HtmlModalRenderingRef<T> {
         const renderElement: HTMLElement = vcr.element.nativeElement;

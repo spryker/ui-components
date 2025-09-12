@@ -96,20 +96,20 @@ For this every component library should have associated ONE level tag:
 
 ## Available Tags
 
--   `type:*` Describes the library type
-    -   `type:component-service` Component with service library
-    -   `type:component` Component library
-    -   `type:service` Services library
-    -   `type:style` Styles library
-    -   `type:util` Helper utilities library
-    -   `type:meta` Meta package that does not get deployed to NPM (internal infra)
--   `level:*` Describes the component type according to the Atomic Design framework
-    -   `level:atom`
-    -   `level:molecule`
-    -   `level:organism`
--   `pkg:*` Describes the package type
-    -   `pkg:primary`
-    -   `pkg:extension`
+- `type:*` Describes the library type
+    - `type:component-service` Component with service library
+    - `type:component` Component library
+    - `type:service` Services library
+    - `type:style` Styles library
+    - `type:util` Helper utilities library
+    - `type:meta` Meta package that does not get deployed to NPM (internal infra)
+- `level:*` Describes the component type according to the Atomic Design framework
+    - `level:atom`
+    - `level:molecule`
+    - `level:organism`
+- `pkg:*` Describes the package type
+    - `pkg:primary`
+    - `pkg:extension`
 
 ## Code generation
 
@@ -123,8 +123,8 @@ nx g @nx/angular:library <lib-name> --publishable --import-path @spryker/<lib-na
 
 _NOTE:_ When library is generated please do the following:
 
--   In `tsconfig.base.json`
-    -   remove newly generated path `paths[@spryker/<lib-name>]`:
+- In `tsconfig.base.json`
+    - remove newly generated path `paths[@spryker/<lib-name>]`:
     ```json
         "paths": {
             - "@spryker/<lib-name>": [
@@ -132,29 +132,30 @@ _NOTE:_ When library is generated please do the following:
             ]
         }
     ```
--   In `tsconfig.json`
-    -   add the following to the `references`:
+- In `tsconfig.json`
+    - add the following to the `references`:
     ```json
         {
             "path": "./libs/<lib-name>/tsconfig.json"
         },
     ```
--   In `libs/<lib-name>/.eslintrc.json`
-    -   remove following section:
+- In `libs/<lib-name>/.eslintrc.json`
+    - remove following section:
     ```json
         "extends": [
             "plugin:@nrwl/nx/angular",
             "plugin:@angular-eslint/template/process-inline-templates"
         ],
     ```
--   In `libs/<lib-name>/jest.config.ts`
-    -   remove following sections:
+- In `libs/<lib-name>/jest.config.ts`
+    - remove following sections:
     ```json
         "transform": { ... },
         "transformIgnorePatterns": [ ... ],
         "snapshotSerializers": [ ... ]
     ```
-    -   add the following `globals`
+
+    - add the following `globals`
     ```json
         globals: {
             'ts-jest': {
@@ -163,28 +164,29 @@ _NOTE:_ When library is generated please do the following:
             },
         },
     ```
--   In `libs/<lib-name>/ng-package.json`
-    -   add `styleIncludePaths` to `lib` for theme imports (if needed):
+- In `libs/<lib-name>/ng-package.json`
+    - add `styleIncludePaths` to `lib` for theme imports (if needed):
     ```json
         "lib": {
             ...,
             "styleIncludePaths": ["../styles/src/lib"]
         }
     ```
--   In `libs/<lib-name>/package.json`
-    -   add `publishConfig` prop with `access=public` value:
+- In `libs/<lib-name>/package.json`
+    - add `publishConfig` prop with `access=public` value:
     ```json
         "publishConfig": {
             "access": "public"
         },
     ```
--   In `libs/<lib-name>/tsconfig.json`
-    -   remove following sections:
+- In `libs/<lib-name>/tsconfig.json`
+    - remove following sections:
     ```json
         "compilerOptions": { ... },
         "angularCompilerOptions": { ... }
     ```
-    -   add reference to prod config
+
+    - add reference to prod config
     ```json
         "references": [
             ...,
@@ -193,20 +195,20 @@ _NOTE:_ When library is generated please do the following:
             },
         ]
     ```
--   In `libs/<lib-name>/tsconfig.lib.prod.json`
-    -   remove following section:
+- In `libs/<lib-name>/tsconfig.lib.prod.json`
+    - remove following section:
     ```json
         "angularCompilerOptions": {
             "compilationMode": "partial"
        }
     ```
--   In `lib/<lib-name>/src/test-setup.ts`
-    -   add global setup import:
+- In `lib/<lib-name>/src/test-setup.ts`
+    - add global setup import:
     ```ts
     import '../../../config/test-setup';
     ```
--   In `lib/<lib-name>/src/project.json`
-    -   add `styles` as `implicitDependencies`
+- In `lib/<lib-name>/src/project.json`
+    - add `styles` as `implicitDependencies`
     ```json
         "implicitDependencies": ["styles"],
     ```
@@ -229,16 +231,15 @@ nx g @nx/storybook:configuration --name=<lib-name>
 
 _NOTE:_ Do the following updates after command above:
 
--   In `<lib-name>/.storybook/tsconfig.json`:
-    -   replace `"include"` array with (add `"../../locale/data/**/src/index.ts"` to array if using localization):
+- In `<lib-name>/.storybook/tsconfig.json`:
+    - replace `"include"` array with (add `"../../locale/data/**/src/index.ts"` to array if using localization):
     ```json
         "include": ["../src/**/*", "*.js"]
     ```
--   Change extension from `*.ts` into `*.js` for all files in the `<lib-name>/.storybook` folder
--   Add `import '../../../.storybook/preview';` to the `<lib-name>/.storybook/preview.js`
--   In `<lib-name>/.storybook/main.js`:
-
-    -   Replace the whole:
+- Change extension from `*.ts` into `*.js` for all files in the `<lib-name>/.storybook` folder
+- Add `import '../../../.storybook/preview';` to the `<lib-name>/.storybook/preview.js`
+- In `<lib-name>/.storybook/main.js`:
+    - Replace the whole:
 
         ```json
             const rootMain = require('../../../.storybook/main');
@@ -261,8 +262,8 @@ _NOTE:_ Do the following updates after command above:
             };
         ```
 
--   In `libs/<lib-name>/tsconfig.json`:
-    -   add reference to prod config
+- In `libs/<lib-name>/tsconfig.json`:
+    - add reference to prod config
     ```json
         "references": [
             ...,
@@ -271,8 +272,8 @@ _NOTE:_ Do the following updates after command above:
             },
         ]
     ```
--   In `lib/<lib-name>/src/project.json`
-    -   add new configs for `targets` section
+- In `lib/<lib-name>/src/project.json`
+    - add new configs for `targets` section
     ```json
         "targets": {
             ...,
@@ -389,18 +390,18 @@ All releases are done by merging/pushing to release branches via Travis CI.
 
 During the release:
 
--   git tags are created
--   package versions updated
--   package changelogs updated
--   packages published to NPM registry
+- git tags are created
+- package versions updated
+- package changelogs updated
+- packages published to NPM registry
 
 These are the release branches (`git branch` => `@npm tag`):
 
--   `master` => `@latest`
--   `next` => `@next`
--   `beta` => `@beta`
--   `alpha` => `@alpha`
--   `rc` => `@rc`
+- `master` => `@latest`
+- `next` => `@next`
+- `beta` => `@beta`
+- `alpha` => `@alpha`
+- `rc` => `@rc`
 
 ### Release Recovery
 
@@ -408,9 +409,9 @@ These are the release branches (`git branch` => `@npm tag`):
 
 Sometimes publishing to NPM may fail due to several reasons:
 
--   NPM services experience outages
--   Configuration of certain packages prevent them from being published by NPM
-    (ex. public access is not explicitly set)
+- NPM services experience outages
+- Configuration of certain packages prevent them from being published by NPM
+  (ex. public access is not explicitly set)
 
 This may result in some or all packages not published even when version
 and changelogs were updated and pushed back to git.
@@ -422,11 +423,11 @@ In this case you need to:
 
 **Recovery branches for republishing:**
 
--   `master` => `republish/master`
--   `next` => `republish/next`
--   `beta` => `republish/beta`
--   `alpha` => `republish/alpha`
--   `rc` => `republish/rc`
+- `master` => `republish/master`
+- `next` => `republish/next`
+- `beta` => `republish/beta`
+- `alpha` => `republish/alpha`
+- `rc` => `republish/rc`
 
 After branch is pushed to CI it will attempt to find unpublished packages in NPM
 and try to publish them again with the same versions.
@@ -435,11 +436,11 @@ and try to publish them again with the same versions.
 
 ## Documentation
 
--   [Nx](https://nx.dev/angular)
--   [Angular](https://angular.io/docs)
--   [RxJs](https://rxjs.dev/guide/overview)
--   [Ant Design](https://ng.ant.design/docs/introduce/en)
--   [UI Components](https://docs.spryker.com/docs/dg/dev/frontend-development/202410.0/marketplace/marketplace-frontend.html)
+- [Nx](https://nx.dev/angular)
+- [Angular](https://angular.io/docs)
+- [RxJs](https://rxjs.dev/guide/overview)
+- [Ant Design](https://ng.ant.design/docs/introduce/en)
+- [UI Components](https://docs.spryker.com/docs/dg/dev/frontend-development/202410.0/marketplace/marketplace-frontend.html)
 
 ## Contributing to the repository
 

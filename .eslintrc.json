@@ -1,67 +1,40 @@
 {
     "root": true,
-    "ignorePatterns": [
-        "**/*"
-    ],
-    "plugins": [
-        "@nx"
-    ],
+    "ignorePatterns": ["**/*"],
+    "plugins": ["@nx"],
     "overrides": [
         {
-            "files": [
-                "*.ts",
-                "*.tsx",
-                "*.js",
-                "*.jsx"
-            ],
+            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
             "rules": {
                 "@nx/enforce-module-boundaries": [
                     "error",
                     {
                         "enforceBuildableLibDependency": true,
-                        "allow": [
-                            "@orchestrator/core/testing"
-                        ],
+                        "allow": ["@orchestrator/core/testing"],
                         "depConstraints": [
                             {
                                 "sourceTag": "pkg:primary",
-                                "onlyDependOnLibsWithTags": [
-                                    "pkg:primary"
-                                ]
+                                "onlyDependOnLibsWithTags": ["pkg:primary"]
                             },
                             {
                                 "sourceTag": "pkg:extension",
-                                "onlyDependOnLibsWithTags": [
-                                    "pkg:primary",
-                                    "pkg:extension"
-                                ]
+                                "onlyDependOnLibsWithTags": ["pkg:primary", "pkg:extension"]
                             },
                             {
                                 "sourceTag": "type:meta",
-                                "onlyDependOnLibsWithTags": [
-                                    "type:meta",
-                                    "type:util"
-                                ]
+                                "onlyDependOnLibsWithTags": ["type:meta", "type:util"]
                             },
                             {
                                 "sourceTag": "type:util",
-                                "onlyDependOnLibsWithTags": [
-                                    "type:util"
-                                ]
+                                "onlyDependOnLibsWithTags": ["type:util"]
                             },
                             {
                                 "sourceTag": "type:style",
-                                "onlyDependOnLibsWithTags": [
-                                    "type:style"
-                                ]
+                                "onlyDependOnLibsWithTags": ["type:style"]
                             },
                             {
                                 "sourceTag": "type:service",
-                                "onlyDependOnLibsWithTags": [
-                                    "type:util",
-                                    "type:service",
-                                    "type:component-service"
-                                ]
+                                "onlyDependOnLibsWithTags": ["type:util", "type:service", "type:component-service"]
                             },
                             {
                                 "sourceTag": "type:component",
@@ -83,9 +56,7 @@
                             },
                             {
                                 "sourceTag": "*",
-                                "onlyDependOnLibsWithTags": [
-                                    "*"
-                                ]
+                                "onlyDependOnLibsWithTags": ["*"]
                             }
                         ]
                     }
@@ -93,20 +64,13 @@
             }
         },
         {
-            "files": [
-                "*.spec.ts",
-                "*.stories.ts",
-                "./testing/src/*.ts"
-            ],
+            "files": ["*.spec.ts", "*.stories.ts", "./testing/src/*.ts"],
             "rules": {
                 "@nx/enforce-module-boundaries": 0
             }
         },
         {
-            "files": [
-                "*.ts",
-                "*.tsx"
-            ],
+            "files": ["*.ts", "*.tsx"],
             "extends": [
                 "plugin:@nx/typescript",
                 "plugin:@nx/angular",
@@ -126,21 +90,14 @@
             }
         },
         {
-            "files": [
-                "*.js",
-                "*.jsx"
-            ],
-            "extends": [
-                "plugin:@nx/javascript"
-            ],
+            "files": ["*.js", "*.jsx"],
+            "extends": ["plugin:@nx/javascript"],
             "rules": {
                 "no-extra-semi": "error"
             }
         },
         {
-            "files": [
-                "*.json"
-            ],
+            "files": ["*.json"],
             "parser": "jsonc-eslint-parser",
             "rules": {
                 "@nx/dependency-checks": [
@@ -162,7 +119,5 @@
             }
         }
     ],
-    "extends": [
-        "plugin:storybook/recommended"
-    ]
+    "extends": ["plugin:storybook/recommended"]
 }

@@ -1,9 +1,9 @@
 {
     "name": "@spryker/table.column.autocomplete",
-    "version": "2.0.6",
+    "version": "2.0.8",
     "peerDependencies": {
-        "@angular/common": "^17.3.0",
-        "@angular/core": "^17.3.0",
+        "@angular/common": ">=17.3.0 <19.0.0",
+        "@angular/core": ">=17.3.0 <19.0.0",
         "@spryker/autocomplete": "^2.0.0",
         "@spryker/data-transformer": "^2.0.0",
         "@spryker/datasource": "^2.0.0",

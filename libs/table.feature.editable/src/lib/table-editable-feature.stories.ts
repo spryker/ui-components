@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Component, importProvidersFrom, Injectable, Input, OnInit } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { DatasourceModule } from '@spryker/datasource';
@@ -21,6 +21,7 @@ import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { TableEditableFeatureModule } from './table-editable-feature.module';
 import { TableEditableService } from './table-editable-feature.service';
 import { TableEditableEditRequestToken } from './tokens';
+import { provideHttpClient } from '@angular/common/http';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col2: `${i} col2`,
@@ -89,7 +90,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(TableModule.forRoot()),
                 importProvidersFrom(
                     TableModule.withColumnComponents({

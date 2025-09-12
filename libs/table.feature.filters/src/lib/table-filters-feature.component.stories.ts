@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
@@ -9,6 +9,7 @@ import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGen
 import { DefaultContextSerializationModule } from '@spryker/utils';
 
 import { TableFiltersFeatureModule } from './table-filters-feature.module';
+import { provideHttpClient } from '@angular/common/http';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col1: `col1 #${i}`,
@@ -22,7 +23,8 @@ export default {
         applicationConfig({
             providers: [
                 provideAnimations(),
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(TableModule.forRoot()),
                 importProvidersFrom(
                     TableFiltersFeatureModule.withFilterComponents({

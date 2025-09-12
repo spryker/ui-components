@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/datasource.inline@2.1.1...@spryker/datasource.inline@2.1.2) (2025-05-20)
+
+**Note:** Version bump only for package @spryker/datasource.inline
+
+
+
+
+
+## [2.1.1](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/datasource.inline@2.1.0...@spryker/datasource.inline@2.1.1) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/datasource.inline
+
+
+
+
+
+# [2.1.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/datasource.inline@2.0.1...@spryker/datasource.inline@2.1.0) (2024-10-21)
+
+
+### Features
+
+* add dependable functionality for inline datasource ([#632](http://172.31.33.130:9292/spryker-internal-ci/ui-components/issues/632)) ([f4b35d3](http://172.31.33.130:9292/spryker-internal-ci/ui-components/commits/f4b35d340097eaa9e9692c9bbe0dbf3cbc7cbee7))
+
+
+
+
+
 ## [2.0.1](https://github.com/spryker/ui-components/compare/@spryker/datasource.inline@2.0.1-next.0...@spryker/datasource.inline@2.0.1) (2024-03-21)
 
 **Note:** Version bump only for package @spryker/datasource.inline

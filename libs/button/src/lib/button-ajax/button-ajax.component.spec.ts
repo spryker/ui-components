@@ -1,18 +1,20 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NotificationModule } from '@spryker/notification';
 import { ButtonShape, ButtonSize, ButtonVariant } from '@spryker/button';
 import { createComponentWrapper } from '@spryker/internal-utils';
 import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { ButtonAjaxComponent, ButtonAjaxMethod } from './button-ajax.component';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 
 describe('ButtonAjaxComponent', () => {
     let httpTestingController: HttpTestingController;
 
     const { testModule, createComponent } = getTestingForComponent(ButtonAjaxComponent, {
         ngModule: {
-            imports: [HttpClientTestingModule, NotificationModule.forRoot()],
+            imports: [NotificationModule.forRoot()],
             schemas: [NO_ERRORS_SCHEMA],
         },
         projectContent: 'Content',
@@ -21,6 +23,7 @@ describe('ButtonAjaxComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [testModule],
+            providers: [provideHttpClient(), provideHttpClientTesting()],
             teardown: { destroyAfterEach: false },
         });
 

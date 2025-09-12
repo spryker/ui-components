@@ -1,16 +1,18 @@
 import { importProvidersFrom } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { NotificationModule } from '@spryker/notification';
 import { AjaxFormModule } from '../ajax-form.module';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
     title: 'AjaxFormComponent',
     decorators: [
         applicationConfig({
             providers: [
-                importProvidersFrom(HttpClientTestingModule),
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 importProvidersFrom(NotificationModule.forRoot()),
             ],
         }),

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/rating@0.2.7...@spryker/rating@0.2.8) (2025-05-20)
+
+**Note:** Version bump only for package @spryker/rating
+
+
+
+
+
+## [0.2.7](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/rating@0.2.6...@spryker/rating@0.2.7) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/rating
+
+
+
+
+
 ## [0.2.6](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/rating@0.2.5...@spryker/rating@0.2.6) (2024-09-25)
 
 **Note:** Version bump only for package @spryker/rating

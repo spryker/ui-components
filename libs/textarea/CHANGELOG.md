@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/textarea@2.0.2...@spryker/textarea@2.0.3) (2025-05-20)
+
+**Note:** Version bump only for package @spryker/textarea
+
+
+
+
+
+## [2.0.2](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/textarea@2.0.1...@spryker/textarea@2.0.2) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/textarea
+
+
+
+
+
 ## [2.0.1](http://172.31.43.110:9292/spryker-internal-ci/ui-components/compare/@spryker/textarea@2.0.1-next.0...@spryker/textarea@2.0.1) (2024-08-14)
 
 **Note:** Version bump only for package @spryker/textarea

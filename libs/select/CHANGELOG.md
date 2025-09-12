@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.14](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.13...@spryker/select@2.0.14) (2025-05-20)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [2.0.13](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.12...@spryker/select@2.0.13) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [2.0.12](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.11...@spryker/select@2.0.12) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
+## [2.0.11](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.10...@spryker/select@2.0.11) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
 ## [2.0.10](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.9...@spryker/select@2.0.10) (2024-10-15)
 
 **Note:** Version bump only for package @spryker/select

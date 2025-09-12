@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ActionsModule } from '@spryker/actions';
@@ -10,12 +10,15 @@ import { DefaultContextSerializationModule } from '@spryker/utils';
 
 import { RefreshTableActionHandlerService } from './refresh-table-action-handler.service';
 import { importProvidersFrom } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
     title: 'RefreshTableActionHandlerService',
     decorators: [
         applicationConfig({
             providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 provideAnimations(),
                 importProvidersFrom(
                     ActionsModule.withActions({
@@ -31,12 +34,7 @@ export default {
             ],
         }),
         moduleMetadata({
-            imports: [
-                TableRowActionsFeatureModule,
-                HttpClientTestingModule,
-                TableModule,
-                DefaultContextSerializationModule,
-            ],
+            imports: [TableRowActionsFeatureModule, TableModule, DefaultContextSerializationModule],
         }),
     ],
     parameters: {

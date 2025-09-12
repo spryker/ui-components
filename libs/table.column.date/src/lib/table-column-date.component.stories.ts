@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
@@ -9,6 +9,7 @@ import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGen
 import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils';
 import { TableColumnDateComponent } from './table-column-date.component';
 import { TableColumnDateModule } from './table-column-date.module';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
     title: 'TableColumnDateComponent',
@@ -69,7 +70,8 @@ export const withTable = (args) => ({
     props: args,
     applicationConfig: {
         providers: [
-            importProvidersFrom(HttpClientTestingModule),
+            provideHttpClient(),
+            provideHttpClientTesting(),
             importProvidersFrom(TableModule.forRoot()),
             importProvidersFrom(
                 TableModule.withColumnComponents({

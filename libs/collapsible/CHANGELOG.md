@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.9](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/collapsible@2.0.8...@spryker/collapsible@2.0.9) (2025-05-20)
+
+**Note:** Version bump only for package @spryker/collapsible
+
+
+
+
+
+## [2.0.8](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/collapsible@2.0.7...@spryker/collapsible@2.0.8) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/collapsible
+
+
+
+
+
 ## [2.0.7](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/collapsible@2.0.6...@spryker/collapsible@2.0.7) (2024-09-25)
 
 **Note:** Version bump only for package @spryker/collapsible

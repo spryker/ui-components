@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
@@ -9,6 +9,7 @@ import { ContextModule, DefaultContextSerializationModule } from '@spryker/utils
 
 import { TableColumnImageComponent } from './table-column-image.component';
 import { TableColumnImageModule } from './table-column-image.module';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
     title: 'TableColumnImageComponent',
@@ -64,7 +65,8 @@ export const withTable = (args) => ({
     props: args,
     applicationConfig: {
         providers: [
-            importProvidersFrom(HttpClientTestingModule),
+            provideHttpClient(),
+            provideHttpClientTesting(),
             importProvidersFrom(TableModule.forRoot()),
             importProvidersFrom(
                 TableModule.withColumnComponents({

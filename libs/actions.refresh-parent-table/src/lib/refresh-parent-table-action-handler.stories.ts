@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Component, importProvidersFrom, Input } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
@@ -12,6 +12,7 @@ import { TableRowActionsFeatureModule } from '@spryker/table.feature.row-actions
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 import { RefreshParentTableActionHandlerService } from './refresh-parent-table-action-handler.service';
+import { provideHttpClient } from '@angular/common/http';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col1: `col1 #${i}`,
@@ -67,6 +68,8 @@ export default {
     decorators: [
         applicationConfig({
             providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 provideAnimations(),
                 importProvidersFrom(
                     ActionsModule.withActions({
@@ -86,7 +89,6 @@ export default {
             imports: [
                 DrawerModule,
                 TableRowActionsFeatureModule,
-                HttpClientTestingModule,
                 ButtonActionModule,
                 TableModule,
                 DefaultContextSerializationModule,

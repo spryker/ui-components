@@ -1,8 +1,8 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { SelectComponentsDirective } from './select-components.directive';
 
-xdescribe('Directive: SelectComponents', () => {
-    beforeEach(async(() => {
+describe('Directive: SelectComponents', () => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [SelectComponentsDirective],
             teardown: { destroyAfterEach: false },

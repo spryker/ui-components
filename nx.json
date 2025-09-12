@@ -1,9 +1,11 @@
 {
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "affected": {
         "defaultBase": "master"
     },
     "tasksRunnerOptions": {
         "default": {
+            "runner": "@nx/workspace/tasks-runners/default",
             "options": {
                 "canTrackAnalytics": false,
                 "showUsageWarnings": true
@@ -37,7 +39,6 @@
             "style": "less"
         }
     },
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "targetDefaults": {
         "build": {
             "dependsOn": ["^build"],
@@ -74,6 +75,11 @@
         "@nx/eslint:lint": {
             "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
             "cache": true
+        },
+        "@nx/angular:package": {
+            "cache": true,
+            "dependsOn": ["^build"],
+            "inputs": ["production", "^production"]
         }
     },
     "namedInputs": {
@@ -94,6 +100,5 @@
     "cli": {
         "analytics": false
     },
-    "nxCloudAccessToken": "MmFmYTcwM2MtNDI4Ny00ZDVkLTg1YjktYzZiYjI0ZWVkODU1fHJlYWQtd3JpdGU=",
     "parallel": 4
 }

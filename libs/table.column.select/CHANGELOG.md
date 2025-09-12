@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.select@2.3.1...@spryker/table.column.select@2.3.2) (2025-05-20)
+
+**Note:** Version bump only for package @spryker/table.column.select
+
+
+
+
+
+## [2.3.1](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.select@2.3.0...@spryker/table.column.select@2.3.1) (2024-12-11)
+
+**Note:** Version bump only for package @spryker/table.column.select
+
+
+
+
+
 # [2.3.0](http://172.31.33.130:9292/spryker-internal-ci/ui-components/compare/@spryker/table.column.select@2.2.3...@spryker/table.column.select@2.3.0) (2024-09-25)
 
 **Note:** Version bump only for package @spryker/table.column.select

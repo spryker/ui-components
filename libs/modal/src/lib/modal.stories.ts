@@ -48,6 +48,10 @@ export default {
             <button (click)="openModalHtml()">Open Html</button>
         </p>
 
+        <p>
+            <button (click)="openModalWithHtmlReplacement()">Open HTML with Content Replacement</button>
+        </p>
+
         <ng-template #modal let-data let-modal="modalRef">
             Modal content here! {{ data }}
             <button (click)="modal.close()">Close</button>
@@ -58,6 +62,7 @@ class StoryComponent {
     @Input() hasBackdrop?: boolean;
 
     private modalNumber = 0;
+    private currentModal: any;
 
     constructor(private modalService: ModalService) {}
 
@@ -94,6 +99,44 @@ class StoryComponent {
         );
 
         setTimeout(() => modal.updateData('World'), 200);
+    }
+
+    openModalWithHtmlReplacement() {
+        const modal = this.modalService.open(
+            new HtmlModalStrategy({
+                html: `
+                    <h3>HTML Content Replacement Demo</h3>
+                    <div>Original content</div>
+                    <button class="update">Replace Content</button>
+                    <button class="close">Close</button>
+                `,
+                process: (children, modalRef) => {
+                    const updateButton = children.find((c) =>
+                        (c as HTMLElement).classList?.contains('update'),
+                    ) as HTMLElement;
+                    const closeButton = children.find((c) =>
+                        (c as HTMLElement).classList?.contains('close'),
+                    ) as HTMLElement;
+
+                    updateButton?.addEventListener('click', () => {
+                        const newContent = `
+                            <h3>HTML Content Replacement Demo</h3>
+                            <div>Replaced content</div>
+                        `;
+                        modalRef.updateHtml(newContent);
+                    });
+
+                    closeButton?.addEventListener('click', () => modalRef.close());
+                },
+            }),
+            {
+                title: 'HTML Content Replacement Demo',
+                width: '500px',
+                backdrop: this.hasBackdrop,
+            },
+        );
+
+        this.currentModal = modal;
     }
 }
 

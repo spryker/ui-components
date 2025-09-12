@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { DatasourceModule } from '@spryker/datasource';
@@ -21,6 +21,7 @@ import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 
 import { TableColumnSelectComponent } from './table-column-select.component';
 import { TableColumnSelectModule } from './table-column-select.module';
+import { provideHttpClient } from '@angular/common/http';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col1: `${i}`,
@@ -128,7 +129,8 @@ export const withTable = (args) => ({
     props: args,
     applicationConfig: {
         providers: [
-            importProvidersFrom(HttpClientTestingModule),
+            provideHttpClient(),
+            provideHttpClientTesting(),
             importProvidersFrom(TableModule.forRoot()),
             importProvidersFrom(
                 TableModule.withColumnComponents({
@@ -184,7 +186,8 @@ export const withInlineDependentColumns = (args) => ({
     props: args,
     applicationConfig: {
         providers: [
-            importProvidersFrom(HttpClientTestingModule),
+            provideHttpClient(),
+            provideHttpClientTesting(),
             importProvidersFrom(TableModule.forRoot()),
             importProvidersFrom(
                 TableModule.withFeatures({
@@ -265,7 +268,8 @@ export const withHttpDependentColumns = (args) => ({
     props: args,
     applicationConfig: {
         providers: [
-            importProvidersFrom(HttpClientTestingModule),
+            provideHttpClient(),
+            provideHttpClientTesting(),
             importProvidersFrom(TableModule.forRoot()),
             importProvidersFrom(
                 TableModule.withFeatures({

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarouselSlideComponent } from './carousel-slide.component';
 import { Component } from '@angular/core';
@@ -29,7 +29,7 @@ describe('CarouselSlideComponent', () => {
     })
     class TestHostComponent {}
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [CarouselSlideComponent, TestHostComponent],
         }).compileComponents();

@@ -1,5 +1,4 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -20,8 +19,9 @@ import {
     TestTableFeatureTplDirective,
 } from '@spryker/table/testing';
 import { DefaultContextSerializationModule, InvokeModule } from '@spryker/utils';
-
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockColumns = [
     { id: 'col1', title: 'col1' },
@@ -98,14 +98,7 @@ describe('TableEditableFeatureComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                InvokeModule,
-                HttpClientTestingModule,
-                DefaultContextSerializationModule,
-                OverlayModule,
-                TestLocaleModule,
-                ButtonModule,
-            ],
+            imports: [InvokeModule, DefaultContextSerializationModule, OverlayModule, TestLocaleModule, ButtonModule],
             declarations: [
                 TestTableFeatureTplDirective,
                 TableEditableFeatureComponent,
@@ -113,6 +106,8 @@ describe('TableEditableFeatureComponent', () => {
                 TestHostComponent,
             ],
             providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
                 TableFeaturesRendererService,
                 {
                     provide: TableColumnsResolverService,

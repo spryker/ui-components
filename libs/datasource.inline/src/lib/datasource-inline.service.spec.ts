@@ -30,4 +30,43 @@ describe('DatasourceInlineService', () => {
 
         expect(callback).toHaveBeenCalledWith(mockReturnedValue);
     });
+
+    it('resolve method should return value from config.data as observable', () => {
+        const mockReturnedValue = { test: 'test', depends: 'dependable' };
+        const mockContext = { test2: 'depends' };
+        const mockConfig: DatasourceInlineConfig = {
+            type: 'inline-dependable',
+            data: mockReturnedValue,
+            dependsOnContext: {
+                contextKey: 'test2',
+            },
+        };
+        const mockInjector = {} as any;
+        const callback = jest.fn();
+        const serviceObservable$ = service.resolve(mockInjector, mockConfig, mockContext);
+
+        serviceObservable$.subscribe(callback);
+
+        expect(callback).toHaveBeenCalledWith(mockReturnedValue.depends);
+    });
+
+    it('resolve method should return value default value if context is not fittable', () => {
+        const mockReturnedValue = { test: 'test' };
+        const mockContext = { test2: 'depends' };
+        const mockConfig: DatasourceInlineConfig = {
+            type: 'inline-dependable',
+            data: mockReturnedValue,
+            dependsOnContext: {
+                contextKey: 'test2',
+                default: 'defaultValue',
+            },
+        };
+        const mockInjector = {} as any;
+        const callback = jest.fn();
+        const serviceObservable$ = service.resolve(mockInjector, mockConfig, mockContext);
+
+        serviceObservable$.subscribe(callback);
+
+        expect(callback).toHaveBeenCalledWith(mockConfig.dependsOnContext.default);
+    });
 });

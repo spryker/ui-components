@@ -4,7 +4,7 @@
     "lib": {
         "cssUrl": "inline",
         "entryFile": "src/index.ts",
-        "styleIncludePaths": ["../styles/src/lib"]
+        "styleIncludePaths": ["../../node_modules", "../styles/src/lib"]
     },
     "assets": ["./src/lib/logo/images/*"]
 }

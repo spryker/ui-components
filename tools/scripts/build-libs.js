@@ -24,7 +24,7 @@ async function main(extraArgs) {
     });
     const projects = await Promise.all(
         projectsJson.map((path) =>
-            import(resolve(ROOT_DIR, path), { assert: { type: 'json' } }).then((data) => data.default),
+            import(resolve(ROOT_DIR, path), { with: { type: 'json' } }).then((data) => data.default),
         ),
     );
 

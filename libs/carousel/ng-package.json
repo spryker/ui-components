@@ -3,7 +3,7 @@
     "dest": "../../dist/libs/carousel",
     "lib": {
         "entryFile": "src/index.ts",
-        "styleIncludePaths": ["../styles/src/lib"]
+        "styleIncludePaths": ["../../node_modules", "../styles/src/lib"]
     },
     "allowedNonPeerDependencies": ["swiper", "ng-zorro-antd"]
 }

@@ -27,7 +27,7 @@ async function main(extraArgs) {
             import(resolve(ROOT_DIR, path), { with: { type: 'json' } }).then((data) => data.default),
         ),
     );
-    const extra = ['--cloud=false', '--output-style=stream', '--skip-nx-cache', '--no-daemon'];
+    const extra = ['--cloud=false', '--output-style=stream', '--skip-nx-cache'];
 
     /** @type {Record<string, boolean>} */
     const ignoreMap = IGNORE_TAGS.reduce((acc, tag) => ({ ...acc, [tag]: true }), {});
@@ -41,7 +41,6 @@ async function main(extraArgs) {
     execSync(`npx nx run-many ${args.join(' ')}`, {
         stdio: 'inherit',
         NX_CLOUD: 'false',
-        NX_DAEMON: 'false',
         NX_SKIP_NX_CACHE: 'true',
     });
 }

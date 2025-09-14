@@ -6,7 +6,8 @@
         "declarationMap": true,
         "inlineSources": true,
         "types": ["jest"],
-        "moduleResolution": "bundler"
+        "moduleResolution": "bundler",
+        "allowJs": true
     },
     "exclude": [
         "src/test-setup.ts",

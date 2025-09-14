@@ -35,7 +35,7 @@ async function main(extraArgs) {
 
     console.log(`Building projects: ${projectsToBuild.join(', ')}...`);
 
-    const args = ['--target build', `--projects ${projectsToBuild.join(',')}`, ...extraArgs];
+    const args = ['--target build', '--cloud=false', `--projects ${projectsToBuild.join(',')}`, ...extraArgs];
 
     execSync(`npx nx run-many ${args.join(' ')}`, { stdio: 'inherit' });
 }

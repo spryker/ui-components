@@ -1,7 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ButtonSize, ButtonType, ButtonAttributes } from '@spryker/button';
-import { createComponentWrapper } from '@spryker/internal-utils';
 import { ButtonIconComponent } from './button-icon.component';
 import { By } from '@angular/platform-browser';
 
@@ -57,7 +56,9 @@ describe('ButtonIconComponent', () => {
             fixture.componentRef.setInput('size', ButtonSize.Small);
             fixture.detectChanges();
 
-            expect(buttonElem.nativeElement.classList.contains(`spy-button-icon__button--${ButtonSize.Small}`)).toBeTruthy();
+            expect(
+                buttonElem.nativeElement.classList.contains(`spy-button-icon__button--${ButtonSize.Small}`),
+            ).toBeTruthy();
         });
 
         it('should bind `iconName` to <spy-icon> element', () => {

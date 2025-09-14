@@ -156,6 +156,11 @@
         "jest-util": "^30.0.5",
         "eslint-plugin-storybook": "^9.1.5"
     },
+    "overrides": {
+        "lerna": {
+            "nx": "21.5.2"
+        }
+    },
     "config": {
         "commitizen": {
             "path": "cz-conventional-changelog"

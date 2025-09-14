@@ -11,7 +11,7 @@
       - action: 'Format check'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'git fetch origin next'
             - 'npm ci'
@@ -20,7 +20,7 @@
       - action: 'Lint code'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel'
             - 'npm run stylelint'
@@ -28,14 +28,14 @@
       - action: 'Unit Tests'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel'
         shell: 'BASH'
       - action: 'Build'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'git fetch origin next'
             - 'npm run build-non-libs'
@@ -62,7 +62,7 @@
       - action: 'Format check'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'git fetch origin master'
             - 'npm ci'
@@ -71,7 +71,7 @@
       - action: 'Lint code'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --parallel'
             - 'npm run stylelint'
@@ -79,7 +79,7 @@
       - action: 'Unit Tests'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel'
         shell: 'BASH'
@@ -104,7 +104,7 @@
       - action: 'Format check'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm ci'
             - 'npm run format:check'
@@ -112,7 +112,7 @@
       - action: 'Lint code'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm run affected:lint -- --parallel'
             - 'npm run stylelint'
@@ -120,7 +120,7 @@
       - action: 'Unit Tests'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'COVERAGE=true npm run affected:test -- --parallel'
         shell: 'BASH'
@@ -152,7 +152,7 @@
       - action: 'Prepare'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
             - 'git remote rm repository_url'
@@ -167,7 +167,7 @@
       - action: 'npm run release'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm run release'
         shell: 'BASH'
@@ -181,7 +181,7 @@
       - action: 'npm run release from-package'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm run release from-package'
         shell: 'BASH'
@@ -195,7 +195,7 @@
       - action: 'npm run release-next'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm run release-next'
         shell: 'BASH'
@@ -209,7 +209,7 @@
       - action: 'npm run release-next from-package'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm run release-next from-package'
         shell: 'BASH'
@@ -223,7 +223,7 @@
       - action: 'npm run release-tag'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm run release-tag'
         shell: 'BASH'
@@ -245,7 +245,7 @@
       - action: 'npm run release-tag from-package'
         type: 'BUILD'
         docker_image_name: 'library/node'
-        docker_image_tag: '18.19.1'
+        docker_image_tag: '20.19.0'
         execute_commands:
             - 'npm run release-tag from-package'
         shell: 'BASH'

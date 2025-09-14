@@ -12,7 +12,7 @@ import {
     inject,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
-import { AutocompleteWrapperToken, InjectionTokenType, ToJson } from '@spryker/utils';
+import { AutocompleteWrapperToken, ToJson } from '@spryker/utils';
 import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
 import { EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
@@ -30,7 +30,7 @@ import { AutocompleteValue } from './types';
 export class AutocompleteComponent implements OnChanges, OnInit, OnDestroy {
     private injector = inject(Injector);
     private datasourceService = inject(DatasourceService);
-    private autocompleteWrapper = inject<InjectionTokenType<typeof AutocompleteWrapperToken>>(AutocompleteWrapperToken);
+    private autocompleteWrapper = inject(AutocompleteWrapperToken);
 
     @Input() @ToJson() options?: AutocompleteValue[];
     @Input() @ToJson() datasource?: DatasourceConfig;

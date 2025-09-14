@@ -2,6 +2,8 @@ import { Meta, moduleMetadata } from '@storybook/angular';
 import { HeadlineModule } from '../headline.module';
 import { HeadlineComponent, Level } from './headline.component';
 
+const LEVEL_OPTIONS = Object.values(Level) as Level[];
+
 export default {
     title: 'HeadlineComponent',
     component: HeadlineComponent,
@@ -19,8 +21,8 @@ export default {
     },
     argTypes: {
         level: {
-            control: 'select',
-            options: Level,
+            control: { type: 'select' },
+            options: LEVEL_OPTIONS, // <-- array required by SB9
         },
     },
     args: {

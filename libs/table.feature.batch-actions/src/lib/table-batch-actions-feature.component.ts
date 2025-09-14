@@ -112,12 +112,6 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<Tab
         }),
     );
 
-    constructor() {
-        const injector = inject(Injector);
-
-        super(injector);
-    }
-
     private getAvailableActions(
         selectedRows: TableSelectionRow[],
         actions: TableBatchAction[],

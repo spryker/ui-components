@@ -1,6 +1,5 @@
 import { Injectable, inject } from '@angular/core';
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { InjectionTokenType } from '@spryker/utils';
 import { DateAdapterToken } from './token';
 import { DateAdapter } from './types';
 
@@ -8,7 +7,7 @@ import { DateAdapter } from './types';
     providedIn: 'root',
 })
 export class DateService implements DateAdapter {
-    private dateAdapter = inject<InjectionTokenType<typeof DateAdapterToken>>(DateAdapterToken);
+    private dateAdapter = inject(DateAdapterToken);
 
     add = this.dateAdapter.add;
     sub = this.dateAdapter.sub;

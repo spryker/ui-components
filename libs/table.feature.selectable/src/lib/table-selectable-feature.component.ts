@@ -48,12 +48,6 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent<Table
     private destroyed$ = new Subject<void>();
     private rowsData: TableDataRow[] = [];
 
-    constructor() {
-        const injector = inject(Injector);
-
-        super(injector);
-    }
-
     ngOnDestroy(): void {
         this.destroyed$.next();
     }

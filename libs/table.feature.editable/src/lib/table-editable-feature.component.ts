@@ -207,12 +207,6 @@ export class TableEditableFeatureComponent
     );
     disableRowKey$ = this.config$.pipe(map((config) => config.disableRowKey ?? '_editableRowDisabled'));
 
-    constructor() {
-        const injector = inject(Injector);
-
-        super(injector);
-    }
-
     ngOnInit() {
         this.updateFloatCellsPosition$.pipe(takeUntil(this.shouldUnsubscribe$)).subscribe();
         this.updateFloatCellsPositionOnColumnConfigurator$.pipe(takeUntil(this.shouldUnsubscribe$)).subscribe();

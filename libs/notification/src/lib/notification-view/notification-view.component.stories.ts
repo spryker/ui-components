@@ -29,7 +29,7 @@ export default {
     argTypes: {
         type: {
             control: { type: 'select' },
-            options: NotificationType,
+            options: Object.values(NotificationType),
         },
     },
     args: {

@@ -10,10 +10,8 @@ import {
     Type,
     inject,
 } from '@angular/core';
-import { InjectionTokenType } from '@spryker/utils';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
-
 import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableConfig } from '../table/table';
@@ -22,10 +20,7 @@ import { ModuleWithFeature, TableFeatureLoader, TableFeaturesRegistry } from './
 
 @Injectable({ providedIn: 'root' })
 export class TableFeatureLoaderService implements OnDestroy {
-    private featuresRegistries = inject<InjectionTokenType<typeof TableFeaturesRegistryToken> | null>(
-        TableFeaturesRegistryToken,
-        { optional: true },
-    );
+    private featuresRegistries = inject(TableFeaturesRegistryToken, { optional: true });
     private compiler = inject(Compiler);
     private injector = inject(Injector);
 

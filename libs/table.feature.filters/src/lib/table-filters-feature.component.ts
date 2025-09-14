@@ -97,12 +97,6 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
         }),
     );
 
-    constructor() {
-        const injector = inject(Injector);
-
-        super(injector);
-    }
-
     updateFilterValue(id: string, value: unknown): void {
         this.updateFiltersValue$.next({ [id]: value });
     }

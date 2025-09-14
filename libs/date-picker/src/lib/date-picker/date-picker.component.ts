@@ -14,7 +14,7 @@ import {
     inject,
 } from '@angular/core';
 import { IconCalendarModule } from '@spryker/icon/icons';
-import { InjectionTokenType, ToBoolean, ToJson, triggerChangeEvent } from '@spryker/utils';
+import { ToBoolean, ToJson, triggerChangeEvent } from '@spryker/utils';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 
 import { DateWorkDaysToken, DateWorkHoursToken } from './tokens';
@@ -54,8 +54,8 @@ interface NzDisabledTimeConfig {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatePickerComponent implements OnChanges, AfterViewChecked {
-    private dateWorkDaysToken = inject<InjectionTokenType<typeof DateWorkDaysToken>>(DateWorkDaysToken);
-    private dateWorkHoursToken = inject<InjectionTokenType<typeof DateWorkHoursToken>>(DateWorkHoursToken);
+    private dateWorkDaysToken = inject(DateWorkDaysToken);
+    private dateWorkHoursToken = inject(DateWorkHoursToken);
 
     private static DefaultFormat = 'dd.MM.yyyy';
     private static HoursRange = [...Array(24).keys()];

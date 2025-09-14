@@ -5,7 +5,12 @@ import EnLocaleModule, { EN_LOCALE } from '@spryker/locale/locales/en';
 import TrLocaleModule, { TR_LOCALE } from '@spryker/locale/locales/tr';
 import { LocaleModule } from '../locale.module';
 
-const locales = { English: EN_LOCALE, German: DE_LOCALE, Turkish: TR_LOCALE };
+const LOCALE_LABELS = ['English', 'German', 'Turkish'] as const;
+const LOCALE_MAPPING = {
+    English: EN_LOCALE,
+    German: DE_LOCALE,
+    Turkish: TR_LOCALE,
+} as const;
 
 export default {
     title: 'LocaleSwitcherComponent',
@@ -25,11 +30,12 @@ export default {
     argTypes: {
         locale: {
             control: { type: 'select' },
-            options: locales,
+            options: [...LOCALE_LABELS],
+            mapping: LOCALE_MAPPING,
         },
     },
     args: {
-        locale: locales.English,
+        locale: LOCALE_MAPPING.English,
     },
 } as Meta;
 

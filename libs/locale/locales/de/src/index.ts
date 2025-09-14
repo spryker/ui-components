@@ -17,14 +17,13 @@ export function deLocaleFactory() {
                         extraData: extra.default,
                     }),
                 ),
+
             ant: () =>
                 Promise.all([
-                    import('node_modules/ng-zorro-antd/esm2022/i18n/languages/de_DE' as any),
-                    import('date-fns/locale/de'),
-                ]).then(([data, date]) => ({
-                    data: data.default,
-                    dateData: date.default,
-                })),
+                    import('ng-zorro-antd/i18n').then((m) => m.de_DE),
+                    import('date-fns/locale/de').then((m) => m.default),
+                ]).then(([data, dateData]) => ({ data, dateData })),
+
             spryker: () =>
                 import('@spryker/locale/data/de' as any).then((m) => ({
                     data: m.data,

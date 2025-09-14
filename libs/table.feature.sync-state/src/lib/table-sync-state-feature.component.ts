@@ -54,12 +54,6 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableS
     configToState$?: Observable<any>;
     state$?: Observable<unknown>;
 
-    constructor() {
-        const injector = inject(Injector);
-
-        super(injector);
-    }
-
     setDataConfiguratorService(service: TableDataConfiguratorService): void {
         super.setDataConfiguratorService(service);
 

@@ -17,8 +17,8 @@ import { TableFeaturesRendererService } from './table-features-renderer.service'
 class MockTableFeatureComponent extends TableFeatureComponent {
     name = 'mock-feature';
     location = 'mocked-location';
-    constructor(tplDirectives: QueryList<TableFeatureTplDirective>, injector: Injector) {
-        super(injector);
+    constructor(tplDirectives: QueryList<TableFeatureTplDirective>) {
+        super();
         this.tplDirectives = tplDirectives;
         this.ngAfterViewInit();
     }
@@ -43,7 +43,7 @@ class RenderFeaturesComponent {
     @Input() limit?: number;
 
     @ContentChildren(TableFeatureTplDirective) set tplDirectives(directives: QueryList<TableFeatureTplDirective>) {
-        this.features = [new MockTableFeatureComponent(directives, this.injector)];
+        this.features = [new MockTableFeatureComponent(directives)];
         this.cdr.detectChanges();
     }
 

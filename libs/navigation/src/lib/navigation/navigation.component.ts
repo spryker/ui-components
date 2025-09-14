@@ -13,8 +13,7 @@ import {
     provideInterceptionComposerToken,
     provideInterceptionService,
 } from '@spryker/interception';
-import { InjectionTokenType, ToBoolean, ToJson, WindowToken } from '@spryker/utils';
-
+import { ToBoolean, ToJson, WindowToken } from '@spryker/utils';
 import { NavigationComponentMethods, NavigationItem } from './navigation';
 import { NavigationRedirectInterceptionEvent } from './navigation-interception';
 
@@ -39,7 +38,7 @@ export class NavigationComposerDirective extends InterceptionComposerDirective {
     },
 })
 export class NavigationComponent implements NavigationComponentMethods {
-    private windowToken = inject<InjectionTokenType<typeof WindowToken>>(WindowToken);
+    private windowToken = inject(WindowToken);
     private interceptorDispatcherService = inject(InterceptorDispatcherService);
 
     @Input() @ToBoolean() collapsed = false;

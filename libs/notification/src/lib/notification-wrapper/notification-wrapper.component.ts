@@ -6,6 +6,7 @@ import {
     HostBinding,
     ViewEncapsulation,
     inject,
+    signal,
 } from '@angular/core';
 import { Toast, ToastPackage, ToastrService } from 'ngx-toastr';
 
@@ -61,18 +62,10 @@ import { NotificationRef } from '../notification-ref';
 export class NotificationWrapperComponent extends Toast {
     private cdr = inject(ChangeDetectorRef);
 
-    @HostBinding('@flyInOut')
-    state = {
+    override state = signal({
         value: 'inactive',
         params: this.toastPackage.config,
-    } as const;
-
-    constructor() {
-        const toastrService = inject(ToastrService);
-        const toastPackage = inject(ToastPackage);
-
-        super(toastrService, toastPackage);
-    }
+    } as const);
 
     notificationRef?: NotificationRef;
 
@@ -80,7 +73,7 @@ export class NotificationWrapperComponent extends Toast {
         this.notificationRef?.close();
     }
 
-    activateToast() {
+    override activateToast() {
         super.activateToast();
         this.cdr.markForCheck();
     }

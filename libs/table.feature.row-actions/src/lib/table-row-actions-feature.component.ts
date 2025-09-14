@@ -77,12 +77,6 @@ export class TableRowActionsFeatureComponent
         pluck('data'),
     );
 
-    constructor() {
-        const injector = inject(Injector);
-
-        super(injector);
-    }
-
     ngOnInit(): void {
         this.rowClicks$
             .pipe((o$) => combineLatest([o$, this.clickAction$.pipe(take(1))]), takeUntil(this.destroyed$))

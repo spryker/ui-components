@@ -7,15 +7,7 @@ import { UnsavedChangesMonitor } from './unsaved-changes-monitor';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesGuardService extends UnsavedChangesGuardBase {
-    private rootGuards: UnsavedChangesGuard[] | null;
-
-    constructor() {
-        const injector = inject(Injector);
-
-        super(injector);
-
-        this.rootGuards = this.injector.get(UnsavedChangesRootGuardsToken, null);
-    }
+    private rootGuards = this.injector.get(UnsavedChangesRootGuardsToken, null);
 
     attachMonitor(monitor: UnsavedChangesMonitor): void {
         super.attachMonitor(monitor);

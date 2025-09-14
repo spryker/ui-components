@@ -1,6 +1,5 @@
 import { Injectable, Injector, inject } from '@angular/core';
 import { Datasource, DatasourceService } from '@spryker/datasource';
-import { InjectionTokenType } from '@spryker/utils';
 import { debounceTime, EMPTY, Observable, switchMap } from 'rxjs';
 import { DatasourceEventTypesToken } from './tokens';
 import {
@@ -17,7 +16,7 @@ import {
 })
 export class DatasourceTriggerService implements Datasource {
     private datasourceService = inject(DatasourceService);
-    private eventsTypes = inject<InjectionTokenType<typeof DatasourceEventTypesToken>>(DatasourceEventTypesToken, {
+    private eventsTypes = inject(DatasourceEventTypesToken, {
         optional: true,
     });
 

@@ -7,7 +7,7 @@ import {
     DrawerOptionsTemplate,
     DrawerOptions,
 } from '@spryker/drawer';
-import { ContextService, InjectionTokenType } from '@spryker/utils';
+import { ContextService } from '@spryker/utils';
 import { Observable } from 'rxjs';
 import {
     DrawerActionComponentsRegistry,
@@ -24,10 +24,7 @@ import { DrawerActionComponentTypesToken } from './token';
 })
 export class DrawerActionHandlerService implements ActionHandler<unknown, DrawerRef<unknown>> {
     private drawerService = inject(DrawerService);
-    private drawerActionHandlers = inject<InjectionTokenType<typeof DrawerActionComponentTypesToken>>(
-        DrawerActionComponentTypesToken,
-        { optional: true },
-    );
+    private drawerActionHandlers = inject(DrawerActionComponentTypesToken, { optional: true });
 
     private drawerActionHandlerTypes: DrawerActionTypesDeclaration =
         this.drawerActionHandlers?.reduce((components, component) => ({ ...components, ...component }), {}) ?? {};

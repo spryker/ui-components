@@ -31,7 +31,7 @@ export default {
     argTypes: {
         value: {
             control: { type: 'select' },
-            options: RadioGroupValue,
+            options: Object.values(RadioGroupValue),
         },
         firstRadioValue: {
             table: {

@@ -3,7 +3,7 @@ import { Injectable, Injector, inject } from '@angular/core';
 import { CacheService } from '@spryker/cache';
 import { DataSerializerService } from '@spryker/data-serializer';
 import { Datasource } from '@spryker/datasource';
-import { ContextService, DiEncodingCodecToken, InjectionTokenType } from '@spryker/utils';
+import { ContextService, DiEncodingCodecToken } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
 import { HttpCacheId } from './http-cache-id';
@@ -14,7 +14,7 @@ import { DatasourceHttpConfig, DatasourceHttpConfigDataIn } from './types';
     providedIn: 'root',
 })
 export class DatasourceHttpService implements Datasource {
-    private diEncodingCodecToken = inject<InjectionTokenType<typeof DiEncodingCodecToken>>(DiEncodingCodecToken);
+    private diEncodingCodecToken = inject(DiEncodingCodecToken);
     private http = inject(HttpClient);
     private dataSerializerService = inject(DataSerializerService);
     private cacheService = inject(CacheService);

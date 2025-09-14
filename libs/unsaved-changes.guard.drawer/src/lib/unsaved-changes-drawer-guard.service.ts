@@ -47,9 +47,7 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
     private destroyed$ = new Subject<void>();
 
     constructor() {
-        const injector = inject(Injector);
-
-        super(injector);
+        super();
 
         this.interceptorService = this.injector.get(InterceptorService);
         this.modalService = this.injector.get(ModalService);

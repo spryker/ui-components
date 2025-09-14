@@ -96,12 +96,6 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSe
 
     isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
 
-    constructor() {
-        const injector = inject(Injector);
-
-        super(injector);
-    }
-
     togglePopover(event: boolean): void {
         this.popoverOpened = event;
     }

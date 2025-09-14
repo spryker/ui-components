@@ -29,7 +29,6 @@ import {
     TableFeatureConfig,
 } from '@spryker/table';
 import { ReplaySubject, BehaviorSubject } from 'rxjs';
-import { InjectionTokenType } from '@spryker/utils';
 
 class MockElementRef {
     nativeElement = {
@@ -134,7 +133,7 @@ export const TestTableFeatureTplContext = new InjectionToken<Record<string, Tabl
 export class TestTableFeatureTplDirective implements OnChanges {
     template = inject<TemplateRef<TableFeatureTplContext>>(TemplateRef);
     vcr = inject(ViewContainerRef);
-    locationContext? = inject<InjectionTokenType<typeof TestTableFeatureTplContext>>(TestTableFeatureTplContext, {
+    locationContext? = inject(TestTableFeatureTplContext, {
         optional: true,
     });
 

@@ -1,8 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { InjectionTokenType, WindowToken } from '@spryker/utils';
+import { WindowToken } from '@spryker/utils';
 import { EMPTY, fromEvent, Observable, of } from 'rxjs';
 import { distinctUntilChanged, map, shareReplay, startWith, switchMap } from 'rxjs/operators';
-
 import { PersistenceStrategy } from './types';
 
 /**
@@ -12,7 +11,7 @@ import { PersistenceStrategy } from './types';
     providedIn: 'root',
 })
 export class UrlPersistenceStrategy implements PersistenceStrategy {
-    private windowToken = inject<InjectionTokenType<typeof WindowToken>>(WindowToken);
+    private windowToken = inject(WindowToken);
 
     private urlSearch$ = fromEvent(this.windowToken, 'popstate').pipe(
         map(() => this.windowToken.location.search),

@@ -14,14 +14,13 @@ export function enLocaleFactory() {
                 import('@angular/common/locales/en').then((m) => ({
                     data: m.default,
                 })),
+
             ant: () =>
                 Promise.all([
-                    import('node_modules/ng-zorro-antd/esm2022/i18n/languages/en_US' as any),
-                    import('date-fns/locale/en-US'),
-                ]).then(([data, date]) => ({
-                    data: data.default,
-                    dateData: date.default,
-                })),
+                    import('ng-zorro-antd/i18n').then((m) => m.en_US),
+                    import('date-fns/locale/en-US').then((m) => m.default),
+                ]).then(([data, dateData]) => ({ data, dateData })),
+
             spryker: () =>
                 import('@spryker/locale/data/en' as any).then((m) => ({
                     data: m.data,

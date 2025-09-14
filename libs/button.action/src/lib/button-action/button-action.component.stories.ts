@@ -54,19 +54,19 @@ export default {
     argTypes: {
         variant: {
             control: { type: 'select' },
-            options: ButtonVariant,
+            options: Object.values(ButtonVariant),
         },
         size: {
             control: { type: 'select' },
-            options: ButtonSize,
+            options: Object.values(ButtonSize),
         },
         shape: {
             control: { type: 'select' },
-            options: ButtonShape,
+            options: Object.values(ButtonShape),
         },
         type: {
             control: { type: 'select' },
-            options: ButtonType,
+            options: Object.values(ButtonType),
         },
     },
     args: {

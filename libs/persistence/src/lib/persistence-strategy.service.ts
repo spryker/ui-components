@@ -1,6 +1,4 @@
 import { Injectable, Injector, Type, inject } from '@angular/core';
-import { InjectionTokenType } from '@spryker/utils';
-
 import { PersistenceStrategyTypesToken } from './token';
 import {
     PersistenceStrategy,
@@ -17,10 +15,7 @@ import {
 })
 export class PersistenceStrategyService {
     private injector = inject(Injector);
-    private strategiesTypes = inject<InjectionTokenType<typeof PersistenceStrategyTypesToken>>(
-        PersistenceStrategyTypesToken,
-        { optional: true },
-    );
+    private strategiesTypes = inject(PersistenceStrategyTypesToken, { optional: true });
 
     private strategies: PersistenceStrategyTypesDeclaration =
         this.strategiesTypes?.reduce((strategies, strategy) => ({ ...strategies, ...strategy }), {}) ?? {};

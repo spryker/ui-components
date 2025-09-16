@@ -158,15 +158,3 @@ jobs:
         run: |
           git fetch origin master
           npm run affected:build -- --base=origin/master --parallel || npm run affected:build -- --parallel
-
-  deploy:
-    name: Trigger Deploy Pipeline
-    if: (github.ref == 'refs/heads/next' || github.ref == 'refs/heads/master' || contains(github.ref, 'pull/'))
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Deploy
-        run: |
-          echo "Deploy pipeline would be triggered here"
-          # Add your deployment logic here
-          # This could be a GitHub Actions workflow dispatch event or other deployment method

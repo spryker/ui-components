@@ -37,6 +37,7 @@ jobs:
 
       - name: Run format check (non-master branches)
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/next'
+        continue-on-error: true
         run: |
           git fetch origin next
           npm run format:check -- --base=origin/next

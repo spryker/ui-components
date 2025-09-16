@@ -14,11 +14,12 @@ env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  format-check:
-    name: Format Check
+  ci:
+    name: Format check / Lint code / Unit Tests / Build (test-branch)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -31,89 +32,47 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run format check
+      - name: Format check (master branch)
         if: github.ref == 'refs/heads/master'
         run: npm run format:check
 
-      - name: Run format check (non-master branches)
+      - name: Format check (next branch)
+        if: github.ref == 'refs/heads/next'
+        run: |
+          git fetch origin master
+          npm run format:check -- --base=origin/master
+
+      - name: Format check (other branches)
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/next'
         continue-on-error: true
         run: |
           git fetch origin next
           npm run format:check -- --base=origin/next
 
-      - name: Run format check (next branch)
-        if: github.ref == 'refs/heads/next'
-        run: |
-          git fetch origin master
-          npm run format:check -- --base=origin/master
-
-  lint:
-    name: Lint Code
-    runs-on: ubuntu-latest
-    needs: format-check
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run lint
+      - name: Lint code (master branch)
         if: github.ref == 'refs/heads/master'
         run: |
           npm run affected:lint -- --parallel || npm run affected:lint
           npm run stylelint
 
-      - name: Run lint (non-master branches)
-        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/next'
-        run: |
-          git fetch origin next
-          npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
-          npm run stylelint
-
-      - name: Run lint (next branch)
+      - name: Lint code (next branch)
         if: github.ref == 'refs/heads/next'
         run: |
           git fetch origin master
           npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --parallel
           npm run stylelint
 
-  test:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        if: github.ref == 'refs/heads/master'
-        run: |
-          COVERAGE=true npm run affected:test -- --parallel || npm run affected:test
-
-      - name: Run tests (non-master branches)
+      - name: Lint code (other branches)
         if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/next'
         run: |
           git fetch origin next
-          COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
+          npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
+          npm run stylelint
+
+      - name: Run tests (master branch)
+        if: github.ref == 'refs/heads/master'
+        run: |
+          COVERAGE=true npm run affected:test -- --parallel || npm run affected:test
 
       - name: Run tests (next branch)
         if: github.ref == 'refs/heads/next'
@@ -121,23 +80,11 @@ jobs:
           git fetch origin master
           COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel
 
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
+      - name: Run tests (other branches)
+        if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/next'
+        run: |
+          git fetch origin next
+          COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
 
       - name: Build non-libs
         run: npm run build-non-libs

@@ -7,16 +7,16 @@ import { DrawerWrapperComponent } from './drawer-wrapper.component';
 @Component({
     standalone: false,
     template: `
-    <spy-drawer-wrapper
-      class="host-marker"
-      [closeable]="closeable"
-      [resizable]="resizable"
-      [width]="width"
-      (closed)="onClosed()"
-    >
-      Content
-    </spy-drawer-wrapper>
-  `,
+        <spy-drawer-wrapper
+            class="host-marker"
+            [closeable]="closeable"
+            [resizable]="resizable"
+            [width]="width"
+            (closed)="onClosed()"
+        >
+            Content
+        </spy-drawer-wrapper>
+    `,
 })
 class TestHostComponent {
     @Input() closeable = false;

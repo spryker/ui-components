@@ -6,14 +6,10 @@ import { ButtonToggleComponent } from './button-toggle.component';
 @Component({
     standalone: false,
     template: `
-    <spy-button-toggle
-      [attrs]="attrs"
-      [disabled]="disabled"
-      (toggledChange)="toggledChange($event)"
-    >
-      Content
-    </spy-button-toggle>
-  `,
+        <spy-button-toggle [attrs]="attrs" [disabled]="disabled" (toggledChange)="toggledChange($event)">
+            Content
+        </spy-button-toggle>
+    `,
 })
 class TestHostComponent {
     attrs?: Record<string, unknown>;
@@ -73,7 +69,8 @@ describe('ButtonToggleComponent', () => {
 
     describe('@Input(disabled)', () => {
         it('should by default have value `false`', () => {
-            const cmp = fixture.debugElement.query(By.directive(ButtonToggleComponent)).componentInstance as ButtonToggleComponent;
+            const cmp = fixture.debugElement.query(By.directive(ButtonToggleComponent))
+                .componentInstance as ButtonToggleComponent;
             expect(cmp.disabled).toBe(false);
         });
 

@@ -6,14 +6,14 @@ import { CardModule } from '../card.module';
 @Component({
     standalone: false,
     template: `
-    <spy-card [spyTitle]="title" [extra]="extra" [actions]="[button]" [hoverable]="hoverable">
-      Card Content
-    </spy-card>
+        <spy-card [spyTitle]="title" [extra]="extra" [actions]="[button]" [hoverable]="hoverable">
+            Card Content
+        </spy-card>
 
-    <ng-template #button>
-      <button>Button Content</button>
-    </ng-template>
-  `,
+        <ng-template #button>
+            <button>Button Content</button>
+        </ng-template>
+    `,
 })
 class TestComponent {
     @Input() title: string | TemplateRef<void> = '';

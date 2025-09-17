@@ -110,7 +110,9 @@ describe('AjaxFormComponent', () => {
         fixture.detectChanges();
         tick();
 
-        const staticHtml: HTMLElement = fixture.nativeElement.querySelector('spy-html-renderer .spy-html-renderer__content');
+        const staticHtml: HTMLElement = fixture.nativeElement.querySelector(
+            'spy-html-renderer .spy-html-renderer__content',
+        );
         expect(staticHtml.innerHTML).toBe(mockFirstResponse.form);
     }));
 
@@ -128,7 +130,9 @@ describe('AjaxFormComponent', () => {
         fixture.detectChanges();
         tick();
 
-        const staticHtml: HTMLElement = fixture.nativeElement.querySelector('spy-html-renderer .spy-html-renderer__content');
+        const staticHtml: HTMLElement = fixture.nativeElement.querySelector(
+            'spy-html-renderer .spy-html-renderer__content',
+        );
         expect(staticHtml.innerHTML).toBe(mockFirstResponse.form);
 
         const formDe = fixture.debugElement.query(By.css('form'));
@@ -200,7 +204,9 @@ describe('AjaxFormComponent', () => {
         fixture.detectChanges();
         tick();
 
-        const staticHtml: HTMLElement = fixture.nativeElement.querySelector('spy-html-renderer .spy-html-renderer__content');
+        const staticHtml: HTMLElement = fixture.nativeElement.querySelector(
+            'spy-html-renderer .spy-html-renderer__content',
+        );
         let nzSpinElem = fixture.nativeElement.querySelector('.spy-ajax-form-container + nz-spin');
 
         htmlResponse = httpTestingController.expectOne(mockUrl);

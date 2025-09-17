@@ -9,9 +9,9 @@ import { DrawerContainerComponent } from './drawer-container.component';
     standalone: false,
     selector: 'spy-test',
     template: `
-    <spy-drawer-container #drawerContainer></spy-drawer-container>
-    <ng-template #drawerTpl let-drawerRef> Content </ng-template>
-  `,
+        <spy-drawer-container #drawerContainer></spy-drawer-container>
+        <ng-template #drawerTpl let-drawerRef> Content </ng-template>
+    `,
 })
 class TestComponent implements OnInit {
     @Input() closeable = false;

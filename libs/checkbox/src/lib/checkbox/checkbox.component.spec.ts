@@ -7,17 +7,18 @@ import { CheckboxComponent } from './checkbox.component';
 @Component({
     standalone: false,
     template: `
-    <spy-checkbox
-      [spyId]="spyId"
-      [name]="name"
-      [required]="required"
-      [indeterminate]="indeterminate"
-      [disabled]="disabled"
-      [attrs]="attrs"
-      [checked]="checked"
-      (checkedChange)="checkedChange($event)"
-    >Label</spy-checkbox>
-  `,
+        <spy-checkbox
+            [spyId]="spyId"
+            [name]="name"
+            [required]="required"
+            [indeterminate]="indeterminate"
+            [disabled]="disabled"
+            [attrs]="attrs"
+            [checked]="checked"
+            (checkedChange)="checkedChange($event)"
+            >Label</spy-checkbox
+        >
+    `,
 })
 class TestHostComponent {
     @Input() spyId?: string;

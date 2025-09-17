@@ -27,10 +27,10 @@ class TestComponent implements DatasourceDependableElement {
 @Component({
     standalone: false,
     template: `
-    <spy-datasource-dependable [id]="id">
-      <spy-test-component></spy-test-component>
-    </spy-datasource-dependable>
-  `,
+        <spy-datasource-dependable [id]="id">
+            <spy-test-component></spy-test-component>
+        </spy-datasource-dependable>
+    `,
 })
 class TestHostComponent {
     id?: string;

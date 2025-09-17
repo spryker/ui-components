@@ -11,17 +11,17 @@ import { ButtonAjaxComponent, ButtonAjaxMethod } from './button-ajax.component';
     standalone: false,
     imports: [ButtonAjaxComponent],
     template: `
-    <spy-button-ajax
-      [method]="method"
-      [url]="url"
-      [variant]="variant"
-      [shape]="shape"
-      [size]="size"
-      [attrs]="attrs"
-    >
-      Content
-    </spy-button-ajax>
-  `,
+        <spy-button-ajax
+            [method]="method"
+            [url]="url"
+            [variant]="variant"
+            [shape]="shape"
+            [size]="size"
+            [attrs]="attrs"
+        >
+            Content
+        </spy-button-ajax>
+    `,
 })
 class TestHostComponent {
     method?: ButtonAjaxMethod;

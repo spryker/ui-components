@@ -1,4 +1,13 @@
-import { booleanAttribute, Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewEncapsulation } from '@angular/core';
+import {
+    booleanAttribute,
+    Component,
+    Input,
+    OnChanges,
+    OnInit,
+    SimpleChanges,
+    TemplateRef,
+    ViewEncapsulation,
+} from '@angular/core';
 import { AbstractControl, NgModel } from '@angular/forms';
 import { ToBoolean } from '@spryker/utils';
 

@@ -20,18 +20,18 @@ class MockActionService implements Partial<ActionsService> {
 @Component({
     standalone: false,
     template: `
-    <spy-button-action
-      [action]="action"
-      [actionContext]="actionContext"
-      [type]="type"
-      [variant]="variant"
-      [shape]="shape"
-      [size]="size"
-      [attrs]="attrs"
-    >
-      Content
-    </spy-button-action>
-  `,
+        <spy-button-action
+            [action]="action"
+            [actionContext]="actionContext"
+            [type]="type"
+            [variant]="variant"
+            [shape]="shape"
+            [size]="size"
+            [attrs]="attrs"
+        >
+            Content
+        </spy-button-action>
+    `,
 })
 class TestHostComponent {
     action?: typeof mockConfig;
@@ -51,10 +51,7 @@ describe('ButtonActionComponent', () => {
         beforeEach(() => {
             TestBed.configureTestingModule({
                 declarations: [ButtonActionComponent, TestHostComponent],
-                providers: [
-                    MockActionService,
-                    { provide: ActionsService, useExisting: MockActionService },
-                ],
+                providers: [MockActionService, { provide: ActionsService, useExisting: MockActionService }],
                 schemas: [NO_ERRORS_SCHEMA],
                 teardown: { destroyAfterEach: false },
             });
@@ -129,12 +126,12 @@ describe('ButtonActionComponent', () => {
         standalone: false,
         imports: [ButtonModule],
         template: `
-      <spy-button-action>
-        <span class="icon-element" icon></span>
-      </spy-button-action>
-    `,
+            <spy-button-action>
+                <span class="icon-element" icon></span>
+            </spy-button-action>
+        `,
     })
-    class TestHostWithIconComponent { }
+    class TestHostWithIconComponent {}
 
     describe('Icon element', () => {
         let iconFixture: ComponentFixture<TestHostWithIconComponent>;
@@ -144,10 +141,7 @@ describe('ButtonActionComponent', () => {
             TestBed.configureTestingModule({
                 declarations: [ButtonActionComponent, TestHostWithIconComponent],
                 imports: [ButtonModule],
-                providers: [
-                    MockActionService,
-                    { provide: ActionsService, useExisting: MockActionService },
-                ],
+                providers: [MockActionService, { provide: ActionsService, useExisting: MockActionService }],
                 schemas: [NO_ERRORS_SCHEMA],
                 teardown: { destroyAfterEach: false },
             });
@@ -158,7 +152,9 @@ describe('ButtonActionComponent', () => {
         });
 
         it('should render icon inside <spy-button> in the `.spy-button-core__btn-icon` element', () => {
-            const iconEl = iconFixture.debugElement.query(By.css('spy-button .spy-button-core__btn-icon .icon-element'));
+            const iconEl = iconFixture.debugElement.query(
+                By.css('spy-button .spy-button-core__btn-icon .icon-element'),
+            );
             expect(iconEl).toBeTruthy();
         });
     });

@@ -21,15 +21,10 @@ class MockDrawerService {
 @Component({
     standalone: false,
     template: `
-    <spy-drawer
-      (isOpenChange)="isOpenChange($event)"
-      (closed)="closed()"
-    >
-      <ng-template let-drawerRef>
-        Content
-      </ng-template>
-    </spy-drawer>
-  `,
+        <spy-drawer (isOpenChange)="isOpenChange($event)" (closed)="closed()">
+            <ng-template let-drawerRef> Content </ng-template>
+        </spy-drawer>
+    `,
 })
 class TestHostComponent {
     isOpenChange = jest.fn();
@@ -43,10 +38,7 @@ describe('DrawerComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [DrawerComponent, TestHostComponent],
-            providers: [
-                MockDrawerService,
-                { provide: DrawerService, useExisting: MockDrawerService },
-            ],
+            providers: [MockDrawerService, { provide: DrawerService, useExisting: MockDrawerService }],
             schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
         });

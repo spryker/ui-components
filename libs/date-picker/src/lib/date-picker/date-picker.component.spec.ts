@@ -34,20 +34,20 @@ const mockedDisabledTime = () => ({
 @Component({
     standalone: false,
     template: `
-    <spy-date-picker
-      [clearButton]="clearButton"
-      [disabled]="disabled"
-      [date]="date"
-      [format]="format"
-      [name]="name"
-      [placeholder]="placeholder"
-      [enableTime]="enableTime"
-      [time]="time"
-      [open]="open"
-      (dateChange)="onDateChange($event)"
-      (openChange)="onOpenChange($event)"
-    ></spy-date-picker>
-  `,
+        <spy-date-picker
+            [clearButton]="clearButton"
+            [disabled]="disabled"
+            [date]="date"
+            [format]="format"
+            [name]="name"
+            [placeholder]="placeholder"
+            [enableTime]="enableTime"
+            [time]="time"
+            [open]="open"
+            (dateChange)="onDateChange($event)"
+            (openChange)="onOpenChange($event)"
+        ></spy-date-picker>
+    `,
 })
 class TestHostComponent {
     @Input() clearButton?: boolean;
@@ -141,7 +141,8 @@ describe('DatePickerComponent', () => {
         it('Input `enableTime` (object) -> `nzDisabledTime`', () => {
             fixture.componentInstance.enableTime = mockedEnableTimeObject;
             fixture.detectChanges();
-            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
+                .componentInstance as DatePickerComponent;
             const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
             expect(datePicker.componentInstance.nzDisabledTime).toBe(cmp.disabledTime);
         });
@@ -149,7 +150,8 @@ describe('DatePickerComponent', () => {
         it('Input `enableTime` (function) -> `nzDisabledTime`', () => {
             fixture.componentInstance.enableTime = mockedEnableTimeFunction;
             fixture.detectChanges();
-            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
+                .componentInstance as DatePickerComponent;
             const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
             expect(datePicker.componentInstance.nzDisabledTime).toBe(cmp.disabledTime);
         });
@@ -159,7 +161,8 @@ describe('DatePickerComponent', () => {
             fixture.componentInstance.enableTime = mockedEnableTimeObject;
             fixture.detectChanges();
 
-            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
+                .componentInstance as DatePickerComponent;
             const disabledTime = cmp.disabledTime(new Date());
 
             expect(disabledTime.nzDisabledHours()).toEqual(mockedDisabledTime().nzDisabledHours());
@@ -172,7 +175,8 @@ describe('DatePickerComponent', () => {
             fixture.componentInstance.enableTime = mockedEnableTimeFunction;
             fixture.detectChanges();
 
-            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
+                .componentInstance as DatePickerComponent;
             const disabledTime = cmp.disabledTime(new Date());
 
             expect(disabledTime.nzDisabledHours()).toEqual(mockedDisabledTime().nzDisabledHours());
@@ -183,7 +187,8 @@ describe('DatePickerComponent', () => {
         it('Input `time` -> `nzShowTime` equals component.nzTime', () => {
             fixture.componentInstance.time = true;
             fixture.detectChanges();
-            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
+                .componentInstance as DatePickerComponent;
             const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
             expect(datePicker.componentInstance.nzShowTime).toBe(cmp.nzTime);
         });

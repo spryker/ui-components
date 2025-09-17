@@ -14,19 +14,19 @@ const mockedName = 'mockedName';
 @Component({
     standalone: false,
     template: `
-    <spy-date-range-picker
-      [dates]="dates"
-      [placeholderFrom]="placeholderFrom"
-      [placeholderTo]="placeholderTo"
-      [nameFrom]="nameFrom"
-      [nameTo]="nameTo"
-      [clearButton]="clearButton"
-      [disabled]="disabled"
-      [format]="format"
-      [time]="time"
-      (datesChange)="datesChange($event)"
-    ></spy-date-range-picker>
-  `,
+        <spy-date-range-picker
+            [dates]="dates"
+            [placeholderFrom]="placeholderFrom"
+            [placeholderTo]="placeholderTo"
+            [nameFrom]="nameFrom"
+            [nameTo]="nameTo"
+            [clearButton]="clearButton"
+            [disabled]="disabled"
+            [format]="format"
+            [time]="time"
+            (datesChange)="datesChange($event)"
+        ></spy-date-range-picker>
+    `,
 })
 class TestHostComponent {
     @Input() dates?: { from?: Date; to?: Date };
@@ -140,7 +140,8 @@ describe('DateRangePickerComponent', () => {
 
         it('`time` -> both pickers (matches component.time)', () => {
             const fixture = setup({ dates: mockedDates, time: true });
-            const cmp = fixture.debugElement.query(By.directive(DateRangePickerComponent)).componentInstance as DateRangePickerComponent;
+            const cmp = fixture.debugElement.query(By.directive(DateRangePickerComponent))
+                .componentInstance as DateRangePickerComponent;
             const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
             const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
             expect(fromDe.properties['time']).toBe(cmp.time);

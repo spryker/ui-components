@@ -6,12 +6,12 @@ import { HeaderComponent } from './header.component';
 @Component({
     standalone: false,
     template: `
-    <spy-header>
-      <div class="test-content">Header Content</div>
-    </spy-header>
-  `,
+        <spy-header>
+            <div class="test-content">Header Content</div>
+        </spy-header>
+    `,
 })
-class TestHostComponent { }
+class TestHostComponent {}
 
 describe('HeaderComponent (refactored)', () => {
     let fixture: ComponentFixture<TestHostComponent>;

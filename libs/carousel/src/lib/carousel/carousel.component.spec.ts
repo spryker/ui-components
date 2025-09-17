@@ -8,38 +8,45 @@ import { CarouselComponent } from './carousel.component';
 @Component({
     standalone: false,
     template: `
-    <spy-carousel
-      [config]="config"
-      [thumbConfig]="thumbConfig"
-      [withThumbs]="withThumbs"
-      [withoutNavSlidesAmount]="withoutNavSlidesAmount"
-    >
-      <spy-carousel-slide>
-        <img src="https://source.unsplash.com/random/800x450" alt="slide 1">
-        <div thumb><img src="https://source.unsplash.com/160x90"  alt="slide 1 thumb"></div>
-      </spy-carousel-slide>
-      <spy-carousel-slide>
-        <img src="https://source.unsplash.com/random/800x450" alt="slide 2">
-        <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 2 thumb"></div>
-      </spy-carousel-slide>
-      <spy-carousel-slide>
-        <iframe width="800" height="450" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div thumb><img src="https://source.unsplash.com/niUkImZcSP8/160x90" alt="slide 3 thumb"></div>
-      </spy-carousel-slide>
-      <spy-carousel-slide>
-        <img src="https://source.unsplash.com/random/800x450" alt="slide 4">
-        <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 4 thumb"></div>
-      </spy-carousel-slide>
-      <spy-carousel-slide>
-        <img src="https://source.unsplash.com/random/800x450" alt="slide 5">
-        <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 5 thumb"></div>
-      </spy-carousel-slide>
-      <spy-carousel-slide>
-        <img src="https://source.unsplash.com/random/800x450" alt="slide 6">
-        <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 6 thumb"></div>
-      </spy-carousel-slide>
-    </spy-carousel>
-  `,
+        <spy-carousel
+            [config]="config"
+            [thumbConfig]="thumbConfig"
+            [withThumbs]="withThumbs"
+            [withoutNavSlidesAmount]="withoutNavSlidesAmount"
+        >
+            <spy-carousel-slide>
+                <img src="https://source.unsplash.com/random/800x450" alt="slide 1" />
+                <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 1 thumb" /></div>
+            </spy-carousel-slide>
+            <spy-carousel-slide>
+                <img src="https://source.unsplash.com/random/800x450" alt="slide 2" />
+                <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 2 thumb" /></div>
+            </spy-carousel-slide>
+            <spy-carousel-slide>
+                <iframe
+                    width="800"
+                    height="450"
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+                <div thumb><img src="https://source.unsplash.com/niUkImZcSP8/160x90" alt="slide 3 thumb" /></div>
+            </spy-carousel-slide>
+            <spy-carousel-slide>
+                <img src="https://source.unsplash.com/random/800x450" alt="slide 4" />
+                <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 4 thumb" /></div>
+            </spy-carousel-slide>
+            <spy-carousel-slide>
+                <img src="https://source.unsplash.com/random/800x450" alt="slide 5" />
+                <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 5 thumb" /></div>
+            </spy-carousel-slide>
+            <spy-carousel-slide>
+                <img src="https://source.unsplash.com/random/800x450" alt="slide 6" />
+                <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 6 thumb" /></div>
+            </spy-carousel-slide>
+        </spy-carousel>
+    `,
 })
 class TestHostComponent {
     @Input() config!: CarouselOptions;

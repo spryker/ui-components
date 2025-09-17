@@ -8,18 +8,18 @@ import { ButtonComponent, ButtonType } from './button.component';
 @Component({
     standalone: false,
     template: `
-    <spy-button
-      [variant]="variant"
-      [shape]="shape"
-      [size]="size"
-      [attrs]="attrs"
-      [type]="type"
-      [disabled]="disabled"
-    >
-      <span class="icon-element" icon></span>
-      Content
-    </spy-button>
-  `,
+        <spy-button
+            [variant]="variant"
+            [shape]="shape"
+            [size]="size"
+            [attrs]="attrs"
+            [type]="type"
+            [disabled]="disabled"
+        >
+            <span class="icon-element" icon></span>
+            Content
+        </spy-button>
+    `,
 })
 class TestHostComponent {
     variant?: ButtonVariant;

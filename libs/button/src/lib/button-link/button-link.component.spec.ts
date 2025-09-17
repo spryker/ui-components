@@ -8,16 +8,10 @@ import { ButtonLinkComponent } from './button-link.component';
 @Component({
     standalone: false,
     template: `
-    <spy-button-link
-      [url]="url"
-      [variant]="variant"
-      [shape]="shape"
-      [size]="size"
-      [attrs]="attrs"
-    >
-      Content
-    </spy-button-link>
-  `,
+        <spy-button-link [url]="url" [variant]="variant" [shape]="shape" [size]="size" [attrs]="attrs">
+            Content
+        </spy-button-link>
+    `,
 })
 class TestHostComponent {
     url?: string;

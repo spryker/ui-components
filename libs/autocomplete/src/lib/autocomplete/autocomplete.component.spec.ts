@@ -1,51 +1,51 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { AutocompleteWrapperToken } from '@spryker/utils';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { AutocompleteComponent } from './autocomplete.component';
 
 describe('AutocompleteComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(AutocompleteComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-    });
+    let fixture: ComponentFixture<AutocompleteComponent>;
+    let component: AutocompleteComponent;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [testModule],
+            declarations: [AutocompleteComponent],
             providers: [{ provide: AutocompleteWrapperToken, useValue: '' }],
+            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
         });
     });
 
-    it('should render <nz-autocomplete> element', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const autocompleteElem = host.queryCss('nz-autocomplete');
+    it('should render <nz-autocomplete> element', () => {
+        fixture = TestBed.createComponent(AutocompleteComponent);
+        component = fixture.componentInstance;
 
+        fixture.detectChanges();
+
+        const autocompleteElem = fixture.debugElement.query(By.css('nz-autocomplete'));
         expect(autocompleteElem).toBeTruthy();
     });
 
-    it('should render <nz-auto-option> mapped from @Input(options)', async () => {
-        const mockOptions = [
-            {
-                value: 'Downing Street',
-                title: 'Downing Street Title',
-                isDisabled: true,
-            },
-            {
-                value: 'Wall Street',
-                title: 'Wall Street Title',
-            },
-        ];
-        const host = await createComponentWrapper(createComponent, { options: mockOptions });
-        const autocompleteOptionElems = host.fixture.debugElement.queryAll(By.css('nz-auto-option'));
+    it('should render <nz-auto-option> mapped from @Input(options)', () => {
+        fixture = TestBed.createComponent(AutocompleteComponent);
+        component = fixture.componentInstance;
 
-        expect(autocompleteOptionElems.length).toBe(mockOptions.length);
-        autocompleteOptionElems.forEach((elem, index) => {
-            expect(elem.properties.nzDisabled).toBe(mockOptions[index].isDisabled);
-            expect(elem.properties.nzValue).toBe(mockOptions[index].value);
-            expect(elem.nativeElement.textContent).toContain(mockOptions[index].title);
+        const mockOptions = [
+            { value: 'Downing Street', title: 'Downing Street Title', isDisabled: true },
+            { value: 'Wall Street', title: 'Wall Street Title' },
+        ];
+
+        fixture.componentRef.setInput('options', mockOptions);
+        fixture.detectChanges();
+
+        const optionDes = fixture.debugElement.queryAll(By.css('nz-auto-option'));
+        expect(optionDes.length).toBe(mockOptions.length);
+
+        optionDes.forEach((de, i) => {
+            expect(de.properties.nzDisabled).toBe(mockOptions[i].isDisabled);
+            expect(de.properties.nzValue).toBe(mockOptions[i].value);
+            expect((de.nativeElement as HTMLElement).textContent).toContain(mockOptions[i].title);
         });
     });
 });

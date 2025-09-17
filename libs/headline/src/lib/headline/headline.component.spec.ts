@@ -1,43 +1,59 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { HeadlineComponent, Level } from './headline.component';
 
-describe('HeadlineComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(HeadlineComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-        projectContent: `
-            <div class="default-content"></div>
-            <div actions class="actions-content"></div>
-        `,
-    });
+@Component({
+    standalone: false,
+    template: `
+    <spy-headline [level]="level">
+      <div class="default-content"></div>
+      <div actions class="actions-content"></div>
+    </spy-headline>
+  `,
+})
+class TestHostComponent {
+    level: Level = Level.H1;
+}
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [testModule],
+describe('HeadlineComponent (refactored)', () => {
+    let fixture: ComponentFixture<TestHostComponent>;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [HeadlineComponent, TestHostComponent],
+            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
-        });
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(TestHostComponent);
+        fixture.detectChanges();
     });
 
-    it('should render default content in the `.spy-headline__col--heading` element', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const headingContentElement = host.queryCss('.spy-headline__col--heading .default-content');
-
-        expect(headingContentElement).toBeTruthy();
+    it('renders default content in `.spy-headline__col--heading`', () => {
+        const el = fixture.debugElement.query(
+            By.css('.spy-headline__col--heading .default-content')
+        );
+        expect(el).toBeTruthy();
     });
 
-    it('should render actions content in the last `.spy-headline__col` element', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const actionsContentElement = host.queryCss('.spy-headline__col:last-child .actions-content');
-
-        expect(actionsContentElement).toBeTruthy();
+    it('renders actions content in the last `.spy-headline__col`', () => {
+        const el = fixture.debugElement.query(
+            By.css('.spy-headline__col:last-child .actions-content')
+        );
+        expect(el).toBeTruthy();
     });
 
-    it('should render `.spy-headline__title` element with headline level', async () => {
-        const host = await createComponentWrapper(createComponent, { level: Level.H3 });
-        const titleElement = host.queryCss('.spy-headline__title');
+    it('applies level modifier class on `.spy-headline__title`', () => {
+        fixture.componentInstance.level = Level.H3;
+        fixture.detectChanges();
 
-        expect(titleElement.properties.className).toBe(`spy-headline__title spy-headline__title--${Level.H3}`);
+        const titleDe = fixture.debugElement.query(By.css('.spy-headline__title'));
+        expect(titleDe).toBeTruthy();
+        expect(
+            (titleDe.nativeElement as HTMLElement).classList.contains(
+                `spy-headline__title--${Level.H3}`
+            )
+        ).toBe(true);
     });
 });

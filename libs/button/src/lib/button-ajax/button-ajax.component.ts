@@ -26,7 +26,6 @@ export enum ButtonAjaxMethod {
     standalone: false,
     selector: 'spy-button-ajax',
     templateUrl: './button-ajax.component.html',
-    styleUrls: ['./button-ajax.component.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

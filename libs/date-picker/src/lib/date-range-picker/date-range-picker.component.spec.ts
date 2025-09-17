@@ -1,7 +1,6 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { DateRangePickerComponent } from './date-range-picker.component';
 
 const mockedDates = {
@@ -12,152 +11,158 @@ const mockedPlaceholder = 'placeholder';
 const mockedFormat = 'yyyy-MM-dd';
 const mockedName = 'mockedName';
 
-describe('DateRangePickerComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(DateRangePickerComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-    });
+@Component({
+    standalone: false,
+    template: `
+    <spy-date-range-picker
+      [dates]="dates"
+      [placeholderFrom]="placeholderFrom"
+      [placeholderTo]="placeholderTo"
+      [nameFrom]="nameFrom"
+      [nameTo]="nameTo"
+      [clearButton]="clearButton"
+      [disabled]="disabled"
+      [format]="format"
+      [time]="time"
+      (datesChange)="datesChange($event)"
+    ></spy-date-range-picker>
+  `,
+})
+class TestHostComponent {
+    @Input() dates?: { from?: Date; to?: Date };
+    @Input() placeholderFrom?: string;
+    @Input() placeholderTo?: string;
+    @Input() nameFrom?: string;
+    @Input() nameTo?: string;
+    @Input() clearButton?: boolean;
+    @Input() disabled?: boolean;
+    @Input() format?: string;
+    @Input() time?: boolean;
+    datesChange = jest.fn();
+}
 
+describe('DateRangePickerComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [testModule],
+            declarations: [DateRangePickerComponent, TestHostComponent],
+            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
         });
     });
 
-    it('should render two <spy-date-picker> elements', async () => {
-        const host = await createComponentWrapper(createComponent, { dates: mockedDates });
-        const datePickerElemFrom = host.queryCss('spy-date-picker');
-        const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
+    function setup(initial: Partial<TestHostComponent> = { dates: mockedDates }) {
+        const fixture: ComponentFixture<TestHostComponent> = TestBed.createComponent(TestHostComponent);
+        Object.assign(fixture.componentInstance, initial);
+        fixture.detectChanges();
+        return fixture;
+    }
 
-        expect(datePickerElemFrom).toBeTruthy();
-        expect(datePickerElemTo).toBeTruthy();
+    it('should render two <spy-date-picker> elements', () => {
+        const fixture = setup();
+        const datePickerFrom = fixture.debugElement.query(By.css('spy-date-picker'));
+        const datePickerTo = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+        expect(datePickerFrom).toBeTruthy();
+        expect(datePickerTo).toBeTruthy();
     });
 
     describe('@Input', () => {
-        it('Input `dates.from` should be bound to `date` of first <spy-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates });
-            const datePickerElemFrom = host.queryCss('spy-date-picker');
-
-            expect(datePickerElemFrom.properties.date).toBe(mockedDates.from);
+        it('`dates.from` -> first <spy-date-picker> `date`', () => {
+            const fixture = setup();
+            const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
+            expect(fromDe.properties['date']).toBe(mockedDates.from);
         });
 
-        it('Input `dates.to` should be bound to `date` of second <spy-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates });
-            const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
-
-            expect(datePickerElemTo.properties.date).toBe(mockedDates.to);
+        it('`dates.to` -> second <spy-date-picker> `date`', () => {
+            const fixture = setup();
+            const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+            expect(toDe.properties['date']).toBe(mockedDates.to);
         });
 
-        it('Object `{ to: dates.to }` should be bound to `enableDate` of first <spy-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates });
-            const datePickerElemFrom = host.queryCss('spy-date-picker');
-
-            expect(datePickerElemFrom.properties.enableDate.to).toBe(mockedDates.to);
+        it('`{ to: dates.to }` -> first <spy-date-picker> `enableDate`', () => {
+            const fixture = setup();
+            const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
+            expect(fromDe.properties['enableDate'].to).toBe(mockedDates.to);
         });
 
-        it('Object `{ from: dates.from }` should be bound to `enableDate` of second <spy-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates });
-            const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
-
-            expect(datePickerElemTo.properties.enableDate.from).toBe(mockedDates.from);
+        it('`{ from: dates.from }` -> second <spy-date-picker> `enableDate`', () => {
+            const fixture = setup();
+            const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+            expect(toDe.properties['enableDate'].from).toBe(mockedDates.from);
         });
 
-        it('Input `placeholderFrom` should be bound to `placeholder` of first <spy-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, {
-                dates: mockedDates,
-                placeholderFrom: mockedPlaceholder,
-            });
-            const datePickerElemFrom = host.queryCss('spy-date-picker');
-
-            expect(datePickerElemFrom.properties.placeholder).toBe(mockedPlaceholder);
+        it('`placeholderFrom` -> first <spy-date-picker> `placeholder`', () => {
+            const fixture = setup({ dates: mockedDates, placeholderFrom: mockedPlaceholder });
+            const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
+            expect(fromDe.properties['placeholder']).toBe(mockedPlaceholder);
         });
 
-        it('Input `placeholderTo` should be bound to `placeholder` of second <spy-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, {
-                dates: mockedDates,
-                placeholderTo: mockedPlaceholder,
-            });
-            const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
-
-            expect(datePickerElemTo.properties.placeholder).toBe(mockedPlaceholder);
+        it('`placeholderTo` -> second <spy-date-picker> `placeholder`', () => {
+            const fixture = setup({ dates: mockedDates, placeholderTo: mockedPlaceholder });
+            const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+            expect(toDe.properties['placeholder']).toBe(mockedPlaceholder);
         });
 
-        it('Input `nameFrom` should be bound to `name` of first <spy-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates, nameFrom: mockedName });
-            const datePickerElemFrom = host.queryCss('spy-date-picker');
-
-            expect(datePickerElemFrom.properties.name).toBe(mockedName);
+        it('`nameFrom` -> first <spy-date-picker> `name`', () => {
+            const fixture = setup({ dates: mockedDates, nameFrom: mockedName });
+            const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
+            expect(fromDe.properties['name']).toBe(mockedName);
         });
 
-        it('Input `nameTo` should be bound to `name` of second <spy-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates, nameTo: mockedName });
-            const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
-
-            expect(datePickerElemTo.properties.name).toBe(mockedName);
+        it('`nameTo` -> second <spy-date-picker> `name`', () => {
+            const fixture = setup({ dates: mockedDates, nameTo: mockedName });
+            const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+            expect(toDe.properties['name']).toBe(mockedName);
         });
 
-        it('Input `clearButton` should be bound to `clearButton` of both date pickers', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates, clearButton: true });
-            const datePickerElemFrom = host.queryCss('spy-date-picker');
-            const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
-
-            expect(datePickerElemFrom.properties.clearButton).toBeTruthy();
-            expect(datePickerElemTo.properties.clearButton).toBeTruthy();
+        it('`clearButton` -> both pickers', () => {
+            const fixture = setup({ dates: mockedDates, clearButton: true });
+            const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
+            const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+            expect(fromDe.properties['clearButton']).toBe(true);
+            expect(toDe.properties['clearButton']).toBe(true);
         });
 
-        it('Input `disabled` should be bound to `disabled` of both date pickers', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates, disabled: false });
-            const datePickerElemFrom = host.queryCss('spy-date-picker');
-            const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
-
-            expect(datePickerElemFrom.properties.disabled).toBeFalsy();
-            expect(datePickerElemTo.properties.disabled).toBeFalsy();
+        it('`disabled` -> both pickers', () => {
+            const fixture = setup({ dates: mockedDates, disabled: false });
+            const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
+            const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+            expect(fromDe.properties['disabled']).toBe(false);
+            expect(toDe.properties['disabled']).toBe(false);
         });
 
-        it('Input `format` should be bound to `format` of both date pickers', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates, format: mockedFormat });
-            const datePickerElemFrom = host.queryCss('spy-date-picker');
-            const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
-
-            expect(datePickerElemFrom.properties.format).toBe(mockedFormat);
-            expect(datePickerElemTo.properties.format).toBe(mockedFormat);
+        it('`format` -> both pickers', () => {
+            const fixture = setup({ dates: mockedDates, format: mockedFormat });
+            const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
+            const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+            expect(fromDe.properties['format']).toBe(mockedFormat);
+            expect(toDe.properties['format']).toBe(mockedFormat);
         });
 
-        it('Input `time` should be bound to `time` of both date pickers', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates, time: true });
-            const datePickerElemFrom = host.queryCss('spy-date-picker');
-            const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
-
-            expect(datePickerElemFrom.properties.time).toBe(host.component.time);
-            expect(datePickerElemTo.properties.time).toBe(host.component.time);
+        it('`time` -> both pickers (matches component.time)', () => {
+            const fixture = setup({ dates: mockedDates, time: true });
+            const cmp = fixture.debugElement.query(By.directive(DateRangePickerComponent)).componentInstance as DateRangePickerComponent;
+            const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
+            const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+            expect(fromDe.properties['time']).toBe(cmp.time);
+            expect(toDe.properties['time']).toBe(cmp.time);
         });
     });
 
     describe('Outputs', () => {
-        it('Output `datesChange` should be emmited with input dates everytime `dateChange` output emits from first picker', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates, format: mockedFormat });
-
-            host.hostComponent.datesChange = jest.fn();
-
-            const datePickerElemFrom = host.queryCss('spy-date-picker');
-
-            datePickerElemFrom.triggerEventHandler('dateChange', mockedDates.from);
-            host.detectChanges();
-
-            expect(host.hostComponent.datesChange).toHaveBeenCalledWith(mockedDates);
+        it('`datesChange` emits with current dates when first picker emits `dateChange`', () => {
+            const fixture = setup({ dates: mockedDates, format: mockedFormat });
+            const fromDe = fixture.debugElement.query(By.css('spy-date-picker'));
+            fromDe.triggerEventHandler('dateChange', mockedDates.from);
+            fixture.detectChanges();
+            expect(fixture.componentInstance.datesChange).toHaveBeenCalledWith(mockedDates);
         });
 
-        it('Output `datesChange` should be emmited with input dates everytime `dateChange` output emits from second picker', async () => {
-            const host = await createComponentWrapper(createComponent, { dates: mockedDates, format: mockedFormat });
-
-            host.hostComponent.datesChange = jest.fn();
-
-            const datePickerElemTo = host.queryCss('.ant-range-picker-col:last-child spy-date-picker');
-
-            datePickerElemTo.triggerEventHandler('dateChange', mockedDates.to);
-            host.detectChanges();
-
-            expect(host.hostComponent.datesChange).toHaveBeenCalledWith(mockedDates);
+        it('`datesChange` emits with current dates when second picker emits `dateChange`', () => {
+            const fixture = setup({ dates: mockedDates, format: mockedFormat });
+            const toDe = fixture.debugElement.query(By.css('.ant-range-picker-col:last-child spy-date-picker'));
+            toDe.triggerEventHandler('dateChange', mockedDates.to);
+            fixture.detectChanges();
+            expect(fixture.componentInstance.datesChange).toHaveBeenCalledWith(mockedDates);
         });
     });
 });

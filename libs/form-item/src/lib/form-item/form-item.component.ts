@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, NgModel } from '@angular/forms';
 import { ToBoolean } from '@spryker/utils';
 
@@ -14,10 +14,10 @@ export class FormItemComponent implements OnInit, OnChanges {
     @Input() error: string | boolean | TemplateRef<{ $implicit: AbstractControl | NgModel }> = '';
     @Input() warning: string | TemplateRef<{ $implicit: AbstractControl | NgModel }> = '';
     @Input() hint: string | TemplateRef<{ $implicit: AbstractControl | NgModel }> = '';
-    @Input() @ToBoolean() required = false;
-    @Input() @ToBoolean() noSpaces = false;
-    @Input() @ToBoolean() noLabel = false;
-    @Input() @ToBoolean() withErrorTitle = false;
+    @Input({ transform: booleanAttribute }) required = false;
+    @Input({ transform: booleanAttribute }) noSpaces = false;
+    @Input({ transform: booleanAttribute }) noLabel = false;
+    @Input({ transform: booleanAttribute }) withErrorTitle = false;
     currentValidationStatus = '';
 
     ngOnInit() {

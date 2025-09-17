@@ -1,7 +1,6 @@
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 import { DatasourceDependableComponent } from './datasource-dependable.component';
 import { DatasourceDependableElementsService } from './datasource-dependable-elements.service';
@@ -17,12 +16,7 @@ class MockDatasourceDependableElements {
     standalone: false,
     selector: 'spy-test-component',
     template: '',
-    providers: [
-        {
-            provide: DatasourceDependableElement,
-            useExisting: TestComponent,
-        },
-    ],
+    providers: [{ provide: DatasourceDependableElement, useExisting: TestComponent }],
 })
 class TestComponent implements DatasourceDependableElement {
     getValueChanges(): Observable<unknown> {
@@ -30,59 +24,65 @@ class TestComponent implements DatasourceDependableElement {
     }
 }
 
-describe('DatasourceDependableComponent', () => {
-    let service: MockDatasourceDependableElements;
+@Component({
+    standalone: false,
+    template: `
+    <spy-datasource-dependable [id]="id">
+      <spy-test-component></spy-test-component>
+    </spy-datasource-dependable>
+  `,
+})
+class TestHostComponent {
+    id?: string;
+}
 
-    const { testModule, createComponent } = getTestingForComponent(DatasourceDependableComponent, {
-        ngModule: {
-            declarations: [TestComponent],
-            exports: [TestComponent],
-            schemas: [NO_ERRORS_SCHEMA],
-        },
-        projectContent: '<spy-test-component></spy-test-component>',
-    });
+describe('DatasourceDependableComponent', () => {
+    let fixture: ComponentFixture<TestHostComponent>;
+    let service: MockDatasourceDependableElements;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [testModule],
+            declarations: [DatasourceDependableComponent, TestComponent, TestHostComponent],
             providers: [
                 MockDatasourceDependableElements,
-                {
-                    provide: DatasourceDependableElementsService,
-                    useExisting: MockDatasourceDependableElements,
-                },
+                { provide: DatasourceDependableElementsService, useExisting: MockDatasourceDependableElements },
             ],
+            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
         });
 
         service = TestBed.inject(MockDatasourceDependableElements);
+        fixture = TestBed.createComponent(TestHostComponent);
+        fixture.detectChanges();
     });
 
-    it('should render <spy-datasource-dependable> component', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const dependableComponent = host.queryCss('spy-datasource-dependable');
-
-        expect(dependableComponent).toBeTruthy();
+    it('should render <spy-datasource-dependable> component', () => {
+        const dependable = fixture.debugElement.query(By.css('spy-datasource-dependable'));
+        expect(dependable).toBeTruthy();
     });
 
-    it('should render <spy-datasource-dependable> component with `id` input', async () => {
-        const host = await createComponentWrapper(createComponent, { id: mockId });
-        const dependableComponent = host.queryCss('spy-datasource-dependable');
+    it('should render <spy-datasource-dependable> component with `id` input', () => {
+        const fresh = TestBed.createComponent(TestHostComponent);
+        fresh.componentInstance.id = mockId;
+        fresh.detectChanges();
 
-        expect(dependableComponent.attributes.id).toBe(mockId);
+        const dependable = fresh.debugElement.query(By.css('spy-datasource-dependable'));
+        expect((dependable.nativeElement as HTMLElement).getAttribute('id')).toBe(mockId);
     });
 
-    it('should render projected content', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const childComponent = host.queryCss('spy-test-component');
-
-        expect(childComponent).toBeTruthy();
+    it('should render projected content', () => {
+        const child = fixture.debugElement.query(By.css('spy-test-component'));
+        expect(child).toBeTruthy();
     });
 
-    it('should call `DatasourceDependableElementsService.setElement()` method with id and component instance', async () => {
-        const host = await createComponentWrapper(createComponent, { id: mockId });
-        const childComponent = host.queryCss('spy-test-component').componentInstance;
+    it('should call `DatasourceDependableElementsService.setElement()` with id and component instance', () => {
+        const fresh = TestBed.createComponent(TestHostComponent);
+        fresh.componentInstance.id = mockId;
 
-        expect(service.setElement).toHaveBeenCalledWith({ mockId: childComponent });
+        service.setElement.mockClear();
+        fresh.detectChanges();
+
+        const childCmp = fresh.debugElement.query(By.css('spy-test-component')).componentInstance as TestComponent;
+        expect(service.setElement).toHaveBeenCalledWith({ [mockId]: childCmp });
     });
 });

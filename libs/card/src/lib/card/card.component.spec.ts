@@ -1,20 +1,19 @@
-import { Component, TemplateRef, NO_ERRORS_SCHEMA, Input } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { CardComponent } from './card.component';
+import { Component, Input, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { CardModule } from '../card.module';
 
 @Component({
     standalone: false,
     template: `
-        <spy-card [spyTitle]="title" [extra]="extra" [actions]="[button]" [hoverable]="hoverable">
-            Card Content
-        </spy-card>
-        <ng-template #button>
-            <button>Button Content</button>
-        </ng-template>
-    `,
+    <spy-card [spyTitle]="title" [extra]="extra" [actions]="[button]" [hoverable]="hoverable">
+      Card Content
+    </spy-card>
+
+    <ng-template #button>
+      <button>Button Content</button>
+    </ng-template>
+  `,
 })
 class TestComponent {
     @Input() title: string | TemplateRef<void> = '';
@@ -22,61 +21,57 @@ class TestComponent {
     @Input() hoverable: boolean | undefined;
 }
 
-describe('CardComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(TestComponent, {
-        ngModule: {
-            imports: [CardModule],
-            schemas: [NO_ERRORS_SCHEMA],
-        },
-    });
+describe('CardComponent (hosted)', () => {
+    let fixture: ComponentFixture<TestComponent>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [testModule],
+            declarations: [TestComponent],
+            imports: [CardModule],
+            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
         });
+
+        fixture = TestBed.createComponent(TestComponent);
+        fixture.detectChanges();
     });
 
-    it('should create component', async () => {
-        const host = await createComponentWrapper(createComponent);
-
-        expect(host.component).toBeTruthy();
+    it('should create component', () => {
+        expect(fixture.componentInstance).toBeTruthy();
     });
 
-    it('should be hoverable', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const card = host.queryCss('nz-card');
+    it('should be hoverable', () => {
+        const cardDe = fixture.debugElement.query(By.css('nz-card'));
+        expect(cardDe).toBeTruthy();
+        expect((cardDe.nativeElement as HTMLElement).classList.contains('ant-card-hoverable')).toBe(false);
 
-        expect(card).toBeTruthy();
-        expect(card.classes['ant-card-hoverable']).toBeFalsy();
+        fixture.componentInstance.hoverable = true;
+        fixture.detectChanges();
 
-        host.setInputs({ hoverable: true }, true);
-
-        expect(card.classes['ant-card-hoverable']).toBeTruthy();
+        expect((cardDe.nativeElement as HTMLElement).classList.contains('ant-card-hoverable')).toBe(true);
     });
 
-    it('should render card title with content', async () => {
+    it('should render card title with content', () => {
         const cardTitleContent = 'Card Title';
-        const host = await createComponentWrapper(createComponent, { title: cardTitleContent });
+        fixture.componentInstance.title = cardTitleContent;
+        fixture.detectChanges();
 
-        const cardTitleElement = host.queryCss('.ant-card-head-title');
-
-        expect(cardTitleElement).toBeTruthy();
-        expect(cardTitleElement.nativeElement.textContent.trim()).toBe(cardTitleContent);
+        const titleDe = fixture.debugElement.query(By.css('.ant-card-head-title'));
+        expect(titleDe).toBeTruthy();
+        expect((titleDe.nativeElement as HTMLElement).textContent!.trim()).toBe(cardTitleContent);
     });
 
-    it('should render card extra', async () => {
-        const host = await createComponentWrapper(createComponent, { extra: {} });
-        const cardExtraElement = host.queryCss('.ant-card-extra');
+    it('should render card extra', () => {
+        fixture.componentInstance.extra = {} as unknown as TemplateRef<void>;
+        fixture.detectChanges();
 
-        expect(cardExtraElement).toBeTruthy();
+        const extraDe = fixture.debugElement.query(By.css('.ant-card-extra'));
+        expect(extraDe).toBeTruthy();
     });
 
-    it('should render actions wrapper with actions', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const actionsElement = host.queryCss('.ant-card-actions');
-
-        expect(actionsElement).toBeTruthy();
-        expect(actionsElement.children.length).toEqual(1);
+    it('should render actions wrapper with actions', () => {
+        const actionsDe = fixture.debugElement.query(By.css('.ant-card-actions'));
+        expect(actionsDe).toBeTruthy();
+        expect((actionsDe.nativeElement as HTMLElement).children.length).toEqual(1);
     });
 });

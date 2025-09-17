@@ -1,13 +1,11 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { registerLocaleData } from '@angular/common';
-import zh from '@angular/common/locales/zh';
+import { NO_ERRORS_SCHEMA, Component, Input, LOCALE_ID } from '@angular/core';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { ToIsoDateFormatModule } from '@spryker/utils';
 import { TestLocaleModule } from '@spryker/locale/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { DatePickerComponent } from './date-picker.component';
 
 const nzDatePickerSelector = 'nz-date-picker';
@@ -33,201 +31,204 @@ const mockedDisabledTime = () => ({
     nzDisabledSeconds: () => [],
 });
 
+@Component({
+    standalone: false,
+    template: `
+    <spy-date-picker
+      [clearButton]="clearButton"
+      [disabled]="disabled"
+      [date]="date"
+      [format]="format"
+      [name]="name"
+      [placeholder]="placeholder"
+      [enableTime]="enableTime"
+      [time]="time"
+      [open]="open"
+      (dateChange)="onDateChange($event)"
+      (openChange)="onOpenChange($event)"
+    ></spy-date-picker>
+  `,
+})
+class TestHostComponent {
+    @Input() clearButton?: boolean;
+    @Input() disabled?: boolean;
+    @Input() date?: Date;
+    @Input() format?: string;
+    @Input() name?: string;
+    @Input() placeholder?: string;
+    @Input() enableTime?: any;
+    @Input() time?: boolean;
+    @Input() open?: boolean;
+
+    onDateChange = jest.fn();
+    onOpenChange = jest.fn();
+}
+
 describe('DatePickerComponent', () => {
-    let { testModule, createComponent } = getTestingForComponent(DatePickerComponent, {
-        ngModule: {
-            imports: [TestLocaleModule, NoopAnimationsModule, ToIsoDateFormatModule],
-            schemas: [NO_ERRORS_SCHEMA],
-        },
-    });
+    let fixture: ComponentFixture<TestHostComponent>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [testModule],
+            declarations: [DatePickerComponent, TestHostComponent],
+            imports: [TestLocaleModule, NoopAnimationsModule, ToIsoDateFormatModule, NzDatePickerModule],
+            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
+            providers: [
+                { provide: LOCALE_ID, useValue: 'en-US' },
+                { provide: NZ_I18N, useValue: en_US },
+            ],
         });
 
-        registerLocaleData(zh);
+        fixture = TestBed.createComponent(TestHostComponent);
+        fixture.detectChanges();
     });
 
-    it('should render <nz-date-picker> element from Ant Design', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const datePicker = host.queryCss(nzDatePickerSelector);
-
+    it('should render <nz-date-picker> element from Ant Design', () => {
+        const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
         expect(datePicker).toBeTruthy();
     });
 
     describe('@Input', () => {
-        it('Input `clearButton` should be bound to `nzAllowClear` input of <nz-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { clearButton: true });
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
-            expect(datePicker.properties.nzAllowClear).toBe(true);
+        it('Input `clearButton` -> `nzAllowClear`', () => {
+            fixture.componentInstance.clearButton = true;
+            fixture.detectChanges();
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
+            expect(datePicker.componentInstance.nzAllowClear).toBe(true);
         });
 
-        it('Input `disabled` should be bound to `nzDisabled` input of <nz-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { disabled: true });
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
-            expect(datePicker.properties.nzDisabled).toBe(true);
+        it('Input `disabled` -> `nzDisabled`', () => {
+            fixture.componentInstance.disabled = true;
+            fixture.detectChanges();
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
+            expect(datePicker.componentInstance.nzDisabled).toBe(true);
         });
 
-        it('Input `date` should be bound to `ngModel` input of `hidden input`', async () => {
-            const host = await createComponentWrapper(createComponent, { date: mockedDate });
-            const inputElement = host.queryCss('input[type="hidden"]');
-
-            expect(inputElement.properties.ngModel).toBe(mockedExpectedDate);
+        it('Input `date` -> hidden input ngModel (ISO)', () => {
+            fixture.componentInstance.date = mockedDate;
+            fixture.detectChanges();
+            const hidden = fixture.debugElement.query(By.css('input[type="hidden"]'));
+            expect(hidden.properties.ngModel).toBe(mockedExpectedDate);
         });
 
-        it('Input `date` should be bound to `ngModel `input of <nz-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { date: mockedDate });
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
-            expect(datePicker.properties.ngModel).toMatchObject(mockedDate);
+        it('Input `date` -> <nz-date-picker> ngModel', () => {
+            fixture.componentInstance.date = mockedDate;
+            fixture.detectChanges();
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
+            expect(datePicker.properties.ngModel).toEqual(mockedDate);
         });
 
-        it('Input `format` should be bound to `nzFormat` input of <nz-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { format: mockedFormat });
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
-            expect(datePicker.properties.nzFormat).toBe(mockedFormat);
+        it('Input `format` -> `nzFormat`', () => {
+            fixture.componentInstance.format = mockedFormat;
+            fixture.detectChanges();
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
+            expect(datePicker.componentInstance.nzFormat).toBe(mockedFormat);
         });
 
-        it('Input `name` should be bound to `name` input of `hidden input`', async () => {
-            const host = await createComponentWrapper(createComponent, { name: mockedName });
-            const inputElement = host.queryCss('input[type="hidden"]');
-
-            expect(inputElement.properties.name).toBe(mockedName);
+        it('Input `name` -> hidden input `name`', () => {
+            fixture.componentInstance.name = mockedName;
+            fixture.detectChanges();
+            const hidden = fixture.debugElement.query(By.css('input[type="hidden"]'));
+            expect(hidden.properties.name).toBe(mockedName);
         });
 
-        it('Input `placeholder` should be bound to `nzPlaceholder` input of <nz-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { placeholder: mockedPlaceholder });
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
-            expect(datePicker.properties.nzPlaceHolder).toBe(mockedPlaceholder);
+        it('Input `placeholder` -> `nzPlaceHolder`', () => {
+            fixture.componentInstance.placeholder = mockedPlaceholder;
+            fixture.detectChanges();
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
+            expect(datePicker.componentInstance.nzPlaceHolder).toBe(mockedPlaceholder);
         });
 
-        it('Input `disabledTime` should be bound to `nzDisabledTime` input of <nz-date-picker> as object', async () => {
-            const host = await createComponentWrapper(createComponent, { enableTime: mockedEnableTimeObject });
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
-            expect(datePicker.properties.nzDisabledTime).toBe(host.component.disabledTime);
+        it('Input `enableTime` (object) -> `nzDisabledTime`', () => {
+            fixture.componentInstance.enableTime = mockedEnableTimeObject;
+            fixture.detectChanges();
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
+            expect(datePicker.componentInstance.nzDisabledTime).toBe(cmp.disabledTime);
         });
 
-        it('Input `disabledTime` should be bound to `nzDisabledTime` input of <nz-date-picker> as function', async () => {
-            const host = await createComponentWrapper(createComponent, { enableTime: mockedEnableTimeFunction });
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
-            expect(datePicker.properties.nzDisabledTime).toBe(host.component.disabledTime);
+        it('Input `enableTime` (function) -> `nzDisabledTime`', () => {
+            fixture.componentInstance.enableTime = mockedEnableTimeFunction;
+            fixture.detectChanges();
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
+            expect(datePicker.componentInstance.nzDisabledTime).toBe(cmp.disabledTime);
         });
 
-        it('`disabledTime` should return `{ nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds }` with object on input', async () => {
-            const host = await createComponentWrapper(createComponent, {
-                time: true,
-                enableTime: mockedEnableTimeObject,
-            });
-            const disabledTime = host.component.disabledTime(new Date());
+        it('disabledTime returns expected functions with object input', () => {
+            fixture.componentInstance.time = true;
+            fixture.componentInstance.enableTime = mockedEnableTimeObject;
+            fixture.detectChanges();
 
-            expect(disabledTime.nzDisabledHours()).toMatchObject(mockedDisabledTime().nzDisabledHours());
-            expect(disabledTime.nzDisabledMinutes(17)).toMatchObject(mockedDisabledTime().nzDisabledMinutes());
-            expect(disabledTime.nzDisabledSeconds()).toMatchObject(mockedDisabledTime().nzDisabledSeconds());
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const disabledTime = cmp.disabledTime(new Date());
+
+            expect(disabledTime.nzDisabledHours()).toEqual(mockedDisabledTime().nzDisabledHours());
+            expect(disabledTime.nzDisabledMinutes(17)).toEqual(mockedDisabledTime().nzDisabledMinutes());
+            expect(disabledTime.nzDisabledSeconds()).toEqual(mockedDisabledTime().nzDisabledSeconds());
         });
 
-        it('`disabledTime` should return `{ nzDisabledHours, nzDisabledMinutes, nzDisabledSeconds }` with function on input', async () => {
-            const host = await createComponentWrapper(createComponent, {
-                time: true,
-                enableTime: mockedEnableTimeFunction,
-            });
-            const disabledTime = host.component.disabledTime(new Date());
+        it('disabledTime returns expected functions with function input', () => {
+            fixture.componentInstance.time = true;
+            fixture.componentInstance.enableTime = mockedEnableTimeFunction;
+            fixture.detectChanges();
 
-            expect(disabledTime.nzDisabledHours()).toMatchObject(mockedDisabledTime().nzDisabledHours());
-            expect(disabledTime.nzDisabledMinutes(8)).toMatchObject(mockedDisabledTime().nzDisabledMinutes());
-            expect(disabledTime.nzDisabledSeconds()).toMatchObject(mockedDisabledTime().nzDisabledSeconds());
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const disabledTime = cmp.disabledTime(new Date());
+
+            expect(disabledTime.nzDisabledHours()).toEqual(mockedDisabledTime().nzDisabledHours());
+            expect(disabledTime.nzDisabledMinutes(8)).toEqual(mockedDisabledTime().nzDisabledMinutes());
+            expect(disabledTime.nzDisabledSeconds()).toEqual(mockedDisabledTime().nzDisabledSeconds());
         });
 
-        it('Input `time` should be bound to `nzShowTime` input of <nz-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent, { time: true });
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
-            expect(datePicker.properties.nzShowTime).toBe(host.component.nzTime);
+        it('Input `time` -> `nzShowTime` equals component.nzTime', () => {
+            fixture.componentInstance.time = true;
+            fixture.detectChanges();
+            const cmp = fixture.debugElement.query(By.directive(DatePickerComponent)).componentInstance as DatePickerComponent;
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
+            expect(datePicker.componentInstance.nzShowTime).toBe(cmp.nzTime);
         });
     });
 
     describe('@Output', () => {
-        it('Output `dateChange` should be emitted every time when the ngModelChange emits on <nz-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent);
-
-            host.hostComponent.dateChange = jest.fn();
-
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            datePicker!.triggerEventHandler('ngModelChange', mockedCallValue);
-
-            expect(host.hostComponent.dateChange).toHaveBeenCalledWith(mockedCallValue);
+        it('`dateChange` emits on `ngModelChange` from <nz-date-picker>', () => {
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
+            datePicker.triggerEventHandler('ngModelChange', mockedCallValue);
+            expect(fixture.componentInstance.onDateChange).toHaveBeenCalledWith(mockedCallValue);
         });
 
-        it('Output `openChange` should be emitted every time when the nzOnOpenChange emits on <nz-date-picker>', async () => {
-            const host = await createComponentWrapper(createComponent);
-
-            host.hostComponent.openChange = jest.fn();
-
-            const datePicker = host.queryCss(nzDatePickerSelector);
-
+        it('`openChange` emits on `nzOnOpenChange` from <nz-date-picker>', () => {
+            const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
             datePicker.triggerEventHandler('nzOnOpenChange', mockedCallValue);
-            host.detectChanges();
-
-            expect(host.hostComponent.openChange).toHaveBeenCalledWith(mockedCallValue);
+            fixture.detectChanges();
+            expect(fixture.componentInstance.onOpenChange).toHaveBeenCalledWith(mockedCallValue);
         });
     });
 
-    describe('Methods', () => {
-        const originalTestModule = testModule;
-        const originalCreateComponent = createComponent;
-
-        beforeAll(() => {
-            const testingForComponent = getTestingForComponent(DatePickerComponent, {
-                ngModule: {
-                    imports: [TestLocaleModule, NoopAnimationsModule, NzDatePickerModule, ToIsoDateFormatModule],
-                    schemas: [NO_ERRORS_SCHEMA],
-                },
-            });
-
-            testModule = testingForComponent.testModule;
-            createComponent = testingForComponent.createComponent;
-        });
-
-        afterAll(() => {
-            testModule = originalTestModule;
-            createComponent = originalCreateComponent;
-        });
-
-        it('Should apply `open` class to the host element if input `open` is true', fakeAsync(async () => {
-            const host = await createComponentWrapper(createComponent, { open: true });
+    describe('Methods / classes', () => {
+        it('applies `open` class when `open` input is true', fakeAsync(() => {
+            fixture.componentInstance.open = true;
+            fixture.detectChanges();
 
             tick();
-            host.detectChanges();
+            fixture.detectChanges();
             tick();
-            host.detectChanges();
+            fixture.detectChanges();
 
-            const datePicker = host.query(DatePickerComponent);
-            const openClass = datePicker.classes.open;
-
-            expect(openClass).toBeTruthy();
+            const hostEl: HTMLElement = fixture.debugElement.query(By.css('spy-date-picker')).nativeElement;
+            expect(hostEl.classList.contains('open')).toBe(true);
         }));
 
-        it('Should not apply `open` class to the host element if input `open` is false', fakeAsync(async () => {
-            const host = await createComponentWrapper(createComponent, { open: false });
+        it('does not apply `open` class when `open` input is false', fakeAsync(() => {
+            fixture.componentInstance.open = false;
+            fixture.detectChanges();
 
             tick();
-            host.detectChanges();
+            fixture.detectChanges();
             tick();
-            host.detectChanges();
+            fixture.detectChanges();
 
-            const datePicker = host.query(DatePickerComponent);
-            const openClass = datePicker.classes.open;
-
-            expect(openClass).toBeFalsy();
+            const hostEl: HTMLElement = fixture.debugElement.query(By.css('spy-date-picker')).nativeElement;
+            expect(hostEl.classList.contains('open')).toBe(false);
         }));
     });
 });

@@ -1,32 +1,39 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { HeaderComponent } from './header.component';
 
-describe('HeaderComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(HeaderComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-        projectContent: `<div class="test-content">Header Content</div>`,
-    });
+@Component({
+    standalone: false,
+    template: `
+    <spy-header>
+      <div class="test-content">Header Content</div>
+    </spy-header>
+  `,
+})
+class TestHostComponent { }
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [testModule],
+describe('HeaderComponent (refactored)', () => {
+    let fixture: ComponentFixture<TestHostComponent>;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [HeaderComponent, TestHostComponent],
+            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
-        });
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(TestHostComponent);
+        fixture.detectChanges();
     });
 
-    it('should create', async () => {
-        const host = await createComponentWrapper(createComponent);
-
-        expect(host.component).toBeTruthy();
+    it('should create', () => {
+        const headerDe = fixture.debugElement.query(By.directive(HeaderComponent));
+        expect(headerDe).toBeTruthy();
     });
 
-    it('should render content', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const headerContentElement = host.queryCss('.test-content');
-
-        expect(headerContentElement).toBeTruthy();
+    it('should render content', () => {
+        const contentEl = fixture.debugElement.query(By.css('.test-content'));
+        expect(contentEl).toBeTruthy();
     });
 });

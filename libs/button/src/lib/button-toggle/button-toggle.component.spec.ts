@@ -1,76 +1,88 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ButtonToggleComponent } from './button-toggle.component';
 
+@Component({
+    standalone: false,
+    template: `
+    <spy-button-toggle
+      [attrs]="attrs"
+      [disabled]="disabled"
+      (toggledChange)="toggledChange($event)"
+    >
+      Content
+    </spy-button-toggle>
+  `,
+})
+class TestHostComponent {
+    attrs?: Record<string, unknown>;
+    disabled?: boolean;
+    toggledChange = jest.fn();
+}
+
 describe('ButtonToggleComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(ButtonToggleComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-        projectContent: 'Content',
-    });
+    let fixture: ComponentFixture<TestHostComponent>;
 
-    beforeEach(() =>
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [testModule],
+            declarations: [ButtonToggleComponent, TestHostComponent],
+            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
-        }),
-    );
+        });
 
-    it('should render <spy-button-toggle>', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const buttonElem = host.queryCss('spy-button-toggle');
-
-        expect(buttonElem).toBeTruthy();
+        fixture = TestBed.createComponent(TestHostComponent);
+        fixture.detectChanges();
     });
 
-    it('should render projected content inside <button>', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const buttonElem = host.queryCss('button');
-
-        expect(buttonElem.nativeElement.textContent).toMatch('Content');
+    it('should render <spy-button-toggle>', () => {
+        const el = fixture.debugElement.query(By.css('spy-button-toggle'));
+        expect(el).toBeTruthy();
     });
 
-    it('should bind attrs to spyApplyAttrs properties of <button>', async () => {
+    it('should render projected content inside <button>', () => {
+        const btn = fixture.debugElement.query(By.css('button')).nativeElement as HTMLButtonElement;
+        expect(btn.textContent).toMatch('Content');
+    });
+
+    it('should bind attrs to spyApplyAttrs properties of <button>', () => {
         const mockedAttrs = { mockAttr: 'mockAttr' };
-        const host = await createComponentWrapper(createComponent, { attrs: mockedAttrs });
-        const buttonElem = host.queryCss('button');
+        fixture.componentInstance.attrs = mockedAttrs;
+        fixture.detectChanges();
 
-        expect(buttonElem.properties.spyApplyAttrs).toBe(mockedAttrs);
+        const btnDe = fixture.debugElement.query(By.css('button'));
+        expect(btnDe.properties.spyApplyAttrs).toBe(mockedAttrs);
     });
 
-    it('toggledChange must be emited after click event happened on button', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const buttonElem = host.queryCss('button');
+    it('toggledChange must be emitted after click event happened on button', () => {
+        const btnDe = fixture.debugElement.query(By.css('button'));
+        btnDe.triggerEventHandler('click', {});
+        fixture.detectChanges();
 
-        buttonElem.triggerEventHandler('click', {});
-        host.detectChanges();
-
-        expect(host.hostComponent.toggledChange).toHaveBeenCalledWith(true);
+        expect(fixture.componentInstance.toggledChange).toHaveBeenCalledWith(true);
     });
 
-    it('class `spy-btn-toggle--toggled` should be added after click event happened', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const buttonElem = host.queryCss('button');
+    it('class `spy-btn-toggle--toggled` should be added after click event happened', () => {
+        const btnDe = fixture.debugElement.query(By.css('button'));
+        btnDe.triggerEventHandler('click', {});
+        fixture.detectChanges();
 
-        buttonElem.triggerEventHandler('click', {});
-        host.detectChanges();
-
-        expect(buttonElem.classes['spy-btn-toggle--toggled']).toBeTruthy();
+        const btn = btnDe.nativeElement as HTMLButtonElement;
+        expect(btn.classList.contains('spy-btn-toggle--toggled')).toBe(true);
     });
 
     describe('@Input(disabled)', () => {
-        it('should by default have value `false`', async () => {
-            const host = await createComponentWrapper(createComponent);
-
-            expect(host.component.disabled).toBe(false);
+        it('should by default have value `false`', () => {
+            const cmp = fixture.debugElement.query(By.directive(ButtonToggleComponent)).componentInstance as ButtonToggleComponent;
+            expect(cmp.disabled).toBe(false);
         });
 
-        it('should bind to `disabled` of <button>', async () => {
-            const host = await createComponentWrapper(createComponent, { disabled: true });
-            const buttonElem = host.queryCss('button');
+        it('should bind to `disabled` of <button>', () => {
+            fixture.componentInstance.disabled = true;
+            fixture.detectChanges();
 
-            expect(buttonElem.properties.disabled).toBe(true);
+            const btnDe = fixture.debugElement.query(By.css('button'));
+            expect(btnDe.properties.disabled).toBe(true);
         });
     });
 });

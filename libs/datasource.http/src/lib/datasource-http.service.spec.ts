@@ -124,7 +124,7 @@ describe('DatasourceHttpService', () => {
 
         const htmlResponse = httpTestingController.expectOne(mockConfig.url);
 
-        expect(dataSerializerService.serialize).toBeCalledWith(DatasourceHttpRequestToken, mockContext);
+        expect(dataSerializerService.serialize).toHaveBeenCalledWith(DatasourceHttpRequestToken, mockContext);
         expect(htmlResponse.request.body).toBe(mockContextSerialized);
     });
 
@@ -144,7 +144,7 @@ describe('DatasourceHttpService', () => {
         };
         const serviceObservable$ = service.resolve(mockInjector, mockConfig, mockContext);
         const mockParams = new HttpParams({
-            fromObject: mockContext as any, // any values can be used and custom codec supports it
+            fromObject: mockContext as any,
             encoder: mockEncoder,
         });
 

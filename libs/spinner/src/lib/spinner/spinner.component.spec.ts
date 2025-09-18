@@ -1,45 +1,59 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { By } from '@angular/platform-browser';
 import { SpinnerComponent } from './spinner.component';
 import { SpinnerSize } from '../types';
 
+@Component({
+    selector: 'spy-spinner-host',
+    template: `
+        <spy-spinner [delay]="delay" [size]="size" [isSpinning]="isSpinning" [overlayContent]="overlayContent">
+            Content
+        </spy-spinner>
+    `,
+    standalone: false,
+})
+class HostComponent {
+    delay = 100;
+    size = SpinnerSize.Large;
+    isSpinning = true;
+    overlayContent = true;
+}
+
 describe('SpinnerComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(SpinnerComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-        projectContent: 'Content',
+    let fixture: any;
+
+    const q = (css: string) => fixture.debugElement.query(By.css(css));
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [SpinnerComponent, HostComponent],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(HostComponent);
+        fixture.detectChanges();
     });
 
-    beforeEach(() =>
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            teardown: { destroyAfterEach: false },
-        }),
-    );
+    it('should render spinner with special inputs properties', () => {
+        fixture.componentRef.setInput('delay', 100);
+        fixture.componentRef.setInput('size', SpinnerSize.Large);
+        fixture.componentRef.setInput('isSpinning', true);
+        fixture.componentRef.setInput('overlayContent', true);
+        fixture.detectChanges();
 
-    it('should render spinner with special inputs properties', async () => {
-        const inputs: SpinnerComponent = {
-            delay: 100,
-            size: SpinnerSize.Large,
-            isSpinning: true,
-            overlayContent: true,
-        };
-        const host = await createComponentWrapper(createComponent, inputs);
-        const spinner = host.queryCss('nz-spin');
-
-        expect(spinner).toBeTruthy();
-        expect(spinner.properties.nzDelay).toBe(inputs.delay);
-        expect(spinner.properties.nzSize).toBe(inputs.size);
-        expect(spinner.properties.nzSpinning).toBe(inputs.isSpinning);
-        expect(spinner.properties.nzSimple).toBe(inputs.overlayContent);
+        const spinDe = q('spy-spinner nz-spin');
+        expect(spinDe).toBeTruthy();
+        expect(spinDe.nativeNode.nzDelay).toBe(100);
+        expect(spinDe.nativeNode.nzSize).toBe(SpinnerSize.Large);
+        expect(spinDe.nativeNode.nzSpinning).toBe(true);
+        expect(spinDe.nativeNode.nzSimple).toBe(true);
     });
 
-    it('should render spinner content', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const spinner = host.queryCss('nz-spin');
-
-        expect(spinner).toBeTruthy();
-        expect(spinner.nativeElement.textContent).toContain('Content');
+    it('should render spinner content', () => {
+        const spinDe = q('spy-spinner nz-spin');
+        expect(spinDe).toBeTruthy();
+        expect(spinDe.nativeElement.textContent).toContain('Content');
     });
 });

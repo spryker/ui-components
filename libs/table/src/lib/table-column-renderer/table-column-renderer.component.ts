@@ -17,7 +17,6 @@ import { TableColumn, TableColumnTplContext, TableColumnTypeDef, TableDataRow } 
     standalone: false,
     selector: 'spy-table-column-renderer',
     templateUrl: './table-column-renderer.component.html',
-    styleUrls: ['./table-column-renderer.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })

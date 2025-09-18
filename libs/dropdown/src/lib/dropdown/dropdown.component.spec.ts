@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { NzDropDownModule, NzDropDownDirective } from 'ng-zorro-antd/dropdown';
 import { DropdownComponent } from './dropdown.component';
 
-describe('DropdownComponent (refactored)', () => {
+describe('DropdownComponent', () => {
     let fixture: ComponentFixture<DropdownComponent>;
 
     const q = (sel: string) => fixture.debugElement.query(By.css(sel));

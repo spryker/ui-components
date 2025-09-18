@@ -110,14 +110,12 @@ describe('DrawerWrapperComponent (no orchestrator)', () => {
 
         expect(hostEl.style.width).toBe(initial);
 
-        // maximize
         resizeBtn.triggerEventHandler('click', null);
         fixture.detectChanges();
 
         expect(hostEl.classList).toContain('spy-drawer-wrapper--maximized');
         expect(hostEl.style.width).toBe('100%');
 
-        // restore
         resizeBtn.triggerEventHandler('click', null);
         fixture.detectChanges();
 

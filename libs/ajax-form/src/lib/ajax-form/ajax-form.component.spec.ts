@@ -85,7 +85,6 @@ describe('AjaxFormComponent', () => {
         fixture.componentRef.setInput('action', mockUrl);
         fixture.detectChanges();
 
-        // loading visible before response
         let nzSpinElem = fixture.nativeElement.querySelector('.spy-ajax-form-container + nz-spin');
         expect(nzSpinElem).toBeTruthy();
 
@@ -124,7 +123,6 @@ describe('AjaxFormComponent', () => {
         fixture.componentRef.setInput('method', 'POST');
         fixture.detectChanges();
 
-        // initial GET
         let htmlResponse = httpTestingController.expectOne(mockUrl);
         htmlResponse.flush(mockFirstResponse);
         fixture.detectChanges();
@@ -190,7 +188,6 @@ describe('AjaxFormComponent', () => {
         fixture.componentRef.setInput('method', 'POST');
         fixture.detectChanges();
 
-        // initial GET
         let htmlResponse = httpTestingController.expectOne(mockUrl);
         htmlResponse.flush(mockFirstResponse);
         fixture.detectChanges();
@@ -236,13 +233,11 @@ describe('AjaxFormComponent', () => {
             method: 'GET' as const,
         };
 
-        // initial GET
         httpTestingController.expectOne(mockUrl);
 
         const formDe = fixture.debugElement.query(By.css('form'));
         const event = new MockEvent();
 
-        // first submit -> still posts to initial action
         formDe.triggerEventHandler('submit', event);
         let htmlResponse = httpTestingController.expectOne(mockUrl);
         htmlResponse.flush(mockResponse);
@@ -250,7 +245,6 @@ describe('AjaxFormComponent', () => {
 
         fixture.detectChanges();
 
-        // second submit -> should use overridden action/method
         formDe.triggerEventHandler('submit', event);
         htmlResponse = httpTestingController.expectOne(mockResponse.action);
         expect(htmlResponse.request.method).toBe(mockResponse.method);

@@ -16,7 +16,7 @@ class TestHostComponent {
     level: Level = Level.H1;
 }
 
-describe('HeadlineComponent (refactored)', () => {
+describe('HeadlineComponent', () => {
     let fixture: ComponentFixture<TestHostComponent>;
 
     beforeEach(async () => {

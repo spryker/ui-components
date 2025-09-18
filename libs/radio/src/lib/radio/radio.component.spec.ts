@@ -1,8 +1,7 @@
 import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { RadioModule } from '../radio.module';
 import { RadioComponent } from './radio.component';
 
@@ -11,12 +10,8 @@ import { RadioComponent } from './radio.component';
     selector: 'spy-test',
     template: `
         <spy-radio-group>
-            <spy-radio
-                [value]="value"
-                [disabled]="disabled"
-                [hasError]="hasError"
-                (selected)="selectedSpy($event)"
-            ></spy-radio>
+            <spy-radio [value]="value" [disabled]="disabled" [hasError]="hasError" (selected)="selectedSpy($event)">
+            </spy-radio>
         </spy-radio-group>
     `,
 })
@@ -29,148 +24,149 @@ class TestGroupComponent {
 
 describe('RadioComponent', () => {
     describe('Single Radio', () => {
-        const { testModule, createComponent } = getTestingForComponent(RadioComponent, {
-            ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+        let fixture: any;
+        const q = (css: string) => fixture.debugElement.query(By.css(css));
+
+        beforeEach(async () => {
+            await TestBed.configureTestingModule({
+                declarations: [RadioComponent],
+                schemas: [NO_ERRORS_SCHEMA],
+                teardown: { destroyAfterEach: true },
+            }).compileComponents();
+
+            fixture = TestBed.createComponent(RadioComponent);
+            fixture.detectChanges();
         });
 
-        beforeEach(() => {
-            TestBed.configureTestingModule({
-                imports: [testModule],
-                teardown: { destroyAfterEach: false },
-            });
+        it('should render `label[nz-radio]`', () => {
+            const labelDe = q('label[nz-radio]');
+            expect(labelDe).toBeTruthy();
         });
 
-        it('should render `label[nz-radio]`', async () => {
-            const host = await createComponentWrapper(createComponent);
-            const labelElem = host.queryCss('label[nz-radio]');
-
-            expect(labelElem).toBeTruthy();
-        });
-
-        it('should bound @Input(value) to the input `nzValue` of `label` element', async () => {
+        it('should bound @Input(value) to the input `nzValue` of `label` element', () => {
             const mockValue = 'mockValue';
-            const host = await createComponentWrapper(createComponent, { value: mockValue });
-            const labelElem = host.queryCss('label');
-
-            expect(labelElem.properties.nzValue).toBe(mockValue);
+            fixture.componentRef.setInput('value', mockValue);
+            fixture.detectChanges();
+            expect(q('label[nz-radio]').nativeNode.nzValue).toBe(mockValue);
         });
 
-        it('should bound @Input(disabled) to the input `nzDisabled` of `label` element', async () => {
-            const mockDisabled = true;
-            const host = await createComponentWrapper(createComponent, { disabled: mockDisabled });
-            const labelElem = host.queryCss('label');
-
-            expect(labelElem.properties.nzDisabled).toBe(mockDisabled);
+        it('should bound @Input(disabled) to the input `nzDisabled` of `label` element', () => {
+            fixture.componentRef.setInput('disabled', true);
+            fixture.detectChanges();
+            expect(q('label[nz-radio]').nativeNode.nzDisabled).toBe(true);
         });
 
-        it('should add `spy-radio--disabled` to the host if @Input(disabled) is `true`', async () => {
-            const host = await createComponentWrapper(createComponent);
-            const radioComponent = host.queryCss('spy-radio');
+        it('should add `spy-radio--disabled` to the host if @Input(disabled) is `true`', () => {
+            const hostEl: HTMLElement = fixture.nativeElement;
+            expect(hostEl.classList.contains('spy-radio--disabled')).toBe(false);
 
-            expect(radioComponent.classes['spy-radio--disabled']).toBeFalsy();
+            fixture.componentRef.setInput('disabled', true);
+            fixture.detectChanges();
 
-            host.setInputs({ disabled: true }, true);
-
-            expect(radioComponent.classes['spy-radio--disabled']).toBeTruthy();
+            expect(hostEl.classList.contains('spy-radio--disabled')).toBe(true);
         });
 
-        it('should add `spy-radio--error` to the host if @Input(hasError) is `true`', async () => {
-            const host = await createComponentWrapper(createComponent);
-            const radioComponent = host.queryCss('spy-radio');
+        it('should add `spy-radio--error` to the host if @Input(hasError) is `true`', () => {
+            const hostEl: HTMLElement = fixture.nativeElement;
+            expect(hostEl.classList.contains('spy-radio--error')).toBe(false);
 
-            expect(radioComponent.classes['spy-radio--error']).toBeFalsy();
+            fixture.componentRef.setInput('hasError', true);
+            fixture.detectChanges();
 
-            host.setInputs({ hasError: true }, true);
-
-            expect(radioComponent.classes['spy-radio--error']).toBeTruthy();
+            expect(hostEl.classList.contains('spy-radio--error')).toBe(true);
         });
 
-        it('should trigger `selected` callback when `ngModelChange` on `label` element was triggered', async () => {
+        it('should trigger `selected` callback when `ngModelChange` on `label` element was triggered', () => {
             const mockValue = 'mockValue';
-            const host = await createComponentWrapper(createComponent, { value: mockValue });
-            const labelElem = host.queryCss('label');
+            fixture.componentRef.setInput('value', mockValue);
+            fixture.detectChanges();
 
-            labelElem.triggerEventHandler('ngModelChange', {});
-            host.detectChanges();
+            const emitSpy = jest.spyOn(fixture.componentInstance.selected, 'emit');
+            const labelDe = q('label[nz-radio]');
+            labelDe.triggerEventHandler('ngModelChange', {});
+            fixture.detectChanges();
 
-            expect(host.hostComponent.selected).toHaveBeenCalledWith(mockValue);
+            expect(emitSpy).toHaveBeenCalledWith(mockValue);
         });
     });
 
     describe('Input element', () => {
-        const { testModule, createComponent } = getTestingForComponent(RadioComponent, {
-            ngModule: {
+        let fixture: any;
+        const q = (css: string) => fixture.debugElement.query(By.css(css));
+
+        beforeEach(async () => {
+            await TestBed.configureTestingModule({
+                declarations: [RadioComponent],
                 imports: [NzRadioModule],
                 schemas: [NO_ERRORS_SCHEMA],
-            },
+                teardown: { destroyAfterEach: true },
+            }).compileComponents();
+
+            fixture = TestBed.createComponent(RadioComponent);
+            fixture.detectChanges();
         });
 
-        beforeEach(() => {
-            TestBed.configureTestingModule({
-                imports: [testModule],
-                teardown: { destroyAfterEach: false },
-            });
-        });
-
-        it('should set @Input(value) to the input element', async () => {
+        it('should set @Input(value) to the input element', () => {
             const mockValue = 'mockValue';
-            const host = await createComponentWrapper(createComponent, { value: mockValue });
-            const inputElem = host.queryCss('label[nz-radio] input');
+            fixture.componentRef.setInput('value', mockValue);
+            fixture.detectChanges();
 
-            expect(inputElem.nativeElement.value).toBe(mockValue);
+            const inputEl: HTMLInputElement = q('label[nz-radio] input').nativeElement;
+            expect(inputEl.value).toBe(mockValue);
         });
     });
 
     describe('Radio With Group Component', () => {
-        const { testModule, createComponent } = getTestingForComponent(TestGroupComponent, {
-            ngModule: {
+        let fixture: any;
+        const q = (css: string) => fixture.debugElement.query(By.css(css));
+
+        beforeEach(async () => {
+            await TestBed.configureTestingModule({
+                declarations: [TestGroupComponent],
                 imports: [RadioModule],
                 schemas: [NO_ERRORS_SCHEMA],
-            },
+                teardown: { destroyAfterEach: true },
+            }).compileComponents();
+
+            fixture = TestBed.createComponent(TestGroupComponent);
+            fixture.detectChanges();
         });
 
-        beforeEach(() => {
-            TestBed.configureTestingModule({
-                imports: [testModule],
-                teardown: { destroyAfterEach: false },
-            });
-        });
-
-        it('should bound @Input(value) to the input `nzValue` of `label` element', async () => {
+        it('should bound @Input(value) to the input `nzValue` of `label` element', () => {
             const mockValue = 'mockValue';
-            const host = await createComponentWrapper(createComponent, { value: mockValue });
-            const labelElem = host.queryCss('label');
+            fixture.componentRef.setInput('value', mockValue);
+            fixture.detectChanges();
 
-            expect(labelElem.attributes['ng-reflect-nz-value']).toBe(mockValue);
+            const inputEl: HTMLInputElement = q('label[nz-radio] input').nativeElement;
+            expect(inputEl.value).toBe(mockValue);
         });
 
-        it('should bound @Input(disabled) to the input `nzDisabled` of `label` element', async () => {
-            const host = await createComponentWrapper(createComponent, { disabled: true });
-            const labelElem = host.queryCss('label');
+        it('should bound @Input(disabled) to the input `nzDisabled` of `label` element', () => {
+            fixture.componentRef.setInput('disabled', true);
+            fixture.detectChanges();
 
-            expect(labelElem.attributes['ng-reflect-nz-disabled']).toBe('true');
+            const inputEl: HTMLInputElement = q('label[nz-radio] input').nativeElement;
+            expect(inputEl.disabled).toBe(true);
         });
 
-        it('should add `spy-radio--disabled` to the `.spy-radio` if @Input(disabled) is `true`', async () => {
-            const host = await createComponentWrapper(createComponent);
-            const radioElement = host.queryCss('.spy-radio');
+        it('should add `spy-radio--disabled` to the `.spy-radio` if @Input(disabled) is `true`', () => {
+            const hostEl: HTMLElement = q('.spy-radio').nativeElement;
+            expect(hostEl.classList.contains('spy-radio--disabled')).toBe(false);
 
-            expect(radioElement.classes['spy-radio--disabled']).toBeFalsy();
+            fixture.componentRef.setInput('disabled', true);
+            fixture.detectChanges();
 
-            host.setInputs({ disabled: true }, true);
-
-            expect(radioElement.classes['spy-radio--disabled']).toBeTruthy();
+            expect(hostEl.classList.contains('spy-radio--disabled')).toBe(true);
         });
 
-        it('should add `spy-radio--error` to the `.spy-radio` if @Input(hasError) is `true`', async () => {
-            const host = await createComponentWrapper(createComponent);
-            const radioElement = host.queryCss('.spy-radio');
+        it('should add `spy-radio--error` to the `.spy-radio` if @Input(hasError) is `true`', () => {
+            const hostEl: HTMLElement = q('.spy-radio').nativeElement;
+            expect(hostEl.classList.contains('spy-radio--error')).toBe(false);
 
-            expect(radioElement.classes['spy-radio--error']).toBeFalsy();
+            fixture.componentRef.setInput('hasError', true);
+            fixture.detectChanges();
 
-            host.setInputs({ hasError: true }, true);
-
-            expect(radioElement.classes['spy-radio--error']).toBeTruthy();
+            expect(hostEl.classList.contains('spy-radio--error')).toBe(true);
         });
     });
 });

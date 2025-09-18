@@ -1,175 +1,165 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { InputModule } from '@spryker/input';
 import { IconOpenEyeModule, IconCrossedEyeModule } from '@spryker/icon/icons';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { InputPasswordComponent } from './input-password.component';
 
 describe('InputPasswordComponent', () => {
     describe('Host functionality', () => {
-        const { testModule, createComponent } = getTestingForComponent(InputPasswordComponent, {
-            ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+        let fixture: any;
+
+        beforeEach(async () => {
+            await TestBed.configureTestingModule({
+                declarations: [InputPasswordComponent],
+                schemas: [NO_ERRORS_SCHEMA],
+                teardown: { destroyAfterEach: true },
+            }).compileComponents();
+
+            fixture = TestBed.createComponent(InputPasswordComponent);
+            fixture.detectChanges();
         });
 
-        beforeEach(() =>
-            TestBed.configureTestingModule({
-                imports: [testModule],
-                teardown: { destroyAfterEach: false },
-            }),
-        );
-
         it('should render <spy-input>', async () => {
-            const host = await createComponentWrapper(createComponent);
-            const inputElem = host.queryCss('spy-input');
-
+            const inputElem = fixture.debugElement.query(By.css('spy-input'));
             expect(inputElem).toBeTruthy();
         });
 
         it('should add static class to host element', async () => {
             const inputPasswordClass = 'spy-input-password';
-            const host = await createComponentWrapper(createComponent);
-            const inputPasswordElem = host.queryCss(inputPasswordClass);
-
-            expect(inputPasswordElem.attributes.class).toBe(inputPasswordClass);
+            const hostEl: HTMLElement = fixture.debugElement.nativeElement;
+            expect(hostEl.classList.contains(inputPasswordClass)).toBe(true);
         });
 
         describe('@Inputs', () => {
             it('should bind `type` to `type` of <spy-input>', async () => {
-                const host = await createComponentWrapper(createComponent);
-                const inputElem = host.queryCss('spy-input');
-
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
                 expect(inputElem.properties.type).toBe('password');
             });
 
             it('should bind `name` to `name` of <spy-input>', async () => {
-                const mockName = 'name';
-                const host = await createComponentWrapper(createComponent, { name: mockName });
-                const inputElem = host.queryCss('spy-input');
+                fixture.componentRef.setInput('name', 'name');
+                fixture.detectChanges();
 
-                expect(inputElem.properties.name).toBe(mockName);
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
+                expect(inputElem.properties.name).toBe('name');
             });
 
             it('should bind `value` to `value` of <spy-input>', async () => {
-                const mockValue = 'value';
-                const host = await createComponentWrapper(createComponent, { value: mockValue });
-                const inputElem = host.queryCss('spy-input');
+                fixture.componentRef.setInput('value', 'value');
+                fixture.detectChanges();
 
-                expect(inputElem.properties.value).toBe(mockValue);
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
+                expect(inputElem.properties.value).toBe('value');
             });
 
             it('should bind `spyId` to `spyId` of <spy-input>', async () => {
-                const mockSpyId = 'spyId';
-                const host = await createComponentWrapper(createComponent, { spyId: mockSpyId });
-                const inputElem = host.queryCss('spy-input');
+                fixture.componentRef.setInput('spyId', 'spyId');
+                fixture.detectChanges();
 
-                expect(inputElem.properties.spyId).toBe(mockSpyId);
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
+                expect(inputElem.properties.spyId).toBe('spyId');
             });
 
             it('should bind `placeholder` to `placeholder` of <spy-input>', async () => {
-                const mockPlaceholder = 'placeholder';
-                const host = await createComponentWrapper(createComponent, { placeholder: mockPlaceholder });
-                const inputElem = host.queryCss('spy-input');
+                fixture.componentRef.setInput('placeholder', 'placeholder');
+                fixture.detectChanges();
 
-                expect(inputElem.properties.placeholder).toBe(mockPlaceholder);
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
+                expect(inputElem.properties.placeholder).toBe('placeholder');
             });
 
             it('should bind `outerPrefix` to `outerPrefix` of <spy-input>', async () => {
-                const mockOuterPrefix = 'outerPrefix';
-                const host = await createComponentWrapper(createComponent, { outerPrefix: mockOuterPrefix });
-                const inputElem = host.queryCss('spy-input');
+                fixture.componentRef.setInput('outerPrefix', 'outerPrefix');
+                fixture.detectChanges();
 
-                expect(inputElem.properties.outerPrefix).toBe(mockOuterPrefix);
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
+                expect(inputElem.properties.outerPrefix).toBe('outerPrefix');
             });
 
             it('should bind `outerSuffix` to `outerSuffix` of <spy-input>', async () => {
-                const mockOuterSuffix = 'outerSuffix';
-                const host = await createComponentWrapper(createComponent, { outerSuffix: mockOuterSuffix });
-                const inputElem = host.queryCss('spy-input');
+                fixture.componentRef.setInput('outerSuffix', 'outerSuffix');
+                fixture.detectChanges();
 
-                expect(inputElem.properties.outerSuffix).toBe(mockOuterSuffix);
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
+                expect(inputElem.properties.outerSuffix).toBe('outerSuffix');
             });
 
             it('should bind `readOnly` to `readOnly` of <spy-input>', async () => {
-                const mockReadOnly = true;
-                const host = await createComponentWrapper(createComponent, { readOnly: mockReadOnly });
-                const inputElem = host.queryCss('spy-input');
+                fixture.componentRef.setInput('readOnly', true);
+                fixture.detectChanges();
 
-                expect(inputElem.properties.readOnly).toBe(mockReadOnly);
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
+                expect(inputElem.properties.readOnly).toBe(true);
             });
 
             it('should bind `disabled` to `disabled` of <spy-input>', async () => {
-                const mockDisabled = true;
-                const host = await createComponentWrapper(createComponent, { disabled: mockDisabled });
-                const inputElem = host.queryCss('spy-input');
+                fixture.componentRef.setInput('disabled', true);
+                fixture.detectChanges();
 
-                expect(inputElem.properties.disabled).toBe(mockDisabled);
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
+                expect(inputElem.properties.disabled).toBe(true);
             });
 
             it('should bind `required` to `required` of <spy-input>', async () => {
-                const mockRequired = true;
-                const host = await createComponentWrapper(createComponent, { required: mockRequired });
-                const inputElem = host.queryCss('spy-input');
+                fixture.componentRef.setInput('required', true);
+                fixture.detectChanges();
 
-                expect(inputElem.properties.required).toBe(mockRequired);
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
+                expect(inputElem.properties.required).toBe(true);
             });
 
             it('should bind `attrs` to `attrs` of <spy-input>', async () => {
-                const mockAttrs = {
-                    attr1: 'attr1Value',
-                    attr2: 'attr2Value',
-                };
-                const host = await createComponentWrapper(createComponent, { attrs: mockAttrs });
-                const inputElem = host.queryCss('spy-input');
+                const mockAttrs = { attr1: 'attr1Value', attr2: 'attr2Value' };
+                fixture.componentRef.setInput('attrs', mockAttrs);
+                fixture.detectChanges();
 
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
                 expect(inputElem.properties.attrs).toBe(mockAttrs);
             });
         });
 
         describe('@Output(valueChange)', () => {
             it('should emit when `ngModelChange` emits from <spy-input>', async () => {
+                const emitSpy = jest.spyOn(fixture.componentInstance.valueChange, 'emit');
                 const mockValue = 'value';
-                const host = await createComponentWrapper(createComponent);
-                const inputElem = host.queryCss('spy-input');
 
-                expect(inputElem).toBeTruthy();
-
+                const inputElem = fixture.debugElement.query(By.css('spy-input'));
                 inputElem.triggerEventHandler('valueChange', mockValue);
-                host.detectChanges();
+                fixture.detectChanges();
 
-                expect(host.hostComponent.valueChange).toHaveBeenCalledWith(mockValue);
+                expect(emitSpy).toHaveBeenCalledWith(mockValue);
             });
         });
     });
 
     describe('Icon element', () => {
-        const { testModule, createComponent } = getTestingForComponent(InputPasswordComponent, {
-            ngModule: {
+        let fixture: any;
+
+        beforeEach(async () => {
+            await TestBed.configureTestingModule({
+                declarations: [InputPasswordComponent],
                 imports: [InputModule],
                 schemas: [NO_ERRORS_SCHEMA],
-            },
+                teardown: { destroyAfterEach: true },
+            }).compileComponents();
+
+            fixture = TestBed.createComponent(InputPasswordComponent);
+            fixture.detectChanges();
         });
 
-        beforeEach(() =>
-            TestBed.configureTestingModule({
-                imports: [testModule],
-                teardown: { destroyAfterEach: false },
-            }),
-        );
-
         it('should trigger host type and `spy-icon` name', async () => {
-            const host = await createComponentWrapper(createComponent);
-            const inputPasswordIconElem = host.queryCss('.spy-input-password__icon');
-            const inputElem = host.queryCss('input');
+            const iconDe = fixture.debugElement.query(By.css('.spy-input-password__icon'));
+            const inputDe = fixture.debugElement.query(By.css('input'));
 
-            expect(inputPasswordIconElem.properties.name).toBe(IconOpenEyeModule.icon);
-            expect(inputElem.properties.type).toBe('password');
+            expect(iconDe.properties.name).toBe(IconOpenEyeModule.icon);
+            expect((inputDe.nativeNode as HTMLInputElement).type).toBe('password');
 
-            inputPasswordIconElem.triggerEventHandler('click', {});
-            host.detectChanges();
+            iconDe.triggerEventHandler('click', {});
+            fixture.detectChanges();
 
-            expect(inputPasswordIconElem.properties.name).toBe(IconCrossedEyeModule.icon);
-            expect(inputElem.properties.type).toBe('text');
+            expect(iconDe.properties.name).toBe(IconCrossedEyeModule.icon);
+            expect((inputDe.nativeNode as HTMLInputElement).type).toBe('text');
         });
     });
 });

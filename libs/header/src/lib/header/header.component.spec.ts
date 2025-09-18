@@ -13,7 +13,7 @@ import { HeaderComponent } from './header.component';
 })
 class TestHostComponent {}
 
-describe('HeaderComponent (refactored)', () => {
+describe('HeaderComponent', () => {
     let fixture: ComponentFixture<TestHostComponent>;
 
     beforeEach(async () => {

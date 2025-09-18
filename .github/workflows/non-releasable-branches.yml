@@ -1,0 +1,128 @@
+name: 'Format check / Lint code / Unit Tests / Build (not releasable branches)'
+on:
+  push:
+    branches-ignore:
+      - 'master'
+      - 'next'
+      - 'alpha'
+      - 'beta'
+      - 'rc'
+      - 'republish/**'
+      - '**-release'
+      # Match numeric version branches (e.g., 1.0.0)
+      - '**.[0-9]+.[0-9]+.[0-9]+'
+
+env:
+  NODE_VERSION: '18.19.1'
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GIT_EMAIL: 'github-actions@github.com'
+  GIT_USER: 'GitHub Actions'
+
+jobs:
+  format-check:
+    name: Format check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run format check
+        run: |
+          git fetch origin next
+          npm run format:check -- --base=origin/next
+
+  lint:
+    name: Lint code
+    needs: format-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lint
+        run: |
+          git fetch origin next
+          npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
+          npm run stylelint
+
+  test:
+    name: Unit Tests
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: |
+          git fetch origin next
+          COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
+
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build non-libs
+        run: npm run build-non-libs
+
+      - name: Build affected libs
+        run: |
+          git fetch origin next
+          npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
+
+  trigger-deploy:
+    name: Trigger Deploy Pipeline
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Deploy workflow
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          repository: ${{ github.repository }}
+          event-type: trigger-deploy
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'

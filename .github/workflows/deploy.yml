@@ -1,0 +1,119 @@
+name: Deploy
+
+on:
+  repository_dispatch:
+    types: [trigger-deploy]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Git ref to deploy (e.g., refs/heads/master)'
+        required: true
+        default: 'refs/heads/master'
+
+env:
+  NODE_VERSION: '18.19.1'
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GIT_EMAIL: 'github-actions@github.com'
+  GIT_USER: 'GitHub Actions'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  prepare:
+    name: Prepare
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.extract-branch.outputs.branch }}
+    steps:
+      - name: Extract branch name
+        id: extract-branch
+        run: |
+          if [[ -n "${{ github.event.client_payload.ref }}" ]]; then
+            # Extract branch name from ref (e.g., refs/heads/alpha -> alpha)
+            BRANCH_NAME=$(echo "${{ github.event.client_payload.ref }}" | sed 's/refs\/heads\///')
+          else
+            BRANCH_NAME=$(echo "${{ github.event.inputs.ref }}" | sed 's/refs\/heads\///')
+          fi
+          echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+          echo "Branch: ${BRANCH_NAME}"
+
+  deploy:
+    name: Deploy
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.prepare.outputs.branch }}
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "$GIT_EMAIL"
+          git config --global user.name "$GIT_USER"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: |
+          npm run build
+          npm run build-non-libs
+
+      - name: Set up NPM token
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+      - name: Check for republish
+        id: is-republish
+        run: |
+          if [[ "${{ needs.prepare.outputs.branch }}" == republish/* ]]; then
+            echo "is_republish=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_republish=false" >> $GITHUB_OUTPUT
+          fi
+
+      # Master branch release
+      - name: Release (master)
+        if: needs.prepare.outputs.branch == 'master' || needs.prepare.outputs.branch == 'republish/master'
+        run: |
+          if [[ "${{ needs.prepare.outputs.branch }}" == "republish/master" ]]; then
+            npm run release from-package
+          else
+            npm run release
+          fi
+
+      # Next branch release
+      - name: Release (next)
+        if: needs.prepare.outputs.branch == 'next' || needs.prepare.outputs.branch == 'republish/next'
+        run: |
+          if [[ "${{ needs.prepare.outputs.branch }}" == "republish/next" ]]; then
+            npm run release-next from-package
+          else
+            npm run release-next
+          fi
+
+      # Alpha/Beta/RC release
+      - name: Release (pre-release)
+        if: contains('alpha,beta,rc', needs.prepare.outputs.branch) || startsWith(needs.prepare.outputs.branch, 'republish/')
+        run: |
+          if [[ "${{ needs.prepare.outputs.branch }}" == republish/* ]]; then
+            npm run release-tag from-package
+          else
+            npm run release-tag
+          fi
+
+      # Deploy Storybook for non-master branches
+      - name: Deploy Storybook (non-master)
+        if: needs.prepare.outputs.branch != 'master' && needs.prepare.outputs.branch != 'republish/master'
+        run: |
+          if [[ "${{ needs.prepare.outputs.branch }}" == 'next' || "${{ needs.prepare.outputs.branch }}" == 'republish/next' ]]; then
+            npm run deploy:storybook:next
+          else
+            npm run deploy:storybook
+          fi

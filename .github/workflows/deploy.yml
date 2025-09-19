@@ -1,13 +1,9 @@
 name: Deploy
 
 on:
-  repository_dispatch:
-    types: [trigger-deploy]
-  workflow_dispatch:
-    inputs:
-      ref:
-        description: 'Git ref to deploy (e.g., refs/heads/master)'
-        required: true
+  workflow_run:
+    workflows: ["Format check / Lint code / Unit Tests / Build (not releasable branches)"]
+    types: [completed]
         default: 'refs/heads/master'
 
 env:

@@ -59,9 +59,3 @@ jobs:
       - name: Build affected libs
         run: |
           npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
-
-      - name: Trigger Deploy workflow
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run deploy.yml --ref ${{ github.ref }}

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.9](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/table.feature.filters@2.0.8...@spryker/table.feature.filters@2.0.9) (2025-09-19)
+
+
+### Bug Fixes
+
+* export TABLE_FILTERS_TOKEN  ([#658](http://172.31.0.22:9292/spryker-internal-ci/ui-components/issues/658)) ([a9a0fca](http://172.31.0.22:9292/spryker-internal-ci/ui-components/commits/a9a0fcaf3a03323fd422c1eb7a01679746678a5b))
+
+
+
+
+
 ## [2.0.8](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/table.feature.filters@2.0.7...@spryker/table.feature.filters@2.0.8) (2025-05-20)
 
 **Note:** Version bump only for package @spryker/table.feature.filters

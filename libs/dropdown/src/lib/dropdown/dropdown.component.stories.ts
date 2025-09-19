@@ -38,7 +38,28 @@ export default {
     },
     args: {
         items: [
-            { action: 'action1', title: 'item1' },
+            {
+                action: 'action1',
+                title: 'item1',
+                subItems: [
+                    {
+                        action: 'action1',
+                        title: 'subItem1',
+                        subItems: [
+                            { action: 'action1', title: 'subItem1' },
+                            { action: 'action1', title: 'subItem2' },
+                            { action: 'action1', title: 'subItem3' },
+                            { action: 'action1', title: 'subItem4' },
+                        ],
+                    },
+                    { action: 'action1', title: 'subItem2' },
+                    { action: 'action1', title: 'subItem3' },
+                    { action: 'action1', title: 'subItem4' },
+                ],
+            },
+            { action: 'action2', title: 'item2' },
+            { action: 'action2', title: 'item2' },
+            { action: 'action2', title: 'item2' },
             { action: 'action2', title: 'item2' },
         ],
         placement: 'bottomRight',
@@ -56,9 +77,12 @@ export const primary = (args) => ({
         [items]="items"
         [placement]="placement"
         [visible]="visible"
+        [trigger]="trigger"
         [disabled]="disabled">
         {{ trigger }} me
       </spy-dropdown>
+
+      <input />
     </div>
   `,
 });

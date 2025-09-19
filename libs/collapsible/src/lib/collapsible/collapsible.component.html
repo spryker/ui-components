@@ -9,8 +9,10 @@
         tabindex="0"
     >
         <ng-container *ngIf="alwaysRender || active">
-            <ng-content></ng-content>
-            <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+            <div [attr.inert]="!active ? true : null" class="ant-collapse-content-inner">
+                <ng-content></ng-content>
+                <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+            </div>
         </ng-container>
     </nz-collapse-panel>
 </nz-collapse>

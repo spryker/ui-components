@@ -61,7 +61,7 @@ jobs:
           npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
 
       - name: Trigger Deploy workflow
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: ./deploy.yml
-          ref: ${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run deploy.yml --ref ${{ github.ref }}

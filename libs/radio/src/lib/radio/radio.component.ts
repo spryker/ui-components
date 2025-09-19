@@ -12,9 +12,9 @@ import {
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
+    booleanAttribute,
     inject,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
 import { NzRadioComponent } from 'ng-zorro-antd/radio';
 import { RadioGroupComponent } from '../radio-group/radio-group.component';
 
@@ -35,8 +35,8 @@ export class RadioComponent implements OnInit, OnChanges, OnDestroy, AfterViewIn
     radioGroupComponent? = inject(RadioGroupComponent, { optional: true });
 
     @Input() value?: string;
-    @Input() @ToBoolean() disabled = false;
-    @Input() @ToBoolean() hasError = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) hasError = false;
 
     @Output() selected = new EventEmitter<string>();
 

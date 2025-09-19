@@ -19,7 +19,7 @@ import { ModuleWithFeature, TableFeatureComponent, TableFeatureLocation, TableFe
         <div *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader" class="after-cols-header-feature">
             After Cols Header Feature
         </div>
-        <div *spyTableFeatureTpl="tableFeatureLocation.header; let config = config;">
+        <div *spyTableFeatureTpl="tableFeatureLocation.header; let config = config">
             <div class="header-feature">{{ config.title }}</div>
         </div>
         <div *spyTableFeatureTpl="tableFeatureLocation.headerExt" class="header-ext-header-feature">
@@ -29,7 +29,7 @@ import { ModuleWithFeature, TableFeatureComponent, TableFeatureLocation, TableFe
             <td>Before Rows Feature</td>
         </tr>
         <div *spyTableFeatureTpl="tableFeatureLocation.beforeCols" class="before-cols-feature">Before Cols Feature</div>
-        <div *spyTableFeatureTpl="tableFeatureLocation.cell; let value = value;">
+        <div *spyTableFeatureTpl="tableFeatureLocation.cell; let value = value">
             <div class="cell-feature">{{ value }}</div>
         </div>
         <div *spyTableFeatureTpl="tableFeatureLocation.afterCols" class="after-cols-feature">After Cols Feature</div>
@@ -54,6 +54,5 @@ export class MockFeatureModule implements ModuleWithFeature {
     ngOnInit(): void {
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
         //Add 'implements OnInit' to the class.
-
     }
 }

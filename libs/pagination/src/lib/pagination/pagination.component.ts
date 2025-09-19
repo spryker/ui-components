@@ -1,6 +1,13 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import {
+    Component,
+    ChangeDetectionStrategy,
+    Input,
+    Output,
+    EventEmitter,
+    ViewEncapsulation,
+    booleanAttribute,
+} from '@angular/core';
 import { SelectValueSelected } from '@spryker/select';
-import { ToBoolean } from '@spryker/utils';
 
 @Component({
     standalone: false,
@@ -14,10 +21,10 @@ export class PaginationComponent {
     @Input() total = 0;
     @Input() page = 1;
     @Input() pageSize = 10;
-    @Input() @ToBoolean() hideOnSinglePage = false;
+    @Input({ transform: booleanAttribute }) hideOnSinglePage = false;
     @Input() pageSizeOptions = [10, 20, 50];
     @Input() placeholder = '';
-    @Input() @ToBoolean() disableClear = false;
+    @Input({ transform: booleanAttribute }) disableClear = false;
     @Output() pageChange = new EventEmitter<number>();
     @Output() pageSizeChange = new EventEmitter<number>();
 

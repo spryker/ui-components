@@ -10,8 +10,8 @@ import {
     HostBinding,
     OnInit,
     OnDestroy,
+    booleanAttribute,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { switchMap, map, takeUntil, startWith } from 'rxjs/operators';
 import { TabComponent } from '../tab/tab.component';
@@ -33,7 +33,7 @@ export enum TabsMode {
 export class TabsComponent implements OnInit, OnDestroy {
     @Input() tab = 0;
     @Input() mode: TabsMode = TabsMode.Line;
-    @Input() @ToBoolean() animateSlides = false;
+    @Input({ transform: booleanAttribute }) animateSlides = false;
     @HostBinding('class.spy-tabs--warning') hasWarning = false;
 
     @Output() tabChange = new EventEmitter<number>();

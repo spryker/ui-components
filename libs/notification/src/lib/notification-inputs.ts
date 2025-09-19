@@ -1,11 +1,10 @@
-import { Directive, Input, Output, EventEmitter } from '@angular/core';
+import { Directive, Input, Output, EventEmitter, booleanAttribute } from '@angular/core';
 import { NotificationType } from './types';
-import { ToBoolean } from '@spryker/utils';
 
 @Directive({ standalone: false, selector: '[spyNotificationInputs]' })
 export class NotificationInputs {
     @Input() type: NotificationType = NotificationType.Info;
-    @Input() @ToBoolean() closeable = false;
-    @Input() @ToBoolean() floating = true;
+    @Input({ transform: booleanAttribute }) closeable = false;
+    @Input({ transform: booleanAttribute }) floating = true;
     @Output() closed = new EventEmitter<void>();
 }

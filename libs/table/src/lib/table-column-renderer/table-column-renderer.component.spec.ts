@@ -90,12 +90,7 @@ describe('TableColumnRendererComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [OrchestratorCoreModule, LayoutFlatHostModule, ContextModule, DefaultContextSerializationModule],
-            declarations: [
-                TableColumnRendererComponent,
-                ColTplDirective,
-                TableColumnTestComponent,
-                TestHostComponent,
-            ],
+            declarations: [TableColumnRendererComponent, ColTplDirective, TableColumnTestComponent, TestHostComponent],
             providers: [
                 ...(OrchestratorCoreModule.forRoot().providers || []),
                 ...OrchestratorCoreModule.registerComponents({

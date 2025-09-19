@@ -118,8 +118,8 @@ class DrawerWithComponentComponent implements OnDestroy {
                 input2: 'value2',
             },
             outputs: {
-                output1: (evt) => console.log(`Got output 1: ${evt}`),
-                output2: (evt) => console.log(`Got output 2: ${evt}`),
+                output1: (evt) => console.info(`Got output 1: ${evt}`),
+                output2: (evt) => console.info(`Got output 2: ${evt}`),
             },
         });
     }

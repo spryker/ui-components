@@ -11,10 +11,11 @@ import {
     SimpleChanges,
     ViewChild,
     ViewEncapsulation,
+    booleanAttribute,
     inject,
 } from '@angular/core';
 import { IconCalendarModule } from '@spryker/icon/icons';
-import { ToBoolean, ToJson, triggerChangeEvent } from '@spryker/utils';
+import { ToJson, triggerChangeEvent } from '@spryker/utils';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 
 import { DateWorkDaysToken, DateWorkHoursToken } from './tokens';
@@ -61,12 +62,12 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     private static HoursRange = [...Array(24).keys()];
     private static MinutesRange = [...Array(60).keys()];
 
-    @Input() @ToBoolean() clearButton = true;
-    @Input() @ToBoolean() disabled = false;
+    @Input({ transform: booleanAttribute }) clearButton = true;
+    @Input({ transform: booleanAttribute }) disabled = false;
     @Input() @ToJson() enableDate?: EnableDateOptions;
     @Input() @ToJson() enableTime?: EnableTimeOptions;
-    @Input() @ToBoolean() open = false;
-    @Input() @ToBoolean() time?: boolean;
+    @Input({ transform: booleanAttribute }) open = false;
+    @Input({ transform: booleanAttribute }) time?: boolean;
     @Input()
     set date(value: Date | string) {
         this._date = value ? this.convertValueToDate(value) : undefined;

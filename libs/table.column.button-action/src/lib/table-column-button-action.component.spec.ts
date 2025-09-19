@@ -85,7 +85,8 @@ describe('TableColumnButtonActionComponent', () => {
             fixture.componentRef.setInput('context', context);
             fixture.detectChanges();
 
-            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent)
+                .componentInstance as ButtonActionComponent;
             expect(btnCmp.action).toBe(configMock[1].action);
         });
 
@@ -94,7 +95,8 @@ describe('TableColumnButtonActionComponent', () => {
             fixture.componentRef.setInput('context', context);
             fixture.detectChanges();
 
-            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent)
+                .componentInstance as ButtonActionComponent;
             expect(btnCmp.actionContext).toBe(context);
         });
 
@@ -103,7 +105,8 @@ describe('TableColumnButtonActionComponent', () => {
             fixture.componentRef.setInput('context', context);
             fixture.detectChanges();
 
-            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent)
+                .componentInstance as ButtonActionComponent;
             expect(btnCmp.actionContext).toBe(configMock[1].actionContext);
         });
 
@@ -112,7 +115,8 @@ describe('TableColumnButtonActionComponent', () => {
             fixture.componentRef.setInput('context', context);
             fixture.detectChanges();
 
-            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent)
+                .componentInstance as ButtonActionComponent;
             expect(btnCmp.variant).toBe(configMock[1].variant);
         });
 
@@ -121,7 +125,8 @@ describe('TableColumnButtonActionComponent', () => {
             fixture.componentRef.setInput('context', context);
             fixture.detectChanges();
 
-            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent)
+                .componentInstance as ButtonActionComponent;
             expect(btnCmp.shape).toBe(configMock[1].shape);
         });
 
@@ -130,7 +135,8 @@ describe('TableColumnButtonActionComponent', () => {
             fixture.componentRef.setInput('context', context);
             fixture.detectChanges();
 
-            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent)
+                .componentInstance as ButtonActionComponent;
             expect(btnCmp.size).toBe(configMock[1].size);
         });
 
@@ -139,7 +145,8 @@ describe('TableColumnButtonActionComponent', () => {
             fixture.componentRef.setInput('context', context);
             fixture.detectChanges();
 
-            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent)
+                .componentInstance as ButtonActionComponent;
             expect(btnCmp.attrs).toBe(configMock[1].attrs);
         });
     });

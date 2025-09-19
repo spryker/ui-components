@@ -38,9 +38,7 @@ describe('TableColumnDateComponent', () => {
         fixture.componentRef.setInput('context', context);
         fixture.detectChanges();
 
-        const de = q('spy-table-column-date');
-        expect(de).toBeTruthy();
-        expect(de.nativeElement.textContent).toContain(expectedValue);
+        expect(fixture.nativeElement.textContent).toContain(expectedValue);
     });
 
     it('Template must render value from `config.date` converted by `DatePipe` with format value', () => {
@@ -50,9 +48,7 @@ describe('TableColumnDateComponent', () => {
         fixture.componentRef.setInput('context', context);
         fixture.detectChanges();
 
-        const de = q('spy-table-column-date');
-        expect(de).toBeTruthy();
-        expect(de.nativeElement.textContent).toContain(expectedValue);
+        expect(fixture.nativeElement.textContent).toContain(expectedValue);
     });
 
     it('Template must render value from `config.date` with dynamic text string from context', () => {
@@ -62,8 +58,6 @@ describe('TableColumnDateComponent', () => {
         fixture.componentRef.setInput('context', context);
         fixture.detectChanges();
 
-        const de = q('spy-table-column-date');
-        expect(de).toBeTruthy();
-        expect(de.nativeElement.textContent).toContain(expectedValue);
+        expect(fixture.nativeElement.textContent).toContain(expectedValue);
     });
 });

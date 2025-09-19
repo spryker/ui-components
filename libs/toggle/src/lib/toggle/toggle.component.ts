@@ -1,4 +1,5 @@
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     ElementRef,
@@ -8,7 +9,6 @@ import {
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
 
 @Component({
     standalone: false,
@@ -24,8 +24,8 @@ import { ToBoolean } from '@spryker/utils';
 export class ToggleComponent {
     @ViewChild('inputRef') inputRef?: ElementRef<HTMLInputElement>;
 
-    @Input() @ToBoolean() value = false;
-    @Input() @ToBoolean() disabled = false;
+    @Input({ transform: booleanAttribute }) value = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
     @Input() name?: string;
     @Output() valueChange = new EventEmitter<boolean>();
 

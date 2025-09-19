@@ -6,6 +6,7 @@ import {
     Input,
     ViewEncapsulation,
     inject,
+    booleanAttribute,
 } from '@angular/core';
 import {
     InterceptionComposerDirective,
@@ -13,7 +14,7 @@ import {
     provideInterceptionComposerToken,
     provideInterceptionService,
 } from '@spryker/interception';
-import { ToBoolean, ToJson, WindowToken } from '@spryker/utils';
+import { ToJson, WindowToken } from '@spryker/utils';
 import { NavigationComponentMethods, NavigationItem } from './navigation';
 import { NavigationRedirectInterceptionEvent } from './navigation-interception';
 
@@ -41,7 +42,7 @@ export class NavigationComponent implements NavigationComponentMethods {
     private windowToken = inject(WindowToken);
     private interceptorDispatcherService = inject(InterceptorDispatcherService);
 
-    @Input() @ToBoolean() collapsed = false;
+    @Input({ transform: booleanAttribute }) collapsed = false;
     @Input() @ToJson() items: NavigationItem[] = [];
 
     clickHandler(event: Event, url: string): void {

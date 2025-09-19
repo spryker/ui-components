@@ -130,7 +130,7 @@ export const withTable = (args) => ({
     props: {
         ...args,
         events: {
-            table: (event: TableActionTriggeredEvent) => console.log('actionTriggered', event),
+            table: (event: TableActionTriggeredEvent) => console.info('actionTriggered', event),
         },
     },
     applicationConfig: {

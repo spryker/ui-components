@@ -1,4 +1,3 @@
-// libs/table/src/lib/columns/dynamic/table-column-dynamic.component.spec.ts
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -46,16 +45,14 @@ describe('TableColumnDynamicComponent', () => {
         await TestBed.configureTestingModule({
             imports: [DefaultContextSerializationModule],
             declarations: [TableColumnDynamicComponent, ContextPipe],
-            providers: [
-                MockDatasourceService,
-                { provide: DatasourceService, useExisting: MockDatasourceService },
-            ],
+            providers: [MockDatasourceService, { provide: DatasourceService, useExisting: MockDatasourceService }],
             schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: true },
         }).compileComponents();
 
         datasource = TestBed.inject(MockDatasourceService);
         fixture = TestBed.createComponent(TableColumnDynamicComponent);
+        fixture.detectChanges();
     });
 
     it('should render <spy-table-column-renderer> element with config from datasource', fakeAsync(() => {
@@ -102,6 +99,9 @@ describe('TableColumnDynamicComponent', () => {
     }));
 
     it('should bound `colData` property to the `data` input of <spy-table-column-renderer> element', () => {
+        const datasourceData$ = new BehaviorSubject(of(configMock.datasource.data));
+        datasource.resolve.mockReturnValue(datasourceData$);
+
         fixture.componentRef.setInput('config', configMock);
         fixture.componentRef.setInput('context', context);
         fixture.detectChanges();
@@ -111,6 +111,9 @@ describe('TableColumnDynamicComponent', () => {
     });
 
     it('should bound `i` property from `@Input(type)` to the `i` input of <spy-table-column-renderer> element', () => {
+        const datasourceData$ = new BehaviorSubject(of(configMock.datasource.data));
+        datasource.resolve.mockReturnValue(datasourceData$);
+
         fixture.componentRef.setInput('config', configMock);
         fixture.componentRef.setInput('context', context);
         fixture.detectChanges();
@@ -120,6 +123,9 @@ describe('TableColumnDynamicComponent', () => {
     });
 
     it('should bound `j` property from `@Input(type)` to the `j` input of <spy-table-column-renderer> element', () => {
+        const datasourceData$ = new BehaviorSubject(of(configMock.datasource.data));
+        datasource.resolve.mockReturnValue(datasourceData$);
+
         fixture.componentRef.setInput('config', configMock);
         fixture.componentRef.setInput('context', context);
         fixture.detectChanges();

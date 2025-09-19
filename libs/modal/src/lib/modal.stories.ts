@@ -206,7 +206,7 @@ class ConfirmationComponent {
                 backdrop: this.hasBackdrop,
             })
             .afterDismissed()
-            .subscribe((isSure) => console.log('Was sure?', isSure));
+            .subscribe((isSure) => console.info('Was sure?', isSure));
     }
 }
 

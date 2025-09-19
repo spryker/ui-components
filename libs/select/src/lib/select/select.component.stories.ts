@@ -86,7 +86,7 @@ export const primary = {
     render: (args) => ({
         props: {
             ...args,
-            valueChange: console.log,
+            valueChange: console.info,
         },
     }),
     argTypes: {

@@ -34,7 +34,7 @@ async function main(extraArgs) {
 
     const projectsToBuild = projects.filter((p) => p.tags && p.tags.every((tag) => !ignoreMap[tag])).map((p) => p.name);
 
-    console.log(`Building projects: ${projectsToBuild.join(', ')}...`);
+    console.info(`Building projects: ${projectsToBuild.join(', ')}...`);
 
     const args = ['--target build', ...extra, `--projects ${projectsToBuild.join(',')}`, ...extraArgs];
 

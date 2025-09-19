@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
+import { booleanAttribute, ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild } from '@angular/core';
 
 @Component({
     standalone: false,
@@ -10,6 +9,6 @@ import { ToBoolean } from '@spryker/utils';
 export class OptionComponent {
     @Input() value?: string;
     @Input() title?: string;
-    @Input() @ToBoolean() disabled = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
     @ViewChild('contentTpl') template!: TemplateRef<void>;
 }

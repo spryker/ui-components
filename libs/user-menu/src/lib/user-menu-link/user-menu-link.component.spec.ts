@@ -1,7 +1,6 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Component, Input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { By } from '@angular/platform-browser';
 import { UserMenuLinkComponent, UserMenuLinkType } from './user-menu-link.component';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
 
@@ -9,50 +8,50 @@ class MockUserMenuComponent {
     isPopoverOpened = false;
 }
 
+@Component({
+    standalone: false,
+    selector: 'host-cmp',
+    template: `<spy-user-menu-link [type]="type">Link</spy-user-menu-link>`,
+})
+class HostCmp {
+    @Input() type = UserMenuLinkType.Default;
+}
+
 describe('UserMenuLinkComponent', () => {
-    let userMenuComponent: MockUserMenuComponent;
+    let fixture: any;
+    let parent: MockUserMenuComponent;
+    const q = (css: string) => fixture.debugElement.query(By.css(css));
 
-    const { testModule, createComponent } = getTestingForComponent(UserMenuLinkComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-    });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [HostCmp, UserMenuLinkComponent],
+            providers: [MockUserMenuComponent, { provide: UserMenuComponent, useExisting: MockUserMenuComponent }],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            providers: [
-                {
-                    provide: UserMenuComponent,
-                    useExisting: MockUserMenuComponent,
-                },
-                MockUserMenuComponent,
-            ],
-            teardown: { destroyAfterEach: false },
-        });
-
-        userMenuComponent = TestBed.inject(MockUserMenuComponent);
+        parent = TestBed.inject(MockUserMenuComponent);
+        fixture = TestBed.createComponent(HostCmp);
+        fixture.detectChanges();
     });
 
     it('should render <spy-user-menu-link>', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const userMenuItemElem = host.queryCss('spy-user-menu-link');
-
-        expect(userMenuItemElem).toBeTruthy();
+        expect(q('spy-user-menu-link')).toBeTruthy();
     });
 
     it('should render <spy-user-menu-link> with `type` input', async () => {
-        const host = await createComponentWrapper(createComponent, { type: UserMenuLinkType.Danger });
-        const userMenuLinkElem = host.queryCss('spy-user-menu-link');
+        fixture.componentRef.setInput('type', UserMenuLinkType.Danger);
+        fixture.detectChanges();
 
-        expect(userMenuLinkElem.classes['spy-user-menu-link--danger']).toBe(true);
+        const el = q('spy-user-menu-link');
+        expect(el.classes['spy-user-menu-link--danger']).toBe(true);
     });
 
     it('click event should set parent `isPopoverOpened` to false', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const userMenuLinkElem = host.queryCss('spy-user-menu-link');
+        const el = q('spy-user-menu-link');
+        el.triggerEventHandler('click', null);
+        fixture.detectChanges();
 
-        userMenuLinkElem.triggerEventHandler('click', null);
-        host.detectChanges();
-
-        expect(userMenuComponent.isPopoverOpened).toBe(false);
+        expect(parent.isPopoverOpened).toBe(false);
     });
 });

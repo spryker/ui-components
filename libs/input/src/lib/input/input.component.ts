@@ -1,4 +1,5 @@
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
@@ -10,7 +11,7 @@ import {
     TemplateRef,
     ViewEncapsulation,
 } from '@angular/core';
-import { AutocompleteWrapper, AutocompleteWrapperToken, ToBoolean, ToJson } from '@spryker/utils';
+import { AutocompleteWrapper, AutocompleteWrapperToken, ToJson } from '@spryker/utils';
 import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
 import { ReplaySubject } from 'rxjs';
 
@@ -37,9 +38,9 @@ export class InputComponent implements AutocompleteWrapper, OnInit, OnChanges {
     @Input() value: any = '';
     @Input() type = 'text';
     @Input() placeholder?: string;
-    @Input() @ToBoolean() readOnly = false;
-    @Input() @ToBoolean() disabled = false;
-    @Input() @ToBoolean() required = false;
+    @Input({ transform: booleanAttribute }) readOnly = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) required = false;
     @Input() @ToJson() attrs: Record<string, string> = {};
     @Input() spyId?: string;
     @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();

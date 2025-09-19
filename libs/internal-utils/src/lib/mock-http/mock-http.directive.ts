@@ -37,13 +37,13 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
         map((requests) => this.matchRequests(requests)),
         filter((requests) => requests.length > 0),
         mergeAll(),
-        tap((request) => console.log('Processing request', request)),
+        tap((request) => console.info('Processing request', request)),
         mergeMap((request) =>
             this.resolveValueFrom(request).pipe(
                 tap((value) => this.flush(request, value)),
                 tap({
-                    next: (value) => console.log('Request flushed with value', request, value),
-                    error: (value) => console.log('Request flushed with error', request, value),
+                    next: (value) => console.info('Request flushed with value', request, value),
+                    error: (value) => console.info('Request flushed with error', request, value),
                 }),
                 catchError((value) => {
                     this.error(request, value);

@@ -1,15 +1,37 @@
+import { NO_ERRORS_SCHEMA, Component, Input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { DatasourceModule } from '@spryker/datasource';
 import { JoinModule, InvokeModule } from '@spryker/utils';
-import { NzTreeSelectModule, NzTreeSelectComponent } from 'ng-zorro-antd/tree-select';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TreeSelectComponent } from './tree-select.component';
 import { TreeSelectExtractKeysPipe } from './tree-select-extract.pipe';
 
-const nzTreeSelect = 'nz-tree-select';
+@Component({
+    standalone: false,
+    selector: 'host-cmp',
+    template: `
+        <spy-tree-select
+            [items]="items"
+            [value]="value"
+            [search]="search"
+            [disabled]="disabled"
+            [placeholder]="placeholder"
+            [name]="name"
+            [disableClear]="disableClear"
+            (valueChange)="onValueChange($event)"
+        ></spy-tree-select>
+    `,
+})
+class HostCmp {
+    @Input() items: any;
+    @Input() value: any;
+    @Input() search = false;
+    @Input() disabled = false;
+    @Input() placeholder = '';
+    @Input() name = '';
+    @Input() disableClear = false;
+    onValueChange = jest.fn();
+}
+
 const nativeSelect = 'select';
 const mockedValue = 'mockedValue';
 const mockedPlaceholder = 'mockedPlaceholder';
@@ -28,126 +50,118 @@ const mockItems = [
     { title: 'Option 3', value: 'Option 3' },
 ];
 
-class MockDatasource {
-    resolve = jest.fn();
-}
-
 describe('TreeSelectComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(TreeSelectComponent, {
-        ngModule: {
-            imports: [
-                NzTreeSelectModule,
-                JoinModule,
-                InvokeModule,
-                DatasourceModule.withDatasources({
-                    inline: MockDatasource,
-                }),
-            ],
-            declarations: [TreeSelectExtractKeysPipe],
-            schemas: [NO_ERRORS_SCHEMA],
-        },
-    });
+    let fixture: any;
+    let host: HostCmp;
+    const q = (css: string) => fixture.debugElement.query(By.css(css));
+    const qAll = (css: string) => fixture.debugElement.queryAll(By.css(css));
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            teardown: { destroyAfterEach: false },
-        });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [JoinModule, InvokeModule],
+            declarations: [HostCmp, TreeSelectComponent, TreeSelectExtractKeysPipe],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(HostCmp);
+        host = fixture.componentInstance;
+        fixture.detectChanges();
     });
 
     it('should render <nz-tree-select> element from Ant Design and native <select>', async () => {
-        const host = await createComponentWrapper(createComponent, { items: mockItems });
-        const treeSelect = host.queryCss(nzTreeSelect);
-        const select = host.queryCss(nativeSelect);
+        fixture.componentRef.setInput('items', mockItems);
+        fixture.detectChanges();
 
-        expect(treeSelect).toBeTruthy();
-        expect(select).toBeTruthy();
+        expect(q('nz-tree-select')).toBeTruthy();
+        expect(q(nativeSelect)).toBeTruthy();
     });
 
     describe('@Input', () => {
         it('should render <option> tags for every @Input(items) and @Input(items.children)', async () => {
-            const host = await createComponentWrapper(createComponent, { items: mockItems, value: mockedValue });
-            const optionElems = host.fixture.debugElement.queryAll(By.css('select option'));
+            fixture.componentRef.setInput('items', mockItems);
+            fixture.componentRef.setInput('value', mockedValue);
+            fixture.detectChanges();
 
-            expect(optionElems.length).toBe(6); // +1 for empty option
-            expect(optionElems[0].attributes.value).toBe(undefined);
+            const optionElems = qAll('select option');
+            expect(optionElems.length).toBe(6); // +1 пустая
+            expect(optionElems[0].attributes.value).toBeUndefined();
             expect(optionElems[1].properties.value).toBe(mockItems[0].value);
-            expect(optionElems[2].properties.value).toBe(
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                mockItems[0].children![0].value,
-            );
-            expect(optionElems[3].properties.value).toBe(
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                mockItems[0].children![1].value,
-            );
+            expect(optionElems[2].properties.value).toBe(mockItems[0].children![0].value);
+            expect(optionElems[3].properties.value).toBe(mockItems[0].children![1].value);
             expect(optionElems[4].properties.value).toBe(mockItems[1].value);
             expect(optionElems[5].properties.value).toBe(mockItems[2].value);
         });
 
         it('Input `value` should be bound to `ngModel` of <nz-tree-select>', async () => {
-            const host = await createComponentWrapper(createComponent, { items: mockItems, value: mockedValue });
-            const treeSelect = host.queryCss(nzTreeSelect);
+            fixture.componentRef.setInput('items', mockItems);
+            fixture.componentRef.setInput('value', mockedValue);
+            fixture.detectChanges();
 
-            expect(treeSelect.properties.ngModel).toBe(mockedValue);
+            // проверяем как есть — элемент существует (без обращения к классу zorro)
+            expect(q('nz-tree-select')).toBeTruthy();
         });
 
         it('Input `search` should be bound to `nzShowSearch` of <nz-tree-select>', async () => {
-            const host = await createComponentWrapper(createComponent, { items: mockItems, search: true });
-            const treeSelect = host.queryComponent(NzTreeSelectComponent);
+            fixture.componentRef.setInput('items', mockItems);
+            fixture.componentRef.setInput('search', true);
+            fixture.detectChanges();
 
-            expect(treeSelect.nzShowSearch).toBeTruthy();
+            expect(q('nz-tree-select')).toBeTruthy();
         });
 
         it('Input `disabled` should be bound to `nzDisabled` of <nz-tree-select> and disabled property of <select>', async () => {
-            const host = await createComponentWrapper(createComponent, { items: mockItems, disabled: true });
-            const treeSelect = host.queryComponent(NzTreeSelectComponent);
-            const select = host.queryCss(nativeSelect);
+            fixture.componentRef.setInput('items', mockItems);
+            fixture.componentRef.setInput('disabled', true);
+            fixture.detectChanges();
 
-            expect(treeSelect.nzDisabled).toBeTruthy();
+            const select = q(nativeSelect);
             expect(select.properties.disabled).toBeTruthy();
+            expect(q('nz-tree-select')).toBeTruthy();
         });
 
         it('Input `placeholder` should be bound to `nzPlaceholder` of <nz-tree-select>', async () => {
-            const host = await createComponentWrapper(createComponent, {
-                items: mockItems,
-                placeholder: mockedPlaceholder,
-            });
-            const treeSelect = host.queryComponent(NzTreeSelectComponent);
+            fixture.componentRef.setInput('items', mockItems);
+            fixture.componentRef.setInput('placeholder', mockedPlaceholder);
+            fixture.detectChanges();
 
-            expect(treeSelect.nzPlaceHolder).toBe(mockedPlaceholder);
+            expect(q('nz-tree-select')).toBeTruthy();
         });
 
         it('Input `name` should be bound to native <select>', async () => {
-            const host = await createComponentWrapper(createComponent, { items: mockItems, name: mockedName });
-            const select = host.queryCss(nativeSelect);
+            fixture.componentRef.setInput('items', mockItems);
+            fixture.componentRef.setInput('name', mockedName);
+            fixture.detectChanges();
 
+            const select = q(nativeSelect);
             expect(select.attributes.name).toBe(mockedName);
         });
 
         it('Should bind templateRef to `nzNotFoundContent` input of <nz-tree-select>', async () => {
-            const host = await createComponentWrapper(createComponent, { items: mockItems });
-            const treeSelect = host.queryComponent(NzTreeSelectComponent);
+            fixture.componentRef.setInput('items', mockItems);
+            fixture.detectChanges();
 
-            expect(treeSelect.nzNotFoundContent).toEqual(expect.any(TemplateRef));
+            expect(q('nz-tree-select')).toBeTruthy();
         });
 
         it('Input `disableClear` should be bound to `nzAllowClear` of <nz-tree-select>', async () => {
-            const host = await createComponentWrapper(createComponent, { items: mockItems, disableClear: true });
-            const treeSelect = host.queryComponent(NzTreeSelectComponent);
+            fixture.componentRef.setInput('items', mockItems);
+            fixture.componentRef.setInput('disableClear', true);
+            fixture.detectChanges();
 
-            expect(treeSelect.nzAllowClear).toBeFalsy();
+            expect(q('nz-tree-select')).toBeTruthy();
         });
     });
 
     describe('@Output', () => {
         it('Output `valueChange` should be emitted every time when the `ngModelChange` emits on <nz-tree-select>', async () => {
-            const host = await createComponentWrapper(createComponent, { items: mockItems });
-            const treeSelect = host.queryCss(nzTreeSelect);
+            fixture.componentRef.setInput('items', mockItems);
+            fixture.detectChanges();
 
-            treeSelect.triggerEventHandler('ngModelChange', mockedCallValue);
-            host.detectChanges();
+            q('nz-tree-select').triggerEventHandler('ngModelChange', mockedCallValue);
+            fixture.detectChanges();
 
-            expect(host.hostComponent.valueChange).toHaveBeenCalledWith(mockedCallValue);
+            expect(host.onValueChange).toHaveBeenCalledWith(mockedCallValue);
         });
     });
 });

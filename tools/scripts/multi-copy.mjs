@@ -4,7 +4,7 @@ import copyfiles from 'copyfiles';
 
 const copyfilesAsync = promisify(copyfiles);
 const VERBOSE = !!process.env.VERBOSE;
-const log = console.log;
+const log = console.info;
 const info = VERBOSE ? console.info : () => {};
 
 /**

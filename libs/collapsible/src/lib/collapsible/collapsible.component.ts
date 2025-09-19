@@ -7,8 +7,8 @@ import {
     EventEmitter,
     ContentChild,
     TemplateRef,
+    booleanAttribute,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
 
 @Component({
     standalone: false,
@@ -21,9 +21,9 @@ import { ToBoolean } from '@spryker/utils';
 export class CollapsibleComponent {
     @Input() spyTitle = '';
     @Input() titleIcon = '';
-    @Input() @ToBoolean() active = false;
-    @Input() @ToBoolean() disabled = false;
-    @Input() @ToBoolean() alwaysRender = true;
+    @Input({ transform: booleanAttribute }) active = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) alwaysRender = true;
 
     @Output() activeChange = new EventEmitter<boolean>();
 

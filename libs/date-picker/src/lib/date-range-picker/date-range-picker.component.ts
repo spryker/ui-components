@@ -1,4 +1,5 @@
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
@@ -8,7 +9,7 @@ import {
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
-import { ToBoolean, ToJson } from '@spryker/utils';
+import { ToJson } from '@spryker/utils';
 
 import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { DateRangeValueInput } from './types';
@@ -26,9 +27,9 @@ export class DateRangePickerComponent implements OnInit {
     private static MinutesRange = [...Array(60).keys()];
 
     @Input() @ToJson() dates: DateRangeValueInput = {};
-    @Input() @ToBoolean() clearButton = true;
-    @Input() @ToBoolean() disabled = false;
-    @Input() @ToBoolean() time?: boolean;
+    @Input({ transform: booleanAttribute }) clearButton = true;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) time?: boolean;
     @Input() format?: string;
     @Input() placeholderFrom?: string;
     @Input() placeholderTo?: string;

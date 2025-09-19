@@ -1,12 +1,15 @@
 export default {
     displayName: 'datasource.trigger.change',
     preset: '../../jest.preset.js',
-    setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-    globals: {
-        'ts-jest': {
-            tsconfig: '<rootDir>/tsconfig.spec.json',
-            stringifyContentPathRegex: '\\.(html|svg)$',
-        },
-    },
     coverageDirectory: '../../coverage/libs/datasource.trigger.change',
+    setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+    transform: {
+        '^.+\\.(ts|mjs|js|html)$': [
+            'jest-preset-angular',
+            {
+                tsconfig: '<rootDir>/tsconfig.spec.json',
+                stringifyContentPathRegex: '\\.(html|svg)$',
+            },
+        ],
+    },
 };

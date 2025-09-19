@@ -83,7 +83,7 @@ export const viaHtml = (args) => ({
     props: {
         ...args,
         events: {
-            table: (event: TableActionTriggeredEvent) => console.log('actionTriggered', event),
+            table: (event: TableActionTriggeredEvent) => console.info('actionTriggered', event),
         },
     },
     moduleMetadata: { imports: [TableRowActionsFeatureModule] },
@@ -98,7 +98,7 @@ export const viaConfig = (args) => ({
     props: {
         ...args,
         events: {
-            table: (event: TableActionTriggeredEvent) => console.log('actionTriggered', event),
+            table: (event: TableActionTriggeredEvent) => console.info('actionTriggered', event),
         },
     },
     applicationConfig: {

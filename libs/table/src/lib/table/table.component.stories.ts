@@ -213,11 +213,11 @@ class CustomFeatureComponent extends TableFeatureComponent implements OnInit {
     @Input() location?: TableFeatureLocation;
 
     ngOnInit(): void {
-        console.log(`Custom Table Feature @ ${this.location}!`);
+        console.info(`Custom Table Feature @ ${this.location}!`);
     }
 
     log(context: any) {
-        console.log('Feature context', context);
+        console.info('Feature context', context);
     }
 }
 

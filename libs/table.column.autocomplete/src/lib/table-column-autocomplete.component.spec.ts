@@ -66,9 +66,7 @@ describe('TableColumnAutocompleteComponent', () => {
         })
             .overrideComponent(TableColumnAutocompleteComponent, {
                 set: {
-                    providers: [
-                        { provide: TableEditableService, useExisting: MockTableEditableService },
-                    ],
+                    providers: [{ provide: TableEditableService, useExisting: MockTableEditableService }],
                 },
             })
             .compileComponents();

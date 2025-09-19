@@ -1,47 +1,38 @@
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TableColumnTextComponent } from './table-column-text.component';
 
-const configMock: any = [
-    {
-        text: 'mockedText',
-    },
-    {
-        text: '${value}',
-    },
-];
-const context: any = {
-    value: 'mockedText',
-};
+const configMock: any = [{ text: 'mockedText' }, { text: '${value}' }];
+
+const context: any = { value: 'mockedText' };
 
 describe('TableColumnTextComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(TableColumnTextComponent, {
-        ngModule: {
-            imports: [DefaultContextSerializationModule],
-            declarations: [ContextPipe],
-        },
-    });
+    let fixture: any;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            teardown: { destroyAfterEach: false },
-        });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [DefaultContextSerializationModule],
+            declarations: [TableColumnTextComponent, ContextPipe],
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(TableColumnTextComponent);
     });
 
     it('Template must render value text from config', async () => {
-        const host = await createComponentWrapper(createComponent, { config: configMock[0], context });
-        const columnElem = host.queryCss('spy-table-column-text');
+        fixture.componentRef.setInput('config', configMock[0]);
+        fixture.componentRef.setInput('context', context);
+        fixture.detectChanges();
 
-        expect(columnElem.nativeElement.textContent).toContain(configMock[0].text);
+        expect(fixture.nativeElement.textContent).toContain(configMock[0].text);
     });
 
     it('Template must render value text with dynamic text string from context', async () => {
-        const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-        const columnElem = host.queryCss('spy-table-column-text');
+        fixture.componentRef.setInput('config', configMock[1]);
+        fixture.componentRef.setInput('context', context);
+        fixture.detectChanges();
 
-        expect(columnElem.nativeElement.textContent).toContain(context.value);
+        expect(fixture.nativeElement.textContent).toContain(context.value);
     });
 });

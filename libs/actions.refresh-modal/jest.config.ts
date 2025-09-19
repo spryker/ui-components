@@ -1,12 +1,15 @@
 export default {
-    displayName: 'actions.refresh-drawer',
+    displayName: 'actions.refresh-modal',
     preset: '../../jest.preset.js',
-    coverageDirectory: '../../coverage/libs/actions.refresh-drawer',
+    coverageDirectory: '../../coverage/libs/actions.refresh-modal',
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-    globals: {
-        'ts-jest': {
-            tsconfig: '<rootDir>/tsconfig.spec.json',
-            stringifyContentPathRegex: '\\.(html|svg)$',
-        },
+    transform: {
+        '^.+\\.(ts|mjs|js|html)$': [
+            'jest-preset-angular',
+            {
+                tsconfig: '<rootDir>/tsconfig.spec.json',
+                stringifyContentPathRegex: '\\.(html|svg)$',
+            },
+        ],
     },
 };

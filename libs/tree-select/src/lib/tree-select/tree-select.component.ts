@@ -13,11 +13,12 @@ import {
     SimpleChanges,
     ViewChild,
     ViewEncapsulation,
+    booleanAttribute,
     inject,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { I18nService } from '@spryker/locale';
-import { ToBoolean, ToJson } from '@spryker/utils';
+import { ToJson } from '@spryker/utils';
 import { NzTreeSelectComponent } from 'ng-zorro-antd/tree-select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
@@ -55,13 +56,13 @@ export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy, AfterV
 
     @Input() @ToJson() items?: TreeSelectItem[];
     @Input() @ToJson() value?: TreeSelectValue | TreeSelectValue[];
-    @Input() @ToBoolean() search = false;
-    @Input() @ToBoolean() disabled = false;
-    @Input() @ToBoolean() multiple = false;
+    @Input({ transform: booleanAttribute }) search = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) multiple = false;
     @Input() placeholder = '';
     @Input() name = '';
     @Input() noOptionsText = '';
-    @Input() @ToBoolean() disableClear = false;
+    @Input({ transform: booleanAttribute }) disableClear = false;
     @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
 

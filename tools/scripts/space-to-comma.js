@@ -12,15 +12,15 @@ const { execSync } = require('child_process');
 
 const { commands, args } = splitArgs(process.argv.slice(2));
 
-console.log({ commands, args });
+console.info({ commands, args });
 
 const argsWithCommas = args.join(',');
 
-console.log({ argsWithCommas });
+console.info({ argsWithCommas });
 
 const command = `${commands.join(' ')} ${argsWithCommas}`;
 
-console.log({ command });
+console.info({ command });
 
 execSync(command, { stdio: 'inherit', env: process.env });
 

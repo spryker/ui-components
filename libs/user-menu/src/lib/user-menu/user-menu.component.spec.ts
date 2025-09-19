@@ -1,60 +1,63 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Component, Input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { IconUserModule } from '@spryker/icon/icons';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { UserMenuComponent } from './user-menu.component';
 
+@Component({
+    standalone: false,
+    selector: 'host-cmp',
+    template: ` <spy-user-menu [icon]="icon"></spy-user-menu> `,
+})
+class HostCmp {
+    @Input() icon?: string;
+}
+
 describe('UserMenuComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(UserMenuComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+    let fixture: any;
+    const q = (css: string) => fixture.debugElement.query(By.css(css));
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [HostCmp, UserMenuComponent],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(HostCmp);
+        fixture.detectChanges();
     });
 
-    beforeEach(() =>
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            teardown: { destroyAfterEach: false },
-        }),
-    );
-
     it('should render <spy-user-menu>', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const userMenuElem = host.queryCss('spy-user-menu');
-
-        expect(userMenuElem).toBeTruthy();
+        expect(q('spy-user-menu')).toBeTruthy();
     });
 
     it('should render <spy-user-menu> with `icon` input', async () => {
-        const host = await createComponentWrapper(createComponent, { icon: IconUserModule.icon });
-        const userMenuIconElem = host.queryCss('spy-icon');
+        fixture.componentRef.setInput('icon', IconUserModule.icon);
+        fixture.detectChanges();
 
-        expect(userMenuIconElem).toBeTruthy();
-        expect(userMenuIconElem.properties.name).toBe(IconUserModule.icon);
+        const iconEl = q('spy-icon');
+        expect(iconEl).toBeTruthy();
+        expect(iconEl.properties.name).toBe(IconUserModule.icon);
     });
 
     it('should render <spy-popover>', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const popoverElem = host.queryCss('spy-popover');
-
-        expect(popoverElem).toBeTruthy();
+        expect(q('spy-popover')).toBeTruthy();
     });
 
     it('should render <button> with `trigger` attribute', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const buttonElem = host.queryCss('button');
-
-        expect(buttonElem).toBeTruthy();
-        expect(buttonElem.attributes.trigger).toBeDefined();
+        const btn = q('button');
+        expect(btn).toBeTruthy();
+        expect(btn.attributes.trigger).toBeDefined();
     });
 
     it('should add active class to <button> when popover is opened', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const userMenuElem = host.queryCss('spy-popover');
-        const buttonElem = host.queryCss('button');
+        const pop = q('spy-popover');
+        const btn = q('button');
 
-        userMenuElem.triggerEventHandler('openChange', true);
-        host.detectChanges();
+        pop.triggerEventHandler('openChange', true);
+        fixture.detectChanges();
 
-        expect(buttonElem.classes['spy-user-menu__action--active']).toBeTruthy();
+        expect(btn.classes['spy-user-menu__action--active']).toBeTruthy();
     });
 });

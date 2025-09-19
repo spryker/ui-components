@@ -9,11 +9,11 @@ import {
     SimpleChanges,
     TemplateRef,
     ViewEncapsulation,
+    booleanAttribute,
     inject,
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService } from '@spryker/persistence';
-import { ToBoolean } from '@spryker/utils';
 import { merge, ReplaySubject } from 'rxjs';
 import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
@@ -35,7 +35,7 @@ export class SidebarComponent implements OnChanges, OnInit {
     @Input() collapsedWidth = 96;
     @Input() spyId?: string;
     @Input() trigger: undefined | TemplateRef<void>;
-    @Input() @ToBoolean() collapsed = false;
+    @Input({ transform: booleanAttribute }) collapsed = false;
     @Output() collapsedChange = new EventEmitter<boolean>();
 
     private isCollapsedStateRetrieved = false;

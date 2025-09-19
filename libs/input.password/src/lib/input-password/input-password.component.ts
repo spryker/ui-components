@@ -6,8 +6,9 @@ import {
     TemplateRef,
     Output,
     EventEmitter,
+    booleanAttribute,
 } from '@angular/core';
-import { ToBoolean, ToJson } from '@spryker/utils';
+import { ToJson } from '@spryker/utils';
 import { IconOpenEyeModule, IconCrossedEyeModule } from '@spryker/icon/icons';
 
 @Component({
@@ -28,9 +29,9 @@ export class InputPasswordComponent {
     @Input() placeholder = '';
     @Input() outerPrefix?: string | TemplateRef<void>;
     @Input() outerSuffix?: string | TemplateRef<void>;
-    @Input() @ToBoolean() readOnly?: boolean;
-    @Input() @ToBoolean() disabled?: boolean;
-    @Input() @ToBoolean() required?: boolean;
+    @Input({ transform: booleanAttribute }) readOnly?: boolean;
+    @Input({ transform: booleanAttribute }) disabled?: boolean;
+    @Input({ transform: booleanAttribute }) required?: boolean;
     @Input() @ToJson() attrs?: Record<string, string>;
     @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
 

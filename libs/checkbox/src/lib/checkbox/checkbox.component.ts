@@ -1,5 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { ToJson, ToBoolean } from '@spryker/utils';
+import {
+    booleanAttribute,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    ViewEncapsulation,
+} from '@angular/core';
+import { ToJson } from '@spryker/utils';
 
 @Component({
     standalone: false,
@@ -11,10 +19,10 @@ import { ToJson, ToBoolean } from '@spryker/utils';
 })
 export class CheckboxComponent {
     @Input() spyId?: string;
-    @Input() @ToBoolean() checked = false;
-    @Input() @ToBoolean() disabled = false;
-    @Input() @ToBoolean() indeterminate = false;
-    @Input() @ToBoolean() required = false;
+    @Input({ transform: booleanAttribute }) checked = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) indeterminate = false;
+    @Input({ transform: booleanAttribute }) required = false;
     @Input() name?: string;
     @Input() @ToJson() attrs: Record<string, string> = {};
 

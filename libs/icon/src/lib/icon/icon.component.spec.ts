@@ -80,7 +80,6 @@ describe('IconComponent', () => {
             fixture.detectChanges();
 
             const iDe = fixture.debugElement.query(By.css('i[nz-icon]'));
-            console.log(iDe, 'iDe');
             expect(iDe).toBeTruthy();
             expect(iDe.nativeNode.nzType).toBe(promiseIcon);
         }));

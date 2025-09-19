@@ -9,7 +9,6 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { AbstractControl, NgModel } from '@angular/forms';
-import { ToBoolean } from '@spryker/utils';
 
 @Component({
     standalone: false,

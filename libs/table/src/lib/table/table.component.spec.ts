@@ -190,7 +190,6 @@ describe('TableComponent', () => {
             tick(0);
             fixture.detectChanges();
 
-
             expect(q('.ant-table-features--top .top-feature')).toBeTruthy();
             expect(q('.ant-table-features--before-table .before-table-feature')).toBeTruthy();
             expect(q('.ant-table-features--after-table .after-table-feature')).toBeTruthy();
@@ -294,7 +293,6 @@ describe('TableComponent', () => {
 
                 verifyColumnsRequest();
                 fixture.detectChanges();
-
 
                 const ths = qAll('tr th');
                 expect(ths.length).toBe(mockCols.length);

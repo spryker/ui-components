@@ -9,8 +9,8 @@ import {
     TemplateRef,
     SimpleChanges,
     OnChanges,
+    booleanAttribute,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
 import { IconErrorModule } from '@spryker/icon/icons';
 import { TabTemplateContext } from 'ng-zorro-antd/tabs';
 
@@ -25,8 +25,8 @@ import { TabTemplateContext } from 'ng-zorro-antd/tabs';
 export class TabComponent implements OnChanges {
     iconErrorReference = IconErrorModule;
     @Input() spyTitle = '';
-    @Input() @ToBoolean() disabled = false;
-    @Input() @ToBoolean() hasWarning = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) hasWarning = false;
     @Input() iconName?: string;
 
     @Output() hasWarningChange = new EventEmitter<boolean>();

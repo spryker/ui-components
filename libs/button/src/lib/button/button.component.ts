@@ -1,14 +1,12 @@
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
-    HostBinding,
     Input,
     OnChanges,
     SimpleChanges,
     ViewEncapsulation,
 } from '@angular/core';
-import { ToBoolean } from '@spryker/utils';
-
 import { ButtonCore } from '../button-core/button-core';
 import { SpinnerSize } from '@spryker/spinner';
 
@@ -24,14 +22,14 @@ export enum ButtonType {
     styleUrls: ['./button.component.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        '[class.spy-button--disabled]': 'disabled',
+    },
 })
 export class ButtonComponent extends ButtonCore implements OnChanges {
     @Input() type: ButtonType = ButtonType.Button;
-    @Input()
-    @HostBinding('class.spy-button--disabled')
-    @ToBoolean()
-    disabled = false;
-    @Input() @ToBoolean() loading?: boolean;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) loading?: boolean;
 
     spinnerSize = SpinnerSize.Small;
 

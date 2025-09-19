@@ -81,7 +81,7 @@ describe('ObjectMapDataTransformerService', () => {
                 return;
             }
 
-            expect(dataTransformerService.transform).toBeCalledWith(item, mockConfig.mapProps[key]);
+            expect(dataTransformerService.transform).toHaveBeenCalledWith(item, mockConfig.mapProps[key]);
         });
         expect(callback).toHaveBeenCalledWith(mockReturnedData);
     });

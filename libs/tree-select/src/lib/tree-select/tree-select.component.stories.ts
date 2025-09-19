@@ -94,7 +94,7 @@ export default {
             'Anim ad aute culpa adipisicing aute ad mollit deserunt tempor incididunt. Reprehenderit incididunt nostrud ut eiusmod quis sint tempor ex ipsum aute.',
         name: 'some-name',
         noOptionsText: 'No options...',
-        valueChange: console.log,
+        valueChange: console.info,
     },
 } as Meta;
 

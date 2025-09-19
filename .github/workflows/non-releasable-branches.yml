@@ -63,5 +63,5 @@ jobs:
       - name: Trigger Deploy workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: 'Deploy'
+          workflow: Deploy
           ref: ${{ github.ref }}

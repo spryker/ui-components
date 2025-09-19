@@ -61,9 +61,7 @@ jobs:
           npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
 
       - name: Trigger Deploy workflow
-        uses: peter-evans/repository-dispatch@v2
+        uses: benc-uk/workflow-dispatch@v1
         with:
-          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
-          repository: ${{ github.repository }}
-          event-type: trigger-deploy
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          workflow: 'Deploy'
+          ref: ${{ github.ref }}

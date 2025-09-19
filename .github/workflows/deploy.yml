@@ -78,7 +78,6 @@ jobs:
             echo "is_republish=false" >> $GITHUB_OUTPUT
           fi
 
-      # Master branch release
       - name: Release (master)
         if: needs.prepare.outputs.branch == 'master' || needs.prepare.outputs.branch == 'republish/master'
         run: |
@@ -88,7 +87,6 @@ jobs:
             npm run release
           fi
 
-      # Next branch release
       - name: Release (next)
         if: needs.prepare.outputs.branch == 'next' || needs.prepare.outputs.branch == 'republish/next'
         run: |
@@ -98,7 +96,6 @@ jobs:
             npm run release-next
           fi
 
-      # Alpha/Beta/RC release
       - name: Release (pre-release)
         if: contains('alpha,beta,rc', needs.prepare.outputs.branch) || startsWith(needs.prepare.outputs.branch, 'republish/')
         run: |
@@ -108,7 +105,6 @@ jobs:
             npm run release-tag
           fi
 
-      # Deploy Storybook for non-master branches
       - name: Deploy Storybook (non-master)
         if: needs.prepare.outputs.branch != 'master' && needs.prepare.outputs.branch != 'republish/master'
         run: |

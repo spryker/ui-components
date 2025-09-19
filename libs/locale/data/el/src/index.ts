@@ -1,6 +1,6 @@
 import { I18nLocaleDataPackageModuleInlined } from '@spryker/locale';
 
-import * as inlineData from './data/data';
+import * as inlineData from './data';
 
 export const data = Object.values<I18nLocaleDataPackageModuleInlined>(inlineData as any)
     .filter((d) => d.data)

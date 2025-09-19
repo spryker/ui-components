@@ -10,7 +10,8 @@ const LOCALE_LABELS = ['English', 'German', 'Turkish', 'Greek'] as const;
 const LOCALE_MAPPING = {
     English: EN_LOCALE,
     German: DE_LOCALE,
-    Turkish: TR_LOCALE, Greek: EL_LOCALE,
+    Turkish: TR_LOCALE,
+    Greek: EL_LOCALE,
 } as const;
 
 export default {

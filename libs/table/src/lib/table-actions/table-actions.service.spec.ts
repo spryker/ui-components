@@ -46,7 +46,6 @@ describe('TableActionsService', () => {
         tableActionsService = TestBed.inject(TableActionsService);
         actionService = TestBed.inject(MockActionsService);
 
-        // Initialize default value to avoid `You provided 'undefined' where a stream was expected.` error
         tableActionsService.triggerAction$.next({} as any);
     });
 

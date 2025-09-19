@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { ModuleWithFeature, TableFeatureComponent, TableFeatureLocation, TableFeatureModule } from '@spryker/table';
 
@@ -18,7 +19,9 @@ import { ModuleWithFeature, TableFeatureComponent, TableFeatureLocation, TableFe
         <div *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader" class="after-cols-header-feature">
             After Cols Header Feature
         </div>
-        <div *spyTableFeatureTpl="tableFeatureLocation.header" class="header-feature">Header Feature</div>
+        <div *spyTableFeatureTpl="tableFeatureLocation.header; let config = config;">
+            <div class="header-feature">{{ config.title }}</div>
+        </div>
         <div *spyTableFeatureTpl="tableFeatureLocation.headerExt" class="header-ext-header-feature">
             Header Ext Feature
         </div>
@@ -26,7 +29,9 @@ import { ModuleWithFeature, TableFeatureComponent, TableFeatureLocation, TableFe
             <td>Before Rows Feature</td>
         </tr>
         <div *spyTableFeatureTpl="tableFeatureLocation.beforeCols" class="before-cols-feature">Before Cols Feature</div>
-        <div *spyTableFeatureTpl="tableFeatureLocation.cell" class="cell-feature">Cell Feature</div>
+        <div *spyTableFeatureTpl="tableFeatureLocation.cell; let value = value;">
+            <div class="cell-feature">{{ value }}</div>
+        </div>
         <div *spyTableFeatureTpl="tableFeatureLocation.afterCols" class="after-cols-feature">After Cols Feature</div>
         <tr *spyTableFeatureTpl="tableFeatureLocation.afterRows" class="after-rows-feature">
             <td>After Rows Feature</td>
@@ -39,10 +44,16 @@ export class MockFeatureComponent extends TableFeatureComponent {
 }
 
 @NgModule({
-    imports: [TableFeatureModule],
+    imports: [TableFeatureModule, JsonPipe],
     exports: [MockFeatureComponent],
     declarations: [MockFeatureComponent],
 })
 export class MockFeatureModule implements ModuleWithFeature {
     featureComponent = MockFeatureComponent;
+
+    ngOnInit(): void {
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+
+    }
 }

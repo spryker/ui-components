@@ -1,9 +1,8 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
-import { ButtonActionModule, ButtonActionComponent } from '@spryker/button.action';
+import { By } from '@angular/platform-browser';
+import { ButtonActionComponent, ButtonActionModule } from '@spryker/button.action';
 import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
-import { createComponentWrapper } from '@spryker/internal-utils';
 import { TableColumnButtonActionComponent } from './table-column-button-action.component';
 
 const configMock = [
@@ -36,90 +35,112 @@ const context = {
 };
 
 describe('TableColumnButtonActionComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(TableColumnButtonActionComponent, {
-        ngModule: {
+    let fixture: any;
+
+    const q = (css: string) => fixture.debugElement.query(By.css(css));
+    const qAll = (css: string) => fixture.debugElement.queryAll(By.css(css));
+    const qDir = <T>(dir: any) => fixture.debugElement.query(By.directive(dir));
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [ButtonActionModule, DefaultContextSerializationModule],
-            declarations: [ContextPipe],
+            declarations: [TableColumnButtonActionComponent, ContextPipe],
             schemas: [NO_ERRORS_SCHEMA],
-        },
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(TableColumnButtonActionComponent);
     });
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            teardown: { destroyAfterEach: false },
-        });
+    it('should render <spy-button-action> component', () => {
+        fixture.componentRef.setInput('config', configMock[0]);
+        fixture.componentRef.setInput('context', context);
+        fixture.detectChanges();
+
+        const btnDe = q('spy-button-action');
+        expect(btnDe).toBeTruthy();
     });
 
-    it('should render <spy-button-action> component', async () => {
-        const host = await createComponentWrapper(createComponent, { config: configMock[0], context });
-        const buttonActionElem = host.queryCss('spy-button-action');
+    it('should bound `text` property to content of <spy-button-action>', () => {
+        fixture.componentRef.setInput('config', configMock[0]);
+        fixture.componentRef.setInput('context', context);
+        fixture.detectChanges();
 
-        expect(buttonActionElem).toBeTruthy();
+        const btnDe = q('spy-button-action');
+        expect(btnDe.nativeElement.textContent).toContain(configMock[0].text);
     });
 
-    it('should bound `text` property to content of <spy-button-action>', async () => {
-        const host = await createComponentWrapper(createComponent, { config: configMock[0], context });
-        const buttonActionElem = host.queryCss('spy-button-action');
+    it('should bound `text` property with dynamic text string to content of <spy-button-action>', () => {
+        fixture.componentRef.setInput('config', configMock[1]);
+        fixture.componentRef.setInput('context', context);
+        fixture.detectChanges();
 
-        expect(buttonActionElem.nativeElement.textContent).toContain(configMock[0].text);
-    });
-
-    it('should bound `text` property with dynamic text string to content of <spy-button-action>', async () => {
-        const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-        const buttonActionElem = host.queryCss('spy-button-action');
-
-        expect(buttonActionElem.nativeElement.textContent).toContain(context.text);
+        const btnDe = q('spy-button-action');
+        expect(btnDe.nativeElement.textContent).toContain(context.text);
     });
 
     describe('@Input()', () => {
-        it('should bound `config.action` to `action` of <spy-button-action>', async () => {
-            const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-            const buttonActionElem = host.queryComponent(ButtonActionComponent);
+        it('should bound `config.action` to `action` of <spy-button-action>', () => {
+            fixture.componentRef.setInput('config', configMock[1]);
+            fixture.componentRef.setInput('context', context);
+            fixture.detectChanges();
 
-            expect(buttonActionElem.action).toBe(configMock[1].action);
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            expect(btnCmp.action).toBe(configMock[1].action);
         });
 
-        it('should bound `context` to `actionContext` of <spy-button-action> if `config.actionContext` does not exist', async () => {
-            const host = await createComponentWrapper(createComponent, { config: configMock[0], context });
-            const buttonActionElem = host.queryComponent(ButtonActionComponent);
+        it('should bound `context` to `actionContext` of <spy-button-action> if `config.actionContext` does not exist', () => {
+            fixture.componentRef.setInput('config', configMock[0]);
+            fixture.componentRef.setInput('context', context);
+            fixture.detectChanges();
 
-            expect(buttonActionElem.actionContext).toBe(context);
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            expect(btnCmp.actionContext).toBe(context);
         });
 
-        it('should bound `config.actionContext` to `actionContext` of <spy-button-action>', async () => {
-            const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-            const buttonActionElem = host.queryComponent(ButtonActionComponent);
+        it('should bound `config.actionContext` to `actionContext` of <spy-button-action>', () => {
+            fixture.componentRef.setInput('config', configMock[1]);
+            fixture.componentRef.setInput('context', context);
+            fixture.detectChanges();
 
-            expect(buttonActionElem.actionContext).toBe(configMock[1].actionContext);
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            expect(btnCmp.actionContext).toBe(configMock[1].actionContext);
         });
 
-        it('should bound `config.variant` to `variant` of <spy-button-action>', async () => {
-            const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-            const buttonActionElem = host.queryComponent(ButtonActionComponent);
+        it('should bound `config.variant` to `variant` of <spy-button-action>', () => {
+            fixture.componentRef.setInput('config', configMock[1]);
+            fixture.componentRef.setInput('context', context);
+            fixture.detectChanges();
 
-            expect(buttonActionElem.variant).toBe(configMock[1].variant);
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            expect(btnCmp.variant).toBe(configMock[1].variant);
         });
 
-        it('should bound `config.shape` to `shape` of <spy-button-action>', async () => {
-            const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-            const buttonActionElem = host.queryComponent(ButtonActionComponent);
+        it('should bound `config.shape` to `shape` of <spy-button-action>', () => {
+            fixture.componentRef.setInput('config', configMock[1]);
+            fixture.componentRef.setInput('context', context);
+            fixture.detectChanges();
 
-            expect(buttonActionElem.shape).toBe(configMock[1].shape);
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            expect(btnCmp.shape).toBe(configMock[1].shape);
         });
 
-        it('should bound `config.size` to `size` of <spy-button-action>', async () => {
-            const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-            const buttonActionElem = host.queryComponent(ButtonActionComponent);
+        it('should bound `config.size` to `size` of <spy-button-action>', () => {
+            fixture.componentRef.setInput('config', configMock[1]);
+            fixture.componentRef.setInput('context', context);
+            fixture.detectChanges();
 
-            expect(buttonActionElem.size).toBe(configMock[1].size);
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            expect(btnCmp.size).toBe(configMock[1].size);
         });
 
-        it('should bound `config.attrs` to `attrs` of <spy-button-action>', async () => {
-            const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-            const buttonActionElem = host.queryComponent(ButtonActionComponent);
+        it('should bound `config.attrs` to `attrs` of <spy-button-action>', () => {
+            fixture.componentRef.setInput('config', configMock[1]);
+            fixture.componentRef.setInput('context', context);
+            fixture.detectChanges();
 
-            expect(buttonActionElem.attrs).toBe(configMock[1].attrs);
+            const btnCmp = qDir<ButtonActionComponent>(ButtonActionComponent).componentInstance as ButtonActionComponent;
+            expect(btnCmp.attrs).toBe(configMock[1].attrs);
         });
     });
 });

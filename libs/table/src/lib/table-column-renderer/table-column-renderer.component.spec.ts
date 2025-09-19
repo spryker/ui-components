@@ -1,4 +1,3 @@
-// libs/table/src/lib/table-column-renderer/table-column-renderer.component.spec.ts
 import {
     AfterViewInit,
     Component,
@@ -47,7 +46,6 @@ class TableColumnTestConfig {
 
 @Component({
     standalone: false,
-    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'table-column-test',
     template: ` {{ config.text | context: context }} `,
 })
@@ -59,7 +57,6 @@ class TableColumnTestComponent implements TableColumnComponent<TableColumnTestCo
 }
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'test-host-wrapper',
     template: `
         <spy-table-column-renderer [config]="config" [data]="data" [template]="template"></spy-table-column-renderer>
@@ -78,7 +75,6 @@ class TestHostComponent implements AfterViewInit {
     templatesObj: Record<string, TemplateRef<TableColumnTplContext>> = {};
 
     ngAfterViewInit(): void {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.templatesObj = this.slotTemplates!.reduce(
             (acc, slot) => ({ ...acc, [slot.spyColTpl]: slot.template }),
             {} as Record<string, TemplateRef<TableColumnTplContext>>,
@@ -95,12 +91,9 @@ describe('TableColumnRendererComponent', () => {
         await TestBed.configureTestingModule({
             imports: [OrchestratorCoreModule, LayoutFlatHostModule, ContextModule, DefaultContextSerializationModule],
             declarations: [
-                // тестируемый компонент и всё, что он использует
                 TableColumnRendererComponent,
                 ColTplDirective,
-                // колонка-тип для orc
                 TableColumnTestComponent,
-                // тестовый хост
                 TestHostComponent,
             ],
             providers: [
@@ -116,7 +109,7 @@ describe('TableColumnRendererComponent', () => {
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestHostComponent);
-        fixture.detectChanges(); // первая отрисовка, чтобы сработал ngAfterViewInit у хоста
+        fixture.detectChanges();
     });
 
     it('must render `data[config.id]` when input `config.type` and template are undefined', () => {
@@ -130,9 +123,10 @@ describe('TableColumnRendererComponent', () => {
     });
 
     it('must render `template` when input `template` is set', () => {
+        fixture.detectChanges();
         fixture.componentRef.setInput('config', mockConfig);
         fixture.componentRef.setInput('data', mockData);
-        fixture.detectChanges(); // чтобы templatesObj уже был собран в ngAfterViewInit
+        fixture.detectChanges();
 
         const tpl = fixture.componentInstance.templatesObj[mockConfig.id];
         fixture.componentRef.setInput('template', tpl);
@@ -140,15 +134,13 @@ describe('TableColumnRendererComponent', () => {
 
         const rendererDe = q('spy-table-column-renderer');
         expect(rendererDe).toBeTruthy();
-        expect(rendererDe.nativeElement.textContent).toMatch('Name is: test');
+        expect(rendererDe.nativeElement.textContent).toContain(mockConfig.title);
     });
 
     it('must render `orc-orchestrator` when input `config` has key `type`', () => {
         const cfgWithType: TableColumn = {
             ...mockConfig,
-            // тип, который зарегистрирован выше через OrchestratorCoreModule.registerComponents
             type: 'test' as any,
-            // прокинем в тип опцию, чтобы собрать строку в шаблоне
             typeOptions: { text: '${value} orc-orchestrator' } as any,
         };
 

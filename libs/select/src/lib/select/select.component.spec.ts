@@ -186,7 +186,7 @@ describe('SelectComponent', () => {
             fixture.detectChanges();
 
             const opts = qAll('select option');
-            expect(opts.length).toBe(4); // +1 пустой
+            expect(opts.length).toBe(4);
             expect(opts[0].nativeElement.value).toBe('');
             expect(opts[1].nativeElement.value).toBe(String(mockOptions[0]));
             expect(opts[2].nativeElement.value).toBe(String(mockOptions[1]));

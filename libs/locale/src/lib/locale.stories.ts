@@ -3,6 +3,7 @@ import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import EnLocaleModule, { EN_LOCALE } from '../../locales/en/src';
 import DeLocaleModule, { DE_LOCALE } from '../../locales/de/src';
 import TrLocaleModule, { TR_LOCALE } from '../../locales/tr/src';
+import ElLocaleModule, { EL_LOCALE } from '../../locales/el/src';
 import { LocaleModule } from './locale.module';
 
 @Component({
@@ -69,6 +70,16 @@ export const tr = (args) => ({
         providers: [
             importProvidersFrom(LocaleModule.forRoot({ defaultLocale: TR_LOCALE })),
             importProvidersFrom(TrLocaleModule),
+        ],
+    },
+});
+
+export const el = (args) => ({
+    props: args,
+    applicationConfig: {
+        providers: [
+            importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EL_LOCALE })),
+            importProvidersFrom(ElLocaleModule),
         ],
     },
 });

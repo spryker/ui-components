@@ -6,7 +6,7 @@ import { TextareaComponent } from './textarea.component';
 
 @Component({
     standalone: false,
-    selector: 'host-cmp',
+    selector: 'spy-host-cmp',
     template: `<spy-textarea
         [placeholder]="placeholder"
         [value]="value"

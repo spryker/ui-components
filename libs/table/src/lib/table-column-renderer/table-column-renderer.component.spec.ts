@@ -46,7 +46,7 @@ class TableColumnTestConfig {
 
 @Component({
     standalone: false,
-    selector: 'table-column-test',
+    selector: 'spy-table-column-test',
     template: ` {{ config.text | context: context }} `,
 })
 @TableColumnTypeComponent(TableColumnTestConfig)
@@ -57,7 +57,7 @@ class TableColumnTestComponent implements TableColumnComponent<TableColumnTestCo
 }
 
 @Component({
-    selector: 'test-host-wrapper',
+    selector: 'spy-table-column-test',
     template: `
         <spy-table-column-renderer [config]="config" [data]="data" [template]="template"></spy-table-column-renderer>
 

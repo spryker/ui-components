@@ -7,7 +7,7 @@ import { TreeSelectExtractKeysPipe } from './tree-select-extract.pipe';
 
 @Component({
     standalone: false,
-    selector: 'host-cmp',
+    selector: 'spy-host-cmp',
     template: `
         <spy-tree-select
             [items]="items"

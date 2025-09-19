@@ -5,7 +5,7 @@ import { ToggleComponent } from './toggle.component';
 
 @Component({
     standalone: false,
-    selector: 'host-cmp',
+    selector: 'spy-host-cmp',
     template: `<spy-toggle [name]="name" [value]="value" [disabled]="disabled" (valueChange)="onChange($event)"
         >Content</spy-toggle
     >`,

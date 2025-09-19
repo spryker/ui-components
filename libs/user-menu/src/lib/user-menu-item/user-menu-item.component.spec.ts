@@ -5,7 +5,7 @@ import { UserMenuItemComponent } from './user-menu-item.component';
 
 @Component({
     standalone: false,
-    selector: 'host-cmp',
+    selector: 'spy-host-cmp',
     template: `<spy-user-menu-item>Content</spy-user-menu-item>`,
 })
 class HostCmp {}

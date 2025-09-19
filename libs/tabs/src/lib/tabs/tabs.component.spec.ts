@@ -12,7 +12,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
     standalone: false,
-    selector: 'test-host',
+    selector: 'spy-test-host',
     template: `
         <spy-tabs [tab]="tab" [mode]="mode" [animateSlides]="animateSlides" (tabChange)="onTabChange($event)">
             <spy-tab spyTitle="Tab Title 1" iconName="user"> Tab Content 1 </spy-tab>

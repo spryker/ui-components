@@ -10,7 +10,7 @@ class MockUserMenuComponent {
 
 @Component({
     standalone: false,
-    selector: 'host-cmp',
+    selector: 'spy-host-cmp',
     template: `<spy-user-menu-link [type]="type">Link</spy-user-menu-link>`,
 })
 class HostCmp {

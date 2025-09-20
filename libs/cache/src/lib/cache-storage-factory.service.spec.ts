@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { inject, Injectable, Injector } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { PersistenceStrategyService, PersistenceStrategy } from '@spryker/persistence';
 import { EMPTY, of } from 'rxjs';
@@ -14,7 +14,7 @@ class MockPersistenceStrategyTypeService implements PersistenceStrategy {
 
 @Injectable()
 class MockPersistenceStrategyService {
-    constructor(private injector: Injector) {}
+    private injector = inject(Injector);
 
     select = jest.fn().mockReturnValue(this.injector.get(MockPersistenceStrategyTypeService));
 

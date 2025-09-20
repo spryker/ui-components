@@ -1,5 +1,5 @@
 {
-    "extends": ["../../.eslintrc.json"],
+    "extends": ["../../.eslintrc.json", "plugin:storybook/recommended"],
     "ignorePatterns": ["!**/*"],
     "overrides": [
         {
@@ -20,12 +20,13 @@
                         "prefix": "spy",
                         "style": "kebab-case"
                     }
-                ]
+                ],
+                "@angular-eslint/prefer-standalone": "off"
             }
         },
         {
             "files": ["*.html"],
-            "extends": ["plugin:@nrwl/nx/angular-template"],
+            "extends": ["plugin:@nx/angular-template"],
             "rules": {}
         }
     ]

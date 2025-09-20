@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 import { ButtonCore } from '../button-core/button-core';
 
 @Component({
+    standalone: false,
     selector: 'spy-button-link',
     templateUrl: './button-link.component.html',
     styleUrls: ['./button-link.component.less'],

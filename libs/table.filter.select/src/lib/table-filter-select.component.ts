@@ -15,6 +15,7 @@ import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { EMPTY } from 'rxjs';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-filter-select',
     templateUrl: './table-filter-select.component.html',
     styleUrls: ['./table-filter-select.component.less'],

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DataTransformerService, DataTransformerType } from '@spryker/data-transformer';
 import {
     DataFilterTransformerByPropName,
@@ -20,7 +20,7 @@ export interface RangeDataTransformerFilterValue {
  */
 @Injectable({ providedIn: 'root' })
 export class RangeDataTransformerFilterService implements DataTransformerFilter {
-    constructor(private dataTransformerService: DataTransformerService) {}
+    private dataTransformerService = inject(DataTransformerService);
 
     filter(
         data: DataTransformerFilterData,

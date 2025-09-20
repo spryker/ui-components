@@ -2,10 +2,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     forwardRef,
-    Inject,
     Injector,
     Type,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
 import { combineLatest, Observable, Subject } from 'rxjs';
@@ -15,6 +15,7 @@ import { TABLE_FILTERS_TOKEN } from './tokens';
 import { TableFilterBase, TableFilterComponent, TableFiltersConfig, TableFiltersDeclaration } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-filters-feature',
     templateUrl: './table-filters-feature.component.html',
     styleUrls: ['./table-filters-feature.component.less'],
@@ -28,6 +29,8 @@ import { TableFilterBase, TableFilterComponent, TableFiltersConfig, TableFilters
     ],
 })
 export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFiltersConfig> {
+    private tableFilterToken = inject(TABLE_FILTERS_TOKEN);
+
     name = 'filters';
     tableFeatureLocation = TableFeatureLocation;
     filterClasses: Record<string, string | string[]> = {};
@@ -93,14 +96,6 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
             return isData || (!isData && (isChanged || isLoading));
         }),
     );
-
-    constructor(
-        @Inject(TABLE_FILTERS_TOKEN)
-        private tableFilterToken: TableFiltersDeclaration[],
-        injector: Injector,
-    ) {
-        super(injector);
-    }
 
     updateFilterValue(id: string, value: unknown): void {
         this.updateFiltersValue$.next({ [id]: value });

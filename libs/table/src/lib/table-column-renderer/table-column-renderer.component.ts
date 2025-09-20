@@ -6,6 +6,7 @@ import {
     SimpleChanges,
     TemplateRef,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { ContextService } from '@spryker/utils';
 import { OrchestratorConfigItem } from '@orchestrator/core';
@@ -13,13 +14,15 @@ import { OrchestratorConfigItem } from '@orchestrator/core';
 import { TableColumn, TableColumnTplContext, TableColumnTypeDef, TableDataRow } from '../table/table';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-renderer',
     templateUrl: './table-column-renderer.component.html',
-    styleUrls: ['./table-column-renderer.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })
 export class TableColumnRendererComponent implements OnChanges {
+    private contextService = inject(ContextService);
+
     @Input() config?: TableColumn;
     @Input() data?: TableDataRow;
     @Input() template?: TemplateRef<TableColumnTplContext>;
@@ -36,8 +39,6 @@ export class TableColumnRendererComponent implements OnChanges {
     fullContext?: TableColumnTplContext;
     emptyValue?: string;
     defaultEmptyValue = '-';
-
-    constructor(private contextService: ContextService) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.config) {

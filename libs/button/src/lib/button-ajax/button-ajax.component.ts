@@ -8,6 +8,7 @@ import {
     OnInit,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { merge, of, Subject } from 'rxjs';
@@ -22,13 +23,17 @@ export enum ButtonAjaxMethod {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-button-ajax',
     templateUrl: './button-ajax.component.html',
-    styleUrls: ['./button-ajax.component.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonAjaxComponent extends ButtonCoreInputs implements OnInit, OnDestroy {
+    private ajaxActionService = inject(AjaxActionService);
+    private http = inject(HttpClient);
+    private injector = inject(Injector);
+
     @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
     @Input() url?: string;
 
@@ -48,14 +53,6 @@ export class ButtonAjaxComponent extends ButtonCoreInputs implements OnInit, OnD
     private destroyed$ = new Subject<void>();
 
     isLoading$ = merge(this.click$.pipe(mapTo(true)), this.request$.pipe(mapTo(false)));
-
-    constructor(
-        private ajaxActionService: AjaxActionService,
-        private http: HttpClient,
-        private injector: Injector,
-    ) {
-        super();
-    }
 
     ngOnInit(): void {
         this.request$

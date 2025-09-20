@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Injector, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injector,
+    OnDestroy,
+    OnInit,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import { IconActionModule } from '@spryker/icon/icons';
 import {
     TableActionBase,
@@ -16,6 +24,7 @@ import { map, pluck, shareReplay, switchMap, take, takeUntil, withLatestFrom } f
 import { TableRowActionBase, TableRowActionContext, TableRowActionsConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-row-actions-feature',
     templateUrl: './table-row-actions-feature.component.html',
     styleUrls: ['./table-row-actions-feature.component.less'],
@@ -32,6 +41,9 @@ export class TableRowActionsFeatureComponent
     extends TableFeatureComponent<TableRowActionsConfig>
     implements OnDestroy, OnInit
 {
+    private tableActionsService = inject(TableActionsService);
+    private contextService = inject(ContextService);
+
     name = 'rowActions';
     tableFeatureLocation = TableFeatureLocation;
     triggerIcon = IconActionModule.icon;
@@ -64,14 +76,6 @@ export class TableRowActionsFeatureComponent
         switchMap((table) => table.data$),
         pluck('data'),
     );
-
-    constructor(
-        private tableActionsService: TableActionsService,
-        private contextService: ContextService,
-        injector: Injector,
-    ) {
-        super(injector);
-    }
 
     ngOnInit(): void {
         this.rowClicks$

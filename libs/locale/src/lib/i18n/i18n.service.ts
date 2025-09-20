@@ -1,8 +1,7 @@
-import { Inject, Injectable, Optional } from '@angular/core';
-import { escapeRegex, InjectionTokenType } from '@spryker/utils';
+import { Injectable, inject } from '@angular/core';
+import { escapeRegex } from '@spryker/utils';
 import { Observable, OperatorFunction, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map, shareReplay } from 'rxjs/operators';
-
 import { LocaleService } from '../locale.service';
 import { I18nLocaleDataToken } from './tokens';
 import { I18nLocaleData, I18nLocaleInterpolationData } from './types';
@@ -17,6 +16,9 @@ export class I18nConfig {
     providedIn: 'root',
 })
 export class I18nService {
+    private readonly localeService = inject(LocaleService);
+    private readonly config = inject(I18nConfig);
+
     private readonly locale$ = new ReplaySubject<I18nLocaleData>(1);
 
     private readonly interpolationStart = escapeRegex(this.config.interpolationStart);
@@ -27,13 +29,11 @@ export class I18nService {
         'ig',
     );
 
-    constructor(
-        private readonly localeService: LocaleService, // This will ensure locale load
-        private readonly config: I18nConfig,
-        @Optional()
-        @Inject(I18nLocaleDataToken)
-        defaultLocale?: InjectionTokenType<typeof I18nLocaleDataToken>,
-    ) {
+    constructor() {
+        const defaultLocale = inject(I18nLocaleDataToken, {
+            optional: true,
+        });
+
         if (defaultLocale) {
             this.setLocale(defaultLocale);
         }

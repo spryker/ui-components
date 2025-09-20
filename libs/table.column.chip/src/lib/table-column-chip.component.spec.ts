@@ -1,66 +1,67 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ContextPipe, DefaultContextSerializationModule } from '@spryker/utils';
 import { ChipsComponent, ChipsModule } from '@spryker/chips';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TableColumnChipComponent } from './table-column-chip.component';
 
 const configMock: any = [
-    {
-        text: 'mockedText',
-        color: 'green',
-    },
-    {
-        text: '${value}',
-        maxWidth: '100px',
-    },
+    { text: 'mockedText', color: 'green' },
+    { text: '${value}', maxWidth: '100px' },
 ];
-const context: any = {
-    value: 'mockedValue',
-};
+
+const context: any = { value: 'mockedValue' };
 
 describe('TableColumnChipComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(TableColumnChipComponent, {
-        ngModule: {
+    let fixture: any;
+
+    const q = (css: string) => fixture.debugElement.query(By.css(css));
+    const qDir = <T>(dir: any) => fixture.debugElement.query(By.directive(dir));
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [ChipsModule, DefaultContextSerializationModule],
-            declarations: [ContextPipe],
+            declarations: [TableColumnChipComponent, ContextPipe],
             schemas: [NO_ERRORS_SCHEMA],
-        },
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(TableColumnChipComponent);
     });
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            teardown: { destroyAfterEach: false },
-        });
+    it('Template must render <spy-chips> component', () => {
+        fixture.componentRef.setInput('config', configMock[0]);
+        fixture.componentRef.setInput('context', context);
+        fixture.detectChanges();
+
+        const chipsDe = q('spy-chips');
+        expect(chipsDe).toBeTruthy();
     });
 
-    it('Template must render <spy-chips> component', async () => {
-        const host = await createComponentWrapper(createComponent, { config: configMock[0], context });
-        const chipsElem = host.queryCss('spy-chips');
+    it('Input color must be bound to `className` of <spy-chips> component', () => {
+        fixture.componentRef.setInput('config', configMock[0]);
+        fixture.componentRef.setInput('context', context);
+        fixture.detectChanges();
 
-        expect(chipsElem).toBeTruthy();
+        const chipsDe = q('spy-chips');
+        expect(chipsDe.nativeElement.className).toContain(configMock[0].color);
     });
 
-    it('Input color must be bound to `className` of <spy-chips> component', async () => {
-        const host = await createComponentWrapper(createComponent, { config: configMock[0], context });
-        const chipsElem = host.queryCss('spy-chips');
+    it('Input text with dynamic text string must be content of <spy-chips> component', () => {
+        fixture.componentRef.setInput('config', configMock[1]);
+        fixture.componentRef.setInput('context', context);
+        fixture.detectChanges();
 
-        expect(chipsElem.properties.className).toContain(configMock[0].color);
+        const chipsDe = q('spy-chips');
+        expect(chipsDe.nativeElement.textContent).toContain(context.value);
     });
 
-    it('Input text with dynamic text string must be content of <spy-chips> component', async () => {
-        const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-        const chipsElem = host.queryCss('spy-chips');
+    it('should bound `config.maxWidth` to `maxWidth` of <spy-chips> component', () => {
+        fixture.componentRef.setInput('config', configMock[1]);
+        fixture.componentRef.setInput('context', context);
+        fixture.detectChanges();
 
-        expect(chipsElem.nativeElement.textContent).toContain(context.value);
-    });
-
-    it('should bound `config.maxWidth` to `maxWidth` of <spy-chips> component', async () => {
-        const host = await createComponentWrapper(createComponent, { config: configMock[1], context });
-        const chipsElem = host.queryComponent(ChipsComponent);
-
-        expect(chipsElem.maxWidth).toBe(configMock[1].maxWidth);
+        const chipsCmp = qDir<ChipsComponent>(ChipsComponent).componentInstance as ChipsComponent;
+        expect(chipsCmp.maxWidth).toBe(configMock[1].maxWidth);
     });
 });

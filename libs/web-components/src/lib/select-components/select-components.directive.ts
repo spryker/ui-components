@@ -1,5 +1,5 @@
 import { ContentObserver } from '@angular/cdk/observers';
-import { Directive, ElementRef, Input, OnChanges, OnDestroy, Output, SimpleChanges, Type } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnDestroy, Output, SimpleChanges, Type, inject } from '@angular/core';
 import { EMPTY, forkJoin, Observable, ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, map, mapTo, shareReplay, startWith, switchAll, switchMap } from 'rxjs/operators';
 
@@ -21,10 +21,11 @@ import { isNgWebComponent, isNgWebComponentOf, NgWebComponent } from '../ng-web-
  *  </span>
  * ```
  */
-@Directive({
-    selector: '[spySelectComponents]',
-})
+@Directive({ standalone: false, selector: '[spySelectComponents]' })
 export class SelectComponentsDirective<T = unknown> implements OnChanges, OnDestroy {
+    private elemRef = inject<ElementRef<Element>>(ElementRef);
+    private observer = inject(ContentObserver);
+
     /**
      * Angular component type that {@link NgWebComponent} should be instance of
      */
@@ -58,11 +59,6 @@ export class SelectComponentsDirective<T = unknown> implements OnChanges, OnDest
         map((components) => this.findInstancesIn(components)),
         shareReplay({ refCount: true, bufferSize: 1 }),
     );
-
-    constructor(
-        private elemRef: ElementRef<Element>,
-        private observer: ContentObserver,
-    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('spySelectComponentsObserve' in changes) {

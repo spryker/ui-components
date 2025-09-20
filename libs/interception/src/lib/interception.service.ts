@@ -1,4 +1,4 @@
-import { Injectable, Optional, SkipSelf } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, of, zip } from 'rxjs';
 import { distinctUntilChanged, map, mapTo, switchMap, take } from 'rxjs/operators';
 
@@ -10,11 +10,7 @@ import { InterceptionEventType, InterceptionHandler, Interceptor, InterceptorDis
  */
 @Injectable({ providedIn: 'root' })
 export class InterceptionService implements InterceptorDispatcher, Interceptor {
-    constructor(
-        @Optional()
-        @SkipSelf()
-        private parentInterceptionService?: InterceptionService,
-    ) {}
+    private parentInterceptionService = inject(InterceptionService, { optional: true, skipSelf: true });
 
     private handlersMap$ = new BehaviorSubject(new Map<any, InterceptionHandler<any>[]>());
 

@@ -1,26 +1,28 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { TabComponent } from './tab.component';
 
 describe('TabComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(TabComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-    });
+    let fixture: any;
 
-    beforeEach(() =>
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            teardown: { destroyAfterEach: false },
-        }),
-    );
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [TabComponent],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(TabComponent);
+        fixture.detectChanges();
+    });
 
     describe('component.hasWarningChange', () => {
         it('should emit hasWarning change on hasWarningChange', async () => {
-            const host = await createComponentWrapper(createComponent, { hasWarning: true });
+            jest.spyOn(fixture.componentInstance.hasWarningChange, 'emit');
+            fixture.componentRef.setInput('hasWarning', true);
+            fixture.detectChanges();
 
-            expect(host.hostComponent.hasWarningChange).toHaveBeenCalledWith(true);
+            expect(fixture.componentInstance.hasWarningChange.emit).toHaveBeenCalledWith(true);
         });
     });
 });

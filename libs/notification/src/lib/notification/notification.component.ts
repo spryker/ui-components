@@ -10,6 +10,7 @@ import {
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import { merge, Subject, zip } from 'rxjs';
@@ -21,6 +22,7 @@ import { NotificationService } from '../notification.service';
 import { NotificationConfig, NotificationContext, NotificationData } from '../types';
 
 @Component({
+    standalone: false,
     selector: 'spy-notification',
     templateUrl: './notification.component.html',
     styleUrls: ['./notification.component.less'],
@@ -31,6 +33,9 @@ import { NotificationConfig, NotificationContext, NotificationData } from '../ty
     },
 })
 export class NotificationComponent extends NotificationInputs implements OnChanges, AfterViewInit, OnDestroy {
+    private notificationService = inject(NotificationService);
+    private cdr = inject(ChangeDetectorRef);
+
     @Input() @ToJson() floatingConfig?: NotificationConfig;
 
     @ViewChild(NotificationViewComponent)
@@ -92,13 +97,6 @@ export class NotificationComponent extends NotificationInputs implements OnChang
     );
 
     private floatingSink$ = merge(this.floatingClosed$, this.closingFloating$, this.closePrevFloating$);
-
-    constructor(
-        private notificationService: NotificationService,
-        private cdr: ChangeDetectorRef,
-    ) {
-        super();
-    }
 
     ngOnChanges(): void {
         if (this.floating) {

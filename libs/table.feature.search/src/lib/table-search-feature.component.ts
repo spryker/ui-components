@@ -7,6 +7,7 @@ import { debounceTime, distinctUntilChanged, map, pluck, shareReplay, switchMap,
 import { TableSearchConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-search-feature',
     templateUrl: './table-search-feature.component.html',
     styleUrls: ['./table-search-feature.component.less'],

@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Injector,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import {
     DefaultInitialDataStrategy,
     TableDataConfig,
@@ -13,6 +20,7 @@ import { pluck, skip, switchMap, take, tap } from 'rxjs/operators';
 import { TableSyncStateConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-sync-state-feature',
     templateUrl: './table-sync-state-feature.component.html',
     styleUrls: ['./table-sync-state-feature.component.less'],
@@ -26,6 +34,9 @@ import { TableSyncStateConfig } from './types';
     ],
 })
 export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableSyncStateConfig> {
+    private urlPersistenceStrategy = inject(UrlPersistenceStrategy);
+    private cdr = inject(ChangeDetectorRef);
+
     name = 'syncStateUrl';
     tableFeatureLocation = TableFeatureLocation;
 
@@ -42,14 +53,6 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableS
     stateToConfig$?: Observable<unknown>;
     configToState$?: Observable<any>;
     state$?: Observable<unknown>;
-
-    constructor(
-        private urlPersistenceStrategy: UrlPersistenceStrategy,
-        private cdr: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        super(injector);
-    }
 
     setDataConfiguratorService(service: TableDataConfiguratorService): void {
         super.setDataConfiguratorService(service);

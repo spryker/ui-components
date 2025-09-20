@@ -4,6 +4,7 @@ import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.direc
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-features-renderer',
     template: `
         <ng-template

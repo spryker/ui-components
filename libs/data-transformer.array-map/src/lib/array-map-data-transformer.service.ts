@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DataTransformer, DataTransformerService } from '@spryker/data-transformer';
 import { combineLatest, Observable, of } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { ArrayMapDataTransformerConfig, ArrayMapDataTransformerData, ArrayMapDat
 export class ArrayMapDataTransformerService
     implements DataTransformer<ArrayMapDataTransformerData, ArrayMapDataTransformerDataT>
 {
-    constructor(private dataTransformerService: DataTransformerService) {}
+    private dataTransformerService = inject(DataTransformerService);
 
     transform(
         data: ArrayMapDataTransformerData,

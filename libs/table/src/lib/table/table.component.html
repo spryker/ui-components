@@ -1,6 +1,6 @@
 <spy-spinner [isSpinning]="isInitialLoading$ | async" class="spy-table-initial-loading"></spy-spinner>
 
-<ng-container *ngIf="tableData$ | async">
+@if (tableData$ | async) {
     <div class="ant-table-features ant-table-features--top">
         <spy-table-features-renderer
             [location]="featureLocation.top"
@@ -13,12 +13,12 @@
             [features]="features$ | async"
         ></spy-table-features-renderer>
     </div>
-</ng-container>
+}
 
-<ng-container *ngIf="featureHeaderContext$ | async as featureHeaderContext">
-    <ng-container *ngIf="featureCellContext$ | async as featureCellContext">
-        <ng-container *ngIf="tableData$ | async as tableData">
-            <ng-container *ngIf="columns$ | async as columns">
+@if (featureHeaderContext$ | async; as featureHeaderContext) {
+    @if (featureCellContext$ | async; as featureCellContext) {
+        @if (tableData$ | async; as tableData) {
+            @if (columns$ | async; as columns) {
                 <nz-table
                     #tableElementRef
                     nzFrontPagination="false"
@@ -27,7 +27,7 @@
                     [nzNoResult]="(isEmpty$ | async) ? noResult : null"
                 >
                     <thead nzSortFn="true" (nzSortOrderChange)="updateSorting($event)">
-                        <ng-container *ngIf="(isEmpty$ | async) === false">
+                        @if ((isEmpty$ | async) === false) {
                             <tr>
                                 <ng-container
                                     *ngTemplateOutlet="
@@ -37,32 +37,29 @@
                                         }
                                     "
                                 ></ng-container>
-
-                                <th
-                                    *ngFor="let column of columns; let i = index; trackBy: trackByColumns"
-                                    [nzShowSort]="column.sortable"
-                                    [nzColumnKey]="column.id"
-                                    [nzSortOrder]="
-                                        (sortingData$ | async | pluck: 'sortBy') === column.id
-                                            ? (sortingData$ | async | pluck: 'sortDirection')
-                                            : null
-                                    "
-                                    [nzWidth]="column.width"
-                                >
-                                    <div class="ant-table-column-inner">
-                                        <ng-container
-                                            *ngIf="featureHeaderContext | spyInvoke: column : i as headerContext"
-                                        >
-                                            <ng-container
-                                                *ngTemplateOutlet="
-                                                    headerContext.$implicit;
-                                                    context: headerContext.context
-                                                "
-                                            ></ng-container>
-                                        </ng-container>
-                                    </div>
-                                </th>
-
+                                @for (column of columns; track trackByColumns(i, column); let i = $index) {
+                                    <th
+                                        [nzShowSort]="column.sortable"
+                                        [nzColumnKey]="column.id"
+                                        [nzSortOrder]="
+                                            (sortingData$ | async | pluck: 'sortBy') === column.id
+                                                ? (sortingData$ | async | pluck: 'sortDirection')
+                                                : null
+                                        "
+                                        [nzWidth]="column.width"
+                                    >
+                                        <div class="ant-table-column-inner">
+                                            @if (featureHeaderContext | spyInvoke: column : i; as headerContext) {
+                                                <ng-container
+                                                    *ngTemplateOutlet="
+                                                        headerContext.$implicit;
+                                                        context: headerContext.context
+                                                    "
+                                                ></ng-container>
+                                            }
+                                        </div>
+                                    </th>
+                                }
                                 <ng-container
                                     *ngTemplateOutlet="
                                         thFeaturesTpl;
@@ -71,7 +68,6 @@
                                         }
                                     "
                                 ></ng-container>
-
                                 <ng-template
                                     [spyTableFeaturesRenderer]="featureLocation.headerExt"
                                     [spyTableFeaturesRendererFeatures]="features$ | async"
@@ -83,7 +79,7 @@
                                     </th>
                                 </ng-template>
                             </tr>
-                        </ng-container>
+                        }
                     </thead>
                     <tbody>
                         <ng-container
@@ -98,55 +94,56 @@
                                 }
                             "
                         ></ng-container>
-
-                        <tr
-                            tabindex="0"
-                            *ngFor="let data of tableData; trackBy: trackByData; index as indexOfRow"
-                            [ngClass]="rowClasses[indexOfRow]"
-                            (click)="rowClickHandler(data, $event)"
-                        >
-                            <ng-container
-                                *ngTemplateOutlet="
-                                    colsFeaturesTpl;
-                                    context: {
-                                        $implicit: featureLocation.beforeCols,
+                        @for (data of tableData; track trackByData(indexOfRow, data); let indexOfRow = $index) {
+                            <tr tabindex="0" [ngClass]="rowClasses[indexOfRow]" (click)="rowClickHandler(data, $event)">
+                                <ng-container
+                                    *ngTemplateOutlet="
+                                        colsFeaturesTpl;
                                         context: {
-                                            data: data,
-                                            i: indexOfRow,
-                                        },
-                                    }
-                                "
-                            ></ng-container>
-
-                            <td *ngFor="let column of columns; trackBy: trackByColumns; index as indexOfCell">
-                                <div class="ant-table-column-inner">
-                                    <ng-container
-                                        *ngIf="
-                                            featureCellContext
-                                                | spyInvoke: column : data : indexOfRow : indexOfCell as cellContext
-                                        "
-                                    >
-                                        <ng-container
-                                            *ngTemplateOutlet="cellContext.$implicit; context: cellContext.context"
-                                        ></ng-container>
-                                    </ng-container>
-                                </div>
-                            </td>
-
-                            <ng-container
-                                *ngTemplateOutlet="
-                                    colsFeaturesTpl;
-                                    context: {
-                                        $implicit: featureLocation.afterCols,
+                                            $implicit: featureLocation.beforeCols,
+                                            context: {
+                                                data: data,
+                                                i: indexOfRow,
+                                            },
+                                        }
+                                    "
+                                ></ng-container>
+                                @for (
+                                    column of columns;
+                                    track trackByColumns(indexOfCell, column);
+                                    let indexOfCell = $index
+                                ) {
+                                    <td>
+                                        <div class="ant-table-column-inner">
+                                            @if (
+                                                featureCellContext
+                                                    | spyInvoke: column : data : indexOfRow : indexOfCell;
+                                                as cellContext
+                                            ) {
+                                                <ng-container
+                                                    *ngTemplateOutlet="
+                                                        cellContext.$implicit;
+                                                        context: cellContext.context
+                                                    "
+                                                ></ng-container>
+                                            }
+                                        </div>
+                                    </td>
+                                }
+                                <ng-container
+                                    *ngTemplateOutlet="
+                                        colsFeaturesTpl;
                                         context: {
-                                            data: data,
-                                            i: indexOfRow,
-                                        },
-                                    }
-                                "
-                            ></ng-container>
-                        </tr>
-
+                                            $implicit: featureLocation.afterCols,
+                                            context: {
+                                                data: data,
+                                                i: indexOfRow,
+                                            },
+                                        }
+                                    "
+                                ></ng-container>
+                            </tr>
+                        }
                         <ng-container
                             *ngTemplateOutlet="
                                 rowsFeaturesTpl;
@@ -161,33 +158,31 @@
                         ></ng-container>
                     </tbody>
                 </nz-table>
-            </ng-container>
-        </ng-container>
-    </ng-container>
-</ng-container>
+            }
+        }
+    }
+}
 
 <ng-template #noResult>
     <spy-spinner [isSpinning]="isLoading$ | async">
         <div class="ant-table-empty">
-            <ng-container *ngIf="isNotFiltered$ | async; else elseEmptyBlock">
+            @if (isNotFiltered$ | async) {
                 <spy-icon name="no-data" class="ant-table-empty__icon"></spy-icon>
                 <h5 class="ant-table-empty__title">
                     {{ 'table.empty-table' | spyI18n | async }}
                 </h5>
-            </ng-container>
-
-            <ng-template #elseEmptyBlock>
+            } @else {
                 <spy-icon name="no-filtered-data" class="ant-table-empty__icon"></spy-icon>
                 <h5 class="ant-table-empty__title ant-table-empty__title--spacing-bottom">
                     {{ 'table.no-results' | spyI18n | async }}
                 </h5>
                 <p>{{ 'table.no-results-suggest' | spyI18n | async }}</p>
-            </ng-template>
+            }
         </div>
     </spy-spinner>
 </ng-template>
 
-<ng-container *ngIf="tableData$ | async">
+@if (tableData$ | async) {
     <div class="ant-table-features ant-table-features--after-table">
         <spy-table-features-renderer
             [location]="featureLocation.afterTable"
@@ -200,7 +195,7 @@
             [features]="features$ | async"
         ></spy-table-features-renderer>
     </div>
-</ng-container>
+}
 
 <div class="ant-table-features ant-table-features--hidden" style="display: none">
     <spy-table-features-renderer

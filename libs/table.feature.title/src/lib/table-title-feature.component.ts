@@ -5,6 +5,7 @@ import { mapTo, pluck, shareReplay, switchMap, take } from 'rxjs/operators';
 import { TableTitleConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-title-feature',
     templateUrl: './table-title-feature.component.html',
     styleUrls: ['./table-title-feature.component.less'],

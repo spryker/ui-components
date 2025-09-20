@@ -6,23 +6,25 @@
         [floating]="true"
     >
         <ng-container title>
-            <span *ngIf="title | ofType: 'string'; else titleTmpl">{{ title }}</span>
-            <ng-template #titleTmpl>
+            @if (title | ofType: 'string') {
+                <span>{{ title }}</span>
+            } @else {
                 <ng-template
                     [ngTemplateOutlet]="title"
                     [ngTemplateOutletContext]="{ $implicit: notificationRef }"
                 ></ng-template>
-            </ng-template>
+            }
         </ng-container>
 
         <ng-container description>
-            <span *ngIf="message | ofType: 'string'; else descriptionTmpl">{{ message }} </span>
-            <ng-template #descriptionTmpl>
+            @if (message | ofType: 'string') {
+                <span>{{ message }} </span>
+            } @else {
                 <ng-template
                     [ngTemplateOutlet]="message"
                     [ngTemplateOutletContext]="{ $implicit: notificationRef }"
                 ></ng-template>
-            </ng-template>
+            }
         </ng-container>
     </spy-notification-view>
 </span>

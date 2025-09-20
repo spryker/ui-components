@@ -5,6 +5,7 @@ import { map, pluck, shareReplay, switchMap, withLatestFrom } from 'rxjs/operato
 import { TablePaginationConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-pagination-feature',
     templateUrl: './table-pagination-feature.component.html',
     styleUrls: ['./table-pagination-feature.component.less'],

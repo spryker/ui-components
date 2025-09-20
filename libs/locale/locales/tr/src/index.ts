@@ -16,12 +16,10 @@ export function trLocaleFactory() {
                 })),
             ant: () =>
                 Promise.all([
-                    import('node_modules/ng-zorro-antd/esm2022/i18n/languages/tr_TR' as any),
-                    import('date-fns/locale/tr'),
-                ]).then(([data, date]) => ({
-                    data: data.default,
-                    dateData: date.default,
-                })),
+                    import('ng-zorro-antd/i18n').then((m) => m.tr_TR),
+                    import('date-fns/locale/tr').then((m) => m.default),
+                ]).then(([data, dateData]) => ({ data, dateData })),
+
             spryker: () =>
                 import('@spryker/locale/data/tr' as any).then((m) => ({
                     data: m.data,

@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { InterceptorService } from '@spryker/interception';
 import { I18nService } from '@spryker/locale';
 import { ModalService } from '@spryker/modal';
@@ -18,8 +18,8 @@ export class UnsavedChangesNavigationGuard extends UnsavedChangesGuardBase {
 
     private destroyed$ = new Subject<void>();
 
-    constructor(injector: Injector) {
-        super(injector);
+    constructor() {
+        super();
 
         this.interceptorService = this.injector.get(InterceptorService);
         this.modalService = this.injector.get(ModalService);

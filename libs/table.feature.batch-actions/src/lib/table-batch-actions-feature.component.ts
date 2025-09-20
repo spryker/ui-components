@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation, inject } from '@angular/core';
 import {
     TableActionsService,
     TableActionTriggeredEvent,
@@ -28,6 +28,7 @@ import {
  * When there are no relevant actions available for selected rows - an inline notification is shown with appropriate message from the Table Configuration.
  */
 @Component({
+    standalone: false,
     selector: 'spy-table-batch-actions-feature',
     templateUrl: './table-batch-actions-feature.component.html',
     styleUrls: ['./table-batch-actions-feature.component.less'],
@@ -41,6 +42,9 @@ import {
     ],
 })
 export class TableBatchActionsFeatureComponent extends TableFeatureComponent<TableBatchActionsConfig> {
+    private tableActionService = inject(TableActionsService);
+    private contextService = inject(ContextService);
+
     name = 'batchActions';
     tableFeatureLocation = TableFeatureLocation;
     buttonSize = ButtonSize;
@@ -107,14 +111,6 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<Tab
             return { order: 3 };
         }),
     );
-
-    constructor(
-        injector: Injector,
-        private tableActionService: TableActionsService,
-        private contextService: ContextService,
-    ) {
-        super(injector);
-    }
 
     private getAvailableActions(
         selectedRows: TableSelectionRow[],

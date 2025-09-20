@@ -1,5 +1,5 @@
 import { registerLocaleData } from '@angular/common';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { LocaleService } from '../locale.service';
@@ -18,7 +18,7 @@ export interface NgLocaleData {
 
 @Injectable({ providedIn: 'root' })
 export class NgRegistrarService implements LocaleLoaderRegistrar<NgLocaleData> {
-    constructor(private localeService: LocaleService) {}
+    private localeService = inject(LocaleService);
 
     registerLocale(locale: string, { data, extraData }: NgLocaleData): Observable<unknown> {
         const isDefault = locale === this.localeService.defaultLocale;

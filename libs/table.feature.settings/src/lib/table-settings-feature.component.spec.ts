@@ -35,6 +35,7 @@ class MockTableDataConfiguratorService {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-test-host',
     template: `
         <test-table-feature>

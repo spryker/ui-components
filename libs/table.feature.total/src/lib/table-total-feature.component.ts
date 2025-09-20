@@ -4,6 +4,7 @@ import { map, mapTo, shareReplay, switchMap, take, pluck } from 'rxjs/operators'
 import { TableTotalConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-total-feature',
     templateUrl: './table-total-feature.component.html',
     styleUrls: ['./table-total-feature.component.less'],

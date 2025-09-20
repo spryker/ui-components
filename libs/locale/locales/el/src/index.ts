@@ -14,14 +14,13 @@ export function elLocaleFactory() {
                 import('@angular/common/locales/el').then((m) => ({
                     data: m.default,
                 })),
+
             ant: () =>
                 Promise.all([
-                    import('node_modules/ng-zorro-antd/esm2022/i18n/languages/el_GR' as any),
-                    import('date-fns/locale/el'),
-                ]).then(([data, date]) => ({
-                    data: data.default,
-                    dateData: date.default,
-                })),
+                    import('ng-zorro-antd/i18n').then((m) => m.el_GR),
+                    import('date-fns/locale/el').then((m) => m.default),
+                ]).then(([data, dateData]) => ({ data, dateData })),
+
             spryker: () =>
                 import('@spryker/locale/data/el' as any).then((m) => ({
                     data: m.data,

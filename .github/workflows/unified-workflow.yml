@@ -120,7 +120,7 @@ jobs:
           fi
 
       - name: Release (pre-release)
-        if: contains(fromJSON('["alpha", "beta", "rc"]'), github.ref_name) || contains(github.ref, '10984')
+        if: contains(fromJSON('["alpha", "beta", "rc", "10984"]'), github.ref_name)
         run: |
           if [[ "${{ github.ref }}" == refs/heads/republish/* ]]; then
             npm run release-tag from-package

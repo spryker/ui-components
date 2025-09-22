@@ -59,3 +59,27 @@ jobs:
       - name: Build affected libs
         run: |
           npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
+
+      - name: Trigger Deploy Workflow (if on release branch)
+        #if: contains('alpha,beta,rc', github.ref_name) || startsWith(github.ref_name, 'republish/')
+        uses: actions/github-script@v6
+        with:
+          script: |
+            try {
+              await github.rest.repos.createDispatchEvent({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                event_type: 'deploy_trigger',
+                client_payload: {
+                  ref: process.env.GITHUB_REF,
+                  sha: process.env.GITHUB_SHA,
+                  branch: process.env.GITHUB_REF_NAME
+                }
+              });
+              console.log('Deploy workflow triggered successfully');
+            } catch (error) {
+              console.error('Error triggering deploy workflow:', error);
+              // Don't fail the workflow if the trigger fails
+              core.setOutput('trigger-failed', 'true');
+            }
+

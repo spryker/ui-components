@@ -4,6 +4,18 @@ on:
   workflow_run:
     workflows: ["Check and Build (not releasable branches)"]
     types: [completed]
+    # refs:
+    #     - 'refs/heads/master'
+    #     - 'refs/heads/republish/master'
+    #     - 'refs/heads/next'
+    #     - 'refs/heads/republish/next'
+    #     - 'refs/heads/alpha'
+    #     - 'refs/heads/beta'
+    #     - 'refs/heads/rc'
+    #     - 'refs/heads/republish/alpha'
+    #     - 'refs/heads/republish/beta'
+    #     - 'refs/heads/republish/rc'
+        
 
 env:
   NODE_VERSION: '18.19.1'
@@ -13,23 +25,24 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  prepare:
-    name: Prepare
-    runs-on: ubuntu-latest
-    outputs:
-      branch: ${{ steps.extract-branch.outputs.branch }}
-    steps:
-      - name: Extract branch name
-        id: extract-branch
-        run: |
-          if [[ -n "${{ github.event.client_payload.ref }}" ]]; then
-            # Extract branch name from ref (e.g., refs/heads/alpha -> alpha)
-            BRANCH_NAME=$(echo "${{ github.event.client_payload.ref }}" | sed 's/refs\/heads\///')
-          else
-            BRANCH_NAME=$(echo "${{ github.event.inputs.ref }}" | sed 's/refs\/heads\///')
-          fi
-          echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
-          echo "Branch: ${BRANCH_NAME}"
+#   prepare:
+#     name: Prepare
+#     runs-on: ubuntu-latest
+#     outputs:
+#       branch: ${{ steps.extract-branch.outputs.branch }}
+#     steps:
+#       - name: Extract branch name
+#         id: extract-branch
+#         run: |
+#             # ??
+#           if [[ -n "${{ github.event.client_payload.ref }}" ]]; then
+#             # Extract branch name from ref (e.g., refs/heads/alpha -> alpha)
+#             BRANCH_NAME=$(echo "${{ github.event.client_payload.ref }}" | sed 's/refs\/heads\///')
+#           else
+#             BRANCH_NAME=$(echo "${{ github.event.inputs.ref }}" | sed 's/refs\/heads\///')
+#           fi
+#           echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+#           echo "Branch: ${BRANCH_NAME}"
 
   deploy:
     name: Deploy
@@ -59,19 +72,20 @@ jobs:
       - name: Build
         run: |
           npm run build
-          npm run build-non-libs
+#          npm run build-non-libs
 
       - name: Set up NPM token
         run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
-      - name: Check for republish
-        id: is-republish
-        run: |
-          if [[ "${{ needs.prepare.outputs.branch }}" == republish/* ]]; then
-            echo "is_republish=true" >> $GITHUB_OUTPUT
-          else
-            echo "is_republish=false" >> $GITHUB_OUTPUT
-          fi
+        #??
+#      - name: Check for republish
+#        id: is-republish
+#        run: |
+#          if [[ "${{ needs.prepare.outputs.branch }}" == republish/* ]]; then
+#            echo "is_republish=true" >> $GITHUB_OUTPUT
+#          else
+#            echo "is_republish=false" >> $GITHUB_OUTPUT
+#          fi
 
       - name: Release (master)
         if: needs.prepare.outputs.branch == 'master' || needs.prepare.outputs.branch == 'republish/master'
@@ -100,11 +114,11 @@ jobs:
             npm run release-tag
           fi
 
-      - name: Deploy Storybook (non-master)
-        if: needs.prepare.outputs.branch != 'master' && needs.prepare.outputs.branch != 'republish/master'
-        run: |
-          if [[ "${{ needs.prepare.outputs.branch }}" == 'next' || "${{ needs.prepare.outputs.branch }}" == 'republish/next' ]]; then
-            npm run deploy:storybook:next
-          else
-            npm run deploy:storybook
-          fi
+#      - name: Deploy Storybook (non-master)
+#        if: needs.prepare.outputs.branch != 'master' && needs.prepare.outputs.branch != 'republish/master'
+#        run: |
+#          if [[ "${{ needs.prepare.outputs.branch }}" == 'next' || "${{ needs.prepare.outputs.branch }}" == 'republish/next' ]]; then
+#            npm run deploy:storybook:next
+#          else
+#            npm run deploy:storybook
+#          fi

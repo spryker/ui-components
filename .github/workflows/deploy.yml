@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   workflow_run:
-    workflows: ["Check and Build (not releasable branches)"]
+    workflows: ["Build and Verify"]
     types: [completed]
     # refs:
     #     - 'refs/heads/master'
@@ -15,7 +15,7 @@ on:
     #     - 'refs/heads/republish/alpha'
     #     - 'refs/heads/republish/beta'
     #     - 'refs/heads/republish/rc'
-        
+
 
 env:
   NODE_VERSION: '18.19.1'

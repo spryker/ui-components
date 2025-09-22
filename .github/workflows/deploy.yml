@@ -1,9 +1,9 @@
 name: Deploy
 
 on:
-  workflow_run:
-    workflows: ["Build and Verify"]
-    types: [completed]
+  repository_dispatch:
+    types: [deploy]
+  workflow_dispatch:
     # refs:
     #     - 'refs/heads/master'
     #     - 'refs/heads/republish/master'

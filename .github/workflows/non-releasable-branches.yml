@@ -59,3 +59,18 @@ jobs:
       - name: Build affected libs
         run: |
           npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
+          
+      - name: Trigger Deploy Workflow
+        if: contains('alpha,beta,rc', github.ref_name)
+        uses: actions/github-script@v6
+        with:
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: 'deploy',
+              client_payload: {
+                ref: process.env.GITHUB_REF,
+                sha: process.env.GITHUB_SHA
+              }
+            })

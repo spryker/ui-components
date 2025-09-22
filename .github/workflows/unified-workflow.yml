@@ -66,11 +66,6 @@ jobs:
   deploy:
     name: Deploy
     needs: build-and-verify
-#    if: |
-#      contains(github.ref, 'alpha') ||
-#      contains(github.ref, 'beta') ||
-#      contains(github.ref, 'rc') ||
-#      startsWith(github.ref, 'refs/heads/republish/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -78,28 +73,28 @@ jobs:
         with:
           fetch-depth: 0
 
-#      - name: Setup Node.js
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: ${{ env.NODE_VERSION }}
-#          registry-url: 'https://registry.npmjs.org'
-#          cache: 'npm'
-#
-#      - name: Configure Git
-#        run: |
-#          git config --global user.email "$GIT_EMAIL"
-#          git config --global user.name "$GIT_USER"
-#
-#      - name: Install dependencies
-#        run: npm ci
-#
-#      - name: Build
-#        run: |
-#          npm run build
-#          npm run build-non-libs
-#
-#      - name: Set up NPM token
-#        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "$GIT_EMAIL"
+          git config --global user.name "$GIT_USER"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: |
+          npm run build
+          npm run build-non-libs
+
+      - name: Set up NPM token
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
       - name: Release (master)
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/republish/master'

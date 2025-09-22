@@ -1,0 +1,121 @@
+name: 'Format check / Lint code / Unit Tests / Build / Deploy'
+
+on:
+  push:
+    branches-ignore:
+      - 'master'
+      - 'next'
+      - 'alpha'
+      - 'beta'
+      - 'rc'
+      - 'republish/**'
+      - '**-release'
+      # Match numeric version branches (e.g., 1.0.0)
+      - '**.[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    # Allow manual triggering
+
+env:
+  NODE_VERSION: '18.19.1'
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GIT_EMAIL: 'github-actions@github.com'
+  GIT_USER: 'GitHub Actions'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build-and-verify:
+    name: Build and Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run format check
+        continue-on-error: true
+        run: |
+          git fetch origin next
+          npm run format:check -- --base=origin/next
+
+      - name: Run lint
+        run: |
+          npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
+          npm run stylelint
+
+      - name: Run tests
+        run: |
+          COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
+
+      - name: Build non-libs
+        run: npm run build-non-libs
+
+      - name: Build affected libs
+        run: |
+          npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
+
+  deploy:
+    name: Deploy
+    needs: build-and-verify
+    if: |
+      contains(github.ref, 'alpha') || 
+      contains(github.ref, 'beta') || 
+      contains(github.ref, 'rc') || 
+      startsWith(github.ref, 'refs/heads/republish/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "$GIT_EMAIL"
+          git config --global user.name "$GIT_USER"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: |
+          npm run build
+          npm run build-non-libs
+
+      - name: Set up NPM token
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+      # Add your deployment steps here
+      # For example:
+      # - name: Publish packages
+      #   run: npm publish --access public
+      #   if: startsWith(github.ref, 'refs/heads/republish/')
+      #
+      # - name: Create release
+      #   uses: actions/create-release@v1
+      #   if: startsWith(github.ref, 'refs/tags/')
+      #   with:
+      #     tag_name: ${{ github.ref }}
+      #     release_name: Release ${{ github.ref }}
+      #     body: |
+      #       Changes in this release:
+      #       - Update dependencies
+      #       - Bug fixes
+      #     draft: false
+      #     prerelease: false

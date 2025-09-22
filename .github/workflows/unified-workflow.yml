@@ -101,21 +101,29 @@ jobs:
       - name: Set up NPM token
         run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
-      # Add your deployment steps here
-      # For example:
-      # - name: Publish packages
-      #   run: npm publish --access public
-      #   if: startsWith(github.ref, 'refs/heads/republish/')
-      #
-      # - name: Create release
-      #   uses: actions/create-release@v1
-      #   if: startsWith(github.ref, 'refs/tags/')
-      #   with:
-      #     tag_name: ${{ github.ref }}
-      #     release_name: Release ${{ github.ref }}
-      #     body: |
-      #       Changes in this release:
-      #       - Update dependencies
-      #       - Bug fixes
-      #     draft: false
-      #     prerelease: false
+      - name: Release (master)
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/republish/master'
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/republish/master" ]]; then
+            npm run release from-package
+          else
+            npm run release
+          fi
+
+      - name: Release (next)
+        if: github.ref == 'refs/heads/next' || github.ref == 'refs/heads/republish/next'
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/republish/next" ]]; then
+            npm run release-next from-package
+          else
+            npm run release-next
+          fi
+
+      - name: Release (pre-release)
+        if: contains('alpha,beta,rc,10984', github.ref_name)
+        run: |
+          if [[ "${{ github.ref }}" == refs/heads/republish/* ]]; then
+            npm run release-tag from-package
+          else
+            npm run release-tag
+          fi

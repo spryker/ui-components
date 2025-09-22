@@ -41,27 +41,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-#      - name: Run format check
-#        continue-on-error: true
-#        run: |
-#          git fetch origin next
-#          npm run format:check -- --base=origin/next
-#
-#      - name: Run lint
-#        run: |
-#          npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
-#          npm run stylelint
-#
-#      - name: Run tests
-#        run: |
-#          COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
-#
-#      - name: Build non-libs
-#        run: npm run build-non-libs
-#
-#      - name: Build affected libs
-#        run: |
-#          npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
+      - name: Run format check
+        continue-on-error: true
+        run: |
+          git fetch origin next
+          npm run format:check -- --base=origin/next
+
+      - name: Run lint
+        run: |
+          npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
+          npm run stylelint
+
+      - name: Run tests
+        run: |
+          COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
+
+      - name: Build non-libs
+        run: npm run build-non-libs
+
+      - name: Build affected libs
+        run: |
+          npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
 
   deploy:
     name: Deploy
@@ -115,7 +115,9 @@ jobs:
           fi
 
       - name: Release (pre-release)
-        if: contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') || contains(github.ref, '10984')
+        if: contains(github.ref, 'alpha')
+            || contains(github.ref, 'beta')
+            || contains(github.ref, 'rc')
         run: |
           if [[ "${{ github.ref }}" == refs/heads/republish/* ]]; then
             npm run release-tag from-package

@@ -1,30 +1,26 @@
-name: 'Format check / Lint code / Unit Tests / Build / Deploy'
+name: 'Unified CI/CD Workflow'
 
 on:
   push:
-    branches-ignore:
-      - 'master'
-      - 'next'
-      - 'alpha'
-      - 'beta'
-      - 'rc'
-      - 'republish/**'
-      - '**-release'
-      # Match numeric version branches (e.g., 1.0.0)
-      - '**.[0-9]+.[0-9]+.[0-9]+'
-  workflow_dispatch:
-    # Allow manual triggering
+    branches:
+      - '**'  # Match all branches
 
 env:
   NODE_VERSION: '18.19.1'
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
   GIT_EMAIL: 'github-actions@github.com'
   GIT_USER: 'GitHub Actions'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  none-releasable-branches:
-    name: Format check / Lint code / Unit Tests / Build (non-releasable branches)
+  # Common job for non-releasable branches (feature branches, etc.)
+  non-releasable-branches:
+    name: Format check / Lint code / Unit Tests / Build
+    if: >
+      !contains(github.ref_name, 'master') &&
+      !contains(github.ref_name, 'next') &&
+      !github.refName.matches('^\\d+$'))
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -63,9 +59,10 @@ jobs:
         run: |
           npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
 
-  deploy:
-    name: Deploy
-    needs: build-and-verify
+  # Master branch workflow
+  master-branch:
+    name: Master Branch CI/CD
+    if: contains(github.ref, 'refs/heads/master') || contains(github.ref, 'refs/heads/republish/master')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -77,27 +74,40 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run format check
+        run: npm run format:check
+
+      - name: Run lint
+        run: |
+          npm run affected:lint -- --parallel || npm run affected:lint
+          npm run stylelint
+
+      - name: Run tests
+        run: |
+          COVERAGE=true npm run affected:test -- --parallel || npm run affected:test
+
+      - name: Build non-libs
+        run: npm run build-non-libs
+
+      - name: Build affected libs
+        run: |
+          npm run affected:build -- --parallel || npm run affected:build
 
       - name: Configure Git
         run: |
           git config --global user.email "$GIT_EMAIL"
           git config --global user.name "$GIT_USER"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: |
-          npm run build
-          npm run build-non-libs
-
       - name: Set up NPM token
         run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
-      - name: Release (master)
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/republish/master'
+      - name: Release
+        if: success()
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/republish/master" ]]; then
             npm run release from-package
@@ -105,8 +115,59 @@ jobs:
             npm run release
           fi
 
-      - name: Release (next)
-        if: github.ref == 'refs/heads/next' || github.ref == 'refs/heads/republish/next'
+  # Next branch workflow
+  next-branch:
+    name: Next Branch CI/CD
+    if: contains(github.ref, 'refs/heads/next') || contains(github.ref, 'refs/heads/republish/next')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run format check
+        run: |
+          git fetch origin master
+          npm run format:check -- --base=origin/master
+
+      - name: Run lint
+        run: |
+          git fetch origin master
+          npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --parallel
+          npm run stylelint
+
+      - name: Run tests
+        run: |
+          git fetch origin master
+          COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel
+
+      - name: Build non-libs
+        run: npm run build-non-libs
+
+      - name: Build affected libs
+        run: |
+          npm run affected:build -- --base=origin/master --parallel || npm run affected:build -- --parallel
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "$GIT_EMAIL"
+          git config --global user.name "$GIT_USER"
+
+      - name: Set up NPM token
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+      - name: Release
+        if: success()
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/republish/next" ]]; then
             npm run release-next from-package
@@ -114,13 +175,129 @@ jobs:
             npm run release-next
           fi
 
-      - name: Release (pre-release)
-        if: contains(github.ref, 'alpha')
-            || contains(github.ref, 'beta')
-            || contains(github.ref, 'rc')
+  # Pre-release branches workflow (alpha, beta, rc)
+  pre-release-branches:
+    name: Pre-release Branches CI/CD
+    if: >
+      contains(github.ref, 'refs/heads/alpha') ||
+      contains(github.ref, 'refs/heads/beta') ||
+      contains(github.ref, 'refs/heads/rc') ||
+      contains(github.ref, 'refs/heads/republish/alpha') ||
+      contains(github.ref, 'refs/heads/republish/beta') ||
+      contains(github.ref, 'refs/heads/republish/rc')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run format check
+        run: |
+          git fetch origin next
+          npm run format:check -- --base=origin/next
+
+      - name: Run lint
+        run: |
+          git fetch origin next
+          npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
+          npm run stylelint
+
+      - name: Run tests
+        run: |
+          git fetch origin next
+          COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
+
+      - name: Build non-libs
+        run: npm run build-non-libs
+
+      - name: Build affected libs
+        run: |
+          npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "$GIT_EMAIL"
+          git config --global user.name "$GIT_USER"
+
+      - name: Set up NPM token
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+      - name: Release
+        if: success()
         run: |
           if [[ "${{ github.ref }}" == refs/heads/republish/* ]]; then
             npm run release-tag from-package
           else
             npm run release-tag
           fi
+  deploy:
+      name: Deploy
+      needs: [non-releasable-branches, master-branch, next-branch, pre-release-branches]
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout code
+            uses: actions/checkout@v3
+            with:
+                fetch-depth: 0
+
+          - name: Setup Node.js
+            uses: actions/setup-node@v3
+            with:
+                node-version: ${{ env.NODE_VERSION }}
+                registry-url: 'https://registry.npmjs.org'
+                cache: 'npm'
+
+          - name: Configure Git
+            run: |
+                git config --global user.email "$GIT_EMAIL"
+                git config --global user.name "$GIT_USER"
+
+          - name: Install dependencies
+            run: npm ci
+
+          - name: Build
+            run: |
+                npm run build
+                npm run build-non-libs
+
+          - name: Set up NPM token
+            run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+          - name: Release (master)
+            if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/republish/master'
+            run: |
+                if [[ "${{ github.ref }}" == "refs/heads/republish/master" ]]; then
+                  npm run release from-package
+                else
+                  npm run release
+                fi
+
+          - name: Release (next)
+            if: github.ref == 'refs/heads/next' || github.ref == 'refs/heads/republish/next'
+            run: |
+                if [[ "${{ github.ref }}" == "refs/heads/republish/next" ]]; then
+                  npm run release-next from-package
+                else
+                  npm run release-next
+                fi
+
+          - name: Release (pre-release)
+            if: contains(github.ref, 'alpha')
+                || contains(github.ref, 'beta')
+                || contains(github.ref, 'rc')
+            run: |
+                if [[ "${{ github.ref }}" == refs/heads/republish/* ]]; then
+                  npm run release-tag from-package
+                else
+                  npm run release-tag
+                fi

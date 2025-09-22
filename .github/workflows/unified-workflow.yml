@@ -17,10 +17,12 @@ jobs:
   # Common job for non-releasable branches (feature branches, etc.)
   non-releasable-branches:
     name: Format check / Lint code / Unit Tests / Build
+    #TODO -- optimize, use regex
     if: >
-      !contains(github.ref_name, 'master') &&
-      !contains(github.ref_name, 'next') &&
-      !github.refName.matches('^\\d+$'))
+      !contains(github.ref, 'master') && 
+      !contains(github.ref, 'next') && 
+      !contains('0123456789', github.ref_name) &&
+      !contains(github.ref_name, '.'))
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

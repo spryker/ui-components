@@ -19,10 +19,10 @@ jobs:
     name: Format check / Lint code / Unit Tests / Build
     #TODO -- optimize, use regex
     if: >
-      !contains(github.ref, 'master') && 
-      !contains(github.ref, 'next') && 
-      !contains('0123456789', github.ref_name) &&
-      !contains(github.ref_name, '.'))
+      !contains(github.ref, 'master') &&
+      !contains(github.ref, 'next') &&
+      !contains(github.ref_name, '0123456789') &&
+      !contains(github.ref_name, '.')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

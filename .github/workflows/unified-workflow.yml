@@ -1,4 +1,4 @@
-name: 'Unified CI/CD Workflow'
+name: 'Spryker UI CI'
 
 on:
   push:
@@ -63,7 +63,7 @@ jobs:
 
   # Master branch workflow
   master-branch:
-    name: Master Branch CI/CD
+    name: Master Branch
     if: contains(github.ref, 'refs/heads/master') || contains(github.ref, 'refs/heads/republish/master')
     runs-on: ubuntu-latest
     steps:
@@ -119,7 +119,7 @@ jobs:
 
   # Next branch workflow
   next-branch:
-    name: Next Branch CI/CD
+    name: Next Branch
     if: contains(github.ref, 'refs/heads/next') || contains(github.ref, 'refs/heads/republish/next')
     runs-on: ubuntu-latest
     steps:
@@ -177,9 +177,8 @@ jobs:
             npm run release-next
           fi
 
-  # Pre-release branches workflow (alpha, beta, rc)
   pre-release-branches:
-    name: Pre-release Branches CI/CD
+    name: Pre-release Branches
     if: >
       contains(github.ref, 'refs/heads/alpha') ||
       contains(github.ref, 'refs/heads/beta') ||
@@ -245,6 +244,11 @@ jobs:
   deploy:
       name: Deploy
       needs: [non-releasable-branches, master-branch, next-branch, pre-release-branches]
+      if: |
+        needs.non-releasable-branches.result == 'success' ||
+        needs.master-branch.result == 'success' ||
+        needs.next-branch.result == 'success' ||
+        needs.pre-release-branches.result == 'success'
       runs-on: ubuntu-latest
       steps:
           - name: Checkout code

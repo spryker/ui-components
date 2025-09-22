@@ -23,8 +23,8 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  build-and-verify:
-    name: Build and Verify
+  none-releasable-branches:
+    name: Format check / Lint code / Unit Tests / Build (non-releasable branches)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

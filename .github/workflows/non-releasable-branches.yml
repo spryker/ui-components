@@ -61,7 +61,7 @@ jobs:
           npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
           
       - name: Trigger Deploy Workflow
-        if: contains('alpha,beta,rc', github.ref_name)
+        # if: contains('alpha,beta,rc', github.ref_name)
         uses: actions/github-script@v6
         with:
           script: |

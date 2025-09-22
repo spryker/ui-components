@@ -2,9 +2,8 @@ name: Deploy
 
 on:
   workflow_run:
-    workflows: ["Format check / Lint code / Unit Tests / Build (not releasable branches)"]
+    workflows: ["Prepare and Build (not releasable branches)"]
     types: [completed]
-        default: 'refs/heads/master'
 
 env:
   NODE_VERSION: '18.19.1'

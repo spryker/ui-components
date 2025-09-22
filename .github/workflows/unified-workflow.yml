@@ -66,11 +66,11 @@ jobs:
   deploy:
     name: Deploy
     needs: build-and-verify
-    if: |
-      contains(github.ref, 'alpha') || 
-      contains(github.ref, 'beta') || 
-      contains(github.ref, 'rc') || 
-      startsWith(github.ref, 'refs/heads/republish/')
+#    if: |
+#      contains(github.ref, 'alpha') ||
+#      contains(github.ref, 'beta') ||
+#      contains(github.ref, 'rc') ||
+#      startsWith(github.ref, 'refs/heads/republish/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

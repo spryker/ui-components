@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   workflow_run:
-    workflows: ["Prepare and Build (not releasable branches)"]
+    workflows: ["Check and Build (not releasable branches)"]
     types: [completed]
 
 env:

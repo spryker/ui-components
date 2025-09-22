@@ -1,4 +1,4 @@
-name: 'Format check / Lint code / Unit Tests / Build (not releasable branches)'
+name: 'Check and Build (not releasable branches)'
 on:
   push:
     branches-ignore:

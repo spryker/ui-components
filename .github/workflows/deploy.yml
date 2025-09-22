@@ -1,8 +1,17 @@
 name: Deploy
 
 on:
-  repository_dispatch:
-    types: [deploy]
+  workflow_run:
+    workflows: ["Check and Build (not releasable branches)"]
+    types: [completed]
+    branches:
+      - 'alpha'
+      - 'beta'
+      - 'rc'
+      - 'republish/alpha'
+      - 'republish/beta'
+      - 'republish/rc'
+      - 'feature/frw-10984-migrate-spryker-ui-components-to-github-actions-from-buddy-ci'
   workflow_dispatch:
     # refs:
     #     - 'refs/heads/master'
@@ -46,12 +55,12 @@ jobs:
 
   deploy:
     name: Deploy
-#    needs: prepare
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
-          ref: ${{ needs.prepare.outputs.branch }}
+          ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
@@ -81,34 +90,34 @@ jobs:
 #      - name: Check for republish
 #        id: is-republish
 #        run: |
-#          if [[ "${{ needs.prepare.outputs.branch }}" == republish/* ]]; then
+#          if [[ "${{ github.event.workflow_run.head_branch }}" == republish/* ]]; then
 #            echo "is_republish=true" >> $GITHUB_OUTPUT
 #          else
 #            echo "is_republish=false" >> $GITHUB_OUTPUT
 #          fi
 
       - name: Release (master)
-        if: needs.prepare.outputs.branch == 'master' || needs.prepare.outputs.branch == 'republish/master'
+        if: github.event.workflow_run.head_branch == 'master' || github.event.workflow_run.head_branch == 'republish/master'
         run: |
-          if [[ "${{ needs.prepare.outputs.branch }}" == "republish/master" ]]; then
+          if [[ "${{ github.event.workflow_run.head_branch }}" == "republish/master" ]]; then
             npm run release from-package
           else
             npm run release
           fi
 
       - name: Release (next)
-        if: needs.prepare.outputs.branch == 'next' || needs.prepare.outputs.branch == 'republish/next'
+        if: github.event.workflow_run.head_branch == 'next' || github.event.workflow_run.head_branch == 'republish/next'
         run: |
-          if [[ "${{ needs.prepare.outputs.branch }}" == "republish/next" ]]; then
+          if [[ "${{ github.event.workflow_run.head_branch }}" == "republish/next" ]]; then
             npm run release-next from-package
           else
             npm run release-next
           fi
 
       - name: Release (pre-release)
-        if: contains('alpha,beta,rc', needs.prepare.outputs.branch) || startsWith(needs.prepare.outputs.branch, 'republish/')
+        if: contains('alpha,beta,rc', github.event.workflow_run.head_branch) || startsWith(github.event.workflow_run.head_branch, 'republish/')
         run: |
-          if [[ "${{ needs.prepare.outputs.branch }}" == republish/* ]]; then
+          if [[ "${{ github.event.workflow_run.head_branch }}" == republish/* ]]; then
             npm run release-tag from-package
           else
             npm run release-tag

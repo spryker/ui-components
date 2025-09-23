@@ -1,0 +1,128 @@
+dist: trusty
+language: node_js
+node_js: lts/*
+cache:
+  npm: true
+stages:
+  - name: test-branch
+    if: branch NOT IN (master, next)
+  - name: test-next
+    if: branch = next
+  - name: test-master
+    if: branch = master
+  - name: deploy
+    if: branch IN (master, next, beta, alpha) OR branch =~ /^republish\/.*$/
+before_script:
+  # Configure Git to fetch all branches and fetch master
+  - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+jobs:
+  include:
+    - stage: test-branch
+      name: 'Format check'
+      script:
+        - git fetch origin next
+        - npm run format:check -- --base=origin/next
+    - name: 'Lint code'
+      script:
+        - git fetch origin next
+        - npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --all --parallel
+    - name: 'Unit Tests'
+      script:
+        - git fetch origin next
+        - COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --all --parallel
+    - name: 'Build'
+      script:
+        - git fetch origin next
+        - npm run build-non-libs
+        - npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --all --parallel
+
+    - stage: test-next
+      name: 'Format check'
+      script:
+        - git fetch origin master
+        - npm run format:check -- --base=origin/master
+    - name: 'Lint code'
+      script:
+        - git fetch origin master
+        - npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --all --parallel
+    - name: 'Unit Tests'
+      script:
+        - git fetch origin master
+        - COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --all --parallel
+
+    - stage: test-master
+      name: 'Format check'
+      script:
+        - npm run format:check
+    - name: 'Lint code'
+      script:
+        - npm run affected:lint -- --all --parallel
+    - name: 'Unit Tests'
+      script:
+        - COVERAGE=true npm run affected:test -- --all --parallel
+
+    - stage: deploy
+      script:
+        - npm run build
+      before_deploy:
+        - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        - git remote add -f pub https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+        - git fetch pub $TRAVIS_BRANCH
+        - git checkout $TRAVIS_BRANCH
+      deploy:
+        - provider: script
+          script: npm run release
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(master)$'
+        - provider: script
+          script: npm run release from-package
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(republish/master)$'
+        - provider: script
+          script: npm run release-next
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(next)$'
+        - provider: script
+          script: npm run release-next from-package
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(republish/next)$'
+        - provider: script
+          script: npm run release-tag
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(beta)$'
+        - provider: script
+          script: npm run release-tag
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(alpha)$'
+        - provider: script
+          script: npm run release-tag from-package
+          skip_cleanup: true
+          keep_history: true
+          on:
+            tags: false
+            all_branches: true
+            condition: '$TRAVIS_BRANCH =~ ^(republish/beta)$'

@@ -5,15 +5,8 @@ on:
     branches-ignore:
       - 'master'
       - 'next'
-      - 'alpha'
-      - 'beta'
-      - 'rc'
-      - 'republish/**'
-      - '**-release'
-      # Match numeric version branches (e.g., 1.0.0)
-      - '**.[0-9]+.[0-9]+.[0-9]+'
+      - '^[0-9]+$'
   workflow_dispatch:
-    # Allow manual triggering
 
 env:
   NODE_VERSION: '18.19.1'
@@ -62,3 +55,50 @@ jobs:
       - name: Build affected libs
         run: |
           npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
+
+  deploy:
+    name: Deploy
+    needs: build-and-verify
+    if: github.ref_name == 'alpha'
+      || github.ref_name == 'beta'
+      || github.ref_name == 'rc'
+      || github.ref_name == 'republish/alpha'
+      || github.ref_name == 'republish/beta'
+      || github.ref_name == 'republish/rc'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "$GIT_EMAIL"
+          git config --global user.name "$GIT_USER"
+
+      - name: Set up NPM token
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: |
+          npm run build
+
+      - name: Release (pre-release)
+        if: success()
+        run: |
+          if [[ "${{ github.ref }}" == refs/heads/republish/* ]]; then
+            npm run release-tag from-package
+          else
+            npm run release-tag
+          fi

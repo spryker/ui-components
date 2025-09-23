@@ -1,4 +1,4 @@
-name: 'Format check / Lint code / Unit Tests / Build (next)'
+name: 'Format check / Lint code / Unit Tests / Build / Deploy (next)'
 
 on:
   push:
@@ -10,47 +10,32 @@ env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GIT_EMAIL: 'github-actions@github.com'
   GIT_USER: 'GitHub Actions'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  format-check:
-    name: Format check
+  build-and-verify:
+    name: Format check / Lint code / Unit Tests / Build (next)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+            git fetch origin master
+            npm ci
 
       - name: Run format check
         run: |
-          git fetch origin master
           npm run format:check -- --base=origin/master
-
-  lint:
-    name: Lint code
-    needs: format-check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
 
       - name: Run lint
         run: |
@@ -58,64 +43,43 @@ jobs:
           npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --parallel
           npm run stylelint
 
-  test:
-    name: Unit Tests
-    needs: lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
       - name: Run tests
         run: |
           git fetch origin master
           COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel
 
-  build:
-    name: Build
-    needs: test
+  deploy:
+    name: Deploy
+    needs: build-and-verify
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "$GIT_EMAIL"
+          git config --global user.name "$GIT_USER"
+
+      - name: Set up NPM token
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build non-libs
-        run: npm run build-non-libs
-
-      - name: Build affected libs
+      - name: Build
         run: |
-          git fetch origin master
-          npm run affected:build -- --base=origin/master --parallel || npm run affected:build -- --parallel
+            npm run build
 
-  trigger-deploy:
-    name: Trigger Deploy Pipeline
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Deploy workflow
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
-          repository: ${{ github.repository }}
-          event-type: trigger-deploy
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+      - name: Release
+        if: success()
+        run: npm run release-next

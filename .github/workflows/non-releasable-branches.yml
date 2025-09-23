@@ -97,8 +97,4 @@ jobs:
       - name: Release (pre-release)
         if: success()
         run: |
-          if [[ "${{ github.ref }}" == refs/heads/republish/* ]]; then
-            npm run release-tag from-package
-          else
-            npm run release-tag
-          fi
+          npm run release-tag

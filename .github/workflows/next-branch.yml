@@ -82,4 +82,5 @@ jobs:
 
       - name: Release
         if: success()
-        run: npm run release-next
+        run: |
+            npm run release-next

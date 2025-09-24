@@ -26,7 +26,7 @@
         "affected:dep-graph": "nx affected:dep-graph",
         "affected": "nx affected",
         "format": "prettier --write .",
-        "format:check": "prettier --check --log-level=error .",
+        "format:check": "prettier --check .",
         "update": "nx migrate latest",
         "update:check": "nx update",
         "workspace-schematic": "nx workspace-schematic",

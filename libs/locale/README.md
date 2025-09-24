@@ -16,9 +16,9 @@ with this name prefixed. This is done for easier navigation of the source of tra
 
 For example:
 
-- If the file specifies that name is `prefix`
-- And if the file defined translation with token `example`
-- Then in the application to get this translation use token `prefix.example`
+-   If the file specifies that name is `prefix`
+-   And if the file defined translation with token `example`
+-   Then in the application to get this translation use token `prefix.example`
 
 ### Bundling
 

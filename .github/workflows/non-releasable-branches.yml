@@ -1,4 +1,4 @@
-name: 'Format check / Lint code / Unit Tests / Build / Deploy (non-releasable branches)'
+name: 'UI components CI (non-releasable branches)'
 
 on:
   push:

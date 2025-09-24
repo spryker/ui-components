@@ -34,10 +34,10 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-            - name: Run format check (Errors only)
+            - name: Run format check (warnings ignored)
               run: |
                   OUTPUT=$(npm run format:check -- --base=origin/master --log-level=error . 2>&1 || true)
-                  if echo "$OUTPUT" | grep -q 'error' && echo "$OUTPUT" | grep -vq 'warn'; then
+                  if echo "$OUTPUT" | grep -q 'error'; then
                       echo "::error::Prettier found formatting errors"
                       echo "$OUTPUT"
                       exit 1

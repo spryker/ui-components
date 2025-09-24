@@ -39,15 +39,7 @@ jobs:
 
             - name: Run format check (warnings ignored)
               run: |
-                  OUTPUT=$(npm run format:check -- --base=origin/next  2>&1 || true)
-                  if echo "$OUTPUT" | grep -q 'error'; then
-                      echo "::error::Prettier found formatting errors"
-                      echo "$OUTPUT"
-                      exit 1
-                  else
-                      echo "Prettier check completed"
-                      echo "$OUTPUT"
-                  fi
+                  npm run format:check -- --base=origin/next
 
             - name: Run lint
               run: |

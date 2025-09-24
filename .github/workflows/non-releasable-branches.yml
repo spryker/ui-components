@@ -39,7 +39,7 @@ jobs:
 
             - name: Run format check
               run: |
-                  OUTPUT=$(npx prettier --check --loglevel=error . --base=origin/next 2>&1 || true)
+                  OUTPUT=$(npx prettier --check --log-level=error . --base=origin/next 2>&1 || true)
                   if echo "$OUTPUT" | grep -q 'error' && echo "$OUTPUT" | grep -vq 'warn'; then
                       echo "::error::Prettier found formatting errors"
                       echo "$OUTPUT"

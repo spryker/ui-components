@@ -1,8 +1,10 @@
+import { Meta, moduleMetadata } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { StaticHtmlRendererModule } from '../static-html-renderer/static-html-renderer.module';
 import { UrlHtmlRendererModule } from '../url-html-renderer/url-html-renderer.module';
-import { IStory } from '@storybook/angular';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
+import { provideHttpClient } from '@angular/common/http';
 
 const mockHtmlTemplate = (template: string) => `
   <head>
@@ -35,38 +37,45 @@ const mockHtmlTemplate = (template: string) => `
 `;
 
 function generateMockHtmlPage(template: string): { html: string } {
-  return { html: mockHtmlTemplate(template) };
+    return { html: mockHtmlTemplate(template) };
 }
 
 export default {
-  title: 'HtmlRendererComponent',
-};
+    title: 'HtmlRendererComponent',
+    decorators: [
+        moduleMetadata({
+            imports: [StaticHtmlRendererModule],
+        }),
+    ],
+} as Meta;
 
-export const withStaticHtml = (): IStory => ({
-  moduleMetadata: {
-    imports: [StaticHtmlRendererModule],
-  },
-  template: `
+export const withStaticHtml = (args) => ({
+    props: {
+        ...args,
+        html: mockHtmlTemplate('Static'),
+    },
+    template: `
     <spy-html-renderer [html]="html"></spy-html-renderer>
   `,
-  props: {
-    html: mockHtmlTemplate('Static'),
-  },
 });
 
-export const withUrlHtml = (): IStory => ({
-  moduleMetadata: {
-    imports: [UrlHtmlRendererModule, MockHttpModule, HttpClientTestingModule],
-  },
-  template: `
+export const withUrlHtml = (args) => ({
+    props: {
+        ...args,
+        mockHttp: setMockHttp([
+            {
+                url: '/html-request',
+                dataFn: () => generateMockHtmlPage('Url'),
+            },
+        ]),
+    },
+    applicationConfig: {
+        providers: [provideHttpClient(), provideHttpClientTesting()],
+    },
+    moduleMetadata: {
+        imports: [UrlHtmlRendererModule, MockHttpModule],
+    },
+    template: `
     <spy-html-renderer [mockHttp]="mockHttp" urlHtml="/html-request"></spy-html-renderer>
   `,
-  props: {
-    mockHttp: setMockHttp([
-      {
-        url: '/html-request',
-        dataFn: () => generateMockHtmlPage('Url'),
-      },
-    ]),
-  },
 });

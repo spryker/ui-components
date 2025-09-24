@@ -1,19 +1,19 @@
 export interface EnableDateRange {
-  from?: Date | string;
-  to?: Date | string;
+    from?: Date | string;
+    to?: Date | string;
 }
 
 export interface EnableDate extends EnableDateRange {
-  onlyWorkDays?: boolean;
+    onlyWorkDays?: boolean;
 }
 
 export interface EnableTime extends EnableDateRange {
-  onlyWorkHours?: boolean;
+    onlyWorkHours?: boolean;
 }
 
 export interface EnableTimeConfig {
-  hours: () => number[];
-  minutes: (hour?: number) => number[];
+    hours: () => number[];
+    minutes: (hour?: number) => number[];
 }
 
 export type EnableDateOptions = EnableDate | EnableDateFunction;

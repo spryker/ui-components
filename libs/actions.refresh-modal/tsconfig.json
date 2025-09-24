@@ -1,0 +1,19 @@
+{
+    "files": [],
+    "include": [],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        },
+        {
+            "path": "./tsconfig.lib.prod.json"
+        },
+        {
+            "path": "./.storybook/tsconfig.json"
+        }
+    ],
+    "extends": "../../tsconfig.base.json"
+}

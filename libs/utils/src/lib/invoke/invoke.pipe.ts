@@ -33,16 +33,13 @@ import { InvokeContext } from './invoke.token';
  */
 @Pipe({ name: 'spyInvoke' })
 export class InvokePipe implements PipeTransform {
-  constructor(
-    @Inject(InvokeContext)
-    @Optional()
-    private context: InjectionTokenType<typeof InvokeContext>,
-  ) {}
+    constructor(
+        @Inject(InvokeContext)
+        @Optional()
+        private context: InjectionTokenType<typeof InvokeContext>,
+    ) {}
 
-  transform<TArgs extends any[], TReturn>(
-    fn: (...args: TArgs) => TReturn,
-    ...args: TArgs
-  ): TReturn {
-    return fn.apply(this.context, args);
-  }
+    transform<TArgs extends any[], TReturn>(fn: (...args: TArgs) => TReturn, ...args: TArgs): TReturn {
+        return fn.apply(this.context, args);
+    }
 }

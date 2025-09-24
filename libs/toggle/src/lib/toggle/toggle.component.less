@@ -1,61 +1,67 @@
 @import './toggle.component.theme.less';
 
 .@{toggle-wrapper-prefix-cls} {
-  display: inline-flex;
-  align-items: center;
+    display: inline-flex;
+    align-items: center;
 
-  &__label {
-    .transition-mixin(color);
-    padding-right: @toggle-wrapper-label-padding-right;
-    color: @gray-darker;
-    font: @font-default;
+    &__label {
+        .transition-mixin(color);
+        padding-right: @toggle-wrapper-label-padding-right;
+        color: @gray-darker;
+        font: @font-default;
 
-    &--active {
-      color: @green;
+        &--active {
+            color: @green;
+        }
+
+        &--disabled {
+            color: @gray-dark;
+        }
+
+        &:empty {
+            display: none;
+        }
     }
-
-    &--disabled {
-      color: @gray-dark;
-    }
-
-    &:empty {
-      display: none;
-    }
-  }
 }
 
 .@{toggle-prefix-cls} {
-  border: @toggle-border;
+    border: @toggle-border;
 
-  &:hover,
-  &:focus {
-    background-color: @gray-darker;
-  }
-
-  &:focus {
-    border-color: @white;
-    box-shadow: @toggle-focus-box-shadow;
-  }
-
-  &-checked {
     &:hover,
     &:focus {
-      background-color: @green-dark;
+        background-color: @gray-darker;
     }
 
     &:focus {
-      box-shadow: @toggle-checked-focus-box-shadow;
+        border-color: @spy-white;
+        box-shadow: @toggle-checked-focus-box-shadow;
     }
 
-    &:hover {
-      box-shadow: none;
+    &-handle {
+        top: @toggle-handle-position-top;
+        left: @toggle-handle-position-left;
     }
-  }
 
-  &:disabled {
-    background-color: @gray;
-    &::after {
-      background-color: @gray-darker;
+    &-checked {
+        &:hover,
+        &:focus {
+            background-color: @green-dark;
+        }
+
+        &:hover {
+            box-shadow: none;
+        }
+
+        .@{toggle-prefix-cls}-handle {
+            left: @toggle-checked-handle-position-left;
+        }
     }
-  }
+
+    &:disabled {
+        background-color: @gray;
+
+        &::after {
+            background-color: @gray-darker;
+        }
+    }
 }

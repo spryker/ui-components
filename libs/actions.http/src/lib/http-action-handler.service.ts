@@ -8,52 +8,39 @@ import { catchError, concatAll, shareReplay, takeUntil } from 'rxjs/operators';
 import { HttpActionConfig, HttpActionResponse } from './types';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
-export class HttpActionHandlerService
-  implements ActionHandler<unknown, unknown>, OnDestroy {
-  private destroyed$ = new Subject<void>();
-  constructor(private http: HttpClient) {}
+export class HttpActionHandlerService implements ActionHandler<unknown, unknown>, OnDestroy {
+    private destroyed$ = new Subject<void>();
+    constructor(private http: HttpClient) {}
 
-  handleAction(
-    injector: Injector,
-    config: HttpActionConfig,
-    context: unknown,
-  ): Observable<unknown> {
-    config = { ...config };
+    handleAction(injector: Injector, config: HttpActionConfig, context: unknown): Observable<unknown> {
+        config = { ...config };
 
-    const contextService = injector.get(ContextService);
-    const actionsService = injector.get(ActionsService);
+        const contextService = injector.get(ContextService);
+        const actionsService = injector.get(ActionsService);
 
-    config.url = contextService.interpolate(config.url, context as AnyContext);
+        config.url = contextService.interpolate(config.url, context as AnyContext);
 
-    const request$ = this.http
-      .request<HttpActionResponse>(config.method || 'GET', config.url)
-      .pipe(
-        catchError((response) => of(response)),
-        shareReplay({ bufferSize: 1, refCount: true }),
-      );
-
-    request$
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((response: HttpActionResponse) => {
-        const actions$ = response.actions?.map((action) =>
-          actionsService.trigger(injector, action, context),
+        const request$ = this.http.request<HttpActionResponse>(config.method || 'GET', config.url).pipe(
+            catchError((response) => of(response)),
+            shareReplay({ bufferSize: 1, refCount: true }),
         );
 
-        if (!actions$?.length) {
-          return of(void 0);
-        }
+        request$.pipe(takeUntil(this.destroyed$)).subscribe((response: HttpActionResponse) => {
+            const actions$ = response.actions?.map((action) => actionsService.trigger(injector, action, context));
 
-        return combineLatest(actions$ as Observable<unknown>[]).pipe(
-          concatAll(),
-        );
-      });
+            if (!actions$?.length) {
+                return of(void 0);
+            }
 
-    return request$;
-  }
+            return combineLatest(actions$ as Observable<unknown>[]).pipe(concatAll());
+        });
 
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-  }
+        return request$;
+    }
+
+    ngOnDestroy(): void {
+        this.destroyed$.next();
+    }
 }

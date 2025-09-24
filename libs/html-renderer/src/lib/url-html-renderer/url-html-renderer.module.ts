@@ -3,8 +3,8 @@ import { HtmlRendererComponentModule } from '../html-renderer/html-renderer.modu
 import { UrlHtmlRendererDirective } from './url-html-renderer.directive';
 
 @NgModule({
-  imports: [HtmlRendererComponentModule],
-  declarations: [UrlHtmlRendererDirective],
-  exports: [HtmlRendererComponentModule, UrlHtmlRendererDirective],
+    imports: [HtmlRendererComponentModule],
+    declarations: [UrlHtmlRendererDirective],
+    exports: [HtmlRendererComponentModule, UrlHtmlRendererDirective],
 })
 export class UrlHtmlRendererModule {}

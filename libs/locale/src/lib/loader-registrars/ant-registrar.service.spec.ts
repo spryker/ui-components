@@ -1,19 +1,15 @@
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { AntRegistrarService } from './ant-registrar.service';
 
 xdescribe('Service: AntRegistrar', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [AntRegistrarService],
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [AntRegistrarService],
+            teardown: { destroyAfterEach: false },
+        });
     });
-  });
 
-  it('should ...', inject(
-    [AntRegistrarService],
-    (service: AntRegistrarService) => {
-      expect(service).toBeTruthy();
-    },
-  ));
+    it('should ...', inject([AntRegistrarService], (service: AntRegistrarService) => {
+        expect(service).toBeTruthy();
+    }));
 });

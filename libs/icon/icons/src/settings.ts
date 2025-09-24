@@ -12,9 +12,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconSettingsModule])],
+    providers: [provideIcons([IconSettingsModule])],
 })
 export class IconSettingsModule {
-  static icon = 'settings';
-  static svg = svg;
+    static icon = 'settings';
+    static svg = svg;
 }

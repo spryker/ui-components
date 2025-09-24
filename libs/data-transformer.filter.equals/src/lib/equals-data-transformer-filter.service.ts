@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { DataTransformerService } from '@spryker/data-transformer';
+import { DataTransformerService, DataTransformerType } from '@spryker/data-transformer';
 import {
-  DataFilterTransformerByPropName,
-  DataTransformerFilter,
-  DataTransformerFilterByValue,
-  DataTransformerFilterConfig,
-  DataTransformerFilterData,
+    DataFilterTransformerByPropName,
+    DataTransformerFilter,
+    DataTransformerFilterByValue,
+    DataTransformerFilterConfig,
+    DataTransformerFilterData,
 } from '@spryker/data-transformer.collate';
 import { forkJoin, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,53 +14,45 @@ import { map } from 'rxjs/operators';
  * Filters data by value that strictly equals to the prop value.
  */
 @Injectable({ providedIn: 'root' })
-export class EqualsDataTransformerFilterService
-  implements DataTransformerFilter {
-  constructor(private dataTransformerService: DataTransformerService) {}
+export class EqualsDataTransformerFilterService implements DataTransformerFilter {
+    constructor(private dataTransformerService: DataTransformerService) {}
 
-  filter(
-    data: DataTransformerFilterData,
-    options: DataTransformerFilterConfig,
-    byValue: DataTransformerFilterByValue,
-    transformerByPropName: DataFilterTransformerByPropName,
-  ): Observable<DataTransformerFilterData> {
-    const propNames = Array.isArray(options.propNames)
-      ? options.propNames
-      : [options.propNames];
-    const transformedValuesByPropNames$ = propNames.reduce(
-      (allPropNamesData, propName) => {
-        const transformedValues = transformerByPropName?.[propName]
-          ? forkJoin(
-              byValue.map((valueToCompare) =>
-                this.dataTransformerService.transform(valueToCompare, {
-                  type: transformerByPropName[propName],
-                }),
-              ),
-            )
-          : of(byValue);
+    filter(
+        data: DataTransformerFilterData,
+        options: DataTransformerFilterConfig,
+        byValue: DataTransformerFilterByValue,
+        transformerByPropName: DataFilterTransformerByPropName,
+    ): Observable<DataTransformerFilterData> {
+        const propNames = Array.isArray(options.propNames) ? options.propNames : [options.propNames];
+        const transformedValuesByPropNames$ = propNames.reduce((allPropNamesData, propName) => {
+            const transformedValues = transformerByPropName?.[propName]
+                ? forkJoin(
+                      byValue.map((valueToCompare) =>
+                          this.dataTransformerService.transform(valueToCompare, {
+                              type: transformerByPropName[propName] as DataTransformerType,
+                          }),
+                      ),
+                  )
+                : of(byValue);
 
-        return {
-          ...allPropNamesData,
-          [propName]: transformedValues,
-        };
-      },
-      {},
-    );
+            return {
+                ...allPropNamesData,
+                [propName]: transformedValues,
+            };
+        }, {});
 
-    return forkJoin(transformedValuesByPropNames$).pipe(
-      map((transformedValuesByPropNames: Record<string, unknown[]>) =>
-        data.filter((row) =>
-          propNames.some((propName) => {
-            if (!byValue.length) {
-              return true;
-            }
+        return forkJoin(transformedValuesByPropNames$).pipe(
+            map((transformedValuesByPropNames: Record<string, unknown[]>) =>
+                data.filter((row) =>
+                    propNames.some((propName) => {
+                        if (!byValue.length) {
+                            return true;
+                        }
 
-            return transformedValuesByPropNames?.[propName].includes(
-              row[propName],
-            );
-          }),
-        ),
-      ),
-    );
-  }
+                        return transformedValuesByPropNames?.[propName].includes(row[propName]);
+                    }),
+                ),
+            ),
+        );
+    }
 }

@@ -90,9 +90,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconNoDataModule])],
+    providers: [provideIcons([IconNoDataModule])],
 })
 export class IconNoDataModule {
-  static icon = 'no-data';
-  static svg = svg;
+    static icon = 'no-data';
+    static svg = svg;
 }

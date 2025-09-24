@@ -5,8 +5,8 @@ import { ApplyAttrsModule } from '@spryker/utils';
 import { ButtonLinkComponent } from './button-link.component';
 
 @NgModule({
-  imports: [CommonModule, ApplyAttrsModule],
-  exports: [ButtonLinkComponent],
-  declarations: [ButtonLinkComponent],
+    imports: [CommonModule, ApplyAttrsModule],
+    exports: [ButtonLinkComponent],
+    declarations: [ButtonLinkComponent],
 })
 export class ButtonLinkModule {}

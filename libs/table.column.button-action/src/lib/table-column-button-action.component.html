@@ -1,0 +1,15 @@
+<spy-button-action
+    [action]="config?.action"
+    [actionContext]="config?.actionContext ?? context"
+    [variant]="config?.variant"
+    [shape]="config?.shape"
+    [size]="config?.size"
+    [attrs]="config?.attrs"
+    (click)="$event.stopPropagation()"
+>
+    @if (config.icon) {
+        <spy-icon icon [name]="config.icon"></spy-icon>
+    }
+
+    {{ config.text | context: context }}
+</spy-button-action>

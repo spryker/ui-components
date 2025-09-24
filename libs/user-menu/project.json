@@ -1,0 +1,71 @@
+{
+    "name": "user-menu",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/user-menu/src",
+    "prefix": "spy",
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:package",
+            "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "options": {
+                "project": "libs/user-menu/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/user-menu/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/user-menu/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/user-menu/jest.config.ts"
+            }
+        },
+        "storybook": {
+            "executor": "@storybook/angular:start-storybook",
+            "options": {
+                "port": 4400,
+                "configDir": "libs/user-menu/.storybook",
+                "browserTarget": "user-menu:build-storybook",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "build-storybook": {
+            "executor": "@storybook/angular:build-storybook",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputDir": "dist/storybook/user-menu",
+                "configDir": "libs/user-menu/.storybook",
+                "browserTarget": "user-menu:build-storybook",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        }
+    },
+    "tags": ["level:molecule", "type:component", "pkg:primary"]
+}

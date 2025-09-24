@@ -1,16 +1,20 @@
 import { TemplateRef } from '@angular/core';
-import { ModalTemplateContext, AnyModal } from '../../types';
+import { ButtonSize, ButtonVariant } from '@spryker/button';
+import { AnyModal, ModalTemplateContext } from '../../types';
 
-// tslint:disable-next-line: no-empty-interface
 export interface ConfirmModalStrategyOptions extends ConfirmModalData {}
 
 export interface ConfirmModalData {
-  title?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  description?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  icon?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  okText?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  okType?: string;
-  cancelText?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
-  cancelType?: string;
-  class?: string;
+    title?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    description?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    icon?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    okText?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    okType?: string;
+    okVariant?: ButtonVariant;
+    okSize?: ButtonSize;
+    cancelText?: string | TemplateRef<ModalTemplateContext<AnyModal>>;
+    cancelType?: string;
+    cancelVariant?: ButtonVariant;
+    cancelSize?: ButtonSize;
+    class?: string;
 }

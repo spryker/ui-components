@@ -1,7 +1,7 @@
 @popover-prefix-cls: ~'@{ant-prefix}-popover';
 @popover-spryker-prefix-cls: ~'@{spryker-prefix}-popover';
 
-@popover-border-radius: 4px;
-@popover-side-padding: 20px;
-@popover-title-vertical-padding: 9px;
-@popover-shadow: 0px 2px 16px @gray;
+@popover-border-radius: var(--spy-popover-border-radius, @border-radius-small);
+@popover-side-padding: var(--spy-popover-side-padding, 20px);
+@popover-title-vertical-padding: var(--spy-popover-title-vertical-padding, 9px);
+@popover-shadow: var(--spy-popover-shadow, @box-shadow-1);

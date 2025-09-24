@@ -4,34 +4,29 @@ import { TableSettingsFeatureComponent } from './table-settings-feature.componen
 import { PopoverModule } from '@spryker/popover';
 import { CheckboxModule } from '@spryker/checkbox';
 import { ButtonToggleModule } from '@spryker/button';
-import {
-  IconResetModule,
-  IconSettingsModule,
-  IconDragModule,
-} from '@spryker/icon/icons';
+import { IconResetModule, IconSettingsModule, IconDragModule } from '@spryker/icon/icons';
 import { IconModule } from '@spryker/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
 import { I18nModule } from '@spryker/locale';
 
 @NgModule({
-  declarations: [TableSettingsFeatureComponent],
-  imports: [
-    CommonModule,
-    IconModule,
-    IconSettingsModule,
-    IconResetModule,
-    IconDragModule,
-    PopoverModule,
-    CheckboxModule,
-    ButtonToggleModule,
-    DragDropModule,
-    TableFeatureModule,
-    I18nModule,
-  ],
-  exports: [TableSettingsFeatureComponent],
-  entryComponents: [TableSettingsFeatureComponent],
+    declarations: [TableSettingsFeatureComponent],
+    imports: [
+        CommonModule,
+        IconModule,
+        IconSettingsModule,
+        IconResetModule,
+        IconDragModule,
+        PopoverModule,
+        CheckboxModule,
+        ButtonToggleModule,
+        DragDropModule,
+        TableFeatureModule,
+        I18nModule,
+    ],
+    exports: [TableSettingsFeatureComponent],
 })
 export class TableSettingsFeatureModule implements ModuleWithFeature {
-  featureComponent = TableSettingsFeatureComponent;
+    featureComponent = TableSettingsFeatureComponent;
 }

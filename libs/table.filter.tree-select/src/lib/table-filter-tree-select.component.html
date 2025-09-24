@@ -1,11 +1,7 @@
 <spy-tree-select
-  [items]="treeSelectOptions"
-  [(value)]="value"
-  (valueChange)="valueChange.emit($event)"
-  [multiple]="config?.typeOptions?.multiselect"
-  [placeholder]="
-    'table.filter.tree-select.filter:title'
-      | spyI18n: { title: config?.title }
-      | async
-  "
+    [items]="treeSelectOptions"
+    [(value)]="value"
+    (valueChange)="valueChange.emit($event)"
+    [multiple]="config?.typeOptions?.multiselect"
+    [placeholder]="'table.filter.tree-select.filter:title' | spyI18n: { title: config?.title } | async"
 ></spy-tree-select>

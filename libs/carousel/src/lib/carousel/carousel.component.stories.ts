@@ -1,60 +1,70 @@
-import { CarouselComponent } from './carousel.component';
+import { CUSTOM_ELEMENTS_SCHEMA, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { WebComponentsModule } from '@spryker/web-components';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
+import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
 import { CarouselModule } from '../carousel.module';
-import { boolean, number } from '@storybook/addon-knobs';
+import { CarouselComponent } from './carousel.component';
 
 export default {
   title: 'CarouselComponent',
-};
-
-export const primary = () => ({
-  moduleMetadata: {
-    imports: [CarouselModule],
+  decorators: [
+    applicationConfig({
+      providers: [provideAnimations()],
+    }),
+    moduleMetadata({
+      imports: [CarouselModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }),
+  ],
+  parameters: {
+    controls: {
+      include: ['slidesPerView', 'slidesSpaceBetween', 'withThumbs', 'thumbsPerView', 'thumbsSpaceBetween'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2201%3A6727',
+      allowFullscreen: true,
+    },
   },
+  args: {
+    withThumbs: true,
+  },
+} as Meta;
+
+export const primary = (args) => ({
+  props: args,
   template: `
-    <div style="width: 800px">
-      <spy-carousel
-        [config]="{
-          slidesPerView: slidesPerView,
-          spaceBetween: slidesSpaceBetween
-        }"
-        [thumbConfig]="{
-          slidesPerView: thumbsPerView,
-          spaceBetween: thumbsSpaceBetween
-        }"
-        [withThumbs]="withThumbs"
-      >
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 1">
-          <div thumb><img src="https://source.unsplash.com/160x90"  alt="slide 1 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 2">
-          <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 2 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <iframe width="800" height="450" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <div thumb><img src="https://source.unsplash.com/niUkImZcSP8/160x90" alt="slide 3 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 4">
-          <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 4 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 5">
-          <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 5 thumb"></div>
-        </spy-carousel-slide>
-        <spy-carousel-slide>
-          <img src="https://source.unsplash.com/random/800x450" alt="slide 6">
-          <div thumb><img src="https://source.unsplash.com/160x90" alt="slide 6 thumb"></div>
-        </spy-carousel-slide>
+    <div style="width: 100%">
+      <spy-carousel [withThumbs]="withThumbs">
+        <ng-container *ngFor="let _ of ' '.repeat(5).split(''); let i = index;">
+            <spy-carousel-slide>
+              <img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}}">
+              <div thumb><img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}} thumb"></div>
+            </spy-carousel-slide>
+        </ng-container>
       </spy-carousel>
     </div>
   `,
-  props: {
-    slidesPerView: number('Slides per view', 1),
-    slidesSpaceBetween: number('Slides space between', 15),
-    withThumbs: boolean('With thumbs', true),
-    thumbsPerView: number('Thumbs per view', 6),
-    thumbsSpaceBetween: number('Thumbs space between', 15),
+});
+
+export const asWebComponents = (args) => ({
+  props: args,
+  applicationConfig: {
+    providers: [
+      importProvidersFrom(WebComponentsModule.withComponents([CarouselComponent, CarouselSlideComponent])),
+    ],
   },
+  template: `
+        <div style="width: 100%">
+            <web-spy-carousel with-thumbs="true">
+                <ng-container *ngFor="let _ of ' '.repeat(10).split(''); let i = index;">
+                    <web-spy-carousel-slide>
+                        <img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}}">
+                        <div thumb><img src="https://swiperjs.com/demos/images/nature-{{i+1}}.jpg" alt="slide {{i+1}} thumb"></div>
+                    </web-spy-carousel-slide>
+                </ng-container>
+            </web-spy-carousel>
+        </div>
+    `,
 });

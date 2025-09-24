@@ -1,17 +1,40 @@
-import { SpinnerComponent } from './spinner.component';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { SpinnerModule } from '../spinner.module';
 import { SpinnerSize } from '../types';
+import { SpinnerComponent } from './spinner.component';
 
 export default {
-  title: 'SpinnerComponent',
-};
+    title: 'SpinnerComponent',
+    component: SpinnerComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [SpinnerModule],
+        }),
+    ],
+    parameters: {
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8981',
+            allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        size: {
+            control: { type: 'select' },
+            options: SpinnerSize,
+        },
+    },
+    args: {
+        delay: 200,
+        size: SpinnerSize.Default,
+        isSpinning: true,
+        overlayContent: false,
+    },
+} as Meta;
 
-export const primary = () => ({
-  moduleMetadata: {
-    imports: [SpinnerModule],
-  },
-  template: `
+export const primary = (args) => ({
+    props: args,
+    template: `
     <spy-spinner
       [delay]="delay"
       [size]="size"
@@ -19,10 +42,4 @@ export const primary = () => ({
       [overlayContent]="overlayContent"
     >Content for loading</spy-spinner>
   `,
-  props: {
-    delay: number('Delay before appearing spinner (ms)', 100),
-    size: select('Size', SpinnerSize, SpinnerSize.Default),
-    isSpinning: boolean('Is spinning', true),
-    overlayContent: boolean('Overlay content', false),
-  },
 });

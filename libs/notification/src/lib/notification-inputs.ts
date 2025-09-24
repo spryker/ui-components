@@ -3,11 +3,11 @@ import { NotificationType } from './types';
 import { ToBoolean } from '@spryker/utils';
 
 @Directive({
-  selector: '[spyNotificationInputs]',
+    selector: '[spyNotificationInputs]',
 })
 export class NotificationInputs {
-  @Input() type: NotificationType = NotificationType.Info;
-  @Input() @ToBoolean() closeable = false;
-  @Input() @ToBoolean() floating = true;
-  @Output() closed = new EventEmitter<void>();
+    @Input() type: NotificationType = NotificationType.Info;
+    @Input() @ToBoolean() closeable = false;
+    @Input() @ToBoolean() floating = true;
+    @Output() closed = new EventEmitter<void>();
 }

@@ -8,9 +8,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconDoubleArrowRightModule])],
+    providers: [provideIcons([IconDoubleArrowRightModule])],
 })
 export class IconDoubleArrowRightModule {
-  static icon = 'double-arrow-right';
-  static svg = svg;
+    static icon = 'double-arrow-right';
+    static svg = svg;
 }

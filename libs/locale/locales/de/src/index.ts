@@ -11,16 +11,15 @@ export function deLocaleFactory() {
     id: DE_LOCALE,
     loaders: {
       ng: () =>
-        Promise.all([
-          import('@angular/common/locales/de'),
-          import('@angular/common/locales/extra/de'),
-        ]).then(([data, extra]) => ({
-          data: data.default,
-          extraData: extra.default,
-        })),
+        Promise.all([import('@angular/common/locales/de'), import('@angular/common/locales/extra/de')]).then(
+          ([data, extra]) => ({
+            data: data.default,
+            extraData: extra.default,
+          }),
+        ),
       ant: () =>
         Promise.all([
-          import('ng-zorro-antd/esm2015/i18n/languages/de_DE' as any),
+          import('node_modules/ng-zorro-antd/esm2022/i18n/languages/de_DE' as any),
           import('date-fns/locale/de'),
         ]).then(([data, date]) => ({
           data: data.default,
@@ -39,6 +38,6 @@ export function deLocaleFactory() {
   imports: [CommonModule],
   providers: [provideLocaleRecordsFactory(deLocaleFactory)],
 })
-export class DeLocaleModule {}
+export class DeLocaleModule { }
 
 export default DeLocaleModule;

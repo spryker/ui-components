@@ -5,15 +5,13 @@ import { provideCacheStrategies } from './token';
 import { CacheStrategyTypesDeclaration } from './types';
 
 @NgModule({
-  imports: [CommonModule],
+    imports: [CommonModule],
 })
 export class CacheModule {
-  static withStrategies(
-    strategies: CacheStrategyTypesDeclaration,
-  ): ModuleWithProviders<CacheModule> {
-    return {
-      ngModule: CacheModule,
-      providers: [provideCacheStrategies(strategies)],
-    };
-  }
+    static withStrategies(strategies: CacheStrategyTypesDeclaration): ModuleWithProviders<CacheModule> {
+        return {
+            ngModule: CacheModule,
+            providers: [provideCacheStrategies(strategies)],
+        };
+    }
 }

@@ -9,15 +9,15 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { InputComponent } from './input/input.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzInputModule,
-    ApplyAttrsModule,
-    FormsModule,
-    NzAutocompleteModule,
-    CustomElementBoundaryModule,
-  ],
-  declarations: [InputComponent],
-  exports: [InputComponent],
+    imports: [
+        CommonModule,
+        NzInputModule,
+        ApplyAttrsModule,
+        FormsModule,
+        NzAutocompleteModule,
+        CustomElementBoundaryModule,
+    ],
+    declarations: [InputComponent],
+    exports: [InputComponent],
 })
 export class InputModule {}

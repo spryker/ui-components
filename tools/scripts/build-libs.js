@@ -1,27 +1,46 @@
 const { execSync } = require('child_process');
+const { resolve } = require('path');
 
-const projects = require('../../nx.json').projects;
+const IGNORE_TAGS = ['type:meta'];
+const ROOT_DIR = resolve(__dirname, '../..');
 
-const EXCLUDED_TAGS = ['type:meta'];
+/**
+ * Spawns a command with all buildable projects from `angular.json`
+ * that do not have tags specified in {@link IGNORE_TAGS}
+ *
+ * ```
+ *  npx nx run-many --target build --projects [...projects]
+ * ```
+ * @param {string[]} extraArgs Extra args to pass to the NX build command
+ */
+async function main(extraArgs) {
+    const { globbySync } = await import('globby');
+    const projectsJson = globbySync('libs/**/project.json', {
+        cwd: ROOT_DIR,
+        expandDirectories: {
+            files: ['project'],
+            extensions: ['json'],
+        },
+    });
+    const projects = await Promise.all(
+        projectsJson.map((path) =>
+            import(resolve(ROOT_DIR, path), { assert: { type: 'json' } }).then((data) => data.default),
+        ),
+    );
 
-async function main(args) {
-  const projectsToBuild = Object.entries(projects)
-    .filter(
-      ([_, p]) => p.tags && !p.tags.some((tag) => EXCLUDED_TAGS.includes(tag)),
-    )
-    .map(([name]) => name);
+    /** @type {Record<string, boolean>} */
+    const ignoreMap = IGNORE_TAGS.reduce((acc, tag) => ({ ...acc, [tag]: true }), {});
 
-  console.log(`Building projects: ${projectsToBuild.join(', ')}...`);
+    const projectsToBuild = projects.filter((p) => p.tags && p.tags.every((tag) => !ignoreMap[tag])).map((p) => p.name);
 
-  execSync(
-    `npx nx run-many --target build --with-deps ${args.join(
-      ' ',
-    )} --projects ${projectsToBuild.join(',')}`,
-    { stdio: 'inherit' },
-  );
+    console.log(`Building projects: ${projectsToBuild.join(', ')}...`);
+
+    const args = ['--target build', `--projects ${projectsToBuild.join(',')}`, ...extraArgs];
+
+    execSync(`npx nx run-many ${args.join(' ')}`, { stdio: 'inherit' });
 }
 
 main(process.argv.slice(2)).catch((e) => {
-  console.error(e);
-  process.exit(1);
+    console.error(e);
+    process.exit(1);
 });

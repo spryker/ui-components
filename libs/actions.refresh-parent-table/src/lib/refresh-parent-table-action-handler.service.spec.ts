@@ -1,87 +1,79 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import {
-  TableDataConfiguratorService,
-  CoreTableComponent,
-} from '@spryker/table';
+import { TableDataConfiguratorService } from '@spryker/table';
 
 import { RefreshParentTableActionHandlerService } from './refresh-parent-table-action-handler.service';
 
 const mockActionsConfig = {
-  type: 'refresh-parent-table',
-  url: 'mockUrl',
+    type: 'refresh-parent-table',
+    url: 'mockUrl',
 };
 const mockContext = 'mockContext';
 
 @Injectable()
 class MockInjector {
-  get = jest.fn();
+    get = jest.fn();
 }
 
 @Injectable()
 class MockParentTableInjector {
-  get = jest.fn();
+    get = jest.fn();
 }
 
 @Injectable()
 class MockTableDataConfiguratorService {
-  update = jest.fn();
+    update = jest.fn();
 }
 
 describe('RefreshParentTableActionHandlerService', () => {
-  let service: RefreshParentTableActionHandlerService;
-  let injector: MockInjector;
-  let parentTableInjector: MockParentTableInjector;
-  let tableDataConfiguratorService: MockTableDataConfiguratorService;
+    let service: RefreshParentTableActionHandlerService;
+    let injector: MockInjector;
+    let parentTableInjector: MockParentTableInjector;
+    let tableDataConfiguratorService: MockTableDataConfiguratorService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        MockInjector,
-        MockParentTableInjector,
-        MockTableDataConfiguratorService,
-        {
-          provide: TableDataConfiguratorService,
-          useExisting: MockTableDataConfiguratorService,
-        },
-      ],
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                MockInjector,
+                MockParentTableInjector,
+                MockTableDataConfiguratorService,
+                {
+                    provide: TableDataConfiguratorService,
+                    useExisting: MockTableDataConfiguratorService,
+                },
+            ],
+            teardown: { destroyAfterEach: false },
+        });
+
+        service = TestBed.inject(RefreshParentTableActionHandlerService);
+        injector = TestBed.inject(MockInjector);
+        tableDataConfiguratorService = TestBed.inject(MockTableDataConfiguratorService);
+        parentTableInjector = TestBed.inject(MockParentTableInjector);
+
+        injector.get.mockReturnValue({
+            parentTable: {
+                injector: parentTableInjector,
+            },
+        });
     });
 
-    service = TestBed.inject(RefreshParentTableActionHandlerService);
-    injector = TestBed.inject(MockInjector);
-    tableDataConfiguratorService = TestBed.inject(
-      MockTableDataConfiguratorService,
-    );
-    parentTableInjector = TestBed.inject(MockParentTableInjector);
+    it('should update the parent table via TableDataConfiguratorService.update()', () => {
+        parentTableInjector.get.mockReturnValue(tableDataConfiguratorService);
 
-    injector.get.mockReturnValue({
-      parentTable: {
-        injector: parentTableInjector,
-      },
+        service.handleAction(injector, mockActionsConfig, mockContext);
+
+        expect(tableDataConfiguratorService.update).toHaveBeenCalledWith({});
     });
-  });
 
-  it('should update the parent table via TableDataConfiguratorService.update()', () => {
-    parentTableInjector.get.mockReturnValue(tableDataConfiguratorService);
+    it('should return stream that emits empty value', () => {
+        parentTableInjector.get.mockReturnValue(tableDataConfiguratorService);
 
-    service.handleAction(injector, mockActionsConfig, mockContext);
+        const callback = jest.fn();
 
-    expect(tableDataConfiguratorService.update).toHaveBeenCalledWith({});
-  });
+        const redirectActionService$ = service.handleAction(injector, mockActionsConfig, mockContext);
 
-  it('should return stream that emits empty value', () => {
-    parentTableInjector.get.mockReturnValue(tableDataConfiguratorService);
+        redirectActionService$.subscribe(callback);
 
-    const callback = jest.fn();
-
-    const redirectActionService$ = service.handleAction(
-      injector,
-      mockActionsConfig,
-      mockContext,
-    );
-
-    redirectActionService$.subscribe(callback);
-
-    expect(callback).toHaveBeenCalledWith(undefined);
-  });
+        expect(callback).toHaveBeenCalledWith(undefined);
+    });
 });

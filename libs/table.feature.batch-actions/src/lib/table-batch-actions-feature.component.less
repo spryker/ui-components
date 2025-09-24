@@ -1,19 +1,23 @@
 @import 'themes/default/theme.less';
 
 .@{table-batch-actions-feature-prefix-cls} {
-  min-height: @table-batch-actions-feature-min-height;
+    min-height: @table-batch-actions-feature-min-height;
 
-  &__grid {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -@table-batch-actions-feature-grid-padding;
-  }
+    &__grid {
+        display: flex;
+        flex-wrap: wrap;
+        margin: @table-batch-actions-feature-grid-margin;
+    }
 
-  &__col {
-    padding: @table-batch-actions-feature-grid-padding;
-  }
+    &__col {
+        padding: @table-batch-actions-feature-grid-padding;
 
-  .@{notification-prefix-cls} {
-    margin: 0;
-  }
+        .@{btn-prefix-cls} {
+            margin-top: @table-batch-actions-feature-grid-margin;
+        }
+    }
+
+    .@{notification-prefix-cls} {
+        margin: 0;
+    }
 }

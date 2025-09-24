@@ -1,62 +1,61 @@
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
+import { createComponentWrapper } from '@spryker/internal-utils';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { SidebarComponent } from './sidebar.component';
 
 describe('SidebarComponent', () => {
-  let triggerButton: DebugElement;
-  let component: SidebarComponent;
-  let fixture: ComponentFixture<SidebarComponent>;
+    const { testModule, createComponent } = getTestingForComponent(SidebarComponent, {
+        ngModule: {
+            imports: [NzLayoutModule],
+            schemas: [NO_ERRORS_SCHEMA],
+        },
+    });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [NzLayoutModule],
-      providers: [],
-      declarations: [SidebarComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-  }));
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [testModule],
+            teardown: { destroyAfterEach: false },
+        });
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SidebarComponent);
-    component = fixture.componentInstance;
+    it('should create', async () => {
+        const host = await createComponentWrapper(createComponent);
 
-    fixture.detectChanges();
+        expect(host.component).toBeTruthy();
+    });
 
-    triggerButton = fixture.debugElement.query(
-      By.css('.ant-layout-sider-trigger'),
-    );
-  });
+    it('should render trigger button', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const triggerButton = host.queryCss('.ant-layout-sider-trigger');
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        expect(triggerButton).toBeTruthy();
+    });
 
-  it('should render trigger button', () => {
-    expect(triggerButton).toBeTruthy();
-  });
+    it('should render icon into the button', async () => {
+        const host = await createComponentWrapper(createComponent);
+        const triggerButton = host.queryCss('.ant-layout-sider-trigger');
+        const iconComponent = triggerButton.query(By.css('spy-icon'));
 
-  it('should render icon into the button', () => {
-    const iconComponent = triggerButton.query(By.css('spy-icon'));
+        expect(iconComponent).toBeTruthy();
+        expect(iconComponent.properties.name).toEqual('arrow-down');
+    });
 
-    expect(iconComponent).toBeTruthy();
-    expect(iconComponent.properties.name).toEqual('arrow-down');
-  });
+    it('should trigger sidebar', async () => {
+        const host = await createComponentWrapper(createComponent);
 
-  it('should trigger sidebar', () => {
-    spyOn(component.collapsedChange, 'emit');
-    triggerButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
+        host.component.updateCollapse(true);
+        host.detectChanges();
 
-    expect(component.collapsedChange.emit).toHaveBeenCalledWith(true);
-    expect(component.collapsed).toBeTruthy();
+        expect(host.hostComponent.collapsedChange).toHaveBeenCalledWith(true);
+        expect(host.component.collapsed).toBeTruthy();
 
-    triggerButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
+        host.component.updateCollapse(false);
+        host.detectChanges();
 
-    expect(component.collapsedChange.emit).toHaveBeenCalledWith(false);
-    expect(component.collapsed).toBeFalsy();
-  });
+        expect(host.hostComponent.collapsedChange).toHaveBeenCalledWith(false);
+        expect(host.component.collapsed).toBeFalsy();
+    });
 });

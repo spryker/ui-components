@@ -13,9 +13,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconSuccessModule])],
+    providers: [provideIcons([IconSuccessModule])],
 })
 export class IconSuccessModule {
-  static icon = 'success';
-  static svg = svg;
+    static icon = 'success';
+    static svg = svg;
 }

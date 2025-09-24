@@ -18,9 +18,12 @@ import {
   providedIn: 'root',
 })
 export class DataTransformerService {
-  private transformers: DataTransformerTypesDeclaration =
+  private transformers: Partial<DataTransformerTypesDeclaration> =
     this.transformersTypes?.reduce(
-      (transformers, transformer) => ({ ...transformers, ...transformer }),
+      (transformers, transformer) => ({
+        ...transformers,
+        ...transformer,
+      }),
       {},
     ) ?? {};
 
@@ -28,34 +31,20 @@ export class DataTransformerService {
     private injector: Injector,
     @Optional()
     @Inject(DataTransformerTypesToken)
-    private transformersTypes?: InjectionTokenType<
-      typeof DataTransformerTypesToken
-    >,
-  ) {}
+    private transformersTypes?: InjectionTokenType<typeof DataTransformerTypesToken>,
+  ) { }
 
-  transform(
-    data: unknown,
-    config: DataTransformerConfig,
-    injector?: Injector,
-  ): Observable<unknown> {
+  transform(data: unknown, config: DataTransformerConfig, injector?: Injector): Observable<unknown> {
     if (!this.isTransformerRegisteredType(config.type)) {
-      throw Error(
-        `DataTransformerService: Unknown transformer type ${String(
-          config.type,
-        )}`,
-      );
+      throw Error(`DataTransformerService: Unknown transformer type ${String(config.type)}`);
     }
 
-    const transformer: DataTransformer<unknown, unknown> = this.injector.get(
-      (this.transformers as any)[config.type],
-    );
+    const transformer: DataTransformer<unknown, unknown> = this.injector.get(this.transformers[config.type]);
 
     return transformer.transform(data, config, injector ?? this.injector);
   }
 
-  private isTransformerRegisteredType(
-    type: DataTransformerType,
-  ): type is keyof DataTransformerRegistry {
+  private isTransformerRegisteredType(type: DataTransformerType): type is keyof DataTransformerRegistry {
     return type in this.transformers;
   }
 }

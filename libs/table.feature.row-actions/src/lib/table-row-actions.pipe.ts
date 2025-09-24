@@ -7,26 +7,19 @@ import { ContextService } from '@spryker/utils';
  */
 @Pipe({ name: 'filterAvailableActions' })
 export class FilterAvailableActionsPipe implements PipeTransform {
-  constructor(private contextService: ContextService) {}
+    constructor(private contextService: ContextService) {}
 
-  transform(
-    actions: DropdownItem[],
-    data: any,
-    availableActionsPath: string,
-  ): DropdownItem[] {
-    if (!availableActionsPath) {
-      return actions;
+    transform(actions: DropdownItem[], data: any, availableActionsPath: string): DropdownItem[] {
+        if (!availableActionsPath) {
+            return actions;
+        }
+
+        const availableActions = this.contextService.interpolateExpression(availableActionsPath, data);
+
+        if (!Array.isArray(availableActions)) {
+            return actions;
+        }
+
+        return actions.filter((action) => availableActions.includes(action.action));
     }
-
-    const availableActions = this.contextService.interpolateExpression(
-      availableActionsPath,
-      data,
-    );
-
-    if (!Array.isArray(availableActions)) {
-      return actions;
-    }
-
-    return actions.filter((action) => availableActions.includes(action.action));
-  }
 }

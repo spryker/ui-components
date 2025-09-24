@@ -5,15 +5,13 @@ import { providePersistenceStrategies } from './token';
 import { PersistenceStrategyTypesDeclaration } from './types';
 
 @NgModule({
-  imports: [CommonModule],
+    imports: [CommonModule],
 })
 export class PersistenceModule {
-  static withStrategies(
-    strategies: PersistenceStrategyTypesDeclaration,
-  ): ModuleWithProviders<PersistenceModule> {
-    return {
-      ngModule: PersistenceModule,
-      providers: [providePersistenceStrategies(strategies)],
-    };
-  }
+    static withStrategies(strategies: PersistenceStrategyTypesDeclaration): ModuleWithProviders<PersistenceModule> {
+        return {
+            ngModule: PersistenceModule,
+            providers: [providePersistenceStrategies(strategies)],
+        };
+    }
 }

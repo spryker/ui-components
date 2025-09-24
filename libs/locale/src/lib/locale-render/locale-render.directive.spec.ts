@@ -1,8 +1,14 @@
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { LocaleRenderDirective } from './locale-render.directive';
 
-xdescribe('Directive: LocaleRender', () => {
-  it('should create an instance', () => {});
+describe('Directive: LocaleRender', () => {
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [LocaleRenderDirective],
+            teardown: { destroyAfterEach: false },
+        }).compileComponents();
+    }));
+
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    it('should create an instance', () => {});
 });

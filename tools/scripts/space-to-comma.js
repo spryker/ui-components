@@ -25,29 +25,29 @@ console.log({ command });
 execSync(command, { stdio: 'inherit', env: process.env });
 
 function splitArgs(argsList, separator = '--') {
-  let separatorFound = false;
+    let separatorFound = false;
 
-  const beforeReducer = (stash, arg) => {
-    if (!separatorFound && arg === separator) {
-      reducer = afterReducer;
-      return;
-    }
+    const beforeReducer = (stash, arg) => {
+        if (!separatorFound && arg === separator) {
+            reducer = afterReducer;
+            return;
+        }
 
-    stash.commands.push(arg);
-  };
+        stash.commands.push(arg);
+    };
 
-  const afterReducer = (stash, arg) => stash.args.push(arg);
+    const afterReducer = (stash, arg) => stash.args.push(arg);
 
-  let reducer = beforeReducer;
+    let reducer = beforeReducer;
 
-  return argsList.reduce(
-    (stash, arg) => {
-      reducer(stash, arg);
-      return stash;
-    },
-    {
-      commands: [],
-      args: [],
-    },
-  );
+    return argsList.reduce(
+        (stash, arg) => {
+            reducer(stash, arg);
+            return stash;
+        },
+        {
+            commands: [],
+            args: [],
+        },
+    );
 }

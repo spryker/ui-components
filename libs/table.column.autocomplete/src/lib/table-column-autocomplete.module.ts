@@ -7,15 +7,8 @@ import { FormItemModule } from '@spryker/form-item';
 import { AutocompleteModule } from '@spryker/autocomplete';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    InputModule,
-    ContextModule,
-    FormItemModule,
-    InvokeModule,
-    AutocompleteModule,
-  ],
-  declarations: [TableColumnAutocompleteComponent],
-  exports: [TableColumnAutocompleteComponent],
+    imports: [CommonModule, InputModule, ContextModule, FormItemModule, InvokeModule, AutocompleteModule],
+    declarations: [TableColumnAutocompleteComponent],
+    exports: [TableColumnAutocompleteComponent],
 })
 export class TableColumnAutocompleteModule {}

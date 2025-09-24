@@ -5,15 +5,13 @@ import { provideDatasources } from './token';
 import { DatasourceTypesDeclaration } from './types';
 
 @NgModule({
-  imports: [CommonModule],
+    imports: [CommonModule],
 })
 export class DatasourceModule {
-  static withDatasources(
-    datasources: DatasourceTypesDeclaration,
-  ): ModuleWithProviders<DatasourceModule> {
-    return {
-      ngModule: DatasourceModule,
-      providers: [provideDatasources(datasources)],
-    };
-  }
+    static withDatasources(datasources: DatasourceTypesDeclaration): ModuleWithProviders<DatasourceModule> {
+        return {
+            ngModule: DatasourceModule,
+            providers: [provideDatasources(datasources)],
+        };
+    }
 }

@@ -5,8 +5,8 @@ import { I18nModule } from '@spryker/locale';
 import { TreeSelectModule } from '@spryker/tree-select';
 
 @NgModule({
-  imports: [CommonModule, TreeSelectModule, I18nModule],
-  exports: [TableFilterTreeSelectComponent],
-  declarations: [TableFilterTreeSelectComponent],
+    imports: [CommonModule, TreeSelectModule, I18nModule],
+    exports: [TableFilterTreeSelectComponent],
+    declarations: [TableFilterTreeSelectComponent],
 })
 export class TableFilterTreeSelectModule {}

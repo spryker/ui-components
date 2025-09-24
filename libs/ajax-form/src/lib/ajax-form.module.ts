@@ -6,13 +6,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { UnsavedChangesFormMonitorModule } from '@spryker/unsaved-changes.monitor.form';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    StaticHtmlRendererModule,
-    NzSpinModule,
-    UnsavedChangesFormMonitorModule,
-  ],
-  declarations: [AjaxFormComponent],
-  exports: [AjaxFormComponent],
+    imports: [CommonModule, StaticHtmlRendererModule, NzSpinModule, UnsavedChangesFormMonitorModule],
+    declarations: [AjaxFormComponent],
+    exports: [AjaxFormComponent],
 })
 export class AjaxFormModule {}

@@ -1,0 +1,36 @@
+{
+    "name": "interception",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/interception/src",
+    "prefix": "spy",
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:package",
+            "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "options": {
+                "project": "libs/interception/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/interception/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/interception/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/interception/jest.config.ts"
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        }
+    },
+    "tags": ["type:service", "pkg:primary"]
+}

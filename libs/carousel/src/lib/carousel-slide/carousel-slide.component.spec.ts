@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarouselSlideComponent } from './carousel-slide.component';
 import { Component } from '@angular/core';
@@ -27,9 +27,9 @@ describe('CarouselSlideComponent', () => {
   @Component({
     template: projectedContent,
   })
-  class TestHostComponent {}
+  class TestHostComponent { }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [CarouselSlideComponent, TestHostComponent],
     }).compileComponents();
@@ -46,17 +46,13 @@ describe('CarouselSlideComponent', () => {
   });
 
   it('should render slide content', () => {
-    const slideContentEl = fixture.debugElement.query(
-      By.css('.slide-content-outlet .slide-content'),
-    );
+    const slideContentEl = fixture.debugElement.query(By.css('.slide-content-outlet .slide-content'));
     expect(slideContentEl).toBeTruthy();
     expect(slideContentEl.nativeElement.textContent).toBe(slideContent);
   });
 
   it('should render thumb content', () => {
-    const thumbContentEl = fixture.debugElement.query(
-      By.css('.thumb-content-outlet .thumb-content'),
-    );
+    const thumbContentEl = fixture.debugElement.query(By.css('.thumb-content-outlet .thumb-content'));
     expect(thumbContentEl).toBeTruthy();
     expect(thumbContentEl.nativeElement.textContent).toBe(thumbContent);
   });

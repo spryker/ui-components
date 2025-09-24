@@ -1,20 +1,21 @@
 <label
-  nz-checkbox
-  [(ngModel)]="checked"
-  [nzDisabled]="disabled"
-  [nzIndeterminate]="indeterminate"
-  (ngModelChange)="checkedChange.emit($event)"
+    nz-checkbox
+    [(ngModel)]="checked"
+    [nzDisabled]="disabled"
+    [nzIndeterminate]="indeterminate"
+    (ngModelChange)="checkedChange.emit($event)"
+    spyTriggerChangeEvent
 >
-  <ng-content></ng-content>
+    <ng-content></ng-content>
 </label>
 
 <input
-  type="checkbox"
-  [attr.name]="name"
-  [spyApplyAttrs]="attrs"
-  [required]="required"
-  [attr.id]="spyId"
-  [ngModel]="checked && !indeterminate"
-  [disabled]="disabled"
-  style="display: none"
+    type="checkbox"
+    [attr.name]="name"
+    [spyApplyAttrs]="attrs"
+    [required]="required"
+    [attr.id]="spyId"
+    [ngModel]="checked && !indeterminate"
+    [disabled]="disabled"
+    style="display: none"
 />

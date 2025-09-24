@@ -8,25 +8,23 @@ import { InjectionTokenType } from '@spryker/utils';
 import { ICONS_TOKEN } from './icon/tokens';
 
 @NgModule({
-  imports: [CommonModule, NzIconModule],
-  declarations: [IconComponent],
-  exports: [IconComponent],
+    imports: [CommonModule, NzIconModule],
+    declarations: [IconComponent],
+    exports: [IconComponent],
 })
 export class IconModule {
-  constructor(
-    private iconsService: InternalIconService,
-    @SkipSelf() @Optional() private parentIconService: InternalIconService,
-    @Self()
-    @Optional()
-    @Inject(ICONS_TOKEN)
-    icons: InjectionTokenType<typeof ICONS_TOKEN>,
-  ) {
-    this.iconsService.init();
+    constructor(
+        private iconsService: InternalIconService,
+        @SkipSelf() @Optional() private parentIconService: InternalIconService,
+        @Self()
+        @Optional()
+        @Inject(ICONS_TOKEN)
+        icons: InjectionTokenType<typeof ICONS_TOKEN>,
+    ) {
+        this.iconsService.init();
 
-    if (parentIconService && icons) {
-      icons
-        .flat()
-        .forEach((icon) => this.iconsService.addIcon(icon.icon, icon.svg));
+        if (parentIconService && icons) {
+            icons.flat().forEach((icon) => this.iconsService.addIcon(icon.icon, icon.svg));
+        }
     }
-  }
 }

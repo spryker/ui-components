@@ -1,0 +1,14 @@
+{
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/libs/table.column.button-action",
+    "lib": {
+        "entryFile": "src/index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "@spryker/actions",
+        "@spryker/button",
+        "@spryker/button.action",
+        "@spryker/table",
+        "@spryker/utils"
+    ]
+}

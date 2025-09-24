@@ -1,3 +1,3 @@
 export interface DataSerializer<D> {
-  serialize(data: D): unknown;
+    serialize(data: D): unknown;
 }

@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'spy-logo',

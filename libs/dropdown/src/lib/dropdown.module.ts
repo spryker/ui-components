@@ -6,8 +6,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
-  imports: [CommonModule, NzDropDownModule, IconModule],
-  exports: [DropdownComponent],
-  declarations: [DropdownComponent],
+    imports: [CommonModule, NzDropDownModule, IconModule],
+    exports: [DropdownComponent],
+    declarations: [DropdownComponent],
 })
 export class DropdownModule {}

@@ -17,7 +17,7 @@ export class InternalIconService implements IconServiceInterface {
     @Optional()
     private icons: InjectionTokenType<typeof ICONS_TOKEN> | null,
     private nzIcon: NzIconService,
-  ) {}
+  ) { }
 
   async addIcon(name: string, svg: IconSvg): Promise<void> {
     this.nzIcon.addIcon({
@@ -31,7 +31,6 @@ export class InternalIconService implements IconServiceInterface {
     if (this.isInited || !this.icons) {
       return;
     }
-
     this.isInited = true;
 
     this.icons
@@ -48,21 +47,18 @@ export class InternalIconService implements IconServiceInterface {
   async resolveIcon(name: string): Promise<string | undefined> {
     if (this.resolvedIcons[name]) {
       await this.resolvedIcons[name];
-
       return name;
     }
 
     if (this.unresolvedIcons[name]) {
-      // tslint:disable-next-line: no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       await this.addIcon(name, this.unresolvedIcons[name]!);
-
       return name;
     }
   }
 
   private async getSvgIcon(name: string, svg: IconSvg): Promise<string> {
     const icon = typeof svg === 'string' ? Promise.resolve(svg) : svg();
-
     return await (this.resolvedIcons[name] = icon);
   }
 }

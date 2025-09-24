@@ -3,9 +3,9 @@ import { TableComponent } from '../table';
 import { InternalTableLocatorService } from './internal-table-locator.service';
 
 @Injectable({
-  providedIn: 'root',
-  useExisting: InternalTableLocatorService,
+    providedIn: 'root',
+    useExisting: InternalTableLocatorService,
 })
 export abstract class TableLocatorService {
-  abstract findById(id: string): TableComponent | undefined;
+    abstract findById(id: string): TableComponent | undefined;
 }

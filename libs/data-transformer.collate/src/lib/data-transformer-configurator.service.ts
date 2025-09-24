@@ -14,7 +14,7 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class DataTransformerConfiguratorService {
-  private dataConfigurators: DataTransformerConfiguratorDeclaration =
+  private dataConfigurators: Partial<DataTransformerConfiguratorDeclaration> =
     this.dataConfiguratorsTypes?.reduce(
       (dataConfigurators, dataConfigurator) => ({
         ...dataConfigurators,
@@ -26,26 +26,18 @@ export class DataTransformerConfiguratorService {
   constructor(
     @Optional()
     @Inject(DataTransformerConfiguratorTypesToken)
-    private dataConfiguratorsTypes?: InjectionTokenType<
-      typeof DataTransformerConfiguratorTypesToken
-    >,
-  ) {}
+    private dataConfiguratorsTypes?: InjectionTokenType<typeof DataTransformerConfiguratorTypesToken>,
+  ) { }
 
   resolve(
     config: DataTransformerConfiguratorConfig,
     injector: Injector,
   ): Observable<DataTransformerConfiguratorConfigT> {
     if (!this.isDataConfiguratorRegisteredType(config.type)) {
-      throw Error(
-        `DataTransformerConfiguratorService: Unknown data configurator type ${String(
-          config.type,
-        )}`,
-      );
+      throw Error(`DataTransformerConfiguratorService: Unknown data configurator type ${String(config.type)}`);
     }
 
-    const dataConfigurator: DataTransformerConfigurator = injector.get(
-      (this.dataConfigurators as any)[config.type],
-    );
+    const dataConfigurator: DataTransformerConfigurator = injector.get(this.dataConfigurators[config.type]);
 
     return dataConfigurator.resolve(injector);
   }

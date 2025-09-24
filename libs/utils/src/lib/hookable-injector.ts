@@ -5,27 +5,27 @@ import { Injector } from '@angular/core';
  * another {@link Injector} at runtime
  */
 export class HookableInjector implements Injector {
-  private static readonly EMPTY = {};
+    private static readonly EMPTY = {};
 
-  private hookedInjector: Injector = Injector.NULL;
+    private hookedInjector: Injector = Injector.NULL;
 
-  constructor(private parentInjector: Injector) {}
+    constructor(private parentInjector: Injector) {}
 
-  hook(injector: Injector): void {
-    this.hookedInjector = injector;
-  }
-
-  unhook(): void {
-    this.hookedInjector = Injector.NULL;
-  }
-
-  get(token: any, notFoundValue?: any): any {
-    const value = this.hookedInjector.get<any>(token, HookableInjector.EMPTY);
-
-    if (value === HookableInjector.EMPTY) {
-      return this.parentInjector.get<any>(token, notFoundValue);
+    hook(injector: Injector): void {
+        this.hookedInjector = injector;
     }
 
-    return value;
-  }
+    unhook(): void {
+        this.hookedInjector = Injector.NULL;
+    }
+
+    get(token: any, notFoundValue?: any): any {
+        const value = this.hookedInjector.get<any>(token, HookableInjector.EMPTY);
+
+        if (value === HookableInjector.EMPTY) {
+            return this.parentInjector.get<any>(token, notFoundValue);
+        }
+
+        return value;
+    }
 }

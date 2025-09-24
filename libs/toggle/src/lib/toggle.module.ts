@@ -5,8 +5,8 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, NzSwitchModule, FormsModule],
-  declarations: [ToggleComponent],
-  exports: [ToggleComponent],
+    imports: [CommonModule, NzSwitchModule, FormsModule],
+    declarations: [ToggleComponent],
+    exports: [ToggleComponent],
 })
 export class ToggleModule {}

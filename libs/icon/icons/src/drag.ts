@@ -12,9 +12,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconDragModule])],
+    providers: [provideIcons([IconDragModule])],
 })
 export class IconDragModule {
-  static icon = 'drag';
-  static svg = svg;
+    static icon = 'drag';
+    static svg = svg;
 }

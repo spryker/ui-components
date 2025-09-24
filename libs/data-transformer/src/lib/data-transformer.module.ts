@@ -5,15 +5,13 @@ import { provideDataTransformerType } from './token';
 import { DataTransformerTypesDeclaration } from './types';
 
 @NgModule({
-  imports: [CommonModule],
+    imports: [CommonModule],
 })
 export class DataTransformerModule {
-  static withTransformers(
-    transformers: DataTransformerTypesDeclaration,
-  ): ModuleWithProviders<DataTransformerModule> {
-    return {
-      ngModule: DataTransformerModule,
-      providers: [provideDataTransformerType(transformers)],
-    };
-  }
+    static withTransformers(transformers: DataTransformerTypesDeclaration): ModuleWithProviders<DataTransformerModule> {
+        return {
+            ngModule: DataTransformerModule,
+            providers: [provideDataTransformerType(transformers)],
+        };
+    }
 }

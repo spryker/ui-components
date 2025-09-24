@@ -9,9 +9,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconPaginationArrowModule])],
+    providers: [provideIcons([IconPaginationArrowModule])],
 })
 export class IconPaginationArrowModule {
-  static icon = 'pagination-arrow';
-  static svg = svg;
+    static icon = 'pagination-arrow';
+    static svg = svg;
 }

@@ -8,9 +8,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconCalendarModule])],
+    providers: [provideIcons([IconCalendarModule])],
 })
 export class IconCalendarModule {
-  static icon = 'calendar';
-  static svg = svg;
+    static icon = 'calendar';
+    static svg = svg;
 }

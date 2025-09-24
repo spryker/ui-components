@@ -1,58 +1,58 @@
 import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-  Output,
-  ViewEncapsulation,
-  EventEmitter,
-  ContentChild,
-  TemplateRef,
+    Component,
+    ChangeDetectionStrategy,
+    Input,
+    Output,
+    ViewEncapsulation,
+    EventEmitter,
+    ContentChild,
+    TemplateRef,
 } from '@angular/core';
 import { ToBoolean } from '@spryker/utils';
 
 @Component({
-  selector: 'spy-collapsible',
-  templateUrl: './collapsible.component.html',
-  styleUrls: ['./collapsible.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+    selector: 'spy-collapsible',
+    templateUrl: './collapsible.component.html',
+    styleUrls: ['./collapsible.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
 })
 export class CollapsibleComponent {
-  @Input() spyTitle = '';
-  @Input() titleIcon = '';
-  @Input() @ToBoolean() active = false;
-  @Input() @ToBoolean() disabled = false;
-  @Input() @ToBoolean() alwaysRender = true;
+    @Input() spyTitle = '';
+    @Input() titleIcon = '';
+    @Input() @ToBoolean() active = false;
+    @Input() @ToBoolean() disabled = false;
+    @Input() @ToBoolean() alwaysRender = true;
 
-  @Output() activeChange = new EventEmitter<boolean>();
+    @Output() activeChange = new EventEmitter<boolean>();
 
-  @ContentChild(TemplateRef) contentTemplate?: TemplateRef<any>;
+    @ContentChild(TemplateRef) contentTemplate?: TemplateRef<any>;
 
-  collapse(): void {
-    this.active = false;
-  }
-
-  expand(): void {
-    this.active = true;
-  }
-
-  toggle(): boolean {
-    if (this.active) {
-      this.collapse();
-    } else {
-      this.expand();
+    collapse(): void {
+        this.active = false;
     }
 
-    return this.active;
-  }
+    expand(): void {
+        this.active = true;
+    }
 
-  updateActive(isActive: boolean): void {
-    this.active = isActive;
+    toggle(): boolean {
+        if (this.active) {
+            this.collapse();
+        } else {
+            this.expand();
+        }
 
-    this.activeChange.emit(this.isCollapsed());
-  }
+        return this.active;
+    }
 
-  isCollapsed(): boolean {
-    return this.active;
-  }
+    updateActive(isActive: boolean): void {
+        this.active = isActive;
+
+        this.activeChange.emit(this.isCollapsed());
+    }
+
+    isCollapsed(): boolean {
+        return this.active;
+    }
 }

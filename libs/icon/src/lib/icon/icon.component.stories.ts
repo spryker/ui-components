@@ -1,49 +1,64 @@
+import { Meta, moduleMetadata } from '@storybook/angular';
 import * as icons from '@spryker/icon/icons';
-import { optionsKnob, text } from '@storybook/addon-knobs';
-import { IStory } from '@storybook/angular';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-
 import { IconModule } from '../icon.module';
 import { IconComponent } from './icon.component';
 import { Icon } from './types';
 
-export default {
-  title: 'IconComponent',
-};
-
-const iconsModules = Object.keys(icons).map(
-  (name) => (icons as any)[name] as Icon,
-);
-
+const iconsModules = Object.keys(icons).map((name) => (icons as any)[name] as Icon);
 const iconNames = iconsModules.map((i) => i.icon);
 
-export const allIcons = (): IStory => ({
-  moduleMetadata: {
-    imports: [NzIconModule, IconModule, ...iconsModules],
-  },
-  template: `
+export default {
+    title: 'IconComponent',
+    component: IconComponent,
+    decorators: [
+        moduleMetadata({
+            imports: [IconModule, ...iconsModules],
+        }),
+    ],
+    parameters: {
+        controls: {
+            include: ['name', 'iconColor'],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8966',
+            allowFullscreen: true,
+        },
+    },
+} as Meta;
+
+export const allIcons = (args) => ({
+    props: {
+        ...args,
+        icons: iconNames,
+    },
+    template: `
     <p *ngFor="let icon of icons">
-      <spy-icon [name]="icon" [style.color]="color"></spy-icon>
+      <spy-icon [name]="icon" [style.color]="iconColor"></spy-icon>
       ({{ icon }})
     </p>
   `,
-  props: {
-    icons: iconNames,
-    color: text('Icon color', ''),
-  },
 });
+allIcons.args = {
+    iconColor: '',
+};
+allIcons.argTypes = {
+    name: {
+        table: {
+            disable: true,
+        },
+    },
+};
 
-export const icon = (): IStory => ({
-  moduleMetadata: {
-    imports: [NzIconModule, IconModule, ...iconsModules],
-  },
-  component: IconComponent,
-  props: {
-    name: optionsKnob(
-      'Icon name',
-      iconNames.reduce((acc, name) => ({ ...acc, [name]: name }), {}),
-      iconNames[0],
-      { display: 'select' },
-    ),
-  },
+export const icon = (args) => ({
+    props: args,
 });
+icon.args = {
+    name: iconNames[0],
+};
+icon.argTypes = {
+    name: {
+        control: { type: 'select' },
+        options: iconNames,
+    },
+};

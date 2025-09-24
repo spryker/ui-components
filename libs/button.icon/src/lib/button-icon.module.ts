@@ -5,8 +5,8 @@ import { IconModule } from '@spryker/icon';
 import { ApplyAttrsModule } from '@spryker/utils';
 
 @NgModule({
-  imports: [CommonModule, IconModule, ApplyAttrsModule],
-  declarations: [ButtonIconComponent],
-  exports: [ButtonIconComponent],
+    imports: [CommonModule, IconModule, ApplyAttrsModule],
+    declarations: [ButtonIconComponent],
+    exports: [ButtonIconComponent],
 })
 export class ButtonIconModule {}

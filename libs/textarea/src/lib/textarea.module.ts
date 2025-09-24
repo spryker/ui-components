@@ -5,8 +5,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { ApplyAttrsModule } from '@spryker/utils';
 
 @NgModule({
-  imports: [CommonModule, NzInputModule, ApplyAttrsModule],
-  declarations: [TextareaComponent],
-  exports: [TextareaComponent],
+    imports: [CommonModule, NzInputModule, ApplyAttrsModule],
+    declarations: [TextareaComponent],
+    exports: [TextareaComponent],
 })
 export class TextareaModule {}

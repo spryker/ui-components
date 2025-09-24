@@ -19,6 +19,6 @@ import { ElementBoundaryDirective } from 'ngx-element-boundary';
  * and do not wrap the content projected HTML
  */
 @Directive({
-  selector: '[spyCustomElementBoundary]',
+    selector: '[spyCustomElementBoundary]',
 })
 export class CustomElementBoundaryDirective extends ElementBoundaryDirective {}

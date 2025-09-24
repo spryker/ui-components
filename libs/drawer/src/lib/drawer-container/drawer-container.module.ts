@@ -6,24 +6,11 @@ import { DynamicIoModule } from 'ng-dynamic-component';
 
 import { DrawerWrapperModule } from '../drawer-wrapper/drawer-wrapper.module';
 import { DrawerContainerProxyComponent } from './drawer-container-proxy.component';
-import {
-  DrawerComposerDirective,
-  DrawerContainerComponent,
-} from './drawer-container.component';
+import { DrawerComposerDirective, DrawerContainerComponent } from './drawer-container.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    PortalModule,
-    DynamicIoModule,
-    DrawerWrapperModule,
-    InterceptionModule,
-  ],
-  exports: [InterceptionModule],
-  declarations: [
-    DrawerContainerComponent,
-    DrawerContainerProxyComponent,
-    DrawerComposerDirective,
-  ],
+    imports: [CommonModule, PortalModule, DynamicIoModule, DrawerWrapperModule, InterceptionModule],
+    exports: [InterceptionModule],
+    declarations: [DrawerContainerComponent, DrawerContainerProxyComponent, DrawerComposerDirective],
 })
 export class DrawerContainerModule {}

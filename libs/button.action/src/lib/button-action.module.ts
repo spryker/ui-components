@@ -5,8 +5,8 @@ import { ActionsModule } from '@spryker/actions';
 import { ButtonActionComponent } from './button-action/button-action.component';
 
 @NgModule({
-  imports: [CommonModule, ButtonModule, ActionsModule],
-  declarations: [ButtonActionComponent],
-  exports: [ButtonActionComponent],
+    imports: [CommonModule, ButtonModule, ActionsModule],
+    declarations: [ButtonActionComponent],
+    exports: [ButtonActionComponent],
 })
 export class ButtonActionModule {}

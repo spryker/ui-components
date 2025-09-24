@@ -1,0 +1,72 @@
+{
+    "name": "table.feature.filters",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/table.feature.filters/src",
+    "prefix": "spy",
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:package",
+            "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "options": {
+                "project": "libs/table.feature.filters/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/table.feature.filters/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/table.feature.filters/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/table.feature.filters/jest.config.ts"
+            }
+        },
+        "storybook": {
+            "executor": "@storybook/angular:start-storybook",
+            "options": {
+                "port": 4400,
+                "configDir": "libs/table.feature.filters/.storybook",
+                "browserTarget": "table.feature.filters:build-storybook",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "build-storybook": {
+            "executor": "@storybook/angular:build-storybook",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputDir": "dist/storybook/table.feature.filters",
+                "configDir": "libs/table.feature.filters/.storybook",
+                "browserTarget": "table.feature.filters:build-storybook",
+                "compodoc": true,
+                "compodocArgs": ["-e", "json", "-d", "dist"],
+                "enableProdMode": false,
+                "styles": [".storybook/styles.less"]
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        }
+    },
+    "implicitDependencies": ["styles"],
+    "tags": ["level:molecule", "type:component", "pkg:extension"]
+}

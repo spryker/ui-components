@@ -1,22 +1,20 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  ElementRef,
   Input,
   QueryList,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { CarouselOptions } from '../types';
-
-import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
 import { IconPaginationArrowModule } from '@spryker/icon/icons';
-import Swiper from 'swiper/core';
 import { BehaviorSubject } from 'rxjs';
+import { register, SwiperContainer } from 'swiper/element/bundle';
+import { SwiperOptions } from 'swiper/types';
 import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.component';
-import { SwiperComponent } from 'swiper/angular';
-
-SwiperCore.use([Navigation, Thumbs]);
+import { CarouselOptions } from '../types';
 
 @Component({
   selector: 'spy-carousel',
@@ -28,17 +26,19 @@ SwiperCore.use([Navigation, Thumbs]);
     class: 'spy-carousel',
   },
 })
-export class CarouselComponent {
-  @Input() config: CarouselOptions = { slidesPerView: 1 };
-  @Input() thumbConfig: CarouselOptions = {
-    slidesPerView: 6,
-    spaceBetween: 15,
-  };
+export class CarouselComponent implements AfterViewInit {
+  constructor() {
+    register();
+  }
+
+  @Input() config: CarouselOptions = {};
+  @Input() thumbConfig: CarouselOptions = {};
   @Input() withThumbs = false;
 
-  @ViewChild('mainSwiper', { static: false }) swiper!: SwiperComponent;
+  @ViewChild('carousel', { static: false }) carousel!: ElementRef<SwiperContainer>;
+  @ViewChild('thumbs', { static: false }) thumbs?: ElementRef<SwiperContainer>;
 
-  thumbsSwiper: Swiper | undefined;
+  slideReference = CarouselSlideComponent;
 
   paginationArrowIcon = IconPaginationArrowModule.icon;
 
@@ -49,11 +49,29 @@ export class CarouselComponent {
     this.slides$.next(slides.toArray());
   }
 
-  slideNext() {
-    this.swiper.swiperRef.slideNext();
+  ngAfterViewInit(): void {
+    Object.assign(this.carousel.nativeElement, {
+      navigation: true,
+      ...this.config,
+    } satisfies SwiperOptions);
+    this.carousel.nativeElement.initialize();
+
+    if (!this.withThumbs) {
+      return;
+    }
+
+    Object.assign(this.thumbs.nativeElement, {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.spy-carousel__navigation-button--next',
+        prevEl: '.spy-carousel__navigation-button--prev',
+      },
+      ...this.thumbConfig,
+    } satisfies SwiperOptions);
+    this.thumbs.nativeElement.initialize();
   }
 
-  slidePrev() {
-    this.swiper.swiperRef.slidePrev();
+  slidesFound(slides: CarouselSlideComponent[]): void {
+    this.slides$.next(slides);
   }
 }

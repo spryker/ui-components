@@ -1,4 +1,8 @@
 @table-batch-actions-feature-prefix-cls: ~'@{spryker-prefix}-table-batch-actions-feature';
 
-@table-batch-actions-feature-min-height: @btn-height-sm;
-@table-batch-actions-feature-grid-padding: 5px;
+@table-batch-actions-feature-min-height: var(--spy-table-batch-actions-feature-min-height, @spy-btn-height-sm);
+@table-batch-actions-feature-grid-margin: var(
+    --spy-table-batch-actions-feature-grid-padding,
+    calc(@table-batch-actions-feature-grid-padding * -1)
+);
+@table-batch-actions-feature-grid-padding: var(--spy-table-batch-actions-feature-grid-padding, 5px);

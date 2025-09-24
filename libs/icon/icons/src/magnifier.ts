@@ -10,9 +10,9 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.
 </svg>`;
 
 @NgModule({
-  providers: [provideIcons([IconMagnifierModule])],
+    providers: [provideIcons([IconMagnifierModule])],
 })
 export class IconMagnifierModule {
-  static icon = 'magnifier';
-  static svg = svg;
+    static icon = 'magnifier';
+    static svg = svg;
 }

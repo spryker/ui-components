@@ -4,15 +4,13 @@ import { InterceptionComposerProviders } from './interception-composable.token';
 import { InterceptionComposerImplementation } from './interception-composer.service';
 
 @Directive({
-  selector: '[spyInterceptionComposer]',
-  providers: [...InterceptionComposerProviders],
+    selector: '[spyInterceptionComposer]',
+    providers: [...InterceptionComposerProviders],
 })
 export class InterceptionComposerDirective implements OnInit {
-  constructor(
-    private interceptionComposer: InterceptionComposerImplementation,
-  ) {}
+    constructor(private interceptionComposer: InterceptionComposerImplementation) {}
 
-  ngOnInit(): void {
-    this.interceptionComposer.ngOnInit();
-  }
+    ngOnInit(): void {
+        this.interceptionComposer.ngOnInit();
+    }
 }

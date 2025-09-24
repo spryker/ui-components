@@ -5,11 +5,10 @@ import { ModuleWithFeature, TableFeatureModule } from '@spryker/table';
 import { TableSyncStateFeatureComponent } from './table-sync-state-feature.component';
 
 @NgModule({
-  imports: [CommonModule, TableFeatureModule],
-  exports: [TableSyncStateFeatureComponent],
-  declarations: [TableSyncStateFeatureComponent],
-  entryComponents: [TableSyncStateFeatureComponent],
+    imports: [CommonModule, TableFeatureModule],
+    exports: [TableSyncStateFeatureComponent],
+    declarations: [TableSyncStateFeatureComponent],
 })
 export class TableSyncStateFeatureModule implements ModuleWithFeature {
-  featureComponent = TableSyncStateFeatureComponent;
+    featureComponent = TableSyncStateFeatureComponent;
 }

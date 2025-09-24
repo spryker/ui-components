@@ -1,97 +1,111 @@
-import { TreeSelectComponent } from './tree-select.component';
-import { TreeSelectModule } from '../tree-select.module';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 
-export default {
-  title: 'TreeSelectComponent',
+import { TreeSelectModule } from '../tree-select.module';
+import { TreeSelectComponent } from './tree-select.component';
+import { TreeSelectItem } from './types';
+
+let counter = 0;
+
+const option = (title?: string, isDisabled = false): TreeSelectItem => {
+    counter += 1;
+
+    const value = `Option ${counter}`;
+
+    return { title: title ?? value, value, isDisabled };
 };
 
-@NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    TreeSelectModule,
-    LocaleModule.forRoot({ defaultLocale: EN_LOCALE }),
-    EnLocaleModule,
-  ],
-})
-class StoryModule {}
-
-export const primary = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  component: TreeSelectComponent,
-  props: {
-    items: [
-      {
-        title: 'Option 1',
-        value: 'Option 1',
-        children: [
-          { title: 'Option 7', value: 'Option 7' },
-          { title: 'Option 8', value: 'Option 8' },
-        ],
-      },
-      { title: 'Option 2', value: 'Option 2' },
-      { title: 'Option 3', value: 'Option 3' },
-      { title: 'Option 4', value: 'Option 4' },
-      { title: 'Option 5', value: 'Option 5' },
-      { title: 'Option 6', value: 'Option 6' },
+export default {
+    title: 'TreeSelectComponent',
+    component: TreeSelectComponent,
+    decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),
+                importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
+                importProvidersFrom(EnLocaleModule),
+            ],
+        }),
+        moduleMetadata({
+            imports: [TreeSelectModule],
+        }),
     ],
-    placeholder: 'Select option...',
-    multiple: true,
-    name: 'some-name',
-    search: true,
-    valueChange: console.log,
-  },
+    parameters: {
+        controls: {
+            include: [
+                'items',
+                'value',
+                'search',
+                'disabled',
+                'multiple',
+                'placeholder',
+                'name',
+                'noOptionsText',
+                'disableClear',
+                'valueChange',
+            ],
+        },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9152',
+            allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        value: {
+            control: { type: 'text' },
+        },
+        valueChange: {
+            table: {
+                disable: true,
+            },
+        },
+    },
+    args: {
+        items: [
+            {
+                ...option(
+                    'Anim ad aute culpa adipisicing aute ad mollit deserunt tempor incididunt. Reprehenderit incididunt nostrud ut eiusmod quis sint tempor ex ipsum aute.',
+                ),
+                children: [option(), option()],
+            },
+            {
+                ...option(),
+                children: [
+                    option(),
+                    {
+                        ...option(),
+                        children: [option(), option()],
+                    },
+                ],
+            },
+            option(),
+            option('disabled', true),
+            option(),
+            option(),
+        ],
+        value: 'Option 2',
+        search: true,
+        multiple: true,
+        placeholder:
+            'Anim ad aute culpa adipisicing aute ad mollit deserunt tempor incididunt. Reprehenderit incididunt nostrud ut eiusmod quis sint tempor ex ipsum aute.',
+        name: 'some-name',
+        noOptionsText: 'No options...',
+        valueChange: console.log,
+    },
+} as Meta;
+
+export const primary = (args) => ({
+    props: args,
 });
 
-export const withSearch = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  component: TreeSelectComponent,
-  props: {
-    items: [
-      {
-        title: 'Option 1',
-        value: 'Option 1',
-        children: [
-          { title: 'Option 7', value: 'Option 7' },
-          { title: 'Option 8', value: 'Option 8' },
-        ],
-      },
-      { title: 'Option 2', value: 'Option 2' },
-      { title: 'Option 3', value: 'Option 3' },
-      { title: 'Option 4', value: 'Option 4' },
-      { title: 'Option 5', value: 'Option 5' },
-      { title: 'Option 6', value: 'Option 6' },
-    ],
-    placeholder: 'Select option...',
-    search: true,
-    valueChange: console.log,
-  },
+export const withoutOptions = (args) => ({
+    props: args,
 });
-
-export const disabled = () => ({
-  moduleMetadata: { imports: [StoryModule] },
-  component: TreeSelectComponent,
-  props: {
-    items: [
-      {
-        title: 'Option 1',
-        value: 'Option 1',
-        children: [
-          { title: 'Option 7', value: 'Option 7' },
-          { title: 'Option 8', value: 'Option 8' },
-        ],
-      },
-      { title: 'Option 2', value: 'Option 2' },
-      { title: 'Option 3', value: 'Option 3' },
-      { title: 'Option 4', value: 'Option 4' },
-      { title: 'Option 5', value: 'Option 5' },
-      { title: 'Option 6', value: 'Option 6' },
-    ],
-    placeholder: 'Select option...',
-    disabled: true,
-    valueChange: console.log,
-  },
-});
+withoutOptions.args = {
+    items: [],
+    value: '',
+};

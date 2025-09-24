@@ -13,9 +13,9 @@ const svg = `
 `;
 
 @NgModule({
-  providers: [provideIcons([IconInfoModule])],
+    providers: [provideIcons([IconInfoModule])],
 })
 export class IconInfoModule {
-  static icon = 'info';
-  static svg = svg;
+    static icon = 'info';
+    static svg = svg;
 }

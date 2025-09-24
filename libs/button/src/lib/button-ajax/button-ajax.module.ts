@@ -7,8 +7,8 @@ import { ButtonModule } from '../button/button.module';
 import { ButtonAjaxComponent } from './button-ajax.component';
 
 @NgModule({
-  imports: [CommonModule, ApplyAttrsModule, AjaxActionModule, ButtonModule],
-  exports: [ButtonAjaxComponent],
-  declarations: [ButtonAjaxComponent],
+    imports: [CommonModule, ApplyAttrsModule, AjaxActionModule, ButtonModule],
+    exports: [ButtonAjaxComponent],
+    declarations: [ButtonAjaxComponent],
 })
 export class ButtonAjaxModule {}

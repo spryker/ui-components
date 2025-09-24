@@ -1,25 +1,366 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "sourceMap": true,
-    "declaration": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "noEmitHelpers": true,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "strict": true,
-    "target": "es2015",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2015", "es2019", "dom"],
-    "rootDir": ".",
-    "baseUrl": ".",
-    "paths": {
-      "@spryker/*": ["dist/libs/*", "libs/*/src/index.ts"]
+    "files": [],
+    "references": [
+        {
+            "path": "./libs/actions/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.close-drawer/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.close-modal/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.refresh-modal/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.open-modal/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.confirmation/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.drawer/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.http/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.notification/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.redirect/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.refresh-drawer/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.refresh-parent-table/tsconfig.json"
+        },
+        {
+            "path": "./libs/actions.refresh-table/tsconfig.json"
+        },
+        {
+            "path": "./libs/ajax-action/tsconfig.json"
+        },
+        {
+            "path": "./libs/ajax-form/tsconfig.json"
+        },
+        {
+            "path": "./libs/autocomplete/tsconfig.json"
+        },
+        {
+            "path": "./libs/button/tsconfig.json"
+        },
+        {
+            "path": "./libs/button.action/tsconfig.json"
+        },
+        {
+            "path": "./libs/button.icon/tsconfig.json"
+        },
+        {
+            "path": "./libs/cache/tsconfig.json"
+        },
+        {
+            "path": "./libs/cache.static/tsconfig.json"
+        },
+        {
+            "path": "./libs/card/tsconfig.json"
+        },
+        {
+            "path": "./libs/carousel/tsconfig.json"
+        },
+        {
+            "path": "./libs/checkbox/tsconfig.json"
+        },
+        {
+            "path": "./libs/chips/tsconfig.json"
+        },
+        {
+            "path": "./libs/collapsible/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-serializer/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.array-map/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.chain/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.collate/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.configurator.table/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.date-parse/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.date-serialize/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.filter.equals/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.filter.range/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.filter.text/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.lens/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.object-map/tsconfig.json"
+        },
+        {
+            "path": "./libs/data-transformer.pluck/tsconfig.json"
+        },
+        {
+            "path": "./libs/datasource/tsconfig.json"
+        },
+        {
+            "path": "./libs/datasource.dependable/tsconfig.json"
+        },
+        {
+            "path": "./libs/datasource.http/tsconfig.json"
+        },
+        {
+            "path": "./libs/datasource.inline/tsconfig.json"
+        },
+        {
+            "path": "./libs/datasource.inline.table/tsconfig.json"
+        },
+        {
+            "path": "./libs/datasource.trigger/tsconfig.json"
+        },
+        {
+            "path": "./libs/datasource.trigger.change/tsconfig.json"
+        },
+        {
+            "path": "./libs/datasource.trigger.input/tsconfig.json"
+        },
+        {
+            "path": "./libs/date-picker/tsconfig.json"
+        },
+        {
+            "path": "./libs/drawer/tsconfig.json"
+        },
+        {
+            "path": "./libs/dropdown/tsconfig.json"
+        },
+        {
+            "path": "./libs/form-item/tsconfig.json"
+        },
+        {
+            "path": "./libs/grid/tsconfig.json"
+        },
+        {
+            "path": "./libs/header/tsconfig.json"
+        },
+        {
+            "path": "./libs/headline/tsconfig.json"
+        },
+        {
+            "path": "./libs/html-renderer/tsconfig.json"
+        },
+        {
+            "path": "./libs/icon/tsconfig.json"
+        },
+        {
+            "path": "./libs/input/tsconfig.json"
+        },
+        {
+            "path": "./libs/input.password/tsconfig.json"
+        },
+        {
+            "path": "./libs/interception/tsconfig.json"
+        },
+        {
+            "path": "./libs/internal-utils/tsconfig.json"
+        },
+        {
+            "path": "./libs/label/tsconfig.json"
+        },
+        {
+            "path": "./libs/layout/tsconfig.json"
+        },
+        {
+            "path": "./libs/link/tsconfig.json"
+        },
+        {
+            "path": "./libs/locale/tsconfig.json"
+        },
+        {
+            "path": "./libs/logo/tsconfig.json"
+        },
+        {
+            "path": "./libs/modal/tsconfig.json"
+        },
+        {
+            "path": "./libs/navigation/tsconfig.json"
+        },
+        {
+            "path": "./libs/notification/tsconfig.json"
+        },
+        {
+            "path": "./libs/pagination/tsconfig.json"
+        },
+        {
+            "path": "./libs/persistence/tsconfig.json"
+        },
+        {
+            "path": "./libs/popover/tsconfig.json"
+        },
+        {
+            "path": "./libs/radio/tsconfig.json"
+        },
+        {
+            "path": "./libs/rating/tsconfig.json"
+        },
+        {
+            "path": "./libs/select/tsconfig.json"
+        },
+        {
+            "path": "./libs/sidebar/tsconfig.json"
+        },
+        {
+            "path": "./libs/spinner/tsconfig.json"
+        },
+        {
+            "path": "./libs/styles/tsconfig.json"
+        },
+        {
+            "path": "./libs/table/tsconfig.json"
+        },
+        {
+            "path": "./libs/table-integration-internal/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.column.autocomplete/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.column.button-action/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.column.chip/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.column.date/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.column.dynamic/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.column.image/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.column.input/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.column.select/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.column.text/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.batch-actions/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.editable/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.filters/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.pagination/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.row-actions/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.search/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.selectable/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.settings/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.sync-state/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.title/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.feature.total/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.filter.date-range/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.filter.select/tsconfig.json"
+        },
+        {
+            "path": "./libs/table.filter.tree-select/tsconfig.json"
+        },
+        {
+            "path": "./libs/tabs/tsconfig.json"
+        },
+        {
+            "path": "./libs/tag/tsconfig.json"
+        },
+        {
+            "path": "./libs/textarea/tsconfig.json"
+        },
+        {
+            "path": "./libs/toggle/tsconfig.json"
+        },
+        {
+            "path": "./libs/tree-select/tsconfig.json"
+        },
+        {
+            "path": "./libs/unsaved-changes/tsconfig.json"
+        },
+        {
+            "path": "./libs/unsaved-changes.guard.browser/tsconfig.json"
+        },
+        {
+            "path": "./libs/unsaved-changes.guard.drawer/tsconfig.json"
+        },
+        {
+            "path": "./libs/unsaved-changes.guard.navigation/tsconfig.json"
+        },
+        {
+            "path": "./libs/unsaved-changes.monitor.form/tsconfig.json"
+        },
+        {
+            "path": "./libs/user-menu/tsconfig.json"
+        },
+        {
+            "path": "./libs/utils/tsconfig.json"
+        },
+        {
+            "path": "./libs/utils.date.adapter.date-fns/tsconfig.json"
+        },
+        {
+            "path": "./libs/web-components/tsconfig.json"
+        }
+    ],
+    "angularCompilerOptions": {
+        "compilationMode": "partial",
+        "annotateForClosureCompiler": true,
+        "fullTemplateTypeCheck": true,
+        "skipTemplateCodegen": true,
+        "strictMetadataEmit": true,
+        "strictInjectionParameters": true,
+        "enableResourceInlining": true,
+        "strictInputAccessModifiers": true
     }
-  },
-  "exclude": ["node_modules", "tmp"]
 }

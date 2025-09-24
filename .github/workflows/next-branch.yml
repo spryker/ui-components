@@ -28,10 +28,11 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
+      - name: Fetch Master branch
+        run: git fetch origin master
+
       - name: Install dependencies
-        run: |
-            git fetch origin master
-            npm ci
+        run: npm ci
 
       - name: Run format check
         run: |
@@ -39,13 +40,11 @@ jobs:
 
       - name: Run lint
         run: |
-          git fetch origin master
           npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --parallel
           npm run stylelint
 
       - name: Run tests
         run: |
-          git fetch origin master
           COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel
 
   deploy:

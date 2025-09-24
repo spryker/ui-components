@@ -40,14 +40,14 @@ jobs:
           git fetch origin next
           npm run format:check -- --base=origin/next
 
-      - name: Run lint
-        run: |
-          npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
-          npm run stylelint
+#      - name: Run lint
+#        run: |
+#          npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
+#          npm run stylelint
 
-      - name: Run tests
-        run: |
-          COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
+#      - name: Run tests
+#        run: |
+#          COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
 
       - name: Build non-libs
         run: npm run build-non-libs

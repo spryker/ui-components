@@ -15,6 +15,7 @@ import { NzRadioComponent } from 'ng-zorro-antd/radio';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { RadioComponent } from '../radio/radio.component';
+import { RadioValue } from '../types';
 
 export type RadioValue = string | number;
 

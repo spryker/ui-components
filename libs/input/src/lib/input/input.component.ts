@@ -13,6 +13,7 @@ import {
 import { AutocompleteWrapper, AutocompleteWrapperToken, ToBoolean, ToJson } from '@spryker/utils';
 import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
 import { ReplaySubject } from 'rxjs';
+import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
 
 @Component({
     selector: 'spy-input',

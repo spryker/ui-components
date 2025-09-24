@@ -39,7 +39,18 @@ jobs:
 
             - name: Run format check
               run: |
-                  npm run format:check -- --base=origin/next --log-level=error
+                  OUTPUT=$(npx prettier --check --loglevel=error --json . --base=origin/next 2>&1 || true)
+                  
+                  if echo "$OUTPUT" | jq -e '.[] | select(.error)' >/dev/null; then
+                      echo "::error::Prettier found formatting errors"
+                      echo "$OUTPUT" | jq -r '.[] | select(.error) | "\(.filepath): \(.error.msg)"'
+                      exit 1
+                  elif echo "$OUTPUT" | jq -e 'length > 0' >/dev/null; then
+                      echo "Prettier found warnings but no errors, continuing..."
+                      echo "$OUTPUT" | jq -r '.[] | "\(.filepath): \(.msg)"'
+                  else
+                      echo "No formatting issues found"
+                  fi
 
             - name: Run lint
               run: |

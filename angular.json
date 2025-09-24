@@ -281,7 +281,7 @@
         }
       }
     },
-    "storybook": {
+    "storybook-global": {
       "projectType": "library",
       "root": "libs",
       "sourceRoot": "libs",

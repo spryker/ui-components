@@ -58,13 +58,13 @@ import { TableEditableService } from './table-editable-feature.service';
 interface TableEditCellModel {
     [rowIdx: string]: {
         [columnId: string]:
-            | {
-                  cellElement?: HTMLElement;
-                  leftCellOffset?: string;
-                  value?: unknown;
-                  isUpdating?: boolean;
-              }
-            | undefined;
+        | {
+            cellElement?: HTMLElement;
+            leftCellOffset?: string;
+            value?: unknown;
+            isUpdating?: boolean;
+        }
+        | undefined;
     };
 }
 
@@ -85,8 +85,7 @@ interface TableEditCellModel {
 })
 export class TableEditableFeatureComponent
     extends TableFeatureComponent<TableEditableConfig>
-    implements OnInit, AfterViewChecked, OnDestroy
-{
+    implements OnInit, AfterViewChecked, OnDestroy {
     @ViewChild('editableCell') editableCell?: TemplateRef<any>;
 
     name = 'editable';

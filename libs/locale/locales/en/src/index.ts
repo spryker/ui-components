@@ -35,6 +35,6 @@ export function enLocaleFactory() {
     imports: [CommonModule],
     providers: [provideLocaleRecordsFactory(enLocaleFactory)],
 })
-export class EnLocaleModule {}
+export class EnLocaleModule { }
 
 export default EnLocaleModule;

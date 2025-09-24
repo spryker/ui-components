@@ -21,7 +21,7 @@ export interface CollateDataTransformerDataT {
     pageSize: number;
 }
 
-export interface DataTransformerConfiguratorRegistry {}
+export interface DataTransformerConfiguratorRegistry { }
 
 export type DataTransformerConfiguratorType = RegistryType<DataTransformerConfiguratorRegistry>;
 
@@ -56,7 +56,7 @@ export interface DataTransformerFilter {
     ): Observable<DataTransformerFilterData>;
 }
 
-export interface DataTransformerFilterRegistry {}
+export interface DataTransformerFilterRegistry { }
 
 export type DataTransformerFilterRegistryType = RegistryType<DataTransformerFilterRegistry>;
 

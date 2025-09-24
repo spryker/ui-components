@@ -24,7 +24,7 @@ export class DataTransformerFilterService {
         @Optional()
         @Inject(DataTransformerFiltersTypesToken)
         private filtersTypes?: InjectionTokenType<typeof DataTransformerFiltersTypesToken>,
-    ) {}
+    ) { }
 
     filter(
         type: DataTransformerFilterRegistryType | string,

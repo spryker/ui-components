@@ -67,13 +67,13 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
                     switchMap(([hasDirtyStatus, [title, okText, cancelText]]) =>
                         hasDirtyStatus
                             ? this.modalService
-                                  .openConfirm({
-                                      title,
-                                      okText,
-                                      cancelText,
-                                  })
-                                  .afterDismissed()
-                                  .pipe(switchMap((isDiscard) => (isDiscard ? of(null) : EMPTY)))
+                                .openConfirm({
+                                    title,
+                                    okText,
+                                    cancelText,
+                                })
+                                .afterDismissed()
+                                .pipe(switchMap((isDiscard) => (isDiscard ? of(null) : EMPTY)))
                             : of(null),
                     ),
                 ),

@@ -42,7 +42,7 @@ export class ModalComponent implements OnChanges, OnDestroy {
 
     private destroyed$ = new Subject<void>();
 
-    constructor(private modalService: ModalService) {}
+    constructor(private modalService: ModalService) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('visible' in changes) {

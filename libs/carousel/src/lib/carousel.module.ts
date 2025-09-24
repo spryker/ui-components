@@ -7,9 +7,9 @@ import { CarouselSlideComponent } from './carousel-slide/carousel-slide.componen
 import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
-    imports: [SelectComponentsModule, CommonModule, IconModule, IconPaginationArrowModule],
-    declarations: [CarouselComponent, CarouselSlideComponent],
-    exports: [CarouselComponent, CarouselSlideComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [SelectComponentsModule, CommonModule, IconModule, IconPaginationArrowModule],
+  declarations: [CarouselComponent, CarouselSlideComponent],
+  exports: [CarouselComponent, CarouselSlideComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CarouselModule {}
+export class CarouselModule { }

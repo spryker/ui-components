@@ -97,7 +97,7 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
         private dateWorkDaysToken: InjectionTokenType<typeof DateWorkDaysToken>,
         @Inject(DateWorkHoursToken)
         private dateWorkHoursToken: InjectionTokenType<typeof DateWorkHoursToken>,
-    ) {}
+    ) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         this.updatePicker();

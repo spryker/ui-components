@@ -9,12 +9,12 @@ export class TableConfigService {
     private knownProperties: {
         [P in keyof TableCoreConfig]-?: any;
     } = {
-        columns: true,
-        columnsUrl: true,
-        dataSource: true,
-    };
+            columns: true,
+            columnsUrl: true,
+            dataSource: true,
+        };
 
-    constructor(private defaultConfig: TableDefaultConfig) {}
+    constructor(private defaultConfig: TableDefaultConfig) { }
 
     normalize(config?: TableConfig): TableConfig {
         if (!config) {

@@ -7,34 +7,34 @@ import { CarouselModule } from '../carousel.module';
 import { CarouselComponent } from './carousel.component';
 
 export default {
-    title: 'CarouselComponent',
-    decorators: [
-        applicationConfig({
-            providers: [provideAnimations()],
-        }),
-        moduleMetadata({
-            imports: [CarouselModule],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        }),
-    ],
-    parameters: {
-        controls: {
-            include: ['slidesPerView', 'slidesSpaceBetween', 'withThumbs', 'thumbsPerView', 'thumbsSpaceBetween'],
-        },
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2201%3A6727',
-            allowFullscreen: true,
-        },
+  title: 'CarouselComponent',
+  decorators: [
+    applicationConfig({
+      providers: [provideAnimations()],
+    }),
+    moduleMetadata({
+      imports: [CarouselModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }),
+  ],
+  parameters: {
+    controls: {
+      include: ['slidesPerView', 'slidesSpaceBetween', 'withThumbs', 'thumbsPerView', 'thumbsSpaceBetween'],
     },
-    args: {
-        withThumbs: true,
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2201%3A6727',
+      allowFullscreen: true,
     },
+  },
+  args: {
+    withThumbs: true,
+  },
 } as Meta;
 
 export const primary = (args) => ({
-    props: args,
-    template: `
+  props: args,
+  template: `
     <div style="width: 100%">
       <spy-carousel [withThumbs]="withThumbs">
         <ng-container *ngFor="let _ of ' '.repeat(5).split(''); let i = index;">
@@ -49,13 +49,13 @@ export const primary = (args) => ({
 });
 
 export const asWebComponents = (args) => ({
-    props: args,
-    applicationConfig: {
-        providers: [
-            importProvidersFrom(WebComponentsModule.withComponents([CarouselComponent, CarouselSlideComponent])),
-        ],
-    },
-    template: `
+  props: args,
+  applicationConfig: {
+    providers: [
+      importProvidersFrom(WebComponentsModule.withComponents([CarouselComponent, CarouselSlideComponent])),
+    ],
+  },
+  template: `
         <div style="width: 100%">
             <web-spy-carousel with-thumbs="true">
                 <ng-container *ngFor="let _ of ' '.repeat(10).split(''); let i = index;">

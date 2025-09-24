@@ -1,20 +1,20 @@
 {
-    "name": "@spryker/html-renderer",
-    "version": "2.0.8",
-    "peerDependencies": {
-        "@angular/common": ">=17.3.0 <19.0.0",
-        "@angular/core": ">=17.3.0 <19.0.0",
-        "@angular/platform-browser": ">=17.3.0 <19.0.0",
-        "@spryker/ajax-action": "^2.0.0",
-        "@spryker/spinner": "^2.0.0",
-        "@spryker/styles": "^2.0.0",
-        "@spryker/web-components": "^2.0.0",
-        "rxjs": "^7.8.1"
-    },
-    "dependencies": {
-        "tslib": "^2.6.2"
-    },
-    "publishConfig": {
-        "access": "public"
-    }
+  "name": "@spryker/html-renderer",
+  "version": "2.0.8",
+  "peerDependencies": {
+    "@angular/common": ">=17.3.0 <19.0.0",
+    "@angular/core": ">=17.3.0 <19.0.0",
+    "@angular/platform-browser": ">=17.3.0 <19.0.0",
+    "@spryker/ajax-action": "^2.0.0",
+    "@spryker/spinner": "^2.0.0",
+    "@spryker/styles": "^2.0.0",
+    "@spryker/web-components": "^2.0.0",
+    "rxjs": "^7.8.1"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

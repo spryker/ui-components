@@ -4,6 +4,7 @@ import { WebComponentsModule } from '@spryker/web-components';
 import { RadioModule } from '../radio.module';
 import { RadioComponent } from '../radio/radio.component';
 import { RadioGroupComponent } from './radio-group.component';
+import { text } from '@storybook/addon-knobs';
 
 enum RadioGroupValue {
     FirstRadioValue = 'A',
@@ -60,6 +61,9 @@ export const primary = (args) => ({
       <spy-radio [value]="secondRadioValue">Label B</spy-radio>
     </spy-radio-group>
   `,
+    props: {
+        value: text('value', 'A'),
+    },
 });
 
 export const asWebComponents = (args) => ({

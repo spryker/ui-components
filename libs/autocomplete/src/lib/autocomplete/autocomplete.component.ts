@@ -57,7 +57,7 @@ export class AutocompleteComponent implements OnChanges, OnInit, OnDestroy {
         private datasourceService: DatasourceService,
         @Inject(AutocompleteWrapperToken)
         private autocompleteWrapper?: InjectionTokenType<typeof AutocompleteWrapperToken>,
-    ) {}
+    ) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.options) {

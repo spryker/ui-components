@@ -3,9 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.9-next.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/table.filter.select@2.0.8...@spryker/table.filter.select@2.0.9-next.0) (2025-09-12)
+# [2.1.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/table.filter.select@2.0.8...@spryker/table.filter.select@2.1.0) (2025-09-19)
 
-**Note:** Version bump only for package @spryker/table.filter.select
+
+### Features
+
+* add greek locale ([#657](http://172.31.0.22:9292/spryker-internal-ci/ui-components/issues/657)) ([b289650](http://172.31.0.22:9292/spryker-internal-ci/ui-components/commits/b289650c2289af6b5d0e04165309c9fe7053f5a5))
 
 
 

@@ -6,6 +6,7 @@ import { ButtonActionModule } from '@spryker/button.action';
 import { NotificationModule, NotificationType, NotificationWrapperComponent } from '@spryker/notification';
 
 import { NotificationActionHandlerService } from './notification-action-handler.service';
+import { NotificationWrapperComponent } from '../../../notification/src/lib/notification-wrapper/notification-wrapper.component';
 
 export default {
     title: 'NotificationActionHandlerService',

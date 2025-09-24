@@ -16,6 +16,7 @@ import { AutocompleteWrapperToken, InjectionTokenType, ToJson } from '@spryker/u
 import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
 import { EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
+import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
 
 import { AutocompleteValue } from './types';
 

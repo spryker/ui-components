@@ -1,85 +1,85 @@
 name: 'UI components CI (next branch)'
 
 on:
-  push:
-    branches:
-      - 'next'
+    push:
+        branches:
+            - 'next'
 
 env:
-  NODE_VERSION: '18.19.1'
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  GIT_EMAIL: 'github-actions@github.com'
-  GIT_USER: 'GitHub Actions'
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    NODE_VERSION: '18.19.1'
+    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    GIT_EMAIL: 'github-actions@github.com'
+    GIT_USER: 'GitHub Actions'
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  build-and-verify:
-    name: Format check / Lint code / Unit Tests / Build (next)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+    build-and-verify:
+        name: Format check / Lint code / Unit Tests / Build (next)
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+            - name: Use Node.js ${{ env.NODE_VERSION }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+                  cache: 'npm'
 
-      - name: Fetch Master branch
-        run: git fetch origin master
+            - name: Fetch Master branch
+              run: git fetch origin master
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Run format check
-        run: |
-          npm run format:check -- --base=origin/master
+            - name: Run format check
+              run: |
+                  npm run format:check -- --base=origin/master
 
-      - name: Run lint
-        run: |
-          npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --parallel
-          npm run stylelint
+            - name: Run lint
+              run: |
+                  npm run affected:lint -- --base=origin/master --parallel || npm run affected:lint -- --parallel
+                  npm run stylelint
 
-      - name: Run tests
-        run: |
-          COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel
+            - name: Run tests
+              run: |
+                  COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel
 
-  deploy:
-    name: Deploy
-    needs: build-and-verify
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+    deploy:
+        name: Deploy
+        needs: build-and-verify
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+                  registry-url: 'https://registry.npmjs.org'
+                  cache: 'npm'
 
-      - name: Configure Git
-        run: |
-          git config --global user.email "$GIT_EMAIL"
-          git config --global user.name "$GIT_USER"
+            - name: Configure Git
+              run: |
+                  git config --global user.email "$GIT_EMAIL"
+                  git config --global user.name "$GIT_USER"
 
-      - name: Set up NPM token
-        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+            - name: Set up NPM token
+              run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Build
-        run: |
-            npm run build
+            - name: Build
+              run: |
+                  npm run build
 
-      - name: Release
-        if: success()
-        run: |
-            npm run release-next
+            - name: Release
+              if: success()
+              run: |
+                  npm run release-next

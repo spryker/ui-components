@@ -1,4 +1,4 @@
-name: 'Format check / Lint code / Unit Tests / Build / Deploy (next)'
+name: 'UI components CI (next branch)'
 
 on:
   push:

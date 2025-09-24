@@ -39,7 +39,7 @@ jobs:
 
             - name: Run format check
               run: |
-                  npm run format:check -- --base=origin/next
+                  npm run format:check -- --base=origin/next --log-level=error
 
             - name: Run lint
               run: |

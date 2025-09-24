@@ -32,7 +32,7 @@ jobs:
               run: npm ci
 
             - name: Run format check
-              run: npm run format:check
+              run: npm run format:check --log-level=error
 
             - name: Run lint
               run: |

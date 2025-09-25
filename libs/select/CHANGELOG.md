@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/select@2.1.0...@spryker/select@2.1.1-next.0) (2025-09-25)
+
+**Note:** Version bump only for package @spryker/select
+
+
+
+
+
 # [2.1.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/select@2.0.14...@spryker/select@2.1.0) (2025-09-19)
 
 

@@ -5,7 +5,6 @@
     "command": {
         "publish": {
             "conventionalCommits": true,
-            "gitRemote": "pub",
             "allowBranch": [
                 "master",
                 "republish/master",

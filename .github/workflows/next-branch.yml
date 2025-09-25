@@ -35,8 +35,7 @@ jobs:
               run: npm ci
 
             - name: Run format check
-              run: |
-                  npm run format:check -- --base=origin/master
+              run: npm run format:check -- --base=origin/master
 
             - name: Run lint
               run: |
@@ -44,8 +43,7 @@ jobs:
                   npm run stylelint
 
             - name: Run tests
-              run: |
-                  COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel
+              run: COVERAGE=true npm run affected:test -- --base=origin/master --parallel || npm run affected:test -- --parallel
 
     deploy:
         name: Deploy
@@ -76,10 +74,8 @@ jobs:
               run: npm ci
 
             - name: Build
-              run: |
-                  npm run build
+              run: npm run build
 
             - name: Release
               if: success()
-              run: |
-                  npm run release-next
+              run: npm run release-next

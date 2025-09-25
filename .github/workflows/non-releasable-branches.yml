@@ -38,8 +38,7 @@ jobs:
               run: npm ci
 
             - name: Run format check
-              run: |
-                  npm run format:check -- --base=origin/next
+              run: npm run format:check -- --base=origin/next
 
             - name: Run lint
               run: |
@@ -47,15 +46,13 @@ jobs:
                   npm run stylelint
 
             - name: Run tests
-              run: |
-                  COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
+              run: COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
 
             - name: Build non-libs
               run: npm run build-non-libs
 
             - name: Build affected libs
-              run: |
-                  npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
+              run: npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
 
     deploy:
         name: Deploy
@@ -89,10 +86,8 @@ jobs:
               run: npm ci
 
             - name: Build
-              run: |
-                  npm run build
+              run: npm run build
 
             - name: Release (pre-release)
               if: success()
-              run: |
-                  npm run release-tag
+              run: npm run release-tag

@@ -1,8 +1,6 @@
 import { Injectable, Injector, OnDestroy, inject } from '@angular/core';
 import { ActionsService } from '@spryker/actions';
-import { Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
-
+import { Observable, of, ReplaySubject, Subject, switchMap, takeUntil } from 'rxjs';
 import { TableEventBus } from '../table/table-event-bus';
 import { TableActionTriggeredEvent } from './types';
 

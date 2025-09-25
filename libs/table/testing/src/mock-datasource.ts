@@ -1,9 +1,8 @@
 import { Injectable, Injector, InjectionToken, inject } from '@angular/core';
 import { TableData, TableDataConfig } from '@spryker/table';
 import { DatasourceConfig, Datasource } from '@spryker/datasource';
-import { Observable, of } from 'rxjs';
+import { Observable, of, switchMap, delay } from 'rxjs';
 import { TableDataMockGenerator, generateMockTableDataForOptions } from './mock-data';
-import { switchMap, delay } from 'rxjs/operators';
 
 export const MockTableDatasourceToken = new InjectionToken<TableDataMockGenerator>('MockTableDatasource');
 

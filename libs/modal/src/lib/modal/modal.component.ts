@@ -14,8 +14,7 @@ import {
     SimpleChanges,
     inject,
 } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, takeUntil } from 'rxjs';
 
 import { ModalService } from '../modal.service';
 import { ModalRef } from '../types';

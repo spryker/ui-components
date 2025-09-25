@@ -1,7 +1,7 @@
 import { HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { ApplicationRef, Directive, DoCheck, Injector, Input, OnDestroy, inject } from '@angular/core';
 import { EMPTY, forkJoin, Observable, of, Subject, throwError } from 'rxjs';
-import { catchError, delay, filter, map, mergeAll, mergeMap, switchMap, take, takeUntil, tap } from 'rxjs/operators';
+import { catchError, delay, filter, map, mergeAll, mergeMap, switchMap, take, takeUntil, tap } from 'rxjs';
 
 import { ensureObservable, getRandomBetween } from '../util';
 import { isMatchedRequest, MatchedHttpRequest, MockHttpOptions, MockHttpResponse } from './mock-http';

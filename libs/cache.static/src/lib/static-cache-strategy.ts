@@ -1,10 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { CacheId, CacheOperation, CacheStrategy, CacheStorageFactoryService, CacheEntry } from '@spryker/cache';
-import { of, Observable } from 'rxjs';
+import { of, Observable, switchMap, map } from 'rxjs';
 import { TimeDurationService } from '@spryker/utils/date';
-
 import { StaticCacheStrategyConfig } from './types';
-import { switchMap, mapTo } from 'rxjs/operators';
 
 /**
  * Puts cache entries to the {@link CacheStorage} forever, unless the {@link CacheStorage} is cleared or CacheEntry is expired.
@@ -42,7 +40,7 @@ export class StaticCacheStrategy implements CacheStrategy {
 
                                                 return cacheStorage
                                                     .set(id, newEntry, config.namespace)
-                                                    .pipe(mapTo(operationValue));
+                                                    .pipe(map(() => operationValue));
                                             }),
                                         ),
                                     ),
@@ -61,7 +59,7 @@ export class StaticCacheStrategy implements CacheStrategy {
                             value,
                         };
 
-                        return cacheStorage.set(id, entry, config.namespace).pipe(mapTo(value));
+                        return cacheStorage.set(id, entry, config.namespace).pipe(map(() => value));
                     }),
                 );
             }),

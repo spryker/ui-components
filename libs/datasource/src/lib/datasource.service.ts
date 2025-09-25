@@ -1,9 +1,8 @@
 import { Injectable, Injector, inject } from '@angular/core';
 import { DataTransformerService } from '@spryker/data-transformer';
-import { Observable, of } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { DatasourceTypesToken } from './token';
 import { Datasource, DatasourceConfig, DatasourceRegistry, DatasourceType, DatasourceTypesDeclaration } from './types';
-import { switchMap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',

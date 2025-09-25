@@ -1,8 +1,7 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ComponentRef, Injectable, ViewContainerRef, inject } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, takeUntil } from 'rxjs';
 
 import { AnyModal, ModalOptions, ModalRef, ModalWrapperFactory, ModalWrapperRef } from '../../types';
 import { ModalWrapperComponent } from './modal-wrapper.component';

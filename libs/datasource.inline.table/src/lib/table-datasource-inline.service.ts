@@ -3,8 +3,7 @@ import { DataTransformerConfig, DataTransformerService, DataTransformerType } fr
 import { Datasource } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { TableData } from '@spryker/table';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, switchMap } from 'rxjs';
 
 import { TableDatasourceInlineConfig } from './types';
 

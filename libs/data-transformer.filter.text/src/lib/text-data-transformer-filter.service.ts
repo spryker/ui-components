@@ -7,8 +7,7 @@ import {
     DataTransformerFilterConfig,
     DataTransformerFilterData,
 } from '@spryker/data-transformer.collate';
-import { forkJoin, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin, Observable, of, map } from 'rxjs';
 
 /**
  * Filters data by value that matches with the prop value.

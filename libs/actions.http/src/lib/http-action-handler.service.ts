@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector, OnDestroy, inject } from '@angular/core';
 import { ActionHandler, ActionsService } from '@spryker/actions';
 import { AnyContext, ContextService } from '@spryker/utils';
-import { combineLatest, Observable, of, Subject } from 'rxjs';
-import { catchError, concatAll, shareReplay, takeUntil } from 'rxjs/operators';
+import { combineLatest, Observable, of, Subject, catchError, concatAll, shareReplay, takeUntil } from 'rxjs';
 
 import { HttpActionConfig, HttpActionResponse } from './types';
 

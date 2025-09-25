@@ -10,7 +10,7 @@ import {
     inject,
 } from '@angular/core';
 import { combineLatest, of, ReplaySubject, Subject } from 'rxjs';
-import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import { map, startWith, switchMap, takeUntil } from 'rxjs';
 
 import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { FeatureRecord } from './types';

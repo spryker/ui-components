@@ -16,9 +16,7 @@ import {
     ViewEncapsulation,
     inject,
 } from '@angular/core';
-import { switchMap, take, takeUntil } from 'rxjs/operators';
-
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { DrawerData } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerService } from '../drawer.service';

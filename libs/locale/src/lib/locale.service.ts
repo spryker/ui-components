@@ -1,18 +1,24 @@
 import { Injectable, Injector, OnDestroy, Type, inject } from '@angular/core';
-import { combineLatest, forkJoin, from, merge, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import {
+    combineLatest,
+    forkJoin,
+    from,
+    merge,
+    Observable,
+    of,
+    ReplaySubject,
+    Subject,
     catchError,
     debounceTime,
     distinctUntilChanged,
     filter,
     map,
-    mapTo,
     share,
     shareReplay,
     switchMap,
     takeUntil,
     tap,
-} from 'rxjs/operators';
+} from 'rxjs';
 
 import { LocaleDefaultToken, LocaleLoaderRegistrarsToken, LocaleRecordsToken } from './tokens';
 import { LocaleLoader, LocaleLoaderRegistrar, LocaleRecord } from './types';
@@ -64,7 +70,7 @@ export class LocaleService implements OnDestroy {
         share(),
     );
 
-    localeLoading$ = merge(this.locale$.pipe(mapTo(true)), this.localeLoad$.pipe(mapTo(false))).pipe(
+    localeLoading$ = merge(this.locale$.pipe(map(() => true)), this.localeLoad$.pipe(map(() => false))).pipe(
         shareReplay({ bufferSize: 1, refCount: false }),
     );
 
@@ -110,7 +116,7 @@ export class LocaleService implements OnDestroy {
                 delete this.loaders[locale];
                 this.locale = locale;
             }),
-            mapTo(locale),
+            map(() => locale),
         );
     }
 

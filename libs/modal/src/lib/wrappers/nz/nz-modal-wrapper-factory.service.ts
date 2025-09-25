@@ -1,9 +1,8 @@
 import { Injectable, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { NzModalRef, NzModalService, ModalOptions as NzModalOptions } from 'ng-zorro-antd/modal';
-
 import { AnyModal, ModalOptions, ModalRef, ModalWrapperFactory, ModalWrapperRef } from '../../types';
 import { NzModalWrapperComponent } from './nz-modal-wrapper/nz-modal-wrapper.component';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs';
 import { Subject } from 'rxjs';
 
 function mapNzOptions(options: ModalOptions<AnyModal>): NzModalOptions {

@@ -12,8 +12,7 @@ import {
     OnDestroy,
     booleanAttribute,
 } from '@angular/core';
-import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
-import { switchMap, map, takeUntil, startWith } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, Subject, switchMap, map, takeUntil, startWith } from 'rxjs';
 import { TabComponent } from '../tab/tab.component';
 
 export enum TabsMode {

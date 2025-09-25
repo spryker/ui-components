@@ -10,7 +10,7 @@ import {
     inject,
 } from '@angular/core';
 import { combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { map, pairwise, shareReplay, startWith, takeUntil } from 'rxjs/operators';
+import { map, pairwise, shareReplay, startWith, takeUntil } from 'rxjs';
 
 import { ApplyContextsOptions } from './apply-contexts-options';
 

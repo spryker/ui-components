@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Directive, EventEmitter, Injector, Input, OnChanges, Output, inject } from '@angular/core';
-import { EMPTY, Observable, ReplaySubject } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { EMPTY, Observable, ReplaySubject, catchError, map, switchMap, tap } from 'rxjs';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
 import { UrlHtmlRendererResponse } from '../html-renderer/types';

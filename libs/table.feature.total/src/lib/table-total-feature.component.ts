@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
-import { map, mapTo, shareReplay, switchMap, take, pluck } from 'rxjs/operators';
+import { map, shareReplay, switchMap, take } from 'rxjs';
 import { TableTotalConfig } from './types';
 
 @Component({
@@ -26,10 +26,13 @@ export class TableTotalFeatureComponent extends TableFeatureComponent<TableTotal
         shareReplay({ bufferSize: 1, refCount: true }),
     );
 
-    isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
+    isDataResolved$ = this.tableData$.pipe(
+        map(() => true),
+        take(1),
+    );
 
-    total$ = this.tableData$.pipe(pluck('total'));
-    data$ = this.tableData$.pipe(pluck('data'));
+    total$ = this.tableData$.pipe(map((data) => data.total));
+    data$ = this.tableData$.pipe(map((data) => data.data));
 
     selected$ = this.tableEventBus$.pipe(
         switchMap((eventBus) => eventBus.on<any[]>('itemSelection')),

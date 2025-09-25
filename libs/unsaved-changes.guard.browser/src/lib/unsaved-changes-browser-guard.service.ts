@@ -1,6 +1,5 @@
 import { Injectable, Injector, inject } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, takeUntil } from 'rxjs';
 
 import { UnsavedChangesGuardBase } from '@spryker/unsaved-changes';
 

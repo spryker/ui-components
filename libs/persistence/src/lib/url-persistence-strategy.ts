@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { WindowToken } from '@spryker/utils';
-import { EMPTY, fromEvent, Observable, of } from 'rxjs';
-import { distinctUntilChanged, map, shareReplay, startWith, switchMap } from 'rxjs/operators';
+import { EMPTY, fromEvent, Observable, of, distinctUntilChanged, map, shareReplay, startWith, switchMap } from 'rxjs';
 import { PersistenceStrategy } from './types';
 
 /**

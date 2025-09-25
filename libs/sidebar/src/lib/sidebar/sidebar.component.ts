@@ -14,8 +14,7 @@ import {
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService } from '@spryker/persistence';
-import { merge, ReplaySubject } from 'rxjs';
-import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { merge, ReplaySubject, map, switchMap, tap, withLatestFrom } from 'rxjs';
 
 @Component({
     standalone: false,

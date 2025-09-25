@@ -14,8 +14,7 @@ import {
 } from '@angular/core';
 import { isNonNullable } from '@spryker/utils';
 import { combineLatest, Observable, ReplaySubject, Subject } from 'rxjs';
-import { debounceTime, filter, map, startWith, switchAll, takeUntil } from 'rxjs/operators';
-
+import { debounceTime, filter, map, startWith, switchAll, takeUntil } from 'rxjs';
 import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableFeaturesRendererService } from './table-features-renderer.service';

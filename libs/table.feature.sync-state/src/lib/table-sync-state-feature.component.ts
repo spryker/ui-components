@@ -14,8 +14,7 @@ import {
     TableFeatureLocation,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/persistence';
-import { combineLatest, merge, Observable, of } from 'rxjs';
-import { pluck, skip, switchMap, take, tap } from 'rxjs/operators';
+import { combineLatest, merge, Observable, of, map, skip, switchMap, take, tap } from 'rxjs';
 
 import { TableSyncStateConfig } from './types';
 
@@ -41,7 +40,7 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableS
     tableFeatureLocation = TableFeatureLocation;
 
     tableId$ = this.config$.pipe(
-        pluck('tableId'),
+        map((config) => config.tableId),
         switchMap((tableId) => {
             if (tableId) {
                 return of(tableId);

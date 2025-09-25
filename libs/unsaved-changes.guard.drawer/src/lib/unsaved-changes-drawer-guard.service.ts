@@ -4,8 +4,7 @@ import { InterceptionComposableFactory, InterceptorService } from '@spryker/inte
 import { I18nService } from '@spryker/locale';
 import { ModalService } from '@spryker/modal';
 import { UnsavedChangesGuardBase, UnsavedChangesGuardToken } from '@spryker/unsaved-changes';
-import { combineLatest, EMPTY, of, Subject } from 'rxjs';
-import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { combineLatest, EMPTY, of, Subject, switchMap, take, takeUntil, withLatestFrom } from 'rxjs';
 
 /**
  * Dynamically provides {@link UnsavedChangesDrawerGuard} for the drawer component.

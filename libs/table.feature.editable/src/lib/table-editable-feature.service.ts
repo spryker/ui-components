@@ -1,7 +1,5 @@
 import { ElementRef, Injectable, OnDestroy, inject } from '@angular/core';
-import { Observable, OperatorFunction, Subject } from 'rxjs';
-import { distinctUntilChanged, map, scan } from 'rxjs/operators';
-
+import { Observable, OperatorFunction, Subject, distinctUntilChanged, map, scan } from 'rxjs';
 import { TableEditableColumn, TableEditableEvent } from './types';
 
 interface ModelOperationAdd {

@@ -8,8 +8,7 @@ import {
     ViewChildren,
     inject,
 } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
-import { filter, map, publishBehavior, refCount, startWith, switchAll } from 'rxjs/operators';
+import { Observable, ReplaySubject, filter, map, shareReplay, startWith, switchAll } from 'rxjs';
 
 import { TableActionsService } from '../table-actions/table-actions.service';
 import { TableFeatureConfig } from '../table-config/types';
@@ -70,8 +69,8 @@ export abstract class TableFeatureComponent<C extends TableFeatureConfig = Table
     private setTplDirectives$ = new ReplaySubject<Observable<TableFeatureTplDirective[]>>(1);
     tplDirectives$ = this.setTplDirectives$.pipe(
         switchAll(),
-        publishBehavior([] as TableFeatureTplDirective[]),
-        refCount(),
+        startWith([] as TableFeatureTplDirective[]),
+        shareReplay({ bufferSize: 1, refCount: true }),
     );
 
     private iterableDiffers = this.injector.get(IterableDiffers);

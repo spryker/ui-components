@@ -20,7 +20,7 @@ import {
 } from '@spryker/table';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
 import { merge, of, ReplaySubject } from 'rxjs';
-import { delay, distinctUntilChanged, map, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { delay, distinctUntilChanged, map, shareReplay, switchMap, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnDynamicDatasourceConfig implements DatasourceConfig {

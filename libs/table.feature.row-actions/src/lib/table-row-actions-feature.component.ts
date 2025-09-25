@@ -18,9 +18,7 @@ import {
     TableRowClickEvent,
 } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
-import { combineLatest, EMPTY, Subject } from 'rxjs';
-import { map, pluck, shareReplay, switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
-
+import { combineLatest, EMPTY, Subject, map, shareReplay, switchMap, take, takeUntil, withLatestFrom } from 'rxjs';
 import { TableRowActionBase, TableRowActionContext, TableRowActionsConfig } from './types';
 
 @Component({
@@ -60,10 +58,10 @@ export class TableRowActionsFeatureComponent
         shareReplay({ bufferSize: 1, refCount: true }),
     );
 
-    availableActionsPath$ = this.config$.pipe(pluck('availableActionsPath'));
+    availableActionsPath$ = this.config$.pipe(map((config) => config.availableActionsPath));
 
     private destroyed$ = new Subject<void>();
-    private configClick$ = this.config$.pipe(pluck('click'));
+    private configClick$ = this.config$.pipe(map((config) => config.click));
     private clickAction$ = this.configClick$.pipe(map((actionId) => this.getActionById(actionId)));
     private rowClicks$ = this.tableEventBus$.pipe(
         withLatestFrom(this.clickAction$),
@@ -74,7 +72,7 @@ export class TableRowActionsFeatureComponent
 
     tableData$ = this.table$.pipe(
         switchMap((table) => table.data$),
-        pluck('data'),
+        map((event) => event.data),
     );
 
     ngOnInit(): void {

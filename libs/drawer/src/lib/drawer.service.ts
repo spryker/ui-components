@@ -1,9 +1,7 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable, OnDestroy, TemplateRef, Type, inject } from '@angular/core';
-import { merge, Subject } from 'rxjs';
-import { filter, take, takeUntil } from 'rxjs/operators';
-
+import { merge, Subject, filter, take, takeUntil } from 'rxjs';
 import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 import { DrawerContainerComponent } from './drawer-container/drawer-container.component';
 import { DrawerOptions, DrawerOptionsBase, DrawerOptionsComponent, DrawerOptionsTemplate } from './drawer-options';

@@ -29,20 +29,22 @@ import {
 import { TableSettingsChangeEvent } from '@spryker/table.feature.settings';
 import { AnyContext, ContextService, getElementOffset, provideInvokeContext } from '@spryker/utils';
 import { NzResizeObserver } from 'ng-zorro-antd/cdk/resize-observer';
-import { combineLatest, EMPTY, merge, Subject } from 'rxjs';
 import {
+    combineLatest,
+    EMPTY,
+    merge,
+    Subject,
     debounceTime,
     distinctUntilChanged,
     filter,
     map,
-    pluck,
     shareReplay,
     skip,
     startWith,
     switchMap,
     takeUntil,
     tap,
-} from 'rxjs/operators';
+} from 'rxjs';
 
 import { TableEditableEditRequestToken } from './tokens';
 import {
@@ -138,10 +140,13 @@ export class TableEditableFeatureComponent
             }),
         ),
     );
-    editColumns$ = this.config$.pipe(pluck('columns'));
-    createConfig$ = this.config$.pipe(pluck('create'), shareReplay({ bufferSize: 1, refCount: true }));
+    editColumns$ = this.config$.pipe(map((config) => config.columns));
+    createConfig$ = this.config$.pipe(
+        map((config) => config.create),
+        shareReplay({ bufferSize: 1, refCount: true }),
+    );
     updateConfig$ = this.config$.pipe(
-        pluck('update'),
+        map((config) => config.update),
         tap((config) => (this.url = config?.url)),
         shareReplay({ bufferSize: 1, refCount: true }),
     );

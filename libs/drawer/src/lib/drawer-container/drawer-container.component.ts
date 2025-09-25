@@ -21,10 +21,8 @@ import {
     provideInterceptionService,
 } from '@spryker/interception';
 import { HookableInjector } from '@spryker/utils';
-import { EMPTY, Observable, ReplaySubject, Subject } from 'rxjs';
-import { tap, shareReplay, mergeAll, takeUntil } from 'rxjs/operators';
+import { EMPTY, Observable, ReplaySubject, Subject, tap, shareReplay, mergeAll, takeUntil } from 'rxjs';
 import { InputsType, OutputsType } from 'ng-dynamic-component';
-
 import {
     DrawerCloseInterceptionEvent,
     DrawerMaximizeInterceptionEvent,

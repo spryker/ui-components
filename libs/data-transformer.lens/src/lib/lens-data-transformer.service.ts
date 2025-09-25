@@ -1,8 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { DataTransformer, DataTransformerService } from '@spryker/data-transformer';
 import { ContextService, mergeDeep } from '@spryker/utils';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, map } from 'rxjs';
 
 import { LensDataTransformerConfig, LensDataTransformerData, LensDataTransformerDataT } from './types';
 

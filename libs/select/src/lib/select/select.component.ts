@@ -29,7 +29,7 @@ import { I18nService } from '@spryker/locale';
 import { ToJson } from '@spryker/utils';
 import { NzOptionComponent, NzSelectComponent } from 'ng-zorro-antd/select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
+import { switchAll, switchMap, takeUntil } from 'rxjs';
 
 import { OptionComponent } from '../option/option.component';
 import { SelectedOptionComponent } from '../selected-option/selected-option.component';

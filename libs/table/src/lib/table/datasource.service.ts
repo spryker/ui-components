@@ -1,7 +1,6 @@
 import { Injectable, Injector, inject } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, switchMap } from 'rxjs';
 
 import { TableDataConfiguratorService } from './data-configurator.service';
 import { TableData } from './table';

@@ -3,7 +3,7 @@ import { TableFeatureComponent, TableFeatureLocation, TableColumns, TableColumns
 import { IconSettingsModule, IconResetModule, IconDragModule } from '@spryker/icon/icons';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TableSettingsConfig, TableSettingsColumn, TableSettingsColumns, TableSettingsChangeEvent } from './types';
-import { switchMap, pluck, tap, withLatestFrom, map, shareReplay, mapTo, take } from 'rxjs/operators';
+import { switchMap, tap, withLatestFrom, map, shareReplay, take } from 'rxjs';
 import { ReplaySubject, of, Observable, merge, combineLatest } from 'rxjs';
 import { PersistenceService } from '@spryker/persistence';
 import { PopoverPosition } from '@spryker/popover';
@@ -46,7 +46,7 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSe
     setInitialColumns$ = new ReplaySubject<TableSettingsColumns>(1);
 
     tableId$ = this.config$.pipe(
-        pluck('tableId'),
+        map((config) => config.tableId),
         switchMap((tableId) => (tableId ? of(tableId) : this.table$.pipe(switchMap((table) => table.tableId$)))),
     );
 
@@ -94,7 +94,10 @@ export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSe
         shareReplay({ bufferSize: 1, refCount: true }),
     );
 
-    isDataResolved$ = this.tableData$.pipe(mapTo(true), take(1));
+    isDataResolved$ = this.tableData$.pipe(
+        map(() => true),
+        take(1),
+    );
 
     togglePopover(event: boolean): void {
         this.popoverOpened = event;

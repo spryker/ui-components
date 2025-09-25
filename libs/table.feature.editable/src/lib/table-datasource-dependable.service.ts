@@ -1,9 +1,7 @@
 import { Injectable, Injector, inject } from '@angular/core';
 import { Datasource, DatasourceService } from '@spryker/datasource';
 import { CoreTableComponent, TableColumnService, TableData } from '@spryker/table';
-import { combineLatest, EMPTY, Observable } from 'rxjs';
-import { map, startWith, switchMap } from 'rxjs/operators';
-
+import { combineLatest, EMPTY, Observable, map, startWith, switchMap } from 'rxjs';
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
 import { TableDatasourceDependableConfig } from './types';
 

@@ -11,8 +11,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SpinnerSize } from '@spryker/spinner';
-import { merge } from 'rxjs';
-import { map, mapTo, shareReplay } from 'rxjs/operators';
+import { merge, map, shareReplay } from 'rxjs';
 
 import { HtmlRendererProvider } from './html-renderer.provider';
 
@@ -44,5 +43,8 @@ export class HtmlRendererComponent {
         }),
         shareReplay({ bufferSize: 1, refCount: true }),
     );
-    isLoading$ = merge(this.htmlRenderer$.pipe(mapTo(false)), this.htmlRendererProvider.isLoading().pipe(mapTo(true)));
+    isLoading$ = merge(
+        this.htmlRenderer$.pipe(map(() => false)),
+        this.htmlRendererProvider.isLoading().pipe(map(() => true)),
+    );
 }

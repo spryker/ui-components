@@ -10,8 +10,7 @@ import { TableSelectionChangeEvent, TableSelectionRow } from '@spryker/table.fea
 import { ContextService, multipleIntersectionOfString } from '@spryker/utils';
 import { ButtonSize } from '@spryker/button';
 import { NotificationType } from '@spryker/notification';
-import { combineLatest, Observable } from 'rxjs';
-import { map, pluck, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
+import { combineLatest, Observable, map, shareReplay, switchMap, withLatestFrom } from 'rxjs';
 import {
     TableBatchActionsConfig,
     TableItemActions,
@@ -50,7 +49,7 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<Tab
     buttonSize = ButtonSize;
     notificationType = NotificationType;
 
-    actions$ = this.config$.pipe(pluck('actions'));
+    actions$ = this.config$.pipe(map((config) => config.actions));
     itemSelected$ = this.tableEventBus$.pipe(
         switchMap((tableEventBus) => tableEventBus.on<TableSelectionChangeEvent>('itemSelection')),
     );

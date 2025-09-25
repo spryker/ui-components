@@ -13,8 +13,7 @@ import {
     inject,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
-import { merge, Subject, zip } from 'rxjs';
-import { filter, map, pairwise, share, switchMap, take, takeUntil, tap } from 'rxjs/operators';
+import { merge, Subject, zip, filter, map, pairwise, share, switchMap, take, takeUntil, tap } from 'rxjs';
 
 import { NotificationInputs } from '../notification-inputs';
 import { NotificationViewComponent } from '../notification-view/notification-view.component';

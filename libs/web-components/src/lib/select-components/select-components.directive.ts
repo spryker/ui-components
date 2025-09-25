@@ -1,7 +1,18 @@
 import { ContentObserver } from '@angular/cdk/observers';
 import { Directive, ElementRef, Input, OnChanges, OnDestroy, Output, SimpleChanges, Type, inject } from '@angular/core';
-import { EMPTY, forkJoin, Observable, ReplaySubject, Subject } from 'rxjs';
-import { debounceTime, map, mapTo, shareReplay, startWith, switchAll, switchMap } from 'rxjs/operators';
+import {
+    EMPTY,
+    forkJoin,
+    Observable,
+    ReplaySubject,
+    Subject,
+    debounceTime,
+    map,
+    shareReplay,
+    startWith,
+    switchAll,
+    switchMap,
+} from 'rxjs';
 
 import { isNgWebComponent, isNgWebComponentOf, NgWebComponent } from '../ng-web-component';
 
@@ -91,7 +102,7 @@ export class SelectComponentsDirective<T = unknown> implements OnChanges, OnDest
     private findComponentsIn(elements: Element[]): Observable<NgWebComponent<unknown>[]> {
         const components: NgWebComponent<unknown>[] = elements.filter((element) => isNgWebComponent(element)) as any;
 
-        return forkJoin(components.map((component) => component.whenInit().pipe(mapTo(component))));
+        return forkJoin(components.map((component) => component.whenInit().pipe(map(() => component))));
     }
 
     private findInstancesIn(components: NgWebComponent<unknown>[]): T[] {

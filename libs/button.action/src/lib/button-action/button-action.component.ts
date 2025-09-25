@@ -12,7 +12,7 @@ import { ToJson } from '@spryker/utils';
 import { ActionConfig, ActionsService } from '@spryker/actions';
 import { ButtonAttributes, ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
 import { Subject } from 'rxjs';
-import { switchMap, filter, takeUntil } from 'rxjs/operators';
+import { switchMap, filter, takeUntil } from 'rxjs';
 
 @Component({
     standalone: false,

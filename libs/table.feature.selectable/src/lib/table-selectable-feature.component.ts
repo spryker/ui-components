@@ -15,8 +15,7 @@ import {
     TableFeatureComponent,
     TableFeatureLocation,
 } from '@spryker/table';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, takeUntil } from 'rxjs';
 
 import { TableSelectableConfig, TableSelectionRow, TableSelectionChangeEvent } from './types';
 

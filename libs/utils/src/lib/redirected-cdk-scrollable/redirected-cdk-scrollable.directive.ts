@@ -1,8 +1,7 @@
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { Directionality } from '@angular/cdk/bidi';
 import { AfterViewInit, Directive, ElementRef, Input, NgZone, OnChanges, SimpleChanges, inject } from '@angular/core';
-import { fromEvent, Observable, ReplaySubject, Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { fromEvent, Observable, ReplaySubject, Subject, switchMap, takeUntil } from 'rxjs';
 
 /**
  * Tracks scroll events in the children element by selector using {@link CdkScrollable} directive

@@ -21,23 +21,28 @@ import {
     inject,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
-import { combineLatest, EMPTY, merge, MonoTypeOperatorFunction, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import {
+    combineLatest,
+    EMPTY,
+    merge,
+    MonoTypeOperatorFunction,
+    Observable,
+    of,
+    ReplaySubject,
+    Subject,
     catchError,
     delay,
     distinctUntilChanged,
     filter,
     map,
-    mapTo,
     pairwise,
-    pluck,
     shareReplay,
     startWith,
     switchMap,
     take,
     takeUntil,
     tap,
-} from 'rxjs/operators';
+} from 'rxjs';
 
 import { TableActionsService } from '../table-actions/table-actions.service';
 import { TableConfigService } from '../table-config/table-config.service';
@@ -166,7 +171,7 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges, Af
         switchMap((dataSource) => this.datasourceService.resolve(dataSource)),
         shareReplaySafe(),
     );
-    tableData$ = this.data$.pipe(pluck('data'));
+    tableData$ = this.data$.pipe(map((data) => data.data));
     sortingData$ = this.dataConfiguratorService.config$.pipe(
         map((config) => {
             const sortBy = String(config.sortBy);
@@ -247,9 +252,9 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges, Af
     );
 
     isLoading$ = merge(
-        this.dataConfiguratorService.config$.pipe(mapTo(true)),
-        this.data$.pipe(mapTo(false)),
-        this.error$.pipe(mapTo(false)),
+        this.dataConfiguratorService.config$.pipe(map(() => true)),
+        this.data$.pipe(map(() => false)),
+        this.error$.pipe(map(() => false)),
     ).pipe(startWith(false), shareReplaySafe());
 
     featuresInRows$ = this.features$.pipe(

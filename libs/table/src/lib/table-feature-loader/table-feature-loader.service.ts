@@ -11,7 +11,7 @@ import {
     inject,
 } from '@angular/core';
 import { forkJoin, from, Observable, of } from 'rxjs';
-import { map, shareReplay, switchMap } from 'rxjs/operators';
+import { map, shareReplay, switchMap } from 'rxjs';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableConfig } from '../table/table';

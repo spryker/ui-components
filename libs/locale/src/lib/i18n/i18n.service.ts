@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { escapeRegex } from '@spryker/utils';
-import { Observable, OperatorFunction, ReplaySubject } from 'rxjs';
-import { distinctUntilChanged, map, shareReplay } from 'rxjs/operators';
+import { Observable, OperatorFunction, ReplaySubject, distinctUntilChanged, map, shareReplay } from 'rxjs';
 import { LocaleService } from '../locale.service';
 import { I18nLocaleDataToken } from './tokens';
 import { I18nLocaleData, I18nLocaleInterpolationData } from './types';

@@ -1,6 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, of, zip } from 'rxjs';
-import { distinctUntilChanged, map, mapTo, switchMap, take } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, zip, distinctUntilChanged, map, switchMap, take } from 'rxjs';
 
 import { InterceptionEventType, InterceptionHandler, Interceptor, InterceptorDispatcher } from './types';
 
@@ -37,7 +36,7 @@ export class InterceptionService implements InterceptorDispatcher, Interceptor {
     dispatchToAll(event: InterceptionEventType<unknown>, data?: unknown): Observable<unknown> {
         return zip(
             this.parentInterceptionService?.dispatchToAll(event, data) ??
-                this.getHandlersForEvent(event).pipe(mapTo(null)),
+                this.getHandlersForEvent(event).pipe(map(() => null)),
             this.dispatch(event, data),
         );
     }

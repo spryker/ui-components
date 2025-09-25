@@ -1,8 +1,6 @@
 import { Injectable, Injector, OnDestroy, inject } from '@angular/core';
 import { InterceptionComposerService } from '@spryker/interception';
-import { BehaviorSubject, combineLatest, of } from 'rxjs';
-import { distinctUntilChanged, map, shareReplay, switchMap } from 'rxjs/operators';
-
+import { BehaviorSubject, combineLatest, of, distinctUntilChanged, map, shareReplay, switchMap } from 'rxjs';
 import { UnsavedChangesGuard } from './unsaved-changes-guard';
 import { UnsavedChangesGuardToken } from './unsaved-changes-guard.token';
 import { UnsavedChangesMonitor, UnsavedChangesMonitorStatus } from './unsaved-changes-monitor';

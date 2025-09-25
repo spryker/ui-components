@@ -14,8 +14,7 @@ import {
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { AutocompleteWrapperToken, ToJson } from '@spryker/utils';
 import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
-import { EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
+import { EMPTY, Observable, of, ReplaySubject, Subject, map, switchAll, switchMap, takeUntil } from 'rxjs';
 
 import { AutocompleteValue } from './types';
 

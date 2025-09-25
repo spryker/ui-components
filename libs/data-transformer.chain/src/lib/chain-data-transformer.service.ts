@@ -1,8 +1,6 @@
 import { Injectable, Injector, inject } from '@angular/core';
 import { DataTransformer, DataTransformerService } from '@spryker/data-transformer';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-
+import { Observable, of, switchMap } from 'rxjs';
 import { ChainDataTransformerConfig, ChainDataTransformerData, ChainDataTransformerDataT } from './types';
 
 @Injectable({

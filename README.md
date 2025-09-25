@@ -148,13 +148,17 @@ _NOTE:_ When library is generated please do the following:
         ],
     ```
 -   In `libs/<lib-name>/jest.config.ts`
+
     -   remove following sections:
+
     ```json
         "transform": { ... },
         "transformIgnorePatterns": [ ... ],
         "snapshotSerializers": [ ... ]
     ```
+
     -   add the following `globals`
+
     ```json
         globals: {
             'ts-jest': {
@@ -163,6 +167,7 @@ _NOTE:_ When library is generated please do the following:
             },
         },
     ```
+
 -   In `libs/<lib-name>/ng-package.json`
     -   add `styleIncludePaths` to `lib` for theme imports (if needed):
     ```json
@@ -179,12 +184,16 @@ _NOTE:_ When library is generated please do the following:
         },
     ```
 -   In `libs/<lib-name>/tsconfig.json`
+
     -   remove following sections:
+
     ```json
         "compilerOptions": { ... },
         "angularCompilerOptions": { ... }
     ```
+
     -   add reference to prod config
+
     ```json
         "references": [
             ...,
@@ -193,6 +202,7 @@ _NOTE:_ When library is generated please do the following:
             },
         ]
     ```
+
 -   In `libs/<lib-name>/tsconfig.lib.prod.json`
     -   remove following section:
     ```json

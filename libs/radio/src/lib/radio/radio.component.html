@@ -10,7 +10,7 @@
         <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
     </label>
 } @else {
-    <ng-content></ng-content>
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
 }
 
 <ng-template #contentTpl>

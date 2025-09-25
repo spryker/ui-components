@@ -22,9 +22,12 @@ export function enLocaleFactory() {
                 ]).then(([data, dateData]) => ({ data, dateData })),
 
             spryker: () =>
-                import('@spryker/locale/data/en' as any).then((m) => ({
-                    data: m.data,
-                })),
+                import('@spryker/locale/data/en').then((m) => {
+                    console.log(m, '@spryker/locale/data/en@spryker/locale/data/en@spryker/locale/data/en');
+                    return {
+                        data: m.data,
+                    };
+                }),
         },
     };
     return [enLocale];

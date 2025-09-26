@@ -11,6 +11,7 @@ env:
     GIT_EMAIL: 'github-actions@github.com'
     GIT_USER: 'GitHub Actions'
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
 
 jobs:
     build-and-verify:

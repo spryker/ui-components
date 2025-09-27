@@ -25,7 +25,7 @@ export function deLocaleFactory() {
                 ]).then(([data, dateData]) => ({ data, dateData })),
 
             spryker: () =>
-                import('@spryker/locale/data/de' as any).then((m) => ({
+                import('@spryker/locale/data/de').then((m) => ({
                     data: m.data,
                 })),
         },
@@ -37,6 +37,6 @@ export function deLocaleFactory() {
     imports: [CommonModule],
     providers: [provideLocaleRecordsFactory(deLocaleFactory)],
 })
-export class DeLocaleModule {}
+export class DeLocaleModule { }
 
 export default DeLocaleModule;

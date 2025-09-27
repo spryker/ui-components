@@ -21,7 +21,7 @@ export function trLocaleFactory() {
                 ]).then(([data, dateData]) => ({ data, dateData })),
 
             spryker: () =>
-                import('@spryker/locale/data/tr' as any).then((m) => ({
+                import('@spryker/locale/data/tr').then((m) => ({
                     data: m.data,
                 })),
         },
@@ -33,6 +33,6 @@ export function trLocaleFactory() {
     imports: [CommonModule],
     providers: [provideLocaleRecordsFactory(trLocaleFactory)],
 })
-export class TrLocaleModule {}
+export class TrLocaleModule { }
 
 export default TrLocaleModule;

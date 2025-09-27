@@ -22,12 +22,9 @@ export function enLocaleFactory() {
                 ]).then(([data, dateData]) => ({ data, dateData })),
 
             spryker: () =>
-                import('@spryker/locale/data/en').then((m) => {
-                    console.log(m, '@spryker/locale/data/en@spryker/locale/data/en@spryker/locale/data/en');
-                    return {
-                        data: m.data,
-                    };
-                }),
+                import('@spryker/locale/data/en').then((m) => ({
+                    data: m.data,
+                })),
         },
     };
     return [enLocale];
@@ -37,6 +34,6 @@ export function enLocaleFactory() {
     imports: [CommonModule],
     providers: [provideLocaleRecordsFactory(enLocaleFactory)],
 })
-export class EnLocaleModule {}
+export class EnLocaleModule { }
 
 export default EnLocaleModule;

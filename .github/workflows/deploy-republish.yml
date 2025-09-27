@@ -1,0 +1,60 @@
+name: 'Deploy (republish branches)'
+
+on:
+    push:
+        branches:
+            - 'republish/master'
+            - 'republish/next'
+            - 'republish/alpha'
+            - 'republish/beta'
+            - 'republish/rc'
+
+env:
+    NODE_VERSION: '18.19.1'
+    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    GIT_EMAIL: 'github-actions@github.com'
+    GIT_USER: 'GitHub Actions'
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
+
+jobs:
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+                  registry-url: 'https://registry.npmjs.org'
+                  cache: 'npm'
+
+            - name: Configure Git
+              run: |
+                  git config --global user.email "$GIT_EMAIL"
+                  git config --global user.name "$GIT_USER"
+
+            - name: Set up NPM token
+              run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build
+              run: npm run build
+
+            - name: Release
+              if: success()
+              run: |
+                  if [[ "${{ github.ref }}" == refs/heads/republish/master ]]; then
+                   npm run release from-package
+                  elif [[ "${{ github.ref }}" == refs/heads/republish/next ]]; then
+                    npm run release-next from-package
+                  else
+                    npm run release-tag from-package
+                  fi

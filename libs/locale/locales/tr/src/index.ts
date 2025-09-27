@@ -33,6 +33,6 @@ export function trLocaleFactory() {
     imports: [CommonModule],
     providers: [provideLocaleRecordsFactory(trLocaleFactory)],
 })
-export class TrLocaleModule { }
+export class TrLocaleModule {}
 
 export default TrLocaleModule;

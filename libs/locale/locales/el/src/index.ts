@@ -34,6 +34,6 @@ export function elLocaleFactory() {
     imports: [CommonModule],
     providers: [provideLocaleRecordsFactory(elLocaleFactory)],
 })
-export class ElLocaleModule { }
+export class ElLocaleModule {}
 
 export default ElLocaleModule;

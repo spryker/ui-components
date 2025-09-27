@@ -37,6 +37,6 @@ export function deLocaleFactory() {
     imports: [CommonModule],
     providers: [provideLocaleRecordsFactory(deLocaleFactory)],
 })
-export class DeLocaleModule { }
+export class DeLocaleModule {}
 
 export default DeLocaleModule;

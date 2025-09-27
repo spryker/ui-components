@@ -9,7 +9,7 @@ on:
     workflow_dispatch:
 
 env:
-    NODE_VERSION: '18.19.1'
+    NODE_VERSION: '20.19.0'
     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     GIT_EMAIL: 'github-actions@github.com'
     GIT_USER: 'GitHub Actions'

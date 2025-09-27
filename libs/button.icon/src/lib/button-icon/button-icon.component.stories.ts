@@ -20,11 +20,11 @@ export default {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ButtonSize,
+            options: Object.values(ButtonSize),
         },
         type: {
             control: { type: 'select' },
-            options: ButtonType,
+            options: Object.values(ButtonType),
         },
         disabled: {
             control: 'boolean',

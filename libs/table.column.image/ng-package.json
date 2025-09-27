@@ -3,6 +3,6 @@
     "dest": "../../dist/libs/table.column.image",
     "lib": {
         "entryFile": "src/index.ts",
-        "styleIncludePaths": ["../styles/src/lib"]
+        "styleIncludePaths": ["../../node_modules", "../styles/src/lib"]
     }
 }

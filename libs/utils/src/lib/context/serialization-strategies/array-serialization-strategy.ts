@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ContextSerializationStrategy } from '../serialization-strategy';
 import { ContextSerializationService } from '../context-serialization.service';
 
@@ -6,7 +6,7 @@ import { ContextSerializationService } from '../context-serialization.service';
     providedIn: 'root',
 })
 export class ArrayContextSerializationStrategy implements ContextSerializationStrategy<Array<any>> {
-    constructor(private contextSerializationService: ContextSerializationService) {}
+    private contextSerializationService = inject(ContextSerializationService);
 
     canSerialize(value: unknown): value is Array<any> {
         return Array.isArray(value);

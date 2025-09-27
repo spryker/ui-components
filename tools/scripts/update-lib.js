@@ -20,12 +20,12 @@ async function updatePackage(libPath) {
     const packagePath = path.resolve(libPath, 'package.json');
     const packageDistPath = path.resolve(libPath, 'dist/package.json');
 
-    console.log(`Updating package from ${packagePath} to ${packageDistPath}`);
+    console.info(`Updating package from ${packagePath} to ${packageDistPath}`);
 
     try {
         await fsStat(packageDistPath);
     } catch (e) {
-        console.log(`No package.json in dist folder found! Skipping...`);
+        console.info(`No package.json in dist folder found! Skipping...`);
         return;
     }
 
@@ -42,7 +42,7 @@ async function updateChangelog(libPath) {
     const changelogName = 'CHANGELOG.md';
     const changelogDistPath = 'dist';
 
-    console.log(`Updating changelog from ${changelogName} to ${changelogDistPath}`);
+    console.info(`Updating changelog from ${changelogName} to ${changelogDistPath}`);
 
     await copyfilesAsync([changelogName, changelogDistPath]);
 }

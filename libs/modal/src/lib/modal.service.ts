@@ -1,4 +1,4 @@
-import { Inject, Injectable, OnDestroy, TemplateRef, Type } from '@angular/core';
+import { Injectable, OnDestroy, TemplateRef, Type, inject } from '@angular/core';
 
 import { ModalRefImpl, ModalRenderingFn } from './modal-ref';
 import {
@@ -19,12 +19,10 @@ import { AnyModal, Modal, ModalOptions, ModalRef, ModalStrategy } from './types'
 
 @Injectable({ providedIn: 'root' })
 export class ModalService implements OnDestroy {
-    private modals = new Set<ModalRef<any, any>>();
+    private modalWrapperFactory = inject(ModalWrapperFactoryToken);
+    private defaultOptions = inject<ModalOptions<any>>(ModalOptionsToken);
 
-    constructor(
-        private modalWrapperFactory: ModalWrapperFactoryToken,
-        @Inject(ModalOptionsToken) private defaultOptions: ModalOptions<any>,
-    ) {}
+    private modals = new Set<ModalRef<any, any>>();
 
     ngOnDestroy(): void {
         this.closeAll();

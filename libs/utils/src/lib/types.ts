@@ -19,11 +19,6 @@ export type Default<T, D> = Distribute<T> extends never ? D : T;
 export type Distribute<T> = T extends any ? T : never;
 
 /**
- * Extract stored type from {@link InjectionToken}
- */
-export type InjectionTokenType<T> = T extends InjectionToken<infer V> ? V : never;
-
-/**
  * Represents any function in Javascript
  */
 export type AnyFunction<R = any, A extends any[] = any[]> = (...args: A) => R;

@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Inject, Injector, ModuleWithProviders, NgModule, Self, Optional } from '@angular/core';
-import { InjectionTokenType } from '@spryker/utils';
+import { Injector, ModuleWithProviders, NgModule, inject } from '@angular/core';
 import {
     ComponentSelectorStrategy,
     PrefixComponentSelectorStrategy,
     PrefixComponentSelectorStrategyOptions,
 } from 'ngx-element-boundary';
-
 import {
     CustomElementOptions,
     provideCustomElementComponents,
@@ -54,13 +52,10 @@ export class WebComponentsModule {
         };
     }
 
-    constructor(
-        injector: Injector,
-        @Inject(CustomElementComponentsToken)
-        @Self()
-        @Optional()
-        components?: InjectionTokenType<typeof CustomElementComponentsToken>,
-    ) {
+    constructor() {
+        const injector = inject(Injector);
+        const components = inject(CustomElementComponentsToken, { self: true, optional: true });
+
         registerComponents(components?.flat() ?? [], injector);
     }
 }

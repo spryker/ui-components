@@ -7,12 +7,14 @@ import {
     EventEmitter,
     ViewChild,
     ElementRef,
+    booleanAttribute,
 } from '@angular/core';
 
-import { ToBoolean, ToJson } from '@spryker/utils';
+import { ToJson } from '@spryker/utils';
 import { ButtonAttributes } from '../button-core/types';
 
 @Component({
+    standalone: false,
     selector: 'spy-button-toggle',
     templateUrl: './button-toggle.component.html',
     styleUrls: ['./button-toggle.component.less'],
@@ -23,8 +25,8 @@ import { ButtonAttributes } from '../button-core/types';
     },
 })
 export class ButtonToggleComponent {
-    @Input() @ToBoolean() disabled = false;
-    @Input() @ToBoolean() toggled = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) toggled = false;
     @Input() @ToJson() attrs?: ButtonAttributes;
     @Output() toggledChange = new EventEmitter<boolean>();
 

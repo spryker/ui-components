@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { I18nService } from '../i18n/i18n.service';
@@ -19,9 +19,9 @@ export interface SprykerLocaleData {
     providedIn: 'root',
 })
 export class SprykerRegistrarService implements LocaleLoaderRegistrar<SprykerLocaleData> {
-    private localeData: Record<string, SprykerLocaleData | undefined> = Object.create(null);
+    private i18nService = inject(I18nService);
 
-    constructor(private i18nService: I18nService) {}
+    private localeData: Record<string, SprykerLocaleData | undefined> = Object.create(null);
 
     registerLocale(locale: string, data: SprykerLocaleData): Observable<unknown> {
         this.localeData[locale] = data;

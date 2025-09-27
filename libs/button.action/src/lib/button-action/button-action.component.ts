@@ -6,14 +6,16 @@ import {
     Injector,
     OnInit,
     OnDestroy,
+    inject,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
 import { ActionConfig, ActionsService } from '@spryker/actions';
 import { ButtonAttributes, ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
 import { Subject } from 'rxjs';
-import { switchMap, filter, takeUntil } from 'rxjs/operators';
+import { switchMap, filter, takeUntil } from 'rxjs';
 
 @Component({
+    standalone: false,
     selector: 'spy-button-action',
     templateUrl: './button-action.component.html',
     styleUrls: ['./button-action.component.less'],
@@ -21,6 +23,9 @@ import { switchMap, filter, takeUntil } from 'rxjs/operators';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonActionComponent implements OnInit, OnDestroy {
+    private injector = inject(Injector);
+    private actionsService = inject(ActionsService);
+
     @Input() @ToJson() action?: ActionConfig;
     @Input() @ToJson() actionContext?: unknown;
     @Input() type?: ButtonType;
@@ -43,11 +48,6 @@ export class ButtonActionComponent implements OnInit, OnDestroy {
             ),
         ),
     );
-
-    constructor(
-        private injector: Injector,
-        private actionsService: ActionsService,
-    ) {}
 
     ngOnInit(): void {
         this.action$.pipe(takeUntil(this.destroyed$)).subscribe();

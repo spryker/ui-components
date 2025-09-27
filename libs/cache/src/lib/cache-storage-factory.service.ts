@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { InMemoryPersistenceStrategy, PersistenceStrategyService } from '@spryker/persistence';
 
 import { CacheStorage, CacheStrategyConfig } from './types';
@@ -12,11 +12,10 @@ import { CacheStoragePersistenceAdapter } from './сache-storage-persistence-ada
     providedIn: 'root',
 })
 export class CacheStorageFactoryService {
+    private persistenceStrategyService = inject(PersistenceStrategyService);
+    private inMemoryPersistenceStrategy = inject(InMemoryPersistenceStrategy);
+
     private persistenceStrategies: Record<string, CacheStorage> = {};
-    constructor(
-        private persistenceStrategyService: PersistenceStrategyService,
-        private inMemoryPersistenceStrategy: InMemoryPersistenceStrategy,
-    ) {}
 
     create(config: CacheStrategyConfig): CacheStorage {
         const persistenceStrategy = config.storage

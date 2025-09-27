@@ -14,10 +14,9 @@ import {
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
-import { switchMap, take, takeUntil } from 'rxjs/operators';
-
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { DrawerData } from '../drawer-options';
 import { DrawerRef } from '../drawer-ref';
 import { DrawerService } from '../drawer.service';
@@ -35,6 +34,7 @@ export class DrawerComponentInputs {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-drawer',
     templateUrl: './drawer.component.html',
     styleUrls: ['./drawer.component.less'],
@@ -42,6 +42,9 @@ export class DrawerComponentInputs {
     encapsulation: ViewEncapsulation.None,
 })
 export class DrawerComponent extends DrawerComponentInputs implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+    private cdr = inject(ChangeDetectorRef);
+    private drawerService = inject(DrawerService);
+
     @Output() isOpenChange = new EventEmitter<boolean>();
     @Output() closed = new EventEmitter<void>();
 
@@ -54,13 +57,6 @@ export class DrawerComponent extends DrawerComponentInputs implements OnInit, On
     private closed$ = new Subject<void>();
     private destroyed$ = new Subject<void>();
     private afterClosed$ = new Subject<Observable<void>>();
-
-    constructor(
-        private cdr: ChangeDetectorRef,
-        private drawerService: DrawerService,
-    ) {
-        super();
-    }
 
     ngOnInit(): void {
         this.afterClosed$

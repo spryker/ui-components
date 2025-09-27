@@ -1,5 +1,5 @@
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Component, importProvidersFrom, Injectable, Input, OnInit } from '@angular/core';
+import { Component, importProvidersFrom, Injectable, Input, OnInit, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { DatasourceModule } from '@spryker/datasource';
 import { MockHttpModule } from '@spryker/internal-utils';
@@ -64,16 +64,13 @@ const tableConfig: TableConfig = {
 
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
+    private contextService = inject(ContextService);
+
     @ColumnTypeOption()
     text? = this.contextService.wrap('displayValue');
-
-    constructor(private contextService: ContextService) {}
 }
 
-@Component({
-    selector: 'spy-table-column-test',
-    template: ` {{ config.text | context: context }} `,
-})
+@Component({ standalone: false, selector: 'spy-table-column-test', template: ` {{ config.text | context: context }} ` })
 @TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent implements TableColumnComponent<TableColumnTestConfig> {
     @Input() items?: any;
@@ -151,10 +148,11 @@ export const primary = (args) => ({
 });
 
 @Component({
+    standalone: false,
     selector: 'spy-custom-feature',
     template: `
-        <ng-container [ngSwitch]="location">
-            <ng-container *ngSwitchCase="tableFeatureLocation.header">
+        @switch (location) {
+            @case (tableFeatureLocation.header) {
                 <div
                     *spyTableFeatureTpl="
                         location;
@@ -170,9 +168,8 @@ export const primary = (args) => ({
                     </div>
                     {{ log | spyInvoke: { config: config, i: i } }}
                 </div>
-            </ng-container>
-
-            <ng-container *ngSwitchCase="tableFeatureLocation.cell">
+            }
+            @case (tableFeatureLocation.cell) {
                 <div
                     *spyTableFeatureTpl="
                         location;
@@ -199,15 +196,14 @@ export const primary = (args) => ({
                                   }
                     }}
                 </div>
-            </ng-container>
-
-            <ng-container *ngSwitchDefault>
+            }
+            @default {
                 <div *spyTableFeatureTpl="location; let data = data; let i = i">
                     Custom Table Feature &#64; {{ location }}!
                     {{ log | spyInvoke: { data: data, i: i } }}
                 </div>
-            </ng-container>
-        </ng-container>
+            }
+        }
     `,
     providers: [{ provide: TableFeatureComponent, useExisting: CustomFeatureComponent }],
 })
@@ -217,11 +213,11 @@ class CustomFeatureComponent extends TableFeatureComponent implements OnInit {
     @Input() location?: TableFeatureLocation;
 
     ngOnInit(): void {
-        console.log(`Custom Table Feature @ ${this.location}!`);
+        console.info(`Custom Table Feature @ ${this.location}!`);
     }
 
     log(context: any) {
-        console.log('Feature context', context);
+        console.info('Feature context', context);
     }
 }
 

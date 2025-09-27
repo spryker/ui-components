@@ -1,18 +1,19 @@
-import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Injectable } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Injectable, inject } from '@angular/core';
 import { ColumnTypeOption, TableColumnTypeComponent, TableColumnComponent, TableColumnContext } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnDateConfig {
+    private contextService = inject(ContextService);
+
     @ColumnTypeOption()
     date? = this.contextService.wrap('displayValue');
     @ColumnTypeOption()
     format? = 'shortDate';
-
-    constructor(private contextService: ContextService) {}
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-date',
     templateUrl: './table-column-date.component.html',
     styleUrls: ['./table-column-date.component.less'],

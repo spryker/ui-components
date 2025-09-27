@@ -1,7 +1,6 @@
 import { Injectable, Injector, OnDestroy } from '@angular/core';
 import { ActionsService } from '@spryker/actions';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, takeUntil } from 'rxjs';
 
 import { AjaxActionResponse } from './types';
 

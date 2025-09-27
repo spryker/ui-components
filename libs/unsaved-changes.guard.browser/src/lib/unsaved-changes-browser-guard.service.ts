@@ -1,6 +1,5 @@
-import { Injectable, Injector } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Injectable, Injector, inject } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
 import { UnsavedChangesGuardBase } from '@spryker/unsaved-changes';
 
@@ -13,8 +12,8 @@ export class UnsavedChangesBrowserGuard extends UnsavedChangesGuardBase {
 
     private hasDirtyStatus = false;
 
-    constructor(injector: Injector) {
-        super(injector);
+    constructor() {
+        super();
 
         this.hasDirtyStatus$
             .pipe(takeUntil(this.destroyed$))

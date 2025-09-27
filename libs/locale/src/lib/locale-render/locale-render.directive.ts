@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { ChangeDetectorRef, Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
 import { LocaleService } from '../locale.service';
 
@@ -8,18 +7,14 @@ export interface LocaleRenderTemplateCtx {
     $implicit: string; // LOCALE_ID
 }
 
-@Directive({
-    selector: '[spyLocaleRender]',
-})
+@Directive({ standalone: false, selector: '[spyLocaleRender]' })
 export class LocaleRenderDirective implements OnInit, OnDestroy {
-    private destroyed$ = new Subject<void>();
+    private templateRef = inject<TemplateRef<LocaleRenderTemplateCtx>>(TemplateRef);
+    private vcr = inject(ViewContainerRef);
+    private cdr = inject(ChangeDetectorRef);
+    private localeService = inject(LocaleService);
 
-    constructor(
-        private templateRef: TemplateRef<LocaleRenderTemplateCtx>,
-        private vcr: ViewContainerRef,
-        private cdr: ChangeDetectorRef,
-        private localeService: LocaleService,
-    ) {}
+    private destroyed$ = new Subject<void>();
 
     ngOnInit() {
         this.localeService.localeLoaded$

@@ -1,5 +1,4 @@
-import { Observable, ReplaySubject } from 'rxjs';
-import { shareReplay, switchAll } from 'rxjs/operators';
+import { Observable, ReplaySubject, shareReplay, switchAll } from 'rxjs';
 
 import { DrawerData, DrawerOptions } from './drawer-options';
 

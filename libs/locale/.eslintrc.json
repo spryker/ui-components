@@ -1,5 +1,5 @@
 {
-    "extends": ["../../.eslintrc.json"],
+    "extends": ["../../.eslintrc.json", "plugin:storybook/recommended"],
     "ignorePatterns": ["!**/*"],
     "parserOptions": {
         "sourceType": "module",
@@ -31,7 +31,8 @@
                         "prefix": "spy",
                         "style": "kebab-case"
                     }
-                ]
+                ],
+                "@angular-eslint/prefer-standalone": "off"
             }
         },
         {

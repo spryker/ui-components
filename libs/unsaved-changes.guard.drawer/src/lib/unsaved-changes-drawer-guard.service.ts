@@ -1,11 +1,10 @@
-import { AbstractType, Injectable, InjectionToken, Injector, Provider, Type } from '@angular/core';
+import { AbstractType, Injectable, InjectionToken, Injector, Provider, Type, inject } from '@angular/core';
 import { DrawerCloseInterceptionEvent, DrawerContainerComponent } from '@spryker/drawer';
 import { InterceptionComposableFactory, InterceptorService } from '@spryker/interception';
 import { I18nService } from '@spryker/locale';
 import { ModalService } from '@spryker/modal';
 import { UnsavedChangesGuardBase, UnsavedChangesGuardToken } from '@spryker/unsaved-changes';
-import { combineLatest, EMPTY, of, Subject } from 'rxjs';
-import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { combineLatest, EMPTY, of, Subject, switchMap, take, takeUntil, withLatestFrom } from 'rxjs';
 
 /**
  * Dynamically provides {@link UnsavedChangesDrawerGuard} for the drawer component.
@@ -46,8 +45,8 @@ export class UnsavedChangesDrawerGuard extends UnsavedChangesGuardBase {
 
     private destroyed$ = new Subject<void>();
 
-    constructor(injector: Injector) {
-        super(injector);
+    constructor() {
+        super();
 
         this.interceptorService = this.injector.get(InterceptorService);
         this.modalService = this.injector.get(ModalService);

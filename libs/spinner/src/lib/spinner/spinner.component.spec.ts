@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SpinnerComponent } from './spinner.component';
@@ -14,10 +14,10 @@ import { SpinnerSize } from '../types';
     standalone: false,
 })
 class HostComponent {
-    delay = 100;
-    size = SpinnerSize.Large;
-    isSpinning = true;
-    overlayContent = true;
+    @Input() delay = 100;
+    @Input() size = SpinnerSize.Large;
+    @Input() isSpinning = true;
+    @Input() overlayContent = true;
 }
 
 describe('SpinnerComponent', () => {

@@ -20,7 +20,7 @@
                                 class="spy-table-settings-feature"
                                 (cdkDropListDropped)="drop($event, popoverColumns, tableColumns)"
                             >
-                                @for (column of popoverColumns; track column) {
+                                @for (column of popoverColumns; track column.id) {
                                     <div
                                         cdkDrag
                                         class="spy-table-settings-feature__item"

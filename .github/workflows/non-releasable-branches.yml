@@ -85,14 +85,15 @@ jobs:
             -   name: Configure Git
                 run: |
                     export GITHUB_REF_NAME=master
-                    git remote add -f publish https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
-                    git fetch publish $GITHUB_REF_NAME
-                    git checkout --track publish/$GITHUB_REF_NAME
+                    git remote rm origin
+                    git remote add -f origin https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+                    git fetch origin $GITHUB_REF_NAME
+                    git checkout $GITHUB_REF_NAME
                     git config user.email "$GIT_EMAIL"
                     git config user.name "$GIT_USER"
 
-            -   name: Setup tmate session
-                uses: mxschmitt/action-tmate@v3
+#            -   name: Setup tmate session
+#                uses: mxschmitt/action-tmate@v3
 
             -   name: Release
                 if: success()

@@ -60,6 +60,9 @@ jobs:
             || github.ref_name == 'beta'
             || github.ref_name == 'rc'
         runs-on: ubuntu-latest
+        env:
+            GIT_EMAIL: ${{ env.GIT_EMAIL }}
+            GIT_USER: ${{ env.GIT_USER }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v3

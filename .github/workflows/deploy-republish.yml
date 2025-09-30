@@ -12,6 +12,8 @@ on:
 env:
     NODE_VERSION: '18.19.1'
     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    GIT_EMAIL: ${{ env.GIT_EMAIL }}
+    GIT_USER: ${{ env.GIT_USER }}
     GITHUB_TOKEN: ${{ secrets.SPRYKER_BOT_TOKEN }}
     FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
 

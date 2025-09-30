@@ -45,6 +45,9 @@ jobs:
         name: Deploy
         needs: build-and-verify
         runs-on: ubuntu-latest
+        env:
+            GIT_EMAIL: ${{ env.GIT_EMAIL }}
+            GIT_USER: ${{ env.GIT_USER }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v3

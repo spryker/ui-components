@@ -85,6 +85,7 @@ jobs:
             -   name: Configure Git
                 run: |
                     export GITHUB_REF_NAME=master
+                    git remote rm repository_url
                     git remote rm origin
                     git remote add -f origin https://$GIT_USER:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
                     git fetch origin $GITHUB_REF_NAME

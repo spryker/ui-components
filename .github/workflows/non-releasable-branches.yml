@@ -91,10 +91,11 @@ jobs:
                     git checkout $GITHUB_REF_NAME
                     git config user.email "$GIT_EMAIL"
                     git config user.name "$GIT_USER"
+                    npm run release
 
 #            -   name: Setup tmate session
 #                uses: mxschmitt/action-tmate@v3
 
-            -   name: Release
-                if: success()
-                run: npm run release
+#            -   name: Release
+#                if: success()
+#                run: npm run release

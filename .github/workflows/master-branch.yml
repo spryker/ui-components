@@ -65,6 +65,7 @@ jobs:
               run: |
                   git config --global user.email "$GIT_EMAIL"
                   git config --global user.name "$GIT_USER"
+                  git checkout master
 
             - name: Set up NPM token
               run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc

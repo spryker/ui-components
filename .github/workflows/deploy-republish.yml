@@ -12,7 +12,7 @@ on:
 env:
     NODE_VERSION: '18.19.1'
     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    GITHUB_TOKEN: ${{ secrets.SPRYKER_BOT_TOKEN }}
     FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
 
 jobs:

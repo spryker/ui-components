@@ -73,12 +73,6 @@ jobs:
                     registry-url: 'https://registry.npmjs.org'
                     cache: 'npm'
 
-            -   name: Configure Git
-                run: |
-                    git config --global user.email "$GIT_EMAIL"
-                    git config --global user.name "$GIT_USER"
-                    git checkout master
-
             -   name: Set up NPM token
                 run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
@@ -88,8 +82,14 @@ jobs:
             -   name: Build
                 run: npm run build
 
-            -   name: Setup tmate session
-                uses: mxschmitt/action-tmate@v3
+            -   name: Configure Git
+                run: |
+                    export GITHUB_REF_NAME=master
+                    git remote add -f publish https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+                    git fetch publish $GITHUB_REF_NAME
+                    git checkout $GITHUB_REF_NAME
+                    git config user.email "$GIT_EMAIL"
+                    git config user.name "$GIT_USER"
 
             -   name: Release
                 if: success()

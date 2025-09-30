@@ -109,4 +109,6 @@ jobs:
 
             -   name: Release
                 if: success()
-                run: npm run release
+                run: |
+                    git config --global url."https://x-access-token:$GITHUB_TOKEN@github.com/".insteadOf "https://github.com/"
+                    npm run release

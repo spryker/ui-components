@@ -60,6 +60,7 @@ jobs:
         env:
             GIT_EMAIL: ${{ vars.GIT_EMAIL }}
             GIT_USER: ${{ vars.GIT_USER }}
+            NODE_AUTH_TOKEN: ${{ secrets.SPRYKER_BOT_TOKEN }}
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v3
@@ -92,11 +93,21 @@ jobs:
                     git checkout $GITHUB_REF_NAME
                     git config user.email "$GIT_EMAIL"
                     git config user.name "$GIT_USER"
-                    npm run release
+
+            - name: Debug Git and NPM config
+              run: |
+                echo "Git user: $(git config user.name) <$(git config user.email)>"
+                echo "Git remotes:"
+                git remote -v
+                echo "NPM registry: $(npm config get registry)"
+                echo "NPM auth token: $(npm config get //registry.npmjs.org/:_authToken | head -c 10)..."
+                echo "Current branch: $(git branch --show-current)"
+                echo "Git status:"
+                git status
 
 #            -   name: Setup tmate session
 #                uses: mxschmitt/action-tmate@v3
 
-#            -   name: Release
-#                if: success()
-#                run: npm run release
+            -   name: Release
+                if: success()
+                run: npm run release

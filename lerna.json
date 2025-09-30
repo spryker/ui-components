@@ -5,7 +5,7 @@
     "command": {
         "publish": {
             "conventionalCommits": true,
-            "gitRemote": "origin",
+            "gitRemote": "publish",
             "allowBranch": [
                 "master",
                 "republish/master",
@@ -20,7 +20,6 @@
             ],
             "contents": "dist",
             "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
-            "forcePublish": true,
             "message": "[skip ci] chore(release): publish"
         }
     },

@@ -109,7 +109,7 @@ jobs:
 
             -   name: Test Git
                 run: |
-                    git commit --allow-empty -m "Trigger Build" && git push origin master_test
+                    git commit --allow-empty -m "Trigger Build" && git push origin
 
 #            -   name: Setup tmate session
 #                uses: mxschmitt/action-tmate@v3

@@ -61,6 +61,10 @@ jobs:
         env:
             GIT_EMAIL: ${{ vars.GIT_EMAIL }}
             GIT_USER: ${{ vars.GIT_USER }}
+            GIT_AUTHOR_NAME: ${{ vars.GIT_USER }}
+            GIT_AUTHOR_EMAIL: ${{ vars.GIT_EMAIL }}
+            GIT_COMMITTER_NAME: ${{ vars.GIT_USER }}
+            GIT_COMMITTER_EMAIL: ${{ vars.GIT_EMAIL }}
             GIT_CONFIG_COUNT: 2
             GIT_CONFIG_KEY_0: user.name
             GIT_CONFIG_VALUE_0: ${{ vars.GIT_USER }}
@@ -100,10 +104,14 @@ jobs:
                     git config user.email "$GIT_EMAIL"
                     git config user.name "$GIT_USER"
 
-            -   name: Setup tmate session
-                uses: mxschmitt/action-tmate@v3
-
-            -   name: Release
-                if: success()
+            -   name: Test Git
                 run: |
-                    npm run release
+                    git commit --allow-empty -m "Trigger Build" && git push origin master_test
+
+#            -   name: Setup tmate session
+#                uses: mxschmitt/action-tmate@v3
+
+#            -   name: Release
+#                if: success()
+#                run: |
+#                    npm run release

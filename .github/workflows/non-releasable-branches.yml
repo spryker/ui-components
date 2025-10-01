@@ -61,6 +61,12 @@ jobs:
         env:
             GIT_EMAIL: ${{ vars.GIT_EMAIL }}
             GIT_USER: ${{ vars.GIT_USER }}
+            GIT_CONFIG_COUNT: 2
+            GIT_CONFIG_KEY_0: user.name
+            GIT_CONFIG_VALUE_0: ${{ vars.GIT_USER }}
+            GIT_CONFIG_KEY_1: user.email
+            GIT_CONFIG_VALUE_1: ${{ vars.GIT_EMAIL }}
+
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v3

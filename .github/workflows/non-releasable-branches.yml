@@ -12,7 +12,6 @@ env:
     NODE_VERSION: '18.19.1'
     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     GITHUB_TOKEN: ${{ secrets.SPRYKER_BOT_TOKEN }}
-    BOT_TOKEN: ${{ secrets.SPRYKER_BOT_TOKEN }}
     FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
 
 jobs:
@@ -88,7 +87,7 @@ jobs:
                 run: |
                     export GITHUB_REF_NAME=master_test
                     git remote rm origin
-                    git remote add -f origin https://$GIT_USER:$BOT_TOKEN@github.com/$GITHUB_REPOSITORY.git
+                    git remote add -f origin https://$GIT_USER:GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
                     git fetch origin
                     git checkout $GITHUB_REF_NAME
                     git config user.email "$GIT_EMAIL"

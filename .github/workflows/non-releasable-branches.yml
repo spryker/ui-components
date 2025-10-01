@@ -111,12 +111,12 @@ jobs:
                 echo "Git status:"
                 git status
                 git config --list
+                git config --global url."https://$GIT_USER:$GITHUB_TOKEN@github.com/".insteadOf "https://github.com/"
 
-#            -   name: Setup tmate session
-#                uses: mxschmitt/action-tmate@v3
+            -   name: Setup tmate session
+                uses: mxschmitt/action-tmate@v3
 
             -   name: Release
                 if: success()
                 run: |
-                    git config --global url."https://$GIT_USER:$GITHUB_TOKEN@github.com/".insteadOf "https://github.com/"
                     npm run release

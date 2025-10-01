@@ -56,51 +56,51 @@ jobs:
     deploy:
         name: Deploy
         needs: build-and-verify
-#        if: github.ref_name == 'alpha'
-#            || github.ref_name == 'beta'
-#            || github.ref_name == 'rc'
+        #        if: github.ref_name == 'alpha'
+        #            || github.ref_name == 'beta'
+        #            || github.ref_name == 'rc'
         runs-on: ubuntu-latest
         env:
             GIT_EMAIL: ${{ vars.GIT_EMAIL }}
             GIT_USER: ${{ vars.GIT_USER }}
         steps:
-            -   name: Checkout code
-                uses: actions/checkout@v3
-                with:
-                    token: ${{ env.GITHUB_TOKEN }}
-                    fetch-depth: 0
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                  token: ${{ env.GITHUB_TOKEN }}
+                  fetch-depth: 0
 
-            -   name: Setup Node.js
-                uses: actions/setup-node@v3
-                with:
-                    node-version: ${{ env.NODE_VERSION }}
-                    registry-url: 'https://registry.npmjs.org'
-                    cache: 'npm'
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+                  registry-url: 'https://registry.npmjs.org'
+                  cache: 'npm'
 
-            -   name: Set up NPM token
-                run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+            - name: Set up NPM token
+              run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
-            -   name: Install dependencies
-                run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-            -   name: Build
-                run: npm run build
-
-            #TODO -- remove after test is completed
-            -   name: Tmp
-                run: |
-                    export GITHUB_REF_NAME=master_test
-                    git checkout $GITHUB_REF_NAME
-
-            -   name: Configure Git
-                run: |
-                    git config user.email "$GIT_EMAIL"
-                    git config user.name "$GIT_USER"
+            - name: Build
+              run: npm run build
 
             #TODO -- remove after test is completed
-            -   name: Test Git
-                run: git commit --allow-empty -m "Trigger Build" && git push origin
+            - name: Tmp
+              run: |
+                  export GITHUB_REF_NAME=master_test
+                  git checkout $GITHUB_REF_NAME
 
-            -   name: Release (pre-release)
-                if: success()
-                run: npm run release-tag
+            - name: Configure Git
+              run: |
+                  git config user.email "$GIT_EMAIL"
+                  git config user.name "$GIT_USER"
+
+            #TODO -- remove after test is completed
+            - name: Test Git
+              run: git commit --allow-empty -m "Trigger Build" && git push origin
+
+            - name: Release (pre-release)
+              if: success()
+              run: npm run release-tag

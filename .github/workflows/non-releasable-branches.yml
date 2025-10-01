@@ -68,11 +68,17 @@ jobs:
             GIT_COMMITTER_EMAIL: ${{ vars.GIT_EMAIL }}
             GIT_ASKPASS: "echo $GITHUB_TOKEN"
             GIT_TERMINAL_PROMPT: 0
+            GIT_CONFIG_COUNT: 2
+            GIT_CONFIG_KEY_0: user.name
+            GIT_CONFIG_VALUE_0: ${{ vars.GIT_USER }}
+            GIT_CONFIG_KEY_1: user.email
+            GIT_CONFIG_VALUE_1: ${{ vars.GIT_EMAIL }}
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v3
                 with:
-                    fetch-depth: 0
+                    token: ${{ secrets.SPRYKER_BOT_TOKEN }}
+                    fetch-depth: 0 
 
             -   name: Setup Node.js
                 uses: actions/setup-node@v3
@@ -111,7 +117,7 @@ jobs:
                 echo "Git status:"
                 git status
                 git config --list
-                git config --global url."https://$GIT_USER:$GITHUB_TOKEN@github.com/".insteadOf "https://github.com/"
+                git config --global url."https://$GIT_USER:$BOT_TOKEN@github.com/".insteadOf "https://github.com/"
 
             -   name: Setup tmate session
                 uses: mxschmitt/action-tmate@v3

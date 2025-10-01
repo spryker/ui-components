@@ -86,7 +86,7 @@ jobs:
 
             -   name: Configure Git
                 run: |
-                    export GITHUB_REF_NAME=master_deploy
+                    export GITHUB_REF_NAME=master_test
                     git remote rm origin
                     git remote add -f origin https://$GIT_USER:$BOT_TOKEN@github.com/$GITHUB_REPOSITORY.git
                     git fetch origin

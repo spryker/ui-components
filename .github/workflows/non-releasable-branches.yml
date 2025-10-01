@@ -73,8 +73,6 @@ jobs:
             GIT_CONFIG_VALUE_0: ${{ vars.GIT_USER }}
             GIT_CONFIG_KEY_1: user.email
             GIT_CONFIG_VALUE_1: ${{ vars.GIT_EMAIL }}
-
-
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v3
@@ -107,6 +105,7 @@ jobs:
                     git checkout $GITHUB_REF_NAME
                     git config user.email "$GIT_EMAIL"
                     git config user.name "$GIT_USER"
+                    git config --global url."https://$GIT_USER:$BOT_TOKEN@github.com/".insteadOf "https://github.com/"
 
             -   name: Test Git
                 run: |

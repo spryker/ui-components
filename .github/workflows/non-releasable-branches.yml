@@ -64,7 +64,7 @@ jobs:
             -   name: Checkout code
                 uses: actions/checkout@v3
                 with:
-                    #token: ${{ env.GITHUB_TOKEN }}
+                    token: ${{ env.GITHUB_TOKEN }}
                     fetch-depth: 0
 
             -   name: Setup Node.js
@@ -83,15 +83,6 @@ jobs:
             -   name: Build
                 run: npm run build
 
-            -   name: Configure Git
-                run: |
-                    export GITHUB_REF_NAME=master_test
-                    git remote rm origin
-                    git remote add -f origin https://$GIT_USER:GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
-                    git fetch origin
-                    git checkout $GITHUB_REF_NAME
-                    git config user.email "$GIT_EMAIL"
-                    git config user.name "$GIT_USER"
 
             -   name: Test Git
                 run: |

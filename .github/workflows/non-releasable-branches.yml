@@ -90,7 +90,7 @@ jobs:
               run: |
                   git config user.email "$GIT_EMAIL"
                   git config user.name "$GIT_USER"
-                  git checkout alpha
+                  git checkout master_test
 
             - name: Release (pre-release)
               if: success()

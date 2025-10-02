@@ -70,9 +70,9 @@ export type TableColumnComponentDeclaration = {
     >;
 };
 
-export type TableColumns = TableColumn[];
-
 export type TableDataValue = unknown | unknown[];
+
+export type TableColumns = TableColumn[];
 
 export type TableDataRow = Record<TableColumn['id'], TableDataValue>;
 

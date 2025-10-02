@@ -1,13 +1,11 @@
-import { Injectable, Injector } from '@angular/core';
-import { LOCAL_GET_CONTEXT, LocalGetContextToken } from '@orchestrator/core';
-
+import { Injectable, InjectionToken, Injector } from '@angular/core';
 import { TableColumnContext } from './table';
+
+export const TableColumnLocalContextToken = new InjectionToken<() => TableColumnContext>('LOCAL_GET_CONTEXT');
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnService {
     getContext(injector: Injector): TableColumnContext {
-        const getLocalContext = injector.get<LocalGetContextToken>(LOCAL_GET_CONTEXT);
-
-        return getLocalContext();
+        return injector.get(TableColumnLocalContextToken)();
     }
 }

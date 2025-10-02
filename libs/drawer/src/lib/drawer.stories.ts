@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, TemplateRef, inject } from '@angular/core';
 import { Meta, moduleMetadata } from '@storybook/angular';
 import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 import { DrawerModule } from './drawer.module';
@@ -7,6 +7,7 @@ import { DrawerComponentInputs } from './drawer/drawer.component';
 import { DrawerRef } from './drawer-ref';
 
 @Component({
+    standalone: false,
     selector: 'spy-multiple-drawers',
     template: `
         <p><button (click)="addDrawer(drawerTpl)">Add drawer</button></p>
@@ -21,12 +22,12 @@ import { DrawerRef } from './drawer-ref';
     `,
 })
 class MultipleDrawersComponent {
+    protected drawerService = inject(DrawerService);
+
     @Input() closeable = true;
     @Input() width = '50%';
     @Input() hasBackdrop = false;
     @Input() resizable = true;
-
-    constructor(private drawerService: DrawerService) {}
 
     addDrawer(tplRef: TemplateRef<any>) {
         this.drawerService.openTemplate(tplRef, {
@@ -47,6 +48,7 @@ class MultipleDrawersComponent {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: `
         <spy-drawer
@@ -75,6 +77,7 @@ class SimpleDrawerComponent extends DrawerComponentInputs {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-drawer-example-component',
     template: `
         <h1>Example Component</h1>
@@ -94,13 +97,14 @@ class DrawerExampleComponent {
 }
 
 @Component({
+    standalone: false,
     selector: `spy-drawer-with-component`,
     template: `<button (click)="openDrawer()">Open Drawer</button>`,
 })
 class DrawerWithComponentComponent implements OnDestroy {
-    private drawerRef?: DrawerRef;
+    protected drawerService = inject(DrawerService);
 
-    constructor(private drawerService: DrawerService) {}
+    private drawerRef?: DrawerRef;
 
     ngOnDestroy(): void {
         this.closeDrawer();
@@ -114,8 +118,8 @@ class DrawerWithComponentComponent implements OnDestroy {
                 input2: 'value2',
             },
             outputs: {
-                output1: (evt) => console.log(`Got output 1: ${evt}`),
-                output2: (evt) => console.log(`Got output 2: ${evt}`),
+                output1: (evt) => console.info(`Got output 1: ${evt}`),
+                output2: (evt) => console.info(`Got output 2: ${evt}`),
             },
         });
     }

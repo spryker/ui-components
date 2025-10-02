@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { OrchestratorCoreModule } from '@orchestrator/core';
-import { LayoutFlatHostComponent, LayoutFlatHostModule } from '@orchestrator/layout';
 import { IconModule } from '@spryker/icon';
 import { I18nModule } from '@spryker/locale';
 import { PopoverModule } from '@spryker/popover';
@@ -10,7 +8,6 @@ import { SelectComponentsModule } from '@spryker/web-components';
 import { ActionsModule } from '@spryker/actions';
 import { SpinnerModule } from '@spryker/spinner';
 import { NzTableModule } from 'ng-zorro-antd/table';
-
 import { provideTableColumnComponents } from './column-type';
 import { IconNoDataModule, IconNoFilteredDataModule } from './icons';
 import { TableColumnListComponent } from './table-column-list/table-column-list.component';
@@ -30,8 +27,6 @@ import { CoreTableComponent } from './table/table.component';
     imports: [
         CommonModule,
         NzTableModule,
-        OrchestratorCoreModule,
-        LayoutFlatHostModule,
         ContextModule,
         TableFeatureModule,
         SelectComponentsModule,
@@ -61,10 +56,7 @@ export class TableModule {
         return {
             ngModule: TableModule,
             providers: [
-                ...(LayoutFlatHostModule.forRoot().providers || []),
-                ...(OrchestratorCoreModule.forRoot().providers || []),
-                ...OrchestratorCoreModule.registerComponents({
-                    'layout-flat': LayoutFlatHostComponent,
+                provideTableColumnComponents({
                     list: TableColumnListComponent,
                 }),
             ],
@@ -74,10 +66,7 @@ export class TableModule {
     static withColumnComponents(components: TableColumnComponentDeclaration): ModuleWithProviders<TableModule> {
         return {
             ngModule: TableModule,
-            providers: [
-                OrchestratorCoreModule.registerComponents(components as Required<TableColumnComponentDeclaration>),
-                provideTableColumnComponents(components),
-            ],
+            providers: [provideTableColumnComponents(components)],
         };
     }
 

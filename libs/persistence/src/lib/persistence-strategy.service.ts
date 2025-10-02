@@ -1,6 +1,4 @@
-import { Inject, Injectable, Injector, Optional, Type } from '@angular/core';
-import { InjectionTokenType } from '@spryker/utils';
-
+import { Injectable, Injector, Type, inject } from '@angular/core';
 import { PersistenceStrategyTypesToken } from './token';
 import {
     PersistenceStrategy,
@@ -16,15 +14,11 @@ import {
     providedIn: 'root',
 })
 export class PersistenceStrategyService {
+    protected injector = inject(Injector);
+    protected strategiesTypes = inject(PersistenceStrategyTypesToken, { optional: true });
+
     private strategies: PersistenceStrategyTypesDeclaration =
         this.strategiesTypes?.reduce((strategies, strategy) => ({ ...strategies, ...strategy }), {}) ?? {};
-
-    constructor(
-        private injector: Injector,
-        @Optional()
-        @Inject(PersistenceStrategyTypesToken)
-        private strategiesTypes?: InjectionTokenType<typeof PersistenceStrategyTypesToken>,
-    ) {}
 
     select(type: PersistenceStrategyType): PersistenceStrategy {
         if (!this.isPersistenceStrategyRegisteredType(type)) {

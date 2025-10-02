@@ -42,28 +42,51 @@ const localeInputs = Object.fromEntries(
     ]),
 );
 
+function barrelPlugin(entryNames) {
+    return {
+        name: 'emit-barrel-index',
+        generateBundle() {
+            const exports = entryNames
+                .filter((n) => !/^empty\d+$/.test(n))
+                .map((n) => `export * as ${n.replace(/[^a-zA-Z0-9_$]/g, '_')} from './${n}.js';`)
+                .join('\n');
+            this.emitFile({
+                type: 'asset',
+                fileName: 'index.js',
+                source: exports || 'export {};',
+            });
+        },
+    };
+}
+
 export default locales
     .filter((locale) => localeFiles[locale].length)
-    .map((locale) => ({
-        input: localeInputs[locale],
-        output: {
-            dir: path.resolve(__dirname, locale, 'src/data'),
-            format: 'es',
-            chunkFileNames: '[name].ts',
-            sourcemap: false,
-            manualChunks: () => 'data',
-        },
-        plugins: [
-            nodeResolve(),
-            commonjs(),
-            typescript({
-                types: ['node', 'jest'],
-                exclude: ['**/*.spec.ts', '**/*.stories.ts'],
-                tsconfig: './tsconfig.base.json',
-                sourceMap: false,
-            }),
-        ],
-    }));
+    .map((locale) => {
+        const inputs = localeInputs[locale];
+        const entryNames = Object.keys(inputs);
+
+        return {
+            input: inputs,
+            output: {
+                dir: path.resolve(__dirname, locale, 'src/data'),
+                format: 'es',
+                entryFileNames: '[name].js',
+                chunkFileNames: '[name].js',
+                sourcemap: false,
+            },
+            plugins: [
+                nodeResolve(),
+                commonjs(),
+                typescript({
+                    types: ['node', 'jest'],
+                    exclude: ['**/*.spec.ts', '**/*.stories.ts'],
+                    tsconfig: './tsconfig.base.json',
+                    sourceMap: false,
+                }),
+                barrelPlugin(entryNames),
+            ],
+        };
+    });
 
 function getPackageName(path) {
     return path.split('/')[0];

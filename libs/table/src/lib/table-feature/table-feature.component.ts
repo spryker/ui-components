@@ -1,6 +1,14 @@
-import { AfterViewInit, Component, Injector, Input, IterableDiffers, QueryList, ViewChildren } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
-import { filter, map, publishBehavior, refCount, startWith, switchAll } from 'rxjs/operators';
+import {
+    AfterViewInit,
+    Component,
+    Injector,
+    Input,
+    IterableDiffers,
+    QueryList,
+    ViewChildren,
+    inject,
+} from '@angular/core';
+import { Observable, ReplaySubject, filter, map, shareReplay, startWith, switchAll } from 'rxjs';
 
 import { TableActionsService } from '../table-actions/table-actions.service';
 import { TableFeatureConfig } from '../table-config/types';
@@ -12,6 +20,7 @@ import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
 
 @Component({
+    standalone: false,
     // This is abstract component so selector is ignored
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'selector',
@@ -20,6 +29,8 @@ import { TableFeatureTplDirective } from './table-feature-tpl.directive';
 export abstract class TableFeatureComponent<C extends TableFeatureConfig = TableFeatureConfig>
     implements AfterViewInit
 {
+    protected injector = inject(Injector);
+
     @Input()
     name = '';
 
@@ -58,14 +69,12 @@ export abstract class TableFeatureComponent<C extends TableFeatureConfig = Table
     private setTplDirectives$ = new ReplaySubject<Observable<TableFeatureTplDirective[]>>(1);
     tplDirectives$ = this.setTplDirectives$.pipe(
         switchAll(),
-        publishBehavior([] as TableFeatureTplDirective[]),
-        refCount(),
+        startWith([] as TableFeatureTplDirective[]),
+        shareReplay({ bufferSize: 1, refCount: true }),
     );
 
     private iterableDiffers = this.injector.get(IterableDiffers);
     private tplDirectivesDiffer = this.iterableDiffers.find([]).create<TableFeatureTplDirective>();
-
-    constructor(protected injector: Injector) {}
 
     ngAfterViewInit(): void {
         if (!this.tplDirectives) {

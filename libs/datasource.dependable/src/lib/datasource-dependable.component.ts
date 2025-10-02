@@ -1,14 +1,25 @@
-import { ChangeDetectionStrategy, Component, ContentChild, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ContentChild,
+    HostBinding,
+    Input,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import { DatasourceDependableElementsService } from './datasource-dependable-elements.service';
 import { DatasourceDependableElement } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-datasource-dependable',
     templateUrl: './datasource-dependable.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatasourceDependableComponent {
+    protected datasourceDependableElementsService = inject(DatasourceDependableElementsService);
+
     @Input() @HostBinding('attr.id') id = '';
 
     @ContentChild(DatasourceDependableElement)
@@ -17,8 +28,6 @@ export class DatasourceDependableComponent {
     }
 
     dependableElementRef = DatasourceDependableElement;
-
-    constructor(private datasourceDependableElementsService: DatasourceDependableElementsService) {}
 
     dependableElementsFound(dependableElements: DatasourceDependableElement[]): void {
         if (dependableElements.length) {

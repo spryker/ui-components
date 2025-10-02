@@ -3,6 +3,7 @@ import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { EMPTY } from 'rxjs';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-filter',
     template: `
         <input type="text" [value]="value" style="border: 2px solid lightskyblue; height: 50px; padding: 10px;" />

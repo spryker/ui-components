@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { DataTransformer, DataTransformerService } from '@spryker/data-transformer';
-import { forkJoin, Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { forkJoin, Observable, of, switchMap } from 'rxjs';
 
 import { ObjectMapDataTransformerConfig, ObjectMapDataTransformerData, ObjectMapDataTransformerDataT } from './types';
 
@@ -11,7 +10,7 @@ import { ObjectMapDataTransformerConfig, ObjectMapDataTransformerData, ObjectMap
 export class ObjectMapDataTransformerService
     implements DataTransformer<ObjectMapDataTransformerData, ObjectMapDataTransformerDataT>
 {
-    constructor(private dataTransformerService: DataTransformerService) {}
+    protected dataTransformerService = inject(DataTransformerService);
 
     transform(
         data: ObjectMapDataTransformerData,

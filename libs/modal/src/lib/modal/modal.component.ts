@@ -12,15 +12,16 @@ import {
     ViewChild,
     ViewEncapsulation,
     SimpleChanges,
+    inject,
 } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, takeUntil } from 'rxjs';
 
 import { ModalService } from '../modal.service';
 import { ModalRef } from '../types';
 import { ComponentModal, TemplateModalContext } from '../strategies';
 
 @Component({
+    standalone: false,
     selector: 'spy-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.less'],
@@ -28,6 +29,8 @@ import { ComponentModal, TemplateModalContext } from '../strategies';
     encapsulation: ViewEncapsulation.None,
 })
 export class ModalComponent implements OnChanges, OnDestroy {
+    protected modalService = inject(ModalService);
+
     @Input() visible = false;
     @Input() data?: unknown;
     @Input() component?: Type<ComponentModal>;
@@ -41,8 +44,6 @@ export class ModalComponent implements OnChanges, OnDestroy {
     private modalRef?: ModalRef<any, any>;
 
     private destroyed$ = new Subject<void>();
-
-    constructor(private modalService: ModalService) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('visible' in changes) {

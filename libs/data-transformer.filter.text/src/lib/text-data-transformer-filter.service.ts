@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DataTransformerService, DataTransformerType } from '@spryker/data-transformer';
 import {
     DataFilterTransformerByPropName,
@@ -7,15 +7,14 @@ import {
     DataTransformerFilterConfig,
     DataTransformerFilterData,
 } from '@spryker/data-transformer.collate';
-import { forkJoin, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin, Observable, of, map } from 'rxjs';
 
 /**
  * Filters data by value that matches with the prop value.
  */
 @Injectable({ providedIn: 'root' })
 export class TextDataTransformerFilterService implements DataTransformerFilter {
-    constructor(private dataTransformerService: DataTransformerService) {}
+    protected dataTransformerService = inject(DataTransformerService);
 
     filter(
         data: DataTransformerFilterData,

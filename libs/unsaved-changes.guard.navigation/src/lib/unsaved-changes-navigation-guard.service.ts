@@ -1,11 +1,10 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { InterceptorService } from '@spryker/interception';
 import { I18nService } from '@spryker/locale';
 import { ModalService } from '@spryker/modal';
 import { NavigationRedirectInterceptionEvent } from '@spryker/navigation';
 import { UnsavedChangesGuardBase, UnsavedChangesGuardService } from '@spryker/unsaved-changes';
-import { combineLatest, EMPTY, of, Subject } from 'rxjs';
-import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { combineLatest, EMPTY, of, Subject, switchMap, take, takeUntil, withLatestFrom } from 'rxjs';
 
 /**
  *  Responsible to intercept redirect events from the navigation component and if any monitor has dirty status - prompt a user to confirm to navigate away.
@@ -18,8 +17,8 @@ export class UnsavedChangesNavigationGuard extends UnsavedChangesGuardBase {
 
     private destroyed$ = new Subject<void>();
 
-    constructor(injector: Injector) {
-        super(injector);
+    constructor() {
+        super();
 
         this.interceptorService = this.injector.get(InterceptorService);
         this.modalService = this.injector.get(ModalService);

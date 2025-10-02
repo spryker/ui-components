@@ -1,9 +1,7 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Injectable, OnDestroy, Optional, TemplateRef, Type } from '@angular/core';
-import { merge, Subject } from 'rxjs';
-import { filter, take, takeUntil } from 'rxjs/operators';
-
+import { Injectable, OnDestroy, TemplateRef, Type, inject } from '@angular/core';
+import { merge, Subject, filter, take, takeUntil } from 'rxjs';
 import { DrawerContainerProxyComponent } from './drawer-container/drawer-container-proxy.component';
 import { DrawerContainerComponent } from './drawer-container/drawer-container.component';
 import { DrawerOptions, DrawerOptionsBase, DrawerOptionsComponent, DrawerOptionsTemplate } from './drawer-options';
@@ -20,13 +18,11 @@ interface DrawerRecord {
     providedIn: 'root',
 })
 export class DrawerService implements OnDestroy {
+    protected overlay = inject(Overlay);
+    protected defaultOptions = inject(DrawerOptionsBase, { optional: true });
+
     private drawerStack: DrawerRecord[] = [];
     private allClosed$ = new Subject<void>();
-
-    constructor(
-        private overlay: Overlay,
-        @Optional() private defaultOptions?: DrawerOptionsBase,
-    ) {}
 
     ngOnDestroy(): void {
         this.closeAll();

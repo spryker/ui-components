@@ -25,6 +25,7 @@ export enum PopoverTrigger {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-popover',
     templateUrl: './popover.component.html',
     styleUrls: ['./popover.component.less'],

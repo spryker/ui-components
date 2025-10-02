@@ -1,12 +1,22 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconMagnifierModule, IconRemoveModule } from '@spryker/icon/icons';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
-import { combineLatest, merge, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, pluck, shareReplay, switchMap, takeUntil } from 'rxjs/operators';
+import {
+    combineLatest,
+    merge,
+    Subject,
+    debounceTime,
+    distinctUntilChanged,
+    map,
+    shareReplay,
+    switchMap,
+    takeUntil,
+} from 'rxjs';
 
 import { TableSearchConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-search-feature',
     templateUrl: './table-search-feature.component.html',
     styleUrls: ['./table-search-feature.component.less'],
@@ -33,14 +43,14 @@ export class TableSearchFeatureComponent extends TableFeatureComponent<TableSear
         shareReplay({ bufferSize: 1, refCount: true }),
     );
     placeholder$ = this.config$.pipe(
-        pluck('placeholder'),
+        map((config) => config.placeholder),
         map((placeholder) => placeholder ?? ''),
     );
-    searchValue$ = this.dataConfig$.pipe(pluck('search'));
+    searchValue$ = this.dataConfig$.pipe(map((config) => config.search));
     value$ = merge(this.inputValue$, this.searchValue$);
     data$ = this.table$.pipe(
         switchMap((table) => table.data$),
-        pluck('data'),
+        map((data) => data.data),
         shareReplay({ bufferSize: 1, refCount: true }),
     );
     isVisible$ = combineLatest([

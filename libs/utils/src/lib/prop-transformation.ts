@@ -7,7 +7,7 @@ export interface TemplateIndexSignature {
 }
 
 export const propsTransformation = <
-    T extends TemplateIndexSignature & Object,
+    T extends TemplateIndexSignature & Record<string, any>,
     K extends keyof T,
     K2 extends keyof T[K],
     K2_NEW extends string,

@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
-import { merge, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { scan, shareReplay, startWith, switchAll, switchMap } from 'rxjs/operators';
+import {
+    merge,
+    Observable,
+    of,
+    ReplaySubject,
+    Subject,
+    scan,
+    shareReplay,
+    startWith,
+    switchAll,
+    switchMap,
+} from 'rxjs';
 
 import { TableDataConfig } from './table';
 

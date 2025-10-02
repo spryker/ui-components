@@ -11,9 +11,7 @@ on:
 env:
     NODE_VERSION: '20.19.0'
     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    GIT_EMAIL: 'github-actions@github.com'
-    GIT_USER: 'GitHub Actions'
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    GITHUB_TOKEN: ${{ secrets.SPRYKER_BOT_TOKEN }}
     FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
 
 jobs:
@@ -62,26 +60,23 @@ jobs:
             || github.ref_name == 'beta'
             || github.ref_name == 'rc'
         runs-on: ubuntu-latest
+        env:
+            GIT_EMAIL: ${{ vars.GIT_EMAIL }}
+            GIT_USER: ${{ vars.GIT_USER }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
               with:
+                  token: ${{ env.GITHUB_TOKEN }}
                   fetch-depth: 0
 
             - name: Setup Node.js
               uses: actions/setup-node@v3
               with:
+                  token: ${{ env.NPM_TOKEN }}
                   node-version: ${{ env.NODE_VERSION }}
                   registry-url: 'https://registry.npmjs.org'
                   cache: 'npm'
-
-            - name: Configure Git
-              run: |
-                  git config --global user.email "$GIT_EMAIL"
-                  git config --global user.name "$GIT_USER"
-
-            - name: Set up NPM token
-              run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
             - name: Install dependencies
               run: npm ci
@@ -89,6 +84,19 @@ jobs:
             - name: Build
               run: npm run build
 
+            - name: Configure Git
+              run: |
+                  git config user.email "$GIT_EMAIL"
+                  git config user.name "$GIT_USER"
+
+            - name: Set up NPM token
+              run: |
+                  npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
             - name: Release (pre-release)
               if: success()
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: npm run release-tag

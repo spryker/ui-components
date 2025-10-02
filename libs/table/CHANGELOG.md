@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/spryker/ui-components/compare/@spryker/table@2.1.2...@spryker/table@2.1.3) (2025-10-02)
+
+
+### Bug Fixes
+
+* table bump ([#676](https://github.com/spryker/ui-components/issues/676)) ([c36290e](https://github.com/spryker/ui-components/commit/c36290e3508cbe8d5611e48e64f77159745e6410))
+
+
+
+
+
 ## [2.1.2](https://github.com/spryker/ui-components/compare/@spryker/table@2.1.1...@spryker/table@2.1.2) (2025-10-02)
 
 

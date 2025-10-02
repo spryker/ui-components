@@ -12,8 +12,8 @@ import { TableActionTriggeredEvent } from './types';
     providedIn: 'root',
 })
 export class TableActionsService implements OnDestroy {
-    private injector = inject(Injector);
-    private actionsService = inject(ActionsService);
+    protected injector = inject(Injector);
+    protected actionsService = inject(ActionsService);
 
     tableEventBus?: TableEventBus;
 

@@ -4,7 +4,7 @@ import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnDateConfig {
-    private contextService = inject(ContextService);
+    protected contextService = inject(ContextService);
 
     date? = this.contextService.wrap('displayValue');
     format? = 'shortDate';

@@ -34,8 +34,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class UnsavedChangesFormMonitorDirective implements UnsavedChangesMonitor, OnInit, OnDestroy, OnChanges {
     private formRef = inject<ElementRef<HTMLFormElement>>(ElementRef);
-    private renderer = inject(Renderer2);
-    private interceptionComposerService = inject(InterceptionComposerService, { optional: true });
+    protected renderer = inject(Renderer2);
+    protected interceptionComposerService = inject(InterceptionComposerService, { optional: true });
 
     /**
      * Allows attaching / detaching monitor

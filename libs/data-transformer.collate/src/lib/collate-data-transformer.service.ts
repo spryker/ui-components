@@ -17,8 +17,8 @@ import {
 export class CollateDataTransformerService
     implements DataTransformer<CollateDataTransformerData, CollateDataTransformerDataT>
 {
-    private dataTransformerFilter = inject(DataTransformerFilterService);
-    private collateDataConfigurator = inject(DataTransformerConfiguratorService);
+    protected dataTransformerFilter = inject(DataTransformerFilterService);
+    protected collateDataConfigurator = inject(DataTransformerConfiguratorService);
 
     transform(
         data: CollateDataTransformerData,

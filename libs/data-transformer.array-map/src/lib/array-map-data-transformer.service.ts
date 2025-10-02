@@ -10,7 +10,7 @@ import { ArrayMapDataTransformerConfig, ArrayMapDataTransformerData, ArrayMapDat
 export class ArrayMapDataTransformerService
     implements DataTransformer<ArrayMapDataTransformerData, ArrayMapDataTransformerDataT>
 {
-    private dataTransformerService = inject(DataTransformerService);
+    protected dataTransformerService = inject(DataTransformerService);
 
     transform(
         data: ArrayMapDataTransformerData,

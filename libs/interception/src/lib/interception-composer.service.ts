@@ -24,8 +24,8 @@ interface DestructibleInjector extends Injector, Pick<NgModuleRef<any>, 'destroy
  */
 @Injectable()
 export class InterceptionComposerImplementation implements InterceptionComposer, OnDestroy, OnInit {
-    private injector = inject(Injector);
-    private parent = inject(InterceptionComposerImplementation, { skipSelf: true, optional: true });
+    protected injector = inject(Injector);
+    protected parent = inject(InterceptionComposerImplementation, { skipSelf: true, optional: true });
 
     private static NO_SERVICE = { __noService: true };
 

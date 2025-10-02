@@ -17,7 +17,7 @@ export interface AntLocaleData {
 
 @Injectable({ providedIn: 'root' })
 export class AntRegistrarService implements LocaleLoaderRegistrar<AntLocaleData> {
-    private nzI18nService = inject(NzI18nService);
+    protected nzI18nService = inject(NzI18nService);
 
     private localeData: Record<string, AntLocaleData | undefined> = Object.create(null);
 

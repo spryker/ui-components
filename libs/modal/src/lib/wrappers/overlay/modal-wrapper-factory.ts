@@ -58,7 +58,7 @@ export class OverlayModalWrapperRef implements ModalWrapperRef {
 
 @Injectable({ providedIn: 'root' })
 export class OverlayModalWrapperFactory implements ModalWrapperFactory {
-    private overlay = inject(Overlay);
+    protected overlay = inject(Overlay);
 
     private overlayPosition = this.overlay.position().global().centerHorizontally().centerVertically();
 

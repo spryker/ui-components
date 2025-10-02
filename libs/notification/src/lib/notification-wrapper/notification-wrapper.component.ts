@@ -60,7 +60,7 @@ import { NotificationRef } from '../notification-ref';
     ],
 })
 export class NotificationWrapperComponent extends Toast {
-    private cdr = inject(ChangeDetectorRef);
+    protected cdr = inject(ChangeDetectorRef);
 
     override state = signal({
         value: 'inactive',

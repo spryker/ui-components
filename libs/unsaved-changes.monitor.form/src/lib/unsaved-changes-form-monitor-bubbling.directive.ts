@@ -6,7 +6,7 @@ import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, inject } from '@an
 @Directive({ standalone: false, selector: '[spyUnsavedChangesFormMonitorBubbling]' })
 export class UnsavedChangesFormMonitorBubblingDirective implements OnInit, OnDestroy {
     private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
-    private renderer = inject(Renderer2);
+    protected renderer = inject(Renderer2);
 
     private disposeInputEvent?: () => void;
 

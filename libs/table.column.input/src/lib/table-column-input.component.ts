@@ -33,7 +33,7 @@ export class TableColumnInputConfig {
     providers: [TableEditableService],
 })
 export class TableColumnInputComponent implements TableColumnComponent<TableColumnInputConfig>, OnInit {
-    private tableEditableService = inject(TableEditableService);
+    protected tableEditableService = inject(TableEditableService);
 
     @Input() config?: TableColumnInputConfig;
     @Input() context?: TableColumnContext;

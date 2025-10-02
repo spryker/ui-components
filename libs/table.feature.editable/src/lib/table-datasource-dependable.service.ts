@@ -7,7 +7,7 @@ import { TableDatasourceDependableConfig } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceDependableService implements Datasource<TableData> {
-    private tableColumnService = inject(TableColumnService);
+    protected tableColumnService = inject(TableColumnService);
 
     resolve(injector: Injector, config: TableDatasourceDependableConfig, context?: unknown): Observable<TableData> {
         const isCreateMode = typeof context === 'object' ? (context as any)?.isCreateMode || false : false;

@@ -41,8 +41,8 @@ import {
     ],
 })
 export class TableBatchActionsFeatureComponent extends TableFeatureComponent<TableBatchActionsConfig> {
-    private tableActionService = inject(TableActionsService);
-    private contextService = inject(ContextService);
+    protected tableActionService = inject(TableActionsService);
+    protected contextService = inject(ContextService);
 
     name = 'batchActions';
     tableFeatureLocation = TableFeatureLocation;

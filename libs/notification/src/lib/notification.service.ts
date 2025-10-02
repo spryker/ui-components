@@ -10,7 +10,7 @@ import { mapDataToConfig } from './util';
     providedIn: 'root',
 })
 export class NotificationService {
-    private toastrService = inject(ToastrService);
+    protected toastrService = inject(ToastrService);
 
     show(data: NotificationData): NotificationRef {
         let individualConfig: Partial<IndividualConfig> = {

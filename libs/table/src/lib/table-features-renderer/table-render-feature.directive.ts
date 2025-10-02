@@ -17,8 +17,8 @@ import { FeatureRecord } from './types';
 
 @Directive({ standalone: false, selector: '[spyTableRenderFeature]' })
 export class TableRenderFeatureDirective implements OnInit, OnChanges {
-    private vcr = inject(ViewContainerRef);
-    private cdr = inject(ChangeDetectorRef);
+    protected vcr = inject(ViewContainerRef);
+    protected cdr = inject(ChangeDetectorRef);
 
     @Input() spyTableRenderFeature?: FeatureRecord;
 

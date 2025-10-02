@@ -42,8 +42,8 @@ export class DrawerComponentInputs {
     encapsulation: ViewEncapsulation.None,
 })
 export class DrawerComponent extends DrawerComponentInputs implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-    private cdr = inject(ChangeDetectorRef);
-    private drawerService = inject(DrawerService);
+    protected cdr = inject(ChangeDetectorRef);
+    protected drawerService = inject(DrawerService);
 
     @Output() isOpenChange = new EventEmitter<boolean>();
     @Output() closed = new EventEmitter<void>();

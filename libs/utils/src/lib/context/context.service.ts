@@ -17,8 +17,8 @@ export class ContextOptions {
 
 @Injectable({ providedIn: 'root' })
 export class ContextService {
-    private options = inject(ContextOptions);
-    private contextSerializationService = inject(ContextSerializationService);
+    protected options = inject(ContextOptions);
+    protected contextSerializationService = inject(ContextSerializationService);
 
     private interpolationStart = escapeRegex(this.options.interpolationStart);
     private interpolationEnd = escapeRegex(this.options.interpolationEnd);

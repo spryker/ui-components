@@ -39,8 +39,8 @@ export class TableRowActionsFeatureComponent
     extends TableFeatureComponent<TableRowActionsConfig>
     implements OnDestroy, OnInit
 {
-    private tableActionsService = inject(TableActionsService);
-    private contextService = inject(ContextService);
+    protected tableActionsService = inject(TableActionsService);
+    protected contextService = inject(ContextService);
 
     name = 'rowActions';
     tableFeatureLocation = TableFeatureLocation;

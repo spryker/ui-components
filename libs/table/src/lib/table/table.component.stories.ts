@@ -63,7 +63,7 @@ const tableConfig: TableConfig = {
 
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
-    private contextService = inject(ContextService);
+    protected contextService = inject(ContextService);
 
     text? = this.contextService.wrap('displayValue');
 }

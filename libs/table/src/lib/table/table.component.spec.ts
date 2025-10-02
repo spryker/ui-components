@@ -49,7 +49,7 @@ const mockConfigCols: TableConfig = {
 
 @Injectable({ providedIn: 'root' })
 class MockTableDatasourceHttpService {
-    private http = inject(HttpClient);
+    protected http = inject(HttpClient);
     resolve(_injector: {}, datasource: Record<string, string>): Observable<TableData> {
         return this.http.get<TableData>(datasource.url);
     }

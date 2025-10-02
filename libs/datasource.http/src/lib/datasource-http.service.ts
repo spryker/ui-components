@@ -14,11 +14,11 @@ import { DatasourceHttpConfig, DatasourceHttpConfigDataIn } from './types';
     providedIn: 'root',
 })
 export class DatasourceHttpService implements Datasource {
-    private diEncodingCodecToken = inject(DiEncodingCodecToken);
-    private http = inject(HttpClient);
-    private dataSerializerService = inject(DataSerializerService);
-    private cacheService = inject(CacheService);
-    private contextService = inject(ContextService);
+    protected diEncodingCodecToken = inject(DiEncodingCodecToken);
+    protected http = inject(HttpClient);
+    protected dataSerializerService = inject(DataSerializerService);
+    protected cacheService = inject(CacheService);
+    protected contextService = inject(ContextService);
 
     resolve(injector: Injector, config: DatasourceHttpConfig, context?: unknown): Observable<unknown> {
         config = { ...config };

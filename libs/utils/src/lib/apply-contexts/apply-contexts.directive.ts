@@ -16,10 +16,10 @@ import { ApplyContextsOptions } from './apply-contexts-options';
 
 @Directive({ standalone: false, selector: '[spyApplyContexts]' })
 export class ApplyContextsDirective implements OnInit, OnChanges, OnDestroy {
-    private elemRef = inject(ElementRef);
-    private renderer = inject(Renderer2);
-    private options = inject(ApplyContextsOptions);
-    private parent = inject(ApplyContextsDirective, { optional: true, skipSelf: true });
+    protected elemRef = inject(ElementRef);
+    protected renderer = inject(Renderer2);
+    protected options = inject(ApplyContextsOptions);
+    protected parent = inject(ApplyContextsDirective, { optional: true, skipSelf: true });
 
     @Input() spyApplyContexts?: string | string[];
 

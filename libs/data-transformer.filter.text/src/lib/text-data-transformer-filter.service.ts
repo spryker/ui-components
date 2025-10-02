@@ -14,7 +14,7 @@ import { forkJoin, Observable, of, map } from 'rxjs';
  */
 @Injectable({ providedIn: 'root' })
 export class TextDataTransformerFilterService implements DataTransformerFilter {
-    private dataTransformerService = inject(DataTransformerService);
+    protected dataTransformerService = inject(DataTransformerService);
 
     filter(
         data: DataTransformerFilterData,

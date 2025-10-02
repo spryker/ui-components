@@ -2,8 +2,8 @@ import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, inje
 
 @Directive({ standalone: false, selector: '[spyApplyAttrs]' })
 export class ApplyAttrsDirective implements OnChanges {
-    private el = inject(ElementRef);
-    private renderer = inject(Renderer2);
+    protected el = inject(ElementRef);
+    protected renderer = inject(Renderer2);
 
     @Input() spyApplyAttrs: Record<string, string> = {};
 

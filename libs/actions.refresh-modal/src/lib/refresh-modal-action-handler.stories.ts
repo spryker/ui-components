@@ -14,7 +14,7 @@ import { RefreshModalActionHandlerService } from './refresh-modal-action-handler
     template: `<spy-button variant="primary" size="md" (click)="clickHandler()">Open Modal</spy-button>`,
 })
 class SimpleStoryComponent {
-    private modalService = inject(ModalService);
+    protected modalService = inject(ModalService);
 
     clickHandler(): void {
         this.modalService.openComponent(ModalContentComponent);

@@ -28,7 +28,7 @@ interface TableSettingsStorageData {
     ],
 })
 export class TableSettingsFeatureComponent extends TableFeatureComponent<TableSettingsConfig> {
-    private persistenceService = inject(PersistenceService);
+    protected persistenceService = inject(PersistenceService);
 
     name = 'columnConfigurator';
     settingsIcon = IconSettingsModule.icon;

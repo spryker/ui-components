@@ -29,9 +29,9 @@ type UnknownLocaleLoaderRegistrarMap = Record<string, Type<LocaleLoaderRegistrar
 @Injectable({ providedIn: 'root' })
 export class LocaleService implements OnDestroy {
     defaultLocale = inject(LocaleDefaultToken, { optional: true });
-    private localeRecords = inject(LocaleRecordsToken, { optional: true });
-    private loaderRegistrarsArr = inject(LocaleLoaderRegistrarsToken, { optional: true });
-    private injector = inject(Injector);
+    protected localeRecords = inject(LocaleRecordsToken, { optional: true });
+    protected loaderRegistrarsArr = inject(LocaleLoaderRegistrarsToken, { optional: true });
+    protected injector = inject(Injector);
 
     private locales: LocaleRecord[] = this.localeRecords?.flat() ?? [];
 

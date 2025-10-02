@@ -15,8 +15,8 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class ActionsService {
-    private injector = inject(Injector);
-    private actionHandlers = inject(ActionTypesToken, { optional: true });
+    protected injector = inject(Injector);
+    protected actionHandlers = inject(ActionTypesToken, { optional: true });
 
     private actionHandlerTypes: Partial<ActionTypesDeclaration> =
         this.actionHandlers?.reduce((actions, action) => ({ ...actions, ...action }), {}) || {};

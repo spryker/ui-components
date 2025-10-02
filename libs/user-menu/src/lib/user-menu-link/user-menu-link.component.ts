@@ -19,7 +19,7 @@ export enum UserMenuLinkType {
     },
 })
 export class UserMenuLinkComponent {
-    private userMenuComponent = inject(UserMenuComponent);
+    protected userMenuComponent = inject(UserMenuComponent);
 
     @Input() type?: UserMenuLinkType = UserMenuLinkType.Default;
 

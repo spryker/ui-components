@@ -53,8 +53,8 @@ function createMockTableFeatureComponent(tplDirectives: QueryList<TableFeatureTp
     `,
 })
 class RenderFeaturesComponent {
-    private injector = inject(Injector);
-    private cdr = inject(ChangeDetectorRef);
+    protected injector = inject(Injector);
+    protected cdr = inject(ChangeDetectorRef);
 
     @Input() limit?: number;
 

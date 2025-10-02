@@ -14,8 +14,8 @@ import {
     providedIn: 'root',
 })
 export class PersistenceStrategyService {
-    private injector = inject(Injector);
-    private strategiesTypes = inject(PersistenceStrategyTypesToken, { optional: true });
+    protected injector = inject(Injector);
+    protected strategiesTypes = inject(PersistenceStrategyTypesToken, { optional: true });
 
     private strategies: PersistenceStrategyTypesDeclaration =
         this.strategiesTypes?.reduce((strategies, strategy) => ({ ...strategies, ...strategy }), {}) ?? {};

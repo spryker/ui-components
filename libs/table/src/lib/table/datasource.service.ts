@@ -7,9 +7,9 @@ import { TableData } from './table';
 
 @Injectable()
 export class TableDatasourceService {
-    private injector = inject(Injector);
-    private dataConfiguratorService = inject(TableDataConfiguratorService);
-    private datasourceService = inject(DatasourceService);
+    protected injector = inject(Injector);
+    protected dataConfiguratorService = inject(TableDataConfiguratorService);
+    protected datasourceService = inject(DatasourceService);
 
     resolve(config: DatasourceConfig): Observable<TableData> {
         return this.dataConfiguratorService.config$.pipe(

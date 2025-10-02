@@ -10,9 +10,9 @@ export interface LocaleRenderTemplateCtx {
 @Directive({ standalone: false, selector: '[spyLocaleRender]' })
 export class LocaleRenderDirective implements OnInit, OnDestroy {
     private templateRef = inject<TemplateRef<LocaleRenderTemplateCtx>>(TemplateRef);
-    private vcr = inject(ViewContainerRef);
-    private cdr = inject(ChangeDetectorRef);
-    private localeService = inject(LocaleService);
+    protected vcr = inject(ViewContainerRef);
+    protected cdr = inject(ChangeDetectorRef);
+    protected localeService = inject(LocaleService);
 
     private destroyed$ = new Subject<void>();
 

@@ -19,7 +19,7 @@ export interface RangeDataTransformerFilterValue {
  */
 @Injectable({ providedIn: 'root' })
 export class RangeDataTransformerFilterService implements DataTransformerFilter {
-    private dataTransformerService = inject(DataTransformerService);
+    protected dataTransformerService = inject(DataTransformerService);
 
     filter(
         data: DataTransformerFilterData,

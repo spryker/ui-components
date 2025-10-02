@@ -27,7 +27,7 @@ import { TableFilterBase, TableFilterComponent, TableFiltersConfig, TableFilters
     ],
 })
 export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFiltersConfig> {
-    private tableFilterToken = inject(TABLE_FILTERS_TOKEN);
+    protected tableFilterToken = inject(TABLE_FILTERS_TOKEN);
 
     name = 'filters';
     tableFeatureLocation = TableFeatureLocation;

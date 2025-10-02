@@ -6,8 +6,8 @@ import { IconSvg, IconServiceInterface } from './types';
 /** @internal */
 @Injectable({ providedIn: 'root' })
 export class InternalIconService implements IconServiceInterface {
-    private icons = inject(ICONS_TOKEN, { optional: true });
-    private nzIcon = inject(NzIconService);
+    protected icons = inject(ICONS_TOKEN, { optional: true });
+    protected nzIcon = inject(NzIconService);
 
     private isInited = false;
     private resolvedIcons: Record<string, Promise<string> | undefined> = {};

@@ -4,7 +4,7 @@ import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnChipConfig {
-    private contextService = inject(ContextService);
+    protected contextService = inject(ContextService);
 
     text? = this.contextService.wrap('displayValue');
     color?: string;

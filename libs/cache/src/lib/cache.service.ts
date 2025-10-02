@@ -19,9 +19,9 @@ import {
     providedIn: 'root',
 })
 export class CacheService {
-    private cacheStorageFactoryService = inject(CacheStorageFactoryService);
-    private injector = inject(Injector);
-    private cachesTypes = inject(CacheStrategyTypesToken, {
+    protected cacheStorageFactoryService = inject(CacheStorageFactoryService);
+    protected injector = inject(Injector);
+    protected cachesTypes = inject(CacheStrategyTypesToken, {
         optional: true,
     });
 

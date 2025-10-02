@@ -11,7 +11,7 @@ import { DateParseDataTransformerConfig, DateParseDataTransformerData, DateParse
 export class DateParseDataTransformerService
     implements DataTransformer<DateParseDataTransformerData, DateParseDataTransformerDataT>
 {
-    private dateService = inject(DateService);
+    protected dateService = inject(DateService);
 
     transform(
         data: DateParseDataTransformerData,

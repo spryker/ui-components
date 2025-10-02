@@ -4,7 +4,7 @@ import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnImageConfig {
-    private contextService = inject(ContextService);
+    protected contextService = inject(ContextService);
 
     src? = this.contextService.wrap('displayValue');
     alt? = '';

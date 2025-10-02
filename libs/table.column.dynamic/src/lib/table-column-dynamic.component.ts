@@ -36,10 +36,10 @@ export class TableColumnDynamicConfig {
     host: { class: 'spy-table-column-dynamic' },
 })
 export class TableColumnDynamicComponent implements TableColumnComponent<TableColumnDynamicConfig>, OnChanges {
-    private injector = inject(Injector);
-    private datasourceService = inject(DatasourceService);
-    private contextService = inject(ContextService);
-    private cdr = inject(ChangeDetectorRef);
+    protected injector = inject(Injector);
+    protected datasourceService = inject(DatasourceService);
+    protected contextService = inject(ContextService);
+    protected cdr = inject(ChangeDetectorRef);
 
     @Input() config?: TableColumnDynamicConfig;
     @Input() context?: TableColumnContext;

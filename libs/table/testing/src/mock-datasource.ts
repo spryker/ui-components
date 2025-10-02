@@ -12,7 +12,7 @@ export interface MockTableDatasourceConfig extends DatasourceConfig {
 
 @Injectable({ providedIn: 'root' })
 export class MockTableDatasourceService implements Datasource<TableData, TableDataConfig> {
-    private dataGenerator = inject(MockTableDatasourceToken, {
+    protected dataGenerator = inject(MockTableDatasourceToken, {
         optional: true,
     });
 

@@ -6,7 +6,7 @@ import { ContextSerializationService } from '../context-serialization.service';
     providedIn: 'root',
 })
 export class ArrayContextSerializationStrategy implements ContextSerializationStrategy<Array<any>> {
-    private contextSerializationService = inject(ContextSerializationService);
+    protected contextSerializationService = inject(ContextSerializationService);
 
     canSerialize(value: unknown): value is Array<any> {
         return Array.isArray(value);

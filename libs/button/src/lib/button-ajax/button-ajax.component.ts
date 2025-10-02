@@ -29,9 +29,9 @@ export enum ButtonAjaxMethod {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonAjaxComponent extends ButtonCoreInputs implements OnInit, OnDestroy {
-    private ajaxActionService = inject(AjaxActionService);
-    private http = inject(HttpClient);
-    private injector = inject(Injector);
+    protected ajaxActionService = inject(AjaxActionService);
+    protected http = inject(HttpClient);
+    protected injector = inject(Injector);
 
     @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
     @Input() url?: string;

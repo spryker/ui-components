@@ -10,7 +10,7 @@ import { PersistenceStrategy } from './types';
     providedIn: 'root',
 })
 export class LocalStoragePersistenceStrategy implements PersistenceStrategy {
-    private windowToken = inject(WindowToken);
+    protected windowToken = inject(WindowToken);
 
     private items: Record<string, BehaviorSubject<any> | undefined> = {};
 

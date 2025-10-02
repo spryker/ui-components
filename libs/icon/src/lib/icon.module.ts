@@ -11,8 +11,8 @@ import { ICONS_TOKEN } from './icon/tokens';
     exports: [IconComponent],
 })
 export class IconModule {
-    private iconsService = inject(InternalIconService);
-    private parentIconService = inject(InternalIconService, { skipSelf: true, optional: true })!;
+    protected iconsService = inject(InternalIconService);
+    protected parentIconService = inject(InternalIconService, { skipSelf: true, optional: true })!;
 
     constructor() {
         const parentIconService = this.parentIconService;

@@ -9,8 +9,8 @@ import { TableDatasourceInlineConfig } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceInlineService implements Datasource<TableData> {
-    private dataTransformerService = inject(DataTransformerService);
-    private datasourceInlineService = inject(DatasourceInlineService);
+    protected dataTransformerService = inject(DataTransformerService);
+    protected datasourceInlineService = inject(DatasourceInlineService);
 
     resolve(injector: Injector, config: TableDatasourceInlineConfig): Observable<TableData> {
         const preprocessConfig: Record<string, DataTransformerConfig> = {};

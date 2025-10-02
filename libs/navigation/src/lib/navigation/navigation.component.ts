@@ -39,8 +39,8 @@ export class NavigationComposerDirective extends InterceptionComposerDirective {
     },
 })
 export class NavigationComponent implements NavigationComponentMethods {
-    private windowToken = inject(WindowToken);
-    private interceptorDispatcherService = inject(InterceptorDispatcherService);
+    protected windowToken = inject(WindowToken);
+    protected interceptorDispatcherService = inject(InterceptorDispatcherService);
 
     @Input({ transform: booleanAttribute }) collapsed = false;
     @Input() @ToJson() items: NavigationItem[] = [];

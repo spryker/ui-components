@@ -3,7 +3,7 @@ import { triggerChangeEvent } from './trigger-change-event-function';
 
 @Directive({ standalone: false, selector: '[spyTriggerChangeEvent]' })
 export class TriggerChangeEventDirective {
-    private el = inject(ElementRef);
+    protected el = inject(ElementRef);
 
     @Input() spyTriggerChangeEvent?: HTMLElement | string;
 

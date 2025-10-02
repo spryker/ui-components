@@ -20,9 +20,9 @@ import { ModuleWithFeature, TableFeatureLoader, TableFeaturesRegistry } from './
 
 @Injectable({ providedIn: 'root' })
 export class TableFeatureLoaderService implements OnDestroy {
-    private featuresRegistries = inject(TableFeaturesRegistryToken, { optional: true });
-    private compiler = inject(Compiler);
-    private injector = inject(Injector);
+    protected featuresRegistries = inject(TableFeaturesRegistryToken, { optional: true });
+    protected compiler = inject(Compiler);
+    protected injector = inject(Injector);
 
     private featuresRegistry: TableFeaturesRegistry =
         this.featuresRegistries?.reduce(

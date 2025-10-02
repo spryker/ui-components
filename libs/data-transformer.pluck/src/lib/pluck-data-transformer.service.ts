@@ -11,7 +11,7 @@ import { PluckDataTransformerConfig, PluckDataTransformerData, PluckDataTransfor
 export class PluckDataTransformerService
     implements DataTransformer<PluckDataTransformerData, PluckDataTransformerDataT>
 {
-    private contextService = inject(ContextService);
+    protected contextService = inject(ContextService);
 
     transform(
         data: PluckDataTransformerData,

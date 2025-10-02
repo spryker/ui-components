@@ -29,9 +29,9 @@ export interface TableColumnConfigItem {
     encapsulation: ViewEncapsulation.None,
 })
 export class TableColumnRendererComponent implements OnChanges {
-    private components = inject(TableColumnComponentsToken).reduce((acc, curr) => ({ ...acc, ...curr }), {});
-    private contextService = inject(ContextService);
-    private injector = inject(Injector);
+    protected components = inject(TableColumnComponentsToken).reduce((acc, curr) => ({ ...acc, ...curr }), {});
+    protected contextService = inject(ContextService);
+    protected injector = inject(Injector);
 
     @Input() config?: TableColumn;
     @Input() data?: TableDataRow;

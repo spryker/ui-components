@@ -39,11 +39,11 @@ export interface SubmitEvent extends Event {
     },
 })
 export class AjaxFormComponent implements OnDestroy, OnChanges {
-    private ajaxActionService = inject(AjaxActionService);
-    private http = inject(HttpClient);
-    private cdr = inject(ChangeDetectorRef);
-    private injector = inject(Injector);
-    private dataSerializerService = inject(DataSerializerService);
+    protected ajaxActionService = inject(AjaxActionService);
+    protected http = inject(HttpClient);
+    protected cdr = inject(ChangeDetectorRef);
+    protected injector = inject(Injector);
+    protected dataSerializerService = inject(DataSerializerService);
 
     @ViewChild(HtmlRendererComponent, { read: ViewContainerRef })
     htmlRendererVcr?: ViewContainerRef;

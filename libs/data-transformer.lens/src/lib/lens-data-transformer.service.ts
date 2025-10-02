@@ -9,8 +9,8 @@ import { LensDataTransformerConfig, LensDataTransformerData, LensDataTransformer
     providedIn: 'root',
 })
 export class LensDataTransformerService implements DataTransformer<LensDataTransformerData, LensDataTransformerDataT> {
-    private contextService = inject(ContextService);
-    private dataTransformerService = inject(DataTransformerService);
+    protected contextService = inject(ContextService);
+    protected dataTransformerService = inject(DataTransformerService);
 
     transform(data: LensDataTransformerData, config: LensDataTransformerConfig): Observable<LensDataTransformerDataT> {
         const copiedData = mergeDeep({}, data);

@@ -5,7 +5,7 @@ import { I18nTestService } from './test-locale-i18n.service';
 
 @Pipe({ standalone: false, name: 'spyI18n' })
 export class I18nTestPipe implements PipeTransform {
-    private testI18nService = inject(I18nTestService);
+    protected testI18nService = inject(I18nTestService);
 
     transform(token: string, data?: I18nLocaleInterpolationData): Observable<string> {
         this.testI18nService.addLocaleData(token, data);

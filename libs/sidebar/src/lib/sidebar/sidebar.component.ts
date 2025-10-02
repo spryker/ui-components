@@ -28,7 +28,7 @@ import { merge, ReplaySubject, map, switchMap, tap, withLatestFrom } from 'rxjs'
     },
 })
 export class SidebarComponent implements OnChanges, OnInit {
-    private persistenceService = inject(PersistenceService);
+    protected persistenceService = inject(PersistenceService);
 
     @Input() width = 250;
     @Input() collapsedWidth = 96;

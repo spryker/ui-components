@@ -32,7 +32,7 @@ export type RadioValue = string | number;
     },
 })
 export class RadioGroupComponent implements OnInit, OnDestroy {
-    private cdr = inject(ChangeDetectorRef);
+    protected cdr = inject(ChangeDetectorRef);
 
     @Input() value?: RadioValue;
     @Input() name?: string;

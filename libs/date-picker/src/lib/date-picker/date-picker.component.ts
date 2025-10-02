@@ -55,8 +55,8 @@ interface NzDisabledTimeConfig {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatePickerComponent implements OnChanges, AfterViewChecked {
-    private dateWorkDaysToken = inject(DateWorkDaysToken);
-    private dateWorkHoursToken = inject(DateWorkHoursToken);
+    protected dateWorkDaysToken = inject(DateWorkDaysToken);
+    protected dateWorkHoursToken = inject(DateWorkHoursToken);
 
     private static DefaultFormat = 'dd.MM.yyyy';
     private static HoursRange = [...Array(24).keys()];

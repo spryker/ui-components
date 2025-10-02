@@ -15,8 +15,8 @@ export class I18nConfig {
     providedIn: 'root',
 })
 export class I18nService {
-    private readonly localeService = inject(LocaleService); // This will ensure locale load
-    private readonly config = inject(I18nConfig);
+    protected readonly localeService = inject(LocaleService); // This will ensure locale load
+    protected readonly config = inject(I18nConfig);
 
     private readonly locale$ = new ReplaySubject<I18nLocaleData>(1);
 

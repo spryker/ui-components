@@ -6,7 +6,7 @@ import { ColumnsTransformer, TableColumns } from './table';
 
 @Injectable()
 export class TableColumnsResolverService {
-    private injector = inject(Injector);
+    protected injector = inject(Injector);
 
     private transformers$ = new BehaviorSubject(new Set<ColumnsTransformer>());
 

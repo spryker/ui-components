@@ -91,14 +91,14 @@ export class TableEditableFeatureComponent
     extends TableFeatureComponent<TableEditableConfig>
     implements OnInit, AfterViewChecked, OnDestroy
 {
-    private cdr = inject(ChangeDetectorRef);
-    private ajaxActionService = inject(AjaxActionService);
-    private contextService = inject(ContextService);
-    private httpClient = inject(HttpClient);
-    private tableFeaturesRendererService = inject(TableFeaturesRendererService);
-    private resizeObserver = inject(NzResizeObserver);
-    private zone = inject(NgZone);
-    private dataSerializerService = inject(DataSerializerService);
+    protected cdr = inject(ChangeDetectorRef);
+    protected ajaxActionService = inject(AjaxActionService);
+    protected contextService = inject(ContextService);
+    protected httpClient = inject(HttpClient);
+    protected tableFeaturesRendererService = inject(TableFeaturesRendererService);
+    protected resizeObserver = inject(NzResizeObserver);
+    protected zone = inject(NgZone);
+    protected dataSerializerService = inject(DataSerializerService);
     tableEditableService = inject(TableEditableService);
 
     @ViewChild('editableCell') editableCell?: TemplateRef<any>;

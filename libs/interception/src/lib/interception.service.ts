@@ -9,7 +9,7 @@ import { InterceptionEventType, InterceptionHandler, Interceptor, InterceptorDis
  */
 @Injectable({ providedIn: 'root' })
 export class InterceptionService implements InterceptorDispatcher, Interceptor {
-    private parentInterceptionService = inject(InterceptionService, { optional: true, skipSelf: true });
+    protected parentInterceptionService = inject(InterceptionService, { optional: true, skipSelf: true });
 
     private handlersMap$ = new BehaviorSubject(new Map<any, InterceptionHandler<any>[]>());
 

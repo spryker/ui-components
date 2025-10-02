@@ -8,8 +8,8 @@ import { DatasourceDependableElementsService } from './datasource-dependable-ele
     providedIn: 'root',
 })
 export class DatasourceDependableService implements Datasource {
-    private datasourceService = inject(DatasourceService);
-    private datasourceDependableElementsService = inject(DatasourceDependableElementsService);
+    protected datasourceService = inject(DatasourceService);
+    protected datasourceDependableElementsService = inject(DatasourceDependableElementsService);
 
     resolve(injector: Injector, config: DatasourceDependableConfig, context?: unknown): Observable<unknown> {
         context = typeof context === 'object' ? { ...context } : {};

@@ -10,7 +10,7 @@ import { HttpActionConfig, HttpActionResponse } from './types';
     providedIn: 'root',
 })
 export class HttpActionHandlerService implements ActionHandler<unknown, unknown>, OnDestroy {
-    private http = inject(HttpClient);
+    protected http = inject(HttpClient);
 
     private destroyed$ = new Subject<void>();
 

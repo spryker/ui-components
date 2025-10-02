@@ -25,7 +25,7 @@ import { TableFilterDateRange } from './types';
     encapsulation: ViewEncapsulation.None,
 })
 export class TableFilterDateRangeComponent implements TableFilterComponent<TableFilterDateRange>, OnChanges {
-    private i18nService = inject(I18nService);
+    protected i18nService = inject(I18nService);
 
     @Input() config?: TableFilterDateRange;
     @Input() value?: DateRangeValueInput = {};

@@ -29,7 +29,7 @@ import { ComponentModal, TemplateModalContext } from '../strategies';
     encapsulation: ViewEncapsulation.None,
 })
 export class ModalComponent implements OnChanges, OnDestroy {
-    private modalService = inject(ModalService);
+    protected modalService = inject(ModalService);
 
     @Input() visible = false;
     @Input() data?: unknown;

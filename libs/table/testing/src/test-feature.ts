@@ -108,9 +108,9 @@ export function initFeature<T>(
     template: ` <ng-content></ng-content> `,
 })
 export class TestTableFeatureComponent<T = TableMockComponent> implements AfterContentInit {
-    private cdr = inject(ChangeDetectorRef);
-    private globalMocks = inject<TableFeatureMocks<T> | null>(TestTableFeatureMocks, { optional: true });
-    private injector = inject(Injector);
+    protected cdr = inject(ChangeDetectorRef);
+    protected globalMocks = inject<TableFeatureMocks<T> | null>(TestTableFeatureMocks, { optional: true });
+    protected injector = inject(Injector);
 
     @ContentChild(TableFeatureComponent) feature?: TableFeatureComponent;
 

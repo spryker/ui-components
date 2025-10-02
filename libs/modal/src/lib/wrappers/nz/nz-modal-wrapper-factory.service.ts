@@ -104,7 +104,7 @@ export class NzModalWrapperRef implements ModalWrapperRef {
     providedIn: 'root',
 })
 export class NzModalWrapperFactory implements ModalWrapperFactory {
-    private nzModalService = inject(NzModalService);
+    protected nzModalService = inject(NzModalService);
 
     createWrapper(options: ModalOptions<AnyModal>): ModalWrapperRef {
         const nzModalRef = this.nzModalService.create(mapNzOptions(options));

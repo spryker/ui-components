@@ -32,8 +32,8 @@ import { NotificationConfig, NotificationContext, NotificationData } from '../ty
     },
 })
 export class NotificationComponent extends NotificationInputs implements OnChanges, AfterViewInit, OnDestroy {
-    private notificationService = inject(NotificationService);
-    private cdr = inject(ChangeDetectorRef);
+    protected notificationService = inject(NotificationService);
+    protected cdr = inject(ChangeDetectorRef);
 
     @Input() @ToJson() floatingConfig?: NotificationConfig;
 

@@ -27,8 +27,8 @@ import { HtmlRendererProvider } from './html-renderer.provider';
     encapsulation: ViewEncapsulation.None,
 })
 export class HtmlRendererComponent {
-    private htmlRendererProvider = inject(HtmlRendererProvider);
-    private domSanitizer = inject(DomSanitizer);
+    protected htmlRendererProvider = inject(HtmlRendererProvider);
+    protected domSanitizer = inject(DomSanitizer);
 
     @ViewChild('htmlRendererContent', { static: false })
     htmlRendererContent?: ElementRef<HTMLElement>;

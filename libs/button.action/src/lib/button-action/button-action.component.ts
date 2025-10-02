@@ -23,8 +23,8 @@ import { switchMap, filter, takeUntil } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonActionComponent implements OnInit, OnDestroy {
-    private injector = inject(Injector);
-    private actionsService = inject(ActionsService);
+    protected injector = inject(Injector);
+    protected actionsService = inject(ActionsService);
 
     @Input() @ToJson() action?: ActionConfig;
     @Input() @ToJson() actionContext?: unknown;

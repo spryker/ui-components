@@ -22,7 +22,7 @@ import { DrawerRef } from './drawer-ref';
     `,
 })
 class MultipleDrawersComponent {
-    private drawerService = inject(DrawerService);
+    protected drawerService = inject(DrawerService);
 
     @Input() closeable = true;
     @Input() width = '50%';
@@ -102,7 +102,7 @@ class DrawerExampleComponent {
     template: `<button (click)="openDrawer()">Open Drawer</button>`,
 })
 class DrawerWithComponentComponent implements OnDestroy {
-    private drawerService = inject(DrawerService);
+    protected drawerService = inject(DrawerService);
 
     private drawerRef?: DrawerRef;
 

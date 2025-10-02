@@ -18,7 +18,7 @@ type ModelOperation = ModelOperationAdd | ModelOperationUpdate | ModelOperationR
 
 @Injectable()
 export class TableEditableService implements OnDestroy {
-    private elementRef = inject(ElementRef);
+    protected elementRef = inject(ElementRef);
 
     private model: Record<string, unknown>[] = [];
     private modelUpdates$ = new Subject<ModelOperation>();

@@ -65,8 +65,8 @@ const mockResponseData = {
     ],
 })
 class TestComponent implements DatasourceTriggerElement, OnInit, AfterViewInit {
-    private injector = inject(Injector);
-    private datasourceTriggerService = inject(DatasourceTriggerService);
+    protected injector = inject(Injector);
+    protected datasourceTriggerService = inject(DatasourceTriggerService);
 
     @ViewChild('selectComponent', { static: true }) selectComponent: SelectComponent;
     @Input() options: any;

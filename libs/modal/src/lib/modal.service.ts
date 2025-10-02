@@ -19,8 +19,8 @@ import { AnyModal, Modal, ModalOptions, ModalRef, ModalStrategy } from './types'
 
 @Injectable({ providedIn: 'root' })
 export class ModalService implements OnDestroy {
-    private modalWrapperFactory = inject(ModalWrapperFactoryToken);
-    private defaultOptions = inject<ModalOptions<any>>(ModalOptionsToken);
+    protected modalWrapperFactory = inject(ModalWrapperFactoryToken);
+    protected defaultOptions = inject<ModalOptions<any>>(ModalOptionsToken);
 
     private modals = new Set<ModalRef<any, any>>();
 

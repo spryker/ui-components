@@ -16,8 +16,8 @@ import {
     providedIn: 'root',
 })
 export class DataTransformerService {
-    private injector = inject(Injector);
-    private transformersTypes = inject(DataTransformerTypesToken, { optional: true });
+    protected injector = inject(Injector);
+    protected transformersTypes = inject(DataTransformerTypesToken, { optional: true });
 
     private transformers: Partial<DataTransformerTypesDeclaration> =
         this.transformersTypes?.reduce(

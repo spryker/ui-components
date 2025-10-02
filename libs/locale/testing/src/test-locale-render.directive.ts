@@ -2,8 +2,8 @@ import { Directive, OnInit, TemplateRef, ViewContainerRef, inject } from '@angul
 
 @Directive({ standalone: false, selector: '[spyLocaleRender]' })
 export class TestLocaleRenderDirective implements OnInit {
-    private templateRef = inject<TemplateRef<any>>(TemplateRef);
-    private vcr = inject(ViewContainerRef);
+    protected templateRef = inject<TemplateRef<any>>(TemplateRef);
+    protected vcr = inject(ViewContainerRef);
 
     ngOnInit() {
         this.vcr.clear();

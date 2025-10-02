@@ -27,7 +27,7 @@ export class LocaleSwitcherInputs {
     host: { style: 'display: none' },
 })
 export class LocaleSwitcherComponent implements OnInit, OnChanges {
-    private localeService = inject(LocaleService);
+    protected localeService = inject(LocaleService);
 
     @Input() locale?: string;
 

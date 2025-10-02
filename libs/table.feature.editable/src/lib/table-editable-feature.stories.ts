@@ -58,7 +58,7 @@ class EditColumnConfig {
     providers: [TableEditableService],
 })
 class EditColumnComponent implements TableColumnComponent<EditColumnConfig>, OnInit {
-    private tableEditableService = inject(TableEditableService);
+    protected tableEditableService = inject(TableEditableService);
 
     @Input() config?: EditColumnConfig;
     @Input() context?: TableColumnContext;

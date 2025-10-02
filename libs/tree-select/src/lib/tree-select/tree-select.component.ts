@@ -49,10 +49,10 @@ interface TreeSelectItemWithKey extends TreeSelectItem {
     },
 })
 export class TreeSelectComponent implements OnChanges, OnInit, OnDestroy, AfterViewChecked {
-    private cdr = inject(ChangeDetectorRef);
-    private injector = inject(Injector);
-    private datasourceService = inject(DatasourceService);
-    private i18nService = inject(I18nService);
+    protected cdr = inject(ChangeDetectorRef);
+    protected injector = inject(Injector);
+    protected datasourceService = inject(DatasourceService);
+    protected i18nService = inject(I18nService);
 
     @Input() @ToJson() items?: TreeSelectItem[];
     @Input() @ToJson() value?: TreeSelectValue | TreeSelectValue[];

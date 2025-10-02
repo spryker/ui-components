@@ -13,7 +13,7 @@ import { CloseModalActionHandlerService } from './close-modal-action-handler.ser
     template: ` <spy-button variant="primary" size="md" (click)="clickHandler()"> Open modal </spy-button> `,
 })
 class SimpleModalComponent {
-    private modalService = inject(ModalService);
+    protected modalService = inject(ModalService);
 
     clickHandler(): void {
         this.modalService.openComponent(ModalContentComponent);

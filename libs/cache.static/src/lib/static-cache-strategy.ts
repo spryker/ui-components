@@ -11,8 +11,8 @@ import { StaticCacheStrategyConfig } from './types';
     providedIn: 'root',
 })
 export class StaticCacheStrategy implements CacheStrategy {
-    private timeDurationService = inject(TimeDurationService);
-    private cacheStorageFactoryService = inject(CacheStorageFactoryService);
+    protected timeDurationService = inject(TimeDurationService);
+    protected cacheStorageFactoryService = inject(CacheStorageFactoryService);
 
     getCached<T>(id: CacheId, config: StaticCacheStrategyConfig, operation: CacheOperation<T>): Observable<T> {
         const cacheDuration = this.timeDurationService.parse(config.expiresIn);

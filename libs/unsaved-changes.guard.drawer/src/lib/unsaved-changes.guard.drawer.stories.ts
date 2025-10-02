@@ -30,7 +30,7 @@ class DrawerContentComponent {}
     template: ` <button (click)="toggleDrawer()">Toggle drawer</button> `,
 })
 class StoryComponent {
-    private drawerService = inject(DrawerService);
+    protected drawerService = inject(DrawerService);
 
     private drawerRef?: DrawerRef;
 

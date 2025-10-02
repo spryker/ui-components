@@ -24,10 +24,10 @@ import { TableFeatureLocation } from '../table/table';
 @Directive({ standalone: false, selector: '[spyTableFeaturesRenderer]', exportAs: 'spyTableFeaturesRenderer' })
 export class TableFeaturesRendererDirective implements OnInit, OnChanges, OnDestroy {
     private templateRef = inject<TemplateRef<TableFeaturesRendererContext>>(TemplateRef);
-    private vcr = inject(ViewContainerRef);
-    private iterableDiffers = inject(IterableDiffers);
-    private cdr = inject(ChangeDetectorRef);
-    private featuresRendererService = inject(TableFeaturesRendererService);
+    protected vcr = inject(ViewContainerRef);
+    protected iterableDiffers = inject(IterableDiffers);
+    protected cdr = inject(ChangeDetectorRef);
+    protected featuresRendererService = inject(TableFeaturesRendererService);
 
     @Input() spyTableFeaturesRenderer?: TableFeatureLocation;
     @Input() spyTableFeaturesRendererFeatures?: TableFeatureComponent[];

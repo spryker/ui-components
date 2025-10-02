@@ -6,7 +6,7 @@ import { TableDefaultConfig } from './table-config-default';
 
 @Injectable({ providedIn: 'root' })
 export class TableConfigService {
-    private defaultConfig = inject(TableDefaultConfig);
+    protected defaultConfig = inject(TableDefaultConfig);
 
     private knownProperties: {
         [P in keyof TableCoreConfig]-?: any;

@@ -18,8 +18,8 @@ interface DrawerRecord {
     providedIn: 'root',
 })
 export class DrawerService implements OnDestroy {
-    private overlay = inject(Overlay);
-    private defaultOptions = inject(DrawerOptionsBase, { optional: true });
+    protected overlay = inject(Overlay);
+    protected defaultOptions = inject(DrawerOptionsBase, { optional: true });
 
     private drawerStack: DrawerRecord[] = [];
     private allClosed$ = new Subject<void>();

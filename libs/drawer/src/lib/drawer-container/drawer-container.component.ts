@@ -54,9 +54,9 @@ export class DrawerComposerDirective extends InterceptionComposerDirective {}
     providers: [...provideInterceptionService()],
 })
 export class DrawerContainerComponent implements OnInit, OnDestroy {
-    private vcr = inject(ViewContainerRef);
-    private cdr = inject(ChangeDetectorRef);
-    private interceptorDispatcherService = inject(InterceptorDispatcherService);
+    protected vcr = inject(ViewContainerRef);
+    protected cdr = inject(ChangeDetectorRef);
+    protected interceptorDispatcherService = inject(InterceptorDispatcherService);
 
     drawerRecord?: {
         class?: Type<any>;

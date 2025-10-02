@@ -12,7 +12,7 @@ export class TableColumnButtonAction implements ActionConfig {
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnButtonActionConfig {
-    private contextService = inject(ContextService);
+    protected contextService = inject(ContextService);
 
     text? = this.contextService.wrap('displayValue');
     action?: TableColumnButtonAction;

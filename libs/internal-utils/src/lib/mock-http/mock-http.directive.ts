@@ -17,9 +17,9 @@ export function setMockHttp(responses: MockHttpResponse[]) {
     selector: '[mockHttp]',
 })
 export class MockHttpDirective implements DoCheck, OnDestroy {
-    private appRef = inject(ApplicationRef);
-    private injector = inject(Injector);
-    private httpController = inject(HttpTestingController);
+    protected appRef = inject(ApplicationRef);
+    protected injector = inject(Injector);
+    protected httpController = inject(HttpTestingController);
 
     private static options: Required<MockHttpOptions> = {
         delay: 'random',

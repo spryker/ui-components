@@ -8,7 +8,7 @@ import { WebComponentDefs } from './types';
  */
 @NgModule({})
 export abstract class CustomElementModule implements DoBootstrap {
-    private injector = inject(Injector);
+    protected injector = inject(Injector);
 
     protected abstract components: WebComponentDefs;
 

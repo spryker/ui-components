@@ -5,7 +5,7 @@ import { InterceptionComposerImplementation } from './interception-composer.serv
 
 @Directive({ standalone: false, selector: '[spyInterceptionComposer]', providers: [...InterceptionComposerProviders] })
 export class InterceptionComposerDirective implements OnInit {
-    private interceptionComposer = inject(InterceptionComposerImplementation);
+    protected interceptionComposer = inject(InterceptionComposerImplementation);
 
     ngOnInit(): void {
         this.interceptionComposer.ngOnInit();

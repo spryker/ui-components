@@ -21,7 +21,7 @@ import { I18nLocaleInterpolationData } from './types';
  */
 @Pipe({ standalone: false, name: 'spyI18n' })
 export class I18nPipe implements PipeTransform {
-    private i18nService = inject(I18nService);
+    protected i18nService = inject(I18nService);
 
     transform(token: string, data?: I18nLocaleInterpolationData): Observable<string> {
         return this.i18nService.translate(token, data);

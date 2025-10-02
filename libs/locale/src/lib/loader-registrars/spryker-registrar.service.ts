@@ -19,7 +19,7 @@ export interface SprykerLocaleData {
     providedIn: 'root',
 })
 export class SprykerRegistrarService implements LocaleLoaderRegistrar<SprykerLocaleData> {
-    private i18nService = inject(I18nService);
+    protected i18nService = inject(I18nService);
 
     private localeData: Record<string, SprykerLocaleData | undefined> = Object.create(null);
 

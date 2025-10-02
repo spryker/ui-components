@@ -7,7 +7,7 @@ import { ContextService } from '@spryker/utils';
  */
 @Pipe({ standalone: false, name: 'filterAvailableActions' })
 export class FilterAvailableActionsPipe implements PipeTransform {
-    private contextService = inject(ContextService);
+    protected contextService = inject(ContextService);
 
     transform(actions: DropdownItem[], data: any, availableActionsPath: string): DropdownItem[] {
         if (!availableActionsPath) {

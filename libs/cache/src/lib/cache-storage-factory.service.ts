@@ -12,8 +12,8 @@ import { CacheStoragePersistenceAdapter } from './сache-storage-persistence-ada
     providedIn: 'root',
 })
 export class CacheStorageFactoryService {
-    private persistenceStrategyService = inject(PersistenceStrategyService);
-    private inMemoryPersistenceStrategy = inject(InMemoryPersistenceStrategy);
+    protected persistenceStrategyService = inject(PersistenceStrategyService);
+    protected inMemoryPersistenceStrategy = inject(InMemoryPersistenceStrategy);
 
     private persistenceStrategies: Record<string, CacheStorage> = {};
 

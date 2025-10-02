@@ -60,7 +60,7 @@ export default {
     `,
 })
 class StoryComponent {
-    private modalService = inject(ModalService);
+    protected modalService = inject(ModalService);
 
     @Input() hasBackdrop?: boolean;
 
@@ -190,7 +190,7 @@ export const viaModalComponent = (args) => ({
     `,
 })
 class ConfirmationComponent {
-    private modalService = inject(ModalService);
+    protected modalService = inject(ModalService);
 
     @Input() hasBackdrop?: boolean;
     @Input() hasDescription?: boolean;

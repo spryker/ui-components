@@ -12,7 +12,7 @@ import { CloseDrawerActionHandlerService } from './close-drawer-action-handler.s
     template: ` <spy-button variant="primary" size="md" (click)="clickHandler()"> Open drawer </spy-button> `,
 })
 class SimpleDrawerComponent {
-    private drawerService = inject(DrawerService);
+    protected drawerService = inject(DrawerService);
 
     clickHandler(): void {
         this.drawerService.openComponent(DrawerContentComponent);

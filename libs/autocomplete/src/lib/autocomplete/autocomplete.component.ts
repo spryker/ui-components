@@ -27,9 +27,9 @@ import { AutocompleteValue } from './types';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteComponent implements OnChanges, OnInit, OnDestroy {
-    private injector = inject(Injector);
-    private datasourceService = inject(DatasourceService);
-    private autocompleteWrapper = inject(AutocompleteWrapperToken);
+    protected injector = inject(Injector);
+    protected datasourceService = inject(DatasourceService);
+    protected autocompleteWrapper = inject(AutocompleteWrapperToken);
 
     @Input() @ToJson() options?: AutocompleteValue[];
     @Input() @ToJson() datasource?: DatasourceConfig;

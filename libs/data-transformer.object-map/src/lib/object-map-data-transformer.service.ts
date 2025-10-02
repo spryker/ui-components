@@ -10,7 +10,7 @@ import { ObjectMapDataTransformerConfig, ObjectMapDataTransformerData, ObjectMap
 export class ObjectMapDataTransformerService
     implements DataTransformer<ObjectMapDataTransformerData, ObjectMapDataTransformerDataT>
 {
-    private dataTransformerService = inject(DataTransformerService);
+    protected dataTransformerService = inject(DataTransformerService);
 
     transform(
         data: ObjectMapDataTransformerData,

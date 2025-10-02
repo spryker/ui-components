@@ -10,7 +10,7 @@ import { PersistenceStrategy } from './types';
     providedIn: 'root',
 })
 export class UrlPersistenceStrategy implements PersistenceStrategy {
-    private windowToken = inject(WindowToken);
+    protected windowToken = inject(WindowToken);
 
     private urlSearch$ = fromEvent(this.windowToken, 'popstate').pipe(
         map(() => this.windowToken.location.search),

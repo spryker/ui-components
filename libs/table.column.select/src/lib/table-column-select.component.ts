@@ -64,7 +64,7 @@ export class TableColumnSelectConfig {
     },
 })
 export class TableColumnSelectComponent implements TableColumnComponent<TableColumnSelectConfig>, OnInit {
-    private tableEditableService = inject(TableEditableService);
+    protected tableEditableService = inject(TableEditableService);
 
     @Input() config?: TableColumnSelectConfig;
     @Input() context?: TableColumnContext;

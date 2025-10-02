@@ -21,8 +21,8 @@ const context = {
     `,
 })
 class TestComponent {
-    private injector = inject(Injector);
-    private datasourceService = inject(DatasourceService);
+    protected injector = inject(Injector);
+    protected datasourceService = inject(DatasourceService);
 
     @Input() datasourceDataProp = '';
     @Input() dependable = false;

@@ -18,9 +18,9 @@ import { UrlHtmlRendererResponse } from '../html-renderer/types';
     ],
 })
 export class UrlHtmlRendererDirective implements HtmlRendererProvider, OnChanges {
-    private injector = inject(Injector);
-    private http = inject(HttpClient);
-    private ajaxActionService = inject(AjaxActionService);
+    protected injector = inject(Injector);
+    protected http = inject(HttpClient);
+    protected ajaxActionService = inject(AjaxActionService);
 
     @Input() urlHtml = '';
     @Input() urlMethod = 'GET';

@@ -13,7 +13,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRe
     },
 })
 export class LinkComponent {
-    private element = inject(ElementRef);
+    protected element = inject(ElementRef);
 
     @Input() icon?: string;
 

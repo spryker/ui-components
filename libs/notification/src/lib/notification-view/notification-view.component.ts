@@ -18,7 +18,7 @@ import { NotificationInputs } from '../notification-inputs';
     providers: [ApplyContextsDirective],
 })
 export class NotificationViewComponent extends NotificationInputs implements OnInit {
-    private applyContextsDirective = inject(ApplyContextsDirective);
+    protected applyContextsDirective = inject(ApplyContextsDirective);
 
     @ViewChild(NzAlertComponent) nzAlertComponent?: NzAlertComponent;
 

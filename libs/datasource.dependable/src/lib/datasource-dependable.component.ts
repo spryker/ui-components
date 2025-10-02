@@ -18,7 +18,7 @@ import { DatasourceDependableElement } from './types';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatasourceDependableComponent {
-    private datasourceDependableElementsService = inject(DatasourceDependableElementsService);
+    protected datasourceDependableElementsService = inject(DatasourceDependableElementsService);
 
     @Input() @HostBinding('attr.id') id = '';
 

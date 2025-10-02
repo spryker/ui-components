@@ -33,8 +33,8 @@ import { TableSyncStateConfig } from './types';
     ],
 })
 export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableSyncStateConfig> {
-    private urlPersistenceStrategy = inject(UrlPersistenceStrategy);
-    private cdr = inject(ChangeDetectorRef);
+    protected urlPersistenceStrategy = inject(UrlPersistenceStrategy);
+    protected cdr = inject(ChangeDetectorRef);
 
     name = 'syncStateUrl';
     tableFeatureLocation = TableFeatureLocation;

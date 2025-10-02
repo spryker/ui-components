@@ -26,7 +26,7 @@ import { IconMaximizeModule, IconMinimizeModule, IconRemoveModule } from '@spryk
     },
 })
 export class DrawerWrapperComponent implements OnChanges {
-    private cdr = inject(ChangeDetectorRef);
+    protected cdr = inject(ChangeDetectorRef);
 
     @Input() closeable = true;
     @Input() resizable = true;

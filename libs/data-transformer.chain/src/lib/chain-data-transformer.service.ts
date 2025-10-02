@@ -9,7 +9,7 @@ import { ChainDataTransformerConfig, ChainDataTransformerData, ChainDataTransfor
 export class ChainDataTransformerService
     implements DataTransformer<ChainDataTransformerData, ChainDataTransformerDataT>
 {
-    private dataTransformerService = inject(DataTransformerService);
+    protected dataTransformerService = inject(DataTransformerService);
 
     transform(
         data: ChainDataTransformerData,

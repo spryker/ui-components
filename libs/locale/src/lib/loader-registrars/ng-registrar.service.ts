@@ -18,7 +18,7 @@ export interface NgLocaleData {
 
 @Injectable({ providedIn: 'root' })
 export class NgRegistrarService implements LocaleLoaderRegistrar<NgLocaleData> {
-    private localeService = inject(LocaleService);
+    protected localeService = inject(LocaleService);
 
     registerLocale(locale: string, { data, extraData }: NgLocaleData): Observable<unknown> {
         const isDefault = locale === this.localeService.defaultLocale;

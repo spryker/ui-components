@@ -13,8 +13,8 @@ import { TimeDurationString, TimeDurationData } from './types';
     providedIn: 'root',
 })
 export class TimeDurationService {
-    private dateService = inject(DateService);
-    private config = inject(TimeDurationConfig);
+    protected dateService = inject(DateService);
+    protected config = inject(TimeDurationConfig);
 
     parse(interval: TimeDurationString): TimeDuration {
         const durationComponents = interval.split(this.config.separator);

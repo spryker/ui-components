@@ -59,7 +59,7 @@ export class TableColumnAutocompleteConfig {
     providers: [TableEditableService],
 })
 export class TableColumnAutocompleteComponent implements TableColumnComponent<TableColumnAutocompleteConfig>, OnInit {
-    private tableEditableService = inject(TableEditableService);
+    protected tableEditableService = inject(TableEditableService);
 
     @Input() config?: TableColumnAutocompleteConfig;
     @Input() context?: TableColumnContext;

@@ -35,7 +35,7 @@ import { isNgWebComponent, isNgWebComponentOf, NgWebComponent } from '../ng-web-
 @Directive({ standalone: false, selector: '[spySelectComponents]' })
 export class SelectComponentsDirective<T = unknown> implements OnChanges, OnDestroy {
     private elemRef = inject<ElementRef<Element>>(ElementRef);
-    private observer = inject(ContentObserver);
+    protected observer = inject(ContentObserver);
 
     /**
      * Angular component type that {@link NgWebComponent} should be instance of

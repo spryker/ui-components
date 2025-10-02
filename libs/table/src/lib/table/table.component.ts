@@ -94,17 +94,17 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () => shareReplay(
     },
 })
 export class CoreTableComponent implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy {
-    private cdr = inject(ChangeDetectorRef);
-    private vcr = inject(ViewContainerRef);
-    private iterableDiffers = inject(IterableDiffers);
-    private dataConfiguratorService = inject(TableDataConfiguratorService);
-    private columnsResolverService = inject(TableColumnsResolverService);
-    private tableActionsService = inject(TableActionsService);
-    private featureLoaderService = inject(TableFeatureLoaderService);
-    private configService = inject(TableConfigService);
-    private datasourceService = inject(TableDatasourceService);
-    private tableFeaturesRendererService = inject(TableFeaturesRendererService);
-    private internalTableLocatorService = inject(InternalTableLocatorService);
+    protected cdr = inject(ChangeDetectorRef);
+    protected vcr = inject(ViewContainerRef);
+    protected iterableDiffers = inject(IterableDiffers);
+    protected dataConfiguratorService = inject(TableDataConfiguratorService);
+    protected columnsResolverService = inject(TableColumnsResolverService);
+    protected tableActionsService = inject(TableActionsService);
+    protected featureLoaderService = inject(TableFeatureLoaderService);
+    protected configService = inject(TableConfigService);
+    protected datasourceService = inject(TableDatasourceService);
+    protected tableFeaturesRendererService = inject(TableFeaturesRendererService);
+    protected internalTableLocatorService = inject(InternalTableLocatorService);
     injector = inject(Injector);
     parentTable = inject(CoreTableComponent, { optional: true, skipSelf: true })!;
 

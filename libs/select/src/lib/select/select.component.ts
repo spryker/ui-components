@@ -56,10 +56,10 @@ import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from
 export class SelectComponent
     implements DatasourceTriggerElement, DatasourceDependableElement, OnInit, OnChanges, OnDestroy, AfterViewInit
 {
-    private injector = inject(Injector);
-    private datasourceService = inject(DatasourceService);
-    private i18nService = inject(I18nService);
-    private cdr = inject(ChangeDetectorRef);
+    protected injector = inject(Injector);
+    protected datasourceService = inject(DatasourceService);
+    protected i18nService = inject(I18nService);
+    protected cdr = inject(ChangeDetectorRef);
 
     @ViewChild('selectRef') selectRef?: ElementRef<HTMLSelectElement>;
     @ViewChild('selectContainerRef') selectContainerRef?: NzSelectComponent;

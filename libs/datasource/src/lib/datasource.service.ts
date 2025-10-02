@@ -8,8 +8,8 @@ import { Datasource, DatasourceConfig, DatasourceRegistry, DatasourceType, Datas
     providedIn: 'root',
 })
 export class DatasourceService {
-    private dataTransformerService = inject(DataTransformerService);
-    private dataSourceTypes = inject(DatasourceTypesToken, {
+    protected dataTransformerService = inject(DataTransformerService);
+    protected dataSourceTypes = inject(DatasourceTypesToken, {
         optional: true,
     });
 

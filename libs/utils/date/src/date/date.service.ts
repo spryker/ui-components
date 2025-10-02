@@ -7,7 +7,7 @@ import { DateAdapter } from './types';
     providedIn: 'root',
 })
 export class DateService implements DateAdapter {
-    private dateAdapter = inject(DateAdapterToken);
+    protected dateAdapter = inject(DateAdapterToken);
 
     add = this.dateAdapter.add;
     sub = this.dateAdapter.sub;

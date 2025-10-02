@@ -24,10 +24,10 @@ import { InternalIconService } from './internal-icon.service';
     encapsulation: ViewEncapsulation.None,
 })
 export class IconComponent implements OnInit, OnChanges, OnDestroy {
-    private cdr = inject(ChangeDetectorRef);
-    private renderer = inject(Renderer2);
+    protected cdr = inject(ChangeDetectorRef);
+    protected renderer = inject(Renderer2);
     private elemRef = inject<ElementRef<HTMLElement>>(ElementRef);
-    private iconService = inject(InternalIconService);
+    protected iconService = inject(InternalIconService);
 
     @Input() name?: string;
 

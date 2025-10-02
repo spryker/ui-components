@@ -14,7 +14,7 @@ class MockPersistenceStrategyTypeService implements PersistenceStrategy {
 
 @Injectable()
 class MockPersistenceStrategyService {
-    private injector = inject(Injector);
+    protected injector = inject(Injector);
 
     select = jest.fn().mockReturnValue(this.injector.get(MockPersistenceStrategyTypeService));
 

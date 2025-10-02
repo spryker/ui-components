@@ -34,7 +34,7 @@ import { TableSelectableConfig, TableSelectionRow, TableSelectionChangeEvent } f
     ],
 })
 export class TableSelectableFeatureComponent extends TableFeatureComponent<TableSelectableConfig> implements OnDestroy {
-    private cdr = inject(ChangeDetectorRef);
+    protected cdr = inject(ChangeDetectorRef);
 
     name = 'itemSelection';
     tableFeatureLocation = TableFeatureLocation;

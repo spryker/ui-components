@@ -15,50 +15,50 @@ env:
     FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
 
 jobs:
-#    build-and-verify:
-#        name: Format check / Lint code / Unit Tests / Build (non-releasable branches)
-#        runs-on: ubuntu-latest
-#        steps:
-#            - name: Checkout code
-#              uses: actions/checkout@v3
-#              with:
-#                  fetch-depth: 0
-#
-#            - name: Setup Node.js
-#              uses: actions/setup-node@v3
-#              with:
-#                  node-version: ${{ env.NODE_VERSION }}
-#                  cache: 'npm'
-#
-#            - name: Fetch Next branch
-#              run: git fetch origin next
-#
-#            - name: Install dependencies
-#              run: npm ci
-#
-#            - name: Run format check
-#              run: npm run format:check -- --base=origin/next
-#
-#            - name: Run lint
-#              run: |
-#                  npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
-#                  npm run stylelint
-#
-#            - name: Run tests
-#              run: COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
-#
-#            - name: Build non-libs
-#              run: npm run build-non-libs
-#
-#            - name: Build affected libs
-#              run: npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
+    #    build-and-verify:
+    #        name: Format check / Lint code / Unit Tests / Build (non-releasable branches)
+    #        runs-on: ubuntu-latest
+    #        steps:
+    #            - name: Checkout code
+    #              uses: actions/checkout@v3
+    #              with:
+    #                  fetch-depth: 0
+    #
+    #            - name: Setup Node.js
+    #              uses: actions/setup-node@v3
+    #              with:
+    #                  node-version: ${{ env.NODE_VERSION }}
+    #                  cache: 'npm'
+    #
+    #            - name: Fetch Next branch
+    #              run: git fetch origin next
+    #
+    #            - name: Install dependencies
+    #              run: npm ci
+    #
+    #            - name: Run format check
+    #              run: npm run format:check -- --base=origin/next
+    #
+    #            - name: Run lint
+    #              run: |
+    #                  npm run affected:lint -- --base=origin/next --parallel || npm run affected:lint -- --parallel
+    #                  npm run stylelint
+    #
+    #            - name: Run tests
+    #              run: COVERAGE=true npm run affected:test -- --base=origin/next --parallel || npm run affected:test -- --parallel
+    #
+    #            - name: Build non-libs
+    #              run: npm run build-non-libs
+    #
+    #            - name: Build affected libs
+    #              run: npm run affected:build -- --base=origin/next --parallel || npm run affected:build -- --parallel
 
     deploy:
         name: Deploy
-#        needs: build-and-verify
-#        if: github.ref_name == 'alpha'
-#            || github.ref_name == 'beta'
-#            || github.ref_name == 'rc'
+        #        needs: build-and-verify
+        #        if: github.ref_name == 'alpha'
+        #            || github.ref_name == 'beta'
+        #            || github.ref_name == 'rc'
         runs-on: ubuntu-latest
         env:
             GIT_EMAIL: ${{ vars.GIT_EMAIL }}
@@ -81,11 +81,6 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-#            -   name: Verify npm authentication
-#                run: |
-#                    npm whoami --registry=https://registry.npmjs.org
-#                    echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-
             - name: Build
               run: npm run build
 
@@ -94,11 +89,11 @@ jobs:
                   git config user.email "$GIT_EMAIL"
                   git config user.name "$GIT_USER"
 
-            -   name: Set up NPM token
-                run: |
-                    npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-                env:
-                    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            - name: Set up NPM token
+              run: |
+                  npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Release (pre-release)
               if: success()

@@ -7,37 +7,19 @@ import {
     ViewEncapsulation,
     inject,
 } from '@angular/core';
-import {
-    ColumnTypeOption,
-    ColumnTypeOptionsType,
-    TableColumnComponent,
-    TableColumnContext,
-    TableColumnTypeComponent,
-} from '@spryker/table';
+import { TableColumnComponent, TableColumnContext } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnInputConfig {
-    @ColumnTypeOption()
     type = 'text';
-    @ColumnTypeOption()
     value?: any;
-    @ColumnTypeOption()
     placeholder = '';
-    @ColumnTypeOption()
     prefix?: string;
-    @ColumnTypeOption()
     suffix?: string;
-    @ColumnTypeOption()
     outerPrefix?: string;
-    @ColumnTypeOption()
     outerSuffix?: string;
-    @ColumnTypeOption({
-        type: ColumnTypeOptionsType.AnyOf,
-        value: [String, Boolean],
-    })
     editableError?: string | boolean;
-    @ColumnTypeOption()
     attrs?: Record<string, string>;
 }
 
@@ -50,7 +32,6 @@ export class TableColumnInputConfig {
     encapsulation: ViewEncapsulation.None,
     providers: [TableEditableService],
 })
-@TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent implements TableColumnComponent<TableColumnInputConfig>, OnInit {
     private tableEditableService = inject(TableEditableService);
 

@@ -8,21 +8,16 @@ import {
     OnChanges,
 } from '@angular/core';
 import { TableColumnComponent, TableColumn, TableColumnContext, TableColumnTypeDef } from '../table/table';
-import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
 
 export class TableColumnListConfigInner {
-    @ColumnTypeOption()
     type?: string;
-    @ColumnTypeOption()
     typeOptions?: object;
-    @ColumnTypeOption()
     typeChildren?: TableColumnListConfigInner[];
 }
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnListConfig extends TableColumnListConfigInner {
-    @ColumnTypeOption()
     limit? = 2;
 }
 
@@ -34,7 +29,6 @@ export class TableColumnListConfig extends TableColumnListConfigInner {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })
-@TableColumnTypeComponent(TableColumnListConfig)
 export class TableColumnListComponent implements TableColumnComponent<TableColumnListConfig>, OnInit, OnChanges {
     @Input() config?: TableColumnListConfig;
     @Input() context?: TableColumnContext;

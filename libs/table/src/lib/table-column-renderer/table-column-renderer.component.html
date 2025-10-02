@@ -4,8 +4,10 @@
     @if (template) {
         <ng-container [ngTemplateOutlet]="template" [ngTemplateOutletContext]="fullContext"></ng-container>
     } @else {
-        @if (config?.type) {
-            <orc-orchestrator [config]="itemConfig" [context]="fullContext"></orc-orchestrator>
+        @if (config?.type && dynamicComponent) {
+            <ng-container
+                *ngComponentOutlet="dynamicComponent; inputs: componentInputs; injector: componentInjector"
+            ></ng-container>
         } @else {
             {{ displayValue }}
         }

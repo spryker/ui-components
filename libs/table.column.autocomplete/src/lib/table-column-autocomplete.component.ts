@@ -10,86 +10,42 @@ import {
 import { AutocompleteValue } from '@spryker/autocomplete';
 import { DataTransformerConfig, DataTransformerType } from '@spryker/data-transformer';
 import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
-import {
-    ColumnTypeOption,
-    ColumnTypeOptionsType,
-    TableColumnComponent,
-    TableColumnContext,
-    TableColumnTypeComponent,
-} from '@spryker/table';
+import { TableColumnComponent, TableColumnContext } from '@spryker/table';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableEditableService } from '@spryker/table.feature.editable';
 
 @Injectable({ providedIn: 'root' })
 export class ColumnAutocompleteDataTransformer implements DataTransformerConfig {
-    @ColumnTypeOption({ required: true })
     type!: DataTransformerType;
     [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
 export class ColumnAutocompleteDatasource implements DatasourceConfig {
-    @ColumnTypeOption({ required: true })
     type!: DatasourceType;
-    @ColumnTypeOption()
     transform?: ColumnAutocompleteDataTransformer;
     [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
 export class ColumnAutocompleteOptionItem {
-    @ColumnTypeOption({ required: true })
     title?: string;
-    @ColumnTypeOption({
-        required: true,
-        type: ColumnTypeOptionsType.AnyOf,
-        value: [String, Number],
-    })
     value?: string | number;
-    @ColumnTypeOption()
     isDisabled? = false;
 }
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnAutocompleteConfig {
-    @ColumnTypeOption({
-        required: true,
-        type: ColumnTypeOptionsType.AnyOf,
-        value: [
-            { type: ColumnTypeOptionsType.ArrayOf, value: String },
-            {
-                type: ColumnTypeOptionsType.ArrayOf,
-                value: Number,
-            },
-            {
-                type: ColumnTypeOptionsType.ArrayOf,
-                value: ColumnAutocompleteOptionItem,
-            },
-        ],
-    })
     options: AutocompleteValue[] = [];
-    @ColumnTypeOption()
     value?: any;
-    @ColumnTypeOption()
     type = 'text';
-    @ColumnTypeOption()
     placeholder? = '';
-    @ColumnTypeOption()
     prefix?: string;
-    @ColumnTypeOption()
     suffix?: string;
-    @ColumnTypeOption()
     outerPrefix?: string;
-    @ColumnTypeOption()
     outerSuffix?: string;
-    @ColumnTypeOption({
-        type: ColumnTypeOptionsType.AnyOf,
-        value: [String, Boolean],
-    })
     editableError?: string | boolean;
-    @ColumnTypeOption()
     attrs?: Record<string, string>;
-    @ColumnTypeOption()
     datasource?: ColumnAutocompleteDatasource;
 }
 
@@ -102,7 +58,6 @@ export class TableColumnAutocompleteConfig {
     encapsulation: ViewEncapsulation.None,
     providers: [TableEditableService],
 })
-@TableColumnTypeComponent(TableColumnAutocompleteConfig)
 export class TableColumnAutocompleteComponent implements TableColumnComponent<TableColumnAutocompleteConfig>, OnInit {
     private tableEditableService = inject(TableEditableService);
 

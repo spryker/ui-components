@@ -10,7 +10,6 @@
                     "error",
                     {
                         "enforceBuildableLibDependency": true,
-                        "allow": ["@orchestrator/core/testing"],
                         "depConstraints": [
                             {
                                 "sourceTag": "pkg:primary",

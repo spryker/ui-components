@@ -10,90 +10,44 @@ import {
 import { DataTransformerConfig, DataTransformerType } from '@spryker/data-transformer';
 import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
 import { SelectOption, SelectValue, SelectValueSelected } from '@spryker/select';
-import {
-    ColumnTypeOption,
-    ColumnTypeOptionsType,
-    TableColumnComponent,
-    TableColumnContext,
-    TableColumnTypeComponent,
-} from '@spryker/table';
+import { TableColumnComponent, TableColumnContext } from '@spryker/table';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableEditableService } from '@spryker/table.feature.editable';
 
 @Injectable({ providedIn: 'root' })
 export class ColumnSelectDataTransformer implements DataTransformerConfig {
-    @ColumnTypeOption({ required: true })
     type!: DataTransformerType;
     [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
 export class ColumnSelectDatasource implements DatasourceConfig {
-    @ColumnTypeOption({ required: true })
     type!: DatasourceType;
-    @ColumnTypeOption()
     transform?: ColumnSelectDataTransformer;
     [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
 export class ColumnSelectOptionItem {
-    @ColumnTypeOption({ required: true })
     title = '';
-    @ColumnTypeOption({
-        required: true,
-        type: ColumnTypeOptionsType.AnyOf,
-        value: [String, Number],
-    })
     value: SelectValue;
-    @ColumnTypeOption()
     isDisabled? = false;
 }
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnSelectConfig {
-    @ColumnTypeOption({
-        required: true,
-        type: ColumnTypeOptionsType.AnyOf,
-        value: [
-            { type: ColumnTypeOptionsType.ArrayOf, value: String },
-            {
-                type: ColumnTypeOptionsType.ArrayOf,
-                value: Number,
-            },
-            {
-                type: ColumnTypeOptionsType.ArrayOf,
-                value: ColumnSelectOptionItem,
-            },
-        ],
-    })
     options: (SelectOption | ColumnSelectOptionItem)[] = [];
-    @ColumnTypeOption()
     value?: SelectValue;
-    @ColumnTypeOption()
     multiple? = false;
-    @ColumnTypeOption()
     search? = false;
-    @ColumnTypeOption()
     disableClear? = false;
-    @ColumnTypeOption()
     placeholder? = '';
-    @ColumnTypeOption()
     showSelectAll? = false;
-    @ColumnTypeOption()
     selectAllTitle?: string;
-    @ColumnTypeOption()
     noOptionsText?: string;
-    @ColumnTypeOption({
-        type: ColumnTypeOptionsType.AnyOf,
-        value: [String, Boolean],
-    })
     editableError?: string | boolean;
-    @ColumnTypeOption()
     datasource?: ColumnSelectDatasource;
-    @ColumnTypeOption()
     tags? = false;
-    @ColumnTypeOption()
     tagView? = false;
 }
 
@@ -109,7 +63,6 @@ export class TableColumnSelectConfig {
         class: 'spy-table-column-select',
     },
 })
-@TableColumnTypeComponent(TableColumnSelectConfig)
 export class TableColumnSelectComponent implements TableColumnComponent<TableColumnSelectConfig>, OnInit {
     private tableEditableService = inject(TableEditableService);
 

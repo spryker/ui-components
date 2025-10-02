@@ -10,32 +10,19 @@ import {
     inject,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService, DatasourceType } from '@spryker/datasource';
-import {
-    ColumnTypeOption,
-    ColumnTypeOptionsType,
-    TableColumnComponent,
-    TableColumnContext,
-    TableColumnTypeComponent,
-    TableDataRow,
-} from '@spryker/table';
+import { TableColumnComponent, TableColumnContext, TableDataRow } from '@spryker/table';
 import { ContextService, TypedSimpleChanges } from '@spryker/utils';
 import { merge, of, ReplaySubject } from 'rxjs';
 import { delay, distinctUntilChanged, map, shareReplay, switchMap, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnDynamicDatasourceConfig implements DatasourceConfig {
-    @ColumnTypeOption({
-        required: true,
-        type: ColumnTypeOptionsType.TypeOf,
-        value: String,
-    })
     type!: DatasourceType;
     [k: string]: unknown;
 }
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnDynamicConfig {
-    @ColumnTypeOption({ required: true })
     datasource!: TableColumnDynamicDatasourceConfig;
 }
 
@@ -48,7 +35,6 @@ export class TableColumnDynamicConfig {
     encapsulation: ViewEncapsulation.None,
     host: { class: 'spy-table-column-dynamic' },
 })
-@TableColumnTypeComponent(TableColumnDynamicConfig)
 export class TableColumnDynamicComponent implements TableColumnComponent<TableColumnDynamicConfig>, OnChanges {
     private injector = inject(Injector);
     private datasourceService = inject(DatasourceService);

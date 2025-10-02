@@ -8,7 +8,6 @@ import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { ContextModule, ContextService, DefaultContextSerializationModule, InvokeModule } from '@spryker/utils';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '../../../testing/src';
-import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { TableColumnListConfig } from '../table-column-list/table-column-list.component';
 import { TableFeatureComponent } from '../table-feature';
 import { TableModule } from '../table.module';
@@ -66,12 +65,10 @@ const tableConfig: TableConfig = {
 class TableColumnTestConfig {
     private contextService = inject(ContextService);
 
-    @ColumnTypeOption()
     text? = this.contextService.wrap('displayValue');
 }
 
 @Component({ standalone: false, selector: 'spy-table-column-test', template: ` {{ config.text | context: context }} ` })
-@TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent implements TableColumnComponent<TableColumnTestConfig> {
     @Input() items?: any;
     @Input() config?: TableColumnTestConfig;

@@ -11,12 +11,7 @@ import {
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { ContextModule, ContextService, DefaultContextSerializationModule } from '@spryker/utils';
-import { LayoutFlatHostComponent, LayoutFlatHostModule } from '@orchestrator/layout';
-import { OrchestratorCoreModule } from '@orchestrator/core';
-
-import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import {
     ColTplDirective,
     TableColumn,
@@ -26,6 +21,7 @@ import {
     TableDataRow,
 } from '../table';
 import { TableColumnRendererComponent } from './table-column-renderer.component';
+import { provideTableColumnComponents } from '@spryker/table';
 
 const mockConfig: TableColumn = {
     id: 'name',
@@ -40,7 +36,6 @@ const mockData: TableDataRow = {
 
 @Injectable({ providedIn: 'root' })
 class TableColumnTestConfig {
-    @ColumnTypeOption()
     text = inject(ContextService).wrap('displayValue');
 }
 
@@ -49,7 +44,6 @@ class TableColumnTestConfig {
     selector: 'spy-table-column-test',
     template: ` {{ config.text | context: context }} `,
 })
-@TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent implements TableColumnComponent<TableColumnTestConfig> {
     @Input() items?: any;
     @Input() config?: TableColumnTestConfig;
@@ -89,15 +83,12 @@ describe('TableColumnRendererComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [OrchestratorCoreModule, LayoutFlatHostModule, ContextModule, DefaultContextSerializationModule],
+            imports: [ContextModule, DefaultContextSerializationModule],
             declarations: [TableColumnRendererComponent, ColTplDirective, TableColumnTestComponent, TestHostComponent],
             providers: [
-                ...(OrchestratorCoreModule.forRoot().providers || []),
-                ...OrchestratorCoreModule.registerComponents({
+                provideTableColumnComponents({
                     test: TableColumnTestComponent,
-                    'layout-flat': LayoutFlatHostComponent,
-                }),
-                ...(LayoutFlatHostModule.forRoot().providers || []),
+                } as any),
             ],
             schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: true },

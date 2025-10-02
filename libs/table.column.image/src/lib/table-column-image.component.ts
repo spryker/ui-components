@@ -1,14 +1,12 @@
 import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Injectable, inject } from '@angular/core';
-import { ColumnTypeOption, TableColumnTypeComponent, TableColumnComponent, TableColumnContext } from '@spryker/table';
+import { TableColumnComponent, TableColumnContext } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnImageConfig {
     private contextService = inject(ContextService);
 
-    @ColumnTypeOption()
     src? = this.contextService.wrap('displayValue');
-    @ColumnTypeOption()
     alt? = '';
 }
 
@@ -20,7 +18,6 @@ export class TableColumnImageConfig {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })
-@TableColumnTypeComponent(TableColumnImageConfig)
 export class TableColumnImageComponent implements TableColumnComponent<TableColumnImageConfig> {
     @Input() config?: TableColumnImageConfig;
     @Input() context?: TableColumnContext;

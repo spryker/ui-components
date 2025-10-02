@@ -49,14 +49,14 @@ jobs:
 
             - name: Set up NPM token
               env:
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NPM_TOKEN: ${{ env.NPM_TOKEN }}
               run: |
                   npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
             - name: Release
               if: success()
               env:
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NPM_TOKEN: ${{ env.NPM_TOKEN }}
               run: |
                   if [[ "${{ github.ref }}" == refs/heads/republish/master ]]; then
                    npm run release from-package

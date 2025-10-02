@@ -1,4 +1,5 @@
 {
+    "$schema": "node_modules/lerna/schemas/lerna-schema.json",
     "packages": ["libs/*"],
     "version": "independent",
     "npmClient": "npm",
@@ -7,21 +8,24 @@
             "conventionalCommits": true,
             "contents": "dist",
             "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
-            "message": "[skip ci] chore(release): publish"
+            "message": "[skip ci] chore(release): publish",
+            "verifyAccess": true,
+            "verifyRegistry": true,
+            "allowBranch": [
+                "master",
+                "master_test",
+                "republish/master",
+                "next",
+                "republish/next",
+                "beta",
+                "republish/beta",
+                "alpha",
+                "republish/alpha",
+                "rc",
+                "republish/rc"
+            ]
         }
     },
-    "allowBranch": [
-        "master",
-        "master_test",
-        "republish/master",
-        "next",
-        "republish/next",
-        "beta",
-        "republish/beta",
-        "alpha",
-        "republish/alpha",
-        "rc",
-        "republish/rc"
-    ],
-    "useNx": true
+    "useNx": true,
+    "useWorkspaces": true
 }

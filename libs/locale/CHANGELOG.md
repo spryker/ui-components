@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/spryker/ui-components/compare/@spryker/locale@2.1.3...@spryker/locale@2.1.4) (2025-10-02)
+
+**Note:** Version bump only for package @spryker/locale
+
+
+
+
+
+## [2.1.3](https://github.com/spryker/ui-components/compare/@spryker/locale@2.1.2...@spryker/locale@2.1.3) (2025-10-02)
+
+**Note:** Version bump only for package @spryker/locale
+
+
+
+
+
+## [2.1.2](https://github.com/spryker/ui-components/compare/@spryker/locale@2.1.1...@spryker/locale@2.1.2) (2025-10-02)
+
+**Note:** Version bump only for package @spryker/locale
+
+
+
+
+
+## [2.1.1](https://github.com/spryker/ui-components/compare/@spryker/locale@2.1.0...@spryker/locale@2.1.1) (2025-10-02)
+
+**Note:** Version bump only for package @spryker/locale
+
+
+
+
+
 # [2.1.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/locale@2.0.8...@spryker/locale@2.1.0) (2025-09-19)
 
 

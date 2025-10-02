@@ -9,23 +9,8 @@
             "contents": "dist",
             "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],
             "message": "[skip ci] chore(release): publish",
-            "verifyAccess": true,
-            "verifyRegistry": true,
-            "allowBranch": [
-                "master",
-                "master_test",
-                "republish/master",
-                "next",
-                "republish/next",
-                "beta",
-                "republish/beta",
-                "alpha",
-                "republish/alpha",
-                "rc",
-                "republish/rc"
-            ]
+            "allowBranch": "*"
         }
     },
-    "useNx": true,
-    "useWorkspaces": true
+    "useNx": true
 }

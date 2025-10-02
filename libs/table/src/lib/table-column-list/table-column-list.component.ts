@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { TableColumnComponent, TableColumn, TableColumnContext, TableColumnTypeDef } from '../table/table';
 import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
+import { TableColumnTypeComponent } from '../column-type';
 
 export class TableColumnListConfigInner {
     type?: string;
@@ -29,6 +30,7 @@ export class TableColumnListConfig extends TableColumnListConfigInner {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })
+@TableColumnTypeComponent(TableColumnListConfig)
 export class TableColumnListComponent implements TableColumnComponent<TableColumnListConfig>, OnInit, OnChanges {
     @Input() config?: TableColumnListConfig;
     @Input() context?: TableColumnContext;

@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ContextService } from '@spryker/utils';
 import { TableColumn, TableColumnTplContext, TableColumnTypeDef, TableDataRow } from '../table/table';
-import { TableColumnComponentsToken } from '../column-type';
+import { DefaultConfigData, TableColumnComponentsToken } from '../column-type';
 import { TableColumnLocalContextToken } from '../table/table-column.service';
 
 export interface TableColumnConfigItem {
@@ -130,25 +130,7 @@ export class TableColumnRendererComponent implements OnChanges {
         }
 
         this.itemConfig = this.configColumnToItem(this.config as TableColumnTypeDef);
-
-        this.dynamicComponent = this.components[this.config.type];
-
-        if (this.dynamicComponent) {
-            this.componentInputs = {
-                config: this.itemConfig?.config || this.config?.typeOptions,
-                context: this.fullContext,
-                items: this.itemConfig?.items || [],
-            };
-            this.componentInjector = Injector.create({
-                parent: this.injector,
-                providers: [
-                    {
-                        provide: TableColumnLocalContextToken,
-                        useValue: () => this.fullContext,
-                    },
-                ],
-            });
-        }
+        this.mapDynamicComponentsData();
     }
 
     private mapConfig(config?: TableColumn): TableColumn | undefined {
@@ -189,5 +171,44 @@ export class TableColumnRendererComponent implements OnChanges {
             config: config.typeOptions,
             items: config.typeChildren?.map((c) => this.configColumnToItem(c)),
         };
+    }
+
+    private mapDynamicComponentsData(): void {
+        this.dynamicComponent = this.components[this.config.type];
+
+        if (!this.dynamicComponent) {
+            return;
+        }
+
+        const componentMetaClass = this.dynamicComponent[DefaultConfigData];
+        let config = this.itemConfig?.config || this.config?.typeOptions || {};
+
+        if (componentMetaClass) {
+            const childInjector = Injector.create({
+                parent: this.injector,
+                providers: [
+                    {
+                        provide: componentMetaClass,
+                        useClass: componentMetaClass,
+                    },
+                ],
+            });
+            config = Object.assign(childInjector.get(componentMetaClass), config);
+        }
+
+        this.componentInputs = {
+            config,
+            context: this.fullContext,
+            items: this.itemConfig?.items || [],
+        };
+        this.componentInjector = Injector.create({
+            parent: this.injector,
+            providers: [
+                {
+                    provide: TableColumnLocalContextToken,
+                    useValue: () => this.fullContext,
+                },
+            ],
+        });
     }
 }

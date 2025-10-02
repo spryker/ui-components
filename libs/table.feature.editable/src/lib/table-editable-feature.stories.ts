@@ -7,7 +7,13 @@ import { MockHttpModule, setMockHttp } from '@spryker/internal-utils';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { NotificationModule } from '@spryker/notification';
-import { TableColumnComponent, TableColumnContext, TableColumns, TableModule } from '@spryker/table';
+import {
+    TableColumnComponent,
+    TableColumnContext,
+    TableColumns,
+    TableColumnTypeComponent,
+    TableModule,
+} from '@spryker/table';
 import { MockTableDatasourceConfig, MockTableDatasourceService, TableDataMockGenerator } from '@spryker/table/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
@@ -57,6 +63,7 @@ class EditColumnConfig {
     `,
     providers: [TableEditableService],
 })
+@TableColumnTypeComponent(EditColumnConfig)
 class EditColumnComponent implements TableColumnComponent<EditColumnConfig>, OnInit {
     protected tableEditableService = inject(TableEditableService);
 

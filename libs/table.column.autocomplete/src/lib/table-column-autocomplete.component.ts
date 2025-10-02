@@ -10,7 +10,7 @@ import {
 import { AutocompleteValue } from '@spryker/autocomplete';
 import { DataTransformerConfig, DataTransformerType } from '@spryker/data-transformer';
 import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
-import { TableColumnComponent, TableColumnContext } from '@spryker/table';
+import { TableColumnComponent, TableColumnContext, TableColumnTypeComponent } from '@spryker/table';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableEditableService } from '@spryker/table.feature.editable';
 
@@ -58,6 +58,7 @@ export class TableColumnAutocompleteConfig {
     encapsulation: ViewEncapsulation.None,
     providers: [TableEditableService],
 })
+@TableColumnTypeComponent(TableColumnAutocompleteConfig)
 export class TableColumnAutocompleteComponent implements TableColumnComponent<TableColumnAutocompleteConfig>, OnInit {
     protected tableEditableService = inject(TableEditableService);
 

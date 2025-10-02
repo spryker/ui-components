@@ -10,7 +10,7 @@ import {
 import { DataTransformerConfig, DataTransformerType } from '@spryker/data-transformer';
 import { DatasourceConfig, DatasourceType } from '@spryker/datasource';
 import { SelectOption, SelectValue, SelectValueSelected } from '@spryker/select';
-import { TableColumnComponent, TableColumnContext } from '@spryker/table';
+import { TableColumnComponent, TableColumnContext, TableColumnTypeComponent } from '@spryker/table';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableEditableService } from '@spryker/table.feature.editable';
 
@@ -63,6 +63,7 @@ export class TableColumnSelectConfig {
         class: 'spy-table-column-select',
     },
 })
+@TableColumnTypeComponent(TableColumnSelectConfig)
 export class TableColumnSelectComponent implements TableColumnComponent<TableColumnSelectConfig>, OnInit {
     protected tableEditableService = inject(TableEditableService);
 

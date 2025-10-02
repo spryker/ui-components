@@ -14,6 +14,7 @@ import { TableModule } from '../table.module';
 import { TableColumnComponent, TableColumnContext, TableConfig, TableFeatureLocation } from './table';
 import { CoreTableComponent } from './table.component';
 import { provideHttpClient } from '@angular/common/http';
+import { TableColumnTypeComponent } from '../column-type';
 
 const tableDataGenerator: TableDataMockGenerator = (i) => ({
     col1: `col1 #${i}`,
@@ -68,7 +69,12 @@ class TableColumnTestConfig {
     text? = this.contextService.wrap('displayValue');
 }
 
-@Component({ standalone: false, selector: 'spy-table-column-test', template: ` {{ config.text | context: context }} ` })
+@Component({
+    standalone: false,
+    selector: 'spy-table-column-test',
+    template: ` {{ config.text | context: context }} `,
+})
+@TableColumnTypeComponent(TableColumnTestConfig)
 class TableColumnTestComponent implements TableColumnComponent<TableColumnTestConfig> {
     @Input() items?: any;
     @Input() config?: TableColumnTestConfig;

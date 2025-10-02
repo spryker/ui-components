@@ -7,7 +7,7 @@ import {
     ViewEncapsulation,
     inject,
 } from '@angular/core';
-import { TableColumnComponent, TableColumnContext } from '@spryker/table';
+import { TableColumnComponent, TableColumnContext, TableColumnTypeComponent } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
 @Injectable({ providedIn: 'root' })
@@ -32,6 +32,7 @@ export class TableColumnInputConfig {
     encapsulation: ViewEncapsulation.None,
     providers: [TableEditableService],
 })
+@TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent implements TableColumnComponent<TableColumnInputConfig>, OnInit {
     protected tableEditableService = inject(TableEditableService);
 

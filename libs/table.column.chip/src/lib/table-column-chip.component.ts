@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Injectable, inject } from '@angular/core';
-import { TableColumnComponent, TableColumnContext } from '@spryker/table';
+import { TableColumnTypeComponent, TableColumnComponent, TableColumnContext } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
@@ -19,6 +19,7 @@ export class TableColumnChipConfig {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })
+@TableColumnTypeComponent(TableColumnChipConfig)
 export class TableColumnChipComponent implements TableColumnComponent<TableColumnChipConfig> {
     @Input() config?: TableColumnChipConfig;
     @Input() context?: TableColumnContext;

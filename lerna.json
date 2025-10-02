@@ -15,7 +15,8 @@
                 "alpha",
                 "republish/alpha",
                 "rc",
-                "republish/rc"
+                "republish/rc",
+                "feature/frw-10984-migrate-spryker-ui-components-to-github-actions-from-buddy-ci_3"
             ],
             "contents": "dist",
             "ignoreChanges": ["*.md", "**/*.spec.ts", "**/*.stories.ts"],

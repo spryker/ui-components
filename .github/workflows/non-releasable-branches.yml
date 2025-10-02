@@ -73,19 +73,13 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v3
               with:
+                  token: ${{ env.NPM_TOKEN }}
                   node-version: ${{ env.NODE_VERSION }}
                   registry-url: 'https://registry.npmjs.org'
                   cache: 'npm'
 
             - name: Install dependencies
               run: npm ci
-
-            -   name: Set up NPM token
-                run: |
-                    echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-#                    npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-                env:
-                    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 #            -   name: Verify npm authentication
 #                run: |
@@ -100,6 +94,15 @@ jobs:
                   git config user.email "$GIT_EMAIL"
                   git config user.name "$GIT_USER"
 
+            -   name: Set up NPM token
+                run: |
+                    echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+                    npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+                env:
+                    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
             - name: Release (pre-release)
               if: success()
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: npm run release

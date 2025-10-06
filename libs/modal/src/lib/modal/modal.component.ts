@@ -24,7 +24,6 @@ import { ComponentModal, TemplateModalContext } from '../strategies';
     standalone: false,
     selector: 'spy-modal',
     templateUrl: './modal.component.html',
-    styleUrls: ['./modal.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })

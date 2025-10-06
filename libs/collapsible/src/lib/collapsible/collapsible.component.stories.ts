@@ -4,7 +4,11 @@ import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { CollapsibleComponent } from './collapsible.component';
 import { CollapsibleModule } from '../collapsible.module';
 
-@Component({ standalone: false, selector: 'spy-story', template: ` Collapse Content ` })
+@Component({
+    standalone: false,
+    selector: 'spy-story',
+    template: ` Collapse Content `
+})
 class StoryComponent {
     constructor() {
         console.info('Story component initialized');

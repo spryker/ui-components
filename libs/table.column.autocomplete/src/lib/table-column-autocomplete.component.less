@@ -1,7 +1,7 @@
-@import 'themes/default/theme.less';
+@import './table-column-autocomplete.component.theme.less';
 
-.@{table-column-autocomplete-prefix-cls} {
-    .@{form-item-prefix-cls} {
+.spy-table-column-autocomplete {
+    .ant-form-item {
         margin: 0;
 
         &-explain-text {
@@ -12,9 +12,9 @@
     }
 
     &--error-with-message {
-        .@{form-item-prefix-cls} {
+        .ant-form-item {
             &-has-error {
-                padding-top: @table-editable-feature-error-form-item-top-padding;
+                padding-top: @table-column-autocomplete-error-form-item-top-padding;
             }
         }
     }

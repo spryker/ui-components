@@ -24,7 +24,6 @@ import { NotificationConfig, NotificationContext, NotificationData } from '../ty
     standalone: false,
     selector: 'spy-notification',
     templateUrl: './notification.component.html',
-    styleUrls: ['./notification.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     host: {

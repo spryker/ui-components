@@ -1,6 +1,6 @@
 @import './pagination.component.theme.less';
 
-.@{pagination-prefix-cls} {
+.ant-pagination {
     &-wrapper {
         display: flex;
         justify-content: center;
@@ -56,7 +56,7 @@
             }
         }
 
-        .@{pagination-prefix-cls}-item-link {
+        .ant-pagination-item-link {
             border: none;
         }
     }
@@ -85,7 +85,7 @@
         &:hover {
             background: none;
 
-            .@{pagination-prefix-cls}-icon {
+            .ant-pagination-icon {
                 &--default {
                     display: none;
                 }
@@ -97,7 +97,7 @@
         }
 
         &:active {
-            .@{pagination-prefix-cls}-icon {
+            .ant-pagination-icon {
                 color: @green;
             }
         }
@@ -122,11 +122,11 @@
         width: @pagination-icon-arrow-size;
         color: @gray-dark;
 
-        .@{pagination-prefix-cls}-prev & {
+        .ant-pagination-prev & {
             transform: @pagination-item-next-transform;
         }
 
-        .@{pagination-prefix-cls}-disabled & {
+        .ant-pagination-disabled & {
             color: @gray;
         }
 

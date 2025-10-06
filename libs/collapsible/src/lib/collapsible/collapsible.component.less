@@ -1,6 +1,6 @@
 @import './collapsible.component.theme.less';
 
-.@{collapse-prefix-cls} {
+.ant-collapse {
     display: block;
     font-family: @font-family;
     border: @collapse-border;
@@ -11,7 +11,7 @@
         display: block;
         border: none;
 
-        & > .@{collapse-prefix-cls}-header {
+        & > .ant-collapse-header {
             padding: @collapse-header-padding;
             font-size: @spy-font-size-sm;
             font-weight: @font-weight-medium;
@@ -27,15 +27,15 @@
             }
         }
 
-        &.@{collapse-prefix-cls}-no-arrow {
-            & > .@{collapse-prefix-cls}-header {
+        &.ant-collapse-no-arrow {
+            & > .ant-collapse-header {
                 padding-left: @collapse-header-padding-x;
             }
         }
 
         &-active {
             &:last-child {
-                & > .@{collapse-prefix-cls}-header {
+                & > .ant-collapse-header {
                     &:hover {
                         background: @gray-light;
                     }
@@ -49,7 +49,7 @@
 
         &-disabled {
             &:last-child {
-                & > .@{collapse-prefix-cls}-header {
+                & > .ant-collapse-header {
                     &:hover {
                         background: @gray-lighter;
 

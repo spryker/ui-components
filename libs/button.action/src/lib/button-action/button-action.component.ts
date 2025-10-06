@@ -18,7 +18,6 @@ import { switchMap, filter, takeUntil } from 'rxjs';
     standalone: false,
     selector: 'spy-button-action',
     templateUrl: './button-action.component.html',
-    styleUrls: ['./button-action.component.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

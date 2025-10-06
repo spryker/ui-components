@@ -1,12 +1,12 @@
 @import './sidebar.component.theme.less';
 
-.@{layout-sidebar-prefix-cls} {
+.spy-sidebar {
     &__content {
         display: flex;
         flex-direction: column;
     }
 
-    .@{layout-prefix-cls}-sider {
+    .ant-layout-sider {
         display: block;
         min-height: @layout-sidebar-min-height;
         box-shadow: @layout-sidebar-box-shadow;
@@ -14,7 +14,7 @@
         font-family: @font-family;
 
         &-collapsed {
-            .@{layout-prefix-cls}-sider {
+            .ant-layout-sider {
                 &-trigger {
                     &-icon {
                         transform: @layout-trigger-icon-collapsed-transform;

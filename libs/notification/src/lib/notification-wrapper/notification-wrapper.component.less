@@ -1,16 +1,16 @@
 @import './notification-wrapper.theme.less';
 
-.@{notification-wrapper-prefix-cls} {
-    .@{notification-spryker-prefix-cls} {
+.spy-notification-wrapper {
+    .spy-notification {
         pointer-events: auto;
     }
 
-    .@{notification-prefix-cls} {
+    .ant-alert {
         min-width: @notification-min-width;
     }
 }
 
-.@{notification-toast-prefix-cls} {
+.toast {
     &-container .ngx-toastr {
         display: block;
         padding: 0;
@@ -30,7 +30,7 @@
     }
 }
 
-.@{notification-toast-top-right-prefix-cls} {
+.toast-top-right {
     top: @notification-toast-top-right-top-position;
     right: @notification-toast-top-right-right-position;
 }

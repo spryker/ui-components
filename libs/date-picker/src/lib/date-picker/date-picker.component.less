@@ -10,7 +10,7 @@
     url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGQ9Ik0xNi4zMDIgNS41MjRsLjAxMi4wMTIgNC45MDEgNC45NDVjLjQ3NC4zMjEuNzg1Ljg2NC43ODUgMS40OHYuMDMzYzAgLjUxOS0uMjIuOTg2LS41NzQgMS4zMTJsLTUuMTEyIDUuMTU4YTEuNzc5IDEuNzc5IDAgMDEtMi41MTUuMDEybC0uMDEyLS4wMTItLjAxOC0uMDE4YTEuNzg3IDEuNzg3IDAgMDEwLTIuNTE1TDE1LjkgMTMuNzhIMy43ODdDMi44IDEzLjc4IDIgMTIuOTggMiAxMS45OTV2LS4wMzRjMC0uOTg2LjgtMS43ODYgMS43ODctMS43ODZsMTIuMDY3LS4wMDEtMi4wODUtMi4xMDRhMS43ODcgMS43ODcgMCAwMTAtMi41MTVsLjAxOC0uMDE4YTEuNzc5IDEuNzc5IDAgMDEyLjUxNS0uMDEyeiIgaWQ9ImEiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48bWFzayBpZD0iYiI+PHVzZSB4bGluazpocmVmPSIjYSIvPjwvbWFzaz48dXNlIGZpbGw9IiNmZmYiIHhsaW5rOmhyZWY9IiNhIi8+PGcgbWFzaz0idXJsKCNiKSIgZmlsbD0iIzEyMTIxMiI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPjwvZz48L2c+PC9zdmc+Cg==')
 );
 
-.@{calendar-prefix-cls} {
+.ant-picker {
     display: block;
     position: relative;
     cursor: pointer;
@@ -31,11 +31,11 @@
         }
     }
 
-    &.@{calendar-prefix-cls}-disabled {
+    &.ant-picker-disabled {
         border-color: @gray-light;
         background: @spy-disabled-bg;
 
-        .@{calendar-prefix-cls}-suffix {
+        .ant-picker-suffix {
             color: @gray;
         }
     }
@@ -48,7 +48,7 @@
             font-size: inherit;
             height: 100%;
 
-            &.@{input-prefix-cls} {
+            &.ant-input {
                 background: @transparent;
             }
         }
@@ -136,10 +136,10 @@
         margin-top: @calendar-header-margin-top;
         margin-bottom: @calendar-header-margin-bottom;
 
-        .@{calendar-prefix-cls}-header-super-prev-btn,
-        .@{calendar-prefix-cls}-header-super-next-btn,
-        .@{calendar-prefix-cls}-header-prev-btn,
-        .@{calendar-prefix-cls}-header-next-btn {
+        .ant-picker-header-super-prev-btn,
+        .ant-picker-header-super-next-btn,
+        .ant-picker-header-prev-btn,
+        .ant-picker-header-next-btn {
             width: @calendar-month-btn-width;
             height: @calendar-month-btn-height;
             border-radius: @calendar-month-btn-border-radius;
@@ -167,8 +167,8 @@
             }
         }
 
-        .@{calendar-prefix-cls}-header-super-prev-btn,
-        .@{calendar-prefix-cls}-header-prev-btn {
+        .ant-picker-header-super-prev-btn,
+        .ant-picker-header-prev-btn {
             transform: scaleX(-1);
         }
 
@@ -195,7 +195,7 @@
             display: none;
         }
 
-        .@{calendar-prefix-cls}-cell-inner {
+        .ant-picker-cell-inner {
             position: relative;
             width: 100%;
             height: @calendar-tbody-td-height;
@@ -217,29 +217,29 @@
             }
         }
 
-        &.@{calendar-prefix-cls}-cell-in-view {
-            .@{calendar-prefix-cls}-cell-inner {
+        &.ant-picker-cell-in-view {
+            .ant-picker-cell-inner {
                 color: @gray-dark;
             }
         }
 
-        &.@{calendar-prefix-cls}-cell-in-view:hover,
+        &.ant-picker-cell-in-view:hover,
         &:hover {
-            .@{calendar-prefix-cls}-cell-inner {
+            .ant-picker-cell-inner {
                 color: @gray-darker;
                 background-color: @gray-lighter !important;
             }
         }
 
         &:focus {
-            .@{calendar-prefix-cls}-cell-inner::after {
+            .ant-picker-cell-inner::after {
                 border-color: @green;
             }
         }
 
-        &-today.@{calendar-prefix-cls}-cell-in-view,
+        &-today.ant-picker-cell-in-view,
         &-today {
-            .@{calendar-prefix-cls}-cell-inner {
+            .ant-picker-cell-inner {
                 background: @gray-lighter;
                 color: @ink;
 
@@ -249,16 +249,16 @@
             }
 
             &:hover {
-                .@{calendar-prefix-cls}-cell-inner {
+                .ant-picker-cell-inner {
                     color: @ink;
                     background-color: @gray-light !important;
                 }
             }
         }
 
-        &-selected.@{calendar-prefix-cls}-cell-in-view,
+        &-selected.ant-picker-cell-in-view,
         &-selected {
-            .@{calendar-prefix-cls}-cell-inner {
+            .ant-picker-cell-inner {
                 background-color: @green !important;
                 color: @spy-white;
             }
@@ -266,18 +266,18 @@
             &:focus,
             &:active,
             &:hover {
-                .@{calendar-prefix-cls}-cell-inner {
+                .ant-picker-cell-inner {
                     background-color: @green !important;
                     color: @spy-white;
                 }
             }
         }
 
-        &-disabled.@{calendar-prefix-cls}-cell-in-view,
+        &-disabled.ant-picker-cell-in-view,
         &-disabled {
             pointer-events: none;
 
-            .@{calendar-prefix-cls}-cell-inner {
+            .ant-picker-cell-inner {
                 background-color: @gray-lighter !important;
                 color: @gray;
             }
@@ -286,7 +286,7 @@
 
     &-month-panel,
     &-year-panel {
-        .@{calendar-prefix-cls}-header {
+        .ant-picker-header {
             &-super-prev-btn,
             &-super-next-btn {
                 display: block;
@@ -298,18 +298,18 @@
             }
         }
 
-        .@{calendar-prefix-cls}-cell {
-            .@{calendar-prefix-cls}-cell-inner {
+        .ant-picker-cell {
+            .ant-picker-cell-inner {
                 border-radius: @calendar-tbody-td-month-radius;
             }
 
-            &:not(.@{calendar-prefix-cls}-cell-in-view) {
-                .@{calendar-prefix-cls}-cell-inner {
+            &:not(.ant-picker-cell-in-view) {
+                .ant-picker-cell-inner {
                     color: @gray-dark;
                 }
 
                 &:hover {
-                    .@{calendar-prefix-cls}-cell-inner {
+                    .ant-picker-cell-inner {
                         color: @gray-darker;
                     }
                 }
@@ -344,26 +344,26 @@
         width: auto;
         height: auto;
 
-        .@{calendar-prefix-cls}-time-panel {
+        .ant-picker-time-panel {
             width: auto;
             height: auto;
             border-left: none;
 
-            .@{calendar-prefix-cls}-time-panel-cell .@{calendar-prefix-cls}-time-panel-cell-inner {
+            .ant-picker-time-panel-cell .ant-picker-time-panel-cell-inner {
                 height: @calendar-time-cell-height;
                 line-height: @calendar-time-cell-height;
             }
 
-            .@{calendar-prefix-cls}-time-panel-cell-disabled {
+            .ant-picker-time-panel-cell-disabled {
                 pointer-events: none;
 
-                .@{calendar-prefix-cls}-time-panel-cell-inner {
+                .ant-picker-time-panel-cell-inner {
                     background-color: @gray-lighter;
                     color: @gray;
                 }
             }
 
-            .@{calendar-prefix-cls}-time-panel-cell-selected .@{calendar-prefix-cls}-time-panel-cell-inner {
+            .ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
                 background: @spy-primary-color;
                 color: @spy-white;
 
@@ -375,11 +375,11 @@
             }
         }
 
-        .@{calendar-prefix-cls}-now {
+        .ant-picker-now {
             display: none;
         }
 
-        .@{calendar-prefix-cls}-panel {
+        .ant-picker-panel {
             border-width: 0;
         }
     }
@@ -389,18 +389,18 @@
         justify-content: flex-end;
         padding: @calendar-time-content-padding;
 
-        .@{calendar-prefix-cls}-content {
+        .ant-picker-content {
             flex: none;
             border: @calendar-tbody-border;
             height: @calendar-time-content-height;
         }
 
-        .@{calendar-prefix-cls}-time-panel-column {
+        .ant-picker-time-panel-column {
             border: none;
             width: @calendar-time-cell-width;
         }
 
-        .@{calendar-prefix-cls}-header-view {
+        .ant-picker-header-view {
             height: @calendar-time-title-height;
             line-height: @calendar-time-title-height;
             color: @gray-dark;

@@ -1,6 +1,6 @@
 @import './autocomplete.component.theme.less';
 
-.@{autocomplete-prefix-cls}__dropdown {
+.spy-autocomplete__dropdown {
     &.@{select-prefix-cls}-dropdown {
         position: relative;
         top: 100%;
@@ -32,7 +32,7 @@
             }
 
             &-content {
-                padding: @autocomplete-item-padding;
+                padding: var(--spy-autocomplete-item-padding, 0 15px);
             }
         }
     }

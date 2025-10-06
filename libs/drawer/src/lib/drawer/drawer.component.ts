@@ -37,7 +37,6 @@ export class DrawerComponentInputs {
     standalone: false,
     selector: 'spy-drawer',
     templateUrl: './drawer.component.html',
-    styleUrls: ['./drawer.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })

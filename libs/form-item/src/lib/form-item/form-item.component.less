@@ -59,17 +59,17 @@
 
     &.ant-form-item-has-error.ant-form-item-with-help {
         .@{select-prefix-cls}:not(.@{select-prefix-cls}-borderless) .@{select-prefix-cls}-selector,
-        .@{input-prefix-cls}-affix-wrapper,
-        .@{input-prefix-cls}-container--hover,
-        .@{input-prefix-cls}-container--focus,
-        .@{input-prefix-cls}-group-addon,
-        .@{input-prefix-cls}-group,
-        .@{input-prefix-cls} {
+        .ant-input-affix-wrapper,
+        .ant-input-container--hover,
+        .ant-input-container--focus,
+        .ant-input-group-addon,
+        .ant-input-group,
+        .ant-input {
             &,
             &:focus,
             &:hover,
-            .@{input-prefix-cls},
-            .@{input-prefix-cls}-group-addon {
+            .ant-input,
+            .ant-input-group-addon {
                 border-color: @red;
                 box-shadow: none;
             }
@@ -77,7 +77,7 @@
     }
 
     .ant-form-item-control {
-        .@{radio-prefix-cls}-input,
+        .ant-radio-input,
         .ant-checkbox-input {
             width: 0;
             height: 0;

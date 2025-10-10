@@ -2,18 +2,18 @@
     "name": "@spryker/modal",
     "version": "2.1.0",
     "peerDependencies": {
-        "@angular/cdk": ">=17.2.0 <19.0.0",
-        "@angular/common": ">=17.3.0 <19.0.0",
+        "@angular/cdk": ">=20.2.0 <21.0.0",
+        "@angular/common": ">=20.3.0 <21.0.0",
         "@angular/core": ">=20.3.0 <21.0.0",
         "@spryker/button": "^2.0.0",
         "@spryker/locale": "^2.0.0",
         "@spryker/styles": "^2.0.0",
         "@spryker/utils": "^2.0.0",
-        "rxjs": "^7.8.1"
+        "rxjs": ">=7.8.0 <8.0.0"
     },
     "dependencies": {
-        "ng-zorro-antd": ">=17.3.0 <19.0.0",
-        "tslib": "^2.6.2"
+        "ng-zorro-antd": ">=20.3.0 <21.0.0",
+        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public"

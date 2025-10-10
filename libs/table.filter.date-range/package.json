@@ -2,16 +2,16 @@
     "name": "@spryker/table.filter.date-range",
     "version": "2.1.0",
     "peerDependencies": {
-        "@angular/common": ">=17.3.0 <19.0.0",
+        "@angular/common": ">=20.3.0 <21.0.0",
         "@angular/core": ">=20.3.0 <21.0.0",
         "@spryker/date-picker": "^2.0.0",
         "@spryker/locale": "^2.0.0",
         "@spryker/styles": "^2.0.0",
         "@spryker/table.feature.filters": "^2.0.0",
-        "rxjs": "^7.8.1"
+        "rxjs": ">=7.8.0 <8.0.0"
     },
     "dependencies": {
-        "tslib": "^2.6.2"
+        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public"

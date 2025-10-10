@@ -2,7 +2,7 @@
     "name": "@spryker/table.column.select",
     "version": "2.3.3-next.0",
     "peerDependencies": {
-        "@angular/common": ">=17.3.0 <19.0.0",
+        "@angular/common": ">=20.3.0 <21.0.0",
         "@angular/core": ">=20.3.0 <21.0.0",
         "@spryker/data-transformer": "^2.0.0",
         "@spryker/datasource": "^2.0.0",
@@ -14,7 +14,7 @@
         "@spryker/utils": "^2.0.0"
     },
     "dependencies": {
-        "tslib": "^2.6.2"
+        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public"

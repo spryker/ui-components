@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1-next.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/actions.refresh-modal@0.1.0...@spryker/actions.refresh-modal@0.1.1-next.0) (2025-09-12)
+
+**Note:** Version bump only for package @spryker/actions.refresh-modal
+
+
+
+
+
 # 0.1.0 (2025-06-16)
 
 

@@ -1,3 +1,4 @@
+/* stylelint-disable selector-max-class, selector-max-compound-selectors, selector-max-combinators, no-descending-specificity */
 @import './navigation.component.theme.less';
 
 .spy-navigation {
@@ -116,7 +117,6 @@
                 .ant-menu-submenu-arrow {
                     transform: @menu-item-open-arrow-transform;
 
-                    /* stylelint-disable selector-max-class */
                     &::before {
                         transform: @menu-item-open-arrow-transform-before;
                     }
@@ -124,7 +124,6 @@
                     &::after {
                         transform: @menu-item-open-arrow-transform-after;
                     }
-                    /* stylelint-enable */
                 }
 
                 .spy-navigation__title-icon {
@@ -197,11 +196,9 @@
                 .spy-navigation__title-icon {
                     margin-right: @navigation-collapsed-item-icon-margin-right;
 
-                    /* stylelint-disable selector-max-class, selector-max-compound-selectors */
                     .anticon {
                         font-size: inherit;
                     }
-                    /* stylelint-enable */
                 }
 
                 .spy-navigation__title-text {
@@ -246,7 +243,6 @@
                 > .ant-menu-submenu-title .ant-menu-submenu-arrow {
                     transform: @menu-item-popup-arrow-transform;
 
-                    /* stylelint-disable selector-max-class */
                     &::before {
                         transform: @menu-item-popup-open-arrow-transform-before;
                     }
@@ -254,7 +250,6 @@
                     &::after {
                         transform: @menu-item-popup-open-arrow-transform-after;
                     }
-                    /* stylelint-enable */
                 }
             }
         }

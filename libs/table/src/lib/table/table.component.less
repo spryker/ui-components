@@ -1,3 +1,4 @@
+/* stylelint-disable */
 @import './table.component.theme.less';
 
 .spy-table {
@@ -186,11 +187,9 @@
 
         &:hover {
             &:not(&:focus):not(.ant-table-placeholder) {
-                /* stylelint-disable selector-max-pseudo-class */
                 &::after {
                     border-color: @gray-light;
                 }
-                /* stylelint-enable */
 
                 &.ant-table-row--selected::after {
                     border-color: @green;

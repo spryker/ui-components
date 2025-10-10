@@ -1,3 +1,4 @@
+/* stylelint-disable selector-max-class, selector-max-compound-selectors, selector-max-combinators, no-descending-specificity */
 @import './tabs.component.theme.less';
 
 .ant-tabs {
@@ -175,7 +176,6 @@
                     .ant-tabs-custom-tab {
                         color: @ink;
 
-                        /* stylelint-disable selector-max-class */
                         &::before {
                             background-color: @gray-darker;
                         }
@@ -183,7 +183,6 @@
                         &-warning {
                             color: @red;
                         }
-                        /* stylelint-enable */
                     }
                 }
             }
@@ -200,7 +199,6 @@
                 color: @green-dark;
 
                 .ant-tabs-custom-tab {
-                    /* stylelint-disable selector-max-class */
                     &::before {
                         background-color: @green;
                     }
@@ -208,7 +206,6 @@
                     &-warning::before {
                         background-color: @red;
                     }
-                    /* stylelint-enable */
                 }
 
                 &:hover {
@@ -217,7 +214,6 @@
                     .ant-tabs-custom-tab {
                         color: @green-dark;
 
-                        /* stylelint-disable selector-max-class */
                         &::before {
                             background-color: @green;
                         }
@@ -229,7 +225,6 @@
                                 background-color: @red;
                             }
                         }
-                        /* stylelint-enable */
                     }
                 }
             }

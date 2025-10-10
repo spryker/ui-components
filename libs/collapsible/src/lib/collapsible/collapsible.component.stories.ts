@@ -7,7 +7,7 @@ import { CollapsibleModule } from '../collapsible.module';
 @Component({
     standalone: false,
     selector: 'spy-story',
-    template: ` Collapse Content `
+    template: ` Collapse Content `,
 })
 class StoryComponent {
     constructor() {

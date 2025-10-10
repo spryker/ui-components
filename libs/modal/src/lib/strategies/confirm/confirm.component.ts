@@ -9,7 +9,7 @@ import { ConfirmModalData } from './types';
 @Component({
     standalone: false,
     selector: 'spy-confirm-modal',
-    templateUrl: './confirm.component.html'
+    templateUrl: './confirm.component.html',
 })
 export class ConfirmModalComponent extends asModal<ConfirmModalData, boolean>() implements ComponentModal {
     @ViewChild('title', { static: true }) title!: TemplateRef<ModalTemplateContext<AnyModal>>;

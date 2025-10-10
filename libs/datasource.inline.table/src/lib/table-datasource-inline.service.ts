@@ -1,19 +1,16 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { DataTransformerConfig, DataTransformerService, DataTransformerType } from '@spryker/data-transformer';
 import { Datasource } from '@spryker/datasource';
 import { DatasourceInlineService } from '@spryker/datasource.inline';
 import { TableData } from '@spryker/table';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, switchMap } from 'rxjs';
 
 import { TableDatasourceInlineConfig } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceInlineService implements Datasource<TableData> {
-    constructor(
-        private dataTransformerService: DataTransformerService,
-        private datasourceInlineService: DatasourceInlineService,
-    ) {}
+    protected dataTransformerService = inject(DataTransformerService);
+    protected datasourceInlineService = inject(DatasourceInlineService);
 
     resolve(injector: Injector, config: TableDatasourceInlineConfig): Observable<TableData> {
         const preprocessConfig: Record<string, DataTransformerConfig> = {};

@@ -1,2 +1,66 @@
 @import 'ng-zorro-antd/select/style/index.less';
 @import 'themes/default/theme.less';
+
+@select-component-width: var(--spy-select-component-width, 100%);
+@select-component-height: var(--spy-select-component-height, 42px);
+@select-dropdown-box-shadow: var(--spy-select-dropdown-box-shadow, @box-shadow-1);
+@select-dropdown-menu-max-height: var(--spy-select-dropdown-menu-max-height, 320px);
+@select-dropdown-menu-item-height: var(--spy-select-dropdown-menu-item-height, 42px);
+@select-dropdown-menu-item-line-height: var(--spy-select-dropdown-menu-item-line-height, 38px);
+@select-dropdown-menu-item-font-weight: var(--spy-select-dropdown-menu-item-font-weight, @font-weight-medium);
+@select-dropdown-menu-item-padding: var(--spy-select-dropdown-menu-item-padding, 0);
+@select-dropdown-menu-item-border: var(
+    --spy-select-dropdown-menu-item-border,
+    @spy-border-width-base solid @transparent
+);
+@select-dropdown-menu-item-wrapped-padding-x: var(--spy-select-dropdown-menu-item-wrapped-padding-x, 12px);
+@select-dropdown-menu-item-wrapped-padding: var(
+    --spy-select-dropdown-menu-item-wrapped-padding,
+    0 @select-dropdown-menu-item-wrapped-padding-x
+);
+@select-arrow-right: var(--spy-select-arrow-right, 14px);
+@select-arrow-size: var(--spy-select-arrow-size, 12px);
+@select-border-radius: var(--spy-select-border-radius, @border-radius-small);
+@select-menu-vertical-padding: var(--spy-select-menu-vertical-padding, 12px);
+@select-menu-horizontal-padding: var(--spy-select-menu-horizontal-padding, 8px);
+@select-menu-margin: var(--spy-select-menu-margin, 7px 0);
+@select-multiple-selector-padding: var(--spy-select-multiple-selector-padding, 0 30px 0 11px);
+@select-tag-selector-padding: var(--spy-select-tag-selector-padding, 5px 30px 5px 11px);
+@select-multiple-padding-vertical: var(--spy-select-multiple-padding-vertical, 0px);
+@select-multiple-padding-horizontal: var(--spy-select-multiple-padding-horizontal, 4px);
+@select-multiple-unchecked-border: var(
+    --spy-select-multiple-unchecked-border,
+    @checkbox-icon-border-width solid @gray-light
+);
+@select-tag-unchecked-icon-left: var(--spy-select-tag-unchecked-icon-left, 2px);
+@select-selection-clear-right: var(--spy-select-selection-clear-right, 9px);
+@select-selection-clear-btn-size: var(--spy-select-selection-clear-btn-size, 24px);
+@select-selection-clear-btn-line-height: var(--spy-select-selection-clear-btn-line-height, 24px);
+@select-selection-clear-icon-size: var(--spy-select-selection-clear-icon-size, 9px);
+@select-selection-clear-margin-top: var(
+    --spy-select-selection-clear-margin-top,
+    calc(@select-selection-clear-btn-size / -2)
+);
+@select-selection-placeholder-spacing-right: var(--spy-select-placeholder-selection-spacing-right, 30px);
+@select-empty-item-height: var(--spy-select-empty-item-height, 120px);
+@check-icon-size: var(--spy-check-icon-size, 12px);
+@checkbox-icon-size: var(--spy-checkbox-icon-size, 18px);
+@checkbox-icon-line-height: var(--spy-checkbox-icon-line-height, 28px);
+@checkbox-icon-margin-right: var(--spy-checkbox-icon-margin-right, 8px);
+@checkbox-icon-font-size: var(--spy-checkbox-icon-font-size, 19px);
+@checkbox-icon-border-radius: var(--spy-checkbox-icon-border-radius, @border-radius-small);
+@checkbox-icon-border-width: var(--spy-checkbox-icon-border-width, @spy-border-width-base);
+@checkbox-multi-select-checked-line-height: var(--spy-checkbox-multi-select-checked-line-height, 21px);
+@checkbox-multi-select-checked-border: var(--spy-checkbox-multi-select-checked-border, 2px solid @spy-white);
+@checkbox-multi-select-checked-width: var(--spy-checkbox-multi-select-checked-width, 6px);
+@checkbox-multi-select-checked-height: var(--spy-checkbox-multi-select-checked-height, 10px);
+@checkbox-multi-select-checked-top: var(--spy-checkbox-multi-select-checked-top, 3px);
+@checkbox-multi-select-checked-left: var(--spy-checkbox-multi-select-checked-left, 6px);
+@checkbox-multi-select-checked-transform: var(--spy-checkbox-multi-select-checked-transform, rotate(45deg));
+@select-tag-gap: var(--spy-select-tag-gap, 8px);
+@select-tag-input-min-width: var(--spy-select-tag-input-min-width, 100px);
+@select-icon-arrow-down: var(
+    --spy-select-icon-arrow-down,
+    url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjFweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgMjEgMTQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5kcm9wZG93biBhcnJvd0AyeDwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJzdHlsZWd1aWRlIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iSWNvbnMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03NzQuMDAwMDAwLCAtMTA2MC4wMDAwMDApIiBmaWxsPSIjOWVhMWE3Ij4KICAgICAgICAgICAgPGcgaWQ9ImRyb3Bkb3duLWFycm93IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3NzMuMDAwMDAwLCAxMDU5LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTIuNjIxMDA0NCw1LjI4MTk2OTQzIEwxMy4zNDI5MjA4LDUuNDc3ODExNTMgQzE0Ljc3MjQ5MjUsNS41MDM5MjM1IDE1LjkyNTExNDMsNi42NTY1NDUzMSAxNS45NTEyMjYzLDguMDg2MTE3MDYgTDE1Ljk1MjMxMjgsOC4xNDU2MDM1NyBDMTUuOTc3ODA0NSw5LjU0MTIxMjUzIDE0Ljg2NzEwNDksMTAuNjkzMjQyMiAxMy40NzE0OTU5LDEwLjcxODczMzggQzEzLjQ0MDcyNzQsMTAuNzE5Mjk1OCAxMy40MDk5NTEyLDEwLjcxOTI5NTggMTMuMzc5MTgyNiwxMC43MTg3MzM4IEwyLjY1NzI2NjI3LDEwLjUyMjg5MTcgQzEuMjI3Njk0NTIsMTAuNDk2Nzc5NyAwLjA3NTA3MjcxMDQsOS4zNDQxNTc5IDAuMDQ4OTYwNzQyLDcuOTE0NTg2MTUgTDAuMDQ3ODc0MTg2MSw3Ljg1NTA5OTY0IEMwLjAyMjM4MjU2ODEsNi40NTk0OTA2OCAxLjEzMzA4MjEzLDUuMzA3NDYxMDQgMi41Mjg2OTEwOSw1LjI4MTk2OTQzIEMyLjU1OTQ1OTYzLDUuMjgxNDA3NDIgMi41OTAyMzU4Nyw1LjI4MTQwNzQyIDIuNjIxMDA0NCw1LjI4MTk2OTQzIFoiIGlkPSJSZWN0YW5nbGUtQ29weSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOC4wMDAwOTQsIDguMDAwMzUyKSByb3RhdGUoLTEzNS4wMDAwMDApIHRyYW5zbGF0ZSgtOC4wMDAwOTQsIC04LjAwMDM1MikgIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTUuMjU4NDgyNiwwLjA0Nzg3NDE4NjEgTDE1LjMxNzk2OTEsMC4wNDg5NjA3NDIgQzE2Ljc0NzU0MDgsMC4wNzUwNzI3MTA0IDE3LjkwMDE2MjcsMS4yMjc2OTQ1MiAxNy45MjYyNzQ2LDIuNjU3MjY2MjcgTDE4LjEyMjExNjcsMTMuMzc5MTgyNiBDMTguMTQ3NjA4MywxNC43NzQ3OTE2IDE3LjAzNjkwODgsMTUuOTI2ODIxMiAxNS42NDEyOTk4LDE1Ljk1MjMxMjggQzE1LjYxMDUzMTMsMTUuOTUyODc0OCAxNS41Nzk3NTUxLDE1Ljk1Mjg3NDggMTUuNTQ4OTg2NSwxNS45NTIzMTI4IEwxNS40ODk1LDE1Ljk1MTIyNjMgQzE0LjA1OTkyODMsMTUuOTI1MTE0MyAxMi45MDczMDY0LDE0Ljc3MjQ5MjUgMTIuODgxMTk0NSwxMy4zNDI5MjA4IEwxMi42ODUzNTI0LDIuNjIxMDA0NCBDMTIuNjU5ODYwOCwxLjIyNTM5NTQ0IDEzLjc3MDU2MDMsMC4wNzMzNjU4MDQxIDE1LjE2NjE2OTMsMC4wNDc4NzQxODYxIEMxNS4xOTY5Mzc4LDAuMDQ3MzEyMTgwNiAxNS4yMjc3MTQxLDAuMDQ3MzEyMTgwNiAxNS4yNTg0ODI2LDAuMDQ3ODc0MTg2MSBaIiBpZD0iUmVjdGFuZ2xlLUNvcHktMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUuNDAzNzM1LCA4LjAwMDA5NCkgcm90YXRlKC0xMzUuMDAwMDAwKSB0cmFuc2xhdGUoLTE1LjQwMzczNSwgLTguMDAwMDk0KSAiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==')
+        no-repeat center/ @select-arrow-size
+);

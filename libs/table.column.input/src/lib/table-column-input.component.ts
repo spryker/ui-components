@@ -1,39 +1,30 @@
-import { ChangeDetectionStrategy, Component, Injectable, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import {
-    ColumnTypeOption,
-    ColumnTypeOptionsType,
-    TableColumnComponent,
-    TableColumnContext,
-    TableColumnTypeComponent,
-} from '@spryker/table';
+    ChangeDetectionStrategy,
+    Component,
+    Injectable,
+    Input,
+    OnInit,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
+import { TableColumnComponent, TableColumnContext, TableColumnTypeComponent } from '@spryker/table';
 import { TableEditableService } from '@spryker/table.feature.editable';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnInputConfig {
-    @ColumnTypeOption()
     type = 'text';
-    @ColumnTypeOption()
     value?: any;
-    @ColumnTypeOption()
     placeholder = '';
-    @ColumnTypeOption()
     prefix?: string;
-    @ColumnTypeOption()
     suffix?: string;
-    @ColumnTypeOption()
     outerPrefix?: string;
-    @ColumnTypeOption()
     outerSuffix?: string;
-    @ColumnTypeOption({
-        type: ColumnTypeOptionsType.AnyOf,
-        value: [String, Boolean],
-    })
     editableError?: string | boolean;
-    @ColumnTypeOption()
     attrs?: Record<string, string>;
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-input',
     templateUrl: './table-column-input.component.html',
     styleUrls: ['./table-column-input.component.less'],
@@ -43,11 +34,11 @@ export class TableColumnInputConfig {
 })
 @TableColumnTypeComponent(TableColumnInputConfig)
 export class TableColumnInputComponent implements TableColumnComponent<TableColumnInputConfig>, OnInit {
+    protected tableEditableService = inject(TableEditableService);
+
     @Input() config?: TableColumnInputConfig;
     @Input() context?: TableColumnContext;
     @Input() items?: unknown;
-
-    constructor(private tableEditableService: TableEditableService) {}
 
     ngOnInit(): void {
         if (!this.context?.value && this.config?.value) {

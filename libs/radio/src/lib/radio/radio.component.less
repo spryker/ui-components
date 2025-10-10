@@ -1,24 +1,25 @@
+/* stylelint-disable selector-max-class, selector-max-compound-selectors, selector-max-combinators, no-descending-specificity */
 @import './radio.component.theme.less';
 
-.@{radio-prefix-cls}-wrapper {
+.ant-radio-wrapper {
     font: @font-default;
     white-space: normal;
     display: flex;
     margin: 0;
 
     &:hover {
-        .@{radio-prefix-cls}-inner {
+        .ant-radio-inner {
             border-color: @radio-hover-border-color;
         }
     }
 
     &-checked:not(&-disabled) {
-        .@{radio-prefix-cls}-inner::after {
+        .ant-radio-inner::after {
             transform: scale(1);
         }
 
         &:hover {
-            .@{radio-prefix-cls} {
+            .ant-radio {
                 &-inner {
                     border-color: @radio-checked-background;
 
@@ -29,13 +30,13 @@
             }
         }
 
-        .@{radio-prefix-cls}-input:focus + .@{radio-prefix-cls}-inner {
+        .ant-radio-input:focus + .ant-radio-inner {
             box-shadow: @radio-checked-focus-shadow;
         }
     }
 }
 
-.@{radio-prefix-cls} {
+.ant-radio {
     &-inner {
         width: @spy-radio-size;
         height: @spy-radio-size;
@@ -55,7 +56,7 @@
         border-color: @radio-focus-border-color;
     }
 
-    &-disabled .@{radio-prefix-cls}-inner {
+    &-disabled .ant-radio-inner {
         pointer-events: none;
         background: @spy-disabled-bg;
         border-color: @radio-disabled-border-color !important;
@@ -72,11 +73,11 @@
     }
 }
 
-.@{radio-spryker-prefix-cls} {
+.spy-radio {
     &--error {
-        .@{radio-prefix-cls}-wrapper:hover .@{radio-prefix-cls}-inner,
-        .@{radio-prefix-cls}-input:focus + .@{radio-prefix-cls}-inner,
-        .@{radio-prefix-cls}-inner {
+        .ant-radio-wrapper:hover .ant-radio-inner,
+        .ant-radio-input:focus + .ant-radio-inner,
+        .ant-radio-inner {
             border-color: @spy-error-color;
         }
     }

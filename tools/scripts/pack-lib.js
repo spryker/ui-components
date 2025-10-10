@@ -12,7 +12,7 @@ const sourceDepth = sourceRelative.split(path.sep).length;
 const source = `${sourceRelative}/**/*`;
 const dest = `./dist`;
 
-console.log(`Copying lib ${libName} from ${source} into ${dest}...`);
+console.info(`Copying lib ${libName} from ${source} into ${dest}...`);
 
 copyfiles([source, dest], { up: sourceDepth }, (err) => {
     if (err) {

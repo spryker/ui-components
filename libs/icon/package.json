@@ -2,14 +2,14 @@
     "name": "@spryker/icon",
     "version": "2.0.9-next.0",
     "peerDependencies": {
-        "@angular/common": ">=17.3.0 <19.0.0",
-        "@angular/core": ">=17.3.0 <19.0.0",
+        "@angular/common": ">=20.3.0 <21.0.0",
+        "@angular/core": ">=20.3.0 <21.0.0",
         "@spryker/styles": "^2.0.0",
         "@spryker/utils": "^2.0.0"
     },
     "dependencies": {
-        "ng-zorro-antd": ">=17.3.0 <19.0.0",
-        "tslib": "^2.6.2"
+        "ng-zorro-antd": ">=20.3.0 <21.0.0",
+        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public"

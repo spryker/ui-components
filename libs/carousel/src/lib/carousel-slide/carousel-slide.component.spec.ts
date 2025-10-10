@@ -25,6 +25,7 @@ describe('CarouselSlideComponent', () => {
     `;
 
     @Component({
+        standalone: false,
         template: projectedContent,
     })
     class TestHostComponent {}

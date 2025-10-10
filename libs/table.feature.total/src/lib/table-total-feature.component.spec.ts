@@ -13,6 +13,7 @@ import { PluckModule } from '@spryker/utils';
 import { TestLocaleModule, I18nTestService } from '@spryker/locale/testing';
 
 @Component({
+    standalone: false,
     selector: 'spy-test-host',
     template: `
         <test-table-feature>

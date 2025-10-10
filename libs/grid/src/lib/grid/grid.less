@@ -22,7 +22,7 @@
   @grid-columns-prop: @grid-columns,
   @grid-breakpoints-map: .grid-breakpoints-config-default()
 ) {
-    .@{grid-row-prefix-cls} {
+    .spy-row {
         display: flex;
         flex-flow: row wrap;
         align-items: stretch;
@@ -44,7 +44,7 @@
         }
     }
 
-    .@{grid-col-prefix-cls} {
+    .spy-col {
         flex-grow: 1;
         flex-basis: 0;
         max-width: 100%;

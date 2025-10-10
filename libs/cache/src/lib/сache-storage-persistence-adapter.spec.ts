@@ -135,7 +135,6 @@ describe('CacheStoragePersistenceAdapter', () => {
 
         mockManifest.set(
             mockNamespace,
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             configs!.filter((config) => config.id !== serializedId),
         );
 

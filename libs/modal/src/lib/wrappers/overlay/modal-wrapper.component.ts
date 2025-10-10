@@ -11,18 +11,23 @@ interface RenderTplContext {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-modal',
     template: `
         <div class="modal">
-            <div class="modal-header" *ngIf="options.title">
-                <ng-container *ngTemplateOutlet="headerTpl; context: headerCtx"></ng-container>
-            </div>
+            @if (options.title) {
+                <div class="modal-header">
+                    <ng-container *ngTemplateOutlet="headerTpl; context: headerCtx"></ng-container>
+                </div>
+            }
             <section class="modal-content">
                 <ng-template #content></ng-template>
             </section>
-            <div class="modal-footer" *ngIf="options.footer">
-                <ng-container *ngTemplateOutlet="footerTpl; context: footerCtx"></ng-container>
-            </div>
+            @if (options.footer) {
+                <div class="modal-footer">
+                    <ng-container *ngTemplateOutlet="footerTpl; context: footerCtx"></ng-container>
+                </div>
+            }
             <ng-template #headerBind let-value
                 ><h1>{{ value }}</h1></ng-template
             >

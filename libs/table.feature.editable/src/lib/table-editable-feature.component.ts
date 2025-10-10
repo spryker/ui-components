@@ -11,6 +11,7 @@ import {
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '@spryker/button';
@@ -28,20 +29,22 @@ import {
 import { TableSettingsChangeEvent } from '@spryker/table.feature.settings';
 import { AnyContext, ContextService, getElementOffset, provideInvokeContext } from '@spryker/utils';
 import { NzResizeObserver } from 'ng-zorro-antd/cdk/resize-observer';
-import { combineLatest, EMPTY, merge, Subject } from 'rxjs';
 import {
+    combineLatest,
+    EMPTY,
+    merge,
+    Subject,
     debounceTime,
     distinctUntilChanged,
     filter,
     map,
-    pluck,
     shareReplay,
     skip,
     startWith,
     switchMap,
     takeUntil,
     tap,
-} from 'rxjs/operators';
+} from 'rxjs';
 
 import { TableEditableEditRequestToken } from './tokens';
 import {
@@ -69,6 +72,7 @@ interface TableEditCellModel {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-editable-feature',
     templateUrl: './table-editable-feature.component.html',
     styleUrls: ['./table-editable-feature.component.less'],
@@ -87,6 +91,16 @@ export class TableEditableFeatureComponent
     extends TableFeatureComponent<TableEditableConfig>
     implements OnInit, AfterViewChecked, OnDestroy
 {
+    protected cdr = inject(ChangeDetectorRef);
+    protected ajaxActionService = inject(AjaxActionService);
+    protected contextService = inject(ContextService);
+    protected httpClient = inject(HttpClient);
+    protected tableFeaturesRendererService = inject(TableFeaturesRendererService);
+    protected resizeObserver = inject(NzResizeObserver);
+    protected zone = inject(NgZone);
+    protected dataSerializerService = inject(DataSerializerService);
+    tableEditableService = inject(TableEditableService);
+
     @ViewChild('editableCell') editableCell?: TemplateRef<any>;
 
     name = 'editable';
@@ -126,10 +140,13 @@ export class TableEditableFeatureComponent
             }),
         ),
     );
-    editColumns$ = this.config$.pipe(pluck('columns'));
-    createConfig$ = this.config$.pipe(pluck('create'), shareReplay({ bufferSize: 1, refCount: true }));
+    editColumns$ = this.config$.pipe(map((config) => config.columns));
+    createConfig$ = this.config$.pipe(
+        map((config) => config.create),
+        shareReplay({ bufferSize: 1, refCount: true }),
+    );
     updateConfig$ = this.config$.pipe(
-        pluck('update'),
+        map((config) => config.update),
         tap((config) => (this.url = config?.url)),
         shareReplay({ bufferSize: 1, refCount: true }),
     );
@@ -194,22 +211,6 @@ export class TableEditableFeatureComponent
         ),
     );
     disableRowKey$ = this.config$.pipe(map((config) => config.disableRowKey ?? '_editableRowDisabled'));
-
-    constructor(
-        injector: Injector,
-        private cdr: ChangeDetectorRef,
-        private ajaxActionService: AjaxActionService,
-        private contextService: ContextService,
-        private httpClient: HttpClient,
-        private tableFeaturesRendererService: TableFeaturesRendererService,
-        private resizeObserver: NzResizeObserver,
-        private zone: NgZone,
-        private dataSerializerService: DataSerializerService,
-        /** @internal */
-        public tableEditableService: TableEditableService,
-    ) {
-        super(injector);
-    }
 
     ngOnInit() {
         this.updateFloatCellsPosition$.pipe(takeUntil(this.shouldUnsubscribe$)).subscribe();

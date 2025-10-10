@@ -8,10 +8,10 @@ import {
     OnInit,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
-import { merge, of, Subject } from 'rxjs';
-import { catchError, filter, mapTo, shareReplay, switchMap, takeUntil } from 'rxjs/operators';
+import { merge, of, Subject, catchError, filter, map, shareReplay, switchMap, takeUntil } from 'rxjs';
 
 import { ButtonCoreInputs } from '../button-core/button-core';
 import { ButtonComponent } from '../button/button.component';
@@ -22,13 +22,17 @@ export enum ButtonAjaxMethod {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-button-ajax',
     templateUrl: './button-ajax.component.html',
-    styleUrls: ['./button-ajax.component.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonAjaxComponent extends ButtonCoreInputs implements OnInit, OnDestroy {
+    protected ajaxActionService = inject(AjaxActionService);
+    protected http = inject(HttpClient);
+    protected injector = inject(Injector);
+
     @Input() method: ButtonAjaxMethod = ButtonAjaxMethod.Get;
     @Input() url?: string;
 
@@ -47,15 +51,7 @@ export class ButtonAjaxComponent extends ButtonCoreInputs implements OnInit, OnD
     );
     private destroyed$ = new Subject<void>();
 
-    isLoading$ = merge(this.click$.pipe(mapTo(true)), this.request$.pipe(mapTo(false)));
-
-    constructor(
-        private ajaxActionService: AjaxActionService,
-        private http: HttpClient,
-        private injector: Injector,
-    ) {
-        super();
-    }
+    isLoading$ = merge(this.click$.pipe(map(() => true)), this.request$.pipe(map(() => false)));
 
     ngOnInit(): void {
         this.request$

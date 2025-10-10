@@ -1,6 +1,6 @@
-@import 'themes/default/theme.less';
+@import './table-batch-actions-feature.component.theme.less';
 
-.@{table-batch-actions-feature-prefix-cls} {
+.spy-table-batch-actions-feature {
     min-height: @table-batch-actions-feature-min-height;
 
     &__grid {
@@ -12,12 +12,12 @@
     &__col {
         padding: @table-batch-actions-feature-grid-padding;
 
-        .@{btn-prefix-cls} {
+        .spy-button {
             margin-top: @table-batch-actions-feature-grid-margin;
         }
     }
 
-    .@{notification-prefix-cls} {
+    .ant-alert {
         margin: 0;
     }
 }

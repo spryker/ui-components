@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom } from '@angular/core';
+import { Component, importProvidersFrom, inject } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { ModalModule, ModalService } from '@spryker/modal';
@@ -9,11 +9,12 @@ import { ComponentModal, ModalRef, ComponentModalExtras } from '@spryker/modal';
 import { RefreshModalActionHandlerService } from './refresh-modal-action-handler.service';
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: `<spy-button variant="primary" size="md" (click)="clickHandler()">Open Modal</spy-button>`,
 })
 class SimpleStoryComponent {
-    constructor(private modalService: ModalService) {}
+    protected modalService = inject(ModalService);
 
     clickHandler(): void {
         this.modalService.openComponent(ModalContentComponent);
@@ -21,6 +22,7 @@ class SimpleStoryComponent {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-modal-content',
     template: `
         <h3>Modal content: {{ __capturedData?.message || 'No updated data yet' }}</h3>

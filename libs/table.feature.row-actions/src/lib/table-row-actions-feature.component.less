@@ -1,6 +1,6 @@
-@import 'themes/default/theme.less';
+@import './table-row-actions-feature.component.theme.less';
 
-.@{table-row-actions-feature-prefix-cls} {
+.ant-table-row-actions-feature {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -21,7 +21,7 @@
             color: @table-dropdown-trigger-hover-color;
         }
 
-        .@{dropdown-prefix-cls}-trigger {
+        .ant-dropdown-trigger {
             justify-content: center;
             align-items: center;
         }
@@ -30,13 +30,13 @@
             background: @table-dropdown-trigger-hover-bg;
 
             .spy-icon-action {
-                color: @btn-icon-color;
+                color: @table-dropdown-btn-icon-color;
             }
         }
     }
 }
 
-.@{table-prefix-cls} {
+.ant-table {
     &-row--clickable {
         cursor: pointer;
     }

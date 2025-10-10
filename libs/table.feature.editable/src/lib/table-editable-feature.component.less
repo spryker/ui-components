@@ -1,14 +1,15 @@
-@import 'themes/default/theme.less';
+/* stylelint-disable selector-no-qualifying-type */
+@import './table-editable-feature.component.theme.less';
 
-.@{table-prefix-cls} {
+.ant-table {
     &-tbody > tr {
-        &.@{table-prefix-cls}-row--editable > td .@{table-prefix-cls}-column-inner::after {
+        &.ant-table-row--editable > td .ant-table-column-inner::after {
             border-color: @green;
         }
     }
 }
 
-.@{table-editable-feature-prefix-cls} {
+.spy-table-editable-feature {
     &__float {
         &-cell {
             position: absolute;
@@ -32,12 +33,12 @@
         &-col {
             padding: @table-editable-feature-float-col-padding;
 
-            .@{btn-prefix-cls}-core .@{btn-prefix-cls}-core__btn {
+            .spy-button-core .spy-button-core__btn {
                 min-width: @table-editable-feature-float-btn-min-width;
             }
 
-            .@{form-item-prefix-cls} {
-                width: @table-column-input-field-width;
+            .ant-form-item {
+                width: @table-editable-feature-input-field-width;
             }
         }
     }

@@ -9,37 +9,40 @@
     >
     </nz-pagination>
 
-    <spy-select
-        *ngIf="total"
-        class="ant-pagination-select"
-        [value]="pageSize"
-        [disableClear]="disableClear"
-        [options]="pageSizeOptions"
-        [placeholder]="placeholder"
-        (valueChange)="pageSizeChangeHandler($event)"
-    ></spy-select>
+    @if (total) {
+        <spy-select
+            class="ant-pagination-select"
+            [value]="pageSize"
+            [disableClear]="disableClear"
+            [options]="pageSizeOptions"
+            [placeholder]="placeholder"
+            (valueChange)="pageSizeChangeHandler($event)"
+        ></spy-select>
+    }
 </div>
 
 <ng-template #renderItemTemplate let-type let-page="page">
-    <ng-container [ngSwitch]="type">
-        <a *ngSwitchCase="'prev'" title="">
-            <spy-icon name="pagination-arrow" class="ant-pagination-icon"></spy-icon>
-        </a>
-
-        <a *ngSwitchCase="'next'" title="">
-            <spy-icon name="pagination-arrow" class="ant-pagination-icon"></spy-icon>
-        </a>
-
-        <a *ngSwitchCase="'page'" title="">{{ page }}</a>
-
-        <ng-container *ngSwitchCase="'next_5'">
+    @switch (type) {
+        @case ('prev') {
+            <a title="">
+                <spy-icon name="pagination-arrow" class="ant-pagination-icon"></spy-icon>
+            </a>
+        }
+        @case ('next') {
+            <a title="">
+                <spy-icon name="pagination-arrow" class="ant-pagination-icon"></spy-icon>
+            </a>
+        }
+        @case ('page') {
+            <a title="">{{ page }}</a>
+        }
+        @case ('next_5') {
             <ng-container *ngTemplateOutlet="moreItem"></ng-container>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'prev_5'">
+        }
+        @case ('prev_5') {
             <ng-container *ngTemplateOutlet="moreItem"></ng-container>
-        </ng-container>
-    </ng-container>
+        }
+    }
 </ng-template>
 
 <ng-template #moreItem>

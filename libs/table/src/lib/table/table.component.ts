@@ -11,34 +11,38 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    Optional,
     QueryList,
     SimpleChanges,
-    SkipSelf,
     TemplateRef,
     Type,
     ViewChild,
     ViewContainerRef,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { ToJson } from '@spryker/utils';
-import { combineLatest, EMPTY, merge, MonoTypeOperatorFunction, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import {
+    combineLatest,
+    EMPTY,
+    merge,
+    MonoTypeOperatorFunction,
+    Observable,
+    of,
+    ReplaySubject,
+    Subject,
     catchError,
     delay,
     distinctUntilChanged,
     filter,
     map,
-    mapTo,
     pairwise,
-    pluck,
     shareReplay,
     startWith,
     switchMap,
     take,
     takeUntil,
     tap,
-} from 'rxjs/operators';
+} from 'rxjs';
 
 import { TableActionsService } from '../table-actions/table-actions.service';
 import { TableConfigService } from '../table-config/table-config.service';
@@ -72,6 +76,7 @@ import { InternalTableLocatorService } from '../table-locator';
 const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () => shareReplay({ bufferSize: 1, refCount: true });
 
 @Component({
+    standalone: false,
     selector: 'spy-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.less'],
@@ -89,6 +94,20 @@ const shareReplaySafe: <T>() => MonoTypeOperatorFunction<T> = () => shareReplay(
     },
 })
 export class CoreTableComponent implements TableComponent, OnInit, OnChanges, AfterContentInit, OnDestroy {
+    protected cdr = inject(ChangeDetectorRef);
+    protected vcr = inject(ViewContainerRef);
+    protected iterableDiffers = inject(IterableDiffers);
+    protected dataConfiguratorService = inject(TableDataConfiguratorService);
+    protected columnsResolverService = inject(TableColumnsResolverService);
+    protected tableActionsService = inject(TableActionsService);
+    protected featureLoaderService = inject(TableFeatureLoaderService);
+    protected configService = inject(TableConfigService);
+    protected datasourceService = inject(TableDatasourceService);
+    protected tableFeaturesRendererService = inject(TableFeaturesRendererService);
+    protected internalTableLocatorService = inject(InternalTableLocatorService);
+    injector = inject(Injector);
+    parentTable = inject(CoreTableComponent, { optional: true, skipSelf: true })!;
+
     static Count = 0;
 
     @Input() @ToJson() config?: TableConfig;
@@ -152,7 +171,7 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges, Af
         switchMap((dataSource) => this.datasourceService.resolve(dataSource)),
         shareReplaySafe(),
     );
-    tableData$ = this.data$.pipe(pluck('data'));
+    tableData$ = this.data$.pipe(map((data) => data.data));
     sortingData$ = this.dataConfiguratorService.config$.pipe(
         map((config) => {
             const sortBy = String(config.sortBy);
@@ -233,9 +252,9 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges, Af
     );
 
     isLoading$ = merge(
-        this.dataConfiguratorService.config$.pipe(mapTo(true)),
-        this.data$.pipe(mapTo(false)),
-        this.error$.pipe(mapTo(false)),
+        this.dataConfiguratorService.config$.pipe(map(() => true)),
+        this.data$.pipe(map(() => false)),
+        this.error$.pipe(map(() => false)),
     ).pipe(startWith(false), shareReplaySafe());
 
     featuresInRows$ = this.features$.pipe(
@@ -314,24 +333,6 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges, Af
     // We rely here on order to have the handler ready
     // eslint-disable-next-line @typescript-eslint/member-ordering
     private tableEventBus = new TableEventBus(this.handleEvent);
-
-    constructor(
-        private cdr: ChangeDetectorRef,
-        private vcr: ViewContainerRef,
-        private iterableDiffers: IterableDiffers,
-        private dataConfiguratorService: TableDataConfiguratorService,
-        private columnsResolverService: TableColumnsResolverService,
-        private tableActionsService: TableActionsService,
-        private featureLoaderService: TableFeatureLoaderService,
-        private configService: TableConfigService,
-        private datasourceService: TableDatasourceService,
-        private tableFeaturesRendererService: TableFeaturesRendererService,
-        private internalTableLocatorService: InternalTableLocatorService,
-        public injector: Injector,
-        @Optional()
-        @SkipSelf()
-        public parentTable: CoreTableComponent,
-    ) {}
 
     ngOnInit(): void {
         this.featuresLoaded$

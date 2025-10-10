@@ -19,6 +19,7 @@ import {
     TemplateRef,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
 import { DatasourceDependableElement } from '@spryker/datasource.dependable';
@@ -28,13 +29,14 @@ import { I18nService } from '@spryker/locale';
 import { ToJson } from '@spryker/utils';
 import { NzOptionComponent, NzSelectComponent } from 'ng-zorro-antd/select';
 import { BehaviorSubject, EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { switchAll, switchMap, takeUntil } from 'rxjs/operators';
+import { switchAll, switchMap, takeUntil } from 'rxjs';
 
 import { OptionComponent } from '../option/option.component';
 import { SelectedOptionComponent } from '../selected-option/selected-option.component';
 import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-select',
     templateUrl: './select.component.html',
     styleUrls: ['./select.component.less'],
@@ -54,6 +56,11 @@ import { SelectOption, SelectOptionItem, SelectValue, SelectValueSelected } from
 export class SelectComponent
     implements DatasourceTriggerElement, DatasourceDependableElement, OnInit, OnChanges, OnDestroy, AfterViewInit
 {
+    protected injector = inject(Injector);
+    protected datasourceService = inject(DatasourceService);
+    protected i18nService = inject(I18nService);
+    protected cdr = inject(ChangeDetectorRef);
+
     @ViewChild('selectRef') selectRef?: ElementRef<HTMLSelectElement>;
     @ViewChild('selectContainerRef') selectContainerRef?: NzSelectComponent;
 
@@ -137,13 +144,6 @@ export class SelectComponent
             });
         }
     }
-
-    constructor(
-        private injector: Injector,
-        private datasourceService: DatasourceService,
-        private i18nService: I18nService,
-        private cdr: ChangeDetectorRef,
-    ) {}
 
     ngOnInit(): void {
         if (this.tags || this.tagView) {

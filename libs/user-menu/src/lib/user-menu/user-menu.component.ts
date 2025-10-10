@@ -3,6 +3,7 @@ import { IconUserModule } from '@spryker/icon/icons';
 import { PopoverPosition } from '@spryker/popover';
 
 @Component({
+    standalone: false,
     selector: 'spy-user-menu',
     templateUrl: './user-menu.component.html',
     styleUrls: ['./user-menu.component.less'],

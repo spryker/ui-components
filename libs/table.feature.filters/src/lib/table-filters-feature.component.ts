@@ -2,19 +2,18 @@ import {
     ChangeDetectionStrategy,
     Component,
     forwardRef,
-    Inject,
     Injector,
     Type,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
-import { combineLatest, Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, map, pluck, shareReplay, startWith, switchMap } from 'rxjs/operators';
-
+import { combineLatest, Observable, Subject, distinctUntilChanged, map, shareReplay, startWith, switchMap } from 'rxjs';
 import { TABLE_FILTERS_TOKEN } from './tokens';
 import { TableFilterBase, TableFilterComponent, TableFiltersConfig, TableFiltersDeclaration } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-filters-feature',
     templateUrl: './table-filters-feature.component.html',
     styleUrls: ['./table-filters-feature.component.less'],
@@ -28,6 +27,8 @@ import { TableFilterBase, TableFilterComponent, TableFiltersConfig, TableFilters
     ],
 })
 export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFiltersConfig> {
+    protected tableFilterToken = inject(TABLE_FILTERS_TOKEN);
+
     name = 'filters';
     tableFeatureLocation = TableFeatureLocation;
     filterClasses: Record<string, string | string[]> = {};
@@ -41,9 +42,9 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
         switchMap((service) => service.config$),
         shareReplay({ refCount: true, bufferSize: 1 }),
     );
-    filters$ = this.config$.pipe(pluck('items'));
+    filters$ = this.config$.pipe(map((config) => config.items));
     filterValues$: Observable<Record<string, unknown>> = combineLatest([
-        this.dataConfig$.pipe(pluck('filter')) as Observable<Record<string, unknown>>,
+        this.dataConfig$.pipe(map((config) => config.filter)) as Observable<Record<string, unknown>>,
         this.updateFiltersValue$.pipe(startWith(null)),
     ]).pipe(
         map(([filterValues, updatedValue]) => {
@@ -70,7 +71,7 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
     );
     data$ = this.table$.pipe(
         switchMap((table) => table.data$),
-        pluck('data'),
+        map((data) => data.data),
         shareReplay({ bufferSize: 1, refCount: true }),
     );
     isVisible$ = combineLatest([
@@ -93,14 +94,6 @@ export class TableFiltersFeatureComponent extends TableFeatureComponent<TableFil
             return isData || (!isData && (isChanged || isLoading));
         }),
     );
-
-    constructor(
-        @Inject(TABLE_FILTERS_TOKEN)
-        private tableFilterToken: TableFiltersDeclaration[],
-        injector: Injector,
-    ) {
-        super(injector);
-    }
 
     updateFilterValue(id: string, value: unknown): void {
         this.updateFiltersValue$.next({ [id]: value });

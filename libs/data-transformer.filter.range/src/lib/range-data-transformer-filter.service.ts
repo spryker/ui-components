@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DataTransformerService, DataTransformerType } from '@spryker/data-transformer';
 import {
     DataFilterTransformerByPropName,
@@ -7,8 +7,7 @@ import {
     DataTransformerFilterConfig,
     DataTransformerFilterData,
 } from '@spryker/data-transformer.collate';
-import { forkJoin, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin, Observable, of, map } from 'rxjs';
 
 export interface RangeDataTransformerFilterValue {
     from?: unknown;
@@ -20,7 +19,7 @@ export interface RangeDataTransformerFilterValue {
  */
 @Injectable({ providedIn: 'root' })
 export class RangeDataTransformerFilterService implements DataTransformerFilter {
-    constructor(private dataTransformerService: DataTransformerService) {}
+    protected dataTransformerService = inject(DataTransformerService);
 
     filter(
         data: DataTransformerFilterData,

@@ -21,7 +21,7 @@ export default {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: SpinnerSize,
+            options: Object.values(SpinnerSize),
         },
     },
     args: {

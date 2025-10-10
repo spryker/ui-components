@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, Optional, Self, SkipSelf, Inject } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-
 import { IconComponent } from './icon/icon.component';
 import { InternalIconService } from './icon/internal-icon.service';
-import { InjectionTokenType } from '@spryker/utils';
 import { ICONS_TOKEN } from './icon/tokens';
 
 @NgModule({
@@ -13,14 +11,13 @@ import { ICONS_TOKEN } from './icon/tokens';
     exports: [IconComponent],
 })
 export class IconModule {
-    constructor(
-        private iconsService: InternalIconService,
-        @SkipSelf() @Optional() private parentIconService: InternalIconService,
-        @Self()
-        @Optional()
-        @Inject(ICONS_TOKEN)
-        icons: InjectionTokenType<typeof ICONS_TOKEN>,
-    ) {
+    protected iconsService = inject(InternalIconService);
+    protected parentIconService = inject(InternalIconService, { skipSelf: true, optional: true })!;
+
+    constructor() {
+        const parentIconService = this.parentIconService;
+        const icons = inject(ICONS_TOKEN, { self: true, optional: true })!;
+
         this.iconsService.init();
 
         if (parentIconService && icons) {

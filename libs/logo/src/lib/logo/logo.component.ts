@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
+    standalone: false,
     selector: 'spy-logo',
     templateUrl: './logo.component.html',
     styleUrls: ['./logo.component.less'],

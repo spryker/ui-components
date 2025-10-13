@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/spryker/ui-components/compare/@spryker/actions.refresh-table@2.0.3-next.0...@spryker/actions.refresh-table@3.0.0) (2025-10-13)
+
+**Note:** Version bump only for package @spryker/actions.refresh-table
+
+
+
+
+
 ## [2.0.3-next.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/actions.refresh-table@2.0.2...@spryker/actions.refresh-table@2.0.3-next.0) (2025-09-12)
 
 **Note:** Version bump only for package @spryker/actions.refresh-table

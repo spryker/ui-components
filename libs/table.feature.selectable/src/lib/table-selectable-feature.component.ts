@@ -5,6 +5,7 @@ import {
     Injector,
     OnDestroy,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import {
     TableColumn,
@@ -14,12 +15,12 @@ import {
     TableFeatureComponent,
     TableFeatureLocation,
 } from '@spryker/table';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, takeUntil } from 'rxjs';
 
 import { TableSelectableConfig, TableSelectionRow, TableSelectionChangeEvent } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-selectable-feature',
     templateUrl: './table-selectable-feature.component.html',
     styleUrls: ['./table-selectable-feature.component.less'],
@@ -33,6 +34,8 @@ import { TableSelectableConfig, TableSelectionRow, TableSelectionChangeEvent } f
     ],
 })
 export class TableSelectableFeatureComponent extends TableFeatureComponent<TableSelectableConfig> implements OnDestroy {
+    protected cdr = inject(ChangeDetectorRef);
+
     name = 'itemSelection';
     tableFeatureLocation = TableFeatureLocation;
 
@@ -43,13 +46,6 @@ export class TableSelectableFeatureComponent extends TableFeatureComponent<Table
 
     private destroyed$ = new Subject<void>();
     private rowsData: TableDataRow[] = [];
-
-    constructor(
-        private cdr: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        super(injector);
-    }
 
     ngOnDestroy(): void {
         this.destroyed$.next();

@@ -1,4 +1,4 @@
-<ng-container *ngIf="actions$ | async as actions">
+@if (actions$ | async; as actions) {
     <div class="ant-table-row-actions-feature" *spyTableFeatureTpl="tableFeatureLocation.afterCols; let data = data">
         <spy-dropdown
             class="ant-table-row-actions-feature__trigger"
@@ -8,6 +8,5 @@
             <spy-icon [name]="triggerIcon"></spy-icon>
         </spy-dropdown>
     </div>
-
     <ng-container *spyTableFeatureTpl="tableFeatureLocation.afterColsHeader"></ng-container>
-</ng-container>
+}

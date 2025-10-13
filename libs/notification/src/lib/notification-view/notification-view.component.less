@@ -1,21 +1,22 @@
+/* stylelint-disable selector-max-class, selector-max-compound-selectors, selector-max-combinators, no-descending-specificity */
 @import './notification-view.component.theme.less';
 
-.@{notification-view-spryker-prefix-cls} {
+.spy-notification-view {
     &.host-ctx-spy-bg-white,
     &:not([class^='host-ctx-spy-bg']) {
-        .@{notification-prefix-cls} {
+        .ant-alert {
             background: @gray-lighter;
         }
     }
 
     &.host-ctx-spy-bg-gray {
-        .@{notification-prefix-cls} {
+        .ant-alert {
             background: @spy-white;
         }
     }
 }
 
-.@{notification-prefix-cls} {
+.ant-alert {
     padding: @notification-padding;
     font: @font-default;
     border-radius: @notification-border-radius;
@@ -96,7 +97,7 @@
 
     &,
     &-with-description {
-        .@{notification-prefix-cls}-message {
+        .ant-alert-message {
             display: flex;
             align-items: center;
             padding-right: calc(@notification-with-description-padding-right + @notification-icon-width);
@@ -106,7 +107,7 @@
             font-size: inherit;
         }
 
-        .@{notification-prefix-cls}-close-icon {
+        .ant-alert-close-icon {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);

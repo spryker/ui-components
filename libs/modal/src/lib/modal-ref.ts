@@ -1,5 +1,4 @@
-import { Subject, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Subject, Observable, filter } from 'rxjs';
 
 import { ModalRef, InferModalResult, ModalRenderingRef, InferModalData } from './types';
 

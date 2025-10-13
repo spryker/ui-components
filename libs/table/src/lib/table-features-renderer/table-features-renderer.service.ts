@@ -1,6 +1,5 @@
 import { Injectable, OnDestroy, TemplateRef } from '@angular/core';
-import { combineLatest, EMPTY, Observable, of } from 'rxjs';
-import { debounceTime, map, shareReplay, switchMap, take, startWith } from 'rxjs/operators';
+import { combineLatest, EMPTY, Observable, of, debounceTime, map, shareReplay, switchMap, take, startWith } from 'rxjs';
 
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { FeatureRecord } from './types';

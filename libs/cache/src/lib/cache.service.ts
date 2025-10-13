@@ -1,8 +1,5 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
-import { InjectionTokenType } from '@spryker/utils';
-import { forkJoin, Observable } from 'rxjs';
-import { mapTo } from 'rxjs/operators';
-
+import { Injectable, Injector, inject } from '@angular/core';
+import { forkJoin, Observable, map } from 'rxjs';
 import { CacheStorageFactoryService } from './cache-storage-factory.service';
 import { CacheStrategyTypesToken } from './token';
 import {
@@ -22,16 +19,14 @@ import {
     providedIn: 'root',
 })
 export class CacheService {
+    protected cacheStorageFactoryService = inject(CacheStorageFactoryService);
+    protected injector = inject(Injector);
+    protected cachesTypes = inject(CacheStrategyTypesToken, {
+        optional: true,
+    });
+
     private caches: Partial<CacheStrategyTypesDeclaration> =
         this.cachesTypes?.reduce((caches, cache) => ({ ...caches, ...cache }), {}) ?? {};
-
-    constructor(
-        private cacheStorageFactoryService: CacheStorageFactoryService,
-        private injector: Injector,
-        @Optional()
-        @Inject(CacheStrategyTypesToken)
-        private cachesTypes?: InjectionTokenType<typeof CacheStrategyTypesToken>,
-    ) {}
 
     getCached<T>(id: CacheId, config: CacheStrategyConfig, operation: CacheOperation<T>): Observable<T> {
         if (!this.isCacheStrategyRegisteredType(config.type)) {
@@ -46,7 +41,7 @@ export class CacheService {
     clearCache(namespace?: string): Observable<void> {
         const cacheStorages = this.cacheStorageFactoryService.createAll();
 
-        return forkJoin(cacheStorages.map((cacheStorage) => cacheStorage.clear(namespace))).pipe(mapTo(void 0));
+        return forkJoin(cacheStorages.map((cacheStorage) => cacheStorage.clear(namespace))).pipe(map(() => void 0));
     }
 
     private isCacheStrategyRegisteredType(type: CacheStrategyType): type is keyof CacheStrategyRegistry {

@@ -44,7 +44,7 @@ export function createGetSet<T>(prop: string, obj: any) {
 }
 
 export function exposeMethod(obj: any, innerObj: any, method: string, proto: any) {
-    const protoMethod = createGetSet<Function>(method, proto);
+    const protoMethod = createGetSet<(...args: any[]) => any>(method, proto);
     const protoChecked = createGetSet<boolean>(`${method}_CHECKED`, proto);
 
     const innerMethod = innerObj[method];

@@ -6,15 +6,14 @@ import {
     ContentChild,
     Directive,
     ElementRef,
-    Inject,
     InjectionToken,
     Injector,
     OnChanges,
-    Optional,
     TemplateRef,
     ViewContainerRef,
     SimpleChanges,
     Input,
+    inject,
 } from '@angular/core';
 import {
     TableColumns,
@@ -30,7 +29,6 @@ import {
     TableFeatureConfig,
 } from '@spryker/table';
 import { ReplaySubject, BehaviorSubject } from 'rxjs';
-import { InjectionTokenType } from '@spryker/utils';
 
 class MockElementRef {
     nativeElement = {
@@ -104,22 +102,19 @@ export function initFeature<T>(
 }
 
 @Component({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'test-table-feature',
     template: ` <ng-content></ng-content> `,
 })
 export class TestTableFeatureComponent<T = TableMockComponent> implements AfterContentInit {
+    protected cdr = inject(ChangeDetectorRef);
+    protected globalMocks = inject<TableFeatureMocks<T> | null>(TestTableFeatureMocks, { optional: true });
+    protected injector = inject(Injector);
+
     @ContentChild(TableFeatureComponent) feature?: TableFeatureComponent;
 
     featureMocks?: TableFeatureMocks<T>;
-
-    constructor(
-        private cdr: ChangeDetectorRef,
-        @Inject(TestTableFeatureMocks)
-        @Optional()
-        private globalMocks: TableFeatureMocks<T> | null,
-        private injector: Injector,
-    ) {}
 
     ngAfterContentInit(): void {
         if (!this.feature) {
@@ -134,20 +129,16 @@ export const TestTableFeatureTplContext = new InjectionToken<Record<string, Tabl
     'TestTableFeatureTplContext',
 );
 
-@Directive({
-    selector: '[spyTableFeatureTpl]',
-})
+@Directive({ standalone: false, selector: '[spyTableFeatureTpl]' })
 export class TestTableFeatureTplDirective implements OnChanges {
+    template = inject<TemplateRef<TableFeatureTplContext>>(TemplateRef);
+    vcr = inject(ViewContainerRef);
+    locationContext? = inject(TestTableFeatureTplContext, {
+        optional: true,
+    });
+
     @Input() spyTableFeatureTpl?: string | string[];
     @Input() spyTableFeatureTplStyles?: Record<string, any>;
-
-    constructor(
-        public template: TemplateRef<TableFeatureTplContext>,
-        public vcr: ViewContainerRef,
-        @Inject(TestTableFeatureTplContext)
-        @Optional()
-        public locationContext?: InjectionTokenType<typeof TestTableFeatureTplContext>,
-    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.spyTableFeatureTpl) {

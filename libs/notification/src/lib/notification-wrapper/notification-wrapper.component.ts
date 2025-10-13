@@ -1,10 +1,19 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    HostBinding,
+    ViewEncapsulation,
+    inject,
+    signal,
+} from '@angular/core';
 import { Toast, ToastPackage, ToastrService } from 'ngx-toastr';
 
 import { NotificationRef } from '../notification-ref';
 
 @Component({
+    standalone: false,
     selector: 'spy-notification-wrapper',
     templateUrl: './notification-wrapper.component.html',
     styleUrls: ['./notification-wrapper.component.less'],
@@ -51,19 +60,12 @@ import { NotificationRef } from '../notification-ref';
     ],
 })
 export class NotificationWrapperComponent extends Toast {
-    @HostBinding('@flyInOut')
-    state = {
+    protected cdr = inject(ChangeDetectorRef);
+
+    override state = signal({
         value: 'inactive',
         params: this.toastPackage.config,
-    } as const;
-
-    constructor(
-        toastrService: ToastrService,
-        toastPackage: ToastPackage,
-        private cdr: ChangeDetectorRef,
-    ) {
-        super(toastrService, toastPackage);
-    }
+    } as const);
 
     notificationRef?: NotificationRef;
 
@@ -71,7 +73,7 @@ export class NotificationWrapperComponent extends Toast {
         this.notificationRef?.close();
     }
 
-    activateToast() {
+    override activateToast() {
         super.activateToast();
         this.cdr.markForCheck();
     }

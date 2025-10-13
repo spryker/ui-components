@@ -1,16 +1,16 @@
-import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Injectable } from '@angular/core';
-import { ColumnTypeOption, TableColumnTypeComponent, TableColumnComponent, TableColumnContext } from '@spryker/table';
+import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Injectable, inject } from '@angular/core';
+import { TableColumnComponent, TableColumnContext, TableColumnTypeComponent } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnTextConfig {
-    @ColumnTypeOption()
-    text? = this.contextService.wrap('displayValue');
+    protected contextService = inject(ContextService);
 
-    constructor(private contextService: ContextService) {}
+    text? = this.contextService.wrap('displayValue');
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-text',
     templateUrl: './table-column-text.component.html',
     styleUrls: ['./table-column-text.component.less'],

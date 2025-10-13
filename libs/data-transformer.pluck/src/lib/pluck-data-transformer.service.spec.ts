@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DefaultContextSerializationModule } from '@spryker/utils';
-import { ReplaySubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { ReplaySubject, switchMap } from 'rxjs';
 
 import { PluckDataTransformerService } from './pluck-data-transformer.service';
 

@@ -73,7 +73,7 @@ export default {
         },
         mode: {
             control: { type: 'select' },
-            options: TabsMode,
+            options: Object.values(TabsMode),
         },
     },
     args: {

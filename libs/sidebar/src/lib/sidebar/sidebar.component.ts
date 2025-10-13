@@ -9,14 +9,15 @@ import {
     SimpleChanges,
     TemplateRef,
     ViewEncapsulation,
+    booleanAttribute,
+    inject,
 } from '@angular/core';
 import { IconArrowDownModule } from '@spryker/icon/icons';
 import { PersistenceService } from '@spryker/persistence';
-import { ToBoolean } from '@spryker/utils';
-import { merge, ReplaySubject } from 'rxjs';
-import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { merge, ReplaySubject, map, switchMap, tap, withLatestFrom } from 'rxjs';
 
 @Component({
+    standalone: false,
     selector: 'spy-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.less'],
@@ -27,11 +28,13 @@ import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
     },
 })
 export class SidebarComponent implements OnChanges, OnInit {
+    protected persistenceService = inject(PersistenceService);
+
     @Input() width = 250;
     @Input() collapsedWidth = 96;
     @Input() spyId?: string;
     @Input() trigger: undefined | TemplateRef<void>;
-    @Input() @ToBoolean() collapsed = false;
+    @Input({ transform: booleanAttribute }) collapsed = false;
     @Output() collapsedChange = new EventEmitter<boolean>();
 
     private isCollapsedStateRetrieved = false;
@@ -58,8 +61,6 @@ export class SidebarComponent implements OnChanges, OnInit {
         }),
         map(([isCollapsed]) => isCollapsed),
     );
-
-    constructor(private persistenceService: PersistenceService) {}
 
     ngOnInit(): void {
         this.spyId$.next(this.spyId);

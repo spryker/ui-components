@@ -45,9 +45,9 @@ describe('ArrayMapDataTransformerService', () => {
         transformObservable$.subscribe(callback);
 
         mockData.forEach((item) => {
-            expect(dataTransformerService.transform).toBeCalledWith(item, mockConfig.mapItems);
+            expect(dataTransformerService.transform).toHaveBeenCalledWith(item, mockConfig.mapItems);
         });
         expect(callback).toHaveBeenCalledWith(mockReturnedData);
-        expect(dataTransformerService.transform).toBeCalledTimes(mockData.length);
+        expect(dataTransformerService.transform).toHaveBeenCalledTimes(mockData.length);
     });
 });

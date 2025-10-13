@@ -1,6 +1,6 @@
 @import 'themes/default/theme.less';
 
-.@{table-total-feature-prefix-cls} {
+.spy-table-total-feature {
     font: @font-default;
     color: @gray-dark;
     display: flex;
@@ -9,7 +9,7 @@
     flex-shrink: 0;
     padding-left: 0;
 
-    .@{chips-prefix-cls} {
-        margin-top: @table-total-feature-chips-margin-top;
+    .spy-chips {
+        margin-top: var(--spy-table-total-feature-chips-margin-top, 2px);
     }
 }

@@ -27,7 +27,7 @@ export default {
     argTypes: {
         popoverTrigger: {
             control: { type: 'select' },
-            options: PopoverTrigger,
+            options: Object.values(PopoverTrigger),
         },
     },
     args: {

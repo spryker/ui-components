@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
 @Component({
+    standalone: false,
     selector: 'spy-layout',
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.less'],

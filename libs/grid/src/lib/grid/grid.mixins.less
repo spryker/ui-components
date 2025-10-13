@@ -99,14 +99,14 @@
  * @param {String} @nested-breakpoint-key ['']
  */
 .grid-align-mixin (@breakpoints-prop: @breakpoints, @direction, @grid-breakpoints-map, @nested-breakpoint-key: '') when (@direction = column), (@direction = column-reverse) {
-    &.@{grid-row-prefix-cls} {
+    &.spy-row {
         .grid-variant-mixin(@breakpoints-prop, align-items, @grid-align, @grid-breakpoints-map, align-row, @nested-breakpoint-key);
         .grid-variant-mixin(@breakpoints-prop, justify-content, @grid-align, @grid-breakpoints-map, align-col, @nested-breakpoint-key);
     }
 }
 
 .grid-align-mixin (@breakpoints-prop: @breakpoints, @direction, @grid-breakpoints-map, @nested-breakpoint-key: '') when (@direction = row), (@direction = row-reverse) {
-    &.@{grid-row-prefix-cls} {
+    &.spy-row {
         .grid-variant-mixin(@breakpoints-prop, align-items, @grid-align, @grid-breakpoints-map, align-col, @nested-breakpoint-key);
         .grid-variant-mixin(@breakpoints-prop, justify-content, @grid-align, @grid-breakpoints-map, align-row, @nested-breakpoint-key);
     }

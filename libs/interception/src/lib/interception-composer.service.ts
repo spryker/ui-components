@@ -1,15 +1,13 @@
 import {
     AbstractType,
     Injectable,
-    InjectFlags,
     InjectionToken,
     Injector,
     NgModuleRef,
     OnDestroy,
     OnInit,
-    Optional,
-    SkipSelf,
     Type,
+    inject,
 } from '@angular/core';
 
 import { InterceptionComposableFactoriesToken, InterceptionComposableToken } from './interception-composable.token';
@@ -26,19 +24,15 @@ interface DestructibleInjector extends Injector, Pick<NgModuleRef<any>, 'destroy
  */
 @Injectable()
 export class InterceptionComposerImplementation implements InterceptionComposer, OnDestroy, OnInit {
+    protected injector = inject(Injector);
+    protected parent = inject(InterceptionComposerImplementation, { skipSelf: true, optional: true });
+
     private static NO_SERVICE = { __noService: true };
 
     private factories = this.injector.get(InterceptionComposableFactoriesToken, []);
     private token = this.injector.get(InterceptionComposableToken);
 
     private servicesInjector?: DestructibleInjector;
-
-    constructor(
-        private injector: Injector,
-        @SkipSelf()
-        @Optional()
-        private parent?: InterceptionComposerImplementation,
-    ) {}
 
     ngOnDestroy(): void {
         this.servicesInjector?.destroy();
@@ -87,11 +81,7 @@ export class InterceptionComposerImplementation implements InterceptionComposer,
             return InterceptionComposerImplementation.NO_SERVICE;
         }
 
-        return this.servicesInjector.get(
-            token,
-            InterceptionComposerImplementation.NO_SERVICE as never,
-            InjectFlags.Self,
-        );
+        return this.servicesInjector.get(token, InterceptionComposerImplementation.NO_SERVICE as never, { self: true });
     }
 
     private getServiceFromParent<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>): any {

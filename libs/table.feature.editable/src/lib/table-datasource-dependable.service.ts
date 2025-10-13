@@ -1,15 +1,13 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { Datasource, DatasourceService } from '@spryker/datasource';
 import { CoreTableComponent, TableColumnService, TableData } from '@spryker/table';
-import { combineLatest, EMPTY, Observable } from 'rxjs';
-import { map, startWith, switchMap } from 'rxjs/operators';
-
+import { combineLatest, EMPTY, Observable, map, startWith, switchMap } from 'rxjs';
 import { TableEditableFeatureComponent } from './table-editable-feature.component';
 import { TableDatasourceDependableConfig } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class TableDatasourceDependableService implements Datasource<TableData> {
-    constructor(private tableColumnService: TableColumnService) {}
+    protected tableColumnService = inject(TableColumnService);
 
     resolve(injector: Injector, config: TableDatasourceDependableConfig, context?: unknown): Observable<TableData> {
         const isCreateMode = typeof context === 'object' ? (context as any)?.isCreateMode || false : false;

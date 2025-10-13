@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { ActionHandler } from '@spryker/actions';
 import {
     DrawerRef,
@@ -7,7 +7,7 @@ import {
     DrawerOptionsTemplate,
     DrawerOptions,
 } from '@spryker/drawer';
-import { ContextService, InjectionTokenType } from '@spryker/utils';
+import { ContextService } from '@spryker/utils';
 import { Observable } from 'rxjs';
 import {
     DrawerActionComponentsRegistry,
@@ -23,15 +23,11 @@ import { DrawerActionComponentTypesToken } from './token';
     providedIn: 'root',
 })
 export class DrawerActionHandlerService implements ActionHandler<unknown, DrawerRef<unknown>> {
+    protected drawerService = inject(DrawerService);
+    protected drawerActionHandlers = inject(DrawerActionComponentTypesToken, { optional: true });
+
     private drawerActionHandlerTypes: DrawerActionTypesDeclaration =
         this.drawerActionHandlers?.reduce((components, component) => ({ ...components, ...component }), {}) ?? {};
-
-    constructor(
-        private drawerService: DrawerService,
-        @Optional()
-        @Inject(DrawerActionComponentTypesToken)
-        private drawerActionHandlers?: InjectionTokenType<typeof DrawerActionComponentTypesToken>,
-    ) {}
 
     handleAction<C>(injector: Injector, config: DrawerActionConfig, context: C): Observable<DrawerRef<C>> {
         return new Observable((subscriber) => {

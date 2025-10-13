@@ -105,7 +105,7 @@ withTable.args = {
                 title: 'Column #2',
                 type: 'date',
                 typeOptions: {
-                    date: '${value}',
+                    date: '${value} 1',
                     format: 'mediumDate',
                 },
             },

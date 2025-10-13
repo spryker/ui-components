@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Injector, OnDestroy } from '@angular/core';
+import { Injectable, Injector, OnDestroy, inject } from '@angular/core';
 import { ActionHandler, ActionsService } from '@spryker/actions';
 import { AnyContext, ContextService } from '@spryker/utils';
-import { combineLatest, Observable, of, Subject } from 'rxjs';
-import { catchError, concatAll, shareReplay, takeUntil } from 'rxjs/operators';
+import { combineLatest, Observable, of, Subject, catchError, concatAll, shareReplay, takeUntil } from 'rxjs';
 
 import { HttpActionConfig, HttpActionResponse } from './types';
 
@@ -11,8 +10,9 @@ import { HttpActionConfig, HttpActionResponse } from './types';
     providedIn: 'root',
 })
 export class HttpActionHandlerService implements ActionHandler<unknown, unknown>, OnDestroy {
+    protected http = inject(HttpClient);
+
     private destroyed$ = new Subject<void>();
-    constructor(private http: HttpClient) {}
 
     handleAction(injector: Injector, config: HttpActionConfig, context: unknown): Observable<unknown> {
         config = { ...config };

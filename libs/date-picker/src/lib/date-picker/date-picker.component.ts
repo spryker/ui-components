@@ -5,16 +5,17 @@ import {
     ElementRef,
     EventEmitter,
     HostBinding,
-    Inject,
     Input,
     OnChanges,
     Output,
     SimpleChanges,
     ViewChild,
     ViewEncapsulation,
+    booleanAttribute,
+    inject,
 } from '@angular/core';
 import { IconCalendarModule } from '@spryker/icon/icons';
-import { InjectionTokenType, ToBoolean, ToJson, triggerChangeEvent } from '@spryker/utils';
+import { ToJson, triggerChangeEvent } from '@spryker/utils';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 
 import { DateWorkDaysToken, DateWorkHoursToken } from './tokens';
@@ -46,6 +47,7 @@ interface NzDisabledTimeConfig {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-date-picker',
     templateUrl: './date-picker.component.html',
     styleUrls: ['./date-picker.component.less'],
@@ -53,16 +55,19 @@ interface NzDisabledTimeConfig {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatePickerComponent implements OnChanges, AfterViewChecked {
+    protected dateWorkDaysToken = inject(DateWorkDaysToken);
+    protected dateWorkHoursToken = inject(DateWorkHoursToken);
+
     private static DefaultFormat = 'dd.MM.yyyy';
     private static HoursRange = [...Array(24).keys()];
     private static MinutesRange = [...Array(60).keys()];
 
-    @Input() @ToBoolean() clearButton = true;
-    @Input() @ToBoolean() disabled = false;
+    @Input({ transform: booleanAttribute }) clearButton = true;
+    @Input({ transform: booleanAttribute }) disabled = false;
     @Input() @ToJson() enableDate?: EnableDateOptions;
     @Input() @ToJson() enableTime?: EnableTimeOptions;
-    @Input() @ToBoolean() open = false;
-    @Input() @ToBoolean() time?: boolean;
+    @Input({ transform: booleanAttribute }) open = false;
+    @Input({ transform: booleanAttribute }) time?: boolean;
     @Input()
     set date(value: Date | string) {
         this._date = value ? this.convertValueToDate(value) : undefined;
@@ -91,13 +96,6 @@ export class DatePickerComponent implements OnChanges, AfterViewChecked {
     @HostBinding('class.open') isOpen = false;
 
     suffixIcon = IconCalendarModule.icon;
-
-    constructor(
-        @Inject(DateWorkDaysToken)
-        private dateWorkDaysToken: InjectionTokenType<typeof DateWorkDaysToken>,
-        @Inject(DateWorkHoursToken)
-        private dateWorkHoursToken: InjectionTokenType<typeof DateWorkHoursToken>,
-    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         this.updatePicker();

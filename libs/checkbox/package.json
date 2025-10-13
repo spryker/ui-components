@@ -5,8 +5,8 @@
         "@angular/common": ">=20.3.0 <21.0.0",
         "@angular/core": ">=20.3.0 <21.0.0",
         "@angular/forms": ">=20.3.0 <21.0.0",
-        "@spryker/styles": "^2.0.0",
-        "@spryker/utils": "^2.0.0"
+        "@spryker/styles": "^3.0.0",
+        "@spryker/utils": "^3.0.0"
     },
     "dependencies": {
         "ng-zorro-antd": ">=20.3.0 <21.0.0",

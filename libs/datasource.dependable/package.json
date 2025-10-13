@@ -4,8 +4,8 @@
     "peerDependencies": {
         "@angular/common": ">=20.3.0 <21.0.0",
         "@angular/core": ">=20.3.0 <21.0.0",
-        "@spryker/datasource": "^2.0.0",
-        "@spryker/web-components": "^2.0.0",
+        "@spryker/datasource": "^3.0.0",
+        "@spryker/web-components": "^3.0.0",
         "rxjs": ">=7.8.0 <8.0.0"
     },
     "dependencies": {

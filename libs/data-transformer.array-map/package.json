@@ -4,7 +4,7 @@
     "peerDependencies": {
         "@angular/common": ">=20.3.0 <21.0.0",
         "@angular/core": ">=20.3.0 <21.0.0",
-        "@spryker/data-transformer": "^2.0.0",
+        "@spryker/data-transformer": "^3.0.0",
         "rxjs": ">=7.8.0 <8.0.0"
     },
     "dependencies": {

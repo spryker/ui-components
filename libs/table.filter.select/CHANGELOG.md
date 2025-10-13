@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/spryker/ui-components/compare/@spryker/table.filter.select@2.1.0...@spryker/table.filter.select@3.0.0) (2025-10-13)
+
+**Note:** Version bump only for package @spryker/table.filter.select
+
+
+
+
+
 # [2.1.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/table.filter.select@2.0.8...@spryker/table.filter.select@2.1.0) (2025-09-19)
 
 

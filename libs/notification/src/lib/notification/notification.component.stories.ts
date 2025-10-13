@@ -30,14 +30,14 @@ export default {
     argTypes: {
         type: {
             control: { type: 'select' },
-            options: NotificationType,
+            options: Object.values(NotificationType),
         },
         floatingConfig: {
             table: { disable: true },
         },
         position: {
             control: { type: 'select' },
-            options: NotificationPosition,
+            options: Object.values(NotificationPosition),
         },
     },
     args: {

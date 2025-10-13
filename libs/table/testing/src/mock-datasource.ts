@@ -1,11 +1,8 @@
-import { Injectable, Injector, InjectionToken, Inject, Optional } from '@angular/core';
+import { Injectable, Injector, InjectionToken, inject } from '@angular/core';
 import { TableData, TableDataConfig } from '@spryker/table';
 import { DatasourceConfig, Datasource } from '@spryker/datasource';
-import { Observable, of } from 'rxjs';
-
+import { Observable, of, switchMap, delay } from 'rxjs';
 import { TableDataMockGenerator, generateMockTableDataForOptions } from './mock-data';
-import { switchMap, delay } from 'rxjs/operators';
-import { InjectionTokenType } from '@spryker/utils';
 
 export const MockTableDatasourceToken = new InjectionToken<TableDataMockGenerator>('MockTableDatasource');
 
@@ -15,11 +12,9 @@ export interface MockTableDatasourceConfig extends DatasourceConfig {
 
 @Injectable({ providedIn: 'root' })
 export class MockTableDatasourceService implements Datasource<TableData, TableDataConfig> {
-    constructor(
-        @Inject(MockTableDatasourceToken)
-        @Optional()
-        private dataGenerator?: InjectionTokenType<typeof MockTableDatasourceToken>,
-    ) {}
+    protected dataGenerator = inject(MockTableDatasourceToken, {
+        optional: true,
+    });
 
     resolve(
         injector: Injector,

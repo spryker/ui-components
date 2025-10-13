@@ -1,7 +1,5 @@
 import { PersistenceStrategy } from '@spryker/persistence';
-import { forkJoin, Observable, of } from 'rxjs';
-import { map, mapTo, switchMap } from 'rxjs/operators';
-
+import { forkJoin, Observable, of, map, switchMap } from 'rxjs';
 import { CacheEntry, CacheId, CacheStorage } from './types';
 
 interface ManifestStrategyConfig {
@@ -67,7 +65,7 @@ export class CacheStoragePersistenceAdapter implements CacheStorage {
 
                 return forkJoin([this.persistenceStrategy.save(name, data), this.saveManifest(currentManifest)]);
             }),
-            mapTo(void 0),
+            map(() => void 0),
         );
     }
 
@@ -88,7 +86,7 @@ export class CacheStoragePersistenceAdapter implements CacheStorage {
 
                 return forkJoin([this.persistenceStrategy.remove(name), this.saveManifest(manifest)]);
             }),
-            mapTo(void 0),
+            map(() => void 0),
         );
     }
 
@@ -114,7 +112,7 @@ export class CacheStoragePersistenceAdapter implements CacheStorage {
 
                 return forkJoin([...strategyClearObservables$, this.saveManifest(manifest)]);
             }),
-            mapTo(void 0),
+            map(() => void 0),
         );
     }
 

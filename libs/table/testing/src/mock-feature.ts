@@ -1,4 +1,3 @@
-import { Injector } from '@angular/core';
 import { TableFeatureComponent } from '@spryker/table';
 
 export class MockTableFeatureComponent extends TableFeatureComponent {
@@ -14,8 +13,7 @@ export class MockTableFeatureComponent extends TableFeatureComponent {
         public innerConfig: {
             styles?: Record<string, string>;
         } = {},
-        injector: Injector,
     ) {
-        super(injector);
+        super();
     }
 }

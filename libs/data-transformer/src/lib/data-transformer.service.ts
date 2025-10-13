@@ -1,7 +1,5 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
-import { InjectionTokenType } from '@spryker/utils';
+import { Injectable, Injector, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { DataTransformerTypesToken } from './token';
 import {
     DataTransformer,
@@ -18,6 +16,9 @@ import {
     providedIn: 'root',
 })
 export class DataTransformerService {
+    protected injector = inject(Injector);
+    protected transformersTypes = inject(DataTransformerTypesToken, { optional: true });
+
     private transformers: Partial<DataTransformerTypesDeclaration> =
         this.transformersTypes?.reduce(
             (transformers, transformer) => ({
@@ -26,13 +27,6 @@ export class DataTransformerService {
             }),
             {},
         ) ?? {};
-
-    constructor(
-        private injector: Injector,
-        @Optional()
-        @Inject(DataTransformerTypesToken)
-        private transformersTypes?: InjectionTokenType<typeof DataTransformerTypesToken>,
-    ) {}
 
     transform(data: unknown, config: DataTransformerConfig, injector?: Injector): Observable<unknown> {
         if (!this.isTransformerRegisteredType(config.type)) {

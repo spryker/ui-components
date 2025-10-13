@@ -24,20 +24,25 @@ async function main(extraArgs) {
     });
     const projects = await Promise.all(
         projectsJson.map((path) =>
-            import(resolve(ROOT_DIR, path), { assert: { type: 'json' } }).then((data) => data.default),
+            import(resolve(ROOT_DIR, path), { with: { type: 'json' } }).then((data) => data.default),
         ),
     );
+    const extra = ['--cloud=false', '--output-style=stream', '--skip-nx-cache'];
 
     /** @type {Record<string, boolean>} */
     const ignoreMap = IGNORE_TAGS.reduce((acc, tag) => ({ ...acc, [tag]: true }), {});
 
     const projectsToBuild = projects.filter((p) => p.tags && p.tags.every((tag) => !ignoreMap[tag])).map((p) => p.name);
 
-    console.log(`Building projects: ${projectsToBuild.join(', ')}...`);
+    console.info(`Building projects: ${projectsToBuild.join(', ')}...`);
 
-    const args = ['--target build', `--projects ${projectsToBuild.join(',')}`, ...extraArgs];
+    const args = ['--target build', ...extra, `--projects ${projectsToBuild.join(',')}`, ...extraArgs];
 
-    execSync(`npx nx run-many ${args.join(' ')}`, { stdio: 'inherit' });
+    execSync(`npx nx run-many ${args.join(' ')}`, {
+        stdio: 'inherit',
+        NX_CLOUD: 'false',
+        NX_SKIP_NX_CACHE: 'true',
+    });
 }
 
 main(process.argv.slice(2)).catch((e) => {

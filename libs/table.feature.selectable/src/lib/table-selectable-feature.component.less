@@ -1,10 +1,11 @@
-@import 'themes/default/theme.less';
+/* stylelint-disable selector-no-qualifying-type */
+@import './table-selectable-feature.component.theme.less';
 
-.@{table-prefix-cls} {
+.ant-table {
     &-tbody > tr {
-        &.@{table-prefix-cls}-row--selected > td .@{table-prefix-cls}-column-inner::after {
+        &.ant-table-row--selected > td .ant-table-column-inner::after {
             border-color: @spy-white;
-            background: @table-body-selected-row-bg;
+            background: @table-selectable-feature-body-selected-row-bg;
         }
     }
 }

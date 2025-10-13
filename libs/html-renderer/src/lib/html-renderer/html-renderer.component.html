@@ -5,6 +5,6 @@
     class="spy-html-renderer__content"
 ></span>
 
-<ng-container *ngIf="isLoading$ | async">
+@if (isLoading$ | async) {
     <spy-spinner [isSpinning]="true" [size]="spinnerSize"></spy-spinner>
-</ng-container>
+}

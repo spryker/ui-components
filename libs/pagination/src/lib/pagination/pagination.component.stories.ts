@@ -34,7 +34,7 @@ export default {
     },
     argTypes: {
         pageSizeOptions: {
-            control: { type: 'array' },
+            control: { type: 'object' },
         },
     },
     args: {

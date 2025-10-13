@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, Injectable, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injectable,
+    Input,
+    OnChanges,
+    OnInit,
+    SimpleChanges,
+    inject,
+} from '@angular/core';
 import { LocaleService } from '../locale.service';
 
 /**
@@ -10,6 +19,7 @@ export class LocaleSwitcherInputs {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-locale-switcher',
     templateUrl: './locale-switcher.component.html',
     styleUrls: ['./locale-switcher.component.less'],
@@ -17,9 +27,9 @@ export class LocaleSwitcherInputs {
     host: { style: 'display: none' },
 })
 export class LocaleSwitcherComponent implements OnInit, OnChanges {
-    @Input() locale?: string;
+    protected localeService = inject(LocaleService);
 
-    constructor(private localeService: LocaleService) {}
+    @Input() locale?: string;
 
     ngOnInit(): void {
         if (this.locale) {

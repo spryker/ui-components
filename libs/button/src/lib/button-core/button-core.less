@@ -1,11 +1,11 @@
-@btn-prefix-core-cls: ~'@{btn-prefix-cls}-core';
-@btn-prefix-core-btn-cls: ~'@{btn-prefix-core-cls}__btn';
+/* stylelint-disable no-descending-specificity */
+@import './theme/button-core.component.theme.less';
 
-.@{btn-prefix-core-cls} {
+.spy-button-core {
     display: inline-flex;
     flex-direction: column;
 
-    .@{btn-prefix-core-btn-cls} {
+    .spy-button-core__btn {
         &:hover {
             color: @btn-primary-color;
             box-shadow: @btn-shadow-hover;
@@ -22,7 +22,7 @@
     }
 
     &--primary {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             background: @btn-primary-bg;
             border-color: @btn-primary-bg;
 
@@ -39,7 +39,7 @@
     }
 
     &--secondary {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             background: @btn-default-bg;
             border-color: @btn-default-border;
 
@@ -56,7 +56,7 @@
     }
 
     &--outline {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             background: @btn-default-bg;
             border-color: @btn-outline-border;
 
@@ -74,7 +74,7 @@
     }
 
     &--critical-outline {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             background: @btn-default-bg;
             color: @btn-critical-outline-color;
             border-color: @btn-critical-outline-border;
@@ -92,7 +92,7 @@
     }
 
     &--critical {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             background: @btn-danger-bg;
             border-color: @btn-danger-bg;
 
@@ -110,17 +110,17 @@
     }
 
     &--lg {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             min-width: @btn-min-width-lg;
             padding-left: @btn-horizontal-padding-base-lg;
             padding-right: @btn-horizontal-padding-base-lg;
-            min-height: @spy-btn-height-lg;
+            min-height: @btn-height-lg;
 
             &.loading {
                 padding: @btn-padding-with-loading-lg;
             }
 
-            .@{spin-prefix-cls} {
+            .ant-spin {
                 &-nested-loading {
                     left: @btn-loading-spin-offset-lg;
                 }
@@ -129,7 +129,7 @@
     }
 
     &--md {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             min-width: @btn-min-width-md;
             min-height: @btn-height-md;
             padding-left: @btn-horizontal-padding-base-md;
@@ -139,7 +139,7 @@
                 padding: @btn-padding-with-loading-md;
             }
 
-            .@{spin-prefix-cls} {
+            .ant-spin {
                 &-nested-loading {
                     left: @btn-loading-spin-offset-md;
                 }
@@ -149,25 +149,25 @@
 
     &--xs,
     &--sm {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             min-width: @btn-min-width-sm;
         }
     }
 
     &--sm {
-        .@{btn-prefix-core-btn-cls} {
-            min-height: @spy-btn-height-sm;
+        .spy-button-core__btn {
+            min-height: @btn-height-sm;
         }
     }
 
     &--xs {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             min-height: @btn-height-xs;
         }
     }
 
     &--circle {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             border-radius: @btn-border-radius-circle;
             min-width: @btn-min-width-circle;
             padding: @btn-padding-circle;
@@ -175,13 +175,13 @@
     }
 
     &--round {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             border-radius: @btn-border-radius-round;
         }
     }
 
     &--link {
-        .@{btn-prefix-core-btn-cls} {
+        .spy-button-core__btn {
             min-width: 0;
             min-height: 0;
             padding: @btn-link-padding;
@@ -215,7 +215,7 @@
     }
 }
 
-.@{btn-prefix-core-btn-cls} {
+.spy-button-core__btn {
     .transition-mixin(all);
     display: inline-flex;
     align-items: center;
@@ -237,7 +237,7 @@
         padding: @btn-padding-with-loading-sm;
     }
 
-    .@{spin-prefix-cls} {
+    .ant-spin {
         color: currentColor;
 
         &-nested-loading {

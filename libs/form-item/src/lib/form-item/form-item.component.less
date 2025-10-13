@@ -1,6 +1,7 @@
+/* stylelint-disable selector-max-class, no-descending-specificity */
 @import './form-item.component.theme.less';
 
-.@{form-item-prefix-cls} {
+.ant-form-item {
     display: block;
     margin-bottom: @form-item-bottom-margin;
     font-family: @font-family;
@@ -57,28 +58,28 @@
         vertical-align: middle;
     }
 
-    &.@{form-item-prefix-cls}-has-error.@{form-item-prefix-cls}-with-help {
-        .@{select-prefix-cls}:not(.@{select-prefix-cls}-borderless) .@{select-prefix-cls}-selector,
-        .@{input-prefix-cls}-affix-wrapper,
-        .@{input-prefix-cls}-container--hover,
-        .@{input-prefix-cls}-container--focus,
-        .@{input-prefix-cls}-group-addon,
-        .@{input-prefix-cls}-group,
-        .@{input-prefix-cls} {
+    &.ant-form-item-has-error.ant-form-item-with-help {
+        .ant-select:not(.ant-select-borderless) .ant-select-selector,
+        .ant-input-affix-wrapper,
+        .ant-input-container--hover,
+        .ant-input-container--focus,
+        .ant-input-group-addon,
+        .ant-input-group,
+        .ant-input {
             &,
             &:focus,
             &:hover,
-            .@{input-prefix-cls},
-            .@{input-prefix-cls}-group-addon {
+            .ant-input,
+            .ant-input-group-addon {
                 border-color: @red;
                 box-shadow: none;
             }
         }
     }
 
-    .@{form-item-prefix-cls}-control {
-        .@{radio-prefix-cls}-input,
-        .@{checkbox-prefix-cls}-input {
+    .ant-form-item-control {
+        .ant-radio-input,
+        .ant-checkbox-input {
             width: 0;
             height: 0;
         }

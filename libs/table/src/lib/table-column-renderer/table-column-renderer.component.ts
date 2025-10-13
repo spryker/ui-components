@@ -6,20 +6,33 @@ import {
     SimpleChanges,
     TemplateRef,
     ViewEncapsulation,
+    inject,
+    Type,
+    Injector,
 } from '@angular/core';
 import { ContextService } from '@spryker/utils';
-import { OrchestratorConfigItem } from '@orchestrator/core';
-
 import { TableColumn, TableColumnTplContext, TableColumnTypeDef, TableDataRow } from '../table/table';
+import { DefaultConfigData, TableColumnComponentsToken } from '../column-type';
+import { TableColumnLocalContextToken } from '../table/table-column.service';
+
+export interface TableColumnConfigItem {
+    component: string;
+    config?: any;
+    items?: TableColumnConfigItem[];
+}
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-renderer',
     templateUrl: './table-column-renderer.component.html',
-    styleUrls: ['./table-column-renderer.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })
 export class TableColumnRendererComponent implements OnChanges {
+    protected components = inject(TableColumnComponentsToken).reduce((acc, curr) => ({ ...acc, ...curr }), {});
+    protected contextService = inject(ContextService);
+    protected injector = inject(Injector);
+
     @Input() config?: TableColumn;
     @Input() data?: TableDataRow;
     @Input() template?: TemplateRef<TableColumnTplContext>;
@@ -27,8 +40,11 @@ export class TableColumnRendererComponent implements OnChanges {
     @Input() j?: number;
     @Input() context?: Record<string, unknown>;
 
-    itemConfig?: OrchestratorConfigItem;
+    itemConfig?: TableColumnConfigItem;
     originalConfig?: TableColumn;
+    dynamicComponent?: Type<any>;
+    componentInputs?: Record<string, any>;
+    componentInjector?: Injector;
 
     value?: unknown;
     displayValue?: unknown;
@@ -36,8 +52,6 @@ export class TableColumnRendererComponent implements OnChanges {
     fullContext?: TableColumnTplContext;
     emptyValue?: string;
     defaultEmptyValue = '-';
-
-    constructor(private contextService: ContextService) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.config) {
@@ -109,11 +123,14 @@ export class TableColumnRendererComponent implements OnChanges {
     private updateItemConfig(): void {
         if (!this.config || !this.config.type) {
             this.itemConfig = undefined;
-
+            this.dynamicComponent = undefined;
+            this.componentInputs = undefined;
+            this.componentInjector = undefined;
             return;
         }
 
         this.itemConfig = this.configColumnToItem(this.config as TableColumnTypeDef);
+        this.mapDynamicComponentsData();
     }
 
     private mapConfig(config?: TableColumn): TableColumn | undefined {
@@ -148,11 +165,50 @@ export class TableColumnRendererComponent implements OnChanges {
         return { ...config, typeOptions, typeChildren: children };
     }
 
-    private configColumnToItem(config: TableColumnTypeDef): OrchestratorConfigItem {
+    private configColumnToItem(config: TableColumnTypeDef): TableColumnConfigItem {
         return {
             component: config.type || '',
             config: config.typeOptions,
             items: config.typeChildren?.map((c) => this.configColumnToItem(c)),
         };
+    }
+
+    private mapDynamicComponentsData(): void {
+        this.dynamicComponent = this.components[this.config.type];
+
+        if (!this.dynamicComponent) {
+            return;
+        }
+
+        const componentMetaClass = this.dynamicComponent[DefaultConfigData];
+        let config = this.itemConfig?.config || this.config?.typeOptions || {};
+
+        if (componentMetaClass) {
+            const childInjector = Injector.create({
+                parent: this.injector,
+                providers: [
+                    {
+                        provide: componentMetaClass,
+                        useClass: componentMetaClass,
+                    },
+                ],
+            });
+            config = Object.assign(childInjector.get(componentMetaClass), config);
+        }
+
+        this.componentInputs = {
+            config,
+            context: this.fullContext,
+            items: this.itemConfig?.items || [],
+        };
+        this.componentInjector = Injector.create({
+            parent: this.injector,
+            providers: [
+                {
+                    provide: TableColumnLocalContextToken,
+                    useValue: () => this.fullContext,
+                },
+            ],
+        });
     }
 }

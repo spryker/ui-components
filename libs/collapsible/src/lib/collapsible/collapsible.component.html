@@ -8,18 +8,20 @@
         (keyup.enter)="toggle()"
         tabindex="0"
     >
-        <ng-container *ngIf="alwaysRender || active">
+        @if (alwaysRender || active) {
             <ng-content></ng-content>
             <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-        </ng-container>
+        }
     </nz-collapse-panel>
 </nz-collapse>
 
 <ng-template #titleTmpl>
     <div class="ant-collapse-header-inner">
-        <div *ngIf="titleIcon">
-            <spy-icon [name]="titleIcon" class="ant-collapse-header-icon"></spy-icon>
-        </div>
+        @if (titleIcon) {
+            <div>
+                <spy-icon [name]="titleIcon" class="ant-collapse-header-icon"></spy-icon>
+            </div>
+        }
         <div>
             {{ spyTitle }}
         </div>

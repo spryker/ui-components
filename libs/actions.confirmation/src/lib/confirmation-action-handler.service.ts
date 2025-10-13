@@ -2,8 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { ActionHandler, ActionsService } from '@spryker/actions';
 import { ModalService } from '@spryker/modal';
 import { AnyContext, ContextService } from '@spryker/utils';
-import { EMPTY, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { EMPTY, Observable, switchMap } from 'rxjs';
 
 import { ConfirmationActionConfig } from './types';
 

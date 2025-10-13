@@ -8,25 +8,22 @@ import {
     OnChanges,
 } from '@angular/core';
 import { TableColumnComponent, TableColumn, TableColumnContext, TableColumnTypeDef } from '../table/table';
-import { ColumnTypeOption, TableColumnTypeComponent } from '../column-type';
 import { PopoverPosition, PopoverTrigger } from '@spryker/popover';
+import { TableColumnTypeComponent } from '../column-type';
 
 export class TableColumnListConfigInner {
-    @ColumnTypeOption()
     type?: string;
-    @ColumnTypeOption()
-    typeOptions?: Object;
-    @ColumnTypeOption()
+    typeOptions?: object;
     typeChildren?: TableColumnListConfigInner[];
 }
 
 @Injectable({ providedIn: 'root' })
 export class TableColumnListConfig extends TableColumnListConfigInner {
-    @ColumnTypeOption()
     limit? = 2;
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-table-column-list',
     templateUrl: './table-column-list.component.html',
     styleUrls: ['./table-column-list.component.less'],

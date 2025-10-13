@@ -1,10 +1,19 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { ToBoolean, ToJson } from '@spryker/utils';
+import {
+    booleanAttribute,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    ViewEncapsulation,
+} from '@angular/core';
+import { ToJson } from '@spryker/utils';
 import { AutoSizeType } from 'ng-zorro-antd/input';
 
 interface TextareaAutoSize extends AutoSizeType {}
 
 @Component({
+    standalone: false,
     selector: 'spy-textarea',
     templateUrl: './textarea.component.html',
     styleUrls: ['./textarea.component.less'],
@@ -14,7 +23,7 @@ interface TextareaAutoSize extends AutoSizeType {}
 export class TextareaComponent {
     @Input() name?: string;
     @Input() value = '';
-    @Input() @ToBoolean() disabled = false;
+    @Input({ transform: booleanAttribute }) disabled = false;
     @Input() placeholder?: string;
     @Input() rows = 4;
     @Input() cols = 4;

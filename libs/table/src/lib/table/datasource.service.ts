@@ -1,18 +1,15 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, switchMap } from 'rxjs';
 
 import { TableDataConfiguratorService } from './data-configurator.service';
 import { TableData } from './table';
 
 @Injectable()
 export class TableDatasourceService {
-    constructor(
-        private injector: Injector,
-        private dataConfiguratorService: TableDataConfiguratorService,
-        private datasourceService: DatasourceService,
-    ) {}
+    protected injector = inject(Injector);
+    protected dataConfiguratorService = inject(TableDataConfiguratorService);
+    protected datasourceService = inject(DatasourceService);
 
     resolve(config: DatasourceConfig): Observable<TableData> {
         return this.dataConfiguratorService.config$.pipe(

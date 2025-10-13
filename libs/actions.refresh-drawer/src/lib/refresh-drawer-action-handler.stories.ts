@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom } from '@angular/core';
+import { Component, importProvidersFrom, inject } from '@angular/core';
 import { DrawerModule, DrawerService, DrawerContainerProxyComponent } from '@spryker/drawer';
 import { ButtonModule } from '@spryker/button';
 import { ButtonActionModule } from '@spryker/button.action';
@@ -7,11 +7,12 @@ import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { RefreshDrawerActionHandlerService } from './refresh-drawer-action-handler.service';
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: ` <spy-button variant="primary" size="md" (click)="clickHandler()"> Open drawer </spy-button> `,
 })
 class SimpleDrawerComponent {
-    constructor(private drawerService: DrawerService) {}
+    protected drawerService = inject(DrawerService);
 
     clickHandler(): void {
         this.drawerService.openComponent(DrawerContentComponent);
@@ -19,6 +20,7 @@ class SimpleDrawerComponent {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-drawer-content',
     template: `
         <h3>Drawer content here...</h3>

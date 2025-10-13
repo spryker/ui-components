@@ -16,6 +16,7 @@ import { TABLE_FILTERS_TOKEN } from './tokens';
 import { ReplaySubject } from 'rxjs';
 
 @Component({
+    standalone: false,
     selector: 'spy-test-host',
     template: `
         <test-table-feature>

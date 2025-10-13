@@ -12,6 +12,7 @@ import {
     ViewContainerRef,
     ViewEncapsulation,
     OnInit,
+    inject,
 } from '@angular/core';
 import {
     InterceptionComposerDirective,
@@ -20,10 +21,8 @@ import {
     provideInterceptionService,
 } from '@spryker/interception';
 import { HookableInjector } from '@spryker/utils';
-import { EMPTY, Observable, ReplaySubject, Subject } from 'rxjs';
-import { tap, shareReplay, mergeAll, takeUntil } from 'rxjs/operators';
+import { EMPTY, Observable, ReplaySubject, Subject, tap, shareReplay, mergeAll, takeUntil } from 'rxjs';
 import { InputsType, OutputsType } from 'ng-dynamic-component';
-
 import {
     DrawerCloseInterceptionEvent,
     DrawerMaximizeInterceptionEvent,
@@ -35,6 +34,7 @@ import { DrawerWrapperComponent } from '../drawer-wrapper/drawer-wrapper.compone
 import { DrawerTemplateContext } from '../types';
 
 @Directive({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: 'spy-drawer-container',
     providers: [...provideInterceptionComposerToken(forwardRef(() => DrawerContainerComponent))],
@@ -42,6 +42,7 @@ import { DrawerTemplateContext } from '../types';
 export class DrawerComposerDirective extends InterceptionComposerDirective {}
 
 @Component({
+    standalone: false,
     selector: 'spy-drawer-container',
     templateUrl: './drawer-container.component.html',
     styleUrls: ['./drawer-container.component.less'],
@@ -53,6 +54,10 @@ export class DrawerComposerDirective extends InterceptionComposerDirective {}
     providers: [...provideInterceptionService()],
 })
 export class DrawerContainerComponent implements OnInit, OnDestroy {
+    protected vcr = inject(ViewContainerRef);
+    protected cdr = inject(ChangeDetectorRef);
+    protected interceptorDispatcherService = inject(InterceptorDispatcherService);
+
     drawerRecord?: {
         class?: Type<any>;
         injector?: Injector;
@@ -72,12 +77,6 @@ export class DrawerContainerComponent implements OnInit, OnDestroy {
 
     @ViewChild(DrawerWrapperComponent)
     private drawerWrapperComponent?: DrawerWrapperComponent;
-
-    constructor(
-        private vcr: ViewContainerRef,
-        private cdr: ChangeDetectorRef,
-        private interceptorDispatcherService: InterceptorDispatcherService,
-    ) {}
 
     ngOnInit(): void {
         this.closeObs$.pipe(takeUntil(this.destroyed$)).subscribe();

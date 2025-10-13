@@ -10,6 +10,7 @@ export enum Level {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-headline',
     templateUrl: './headline.component.html',
     styleUrls: ['./headline.component.less'],

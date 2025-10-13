@@ -22,6 +22,7 @@ export default {
         },
     },
     args: {
+        color: 'blue',
         text: 'Text',
         maxWidth: '',
     },

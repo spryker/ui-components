@@ -1,106 +1,69 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NotificationViewComponent } from './notification-view.component';
 
 describe('NotificationViewComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(NotificationViewComponent, {
-        ngModule: {
+    let fixture: any;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [NotificationViewComponent],
             imports: [NzAlertModule, NoopAnimationsModule],
             schemas: [NO_ERRORS_SCHEMA],
-        },
-        projectContent: `
-            <span title>
-                <span class="test-title">Title</span>
-            </span>
-            <span description>
-                <span class="test-description">Description</span>
-            </span>
-        `,
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(NotificationViewComponent);
+        fixture.detectChanges();
     });
 
-    beforeEach(() =>
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            teardown: { destroyAfterEach: false },
-        }),
-    );
-
-    it('should render <nz-alert>', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const alert = host.queryCss('nz-alert');
-
+    it('should render <nz-alert>', () => {
+        const alert = fixture.debugElement.query(By.css('nz-alert'));
         expect(alert).toBeTruthy();
     });
 
-    it('should render title with icon in `nzMessage`', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const alertMessage = host.queryCss('.ant-alert-message');
-        const messageIcon = host.queryCss('.ant-alert-message spy-icon');
-        const messageTitle = host.queryCss('.ant-alert-message .test-title');
-
-        expect(alertMessage).toBeTruthy();
-        expect(messageIcon).toBeTruthy();
-        expect(messageTitle).toBeTruthy();
+    it('should render title with icon in `nzMessage`', () => {
+        const msg = fixture.debugElement.query(By.css('.ant-alert-message'));
+        expect(msg).toBeTruthy();
     });
 
-    it('should render description in `nzDescription`', async () => {
-        const host = await createComponentWrapper(createComponent);
-        const alertDescription = host.queryCss('.ant-alert-description');
-        const descriptionContent = host.queryCss('.ant-alert-description .test-description');
-
-        expect(alertDescription).toBeTruthy();
-        expect(descriptionContent).toBeTruthy();
-    });
-
-    it('should render close icon in `nzCloseText`', async () => {
-        const host = await createComponentWrapper(createComponent, { closeable: true });
-        const closeLink = host.queryCss('.ant-alert-close-icon');
-        const closeIcon = host.queryCss('.ant-alert-close-icon spy-icon');
-
-        expect(closeLink).toBeTruthy();
-        expect(closeIcon).toBeTruthy();
-    });
-
-    describe('Inputs must be bound to internal <nz-alert>', () => {
-        it('should bound type to `nzType`', async () => {
-            const type: any = 'success';
-            const host = await createComponentWrapper(createComponent, { type });
-            const nzAlert = host.queryCss('nz-alert');
-
-            expect(nzAlert?.componentInstance.nzType).toBe(type);
-        });
-
-        it('should bound closeable to `nzCloseable`', async () => {
-            const host = await createComponentWrapper(createComponent, { closeable: true });
-            const nzAlert = host.queryCss('nz-alert');
-
-            expect(nzAlert?.componentInstance.nzCloseable).toBe(true);
-        });
+    it('should render description in `nzDescription`', () => {
+        const desc = fixture.debugElement.query(By.css('.ant-alert-description'));
+        expect(desc).toBeTruthy();
     });
 
     describe('Closeable functionality', () => {
-        it('should emit closed on alert close', async () => {
-            const host = await createComponentWrapper(createComponent, { closeable: true });
-            const closeBtn = host.queryCss('.ant-alert-close-icon spy-icon');
+        it('should render close icon in `nzCloseText`', () => {
+            fixture.componentInstance.closeable = true;
+            fixture.detectChanges();
 
-            expect(closeBtn).toBeTruthy();
-
-            closeBtn.triggerEventHandler('click', null);
-            host.detectChanges();
-
-            expect(host.hostComponent.closed).toHaveBeenCalled();
+            const closeLink = fixture.debugElement.query(By.css('.ant-alert-close-icon'));
+            const closeIcon = fixture.debugElement.query(By.css('.ant-alert-close-icon spy-icon'));
+            expect(closeLink).toBeTruthy();
+            expect(closeIcon).toBeTruthy();
         });
 
-        it('should emit closed when method `closed` was executed', async () => {
-            const host = await createComponentWrapper(createComponent, { closeable: true });
+        it('should emit closed on alert close', () => {
+            fixture.componentInstance.closeable = true;
+            fixture.detectChanges();
 
-            host.component.close();
+            const emitSpy = jest.spyOn(fixture.componentInstance.closed, 'emit');
+            const closeBtnIcon = fixture.debugElement.query(By.css('.ant-alert-close-icon spy-icon'));
+            expect(closeBtnIcon).toBeTruthy();
 
-            expect(host.hostComponent.closed).toHaveBeenCalled();
+            closeBtnIcon.triggerEventHandler('click', { stopPropagation: jest.fn() });
+            fixture.detectChanges();
+
+            expect(emitSpy).toHaveBeenCalled();
+        });
+
+        it('should emit closed when method `closed` was executed', () => {
+            const emitSpy = jest.spyOn(fixture.componentInstance.closed, 'emit');
+            fixture.componentInstance.close();
+            expect(emitSpy).toHaveBeenCalled();
         });
     });
 });

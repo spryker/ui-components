@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation, inject } from '@angular/core';
 import {
     TableActionsService,
     TableActionTriggeredEvent,
@@ -10,8 +10,7 @@ import { TableSelectionChangeEvent, TableSelectionRow } from '@spryker/table.fea
 import { ContextService, multipleIntersectionOfString } from '@spryker/utils';
 import { ButtonSize } from '@spryker/button';
 import { NotificationType } from '@spryker/notification';
-import { combineLatest, Observable } from 'rxjs';
-import { map, pluck, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
+import { combineLatest, Observable, map, shareReplay, switchMap, withLatestFrom } from 'rxjs';
 import {
     TableBatchActionsConfig,
     TableItemActions,
@@ -28,6 +27,7 @@ import {
  * When there are no relevant actions available for selected rows - an inline notification is shown with appropriate message from the Table Configuration.
  */
 @Component({
+    standalone: false,
     selector: 'spy-table-batch-actions-feature',
     templateUrl: './table-batch-actions-feature.component.html',
     styleUrls: ['./table-batch-actions-feature.component.less'],
@@ -41,12 +41,15 @@ import {
     ],
 })
 export class TableBatchActionsFeatureComponent extends TableFeatureComponent<TableBatchActionsConfig> {
+    protected tableActionService = inject(TableActionsService);
+    protected contextService = inject(ContextService);
+
     name = 'batchActions';
     tableFeatureLocation = TableFeatureLocation;
     buttonSize = ButtonSize;
     notificationType = NotificationType;
 
-    actions$ = this.config$.pipe(pluck('actions'));
+    actions$ = this.config$.pipe(map((config) => config.actions));
     itemSelected$ = this.tableEventBus$.pipe(
         switchMap((tableEventBus) => tableEventBus.on<TableSelectionChangeEvent>('itemSelection')),
     );
@@ -107,14 +110,6 @@ export class TableBatchActionsFeatureComponent extends TableFeatureComponent<Tab
             return { order: 3 };
         }),
     );
-
-    constructor(
-        injector: Injector,
-        private tableActionService: TableActionsService,
-        private contextService: ContextService,
-    ) {
-        super(injector);
-    }
 
     private getAvailableActions(
         selectedRows: TableSelectionRow[],

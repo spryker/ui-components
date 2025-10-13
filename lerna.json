@@ -5,6 +5,8 @@
     "command": {
         "publish": {
             "conventionalCommits": true,
+            "forcePublish": true,
+            "bump": "major",
             "allowBranch": [
                 "master",
                 "republish/master",

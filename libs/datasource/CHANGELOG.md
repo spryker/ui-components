@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/datasource@3.0.0...@spryker/datasource@3.0.1-next.0) (2025-10-13)
+
+
+### Bug Fixes
+
+* peers ([4aad909](https://github.com/spryker/ui-components/commit/4aad909b629f797c3b8b5e211d5b3a53d0e70d56))
+
+
+
+
+
 # [3.0.0](https://github.com/spryker/ui-components/compare/@spryker/datasource@2.0.3-next.0...@spryker/datasource@3.0.0) (2025-10-13)
 
 **Note:** Version bump only for package @spryker/datasource

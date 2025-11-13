@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation, ViewChild, AfterViewInit  } from '@angular/core';
 import { ToBoolean, ToJson } from '@spryker/utils';
-import { AutoSizeType } from 'ng-zorro-antd/input';
+import { AutoSizeType, NzAutosizeDirective } from 'ng-zorro-antd/input';
 
 interface TextareaAutoSize extends AutoSizeType {}
 
@@ -11,7 +11,8 @@ interface TextareaAutoSize extends AutoSizeType {}
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
 })
-export class TextareaComponent {
+export class TextareaComponent implements AfterViewInit {
+    @ViewChild('autosize') autosizeInput?: NzAutosizeDirective;
     @Input() name?: string;
     @Input() value = '';
     @Input() @ToBoolean() disabled = false;
@@ -22,4 +23,33 @@ export class TextareaComponent {
     @Input() spyId?: string;
     @Input() autoSize: boolean | TextareaAutoSize = true;
     @Output() valueChange = new EventEmitter<any>();
+
+    ngAfterViewInit(): void {
+        document.addEventListener('TABS-CHANGE-EVENT', (event) => {
+            this.handleTabChangeEvent(event);
+        })
+    }
+
+    handleTabChangeEvent(event) {
+        const selectedTab = event.detail.tab;
+        const textareaEl = (this.autosizeInput as any)?.el as HTMLElement | undefined;
+        if (!selectedTab || !textareaEl) {
+            return;
+        }
+
+        const tabs = selectedTab.closestTabSet?.tabs.toArray() ?? [];
+        const selectedIndex = tabs.indexOf(selectedTab);
+        if (selectedIndex === -1) {
+            return;
+        }
+
+        const activePaneId = selectedTab.closestTabSet?.getTabContentId(selectedIndex);
+        const hostPane = textareaEl.closest('[role="tabpanel"]') as HTMLElement | null;
+        const insideSelectedTab = !!hostPane && hostPane.id === activePaneId;
+
+    
+        if (insideSelectedTab) {
+            this.autosizeInput.resizeToFitContent(true);
+        }
+    }
 }

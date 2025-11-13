@@ -7,6 +7,7 @@ import { WebComponentsModule } from '@spryker/web-components';
 import { TabComponent } from '../tab/tab.component';
 import { TabsModule } from '../tabs.module';
 import { TabsComponent, TabsMode } from './tabs.component';
+import { TextareaModule, TextareaComponent } from '../../../../textarea/src';
 
 const tabsData = [
     {
@@ -53,7 +54,7 @@ export default {
             providers: [provideAnimations()],
         }),
         moduleMetadata({
-            imports: [TabsModule, IconUserModule, IconCalendarModule],
+            imports: [TabsModule, IconUserModule, IconCalendarModule, TextareaModule],
         }),
     ],
     parameters: {
@@ -96,6 +97,14 @@ export const primary = (args) => ({
         [iconName]="tab.iconName"
       >
         {{ tab.content }}
+         <spy-textarea [name]="'textarea-name'"
+            [disabled]="false"
+            [placeholder]="'Some placeholder'"
+            [attrs]="{title: 'Some title'}"
+            [spyId]="'textarea-id'"
+            autoSize="true"
+            value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in ">
+            </spy-textarea>
       </spy-tab>
     </spy-tabs>
   `,

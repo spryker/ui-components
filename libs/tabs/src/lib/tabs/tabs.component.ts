@@ -70,6 +70,19 @@ export class TabsComponent implements OnInit, OnDestroy {
         this.tabChange.emit(this.currentActiveTab());
     }
 
+    tabChangeFn(event): void {
+        console.log(this);
+        document.dispatchEvent(
+            new CustomEvent('TABS-CHANGE-EVENT', {
+                detail: {
+                    selectedTab: event.tab,
+                    tabs: this.tabs$,
+                },
+                bubbles: true,
+            }),
+        );
+    }
+
     toNextTab(): number {
         const newTab = this.tab + 1;
 

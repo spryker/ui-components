@@ -1,6 +1,6 @@
 {
     "name": "@spryker/toggle",
-    "version": "3.0.1-next.0",
+    "version": "3.1.0",
     "peerDependencies": {
         "@angular/common": ">=20.3.0 <21.0.0",
         "@angular/core": ">=20.3.0 <21.0.0",

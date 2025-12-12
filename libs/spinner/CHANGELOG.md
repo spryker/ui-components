@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/spryker/ui-components/compare/@spryker/spinner@2.0.2...@spryker/spinner@3.1.0) (2025-12-12)
+
+
+### Features
+
+* update angular ([#678](https://github.com/spryker/ui-components/issues/678)) ([aa5d977](https://github.com/spryker/ui-components/commit/aa5d977d0c9c4b1a2b6f301aa120d88796bcf6c4))
+
+
+
+
+
 ## [3.0.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/spinner@3.0.0...@spryker/spinner@3.0.1-next.0) (2025-10-13)
 
 

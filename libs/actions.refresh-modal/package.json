@@ -1,6 +1,6 @@
 {
     "name": "@spryker/actions.refresh-modal",
-    "version": "1.0.1-next.0",
+    "version": "1.1.0",
     "peerDependencies": {
         "@angular/core": ">=20.3.0 <21.0.0",
         "@spryker/actions": "^3.0.0",

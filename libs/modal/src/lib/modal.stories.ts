@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom, Input, TemplateRef } from '@angular/core';
+import { Component, importProvidersFrom, Input, TemplateRef, inject } from '@angular/core';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
@@ -32,6 +32,7 @@ export default {
 } as Meta;
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: `
         <h3>Content</h3>
@@ -59,12 +60,12 @@ export default {
     `,
 })
 class StoryComponent {
+    protected modalService = inject(ModalService);
+
     @Input() hasBackdrop?: boolean;
 
     private modalNumber = 0;
     private currentModal: any;
-
-    constructor(private modalService: ModalService) {}
 
     closeAll() {
         this.modalService.closeAll();
@@ -152,6 +153,7 @@ primary.args = {
 };
 
 @Component({
+    standalone: false,
     selector: 'spy-simple-modal',
     template: `
         <spy-modal [(visible)]="visible">
@@ -177,6 +179,7 @@ export const viaModalComponent = (args) => ({
 });
 
 @Component({
+    standalone: false,
     selector: 'spy-confirm-modal',
     template: `
         <p>
@@ -187,10 +190,10 @@ export const viaModalComponent = (args) => ({
     `,
 })
 class ConfirmationComponent {
+    protected modalService = inject(ModalService);
+
     @Input() hasBackdrop?: boolean;
     @Input() hasDescription?: boolean;
-
-    constructor(private modalService: ModalService) {}
 
     closeAll() {
         this.modalService.closeAll();
@@ -203,7 +206,7 @@ class ConfirmationComponent {
                 backdrop: this.hasBackdrop,
             })
             .afterDismissed()
-            .subscribe((isSure) => console.log('Was sure?', isSure));
+            .subscribe((isSure) => console.info('Was sure?', isSure));
     }
 }
 

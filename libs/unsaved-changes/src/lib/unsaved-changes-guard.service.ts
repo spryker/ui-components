@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { UnsavedChangesGuard } from './unsaved-changes-guard';
 
 import { UnsavedChangesGuardBase } from './unsaved-changes-guard-base';
@@ -7,13 +7,7 @@ import { UnsavedChangesMonitor } from './unsaved-changes-monitor';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedChangesGuardService extends UnsavedChangesGuardBase {
-    private rootGuards: UnsavedChangesGuard[] | null;
-
-    constructor(injector: Injector) {
-        super(injector);
-
-        this.rootGuards = this.injector.get(UnsavedChangesRootGuardsToken, null);
-    }
+    private rootGuards = this.injector.get(UnsavedChangesRootGuardsToken, null);
 
     attachMonitor(monitor: UnsavedChangesMonitor): void {
         super.attachMonitor(monitor);

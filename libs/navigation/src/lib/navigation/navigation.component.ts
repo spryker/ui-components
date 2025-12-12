@@ -3,9 +3,10 @@ import {
     Component,
     Directive,
     forwardRef,
-    Inject,
     Input,
     ViewEncapsulation,
+    inject,
+    booleanAttribute,
 } from '@angular/core';
 import {
     InterceptionComposerDirective,
@@ -13,12 +14,12 @@ import {
     provideInterceptionComposerToken,
     provideInterceptionService,
 } from '@spryker/interception';
-import { InjectionTokenType, ToBoolean, ToJson, WindowToken } from '@spryker/utils';
-
+import { ToJson, WindowToken } from '@spryker/utils';
 import { NavigationComponentMethods, NavigationItem } from './navigation';
 import { NavigationRedirectInterceptionEvent } from './navigation-interception';
 
 @Directive({
+    standalone: false,
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: 'spy-navigation',
     providers: [...provideInterceptionComposerToken(forwardRef(() => NavigationComponent))],
@@ -26,6 +27,7 @@ import { NavigationRedirectInterceptionEvent } from './navigation-interception';
 export class NavigationComposerDirective extends InterceptionComposerDirective {}
 
 @Component({
+    standalone: false,
     selector: 'spy-navigation',
     templateUrl: './navigation.component.html',
     styleUrls: ['./navigation.component.less'],
@@ -37,14 +39,11 @@ export class NavigationComposerDirective extends InterceptionComposerDirective {
     },
 })
 export class NavigationComponent implements NavigationComponentMethods {
-    @Input() @ToBoolean() collapsed = false;
-    @Input() @ToJson() items: NavigationItem[] = [];
+    protected windowToken = inject(WindowToken);
+    protected interceptorDispatcherService = inject(InterceptorDispatcherService);
 
-    constructor(
-        @Inject(WindowToken)
-        private windowToken: InjectionTokenType<typeof WindowToken>,
-        private interceptorDispatcherService: InterceptorDispatcherService,
-    ) {}
+    @Input({ transform: booleanAttribute }) collapsed = false;
+    @Input() @ToJson() items: NavigationItem[] = [];
 
     clickHandler(event: Event, url: string): void {
         event.stopPropagation();

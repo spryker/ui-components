@@ -1,8 +1,7 @@
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { CacheId, CacheStorageFactoryService } from '@spryker/cache';
 import { TimeDurationService } from '@spryker/utils/date';
-import { of, ReplaySubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { of, ReplaySubject, switchMap } from 'rxjs';
 
 import { StaticCacheStrategy } from './static-cache-strategy';
 import { StaticCacheStrategyConfig } from './types';

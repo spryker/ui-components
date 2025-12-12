@@ -1,7 +1,18 @@
 import { ContentObserver } from '@angular/cdk/observers';
-import { Directive, ElementRef, Input, OnChanges, OnDestroy, Output, SimpleChanges, Type } from '@angular/core';
-import { EMPTY, forkJoin, Observable, ReplaySubject, Subject } from 'rxjs';
-import { debounceTime, map, mapTo, shareReplay, startWith, switchAll, switchMap } from 'rxjs/operators';
+import { Directive, ElementRef, Input, OnChanges, OnDestroy, Output, SimpleChanges, Type, inject } from '@angular/core';
+import {
+    EMPTY,
+    forkJoin,
+    Observable,
+    ReplaySubject,
+    Subject,
+    debounceTime,
+    map,
+    shareReplay,
+    startWith,
+    switchAll,
+    switchMap,
+} from 'rxjs';
 
 import { isNgWebComponent, isNgWebComponentOf, NgWebComponent } from '../ng-web-component';
 
@@ -21,10 +32,11 @@ import { isNgWebComponent, isNgWebComponentOf, NgWebComponent } from '../ng-web-
  *  </span>
  * ```
  */
-@Directive({
-    selector: '[spySelectComponents]',
-})
+@Directive({ standalone: false, selector: '[spySelectComponents]' })
 export class SelectComponentsDirective<T = unknown> implements OnChanges, OnDestroy {
+    private elemRef = inject<ElementRef<Element>>(ElementRef);
+    protected observer = inject(ContentObserver);
+
     /**
      * Angular component type that {@link NgWebComponent} should be instance of
      */
@@ -59,11 +71,6 @@ export class SelectComponentsDirective<T = unknown> implements OnChanges, OnDest
         shareReplay({ refCount: true, bufferSize: 1 }),
     );
 
-    constructor(
-        private elemRef: ElementRef<Element>,
-        private observer: ContentObserver,
-    ) {}
-
     ngOnChanges(changes: SimpleChanges): void {
         if ('spySelectComponentsObserve' in changes) {
             const observer$ = this.spySelectComponentsObserve ? this.observer.observe(this.elemRef) : EMPTY;
@@ -95,7 +102,7 @@ export class SelectComponentsDirective<T = unknown> implements OnChanges, OnDest
     private findComponentsIn(elements: Element[]): Observable<NgWebComponent<unknown>[]> {
         const components: NgWebComponent<unknown>[] = elements.filter((element) => isNgWebComponent(element)) as any;
 
-        return forkJoin(components.map((component) => component.whenInit().pipe(mapTo(component))));
+        return forkJoin(components.map((component) => component.whenInit().pipe(map(() => component))));
     }
 
     private findInstancesIn(components: NgWebComponent<unknown>[]): T[] {

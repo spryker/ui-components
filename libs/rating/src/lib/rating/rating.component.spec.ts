@@ -15,6 +15,7 @@ describe('RatingComponent', () => {
     const ratingChangeSpy = jest.fn();
 
     @Component({
+        standalone: false,
         selector: 'spy-test',
         template: `
             <spy-rating

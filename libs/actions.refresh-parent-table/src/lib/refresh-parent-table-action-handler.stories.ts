@@ -33,6 +33,7 @@ const tableConfig = {
 };
 
 @Component({
+    standalone: false,
     selector: 'spy-simple-component',
     template: `
         <div>

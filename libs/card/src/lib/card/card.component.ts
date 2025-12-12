@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
+    standalone: false,
     selector: 'spy-card',
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.less'],

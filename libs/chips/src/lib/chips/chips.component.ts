@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, HostBinding } from '@angular/core';
 
 @Component({
+    standalone: false,
     selector: 'spy-chips',
     templateUrl: './chips.component.html',
     styleUrls: ['./chips.component.less'],

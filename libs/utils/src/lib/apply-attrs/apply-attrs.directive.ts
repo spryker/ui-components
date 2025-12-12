@@ -1,15 +1,11 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, inject } from '@angular/core';
 
-@Directive({
-    selector: '[spyApplyAttrs]',
-})
+@Directive({ standalone: false, selector: '[spyApplyAttrs]' })
 export class ApplyAttrsDirective implements OnChanges {
-    @Input() spyApplyAttrs: Record<string, string> = {};
+    protected el = inject(ElementRef);
+    protected renderer = inject(Renderer2);
 
-    constructor(
-        private el: ElementRef,
-        private renderer: Renderer2,
-    ) {}
+    @Input() spyApplyAttrs: Record<string, string> = {};
 
     updateAttrs(): void {
         if (!this.spyApplyAttrs) {

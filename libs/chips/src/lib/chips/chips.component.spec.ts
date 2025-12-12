@@ -1,34 +1,46 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ChipsComponent } from './chips.component';
 
+@Component({
+    standalone: false,
+    template: `<spy-chips [color]="color" [maxWidth]="maxWidth"></spy-chips>`,
+})
+class TestHostComponent {
+    @Input() color?: string;
+    @Input() maxWidth?: string;
+}
+
 describe('ChipsComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(ChipsComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-    });
+    let fixture: ComponentFixture<TestHostComponent>;
 
-    beforeEach(() =>
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [testModule],
+            declarations: [ChipsComponent, TestHostComponent],
+            schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
-        }),
-    );
+        });
 
-    it('Input color should be bound to host element', async () => {
-        const mockedColor = 'red';
-        const host = await createComponentWrapper(createComponent, { color: mockedColor });
-        const chipsElem = host.queryCss('spy-chips');
-
-        expect(chipsElem.properties.className).toContain(mockedColor);
+        fixture = TestBed.createComponent(TestHostComponent);
+        fixture.detectChanges();
     });
 
-    it('Input maxWidth should be bound to host element', async () => {
-        const mockedWidth = '200px';
-        const host = await createComponentWrapper(createComponent, { maxWidth: mockedWidth });
-        const chipsElem = host.queryCss('spy-chips');
+    it('Input color should be bound to host element', () => {
+        const mockedColor = 'red';
+        fixture.componentInstance.color = mockedColor;
+        fixture.detectChanges();
 
-        expect(chipsElem.styles.maxWidth).toBe(mockedWidth);
+        const chipsDe = fixture.debugElement.query(By.css('spy-chips'));
+        expect(chipsDe.properties['className']).toContain(mockedColor);
+    });
+
+    it('Input maxWidth should be bound to host element', () => {
+        const mockedWidth = '200px';
+        fixture.componentInstance.maxWidth = mockedWidth;
+        fixture.detectChanges();
+
+        const chipsDe = fixture.debugElement.query(By.css('spy-chips'));
+        expect(chipsDe.styles['maxWidth']).toBe(mockedWidth);
     });
 });

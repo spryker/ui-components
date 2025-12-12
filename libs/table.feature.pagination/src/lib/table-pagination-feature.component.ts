@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { TableFeatureComponent, TableFeatureLocation } from '@spryker/table';
-import { map, pluck, shareReplay, switchMap, withLatestFrom } from 'rxjs/operators';
+import { map, shareReplay, switchMap, withLatestFrom } from 'rxjs';
 
 import { TablePaginationConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-pagination-feature',
     templateUrl: './table-pagination-feature.component.html',
     styleUrls: ['./table-pagination-feature.component.less'],
@@ -28,17 +29,17 @@ export class TablePaginationFeatureComponent extends TableFeatureComponent<Table
     );
 
     sizes$ = this.config$.pipe(
-        pluck('sizes'),
+        map((config) => config.sizes),
         map((sizes) => sizes ?? this.defaultSizes),
         shareReplay({ bufferSize: 1, refCount: true }),
     );
-    total$ = this.tableData$.pipe(pluck('total'));
-    pageSize$ = this.tableData$.pipe(pluck('pageSize')).pipe(
+    total$ = this.tableData$.pipe(map((data) => data.total));
+    pageSize$ = this.tableData$.pipe(map((data) => data.pageSize)).pipe(
         withLatestFrom(this.sizes$),
         map(([pageSize, sizes]) => pageSize ?? sizes[0]),
     );
-    page$ = this.tableData$.pipe(pluck('page'));
-    data$ = this.tableData$.pipe(pluck('data'));
+    page$ = this.tableData$.pipe(map((data) => data.page));
+    data$ = this.tableData$.pipe(map((data) => data.data));
 
     updatePagination(page: number): void {
         this.dataConfiguratorService?.changePage(page);

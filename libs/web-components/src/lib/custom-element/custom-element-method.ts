@@ -1,6 +1,6 @@
 const CUSTOM_ELEMENT_METHODS_KEY = Symbol('CUSTOM_ELEMENT_METHODS_KEY');
 
-interface TargetWithMethods extends Object {
+interface TargetWithMethods extends Record<string, any> {
     [CUSTOM_ELEMENT_METHODS_KEY]: string[];
 }
 

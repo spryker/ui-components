@@ -6,6 +6,7 @@ import { TagComponent } from './tag.component';
 
 describe('TagComponent', () => {
     @Component({
+        standalone: false,
         template: `<spy-tag (remove)="onRemoveButtonClick($event)" [disabled]="disabled" [removable]="removable">{{
             label
         }}</spy-tag>`,

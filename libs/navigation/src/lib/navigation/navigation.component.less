@@ -1,6 +1,7 @@
+/* stylelint-disable selector-max-class, selector-max-compound-selectors, selector-max-combinators, no-descending-specificity */
 @import './navigation.component.theme.less';
 
-.@{navigation-prefix-cls} {
+.spy-navigation {
     &__title-text {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -30,33 +31,33 @@
     }
 }
 
-.@{menu-prefix-cls} {
+.ant-menu {
     font: @font-default;
     background: @transparent;
 
-    > .@{menu-prefix-cls}-item,
-    > .@{menu-prefix-cls}-submenu {
+    > .ant-menu-item,
+    > .ant-menu-submenu {
         border-radius: @menu-item-radius;
 
         a,
-        > .@{menu-prefix-cls}-submenu-title {
+        > .ant-menu-submenu-title {
             padding: @menu-item-padding;
             border-radius: @menu-item-radius;
         }
 
-        > .@{menu-prefix-cls}-sub > ul {
-            > .@{menu-prefix-cls}-item,
-            > .@{menu-prefix-cls}-submenu {
+        > .ant-menu-sub > ul {
+            > .ant-menu-item,
+            > .ant-menu-submenu {
                 a,
-                > .@{menu-prefix-cls}-submenu-title {
+                > .ant-menu-submenu-title {
                     padding: @menu-item-submenu-padding;
                 }
 
-                > .@{menu-prefix-cls}-sub > ul {
-                    > .@{menu-prefix-cls}-item,
-                    > .@{menu-prefix-cls}-submenu {
+                > .ant-menu-sub > ul {
+                    > .ant-menu-item,
+                    > .ant-menu-submenu {
                         a,
-                        .@{menu-prefix-cls}-submenu-title {
+                        .ant-menu-submenu-title {
                             padding: @menu-item-submenu-submenu-padding;
                         }
                     }
@@ -65,14 +66,14 @@
         }
     }
 
-    .@{menu-prefix-cls}-item,
-    .@{menu-prefix-cls}-submenu {
+    .ant-menu-item,
+    .ant-menu-submenu {
         padding: @menu-item-default-padding !important;
         width: @menu-item-width;
         white-space: normal;
 
         a,
-        > .@{menu-prefix-cls}-submenu-title {
+        > .ant-menu-submenu-title {
             .transition-mixin(background, color, border;);
             border: @menu-item-border;
             width: @menu-item-width;
@@ -89,34 +90,33 @@
                 background: @gray-lighter;
                 color: @ink;
 
-                .@{navigation-prefix-cls}__title-icon {
+                .spy-navigation__title-icon {
                     color: @gray-darker;
                 }
             }
         }
 
-        &.@{menu-prefix-cls}-item-selected {
+        &.ant-menu-item-selected {
             &:hover,
             a,
-            > .@{menu-prefix-cls}-submenu-title {
+            > .ant-menu-submenu-title {
                 background: @gray-lighter;
                 color: @green-dark;
 
-                .@{navigation-prefix-cls}__title-icon {
+                .spy-navigation__title-icon {
                     color: @spy-primary-color;
                 }
             }
         }
 
-        &.@{menu-prefix-cls}-submenu-open {
-            > .@{menu-prefix-cls}-submenu-title {
+        &.ant-menu-submenu-open {
+            > .ant-menu-submenu-title {
                 background: @gray-lighter;
                 color: @ink;
 
-                .@{menu-prefix-cls}-submenu-arrow {
+                .ant-menu-submenu-arrow {
                     transform: @menu-item-open-arrow-transform;
 
-                    /* stylelint-disable selector-max-class */
                     &::before {
                         transform: @menu-item-open-arrow-transform-before;
                     }
@@ -124,16 +124,15 @@
                     &::after {
                         transform: @menu-item-open-arrow-transform-after;
                     }
-                    /* stylelint-enable */
                 }
 
-                .@{navigation-prefix-cls}__title-icon {
+                .spy-navigation__title-icon {
                     color: @gray-darker;
                 }
             }
         }
 
-        .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
+        .ant-menu-submenu-title .ant-menu-submenu-arrow {
             &::before,
             &::after {
                 background-image: linear-gradient(to right, @gray-dark, @gray-dark);
@@ -156,11 +155,11 @@
         border: none;
         height: @menu-inline-height;
 
-        &.@{menu-prefix-cls}-sub {
+        &.ant-menu-sub {
             background: none;
         }
 
-        > .@{menu-prefix-cls}-item-selected {
+        > .ant-menu-item-selected {
             &::before {
                 content: '';
                 position: absolute;
@@ -177,34 +176,32 @@
         &-collapsed {
             width: @menu-collapsed-width;
 
-            &.@{menu-prefix-cls} {
-                .@{menu-prefix-cls}-item a,
-                .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
+            &.ant-menu {
+                .ant-menu-item a,
+                .ant-menu-submenu > .ant-menu-submenu-title {
                     padding: @menu-collapsed-item-padding;
                     text-align: center;
                 }
             }
 
-            .@{menu-prefix-cls}-item a,
-            .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
+            .ant-menu-item a,
+            .ant-menu-submenu > .ant-menu-submenu-title {
                 font-size: @spy-font-size-sm;
                 flex-direction: column;
 
-                .@{menu-prefix-cls}-submenu-arrow {
+                .ant-menu-submenu-arrow {
                     display: none;
                 }
 
-                .@{navigation-prefix-cls}__title-icon {
+                .spy-navigation__title-icon {
                     margin-right: @navigation-collapsed-item-icon-margin-right;
 
-                    /* stylelint-disable selector-max-class, selector-max-compound-selectors */
                     .anticon {
                         font-size: inherit;
                     }
-                    /* stylelint-enable */
                 }
 
-                .@{navigation-prefix-cls}__title-text {
+                .spy-navigation__title-text {
                     padding-top: @navigation-collapsed-item-text-padding-top;
                 }
             }
@@ -218,19 +215,19 @@
             display: none;
         }
 
-        &.@{menu-prefix-cls}-submenu-placement-right {
+        &.ant-menu-submenu-placement-right {
             width: @menu-item-popup-width;
             padding-left: @menu-item-popup-list-padding-left !important;
         }
 
-        .@{menu-prefix-cls} {
+        .ant-menu {
             border-radius: unset;
             box-shadow: none;
         }
 
-        .@{menu-prefix-cls}-item,
-        .@{menu-prefix-cls}-submenu {
-            .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
+        .ant-menu-item,
+        .ant-menu-submenu {
+            .ant-menu-submenu-title .ant-menu-submenu-arrow {
                 transform: @menu-item-popup-arrow-transform;
 
                 &::before {
@@ -242,11 +239,10 @@
                 }
             }
 
-            &.@{menu-prefix-cls}-submenu-open {
-                > .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
+            &.ant-menu-submenu-open {
+                > .ant-menu-submenu-title .ant-menu-submenu-arrow {
                     transform: @menu-item-popup-arrow-transform;
 
-                    /* stylelint-disable selector-max-class */
                     &::before {
                         transform: @menu-item-popup-open-arrow-transform-before;
                     }
@@ -254,21 +250,20 @@
                     &::after {
                         transform: @menu-item-popup-open-arrow-transform-after;
                     }
-                    /* stylelint-enable */
                 }
             }
         }
 
-        .@{menu-prefix-cls}-sub {
+        .ant-menu-sub {
             background: @spy-white;
             border-radius: @menu-item-popup-sub-list-radius;
             padding: @menu-item-popup-sub-list-padding;
             box-shadow: @menu-item-popup-sub-list-box-shadow;
 
-            .@{menu-prefix-cls}-item,
-            .@{menu-prefix-cls}-submenu {
+            .ant-menu-item,
+            .ant-menu-submenu {
                 a,
-                .@{menu-prefix-cls}-submenu-title {
+                .ant-menu-submenu-title {
                     padding: @menu-item-popup-padding;
                 }
             }

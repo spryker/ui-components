@@ -1,7 +1,7 @@
 import { HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { ApplicationRef, Directive, DoCheck, Injector, Input, OnDestroy } from '@angular/core';
+import { ApplicationRef, Directive, DoCheck, Injector, Input, OnDestroy, inject } from '@angular/core';
 import { EMPTY, forkJoin, Observable, of, Subject, throwError } from 'rxjs';
-import { catchError, delay, filter, map, mergeAll, mergeMap, switchMap, take, takeUntil, tap } from 'rxjs/operators';
+import { catchError, delay, filter, map, mergeAll, mergeMap, switchMap, take, takeUntil, tap } from 'rxjs';
 
 import { ensureObservable, getRandomBetween } from '../util';
 import { isMatchedRequest, MatchedHttpRequest, MockHttpOptions, MockHttpResponse } from './mock-http';
@@ -11,11 +11,16 @@ export function setMockHttp(responses: MockHttpResponse[]) {
 }
 
 @Directive({
+    standalone: false,
     // This is for internal use only
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[mockHttp]',
 })
 export class MockHttpDirective implements DoCheck, OnDestroy {
+    protected appRef = inject(ApplicationRef);
+    protected injector = inject(Injector);
+    protected httpController = inject(HttpTestingController);
+
     private static options: Required<MockHttpOptions> = {
         delay: 'random',
         maxDelay: 2500,
@@ -32,13 +37,13 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
         map((requests) => this.matchRequests(requests)),
         filter((requests) => requests.length > 0),
         mergeAll(),
-        tap((request) => console.log('Processing request', request)),
+        tap((request) => console.info('Processing request', request)),
         mergeMap((request) =>
             this.resolveValueFrom(request).pipe(
                 tap((value) => this.flush(request, value)),
                 tap({
-                    next: (value) => console.log('Request flushed with value', request, value),
-                    error: (value) => console.log('Request flushed with error', request, value),
+                    next: (value) => console.info('Request flushed with value', request, value),
+                    error: (value) => console.info('Request flushed with error', request, value),
                 }),
                 catchError((value) => {
                     this.error(request, value);
@@ -48,11 +53,7 @@ export class MockHttpDirective implements DoCheck, OnDestroy {
         ),
     );
 
-    constructor(
-        private appRef: ApplicationRef,
-        private injector: Injector,
-        private httpController: HttpTestingController,
-    ) {
+    constructor() {
         this.requests$.pipe(takeUntil(this.destroyed$)).subscribe(() => this.appRef.tick());
     }
 

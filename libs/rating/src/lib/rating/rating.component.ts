@@ -10,6 +10,7 @@ import {
 import { IconStarModule } from '@spryker/icon/icons';
 
 @Component({
+    standalone: false,
     selector: 'spy-rating',
     templateUrl: './rating.component.html',
     styleUrls: ['./rating.component.less'],

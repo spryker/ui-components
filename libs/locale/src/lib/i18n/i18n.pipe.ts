@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { I18nService } from './i18n.service';
@@ -19,11 +19,9 @@ import { I18nLocaleInterpolationData } from './types';
  *  <p>{{ 'some.token' | spyI18n:{ name: 'Hi' } | async }}</p>
  * ```
  */
-@Pipe({
-    name: 'spyI18n',
-})
+@Pipe({ standalone: false, name: 'spyI18n' })
 export class I18nPipe implements PipeTransform {
-    constructor(private i18nService: I18nService) {}
+    protected i18nService = inject(I18nService);
 
     transform(token: string, data?: I18nLocaleInterpolationData): Observable<string> {
         return this.i18nService.translate(token, data);

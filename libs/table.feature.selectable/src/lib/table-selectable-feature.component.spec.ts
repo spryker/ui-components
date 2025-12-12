@@ -18,6 +18,7 @@ import {
 import { TableSelectableFeatureComponent } from './table-selectable-feature.component';
 
 @Component({
+    standalone: false,
     selector: 'spy-test-host',
     template: `
         <test-table-feature>
@@ -179,7 +180,7 @@ describe('TableSelectableFeatureComponent', () => {
         }));
 
         it('should set header checkbox indeterminate when some checked', fakeAsync(() => {
-            mockData.data = [{}, {}]; // This will simulate partial check
+            mockData.data = [{}, {}];
             testTableFeature.featureMocks?.table.data$?.next(mockData);
 
             fixture.detectChanges();
@@ -197,7 +198,6 @@ describe('TableSelectableFeatureComponent', () => {
 
             fixture.detectChanges();
 
-            // Verify class set
             expect(testTableFeature.featureMocks?.table.updateRowClasses).toHaveBeenCalledWith('0', {
                 'ant-table-row--selected': true,
             });
@@ -206,7 +206,6 @@ describe('TableSelectableFeatureComponent', () => {
 
             fixture.detectChanges();
 
-            // Verify class unset
             expect(testTableFeature.featureMocks?.table.updateRowClasses).toHaveBeenCalledWith('0', {
                 'ant-table-row--selected': false,
             });

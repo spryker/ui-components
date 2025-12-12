@@ -1,32 +1,41 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
+import { By } from '@angular/platform-browser';
 import { LogoComponent } from './logo.component';
 
+@Component({
+    standalone: false,
+    template: `<spy-logo [size]="size"></spy-logo>`,
+})
+class HostComponent {
+    @Input() size?: string;
+}
+
 describe('LogoComponent', () => {
-    const { testModule, createComponent } = getTestingForComponent(LogoComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
+    let fixture: any;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [LogoComponent, HostComponent],
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(HostComponent);
+        fixture.detectChanges();
     });
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [testModule],
-            teardown: { destroyAfterEach: false },
-        });
+    it('should create', () => {
+        const logoDe = fixture.debugElement.query(By.directive(LogoComponent));
+        expect(logoDe).toBeTruthy();
     });
 
-    it('should create', async () => {
-        const host = await createComponentWrapper(createComponent);
-
-        expect(host.component).toBeTruthy();
-    });
-
-    it('should change image modifier', async () => {
+    it('should change image modifier', () => {
         const logoImageModifier = 'full';
-        const host = await createComponentWrapper(createComponent, { size: logoImageModifier });
-        const logoElement = host.queryCss(`.spy-logo--${logoImageModifier}`);
+        fixture.componentInstance.size = logoImageModifier;
+        fixture.detectChanges();
 
+        const logoElement = fixture.debugElement.query(By.css(`.spy-logo--${logoImageModifier}`));
         expect(logoElement).toBeTruthy();
     });
 });

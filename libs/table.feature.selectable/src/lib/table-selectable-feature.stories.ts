@@ -75,7 +75,7 @@ export const viaHtml = (args) => ({
     props: {
         ...args,
         events: {
-            itemSelection: (event: TableSelectionChangeEvent) => console.log('SelectionChange', event),
+            itemSelection: (event: TableSelectionChangeEvent) => console.info('SelectionChange', event),
         },
     },
     moduleMetadata: { imports: [TableSelectableFeatureModule] },
@@ -90,7 +90,7 @@ export const viaConfig = (args) => ({
     props: {
         ...args,
         events: {
-            itemSelection: (event: TableSelectionChangeEvent) => console.log('SelectionChange', event),
+            itemSelection: (event: TableSelectionChangeEvent) => console.info('SelectionChange', event),
         },
     },
     applicationConfig: {

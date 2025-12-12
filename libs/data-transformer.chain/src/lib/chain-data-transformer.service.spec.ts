@@ -52,7 +52,7 @@ describe('ChainDataTransformerService', () => {
         transformObservable$.subscribe(callback);
 
         mockConfig.transformers.forEach((config: any) => {
-            expect(dataTransformerService.transform).toBeCalledWith(mockData, config, mockInjector);
+            expect(dataTransformerService.transform).toHaveBeenCalledWith(mockData, config, mockInjector);
 
             mockData = config.value;
         });

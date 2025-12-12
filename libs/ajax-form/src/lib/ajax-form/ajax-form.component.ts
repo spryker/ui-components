@@ -11,6 +11,7 @@ import {
     ViewChild,
     ViewContainerRef,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { DataSerializerService } from '@spryker/data-serializer';
@@ -27,6 +28,7 @@ export interface SubmitEvent extends Event {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-ajax-form',
     templateUrl: './ajax-form.component.html',
     styleUrls: ['./ajax-form.component.less'],
@@ -37,6 +39,12 @@ export interface SubmitEvent extends Event {
     },
 })
 export class AjaxFormComponent implements OnDestroy, OnChanges {
+    protected ajaxActionService = inject(AjaxActionService);
+    protected http = inject(HttpClient);
+    protected cdr = inject(ChangeDetectorRef);
+    protected injector = inject(Injector);
+    protected dataSerializerService = inject(DataSerializerService);
+
     @ViewChild(HtmlRendererComponent, { read: ViewContainerRef })
     htmlRendererVcr?: ViewContainerRef;
 
@@ -50,14 +58,6 @@ export class AjaxFormComponent implements OnDestroy, OnChanges {
     form?: string;
     formAction?: string;
     formMethod?: string;
-
-    constructor(
-        private ajaxActionService: AjaxActionService,
-        private http: HttpClient,
-        private cdr: ChangeDetectorRef,
-        private injector: Injector,
-        private dataSerializerService: DataSerializerService,
-    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('action' in changes) {

@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Injector,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import {
     DefaultInitialDataStrategy,
     TableDataConfig,
@@ -7,12 +14,12 @@ import {
     TableFeatureLocation,
 } from '@spryker/table';
 import { UrlPersistenceStrategy } from '@spryker/persistence';
-import { combineLatest, merge, Observable, of } from 'rxjs';
-import { pluck, skip, switchMap, take, tap } from 'rxjs/operators';
+import { combineLatest, merge, Observable, of, map, skip, switchMap, take, tap } from 'rxjs';
 
 import { TableSyncStateConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-sync-state-feature',
     templateUrl: './table-sync-state-feature.component.html',
     styleUrls: ['./table-sync-state-feature.component.less'],
@@ -26,11 +33,14 @@ import { TableSyncStateConfig } from './types';
     ],
 })
 export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableSyncStateConfig> {
+    protected urlPersistenceStrategy = inject(UrlPersistenceStrategy);
+    protected cdr = inject(ChangeDetectorRef);
+
     name = 'syncStateUrl';
     tableFeatureLocation = TableFeatureLocation;
 
     tableId$ = this.config$.pipe(
-        pluck('tableId'),
+        map((config) => config.tableId),
         switchMap((tableId) => {
             if (tableId) {
                 return of(tableId);
@@ -42,14 +52,6 @@ export class TableSyncStateFeatureComponent extends TableFeatureComponent<TableS
     stateToConfig$?: Observable<unknown>;
     configToState$?: Observable<any>;
     state$?: Observable<unknown>;
-
-    constructor(
-        private urlPersistenceStrategy: UrlPersistenceStrategy,
-        private cdr: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        super(injector);
-    }
 
     setDataConfiguratorService(service: TableDataConfiguratorService): void {
         super.setDataConfiguratorService(service);

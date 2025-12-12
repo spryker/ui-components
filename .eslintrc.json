@@ -10,7 +10,6 @@
                     "error",
                     {
                         "enforceBuildableLibDependency": true,
-                        "allow": ["@orchestrator/core/testing"],
                         "depConstraints": [
                             {
                                 "sourceTag": "pkg:primary",
@@ -83,13 +82,18 @@
                 "@typescript-eslint/no-unused-vars": 0,
                 "@angular-eslint/no-host-metadata-property": 0,
                 "@angular-eslint/directive-class-suffix": 0,
-                "no-prototype-builtins": 0
+                "no-prototype-builtins": 0,
+                "@typescript-eslint/no-unused-expressions": 0,
+                "@typescript-eslint/no-empty-object-type": 0,
+                "no-extra-semi": "error"
             }
         },
         {
             "files": ["*.js", "*.jsx"],
             "extends": ["plugin:@nx/javascript"],
-            "rules": {}
+            "rules": {
+                "no-extra-semi": "error"
+            }
         },
         {
             "files": ["*.json"],
@@ -113,5 +117,6 @@
                 ]
             }
         }
-    ]
+    ],
+    "extends": ["plugin:storybook/recommended"]
 }

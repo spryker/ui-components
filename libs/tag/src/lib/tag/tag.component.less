@@ -1,6 +1,6 @@
 @import './tag.component.theme.less';
 
-.@{tag-prefix-cls} {
+.spy-tag {
     display: inline-flex;
     flex-direction: row;
     width: fit-content;
@@ -31,7 +31,7 @@
             background: @tag-remove-button-hover-bg;
         }
 
-        .@{btn-icon-prefix-cls}__button {
+        .spy-button-icon__button {
             background: none;
 
             &:is(:hover, :focus) {
@@ -39,7 +39,7 @@
                 box-shadow: none;
             }
 
-            .@{btn-icon-prefix-cls}__icon {
+            .spy-button-icon__icon {
                 color: @white;
                 width: @tag-remove-button-icon-width;
                 font-size: @tag-remove-button-icon-size;
@@ -56,10 +56,10 @@
         color: @tag-disabled-color;
         pointer-events: none;
 
-        .@{btn-icon-prefix-cls}--disabled {
+        .spy-button-icon--disabled {
             background: @tag-remove-button-disabled-color;
 
-            .@{icon-prefix-cls}-remove {
+            .spy-icon-remove {
                 color: @tag-remove-button-icon-disabled-color;
             }
         }

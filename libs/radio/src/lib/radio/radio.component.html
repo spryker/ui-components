@@ -1,4 +1,4 @@
-<ng-container *ngIf="!radioGroupComponent; else contentTpl">
+@if (!radioGroupComponent) {
     <label
         nz-radio
         ngModel
@@ -9,7 +9,9 @@
     >
         <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
     </label>
-</ng-container>
+} @else {
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+}
 
 <ng-template #contentTpl>
     <ng-content></ng-content>

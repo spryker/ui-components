@@ -23,6 +23,7 @@ import { TableRowActionsFeatureComponent } from './table-row-actions-feature.com
 import { FilterAvailableActionsPipe } from './table-row-actions.pipe';
 
 @Component({
+    standalone: false,
     selector: 'spy-test-host',
     template: `
         <test-table-feature>

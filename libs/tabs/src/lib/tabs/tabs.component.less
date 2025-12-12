@@ -1,6 +1,7 @@
+/* stylelint-disable selector-max-class, selector-max-compound-selectors, selector-max-combinators, no-descending-specificity */
 @import './tabs.component.theme.less';
 
-.@{tab-prefix-cls} {
+.ant-tabs {
     font-family: @font-family;
 
     &-projected-content {
@@ -64,15 +65,15 @@
             display: none;
         }
 
-        .@{tab-prefix-cls}-nav-list {
+        .ant-tabs-nav-list {
             border-bottom: @tabs-nav-border-bottom;
         }
 
-        .@{tab-prefix-cls}-ink-bar {
+        .ant-tabs-ink-bar {
             bottom: calc(@tabs-border-width * -1);
         }
 
-        .@{tab-prefix-cls}-tab {
+        .ant-tabs-tab {
             padding: 0;
             vertical-align: bottom;
 
@@ -81,7 +82,7 @@
                 line-height: 1;
             }
 
-            &-disabled .@{tab-prefix-cls}-tab-btn:hover {
+            &-disabled .ant-tabs-tab-btn:hover {
                 cursor: not-allowed;
             }
 
@@ -100,7 +101,7 @@
                     border-bottom-color: @tabs-highlight-color;
                 }
 
-                .@{tab-prefix-cls}-custom-tab {
+                .ant-tabs-custom-tab {
                     &:hover {
                         color: @tabs-highlight-color;
                         border-bottom-color: @tabs-highlight-color;
@@ -121,7 +122,7 @@
             }
         }
 
-        .@{tab-prefix-cls}-nav-more {
+        .ant-tabs-nav-more {
             .transition-mixin(background);
             background: @spy-white;
             padding: @tabs-nav-more-padding;
@@ -141,16 +142,16 @@
         }
     }
 
-    &.@{tab-prefix-cls}-card {
-        .@{tab-prefix-cls}-nav {
+    &.ant-tabs-card {
+        .ant-tabs-nav {
             background-color: @gray-lighter;
             border-bottom: 0;
 
-            .@{tab-prefix-cls}-nav-list {
+            .ant-tabs-nav-list {
                 border-bottom: unset;
             }
 
-            .@{tab-prefix-cls}-tab {
+            .ant-tabs-tab {
                 font-size: @spy-font-size-sm;
                 font-weight: @font-weight-default;
                 letter-spacing: @letter-spacing-base;
@@ -161,7 +162,7 @@
                 border-radius: 0;
                 position: relative;
 
-                & + .@{tab-prefix-cls}-tab {
+                & + .ant-tabs-tab {
                     margin-left: 0;
                 }
 
@@ -172,10 +173,9 @@
                 &:hover {
                     background-color: @spy-white;
 
-                    .@{tab-prefix-cls}-custom-tab {
+                    .ant-tabs-custom-tab {
                         color: @ink;
 
-                        /* stylelint-disable selector-max-class */
                         &::before {
                             background-color: @gray-darker;
                         }
@@ -183,12 +183,11 @@
                         &-warning {
                             color: @red;
                         }
-                        /* stylelint-enable */
                     }
                 }
             }
 
-            .@{tab-prefix-cls}-tab-disabled {
+            .ant-tabs-tab-disabled {
                 color: @gray-darker;
 
                 &:hover {
@@ -196,11 +195,10 @@
                 }
             }
 
-            .@{tab-prefix-cls}-tab-active {
+            .ant-tabs-tab-active {
                 color: @green-dark;
 
-                .@{tab-prefix-cls}-custom-tab {
-                    /* stylelint-disable selector-max-class */
+                .ant-tabs-custom-tab {
                     &::before {
                         background-color: @green;
                     }
@@ -208,16 +206,14 @@
                     &-warning::before {
                         background-color: @red;
                     }
-                    /* stylelint-enable */
                 }
 
                 &:hover {
                     color: @green-dark;
 
-                    .@{tab-prefix-cls}-custom-tab {
+                    .ant-tabs-custom-tab {
                         color: @green-dark;
 
-                        /* stylelint-disable selector-max-class */
                         &::before {
                             background-color: @green;
                         }
@@ -229,13 +225,12 @@
                                 background-color: @red;
                             }
                         }
-                        /* stylelint-enable */
                     }
                 }
             }
         }
 
-        .@{tab-prefix-cls}-custom-tab {
+        .ant-tabs-custom-tab {
             padding: @tabs-card-tab-padding;
             font-weight: @font-weight-default;
 
@@ -269,7 +264,7 @@
     border-radius: @tabs-nav-dropdown-border-radius;
     border: @tabs-nav-dropdown-border;
 
-    .@{tab-prefix-cls}-custom-tab {
+    .ant-tabs-custom-tab {
         padding: @tabs-nav-dropdown-custom-tab-padding;
         font-weight: @font-weight-default;
         color: @ink;
@@ -283,12 +278,12 @@
         }
     }
 
-    .@{tab-prefix-cls}-dropdown-menu-item {
+    .ant-tabs-dropdown-menu-item {
         padding: @tabs-nav-dropdown-menu-item-padding;
         line-height: @tabs-nav-dropdown-menu-item-line-height;
 
         &-disabled {
-            .@{tab-prefix-cls}-custom-tab {
+            .ant-tabs-custom-tab {
                 color: @gray-darker;
             }
         }

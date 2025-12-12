@@ -27,32 +27,79 @@ export default {
             entryComponents: [NotificationWrapperComponent],
         }),
     ],
+    tags: ['autodocs'],
     parameters: {
         controls: {
-            include: ['variant', 'size', 'shape', 'attrs', 'method'],
+            include: ['variant', 'size', 'shape', 'attrs', 'method', 'url'],
         },
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=1989%3A9331',
             allowFullscreen: true,
         },
+        docs: {
+            description: {
+                component:
+                    'Button that triggers AJAX requests on click.\n\n**Slots:**\n- Default slot: Button text content\n- `[icon]`: Icon element (optional)',
+            },
+        },
     },
     argTypes: {
         variant: {
             control: { type: 'select' },
-            options: ButtonVariant,
+            options: Object.values(ButtonVariant),
+            description: 'Visual style of the button (primary, secondary, critical, link, outline, critical-outline)',
+            table: {
+                type: { summary: 'ButtonVariant' },
+                defaultValue: { summary: 'ButtonVariant.Primary' },
+                category: 'Inputs',
+            },
         },
         size: {
             control: { type: 'select' },
-            options: ButtonSize,
+            options: Object.values(ButtonSize),
+            description: 'Size of the button (sm, md, lg)',
+            table: {
+                type: { summary: 'ButtonSize' },
+                defaultValue: { summary: 'ButtonSize.Medium' },
+                category: 'Inputs',
+            },
         },
         shape: {
             control: { type: 'select' },
-            options: ButtonShape,
+            options: Object.values(ButtonShape),
+            description: 'Shape of the button (default, round, circle)',
+            table: {
+                type: { summary: 'ButtonShape' },
+                defaultValue: { summary: 'ButtonShape.Default' },
+                category: 'Inputs',
+            },
         },
         method: {
             control: { type: 'select' },
-            options: ButtonAjaxMethod,
+            options: Object.values(ButtonAjaxMethod),
+            description: 'HTTP method for the AJAX request (GET, POST, PUT, PATCH, DELETE)',
+            table: {
+                type: { summary: 'ButtonAjaxMethod' },
+                defaultValue: { summary: 'ButtonAjaxMethod.Get' },
+                category: 'Inputs',
+            },
+        },
+        url: {
+            control: { type: 'text' },
+            description: 'URL for the AJAX request',
+            table: {
+                type: { summary: 'string' },
+                category: 'Inputs',
+            },
+        },
+        attrs: {
+            control: { type: 'object' },
+            description: 'Additional HTML attributes for the button element',
+            table: {
+                type: { summary: 'Record<string, string>' },
+                category: 'Inputs',
+            },
         },
     },
     args: {

@@ -1,7 +1,6 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    Inject,
     Injector,
     Input,
     OnChanges,
@@ -10,16 +9,17 @@ import {
     SimpleChanges,
     ViewChild,
     ViewEncapsulation,
+    inject,
 } from '@angular/core';
 import { DatasourceConfig, DatasourceService } from '@spryker/datasource';
-import { AutocompleteWrapperToken, InjectionTokenType, ToJson } from '@spryker/utils';
+import { AutocompleteWrapperToken, ToJson } from '@spryker/utils';
 import { NzAutocompleteComponent } from 'ng-zorro-antd/auto-complete';
-import { EMPTY, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { map, switchAll, switchMap, takeUntil } from 'rxjs/operators';
+import { EMPTY, Observable, of, ReplaySubject, Subject, map, switchAll, switchMap, takeUntil } from 'rxjs';
 
 import { AutocompleteValue } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-autocomplete',
     templateUrl: './autocomplete.component.html',
     styleUrls: ['./autocomplete.component.less'],
@@ -27,6 +27,10 @@ import { AutocompleteValue } from './types';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteComponent implements OnChanges, OnInit, OnDestroy {
+    protected injector = inject(Injector);
+    protected datasourceService = inject(DatasourceService);
+    protected autocompleteWrapper = inject(AutocompleteWrapperToken);
+
     @Input() @ToJson() options?: AutocompleteValue[];
     @Input() @ToJson() datasource?: DatasourceConfig;
     @Input() context?: unknown;
@@ -51,13 +55,6 @@ export class AutocompleteComponent implements OnChanges, OnInit, OnDestroy {
     );
 
     private destroyed$ = new Subject<void>();
-
-    constructor(
-        private injector: Injector,
-        private datasourceService: DatasourceService,
-        @Inject(AutocompleteWrapperToken)
-        private autocompleteWrapper?: InjectionTokenType<typeof AutocompleteWrapperToken>,
-    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.options) {

@@ -1,25 +1,27 @@
-import commandLineParser from 'commander';
+import { program } from 'commander';
 import path from 'path';
 import stylelint from 'stylelint';
 import { fileURLToPath } from 'url';
 
-commandLineParser
+program
     .option('-f, --fix', 'execute stylelint in the fix mode.')
     .option('-p, --file-path <path>', 'execute stylelint only for this file.')
-    .parse(process.argv);
+    .parse();
+
+const options = program.opts();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const root = path.resolve(__dirname, '../..');
 const defaultFilePaths = [`${root}/libs/**/*.less`];
-const filePaths = commandLineParser.filePath ? [commandLineParser.filePath] : defaultFilePaths;
+const filePaths = options.filePath ? [options.filePath] : defaultFilePaths;
 
 stylelint
     .lint({
         configFile: `${root}/.stylelintrc.js`,
         files: filePaths,
         formatter: 'string',
-        fix: !!commandLineParser.fix,
+        fix: !!options.fix,
     })
     .then(function (data) {
         if (data.errored) {

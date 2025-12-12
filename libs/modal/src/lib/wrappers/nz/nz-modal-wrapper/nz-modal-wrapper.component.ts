@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
+    standalone: false,
     selector: 'spy-nz-modal-wrapper',
     templateUrl: './nz-modal-wrapper.component.html',
     styleUrls: ['./nz-modal-wrapper.component.less'],

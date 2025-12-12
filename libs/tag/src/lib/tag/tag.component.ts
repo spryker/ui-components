@@ -11,6 +11,7 @@ import {
 import { IconRemoveModule } from '@spryker/icon/icons';
 
 @Component({
+    standalone: false,
     selector: 'spy-tag',
     templateUrl: './tag.component.html',
     styleUrls: ['./tag.component.less'],

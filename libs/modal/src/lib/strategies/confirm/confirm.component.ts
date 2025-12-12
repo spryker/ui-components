@@ -7,6 +7,7 @@ import { ComponentModal, ComponentModalExtras } from '../component.strategy';
 import { ConfirmModalData } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-confirm-modal',
     templateUrl: './confirm.component.html',
 })

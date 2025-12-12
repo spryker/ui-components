@@ -19,7 +19,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Icon-only button component with circular shape.\n\n**Slots:**\n- `[icon]`: Icon element to display in the button',
+                component:
+                    'Icon-only button component with circular shape.\n\n**Slots:**\n- `[icon]`: Icon element to display in the button',
             },
         },
     },

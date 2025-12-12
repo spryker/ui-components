@@ -26,7 +26,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Button component with multiple variants, sizes, and shapes.\n\n**Slots:**\n- Default slot: Button text content\n- `[icon]`: Icon element to display before button text',
+                component:
+                    'Button component with multiple variants, sizes, and shapes.\n\n**Slots:**\n- Default slot: Button text content\n- `[icon]`: Icon element to display before button text',
             },
         },
     },
@@ -34,7 +35,8 @@ export default {
         variant: {
             control: { type: 'select' },
             options: Object.values(ButtonVariant),
-            description: 'Visual style variant of the button (primary, secondary, critical, link, outline, critical-outline)',
+            description:
+                'Visual style variant of the button (primary, secondary, critical, link, outline, critical-outline)',
             table: {
                 type: { summary: 'ButtonVariant' },
                 defaultValue: { summary: 'ButtonVariant.Primary' },

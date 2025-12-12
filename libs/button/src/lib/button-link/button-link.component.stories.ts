@@ -18,7 +18,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Button link component that renders as an anchor tag with button styling.\n\n**Slots:**\n- Default slot: Button text content\n- `[icon]`: Icon element (optional)',
+                component:
+                    'Button link component that renders as an anchor tag with button styling.\n\n**Slots:**\n- Default slot: Button text content\n- `[icon]`: Icon element (optional)',
             },
         },
     },

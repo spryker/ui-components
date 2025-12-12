@@ -24,7 +24,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Headline component with title and optional actions.\n\n**Slots:**\n- Default slot: Headline text content\n- `[actions]`: Action buttons or links displayed on the right',
+                component:
+                    'Headline component with title and optional actions.\n\n**Slots:**\n- Default slot: Headline text content\n- `[actions]`: Action buttons or links displayed on the right',
             },
         },
     },

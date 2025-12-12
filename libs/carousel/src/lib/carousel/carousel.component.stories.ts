@@ -20,7 +20,15 @@ export default {
     ],
     parameters: {
         controls: {
-            include: ['config', 'thumbConfig', 'withThumbs', 'slidesPerView', 'slidesSpaceBetween', 'thumbsPerView', 'thumbsSpaceBetween'],
+            include: [
+                'config',
+                'thumbConfig',
+                'withThumbs',
+                'slidesPerView',
+                'slidesSpaceBetween',
+                'thumbsPerView',
+                'thumbsSpaceBetween',
+            ],
         },
         design: {
             type: 'figma',

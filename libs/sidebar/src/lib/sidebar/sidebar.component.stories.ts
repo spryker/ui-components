@@ -23,7 +23,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Collapsible sidebar component with customizable width.\n\n**Slots:**\n- Default slot: Sidebar content',
+                component:
+                    'Collapsible sidebar component with customizable width.\n\n**Slots:**\n- Default slot: Sidebar content',
             },
         },
     },

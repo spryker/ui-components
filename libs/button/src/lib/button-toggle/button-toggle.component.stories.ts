@@ -17,7 +17,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Toggle button component with on/off states.\n\n**Slots:**\n- Default slot: Button text content',
+                component:
+                    'Toggle button component with on/off states.\n\n**Slots:**\n- Default slot: Button text content',
             },
         },
     },

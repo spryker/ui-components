@@ -92,7 +92,8 @@ export default {
         position: {
             control: { type: 'select' },
             options: Object.values(NotificationPosition),
-            description: 'Position of floating notification (topLeft, topCenter, topRight, bottomLeft, bottomCenter, bottomRight, topFullWidth, bottomFullWidth)',
+            description:
+                'Position of floating notification (topLeft, topCenter, topRight, bottomLeft, bottomCenter, bottomRight, topFullWidth, bottomFullWidth)',
             table: {
                 type: { summary: 'NotificationPosition' },
                 category: 'Inputs',

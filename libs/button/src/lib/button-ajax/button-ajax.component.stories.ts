@@ -39,7 +39,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Button that triggers AJAX requests on click.\n\n**Slots:**\n- Default slot: Button text content\n- `[icon]`: Icon element (optional)',
+                component:
+                    'Button that triggers AJAX requests on click.\n\n**Slots:**\n- Default slot: Button text content\n- `[icon]`: Icon element (optional)',
             },
         },
     },

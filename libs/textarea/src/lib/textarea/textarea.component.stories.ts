@@ -69,7 +69,8 @@ export default {
         },
         autoSize: {
             control: { type: 'boolean' },
-            description: 'Enables automatic height adjustment based on content (can be boolean or object with minRows/maxRows)',
+            description:
+                'Enables automatic height adjustment based on content (can be boolean or object with minRows/maxRows)',
             table: {
                 type: { summary: 'boolean | TextareaAutoSize' },
                 defaultValue: { summary: 'true' },

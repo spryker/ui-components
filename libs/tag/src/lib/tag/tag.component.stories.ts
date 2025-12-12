@@ -20,7 +20,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Tag component for labels and removable items.\n\n**Slots:**\n- Default slot: Tag label text',
+                component:
+                    'Tag component for labels and removable items.\n\n**Slots:**\n- Default slot: Tag label text',
             },
         },
     },

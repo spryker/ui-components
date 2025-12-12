@@ -19,7 +19,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Main layout container component.\n\n**Slots:**\n- Default slot: Layout content (header, sidebar, content, footer)',
+                component:
+                    'Main layout container component.\n\n**Slots:**\n- Default slot: Layout content (header, sidebar, content, footer)',
             },
         },
     },

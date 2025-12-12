@@ -48,7 +48,8 @@ export default {
         position: {
             control: { type: 'select' },
             options: Object.values(PopoverPosition),
-            description: 'Position of the popover relative to trigger element (topLeft, top, topRight, rightTop, right, rightBottom, bottomLeft, bottom, bottomRight, leftTop, left, leftBottom)',
+            description:
+                'Position of the popover relative to trigger element (topLeft, top, topRight, rightTop, right, rightBottom, bottomLeft, bottom, bottomRight, leftTop, left, leftBottom)',
             table: {
                 type: { summary: 'PopoverPosition' },
                 defaultValue: { summary: 'PopoverPosition.Bottom' },

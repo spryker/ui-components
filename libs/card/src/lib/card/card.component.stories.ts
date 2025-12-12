@@ -17,7 +17,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Card container with title, actions, and content area.\n\n**Slots:**\n- Default slot: Card body content',
+                component:
+                    'Card container with title, actions, and content area.\n\n**Slots:**\n- Default slot: Card body content',
             },
         },
     },

@@ -39,7 +39,8 @@ export default {
         placement: {
             control: 'select',
             options: ['bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'],
-            description: 'Position of dropdown menu relative to trigger (bottomLeft, bottomCenter, bottomRight, topLeft, topCenter, topRight)',
+            description:
+                'Position of dropdown menu relative to trigger (bottomLeft, bottomCenter, bottomRight, topLeft, topCenter, topRight)',
             table: {
                 type: { summary: 'Placement' },
                 defaultValue: { summary: '"bottomRight"' },

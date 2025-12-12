@@ -17,7 +17,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Header component for application navigation.\n\n**Slots:**\n- Default slot: Header content (logo, navigation, user menu)',
+                component:
+                    'Header component for application navigation.\n\n**Slots:**\n- Default slot: Header content (logo, navigation, user menu)',
             },
         },
     },

@@ -39,7 +39,8 @@ export default {
         },
         docs: {
             description: {
-                component: 'Collapsible panel component with expandable content.\n\n**Slots:**\n- Default slot: Collapsible panel content',
+                component:
+                    'Collapsible panel component with expandable content.\n\n**Slots:**\n- Default slot: Collapsible panel content',
             },
         },
     },

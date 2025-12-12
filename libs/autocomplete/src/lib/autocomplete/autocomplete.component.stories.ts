@@ -48,7 +48,8 @@ export default {
     },
     argTypes: {
         options: {
-            description: 'Array of autocomplete options with value, title, and isDisabled properties. AutocompleteValue interface: { value: unknown; title: string; isDisabled?: boolean }',
+            description:
+                'Array of autocomplete options with value, title, and isDisabled properties. AutocompleteValue interface: { value: unknown; title: string; isDisabled?: boolean }',
             table: {
                 type: { summary: 'AutocompleteValue[]' },
                 defaultValue: { summary: 'undefined' },

@@ -5,6 +5,7 @@ import { DatasourceDependableElementsService } from './datasource-dependable-ele
 import { DatasourceDependableElement } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-test-component',
     template: '',
     providers: [
@@ -21,6 +22,7 @@ class TestComponent implements DatasourceDependableElement {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-second-test-component',
     template: '',
     providers: [

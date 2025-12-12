@@ -1,8 +1,6 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { DataTransformer } from '@spryker/data-transformer';
-import { Observable, of } from 'rxjs';
-import { map, switchMap, delay } from 'rxjs/operators';
-
+import { Observable, of, map, switchMap, delay } from 'rxjs';
 import { DataTransformerConfiguratorService } from './data-transformer-configurator.service';
 import { DataTransformerFilterService } from './data-transformer-filter.service';
 import {
@@ -19,10 +17,8 @@ import {
 export class CollateDataTransformerService
     implements DataTransformer<CollateDataTransformerData, CollateDataTransformerDataT>
 {
-    constructor(
-        private dataTransformerFilter: DataTransformerFilterService,
-        private collateDataConfigurator: DataTransformerConfiguratorService,
-    ) {}
+    protected dataTransformerFilter = inject(DataTransformerFilterService);
+    protected collateDataConfigurator = inject(DataTransformerConfiguratorService);
 
     transform(
         data: CollateDataTransformerData,

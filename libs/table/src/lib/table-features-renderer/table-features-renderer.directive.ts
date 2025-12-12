@@ -10,22 +10,25 @@ import {
     TemplateRef,
     ViewContainerRef,
     SimpleChanges,
+    inject,
 } from '@angular/core';
 import { isNonNullable } from '@spryker/utils';
 import { combineLatest, Observable, ReplaySubject, Subject } from 'rxjs';
-import { debounceTime, filter, map, startWith, switchAll, takeUntil } from 'rxjs/operators';
-
+import { debounceTime, filter, map, startWith, switchAll, takeUntil } from 'rxjs';
 import { TableFeatureTplContext } from '../table-feature/table-feature-tpl.directive';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableFeaturesRendererService } from './table-features-renderer.service';
 import { FeatureRecord, TableFeaturesRendererContext } from './types';
 import { TableFeatureLocation } from '../table/table';
 
-@Directive({
-    selector: '[spyTableFeaturesRenderer]',
-    exportAs: 'spyTableFeaturesRenderer',
-})
+@Directive({ standalone: false, selector: '[spyTableFeaturesRenderer]', exportAs: 'spyTableFeaturesRenderer' })
 export class TableFeaturesRendererDirective implements OnInit, OnChanges, OnDestroy {
+    private templateRef = inject<TemplateRef<TableFeaturesRendererContext>>(TemplateRef);
+    protected vcr = inject(ViewContainerRef);
+    protected iterableDiffers = inject(IterableDiffers);
+    protected cdr = inject(ChangeDetectorRef);
+    protected featuresRendererService = inject(TableFeaturesRendererService);
+
     @Input() spyTableFeaturesRenderer?: TableFeatureLocation;
     @Input() spyTableFeaturesRendererFeatures?: TableFeatureComponent[];
     @Input() spyTableFeaturesRendererMaxFeatures?: number;
@@ -60,14 +63,6 @@ export class TableFeaturesRendererDirective implements OnInit, OnChanges, OnDest
         map((features) => this.featuresDiffer.diff(features)),
         filter(isNonNullable),
     );
-
-    constructor(
-        private templateRef: TemplateRef<TableFeaturesRendererContext>,
-        private vcr: ViewContainerRef,
-        private iterableDiffers: IterableDiffers,
-        private cdr: ChangeDetectorRef,
-        private featuresRendererService: TableFeaturesRendererService,
-    ) {}
 
     ngOnInit(): void {
         this.featureChanges$.pipe(takeUntil(this.destroyed$)).subscribe((features) => this.updateFeatures(features));

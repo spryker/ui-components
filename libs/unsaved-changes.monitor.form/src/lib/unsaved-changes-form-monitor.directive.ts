@@ -5,12 +5,12 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    Optional,
     Renderer2,
     SimpleChanges,
+    booleanAttribute,
+    inject,
 } from '@angular/core';
 import { InterceptionComposerService } from '@spryker/interception';
-import { ToBoolean } from '@spryker/utils';
 import {
     UnsavedChangesGuardToken,
     UnsavedChangesMonitor,
@@ -23,6 +23,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
  * Responsible to track interactions of a user with the form it is attached to.
  */
 @Directive({
+    standalone: false,
     selector: 'form[spyUnsavedChangesFormMonitor]',
     providers: [
         {
@@ -32,10 +33,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
     ],
 })
 export class UnsavedChangesFormMonitorDirective implements UnsavedChangesMonitor, OnInit, OnDestroy, OnChanges {
+    private formRef = inject<ElementRef<HTMLFormElement>>(ElementRef);
+    protected renderer = inject(Renderer2);
+    protected interceptionComposerService = inject(InterceptionComposerService, { optional: true });
+
     /**
      * Allows attaching / detaching monitor
      */
-    @Input() @ToBoolean() spyUnsavedChangesFormMonitor = true;
+    @Input({ transform: booleanAttribute }) spyUnsavedChangesFormMonitor = true;
 
     private disposeInputEvent?: () => void;
 
@@ -43,12 +48,7 @@ export class UnsavedChangesFormMonitorDirective implements UnsavedChangesMonitor
 
     private unsavedChangesGuard?: UnsavedChangesGuardToken;
 
-    constructor(
-        private formRef: ElementRef<HTMLFormElement>,
-        private renderer: Renderer2,
-        @Optional()
-        private interceptionComposerService?: InterceptionComposerService,
-    ) {
+    constructor() {
         this.unsavedChangesGuard = this.interceptionComposerService?.getService(UnsavedChangesGuardToken);
     }
 

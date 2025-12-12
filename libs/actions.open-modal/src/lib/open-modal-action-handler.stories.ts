@@ -9,11 +9,14 @@ import { ComponentModal, ModalRef, ComponentModalExtras } from '@spryker/modal';
 import { OpenModalActionHandlerService } from './open-modal-action-handler.service';
 
 @Component({
+    standalone: false,
     selector: 'spy-modal-content',
     template: `
         <h3>Modal Content</h3>
         <p>This modal was opened via the OpenModalActionHandlerService</p>
-        <p *ngIf="__capturedData">Received data: {{ __capturedData | json }}</p>
+        @if (__capturedData) {
+            <p>Received data: {{ __capturedData | json }}</p>
+        }
     `,
 })
 class ModalContentComponent implements ComponentModal {
@@ -32,6 +35,7 @@ class ModalContentComponent implements ComponentModal {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-story',
     template: `
         <spy-button-action
@@ -48,6 +52,7 @@ class SimpleStoryComponent {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-template-modal-content',
     template: `
         <ng-template #modalTemplate let-modalRef="modalRef">
@@ -66,6 +71,7 @@ class SimpleStoryComponent {
 class TemplateModalStoryComponent {}
 
 @Component({
+    standalone: false,
     selector: 'spy-confirm-modal-story',
     template: `
         <spy-button-action

@@ -7,6 +7,7 @@ import ElLocaleModule, { EL_LOCALE } from '../../locales/el/src';
 import { LocaleModule } from './locale.module';
 
 @Component({
+    standalone: false,
     selector: 'spy-locale-story-component',
     template: `
         <ng-container *spyLocaleRender>

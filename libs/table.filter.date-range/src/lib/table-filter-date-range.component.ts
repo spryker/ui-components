@@ -7,6 +7,7 @@ import {
     EventEmitter,
     SimpleChanges,
     OnChanges,
+    inject,
 } from '@angular/core';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { TableFilterComponent } from '@spryker/table.feature.filters';
@@ -16,6 +17,7 @@ import { Observable, of } from 'rxjs';
 import { TableFilterDateRange } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-filter-date-range',
     templateUrl: './table-filter-date-range.component.html',
     styleUrls: ['./table-filter-date-range.component.less'],
@@ -23,6 +25,8 @@ import { TableFilterDateRange } from './types';
     encapsulation: ViewEncapsulation.None,
 })
 export class TableFilterDateRangeComponent implements TableFilterComponent<TableFilterDateRange>, OnChanges {
+    protected i18nService = inject(I18nService);
+
     @Input() config?: TableFilterDateRange;
     @Input() value?: DateRangeValueInput = {};
     @Output() valueChange = new EventEmitter<DateRangeValueInput>();
@@ -30,8 +34,6 @@ export class TableFilterDateRangeComponent implements TableFilterComponent<Table
 
     placeholderFrom$?: Observable<string>;
     placeholderTo$?: Observable<string>;
-
-    constructor(private i18nService: I18nService) {}
 
     private updatePlaceholder(property: 'placeholderFrom' | 'placeholderTo', defaultToken: string): Observable<string> {
         return this.config?.typeOptions?.[property]

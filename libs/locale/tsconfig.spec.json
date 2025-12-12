@@ -4,7 +4,8 @@
         "target": "ES2015",
         "module": "commonjs",
         "types": ["jest", "node"],
-        "emitDecoratorMetadata": false
+        "emitDecoratorMetadata": false,
+        "allowJs": true
     },
     "files": ["src/test-setup.ts"],
     "include": ["**/*.test.ts", "**/*.spec.ts", "jest.config.ts"]

@@ -1,6 +1,6 @@
 @import './table-column-list.component.theme.less';
 
-.@{table-column-list-prefix-cls} {
+.spy-table-column-list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -31,7 +31,7 @@
             background: @gray-lighter;
         }
 
-        .@{popover-prefix-cls}-open & {
+        .ant-popover-open & {
             box-shadow: @table-column-list-trigger-box-shadow;
             background: @gray-lighter;
             color: @green-dark;
@@ -45,7 +45,7 @@
         overflow-y: auto;
         background: @spy-white;
 
-        .@{table-column-list-prefix-cls}__holder {
+        .spy-table-column-list__holder {
             display: flex;
             flex-direction: column;
             justify-content: center;

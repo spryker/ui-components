@@ -8,15 +8,17 @@
     ></ng-template>
 </ng-template>
 
-<div class="ant-modal-description" *ngIf="data?.description">
-    <ng-template
-        [ngTemplateOutlet]="genericTemplate"
-        [ngTemplateOutletContext]="{
-            context: modalContext,
-            $implicit: data.description,
-        }"
-    ></ng-template>
-</div>
+@if (data?.description) {
+    <div class="ant-modal-description">
+        <ng-template
+            [ngTemplateOutlet]="genericTemplate"
+            [ngTemplateOutletContext]="{
+                context: modalContext,
+                $implicit: data.description,
+            }"
+        ></ng-template>
+    </div>
+}
 
 <ng-template #footer let-modal="modalRef">
     <div class="ant-modal-confirm-actions">

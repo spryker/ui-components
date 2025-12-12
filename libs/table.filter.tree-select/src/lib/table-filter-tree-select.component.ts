@@ -17,6 +17,7 @@ import { EMPTY } from 'rxjs';
  * Component represents tree-select filter feature for the main table component
  */
 @Component({
+    standalone: false,
     selector: 'spy-table-filter-tree-select',
     templateUrl: './table-filter-tree-select.component.html',
     styleUrls: ['./table-filter-tree-select.component.less'],

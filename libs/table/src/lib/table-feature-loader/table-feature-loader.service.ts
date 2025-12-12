@@ -1,20 +1,17 @@
 import {
     Compiler,
     ComponentFactory,
-    Inject,
     Injectable,
     Injector,
     ModuleWithComponentFactories,
     NgModuleFactory,
     NgModuleRef,
     OnDestroy,
-    Optional,
     Type,
+    inject,
 } from '@angular/core';
-import { InjectionTokenType } from '@spryker/utils';
 import { forkJoin, from, Observable, of } from 'rxjs';
-import { map, shareReplay, switchMap } from 'rxjs/operators';
-
+import { map, shareReplay, switchMap } from 'rxjs';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
 import { TableConfig } from '../table/table';
@@ -23,6 +20,10 @@ import { ModuleWithFeature, TableFeatureLoader, TableFeaturesRegistry } from './
 
 @Injectable({ providedIn: 'root' })
 export class TableFeatureLoaderService implements OnDestroy {
+    protected featuresRegistries = inject(TableFeaturesRegistryToken, { optional: true });
+    protected compiler = inject(Compiler);
+    protected injector = inject(Injector);
+
     private featuresRegistry: TableFeaturesRegistry =
         this.featuresRegistries?.reduce(
             (acc, reg) => ({
@@ -58,14 +59,6 @@ export class TableFeatureLoaderService implements OnDestroy {
             shareReplay({ bufferSize: 1, refCount: true }),
         ),
     );
-
-    constructor(
-        @Inject(TableFeaturesRegistryToken)
-        @Optional()
-        private featuresRegistries: InjectionTokenType<typeof TableFeaturesRegistryToken> | null,
-        private compiler: Compiler,
-        private injector: Injector,
-    ) {}
 
     ngOnDestroy(): void {
         // Destroy all created module refs

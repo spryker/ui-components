@@ -1,6 +1,4 @@
-import { Inject, Optional, Pipe, PipeTransform } from '@angular/core';
-
-import { InjectionTokenType } from '../types';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import { InvokeContext } from './invoke.token';
 
 /**
@@ -20,7 +18,7 @@ import { InvokeContext } from './invoke.token';
  * To invoke function with the context of current component
  * you may provide it on the component level providers:
  * ```ts
- *  @Component({
+ *  @Component({ standalone: false,
  *    selector: 'my-component',
  *    template: `...`,
  *    providers: [provideInvokeContext(MyComponent)],
@@ -31,13 +29,9 @@ import { InvokeContext } from './invoke.token';
  * In that case all calls via pipe will be done using component as the `this` context
  * and will be identical to when you invoke methods manually in templates.
  */
-@Pipe({ name: 'spyInvoke' })
+@Pipe({ standalone: false, name: 'spyInvoke' })
 export class InvokePipe implements PipeTransform {
-    constructor(
-        @Inject(InvokeContext)
-        @Optional()
-        private context: InjectionTokenType<typeof InvokeContext>,
-    ) {}
+    protected context = inject(InvokeContext, { optional: true })!;
 
     transform<TArgs extends any[], TReturn>(fn: (...args: TArgs) => TReturn, ...args: TArgs): TReturn {
         return fn.apply(this.context, args);

@@ -17,6 +17,7 @@ import { CarouselSlideComponent } from '../carousel-slide/carousel-slide.compone
 import { CarouselOptions } from '../types';
 
 @Component({
+    standalone: false,
     selector: 'spy-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.less'],

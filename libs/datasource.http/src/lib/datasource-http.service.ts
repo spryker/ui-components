@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { CacheService } from '@spryker/cache';
 import { DataSerializerService } from '@spryker/data-serializer';
 import { Datasource } from '@spryker/datasource';
-import { ContextService, DiEncodingCodecToken, InjectionTokenType } from '@spryker/utils';
+import { ContextService, DiEncodingCodecToken } from '@spryker/utils';
 import { Observable } from 'rxjs';
 
 import { HttpCacheId } from './http-cache-id';
@@ -14,14 +14,11 @@ import { DatasourceHttpConfig, DatasourceHttpConfigDataIn } from './types';
     providedIn: 'root',
 })
 export class DatasourceHttpService implements Datasource {
-    constructor(
-        @Inject(DiEncodingCodecToken)
-        private diEncodingCodecToken: InjectionTokenType<typeof DiEncodingCodecToken>,
-        private http: HttpClient,
-        private dataSerializerService: DataSerializerService,
-        private cacheService: CacheService,
-        private contextService: ContextService,
-    ) {}
+    protected diEncodingCodecToken = inject(DiEncodingCodecToken);
+    protected http = inject(HttpClient);
+    protected dataSerializerService = inject(DataSerializerService);
+    protected cacheService = inject(CacheService);
+    protected contextService = inject(ContextService);
 
     resolve(injector: Injector, config: DatasourceHttpConfig, context?: unknown): Observable<unknown> {
         config = { ...config };

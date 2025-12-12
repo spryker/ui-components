@@ -30,7 +30,7 @@ export default {
     argTypes: {
         userMenuLinkTypeInput: {
             control: { type: 'select' },
-            options: UserMenuLinkType,
+            options: Object.values(UserMenuLinkType),
         },
         icon: {
             control: { type: 'select' },

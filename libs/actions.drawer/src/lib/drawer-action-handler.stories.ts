@@ -14,6 +14,7 @@ import { DrawerActionHandlerService } from './drawer-action-handler.service';
 import { DrawerActionModule } from './drawer-action.module';
 
 @Component({
+    standalone: false,
     selector: 'spy-simple-component',
     template: `
         <div>

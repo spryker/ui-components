@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Injector, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injector,
+    OnDestroy,
+    OnInit,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 import { IconActionModule } from '@spryker/icon/icons';
 import {
     TableActionBase,
@@ -10,12 +18,11 @@ import {
     TableRowClickEvent,
 } from '@spryker/table';
 import { ContextService } from '@spryker/utils';
-import { combineLatest, EMPTY, Subject } from 'rxjs';
-import { map, pluck, shareReplay, switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
-
+import { combineLatest, EMPTY, Subject, map, shareReplay, switchMap, take, takeUntil, withLatestFrom } from 'rxjs';
 import { TableRowActionBase, TableRowActionContext, TableRowActionsConfig } from './types';
 
 @Component({
+    standalone: false,
     selector: 'spy-table-row-actions-feature',
     templateUrl: './table-row-actions-feature.component.html',
     styleUrls: ['./table-row-actions-feature.component.less'],
@@ -32,6 +39,9 @@ export class TableRowActionsFeatureComponent
     extends TableFeatureComponent<TableRowActionsConfig>
     implements OnDestroy, OnInit
 {
+    protected tableActionsService = inject(TableActionsService);
+    protected contextService = inject(ContextService);
+
     name = 'rowActions';
     tableFeatureLocation = TableFeatureLocation;
     triggerIcon = IconActionModule.icon;
@@ -48,10 +58,10 @@ export class TableRowActionsFeatureComponent
         shareReplay({ bufferSize: 1, refCount: true }),
     );
 
-    availableActionsPath$ = this.config$.pipe(pluck('availableActionsPath'));
+    availableActionsPath$ = this.config$.pipe(map((config) => config.availableActionsPath));
 
     private destroyed$ = new Subject<void>();
-    private configClick$ = this.config$.pipe(pluck('click'));
+    private configClick$ = this.config$.pipe(map((config) => config.click));
     private clickAction$ = this.configClick$.pipe(map((actionId) => this.getActionById(actionId)));
     private rowClicks$ = this.tableEventBus$.pipe(
         withLatestFrom(this.clickAction$),
@@ -62,16 +72,8 @@ export class TableRowActionsFeatureComponent
 
     tableData$ = this.table$.pipe(
         switchMap((table) => table.data$),
-        pluck('data'),
+        map((event) => event.data),
     );
-
-    constructor(
-        private tableActionsService: TableActionsService,
-        private contextService: ContextService,
-        injector: Injector,
-    ) {
-        super(injector);
-    }
 
     ngOnInit(): void {
         this.rowClicks$

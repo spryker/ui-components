@@ -1,8 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { DataTransformerConfigurator, DataTransformerConfiguratorConfigT } from '@spryker/data-transformer.collate';
 import { CoreTableComponent, TableDataConfiguratorService } from '@spryker/table';
-import { Observable } from 'rxjs';
-import { map, withLatestFrom } from 'rxjs/operators';
+import { Observable, map, withLatestFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TableDataTransformerConfiguratorService implements DataTransformerConfigurator {

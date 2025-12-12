@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/button.action@3.0.0...@spryker/button.action@3.0.1-next.0) (2025-10-13)
+
+
+### Bug Fixes
+
+* peers ([4aad909](https://github.com/spryker/ui-components/commit/4aad909b629f797c3b8b5e211d5b3a53d0e70d56))
+
+
+
+
+
+# [3.0.0](https://github.com/spryker/ui-components/compare/@spryker/button.action@2.0.9-next.0...@spryker/button.action@3.0.0) (2025-10-13)
+
+**Note:** Version bump only for package @spryker/button.action
+
+
+
+
+
+## [2.0.9-next.0](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/button.action@2.0.8...@spryker/button.action@2.0.9-next.0) (2025-09-12)
+
+**Note:** Version bump only for package @spryker/button.action
+
+
+
+
+
 ## [2.0.8](http://172.31.0.22:9292/spryker-internal-ci/ui-components/compare/@spryker/button.action@2.0.7...@spryker/button.action@2.0.8) (2025-05-20)
 
 **Note:** Version bump only for package @spryker/button.action

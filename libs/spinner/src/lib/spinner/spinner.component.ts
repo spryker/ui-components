@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 import { SpinnerSize } from '../types';
 
 @Component({
+    standalone: false,
     selector: 'spy-spinner',
     templateUrl: './spinner.component.html',
     styleUrls: ['./spinner.component.less'],

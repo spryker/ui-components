@@ -32,6 +32,7 @@ class MockInjector {
 }
 
 @Component({
+    standalone: false,
     selector: 'spy-test-component',
     template: '',
     providers: [

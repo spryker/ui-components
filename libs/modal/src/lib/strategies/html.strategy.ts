@@ -26,7 +26,7 @@ export interface HtmlModalStrategyOptionsString<T> extends HtmlModalStrategyOpti
 
 export type HtmlModalStrategyOptions<T> = HtmlModalStrategyOptionsElement<T> | HtmlModalStrategyOptionsString<T>;
 
-type HtmlType = Exclude<HtmlModalStrategyOptions<any>['html'], Function>;
+type HtmlType = Exclude<HtmlModalStrategyOptions<any>['html'], (...args: any[]) => any>;
 
 type HtmlModalRenderingFunction = (modalData: any) => Node[];
 

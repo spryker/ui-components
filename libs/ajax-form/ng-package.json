@@ -3,7 +3,7 @@
     "dest": "../../dist/libs/ajax-form",
     "lib": {
         "entryFile": "src/index.ts",
-        "styleIncludePaths": ["../styles/src/lib"]
+        "styleIncludePaths": ["../../node_modules", "../styles/src/lib"]
     },
     "allowedNonPeerDependencies": ["ng-zorro-antd"]
 }

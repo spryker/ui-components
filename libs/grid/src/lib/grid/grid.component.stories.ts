@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Meta, moduleMetadata } from '@storybook/angular';
 
 @Component({
+    standalone: false,
     selector: 'spy-story-component',
     styleUrls: ['./grid.component.stories.less'],
     template: '',

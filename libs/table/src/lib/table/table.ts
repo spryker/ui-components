@@ -1,4 +1,3 @@
-import { LayoutFlatConfig } from '@orchestrator/layout';
 import { Observable } from 'rxjs';
 import { ElementRef, Injector, Type } from '@angular/core';
 import { DatasourceConfig } from '@spryker/datasource';
@@ -6,6 +5,7 @@ import { AnyContext } from '@spryker/utils';
 import { TableFeatureConfig } from '../table-config/types';
 import { TableActionTriggeredEvent } from '../table-actions/types';
 import { TableFeatureComponent } from '../table-feature/table-feature.component';
+import type { TableColumnListConfig } from '../table-column-list/table-column-list.component';
 
 export interface TableColumn extends Partial<TableColumnTypeDef> {
     id: string;
@@ -36,7 +36,7 @@ interface TableColumnTypeOptionsMappings {
 
 export interface TableColumnTypeRegistry {
     // Key is type string - value is type config class
-    'layout-flat': LayoutFlatConfig;
+    list: TableColumnListConfig;
 }
 
 export type TableColumnType = keyof TableColumnTypeRegistry;

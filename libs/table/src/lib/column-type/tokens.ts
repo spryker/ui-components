@@ -1,5 +1,4 @@
 import { InjectionToken, Provider } from '@angular/core';
-
 import { TableColumnComponentDeclaration } from '../table/table';
 
 /**

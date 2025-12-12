@@ -14,6 +14,7 @@ import { ReplaySubject } from 'rxjs';
 import { InputModule } from '@spryker/input';
 
 @Component({
+    standalone: false,
     selector: 'spy-test-host',
     template: `
         <test-table-feature>

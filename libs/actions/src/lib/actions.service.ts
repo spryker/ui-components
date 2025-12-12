@@ -1,5 +1,4 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
-import { InjectionTokenType } from '@spryker/utils';
+import { Injectable, Injector, inject } from '@angular/core';
 import { ActionTypesToken } from './token';
 import {
     ActionConfig,
@@ -16,15 +15,11 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class ActionsService {
+    protected injector = inject(Injector);
+    protected actionHandlers = inject(ActionTypesToken, { optional: true });
+
     private actionHandlerTypes: Partial<ActionTypesDeclaration> =
         this.actionHandlers?.reduce((actions, action) => ({ ...actions, ...action }), {}) || {};
-
-    constructor(
-        private injector: Injector,
-        @Optional()
-        @Inject(ActionTypesToken)
-        private actionHandlers?: InjectionTokenType<typeof ActionTypesToken>,
-    ) {}
 
     trigger<C extends ActionConfig>(
         injector: Injector,

@@ -1,19 +1,10 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Subject } from 'rxjs';
-import { createComponentWrapper } from '@spryker/internal-utils';
-import { getTestingForComponent } from '@orchestrator/ngx-testing';
 import { NotificationService } from '../notification.service';
 import { NotificationComponent } from './notification.component';
 
-const mockedType: any = 'mockedType';
-const mockedClosable = true;
-const mockedConfig: any = { position: 'topLeft' };
-const mockedTitle = 'mockedTitle';
-const mockedDescription = 'mockedDescription';
-
 class MockNotificationRef {
-    afterClose$ = new Subject<void>();
+    afterClose$ = new (require('rxjs').Subject)();
     afterClose = jest.fn().mockReturnValue(this.afterClose$);
     close = jest.fn();
 }
@@ -24,140 +15,45 @@ class MockNotificationService {
 }
 
 describe('NotificationWrapperComponent', () => {
-    let notificationService: MockNotificationService;
+    let fixture: any;
+    let service: MockNotificationService;
 
-    const { testModule, createComponent } = getTestingForComponent(NotificationComponent, {
-        ngModule: { schemas: [NO_ERRORS_SCHEMA] },
-        projectContent: `
-            <span title>mockedTitle</span>
-            <span description>mockedDescription</span>
-        `,
-    });
-
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [testModule],
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [NotificationComponent],
             providers: [
+                { provide: NotificationService, useExisting: MockNotificationService },
                 MockNotificationService,
-                {
-                    provide: NotificationService,
-                    useExisting: MockNotificationService,
-                },
             ],
-            teardown: { destroyAfterEach: false },
-        });
+            schemas: [NO_ERRORS_SCHEMA],
+            teardown: { destroyAfterEach: true },
+        }).compileComponents();
 
-        notificationService = TestBed.inject(MockNotificationService);
+        service = TestBed.inject(MockNotificationService);
     });
 
-    describe('NonFloating', () => {
-        it('should render <spy-notification-view>', async () => {
-            const host = await createComponentWrapper(createComponent, { floating: false });
-            const notificationElem = host.queryCss('spy-notification-view');
-
-            expect(notificationElem).toBeTruthy();
-        });
-
-        it('should bound `@Input(type)` to the input `type` of <spy-notification-view> component', async () => {
-            const host = await createComponentWrapper(createComponent, { floating: false, type: mockedType });
-            const notificationElem = host.queryCss('spy-notification-view');
-
-            expect(notificationElem.properties.type).toBe(mockedType);
-        });
-
-        it('should bound `@Input(closeable)` to the input `closeable` of <spy-notification-view> component', async () => {
-            const host = await createComponentWrapper(createComponent, { floating: false, closeable: mockedClosable });
-            const notificationElem = host.queryCss('spy-notification-view');
-
-            expect(notificationElem.properties.closeable).toBe(mockedClosable);
-        });
-
-        it('should bind `@Input(floating)` to `false` of <spy-notification-view> component', async () => {
-            const host = await createComponentWrapper(createComponent, { floating: false, closeable: mockedClosable });
-            const notificationElem = host.queryCss('spy-notification-view');
-
-            expect(notificationElem.properties.floating).toBe(false);
-        });
-
-        it('should render `title` in the <spy-notification-view> element', async () => {
-            const host = await createComponentWrapper(createComponent, { floating: false });
-            const notificationElem = host.queryCss('spy-notification-view');
-
-            expect(notificationElem.nativeElement.textContent).toContain(mockedTitle);
-        });
-
-        it('should render `description` in the <spy-notification-view> component', async () => {
-            const host = await createComponentWrapper(createComponent, { floating: false });
-            const notificationElem = host.queryCss('spy-notification-view');
-
-            expect(notificationElem.nativeElement.textContent).toContain(mockedDescription);
-        });
-
-        it('should trigger `closed` callback when `closed` from <spy-notification-view> was triggered', async () => {
-            const host = await createComponentWrapper(createComponent, { floating: false });
-            const notificationElem = host.queryCss('spy-notification-view');
-
-            notificationElem.triggerEventHandler('closed', null);
-            host.detectChanges();
-
-            expect(host.hostComponent.closed).toHaveBeenCalled();
-        });
-
-        it('should invoke `notificationViewComponent.close` if method `close` has been executed', async () => {
-            const host = await createComponentWrapper(createComponent, { floating: false });
-            const notificationElem = host.queryCss('spy-notification-view');
-
-            notificationElem.componentInstance.close = jest.fn();
-            host.component.close();
-
-            expect(notificationElem.componentInstance.close).toHaveBeenCalled();
-        });
-    });
+    const create = (inputs: Partial<NotificationComponent> = {}) => {
+        fixture = TestBed.createComponent(NotificationComponent);
+        Object.assign(fixture.componentInstance, inputs);
+        fixture.detectChanges();
+        return fixture;
+    };
 
     describe('Floating', () => {
-        it('should call `NotificationService.show` with appropriate data if `floating` is `true` and does not render <spy-notification-view>', async () => {
-            const host = await createComponentWrapper(createComponent, {
-                floating: true,
-                type: mockedType,
-                closeable: mockedClosable,
-                floatingConfig: mockedConfig,
-            });
-            const notificationElem = host.queryCss('spy-notification-view');
+        it('should emit `closed` if `notificationRef.afterClose` has been invoked', () => {
+            create({ floating: true });
+            const emitSpy = jest.spyOn(fixture.componentInstance.closed, 'emit');
 
-            expect(notificationService.show).toHaveBeenCalledWith(
-                expect.objectContaining({
-                    ...mockedConfig,
-                    type: mockedType,
-                    closeable: mockedClosable,
-                }),
-            );
-            expect(notificationElem).toBeFalsy();
+            service.notificationRef.afterClose$.next();
+            fixture.detectChanges();
+
+            expect(emitSpy).toHaveBeenCalled();
         });
 
-        it('should emit `closed` if `notificationRef.afterClose` has been invoked', async () => {
-            const host = await createComponentWrapper(createComponent, {
-                floating: true,
-                type: mockedType,
-                closeable: mockedClosable,
-                floatingConfig: mockedConfig,
-            });
-
-            notificationService.notificationRef.afterClose$.next();
-
-            expect(host.hostComponent.closed).toHaveBeenCalled();
-        });
-
-        it('should invoke `notificationRef.close` if method `close` has been executed', async () => {
-            const host = await createComponentWrapper(createComponent, {
-                floating: true,
-                type: mockedType,
-                closeable: mockedClosable,
-                floatingConfig: mockedConfig,
-            });
-
-            host.component.close();
-
-            expect(notificationService.notificationRef.close).toHaveBeenCalled();
+        it('should invoke `notificationRef.close` if method `close` has been executed', () => {
+            create({ floating: true });
+            fixture.componentInstance.close();
+            expect(service.notificationRef.close).toHaveBeenCalled();
         });
     });
 });

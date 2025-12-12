@@ -1,7 +1,8 @@
+/* stylelint-disable */
 @import './table.component.theme.less';
 
-.@{table-prefix-spryker-cls} {
-    .@{spin-prefix-cls} {
+.spy-table {
+    .ant-spin {
         &-container {
             &::after {
                 display: none;
@@ -16,7 +17,7 @@
             display: block;
             overflow: hidden;
 
-            > div > .@{spin-prefix-cls} {
+            > div > .ant-spin {
                 position: absolute;
                 top: 0;
                 left: 50%;
@@ -26,8 +27,8 @@
     }
 
     &-initial-loading {
-        .@{spin-prefix-cls}-nested-loading {
-            > div > .@{spin-prefix-cls} {
+        .ant-spin-nested-loading {
+            > div > .ant-spin {
                 position: relative;
                 height: @table-initial-loading-height;
             }
@@ -35,7 +36,7 @@
     }
 }
 
-.@{table-prefix-cls} {
+.ant-table {
     font: @font-default;
     background: none;
     z-index: @table-z-index;
@@ -46,7 +47,7 @@
 
     &-features {
         &--before-table {
-            .@{table-feature-renderer-prefix-cls}__content {
+            .spy-table-features-renderer__content {
                 padding-bottom: @table-features-padding-vertical;
 
                 &:empty {
@@ -56,7 +57,7 @@
         }
 
         &--after-table {
-            .@{table-feature-renderer-prefix-cls}__content {
+            .spy-table-features-renderer__content {
                 padding-top: @table-features-after-table-padding-top;
 
                 &:empty {
@@ -65,7 +66,7 @@
             }
         }
 
-        @{table-feature-renderer-prefix-cls} {
+        spy-table-features-renderer {
             display: flex;
             flex-grow: 1;
             flex-wrap: wrap;
@@ -87,7 +88,7 @@
     }
 
     &-thead {
-        & > .@{table-prefix-cls}-row {
+        & > .ant-table-row {
             height: @table-row-head-height;
         }
 
@@ -106,18 +107,18 @@
                 text-align: left;
             }
 
-            .@{table-prefix-cls}-column-sorters {
+            .ant-table-column-sorters {
                 justify-content: flex-start;
             }
 
-            .@{table-prefix-cls}-column-sorter {
+            .ant-table-column-sorter {
                 display: block;
                 position: relative;
                 width: @table-sorts-holder-width;
                 height: @table-sorts-holder-height;
                 margin: 0;
 
-                .@{table-prefix-cls}-column-sorter-inner {
+                .ant-table-column-sorter-inner {
                     height: auto;
                     position: absolute;
                     top: 50%;
@@ -129,7 +130,7 @@
                 }
             }
 
-            .@{table-prefix-cls}-column-title {
+            .ant-table-column-title {
                 font-size: @table-column-title-font-size;
                 flex-grow: 0;
             }
@@ -146,7 +147,7 @@
                     width: @table-head-checkbox-wrapper-size;
                     height: @table-head-checkbox-wrapper-size;
                     background: @table-head-checkbox-wrapper-bg;
-                    border-radius: @checkbox-border-radius;
+                    border-radius: @table-checkbox-border-radius;
                 }
             }
         }
@@ -175,28 +176,26 @@
             bottom: 0;
         }
 
-        &.@{table-prefix-cls}-row-hover,
+        &.ant-table-row-hover,
         &:hover {
             background: none;
 
-            &:not(.@{table-prefix-cls}-expanded-row):not(.@{table-prefix-cls}-row-selected) > td {
+            &:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
                 background: none;
             }
         }
 
         &:hover {
-            &:not(&:focus):not(.@{table-prefix-cls}-placeholder) {
-                /* stylelint-disable selector-max-pseudo-class */
+            &:not(&:focus):not(.ant-table-placeholder) {
                 &::after {
                     border-color: @gray-light;
                 }
-                /* stylelint-enable */
 
-                &.@{table-prefix-cls}-row--selected::after {
+                &.ant-table-row--selected::after {
                     border-color: @green;
                 }
 
-                &.@{table-prefix-cls}-row--editable::after {
+                &.ant-table-row--editable::after {
                     border-color: @transparent;
                 }
             }
@@ -217,14 +216,14 @@
                 }
             }
 
-            th.@{table-prefix-cls}-column-has-sorters,
+            th.ant-table-column-has-sorters,
             > th,
             > td {
                 padding: 0;
                 border-bottom: none;
                 position: relative;
 
-                .@{table-prefix-cls}-column-inner {
+                .ant-table-column-inner {
                     padding: @table-column-inner-padding;
                     color: @table-column-body-color;
                     display: flex;
@@ -252,32 +251,32 @@
                     }
                 }
 
-                &:first-child .@{table-prefix-cls}-column-inner::after {
+                &:first-child .ant-table-column-inner::after {
                     border-radius: @table-column-first-border-radius;
                     border-left: @table-border-base;
                 }
 
-                &:last-child .@{table-prefix-cls}-column-inner::after {
+                &:last-child .ant-table-column-inner::after {
                     border-radius: @table-column-last-border-radius;
                     border-right: @table-border-base;
                 }
             }
 
-            th.@{table-prefix-cls}-column-has-sorters,
+            th.ant-table-column-has-sorters,
             > th {
                 &:hover {
                     background: none;
                 }
 
-                .@{table-prefix-cls}-column-inner {
+                .ant-table-column-inner {
                     padding: @table-head-padding;
                     color: @table-column-head-color;
                     font-size: @table-column-title-font-size;
                 }
             }
 
-            th.@{table-prefix-cls}-column-has-sorters {
-                .@{table-prefix-cls}-column-sorters {
+            th.ant-table-column-has-sorters {
+                .ant-table-column-sorters {
                     width: 100%;
                     padding: @table-head-padding;
 
@@ -297,21 +296,21 @@
                     }
                 }
 
-                &:first-child .@{table-prefix-cls}-column-sorters::after {
+                &:first-child .ant-table-column-sorters::after {
                     border-radius: @table-column-first-border-radius;
                     border-left: @table-border-base;
                 }
 
-                &:last-child .@{table-prefix-cls}-column-sorters::after {
+                &:last-child .ant-table-column-sorters::after {
                     border-radius: @table-column-last-border-radius;
                     border-right: @table-border-base;
                 }
 
-                &.@{table-prefix-cls}-column-sort {
+                &.ant-table-column-sort {
                     background: @transparent;
                 }
 
-                .@{table-prefix-cls}-column-inner {
+                .ant-table-column-inner {
                     padding: 0;
 
                     &::after {
@@ -320,8 +319,8 @@
                 }
             }
 
-            &.@{table-prefix-cls}-row--with-errors > td {
-                .@{table-prefix-cls}-column-inner {
+            &.ant-table-row--with-errors > td {
+                .ant-table-column-inner {
                     &::after {
                         background: @table-row-bg-with-errors;
                         border-color: @table-row-border-color-with-errors;
@@ -329,11 +328,11 @@
                 }
             }
 
-            &:first-child > td .@{table-prefix-cls}-column-inner::after {
+            &:first-child > td .ant-table-column-inner::after {
                 top: 0;
             }
 
-            &:last-child > td .@{table-prefix-cls}-column-inner::after {
+            &:last-child > td .ant-table-column-inner::after {
                 bottom: 0;
             }
         }
@@ -379,7 +378,7 @@
         }
     }
 
-    .@{chips-prefix-cls} {
+    .spy-chips {
         white-space: nowrap;
     }
 }

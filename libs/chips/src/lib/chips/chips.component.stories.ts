@@ -5,6 +5,7 @@ import { ChipsComponent } from './chips.component';
 export default {
     title: 'ChipsComponent',
     component: ChipsComponent,
+    tags: ['autodocs'],
     parameters: {
         controls: {
             include: ['color', 'maxWidth', 'text'],
@@ -19,6 +20,29 @@ export default {
         color: {
             control: { type: 'select' },
             options: ['blue', 'green', 'yellow', 'orange', 'red', 'gray', 'gray-lighter'],
+            description: 'Color variant of the chip (blue, green, yellow, orange, red, gray, gray-lighter)',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: '"green"' },
+                category: 'Inputs',
+            },
+        },
+        maxWidth: {
+            control: { type: 'text' },
+            description: 'Maximum width of the chip (CSS value)',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: '"145px"' },
+                category: 'Inputs',
+            },
+        },
+        text: {
+            control: { type: 'text' },
+            description: 'Text content displayed in the chip',
+            table: {
+                type: { summary: 'string' },
+                category: 'Content',
+            },
         },
     },
     args: {

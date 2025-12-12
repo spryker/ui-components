@@ -64,6 +64,7 @@ const icons: Icon[] = [
 export default {
     title: 'NavigationComponent',
     component: NavigationComponent,
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [provideAnimations(), provideIcons(icons)],
@@ -80,6 +81,25 @@ export default {
             type: 'figma',
             url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=319%3A448',
             allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        collapsed: {
+            control: { type: 'boolean' },
+            description: 'Controls collapsed/expanded state of navigation menu',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        items: {
+            description: 'Navigation menu items with title, url, icon, and optional children',
+            table: {
+                type: { summary: 'NavigationItem[]' },
+                defaultValue: { summary: '[]' },
+                category: 'Inputs',
+            },
         },
     },
     args: {

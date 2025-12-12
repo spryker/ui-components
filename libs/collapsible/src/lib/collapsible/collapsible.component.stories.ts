@@ -18,6 +18,7 @@ class StoryComponent {
 export default {
     title: 'CollapsibleComponent',
     component: CollapsibleComponent,
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [provideAnimations()],
@@ -29,12 +30,71 @@ export default {
     ],
     parameters: {
         controls: {
-            include: ['spyTitle', 'active', 'disabled', 'alwaysRender'],
+            include: ['spyTitle', 'titleIcon', 'active', 'disabled', 'alwaysRender'],
         },
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8983',
             allowFullscreen: true,
+        },
+        docs: {
+            description: {
+                component: 'Collapsible panel component with expandable content.\n\n**Slots:**\n- Default slot: Collapsible panel content',
+            },
+        },
+    },
+    argTypes: {
+        spyTitle: {
+            control: { type: 'text' },
+            description: 'Title text shown in the collapsible header',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
+        },
+        titleIcon: {
+            control: { type: 'text' },
+            description: 'Icon to display in the collapsible header',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
+        },
+        active: {
+            control: { type: 'boolean' },
+            description: 'Controls expanded/collapsed state',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        disabled: {
+            control: { type: 'boolean' },
+            description: 'Disables the collapsible preventing toggle interaction',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        alwaysRender: {
+            control: { type: 'boolean' },
+            description: 'Keeps content rendered in DOM even when collapsed',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'true' },
+                category: 'Inputs',
+            },
+        },
+        activeChange: {
+            description: 'Emits when active state changes',
+            table: {
+                type: { summary: 'EventEmitter<boolean>' },
+                category: 'Outputs',
+            },
         },
     },
     args: {

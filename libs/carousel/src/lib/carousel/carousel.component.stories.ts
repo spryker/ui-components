@@ -8,6 +8,7 @@ import { CarouselComponent } from './carousel.component';
 
 export default {
     title: 'CarouselComponent',
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [provideAnimations()],
@@ -19,12 +20,39 @@ export default {
     ],
     parameters: {
         controls: {
-            include: ['slidesPerView', 'slidesSpaceBetween', 'withThumbs', 'thumbsPerView', 'thumbsSpaceBetween'],
+            include: ['config', 'thumbConfig', 'withThumbs', 'slidesPerView', 'slidesSpaceBetween', 'thumbsPerView', 'thumbsSpaceBetween'],
         },
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2201%3A6727',
             allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        config: {
+            description: 'Swiper configuration options for main carousel',
+            table: {
+                type: { summary: 'CarouselOptions' },
+                defaultValue: { summary: '{}' },
+                category: 'Inputs',
+            },
+        },
+        thumbConfig: {
+            description: 'Swiper configuration options for thumbnails carousel',
+            table: {
+                type: { summary: 'CarouselOptions' },
+                defaultValue: { summary: '{}' },
+                category: 'Inputs',
+            },
+        },
+        withThumbs: {
+            control: { type: 'boolean' },
+            description: 'Enables thumbnail navigation below main carousel',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
         },
     },
     args: {

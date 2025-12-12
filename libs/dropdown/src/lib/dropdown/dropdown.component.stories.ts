@@ -8,6 +8,7 @@ import { DropdownComponent } from './dropdown.component';
 export default {
     title: 'DropdownComponent',
     component: DropdownComponent,
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [provideAnimations()],
@@ -27,13 +28,65 @@ export default {
         },
     },
     argTypes: {
+        items: {
+            description: 'Array of dropdown menu items with action, title, icon, disabled, and optional subItems',
+            table: {
+                type: { summary: 'DropdownItem[]' },
+                defaultValue: { summary: '[]' },
+                category: 'Inputs',
+            },
+        },
         placement: {
             control: 'select',
             options: ['bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'],
+            description: 'Position of dropdown menu relative to trigger (bottomLeft, bottomCenter, bottomRight, topLeft, topCenter, topRight)',
+            table: {
+                type: { summary: 'Placement' },
+                defaultValue: { summary: '"bottomRight"' },
+                category: 'Inputs',
+            },
         },
         trigger: {
             control: { type: 'select' },
             options: ['click', 'hover'],
+            description: 'Trigger type for showing the dropdown (click, hover)',
+            table: {
+                type: { summary: 'Trigger' },
+                defaultValue: { summary: '"hover"' },
+                category: 'Inputs',
+            },
+        },
+        visible: {
+            control: { type: 'boolean' },
+            description: 'Controls whether the dropdown is visible',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        disabled: {
+            control: { type: 'boolean' },
+            description: 'Disables the dropdown',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        visibleChange: {
+            description: 'Emits when dropdown visibility changes',
+            table: {
+                type: { summary: 'EventEmitter<boolean>' },
+                category: 'Outputs',
+            },
+        },
+        itemClick: {
+            description: 'Emits when dropdown item is clicked with the action value',
+            table: {
+                type: { summary: 'EventEmitter<string>' },
+                category: 'Outputs',
+            },
         },
     },
     args: {

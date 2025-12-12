@@ -10,6 +10,7 @@ const iconNames = iconsModules.map((i) => i.icon);
 export default {
     title: 'LinkComponent',
     component: LinkComponent,
+    tags: ['autodocs'],
     decorators: [
         moduleMetadata({
             imports: [LinkModule, ...iconsModules],
@@ -24,6 +25,20 @@ export default {
         icon: {
             control: { type: 'select' },
             options: iconNames,
+            description: 'Icon to display before the link text',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
+        },
+        text: {
+            control: { type: 'text' },
+            description: 'Link text content',
+            table: {
+                type: { summary: 'string' },
+                category: 'Content',
+            },
         },
     },
     args: {

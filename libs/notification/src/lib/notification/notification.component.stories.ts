@@ -9,6 +9,7 @@ import { NotificationEasing, NotificationPosition, NotificationType } from '../t
 export default {
     title: 'NotificationComponent',
     component: NotificationComponent,
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [provideAnimations(), importProvidersFrom(NotificationModule.forRoot())],
@@ -31,13 +32,71 @@ export default {
         type: {
             control: { type: 'select' },
             options: Object.values(NotificationType),
+            description: 'Visual type/variant of notification (info, success, warning, error)',
+            table: {
+                type: { summary: 'NotificationType' },
+                defaultValue: { summary: 'NotificationType.Info' },
+                category: 'Inputs',
+            },
+        },
+        closeable: {
+            control: { type: 'boolean' },
+            description: 'Shows close button to dismiss notification',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        floating: {
+            control: { type: 'boolean' },
+            description: 'Displays notification as floating overlay',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'true' },
+                category: 'Inputs',
+            },
         },
         floatingConfig: {
-            table: { disable: true },
+            description: 'Configuration for floating notification (position, duration, animation)',
+            table: {
+                type: { summary: 'NotificationConfig' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+                disable: true,
+            },
+        },
+        title: {
+            control: { type: 'text' },
+            description: 'Title text of the notification',
+            table: {
+                type: { summary: 'string' },
+                category: 'Content',
+            },
+        },
+        description: {
+            control: { type: 'text' },
+            description: 'Description text of the notification',
+            table: {
+                type: { summary: 'string' },
+                category: 'Content',
+            },
+        },
+        closed: {
+            description: 'Emits when notification is closed',
+            table: {
+                type: { summary: 'EventEmitter<void>' },
+                category: 'Outputs',
+            },
         },
         position: {
             control: { type: 'select' },
             options: Object.values(NotificationPosition),
+            description: 'Position of floating notification (topLeft, topCenter, topRight, bottomLeft, bottomCenter, bottomRight, topFullWidth, bottomFullWidth)',
+            table: {
+                type: { summary: 'NotificationPosition' },
+                category: 'Inputs',
+            },
         },
     },
     args: {

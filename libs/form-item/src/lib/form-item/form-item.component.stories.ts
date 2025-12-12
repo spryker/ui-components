@@ -12,6 +12,7 @@ import { FormItemComponent } from './form-item.component';
 export default {
     title: 'FormItemComponent',
     component: FormItemComponent,
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [provideAnimations()],
@@ -48,12 +49,66 @@ export default {
     argTypes: {
         error: {
             control: { type: 'text' },
+            description: 'Error message to display below the form field',
+            table: {
+                type: { summary: 'string | TemplateRef<void>' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
         },
         warning: {
             control: { type: 'text' },
+            description: 'Warning message to display below the form field',
+            table: {
+                type: { summary: 'string | TemplateRef<void>' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
         },
         hint: {
             control: { type: 'text' },
+            description: 'Helper text to display below the form field',
+            table: {
+                type: { summary: 'string | TemplateRef<void>' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
+        },
+        required: {
+            control: { type: 'boolean' },
+            description: 'Marks the field as required (shows asterisk)',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        noSpaces: {
+            control: { type: 'boolean' },
+            description: 'Removes extra spacing from the form item layout',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        noLabel: {
+            control: { type: 'boolean' },
+            description: 'Hides the label while maintaining form structure',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        withErrorTitle: {
+            control: { type: 'boolean' },
+            description: 'Shows error message title',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'true' },
+                category: 'Inputs',
+            },
         },
     },
     args: {

@@ -27,6 +27,7 @@ const mockAutocompleteOptions = [
 export default {
     title: 'AutocompleteComponent',
     component: AutocompleteComponent,
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [provideAnimations()],
@@ -37,12 +38,38 @@ export default {
     ],
     parameters: {
         controls: {
-            include: ['options'],
+            include: ['options', 'datasource', 'context'],
         },
         design: {
             type: 'figma',
-            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2055%3A9154',
+            url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2001%3A9344',
             allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        options: {
+            description: 'Array of autocomplete options with value, title, and isDisabled properties. AutocompleteValue interface: { value: unknown; title: string; isDisabled?: boolean }',
+            table: {
+                type: { summary: 'AutocompleteValue[]' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
+        },
+        datasource: {
+            description: 'Datasource configuration for loading options dynamically',
+            table: {
+                type: { summary: 'DatasourceConfig' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
+        },
+        context: {
+            description: 'Context object passed to datasource',
+            table: {
+                type: { summary: 'unknown' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
         },
     },
     args: {

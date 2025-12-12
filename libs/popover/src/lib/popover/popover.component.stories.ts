@@ -6,6 +6,7 @@ import { PopoverModule } from '../popover.module';
 export default {
     title: 'PopoverComponent',
     component: PopoverComponent,
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [provideAnimations()],
@@ -16,7 +17,7 @@ export default {
     ],
     parameters: {
         controls: {
-            include: ['open', 'popoverTrigger', 'position'],
+            include: ['open', 'popoverTrigger', 'position', 'popoverOverlayClassname'],
         },
         design: {
             type: 'figma',
@@ -25,9 +26,50 @@ export default {
         },
     },
     argTypes: {
+        open: {
+            control: { type: 'boolean' },
+            description: 'Controls whether the popover is visible',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
         popoverTrigger: {
             control: { type: 'select' },
             options: Object.values(PopoverTrigger),
+            description: 'Trigger type for showing the popover (click, hover, focus)',
+            table: {
+                type: { summary: 'PopoverTrigger' },
+                defaultValue: { summary: 'PopoverTrigger.Click' },
+                category: 'Inputs',
+            },
+        },
+        position: {
+            control: { type: 'select' },
+            options: Object.values(PopoverPosition),
+            description: 'Position of the popover relative to trigger element (topLeft, top, topRight, rightTop, right, rightBottom, bottomLeft, bottom, bottomRight, leftTop, left, leftBottom)',
+            table: {
+                type: { summary: 'PopoverPosition' },
+                defaultValue: { summary: 'PopoverPosition.Bottom' },
+                category: 'Inputs',
+            },
+        },
+        popoverOverlayClassname: {
+            control: { type: 'text' },
+            description: 'Custom CSS class for the popover overlay',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
+        },
+        openChange: {
+            description: 'Emits when popover visibility changes',
+            table: {
+                type: { summary: 'EventEmitter<boolean>' },
+                category: 'Outputs',
+            },
         },
     },
     args: {

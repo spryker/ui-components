@@ -10,6 +10,7 @@ const iconNames = iconsModules.map((i) => i.icon);
 export default {
     title: 'IconComponent',
     component: IconComponent,
+    tags: ['autodocs'],
     decorators: [
         moduleMetadata({
             imports: [IconModule, ...iconsModules],
@@ -23,6 +24,18 @@ export default {
             type: 'figma',
             url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2082%3A8966',
             allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        name: {
+            control: { type: 'select' },
+            options: iconNames,
+            description: 'Name of the icon to display from the available icon set',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
         },
     },
 } as Meta;

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/spryker/ui-components/compare/@spryker/carousel@0.1.7...@spryker/carousel@1.0.1) (2025-12-12)
+
+
+### Bug Fixes
+
+* angular version ([#691](https://github.com/spryker/ui-components/issues/691)) ([5e297f4](https://github.com/spryker/ui-components/commit/5e297f444fedb6b6505ec464f435819aeeb2b4dd))
+
+
+
+
+
 ## [1.0.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/carousel@1.0.0...@spryker/carousel@1.0.1-next.0) (2025-10-13)
 
 

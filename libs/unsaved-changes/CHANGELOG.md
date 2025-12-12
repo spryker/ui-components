@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes@2.0.2...@spryker/unsaved-changes@3.1.0) (2025-12-12)
+
+
+### Bug Fixes
+
+* angular version ([#691](https://github.com/spryker/ui-components/issues/691)) ([5e297f4](https://github.com/spryker/ui-components/commit/5e297f444fedb6b6505ec464f435819aeeb2b4dd))
+
+
+### Features
+
+* add greek locale ([#657](https://github.com/spryker/ui-components/issues/657)) ([b289650](https://github.com/spryker/ui-components/commit/b289650c2289af6b5d0e04165309c9fe7053f5a5))
+
+
+
+
+
 ## [3.0.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/unsaved-changes@3.0.0...@spryker/unsaved-changes@3.0.1-next.0) (2025-10-13)
 
 

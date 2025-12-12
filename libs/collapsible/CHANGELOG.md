@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/spryker/ui-components/compare/@spryker/collapsible@2.0.9...@spryker/collapsible@3.0.1) (2025-12-12)
+
+
+### Bug Fixes
+
+* angular version ([#691](https://github.com/spryker/ui-components/issues/691)) ([5e297f4](https://github.com/spryker/ui-components/commit/5e297f444fedb6b6505ec464f435819aeeb2b4dd))
+
+
+
+
+
 ## [3.0.1-next.0](https://github.com/spryker/ui-components/compare/@spryker/collapsible@3.0.0...@spryker/collapsible@3.0.1-next.0) (2025-10-13)
 
 

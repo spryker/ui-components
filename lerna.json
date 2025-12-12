@@ -3,6 +3,11 @@
     "version": "independent",
     "npmClient": "npm",
     "command": {
+        "version": {
+            "forcePublish": true,
+            "conventionalCommits": true,
+            "bump": "patch"
+        },
         "publish": {
             "conventionalCommits": true,
             "allowBranch": [

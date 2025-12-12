@@ -26,6 +26,7 @@ const OPTIONS = [
 export default {
     title: 'SelectComponent',
     component: SelectComponent,
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [
@@ -63,11 +64,143 @@ export default {
         },
     },
     argTypes: {
-        placeholder: {
-            control: { type: 'text' },
+        options: {
+            control: { type: 'object' },
+            description: 'Array of options to display in the select dropdown',
+            table: {
+                type: { summary: 'SelectOption[]' },
+                defaultValue: { summary: '[]' },
+                category: 'Inputs',
+            },
         },
         value: {
             control: { type: 'object' },
+            description: 'Current selected value(s) - single value or array for multiple selection',
+            table: {
+                type: { summary: 'SelectValueSelected' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
+        },
+        search: {
+            control: { type: 'boolean' },
+            description: 'Enables search/filter functionality for options',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        serverSearch: {
+            control: { type: 'boolean' },
+            description: 'Enables server-side search (search query emitted via searchChange)',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        disabled: {
+            control: { type: 'boolean' },
+            description: 'Disables the select preventing user interaction',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        multiple: {
+            control: { type: 'boolean' },
+            description: 'Enables multiple selection mode',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        placeholder: {
+            control: { type: 'text' },
+            description: 'Placeholder text shown when no option is selected',
+            table: {
+                type: { summary: 'string | TemplateRef<void>' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
+        },
+        showSelectAll: {
+            control: { type: 'boolean' },
+            description: 'Shows "Select All" option in multiple selection mode',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        tags: {
+            control: { type: 'boolean' },
+            description: 'Enables tag mode - allows creating new tags (also enables multiple mode)',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        tagView: {
+            control: { type: 'boolean' },
+            description: 'Shows selected values as tags',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        disableClear: {
+            control: { type: 'boolean' },
+            description: 'Disables the clear button',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        name: {
+            control: { type: 'text' },
+            description: 'Name attribute for the select element',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
+        },
+        datasource: {
+            control: { type: 'object' },
+            description: 'Datasource configuration for dynamic option loading',
+            table: {
+                type: { summary: 'DatasourceConfig' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
+        },
+        valueChange: {
+            description: 'Emits when selected value changes',
+            table: {
+                type: { summary: 'EventEmitter<SelectValueSelected>' },
+                category: 'Outputs',
+            },
+        },
+        searchChange: {
+            description: 'Emits when search input changes (for server-side filtering)',
+            table: {
+                type: { summary: 'EventEmitter<string>' },
+                category: 'Outputs',
+            },
+        },
+        tagClick: {
+            description: 'Emits when a tag is clicked',
+            table: {
+                type: { summary: 'EventEmitter<SelectValue>' },
+                category: 'Outputs',
+            },
         },
     },
     args: {

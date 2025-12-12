@@ -90,6 +90,7 @@ declare module '../table' {
 export default {
     title: 'TableComponent',
     component: CoreTableComponent,
+    tags: ['autodocs'],
     decorators: [
         applicationConfig({
             providers: [
@@ -129,8 +130,29 @@ export default {
     argTypes: {
         //ToDo: change to readonly after release https://github.com/storybookjs/storybook/issues/14048
         config: {
+            description: 'Complete table configuration including columns, datasource, and features',
             table: {
+                type: { summary: 'TableConfig' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
                 disable: true,
+            },
+        },
+        tableId: {
+            control: { type: 'text' },
+            description: 'Unique identifier for the table instance',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
+        },
+        events: {
+            description: 'Event handlers for table and feature events',
+            table: {
+                type: { summary: 'TableEvents' },
+                defaultValue: { summary: '{}' },
+                category: 'Inputs',
             },
         },
     },

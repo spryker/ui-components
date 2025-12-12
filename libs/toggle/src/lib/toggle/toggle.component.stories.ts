@@ -5,6 +5,7 @@ import { ToggleComponent } from './toggle.component';
 export default {
     title: 'ToggleComponent',
     component: ToggleComponent,
+    tags: ['autodocs'],
     decorators: [
         moduleMetadata({
             imports: [ToggleModule],
@@ -18,6 +19,42 @@ export default {
             type: 'figma',
             url: 'https://www.figma.com/file/3Pv69U4zT7FJ9sllzSRMyE/BO-Components?node-id=2890%3A11773',
             allowFullscreen: true,
+        },
+    },
+    argTypes: {
+        value: {
+            control: { type: 'boolean' },
+            description: 'Toggle state (on/off)',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        disabled: {
+            control: { type: 'boolean' },
+            description: 'Disables the toggle preventing user interaction',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        name: {
+            control: { type: 'text' },
+            description: 'Name attribute for the toggle input element',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
+        },
+        valueChange: {
+            description: 'Emits when toggle state changes',
+            table: {
+                type: { summary: 'EventEmitter<boolean>' },
+                category: 'Outputs',
+            },
         },
     },
     args: {

@@ -5,6 +5,7 @@ import { InputComponent } from './input.component';
 export default {
     title: 'InputComponent',
     component: InputComponent,
+    tags: ['autodocs'],
     decorators: [
         moduleMetadata({
             imports: [InputModule],
@@ -37,27 +38,127 @@ export default {
     argTypes: {
         value: {
             control: { type: 'text' },
+            description: 'Current input value',
+            table: {
+                type: { summary: 'any' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
         },
-        outerPrefix: {
+        type: {
             control: { type: 'text' },
+            description: 'HTML input type attribute (text, number, email, password, etc.)',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: '"text"' },
+                category: 'Inputs',
+            },
         },
-        outerSuffix: {
+        placeholder: {
             control: { type: 'text' },
+            description: 'Placeholder text displayed when input is empty',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
         },
-        prefix: {
+        name: {
             control: { type: 'text' },
-        },
-        suffix: {
-            control: { type: 'text' },
-        },
-        readOnly: {
-            control: 'boolean',
+            description: 'Name attribute for the input element',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
         },
         disabled: {
             control: 'boolean',
+            description: 'Disables the input preventing user interaction',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        readOnly: {
+            control: 'boolean',
+            description: 'Makes the input read-only (value visible but not editable)',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
         },
         required: {
             control: 'boolean',
+            description: 'Marks the input as required',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+                category: 'Inputs',
+            },
+        },
+        prefix: {
+            control: { type: 'text' },
+            description: 'Content displayed as prefix inside the input (string or template)',
+            table: {
+                type: { summary: 'string | TemplateRef<void>' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
+        },
+        suffix: {
+            control: { type: 'text' },
+            description: 'Content displayed as suffix inside the input (string or template)',
+            table: {
+                type: { summary: 'string | TemplateRef<void>' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
+        },
+        outerPrefix: {
+            control: { type: 'text' },
+            description: 'Content displayed before the input wrapper (string or template)',
+            table: {
+                type: { summary: 'string | TemplateRef<void>' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
+        },
+        outerSuffix: {
+            control: { type: 'text' },
+            description: 'Content displayed after the input wrapper (string or template)',
+            table: {
+                type: { summary: 'string | TemplateRef<void>' },
+                defaultValue: { summary: '""' },
+                category: 'Inputs',
+            },
+        },
+        spyId: {
+            control: { type: 'text' },
+            description: 'Custom ID for the input element',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+                category: 'Inputs',
+            },
+        },
+        attrs: {
+            control: { type: 'object' },
+            description: 'Additional HTML attributes to apply to the input element',
+            table: {
+                type: { summary: 'Record<string, string>' },
+                defaultValue: { summary: '{}' },
+                category: 'Inputs',
+            },
+        },
+        valueChange: {
+            description: 'Emits when input value changes',
+            table: {
+                type: { summary: 'EventEmitter<any>' },
+                category: 'Outputs',
+            },
         },
     },
     args: {

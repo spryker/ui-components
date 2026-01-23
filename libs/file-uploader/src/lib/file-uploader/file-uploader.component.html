@@ -1,0 +1,26 @@
+<input
+    [disabled]="disabled"
+    class="spy-file-uploader__input"
+    type="file"
+    [accept]="acceptedTypes"
+    [multiple]="multiple"
+    (change)="onSelect($event, $event.target.files)" />
+
+@if (files.length > 0) {
+    <div>Files to be uploaded:</div>
+    <ul class="spy-file-uploader__files">
+        @for (file of files; track file) {
+            <li class="spy-file-uploader__files-item">{{ file.name }} - {{ file.size | filesize}}</li>
+        }
+    </ul>
+}
+
+@if (errors.length) {
+    <div class="spy-file-uploader__errors">
+        @for (error of errors; track error) {
+            <div class="spy-file-uploader__errors-item">{{ error }}</div>
+        }
+    </div>
+}
+
+<spy-button [disabled]="errors.length > 0 || !files.length" (click)="uploadFiles()">Upload File</spy-button>

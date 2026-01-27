@@ -24,5 +24,5 @@ export function ToJson(): PropertyDecorator {
 }
 
 export function jsonAttribute(prop: string | Record<string, string>) {
-    return typeof prop === 'string' ? JSON.parse(prop) : prop;
+    return typeof prop === 'string' && prop ? JSON.parse(prop) : prop;
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/spryker/ui-components/compare/@spryker/utils@3.0.1...@spryker/utils@3.0.2) (2026-01-27)
+
+
+### Bug Fixes
+
+* jsonattribute ([#696](https://github.com/spryker/ui-components/issues/696)) ([b1e12ed](https://github.com/spryker/ui-components/commit/b1e12ed7e707333bfe7fe635e1b367e275c42666))
+
+
+
+
+
 ## [3.0.1](https://github.com/spryker/ui-components/compare/@spryker/utils@2.0.8...@spryker/utils@3.0.1) (2025-12-12)
 
 

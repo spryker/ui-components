@@ -1,0 +1,33 @@
+{
+    "extends": ["../../.eslintrc.json", "plugin:storybook/recommended"],
+    "ignorePatterns": ["!**/*"],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "rules": {
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "spy",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "spy",
+                        "style": "kebab-case"
+                    }
+                ],
+                "@angular-eslint/prefer-standalone": "off"
+            }
+        },
+        {
+            "files": ["*.html"],
+            "extends": ["plugin:@nx/angular-template"],
+            "rules": {}
+        }
+    ]
+}

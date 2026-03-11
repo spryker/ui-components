@@ -1,26 +1,56 @@
-<input
-    [disabled]="disabled"
-    class="spy-file-uploader__input"
-    type="file"
-    [accept]="acceptedTypes"
-    [multiple]="multiple"
-    (change)="onSelect($event, $event.target.files)" />
+<div class="spy-file-uploader__wrapper">
+    <div
+        [class]="dragAndDropEnabled ? 'spy-file-uploader__drag' : ''"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)">
 
-@if (files.length > 0) {
-    <div>Files to be uploaded:</div>
-    <ul class="spy-file-uploader__files">
-        @for (file of files; track file) {
-            <li class="spy-file-uploader__files-item">{{ file.name }} - {{ file.size | filesize}}</li>
+        @if (dragAndDropEnabled) {
+            @if (title) {
+                <div class="spy-file-uploader__title">{{ title }}</div>
+            }
+            @if (subtitle) {
+                <div class="spy-file-uploader__subtitle">{{ subtitle }}</div>
+            }
         }
-    </ul>
-}
+        
+        <input
+            [name]="name"
+            [disabled]="disabled"
+            class="spy-file-uploader__input"
+            type="file"
+            [accept]="acceptedTypes"
+            [multiple]="multiple"
+            (change)="onSelect($event, $event.target.files)" />
 
-@if (errors.length) {
-    <div class="spy-file-uploader__errors">
-        @for (error of errors; track error) {
-            <div class="spy-file-uploader__errors-item">{{ error }}</div>
+        @if (filesList.length > 0) {
+            <div>Files to be uploaded:</div>
+            <ul class="spy-file-uploader__files">
+                @for (file of filesList; track file) {
+                    <li class="spy-file-uploader__files-item">
+                        {{ file.name }} - {{ file.size | filesize}}
+                        <button class="spy-file-uploader__files-item-delete" (click)="deleteFile($index)">X</button>
+                    </li>
+                }
+            </ul>
+        }
+
+        @if (errors.length) {
+            <div class="spy-file-uploader__errors">
+                @for (error of errors; track error) {
+                    <div class="spy-file-uploader__errors-item">{{ error }}</div>
+                }
+            </div>
+        }
+
+        @if (progress > 0) {
+            <div>
+                {{ 'file-uploader.upload:progress' | spyI18n: { progress: progress.toString()} | async}}
+            </div>
+        }
+
+        @if(sendUrl.length) {
+            <spy-button [disabled]="errors.length > 0 || !filesList.length" (click)="uploadFiles()">{{ 'file-uploader.button:upload' | spyI18n | async }}</spy-button>
         }
     </div>
-}
-
-<spy-button [disabled]="errors.length > 0 || !files.length" (click)="uploadFiles()">Upload File</spy-button>
+</div>

@@ -6,8 +6,10 @@ import { FileUploaderModule } from '../file-uploader.module';
 import { FileUploaderComponent } from './file-uploader.component';
 import { FileUploaderService } from '../file-uploader.service';
 import { HttpEventType } from '@angular/common/http';
-import { concat, of } from 'rxjs';
+import { concat, of, throwError } from 'rxjs';
 import { delay as rxDelay } from 'rxjs/operators';
+
+const sendUrl = '/api/upload';
 
 const meta: Meta<FileUploaderComponent> = {
     title: 'Components/FileUploader', // Adding a folder prefix helps refresh the sidebar
@@ -40,7 +42,7 @@ const meta: Meta<FileUploaderComponent> = {
         acceptedTypes: '',
         disabled: false,
         multiple: true,
-        sendUrl: '/api/upload',
+        sendUrl: sendUrl,
         name: 'spryker-file-uploader',
     },
 };
@@ -59,8 +61,21 @@ class MockFileUploaderServiceWithProgress {
         );
     }
 
-    deleteFile(fileList: File[], fileIndex: number) {
-        return fileList.splice(fileIndex, 1);
+    deleteFile(fileList: File[], file: File) {
+        return fileList.filter((f) => f !== file);
+    }
+}
+
+class MockFileUploaderServiceWithError {
+    uploadFiles() {
+        return concat(
+            of({ type: HttpEventType.UploadProgress, loaded: 50, total: 100 }).pipe(rxDelay(500)),
+            throwError(() => new Error('Upload failed: Internal Server Error (500)')).pipe(rxDelay(300)),
+        );
+    }
+
+    deleteFile(fileList: File[], file: File) {
+        return fileList.filter((f) => f !== file);
     }
 }
 
@@ -111,16 +126,11 @@ export const UploadSuccess: Story = {
 
 export const UploadError: Story = {
     ...Default,
-    parameters: {
-        mockData: [
-            {
-                url: '/api/upload',
-                method: 'GET',
-                status: 500,
-                response: { message: 'Server error' },
-            },
-        ],
-    },
+    decorators: [
+        moduleMetadata({
+            providers: [{ provide: FileUploaderService, useClass: MockFileUploaderServiceWithError }],
+        }),
+    ],
 };
 
 export const PostFormSubmit: Story = {

@@ -16,6 +16,7 @@
 
         <input
             [name]="name"
+            [max]="maxFilesNumber"
             [disabled]="disabled"
             class="spy-file-uploader__input"
             type="file"
@@ -30,7 +31,7 @@
                 @for (file of filesList; track file) {
                     <li class="spy-file-uploader__files-item">
                         {{ file.name }} - {{ file.size | filesize }}
-                        <button class="spy-file-uploader__files-item-delete" (click)="deleteFile($index)">X</button>
+                        <button class="spy-file-uploader__files-item-delete" (click)="deleteFile(file)">X</button>
                     </li>
                 }
             </ul>

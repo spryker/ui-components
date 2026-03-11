@@ -26,10 +26,10 @@ export class FileUploaderComponent {
     private fileSizePipe = inject(FileSizePipe);
     private uploadService = inject(FileUploaderService);
 
-    private filesList: File[] = [];
-    private progress = 0;
-    private isDragOver = false;
-    private errors: string[] = [];
+    filesList: File[] = [];
+    progress = 0;
+    isDragOver = false;
+    errors: string[] = [];
 
     onDragOver(event: DragEvent): void {
         event.preventDefault();
@@ -57,6 +57,7 @@ export class FileUploaderComponent {
     }
 
     onSelect(event: Event, files: FileList): void {
+        console.log(files);
         this.errors = [];
         this.filesList = this.multiple ? Array.from(files).slice(0, this.maxFilesNumber) : [files[0]];
 
@@ -85,6 +86,9 @@ export class FileUploaderComponent {
             error: (error) => {
                 this.handleErrorResponse(error);
             },
+            complete: () => {
+                this.resetProgress();
+            },
         });
     }
 
@@ -98,5 +102,9 @@ export class FileUploaderComponent {
 
     deleteFile(file: any) {
         this.filesList = this.uploadService.deleteFile(this.filesList, file);
+    }
+
+    resetProgress() {
+        this.progress = 0;
     }
 }

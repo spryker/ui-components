@@ -21,7 +21,7 @@ export class FileUploaderService {
         return this.http.request(req);
     }
 
-    deleteFile(fileList: File[], fileIndex: number) {
-        return fileList.splice(fileIndex, 1);
+    deleteFile(fileList: File[], file: File) {
+        return fileList.filter((f) => f !== file);
     }
 }

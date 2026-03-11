@@ -11,22 +11,21 @@ import { FileUploaderService } from '../file-uploader.service';
     providers: [FileSizePipe],
 })
 export class FileUploaderComponent {
-    @Input() name: string = '';
-    @Input() id: string = '';
-    @Input() acceptedTypes: string = '';
-    @Input({ transform: booleanAttribute }) disabled: boolean = false;
-    @Input({ transform: booleanAttribute }) multiple: boolean = false;
-    @Input({ transform: numberAttribute }) maxFileSize: number = 1024 * 1024 * 5;
-    @Input({ transform: numberAttribute }) maxFilesNumber: number = 3;
-    @Input() dragAndDropEnabled: boolean = false;
-    @Input() sendUrl: string = '';
-    @Input() title: string = '';
-    @Input() subtitle: string = '';
+    @Input() name = '';
+    @Input() id = '';
+    @Input() acceptedTypes = '';
+    @Input({ transform: booleanAttribute }) disabled = false;
+    @Input({ transform: booleanAttribute }) multiple = false;
+    @Input({ transform: numberAttribute }) maxFileSize = 1024 * 1024 * 5;
+    @Input({ transform: numberAttribute }) maxFilesNumber = 3;
+    @Input() dragAndDropEnabled = false;
+    @Input() sendUrl = '';
+    @Input() title = '';
+    @Input() subtitle = '';
 
     filesList: File[] = [];
-    progress: number = 0;
-    isDragOver: boolean = false;
-
+    progress = 0;
+    isDragOver = false;
     errors: string[] = [];
 
     constructor(

@@ -33,7 +33,7 @@ const meta: Meta<FileUploaderComponent> = {
             mapping: {
                 Images: 'image/*',
                 Docs: '.doc, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, application/pdf',
-            }
+            },
         },
     },
     args: {
@@ -90,7 +90,8 @@ export const DragAndDrop: Story = {
     args: {
         dragAndDropEnabled: true,
         title: 'Click or drag file to this area to upload',
-        subtitle: 'Support for a single or bulk upload. Strictly prohibited from uploading company data or other banned files.',
+        subtitle:
+            'Support for a single or bulk upload. Strictly prohibited from uploading company data or other banned files.',
     },
     decorators: [
         moduleMetadata({

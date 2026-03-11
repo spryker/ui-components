@@ -3,8 +3,8 @@
         [class]="dragAndDropEnabled ? 'spy-file-uploader__drag' : ''"
         (dragover)="onDragOver($event)"
         (dragleave)="onDragLeave($event)"
-        (drop)="onDrop($event)">
-
+        (drop)="onDrop($event)"
+    >
         @if (dragAndDropEnabled) {
             @if (title) {
                 <div class="spy-file-uploader__title">{{ title }}</div>
@@ -13,7 +13,7 @@
                 <div class="spy-file-uploader__subtitle">{{ subtitle }}</div>
             }
         }
-        
+
         <input
             [name]="name"
             [disabled]="disabled"
@@ -21,14 +21,15 @@
             type="file"
             [accept]="acceptedTypes"
             [multiple]="multiple"
-            (change)="onSelect($event, $event.target.files)" />
+            (change)="onSelect($event, $event.target.files)"
+        />
 
         @if (filesList.length > 0) {
             <div>Files to be uploaded:</div>
             <ul class="spy-file-uploader__files">
                 @for (file of filesList; track file) {
                     <li class="spy-file-uploader__files-item">
-                        {{ file.name }} - {{ file.size | filesize}}
+                        {{ file.name }} - {{ file.size | filesize }}
                         <button class="spy-file-uploader__files-item-delete" (click)="deleteFile($index)">X</button>
                     </li>
                 }
@@ -45,12 +46,14 @@
 
         @if (progress > 0) {
             <div>
-                {{ 'file-uploader.upload:progress' | spyI18n: { progress: progress.toString()} | async}}
+                {{ 'file-uploader.upload:progress' | spyI18n: { progress: progress.toString() } | async }}
             </div>
         }
 
-        @if(sendUrl.length) {
-            <spy-button [disabled]="errors.length > 0 || !filesList.length" (click)="uploadFiles()">{{ 'file-uploader.button:upload' | spyI18n | async }}</spy-button>
+        @if (sendUrl.length) {
+            <spy-button [disabled]="errors.length > 0 || !filesList.length" (click)="uploadFiles()">{{
+                'file-uploader.button:upload' | spyI18n | async
+            }}</spy-button>
         }
     </div>
 </div>

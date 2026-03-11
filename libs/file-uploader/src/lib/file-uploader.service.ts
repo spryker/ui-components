@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class FileUploaderService {
-    constructor(private http: HttpClient) {}
+    private http = inject(HttpClient);
 
     uploadFiles(files: File[], sendUrl: string, extraData?: Record<string, any>): Observable<HttpEvent<any>> {
         const formData = new FormData();

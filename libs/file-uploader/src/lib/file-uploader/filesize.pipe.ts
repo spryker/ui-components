@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'filesize',
 })
 export class FileSizePipe implements PipeTransform {
-    transform(bytes: number, decimals: number = 2): string {
+    transform(bytes: number, decimals = 2) {
         if (isNaN(bytes) || bytes === 0) return '0 Bytes';
 
         const k = 1024;

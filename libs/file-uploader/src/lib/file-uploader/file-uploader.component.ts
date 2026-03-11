@@ -1,4 +1,4 @@
-import { Component, Input, numberAttribute, booleanAttribute } from '@angular/core';
+import { Component, Input, numberAttribute, booleanAttribute, inject } from '@angular/core';
 import { FileSizePipe } from './filesize.pipe';
 import { HttpEventType } from '@angular/common/http';
 import { FileUploaderService } from '../file-uploader.service';
@@ -23,15 +23,13 @@ export class FileUploaderComponent {
     @Input() title = '';
     @Input() subtitle = '';
 
-    filesList: File[] = [];
-    progress = 0;
-    isDragOver = false;
-    errors: string[] = [];
+    private fileSizePipe = inject(FileSizePipe);
+    private uploadService = inject(FileUploaderService);
 
-    constructor(
-        private fileSizePipe: FileSizePipe,
-        private uploadService: FileUploaderService,
-    ) {}
+    private filesList: File[] = [];
+    private progress = 0;
+    private isDragOver = false;
+    private errors: string[] = [];
 
     onDragOver(event: DragEvent): void {
         event.preventDefault();

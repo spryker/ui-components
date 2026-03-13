@@ -5,9 +5,8 @@ import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
 import { FileUploaderModule } from '../file-uploader.module';
 import { FileUploaderComponent } from './file-uploader.component';
 import { FileUploaderService } from '../file-uploader.service';
-import { HttpEventType } from '@angular/common/http';
-import { concat, of, throwError } from 'rxjs';
-import { delay as rxDelay } from 'rxjs/operators';
+import { concat, from, of, throwError } from 'rxjs';
+import { delay as rxDelay, mergeMap } from 'rxjs/operators';
 
 const sendUrl = '/api/upload';
 
@@ -51,14 +50,23 @@ export default meta;
 type Story = StoryObj<FileUploaderComponent>;
 
 class MockFileUploaderServiceWithProgress {
-    uploadFiles() {
-        const steps = [25, 50, 75, 100].map((loaded) =>
-            of({ type: HttpEventType.UploadProgress, loaded, total: 100 }).pipe(rxDelay(500)),
+    uploadBatch(files: File[], _url: string, batchSize: number) {
+        return from(files).pipe(
+            mergeMap(
+                (file) =>
+                    concat(
+                        ...[25, 50, 75, 100].map((progress) =>
+                            of({ file, progress, pending: true }).pipe(rxDelay(500)),
+                        ),
+                        of({ file, progress: 100, pending: false }).pipe(rxDelay(300)),
+                    ),
+                batchSize,
+            ),
         );
-        return concat(
-            ...steps,
-            of({ type: HttpEventType.Response, status: 200, body: { status: 'success' } }).pipe(rxDelay(300)),
-        );
+    }
+
+    validateFileSize(files: File[], maxSize: number): string[] {
+        return files.filter((file) => file.size > maxSize).map((file) => `File ${file.name} is too large.`);
     }
 
     deleteFile(fileList: File[], file: File) {
@@ -67,11 +75,21 @@ class MockFileUploaderServiceWithProgress {
 }
 
 class MockFileUploaderServiceWithError {
-    uploadFiles() {
-        return concat(
-            of({ type: HttpEventType.UploadProgress, loaded: 50, total: 100 }).pipe(rxDelay(500)),
-            throwError(() => new Error('Upload failed: Internal Server Error (500)')).pipe(rxDelay(300)),
+    uploadBatch(files: File[], _url: string, batchSize: number) {
+        return from(files).pipe(
+            mergeMap(
+                (file) =>
+                    concat(
+                        of({ file, progress: 50, pending: true }).pipe(rxDelay(500)),
+                        throwError(() => new Error('Upload failed: Internal Server Error (500)')).pipe(rxDelay(300)),
+                    ),
+                batchSize,
+            ),
         );
+    }
+
+    validateFileSize(files: File[], maxSize: number): string[] {
+        return files.filter((file) => file.size > maxSize).map((file) => `File ${file.name} is too large.`);
     }
 
     deleteFile(fileList: File[], file: File) {
@@ -98,6 +116,11 @@ export const Default: Story = {
         </div>
       `,
     }),
+    decorators: [
+        moduleMetadata({
+            providers: [{ provide: FileUploaderService, useClass: MockFileUploaderServiceWithProgress }],
+        }),
+    ],
 };
 
 export const DragAndDrop: Story = {

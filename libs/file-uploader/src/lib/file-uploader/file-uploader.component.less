@@ -1,16 +1,42 @@
 @import 'themes/default/theme.less';
 
 .spy-file-uploader {
-    &__input {
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-
     &__files {
         margin-bottom: 0.5rem;
 
         &-item {
             margin-bottom: 0.5rem;
+        }
+
+        &-item-info {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            justify-content: space-between;
+            white-space: nowrap;
+        }
+
+        &-item-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &-item-progress {
+            vertical-align: top;
+            width: 100%;
+            margin-top: 4px;
+            height: var(--spy-file-uploader-progress-height, 4px);
+            border-radius: var(--spy-file-uploader-progress-border-radius, 16px);
+            border: none;
+            background-color: var(--spy-file-uploader-progress-background-color, @overlay-1);
+            &::-webkit-progress-bar {
+                background-color: var(--spy-file-uploader-progress-background-color, @overlay-1);
+                border-radius: var(--spy-file-uploader-progress-border-radius, 16px);
+            }
+            &::-webkit-progress-value {
+                background-color: var(--spy-file-uploader-progress-value-color, @success-color);
+                border-radius: var(--spy-file-uploader-progress-border-radius, 16px);
+            }
         }
     }
 
@@ -27,6 +53,21 @@
         background: none;
         border: none;
         cursor: pointer;
+        width: var(--spy-file-uploader-delete-button-width, 18px);
+        height: var(--spy-file-uploader-delete-button-height, 18px);
+        border: var(--spy-file-uploader-delete-button-border-width, 1px)
+            var(--spy-file-uploader-delete-button-border-style, solid)
+            var(--spy-file-uploader-delete-button-border-color, currentColor);
+        border-radius: var(--spy-file-uploader-delete-button-border-radius, 100%);
+        font-size: var(--spy-file-uploader-delete-button-font-size, 12px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    &__input {
+        display: none;
     }
 
     &__drag {
@@ -39,12 +80,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        cursor: pointer;
 
         &--active {
             border-color: var(--spy-file-uploader-drag-active-border-color, @primary-color);
         }
 
-        .spy-file-uploader__input {
+        .spy-file-uploader__input-wrapper {
             display: none;
         }
     }
@@ -57,6 +99,22 @@
 
     &__subtitle {
         font-size: @spy-font-size-base;
+        color: @text-color-secondary;
+        margin-bottom: 8px;
+    }
+
+    &__input-wrapper {
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 8px;
+        border: var(--spy-file-uploader-border-width, @border-width-base) var(--spy-file-uploader-border-style, solid)
+            var(--spy-file-uploader-border-color, @border-color-base);
+        border-radius: var(--spy-file-uploader-border-radius, @border-radius-small);
+        padding: var(--spy-file-uploader-spacing-y, 4px) var(--spy-file-uploader-spacing-x, 8px);
+    }
+
+    &__service-note {
+        font-size: @spy-font-size-sm;
         color: @text-color-secondary;
         margin-bottom: 8px;
     }

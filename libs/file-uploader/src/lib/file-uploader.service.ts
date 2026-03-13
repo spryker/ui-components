@@ -1,24 +1,43 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { from, map, mergeMap, Observable, filter } from 'rxjs';
 
-@Injectable()
+export interface UploadStatus {
+    file: File;
+    progress: number;
+    pending: boolean;
+}
+
+@Injectable({ providedIn: 'root' })
 export class FileUploaderService {
     private http = inject(HttpClient);
 
-    uploadFiles(files: File[], sendUrl: string, extraData?: Record<string, any>): Observable<HttpEvent<any>> {
+    validateFileSize(files: File[], maxSize: number): string[] {
+        return files.filter((file) => file.size > maxSize).map((file) => `File ${file.name} is too large.`);
+    }
+
+    uploadBatch(files: File[], url: string, batchSize: number): Observable<UploadStatus> {
+        return from(files).pipe(mergeMap((file) => this.uploadWithProgress(file, url), batchSize));
+    }
+
+    private uploadWithProgress(file: File, url: string): Observable<UploadStatus> {
         const formData = new FormData();
-        files.forEach((file) => formData.append('files', file));
-        if (extraData) {
-            Object.keys(extraData).forEach((key) => formData.append(key, extraData[key]));
-        }
+        formData.append('file', file);
 
-        const req = new HttpRequest('POST', sendUrl, formData, {
-            reportProgress: true,
-            responseType: 'json',
-        });
-
-        return this.http.request(req);
+        return this.http.post(url, formData, { reportProgress: true, observe: 'events' }).pipe(
+            filter((event) => event.type === HttpEventType.UploadProgress || event.type === HttpEventType.Response),
+            map((event) => {
+                const progress =
+                    event.type === HttpEventType.UploadProgress && event.total
+                        ? Math.round((100 * event.loaded) / event.total)
+                        : 100;
+                return {
+                    file,
+                    progress,
+                    pending: event.type !== HttpEventType.Response,
+                };
+            }),
+        );
     }
 
     deleteFile(fileList: File[], file: File) {

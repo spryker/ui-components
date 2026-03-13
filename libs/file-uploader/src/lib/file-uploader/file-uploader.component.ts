@@ -1,7 +1,7 @@
-import { Component, Input, numberAttribute, booleanAttribute, inject } from '@angular/core';
+import { Component, Input, numberAttribute, booleanAttribute, inject, ViewChild } from '@angular/core';
 import { FileSizePipe } from './filesize.pipe';
-import { HttpEventType } from '@angular/common/http';
 import { FileUploaderService } from '../file-uploader.service';
+import { finalize } from 'rxjs';
 
 @Component({
     standalone: false,
@@ -16,18 +16,21 @@ export class FileUploaderComponent {
     @Input() acceptedTypes = '';
     @Input({ transform: booleanAttribute }) disabled = false;
     @Input({ transform: booleanAttribute }) multiple = false;
+    @Input({ transform: booleanAttribute }) showServiceNotes = true;
     @Input({ transform: numberAttribute }) maxFileSize = 1024 * 1024 * 5;
-    @Input({ transform: numberAttribute }) maxFilesNumber = 3;
+    @Input({ transform: numberAttribute }) maxFilesNumber = 5;
+    @Input({ transform: numberAttribute }) batchSize = 2;
     @Input() dragAndDropEnabled = false;
     @Input() sendUrl = '';
     @Input() title = '';
     @Input() subtitle = '';
+    @ViewChild('inputElement') inputElement!: any;
 
-    private fileSizePipe = inject(FileSizePipe);
     private uploadService = inject(FileUploaderService);
+    fileSizePipe = inject(FileSizePipe);
 
     filesList: File[] = [];
-    progress = 0;
+    fileProgress = new Map<File, number>();
     isDragOver = false;
     errors: string[] = [];
 
@@ -57,54 +60,56 @@ export class FileUploaderComponent {
     }
 
     onSelect(event: Event, files: FileList): void {
-        console.log(files);
         this.errors = [];
         this.filesList = this.multiple ? Array.from(files).slice(0, this.maxFilesNumber) : [files[0]];
 
-        this.filesList.forEach((file) => {
-            if (file.size > this.maxFileSize) {
-                this.errors.push(
-                    `File ${file.name} is too large. Maximum size is ${this.fileSizePipe.transform(this.maxFileSize)}.`,
-                );
-            }
-        });
+        if (this.multiple && files.length > this.maxFilesNumber) {
+            const dataTransfer = new DataTransfer();
+            this.filesList.forEach((file) => dataTransfer.items.add(file));
+            this.inputElement.nativeElement.files = dataTransfer.files;
+        }
+
+        this.fileSizeCheck();
     }
 
     uploadFiles(): void {
-        if (this.errors.length) {
-            return;
-        }
+        if (this.errors.length) return;
 
-        this.uploadService.uploadFiles(this.filesList, this.sendUrl).subscribe({
-            next: (event) => {
-                if (event.type === HttpEventType.UploadProgress && event.total) {
-                    this.progress = Math.round((100 * event.loaded) / event.total);
-                } else {
-                    this.handleSuccessResponse();
-                }
-            },
-            error: (error) => {
-                this.handleErrorResponse(error);
-            },
-            complete: () => {
-                this.resetProgress();
-            },
-        });
+        this.uploadService
+            .uploadBatch(this.filesList, this.sendUrl, this.batchSize)
+            .pipe(finalize(() => this.resetErrors()))
+            .subscribe({
+                next: (status) => {
+                    this.fileProgress.set(status.file, status.progress);
+                    if (!status.pending) {
+                        this.handleSuccessResponse();
+                    }
+                },
+                error: (err) => this.handleErrorResponse(err),
+            });
     }
 
-    handleSuccessResponse() {
+    private fileSizeCheck(): void {
+        this.errors = this.uploadService.validateFileSize(this.filesList, this.maxFileSize);
+    }
+
+    private handleSuccessResponse() {
         console.log('Upload complete');
     }
 
-    handleErrorResponse(error: Error) {
+    private handleErrorResponse(error: Error) {
         throw new Error(error.message);
     }
 
     deleteFile(file: any) {
         this.filesList = this.uploadService.deleteFile(this.filesList, file);
+
+        if (this.filesList.length === 0) {
+            this.resetErrors();
+        }
     }
 
-    resetProgress() {
-        this.progress = 0;
+    resetErrors() {
+        this.errors = [];
     }
 }

@@ -29,10 +29,12 @@
             border-radius: var(--spy-file-uploader-progress-border-radius, 16px);
             border: none;
             background-color: var(--spy-file-uploader-progress-background-color, @overlay-1);
+
             &::-webkit-progress-bar {
                 background-color: var(--spy-file-uploader-progress-background-color, @overlay-1);
                 border-radius: var(--spy-file-uploader-progress-border-radius, 16px);
             }
+
             &::-webkit-progress-value {
                 background-color: var(--spy-file-uploader-progress-value-color, @success-color);
                 border-radius: var(--spy-file-uploader-progress-border-radius, 16px);
@@ -51,7 +53,6 @@
 
     &__files-item-delete {
         background: none;
-        border: none;
         cursor: pointer;
         width: var(--spy-file-uploader-delete-button-width, 18px);
         height: var(--spy-file-uploader-delete-button-height, 18px);
@@ -68,6 +69,16 @@
 
     &__input {
         display: none;
+    }
+
+    &__input-wrapper {
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 8px;
+        border: var(--spy-file-uploader-border-width, @border-width-base) var(--spy-file-uploader-border-style, solid)
+            var(--spy-file-uploader-border-color, @border-color-base);
+        border-radius: var(--spy-file-uploader-border-radius, @border-radius-small);
+        padding: var(--spy-file-uploader-spacing-y, 4px) var(--spy-file-uploader-spacing-x, 8px);
     }
 
     &__drag {
@@ -101,16 +112,6 @@
         font-size: @spy-font-size-base;
         color: @text-color-secondary;
         margin-bottom: 8px;
-    }
-
-    &__input-wrapper {
-        display: inline-block;
-        vertical-align: top;
-        margin-bottom: 8px;
-        border: var(--spy-file-uploader-border-width, @border-width-base) var(--spy-file-uploader-border-style, solid)
-            var(--spy-file-uploader-border-color, @border-color-base);
-        border-radius: var(--spy-file-uploader-border-radius, @border-radius-small);
-        padding: var(--spy-file-uploader-spacing-y, 4px) var(--spy-file-uploader-spacing-x, 8px);
     }
 
     &__service-note {

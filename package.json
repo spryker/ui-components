@@ -100,7 +100,6 @@
         "@rollup/plugin-commonjs": "^28.0.6",
         "@rollup/plugin-node-resolve": "^16.0.2",
         "@rollup/plugin-typescript": "^12.1.4",
-        "@spryker/frontend-config.prettier": "^0.0.5",
         "@spryker/frontend-config.stylelint": "^0.0.6",
         "@storybook/addon-a11y": "^9.1.10",
         "@storybook/addon-designs": "^10.0.2",

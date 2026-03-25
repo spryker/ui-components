@@ -58,8 +58,9 @@ jobs:
               env:
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: |
+                  npm run pack
                   if [[ "${{ github.ref }}" == refs/heads/republish/master ]]; then
-                   npm run release from-package
+                    npx lerna publish from-package --yes
                   elif [[ "${{ github.ref }}" == refs/heads/republish/next ]]; then
                     npm run release-next from-package
                   else

@@ -49,7 +49,7 @@
 
 // Color variants - Primary
 @btn-primary-color: var(--spy-btn-primary-color, @spy-white);
-@btn-primary-bg: var(--spy-btn-primary-bg, @primary-color);
+@btn-primary-bg: var(--spy-btn-primary-bg, @spy-primary-color);
 @btn-primary-active-bg: var(--spy-btn-primary-active-bg, @green-dark);
 
 // Color variants - Default
@@ -65,15 +65,15 @@
 @btn-danger-active-bg: var(--spy-btn-danger-active-bg, @red-dark);
 
 // Color variants - Outline
-@btn-outline-color: var(--spy-btn-outline-color, @green);
-@btn-outline-border: var(--spy-btn-outline-border, @green);
+@btn-outline-color: var(--spy-btn-outline-color, @spy-primary-color);
+@btn-outline-border: var(--spy-btn-outline-border, @spy-primary-color);
 @btn-critical-outline-color: var(--spy-btn-critical-outline-color, @red);
 @btn-critical-outline-border: var(--spy-btn-critical-outline-border, @red);
 
 // Link and special states
 @btn-disable-border: var(--spy-btn-disable-border, @gray-light);
 @btn-link-padding: var(--spy-btn-link-padding, 2px 9px);
-@btn-link-color: var(--spy-btn-link-color, @green);
+@btn-link-color: var(--spy-btn-link-color, @spy-primary-color);
 @btn-link-color-hover: var(--spy-btn-link-color-hover, @green-dark);
 @btn-link-bg-active: var(--spy-btn-link-bg-active, @gray-lighter);
 @btn-icon-right-padding: var(--spy-btn-icon-right-padding, 8px);

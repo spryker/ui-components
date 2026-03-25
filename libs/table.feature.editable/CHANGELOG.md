@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@3.1.0...@spryker/table.feature.editable@3.1.1) (2026-03-25)
+
+
+### Bug Fixes
+
+* color vars ([#699](https://github.com/spryker/ui-components/issues/699)) ([fe0f7f7](https://github.com/spryker/ui-components/commit/fe0f7f7b15149fffea3d537257ba9c8e66860a38))
+
+
+
+
+
 # [3.1.0](https://github.com/spryker/ui-components/compare/@spryker/table.feature.editable@2.0.9...@spryker/table.feature.editable@3.1.0) (2025-12-12)
 
 

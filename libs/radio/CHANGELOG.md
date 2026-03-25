@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/spryker/ui-components/compare/@spryker/radio@3.0.1...@spryker/radio@3.0.2) (2026-03-25)
+
+
+### Bug Fixes
+
+* color vars ([#699](https://github.com/spryker/ui-components/issues/699)) ([fe0f7f7](https://github.com/spryker/ui-components/commit/fe0f7f7b15149fffea3d537257ba9c8e66860a38))
+
+
+
+
+
 ## [3.0.1](https://github.com/spryker/ui-components/compare/@spryker/radio@2.0.8...@spryker/radio@3.0.1) (2025-12-12)
 
 

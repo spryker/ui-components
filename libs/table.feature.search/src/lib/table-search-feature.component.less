@@ -13,6 +13,24 @@
         color: @gray-dark;
     }
 
+    // The clear control is a real <button>, so it is focusable and Enter/Space-operable with no
+    // ARIA, and it is valid inside the <span nzInputSuffix> ng-zorro renders around it (a <div>
+    // there was not). Nothing here styles the control: the visible circle is `&__remove-icon` on
+    // the icon inside. This only strips the user-agent button chrome so the rendered box is the
+    // same plain block the <div> produced.
+    &__clear {
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: inherit;
+        font: inherit;
+        letter-spacing: inherit;
+        text-align: inherit;
+        cursor: pointer;
+    }
+
     &__remove-icon {
         width: @remove-icon-size;
         height: @remove-icon-size;

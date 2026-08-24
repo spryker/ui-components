@@ -54,12 +54,4 @@ Thumbs.db
 .mcp.json
 
 
-# Angular 22 migration pixel baseline (.storybook/test-runner.js)
-/.pixel-baseline/
-
-# Re-captures compared against that baseline (tools/scripts/compare-pixel-baseline.mjs)
-/.pixel-current/
-/.pixel-report.json
-
-
 .claude/worktrees

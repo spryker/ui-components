@@ -420,6 +420,17 @@ export class TableEditableFeatureComponent
         this.initEditingModel(rowIndex, cellIndex);
     }
 
+    /**
+     * Keyboard activation of an editable cell. Identical to a pointer activation, except that the
+     * key's own default is suppressed first — Space on a focused non-button element scrolls the
+     * page, which would move the table out from under the editor that is about to open.
+     */
+    protected activateEditableCell(event: Event, rowIndex: number, cellIndex: number): void {
+        event.preventDefault();
+
+        this.openEditableCell(event, rowIndex, cellIndex);
+    }
+
     private initEditingModel(rowIndex: number, cellIndex: number): void {
         this.editingModel = { ...this.editingModel };
 

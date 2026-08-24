@@ -1,23 +1,37 @@
 <span
     nz-dropdown
+    role="button"
+    [attr.tabindex]="disabled ? -1 : 0"
+    aria-haspopup="menu"
+    [attr.aria-expanded]="visible"
+    [attr.aria-disabled]="disabled || null"
     [nzDropdownMenu]="menu"
     [nzPlacement]="placement"
     [nzDisabled]="disabled"
     [(nzVisible)]="visible"
     [nzTrigger]="trigger"
     (click)="$event.stopPropagation()"
+    (keydown.enter)="toggleVisible($event)"
+    (keydown.space)="toggleVisible($event)"
     (nzVisibleChange)="visibleChange.emit($event)"
 >
     <ng-content></ng-content>
 </span>
 <nz-dropdown-menu #menu="nzDropdownMenu">
-    <ul nz-menu>
+    <ul nz-menu role="menu">
         <ng-container *ngTemplateOutlet="dropdownTpl; context: { $implicit: items }"></ng-container>
 
         <ng-template #dropdownTpl let-items>
             @for (item of items; track item) {
                 @if (!item.subItems) {
-                    <li (click)="actionTriggered.emit(item.action)" nz-menu-item>
+                    <li
+                        role="menuitem"
+                        tabindex="0"
+                        (click)="actionTriggered.emit(item.action)"
+                        (keydown.enter)="activateItem($event)"
+                        (keydown.space)="activateItem($event)"
+                        nz-menu-item
+                    >
                         @if (item.icon) {
                             <spy-icon class="spy-dropdown-item__icon" [name]="item.icon"></spy-icon>
                         }
@@ -25,8 +39,16 @@
                     </li>
                 }
                 @if (item.subItems) {
-                    <li (click)="actionTriggered.emit(item.action)" nz-submenu>
-                        <ul>
+                    <li
+                        role="menuitem"
+                        tabindex="0"
+                        aria-haspopup="menu"
+                        (click)="actionTriggered.emit(item.action)"
+                        (keydown.enter)="activateItem($event)"
+                        (keydown.space)="activateItem($event)"
+                        nz-submenu
+                    >
+                        <ul role="menu">
                             <ng-container
                                 *ngTemplateOutlet="dropdownTpl; context: { $implicit: item.subItems }"
                             ></ng-container>

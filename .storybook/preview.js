@@ -29,7 +29,8 @@ export const tags = ['autodocs'];
  * `@storybook/angular` bootstraps every story with `bootstrapApplication()` and only adds a change
  * detection provider when its `experimentalZoneless` builder option is set, so the whole preview
  * silently became zoneless at the Angular 21 bump. That is a change of runtime, not of components:
- * it makes the pixel baseline measure a different Angular than phases 1-7 did, and it breaks any
+ * it made the migration's pixel baseline measure a different Angular than phases 1-7 did (that gate
+ * has since been removed), and it breaks any
  * component that relies on `ApplicationRef.tick()`'s global check — `@spryker/radio`'s
  * `registerRadio()` emits from inside a child's creation change-detection pass, where
  * `markViewDirty()` sets only `Dirty` and never `RefreshView`, so a zoneless `_tick()` skips it.
@@ -57,7 +58,8 @@ export const tags = ['autodocs'];
  * repo's application bootstrap. This is not a library change: `.storybook/preview.js` is not
  * published, so no package's peer range or emitted output is affected by it. Without it,
  * `datepickercomponent--primary` and `datepickercomponent--disabled-time-via-function` render an
- * empty `<spy-date-picker>` and the pixel gate cannot capture them at all.
+ * empty `<spy-date-picker>` — which is how this was caught, by the migration's since-removed pixel
+ * gate being unable to capture them at all.
  */
 export const decorators = [
     applicationConfig({ providers: [provideZoneChangeDetection(), provideNzNativeDateAdapter()] }),

@@ -151,10 +151,9 @@ export default [
 
     // --- Angular 20.3 -> 22 migration, phase 6 (Nx 23 flat-config conversion) ---
     // Nx 23's migration converted this workspace from .eslintrc.json to flat config.
-    // The block below, plus tools/eslint/ng22-template-a11y-off.mjs (spread last in every
-    // per-project config), restore the pre-migration lint result. Both follow Nx's own
-    // migration guidance: "never edit source files to satisfy a newly enabled rule";
-    // rules that newly error come from changed preset defaults, not from this repo.
+    // The block below restores the pre-migration lint result, following Nx's own migration
+    // guidance: "never edit source files to satisfy a newly enabled rule"; rules that newly
+    // error come from changed preset defaults, not from this repo.
     {
         // GENERATED i18n BUNDLES - build output of `npm run build:i18n` (rollup).
         // Already gitignored by libs/locale/data/.gitignore ("*/src/data/*"); ESLint had no
@@ -177,5 +176,54 @@ export default [
         // returns. No migration phase gate is affected (the gate order runs `npm test` first,
         // and `pretest` = `clean:dist`), but `npm run hook:push` in a post-pack tree is.
         ignores: ['libs/*/dist/**'],
+    },
+    {
+        // `label-has-associated-control`, configured with this design system's own control
+        // directives. Previously carried by tools/eslint/ng22-template-a11y-off.mjs, which was
+        // spread last in all 118 per-project configs; that module is gone and this is all that
+        // was left of it.
+        //
+        // `@spryker/radio` and `@spryker/checkbox` render `<label nz-radio>` and
+        // `<label nz-checkbox>`. Both ng-zorro directives put a native `<input type="radio">` /
+        // `<input type="checkbox">` INSIDE their host element, so each label already wraps its
+        // own control: the association is implicit and correct. The rule's
+        // `hasControlComponentIn()` only walks the child nodes of the template it is linting, and
+        // that input lives in ng-zorro's template — so without `labelComponents` it reports three
+        // false errors (two in `libs/radio`, one in `libs/checkbox`).
+        //
+        // Adding a `for` to satisfy the rule would be the wrong repair. The only id in either
+        // template is `spyId`, which sits on `@spryker/checkbox`'s `display: none` form-value
+        // input, so `for="…"` would replace a correct implicit association with an explicit one
+        // pointing at a control no user can reach.
+        //
+        // `inputs` is the rule's list of attributes that count as an association. `for` and
+        // `htmlFor` are repeated because a `labelComponents` entry REPLACES the default entry for
+        // the same selector rather than extending it. The rule stays an error: a `<label>` with
+        // neither an association attribute nor a control inside it still reports.
+        //
+        // WHY THIS WORKS AT THE ROOT, given every per-project config spreads
+        // `nx.configs['flat/angular-template']` AFTER `...baseConfig`: that preset sets this rule
+        // severity-only (`'error'`, no options), and ESLint flat config RETAINS previously
+        // configured options when a later entry supplies only a severity. So these options survive
+        // the later spread. Verified 2026-08-24: `eslint --config libs/radio/eslint.config.mjs
+        // --print-config` resolves the rule to `[2, { labelComponents: [...] }]`, and `nx lint
+        // radio` / `nx lint checkbox` are 0 errors with no per-project import. The negative
+        // control (rule absent here, module deleted) reproduces exactly the three errors.
+        //
+        // This does NOT generalise to severity: a later preset spread does override an earlier
+        // severity, which is why the deleted module had to be spread last back when it was
+        // switching rules off.
+        //
+        // Pinned by `libs/checkbox/src/lib/checkbox/checkbox.component.a11y.spec.ts` and, for
+        // radio, by the `label[nz-radio] input` queries in `radio.component.spec.ts`.
+        files: ['**/*.html'],
+        rules: {
+            '@angular-eslint/template/label-has-associated-control': [
+                'error',
+                {
+                    labelComponents: [{ selector: 'label', inputs: ['for', 'htmlFor', 'nz-radio', 'nz-checkbox'] }],
+                },
+            ],
+        },
     },
 ];

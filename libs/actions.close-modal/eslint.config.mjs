@@ -3,7 +3,6 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import js from '@eslint/js';
 import baseConfig from '../../eslint.config.mjs';
-import ng22TemplateA11yOff from '../../tools/eslint/ng22-template-a11y-off.mjs';
 import nx from '@nx/eslint-plugin';
 
 const compat = new FlatCompat({
@@ -42,5 +41,4 @@ export default [
     // options — a stray from the original Nx library generator that the phase-6 flat-config
     // conversion carried over verbatim from `.eslintrc.json`. Only 3 of the 117 libs had it, and
     // dropping the root's options made the local copy behave differently from the other 114.
-    ...ng22TemplateA11yOff,
 ];

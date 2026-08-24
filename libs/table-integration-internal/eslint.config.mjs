@@ -3,7 +3,6 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import js from '@eslint/js';
 import baseConfig from '../../eslint.config.mjs';
-import ng22TemplateA11yOff from '../../tools/eslint/ng22-template-a11y-off.mjs';
 import nx from '@nx/eslint-plugin';
 
 const compat = new FlatCompat({
@@ -37,5 +36,4 @@ export default [
         },
     },
     ...nx.configs['flat/angular-template'],
-    ...ng22TemplateA11yOff,
 ];

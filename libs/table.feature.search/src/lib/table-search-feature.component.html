@@ -16,9 +16,9 @@
 
     <ng-template #suffixTpl>
         @if (value$ | async) {
-            <div (click)="clearInput()">
+            <button type="button" class="spy-table-search-feature__clear" (click)="clearInput()">
                 <spy-icon [name]="suffixIcon" class="spy-table-search-feature__remove-icon"></spy-icon>
-            </div>
+            </button>
         }
     </ng-template>
 </ng-container>

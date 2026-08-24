@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'persistence',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/persistence',

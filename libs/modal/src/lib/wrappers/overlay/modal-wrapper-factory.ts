@@ -1,6 +1,6 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentRef, Injectable, ViewContainerRef, inject } from '@angular/core';
+import { ChangeDetectorRef, ComponentRef, Injectable, ViewContainerRef, inject } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { AnyModal, ModalOptions, ModalRef, ModalWrapperFactory, ModalWrapperRef } from '../../types';
@@ -28,7 +28,10 @@ export class OverlayModalWrapperRef implements ModalWrapperRef {
     addModalOptions(options: ModalOptions<AnyModal>): void {
         options = { ...options, ...this.componentRef.instance.options };
         this.componentRef.instance.setModalOptions(options);
-        this.componentRef.changeDetectorRef.detectChanges();
+        // `ComponentRef.changeDetectorRef` is a `ViewRef` over the *host root* LView, not the
+        // component's own, so its `detectChanges()` is a no-op on an `OnPush` component once the
+        // view has been checked once. Mark the component's own view instead.
+        this.componentRef.injector.get(ChangeDetectorRef).markForCheck();
     }
 
     getModalVcr(): ViewContainerRef {

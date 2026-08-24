@@ -37,7 +37,7 @@ describe('NotificationViewComponent', () => {
 
     describe('Closeable functionality', () => {
         it('should render close icon in `nzCloseText`', () => {
-            fixture.componentInstance.closeable = true;
+            fixture.componentRef.setInput('closeable', true);
             fixture.detectChanges();
 
             const closeLink = fixture.debugElement.query(By.css('.ant-alert-close-icon'));
@@ -47,7 +47,7 @@ describe('NotificationViewComponent', () => {
         });
 
         it('should emit closed on alert close', () => {
-            fixture.componentInstance.closeable = true;
+            fixture.componentRef.setInput('closeable', true);
             fixture.detectChanges();
 
             const emitSpy = jest.spyOn(fixture.componentInstance.closed, 'emit');

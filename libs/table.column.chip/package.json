@@ -2,8 +2,8 @@
     "name": "@spryker/table.column.chip",
     "version": "3.0.1",
     "peerDependencies": {
-        "@angular/common": ">=20.3.0 <21.0.0",
-        "@angular/core": ">=20.3.0 <21.0.0",
+        "@angular/common": ">=20.3.0 <23.0.0",
+        "@angular/core": ">=20.3.0 <23.0.0",
         "@spryker/chips": "^3.0.0",
         "@spryker/table": "^3.0.0",
         "@spryker/utils": "^3.0.0"

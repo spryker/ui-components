@@ -1,6 +1,8 @@
 <textarea
     nz-input
-    [nzAutosize]="autoSize"
+    [cdkTextareaAutosize]="autoSizeEnabled"
+    [cdkAutosizeMinRows]="autoSizeMinRows"
+    [cdkAutosizeMaxRows]="autoSizeMaxRows"
     [attr.rows]="rows"
     [attr.cols]="cols"
     [attr.placeholder]="placeholder"

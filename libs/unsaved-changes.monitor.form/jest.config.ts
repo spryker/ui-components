@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'unsaved-changes.monitor.form',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/unsaved-changes.monitor.form',

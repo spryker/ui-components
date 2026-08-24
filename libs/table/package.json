@@ -2,8 +2,8 @@
     "name": "@spryker/table",
     "version": "3.0.2",
     "peerDependencies": {
-        "@angular/common": ">=20.3.0 <21.0.0",
-        "@angular/core": ">=20.3.0 <21.0.0",
+        "@angular/common": ">=20.3.0 <23.0.0",
+        "@angular/core": ">=20.3.0 <23.0.0",
         "@spryker/actions": "^3.0.0",
         "@spryker/datasource": "^3.0.0",
         "@spryker/icon": "^3.0.0",
@@ -12,10 +12,10 @@
         "@spryker/spinner": "^3.0.0",
         "@spryker/utils": "^3.0.0",
         "@spryker/web-components": "^3.0.0",
+        "ng-zorro-antd": ">=20.3.0 <23.0.0",
         "rxjs": ">=7.8.0 <8.0.0"
     },
     "dependencies": {
-        "ng-zorro-antd": ">=20.3.0 <21.0.0",
         "tslib": "^2.8.1"
     },
     "publishConfig": {

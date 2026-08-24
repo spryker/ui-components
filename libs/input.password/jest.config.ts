@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'input.password',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/input.password',

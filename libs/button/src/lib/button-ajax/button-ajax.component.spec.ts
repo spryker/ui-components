@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
@@ -69,6 +69,7 @@ describe('ButtonAjaxComponent', () => {
         const mockPath = '/custom-path';
         fixture.componentInstance.method = ButtonAjaxMethod.Get;
         fixture.componentInstance.url = mockPath;
+        fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
         fixture.detectChanges();
 
         const btnDe = fixture.debugElement.query(By.css('spy-button'));
@@ -85,6 +86,7 @@ describe('ButtonAjaxComponent', () => {
         fixture.componentInstance.shape = ButtonShape.Circle;
         fixture.componentInstance.size = ButtonSize.Large;
         fixture.componentInstance.attrs = mockedAttrs;
+        fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
         fixture.detectChanges();
 
         const btnDe = fixture.debugElement.query(By.css('spy-button'));
@@ -98,6 +100,7 @@ describe('ButtonAjaxComponent', () => {
         const mockPath = '/custom-path';
         fixture.componentInstance.method = ButtonAjaxMethod.Get;
         fixture.componentInstance.url = mockPath;
+        fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
         fixture.detectChanges();
 
         const btnDe = fixture.debugElement.query(By.css('spy-button'));

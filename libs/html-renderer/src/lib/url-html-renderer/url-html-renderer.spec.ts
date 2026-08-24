@@ -47,7 +47,7 @@ describe('UrlHtmlRendererDirective', () => {
 
     it('renders html response inside <spy-html-renderer>', () => {
         fixture = TestBed.createComponent(TestHostComponent);
-        fixture.componentInstance.urlHtml = mockUrl;
+        fixture.componentRef.setInput('urlHtml', mockUrl);
         fixture.detectChanges();
 
         const req = httpMock.expectOne(mockUrl);
@@ -66,7 +66,7 @@ describe('UrlHtmlRendererDirective', () => {
         const newResponse = { html: `<p>Rerendered!!!</p>` };
 
         fixture = TestBed.createComponent(TestHostComponent);
-        fixture.componentInstance.urlHtml = mockUrl;
+        fixture.componentRef.setInput('urlHtml', mockUrl);
         fixture.detectChanges();
 
         let req = httpMock.expectOne(mockUrl);
@@ -76,7 +76,7 @@ describe('UrlHtmlRendererDirective', () => {
         let content = q('spy-html-renderer .spy-html-renderer__content');
         expect((content.nativeElement as HTMLElement).innerHTML).toBe(mockResponse.html);
 
-        fixture.componentInstance.urlHtml = newUrl;
+        fixture.componentRef.setInput('urlHtml', newUrl);
         fixture.detectChanges();
 
         req = httpMock.expectOne(newUrl);
@@ -89,7 +89,7 @@ describe('UrlHtmlRendererDirective', () => {
 
     it('calls AjaxActionService.handle with the response object and injector', () => {
         fixture = TestBed.createComponent(TestHostComponent);
-        fixture.componentInstance.urlHtml = mockUrl;
+        fixture.componentRef.setInput('urlHtml', mockUrl);
         fixture.detectChanges();
 
         const hostEl = q('spy-html-renderer');
@@ -104,7 +104,7 @@ describe('UrlHtmlRendererDirective', () => {
 
     it('emits urlHtmlLoading true->false on success', () => {
         fixture = TestBed.createComponent(TestHostComponent);
-        fixture.componentInstance.urlHtml = mockUrl;
+        fixture.componentRef.setInput('urlHtml', mockUrl);
         fixture.detectChanges();
 
         expect(fixture.componentInstance.urlHtmlLoading).toHaveBeenCalledWith(true);
@@ -118,7 +118,7 @@ describe('UrlHtmlRendererDirective', () => {
 
     it('emits urlHtmlLoading true->false on error', () => {
         fixture = TestBed.createComponent(TestHostComponent);
-        fixture.componentInstance.urlHtml = mockUrl;
+        fixture.componentRef.setInput('urlHtml', mockUrl);
         fixture.detectChanges();
 
         expect(fixture.componentInstance.urlHtmlLoading).toHaveBeenCalledWith(true);

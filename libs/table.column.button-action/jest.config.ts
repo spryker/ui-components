@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'table.column.button-action',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/table.column.button-action',

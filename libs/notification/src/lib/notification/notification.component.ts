@@ -111,9 +111,14 @@ export class NotificationComponent extends NotificationInputs implements OnChang
     }
 
     ngOnDestroy(): void {
+        // `close()` dismisses the floating toast by pushing onto `closeFloating$`, which only
+        // reaches `floatingRef.close()` through the `floatingSink$` subscription. That
+        // subscription is `takeUntil(destroyed$)`, so completing `destroyed$` first made the
+        // close a no-op and left the toast in `div.overlay-container` on `<body>` — outside the
+        // host application, so nothing else tore it down either. Close first, then tear down.
+        this.close();
         this.destroyed$.next();
         this.updateFloatingData$.complete();
-        this.close();
     }
 
     close(): void {

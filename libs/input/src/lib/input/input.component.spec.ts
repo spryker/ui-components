@@ -51,12 +51,12 @@ describe('InputComponent)', () => {
         }).compileComponents();
     });
 
-    it('template must render input with [nz-input] inside nz-input-group', () => {
+    it('template must render input with [nz-input] inside nz-input-wrapper', () => {
         const fixture = TestBed.createComponent(HostComponent);
         fixture.detectChanges();
 
-        const inputGroupElem = fixture.debugElement.query(By.css('nz-input-group'));
-        expect(inputGroupElem).toBeTruthy();
+        const inputWrapperElem = fixture.debugElement.query(By.css('nz-input-wrapper'));
+        expect(inputWrapperElem).toBeTruthy();
 
         const inputElem = fixture.debugElement.query(By.css('input[nz-input]'));
         expect(inputElem).toBeTruthy();
@@ -65,7 +65,7 @@ describe('InputComponent)', () => {
     describe('Inputs must be bound to internal input', () => {
         it('should bind placeholder to placeholder of input', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.placeholder = 'test placeholder';
+            fixture.componentRef.setInput('placeholder', 'test placeholder');
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -75,7 +75,7 @@ describe('InputComponent)', () => {
 
         it('should bind value to ngModel of input', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.value = 'test value';
+            fixture.componentRef.setInput('value', 'test value');
             fixture.detectChanges();
             await fixture.whenStable();
             fixture.detectChanges();
@@ -86,7 +86,7 @@ describe('InputComponent)', () => {
 
         it('should bind name to name attribute of input', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.name = 'test name';
+            fixture.componentRef.setInput('name', 'test name');
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -96,7 +96,7 @@ describe('InputComponent)', () => {
 
         it('should bind type to type of input', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.type = 'text';
+            fixture.componentRef.setInput('type', 'text');
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -106,7 +106,7 @@ describe('InputComponent)', () => {
 
         it('should bind disabled to disabled of input', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.disabled = true;
+            fixture.componentRef.setInput('disabled', true);
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -116,7 +116,7 @@ describe('InputComponent)', () => {
 
         it('should bind readOnly to readOnly of input', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.readOnly = true;
+            fixture.componentRef.setInput('readOnly', true);
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -128,7 +128,7 @@ describe('InputComponent)', () => {
     describe('Input attrs', () => {
         it('should parse and bind `attrs` to the appropriate attributes of input', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.attrs = { test: 'attr1', test2: 'attr2' };
+            fixture.componentRef.setInput('attrs', { test: 'attr1', test2: 'attr2' });
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -139,7 +139,7 @@ describe('InputComponent)', () => {
 
         it('should `attrs` updates appropriate attributes when changed', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.attrs = { test: 'attr1', test2: 'attr2' };
+            fixture.componentRef.setInput('attrs', { test: 'attr1', test2: 'attr2' });
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -147,14 +147,14 @@ describe('InputComponent)', () => {
             expect(inputEl.getAttribute('test')).toBe('attr1');
             expect(inputEl.getAttribute('test2')).toBe('attr2');
 
-            fixture.componentInstance.attrs = { test: 'attr6' };
+            fixture.componentRef.setInput('attrs', { test: 'attr6' });
             fixture.detectChanges();
             await fixture.whenStable();
 
             expect(inputEl.getAttribute('test')).toBe('attr6');
             expect(inputEl.getAttribute('test2')).toBe(null);
 
-            fixture.componentInstance.attrs = null;
+            fixture.componentRef.setInput('attrs', null);
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -162,10 +162,10 @@ describe('InputComponent)', () => {
         });
     });
 
-    describe('Input prefix and suffix must be bound to nz-input-group', () => {
-        it('should bind suffix to nzSuffix of nz-input-group', async () => {
+    describe('Input prefix and suffix must be bound to nz-input-wrapper', () => {
+        it('should bind suffix to nzSuffix of nz-input-wrapper', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.suffix = 'suffix';
+            fixture.componentRef.setInput('suffix', 'suffix');
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -174,9 +174,9 @@ describe('InputComponent)', () => {
             expect((suffixEl.nativeElement as HTMLElement).textContent?.trim()).toBe('suffix');
         });
 
-        it('should bind prefix to nzPrefix of nz-input-group', async () => {
+        it('should bind prefix to nzPrefix of nz-input-wrapper', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.prefix = 'prefix';
+            fixture.componentRef.setInput('prefix', 'prefix');
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -186,10 +186,10 @@ describe('InputComponent)', () => {
         });
     });
 
-    describe('Input outerPrefix and outerSuffix must be bound to nz-input-group', () => {
-        it('should bind outerPrefix to nzAddOnBefore of nz-input-group', async () => {
+    describe('Input outerPrefix and outerSuffix must be bound to nz-input-wrapper', () => {
+        it('should bind outerPrefix to nzAddonBefore of nz-input-wrapper', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.outerPrefix = 'outerPrefix';
+            fixture.componentRef.setInput('outerPrefix', 'outerPrefix');
             fixture.detectChanges();
             await fixture.whenStable();
 
@@ -199,9 +199,9 @@ describe('InputComponent)', () => {
             expect(first.textContent?.trim()).toBe('outerPrefix');
         });
 
-        it('should bind outerSuffix to nzAddOnAfter of nz-input-group', async () => {
+        it('should bind outerSuffix to nzAddonAfter of nz-input-wrapper', async () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.outerSuffix = 'outerSuffix';
+            fixture.componentRef.setInput('outerSuffix', 'outerSuffix');
             fixture.detectChanges();
             await fixture.whenStable();
 

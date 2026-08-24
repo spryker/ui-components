@@ -12,7 +12,10 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class DataTransformerConfiguratorService {
-    protected dataConfiguratorsTypes = inject(DataTransformerConfiguratorTypesToken, { optional: true });
+    protected dataConfiguratorsTypes: DataTransformerConfiguratorDeclaration[] = inject(
+        DataTransformerConfiguratorTypesToken,
+        { optional: true },
+    );
 
     private dataConfigurators: Partial<DataTransformerConfiguratorDeclaration> =
         this.dataConfiguratorsTypes?.reduce(

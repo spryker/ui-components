@@ -4,10 +4,13 @@
     "projectType": "library",
     "sourceRoot": "libs/carousel/src",
     "prefix": "spy",
+    "tags": ["pkg:primary", "level:atom", "type:component"],
+    "implicitDependencies": ["styles"],
     "targets": {
         "build": {
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "defaultConfiguration": "production",
             "options": {
                 "project": "libs/carousel/ng-package.json"
             },
@@ -18,8 +21,7 @@
                 "development": {
                     "tsConfig": "libs/carousel/tsconfig.lib.json"
                 }
-            },
-            "defaultConfiguration": "production"
+            }
         },
         "test": {
             "executor": "@nx/jest:jest",
@@ -66,7 +68,5 @@
         "lint": {
             "executor": "@nx/eslint:lint"
         }
-    },
-    "implicitDependencies": ["styles"],
-    "tags": ["pkg:primary", "level:atom", "type:component"]
+    }
 }

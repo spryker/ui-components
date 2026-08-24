@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'autocomplete',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/autocomplete',

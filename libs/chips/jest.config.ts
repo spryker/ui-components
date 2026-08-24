@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'chips',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/chips',

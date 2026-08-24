@@ -1,10 +1,22 @@
 import { Injectable, inject } from '@angular/core';
-import { IndividualConfig, ToastrService } from 'ngx-toastr';
+import { ActiveToast, IndividualConfig, ToastrService } from 'ngx-toastr';
+import { EMPTY } from 'rxjs';
 
 import { NotificationRef } from './notification-ref';
 import { NotificationWrapperComponent } from './notification-wrapper/notification-wrapper.component';
 import { NotificationData, NotificationEasing, NotificationPosition, NotificationType } from './types';
 import { mapDataToConfig } from './util';
+
+/**
+ * `ToastrService.show()` is declared to return `null` when it declines to open a toast. Neither
+ * `NotificationRef` nor the public `show(): NotificationRef` signature can carry a null, so this
+ * stands in for the toast that was never created: closing it does nothing, and it never reports
+ * having closed.
+ */
+const declinedToast = {
+    toastRef: { close: () => undefined },
+    onHidden: EMPTY,
+} as unknown as ActiveToast<NotificationWrapperComponent>;
 
 @Injectable({
     providedIn: 'root',
@@ -27,7 +39,16 @@ export class NotificationService {
 
         individualConfig = mapDataToConfig(data, individualConfig);
 
-        const activeToast = this.toastrService.show(data.description as any, data.title as any, individualConfig, type);
+        const activeToast = this.toastrService.show<NotificationWrapperComponent>(
+            data.description as any,
+            data.title as any,
+            individualConfig,
+            type,
+        );
+
+        if (!activeToast) {
+            return new NotificationRef(declinedToast);
+        }
 
         const notificationRef = new NotificationRef(activeToast);
 

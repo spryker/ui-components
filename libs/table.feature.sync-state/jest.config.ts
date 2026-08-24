@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'table.feature.sync-state',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/table.feature.sync-state',

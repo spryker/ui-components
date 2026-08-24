@@ -28,7 +28,7 @@ describe('ChipsComponent', () => {
 
     it('Input color should be bound to host element', () => {
         const mockedColor = 'red';
-        fixture.componentInstance.color = mockedColor;
+        fixture.componentRef.setInput('color', mockedColor);
         fixture.detectChanges();
 
         const chipsDe = fixture.debugElement.query(By.css('spy-chips'));
@@ -37,7 +37,7 @@ describe('ChipsComponent', () => {
 
     it('Input maxWidth should be bound to host element', () => {
         const mockedWidth = '200px';
-        fixture.componentInstance.maxWidth = mockedWidth;
+        fixture.componentRef.setInput('maxWidth', mockedWidth);
         fixture.detectChanges();
 
         const chipsDe = fixture.debugElement.query(By.css('spy-chips'));

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'pagination',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/pagination',

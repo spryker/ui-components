@@ -131,8 +131,15 @@ primary.args = {
     floating: true,
     floatingConfig: {
         position: NotificationPosition.TopRight,
+        // NOT held open. A never-dismissing toast here leaked into every following story: it
+        // lives in `div.overlay-container` on `<body>`, outside the story's application, and
+        // neither `close()` on destroy nor `easeTime: 0` removes it (both were measured). It
+        // then contaminated the next three captures and threw NG0205 into the destroyed
+        // injector. Toast coverage is NOT lost — it is provided by two dedicated stories that
+        // are verified to render a real toast: `notificationwrappercomponent--opened-toast`
+        // and `modalcomponent--opened-modal-with-toast` (which also proves the CDK top-layer
+        // z-order consequence). This story captures its own non-floating content.
         timeOut: 3000,
-        disableTimeOut: false,
         easing: NotificationEasing.EaseIn,
         easeTime: 300,
     },

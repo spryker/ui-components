@@ -24,3 +24,12 @@
 
 /.nx/cache
 /.nx/workspace-data
+
+# Claude Code tooling config, agents and vendored upstream skills
+/.claude/
+
+# Angular 22 migration pixel baseline and re-captures compared against it
+/.pixel-baseline/
+/.pixel-current/
+/.pixel-report.json
+

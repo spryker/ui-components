@@ -1,5 +1,8 @@
 {
     "extends": "../tsconfig.base.json",
+    "compilerOptions": {
+        "types": ["jest", "node"]
+    },
     "exclude": ["../**/test.ts", "../**/*.spec.ts", "../dist/**/*"],
     "include": ["../libs/**/*.stories.ts"]
 }

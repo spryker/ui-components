@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'drawer',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/drawer',

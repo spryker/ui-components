@@ -1,4 +1,4 @@
-import { NO_ERRORS_SCHEMA, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, NO_ERRORS_SCHEMA, Output } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SpinnerSize } from '@spryker/spinner';
@@ -88,6 +88,7 @@ describe('HtmlRendererComponent', () => {
 
     it('applies [size] to <spy-spinner>', () => {
         fixture.componentInstance.spinnerSize = SpinnerSize.Default;
+        fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
         fixture.detectChanges();
 
         provider.isLoading$.next();

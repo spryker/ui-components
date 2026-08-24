@@ -1,6 +1,6 @@
-const rootMain = require('../main');
+import rootMain from '../main.js';
 
-module.exports = {
+export default {
     ...rootMain,
     stories: ['../../**/*.@(mdx|stories.@(ts))'],
     webpackFinal: async (config, { configType }) => {

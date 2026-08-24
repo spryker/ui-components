@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild } from '@angular/core';
 import { ButtonSize, ButtonVariant } from '@spryker/button';
 
 import { asModal } from '../../modal-base';
@@ -8,6 +8,7 @@ import { ConfirmModalData } from './types';
 
 @Component({
     standalone: false,
+    changeDetection: ChangeDetectionStrategy.Default,
     selector: 'spy-confirm-modal',
     templateUrl: './confirm.component.html',
 })

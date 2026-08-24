@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'datasource.inline',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/datasource.inline',

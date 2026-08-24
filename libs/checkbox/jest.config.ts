@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'checkbox',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/checkbox',

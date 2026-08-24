@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'data-transformer.date-parse',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/data-transformer.date-parse',

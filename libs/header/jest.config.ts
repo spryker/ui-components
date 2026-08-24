@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'header',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/header',

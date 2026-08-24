@@ -1,1 +1,14 @@
 @import './input.component.theme.less';
+
+/*
+ * ng-zorro-antd 21+ takes template affixes and addons through the `[nzInputPrefix]`,
+ * `[nzInputSuffix]`, `[nzInputAddonBefore]` and `[nzInputAddonAfter]` projection slots, so a
+ * template lands one element deeper than `nz-input-group` rendered it. `display: contents`
+ * removes that element from layout and keeps the rendered box tree identical.
+ */
+[nzInputPrefix],
+[nzInputSuffix],
+[nzInputAddonBefore],
+[nzInputAddonAfter] {
+    display: contents;
+}

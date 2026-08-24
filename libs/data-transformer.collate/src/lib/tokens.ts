@@ -2,9 +2,10 @@ import { InjectionToken, Provider } from '@angular/core';
 
 import { DataTransformerConfiguratorDeclaration, DataTransformerFilterDeclaration } from './types';
 
-export const DataTransformerConfiguratorTypesToken = new InjectionToken<DataTransformerConfiguratorDeclaration[]>(
-    'DataTransformerConfiguratorTypes',
-);
+// Explicit type annotation: keeps declaration emit referencing the exported alias instead of
+// synthesising a deep `types/` subpath import that is absent from the target's `exports` map.
+export const DataTransformerConfiguratorTypesToken: InjectionToken<DataTransformerConfiguratorDeclaration[]> =
+    new InjectionToken<DataTransformerConfiguratorDeclaration[]>('DataTransformerConfiguratorTypes');
 
 export function provideDataTransformerConfiguratorTypes(
     dataConfigurators: DataTransformerConfiguratorDeclaration,
@@ -16,9 +17,11 @@ export function provideDataTransformerConfiguratorTypes(
     };
 }
 
-export const DataTransformerFiltersTypesToken = new InjectionToken<DataTransformerFilterDeclaration[]>(
-    'DataTransformerFiltersTypes',
-);
+// Explicit type annotation: keeps declaration emit referencing the exported alias instead of
+// synthesising a deep `types/` subpath import that is absent from the target's `exports` map.
+export const DataTransformerFiltersTypesToken: InjectionToken<DataTransformerFilterDeclaration[]> = new InjectionToken<
+    DataTransformerFilterDeclaration[]
+>('DataTransformerFiltersTypes');
 
 export function provideDataTransformerFilters(filters: DataTransformerFilterDeclaration): Provider {
     return {

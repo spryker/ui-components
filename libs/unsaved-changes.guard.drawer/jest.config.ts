@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'unsaved-changes.guard.drawer',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/unsaved-changes.guard.drawer',

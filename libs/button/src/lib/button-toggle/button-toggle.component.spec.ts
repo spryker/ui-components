@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ButtonToggleComponent } from './button-toggle.component';
@@ -44,6 +44,7 @@ describe('ButtonToggleComponent', () => {
     it('should bind attrs to spyApplyAttrs properties of <button>', () => {
         const mockedAttrs = { mockAttr: 'mockAttr' };
         fixture.componentInstance.attrs = mockedAttrs;
+        fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
         fixture.detectChanges();
 
         const btnDe = fixture.debugElement.query(By.css('button'));
@@ -76,6 +77,7 @@ describe('ButtonToggleComponent', () => {
 
         it('should bind to `disabled` of <button>', () => {
             fixture.componentInstance.disabled = true;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
 
             const btnDe = fixture.debugElement.query(By.css('button'));

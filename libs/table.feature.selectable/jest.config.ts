@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'table.feature.selectable',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/table.feature.selectable',

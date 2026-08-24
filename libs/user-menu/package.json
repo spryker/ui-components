@@ -2,8 +2,8 @@
     "name": "@spryker/user-menu",
     "version": "3.0.1",
     "peerDependencies": {
-        "@angular/common": ">=20.3.0 <21.0.0",
-        "@angular/core": ">=20.3.0 <21.0.0",
+        "@angular/common": ">=20.3.0 <23.0.0",
+        "@angular/core": ">=20.3.0 <23.0.0",
         "@spryker/icon": "^3.0.0",
         "@spryker/popover": "^3.0.0",
         "@spryker/styles": "^3.0.0",

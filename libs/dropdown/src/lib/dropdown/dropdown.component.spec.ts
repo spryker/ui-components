@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NzDropDownModule, NzDropDownDirective } from 'ng-zorro-antd/dropdown';
+import { NzDropdownModule, NzDropdownDirective } from 'ng-zorro-antd/dropdown';
 import { DropdownComponent } from './dropdown.component';
 
 describe('DropdownComponent', () => {
@@ -12,7 +12,7 @@ describe('DropdownComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [DropdownComponent],
-            imports: [NzDropDownModule],
+            imports: [NzDropdownModule],
             schemas: [NO_ERRORS_SCHEMA],
             teardown: { destroyAfterEach: false },
         }).compileComponents();
@@ -32,28 +32,28 @@ describe('DropdownComponent', () => {
         it('placement -> nzPlacement', () => {
             fixture.componentRef.setInput('placement', 'bottomLeft');
             fixture.detectChanges();
-            const dir = q('span[nz-dropdown]').injector.get(NzDropDownDirective);
+            const dir = q('span[nz-dropdown]').injector.get(NzDropdownDirective);
             expect(dir.nzPlacement).toBe('bottomLeft');
         });
 
         it('disabled -> nzDisabled', () => {
             fixture.componentRef.setInput('disabled', true);
             fixture.detectChanges();
-            const dir = q('span[nz-dropdown]').injector.get(NzDropDownDirective);
+            const dir = q('span[nz-dropdown]').injector.get(NzDropdownDirective);
             expect(dir.nzDisabled).toBe(true);
         });
 
         it('visible -> nzVisible', () => {
             fixture.componentRef.setInput('visible', true);
             fixture.detectChanges();
-            const dir = q('span[nz-dropdown]').injector.get(NzDropDownDirective);
+            const dir = q('span[nz-dropdown]').injector.get(NzDropdownDirective);
             expect(dir.nzVisible).toBe(true);
         });
 
         it('trigger -> nzTrigger', () => {
             fixture.componentRef.setInput('trigger', 'hover');
             fixture.detectChanges();
-            const dir = q('span[nz-dropdown]').injector.get(NzDropDownDirective);
+            const dir = q('span[nz-dropdown]').injector.get(NzDropdownDirective);
             expect(dir.nzTrigger).toBe('hover');
         });
     });

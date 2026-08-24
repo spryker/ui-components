@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'data-transformer.configurator.table',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/data-transformer.configurator.table',

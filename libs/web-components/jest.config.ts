@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'web-components',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/web-components',

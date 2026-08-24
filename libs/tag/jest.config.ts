@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'tag',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/tag',

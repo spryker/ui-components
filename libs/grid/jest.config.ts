@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'grid',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/grid',

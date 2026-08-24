@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'ajax-action',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/ajax-action',

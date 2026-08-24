@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'table.filter.tree-select',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/table.filter.tree-select',

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'icon',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/icon',

@@ -17,7 +17,9 @@ import {
 })
 export class DataTransformerService {
     protected injector = inject(Injector);
-    protected transformersTypes = inject(DataTransformerTypesToken, { optional: true });
+    protected transformersTypes: DataTransformerTypesDeclaration[] = inject(DataTransformerTypesToken, {
+        optional: true,
+    });
 
     private transformers: Partial<DataTransformerTypesDeclaration> =
         this.transformersTypes?.reduce(

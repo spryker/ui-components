@@ -2,9 +2,11 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "target": "ES2015",
-        "module": "commonjs",
+        "module": "preserve",
         "types": ["jest", "node"],
-        "emitDecoratorMetadata": false
+        "emitDecoratorMetadata": false,
+        "moduleResolution": "bundler",
+        "isolatedModules": true
     },
     "files": ["src/test-setup.ts"],
     "include": ["**/*.test.ts", "**/*.spec.ts", "**/*.d.ts", "jest.config.ts"]

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'actions.refresh-modal',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/actions.refresh-modal',

@@ -85,7 +85,7 @@ describe('CarouselComponent', () => {
     });
 
     it('should not render thumbs if not withThumbs', () => {
-        fixture.componentInstance.withThumbs = false;
+        fixture.componentRef.setInput('withThumbs', false);
         fixture.detectChanges();
 
         const swipers = fixture.debugElement.queryAll(By.css('swiper-container'));
@@ -100,7 +100,7 @@ describe('CarouselComponent', () => {
     });
 
     it('should render thumbs', () => {
-        fixture.componentInstance.withThumbs = true;
+        fixture.componentRef.setInput('withThumbs', true);
         fixture.detectChanges();
 
         const swipers = fixture.debugElement.queryAll(By.css('swiper-container'));
@@ -114,7 +114,7 @@ describe('CarouselComponent', () => {
     });
 
     it('should render navigation buttons', () => {
-        fixture.componentInstance.withThumbs = true;
+        fixture.componentRef.setInput('withThumbs', true);
         fixture.detectChanges();
 
         const nextButton = fixture.debugElement.query(By.css('.spy-carousel__navigation-button--next'));

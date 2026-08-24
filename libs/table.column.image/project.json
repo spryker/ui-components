@@ -4,10 +4,12 @@
     "projectType": "library",
     "sourceRoot": "libs/table.column.image/src",
     "prefix": "spy",
+    "tags": ["level:atom", "type:component", "pkg:extension"],
     "targets": {
         "build": {
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "defaultConfiguration": "production",
             "options": {
                 "project": "libs/table.column.image/ng-package.json"
             },
@@ -18,8 +20,7 @@
                 "development": {
                     "tsConfig": "libs/table.column.image/tsconfig.lib.json"
                 }
-            },
-            "defaultConfiguration": "production"
+            }
         },
         "test": {
             "executor": "@nx/jest:jest",
@@ -66,6 +67,5 @@
         "lint": {
             "executor": "@nx/eslint:lint"
         }
-    },
-    "tags": ["level:atom", "type:component", "pkg:extension"]
+    }
 }

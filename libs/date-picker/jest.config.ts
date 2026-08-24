@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'date-picker',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/date-picker',

@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 
 import { ModalOptions, ModalRef, ModalTemplateContext } from '../../types';
 
@@ -12,6 +12,7 @@ interface RenderTplContext {
 
 @Component({
     standalone: false,
+    changeDetection: ChangeDetectionStrategy.Default,
     selector: 'spy-modal',
     template: `
         <div class="modal">

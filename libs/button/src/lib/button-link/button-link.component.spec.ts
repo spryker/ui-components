@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { buttonClassName } from '../button-core/button-core';
@@ -64,6 +64,7 @@ describe('ButtonLinkComponent', () => {
         it('should bind input url to href of <a>', () => {
             const mockUrl = 'mockUrl';
             fixture.componentInstance.url = mockUrl;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
             const linkEl = fixture.debugElement.query(By.css('a')).nativeElement as HTMLAnchorElement;
             expect(linkEl.getAttribute('href')).toBe(mockUrl);
@@ -73,6 +74,7 @@ describe('ButtonLinkComponent', () => {
             fixture.componentInstance.variant = ButtonVariant.Critical;
             fixture.componentInstance.shape = ButtonShape.Circle;
             fixture.componentInstance.size = ButtonSize.Large;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
             expect(hostEl.classList.contains(`${buttonClassName}--${ButtonVariant.Critical}`)).toBe(true);
             expect(hostEl.classList.contains(`${buttonLinkCls}--${ButtonVariant.Critical}`)).toBe(true);
@@ -85,6 +87,7 @@ describe('ButtonLinkComponent', () => {
         it('should bind attrs to spyApplyAttrs properties of <a>', () => {
             const mockedAttrs = { mockAttr: 'mockAttr' };
             fixture.componentInstance.attrs = mockedAttrs;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
             const linkDe = fixture.debugElement.query(By.css('a'));
             expect(linkDe.properties.spyApplyAttrs).toBe(mockedAttrs);

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'data-transformer.filter.text',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/data-transformer.filter.text',

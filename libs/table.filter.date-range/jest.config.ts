@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'table.filter.date-range',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/table.filter.date-range',

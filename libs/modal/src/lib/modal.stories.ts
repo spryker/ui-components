@@ -1,8 +1,18 @@
-import { Component, importProvidersFrom, Input, TemplateRef, inject } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    importProvidersFrom,
+    Input,
+    OnDestroy,
+    TemplateRef,
+    inject,
+} from '@angular/core';
 import { applicationConfig, Meta, moduleMetadata } from '@storybook/angular';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { LocaleModule } from '@spryker/locale';
 import { EN_LOCALE, EnLocaleModule } from '@spryker/locale/locales/en';
+import { NotificationModule, NotificationRef, NotificationService, NotificationType } from '@spryker/notification';
 import { ModalModule } from './modal.module';
 import { ModalService } from './modal.service';
 import { HtmlModalStrategy } from './strategies';
@@ -16,10 +26,11 @@ export default {
                 importProvidersFrom(ModalModule.forRoot()),
                 importProvidersFrom(LocaleModule.forRoot({ defaultLocale: EN_LOCALE })),
                 importProvidersFrom(EnLocaleModule),
+                importProvidersFrom(NotificationModule.forRoot()),
             ],
         }),
         moduleMetadata({
-            imports: [ModalModule],
+            imports: [ModalModule, NotificationModule],
         }),
     ],
     parameters: {
@@ -221,3 +232,101 @@ confirmation.args = {
     hasBackdrop: true,
     hasDescription: true,
 };
+
+/**
+ * Opens its modal from the initial binding rather than from a click, so the pixel baseline
+ * captures the CDK overlay in its open state. Every other modal story captures a closed
+ * trigger, which leaves overlay stacking and top-layer promotion outside the visual gate.
+ */
+@Component({
+    standalone: false,
+    selector: 'spy-opened-modal',
+    template: `
+        <spy-modal [visible]="visible">
+            <ng-template let-modalRef="modalRef">
+                <h3>Modal content here...</h3>
+
+                <button (click)="modalRef.close()">Close</button>
+            </ng-template>
+        </spy-modal>
+    `,
+})
+class OpenedModalComponent implements AfterViewInit {
+    protected cdr = inject(ChangeDetectorRef);
+
+    visible = false;
+
+    // `ModalComponent.open()` bails out unless a template is available, and neither its
+    // `@ContentChild` nor its `@ViewChild` is resolved during the first `ngOnChanges`. Flipping
+    // `visible` one task after the view exists is what a consumer has to do too.
+    ngAfterViewInit(): void {
+        setTimeout(() => {
+            this.visible = true;
+            this.cdr.detectChanges();
+        });
+    }
+}
+
+export const openedModal = (args) => ({
+    props: args,
+    moduleMetadata: {
+        declarations: [OpenedModalComponent],
+    },
+    template: `<spy-opened-modal></spy-opened-modal>`,
+});
+
+/**
+ * Opens a modal and a toast at the same time. ngx-toastr does not use the CDK overlay — it
+ * renders into its own `#toast-container` on `<body>` — so it takes no part in CDK's stacking
+ * order, and with every CDK overlay promoted to the browser's native top layer the toast is
+ * painted underneath the modal whatever `z-index` it carries. Nothing else in the baseline
+ * captures that relationship.
+ */
+@Component({
+    standalone: false,
+    selector: 'spy-opened-modal-with-toast',
+    template: `
+        <spy-modal [visible]="visible">
+            <ng-template let-modalRef="modalRef">
+                <h3>Modal content here...</h3>
+
+                <button (click)="modalRef.close()">Close</button>
+            </ng-template>
+        </spy-modal>
+    `,
+})
+class OpenedModalWithToastComponent implements AfterViewInit, OnDestroy {
+    protected cdr = inject(ChangeDetectorRef);
+    protected notificationService = inject(NotificationService);
+
+    visible = false;
+
+    private notificationRef?: NotificationRef;
+
+    ngAfterViewInit(): void {
+        this.notificationRef = this.notificationService.show({
+            type: NotificationType.Info,
+            title: 'Toast Title',
+            description: 'Toast Description',
+            timeOut: 0,
+            disableTimeOut: true,
+        });
+
+        setTimeout(() => {
+            this.visible = true;
+            this.cdr.detectChanges();
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.notificationRef?.close();
+    }
+}
+
+export const openedModalWithToast = (args) => ({
+    props: args,
+    moduleMetadata: {
+        declarations: [OpenedModalWithToastComponent],
+    },
+    template: `<spy-opened-modal-with-toast></spy-opened-modal-with-toast>`,
+});

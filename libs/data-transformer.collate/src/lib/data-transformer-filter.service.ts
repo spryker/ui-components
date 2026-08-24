@@ -16,7 +16,9 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class DataTransformerFilterService {
     protected injector = inject(Injector);
-    protected filtersTypes = inject(DataTransformerFiltersTypesToken, { optional: true });
+    protected filtersTypes: DataTransformerFilterDeclaration[] = inject(DataTransformerFiltersTypesToken, {
+        optional: true,
+    });
 
     private filters: Partial<DataTransformerFilterDeclaration> =
         this.filtersTypes?.reduce((filters, filter) => ({ ...filters, ...filter }), {}) ?? {};

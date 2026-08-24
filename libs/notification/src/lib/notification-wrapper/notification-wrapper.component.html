@@ -6,22 +6,22 @@
         [floating]="true"
     >
         <ng-container title>
-            @if (title | ofType: 'string') {
-                <span>{{ title }}</span>
+            @if (title() | ofType: 'string') {
+                <span>{{ title() }}</span>
             } @else {
                 <ng-template
-                    [ngTemplateOutlet]="title"
+                    [ngTemplateOutlet]="title()"
                     [ngTemplateOutletContext]="{ $implicit: notificationRef }"
                 ></ng-template>
             }
         </ng-container>
 
         <ng-container description>
-            @if (message | ofType: 'string') {
-                <span>{{ message }} </span>
+            @if (message() | ofType: 'string') {
+                <span>{{ message() }} </span>
             } @else {
                 <ng-template
-                    [ngTemplateOutlet]="message"
+                    [ngTemplateOutlet]="message()"
                     [ngTemplateOutletContext]="{ $implicit: notificationRef }"
                 ></ng-template>
             }

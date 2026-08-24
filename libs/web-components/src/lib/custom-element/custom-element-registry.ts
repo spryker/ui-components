@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, Injector, NgZone } from '@angular/core';
+import { Injector, NgZone, reflectComponentType } from '@angular/core';
 
 import { createCustomElementFor } from './custom-element-factory';
 import { CustomElementOptions } from './custom-element-options';
@@ -39,9 +39,18 @@ export function registerComponents(components: WebComponentDefs, injector: Injec
         } else if (componentDeclaration.selector) {
             name = componentDeclaration.selector;
         } else {
-            name = injector
-                .get(ComponentFactoryResolver)
-                .resolveComponentFactory(componentDeclaration.component).selector;
+            // `ComponentFactoryResolver` is removed in Angular 22; `reflectComponentType()` reads
+            // the same selector straight off the component definition.
+            const mirror = reflectComponentType(componentDeclaration.component);
+
+            if (!mirror) {
+                throw new Error(
+                    `registerComponents: ${componentDeclaration.component.name} is not a component, ` +
+                        'so no custom element name can be derived from it. Declare an explicit `selector`.',
+                );
+            }
+
+            name = mirror.selector;
         }
 
         return `${options.prefix}${name}`;

@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { provideNzNativeDateAdapter } from 'ng-zorro-antd/core/time';
 import { ToIsoDateFormatModule } from '@spryker/utils';
 import { TestLocaleModule } from '@spryker/locale/testing';
 import { DatePickerComponent } from './date-picker.component';
@@ -76,6 +77,14 @@ describe('DatePickerComponent', () => {
             providers: [
                 { provide: LOCALE_ID, useValue: 'en-US' },
                 { provide: NZ_I18N, useValue: en_US },
+                /*
+                 * ng-zorro-antd 22 introduced `NzDateAdapter` as a required injectable and ships no
+                 * default provider for it. `DatePickerModule` deliberately does not provide one --
+                 * `provideNzNativeDateAdapter` does not exist in ng-zorro-antd 20 or 21, so
+                 * providing it here would make this package installable on ng-zorro-antd 22 only.
+                 * The application bootstrap owns this provider; the spec stands in for it.
+                 */
+                provideNzNativeDateAdapter(),
             ],
         });
 
@@ -90,56 +99,56 @@ describe('DatePickerComponent', () => {
 
     describe('@Input', () => {
         it('Input `clearButton` -> `nzAllowClear`', () => {
-            fixture.componentInstance.clearButton = true;
+            fixture.componentRef.setInput('clearButton', true);
             fixture.detectChanges();
             const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
             expect(datePicker.componentInstance.nzAllowClear).toBe(true);
         });
 
         it('Input `disabled` -> `nzDisabled`', () => {
-            fixture.componentInstance.disabled = true;
+            fixture.componentRef.setInput('disabled', true);
             fixture.detectChanges();
             const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
             expect(datePicker.componentInstance.nzDisabled).toBe(true);
         });
 
         it('Input `date` -> hidden input ngModel (ISO)', () => {
-            fixture.componentInstance.date = mockedDate;
+            fixture.componentRef.setInput('date', mockedDate);
             fixture.detectChanges();
             const hidden = fixture.debugElement.query(By.css('input[type="hidden"]'));
             expect(hidden.properties.ngModel).toBe(mockedExpectedDate);
         });
 
         it('Input `date` -> <nz-date-picker> ngModel', () => {
-            fixture.componentInstance.date = mockedDate;
+            fixture.componentRef.setInput('date', mockedDate);
             fixture.detectChanges();
             const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
             expect(datePicker.properties.ngModel).toEqual(mockedDate);
         });
 
         it('Input `format` -> `nzFormat`', () => {
-            fixture.componentInstance.format = mockedFormat;
+            fixture.componentRef.setInput('format', mockedFormat);
             fixture.detectChanges();
             const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
             expect(datePicker.componentInstance.nzFormat).toBe(mockedFormat);
         });
 
         it('Input `name` -> hidden input `name`', () => {
-            fixture.componentInstance.name = mockedName;
+            fixture.componentRef.setInput('name', mockedName);
             fixture.detectChanges();
             const hidden = fixture.debugElement.query(By.css('input[type="hidden"]'));
             expect(hidden.properties.name).toBe(mockedName);
         });
 
         it('Input `placeholder` -> `nzPlaceHolder`', () => {
-            fixture.componentInstance.placeholder = mockedPlaceholder;
+            fixture.componentRef.setInput('placeholder', mockedPlaceholder);
             fixture.detectChanges();
             const datePicker = fixture.debugElement.query(By.css(nzDatePickerSelector));
             expect(datePicker.componentInstance.nzPlaceHolder).toBe(mockedPlaceholder);
         });
 
         it('Input `enableTime` (object) -> `nzDisabledTime`', () => {
-            fixture.componentInstance.enableTime = mockedEnableTimeObject;
+            fixture.componentRef.setInput('enableTime', mockedEnableTimeObject);
             fixture.detectChanges();
             const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
                 .componentInstance as DatePickerComponent;
@@ -148,7 +157,7 @@ describe('DatePickerComponent', () => {
         });
 
         it('Input `enableTime` (function) -> `nzDisabledTime`', () => {
-            fixture.componentInstance.enableTime = mockedEnableTimeFunction;
+            fixture.componentRef.setInput('enableTime', mockedEnableTimeFunction);
             fixture.detectChanges();
             const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
                 .componentInstance as DatePickerComponent;
@@ -157,8 +166,8 @@ describe('DatePickerComponent', () => {
         });
 
         it('disabledTime returns expected functions with object input', () => {
-            fixture.componentInstance.time = true;
-            fixture.componentInstance.enableTime = mockedEnableTimeObject;
+            fixture.componentRef.setInput('time', true);
+            fixture.componentRef.setInput('enableTime', mockedEnableTimeObject);
             fixture.detectChanges();
 
             const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
@@ -171,8 +180,8 @@ describe('DatePickerComponent', () => {
         });
 
         it('disabledTime returns expected functions with function input', () => {
-            fixture.componentInstance.time = true;
-            fixture.componentInstance.enableTime = mockedEnableTimeFunction;
+            fixture.componentRef.setInput('time', true);
+            fixture.componentRef.setInput('enableTime', mockedEnableTimeFunction);
             fixture.detectChanges();
 
             const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
@@ -185,7 +194,7 @@ describe('DatePickerComponent', () => {
         });
 
         it('Input `time` -> `nzShowTime` equals component.nzTime', () => {
-            fixture.componentInstance.time = true;
+            fixture.componentRef.setInput('time', true);
             fixture.detectChanges();
             const cmp = fixture.debugElement.query(By.directive(DatePickerComponent))
                 .componentInstance as DatePickerComponent;
@@ -211,7 +220,7 @@ describe('DatePickerComponent', () => {
 
     describe('Methods / classes', () => {
         it('applies `open` class when `open` input is true', fakeAsync(() => {
-            fixture.componentInstance.open = true;
+            fixture.componentRef.setInput('open', true);
             fixture.detectChanges();
 
             tick();
@@ -224,7 +233,7 @@ describe('DatePickerComponent', () => {
         }));
 
         it('does not apply `open` class when `open` input is false', fakeAsync(() => {
-            fixture.componentInstance.open = false;
+            fixture.componentRef.setInput('open', false);
             fixture.detectChanges();
 
             tick();

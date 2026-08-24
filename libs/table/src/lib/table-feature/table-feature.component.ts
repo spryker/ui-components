@@ -19,6 +19,13 @@ import { TableComponent } from '../table/table';
 import { TableFeatureEventBus } from './table-feature-event-bus';
 import { TableFeatureTplDirective } from './table-feature-tpl.directive';
 
+// Do NOT add a `changeDetection` property here. This abstract class is never instantiated
+// (`template: ''`, and its `selector` is ignored), and `ɵɵInheritDefinitionFeature` does not copy
+// `onPush` to subclasses — all 11 published `table.feature.*` components declare their own
+// strategy. Setting it here is therefore inert at runtime, but under partial-Ivy compilation the
+// emitter writes the enum member `Eager` into the partial declaration whatever the source spells,
+// and the Angular 20 linker cannot resolve that name. Setting it here alone was enough to
+// de-link `@spryker/table` from Angular 20.
 @Component({
     standalone: false,
     // This is abstract component so selector is ignored

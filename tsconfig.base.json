@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "ignoreDeprecations": "6.0",
         "esModuleInterop": true,
         "sourceMap": true,
         "declaration": false,
@@ -25,8 +26,8 @@
     },
     "angularCompilerOptions": {
         "compilationMode": "partial",
+        "strictTemplates": false,
         "annotateForClosureCompiler": true,
-        "fullTemplateTypeCheck": true,
         "skipTemplateCodegen": true,
         "strictMetadataEmit": true,
         "strictInjectionParameters": true,

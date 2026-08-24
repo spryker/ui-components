@@ -2,7 +2,7 @@
     <nz-collapse-panel
         [nzHeader]="titleTmpl"
         [(nzActive)]="active"
-        [nzDisabled]="disabled"
+        [nzCollapsible]="disabled ? 'disabled' : null"
         [nzShowArrow]="false"
         (nzActiveChange)="updateActive($event)"
         (keyup.enter)="toggle()"

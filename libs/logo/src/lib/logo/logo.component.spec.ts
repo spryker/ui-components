@@ -32,7 +32,7 @@ describe('LogoComponent', () => {
 
     it('should change image modifier', () => {
         const logoImageModifier = 'full';
-        fixture.componentInstance.size = logoImageModifier;
+        fixture.componentRef.setInput('size', logoImageModifier);
         fixture.detectChanges();
 
         const logoElement = fixture.debugElement.query(By.css(`.spy-logo--${logoImageModifier}`));

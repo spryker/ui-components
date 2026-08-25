@@ -21,8 +21,10 @@ export interface ComponentModalExtras<T extends ComponentModal> {
     getComponent(): T;
 }
 
-export interface ComponentModalRenderingRef<T extends ComponentModal>
-    extends ModalRenderingRef<T, ComponentModalExtras<T>> {}
+export interface ComponentModalRenderingRef<T extends ComponentModal> extends ModalRenderingRef<
+    T,
+    ComponentModalExtras<T>
+> {}
 
 class ComponentModalRenderingRefImpl<T extends ComponentModal> implements ComponentModalRenderingRef<T> {
     constructor(private componentRef: ComponentRef<T>) {}

@@ -6,9 +6,10 @@ import { ChainDataTransformerConfig, ChainDataTransformerData, ChainDataTransfor
 @Injectable({
     providedIn: 'root',
 })
-export class ChainDataTransformerService
-    implements DataTransformer<ChainDataTransformerData, ChainDataTransformerDataT>
-{
+export class ChainDataTransformerService implements DataTransformer<
+    ChainDataTransformerData,
+    ChainDataTransformerDataT
+> {
     protected dataTransformerService = inject(DataTransformerService);
 
     transform(

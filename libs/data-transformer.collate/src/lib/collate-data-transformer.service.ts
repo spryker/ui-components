@@ -14,9 +14,10 @@ import {
 @Injectable({
     providedIn: 'root',
 })
-export class CollateDataTransformerService
-    implements DataTransformer<CollateDataTransformerData, CollateDataTransformerDataT>
-{
+export class CollateDataTransformerService implements DataTransformer<
+    CollateDataTransformerData,
+    CollateDataTransformerDataT
+> {
     protected dataTransformerFilter = inject(DataTransformerFilterService);
     protected collateDataConfigurator = inject(DataTransformerConfiguratorService);
 

@@ -33,9 +33,9 @@ import { TableFeatureTplDirective } from './table-feature-tpl.directive';
     selector: 'selector',
     template: ``,
 })
-export abstract class TableFeatureComponent<C extends TableFeatureConfig = TableFeatureConfig>
-    implements AfterViewInit
-{
+export abstract class TableFeatureComponent<
+    C extends TableFeatureConfig = TableFeatureConfig,
+> implements AfterViewInit {
     protected injector = inject(Injector);
 
     @Input()

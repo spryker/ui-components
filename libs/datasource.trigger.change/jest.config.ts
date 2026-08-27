@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'datasource.trigger.change',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/datasource.trigger.change',

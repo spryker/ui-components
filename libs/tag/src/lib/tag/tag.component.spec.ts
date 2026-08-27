@@ -1,6 +1,6 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TagComponent } from './tag.component';
 
@@ -51,6 +51,7 @@ describe('TagComponent', () => {
         it('should update the label to "Something else"', () => {
             const newLabel = 'Something else';
             component.label = newLabel;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
             expect(labelElement.nativeElement.textContent).toBe(newLabel);
         });
@@ -63,12 +64,14 @@ describe('TagComponent', () => {
         });
         it('should have "spy-tag-disabled" when disabled', () => {
             component.disabled = true;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
             const tagElement = fixture.debugElement.query(By.css('.spy-tag'));
             expect(tagElement.classes['spy-tag-disabled']).toBe(true);
         });
         it('should have Input("disabled") bind to the disabled of the button when disabled', () => {
             component.disabled = true;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
             const buttonElement = fixture.debugElement.query(By.css('.spy-tag__remove-button-icon'));
             expect(buttonElement.properties.disabled).toBe(true);
@@ -82,6 +85,7 @@ describe('TagComponent', () => {
         });
         it('should be not rendered when not removable', () => {
             component.removable = false;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
             const buttonElement = fixture.debugElement.query(By.css('.spy-tag__remove-button-icon'));
             expect(buttonElement).toBeNull();
@@ -93,6 +97,7 @@ describe('TagComponent', () => {
         });
         it('should not clickable when disabled', () => {
             component.disabled = true;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
             const buttonElement = fixture.nativeElement.querySelector('.spy-tag__remove-button-icon');
             buttonElement.click();

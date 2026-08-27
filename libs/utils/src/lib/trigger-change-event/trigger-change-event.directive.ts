@@ -7,7 +7,7 @@ export class TriggerChangeEventDirective {
 
     @Input() spyTriggerChangeEvent?: HTMLElement | string;
 
-    @HostListener('click', ['$event'])
+    @HostListener('click')
     onClick(): void {
         typeof this.spyTriggerChangeEvent === 'string'
             ? triggerChangeEvent(this.el.nativeElement.querySelector(this.spyTriggerChangeEvent || 'input'))

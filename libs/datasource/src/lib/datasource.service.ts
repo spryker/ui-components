@@ -9,7 +9,7 @@ import { Datasource, DatasourceConfig, DatasourceRegistry, DatasourceType, Datas
 })
 export class DatasourceService {
     protected dataTransformerService = inject(DataTransformerService);
-    protected dataSourceTypes = inject(DatasourceTypesToken, {
+    protected dataSourceTypes: DatasourceTypesDeclaration[] = inject(DatasourceTypesToken, {
         optional: true,
     });
 

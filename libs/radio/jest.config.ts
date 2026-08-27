@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'radio',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/radio',

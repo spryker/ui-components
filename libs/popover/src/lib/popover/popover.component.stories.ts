@@ -98,3 +98,28 @@ export const popover = (args) => ({
     </div>
   `,
 });
+
+/**
+ * Renders the popover already open, so the pixel baseline captures the CDK overlay in its open
+ * state. The `popover` story above captures a closed trigger, which leaves overlay stacking and
+ * top-layer promotion outside the visual gate.
+ */
+export const openedPopover = (args) => ({
+    props: {
+        ...args,
+        mockData: [...Array(3).keys()],
+    },
+    template: `
+    <div style="padding: 100px; display: flex; justify-content: center;">
+      <spy-popover
+        [position]="position"
+        [popoverTrigger]="popoverTrigger"
+        [open]="true">
+        <button trigger>Open</button>
+        <ul>
+          <li *ngFor="let number of mockData">Popover content item {{ number + 1 }}</li>
+        </ul>
+      </spy-popover>
+    </div>
+  `,
+});

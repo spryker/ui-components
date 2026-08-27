@@ -30,7 +30,7 @@ describe('StaticHtmlRendererDirective', () => {
     });
 
     it('renders @Input(html) inside <spy-html-renderer>', () => {
-        fixture.componentInstance.html = mockHtmlTemplate;
+        fixture.componentRef.setInput('html', mockHtmlTemplate);
         fixture.detectChanges();
 
         const content = q('spy-html-renderer .spy-html-renderer__content');
@@ -41,12 +41,12 @@ describe('StaticHtmlRendererDirective', () => {
     it('re-renders when @Input(html) changes', () => {
         const rerender = `<p>Rerendered!!!</p>`;
 
-        fixture.componentInstance.html = mockHtmlTemplate;
+        fixture.componentRef.setInput('html', mockHtmlTemplate);
         fixture.detectChanges();
         const content = q('spy-html-renderer .spy-html-renderer__content');
         expect((content.nativeElement as HTMLElement).innerHTML).toBe(mockHtmlTemplate);
 
-        fixture.componentInstance.html = rerender;
+        fixture.componentRef.setInput('html', rerender);
         fixture.detectChanges();
         expect((content.nativeElement as HTMLElement).innerHTML).toBe(rerender);
     });

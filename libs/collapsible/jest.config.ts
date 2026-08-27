@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'collapsible',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/collapsible',

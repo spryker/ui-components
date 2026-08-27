@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'interception',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/interception',

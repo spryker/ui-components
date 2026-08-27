@@ -24,3 +24,7 @@
 
 /.nx/cache
 /.nx/workspace-data
+
+# Claude Code tooling config, agents and vendored upstream skills
+/.claude/
+

@@ -16,7 +16,7 @@ import {
 })
 export class DatasourceTriggerService implements Datasource {
     protected datasourceService = inject(DatasourceService);
-    protected eventsTypes = inject(DatasourceEventTypesToken, {
+    protected eventsTypes: DatasourceTriggerEventDeclaration[] = inject(DatasourceEventTypesToken, {
         optional: true,
     });
 

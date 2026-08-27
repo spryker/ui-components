@@ -30,7 +30,7 @@ describe('LinkComponent', () => {
     });
 
     it('should render <spy-icon> element if @Input(icon) is defined', () => {
-        fixture.componentInstance.icon = 'icon';
+        fixture.componentRef.setInput('icon', 'icon');
         fixture.detectChanges();
 
         const iconElem = fixture.debugElement.query(By.css('spy-icon'));
@@ -38,7 +38,7 @@ describe('LinkComponent', () => {
     });
 
     it('should not render <spy-icon> element if @Input(icon) is not defined', () => {
-        fixture.componentInstance.icon = undefined;
+        fixture.componentRef.setInput('icon', undefined);
         fixture.detectChanges();
 
         const iconElem = fixture.debugElement.query(By.css('spy-icon'));
@@ -46,7 +46,7 @@ describe('LinkComponent', () => {
     });
 
     it('should render default slot after <spy-icon> element', () => {
-        fixture.componentInstance.icon = 'icon';
+        fixture.componentRef.setInput('icon', 'icon');
         fixture.detectChanges();
 
         const slotContentElem = fixture.debugElement.query(By.css('spy-icon + .default-content'));
@@ -55,7 +55,7 @@ describe('LinkComponent', () => {
 
     it('should bind @Input(icon) to the `name` input of the <spy-icon> element', () => {
         const mockIcon = 'icon';
-        fixture.componentInstance.icon = mockIcon;
+        fixture.componentRef.setInput('icon', mockIcon);
         fixture.detectChanges();
 
         const iconElem = fixture.debugElement.query(By.css('spy-icon'));

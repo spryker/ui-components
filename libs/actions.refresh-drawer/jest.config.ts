@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'actions.refresh-drawer',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/actions.refresh-drawer',

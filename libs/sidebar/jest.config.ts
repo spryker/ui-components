@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'sidebar',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/sidebar',

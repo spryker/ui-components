@@ -17,7 +17,7 @@ export function trLocaleFactory() {
             ant: () =>
                 Promise.all([
                     import('ng-zorro-antd/i18n').then((m) => m.tr_TR),
-                    import('date-fns/locale/tr').then((m) => m.default),
+                    import('date-fns/locale/tr').then((m) => m.tr),
                 ]).then(([data, dateData]) => ({ data, dateData })),
 
             spryker: () =>

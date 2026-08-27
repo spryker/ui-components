@@ -18,7 +18,7 @@ export function enLocaleFactory() {
             ant: () =>
                 Promise.all([
                     import('ng-zorro-antd/i18n').then((m) => m.en_US),
-                    import('date-fns/locale/en-US').then((m) => m.default),
+                    import('date-fns/locale/en-US').then((m) => m.enUS),
                 ]).then(([data, dateData]) => ({ data, dateData })),
 
             spryker: () =>

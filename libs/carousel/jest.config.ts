@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'carousel',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/carousel',

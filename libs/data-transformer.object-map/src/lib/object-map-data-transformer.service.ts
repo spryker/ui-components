@@ -7,9 +7,10 @@ import { ObjectMapDataTransformerConfig, ObjectMapDataTransformerData, ObjectMap
 @Injectable({
     providedIn: 'root',
 })
-export class ObjectMapDataTransformerService
-    implements DataTransformer<ObjectMapDataTransformerData, ObjectMapDataTransformerDataT>
-{
+export class ObjectMapDataTransformerService implements DataTransformer<
+    ObjectMapDataTransformerData,
+    ObjectMapDataTransformerDataT
+> {
     protected dataTransformerService = inject(DataTransformerService);
 
     transform(

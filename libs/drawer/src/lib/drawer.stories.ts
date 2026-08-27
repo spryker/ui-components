@@ -130,6 +130,32 @@ class DrawerWithComponentComponent implements OnDestroy {
     }
 }
 
+/**
+ * Opens its drawer from the initial binding rather than from a click, so the pixel baseline
+ * captures the CDK overlay in its open state. Every other drawer story captures a closed
+ * trigger, which leaves overlay stacking and top-layer promotion outside the visual gate.
+ */
+@Component({
+    standalone: false,
+    selector: 'spy-opened-drawer',
+    template: `
+        <spy-drawer
+            [isOpen]="true"
+            [closeable]="closeable"
+            [resizable]="resizable"
+            [width]="width"
+            [hasBackdrop]="hasBackdrop"
+        >
+            <ng-template let-drawerRef>
+                <h3>Drawer content here...</h3>
+
+                <button (click)="drawerRef.close()">Close</button>
+            </ng-template>
+        </spy-drawer>
+    `,
+})
+class OpenedDrawerComponent extends DrawerComponentInputs {}
+
 export default {
     title: 'DrawersComponent',
     component: SimpleDrawerComponent,
@@ -207,3 +233,18 @@ withComponent.argTypes = {
         },
     },
 };
+
+export const openedDrawer = (args) => ({
+    props: args,
+    moduleMetadata: {
+        declarations: [OpenedDrawerComponent],
+    },
+    template: `
+        <spy-opened-drawer
+            [closeable]='closeable'
+            [width]='width'
+            [hasBackdrop]='hasBackdrop'
+            [resizable]='resizable'
+        ></spy-opened-drawer>
+    `,
+});

@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActionsService } from '@spryker/actions';
@@ -69,6 +69,7 @@ describe('ButtonActionComponent', () => {
         it('should call trigger() method by <spy-button> click', () => {
             fixture.componentInstance.action = mockConfig;
             fixture.componentInstance.actionContext = mockContext;
+            fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             fixture.detectChanges();
 
             const btnDe = fixture.debugElement.query(By.css('spy-button'));
@@ -87,6 +88,7 @@ describe('ButtonActionComponent', () => {
         describe('@Inputs', () => {
             it('should bind input `type` to type of <spy-button>', () => {
                 fixture.componentInstance.type = ButtonType.Submit;
+                fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
                 fixture.detectChanges();
                 const btnDe = fixture.debugElement.query(By.css('spy-button'));
                 expect(btnDe.properties.type).toBe(ButtonType.Submit);
@@ -94,6 +96,7 @@ describe('ButtonActionComponent', () => {
 
             it('should bind input `variant` to variant of <spy-button>', () => {
                 fixture.componentInstance.variant = ButtonVariant.Secondary;
+                fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
                 fixture.detectChanges();
                 const btnDe = fixture.debugElement.query(By.css('spy-button'));
                 expect(btnDe.properties.variant).toBe(ButtonVariant.Secondary);
@@ -101,6 +104,7 @@ describe('ButtonActionComponent', () => {
 
             it('should bind input `shape` to shape of <spy-button>', () => {
                 fixture.componentInstance.shape = ButtonShape.Round;
+                fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
                 fixture.detectChanges();
                 const btnDe = fixture.debugElement.query(By.css('spy-button'));
                 expect(btnDe.properties.shape).toBe(ButtonShape.Round);
@@ -108,6 +112,7 @@ describe('ButtonActionComponent', () => {
 
             it('should bind input `size` to size of <spy-button>', () => {
                 fixture.componentInstance.size = ButtonSize.Small;
+                fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
                 fixture.detectChanges();
                 const btnDe = fixture.debugElement.query(By.css('spy-button'));
                 expect(btnDe.properties.size).toBe(ButtonSize.Small);
@@ -115,6 +120,7 @@ describe('ButtonActionComponent', () => {
 
             it('should bind input `attrs` to attrs of <spy-button>', () => {
                 fixture.componentInstance.attrs = { disabled: 'true' };
+                fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
                 fixture.detectChanges();
                 const btnDe = fixture.debugElement.query(By.css('spy-button'));
                 expect(btnDe.properties.attrs).toEqual({ disabled: 'true' });

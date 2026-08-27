@@ -4,10 +4,13 @@
     "projectType": "library",
     "sourceRoot": "libs/pagination/src",
     "prefix": "spy",
+    "tags": ["pkg:primary", "level:molecule", "type:component"],
+    "implicitDependencies": ["styles", "locale"],
     "targets": {
         "build": {
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "defaultConfiguration": "production",
             "options": {
                 "project": "libs/pagination/ng-package.json"
             },
@@ -18,8 +21,7 @@
                 "development": {
                     "tsConfig": "libs/pagination/tsconfig.lib.json"
                 }
-            },
-            "defaultConfiguration": "production"
+            }
         },
         "test": {
             "executor": "@nx/jest:jest",
@@ -66,7 +68,5 @@
         "lint": {
             "executor": "@nx/eslint:lint"
         }
-    },
-    "implicitDependencies": ["styles", "locale"],
-    "tags": ["pkg:primary", "level:molecule", "type:component"]
+    }
 }

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'navigation',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/navigation',

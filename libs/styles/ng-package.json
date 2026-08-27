@@ -4,6 +4,5 @@
     "lib": {
         "entryFile": "src/index.ts"
     },
-    "allowedNonPeerDependencies": ["ng-zorro-antd"],
     "assets": ["./src/lib/themes/**/*.{less,css}"]
 }

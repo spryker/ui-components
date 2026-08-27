@@ -8,9 +8,10 @@ import { DateParseDataTransformerConfig, DateParseDataTransformerData, DateParse
 @Injectable({
     providedIn: 'root',
 })
-export class DateParseDataTransformerService
-    implements DataTransformer<DateParseDataTransformerData, DateParseDataTransformerDataT>
-{
+export class DateParseDataTransformerService implements DataTransformer<
+    DateParseDataTransformerData,
+    DateParseDataTransformerDataT
+> {
     protected dateService = inject(DateService);
 
     transform(

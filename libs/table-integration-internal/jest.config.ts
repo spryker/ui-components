@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'table-integration-internal',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/table-integration-internal',

@@ -1,7 +1,7 @@
 const collectCoverage = process.env.COVERAGE !== undefined;
 const { getJestProjectsAsync } = require('@nx/jest');
 
-export default async () => ({
+module.exports = async () => ({
     testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
     transform: {
         '^.+\\.(ts|mjs|js|html)$': 'ts-jest',

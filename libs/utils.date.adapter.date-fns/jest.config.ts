@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'utils.date.adapter.date-fns',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/utils.date.adapter.date-fns',

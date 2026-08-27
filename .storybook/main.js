@@ -1,5 +1,9 @@
-const path = require('path');
-module.exports = {
+import path from 'path';
+import { fileURLToPath } from 'node:url';
+
+const configDir = path.dirname(fileURLToPath(import.meta.url));
+
+export default {
     stories: ['../**/*.@(mdx|stories.@(ts))'],
 
     addons: ['@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-designs'],
@@ -26,8 +30,8 @@ module.exports = {
         // Add paths to activate default LESS resolution
         lessLoader.options.lessOptions = lessLoader.options.lessOptions || {};
         lessLoader.options.lessOptions.paths = [
-            path.resolve(__dirname, '../node_modules'),
-            path.resolve(__dirname, '../libs/styles/src/lib'),
+            path.resolve(configDir, '../node_modules'),
+            path.resolve(configDir, '../libs/styles/src/lib'),
         ];
         return config;
     },

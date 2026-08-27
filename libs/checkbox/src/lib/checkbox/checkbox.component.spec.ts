@@ -73,7 +73,7 @@ describe('CheckboxComponent', () => {
 
     describe('@Input(spyId)', () => {
         it('must be bound to id property of hidden HTML <input>', () => {
-            fixture.componentInstance.spyId = 'testId';
+            fixture.componentRef.setInput('spyId', 'testId');
             fixture.detectChanges();
 
             const inputElem = fixture.debugElement.query(By.css(hiddenInputSelector));
@@ -83,7 +83,7 @@ describe('CheckboxComponent', () => {
 
     describe('@Input(name)', () => {
         it('must be bound to name attribute of hidden HTML <input>', () => {
-            fixture.componentInstance.name = 'testName';
+            fixture.componentRef.setInput('name', 'testName');
             fixture.detectChanges();
 
             const inputElem = fixture.debugElement.query(By.css(hiddenInputSelector));
@@ -93,7 +93,7 @@ describe('CheckboxComponent', () => {
 
     describe('@Input(required)', () => {
         it('must be bound to required property of hidden HTML <input>', () => {
-            fixture.componentInstance.required = true;
+            fixture.componentRef.setInput('required', true);
             fixture.detectChanges();
 
             const inputElem = fixture.debugElement.query(By.css(hiddenInputSelector));
@@ -103,7 +103,7 @@ describe('CheckboxComponent', () => {
 
     describe('@Input(indeterminate)', () => {
         it('must be bound to `nzIndeterminate` input of `nz-checkbox`', () => {
-            fixture.componentInstance.indeterminate = true;
+            fixture.componentRef.setInput('indeterminate', true);
             fixture.detectChanges();
 
             const labelElem = fixture.debugElement.query(By.css(checkboxSelector));
@@ -113,7 +113,7 @@ describe('CheckboxComponent', () => {
 
     describe('@Input(disabled)', () => {
         it('must be bound to disabled property of hidden HTML <input>', () => {
-            fixture.componentInstance.disabled = true;
+            fixture.componentRef.setInput('disabled', true);
             fixture.detectChanges();
 
             const inputElem = fixture.debugElement.query(By.css(hiddenInputSelector));
@@ -121,7 +121,7 @@ describe('CheckboxComponent', () => {
         });
 
         it('must be bound to `nzDisabled` input of `nz-checkbox`', () => {
-            fixture.componentInstance.disabled = true;
+            fixture.componentRef.setInput('disabled', true);
             fixture.detectChanges();
 
             const labelElem = fixture.debugElement.query(By.css(checkboxSelector));
@@ -131,7 +131,7 @@ describe('CheckboxComponent', () => {
 
     describe('@Input(attrs)', () => {
         it('must be bound to the appropriate attributes of hidden HTML <input>', () => {
-            fixture.componentInstance.attrs = { test: 'attr1', test2: 'attr2' };
+            fixture.componentRef.setInput('attrs', { test: 'attr1', test2: 'attr2' });
             fixture.detectChanges();
 
             const inputElem = fixture.debugElement.query(By.css(hiddenInputSelector));
@@ -140,7 +140,7 @@ describe('CheckboxComponent', () => {
         });
 
         it('must parses to JSON format if it string', () => {
-            fixture.componentInstance.attrs = '{"test":"attr1","test2":"attr2"}';
+            fixture.componentRef.setInput('attrs', '{"test":"attr1","test2":"attr2"}');
             fixture.detectChanges();
 
             const inputElem = fixture.debugElement.query(By.css(hiddenInputSelector));
@@ -149,21 +149,21 @@ describe('CheckboxComponent', () => {
         });
 
         it('must updates when changed', () => {
-            fixture.componentInstance.attrs = { test: 'attr1', test2: 'attr2' };
+            fixture.componentRef.setInput('attrs', { test: 'attr1', test2: 'attr2' });
             fixture.detectChanges();
 
             const inputElem = fixture.debugElement.query(By.css(hiddenInputSelector));
 
-            fixture.componentInstance.attrs = { test: 'attr6' };
+            fixture.componentRef.setInput('attrs', { test: 'attr6' });
             fixture.detectChanges();
             expect(inputElem.attributes['test']).toBe('attr6');
             expect(inputElem.attributes['test2']).toBe(undefined);
 
-            fixture.componentInstance.attrs = { test: null as unknown as string };
+            fixture.componentRef.setInput('attrs', { test: null as unknown as string });
             fixture.detectChanges();
             expect(inputElem.attributes['test']).toBe('null');
 
-            fixture.componentInstance.attrs = { test: '' };
+            fixture.componentRef.setInput('attrs', { test: '' });
             fixture.detectChanges();
             expect(inputElem.attributes['test']).toBe('');
         });
@@ -171,8 +171,8 @@ describe('CheckboxComponent', () => {
 
     describe('@Input(checked)', () => {
         it('must be bound to ngModel property of hidden HTML <input> with negative `indeterminate` input', () => {
-            fixture.componentInstance.checked = true;
-            fixture.componentInstance.indeterminate = false;
+            fixture.componentRef.setInput('checked', true);
+            fixture.componentRef.setInput('indeterminate', false);
             fixture.detectChanges();
 
             const inputElem = fixture.debugElement.query(By.css(hiddenInputSelector));
@@ -180,7 +180,7 @@ describe('CheckboxComponent', () => {
         });
 
         it('must be bound to `ngModel` input of `nz-checkbox`', () => {
-            fixture.componentInstance.checked = true;
+            fixture.componentRef.setInput('checked', true);
             fixture.detectChanges();
 
             const labelElem = fixture.debugElement.query(By.css(checkboxSelector));

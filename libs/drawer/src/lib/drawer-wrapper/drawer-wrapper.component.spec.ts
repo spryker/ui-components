@@ -58,7 +58,7 @@ describe('DrawerWrapperComponent (no orchestrator)', () => {
     });
 
     it('shows close button when `closeable=true`', () => {
-        fixture.componentInstance.closeable = true;
+        fixture.componentRef.setInput('closeable', true);
         fixture.detectChanges();
 
         const btn = query('.spy-drawer-wrapper__action--close');
@@ -66,7 +66,7 @@ describe('DrawerWrapperComponent (no orchestrator)', () => {
     });
 
     it('hides close button when `closeable=false`', () => {
-        fixture.componentInstance.closeable = false;
+        fixture.componentRef.setInput('closeable', false);
         fixture.detectChanges();
 
         const btn = query('.spy-drawer-wrapper__action--close');
@@ -74,7 +74,7 @@ describe('DrawerWrapperComponent (no orchestrator)', () => {
     });
 
     it('shows resize button when `resizable=true`', () => {
-        fixture.componentInstance.resizable = true;
+        fixture.componentRef.setInput('resizable', true);
         fixture.detectChanges();
 
         const btn = query('.spy-drawer-wrapper__action--resize');
@@ -82,7 +82,7 @@ describe('DrawerWrapperComponent (no orchestrator)', () => {
     });
 
     it('hides resize button when `resizable=false`', () => {
-        fixture.componentInstance.resizable = false;
+        fixture.componentRef.setInput('resizable', false);
         fixture.detectChanges();
 
         const btn = query('.spy-drawer-wrapper__action--resize');
@@ -91,7 +91,7 @@ describe('DrawerWrapperComponent (no orchestrator)', () => {
 
     it('binds `[width]` to host element style', () => {
         const width = '20%';
-        fixture.componentInstance.width = width;
+        fixture.componentRef.setInput('width', width);
         fixture.detectChanges();
 
         const hostEl: HTMLElement = query('.spy-drawer-wrapper').nativeElement;
@@ -100,8 +100,8 @@ describe('DrawerWrapperComponent (no orchestrator)', () => {
 
     it('toggles maximize on resize button click and adjusts width', () => {
         const initial = '20%';
-        fixture.componentInstance.width = initial;
-        fixture.componentInstance.resizable = true;
+        fixture.componentRef.setInput('width', initial);
+        fixture.componentRef.setInput('resizable', true);
         fixture.detectChanges();
 
         const hostDe = query('.spy-drawer-wrapper');
@@ -124,7 +124,7 @@ describe('DrawerWrapperComponent (no orchestrator)', () => {
     });
 
     it('emits `closed` when close button clicked', () => {
-        fixture.componentInstance.closeable = true;
+        fixture.componentRef.setInput('closeable', true);
         fixture.detectChanges();
 
         const closeBtn = query('.spy-drawer-wrapper__action--close');

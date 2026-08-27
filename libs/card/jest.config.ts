@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'card',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/card',

@@ -54,7 +54,7 @@ describe('DrawerContainerComponent', () => {
 
     it('should bind @Input(closeable) to `closeable` of <spy-drawer-wrapper>', () => {
         fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.closeable = true;
+        fixture.componentRef.setInput('closeable', true);
         fixture.detectChanges();
 
         const wrapperElem = fixture.debugElement.query(By.css('spy-drawer-wrapper'));
@@ -63,7 +63,7 @@ describe('DrawerContainerComponent', () => {
 
     it('should bind @Input(resizable) to `resizable` of <spy-drawer-wrapper>', () => {
         fixture = TestBed.createComponent(TestComponent);
-        fixture.componentInstance.resizable = true;
+        fixture.componentRef.setInput('resizable', true);
         fixture.detectChanges();
 
         const wrapperElem = fixture.debugElement.query(By.css('spy-drawer-wrapper'));
@@ -73,7 +73,7 @@ describe('DrawerContainerComponent', () => {
     it('should bind @Input(width) to `width` of <spy-drawer-wrapper>', () => {
         fixture = TestBed.createComponent(TestComponent);
         const width = '30%';
-        fixture.componentInstance.width = width;
+        fixture.componentRef.setInput('width', width);
         fixture.detectChanges();
 
         const wrapperElem = fixture.debugElement.query(By.css('spy-drawer-wrapper'));

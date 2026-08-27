@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'spinner',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/spinner',

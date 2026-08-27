@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'locale',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/locale',

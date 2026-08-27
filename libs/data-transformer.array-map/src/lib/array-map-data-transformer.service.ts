@@ -7,9 +7,10 @@ import { ArrayMapDataTransformerConfig, ArrayMapDataTransformerData, ArrayMapDat
 @Injectable({
     providedIn: 'root',
 })
-export class ArrayMapDataTransformerService
-    implements DataTransformer<ArrayMapDataTransformerData, ArrayMapDataTransformerDataT>
-{
+export class ArrayMapDataTransformerService implements DataTransformer<
+    ArrayMapDataTransformerData,
+    ArrayMapDataTransformerDataT
+> {
     protected dataTransformerService = inject(DataTransformerService);
 
     transform(

@@ -1,12 +1,13 @@
 import {
+    ChangeDetectorRef,
     ComponentRef,
     StaticProvider,
-    ComponentFactoryResolver,
     NgModuleRef,
     Type,
     ViewContainerRef,
     Injector,
 } from '@angular/core';
+import { ComponentFactoryResolver, ReflectedComponentFactory } from '@spryker/utils';
 
 import { AnyModal, ModalRef, InferModalData, ModalRenderingRef, ModalStrategy } from '../types';
 
@@ -20,8 +21,10 @@ export interface ComponentModalExtras<T extends ComponentModal> {
     getComponent(): T;
 }
 
-export interface ComponentModalRenderingRef<T extends ComponentModal>
-    extends ModalRenderingRef<T, ComponentModalExtras<T>> {}
+export interface ComponentModalRenderingRef<T extends ComponentModal> extends ModalRenderingRef<
+    T,
+    ComponentModalExtras<T>
+> {}
 
 class ComponentModalRenderingRefImpl<T extends ComponentModal> implements ComponentModalRenderingRef<T> {
     constructor(private componentRef: ComponentRef<T>) {}
@@ -36,7 +39,10 @@ class ComponentModalRenderingRefImpl<T extends ComponentModal> implements Compon
 
     updateData(data: InferModalData<T>): void {
         this.componentRef.instance.updateModalData(data);
-        this.componentRef.changeDetectorRef.detectChanges();
+        // `ComponentRef.changeDetectorRef` is a `ViewRef` over the *host root* LView, not the
+        // component's own, so its `detectChanges()` is a no-op on an `OnPush` component once the
+        // view has been checked once. Mark the component's own view instead.
+        this.componentRef.injector.get(ChangeDetectorRef).markForCheck();
     }
 
     getExtras(): ComponentModalExtras<T> {
@@ -57,6 +63,12 @@ class ComponentModalRenderingRefImpl<T extends ComponentModal> implements Compon
 export interface ComponentModalStrategyOptions {
     providers?: StaticProvider[];
     projectableNodes?: any[][];
+    /**
+     * Angular removed `ComponentFactoryResolver` in v22. The option is kept, retyped to the
+     * structural {@link ComponentFactoryResolver} from `@spryker/utils`, and is still honoured
+     * when supplied — Angular's own resolver satisfies that interface on Angular 20 and 21.
+     * When it is absent the strategy creates the component directly.
+     */
     componentFactoryResolver?: ComponentFactoryResolver;
     ngModule?: NgModuleRef<any>;
 }
@@ -74,10 +86,9 @@ export class ComponentModalStrategy<T extends ComponentModal> implements ModalSt
             providers: [...(this.options?.providers ?? []), { provide: ModalRef, useValue: modalRef }],
         });
 
-        const componentFactoryResolver =
-            this.options?.componentFactoryResolver ?? vcr.injector.get(ComponentFactoryResolver);
-
-        const componentFactory = componentFactoryResolver.resolveComponentFactory(this.component);
+        const componentFactory =
+            this.options?.componentFactoryResolver?.resolveComponentFactory(this.component) ??
+            new ReflectedComponentFactory(this.component);
 
         const componentRef = componentFactory.create(
             injector,
@@ -87,7 +98,10 @@ export class ComponentModalStrategy<T extends ComponentModal> implements ModalSt
         );
 
         componentRef.instance.setModalRef(modalRef);
-        componentRef.changeDetectorRef.detectChanges();
+        // `ComponentRef.changeDetectorRef` is a `ViewRef` over the *host root* LView, not the
+        // component's own, so its `detectChanges()` is a no-op on an `OnPush` component once the
+        // view has been checked once. Mark the component's own view instead.
+        componentRef.injector.get(ChangeDetectorRef).markForCheck();
 
         vcr.insert(componentRef.hostView);
 

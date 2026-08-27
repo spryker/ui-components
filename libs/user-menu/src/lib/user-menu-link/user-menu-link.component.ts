@@ -23,7 +23,7 @@ export class UserMenuLinkComponent {
 
     @Input() type?: UserMenuLinkType = UserMenuLinkType.Default;
 
-    @HostListener('click', ['$event'])
+    @HostListener('click')
     onClick(): void {
         this.userMenuComponent.isPopoverOpened = false;
     }

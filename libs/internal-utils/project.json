@@ -4,6 +4,7 @@
     "projectType": "library",
     "sourceRoot": "libs/internal-utils/src",
     "prefix": "spy",
+    "tags": ["pkg:primary", "type:meta"],
     "targets": {
         "test": {
             "executor": "@nx/jest:jest",
@@ -15,6 +16,5 @@
         "lint": {
             "executor": "@nx/eslint:lint"
         }
-    },
-    "tags": ["pkg:primary", "type:meta"]
+    }
 }

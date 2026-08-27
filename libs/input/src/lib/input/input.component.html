@@ -1,8 +1,4 @@
-<nz-input-group
-    [nzSuffix]="suffix"
-    [nzPrefix]="prefix"
-    [nzAddOnBefore]="outerPrefix"
-    [nzAddOnAfter]="outerSuffix"
+<nz-input-wrapper
     [class.ant-input-container--hover]="isHovered"
     [class.ant-input-container--focus]="isFocused"
     [class.ant-input-affix-wrapper-focused]="isFocused"
@@ -11,6 +7,26 @@
     (mouseover)="isHovered = true"
     (mouseout)="isHovered = false"
 >
+    @if (outerPrefix) {
+        <span nzInputAddonBefore>
+            @if (asTemplate(outerPrefix); as outerPrefixTpl) {
+                <ng-container [ngTemplateOutlet]="outerPrefixTpl"></ng-container>
+            } @else {
+                {{ asText(outerPrefix) }}
+            }
+        </span>
+    }
+
+    @if (prefix) {
+        <span nzInputPrefix>
+            @if (asTemplate(prefix); as prefixTpl) {
+                <ng-container [ngTemplateOutlet]="prefixTpl"></ng-container>
+            } @else {
+                {{ asText(prefix) }}
+            }
+        </span>
+    }
+
     @if (!nzAutocompleteComponent) {
         <input
             nz-input
@@ -18,7 +34,7 @@
             [attr.name]="name"
             [(ngModel)]="value"
             [type]="type"
-            [readOnly]="readOnly"
+            [readonly]="readOnly"
             [disabled]="disabled"
             (ngModelChange)="valueChange.emit($event)"
             [attr.id]="spyId"
@@ -36,7 +52,7 @@
             [attr.name]="name"
             [(ngModel)]="value"
             [type]="type"
-            [readOnly]="readOnly"
+            [readonly]="readOnly"
             [disabled]="disabled"
             [attr.id]="spyId"
             [required]="required"
@@ -47,7 +63,27 @@
             (ngModelChange)="onAutocompleteChange($event)"
         />
     }
-</nz-input-group>
+
+    @if (suffix) {
+        <span nzInputSuffix>
+            @if (asTemplate(suffix); as suffixTpl) {
+                <ng-container [ngTemplateOutlet]="suffixTpl"></ng-container>
+            } @else {
+                {{ asText(suffix) }}
+            }
+        </span>
+    }
+
+    @if (outerSuffix) {
+        <span nzInputAddonAfter>
+            @if (asTemplate(outerSuffix); as outerSuffixTpl) {
+                <ng-container [ngTemplateOutlet]="outerSuffixTpl"></ng-container>
+            } @else {
+                {{ asText(outerSuffix) }}
+            }
+        </span>
+    }
+</nz-input-wrapper>
 
 <span spyCustomElementBoundary style="display: none">
     <ng-content></ng-content>

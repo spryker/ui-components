@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'actions.confirmation',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/actions.confirmation',

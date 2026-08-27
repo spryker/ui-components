@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { TableFilterComponent } from '@spryker/table.feature.filters';
 import { EMPTY } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { EMPTY } from 'rxjs';
 export class TableDummyFilterComponent implements TableFilterComponent<any>, OnChanges {
     @Input() config?: any;
     @Input() value?: any;
-    valueChange: any;
+    @Output() valueChange = new EventEmitter<any>();
     classes = EMPTY;
 
     ngOnChanges(changes: SimpleChanges): void {

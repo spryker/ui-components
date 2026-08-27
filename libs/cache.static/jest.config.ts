@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'cache.static',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/cache.static',

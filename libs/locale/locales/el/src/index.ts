@@ -18,7 +18,7 @@ export function elLocaleFactory() {
             ant: () =>
                 Promise.all([
                     import('ng-zorro-antd/i18n').then((m) => m.el_GR),
-                    import('date-fns/locale/el').then((m) => m.default),
+                    import('date-fns/locale/el').then((m) => m.el),
                 ]).then(([data, dateData]) => ({ data, dateData })),
 
             spryker: () =>

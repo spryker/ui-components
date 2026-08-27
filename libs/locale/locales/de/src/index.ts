@@ -21,7 +21,7 @@ export function deLocaleFactory() {
             ant: () =>
                 Promise.all([
                     import('ng-zorro-antd/i18n').then((m) => m.de_DE),
-                    import('date-fns/locale/de').then((m) => m.default),
+                    import('date-fns/locale/de').then((m) => m.de),
                 ]).then(([data, dateData]) => ({ data, dateData })),
 
             spryker: () =>

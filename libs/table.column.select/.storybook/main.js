@@ -1,6 +1,6 @@
-const rootMain = require('../../../.storybook/main');
+import rootMain from '../../../.storybook/main.js';
 
-module.exports = {
+export default {
     ...rootMain,
 
     webpackFinal: async (config, { configType }) => {

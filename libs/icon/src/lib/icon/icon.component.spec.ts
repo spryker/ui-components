@@ -43,7 +43,7 @@ describe('IconComponent', () => {
     describe('host class spy-icon-[name]', () => {
         it('adds class when name is set', () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.name = 'name';
+            fixture.componentRef.setInput('name', 'name');
             fixture.detectChanges();
 
             const iconDe = fixture.debugElement.query(By.directive(IconComponent));
@@ -54,7 +54,7 @@ describe('IconComponent', () => {
 
         it('updates class when name changes', () => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.name = 'name';
+            fixture.componentRef.setInput('name', 'name');
             fixture.detectChanges();
 
             const iconDe = fixture.debugElement.query(By.directive(IconComponent));
@@ -62,7 +62,7 @@ describe('IconComponent', () => {
 
             expect(hostEl.classList.contains('spy-icon-name')).toBe(true);
 
-            fixture.componentInstance.name = 'new-name';
+            fixture.componentRef.setInput('name', 'new-name');
             fixture.detectChanges();
 
             expect(hostEl.classList.contains('spy-icon-new-name')).toBe(true);
@@ -73,7 +73,7 @@ describe('IconComponent', () => {
     describe('@Input(name)', () => {
         it('renders <i> with nzType from promise icon', fakeAsync(() => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.name = promiseIcon;
+            fixture.componentRef.setInput('name', promiseIcon);
             fixture.detectChanges();
 
             tick();
@@ -86,7 +86,7 @@ describe('IconComponent', () => {
 
         it('renders <i> with nzType from string icon', fakeAsync(() => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.name = stringIcon;
+            fixture.componentRef.setInput('name', stringIcon);
             fixture.detectChanges();
 
             tick();
@@ -99,7 +99,7 @@ describe('IconComponent', () => {
 
         it('re-renders <i> when name changes', fakeAsync(() => {
             const fixture = TestBed.createComponent(HostComponent);
-            fixture.componentInstance.name = promiseIcon;
+            fixture.componentRef.setInput('name', promiseIcon);
             fixture.detectChanges();
 
             tick();
@@ -108,7 +108,7 @@ describe('IconComponent', () => {
             let iDe = fixture.debugElement.query(By.css('i[nz-icon]'));
             expect(iDe.nativeNode.nzType).toBe(promiseIcon);
 
-            fixture.componentInstance.name = stringIcon;
+            fixture.componentRef.setInput('name', stringIcon);
             fixture.detectChanges();
 
             tick();

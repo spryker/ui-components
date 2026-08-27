@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'dropdown',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/dropdown',

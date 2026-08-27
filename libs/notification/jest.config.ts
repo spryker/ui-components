@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'notification',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/notification',

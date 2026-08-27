@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'datasource.http',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/datasource.http',

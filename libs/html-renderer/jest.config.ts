@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'html-renderer',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/html-renderer',

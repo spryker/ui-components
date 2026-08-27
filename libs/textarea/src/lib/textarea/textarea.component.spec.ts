@@ -120,7 +120,7 @@ describe('TextareaComponent', () => {
         });
     });
 
-    it('template must render <textarea> with [nzAutosize] property', async () => {
-        expect(q('textarea').properties).toHaveProperty('nzAutosize');
+    it('template must render <textarea> with [cdkTextareaAutosize] property', async () => {
+        expect(q('textarea').properties).toHaveProperty('cdkTextareaAutosize');
     });
 });

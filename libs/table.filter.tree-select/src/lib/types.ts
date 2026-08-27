@@ -5,8 +5,9 @@ import { TreeSelectValue } from '@spryker/tree-select';
 /**
  * Interface {@link TableFilterTreeSelect} represents config of the Tree Select filters feature
  */
-export interface TableFilterTreeSelect
-    extends TableFilterBase<TableFilterTreeSelectValue | TableFilterTreeSelectValue[]> {
+export interface TableFilterTreeSelect extends TableFilterBase<
+    TableFilterTreeSelectValue | TableFilterTreeSelectValue[]
+> {
     type: 'tree-select';
     typeOptions: TableFilterTreeSelectOptions;
 }

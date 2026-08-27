@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'utils',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/utils',

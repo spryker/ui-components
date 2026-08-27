@@ -1,15 +1,5 @@
-import {
-    Compiler,
-    ComponentFactory,
-    Injectable,
-    Injector,
-    ModuleWithComponentFactories,
-    NgModuleFactory,
-    NgModuleRef,
-    OnDestroy,
-    Type,
-    inject,
-} from '@angular/core';
+import { Injectable, Injector, NgModuleRef, OnDestroy, Type, createNgModule, inject } from '@angular/core';
+import { ComponentFactory, ReflectedComponentFactory } from '@spryker/utils';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs';
 import { TableFeatureConfig } from '../table-config/types';
@@ -21,7 +11,6 @@ import { ModuleWithFeature, TableFeatureLoader, TableFeaturesRegistry } from './
 @Injectable({ providedIn: 'root' })
 export class TableFeatureLoaderService implements OnDestroy {
     protected featuresRegistries = inject(TableFeaturesRegistryToken, { optional: true });
-    protected compiler = inject(Compiler);
     protected injector = inject(Injector);
 
     private featuresRegistry: TableFeaturesRegistry =
@@ -37,16 +26,9 @@ export class TableFeatureLoaderService implements OnDestroy {
         this.loaderToObservable(loader).pipe(shareReplay({ bufferSize: 1, refCount: true })),
     );
 
-    private compiledFeatures = this.mapFeatures(this.loadedFeatures, (loadedFeature$) =>
+    private featureModules = this.mapFeatures(this.loadedFeatures, (loadedFeature$) =>
         loadedFeature$.pipe(
-            switchMap((featureModule) => this.compileFeatureModule(featureModule)),
-            shareReplay({ bufferSize: 1, refCount: true }),
-        ),
-    );
-
-    private featureModules = this.mapFeatures(this.compiledFeatures, (compiledFeature$) =>
-        compiledFeature$.pipe(
-            map((compiledFeature) => this.initFeatureModule(compiledFeature.ngModuleFactory)),
+            map((featureModule) => this.initFeatureModule(featureModule)),
             shareReplay({ bufferSize: 1, refCount: true }),
         ),
     );
@@ -66,7 +48,7 @@ export class TableFeatureLoaderService implements OnDestroy {
 
         // Cleanup refs to modules
         this.featuresRegistries = [];
-        this.featuresRegistry = this.compiledFeatures = this.featureModules = this.featureFactories = {};
+        this.featuresRegistry = this.loadedFeatures = this.featureModules = this.featureFactories = {};
     }
 
     loadFactoriesFor(config: TableConfig): Observable<Record<string, ComponentFactory<TableFeatureComponent>>> {
@@ -97,14 +79,11 @@ export class TableFeatureLoaderService implements OnDestroy {
         });
     }
 
-    private compileFeatureModule(
-        moduleType: Type<ModuleWithFeature>,
-    ): Observable<ModuleWithComponentFactories<ModuleWithFeature>> {
-        return from(this.compiler.compileModuleAndAllComponentsAsync(moduleType));
-    }
-
-    private initFeatureModule(moduleFactory: NgModuleFactory<ModuleWithFeature>): NgModuleRef<ModuleWithFeature> {
-        const moduleRef = moduleFactory.create(this.injector);
+    private initFeatureModule(moduleType: Type<ModuleWithFeature>): NgModuleRef<ModuleWithFeature> {
+        // `createNgModule()` replaces `Compiler.compileModuleAndAllComponentsAsync()`, which is
+        // removed in Angular 22. Feature modules are AOT-compiled, so no JIT compilation step is
+        // needed to instantiate them — and none was ever needed to reach `featureComponent`.
+        const moduleRef = createNgModule(moduleType, this.injector);
 
         // Store created module refs for future cleanup
         this.featureModuleRefs.push(moduleRef);
@@ -115,7 +94,10 @@ export class TableFeatureLoaderService implements OnDestroy {
     private resolveFeatureFactory(
         moduleRef: NgModuleRef<ModuleWithFeature>,
     ): ComponentFactory<TableFeatureComponent<TableFeatureConfig>> {
-        return moduleRef.componentFactoryResolver.resolveComponentFactory(moduleRef.instance.featureComponent);
+        // Bound to `moduleRef`, exactly as the removed `moduleRef.componentFactoryResolver` was:
+        // `TableComponent` calls `create(this.vcr.injector)` with no environment injector, and the
+        // feature component must still resolve providers declared by its own feature module.
+        return new ReflectedComponentFactory(moduleRef.instance.featureComponent, moduleRef);
     }
 
     private mapFeatures<T, R>(features: Record<string, T>, mapFn: (feature: T) => R): Record<string, R> {

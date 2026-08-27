@@ -198,7 +198,11 @@ export class CoreTableComponent implements TableComponent, OnInit, OnChanges, Af
                 // Add feature to the view CD
                 this.vcr.insert(featureRef.hostView);
 
-                featureRef.changeDetectorRef.detectChanges();
+                // `ComponentRef.changeDetectorRef` is a `ViewRef` over the *host root* LView, not
+                // the component's own, so its `detectChanges()` is a no-op on an `OnPush`
+                // component once the view has been checked once. Every published
+                // `table.feature.*` component declares `OnPush`. Mark its own view instead.
+                featureRef.injector.get(ChangeDetectorRef).markForCheck();
 
                 return featureRef;
             }),

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'data-transformer.collate',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/data-transformer.collate',

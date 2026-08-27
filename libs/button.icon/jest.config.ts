@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'button.icon',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/button.icon',

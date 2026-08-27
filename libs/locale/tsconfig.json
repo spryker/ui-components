@@ -14,5 +14,9 @@
         {
             "path": "./.storybook/tsconfig.json"
         }
-    ]
+    ],
+    "compilerOptions": {
+        "module": "preserve",
+        "moduleResolution": "bundler"
+    }
 }

@@ -45,7 +45,7 @@ describe('CardComponent (hosted)', () => {
         expect(cardDe).toBeTruthy();
         expect((cardDe.nativeElement as HTMLElement).classList.contains('ant-card-hoverable')).toBe(false);
 
-        fixture.componentInstance.hoverable = true;
+        fixture.componentRef.setInput('hoverable', true);
         fixture.detectChanges();
 
         expect((cardDe.nativeElement as HTMLElement).classList.contains('ant-card-hoverable')).toBe(true);
@@ -53,7 +53,7 @@ describe('CardComponent (hosted)', () => {
 
     it('should render card title with content', () => {
         const cardTitleContent = 'Card Title';
-        fixture.componentInstance.title = cardTitleContent;
+        fixture.componentRef.setInput('title', cardTitleContent);
         fixture.detectChanges();
 
         const titleDe = fixture.debugElement.query(By.css('.ant-card-head-title'));
@@ -62,7 +62,7 @@ describe('CardComponent (hosted)', () => {
     });
 
     it('should render card extra', () => {
-        fixture.componentInstance.extra = {} as unknown as TemplateRef<void>;
+        fixture.componentRef.setInput('extra', {} as unknown as TemplateRef<void>);
         fixture.detectChanges();
 
         const extraDe = fixture.debugElement.query(By.css('.ant-card-extra'));

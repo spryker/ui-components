@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'actions.refresh-table',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/actions.refresh-table',

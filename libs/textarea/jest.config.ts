@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'textarea',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/textarea',

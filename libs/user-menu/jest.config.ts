@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'user-menu',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/user-menu',

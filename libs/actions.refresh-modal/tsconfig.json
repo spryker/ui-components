@@ -15,5 +15,9 @@
             "path": "./.storybook/tsconfig.json"
         }
     ],
-    "extends": "../../tsconfig.base.json"
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "module": "preserve",
+        "moduleResolution": "bundler"
+    }
 }

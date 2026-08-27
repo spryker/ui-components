@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'rating',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/rating',

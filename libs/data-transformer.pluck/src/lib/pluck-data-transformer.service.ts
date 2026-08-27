@@ -8,9 +8,10 @@ import { PluckDataTransformerConfig, PluckDataTransformerData, PluckDataTransfor
 @Injectable({
     providedIn: 'root',
 })
-export class PluckDataTransformerService
-    implements DataTransformer<PluckDataTransformerData, PluckDataTransformerDataT>
-{
+export class PluckDataTransformerService implements DataTransformer<
+    PluckDataTransformerData,
+    PluckDataTransformerDataT
+> {
     protected contextService = inject(ContextService);
 
     transform(

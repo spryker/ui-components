@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'actions.open-modal',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/actions.open-modal',

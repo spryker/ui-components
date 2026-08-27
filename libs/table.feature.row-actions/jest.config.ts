@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'table.feature.row-actions',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/table.feature.row-actions',

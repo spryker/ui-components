@@ -290,5 +290,35 @@ describe('TableEditableFeatureComponent', () => {
 
             expect(featureElem.componentInstance.openEditableCell).toHaveBeenCalled();
         });
+
+        it('should invoke `openEditableCell` method when `spy-table-editable-feature__wrapper` is activated from the keyboard', async () => {
+            const featureElem = fixture.debugElement.query(By.css('spy-table-editable-feature'));
+            const cellWrapperElem = fixture.debugElement.query(By.css('.spy-table-editable-feature__wrapper'));
+            const spaceEvent = new KeyboardEvent('keydown', { key: ' ', cancelable: true });
+
+            featureElem.componentInstance.openEditableCell = jest.fn();
+
+            cellWrapperElem.triggerEventHandler('keydown.enter', new KeyboardEvent('keydown', { key: 'Enter' }));
+            fixture.detectChanges();
+
+            expect(featureElem.componentInstance.openEditableCell).toHaveBeenCalledTimes(1);
+
+            cellWrapperElem.triggerEventHandler('keydown.space', spaceEvent);
+            fixture.detectChanges();
+
+            expect(featureElem.componentInstance.openEditableCell).toHaveBeenCalledTimes(2);
+            // Space on a focused non-button scrolls the page, which would move the table out from
+            // under the editor that is about to open.
+            expect(spaceEvent.defaultPrevented).toBe(true);
+        });
+
+        it('should expose `spy-table-editable-feature__wrapper` as a focusable button', async () => {
+            const cellWrapperEl: HTMLElement = fixture.debugElement.query(
+                By.css('.spy-table-editable-feature__wrapper'),
+            ).nativeElement;
+
+            expect(cellWrapperEl.getAttribute('role')).toBe('button');
+            expect(cellWrapperEl.getAttribute('tabindex')).toBe('0');
+        });
     });
 });

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'unsaved-changes.guard.browser',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/unsaved-changes.guard.browser',

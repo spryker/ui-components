@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { buttonClassName } from '../button-core/button-core';
@@ -81,6 +81,7 @@ describe('ButtonComponent', () => {
         hostFixture.componentInstance.variant = ButtonVariant.Critical;
         hostFixture.componentInstance.shape = ButtonShape.Circle;
         hostFixture.componentInstance.size = ButtonSize.Large;
+        hostFixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
         hostFixture.detectChanges();
 
         expect(hostEl.classList.contains(`${buttonClassName}--${ButtonVariant.Critical}`)).toBe(true);
@@ -94,6 +95,7 @@ describe('ButtonComponent', () => {
     it('should bind `attrs` to `spyApplyAttrs` properties of <button>', () => {
         const mockedAttrs = { mockAttr: 'mockAttr' };
         hostFixture.componentInstance.attrs = mockedAttrs;
+        hostFixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
         hostFixture.detectChanges();
 
         const btnDe = hostFixture.debugElement.query(By.css('button'));
@@ -107,6 +109,7 @@ describe('ButtonComponent', () => {
 
         it('should bind to `type` of <button>', () => {
             hostFixture.componentInstance.type = 'value';
+            hostFixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             hostFixture.detectChanges();
 
             const btnDe = hostFixture.debugElement.query(By.css('button'));
@@ -121,6 +124,7 @@ describe('ButtonComponent', () => {
 
         it('should bind to `disabled` of <button>', () => {
             hostFixture.componentInstance.disabled = true;
+            hostFixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
             hostFixture.detectChanges();
 
             const btnDe = hostFixture.debugElement.query(By.css('button'));
@@ -133,6 +137,7 @@ describe('ButtonComponent', () => {
         hostFixture.componentInstance.shape = undefined;
         hostFixture.componentInstance.size = undefined;
         hostFixture.componentInstance.type = undefined;
+        hostFixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
         hostFixture.detectChanges();
 
         expect(buttonCmp.size).toBe(ButtonSize.Medium);

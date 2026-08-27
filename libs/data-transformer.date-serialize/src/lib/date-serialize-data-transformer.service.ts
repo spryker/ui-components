@@ -12,9 +12,10 @@ import {
 @Injectable({
     providedIn: 'root',
 })
-export class DateSerializeDataTransformerService
-    implements DataTransformer<DateSerializeDataTransformerData, DateSerializeDataTransformerDataT>
-{
+export class DateSerializeDataTransformerService implements DataTransformer<
+    DateSerializeDataTransformerData,
+    DateSerializeDataTransformerDataT
+> {
     transform(
         data: DateSerializeDataTransformerData,
         config: DateSerializeDataTransformerConfig,

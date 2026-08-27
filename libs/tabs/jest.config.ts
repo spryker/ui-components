@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'tabs',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/tabs',

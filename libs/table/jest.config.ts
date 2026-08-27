@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     displayName: 'table',
     preset: '../../jest.preset.js',
     coverageDirectory: '../../coverage/libs/table',

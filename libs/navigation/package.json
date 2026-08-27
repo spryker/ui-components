@@ -4,10 +4,10 @@
     "peerDependencies": {
         "@angular/common": ">=20.3.0 <23.0.0",
         "@angular/core": ">=20.3.0 <23.0.0",
-        "@spryker/icon": "^3.0.0",
-        "@spryker/interception": "^3.0.0",
-        "@spryker/styles": "^3.0.0",
-        "@spryker/utils": "^3.0.0",
+        "@spryker/icon": "^4.0.0",
+        "@spryker/interception": "^4.0.0",
+        "@spryker/styles": "^4.0.0",
+        "@spryker/utils": "^4.0.0",
         "ng-zorro-antd": ">=20.3.0 <23.0.0"
     },
     "dependencies": {

@@ -4,12 +4,12 @@
     "peerDependencies": {
         "@angular/common": ">=20.3.0 <23.0.0",
         "@angular/core": ">=20.3.0 <23.0.0",
-        "@spryker/button": "^3.0.0",
-        "@spryker/notification": "^3.0.0",
-        "@spryker/styles": "^3.0.0",
-        "@spryker/table": "^3.0.0",
-        "@spryker/table.feature.selectable": "^3.0.0",
-        "@spryker/utils": "^3.0.0",
+        "@spryker/button": "^4.0.0",
+        "@spryker/notification": "^4.0.0",
+        "@spryker/styles": "^4.0.0",
+        "@spryker/table": "^4.0.0",
+        "@spryker/table.feature.selectable": "^4.0.0",
+        "@spryker/utils": "^4.0.0",
         "rxjs": ">=7.8.0 <8.0.0"
     },
     "dependencies": {

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/spryker/ui-components/compare/%40spryker%2Ftree-select%403.1.1...%40spryker%2Ftree-select%404.0.0) (2026-08-27)
+
+* Angular migration 22 (#700) ([183b6ee](https://github.com/spryker/ui-components/commit/183b6eed7bda2cf9f13d2eda45c438ac27904661)), closes [#700](https://github.com/spryker/ui-components/issues/700)
+
+### BREAKING CHANGES
+
+* ng-zorro-antd moves from dependencies to peerDependencies in 33
+  packages -- consumers must install it themselves. 9 packages now require
+  @angular/core >= 21.0.0 (modal, dropdown, actions.confirmation, actions.open-modal,
+  actions.close-modal, actions.refresh-modal, table.feature.row-actions,
+  unsaved-changes.guard.drawer, unsaved-changes.guard.navigation). 5 packages require
+  ng-zorro-antd >= 20.4.0 (input, input.password, table.column.autocomplete,
+  table.column.input, table.feature.search). @spryker/date-picker requires the consumer
+  to provide an NzDateAdapter on ng-zorro-antd 22. @spryker/notification no longer
+  exposes NotificationWrapperComponent.params. @spryker/table and @spryker/modal replace
+  the removed Angular ComponentFactory types with the @spryker/utils shim.
+  @spryker/styles no longer ships a usable standalone.css -- compile the theme yourself.
+
+  * feat: packages
+
+
 ## [3.1.1](https://github.com/spryker/ui-components/compare/@spryker/tree-select@3.1.0...@spryker/tree-select@3.1.1) (2026-03-25)
 
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Directive, EventEmitter, Injector, Input, OnChanges, Output, inject } from '@angular/core';
-import { EMPTY, Observable, ReplaySubject, catchError, map, switchMap, tap } from 'rxjs';
+import { EMPTY, Observable, ReplaySubject, catchError, map, switchMap, tap, filter } from 'rxjs';
 import { AjaxActionService } from '@spryker/ajax-action';
 import { HtmlRendererProvider } from '../html-renderer/html-renderer.provider';
 import { UrlHtmlRendererResponse } from '../html-renderer/types';
@@ -39,6 +39,7 @@ export class UrlHtmlRendererDirective implements HtmlRendererProvider, OnChanges
 
     getHtml(): Observable<string> {
         return this.html$.pipe(
+            filter((urlHtml) => !!urlHtml),
             tap(() => {
                 this.urlHtmlLoading.emit(true);
                 this.isLoading$.next();
